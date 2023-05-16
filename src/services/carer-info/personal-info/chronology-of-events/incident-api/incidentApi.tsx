@@ -1,0 +1,50 @@
+import { baseAPI } from "@root/services/baseApi";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
+
+export const incidentApi = baseAPI.injectEndpoints({
+  endpoints: (builder) => ({
+    incidentList: builder.query({
+      query: () => "chronology-events/incident/List",
+      providesTags: ["INCIDENT_LIST"],
+    }),
+    incidentAddPost: builder.mutation({
+      query: (payload: any) => ({
+        url: "/chronology-events/incidents",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["INCIDENT_LIST"],
+    }),
+    incidentById: builder.query({
+      query: (id: any) => `/chronology-events/incident/${id}`,
+      transformResponse: (response: any) => {
+       
+        return response;
+      },
+      providesTags: ["INCIDENT_LIST"],
+    }),
+    deleteIncidentById: builder.mutation({
+      query: (id: any) => ({
+        url: `/chronology-events/incident/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["INCIDENT_LIST"],
+    }),
+    patchIncidentById: builder.mutation({
+      query: ({ id, ...formData }: any) => ({
+        url: `chronology-events/incident/${id}`,
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: ["INCIDENT_LIST"],
+    }),
+  }),
+});
+
+export const {
+  useIncidentListQuery,
+  useIncidentAddPostMutation,
+  useLazyIncidentByIdQuery,
+  usePatchIncidentByIdMutation,
+  useDeleteIncidentByIdMutation,
+} = incidentApi;

@@ -1,0 +1,25 @@
+import { baseAPI, TAGS } from "@root/services/baseApi";
+
+export const applicationDetailsApi = baseAPI.injectEndpoints({
+  endpoints: (builder) => ({
+    putApplicationDetails1: builder.mutation({
+      query: (formData: any) => ({
+        url: "carer-info/personal-info/form-f/application-details1",
+        method: "PUT",
+        body: formData,
+      }),
+    }),
+    putApplicationDetails2: builder.mutation({
+      query: (formData: any) => ({
+        url: "carer-info/personal-info/form-f/application-details2",
+        method: "PUT",
+        body: formData,
+      }),
+    }),
+  }),
+});
+
+export const {
+  usePutApplicationDetails1Mutation,
+  usePutApplicationDetails2Mutation,
+} = applicationDetailsApi;
