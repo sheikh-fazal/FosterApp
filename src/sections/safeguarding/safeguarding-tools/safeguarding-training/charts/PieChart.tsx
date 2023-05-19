@@ -2,6 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { Box, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
+import { chartTitles } from ".";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -9,11 +10,6 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 export default function PieChart({ selectedChart, setSelectedChart }: any) {
   let series: number[] = [22, 54, 24];
-  const chartTitles = [
-    { title: "Completed", color: "#F6460F" },
-    { title: "Pending", color: "#F6830F" },
-    { title: "Inprogress", color: "#2CB764" },
-  ];
 
   let options: ApexOptions = {
     chart: {

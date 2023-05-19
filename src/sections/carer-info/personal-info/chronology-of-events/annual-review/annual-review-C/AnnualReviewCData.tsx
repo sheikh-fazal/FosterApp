@@ -12,7 +12,7 @@ export const defaultValues = {
   procedures: "Text",
 };
 
-expor-t const FormSchema = Yup.object().shape({
+export const FormSchema = Yup.object().shape({
   complaintsReview: Yup.string().required("required"),
   significantChanges: Yup.string().required("required"),
   forestingImpact: Yup.string().required("required"),

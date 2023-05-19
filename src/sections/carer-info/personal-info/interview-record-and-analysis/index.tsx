@@ -45,30 +45,30 @@ export const FormSchema = Yup.object().shape({
   signDateAccessor: Yup.date().required("Date is required"),
   signature: Yup.mixed()
     .nullable()
-    .required("Signature Of Interviewee is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature Of Interviewee is required"),
+  // .test(
+  //   "fileFormat",
+  //   "Unsupported Format",
+  //   (value: any) => value && FILE_FORMATS.includes(value.type)
+  // )
+  // .test(
+  //   "fileSize",
+  //   `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //   (value: any) => value && value.size <= MAX_FILE_SIZE
+  // ),
   accessorSignature: Yup.mixed()
     .nullable()
-    .required("Signature Of Accessor is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature Of Accessor is required"),
+  // .test(
+  //   "fileFormat",
+  //   "Unsupported Format",
+  //   (value: any) => value && FILE_FORMATS.includes(value.type)
+  // )
+  // .test(
+  //   "fileSize",
+  //   `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //   (value: any) => value && value.size <= MAX_FILE_SIZE
+  // ),
 });
 
 export const formData1 = [

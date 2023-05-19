@@ -5,9 +5,9 @@ import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import { useRef } from "react";
 import router from "next/router";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 import useIncidentTable from "./useIncidentTable";
+import DeletePrompt from "@root/components/Table/prompt/deletePrompt";
 
 const Incident = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -69,7 +69,7 @@ const Incident = () => {
                 })
               }
             />
-            <DeleteModel
+            <DeletePrompt
               onDeleteClick={() => deleteHander(info.row.original.id)}
             />
 
@@ -132,4 +132,3 @@ const Incident = () => {
 export default Incident;
 
 //Styling
-

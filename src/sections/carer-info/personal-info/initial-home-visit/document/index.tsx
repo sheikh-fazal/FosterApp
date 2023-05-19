@@ -12,10 +12,7 @@ export const initialHomeDocumentTableColumnsFunction = (
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => {
-      console.log(row);
-      return row.documentName;
-    },
+    accessorFn: (row: any) => row.documentName,
     id: "documentName",
     cell: (info: any) => info.getValue(),
     header: () => <span>Document Name</span>,
@@ -78,11 +75,16 @@ export const viewDocumentForm = [
     name: "documentdate",
     label: "",
     title: "Document Date",
-    gridSize: { xs: 12 },
   },
   {
     type: "text",
     name: "password",
+    label: "",
+    title: "Password to Open Document",
+  },
+  {
+    type: "upload",
+    name: "file",
     label: "",
     title: "Password to Open Document",
     gridSize: { xs: 12 },

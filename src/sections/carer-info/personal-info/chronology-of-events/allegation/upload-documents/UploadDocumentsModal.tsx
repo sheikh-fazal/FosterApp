@@ -5,40 +5,19 @@ import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { UploadDocFormData, defaultValues, formSchema } from "./index";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-import { enqueueSnackbar } from "notistack";
-import dayjs from "dayjs";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
 function UploadDocumentsModel(props: any) {
   const { open, setOpen } = props;
-  const { postAllegationDetails, router, theme } = useUploadDocumentsTable();
+  const { postAllegationDetails, router, theme, onSubmit, action } =
+    useUploadDocumentsTable();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues,
   });
   const { handleSubmit } = methods;
-  const onSubmit = async (data: any) => {
-    const formData = new FormData();
-    formData.append("type", data.type);
-    formData.append(
-      "documentDate",
-      dayjs(data?.documentDate).format("MM/DD/YYYY")
-    );
-    formData.append("password", data.password);
-    formData.append("password", data.file);
-    // formData.append("allegationId", id);
-    try {
-      await postAllegationDetails(formData);
-      enqueueSnackbar("Documents Uploaded Successfully", {
-        variant: "success",
-      });
-      router.push("/carer-info/personal-info/carer-chronology-of-events");
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    }
-  };
+
   return (
     <>
       <Modal
@@ -68,7 +47,11 @@ function UploadDocumentsModel(props: any) {
             <Grid container rowSpacing={4} columnSpacing={2}>
               {UploadDocFormData.map((form: any) => (
                 <Grid item xs={12} md={form?.gridLength} key={form.id}>
-                  <form.component {...form.componentProps} size="small">
+                  <form.component
+                    {...form.componentProps}
+                    size="small"
+                    disabled={action === "view" ? true : false}
+                  >
                     {form.componentProps.select
                       ? form.componentProps.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

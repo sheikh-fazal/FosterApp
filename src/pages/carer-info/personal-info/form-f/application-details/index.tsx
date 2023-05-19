@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
@@ -9,6 +9,8 @@ import {
   usePutApplicationDetails2Mutation,
 } from "@root/services/carer-info/personal-info/form-f/applicationDetailsApi";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TITLE = "Form F";
@@ -35,6 +37,16 @@ ApplicationDetails.getLayout = function getLayout(page: any) {
 };
 
 export default function ApplicationDetails() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data: applicant1Data } = useFormFQuery("applicationDetails1", {
+    skip,
+  });
+  const { data: applicant2Data } = useFormFQuery("applicationDetails2", {
+    skip,
+  });
+  //---------------=================-----------------//
   //----------------------API Calls-----------------------------
   const [
     putApplicant1Data,

@@ -74,7 +74,7 @@ export const DocumentTable = (props: any) => {
       id: "password",
       cell: (info: any) => {
         let j = [];
-        for (let i = 0; i < info.getValue().length; i++) {
+        for (let i = 0; i < info.getValue()?.length; i++) {
           j.push("*");
         }
         return j;

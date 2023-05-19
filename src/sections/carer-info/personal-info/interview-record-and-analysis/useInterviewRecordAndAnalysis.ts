@@ -3,16 +3,22 @@ import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
 import { fTimestamp } from "@root/utils/formatTime";
+import { useEditInterviewRecordAnalysisMutation } from "@root/services/carer-info/personal-info/interview-record-analysis/InterviewRecordAnalysis";
+import { enqueueSnackbar } from "notistack";
 
 export const useInterviewRecordAndAnalysis = (
-  globallyDisabled: any,
-  data: any
+  disabled: any,
+  data: any,
+  role: any
 ) => {
   const theme: any = useTheme();
+  const [editInterviewRecordAnalysis, { isLoading }] =
+    useEditInterviewRecordAnalysisMutation();
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: globallyDisabled ? data : defaultValues,
+    defaultValues: data,
   });
 
   const {
@@ -26,19 +32,26 @@ export const useInterviewRecordAndAnalysis = (
   } = methods;
 
   const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-          startDate: data.startDate && fTimestamp(data.startDate),
-          endDate: data.endDate && fTimestamp(data.endDate),
-        },
-        null,
-        2
-      )
-    );
-    reset();
+    var form_data = new FormData();
+    for (var key in data) {
+      form_data.append(key, data[key]);
+    }
+
+    try {
+      const res: any = await editInterviewRecordAnalysis(form_data).unwrap();
+      if (res.data) {
+        reset({
+          ...res.data,
+          interviewDate: new Date(res?.data.interviewDate),
+          signatureDate: new Date(res?.data.signatureDate),
+        });
+        enqueueSnackbar("Record Updated Successfully", { variant: "success" });
+      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+    // reset();
   };
 
   return {

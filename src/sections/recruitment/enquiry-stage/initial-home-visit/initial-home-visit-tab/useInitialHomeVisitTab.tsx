@@ -4,7 +4,7 @@ import { usePostInitialHomeInterestDataMutation } from "@root/services/carer-inf
 import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/primary/primaryCarer";
 import { enqueueSnackbar } from "notistack";
 
-export const useinitialHomeVisitTab = () => {
+export const useInitialHomeVisitTab = () => {
   const [
     postInitialHomeAssessmentDataTrigger,
     postInitialHomeAssessmentDataStatus,

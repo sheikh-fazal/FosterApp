@@ -14,7 +14,7 @@ const BREADCRUMBS = [
     href: "/carer-info/background-checks/statutory-checks-list",
   },
   {
-    name: "Car Insuance",
+    name: "Car Insurance",
     href: "",
   },
 ];

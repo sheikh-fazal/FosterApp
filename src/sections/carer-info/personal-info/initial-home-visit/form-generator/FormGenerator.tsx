@@ -88,6 +88,7 @@ const FormGenerator: FC<any> = ({
                 size="small"
                 getOptionLabel={getOptionLabel}
                 {...other}
+                {...methods}
               />
             </Grid>
           );

@@ -26,7 +26,7 @@ export const defaultValues = {
   dateOfEnquiry: new Date(todayDate), //3
   whereHearAboutOutAgency: "USD", //4
   additionalSourceInformation: "additional Info", //5
-  uploadPhoto: null, //6
+  image: null, //6
   title: "USD", //7
   firstName: "Ahmed", //8
   middleName: "MAC", //9
@@ -53,7 +53,7 @@ export const FormSchema = Yup.object().shape({
   dateOfEnquiry: Yup.date().required("Date of Enquiry is required"),
   whereHearAboutOutAgency: Yup.string().trim().required("Field is required"),
   additionalSourceInformation: Yup.string().required("Field is required"),
-  uploadPhoto: Yup.mixed().required("Photo is is required"),
+  image: Yup.mixed().required("Photo is is required"),
   // .test(
   //   "fileFormat",
   //   "Unsupported Format",
@@ -160,7 +160,7 @@ export const FIRSTAPPLICANTFORMDATA = [
   {
     id: 1,
     componentProps: {
-      name: "uploadPhoto",
+      name: "image",
       label: "Upload Photo",
     },
     gridLength: 6,

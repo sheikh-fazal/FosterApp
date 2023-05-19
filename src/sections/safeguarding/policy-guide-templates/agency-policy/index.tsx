@@ -1,6 +1,5 @@
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import SignaturePad from "@root/components/hook-form/SignaturePad";
 import { fData } from "@root/utils/formatNumber";
 import * as Yup from "yup";
@@ -8,6 +7,14 @@ import * as Yup from "yup";
 
 // ----------------------------------------------------------------------
 
+export const data = [{
+  policyDocument: "PDF",
+  uploadedDate: "12.11.2021",
+  description: "Safeguarding policy incorporated changes",
+  version: "Version_13.01_12112021",
+  authorRole: "Victor Krum (Safeguarding Officer)",
+  approverRole: "Tom Hanks (Director)",
+},]
 export const defaultValues = {
   updatePhoto: null,
   // uploadDate: "",
@@ -25,7 +32,6 @@ export const defaultValues = {
   authorSignature: null,
   approverSignature: null
 };
-
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
@@ -57,7 +63,7 @@ export const FormSchema = Yup.object().shape({
       `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
       (value: any) => value && value.size <= MAX_FILE_SIZE
     ),
-    approverSignature: Yup.mixed()
+  approverSignature: Yup.mixed()
     .nullable()
     .required("Signature of Approver is required")
     .test(
@@ -184,4 +190,3 @@ export const formData = [
     component: SignaturePad,
   },
 ];
-export { default as AgencySafeguardingPolicy } from "./AgencySafeguardingPolicyList";

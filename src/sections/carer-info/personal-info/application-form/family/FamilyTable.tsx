@@ -38,9 +38,7 @@ export default function FamilyTable() {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
+          onSortByChange={sortChangeHandler}
           rootSX={{ my: theme.spacing(2) }}
         />
       </Grid>

@@ -18,13 +18,14 @@ import { useInterviewRecordAndAnalysis } from "./useInterviewRecordAndAnalysis";
 // ----------------------------------------------------------------------
 
 export default function InterviewRecordAndAnalysis({
-  disabled: globallyDisabled,
+  disabled,
   data,
+  role,
 }: any) {
   let router: any = useRouter();
 
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useInterviewRecordAndAnalysis(globallyDisabled, data);
+    useInterviewRecordAndAnalysis(disabled, data, role);
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
@@ -32,7 +33,7 @@ export default function InterviewRecordAndAnalysis({
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
               <form.component
-                disabled={globallyDisabled}
+                disabled={disabled}
                 size="small"
                 {...form.otherOptions}
               >
@@ -62,7 +63,7 @@ export default function InterviewRecordAndAnalysis({
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
               <form.component
-                disabled={globallyDisabled}
+                disabled={disabled}
                 size="small"
                 // getSign={data && data[`${form.otherOptions.name}`]}
                 {...form.otherOptions}
@@ -78,7 +79,7 @@ export default function InterviewRecordAndAnalysis({
             </Grid>
           );
         })}
-        {globallyDisabled ? (
+        {disabled ? (
           ""
         ) : (
           <Grid item xs={12}>

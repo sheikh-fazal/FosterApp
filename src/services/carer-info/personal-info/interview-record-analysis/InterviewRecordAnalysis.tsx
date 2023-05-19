@@ -7,7 +7,7 @@ export const interviewRecordAnalysisApi = baseAPI.injectEndpoints({
       providesTags: ["LINKS", "EDIT_LINKS"],
     }),
     editInterviewRecordAnalysis: builder.mutation({
-      query: ({ id, formData }: any) => ({
+      query: (formData: any) => ({
         url: `carer-Info/personal-info/interview-record`,
         method: "PATCH",
         body: formData,

@@ -29,5 +29,9 @@ OtherMaterial.getLayout = function getLayout(page: any) {
 };
 
 export default function OtherMaterial() {
-  return <Page title={PAGE_TILE}><OtherMaterialTable /></Page>;
+  return (
+    <Page title={PAGE_TILE}>
+      <OtherMaterialTable />
+    </Page>
+  );
 }

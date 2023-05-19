@@ -1,10 +1,12 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import SpecialistReportsForm from "@root/sections/carer-info/personal-info/form-f/specialist-reports/SpecialistReportsForm";
 import { usePutSpecialistReportMutation } from "@root/services/carer-info/personal-info/form-f/specialistReportApi";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TILE = "Form F";
@@ -31,6 +33,11 @@ SpecialistReports.getLayout = function getLayout(page: any) {
 };
 
 export default function SpecialistReports() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data } = useFormFQuery("specialistReports", { skip });
+  //---------------=================-----------------//
   const [putData, { isSuccess, isError, isLoading }] =
     usePutSpecialistReportMutation();
 

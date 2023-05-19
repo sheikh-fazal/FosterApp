@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import SignatureCanvas from "react-signature-canvas";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 // ----------------------------------------------------------------------
 
 export default function SignaturePad({ name, getSign, ...other }: any) {
@@ -18,7 +19,7 @@ export default function SignaturePad({ name, getSign, ...other }: any) {
   let [showSignCanvas, setShowSignCnvas] = useState(null);
   useEffect(() => {
     setShowSignCnvas(control._defaultValues[`${name}`]);
-  }, [control._defaultValues[`${name}`]]);
+  }, [control, name]);
   let theme: any = useTheme();
   const sigCanvas: any = useRef();
 
@@ -75,10 +76,12 @@ export default function SignaturePad({ name, getSign, ...other }: any) {
             }}
           >
             {other?.disabled || showSignCanvas ? (
-              <img
+              <Image
                 alt="sign"
+                width={1000}
+                height={1000}
                 style={{ width: "100%", height: "100%" }}
-                src={`${process.env.NEXT_PUBLIC_IMG_URL}/${showSignCanvas}`}
+                src={`${process.env.NEXT_PUBLIC_IMG_URL}${showSignCanvas}`}
               />
             ) : (
               <SignatureCanvas

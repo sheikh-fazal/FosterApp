@@ -39,11 +39,19 @@ const TableHeader = forwardRef(function TableHeader(
     searchSize = "small",
     showAddBtn = false,
     showDeleteBtn = false,
+    // share btn
+    showShareBtn = false,
+    // print btn
+    showPrintBtn = false,
+    showDiagramBtn = false,
     debounceTimeout = 500,
     disabled = false,
     onDelete = () => {},
     onAdd = () => {},
+    onShare = () => {},
+    onPrint = () => {},
     onChanged = () => {},
+    onDiagramBtn = () => {},
   }: any,
   ref
 ) {
@@ -158,6 +166,25 @@ const TableHeader = forwardRef(function TableHeader(
       {showAddBtn && (
         <TableAction disabled={disabled} onClicked={onAdd} type="add" />
       )}
+
+      {/* Share Button */}
+      {showShareBtn && (
+        <TableAction
+          disabled={disabled}
+          onClicked={onShare}
+          type="headerShare"
+        />
+      )}
+
+      {/* Print Button */}
+      {showPrintBtn && (
+        <TableAction disabled={disabled} onClicked={onPrint} type="print" />
+      )}
+
+      {/* Diagram Button */}
+      {showDiagramBtn && (
+        <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
+      )}
     </Stack>
   );
 });
@@ -176,7 +203,8 @@ const styles = {
     backgroundColor: alpha(theme.palette.primary.main, 0.8),
     padding: theme.spacing(1, 1.8),
     alignItems: "center",
-    gap: theme.spacing(2),
+    // gap changing
+    gap: theme.spacing(0.5),
     borderRadius: `8px 8px 0 0`,
   }),
   headerStackStyles: ({ theme, showAddBtn, showSelectFilters }: any) => ({

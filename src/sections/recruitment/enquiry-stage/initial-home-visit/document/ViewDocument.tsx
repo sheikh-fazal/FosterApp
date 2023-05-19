@@ -1,7 +1,7 @@
 import { Box, Grid, Modal, useTheme } from "@mui/material";
-import FormGenerator from "../form-generator/FormGenerator";
 import { viewDocumentForm } from ".";
 import { styled } from "@mui/material/styles";
+import FormGenerator from "@root/sections/carer-info/personal-info/initial-home-visit/form-generator/FormGenerator";
 
 export const ViewDocument = (props: any) => {
   const { isModalOpen, defaultValues, setIsModalOpen } = props;

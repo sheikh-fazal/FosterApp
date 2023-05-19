@@ -1,9 +1,9 @@
-import InvolvingCommunities from "./involving-your-communities/InvolvingCommunities";
-import ManagementResponsibilities from "./management-responsibilities/ManagementResponsibilities";
-import SafeguardingEssentials from "./safeguarding-essentials/SafeguardingEssentials";
-import SaferRecruitment from "./safer-recruitment/SaferRecruitment";
-import SupportingFamilies from "./supporting-families/SupportingFamilies";
-import WiderSafeguardingIssues from "./wider-safeguarding-issues/WiderSafeguardingIssues";
+import InvolvingCommunities from "./involving-your-communities/InvolvingCommunitiesTable";
+import ManagementResponsibilities from "./management-responsibilities/ManagementResponsibilitiesTable";
+import SafeguardingEssentials from "./safeguarding-essentials/SafeguardingEssentialsTable";
+import SaferRecruitment from "./safer-recruitment/SaferRecruitmentTable";
+import SupportingFamilies from "./supporting-families/SupportingFamiliesTable";
+import WiderSafeguardingIssues from "./wider-safeguarding-issues/WiderSafeguardingIssuesTable";
 
 //Accordian Data
 export const safeGuardingCheckListData = [

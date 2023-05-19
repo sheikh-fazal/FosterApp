@@ -85,7 +85,7 @@ export const NAV_LINKS = [
   {
     text: "Referrals",
     img: <GroupsOutlinedIcon />,
-    link: "",
+    link: "/referral",
   },
 
   {
@@ -96,12 +96,12 @@ export const NAV_LINKS = [
   {
     text: "Panel",
     img: <BallotOutlinedIcon />,
-    link: "",
+    link: "/panel",
   },
   {
     text: "Training",
     img: <OnDeviceTrainingOutlinedIcon />,
-    link: "",
+    link: "/training",
   },
   {
     text: "Local Authority",

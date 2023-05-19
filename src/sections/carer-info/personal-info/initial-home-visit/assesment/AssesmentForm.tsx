@@ -1,13 +1,13 @@
 import FormGenerator from "../form-generator/FormGenerator";
 import { FormValues, FormSchema, fieldsInfo } from ".";
+import { useAssesmentForm } from "./useAssesmentForm";
 
-const AssesmentForm = (props: any) => {
-  const { defaultValuesAssesmentForm = FormValues, submitAssesmentForm } =
-    props;
+const AssesmentForm = () => {
+  const { submitAssesmentForm } = useAssesmentForm();
   return (
     <FormGenerator
       FormSchema={FormSchema}
-      defaultValues={defaultValuesAssesmentForm}
+      defaultValues={FormValues}
       fieldsInfo={fieldsInfo}
       submitClickHand={submitAssesmentForm}
     />

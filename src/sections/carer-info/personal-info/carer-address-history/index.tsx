@@ -10,8 +10,8 @@ import router from "next/router";
 // ----------------------------------------------------------------------
 
 export const defaultValues = {
-  addressType: "Pre Approved",
-  datedMoved: "",
+  type: "Pre Approved",
+  dateMovedOut: "",
   currentAddress: "Yes",
   address: "",
   townCity: "",
@@ -25,8 +25,8 @@ export const defaultValues = {
 };
 
 export const FormSchema = Yup.object().shape({
-  addressType: Yup.string().required("Field is required"),
-  datedMoved: Yup.string().required("Field is required"),
+  type: Yup.string().required("Field is required"),
+  dateMovedOut: Yup.string().required("Field is required"),
   currentAddress: Yup.string().required("Field is required"),
   address: Yup.string().required("Field is required"),
   townCity: Yup.string().required("Field is required"),
@@ -55,7 +55,7 @@ export const formData = [
     otherOptions: {
       defaultValue: "Pre Approved",
       label: "Type?",
-      name: "addressType",
+      name: "type",
       options: ["Pre Approved", "Post Approved"],
     },
     component: RHFRadioGroupWithLabel,
@@ -63,7 +63,7 @@ export const formData = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "datedMoved",
+      name: "dateMovedOut",
       label: "Dated Moved",
       multiline: true,
       minRows: 3,

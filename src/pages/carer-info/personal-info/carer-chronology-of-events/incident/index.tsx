@@ -5,7 +5,6 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import IncFrom from "@root/sections/carer-info/personal-info/chronology-of-events/incident/IncidentFrom";
 import UploadedDocuments from "@root/sections/carer-info/personal-info/chronology-of-events/incident/UploadedDocuments";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
 
 // Constants
 const BREADCRUMBS = [
@@ -44,15 +43,9 @@ export default function incident() {
 
   return (
     <>
-      <HorizaontalTabs
-        tabsDataArray={
-          
-         ["Incident", "Uploaded Documents"]
-
-        }
-      >
+      <HorizaontalTabs tabsDataArray={["Incident", "Uploaded Documents"]}>
         <IncFrom action={action} id={id} />
-        <UploadedDocuments /> 
+        <UploadedDocuments />
       </HorizaontalTabs>
     </>
   );

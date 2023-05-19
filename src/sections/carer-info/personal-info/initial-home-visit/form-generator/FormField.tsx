@@ -1,6 +1,7 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { FC } from "react";
 
 const FormField: FC<any> = (props) => {
@@ -20,6 +21,8 @@ const FormField: FC<any> = (props) => {
       return <RHFDatePicker {...prop} fullWidth={true} />;
     case "radio":
       return <RHFRadioGroupWithLabel {...prop} />;
+    case "upload":
+      return <RHFUploadFile {...prop} />;
     case "select":
       return (
         <RHFSelect {...prop}>

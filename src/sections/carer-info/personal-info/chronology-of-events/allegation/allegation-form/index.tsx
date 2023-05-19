@@ -2,7 +2,7 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const AllegationFormData = [
+export const allegationFormData = [
   {
     id: 1,
     gridLength: 6,
@@ -34,6 +34,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -44,6 +47,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
@@ -53,6 +59,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
     gridLength: 6,
   },
   {
@@ -246,6 +255,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 
   {
@@ -267,6 +279,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 
   {
@@ -313,6 +328,9 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 27,
@@ -323,8 +341,18 @@ export const AllegationFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 ];
+export const formatters: any = {};
+
+for (const formControl of allegationFormData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
   allegationAgainstPersonCategory: "",
   allegationAgainstPerson: "",

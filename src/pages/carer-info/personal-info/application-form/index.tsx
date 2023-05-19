@@ -10,10 +10,10 @@ import FamilyTable from "@root/sections/carer-info/personal-info/application-for
 import Reference from "@root/sections/carer-info/personal-info/application-form/reference/Reference";
 import Employers from "@root/sections/carer-info/personal-info/application-form/employers/Employers";
 import ExPartners from "@root/sections/carer-info/personal-info/application-form/ex-partners/ExPartners";
-import Documents from "@root/sections/carer-info/personal-info/application-form/documents/index";
 
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
+import { DocumentTable } from "@root/sections/carer-info/personal-info/application-form/documents/DocumentTable";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -72,7 +72,7 @@ export default function ApplicationForm() {
         <OtherInfoForm disabled={true} />
         <ExPartners />
         <PlacementPreferenceForm disabled={true} />
-        <Documents />
+        <DocumentTable />
       </HorizaontalTabs>
     </Page>
   );

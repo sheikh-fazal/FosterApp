@@ -1,56 +1,15 @@
-import { useState, useRef } from "react";
-// form
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, useWatch } from "react-hook-form";
-import { useRouter } from "next/router";
 // @mui
-import {
-  Grid,
-  Box,
-  Button,
-  useTheme,
-} from "@mui/material";
+import { Grid, Box, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-import { fTimestamp } from "@root/utils/formatTime";
+
 // components
 import { FormProvider } from "@root/components/hook-form";
 //
-import { FormSchema, defaultValues, formData } from ".";
+import { useSafeguardingTemplate } from "./useSafeguardingTemplate";
+import { formData } from ".";
 
 const SafeguardingTemplateForm = (props: any) => {
-  const { formType } = props;
-  let theme = useTheme();
-  let router = useRouter();
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-
-  const {
-    reset,
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
-
-  const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log("data", data);
-    // alert(
-    //   JSON.stringify(
-    //     {
-    //       ...data,
-    //     },
-    //     null,
-    //     2
-    //   )
-    // );
-    reset();
-  };
+  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, router } = useSafeguardingTemplate();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -75,47 +34,46 @@ const SafeguardingTemplateForm = (props: any) => {
             </Grid>
           );
         })}
-        {!props?.disabled &&
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                display: "flex",
-              }}
-            >
-              {formType == "view" ? (
-                ""
-              ) : (
-                <LoadingButton
-                  sx={{ marginRight: "1rem" }}
-                  type="submit"
-                  variant="contained"
-                  loading={isSubmitting}
-                  disabled={!isDirty}
-                >
-                  Submit
-                </LoadingButton>
-              )}
 
-              <Button
-                sx={{
-                  backgroundColor: "#F6830F",
-                  "&:hover": {
-                    backgroundColor: "#F6830F",
-                  },
-                }}
-                onClick={() => {
-                  router.push("/safeguarding/policy-guide-templates/safeguarding-template/safeguarding-template-details");
-                }}
-                type="button"
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            {!props?.disabled && (
+              <LoadingButton
+                sx={{ marginRight: "1rem" }}
+                type="submit"
                 variant="contained"
+                loading={isSubmitting}
+                disabled={!isDirty}
               >
-                Back
-              </Button>
-            </Box>
-          </Grid>
-        }
+                Submit
+              </LoadingButton>
+            )}
+
+            <Button
+              sx={{
+                backgroundColor: "#F6830F",
+                "&:hover": {
+                  backgroundColor: "#F6830F",
+                },
+              }}
+              onClick={() => {
+                router.push(
+                  "/safeguarding/policy-guide-templates/safeguarding-template/safeguarding-template-details"
+                );
+              }}
+              type="button"
+              variant="contained"
+            >
+              Back
+            </Button>
+          </Box>
+        </Grid>
       </Grid>
     </FormProvider>
   );
-}
-export default SafeguardingTemplateForm
+};
+export default SafeguardingTemplateForm;

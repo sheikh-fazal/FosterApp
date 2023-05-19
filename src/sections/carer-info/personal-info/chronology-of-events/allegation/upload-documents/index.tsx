@@ -31,6 +31,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import dayjs from "dayjs";
 
 export const UploadDocFormData = [
   {
@@ -110,10 +111,12 @@ export const getColumns = (deleteList: any) => [
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.documentDate ?? "-",
+    accessorFn: (row: any) => row?.documentDate ?? "-",
     id: "documentDate",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Document Date</span>,
+    cell: (info: any) => {
+      return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+    },
+    header: () => <span>Date of Allegation</span>,
     isSortable: true,
   },
   {

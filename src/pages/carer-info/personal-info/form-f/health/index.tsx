@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
@@ -9,6 +9,8 @@ import {
   usePutHealthApplication2Mutation,
 } from "@root/services/carer-info/personal-info/form-f/healthApplicationApi";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TITLE = "Health";
@@ -35,6 +37,16 @@ Health.getLayout = function getLayout(page: any) {
 };
 
 export default function Health() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data: healthApplication1 } = useFormFQuery("healthApplication1", {
+    skip,
+  });
+  const { data: healthApplication2 } = useFormFQuery("healthApplication2", {
+    skip,
+  });
+  //---------------=================-----------------//
   //-----------------------------------APIs------------------------------------
   const [
     putHealthApplication1Data,

@@ -78,6 +78,7 @@ export default function InitialEnquiry() {
           dateOfBirth: new Date(
             dayjs(data?.firstApplicant?.dateOfBirth).format("MM/DD/YYYY")
           ),
+          image: { name: data?.firstApplicant?.image },
         }}
       />
 

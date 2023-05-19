@@ -1,12 +1,10 @@
 import FormGenerator from "../form-generator/FormGenerator";
 import { BackgroundFormSchema, backgroundFormValues, fieldsInfo } from ".";
+import { useBackgroundForm } from "./useBackgroundForm";
 
 const BackgroundForm = (props: any) => {
-  // const { submitBackgroundForm } = useBackgroundForm();
-  const {
-    defaultValuesBackgroundForm = backgroundFormValues,
-    submitBackgroundForm,
-  } = props;
+  const { submitBackgroundForm } = useBackgroundForm();
+  const { defaultValuesBackgroundForm = backgroundFormValues } = props;
   return (
     <FormGenerator
       FormSchema={BackgroundFormSchema}

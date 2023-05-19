@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 // ----------------------------------------------------------------------
 
 export default function RHFTextField({ name, ...other }: any) {
-  const { control, getValues } = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <Controller

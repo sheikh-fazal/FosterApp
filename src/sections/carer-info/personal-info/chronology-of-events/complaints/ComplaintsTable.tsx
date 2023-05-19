@@ -1,18 +1,11 @@
 import React from "react";
-import { Badge, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRef } from "react";
-import router from "next/router";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import { enqueueSnackbar } from "notistack";
-import {
-  useDeleteComplaintListMutation,
-  useComplaintsListQuery,
-} from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/ComplaintsApi";
+import { useDeleteComplaintListMutation } from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/ComplaintsApi";
 import { useComplaintsTable } from "./useComplaintsTable";
-import { getColumns } from ".";
+import { getColumns } from "./index";
 
 const ComplaintsTable = () => {
   const {

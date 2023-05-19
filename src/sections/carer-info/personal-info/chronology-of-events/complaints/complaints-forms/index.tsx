@@ -45,6 +45,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -55,6 +58,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
@@ -64,6 +70,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
     gridLength: 6,
   },
   {
@@ -257,6 +266,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 
   {
@@ -278,6 +290,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 23,
@@ -324,6 +339,9 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 27,
@@ -334,8 +352,19 @@ export const complaintsFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 ];
+
+export const formatters: any = {};
+
+for (const formControl of complaintsFormData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
   complaintAgainstPersonCategory: "",
   complaintAgainstPerson: "",

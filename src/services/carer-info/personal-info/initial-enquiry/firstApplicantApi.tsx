@@ -8,7 +8,7 @@ export const firstApplicantAPI = baseAPI.injectEndpoints({
     post1stApplicantFormData: builder.mutation({
       query: (formData: any) => ({
         url: "/initial-inquiry/first-applicant",
-        method: "POST",
+        method: "PUT",
         body: formData,
       }),
     }),

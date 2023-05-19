@@ -1,21 +1,24 @@
-import { useState, Children, SyntheticEvent, ReactNode } from "react";
+import {
+  useState,
+  Children,
+  SyntheticEvent,
+  ReactNode,
+  useImperativeHandle,
+  forwardRef,
+} from "react";
 import { Tabs, Tab, Typography, useTheme, Box, Card } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
-interface IHORIZAONTALTABSPROPS {
-  tabsDataArray?: string[];
-  children: ReactNode;
-  setActiveTab?: any;
-}
-
 // ----------------------------------------------------------------------
 
 const HorizaontalTabs = ({
-  tabsDataArray,
+  tabsDataArray = [],
   children,
   setActiveTab = () => {},
-}: IHORIZAONTALTABSPROPS) => {
+  variant,
+  spacing,
+}: any) => {
   const [value, setValue] = useState(0);
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -26,11 +29,11 @@ const HorizaontalTabs = ({
   const theme: any = useTheme();
 
   return (
-    <Card sx={{ px: 2 }}>
+    <Card sx={{ px: spacing ?? 2 }}>
       <Tabs
         selectionFollowsFocus
         orientation="horizontal"
-        variant="scrollable"
+        variant={variant ? variant : "scrollable"}
         sx={styles.tabRoot(theme)}
         TabIndicatorProps={styles.tabIndicator(theme)}
         value={value}
@@ -40,7 +43,9 @@ const HorizaontalTabs = ({
           <Tab
             wrapped
             key={title}
-            onClick={() => setActiveTab(title)}
+            onClick={() => {
+              setActiveTab ? setActiveTab(title) : console.log(title);
+            }}
             label={
               <Typography
                 variant="subtitle2"
@@ -62,7 +67,7 @@ const HorizaontalTabs = ({
   );
 };
 
-export default HorizaontalTabs;
+export default forwardRef(HorizaontalTabs);
 
 // ----------------------------------------------------------------------
 // Styles

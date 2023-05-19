@@ -5,6 +5,32 @@ import * as Yup from "yup";
 
 // ----------------------------------------------------------------------
 
+export const data = [
+  {
+    templateName: "CCE Template.pdf",
+    uploadedDate: "12.11.2021",
+    description: "Safeguarding policy incorporated changes",
+    version: "Version_13.01_12112021",
+    authorRole: "Victor Krum (Safeguarding Officer)",
+    approverRole: "Tom Hanks (Director)",
+  },
+  {
+    templateName: "CSE Template.pdf",
+    uploadedDate: "12.11.2021",
+    description: "Safeguarding policy incorporated changes",
+    version: "Version_13.01_12112021",
+    authorRole: "Victor Krum (Safeguarding Officer)",
+    approverRole: "Tom Hanks (Director)",
+  },
+  {
+    templateName: "CCE Template.pdf",
+    uploadedDate: "12.11.2021",
+    description: "Safeguarding policy incorporated changes",
+    version: "Version_13.01_12112021",
+    authorRole: "Victor Krum (Safeguarding Officer)",
+    approverRole: "Tom Hanks (Director)",
+  },
+]
 export const defaultValues = {
   templateName: "",
   // uploadDate: "",

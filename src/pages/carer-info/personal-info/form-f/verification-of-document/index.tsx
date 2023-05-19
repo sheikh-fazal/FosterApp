@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { VerificationOfDocumentsForm } from "@root/sections/carer-info/personal-info/form-f/verification-of-document";
@@ -9,6 +9,8 @@ import {
   useVerificationApplication2Mutation,
 } from "@root/services/carer-info/personal-info/form-f/verificationOfDocumentsApi";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TILE = "Form F";
@@ -35,6 +37,18 @@ VerificationOfDocument.getLayout = function getLayout(page: any) {
 };
 
 export default function VerificationOfDocument() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data: verificationDocuments1 } = useFormFQuery(
+    "verificationApplication1",
+    { skip }
+  );
+  const { data: verificationDocuments2 } = useFormFQuery(
+    "verificaitonApplication2",
+    { skip }
+  );
+  //---------------=================-----------------//
   const [
     putHealthApplication1Data,
     { isLoading: isLoading1, isError: isError1, isSuccess: isSuccess1 },

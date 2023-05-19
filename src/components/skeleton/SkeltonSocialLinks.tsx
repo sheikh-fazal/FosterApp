@@ -10,7 +10,7 @@ export default function SkeletonSocialLinks({ spacing, sx }: any) {
         <Skeleton
           key={index}
           variant="circular"
-          sx={{ backgroundColor: "#ffff" }}
+          sx={{ backgroundColor: "rgb(33 43 54 / 6%)" }}
           width={130}
           height={130}
         />

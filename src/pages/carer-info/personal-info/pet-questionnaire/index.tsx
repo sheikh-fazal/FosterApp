@@ -11,7 +11,7 @@ import TableHeader from "@root/components/TableHeader";
 import TableAction from "@root/components/TableAction";
 import CustomTable from "@root/components/Table/CustomTable";
 // hooks
-import router from "next/router";
+import { useRouter } from "next/router";
 import { useRef } from "react";
 import { useTableParams } from "@root/hooks/useTableParams";
 // Api
@@ -50,6 +50,7 @@ PetQuestionnaire.getLayout = function getLayout(page: any) {
 
 export default function PetQuestionnaire() {
   const tableHeaderRef = useRef<any>();
+  const router = useRouter();
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -72,21 +73,21 @@ export default function PetQuestionnaire() {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.petQuestionnaire3.date,
+      accessorFn: (row: any) => row.inspectionDate,
       id: "inspectionDate",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "Next Inspection Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.petQuestionnaire1.nameOfAnimal,
+      accessorFn: (row: any) => row.nameOfAnimal,
       id: "nameOfAnimal",
       cell: (info: any) => info.getValue(),
       header: "Name Of Pet",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.petQuestionnaire2.registeredAVet,
+      accessorFn: (row: any) => row.status,
       id: "status",
       cell: (info: any) => (info.getValue() ? "Yes" : "No"),
       header: "Status",

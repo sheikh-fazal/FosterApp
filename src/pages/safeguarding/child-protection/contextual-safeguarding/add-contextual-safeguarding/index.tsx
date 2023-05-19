@@ -1,10 +1,9 @@
-import ContextualSafeguardingForm from '@root/sections/safeguarding/child-protection/contextual-safeguarding/contextual-safeguarding-form/contextual-safeguarding-form'
-import Layout from '@root/layouts';
 import React from 'react'
+import Layout from '@root/layouts';
 import HomeIcon from "@mui/icons-material/Home";
+import { Box, Card } from '@mui/material';
+import ContextualSafeguardingForm from '@root/sections/safeguarding/child-protection/contextual-safeguarding/contextual-safeguarding-form/ContextualSafeguardingForm'
 import Page from '@root/components/Page';
-import { Box } from '@mui/material';
-
 
 const PAGE_TITLE = "Add Contextual Safeguarding";
 
@@ -32,9 +31,9 @@ AddContextualSafeguarding.getLayout = function getLayout(page: any) {
 export default function AddContextualSafeguarding() {
   return (
     <Page title={PAGE_TITLE}>
-      <Box>
+      <Card sx={{ p: 2 }}>
         <ContextualSafeguardingForm />
-      </Box>
+      </Card>
     </Page>
   );
 }

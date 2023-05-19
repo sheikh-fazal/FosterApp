@@ -111,7 +111,7 @@ export default function FirstApplicant(props: any) {
             >
               {form.id === 1 ? (
                 <RHFUploadFile
-                  name="uploadPhoto"
+                  name="image"
                   {...methods}
                   disabled={globallyDisabled}
                 />

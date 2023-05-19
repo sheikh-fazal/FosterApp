@@ -7,9 +7,9 @@ export const initialInquiryApi = baseAPI.injectEndpoints({
       transformResponse: (response: any) => {
         return {
           ...response,
-          firstApplicant: response.firstApplicant.dto,
-          contact: response.contact.dto,
-          otherDetails: response.otherDetails.dto,
+          firstApplicant: response.firstApplicant,
+          contact: response.contact,
+          otherDetails: response.otherDetails,
         };
       },
     }),

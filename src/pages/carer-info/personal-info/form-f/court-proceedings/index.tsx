@@ -1,10 +1,12 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import CourtProceedingsForm from "@root/sections/carer-info/personal-info/form-f/court-proceedings/CourtProceedingsForm";
 import { usePutCourtProceedingMutation } from "@root/services/carer-info/personal-info/form-f/courtProceedingApi";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TITLE = "Form F";
@@ -31,6 +33,11 @@ CourtProceedings.getLayout = function getLayout(page: any) {
 };
 
 export default function CourtProceedings() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data } = useFormFQuery("courtProceedings", { skip });
+  //---------------=================-----------------//
   const [putData, { isSuccess, isError, isLoading }] =
     usePutCourtProceedingMutation();
 

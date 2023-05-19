@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import SafeguardingLegislation from "@root/sections/safeguarding/policy-guide-templates/legislation";
-import Layout from "@root/layouts";
 import Page from "@root/components/Page";
+import Layout from "@root/layouts";
+import SafeguardingLegislation from "@root/sections/safeguarding/policy-guide-templates/legislation/SafeguardingLegation";
 
 let PAGE_TITLE: string='Gov Reference Link';
 Legislation.getLayout = function getLayout(page: any) {
@@ -16,7 +16,7 @@ Legislation.getLayout = function getLayout(page: any) {
           href: "/safeguarding",
         },
         {
-          name: "Safeguarding",
+          name: "Safeguarding Legislation",
         },
       ]}
       title={PAGE_TITLE}

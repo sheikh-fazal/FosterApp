@@ -4,6 +4,7 @@ import Image from "next/image";
 import edit from "@root/assets/img/edit.png";
 import SocialMediaModal from "./SocialMediaModal";
 import Link from "next/link";
+import Error from "@root/components/Error";
 
 // icons
 import { RiEditCircleFill } from "react-icons/ri";
@@ -16,7 +17,11 @@ import { SkeltonSocialLinks } from "@root/components/skeleton";
 // -----------------------
 
 export default function SocialMediaLinksSection() {
-  const { data, isLoading: dataLoding } = useGetSocialMediaAccountsQuery<any>();
+  const {
+    data,
+    isLoading: dataLoding,
+    isError,
+  } = useGetSocialMediaAccountsQuery<any>();
 
   const [open, setOpen] = React.useState(false);
   let theme = useTheme();
@@ -38,8 +43,12 @@ export default function SocialMediaLinksSection() {
     const result = imageData.find((dt: any) => dt.name === name);
     return result?.img as any;
   };
+
   if (dataLoding) {
     return <SkeltonSocialLinks />;
+  }
+  if (isError) {
+    return <Error />;
   }
   return (
     <Box sx={{ p: 7 }}>

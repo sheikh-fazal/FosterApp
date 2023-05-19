@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { EnhancedDbsChecksForm } from "@root/sections/carer-info/personal-info/form-f/enhanced-dbs-checks";
@@ -8,6 +8,8 @@ import { Box } from "@mui/material";
 import IsFetching from "@root/components/loaders/IsFetching";
 import Error from "@root/components/Error";
 import { enqueueSnackbar } from "notistack";
+import useAuth from "@root/hooks/useAuth";
+import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
 
 // Constants
 const PAGE_TITLE = "Form F";
@@ -34,6 +36,11 @@ EnhancedDbsChecks.getLayout = function getLayout(page: any) {
 };
 
 export default function EnhancedDbsChecks() {
+  //---------------getting Form Data-----------------//
+  const { user }: any = useAuth();
+  const [skip, setSkip] = useState(true);
+  const { data } = useFormFQuery("enhancedDBSCheck", { skip });
+  //---------------=================-----------------//
   const [putDBSChecksData, { isLoading, isError, isSuccess }] =
     usePutEnhancedDbsChecksMutation();
   const recieveDataHandler = async (formData: any) => {

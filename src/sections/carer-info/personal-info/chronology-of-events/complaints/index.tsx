@@ -13,7 +13,7 @@ export const getColumns = (deleteList: any) => [
   },
   {
     accessorFn: (row: any) => row.complaintDate ?? "-",
-    id: "complaintsDate",
+    id: "complaintDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Date of Complaints</span>,
     isSortable: true,

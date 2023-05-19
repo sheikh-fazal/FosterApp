@@ -34,10 +34,10 @@ FrontSheet.getLayout = function getLayout(page: any) {
 
 export default function FrontSheet() {
   const { user }: any = useAuth();
-  console.log(user.defaultRole);
-
   const [skip, setSkip] = useState(true);
-  const { data } = useFormFQuery({}, { skip });
+  const { data } = useFormFQuery("frontSheet", { skip });
+
+  console.log(user.defaultRole);
   console.log("data ata h data jata h", data);
 
   const [postFrontSheetData, { isLoading, isError, isSuccess }] =

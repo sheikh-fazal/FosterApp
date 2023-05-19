@@ -120,7 +120,6 @@ export const TableWithActionBtns = () => {
       CancelledAt: "Ani Cristea",
     },
   ]);
-
   const columns = [
     {
       id: "select",

@@ -1,26 +1,39 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Card } from '@mui/material'
 import TableHeader from '@root/components/TableHeader'
 import CollapsibleTable from '@root/pages/safeguarding/collapsible-table'
-import { useRouter } from 'next/router'
+import { columns, innerColums, rowsData } from '.'
+import DeleteModel from '@root/components/modal/DeleteModel'
+import { useAllegationManagementTable } from './useAllegationManagementTable'
 
 const AllegationManagementTable = () => {
-  const route = useRouter();
-  console.log('route.query', route.query)
-  const tableHeaderRef = useRef();
-  const allegationRoute = '/safeguarding/child-protection/allegation-management'
+  const { handleTableAction, isDeleteModal, tableHeaderRef, route, allegationRoute, setIsDeleteModal } = useAllegationManagementTable()
   return (
-    <Card sx={{ py: 2, px: 1 }}>
+    <>
+      <Card sx={{ py: 2, px: 1 }}>
         <TableHeader
           ref={tableHeaderRef}
           title={'Allegation Management'}
           showAddBtn
           onChanged={((params: any) => { })}
-          onAdd={() => route.push(`${allegationRoute}/add-allegation-management`)}
+          onAdd={() => route.push(`${allegationRoute}/add`)}
         />
-        <CollapsibleTable requireCheckbox handleView={() => route.push(`${allegationRoute}/add-allegation-management`)} />
+        <CollapsibleTable
+          requireCheckbox
+          columns={columns}
+          innerColums={innerColums}
+          tableData={rowsData}
+          requireAction
+          actionArray={["view", "edit", "delete"]}
+          handleAction={(action: any, row: any) => handleTableAction(action, row)}
+        />
       </Card>
+      <DeleteModel
+        open={isDeleteModal}
+        handleClose={() => setIsDeleteModal(false)}
+      />
+    </>
   )
 }
 
-export default AllegationManagementTable
+export default AllegationManagementTable;

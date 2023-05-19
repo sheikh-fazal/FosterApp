@@ -1,9 +1,10 @@
+import React from 'react'
 import Layout from '@root/layouts';
-import React, { useRef } from 'react'
-import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-import { Box } from '@mui/material';
-import AgencySafeguardingOfficer from '@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact';
+import HomeIcon from "@mui/icons-material/Home";
+import AgencySafeguardingOfficer from '@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/AgencySafeguardingOfficer';
+
+// ==========================================================================================================
 
 const PAGE_TITLE = "Agency Safeguarding Officer / Contact";
 

@@ -4,13 +4,23 @@ import BackgroundForm from "@root/sections/carer-info/personal-info/initial-home
 import InterestForm from "@root/sections/carer-info/personal-info/initial-home-visit/interest/InterestForm";
 import PrimaryCarerForm from "@root/sections/carer-info/personal-info/initial-home-visit/primary-carer/PrimaryCarerForm";
 import Document from "../document/Document";
-import { useinitialHomeVisitTab } from "./useInitialHomeVisitTab";
+import { useInitialHomeVisitTab } from "./useInitialHomeVisitTab";
 
-const INITIALENQUIRYDATA = ["Primary Carer", "Interest", "Background", "Assesment", "Documents"];
+const INITIALENQUIRYDATA = [
+  "Primary Carer",
+  "Interest",
+  "Background",
+  "Assesment",
+  "Documents",
+];
 
 const InitialHomeVisitTab = () => {
-  const { submitAssesmentForm, submitBackgroundForm, submitInterestForm, submitPrimaryCarerForm } =
-    useinitialHomeVisitTab();
+  const {
+    submitAssesmentForm,
+    submitBackgroundForm,
+    submitInterestForm,
+    submitPrimaryCarerForm,
+  } = useInitialHomeVisitTab();
 
   return (
     <HorizaontalTabs tabsDataArray={INITIALENQUIRYDATA}>

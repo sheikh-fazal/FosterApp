@@ -7,6 +7,8 @@ import CustomTable from '@root/components/Table/CustomTable';
 import { Box, Checkbox, Grid, Typography, useTheme } from "@mui/material";
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
+import { SAFE_CARING_POLICY_TABLE_DATA } from '@root/dropdown-data/safeCaringPolicyList';
+import DeleteModel from '@root/components/modal/DeleteModel';
 
 const PAGE_TITLE = "Safe Caring Policy List";
 
@@ -37,32 +39,8 @@ export default function SafeCaring() {
   const theme: any = useTheme();
 
   // ----------------------------------------------------------------------
-  const [data, setData] = React.useState([
-    {
-      safeguarding_policy_document: "PDF",
-      date_uploaded: "12/11/2021",
-      discription: "Safeguarding policy incorporated the changes after 10.11012 safeguarding meeting",
-      version: "Version_12_02_423121345",
-      author: "Tom Hanks (Director)",
-      approver: "David due (Safeguard Officer)",
-      actions:"",
-      cancelled: "no",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-    {
-      safeguarding_policy_document: "XLS",
-      date_uploaded: "02/12/2021",
-      discription: "Safeguarding policy incorporated the changes after 10.11012 safeguarding meeting",
-      version: "Version_12_02_423121345",
-      author: "Janifer Hoston (Manager)",
-      approver: "Victor Krum (Safeguard Officer)",
-      actions:"",
-      cancelled: "no",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-  ]);
+  const [data, setData] = React.useState(SAFE_CARING_POLICY_TABLE_DATA);
+  const [openDelete, setOpenDelete] = React.useState(false)
   const columns = [
     {
       id: "select",
@@ -134,10 +112,10 @@ export default function SafeCaring() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="view" onClicked={() => alert("View")} />
-          <TableAction type="delete" onClicked={() => alert("Delete")} />
-          <TableAction type="edit" onClicked={() => alert("Edit")} />
-          <TableAction type="download" onClicked={() => alert("Download")} />
+          <TableAction type="view" onClicked={() => navigate.push("/safeguarding/policy-guide-templates/safe-caring/add-caring-policy?action=view")} />
+          <TableAction type="delete" onClicked={()=>setOpenDelete(true)} />
+          <TableAction type="edit" onClicked={() => navigate.push("/safeguarding/policy-guide-templates/safe-caring/add-caring-policy?action=edit")} />
+          <TableAction type="download" onClicked={() => alert("Download")} /> 
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -174,6 +152,7 @@ export default function SafeCaring() {
         }}
         rootSX={{ my: theme.spacing(2) }}
       />
+    <DeleteModel open={openDelete} handleClose={()=>setOpenDelete(false)} onDeleteClick={()=>setOpenDelete(false)}/>
     </Page>
   );
 }

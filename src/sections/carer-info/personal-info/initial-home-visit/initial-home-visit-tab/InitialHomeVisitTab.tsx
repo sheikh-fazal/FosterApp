@@ -1,10 +1,9 @@
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import AssesmentForm from "../assesment/AssesmentForm";
 import BackgroundForm from "../background/BackgroundForm";
 import Document from "../document/Document";
 import InterestForm from "../interest/InterestForm";
 import PrimaryCarerForm from "../primary-carer/PrimaryCarerForm";
-import { useinitialHomeVisitTab } from "./useInitialHomeVisitTab";
+import AssesmentForm from "../assesment/AssesmentForm";
 
 const INITIALENQUIRYDATA = [
   "Primary Carer",
@@ -15,19 +14,19 @@ const INITIALENQUIRYDATA = [
 ];
 
 const InitialHomeVisitTab = () => {
-  const {
-    submitAssesmentForm,
-    submitBackgroundForm,
-    submitInterestForm,
-    submitPrimaryCarerForm,
-  } = useinitialHomeVisitTab();
+  // const {
+  //   submitAssesmentForm,
+  //   submitBackgroundForm,
+  //   submitInterestForm,
+  //   submitPrimaryCarerForm,
+  // } = useInitialHomeVisitTab();
 
   return (
     <HorizaontalTabs tabsDataArray={INITIALENQUIRYDATA}>
-      <PrimaryCarerForm submitPrimaryCarerForm={submitPrimaryCarerForm} />
-      <InterestForm submitInterestForm={submitInterestForm} />
-      <BackgroundForm submitBackgroundForm={submitBackgroundForm} />
-      <AssesmentForm submitAssesmentForm={submitAssesmentForm} />
+      <PrimaryCarerForm />
+      <InterestForm />
+      <BackgroundForm />
+      <AssesmentForm />
       <Document />
     </HorizaontalTabs>
   );

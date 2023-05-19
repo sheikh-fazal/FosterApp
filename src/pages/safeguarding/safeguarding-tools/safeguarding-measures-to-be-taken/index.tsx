@@ -3,6 +3,7 @@ import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box } from '@mui/material';
+import SafeguardingMeasuresToBeTaken from '@root/sections/safeguarding/safeguarding-tools/safeguarding-measures-to-be-taken/SafeguardingMeasuresTakenTable';
 
 const PAGE_TITLE = "Safeguarding Measures List";
 
@@ -30,7 +31,7 @@ SafeguardingMeasures.getLayout = function getLayout(page: any) {
 export default function SafeguardingMeasures() {
   return (
     <Page title={PAGE_TITLE}>
-     <Box>{PAGE_TITLE}</Box>
+    <SafeguardingMeasuresToBeTaken/>
     </Page>
   );
 }

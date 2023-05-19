@@ -3,6 +3,7 @@ import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box } from '@mui/material';
+import SafeguardingMeeting from '@root/sections/safeguarding/safeguarding-tools/safeguarding-meetings/SafeGuardingMeetingTable';
 
 const PAGE_TITLE = "Safeguarding Meetings List";
 
@@ -30,7 +31,7 @@ SafeguardingMeetings.getLayout = function getLayout(page: any) {
 export default function SafeguardingMeetings() {
   return (
     <Page title={PAGE_TITLE}>
-     <Box>{PAGE_TITLE}</Box>
+    <SafeguardingMeeting/>
     </Page>
   );
 }

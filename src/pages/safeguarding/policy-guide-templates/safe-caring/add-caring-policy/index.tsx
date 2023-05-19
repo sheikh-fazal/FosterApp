@@ -41,7 +41,7 @@ export default function AddCaringPolicy() {
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <AddCaringPolicyForm />
+        <AddCaringPolicyForm disabled={true}/>
       </Card>
     </Page>
   );

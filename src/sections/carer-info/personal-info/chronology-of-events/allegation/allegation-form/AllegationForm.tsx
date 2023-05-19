@@ -11,47 +11,20 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-import { AllegationFormData, defaultValues, formSchema } from "./index";
+import { allegationFormData, formSchema } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAllegationForm } from "./useAllegationForm";
 function AllegationForm(props: any) {
-  //Allegation Custom Hook
-  const {
-    router,
-    theme,
-    getAllegationList,
-    addAllegations,
-    editAllegations,
-    setError,
-    isLoading,
-    setIsLoading,
-  } = useAllegationForm();
   const { action, id } = props;
+  //Allegation Custom Hook
+  const { router, theme, onSubmit, isLoading, getDefaultValue } =
+    useAllegationForm(action, id);
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: async () => {
-      if (action === "edit" || action === "view") {
-        const { data, isError }: any = await getAllegationList(id, true);
-        setIsLoading(false);
-        if (isError) {
-          setError("Something went wrong.");
-          return defaultValues;
-        }
-        return { ...data.data };
-      } else {
-        setIsLoading(false);
-        return defaultValues;
-      }
-    },
+    defaultValues: getDefaultValue,
   });
   const { setValue, trigger, handleSubmit, getValues } = methods;
-  const onSubmit = async (data: any) => {
-    if (action === "add") {
-      addAllegations(data);
-    } else {
-      editAllegations(data);
-    }
-  };
+
   if (isLoading) return <SkeletonFormdata />;
   return (
     <>
@@ -66,62 +39,73 @@ function AllegationForm(props: any) {
         URN Number : CH001
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-          {AllegationFormData.map((form: any) => {
+        <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
+          {allegationFormData.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id}>
-                {form.component !== "RadioGroup" && (
-                  <form.component
-                    size="small"
-                    {...form.otherOptions}
-                    disabled={action == "view"}
-                  >
-                    {form.otherOptions.select
-                      ? form.options.map((option: any) => (
-                          <option key={option.value} value={option.value}>
-                            {option.label}
-                          </option>
-                        ))
-                      : null}
-                  </form.component>
-                )}
-                {form.component === "RadioGroup" && (
-                  <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
-                    <Typography
-                      sx={{
-                        color: theme.palette.grey[500],
-                        fontWeight: theme.typography.fontWeightMedium,
+                <Box sx={{ px: 0.9, py: 1 }}>
+                  {form.component !== "RadioGroup" && (
+                    <form.component
+                      size="small"
+                      {...form.otherOptions}
+                      disabled={action === "view" ? true : false}
+                      InputLabelProps={{
+                        shrink: action === "view" ? true : undefined,
+                        disabled: action === "view" ? true : undefined,
                       }}
-                      variant="body1"
-                      color="initial"
                     >
-                      {form.otherOptions.label}
-                    </Typography>
-                    <RadioGroup
-                      name={form.otherOptions.name}
-                      onChange={(e) => {
-                        setValue(`${form.otherOptions.name}`, e.target.value);
-                        trigger(`${form.otherOptions.name}`);
-                      }}
-                      defaultValue={getValues(`${form.otherOptions.name}`)}
-                      sx={{ display: "flex", flexDirection: "row" }}
-                    >
-                      {form?.Options?.map((mode: any) => {
-                        return (
-                          <Grid key={mode} item>
-                            <FormControlLabel
-                              label={mode === true ? "Yes" : "No"}
-                              name={form.otherOptions.name}
-                              disabled={action == "view"}
-                              control={<Radio />}
-                              value={mode}
-                            />
-                          </Grid>
-                        );
-                      })}
-                    </RadioGroup>
-                  </Box>
-                )}
+                      {form.otherOptions.select
+                        ? form.options.map((option: any) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))
+                        : null}
+                    </form.component>
+                  )}
+                  {form.component === "RadioGroup" && (
+                    <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
+                      <Typography
+                        sx={{
+                          color: theme.palette.grey[500],
+                          fontWeight: theme.typography.fontWeightMedium,
+                        }}
+                        variant="body1"
+                        color="initial"
+                      >
+                        {form.otherOptions.label}
+                      </Typography>
+                      <RadioGroup
+                        name={form.otherOptions.name}
+                        defaultValue={getValues(`${form.otherOptions.name}`)}
+                        onChange={(e) => {
+                          console.log(form.otherOptions.name);
+
+                          setValue(
+                            `${form.otherOptions.name}`,
+                            `${e.target.value === "yes" ? true : false}`
+                          );
+                          trigger(`${form.otherOptions.name}`);
+                        }}
+                        //  value={getValues(`${form.otherOptions.name}`)}
+                        sx={{ display: "flex", flexDirection: "row" }}
+                      >
+                        {form?.Options?.map((mode: any, index: any) => {
+                          return (
+                            <Grid key={mode} item>
+                              <FormControlLabel
+                                label={mode === true ? "yes" : "No"}
+                                control={<Radio />}
+                                value={mode}
+                                disabled={action === "view" ? true : false}
+                              />
+                            </Grid>
+                          );
+                        })}
+                      </RadioGroup>
+                    </Box>
+                  )}
+                </Box>
               </Grid>
             );
           })}
