@@ -1,43 +1,33 @@
 import { Box, Checkbox } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableAction from "@root/components/TableAction";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { useGetTrainingProfileAllDataQuery } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
+import { log } from "console";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const useTrainingVerificationForm = () => {
-  const router = useRouter();
+  const tableHeaderRef = useRef<any>();
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      srNo: "1",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-    {
-      id: 2,
-      srNo: "2",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-  ]);
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetTrainingProfileAllDataQuery({ params });
+
+  const trainingPRofileData = data?.data?.trainingProfile;  
+
+  const meta = data?.data?.meta;
+
+  console.log(data, "training profile");
+  const router = useRouter();
 
   const columns = [
     {
       id: "select",
       header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
+        // console.log(table.getSelectedRowModel().flatRows);
         return (
           <Box>
             <Checkbox
@@ -58,38 +48,31 @@ const useTrainingVerificationForm = () => {
       ),
     },
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row,
       id: "srNo",
+      cell: (info: any) => Number(info?.row?.id) + 1,
+      header: "Sr. No",
+      isSortable: false,
+    },
+    {
+      accessorFn: (row: any) => row.carerName,
+      id: "carerName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Sr.No</span>,
+      header: () => <span>Carer Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.documentName,
-      id: "documentName",
+      accessorFn: (row: any) => row.courseAttended,
+      id: "courseAttended",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Document Name</span>,
+      header: () => <span>Courses Attended</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.documentType,
-      id: "documentType",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Type</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentDate,
-      id: "documentDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.password,
-      id: "password",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Password</span>,
+      accessorFn: (row: any) => row.date,
+      id: "date",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      header: () => <span>Attended Date</span>,
       isSortable: true,
     },
     {
@@ -101,10 +84,14 @@ const useTrainingVerificationForm = () => {
             type="edit"
             onClicked={() =>
               router.push(
-                "/recruitment/assessment-stage-one/training-verification-form/add-taining-profile"
+                `/recruitment/assessment-stage-one/training-verification-form/edit-training-profile?${info.getValue()}`
               )
             }
           />
+          {/* <TableAction
+            type="delete"
+            onClicked={() => console.log(info.getValue())}
+          /> */}
           <DeleteModel onDeleteClick={() => {}} />
           <TableAction
             type="view"
@@ -116,7 +103,20 @@ const useTrainingVerificationForm = () => {
       isSortable: false,
     },
   ];
-  return { columns, data, router };
+  return {
+    columns,
+    trainingPRofileData,
+    router,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    headerChangeHandler,
+    tableHeaderRef,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+  };
 };
 
 export default useTrainingVerificationForm;
