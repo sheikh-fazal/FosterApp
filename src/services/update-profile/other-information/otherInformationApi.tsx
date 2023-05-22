@@ -6,15 +6,15 @@ export const referenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getNextOfKinInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.nextOfKim",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateNextOfKinInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/next-kin",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
@@ -22,15 +22,15 @@ export const referenceApi = baseAPI.injectEndpoints({
 
     getContactPreference: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.contactPreferance",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateContactPreference: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/contact-preferance",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
@@ -38,59 +38,59 @@ export const referenceApi = baseAPI.injectEndpoints({
 
     getOtherPayInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.employmentStatus",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateOtherPayInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/employment-status/paye",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     getOtherLimitedCompanyInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.employmentStatus",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateOtherLimitedCompanyInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/employment-status/limited-company",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     getOtherSelfEmployedInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.employmentStatus",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateOtherSelfEmployedInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/employment-status/self-employed",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     getOtherUmbrellaCompanyInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.employmentStatus",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateOtherUmbrellaCompanyInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
+        url: "user-profile/employment-status/umberalla-comapny",
         method: "POST",
         body,
       }),
@@ -99,14 +99,14 @@ export const referenceApi = baseAPI.injectEndpoints({
 
     getOpportunityDecla: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=otherInfo.opportunityDeclaration",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateOpportunityDecla: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
+        url: "user-profile/opportunity-declaration",
         method: "POST",
         body,
       }),
@@ -115,14 +115,14 @@ export const referenceApi = baseAPI.injectEndpoints({
 
     getOtherInfoAdditionalDocs: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=documents",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     addOtherInfoAdditionalDocs: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
+        url: "user-profile/additional-docs",
         method: "POST",
         body,
       }),
@@ -130,15 +130,15 @@ export const referenceApi = baseAPI.injectEndpoints({
     }),
     updateOtherInfoAdditionalDocs: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/additional-docs/iamdocid",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     deleteOtherInfoAdditionalDocsDocs: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
+        url: "user-profile/additional-docs?docsId=asas",
         method: "POST",
         body,
       }),
@@ -147,23 +147,23 @@ export const referenceApi = baseAPI.injectEndpoints({
 
     getOtherBankDetailsInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=bankDetail",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     addOtherBankDetailsInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/bank-detail",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     updateOtherBankDetailsInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/bank-detail?id=asas",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
