@@ -27,7 +27,7 @@ const InitialHomeVisitTab = () => {
       <PrimaryCarerForm submitPrimaryCarerForm={submitPrimaryCarerForm} />
       <InterestForm submitInterestForm={submitInterestForm} />
       <BackgroundForm submitBackgroundForm={submitBackgroundForm} />
-      <AssesmentForm submitAssesmentForm={submitAssesmentForm} />
+      {/* <AssesmentForm submitAssesmentForm={submitAssesmentForm} /> */}
       <Document />
     </HorizaontalTabs>
   );

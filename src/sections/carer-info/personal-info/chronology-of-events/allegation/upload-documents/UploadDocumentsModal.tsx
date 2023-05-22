@@ -9,8 +9,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
 function UploadDocumentsModel(props: any) {
-  const { open, setOpen } = props;
-  const { postAllegationDetails, router, theme, onSubmit, action } =
+  const { open, setOpen, action } = props;
+  const { postAllegationDetails, router, theme, onSubmit } =
     useUploadDocumentsTable();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),

@@ -7,7 +7,7 @@ import { useRef } from "react";
 import router from "next/router";
 import dayjs from "dayjs";
 import useIncidentTable from "./useIncidentTable";
-import DeletePrompt from "@root/components/Table/prompt/deletePrompt";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 const Incident = () => {
   const tableHeaderRefTwo = useRef<any>();
