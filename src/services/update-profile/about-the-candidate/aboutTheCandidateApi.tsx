@@ -38,6 +38,14 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
+    deleteAddressDetailsDocu: builder.mutation<null, any>({
+      query: (body) => ({
+        url: "user-profile/address-detail",
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
     getPhotoForIdBadge: builder.query({
       query: () => ({
         url: "user-profile/all-profile?infoToget=aboutCandidate.badgeId",
@@ -45,12 +53,28 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
-    updatePhotoForIdBadge: builder.mutation<null, void>({
+    updatePhotoForIdBadge: builder.mutation<null, any>({
       query: (body) => ({
         url: "user-profile/bagde-Id-image",
         method: "PUT",
         body,
       }),
+      invalidatesTags: [TAG],
+    }),
+    getPhotoForIdUpload: builder.query({
+      query: () => ({
+        url: "user-profile/all-profile?infoToget=aboutCandidate.passport",
+        method: "GET",
+      }),
+      providesTags: [TAG],
+    }),
+    updatePhotoForIdUpload: builder.mutation<null, any>({
+      query: (body) => ({
+        url: "user-profile/add-passport-image",
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: [TAG],
     }),
   }),
 });
@@ -60,6 +84,9 @@ export const {
   useUpdatePersonalInfoMutation,
   useLazyGetAddressDetailsQuery,
   useUpdateAddressDetailsMutation,
-  useLazyGetPhotoForIdBadgeQuery,
+  useDeleteAddressDetailsDocuMutation,
+  useGetPhotoForIdBadgeQuery,
   useUpdatePhotoForIdBadgeMutation,
+  useGetPhotoForIdUploadQuery,
+  useUpdatePhotoForIdUploadMutation,
 } = aboutTheCandidateApi;
