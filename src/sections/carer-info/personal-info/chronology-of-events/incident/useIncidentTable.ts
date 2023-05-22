@@ -5,7 +5,9 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useIncidentUploadDocumentListQuery } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
+import React from "react";
 const useIncidentTable = () => {
+  const [search, setsearch] = React.useState("");
   const {
     data: incidentlist,
     isError: incidentListError,
@@ -13,13 +15,14 @@ const useIncidentTable = () => {
     isFetching: incidentlistIsfetching,
     isSuccess: incidentListIsSuccess,
   } = useIncidentListQuery({});
+
   const {
     data: incidentUploadlist,
     isError: incidentUploadListError,
     isLoading: incidentUploadListIsloading,
     isFetching: incidentUploadlistIsfetching,
     isSuccess: incidentUploadListIsSuccess,
-  } = useIncidentUploadDocumentListQuery();
+  } = useIncidentUploadDocumentListQuery({ search: search });
   console.log("ds", incidentUploadlist);
 
   const [deleteIncidentByID] = useDeleteIncidentByIdMutation({});
@@ -50,6 +53,7 @@ const useIncidentTable = () => {
     incidentUploadListIsloading,
     incidentUploadlistIsfetching,
     incidentUploadListIsSuccess,
+    setsearch,
     deleteHander,
     pageChangeHandler,
     sortChangeHandler,

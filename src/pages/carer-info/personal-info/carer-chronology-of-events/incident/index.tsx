@@ -45,7 +45,7 @@ export default function incident() {
     <>
       <HorizaontalTabs tabsDataArray={["Incident", "Uploaded Documents"]}>
         <IncFrom action={action} id={id} />
-        <UploadedDocuments />
+        <UploadedDocuments action={action} id={id} />
       </HorizaontalTabs>
     </>
   );

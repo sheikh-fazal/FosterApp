@@ -1,8 +1,20 @@
 import { baseAPI } from "@root/services/baseApi";
 export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    incidentUploadDocumentList: builder.query<null, void>({
-      query: () => "/chronology-events/incident-documents/list",
+    incidentUploadDocumentList: builder.query<null, object>({
+      query: (search: any) => ({
+        url: "/chronology-events/list-incidentDocuments",
+        method: "GET",
+        params: search,
+      }),
+      providesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
+    }),
+    incidentUploadDocumentBYID: builder.query<null, object>({
+      query: (Payload: any) => ({
+        url: "/chronology-events/list-incidentDocuments",
+        method: "GET",
+        params: Payload,
+      }),
       providesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
     }),
     postIncidentDocuments: builder.mutation({
@@ -18,4 +30,5 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
 export const {
   useIncidentUploadDocumentListQuery,
   usePostIncidentDocumentsMutation,
+  useLazyIncidentUploadDocumentBYIDQuery,
 } = incidentUploadDocumentApi;

@@ -5,9 +5,7 @@ import {
 } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import dayjs from "dayjs";
 
-const todayDate = dayjs().format("MM/DD/YYYY");
 
 export const IncidentFormData = [
   {

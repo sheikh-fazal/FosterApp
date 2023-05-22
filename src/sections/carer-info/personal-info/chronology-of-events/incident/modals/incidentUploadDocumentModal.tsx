@@ -11,15 +11,13 @@ import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-
 import CloseIcon from "@mui/icons-material/Close";
-import { formSchemaModel, UploadDocFormData } from ".";
-import theme from "@root/theme";
+import { UploadDocFormData, formSchemaModel } from "..";
+import { LoadingButton } from "@mui/lab";
 
 const incidentUploadDocumentModal = (props: any) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, onUploadSubmit, uploadingDocumentisLoading } = props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const theme: any = useTheme();
   const defaultValues = {
@@ -33,7 +31,6 @@ const incidentUploadDocumentModal = (props: any) => {
     defaultValues,
   });
   const { handleSubmit } = methods;
-  const onSubmit = async (data: any) => {};
   return (
     <Modal
       open={open}
@@ -58,7 +55,7 @@ const incidentUploadDocumentModal = (props: any) => {
             sx={{ cursor: "pointer" }}
           />
         </Box>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onUploadSubmit)}>
           <Grid container rowSpacing={4} columnSpacing={2}>
             {UploadDocFormData.map((form: any) => (
               <Grid item xs={12} md={form?.gridLength} key={form.id}>
@@ -78,16 +75,17 @@ const incidentUploadDocumentModal = (props: any) => {
             </Grid>
           </Grid>
           <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-            <Button
+            <LoadingButton
               type="submit"
               sx={{
                 bgcolor: theme.palette.primary.main,
                 "&:hover": { bgcolor: theme.palette.orange.main },
               }}
               variant="contained"
+              loading={uploadingDocumentisLoading}
             >
               Upload
-            </Button>
+            </LoadingButton>
             <Button
               sx={{
                 bgcolor: theme.palette.orange.main,

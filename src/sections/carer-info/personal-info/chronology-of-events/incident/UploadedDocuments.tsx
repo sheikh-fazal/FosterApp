@@ -1,18 +1,27 @@
 import React from "react";
-import { Box, Checkbox, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
 import useIncidentTable from "./useIncidentTable";
-function UploadedDocuments() {
+import useIncidentFrom from "./useIncidentFrom";
+import dayjs from "dayjs";
+import IncidentUploadDocumentModal from "./modals/incidentUploadDocumentModal";
+import IncidentViewDocumentModel from "./modals/incidentViewDocumentModel";
+
+function UploadedDocuments(props: any) {
   //   const tableHeaderRefTwo = useRef<any>();
+
+  const { action, id } = props;
+  const { onUploadSubmit, uploadingDocumentisLoading, modelOpen, modelHander } =
+    useIncidentFrom(action, id);
   const {
     incidentUploadlist,
     incidentUploadListError,
     incidentUploadListIsloading,
     incidentUploadlistIsfetching,
     incidentUploadListIsSuccess,
+    setsearch,
     pageChangeHandler,
     sortChangeHandler,
   }: any = useIncidentTable();
@@ -42,7 +51,9 @@ function UploadedDocuments() {
     {
       accessorFn: (row: any) => row.documentDate,
       id: "documentDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => (
+        <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>
+      ),
       header: () => <span>Document Date</span>,
       isSortable: true,
     },
@@ -64,11 +75,7 @@ function UploadedDocuments() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
-            size="small"
-            type="view"
-            onClicked={() => alert("hello")}
-          />
+          {/* <IncidentViewDocumentModel id={info.row.original.id} /> */}
           <TableAction
             size="small"
             type="download"
@@ -83,8 +90,23 @@ function UploadedDocuments() {
   return (
     <>
       <Box sx={{ mb: 1 }}>
-        <TableHeader title="Uploaded Documents" searchKey="search" showAddBtn />
+        <TableHeader
+          title="Uploaded Documents"
+          searchKey="search"
+          onChanged={(e: any) => {
+            console.log(e.search);
+            setsearch(e.search);
+          }}
+          showAddBtn
+          onAdd={modelHander}
+        />
       </Box>
+      <IncidentUploadDocumentModal
+        onUploadSubmit={onUploadSubmit}
+        open={modelOpen}
+        setOpen={modelHander}
+        isLoading={uploadingDocumentisLoading}
+      />
       <CustomTable
         data={incidentUploadlist?.data?.incident_documents ?? []}
         columns={columns}
@@ -93,9 +115,8 @@ function UploadedDocuments() {
         isError={incidentUploadListError}
         isSuccess={incidentUploadListIsSuccess}
         isPagination={true}
-        // showSerialNo={true}
-         totalPages={incidentUploadlist?.data?.meta?.pages ?? 0}
-         currentPage={incidentUploadlist?.data?.meta?.page ?? 1}
+        totalPages={incidentUploadlist?.data?.meta?.pages ?? 0}
+        currentPage={incidentUploadlist?.data?.meta?.page ?? 1}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />
