@@ -1,38 +1,38 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  fname: "Ali",
-  lname: "Khan",
+  firstName: "Ali",
+  lastName: "Khan",
   email: "iamemial@email.com",
-  phone: "+9230164028524",
-  relationship: "Pakistani",
+  phoneNo: "+9230164028524",
+  relationShip: "Pakistani",
 };
 
 export const FormSchema = Yup.object().shape({
-  fname: Yup.string()
+  firstName: Yup.string()
     .required("fname is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-  lname: Yup.string()
+  lastName: Yup.string()
     .required("lname is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-  phone: Yup.string().required("phone is required"),
+  phoneNo: Yup.string().required("phone is required"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
-  relationship: Yup.string().required("nationality is required"),
+  relationShip: Yup.string().required("nationality is required"),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "fname",
+      name: "firstName",
       label: "First Name",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "lname",
+      name: "lastName",
       label: "Last Name",
       fieldHeader: null,
     },
@@ -41,12 +41,12 @@ export const fieldsInfo = [
     {
       type: "TEXT",
       name: "email",
-      label: "Email",
+      label: "Email Address",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "phone",
+      name: "phoneNo",
       label: "Phone Number",
       fieldHeader: null,
     },
@@ -54,8 +54,8 @@ export const fieldsInfo = [
   [
     {
       type: "SELECT",
-      name: "gender",
-      label: "Gender",
+      name: "relationShip",
+      label: "Relationship",
       fieldHeader: null,
       options: ["Single", "Double"],
     },
