@@ -3,51 +3,43 @@ import CustomTable from '@root/components/Table/CustomTable';
 import TableHeader from '@root/components/TableHeader';
 import { Grid } from "@mui/material";
 import DeleteModel from '@root/components/modal/DeleteModel';
-import { TrainingClockEngineTableData } from '.';
-import { useTrainingClockEngineTable } from './useTrainingClockEngineTable';
-import TrainingClockEngineModal from '../modal/TrainingClockEngineModal';
-import { AnyAaaaRecord } from 'dns';
+import { NotificationTableData } from '.';
+import { useNotificationTable } from './useNotificationTable';
+import TrainingClockEngineModal from '../../manage-courses/training-clock-engine/modal/TrainingClockEngineModal';
 
 
 
 
-const TrainingClockEngineTable = () => {
-  const { IsDeleteModal, setIsDeleteModal, tableHeaderRef, TrainingClockEngineTableColumns, theme,
+const NotificationTable = () => {
+  const { NotificationTableColumns,
+    IsDeleteModal,
+    setIsDeleteModal,
+    tableHeaderRef, theme,
     IsOpenTrainingAddModal,
-    setIsOpenTrainingAddModal,
-    setActionType,
-    handleEditClicked,
+    setIsOpenTrainingAddModal, handleEditClicked,
     selectedRowId, actionType,
-  } = useTrainingClockEngineTable()
+    setActionType
+  } = useNotificationTable()
   console.log("Selected row ID:", selectedRowId);
-
-  const onSubmit = (data: any,event:any) => {
-    event.preventDefault();
-    console.log("Form data:", data);
-  };
   return (
     <Grid container >
       <Grid xs={12} item>
-        <TrainingClockEngineModal
-          title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
-          open={IsOpenTrainingAddModal}
-          handleClose={() => setIsOpenTrainingAddModal(false)}
-          IsHideFormFields={true}
+        <TrainingClockEngineModal title={actionType === 'add' ?' Add New Notification' : 'Edit Notification '} open={IsOpenTrainingAddModal}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
           CancelBtnText="Cancel"
-          onSubmit={onSubmit}
-        />
+          handleClose={() => setIsOpenTrainingAddModal(false)}
 
+        />
         <TableHeader
           ref={tableHeaderRef}
-          title="Training Clock Engine"
+          title="Notification Setting"
           searchKey="search"
           showAddBtn
           onAdd={() => { setIsOpenTrainingAddModal(true); setActionType('add') }}
         />
         <CustomTable
-          data={TrainingClockEngineTableData}
-          columns={TrainingClockEngineTableColumns.map(column => {
+          data={NotificationTableData}
+          columns={NotificationTableColumns.map(column => {
             if (column.id === "actions") {
               return {
                 ...column,
@@ -67,8 +59,10 @@ const TrainingClockEngineTable = () => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
+          onSortByChange={(data: any) => {
+            console.log("Sort by: ", data);
+          }}
           rootSX={{ my: theme.spacing(2) }}
-
         />
         <DeleteModel open={IsDeleteModal} handleClose={() => setIsDeleteModal(false)} />
       </Grid>
@@ -76,4 +70,4 @@ const TrainingClockEngineTable = () => {
   )
 }
 
-export default TrainingClockEngineTable
+export default NotificationTable

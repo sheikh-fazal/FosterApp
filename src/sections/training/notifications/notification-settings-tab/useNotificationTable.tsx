@@ -1,8 +1,7 @@
-import styled from '@emotion/styled';
-import { Box, Tooltip, useTheme } from '@mui/material';
+import { Box, useTheme,Tooltip } from '@mui/material';
 import TableAction from '@root/components/TableAction';
 import React, { useRef, useState } from 'react'
-
+import styled from '@emotion/styled';
 
 
 export const useNotificationTable = () => {
@@ -11,34 +10,32 @@ export const useNotificationTable = () => {
     const [actionType, setActionType] = useState('add');
     const [selectedRowId, setSelectedRowId] = useState(null);
     const tableHeaderRef = useRef();
-    const theme = useTheme();
-    const handleEditClicked = (rowId: any) => {
+    const theme: any = useTheme();
+    const handleEditClicked = (rowId:any) => {
         setSelectedRowId(rowId);
         setActionType("edit");
         setIsOpenTrainingAddModal(true);
-
-    };
-    const CustomCell = ({ value }: any) => {
+       
+      };
+      const CustomCell = ({ value }:any) => {
         const theme = useTheme();
         return (
-            <Tooltip title={value} placement="top" arrow>
-                <Box sx={{ maxWidth: '420px', whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", margin: "0 auto" }}>
-                    {value}
-                </Box>
-            </Tooltip>
+          <Tooltip title={value} placement="top" arrow>
+           <Box sx={{ maxWidth: '420px' ,whiteSpace:"nowrap",textOverflow:"ellipsis",overflow:"hidden",margin:"0 auto"}}>
+            {value}
+            </Box>
+        </Tooltip>
         );
-    };
-
+      };
+      
     const NotificationTableColumns = [
         {
             accessorFn: (row: any) => row.configurationItem,
             id: "configurationItem",
-            cell: (info: any) => (
-                <CustomCell value={info.getValue()} />
-            ),
+            cell: (info: any) => info.getValue(),
             header: () => <span>Configuration Item</span>,
             isSortable: true,
-
+           
         },
         {
             accessorFn: (row: any) => row.value,
@@ -46,7 +43,7 @@ export const useNotificationTable = () => {
             cell: (info: any) => info.getValue(),
             header: () => <span> Value</span>,
             isSortable: true,
-
+          
         },
         {
             accessorFn: (row: any) => row.notificationType,
@@ -54,29 +51,28 @@ export const useNotificationTable = () => {
             cell: (info: any) => info.getValue(),
             header: () => <span>Notification Type</span>,
             isSortable: true,
-
+           
         },
         {
             accessorFn: (row: any) => row.description,
             id: "description",
             cell: (info: any) => (
-                <CustomCell value={info.getValue()} />
+              <CustomCell value={info.getValue()} />
             ),
             header: () => <span>Description</span>,
             isSortable: true,
-        },
-
+          },
         {
             id: "actions",
             cell: (info: any) => (
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-
+                   
                     <TableAction
                         type="edit"
-                        onClicked={() => { setIsOpenTrainingAddModal(true), handleEditClicked(info.row.id) }}
+                        onClicked={() => {setIsOpenTrainingAddModal(true) ,handleEditClicked(info.row.id) }}
                         size="small"
                     />
-                    <TableAction
+                     <TableAction
                         type="delete"
                         onClicked={() => setIsDeleteModal(true)}
                         size="small"
@@ -94,13 +90,13 @@ export const useNotificationTable = () => {
         IsDeleteModal,
         setIsDeleteModal,
         tableHeaderRef,
-        CustomCell,
+        theme,
         IsOpenTrainingAddModal,
         setIsOpenTrainingAddModal,
         handleEditClicked,
-        selectedRowId,
+        selectedRowId, 
         actionType,
-        setActionType, theme
+        setActionType
 
     }
 }
