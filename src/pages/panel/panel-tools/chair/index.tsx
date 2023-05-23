@@ -1,12 +1,14 @@
-import Layout from "@root/layouts";
 import React from "react";
-import HomeIcon from "@mui/icons-material/Home";
+import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import PanelSection from "@root/sections/panel/PanelSection";
+import HomeIcon from "@mui/icons-material/Home";
+import PanelChair from "@root/sections/panel/panel-chair/PanelChair";
+
+// =======================================================================================
 
 const PAGE_TILE = "View Panel Dashboard";
 
-Panel.getLayout = function getLayout(page: any) {
+Chair.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -14,7 +16,7 @@ Panel.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Panel",
-          href: "/",
+          href: "/panel",
         },
         {
           name: "Panel Dashboard",
@@ -27,11 +29,10 @@ Panel.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Panel() {
+export default function Chair() {
   return (
     <Page title={PAGE_TILE}>
-      <PanelSection />
+      <PanelChair />
     </Page>
   );
 }
-
