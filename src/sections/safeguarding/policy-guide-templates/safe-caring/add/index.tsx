@@ -5,7 +5,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import * as Yup from "yup";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { FormHelperText, Typography } from "@mui/material";
-import {  } from "@root/dropdown-data/social-worker-data";
+import {  } from "@root/dropdown-data/socialWorkerData";
 import { SAFE_CARING_POLICY_TABLE_DATA } from "@root/dropdown-data/safeCaringPolicyList";
 import { useRouter } from "next/router";
 

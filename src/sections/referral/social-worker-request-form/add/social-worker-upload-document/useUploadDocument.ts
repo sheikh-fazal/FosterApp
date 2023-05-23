@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material";
-import { SOCIAL_WORKER_UPLOAD_DOCUMENT_TABLE_DATA } from "@root/dropdown-data/social-worker-upload-document-data";
+import { SOCIAL_WORKER_UPLOAD_DOCUMENT_TABLE_DATA } from "@root/dropdown-data/socialWorkerUploadDocumentData";
 import React, { useRef, useState } from "react";
 
 export const useUploadDocument = () => {
