@@ -9,15 +9,15 @@ import {
   Skeleton,
 } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
-import { UploadDocFormData, formSchemaModel, formets } from "../Index";
+import { formSchemaModel, Formet, UploadViewDocFormData } from "..";
 import { useState } from "react";
 import { useLazyIncidentUploadDocumentBYIDQuery } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
 import { enqueueSnackbar } from "notistack";
 import TableAction from "@root/components/TableAction";
+// import { UploadDocFormData } from "../Index";
 const IncidentViewDocumentModel = (props: any) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const theme: any = useTheme();
@@ -74,13 +74,13 @@ const Form = (props: any) => {
       setisloading(true);
       const { data, isError, isSuccess }: any =
         await incidentUploadDocumentBYID({ id: id }, true);
-      console.log(data);
 
       const responseData = { ...data.data };
+      console.log(responseData);
 
       for (const key in responseData) {
         const value = responseData[key];
-        if (formets[key]) responseData[key] = formets[key](value);
+        if (Formet[key]) responseData[key] = Formet[key](value);
       }
 
       setisloading(false);
@@ -93,7 +93,7 @@ const Form = (props: any) => {
       }
     },
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, getValues } = methods;
   const onsubmit = (data: any) => {};
   if (isloading)
     return (
@@ -105,7 +105,7 @@ const Form = (props: any) => {
             mb: 3,
           }}
         >
-          <Typography variant="subtitle1">Person Uploaded: {id}</Typography>
+          <Typography variant="subtitle1">Person Uploaded: ...</Typography>
           <CloseIcon
             onClick={() => setOpen(false)}
             sx={{ cursor: "pointer" }}
@@ -149,15 +149,28 @@ const Form = (props: any) => {
     );
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-        <Typography variant="subtitle1">Person Uploaded: Name Xname</Typography>
-        <CloseIcon onClick={() => setOpen(false)} sx={{ cursor: "pointer" }} />
-      </Box>
       <FormProvider methods={methods} onSubmit={handleSubmit(onsubmit)}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Typography variant="subtitle1">
+            Person Uploaded: {getValues("uploadBy")}
+          </Typography>
+          <CloseIcon
+            onClick={() => setOpen(false)}
+            sx={{ cursor: "pointer" }}
+          />
+        </Box>
         <Grid container rowSpacing={4} columnSpacing={2}>
-          {UploadDocFormData.map((form: any) => (
+          {UploadViewDocFormData.map((form: any) => (
             <Grid item xs={12} md={form?.gridLength} key={form.id}>
-              <form.component {...form.componentProps} size="small">
+              <form.component
+                {...form.componentProps}
+                disabled={true}
+                InputLabelProps={{
+                  shrink: true,
+                  disabled: true,
+                }}
+                size="small"
+              >
                 {form.componentProps.select
                   ? form.componentProps.options.map((option: any) => (
                       <option key={option.value} value={option.value}>
@@ -169,7 +182,15 @@ const Form = (props: any) => {
             </Grid>
           ))}
           <Grid xs={12} item>
-            <RHFUploadFile name="file" {...methods} />
+            <RHFTextField
+              name="documentName"
+              disabled={true}
+              InputLabelProps={{
+                shrink: true,
+                disabled: true,
+              }}
+              {...methods}
+            />
           </Grid>
         </Grid>
         <Box sx={{ display: "flex", gap: 2, mt: 3 }}>

@@ -603,9 +603,57 @@ export const UploadDocFormData = [
     component: RHFTextField,
   },
 ];
-export const formets: any = {};
+export const UploadViewDocFormData = [
+  {
+    id: 2,
+    gridLength: 12,
+    componentProps: {
+      fullWidth: true,
+      name: "type",
+      label: "Document Type",
+      select: true,
+      options: [
+        {
+          value: "PDF",
+          label: "PDF",
+        },
+        {
+          value: "WORD",
+          label: "WORD",
+        },
+      ],
+    },
+    component: RHFSelect,
+  },
+  {
+    id: 3,
+    componentProps: {
+      name: "documentDate",
+      label: "Date Of Enquiry",
+      fullWidth: true,
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
+  },
+  {
+    id: 4,
+    gridLength: 6,
+    componentProps: {
+      name: "password",
+      label: "Password to Open Document",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+];
+export const Formet: any = {};
 
-for (const formControl of UploadDocFormData) {
+for (const formControl of UploadViewDocFormData) {
   if (formControl.format)
-    formatters[formControl.componentProps.name] = formControl.format;
+    Formet[formControl.componentProps.name] = formControl.format;
 }
