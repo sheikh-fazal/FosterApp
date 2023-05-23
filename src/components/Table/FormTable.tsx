@@ -107,7 +107,7 @@ function TableFormModal(props: any) {
 // Form Table
 
 export default function FormTable(props: any) {
-  const { moreActionBtn,tableKey, columns: tableColumns } = props;
+  const { moreActionBtn, tableKey, columns: tableColumns } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
@@ -138,15 +138,13 @@ export default function FormTable(props: any) {
       <Box
         sx={{
           display: "flex",
-          gap: "5px",
+          gap: "12px",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        
         {moreActionBtn && (
           <>
-            
             <TableAction type="view" onClicked={(id: number) => alert()} />{" "}
             <TableAction type="print" onClicked={(id: number) => alert()} />{" "}
             <TableAction type="share" onClicked={(id: number) => alert()} />{" "}

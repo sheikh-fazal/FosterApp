@@ -13,29 +13,27 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import Select from "@mui/material/Select";
-import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import PrintIcon from "@mui/icons-material/Print";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import CustomAccordian from "@root/components/CustomAccordian";
 import TaineeListTable from "./tainee-list-table/TaineeListTable";
+import TraineeListModal from "./trainee-list-modal/TraineeListModal";
+import { sortingData } from ".";
 
 const TraineeLists = () => {
   const [items, setitems] = React.useState("");
-  const [cancelDelete, setCancelDelete] = useState(false);
+  const [addRow, setAddRow] = useState(sortingData);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [editRowId, setEditRowId] = useState("");
+  const [modalType, setModalType] = useState({
+    type: "",
+    value: null,
+  });
+
   const handleChange = (event: any) => {
     setitems(event.target.value);
-  };
-
-  const router = useRouter();
-
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
   };
 
   const handleClick = (event: any) => {
@@ -45,12 +43,23 @@ const TraineeLists = () => {
     setAnchorEl(null);
   };
 
-  const sortingData = [
-    {
-      title: "Option 1",
-      component: <TaineeListTable/>
-    },
-  ];
+  const addRowHandler = (data: any, editRowId: any) => {
+    const newObj = {
+      id: Math.random(),
+
+      title: data?.title,
+
+      component: <TaineeListTable />,
+    };
+
+    const filteredRows = addRow.filter((row: any) => row.id !== editRowId.id);
+
+    setAddRow([...filteredRows, newObj]);
+  };
+
+  const removeItem = (index: any) => {
+    setAddRow([...addRow.slice(0, index), ...addRow.slice(index - 1)]);
+  };
 
   return (
     <Card sx={{ p: 2 }}>
@@ -116,16 +125,47 @@ const TraineeLists = () => {
                 <MenuItem onClick={handleClose}>Option 2</MenuItem>
                 <MenuItem onClick={handleClose}>Option 3</MenuItem>
               </Menu>
-              <Button size="large" variant="contained">
+
+              <Button
+                size="large"
+                variant="contained"
+                onClick={() => {
+                  setModalType({
+                    ...modalType,
+                    type: "Add",
+                    value: null,
+                  });
+                }}
+              >
                 Add Group
               </Button>
             </Stack>
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <CustomAccordian data={sortingData} showBtn/>
+            <CustomAccordian
+              data={addRow}
+              showBtn
+              removeItem={removeItem}
+              handleTitleEdit={(item: any) => {
+                setEditRowId(item);
+                setModalType({
+                  ...modalType,
+                  type: "Edit",
+                });
+              }}
+            />
           </Grid>
         </Grid>
+
+        <TraineeListModal
+          open={modalType.type}
+          editRowId={editRowId}
+          addRowHandler={addRowHandler}
+          handleClose={() => {
+            setModalType({ type: "", value: null });
+          }}
+        />
       </Box>
     </Card>
   );

@@ -8,10 +8,18 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
 import DeleteModel from "./modal/DeleteModel";
-const CustomAccordian = ({ showBtn, data, className, ...rest }: any) => {
+
+const CustomAccordian = ({
+  handleTitleEdit,
+  showBtn,
+  data,
+  className,
+  ...rest
+}: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
+  
   const handleDelete = () => {
     alert("deleted successfully");
     setCancelDelete(!cancelDelete);
@@ -65,8 +73,8 @@ const CustomAccordian = ({ showBtn, data, className, ...rest }: any) => {
             <Box
               sx={{
                 display: "flex",
-                width: "100%",
                 justifyContent: "space-between",
+                width: "100%",
                 alignItems: "center",
               }}
             >
@@ -84,17 +92,37 @@ const CustomAccordian = ({ showBtn, data, className, ...rest }: any) => {
                 {item.title}
               </Typography>
               {showBtn && (
-                <Stack direction="row" spacing={1} justifyContent="end">
-                  <TableAction size="small" type="edit" onClicked={() => {}} />
+                <Stack direction="row" spacing={1}>
+                  <TableAction
+                    size="small"
+                    type="edit"
+                    onClicked={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      handleTitleEdit(item);
+                    }}
+                  />
                   <TableAction
                     size="small"
                     type="delete"
-                    onClicked={() => setCancelDelete(!cancelDelete)}
+                    onClicked={(event: any) => {
+                      setCancelDelete(!cancelDelete);
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                    }}
                   />
                   <DeleteModel
                     open={cancelDelete}
-                    onDeleteClick={handleDelete}
-                    handleClose={() => setCancelDelete(!cancelDelete)}
+                    onDeleteClick={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      handleDelete();
+                    }}
+                    handleClose={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      setCancelDelete(!cancelDelete);
+                    }}
                   />
                 </Stack>
               )}
