@@ -19,7 +19,7 @@ const useEditTraingingProfile = ({ initialValueProps }: any) => {
     date: Yup.date().required("Required"),
     trainingNeeds: Yup.string().required("Required"),
     otherTraining: Yup.string().required("Required"),
-    additionalInformation: Yup.string().required("Required"),
+    addtionalInfo: Yup.string().required("Required"),
   });
 
   const defaultValues = {

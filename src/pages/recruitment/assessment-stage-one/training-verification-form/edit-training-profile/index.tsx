@@ -20,7 +20,7 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Assessment stage 1",
-          href: "/recruitment",
+          href: "/recruitment/assessment-stage-one/training-verification-form",
         },
         {
           name: "Training Profile",

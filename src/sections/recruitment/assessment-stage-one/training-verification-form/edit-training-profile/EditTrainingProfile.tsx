@@ -16,6 +16,9 @@ const EditTrainingProfile = (props: any) => {
     initialValueProps,
   });
 
+  console.log(methods.formState.errors);
+  
+
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
