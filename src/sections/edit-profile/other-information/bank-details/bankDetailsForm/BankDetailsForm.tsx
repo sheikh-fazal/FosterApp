@@ -12,10 +12,13 @@ import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
+import SingleFileUploader from "@root/sections/edit-profile/file-uploaders/SingleFileUploader";
 
 const BankDetailsForm: FC<any> = ({ addRefModelClose }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
+  const [file, setFile] = useState<File | any>(null);
+  const [avialableFile, setAvialableFile] = useState(null);
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -30,6 +33,10 @@ const BankDetailsForm: FC<any> = ({ addRefModelClose }) => {
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
+
+  const setFileHandler = (file: File | null) => {
+    setFile(file);
+  };
 
   const onSubmit = async (data: any) => {
     console.log({ data });
@@ -79,14 +86,13 @@ const BankDetailsForm: FC<any> = ({ addRefModelClose }) => {
               })}
 
               {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
+              <Grid item sm={12} container sx={{ padding: "0.5em" }}>
+                <SingleFileUploader
+                  file={file}
+                  setFileHandler={setFileHandler}
+                  avialableFile={avialableFile}
                 />
               </Grid>
-            </Grid> */}
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
