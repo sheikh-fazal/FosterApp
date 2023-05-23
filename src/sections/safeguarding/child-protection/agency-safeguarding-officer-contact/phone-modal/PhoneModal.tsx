@@ -1,38 +1,34 @@
 import React from "react";
 import Image from "next/image";
-import { Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Box, ClickAwayListener, Typography } from "@mui/material";
 import UserProfile from "../../../../../assets/img/userProfile.png";
 import UserPhone from "../../../../../assets/svg/safeguarding/userPhone.svg";
 import PickAnApp from "../../../../../assets/svg/safeguarding/pickAnApp.svg";
 
-const PhoneModal = (props: any) => {
-  const { setIsPhoneModal } = props;
-
-  const handleClose = () => {
-    setIsPhoneModal(false);
-  };
-
+const PhoneModal = ({ handleClose, open }: any) => {
   return (
-    <Box sx={useStyles.modalWrapper}>
-      <Box sx={useStyles.header}>
-        <Box sx={useStyles.imgWrap}>
-          <Image src={UserProfile} alt="User Profile" width={120} height={120} />
+    <ClickAwayListener onClickAway={handleClose}>
+      <Box sx={useStyles.modalWrapper(open)}>
+        <Box sx={useStyles.header}>
+          <Box sx={useStyles.imgWrap}>
+            <Image src={UserProfile} alt="User Profile" width={120} height={120} />
+          </Box>
+          <CloseIcon sx={useStyles.closeIcon} onClick={handleClose} />
         </Box>
-        <CloseIcon sx={useStyles.closeIcon} onClick={handleClose} />
+        <Box sx={{ paddingTop: "90px", paddingX: "12px" }}>
+          <Typography sx={useStyles.heading}>Make a Call from</Typography>
+        </Box>
+        <Box sx={useStyles.callWrapper}>
+          <Image src={UserPhone} alt="User Phone" width={18} height={30} />
+          <Typography sx={useStyles.title}>Redmi Note 10</Typography>
+        </Box>
+        <Box sx={useStyles.callWrapper}>
+          <Image src={PickAnApp} alt="Pick An App" width={18} height={30} />
+          <Typography sx={useStyles.title}>Pick an app</Typography>
+        </Box>
       </Box>
-      <Box sx={{ paddingTop: "90px", paddingX: "12px" }}>
-        <Typography sx={useStyles.heading}>Make a Call from</Typography>
-      </Box>
-      <Box sx={useStyles.callWrapper}>
-        <Image src={UserPhone} alt="User Phone" width={18} height={30} />
-        <Typography sx={useStyles.title}>Redmi Note 10</Typography>
-      </Box>
-      <Box sx={useStyles.callWrapper}>
-        <Image src={PickAnApp} alt="Pick An App" width={18} height={30} />
-        <Typography sx={useStyles.title}>Pick an app</Typography>
-      </Box>
-    </Box>
+    </ClickAwayListener>
   );
 };
 
@@ -41,19 +37,26 @@ export default PhoneModal;
 //---------------------------------------------------------------------------
 
 const useStyles = {
-  modalWrapper: {
-    position: "absolute",
+  modalWrapper: (open: boolean) => ({
+    display: open ? "block" : "none",
+    position: "fixed",
     width: 100,
     minWidth: 260,
-    right: -200,
-    top: 10,
+    right: 100,
+    top: 80,
     animation: "$slideIn 0.5s ease-out forwards",
     border: "1px solid #6E7191",
     background: "#FFFAFC",
     borderRadius: "8px 8px 0px 0px",
     height: "100%",
     maxHeight: "330px",
-  },
+    zIndex: 10,
+    "@media (max-width: 365px)": {
+      width: 260,
+      right: 20,
+      top: 80,
+    },
+  }),
   "@keyframes slideIn": {
     from: {
       transform: "translateX(100%)",

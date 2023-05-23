@@ -1,8 +1,20 @@
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 
-// =========================================================
+// ===================================================================================
+export const defaultValues = {
+  carerName: "",
+  time: new Date(),
+  caseName: "",
+  uploadDate: new Date(),
+  submittedUploadDate: new Date(),
+  Status: "",
+  Minutes: "",
+};
+
+// =====================================================================================================
 export const panelChairData = [
   {
     gridLength: 6,
@@ -48,13 +60,13 @@ export const panelChairData = [
   {
     gridLength: 6,
     otherOptions: {
-      placeholder: "01/01/2010",
       label: "Date Submitted to chair for Recommendation",
       name: "uploadDate",
       fullWidth: true,
     },
     component: RHFDatePicker,
   },
+
   {
     gridLength: 6,
     otherOptions: {
@@ -68,15 +80,13 @@ export const panelChairData = [
   },
   {
     gridLength: 12,
-    title: "submitted to ADM for approval:",
     otherOptions: {
+      defaultValue: "Yes",
+      label: "submitted to ADM for approval:",
       name: "approval",
       options: ["Yes", "No"],
-      fullWidth: true,
     },
-    component: RHFRadioGroup,
-    sx: { display: "flex", alignItem: "center", gap: "30px" },
-    gridSize: { xs: 12 },
+    component: RHFRadioGroupWithLabel,
   },
   {
     gridLength: 6,

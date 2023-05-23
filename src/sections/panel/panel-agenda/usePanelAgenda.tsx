@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { useRouter } from "next/router";
 import TableAction from "@root/components/TableAction";
 import { Checkbox, Box, useTheme } from "@mui/material";
@@ -7,12 +8,12 @@ import { Checkbox, Box, useTheme } from "@mui/material";
 export const usePanelAgenda = () => {
   let router = useRouter();
   const theme: any = useTheme();
+  const tableHeaderRef = useRef();
 
   const columns = [
     {
       id: "select",
       header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
         return (
           <Box>
             <Checkbox checked={table.getIsAllRowsSelected()} onChange={table.getToggleAllRowsSelectedHandler()} />
@@ -99,5 +100,6 @@ export const usePanelAgenda = () => {
     theme,
     router,
     columns,
+    tableHeaderRef,
   };
 };

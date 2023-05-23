@@ -2,7 +2,7 @@ import { LoadingButton } from "@mui/lab";
 import { panelAgendaData } from "./index";
 import { FormProvider } from "@root/components/hook-form";
 import { usePanelAgendaForm } from "./usePanelAgendaForm";
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Button, Typography, Card } from "@mui/material";
 
 // =================================================================================================
 
@@ -11,7 +11,7 @@ const PanelAgendaForm = (props: any) => {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={styles.card}>
+      <Card sx={{ px: 1, py: 2 }}>
         <Grid container columnSpacing={4} rowSpacing={3}>
           {panelAgendaData.map((form: any, i: any) => {
             return (
@@ -66,7 +66,7 @@ const PanelAgendaForm = (props: any) => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Card>
     </FormProvider>
   );
 };

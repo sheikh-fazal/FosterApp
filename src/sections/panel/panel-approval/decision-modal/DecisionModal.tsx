@@ -9,7 +9,7 @@ import { Modal, Backdrop, Grid, Button, Box, Typography } from "@mui/material";
 const DecisionModal = (props: any) => {
   const { open, handleClose } = props;
   const { methods, onSubmit, handleSubmit } = useDecisionModal();
-
+  
   return (
     <Box>
       <Modal
@@ -93,8 +93,8 @@ export default DecisionModal;
 //-----------------------------------------------------------------------
 // styles
 const Styles = {
-  root: (theme: any) => ({
-    position: "absolute" as "absolute",
+  root: {
+    position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
@@ -105,7 +105,7 @@ const Styles = {
     boxShadow: 24,
     px: 2,
     py: 2,
-  }),
+  },
   mainTitle: {
     fontSize: 18,
     fontWeight: 600,

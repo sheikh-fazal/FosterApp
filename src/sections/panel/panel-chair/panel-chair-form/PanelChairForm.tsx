@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Button, Typography, Card } from "@mui/material";
 // components
 import { panelChairData } from "./index";
 import { usePanelChairForm } from "./usePanelChairForm";
@@ -12,7 +12,7 @@ const PanelAdministratorForm = (props: any) => {
   const { theme, router, handleSubmit, onSubmit, methods } = usePanelChairForm();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={styles.card}>
+      <Card sx={{ px: 1, py: 2 }}>
         <Grid container columnSpacing={4} rowSpacing={3}>
           {panelChairData.map((form: any, i: any) => {
             return (
@@ -20,7 +20,7 @@ const PanelAdministratorForm = (props: any) => {
                 <Typography sx={{ fontWeight: 600, mb: 0.3, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }}>
                   {form.title}
                 </Typography>
-                {form.requireFileUpload && <RHFUploadFile name="uploadPhoto" {...methods} require />}
+                {form.requireFileUpload && <RHFUploadFile disabled name="uploadPhoto" {...methods} require />}
                 {form.component ? (
                   <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
                     {form.otherOptions.select
@@ -62,19 +62,8 @@ const PanelAdministratorForm = (props: any) => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Card>
     </FormProvider>
   );
 };
 export default PanelAdministratorForm;
-
-//  ========================================================================
-const styles = {
-  card: {
-    background: "#FFFFFF",
-    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-    borderRadius: "10px",
-    px: 1,
-    py: 2,
-  },
-};

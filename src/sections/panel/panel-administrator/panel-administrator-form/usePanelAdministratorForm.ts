@@ -1,8 +1,7 @@
-// form
-import { useForm } from "react-hook-form";
+import { defaultValues } from ".";
 import { useRouter } from "next/router";
-// @mui
 import { useTheme } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 // ==========================================================================
 
@@ -10,8 +9,7 @@ export const usePanelAdministratorForm = () => {
   let theme = useTheme();
   const router = useRouter();
   const methods: any = useForm({
-    // resolver: yupResolver(FormSchema),
-    // defaultValues,
+    defaultValues,
   });
 
   const {

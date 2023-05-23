@@ -1,16 +1,19 @@
 // @mui
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Button, Typography, Card } from "@mui/material";
 // components
 import { administratorData } from "./index";
 import { FormProvider } from "@root/components/hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { usePanelAdministratorForm } from "./usePanelAdministratorForm";
+import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
+
+// ====================================================================================================
 
 const PanelAdministratorForm = (props: any) => {
   const { theme, router, handleSubmit, onSubmit, methods } = usePanelAdministratorForm();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={styles.card}>
+      <Card sx={{ py: 2, px: 1 }}>
         <Grid container columnSpacing={4} rowSpacing={3}>
           {administratorData.map((form: any, i: any) => {
             return (
@@ -18,7 +21,12 @@ const PanelAdministratorForm = (props: any) => {
                 <Typography sx={{ fontWeight: 600, mb: 0.3, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }}>
                   {form.title}
                 </Typography>
-                {form.requireFileUpload && <RHFUploadFile name="uploadPhoto" {...methods} require />}
+                {form.requireFileUpload && (
+                  <Box sx={{ position: "relative" }}>
+                    <RHFUploadFile disabled name="uploadPhoto" {...methods} require />
+                    <DownloadForOfflineIcon sx={styles.downloadIcon} onClick={() => alert("Icon clicked!")} />
+                  </Box>
+                )}
                 {form.component ? (
                   <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
                     {form.otherOptions.select
@@ -60,7 +68,7 @@ const PanelAdministratorForm = (props: any) => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Card>
     </FormProvider>
   );
 };
@@ -68,11 +76,11 @@ export default PanelAdministratorForm;
 
 //  ========================================================================
 const styles = {
-  card: {
-    background: "#FFFFFF",
-    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-    borderRadius: "10px",
-    px: 1,
-    py: 2,
+  downloadIcon: {
+    color: "#198754",
+    cursor: "pointer",
+    position: "absolute",
+    right: { md: "-30px", xs: "0" },
+    top: { md: "8px", xs: "-25px" },
   },
 };
