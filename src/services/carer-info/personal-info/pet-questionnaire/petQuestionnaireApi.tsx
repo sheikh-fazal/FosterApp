@@ -66,13 +66,19 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
+    getPetQuestionnaireById: builder.query({
+      query: (id) => `/pet-questionnaire/getquestionnaire/${id}`,
+      // providesTags: (result) => generalTags(result, TAG),
+    }),
   }),
 });
 
 export const {
   useGetPetQuestionnaireTableApiQuery,
   usePostPetQuestionnaireAApiMutation,
+  usePatchPetQuestionnaireAApiMutation,
   usePatchPetQuestionnaireBApiMutation,
   usePatchPetQuestionnaireCApiMutation,
   usePatchPetQuestionnaireDApiMutation,
+  useGetPetQuestionnaireByIdQuery,
 } = petQuestionnaireApi;

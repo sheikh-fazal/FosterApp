@@ -80,7 +80,7 @@ export default function PetQuestionnaire() {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.nameOfAnimal,
+      accessorFn: (row: any) => row?.petQuestionnaire1?.nameOfAnimal,
       id: "nameOfAnimal",
       cell: (info: any) => info.getValue(),
       header: "Name Of Pet",
