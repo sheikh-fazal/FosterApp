@@ -11,7 +11,7 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
     }),
     incidentUploadDocumentBYID: builder.query<null, object>({
       query: (Payload: any) => ({
-        url: "/chronology-events/list-incidentDocuments",
+        url: `/chronology-events/incidentDocuments/${Payload.id}`,
         method: "GET",
         params: Payload,
       }),

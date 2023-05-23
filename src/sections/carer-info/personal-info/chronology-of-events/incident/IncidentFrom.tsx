@@ -18,7 +18,7 @@ import {
 } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import Paper from "@mui/material/Paper";
-import { FormSchema, IncidentFormData } from ".";
+import { FormSchema, IncidentFormData } from "./Index";
 import router from "next/router";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import useIncidentFrom from "./useIncidentFrom";

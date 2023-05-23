@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import useIncidentTable from "./useIncidentTable";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
+
 const Incident = () => {
   const tableHeaderRefTwo = useRef<any>();
   // HANDLER FOR CONTROL TABLE

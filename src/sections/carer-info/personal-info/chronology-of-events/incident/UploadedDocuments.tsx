@@ -75,7 +75,7 @@ function UploadedDocuments(props: any) {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          {/* <IncidentViewDocumentModel id={info.row.original.id} /> */}
+          <IncidentViewDocumentModel id={info.row.original.id} />
           <TableAction
             size="small"
             type="download"

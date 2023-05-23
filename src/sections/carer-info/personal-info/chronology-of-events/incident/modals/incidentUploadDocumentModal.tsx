@@ -13,11 +13,12 @@ import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
-import { UploadDocFormData, formSchemaModel } from "..";
+import { UploadDocFormData, formSchemaModel } from "../Index";
 import { LoadingButton } from "@mui/lab";
 
 const incidentUploadDocumentModal = (props: any) => {
-  const { open, setOpen, onUploadSubmit, uploadingDocumentisLoading } = props;
+  const { open, setOpen, onUploadSubmit, uploadingDocumentisLoading, id } =
+    props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const theme: any = useTheme();
   const defaultValues = {

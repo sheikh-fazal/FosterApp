@@ -6,7 +6,6 @@ import {
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-
 export const IncidentFormData = [
   {
     id: 1,
@@ -587,6 +586,9 @@ export const UploadDocFormData = [
     },
     gridLength: 6,
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -601,3 +603,9 @@ export const UploadDocFormData = [
     component: RHFTextField,
   },
 ];
+export const formets: any = {};
+
+for (const formControl of UploadDocFormData) {
+  if (formControl.format)
+    formatters[formControl.componentProps.name] = formControl.format;
+}

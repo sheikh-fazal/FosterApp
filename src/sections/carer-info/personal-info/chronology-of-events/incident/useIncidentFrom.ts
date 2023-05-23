@@ -6,8 +6,9 @@ import {
 import router from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { defaultValues, formatters } from ".";
+
 import { usePostIncidentDocumentsMutation } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
+import { defaultValues, formatters } from "./Index";
 
 const useIncidentFrom = (action: any, id: any) => {
   // API,STATES,API,HANDERS
@@ -74,7 +75,7 @@ const useIncidentFrom = (action: any, id: any) => {
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
-        .catch((error) => {
+        .catch((error: { data: { message: any } }) => {
           setIsLoading(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
