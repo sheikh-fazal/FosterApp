@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import RecruitmentTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/training-profile/RecruitmentTrainingProfile";
 import RecruitmentUploadDocuments from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/upload-documents/RecruitmentUploadDocuments";
+import { usePostTrainingProfileApiMutation } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 
 
 const PAGE_TITLE = "Recruitment";
@@ -30,13 +31,15 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
 };
 
 export default function AddTraingVerification() {
+
+  const [postData, { isError, isSuccess }] = usePostTrainingProfileApiMutation()
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs
         tabsDataArray={["Training Profile", "Upload Documents"]}
       >
 
-        <RecruitmentTrainingProfile />
+        <RecruitmentTrainingProfile onSubmitHandler={postData} />
         <RecruitmentUploadDocuments />
 
 

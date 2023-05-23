@@ -8,10 +8,18 @@ export const trainingPRofileAllApi = baseAPI.injectEndpoints({
     getSingleTrainingProfileData: builder.query({
       query: (trainingProfileId: any) => `/training-profile/${trainingProfileId}`,
     }),
+    postTrainingProfileApi: builder.mutation<null, void>({
+      query: (body: any) => ({
+        url: "/training-profile",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
 export const {
   useGetTrainingProfileAllDataQuery,
   useGetSingleTrainingProfileDataQuery,
+  usePostTrainingProfileApiMutation
 } = trainingPRofileAllApi;
