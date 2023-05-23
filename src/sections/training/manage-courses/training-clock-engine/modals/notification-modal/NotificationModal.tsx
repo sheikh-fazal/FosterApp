@@ -19,6 +19,9 @@ const NotificationModal = (props: IProps) => {
     const ModalContent = styled(DialogContent)`
     width: 788px;
     height: auto;
+    @media (max-width: 852px) {
+        width: 100%;
+      }
   `;
  
     return (
