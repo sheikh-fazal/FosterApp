@@ -17,8 +17,8 @@ const PanelSection = () => {
                 {PANELTABSDATAARRY?.map((item) => (
                     <Fragment key={item?.index}>
                         <Grid container spacing={2} minHeight={"140px"} alignItems={"center"} >
-                            {item?.innerDataArray?.map((innerItem) => (
-                                <Grid item xl={3} lg={4} md={6} xs={12} >
+                            {item?.innerDataArray?.map((innerItem,index:number) => (
+                                <Grid item xl={3} lg={4} md={6} xs={12} key={index}>
                                     <NextLink href={innerItem?.link} style={styles?.nextLinkContainer}>
                                         <Card sx={styles.tabsItems(item?.background)} key={innerItem?.id}>
                                             <Typography sx={styles.innerTitle(item?.title, theme.palette.mode)}>
