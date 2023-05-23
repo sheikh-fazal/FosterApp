@@ -5,7 +5,7 @@ import { defaultValues } from ".";
 import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 
-export const useTraineeTable = () => {
+export const useSuspectedTable = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,

@@ -114,6 +114,7 @@ export default function Training() {
                 })}
               </HorizaontalTabs>
             </Card>
+            
           </Grid>
           <Grid item lg={6} xs={12}>
             <Card sx={styles.cardStyles}>

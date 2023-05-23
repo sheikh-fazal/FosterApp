@@ -9,47 +9,63 @@ const CourseProfile = () => {
   ];
   return (
     <Box sx={styles.containerDev}>
-      <Box sx={{width: "20rem", height: "11rem", position: "relative" }}>
-        <Box sx={styles.Mandatory}>
-          <Box sx={styles.number}>09</Box>
-          <Box sx={styles.text}>Mandatory</Box>
-        </Box>
+      <Grid container>
+        <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
+          <Box sx={{ width: "20rem", height: "17.8vh", position: "relative" }}>
+            <Box sx={styles.Mandatory}>
+              <Box sx={styles.number}>09</Box>
+              <Box sx={styles.text}>Mandatory</Box>
+            </Box>
 
-        <Box sx={styles.Optional}>
-          <Box sx={styles.number}>07</Box>
-          <Box sx={styles.text}>Optional</Box>
-        </Box>
-        <Box sx={styles.Popular}>
-          <Box sx={styles.number}>08</Box>
-          <Box sx={styles.text}>Most Popular</Box>
-        </Box>
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "4px",
-          marginTop: "20px",
-          marginRight: "50px",
-        }}
-      >
-        {chartTitles?.map((item: any) => (
-          <Box key={item?.color} sx={{ mt: 0.5 }}>
-            <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
-              <Box
-                sx={{
-                  width: "10px",
-                  height: "10px",
-                  background: item?.color,
-                  borderRadius: "50%",
-                }}
-              ></Box>
-              <Typography variant="subtitle2">{item?.title}</Typography>
+            <Box sx={styles.Optional}>
+              <Box sx={styles.number}>07</Box>
+              <Box sx={styles.text}>Optional</Box>
+            </Box>
+            <Box sx={styles.Popular}>
+              <Box sx={styles.number}>08</Box>
+              <Box sx={styles.text}>Most Popular</Box>
             </Box>
           </Box>
-        ))}
-      </Box>
+        </Grid>
+        <Grid
+          item
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              marginTop: "20px",
+              // marginRight: { lg: "50px", md: "50px", sm: "0px", xs: "0px" },
+            }}
+          >
+            {chartTitles?.map((item: any) => (
+              <Box key={item?.color} sx={{ mt: 0.5 }}>
+                <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      width: "10px",
+                      height: "10px",
+                      background: item?.color,
+                      borderRadius: "50%",
+                    }}
+                  ></Box>
+                  <Typography variant="subtitle2">{item?.title}</Typography>
+                </Box>
+              </Box>
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
@@ -58,11 +74,10 @@ export default CourseProfile;
 
 const styles = {
   containerDev: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    alignItems: "center"
-   
+    // display: "flex",
+    // flexWrap: "wrap",
+    // justifyContent: "space-between",
+    // alignItems: "center"
   },
   Mandatory: {
     width: "95.57px",

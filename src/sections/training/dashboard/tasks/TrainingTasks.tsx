@@ -78,6 +78,7 @@ export default function TrainingTasks() {
                   color: theme.palette.black,
                   fontSize: "14px",
                   fontWeight: "500",
+                  pl:1,
                 }}
               >
                 {item?.date}

@@ -1,50 +1,62 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
-import { useTraineeTable } from "./useTraineeTable";
+import { useChildrenTable } from "./useChildrenTable";
 import dayjs from "dayjs";
 import { Box, Button, Typography } from "@mui/material";
 
-const TaineeListTable = () => {
+const ChildrenTable = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear } =
-    useTraineeTable();
+    useChildrenTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
         tableKey="exampleTable"
-        moreActionBtn
         columns={[
           {
             inputType: "textField",
             type: "text",
-            key: "traineeName",
-            defaultValue: "Jon",
-            label: "Trainee Name",
+            key: "name",
+            defaultValue: "Remus corner",
+            label: "Name",
+            validation: (Yup: any) => {},
+          },
+          {
+            inputType: "datePicker",
+            type: "dob",
+            key: "dob",
+            defaultValue: new Date(),
+            label: "DOB",
             validation: (Yup: any) => {
-              // return Yup.string().required("Email is required").min(3);
+              return Yup.date()
+                .typeError("End date is required")
+                .required("End date is required");
+            },
+            format: (date: any) => {
+              return dayjs(date).format("DD/MM/YYYY");
             },
           },
           {
             inputType: "textField",
             type: "text",
-            key: "role",
-            defaultValue: "256",
-            label: "Role",
+            key: "ethnicity",
+            defaultValue: "Reporting ",
+            label: "Ethnicity",
             validation: (Yup: any) => {},
           },
           {
             inputType: "textField",
             type: "text",
-            key: "trainingNeed",
-            defaultValue: "Reporting",
-            label: "Training Need",
+            key: "address",
+            defaultValue: "Once upon a time",
+            label: "Address",
             validation: (Yup: any) => {},
           },
           {
             inputType: "textField",
             type: "text",
-            key: "developmentPlan",
-            defaultValue: "Devplan",
-            label: "Development Plan",
+            key: "screening",
+            defaultValue: "ORon Corner",
+            label: "CE Screening tool complete?",
             validation: (Yup: any) => {},
           },
         ]}
@@ -59,4 +71,4 @@ const TaineeListTable = () => {
   );
 };
 
-export default TaineeListTable;
+export default ChildrenTable;
