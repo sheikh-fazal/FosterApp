@@ -52,7 +52,7 @@ const ContactPrefernce: FC<any> = () => {
             {/* Phone  */}
             <Grid item sm={12} container direction="column">
               <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="terms" label="Phone" />
+                <RHFCheckbox name="phone" label="Phone" />
               </Grid>
             </Grid>
             {/* Whatsapp  */}
