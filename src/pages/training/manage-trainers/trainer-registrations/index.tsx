@@ -2,7 +2,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
+import { Card, useTheme } from "@mui/material";
+import TrainerRegistrationtTable from "@root/sections/training/manage-trainers/trainer-registration/trainerRegistrationTable";
 
 const PAGE_TILE = "Trainer Registration managment";
 
@@ -31,7 +32,9 @@ export default function TrainerRegistration() {
   const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
-      <div>Trainer Registration</div>
+      <Card sx={{ p: 2 }}>
+        <TrainerRegistrationtTable />
+      </Card>
     </Page>
   );
 }
