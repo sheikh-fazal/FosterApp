@@ -6,23 +6,23 @@ export const medicalHistoryApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getImmunisationInfo: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=medicalHistory.immunisation",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateImmunisationInfo: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/immunisation",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     deleteImmunisationInfoDocu: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/immunisation",
+        method: "DELETE",
         body,
       }),
       invalidatesTags: [TAG],
