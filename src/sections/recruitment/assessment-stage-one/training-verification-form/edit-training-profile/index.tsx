@@ -95,7 +95,7 @@ export const TrainingProfileData = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "expiryDatee",
+      name: "expiryDate",
       label: "Expire Date",
       fullWidth: true,
     },
@@ -121,7 +121,7 @@ export const TrainingProfileData = [
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "datee",
+      name: "date",
       label: "Attended Date",
       fullWidth: true,
     },
