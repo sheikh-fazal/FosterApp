@@ -70,7 +70,6 @@ export default function SocialMediaLinksSection() {
                     <Image
                       src={imageSource(account.accountType)}
                       alt="icon"
-                      // width={124}
                       style={{ width: "100%", height: "auto" }}
                     />
                   </Link>
