@@ -125,8 +125,32 @@ export const allegationFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "childParents",
+        label: "Child Parents",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childYoungPerson",
+        label: "Child/Young Person",
+      },
+      {
+        value: "fosterCarer",
+        label: "Foster Carer",
+      },
+      {
+        value: "otherProfessional",
+        label: "Other Professional",
+      },
+      {
+        value: "other",
+        label: "Other",
       },
     ],
   },
@@ -142,8 +166,32 @@ export const allegationFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "childParents",
+        label: "Child Parents",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childYoungPerson",
+        label: "Child/Young Person",
+      },
+      {
+        value: "fosterCarer",
+        label: "Foster Carer",
+      },
+      {
+        value: "otherProfessional",
+        label: "Other Professional",
+      },
+      {
+        value: "other",
+        label: "Other",
       },
     ],
   },
@@ -219,8 +267,32 @@ export const allegationFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "childParents",
+        label: "Child Parents",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childYoungPerson",
+        label: "Child/Young Person",
+      },
+      {
+        value: "fosterCarer",
+        label: "Foster Carer",
+      },
+      {
+        value: "otherProfessional",
+        label: "Other Professional",
+      },
+      {
+        value: "other",
+        label: "Other",
       },
     ],
   },

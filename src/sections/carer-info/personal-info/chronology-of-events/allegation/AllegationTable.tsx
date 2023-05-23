@@ -1,35 +1,97 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Badge } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import { useDeleteAllegationListMutation } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
-import { enqueueSnackbar } from "notistack";
 import { useAllegationTable } from "./useAllegationTable";
-import { getColumns } from "./index";
+import TableAction from "@root/components/TableAction";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import dayjs from "dayjs";
 
 const AllegationTable = () => {
   const {
     router,
     tableHeaderRefTwo,
-    isLoading,
     allegations,
-    isFetching,
-    isError,
-    isSuccess,
+    allegationListIsloading,
+    allegationlistIsfetching,
+    allegationListError,
+    allegationListIsSuccess,
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    listDeleteHandler,
+    setSearch,
   } = useAllegationTable();
 
-  const [deleteList, { isSuccess: successMessage }] =
-    useDeleteAllegationListMutation();
-  //Checking If Allegation is Deleted Successfully
-  if (successMessage) {
-    enqueueSnackbar("Allegation Deleted Successfully", {
-      variant: "success",
-    });
-  }
-  const columns = getColumns(deleteList);
+  const columns = [
+    {
+      accessorFn: (row: any) => row?.id ?? "-",
+      id: "srNo",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Sr. No</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.allegationDate ?? "-",
+      id: "allegationDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+      },
+      header: () => <span>Date of Allegation</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.status ?? "-",
+      id: "status",
+      cell: (info: any) => (
+        <Badge
+          invisible={info.badge}
+          color="secondary"
+          badgeContent="Draft"
+          sx={styles.badge}
+        >
+          {info.getValue() ?? "-"}
+        </Badge>
+      ),
+      header: () => <span>Status</span>,
+      isSortable: true,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/allegation",
+                query: { action: "edit", id: info?.row?.original?.id },
+              })
+            }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/allegation",
+                query: { action: "view", id: info?.row?.original?.id },
+              })
+            }
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
   return (
     <>
       <Box sx={{ mb: 1 }}>
@@ -38,6 +100,9 @@ const AllegationTable = () => {
           title="Allegation"
           searchKey="search"
           showAddBtn
+          onChanged={(event: any) => {
+            setSearch(event.search);
+          }}
           onAdd={() => {
             router.push({
               pathname:
@@ -50,12 +115,12 @@ const AllegationTable = () => {
       <CustomTable
         data={allegations}
         columns={columns}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
-        currentPage={meta?.page}
-        totalPages={meta?.pages}
+        isLoading={allegationListIsloading}
+        isFetching={allegationlistIsfetching}
+        isError={allegationListError}
+        isSuccess={allegationListIsSuccess}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
         showSerialNo
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
@@ -65,3 +130,17 @@ const AllegationTable = () => {
 };
 
 export default AllegationTable;
+
+//Styling
+const styles: any = {
+  badge: (theme: any) => ({
+    "& .MuiBadge-badge": {
+      fontSize: 9,
+      top: 11,
+      right: -22,
+      height: 15,
+      background: theme.palette.primary.main,
+      cursor: "pointer",
+    },
+  }),
+};

@@ -1,28 +1,56 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useAllegationListQuery } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
+import {
+  useAllegationListQuery,
+  useDeleteAllegationListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 
 export const useAllegationTable = () => {
+  const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useAllegationListQuery();
-  const allegations = data?.data?.allegation;
-  const meta = data?.meta;
+  const {
+    data: allegationlist,
+    isError: allegationListError,
+    isLoading: allegationListIsloading,
+    isFetching: allegationlistIsfetching,
+    isSuccess: allegationListIsSuccess,
+  }: any = useAllegationListQuery({ search: search });
+  const allegations = allegationlist?.data?.allegation;
+  const meta = allegationlist?.data?.meta;
+  const [deleteList] = useDeleteAllegationListMutation();
+  //API For Deleting Document List
+  const listDeleteHandler = (id: any) => {
+    deleteList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
   return {
     router,
     tableHeaderRefTwo,
-    isLoading,
-    headerChangeHandler,
+    allegationListIsloading,
     allegations,
-    isFetching,
-    isError,
-    isSuccess,
+    allegationlistIsfetching,
+    allegationListError,
+    allegationListIsSuccess,
     meta,
+    headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
+    listDeleteHandler,
+    setSearch,
   };
 };

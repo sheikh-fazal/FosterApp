@@ -1,5 +1,4 @@
 import { useTheme } from "@mui/material";
-import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useLazySingleAllegetionListQuery,
   usePatchAllegationListMutation,
@@ -13,8 +12,11 @@ export const useAllegationForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
+  //API For Getting Single Details
   const [getAllegationList] = useLazySingleAllegetionListQuery();
+  //API For Posting Allegation Form
   const [postAllegationDetails] = usePostAllegationListMutation();
+  //API For Patch Allegation List
   const [editAllegationList] = usePatchAllegationListMutation();
 
   //GET DEFAULT VALUE HANDLER
@@ -50,21 +52,17 @@ export const useAllegationForm = (action: any, id: any) => {
           enqueueSnackbar("Allegation Added Successfully", {
             variant: "success",
           });
-          router
-            .push({
-              pathname:
-                "/carer-info/personal-info/carer-chronology-of-events/allegation",
-              query: { action: "edit", id: `${res?.data.id}` },
-            })
-
-            .catch((error) => {
-              setIsLoading(false);
-              const errMsg = error?.data?.message;
-              enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-              router.push(
-                "/carer-info/personal-info/carer-chronology-of-events"
-              );
-            });
+          router.push({
+            pathname:
+              "/carer-info/personal-info/carer-chronology-of-events/allegation",
+            query: { action: "edit", id: `${res?.data.id}` },
+          });
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          const errMsg = error?.data?.message;
+          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+          router.push("/carer-info/personal-info/carer-chronology-of-events");
         });
     } else if (action === "edit") {
       setIsLoading(true);

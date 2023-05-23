@@ -2,8 +2,8 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/UploadDocuments";
-import ReferenceOneForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/ReferenceOneForm";
+import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-3/UploadDocuments";
+import ReferenceThreeForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-3/ReferenceThreeForm";
 
 // Constants
 const BREADCRUMBS = [
@@ -13,13 +13,13 @@ const BREADCRUMBS = [
     href: "/carer-info/background-checks/statutory-checks-list",
   },
   {
-    name: "References 1",
+    name: "References 3",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "References 1";
-Reference1.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "References 3";
+Reference3.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +31,10 @@ Reference1.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Reference1() {
+export default function Reference3() {
   return (
-    <HorizaontalTabs tabsDataArray={["References 1", "Upload Documents"]}>
-      <ReferenceOneForm />
+    <HorizaontalTabs tabsDataArray={["References 3", "Upload Documents"]}>
+      <ReferenceThreeForm />
       <UploadDocuments />
     </HorizaontalTabs>
   );

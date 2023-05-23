@@ -5,7 +5,6 @@ import {
   FormControlLabel,
   RadioGroup,
   Radio,
-  Button,
 } from "@mui/material";
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,6 +13,7 @@ import { useForm } from "react-hook-form";
 import { allegationFormData, formSchema } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAllegationForm } from "./useAllegationForm";
+import { LoadingButton } from "@mui/lab";
 function AllegationForm(props: any) {
   const { action, id } = props;
   //Allegation Custom Hook
@@ -120,7 +120,7 @@ function AllegationForm(props: any) {
               }}
               item
             >
-              <Button
+              <LoadingButton
                 type="submit"
                 sx={{
                   bgcolor: theme.palette.primary.main,
@@ -129,8 +129,8 @@ function AllegationForm(props: any) {
                 variant="contained"
               >
                 Submit
-              </Button>
-              <Button
+              </LoadingButton>
+              <LoadingButton
                 sx={{
                   bgcolor: theme.palette.grey[800],
                   "&:hover": { bgcolor: theme.palette.grey[800] },
@@ -143,8 +143,8 @@ function AllegationForm(props: any) {
                 }
               >
                 Save as draft
-              </Button>
-              <Button
+              </LoadingButton>
+              <LoadingButton
                 sx={{
                   bgcolor: theme.palette.orange.main,
                   "&:hover": { bgcolor: theme.palette.orange.main },
@@ -157,7 +157,7 @@ function AllegationForm(props: any) {
                 }
               >
                 back
-              </Button>
+              </LoadingButton>
             </Grid>
           ) : null}
         </Grid>
@@ -166,7 +166,7 @@ function AllegationForm(props: any) {
       {action === "view" && (
         <Grid container>
           <Grid xs={12} sx={{ mt: 2 }} item>
-            <Button
+            <LoadingButton
               sx={{
                 bgcolor: theme.palette.orange.main,
                 "&:hover": { bgcolor: theme.palette.orange.main },
@@ -179,7 +179,7 @@ function AllegationForm(props: any) {
               }
             >
               back
-            </Button>
+            </LoadingButton>
           </Grid>
         </Grid>
       )}
