@@ -6,9 +6,9 @@ import PanelTab from "@root/sections/panel/panel-tab/PanelTab";
 import { PANELTABSDATAARRY } from "@root/sections/panel/panel-tab";
 import { Card, Grid, Typography, useTheme } from "@mui/material";
 import NextLink from "next/link";
-import PanelCalendar from "@root/sections/panel/panel-calendar/PanelCalendar";
 import PanelNotifications from "@root/sections/panel/panel-notifications/PanelNotifications";
 import PanelMember from "@root/sections/panel/panel-member/PanelMember";
+import PanelDashboardCalendar from '@root/sections/panel/panel-calendar/PanelDashboardCalendar';
 
 const PAGE_TILE = "View Panel Dashboard";
 
@@ -71,7 +71,7 @@ export default function Panel() {
       </PanelTab>
       <Grid container spacing={2}>
         <Grid item md={5} xs={12}>
-          <PanelCalendar />
+          <PanelDashboardCalendar />
         </Grid>
         <Grid
           item
