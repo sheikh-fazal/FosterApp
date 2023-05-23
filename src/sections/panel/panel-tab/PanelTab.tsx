@@ -114,7 +114,7 @@ const styles: any = {
         boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)",
         p: "20px",
         pt: '40px',
-        height: '220px',
+        height: '100%',
         overflow: 'hidden'
     },
     topBar: (bg: string) => ({
