@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { Card, useTheme } from "@mui/material";
-import TrainerRegistrationtTable from "@root/sections/training/manage-trainers/trainer-registration/trainerRegistrationTable";
+import TrainerRegistrationtTable from "@root/sections/training/manage-trainers/trainer-registration/TrainerRegistrationTable";
 
 const PAGE_TILE = "Trainer Registration managment";
 
