@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 import PanelCalendar from './panel-calendar/PanelCalendar';
 import PanelNotifications from './panel-notifications/PanelNotifications';
 import PanelMember from '@root/sections/panel/panel-member/PanelMember';
+import PanelDashboardCalendar from './panel-calendar/PanelDashboardCalendar';
 
 
 const PanelSection = () => {
@@ -34,7 +35,7 @@ const PanelSection = () => {
             </PanelTab>
             <Grid container spacing={2} sx={{ mt: 'initial' }}>
                 <Grid item lg={5} xs={12}>
-                    <PanelCalendar />
+                    <PanelDashboardCalendar />
                 </Grid>
                 <Grid item lg={7} xs={12}>
                     <Grid container spacing={2}>

@@ -17,7 +17,7 @@ Calendar.getLayout = function getLayout(page: any) {
                     href: "/",
                 },
                 {
-                    name: "Panel Dashboard",
+                    name: "Panel Calendar",
                 },
             ]}
             title={PAGE_TILE}

@@ -2,12 +2,10 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
-import CertificateManagement from "@root/sections/training/manage-courses/certificate-management";
+import CertificateManagement from "@root/sections/training/manage-courses/certificate-management/CertificateManagement";
 
 
 const PAGE_TILE = "Certificate Management";
-
 CertificateManagementPage.getLayout = function getLayout(page: any) {
   return (
     <Layout
