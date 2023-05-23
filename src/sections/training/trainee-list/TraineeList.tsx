@@ -57,10 +57,6 @@ const TraineeLists = () => {
     setAddRow([...filteredRows, newObj]);
   };
 
-  const removeItem = (index: any) => {
-    setAddRow([...addRow.slice(0, index), ...addRow.slice(index - 1)]);
-  };
-
   return (
     <Card sx={{ p: 2 }}>
       <Box>
@@ -146,7 +142,6 @@ const TraineeLists = () => {
             <CustomAccordian
               data={addRow}
               showBtn
-              removeItem={removeItem}
               handleTitleEdit={(item: any) => {
                 setEditRowId(item);
                 setModalType({
