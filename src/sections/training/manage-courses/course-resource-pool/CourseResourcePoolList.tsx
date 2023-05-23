@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import Image from "next/image";
 import addNewResourceImg from "../../../../assets/svg/training/addNewResource.svg";
@@ -20,12 +20,16 @@ export default function CourseResourcePoolList() {
                 <Link href={`${item.link}`} style={{ textDecoration: "none" }}>
                   <Box sx={(theme) => styles.cardContent(theme)}>
                     <Box sx={(theme) => styles.cardImage(theme)}>
-                      <Image
-                        src={item.image}
-                        width={57}
-                        height={59}
-                        alt="image"
-                      />
+                      {item.image == "" ? (
+                        <Avatar sx={{ width: 56, height: 56 }}></Avatar>
+                      ) : (
+                        <Image
+                          src={item.image}
+                          width={57}
+                          height={59}
+                          alt="image"
+                        />
+                      )}
                     </Box>
                     <Typography sx={(theme) => styles.cardText(theme)}>
                       {item.categoryDescription}
@@ -73,7 +77,7 @@ export default function CourseResourcePoolList() {
 //style
 const styles = {
   card: (theme: any, background: any) => ({
-    background: background || "ddddd",
+    background: background,
     borderRadius: "10px",
     display: "flex",
     height: "160px",
@@ -117,7 +121,7 @@ const styles = {
       justifyContent: "center",
       alignItems: "center",
       margin: "10px",
-      padding:"0px",
+      padding: "0px",
       cursor: "pointer",
       position: "",
     },

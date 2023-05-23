@@ -26,7 +26,7 @@ import child21 from "../../../../../assets/svg/training/health&Safety.svg";
 import child22 from "../../../../../assets/svg/training/sexualAbuseAwareness.svg";
 import child23 from "../../../../../assets/svg/training/reportWritingForFosterCarese.svg";
 
-export const FOSTER_CARER_RESOURCES_ARRAY = [
+export const SOCIAL_WORKERS_RESOURCES_ARRAY = [
   {
     id: "1",
     title: "Foster Carer Mandatory Training Courses",
