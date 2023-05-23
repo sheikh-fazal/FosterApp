@@ -27,6 +27,6 @@
     "src/components/animate/FabButtonAnimate.js",
     "src/theme/overrides/Accordion.js",
     "src/theme/overrides/Alert.js"
-, "src/sections/safeguarding/child-protection/child-abuse-and-expolitation-management/userChildAbuseExpolitationManagement"  ],
+, "src/sections/safeguarding/child-protection/child-abuse-and-expolitation-management/userChildAbuseExpolitationManagement", "src/sections/carer-info/training-profile"  ],
   "exclude": ["node_modules"]
 }
