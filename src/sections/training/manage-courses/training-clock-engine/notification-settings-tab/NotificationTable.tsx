@@ -1,11 +1,11 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
 import TableHeader from '@root/components/TableHeader';
-import { Grid, ThemeProvider, Tooltip } from "@mui/material";
+import { Grid, ThemeProvider} from "@mui/material";
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { NotificationTableData } from '.';
 import { useNotificationTable } from './useNotificationTable';
-import TrainingClockEngineModal from '../modal/TrainingClockEngineModal';
+import NotificationModal from '../modals/notification-modal/NotificationModal';
 
 
 
@@ -15,8 +15,8 @@ const NotificationTable = () => {
     IsDeleteModal,
     setIsDeleteModal,
     tableHeaderRef, theme,
-    IsOpenTrainingAddModal,
-    setIsOpenTrainingAddModal, handleEditClicked,
+    IsOpenNotificationModal,
+    setIsOpenNotificationModal, handleEditClicked,
     selectedRowId, actionType,
     setActionType
   } = useNotificationTable()
@@ -25,10 +25,10 @@ const NotificationTable = () => {
   return (
     <Grid container >
       <Grid xs={12} item>
-        <TrainingClockEngineModal title={actionType === 'add' ? ' Add New Notification' : 'Edit Notification '} open={IsOpenTrainingAddModal}
+        <NotificationModal title={actionType === 'add' ? ' Add New Notification' : 'Edit Notification '} open={IsOpenNotificationModal}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
           CancelBtnText="Cancel"
-          handleClose={() => setIsOpenTrainingAddModal(false)}
+          handleClose={() => setIsOpenNotificationModal(false)}
 
         />
         <TableHeader
@@ -36,7 +36,7 @@ const NotificationTable = () => {
           title="Notification Setting"
           searchKey="search"
           showAddBtn
-          onAdd={() => { setIsOpenTrainingAddModal(true); setActionType('add') }}
+          onAdd={() => { setIsOpenNotificationModal(true); setActionType('add') }}
         />
         <ThemeProvider theme={theme}>
           <CustomTable

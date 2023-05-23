@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react'
 
 export const useNotificationTable = () => {
     const [IsDeleteModal, setIsDeleteModal] = useState(false)
-    const [IsOpenTrainingAddModal, setIsOpenTrainingAddModal] = useState(false)
+    const [IsOpenNotificationModal, setIsOpenNotificationModal] = useState(false)
     const [actionType, setActionType] = useState('add');
     const [selectedRowId, setSelectedRowId] = useState(null);
     const tableHeaderRef = useRef();
@@ -15,7 +15,7 @@ export const useNotificationTable = () => {
     const handleEditClicked = (rowId: any) => {
         setSelectedRowId(rowId);
         setActionType("edit");
-        setIsOpenTrainingAddModal(true);
+        setIsOpenNotificationModal(true);
 
     };
     const CustomCell = ({ value }: any) => {
@@ -73,7 +73,7 @@ export const useNotificationTable = () => {
 
                     <TableAction
                         type="edit"
-                        onClicked={() => { setIsOpenTrainingAddModal(true), handleEditClicked(info.row.id) }}
+                        onClicked={() => { setIsOpenNotificationModal(true), handleEditClicked(info.row.id) }}
                         size="small"
                     />
                     <TableAction
@@ -95,8 +95,8 @@ export const useNotificationTable = () => {
         setIsDeleteModal,
         tableHeaderRef,
         CustomCell,
-        IsOpenTrainingAddModal,
-        setIsOpenTrainingAddModal,
+        IsOpenNotificationModal,
+        setIsOpenNotificationModal,
         handleEditClicked,
         selectedRowId,
         actionType,

@@ -5,19 +5,20 @@ import { Grid } from "@mui/material";
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { TrainingClockEngineTableData } from '.';
 import { useTrainingClockEngineTable } from './useTrainingClockEngineTable';
-import TrainingClockEngineModal from '../modal/TrainingClockEngineModal';
-import { AnyAaaaRecord } from 'dns';
+import TrainingClockEngineModal from '../modals/training-clock-engine-modal/TrainingClockEngineModal';
+
 
 
 
 
 const TrainingClockEngineTable = () => {
   const { IsDeleteModal, setIsDeleteModal, tableHeaderRef, TrainingClockEngineTableColumns, theme,
-    IsOpenTrainingAddModal,
-    setIsOpenTrainingAddModal,
+    IsOpenTrainingClockModal,
+    setIsOpenTrainingClockModal,
     setActionType,
-    handleEditClicked,
-    selectedRowId, actionType,
+    selectedRowId,
+     actionType,
+     handleEditClicked
   } = useTrainingClockEngineTable()
   console.log("Selected row ID:", selectedRowId);
 
@@ -27,9 +28,8 @@ const TrainingClockEngineTable = () => {
       <Grid xs={12} item>
         <TrainingClockEngineModal
           title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
-          open={IsOpenTrainingAddModal}
-          handleClose={() => setIsOpenTrainingAddModal(false)}
-          IsHideFormFields={true}
+          open={IsOpenTrainingClockModal}
+          handleClose={() => setIsOpenTrainingClockModal(false)}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
           CancelBtnText="Cancel"
         
@@ -40,7 +40,7 @@ const TrainingClockEngineTable = () => {
           title="Training Clock Engine"
           searchKey="search"
           showAddBtn
-          onAdd={() => { setIsOpenTrainingAddModal(true); setActionType('add') }}
+          onAdd={() => { setIsOpenTrainingClockModal(true); setActionType('add') }}
         />
         <CustomTable
           data={TrainingClockEngineTableData}

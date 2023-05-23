@@ -4,19 +4,17 @@ import React, { useRef, useState } from 'react'
 import { TrainingClockEngineTableData } from '.';
 
 
-
-
-
 export const useTrainingClockEngineTable = () => {
     const [IsDeleteModal, setIsDeleteModal] = useState(false)
-    const [IsOpenTrainingAddModal, setIsOpenTrainingAddModal] = useState(false)
+    const [IsOpenTrainingClockModal, setIsOpenTrainingClockModal] = useState(false)
     const [selectedRowId, setSelectedRowId] = useState(null);
     const [actionType, setActionType] = useState('add');
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
+
     const handleEditClicked = (rowId: any) => {
         setSelectedRowId(rowId);
-        setIsOpenTrainingAddModal(true);
+        setIsOpenTrainingClockModal(true);
         setActionType("edit");
      console.log("Row ID:", rowId);
      const defaultValues = {
@@ -63,7 +61,7 @@ export const useTrainingClockEngineTable = () => {
 
                     <TableAction
                         type="edit"
-                        onClicked={() => { setIsOpenTrainingAddModal(true), handleEditClicked(info.row.id) }}
+                        onClicked={() => { setIsOpenTrainingClockModal(true); handleEditClicked(info.row.id) }}
                         size="small"
                     />
                     <TableAction
@@ -85,13 +83,12 @@ export const useTrainingClockEngineTable = () => {
         setIsDeleteModal,
         tableHeaderRef,
         theme,
-        IsOpenTrainingAddModal,
-        setIsOpenTrainingAddModal,
-        selectedRowId,
-        handleEditClicked,
+        IsOpenTrainingClockModal,
+        setIsOpenTrainingClockModal,
         actionType,
-        setActionType
-
+        setActionType,
+        selectedRowId,
+        handleEditClicked
 
     }
 }
