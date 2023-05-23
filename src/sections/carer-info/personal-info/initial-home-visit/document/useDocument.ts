@@ -24,14 +24,15 @@ export const useDocument = () => {
       password: 1231,
     },
   ]);
+  const initialHomeDocumentTableColumns =
+  initialHomeDocumentTableColumnsFunction(SetIsSingleDocumentDetailViewed);
   const params = {
     offset: page,
     limit: 1,
     search: searchValue,
     fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
   };
-  const initialHomeDocumentTableColumns =
-    initialHomeDocumentTableColumnsFunction(SetIsSingleDocumentDetailViewed);
+
   const dataParameter = { params };
   const { data, isLoading, isError, isSuccess } =
     useGetInitialHomeDocumentDataQuery(dataParameter);

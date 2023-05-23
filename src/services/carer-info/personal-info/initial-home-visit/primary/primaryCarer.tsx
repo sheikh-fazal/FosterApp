@@ -7,10 +7,11 @@ export const primaryCarerApi = baseAPI.injectEndpoints({
         "carer-info/personal-info/initial-home-visit/primary-carer",
     }),
     postPrimaryCarerData: builder.mutation({
-      query: (formData: any) => ({
+      query: (putDataParameter: any) => ({
         url: "carer-info/personal-info/initial-home-visit/primary-carer",
-        method: "POST",
-        body: formData,
+        method: "PUT",
+        body: putDataParameter.body,
+        params: putDataParameter.params,
       }),
     }),
   }),
