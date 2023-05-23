@@ -5,9 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
 const useEditTraingingProfile = ({ initialValueProps }: any) => {
-
   console.log(initialValueProps);
-  
+
   const router = useRouter();
 
   const tainingProfileSchema = Yup.object().shape({
@@ -23,18 +22,31 @@ const useEditTraingingProfile = ({ initialValueProps }: any) => {
     additionalInformation: Yup.string().required("Required"),
   });
 
+  const defaultValues = {
+    carerName: "",
+    courseAttended: "",
+    courseStatus: "",
+    comments: "",
+    trainingNeeds: "",
+    otherTraining: "",
+    addtionalInfo: "",
+    attendance: false,
+    expiryDate: new Date(),
+    date: new Date(),
+  };
+
   const methods: any = useForm({
     resolver: yupResolver(tainingProfileSchema),
-    defaultValues: initialValueProps?.data,
+    defaultValues: initialValueProps,
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    console.log(data, 'updated data');
+    console.log(data, "updated data");
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router, defaultValues };
 };
 
 export default useEditTraingingProfile;

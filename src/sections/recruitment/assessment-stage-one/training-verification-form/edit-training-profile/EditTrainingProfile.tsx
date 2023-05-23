@@ -1,12 +1,13 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { TrainingProfileData, defaultValues } from "./";
+import { TrainingProfileData } from "./";
 import Link from "next/link";
 import useEditTraingingProfile from "./useEditTrainingProfile";
 const EditTrainingProfile = (props: any) => {
   const {
     disabled,
+    defaultValues,
     initialValueProps = defaultValues,
     isError,
     isSuccess,

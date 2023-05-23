@@ -40,7 +40,7 @@ export default function AddTraingVerification() {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
-    // console.log(data?.data?.expiryDate, "single trining profile");
+  // console.log(data?.data?.expiryDate, "single trining profile");
 
   return (
     <Page title={PAGE_TITLE}>
@@ -51,9 +51,16 @@ export default function AddTraingVerification() {
           <>
             <EditTrainingProfile
               initialValueProps={{
-                ...data,
-                // expiryDate: new Date(data?.data?.expiryDate),
-                // date: new Date(data?.data?.date),
+                carerName: data?.data?.carerName,
+                courseAttended: data?.data?.courseAttended,
+                courseStatus: data?.data?.courseStatus,
+                comments: data?.data?.comments,
+                trainingNeeds: data?.data?.trainingNeeds,
+                otherTraining: data?.data?.otherTraining,
+                addtionalInfo: data?.data?.addtionalInfo,
+                attendance: data?.data?.attendance,
+                expiryDate: new Date(data?.data?.expiryDate),
+                date: new Date(data?.data?.date),
               }}
               //   onSubmitHandler={updateData}
               message={"Updated"}
