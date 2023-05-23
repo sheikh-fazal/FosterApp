@@ -107,7 +107,7 @@ export const referenceApi = baseAPI.injectEndpoints({
     updateOpportunityDecla: builder.mutation<null, any>({
       query: (body) => ({
         url: "user-profile/opportunity-declaration",
-        method: "POST",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
