@@ -46,7 +46,7 @@ const styles = {
   cardDescription: (theme: any) => ({
     fontWeight: 500,
     fontSize: "14px",
-    padding: "20px",
+    padding: "24px 26px",
     textAlign: "center",
     wordWrap: "break-word",
   }),

@@ -41,7 +41,7 @@ export default function CourseList() {
         />
         <Grid
           container
-          spacing={7}
+          spacing={8}
           sx={{ padding: { xs: "5px 5px 0px 5px", lg: "15px 15px 0 15px" } }}
         >
           {courseList.map((item, i) => (
