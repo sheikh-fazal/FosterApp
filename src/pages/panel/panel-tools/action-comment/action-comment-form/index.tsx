@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home";
-import PanelActionsForm from "@root/sections/panel/panel-actions-comments/panel-actions-form/PanelActionsForm";
+import HomeIcon from "@mui/icons-material/Home"; 
+import PanelActionsForm from "@root/sections/panel/panel-tools/panel-actions-comments/panel-actions-form/PanelActionsForm";
 
 // =============================================================================================================
 

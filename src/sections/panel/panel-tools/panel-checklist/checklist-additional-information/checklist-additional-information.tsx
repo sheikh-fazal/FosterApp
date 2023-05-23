@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
-import AddIcon from "../../../../assets/svg/panel/add-icon.svg";
+import AddIcon from "../../../../../assets/svg/panel/add-icon.svg";
 import Image from 'next/image';
 import { additionalInformation } from '.';
 import ChecklistAdditionalForm from './ChecklistAdditionalForm';
