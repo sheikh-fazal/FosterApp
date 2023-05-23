@@ -17,7 +17,6 @@ const SetupComp = () => {
     deleteModal,
     handleDeleteFunc
   } = useSetup();
-
   const columns = [
     {
       title: 'Carer Name (Code)',
