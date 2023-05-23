@@ -24,7 +24,7 @@ export default function useCourseResourcePoolList() {
       image: "",
       categoryDescription: data.categoryDescription,
       backgroundColor: colorsArray[Math.floor(Math.random() * 5)],
-      link: ""
+      link: "/training/manage-courses/course-resource-pool/course-sub-categories"
     }
     const newTodos = resourcePoolListData.slice();
     newTodos.push(addFormData);

@@ -1,10 +1,10 @@
-import { FOSTER_CHILD_RESOURCES_ARRAY } from ".";
+import { COURSE_SUB_RESOURCE_ARRAY } from ".";
 import CourseResourceCard from "../CourseResourceCard";
 
-export const FosterChildResources = () => {
+export const CourseSubCategories = () => {
   return (
     <CourseResourceCard
-      cardData={FOSTER_CHILD_RESOURCES_ARRAY}
+      cardData={COURSE_SUB_RESOURCE_ARRAY}
       requireAddBtn
       addIcon={""}
       handleAdd={() => alert("hello")}

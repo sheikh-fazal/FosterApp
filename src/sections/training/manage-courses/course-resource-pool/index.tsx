@@ -9,25 +9,25 @@ export const courseResourceData = [
   image : fosterCarerResourceImg,
   categoryDescription : "Foster Carer Resources",
   backgroundColor:"#F63D31",
-  link:"/training/manage-courses/course-resource-pool/foster-carer-resources"
+  link:"/training/manage-courses/course-resource-pool/course-sub-categories"
 },
   {
   image : socialWorkerResourceImg,
   categoryDescription : "Social Workers Resources",
   backgroundColor:"#20BE60",
-  link:"/training/manage-courses/course-resource-pool/social-workers-resources"
+  link:"/training/manage-courses/course-resource-pool/course-sub-categories"
 },
   {
   image : employeeResourceImg,
   categoryDescription : "Empolyee Resources",
   backgroundColor:"#0E918C",
-  link:"/training/manage-courses/course-resource-pool/employee-resources"
+  link:"/training/manage-courses/course-resource-pool/course-sub-categories"
 },
   {
   image : fosterChildResourceImg,
   categoryDescription : "Foster Child Resources",
   backgroundColor:"#10B0C6",
-  link:"/training/manage-courses/course-resource-pool/foster-child-resources"
+  link:"/training/manage-courses/course-resource-pool/course-sub-categories"
 },
 ]
 
