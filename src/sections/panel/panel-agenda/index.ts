@@ -6,6 +6,6 @@ export const data = [
     panelDate: "27/09/2021",
     hearingTime: "12:30PM",
     socialWorker: "John Doe",
-    agendaSubject: "This is agenda Subject.",
+    agendaSubject: "This is agenda Subject."
   },
 ];
