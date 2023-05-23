@@ -25,6 +25,7 @@ const NotificationModal = (props: IProps) => {
   `;
  
     return (
+        
         <>
             <Dialog
                 open={open}
