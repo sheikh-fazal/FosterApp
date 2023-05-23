@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { formSchema, initialValues, AddTrainingClockEngine, NotificationSettingsInitialValues, NotificationSettings } from '.';
 import { FormProvider } from '@root/components/hook-form';
 import { LoadingButton } from '@mui/lab';
+import { useTrainingClockEngineModal } from './useTrainingClockEngineModal';
 
 interface IProps {
     open: boolean;
@@ -17,35 +18,25 @@ interface IProps {
 }
 
 const TrainingClockEngineModal = (props: IProps) => {
-    const { open, handleClose, onSubmit, title, IsHideFormFields, SubmitBtnText, CancelBtnText } = props;
-    const methods: any = useForm({
-        resolver: yupResolver(formSchema),
-        defaultValues: initialValues || NotificationSettingsInitialValues,
-    });
-    const handleCancel = () => {
-        methods.reset();
-        handleClose();
-    };
-
-    const { handleSubmit } = methods;
+    const { open, handleClose, title, IsHideFormFields, SubmitBtnText, CancelBtnText } = props;
+    const { methods, onSubmit, handleSubmit } = useTrainingClockEngineModal();
     const ModalContent = styled(DialogContent)`
     width: 788px;
     height: auto;
   `;
-
+ 
     return (
         <>
             <Dialog
                 open={open}
-                onClose={handleCancel}
+                onClose={()=>{handleClose(), methods.reset()}}
                 maxWidth={'md'}
             >
                 <ModalContent>
                     <Typography component={'p'} sx={{ fontWeight: 600, fontSize: '16px', mb: '15px' }}>
                         {title}
                     </Typography>
-                    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                      
+                    <FormProvider methods={methods} >
                             <Grid container spacing={2}>
                                 {IsHideFormFields ? <>
                                     {AddTrainingClockEngine.map((item: any, i: number) => (
@@ -92,14 +83,14 @@ const TrainingClockEngineModal = (props: IProps) => {
                             <Grid item xs={12} sx={{ mt: '20px' }}>
                                 <Box
                                     sx={{ display: "flex", gap: '1rem' }}>
-                                    <Button type="submit"variant="contained" >
+                                    <Button type="submit"variant="contained" onClick={methods.handleSubmit(onSubmit)}>
                                     {SubmitBtnText}
                                     </Button>
                                         <Button
-                                            sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}
+                                            sx={{ backgroundColor: "#F6830F", "&:hover":{ backgroundColor: "#F6830F", }, }}
                                             type="button"
                                             variant="contained"
-                                            onClick={handleCancel}
+                                            onClick={()=>{handleClose(), methods.reset()}}
                                         >{CancelBtnText}</Button>
                                 </Box>
                             </Grid>

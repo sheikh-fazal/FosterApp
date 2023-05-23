@@ -1,6 +1,7 @@
 import { Box, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
 import React, { useRef, useState } from 'react'
+import { TrainingClockEngineTableData } from '.';
 
 
 
@@ -17,10 +18,15 @@ export const useTrainingClockEngineTable = () => {
         setSelectedRowId(rowId);
         setIsOpenTrainingAddModal(true);
         setActionType("edit");
-        console.log("valuesss====>", setSelectedRowId);
-
-    };
-    console.log("setActionType====>", actionType);
+     console.log("Row ID:", rowId);
+     const defaultValues = {
+        parameter: rowId.parameter,
+        setting:   rowId.setting,
+        description: rowId.description,
+      };
+      
+     console.log("Form data:", defaultValues);
+    }
     const TrainingClockEngineTableColumns = [
         {
             accessorFn: (row: any) => row.sr,

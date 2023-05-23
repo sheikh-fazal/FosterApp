@@ -51,8 +51,8 @@ export const AddTrainingClockEngine = [
             sx: { mb: 1 },
         },
         options: [
-            { value: "twoYears", label: "2 Years" },
-            { value: "threeYears", label: "3 Years" },
+            { value: "option 1", label: "option 1" },
+            { value: "option 2", label: "option 2" },
         ],
         component: RHFSelect,
         md: 6,

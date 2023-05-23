@@ -21,10 +21,7 @@ const TrainingClockEngineTable = () => {
   } = useTrainingClockEngineTable()
   console.log("Selected row ID:", selectedRowId);
 
-  const onSubmit = (data: any,event:any) => {
-    event.preventDefault();
-    console.log("Form data:", data);
-  };
+
   return (
     <Grid container >
       <Grid xs={12} item>
@@ -35,7 +32,7 @@ const TrainingClockEngineTable = () => {
           IsHideFormFields={true}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
           CancelBtnText="Cancel"
-          onSubmit={onSubmit}
+        
         />
 
         <TableHeader
