@@ -21,11 +21,11 @@ const PanelCalendar = () => {
                     <Box sx={styles.calendarLabel(theme.palette.mode)} onClick={handleExpandCalendar}>
                         <Typography sx={styles.panelText(theme.palette.mode)}>Panel Date</Typography>
                         <Box sx={styles.iconWrapper}>
-                            <GoChevronDown style={{ transform: isExpandCalendar ? 'rotate(180deg)' : 'rotate(0deg)', color: chevronColor, fontSize: "20px" }} />
+                            <GoChevronDown style={{ transform: !isExpandCalendar ? 'rotate(180deg)' : 'rotate(0deg)', color: chevronColor, fontSize: "20px" }} />
                             <AiOutlineExpandAlt style={{ color: chevronColor, fontSize: "20px" }} />
                         </Box>
                     </Box>
-                    {isExpandCalendar &&
+                    {!isExpandCalendar &&
                         <Box sx={styles.calendarStyles(theme.palette.mode, theme.palette.primary)}>
                             <FullCalendar
                                 height="100vh"

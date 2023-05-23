@@ -19,7 +19,6 @@ const PanelDashboardCalendar = () => {
 
 export default PanelDashboardCalendar
 
-
 const NewCalender = styled(({ iconsStyles, ...props }: any) => (
     <Calendar
         {...props}
@@ -43,20 +42,35 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
     width: '100%',
     minHeight: '400px',
     border: 'none',
-    '& .react-calendar__tile': { margin: '12px 0px', '&:hover': { borderRadius: '8px !important' } },
+    '& .react-calendar__tile': { margin: '12px 0px', height: "80px !important", '&:hover': { borderRadius: '8px !important' } },
     "& .react-calendar__tile--active": {
         background: `${theme.palette.primary.main} !important `,
         borderRadius: "8px",
-        '&:hover': { borderRadius: "8px !important" }
+        '&:hover': {
+            borderRadius: "8px !important", width: "50px !important",
+            height: "50px !important"
+        },
+        width: "50px !important",
+        height: "50px !important"
     },
     "& .react-calendar__tile--now": {
         background: '#F6830F',
         '&:hover': { background: '#F6830F', borderRadius: '8px !important' },
         color: theme.palette.primary.contrastText,
         borderRadius: "8px",
+        width: "50px !important",
+        height: "50px !important"
+    },
+    "& .react-calendar__month-view__days": {
+        alignItems: "center"
     },
     "&.react-calendar button:enabled:hover": {
         borderRadius: "8%",
+        
+    },
+    "& .react-calendar__tile.react-calendar__month-view__days__day:hover": {
+        width: "50px !important",
+        height: "50px !important"
     },
     "& .react-calendar__tile--hasActive": {
         background: "unset !important",
@@ -78,4 +92,5 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
             fontFamily: theme.typography.fontFamily,
         },
     },
+
 }));

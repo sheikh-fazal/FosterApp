@@ -50,6 +50,7 @@ const PanelMember = () => {
     },
   ];
 
+  
   return (
     <Box>
       <TableHeader title={"Panel Members"} hideSearch />
