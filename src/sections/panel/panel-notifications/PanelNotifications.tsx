@@ -18,7 +18,7 @@ export default function PanelNotifications() {
     const [notifications, setNotifications] = useState(NotificationData.slice(0, 3));
     const handleExpand = () => {
         setExpand(!expand);
-        setNotifications(expand ? NotificationData : NotificationData.slice(0, 3))
+        !expand ? setNotifications(NotificationData) : setNotifications(NotificationData.slice(0, 3))
     }
     const theme: any = useTheme();
 
@@ -38,22 +38,24 @@ export default function PanelNotifications() {
             >
                 Panel Notifications
             </Typography>
-            <FormGroup>
-                {notifications.map((data: any, i: number) => (
-                    <FormControlLabel
-                        key={i}
-                        control={
-                            <Checkbox
-                                name={data.name}
-                                size="small"
-                                onChange={(e) => {
-                                    console.log("aa", e.target.checked);
-                                }}
-                            />
-                        }
-                        label={data.title}
-                    />
-                ))}
+            <FormGroup >
+                <Box sx={styles.box}>
+                    {notifications.map((data: any, i: number) => (
+                        <FormControlLabel
+                            key={i}
+                            control={
+                                <Checkbox
+                                    name={data.name}
+                                    size="small"
+                                    onChange={(e) => {
+                                        console.log("aa", e.target.checked);
+                                    }}
+                                />
+                            }
+                            label={data.title}
+                        />
+                    ))}
+                </Box>
             </FormGroup>
             <Box
                 sx={{
@@ -65,10 +67,19 @@ export default function PanelNotifications() {
                 <Button
                     onClick={handleExpand}
                 >
-                    {!expand ? "less" : "more"}
-                    {!expand ? <ExpandLess /> : <ExpandMore />}
+                    {expand ? "less" : "more"}
+                    {expand ? <ExpandLess /> : <ExpandMore />}
                 </Button>
             </Box>
         </Card>
     );
+}
+
+const styles = {
+    box: {
+        display: "flex",
+        flexDirection: "column",
+        maxHeight: "250px",
+        overflow: "scroll",
+    }
 }
