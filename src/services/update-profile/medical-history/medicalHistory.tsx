@@ -30,15 +30,15 @@ export const medicalHistoryApi = baseAPI.injectEndpoints({
 
     getMedicalQuestionnaire: builder.query({
       query: () => ({
-        url: "user-profile/all-profile?infoToget=reference",
+        url: "user-profile/all-profile?infoToget=medicalHistory.questionair",
         method: "GET",
       }),
       providesTags: [TAG],
     }),
     updateMedicalQuestionnaire: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-reference",
-        method: "POST",
+        url: "user-profile/questionnair",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
@@ -46,4 +46,10 @@ export const medicalHistoryApi = baseAPI.injectEndpoints({
   }),
 });
 
-export const {} = medicalHistoryApi;
+export const {
+  useLazyGetImmunisationInfoQuery,
+  useUpdateImmunisationInfoMutation,
+  useDeleteImmunisationInfoDocuMutation,
+  useLazyGetMedicalQuestionnaireQuery,
+  useUpdateMedicalQuestionnaireMutation,
+} = medicalHistoryApi;
