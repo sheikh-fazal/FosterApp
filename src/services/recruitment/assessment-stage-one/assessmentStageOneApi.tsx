@@ -6,20 +6,35 @@ const TAG = "ASSESSMENT_STAGE_ONE";
 export const assessmentStageOneApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getRegularAssessmentDetails: builder.query({
-      query: ({ params, limit, offset }: any) => ({
-        url: `/assessment-stage-one/list-regular-assessment-meeting?${limit || 10}&${offset || 10}`,
+      query: ({ params }: any) => ({
+        url: `/assessment-stage-one/regular-assessment-meeting`,
         method: "GET",
         params,
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     getSingleRegularAssessmentDetail: builder.query({
-      query: ({ params }: any) => ({
-        url: `/assessment-stage-one/list-regular-assessment-meeting`,
+      query: ({ id }: any) => ({
+        url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
         method: "GET",
-        params,
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
+    }),
+    patchRegularAssessmentDetail: builder.mutation({
+      query: ({ id, formData }: any) => ({
+        url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
+        method: "PATCH",
+        body: formData,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    postRegularAssessmentDetail: builder.mutation({
+      query: ({ formData }: any) => ({
+        url: `/assessment-stage-one/regular-assessment-meeting`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [TAG],
     }),
 
     // postCarerFamilyApi: builder.mutation<null, void>({
@@ -48,4 +63,9 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
   }),
 });
 
-export const { useGetRegularAssessmentDetailsQuery } = assessmentStageOneApi;
+export const {
+  useGetRegularAssessmentDetailsQuery,
+  useGetSingleRegularAssessmentDetailQuery,
+  usePatchRegularAssessmentDetailMutation,
+  usePostRegularAssessmentDetailMutation,
+} = assessmentStageOneApi;

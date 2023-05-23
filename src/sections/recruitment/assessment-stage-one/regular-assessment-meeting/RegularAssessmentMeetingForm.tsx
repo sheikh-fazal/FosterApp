@@ -4,6 +4,7 @@ import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import { useGetSingleRegularAssessmentDetailQuery } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
 import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -15,7 +16,6 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "meetingDate",
-
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -85,7 +85,7 @@ export const formFields = [
     title: "Next Assessment Date",
     gridLength: 6,
     otherOptions: {
-      name: "meetingDate",
+      name: "nextAssessmentDate",
 
       fullWidth: true,
     },
@@ -96,42 +96,45 @@ export const formFields = [
     title: "Next Assessment Time",
     gridLength: 6,
     otherOptions: {
-      name: "meetingTime",
+      name: "nextAssessmentTime",
 
       fullWidth: true,
     },
+
     component: RHFTimePicker,
-  },
-  {
-    id: 9,
-    gridLength: 12,
-    componentProps: {
-      name: "image",
-      fullWidth: true,
-      size: "small",
-    },
-    component: RHFUploadFile,
   },
 ];
 
 const RegularAssessmentMeetingForm = (props: any) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType } = props;
   const theme: any = useTheme();
   const todayDate = dayjs().format("MM/DD/YYYY");
-  const handleClose = () => setOpen(false);
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetSingleRegularAssessmentDetailQuery({ id: id });
+
+  const handleClose = () => {
+    setOpen(false);
+    setFieldsDisable(false);
+  };
+
+  console.log("singledata", data);
+  console.log("actionType", actionType);
+  console.log("actionType", data?.data?.meetingOutcomes);
 
   const defaultValues = {
-    meetingDate: new Date(todayDate),
-    meetingTime: "",
-    meetingAgenda: "Nil",
-    meetingAttendees: "Nil",
-    meetingOutcomes: "Nil",
-    meetingAction: "Nil",
-    nextAssessmentDate: new Date(todayDate),
+    meetingDate: new Date(data?.data?.meetingDate),
+    meetingTime: data?.data?.meetingTime,
+    meetingAgenda: data?.data?.meetingAgenda,
+    meetingAttendees: data?.data?.meetingAttendees,
+    meetingOutcomes: data?.data?.meetingOutcomes,
+    meetingAction: data?.data?.meetingAction,
+    nextAssessmentDate: new Date(data?.data?.nextAssessmentDate),
     nextAssessmentTime: "",
+    uploadMeetingRecording: "nil",
   };
+
   const FormSchema = Yup.object().shape({
-    meetingDate: Yup.date().required("required"),
+    meetingDate: Yup.string().required("required"),
     meetingTime: Yup.string().required("Time is required"),
     // .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
 
@@ -139,19 +142,24 @@ const RegularAssessmentMeetingForm = (props: any) => {
     meetingAttendees: Yup.string().required("required"),
     meetingOutcomes: Yup.string().required("required"),
     meetingAction: Yup.string().required("required"),
-    nextAssessmentDate: Yup.date().required("required"),
+    nextAssessmentDate: Yup.string().required("Time is required"),
     nextAssessmentTime: Yup.string().required("Time is required"),
   });
   const methods: any = useForm({
-    mode: "onTouched",
+    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
   const { reset, handleSubmit } = methods;
   const onSubmitHandler = (data: any) => {
-    console.log("🚀 ~ file: RegularAssessmentMeetingForm.tsx:70 ~ onSubmitHandler ~ data:", data);
+    console.log(data);
 
-    reset();
+    const formData = { meetingDate: dayjs(data?.meetingDate).format("MM/DD/YYYY"), ...data };
+
+    console.log(
+      "🚀 ~ file: RegularAssessmentMeetingForm.tsx:158 ~ onSubmitHandler ~ formData:",
+      formData
+    );
     setOpen(false);
   };
   return (
@@ -162,6 +170,7 @@ const RegularAssessmentMeetingForm = (props: any) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={Styles.root}>
+        <p>{id}</p>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
           <Grid container rowSpacing={2} columnSpacing={3} alignItems="center">
             {formFields?.map((form: any) => {
@@ -175,7 +184,7 @@ const RegularAssessmentMeetingForm = (props: any) => {
                           {form.heading}
                         </Typography>
                         <form.component
-                          // disabled={disabled}
+                          disabled={fieldsDisable}
                           size="small"
                           {...form.otherOptions}
                         >
@@ -199,9 +208,12 @@ const RegularAssessmentMeetingForm = (props: any) => {
                 </Grid>
               );
             })}
+            <Grid item xs={12}>
+              <RHFUploadFile name="chosenFile" {...methods} />
+            </Grid>
           </Grid>
           <Box sx={Styles.buttonWrapper}>
-            <Button onClick={onSubmitHandler} sx={Styles.buttonSuccess(theme)}>
+            <Button type={"submit"} sx={Styles.buttonSuccess(theme)}>
               Upload
             </Button>
             <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
