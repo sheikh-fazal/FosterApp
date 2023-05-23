@@ -26,7 +26,7 @@ HealthAndSafety.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-
+ 
 // ----------------------------------------------------------------------
 
 export default function HealthAndSafety() {
