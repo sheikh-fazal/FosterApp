@@ -1,36 +1,21 @@
 import { Box, Checkbox } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableAction from "@root/components/TableAction";
+import { useGetTrainingProfileAllDocumentQuery } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const useRecruitmentUploadDocuments = () => {
   const [openFormDialog, setOpenFormDialog] = useState(false);
-  const deleteList = (data: any) => {};
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      srNo: "1",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-    {
-      id: 2,
-      srNo: "2",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-  ]);
+  const router = useRouter();
+  const trainingProfileId = Object.keys(router?.query)[0];
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetTrainingProfileAllDocumentQuery(trainingProfileId);
+
+    console.log(data);
+    
+  const deleteList = (data: any) => {};
 
   const columns = [
     {
@@ -107,7 +92,7 @@ const useRecruitmentUploadDocuments = () => {
             type="download"
             onClicked={() => console.log(info.getValue())}
           />
-          <DeleteModel onDeleteClick={()=> {}} />
+          <DeleteModel onDeleteClick={() => {}} />
           <TableAction
             type="view"
             onClicked={() => console.log(info.getValue())}

@@ -11,9 +11,7 @@ export const UPLOADDOCUMENTSFORMDATA = [
       fullWidth: true,
       select: true,
     },
-    options: [
-        { value: "word", label: "Word" },
-    ],
+    options: [{ value: "word", label: "Word" }],
     component: RHFSelect,
   },
   {
@@ -26,7 +24,7 @@ export const UPLOADDOCUMENTSFORMDATA = [
     },
     component: RHFDatePicker,
   },
-  
+
   {
     id: 3,
     gridLength: 6,
@@ -37,13 +35,4 @@ export const UPLOADDOCUMENTSFORMDATA = [
     },
     component: RHFTextField,
   },
-  {
-    id: 4,
-    gridLength: 12,
-    otherOptions: {
-      name: "chooseFile",
-      label: "Choose File",
-    },
-    component: RHFTextField,
-  }
 ];

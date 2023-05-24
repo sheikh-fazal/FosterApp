@@ -58,7 +58,9 @@ export const TrainingProfileData = [
       select: true,
     },
     options: [
-        { value: "Select Value", label: "Select Vaue" },
+      { value: "attended", label: "Attended" },
+      { value: "not-attended", label: "Not Attended" },
+      { value: "online", label: "Online" },
     ],
     component: RHFSelect,
   },

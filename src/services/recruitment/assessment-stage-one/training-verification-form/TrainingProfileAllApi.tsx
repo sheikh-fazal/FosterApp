@@ -1,5 +1,7 @@
 import { baseAPI } from "@root/services/baseApi";
 
+const TAG = "TRAINING_PROFILE";
+
 export const trainingPRofileAllApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getTrainingProfileAllData: builder.query({
@@ -17,14 +19,16 @@ export const trainingPRofileAllApi = baseAPI.injectEndpoints({
       }),
     }),
     patchTrainingProfileApi: builder.mutation<null, void>({
-      query: ({ data }: any) => {
-        const { trainingProfileId, ...formData } = data;
-        return {
-          url: `pet-questionnaire/questionnaire4/${trainingProfileId}`,
-          method: "PATCH",
-          body: formData,
-        };
-      },
+      query: ({ trainingProfileId, data }: any) => ({
+        url: `/training-profile/${trainingProfileId}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    getTrainingProfileAllDocument: builder.query({
+      query: (trainingProfileId:any) => `/training-profile/document/all`,
+
     }),
   }),
 });
@@ -34,4 +38,5 @@ export const {
   useGetSingleTrainingProfileDataQuery,
   usePostTrainingProfileApiMutation,
   usePatchTrainingProfileApiMutation,
+  useGetTrainingProfileAllDocumentQuery
 } = trainingPRofileAllApi;

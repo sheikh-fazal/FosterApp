@@ -46,33 +46,39 @@ const useEditTraingingProfile = ({
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
-    const formData = new FormData();
+    // const formData = new FormData();
 
-    formData.append("addtionalInfo", data?.addtionalInfo);
-    formData.append("attendance", data?.attendance);
-    formData.append("carerName", data?.carerName);
-    formData.append("comments", data?.comments);
-    formData.append("courseAttended", data?.courseAttended);
-    formData.append("courseStatus", data?.courseStatus);
-    formData.append("date", data?.date);
-    formData.append("expiryDate", data?.expiryDate);
-    formData.append("otherTraining", data?.otherTraining);
-    formData.append("trainingNeeds", data?.trainingNeeds);
+    // formData.append("addtionalInfo", data?.addtionalInfo);
+    // formData.append("attendance", data?.attendance);
+    // formData.append("carerName", data?.carerName);
+    // formData.append("comments", data?.comments);
+    // formData.append("courseAttended", data?.courseAttended);
+    // formData.append("courseStatus", data?.courseStatus);
+    // formData.append("date", data?.date);
+    // formData.append("expiryDate", data?.expiryDate);
+    // formData.append("otherTraining", data?.otherTraining);
+    // formData.append("trainingNeeds", data?.trainingNeeds);
 
     const updatedData = {
       trainingProfileId,
-      formData,
+      data,
     };
+
+    console.log(updatedData, "updated data");
 
     try {
       const res: any = await onSubmitHandler(updatedData).unwrap();
       enqueueSnackbar(res?.message ?? `Successfully!`, {
         variant: "success",
       });
+
+      router.push('/recruitment/assessment-stage-one/training-verification-form');
     } catch (error) {
       enqueueSnackbar("Something Went Wrong!", { variant: "error" });
     }
-    console.log(data, "updated data");
+
+
+  
   };
 
   return { methods, handleSubmit, onSubmit, router, defaultValues };

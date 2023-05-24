@@ -106,7 +106,11 @@ const useTrainingVerificationForm = () => {
           />
           <TableAction
             type="view"
-            onClicked={() => console.log(info.getValue())}
+            onClicked={() =>
+              router.push(
+                `/recruitment/assessment-stage-one/training-verification-form/view-training-profile?${info.getValue()}`
+              )
+            }
           />
         </Box>
       ),
