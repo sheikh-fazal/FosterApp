@@ -7,7 +7,7 @@ import { LoadingButton } from '@mui/lab'
 
 const ArchiveModal = ({ open, onClose }: any) => {
   const { formDataArr } = archiveCourseData;
-  const { methods, handleSubmit, onSubmit } = useCourseArchive();
+  const { methods, handleSubmit, onSubmit, isSubmitting } = useCourseArchive();
   return (
     <Dialog open={open} onClose={onClose} maxWidth={'lg'}>
       <DialogTitle sx={{ p: '20px' }}>Archive Course</DialogTitle>
@@ -42,6 +42,7 @@ const ArchiveModal = ({ open, onClose }: any) => {
                 <LoadingButton
                   type="submit"
                   variant="contained"
+                  loading={isSubmitting}
                 >
                   Archive
                 </LoadingButton>
