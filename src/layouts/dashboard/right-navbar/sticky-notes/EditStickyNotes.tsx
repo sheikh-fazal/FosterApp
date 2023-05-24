@@ -37,7 +37,7 @@ function EditStickyNotes({
   const onSubmit = async (content: any) => {
     const data = {
       ...content,
-      date,
+      date: dayjs(date).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString(),
     };
     try {
       const res: any = await editData({ payload: { ...data }, id }).unwrap();

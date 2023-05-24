@@ -23,7 +23,7 @@ function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
   const onSubmit = async (content: any) => {
     const data = {
       ...content,
-      date: dayjs(date).format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
+      date: dayjs(date).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString(),
     };
     
 

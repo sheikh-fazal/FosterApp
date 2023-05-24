@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import EmploymentDetailsCards from "@root/sections/carer-info/employment-history/employment-details";
+import EmploymentDetailsCards from "@root/sections/carer-info/employment-history/employment-details/employment-details-cards";
 import HomeIcon from "@mui/icons-material/Home";
 import React from "react";
 
