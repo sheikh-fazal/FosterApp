@@ -11,9 +11,9 @@ import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useOtherInfoForm } from "./useOtherInfoForm";
 
 export default function OtherInfoForm(props: any) {
-  const { disabled } = props;
+  const { disabled, data } = props;
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useOtherInfoForm();
+    useOtherInfoForm(data);
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>

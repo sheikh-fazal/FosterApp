@@ -6,13 +6,12 @@ import dayjs from "dayjs";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 
-export const useBasicInformationForm = () => {
+export const useBasicInformationForm = (data: any) => {
   const theme: any = useTheme();
-
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: data,
   });
 
   const {

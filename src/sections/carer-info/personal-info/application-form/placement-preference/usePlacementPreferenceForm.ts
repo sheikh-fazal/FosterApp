@@ -3,13 +3,13 @@ import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
 
-export const usePlacementPreferenceForm = () => {
+export const usePlacementPreferenceForm = (data: any) => {
   const theme: any = useTheme();
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: data,
   });
 
   const {

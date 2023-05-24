@@ -9,8 +9,8 @@ import Hidden from "@mui/material/Hidden";
 
 export const defaultValues = {
   actualAuthorityLiveIn: "",
-  authorityOrAgency: "No",
-  haveApplied: "No",
+  authorityOrAgency: "",
+  haveApplied: "",
   title: "",
   firstName: "",
   lastName: "",

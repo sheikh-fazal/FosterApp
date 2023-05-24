@@ -10,10 +10,10 @@ import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useContactForm } from "./useContactForm";
 
 export default function ContactForm(props: any) {
-  const { disabled } = props;
+  const { disabled, data } = props;
 
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useContactForm();
+    useContactForm(data);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

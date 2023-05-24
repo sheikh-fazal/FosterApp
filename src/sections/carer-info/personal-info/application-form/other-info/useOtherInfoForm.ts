@@ -4,13 +4,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 
-export const useOtherInfoForm = () => {
+export const useOtherInfoForm = (data: any) => {
   const theme: any = useTheme();
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: data,
   });
 
   const {

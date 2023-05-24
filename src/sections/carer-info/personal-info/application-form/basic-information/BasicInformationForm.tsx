@@ -14,10 +14,9 @@ import { useBasicInformationForm } from "./useBasicInformationForm";
 // ----------------------------------------------------------------------
 
 export default function BasicInformationForm(props: any) {
-  const { disabled } = props;
-
+  const { disabled, data } = props;
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useBasicInformationForm();
+    useBasicInformationForm(data);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

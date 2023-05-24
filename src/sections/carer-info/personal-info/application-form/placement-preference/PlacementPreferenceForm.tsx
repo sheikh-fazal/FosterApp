@@ -8,9 +8,9 @@ import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { usePlacementPreferenceForm } from "./usePlacementPreferenceForm";
 
 export default function PlacementPreferenceForm(props: any) {
-  const { disabled } = props;
+  const { disabled, data } = props;
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    usePlacementPreferenceForm();
+    usePlacementPreferenceForm(data);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

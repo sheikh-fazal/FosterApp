@@ -123,6 +123,7 @@ export const formDataAreaoffice = [
     options: [
       { value: "Pakistan", label: "Pakistan" },
       { value: "India", label: "India" },
+      { value: "areaOffice information", label: "areaOffice information" },
     ],
     component: RHFSelect,
   },

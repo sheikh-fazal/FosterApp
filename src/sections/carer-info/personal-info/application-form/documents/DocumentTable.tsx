@@ -28,12 +28,6 @@ export function DocumentTable({ changeView }: any) {
   ]);
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-    },
-    {
       accessorFn: (row: any) => row.documentName,
       id: "documentName",
       cell: (info: any) => info.getValue(),
@@ -92,6 +86,7 @@ export function DocumentTable({ changeView }: any) {
           isFetching={false}
           isError={false}
           isSuccess={true}
+          showSerialNo
           // count={Math.ceil(data?.data?.meta?.total / limit)}
           currentPage={1}
           onPageChange={(data: any) => {

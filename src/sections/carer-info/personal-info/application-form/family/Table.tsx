@@ -25,15 +25,8 @@ export function FamilyTable() {
   ]);
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "Sr. No",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.memberName,
-      id: "member_name",
+      id: "memberName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Member Name</span>,
       isSortable: true,
@@ -59,7 +52,7 @@ export function FamilyTable() {
     },
     {
       accessorFn: (row: any) => row.isLivingAtHome,
-      id: "is_living_at_home",
+      id: "isLivingAtHome",
       cell: (info: any) => info.getValue(),
       header: () => <span>Is Living at home</span>,
     },
