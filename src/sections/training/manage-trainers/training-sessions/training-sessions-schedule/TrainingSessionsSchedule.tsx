@@ -1,6 +1,7 @@
 import VericalTabs from "@root/components/VericalTabs";
 import React from "react";
 import { useTrainingSessionsSchedule } from "./useTrainingSessionsSchedule";
+import { ScheduleDataTable } from "./schedule-data-table";
 
 const TrainingSessionsSchedule = () => {
   const { scheduleDataMap } = useTrainingSessionsSchedule();
@@ -8,7 +9,7 @@ const TrainingSessionsSchedule = () => {
   return (
     <div>
       <VericalTabs tabsDataArray={scheduleDataMap}>
-        
+        <ScheduleDataTable />
       </VericalTabs>
     </div>
   );
