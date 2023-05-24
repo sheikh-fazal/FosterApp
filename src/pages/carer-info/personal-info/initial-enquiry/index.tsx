@@ -6,16 +6,17 @@ import Layout from "@root/layouts";
 import { Contact } from "@root/sections/enquiry-stage/initial-enquiry/contact";
 import { FirstApplicant } from "@root/sections/enquiry-stage/initial-enquiry/first-applicant";
 import { OtherDetails } from "@root/sections/enquiry-stage/initial-enquiry/other-details";
-import DocumentsInitialEnquiry from "@root/sections/enquiry-stage/initial-enquiry/documents/Documents";
 
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import { useGetInitialInquiryDataQuery } from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
+import {
+  useGetInitialInquiryDataQuery,
+  useGetInitialInquiryDocumentsDataQuery,
+} from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
 import { Box } from "@mui/material";
-import IsFetching from "@root/components/loaders/IsFetching";
 import dayjs from "dayjs";
-import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -60,6 +61,19 @@ InitialEnquiry.getLayout = function getLayout(page: any) {
 export default function InitialEnquiry() {
   const { data, isLoading, isError }: any = useGetInitialInquiryDataQuery({});
 
+  const {
+    data: documentData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isError: hasDocumentError,
+    isSuccess,
+  }: any = useGetInitialInquiryDocumentsDataQuery({});
+
+  const tableData: any = documentData?.data?.documents;
+
+  //---------------------// uncovering Data //-------------------------------//
+  const firstApplicant = data?.[0]?.firstApplicant;
+  console.log(data, "from parent");
   const firstApplicantSubmitHandler = (data: any) => {
     console.log(data, "from parent");
   };
@@ -93,7 +107,15 @@ export default function InitialEnquiry() {
       />
 
       {/*---------------------- Fourth Tab---------------------- */}
-      <DocumentsInitialEnquiry readOnly={true} />
+      <UploadDocuments
+        readOnly={true}
+        tableData={tableData}
+        isLoading={isDocumentLoading}
+        isFetching={isFetching}
+        isError={hasDocumentError}
+        isSuccess={isSuccess}
+        modalData={(data: any) => console.log("data all the way here", data)}
+      />
     </HorizaontalTabs>
   );
 
@@ -101,7 +123,6 @@ export default function InitialEnquiry() {
     return (
       <Page title={PAGE_TITLE}>
         <Box sx={{ position: "relative" }}>
-          <IsFetching isFetching />
           <SkeletonFormdata />
         </Box>
       </Page>

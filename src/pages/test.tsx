@@ -15,6 +15,7 @@ import BarChart from "@root/sections/recruitment/assessment-stage-two/fostering-
 import HomeIcon from "@mui/icons-material/Home";
 import { SignOffApproval } from "@root/sections/recruitment/assessment-stage-two/sign-off-approval";
 import PanelCaseListTable from "@root/sections/recruitment/assessment-stage-two/agency-decision/PanelCaseListTable";
+import BankAccountDetails from "@root/sections/carer-info/other-info/bank-account-details";
 
 // -----------------------------------------------------------------------
 // Constants
@@ -95,7 +96,7 @@ export default function FosteringPanelRecommendation() {
   // );
   return (
     <Page title={PAGE_TITLE}>
-      <SignOffApproval />
+      <BankAccountDetails />
     </Page>
   );
 }

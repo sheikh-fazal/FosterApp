@@ -1,10 +1,9 @@
 import TableHeader from "@root/components/TableHeader";
+import ActionModal from "@root/sections/documents/UploadDocumentModal";
 import React, { useState } from "react";
-import { DocumentTable } from "./DocumentTable";
-import { useGetInitialInquiryDocumentsDataQuery } from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
-import ActionModal from "./ActionModal";
+import { BankAccountDetailsTable } from "./BankAccountDetailsTable";
 
-const DocumentsInitialEnquiry = ({ readOnly }: { readOnly: boolean }) => {
+export default function BankAccountDetails() {
   const [openModal, setOpenModal] = useState(false);
   const changeHandler = (i: any) => {
     console.log(i);
@@ -14,10 +13,10 @@ const DocumentsInitialEnquiry = ({ readOnly }: { readOnly: boolean }) => {
       <TableHeader
         title="Uploaded Documents"
         onChanged={changeHandler}
-        showAddBtn={readOnly}
+        showAddBtn
         onAdd={() => setOpenModal(true)}
       />
-      <DocumentTable readOnly={readOnly} />
+      <BankAccountDetailsTable />
       <ActionModal
         closeModal={setOpenModal}
         openModal={openModal}
@@ -27,6 +26,4 @@ const DocumentsInitialEnquiry = ({ readOnly }: { readOnly: boolean }) => {
       />
     </div>
   );
-};
-
-export default DocumentsInitialEnquiry;
+}
