@@ -10,6 +10,7 @@ import IncidentUploadDocumentModal from "./modals/incidentUploadDocumentModal";
 import IncidentViewDocumentModel from "./modals/incidentViewDocumentModel";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
+import Link from "next/link";
 
 function UploadedDocuments(props: any) {
   //   const tableHeaderRefTwo = useRef<any>();
@@ -83,11 +84,12 @@ function UploadedDocuments(props: any) {
           <DeletePrompt
             onDeleteClick={() => uploadDeleteHandler(info.row.original.id)}
           />
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
-          />
+          <Link
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
+            target="_blank"
+          >
+            <TableAction size="small" type="download" />
+          </Link>
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -107,7 +109,7 @@ function UploadedDocuments(props: any) {
           showAddBtn
           onAdd={() => {
             if (action === "add" && id === "") {
-              enqueueSnackbar("Plz submit the Incident Form.", {
+              enqueueSnackbar("Please Fill The Incident Form First", {
                 variant: "error",
               });
             } else {

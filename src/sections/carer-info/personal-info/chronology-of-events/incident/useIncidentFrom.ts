@@ -16,6 +16,7 @@ const useIncidentFrom = (action: any, id: any) => {
   // FORM GLOBAL ISLOADING HANDER STATE
   const [isLoading, setIsLoading] = useState(true);
   const [modelOpen, setmodelOpen] = useState(false);
+  const [isfatching, setisfatching] = useState(false);
 
   //UPLOADING MODEL HANDLER
   const modelHander = () =>
@@ -61,11 +62,11 @@ const useIncidentFrom = (action: any, id: any) => {
   // FORM SUBMIT HANDER FOR ADD AND EDIT ACTIONS
   const onSubmitHandler = (data: any) => {
     if (action === "add") {
-      setIsLoading(true);
+      setisfatching(true);
       incidentAddPostById(data)
         .unwrap()
         .then((res: any) => {
-          setIsLoading(false);
+          setisfatching(false);
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
@@ -76,12 +77,12 @@ const useIncidentFrom = (action: any, id: any) => {
           });
         })
         .catch((error: { data: { message: any } }) => {
-          setIsLoading(false);
+          setisfatching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
         });
     } else if (action === "edit") {
-      setIsLoading(true);
+      setisfatching(true);
       const payload = {
         id,
         ...data,
@@ -92,18 +93,12 @@ const useIncidentFrom = (action: any, id: any) => {
           enqueueSnackbar("Information Edit Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/personal-info/carer-chronology-of-events/incident"
-          );
-          setIsLoading(false);
+          setisfatching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push(
-            "/carer-info/personal-info/carer-chronology-of-events/incident"
-          );
-          setIsLoading(false);
+          setisfatching(false);
         });
     } else {
       return null;
@@ -137,7 +132,7 @@ const useIncidentFrom = (action: any, id: any) => {
     getDefaultValue,
     onUploadSubmit,
     modelHander,
-
+    isfatching,
     modelOpen,
     isLoading,
     uploadingDocumentisSuccess,

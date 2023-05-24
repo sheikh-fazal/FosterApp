@@ -17,7 +17,7 @@ const useIncidentTable = () => {
     isLoading: incidentListIsloading,
     isFetching: incidentlistIsfetching,
     isSuccess: incidentListIsSuccess,
-  } = useIncidentListQuery({});
+  } = useIncidentListQuery({ search: search });
 
   const {
     data: incidentUploadlist,
@@ -26,7 +26,6 @@ const useIncidentTable = () => {
     isFetching: incidentUploadlistIsfetching,
     isSuccess: incidentUploadListIsSuccess,
   } = useIncidentUploadDocumentListQuery({ search: search });
-  console.log("ds", incidentUploadlist);
 
   const [deleteIncidentByID] = useDeleteIncidentByIdMutation({});
   const [deleteIncidentDocuments] = useDeleteIncidentDocumentsMutation({});
@@ -35,12 +34,12 @@ const useIncidentTable = () => {
   const deleteHander = (id: any) => {
     deleteIncidentByID(id)
       .unwrap()
-      .then((res) => {
+      .then((res: any) => {
         enqueueSnackbar("Information deleted  Successfully", {
           variant: "success",
         });
       })
-      .catch((error) => {
+      .catch((error: any) => {
         const errMsg = error?.data?.message;
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });

@@ -4,7 +4,11 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const incidentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     incidentList: builder.query({
-      query: () => "chronology-events/incident/List",
+      query: (payload: any) => ({
+        url: "chronology-events/incident/List",
+        method: "GET",
+        params: payload,
+      }),
       providesTags: ["INCIDENT_LIST"],
     }),
     incidentAddPost: builder.mutation({
@@ -18,7 +22,6 @@ export const incidentApi = baseAPI.injectEndpoints({
     incidentById: builder.query({
       query: (id: any) => `/chronology-events/incident/${id}`,
       transformResponse: (response: any) => {
-       
         return response;
       },
       providesTags: ["INCIDENT_LIST"],
