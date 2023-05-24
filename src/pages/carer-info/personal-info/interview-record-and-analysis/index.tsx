@@ -54,7 +54,7 @@ InterviewRecordAndAnalysis.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InterviewRecordAndAnalysis() {
-  let role = "ifa";
+  let role = "foster-carer";
   const {
     data: fetchData,
     isLoading,

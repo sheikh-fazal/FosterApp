@@ -1,7 +1,7 @@
-import fosteringPanelAssessmentImg from "../../../assets/img/recruitment/FosteringPanelAssessment.png"
-import fosteringPanelRecommendationImg from "../../../assets/img/recruitment/fosteringPanelRecommendation.png"
-import agencyDecisionImg from "../../../assets/img/recruitment/agencyDecision.png"
-import signOnApproval from "../../../assets/img/recruitment/signOnApproval.png"
+import fosteringPanelAssessmentImg from "../../../assets/img/recruitment/FosteringPanelAssessment.png";
+import fosteringPanelRecommendationImg from "../../../assets/img/recruitment/fosteringPanelRecommendation.png";
+import agencyDecisionImg from "../../../assets/img/recruitment/agencyDecision.png";
+import signOnApproval from "../../../assets/img/recruitment/signOnApproval.png";
 
 export const ASSESSMENTSTAGETWODATA = [
   {
@@ -43,17 +43,16 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Fostering Panel Assessment/ Interview`,
     informationText: `Fostering Panel  Assessment/ interview`,
     status: "Passed",
-    viewForms:'View Form',
-    href:'#'
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-two/fostering-panel-assessment",
   },
   {
     id: 2,
     informationIcon: [
       {
-        answerOne: `Following the questions asked by the panel, and any questions you may want to ask yourself, you will be asked to leave the room whilst the panel make their recommendations. They will then call you back to inform you of their decision. `
+        answerOne: `Following the questions asked by the panel, and any questions you may want to ask yourself, you will be asked to leave the room whilst the panel make their recommendations. They will then call you back to inform you of their decision. `,
       },
       { answerOne: `Decisions will range from:` },
-
 
       {
         content: `Recommendation for approval`,
@@ -70,8 +69,8 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Fostering Panel Recomendation`,
     informationText: "Fostering Panel Recomendation",
     status: "Passed",
-    viewForms:'View Form',
-    href:'#'
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-two/fostering-panel-recommendation",
   },
   {
     id: 3,
@@ -87,7 +86,9 @@ export const ASSESSMENTSTAGETWODATA = [
         content: `The decision will comply  with `,
         subContentTwo: [
           { content: `The Fostering Services (England) Regulations 2011` },
-          { content: `The National Minimum Standards for Fostering Services 2011` },
+          {
+            content: `The National Minimum Standards for Fostering Services 2011`,
+          },
         ],
       },
       {
@@ -101,8 +102,8 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Agency Decision`,
     informationText: "Agency Decision Maker Reviews the Panel assessment",
     status: "Passed",
-    viewForms:'View Form',
-    href:'#'
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-two/agency-decision",
   },
   {
     id: 4,
@@ -113,14 +114,12 @@ export const ASSESSMENTSTAGETWODATA = [
       {
         content: `In all matters the Fostering Agency will consider the welfare of children to be paramount. Based on this principle , the foster carer is approved to be a "Registered Foster Carer "  or " Approved Foster Carer" `,
       },
-
-
     ],
     imgIcon: signOnApproval,
     text: `Sign off Approval`,
     informationText: "Sign-off  and Approval",
     status: "Passed",
-    viewForms:'View Form',
-    href:'#'
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-two/sign-off-approval",
   },
 ];
