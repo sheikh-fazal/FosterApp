@@ -33,7 +33,11 @@ export default function BankAccountDetailsForm(props: any) {
   const theme: any = useTheme();
   const [open, setOpen] = React.useState(false);
 
+<<<<<<< HEAD
   let selectedRow = content?.row?.original;
+=======
+  const selectedRow = content?.row?.original;
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,7 +76,11 @@ export default function BankAccountDetailsForm(props: any) {
             >
               Person Uploaded :{selectedRow?.personUploaded}
             </Typography>
+<<<<<<< HEAD
             <FormPiece
+=======
+            <DocumentModalForm
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
@@ -89,7 +97,11 @@ export default function BankAccountDetailsForm(props: any) {
               >
                 {readOnly ? "Close" : "Cancel"}
               </Button>
+<<<<<<< HEAD
             </FormPiece>
+=======
+            </DocumentModalForm>
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
           </Box>
         </Fade>
       </Modal>
@@ -97,16 +109,28 @@ export default function BankAccountDetailsForm(props: any) {
   );
 }
 
+<<<<<<< HEAD
 const FormPiece = (props: any) => {
+=======
+const DocumentModalForm = (props: any) => {
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
   const { disableForm, children, selectedRow, formData } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
+<<<<<<< HEAD
     accountNumber: selectedRow?.accountNumber || "",
     sortName: selectedRow?.sortName || "",
     nameOfBank: selectedRow?.nameOfBank || "",
     accountName: selectedRow?.accountName || "",
     accountType: selectedRow?.accountType || "gold",
+=======
+    accountNumber: selectedRow?.accountNumber || "123456",
+    sortName: selectedRow?.sortName || "Name sort",
+    nameOfBank: selectedRow?.nameOfBank || "HBL",
+    accountName: selectedRow?.accountName || "Name of HBL",
+    accountType: selectedRow?.accountType || "platinum",
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
@@ -165,8 +189,13 @@ const FormPiece = (props: any) => {
               variant="contained"
               sx={{
                 mt: 1,
+<<<<<<< HEAD
                 bgcolor: theme.palette.primary.main,
                 "&:hover": { bgcolor: theme.palette.primary.dark },
+=======
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.dark },
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
               }}
             >
               Submit
@@ -240,8 +269,13 @@ export const formDataArray = [
           label: "Plus",
         },
         {
+<<<<<<< HEAD
           value: "Savings",
           label: "Savings",
+=======
+          value: "standard",
+          label: "Standard",
+>>>>>>> 7b76b21a (#other details bankDetailsForm UI done)
         },
       ],
       fullWidth: true,
