@@ -9,19 +9,25 @@ import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 
 const useTrainingVerificationForm = () => {
+  const [cancelDelete, setCancelDelete] = useState(false);
+  
   const tableHeaderRef = useRef<any>();
+  const router = useRouter();
+
+  const handleDelete = () => {
+    alert("deleted successfully");
+    setCancelDelete(!cancelDelete);
+  };
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetTrainingProfileAllDataQuery({ params });
 
-  const trainingPRofileData = data?.data?.trainingProfile;  
-
+  const trainingPRofileData = data?.data?.trainingProfile;
   const meta = data?.data?.meta;
-
+  
   console.log(data, "training profile");
-  const router = useRouter();
 
   const columns = [
     {
@@ -88,11 +94,16 @@ const useTrainingVerificationForm = () => {
               )
             }
           />
-          {/* <TableAction
-            type="delete"
-            onClicked={() => console.log(info.getValue())}
-          /> */}
-          <DeleteModel onDeleteClick={() => {}} />
+          <TableAction
+              type="delete"
+              onClicked={() => setCancelDelete(true)}
+              size="small"
+            />
+          <DeleteModel
+            open={cancelDelete}
+            onDeleteClick={handleDelete}
+            handleClose={() => setCancelDelete(!cancelDelete)}
+          />
           <TableAction
             type="view"
             onClicked={() => console.log(info.getValue())}

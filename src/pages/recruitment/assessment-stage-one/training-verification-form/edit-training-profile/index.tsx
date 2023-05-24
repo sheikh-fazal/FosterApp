@@ -6,7 +6,10 @@ import RecruitmentTrainingProfile from "@root/sections/recruitment/assessment-st
 import RecruitmentUploadDocuments from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/upload-documents/RecruitmentUploadDocuments";
 import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
-import { useGetSingleTrainingProfileDataQuery } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
+import {
+  useGetSingleTrainingProfileDataQuery,
+  usePatchTrainingProfileApiMutation,
+} from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
 import dayjs from "dayjs";
 
@@ -40,6 +43,8 @@ export default function AddTraingVerification() {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
+  const [postTrainingProfileData] = usePatchTrainingProfileApiMutation();
+
   // console.log(data?.data?.expiryDate, "single trining profile");
 
   return (
@@ -62,7 +67,8 @@ export default function AddTraingVerification() {
                 expiryDate: new Date(data?.data?.expiryDate),
                 date: new Date(data?.data?.date),
               }}
-              //   onSubmitHandler={updateData}
+              trainingProfileId={id}
+              onSubmitHandler={postTrainingProfileData}
               message={"Updated"}
               isError={isError}
               isSuccess={isSuccess}

@@ -3,10 +3,13 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
-const useEditTraingingProfile = ({ initialValueProps }: any) => {
-  console.log(initialValueProps);
-
+const useEditTraingingProfile = ({
+  initialValueProps,
+  onSubmitHandler,
+  trainingProfileId,
+}: any) => {
   const router = useRouter();
 
   const tainingProfileSchema = Yup.object().shape({
@@ -42,7 +45,33 @@ const useEditTraingingProfile = ({ initialValueProps }: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
+    const formData = new FormData();
+
+    formData.append("addtionalInfo", data?.addtionalInfo);
+    formData.append("attendance", data?.attendance);
+    formData.append("carerName", data?.carerName);
+    formData.append("comments", data?.comments);
+    formData.append("courseAttended", data?.courseAttended);
+    formData.append("courseStatus", data?.courseStatus);
+    formData.append("date", data?.date);
+    formData.append("expiryDate", data?.expiryDate);
+    formData.append("otherTraining", data?.otherTraining);
+    formData.append("trainingNeeds", data?.trainingNeeds);
+
+    const updatedData = {
+      trainingProfileId,
+      formData,
+    };
+
+    try {
+      const res: any = await onSubmitHandler(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
     console.log(data, "updated data");
   };
 

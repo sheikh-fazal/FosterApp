@@ -7,6 +7,8 @@ import useEditTraingingProfile from "./useEditTrainingProfile";
 const EditTrainingProfile = (props: any) => {
   const {
     disabled,
+    onSubmitHandler,
+    trainingProfileId,
     defaultValues,
     initialValueProps = defaultValues,
     isError,
@@ -14,6 +16,8 @@ const EditTrainingProfile = (props: any) => {
   } = props;
   const { methods, handleSubmit, onSubmit } = useEditTraingingProfile({
     initialValueProps,
+    onSubmitHandler,
+    trainingProfileId
   });
 
   console.log(methods.formState.errors);
