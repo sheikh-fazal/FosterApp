@@ -1,24 +1,49 @@
 import { Box, Grid, Button, Modal, Backdrop, Typography } from "@mui/material";
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { UploadDocFormData, defaultValues, formSchema } from "./index";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
-import { LoadingButton } from "@mui/lab";
+import { enqueueSnackbar } from "notistack";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import TableAction from "@root/components/TableAction";
+import { useLazySingleComplaintDocumentQuery } from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/uploadDocumentsApi";
 
-function UploadDocumentsModal(props: any) {
-  const { open, setOpen } = props;
-  const { theme, onSubmit, action } = useUploadDocumentsTable();
+function ViewDocumentsModal(props: any) {
+  const [isLoading, setIsLoading] = React.useState(true);
+  //API For Getting Single Document Details
+  const [getSingleComplaintDocument]: any =
+    useLazySingleComplaintDocumentQuery();
+  const [open, setOpen] = React.useState(false);
+  const { id } = props;
+  const { theme, action } = useUploadDocumentsTable();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues,
+    defaultValues: async () => {
+      setIsLoading(true);
+      const { data, isError } = await getSingleComplaintDocument(id, true);
+      setIsLoading(false);
+      if (isError) {
+        enqueueSnackbar("Error occured", { variant: "error" });
+        return defaultValues;
+      }
+      return data;
+    },
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, getValues } = methods;
+  const onSubmit = (data: any) => {};
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
+      <TableAction
+        size="small"
+        type="view"
+        onClicked={() => {
+          setOpen(true);
+        }}
+      />
       {open && (
         <Modal
           open={open}
@@ -34,23 +59,27 @@ function UploadDocumentsModal(props: any) {
           }}
         >
           <Box sx={Styles.root}>
-            <Box
-              sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
-            >
-              <Typography variant="subtitle1">Person Uploaded: </Typography>
-              <CloseIcon
-                onClick={() => setOpen(false)}
-                sx={{ cursor: "pointer" }}
-              />
-            </Box>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+              <Box
+                sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
+              >
+                <Typography variant="subtitle1">
+                  Person Uploaded: {getValues("uploadBy")}
+                </Typography>
+                <CloseIcon
+                  onClick={() => setOpen(false)}
+                  sx={{ cursor: "pointer" }}
+                />
+              </Box>
               <Grid container rowSpacing={4} columnSpacing={2}>
                 {UploadDocFormData.map((form: any) => (
                   <Grid item xs={12} md={form?.gridLength} key={form.id}>
                     <form.component
                       {...form.componentProps}
                       size="small"
-                      disabled={action === "view" ? true : false}
+                      disabled={
+                        action === "view" || action === "edit" ? true : false
+                      }
                     >
                       {form.componentProps.select
                         ? form.componentProps.options.map((option: any) => (
@@ -63,27 +92,20 @@ function UploadDocumentsModal(props: any) {
                   </Grid>
                 ))}
                 <Grid xs={12} item>
-                  <RHFUploadFile
-                    disabled={action === "view" ? true : false}
-                    name={"file"}
+                  <RHFTextField
+                    label="Document Name"
+                    size="small"
+                    name="documentName"
+                    disabled={true}
+                    InputLabelProps={{
+                      shrink: true,
+                      disabled: true,
+                    }}
                     {...methods}
                   />
                 </Grid>
               </Grid>
               <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-                {action === "add" ||
-                  (action === "edit" && (
-                    <LoadingButton
-                      type="submit"
-                      sx={{
-                        bgcolor: theme.palette.primary.main,
-                        "&:hover": { bgcolor: theme.palette.orange.main },
-                      }}
-                      variant="contained"
-                    >
-                      Upload
-                    </LoadingButton>
-                  ))}
                 <Button
                   sx={{
                     bgcolor: theme.palette.orange.main,
@@ -103,7 +125,7 @@ function UploadDocumentsModal(props: any) {
   );
 }
 
-export default UploadDocumentsModal;
+export default ViewDocumentsModal;
 
 // styles
 const Styles = {

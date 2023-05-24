@@ -25,7 +25,7 @@ export const useUploadDocumentsTable = () => {
     isFetching,
     isSuccess,
   }: any = useUploadDocumentListQuery({ search: search });
-  
+
   //API For Post Documents
   const [postAllegationDetails]: any = usePostAllegationDocumentsMutation();
   //API For Delete Document List
@@ -40,7 +40,7 @@ export const useUploadDocumentsTable = () => {
           variant: "success",
         });
       })
-      .catch((error) => {
+      .catch((error: any) => {
         const errMsg = error?.data?.message;
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });

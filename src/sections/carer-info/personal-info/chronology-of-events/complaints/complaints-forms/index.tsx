@@ -14,8 +14,28 @@ export const complaintsFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "substantiated",
+        label: "Substantiated",
+      },
+      {
+        value: "false",
+        label: "False",
+      },
+      {
+        value: "malicious",
+        label: "Malicious",
+      },
+      {
+        value: "unfounded",
+        label: "Unfounded",
+      },
+      {
+        value: "unsubstantiated",
+        label: "Unsubstantiated",
+      },
+      {
+        value: "other",
+        label: "Other, Please specify if any",
       },
     ],
   },
@@ -30,8 +50,28 @@ export const complaintsFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "substantiated",
+        label: "Substantiated",
+      },
+      {
+        value: "false",
+        label: "False",
+      },
+      {
+        value: "malicious",
+        label: "Malicious",
+      },
+      {
+        value: "unfounded",
+        label: "Unfounded",
+      },
+      {
+        value: "unsubstantiated",
+        label: "Unsubstantiated",
+      },
+      {
+        value: "other",
+        label: "Other, Please specify if any",
       },
     ],
   },
@@ -136,8 +176,28 @@ export const complaintsFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "substantiated",
+        label: "Substantiated",
+      },
+      {
+        value: "false",
+        label: "False",
+      },
+      {
+        value: "malicious",
+        label: "Malicious",
+      },
+      {
+        value: "unfounded",
+        label: "Unfounded",
+      },
+      {
+        value: "unsubstantiated",
+        label: "Unsubstantiated",
+      },
+      {
+        value: "other",
+        label: "Other, Please specify if any",
       },
     ],
   },
@@ -153,8 +213,28 @@ export const complaintsFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "substantiated",
+        label: "Substantiated",
+      },
+      {
+        value: "false",
+        label: "False",
+      },
+      {
+        value: "malicious",
+        label: "Malicious",
+      },
+      {
+        value: "unfounded",
+        label: "Unfounded",
+      },
+      {
+        value: "unsubstantiated",
+        label: "Unsubstantiated",
+      },
+      {
+        value: "other",
+        label: "Other, Please specify if any",
       },
     ],
   },
@@ -230,8 +310,28 @@ export const complaintsFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "substantiated",
+        label: "Substantiated",
+      },
+      {
+        value: "false",
+        label: "False",
+      },
+      {
+        value: "malicious",
+        label: "Malicious",
+      },
+      {
+        value: "unfounded",
+        label: "Unfounded",
+      },
+      {
+        value: "unsubstantiated",
+        label: "Unsubstantiated",
+      },
+      {
+        value: "other",
+        label: "Other, Please specify if any",
       },
     ],
   },

@@ -1,11 +1,10 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Badge } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import { enqueueSnackbar } from "notistack";
-import { useDeleteComplaintListMutation } from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/ComplaintsApi";
 import { useComplaintsTable } from "./useComplaintsTable";
-import { getColumns } from "./index";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import TableAction from "@root/components/TableAction";
 
 const ComplaintsTable = () => {
   const {
@@ -17,18 +16,79 @@ const ComplaintsTable = () => {
     isError,
     isSuccess,
     meta,
+    setSearch,
+    listDeleteHandler,
     pageChangeHandler,
     sortChangeHandler,
   } = useComplaintsTable();
-  const [deleteList, { isSuccess: successMessage }] =
-    useDeleteComplaintListMutation();
-  //Checking If Complaint is Deleted Successfully
-  if (successMessage) {
-    enqueueSnackbar("Complaint Deleted Successfully", {
-      variant: "success",
-    });
-  }
-  const columns = getColumns(deleteList);
+
+  const columns = [
+    {
+      accessorFn: (row: any) => row.id ?? "-",
+      id: "srNo",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Sr. No</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.complaintDate ?? "-",
+      id: "complaintDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Date of Complaints</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.status ?? "-",
+      id: "status",
+      cell: (info: any) => (
+        <Badge
+          invisible={info.badge}
+          color="secondary"
+          badgeContent="Draft"
+          sx={styles.badge}
+        >
+          {info.getValue()}
+        </Badge>
+      ),
+      header: () => <span>Status</span>,
+      isSortable: true,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/complaints",
+                query: { action: "edit", id: info?.row?.original?.id },
+              })
+            }
+          />
+          {/* Calling Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/complaints",
+                query: { action: "view", id: info?.row?.original?.id },
+              })
+            }
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
   return (
     <>
       <Box sx={{ mb: 1 }}>
@@ -37,6 +97,9 @@ const ComplaintsTable = () => {
           title="Complaints"
           searchKey="search"
           showAddBtn
+          onChanged={(event: any) => {
+            setSearch(event.search);
+          }}
           onAdd={() => {
             router.push({
               pathname:
@@ -44,7 +107,6 @@ const ComplaintsTable = () => {
               query: { action: "add" },
             });
           }}
-          onChanged={(data: any) => {}}
         />
       </Box>
       <CustomTable
@@ -57,8 +119,9 @@ const ComplaintsTable = () => {
         isPagination={true}
         currentPage={meta?.page}
         totalPages={meta?.pages}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        showSerialNo
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

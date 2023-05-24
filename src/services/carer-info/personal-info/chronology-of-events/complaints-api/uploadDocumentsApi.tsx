@@ -2,8 +2,12 @@ import { baseAPI } from "@root/services/baseApi";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const uploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    uploadDocumentList: builder.query<null, void>({
-      query: () => "chronology-events/list-complaintDocuments",
+    uploadDocumentList: builder.query<null, object>({
+      query: (search: any) => ({
+        url: "chronology-events/list-complaintDocuments",
+        method: "GET",
+        params: search,
+      }),
       providesTags: ["COMPLAINT_LIST"],
     }),
     postComplaintDocuments: builder.mutation({
@@ -15,7 +19,7 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
       invalidatesTags: ["COMPLAINT_LIST"],
     }),
     singleComplaintDocument: builder.query({
-      query: (id: any) => `chronology-events/incidentDocuments/${id}`,
+      query: (id: any) => `chronology-events/complaintDocuments/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
@@ -24,7 +28,7 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
     }),
     deleteComplaintDocumentList: builder.mutation({
       query: (id: any) => ({
-        url: `chronology-events/complaintDocument/delete/${id}`,
+        url: `chronology-events/complaintDocument/delete${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ALLEGATION_DOCUMENTS"],
