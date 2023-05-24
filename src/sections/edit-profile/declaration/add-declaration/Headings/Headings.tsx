@@ -23,26 +23,20 @@ export const DotedHeadingWithDisc: React.FC<{
 }> = ({ heading, des }) => {
   return (
     <>
-      <Grid container>
-        <Grid item sx={{ position: "relative" }}>
-          <div
-            style={{
-              border: "3px solid red",
-              position: "absolute",
-              top: "50%",
-              right: "0",
-              transform: "translate(0,-50%)",
-              borderRadius: "50%",
-            }}
-          ></div>
-        </Grid>
+      <Grid container sx={{ padding: "0 0.6em" }}>
         <Grid item>
-          <Typography sx={{ fontWeight: "500", margin: "0.5em 0" }}>
-            {heading}
-          </Typography>
+          <ul>
+            <li>
+              <Typography sx={{ fontWeight: "400", margin: "0.5em 0" }}>
+                {heading}
+              </Typography>
+            </li>
+          </ul>
         </Grid>
       </Grid>
-      <Typography>{des}</Typography>
+      <Grid item>
+        <Typography>{des}</Typography>
+      </Grid>
     </>
   );
 };

@@ -20,7 +20,10 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { RHFSwitch } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import { DotedHeadingWithDisc, HeadingWithDisc } from "./Headings/Headings";
-import { HeadingsWithDesInfo } from "./static-info/heading-data";
+import {
+  DotedHeadingsWithDesInfo,
+  HeadingsWithDesInfo,
+} from "./static-info/heading-data";
 
 const AddDeclaration: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
@@ -126,20 +129,10 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
               })}
             </Grid>
             <Grid item sm={12}>
-              <DotedHeadingWithDisc
-                heading={HeadingsWithDesInfo[0].heading}
-                des={HeadingsWithDesInfo[0].des}
-              />
+              {DotedHeadingsWithDesInfo.map(({ heading, des }): any => {
+                return <DotedHeadingWithDisc heading={heading} des={des} />;
+              })}
             </Grid>
-            {/* A Custom Field On Full Width  */}
-            {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
           </Grid>
           {!disabled && (
             <Grid item sm={12} container direction="column">
