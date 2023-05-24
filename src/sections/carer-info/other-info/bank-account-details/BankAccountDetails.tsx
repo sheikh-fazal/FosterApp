@@ -1,7 +1,7 @@
 import TableHeader from "@root/components/TableHeader";
-import ActionModal from "@root/sections/documents/UploadDocumentModal";
 import React, { useState } from "react";
 import { BankAccountDetailsTable } from "./BankAccountDetailsTable";
+import BankAccountDetailsForm from "./BankAccountDetailsForm";
 
 export default function BankAccountDetails() {
   const [openModal, setOpenModal] = useState(false);
@@ -17,7 +17,7 @@ export default function BankAccountDetails() {
         onAdd={() => setOpenModal(true)}
       />
       <BankAccountDetailsTable />
-      <ActionModal
+      <BankAccountDetailsForm
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) =>
