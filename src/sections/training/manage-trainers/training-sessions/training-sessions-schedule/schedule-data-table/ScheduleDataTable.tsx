@@ -130,7 +130,7 @@ const ScheduleDataTable = () => {
     },
   ];
   return (
-    <div>
+    <div style={{overflow: "scroll"}}>
     <CustomTable
       data={data}
       columns={columns}

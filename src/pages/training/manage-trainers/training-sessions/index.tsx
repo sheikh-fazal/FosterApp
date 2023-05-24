@@ -9,10 +9,13 @@ import { TrainingSessionsSchedule } from "@root/sections/training/manage-trainer
 import { TrainingSessionsSpeakers } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-speakers";
 import { TrainingSessionsAttendees } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-attendees";
 import { TrainingSessionsBudget } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-budget";
+import TableHeader from "@root/components/TableHeader";
+import { useRouter } from "next/router";
 
 const PAGE_TILE = "Training Sessions";
 
 TrainingSessions.getLayout = function getLayout(page: any) {
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -35,8 +38,10 @@ TrainingSessions.getLayout = function getLayout(page: any) {
 
 export default function TrainingSessions() {
   const theme = useTheme();
+  const navigate = useRouter()
   return (
     <Page title={PAGE_TILE}>
+      <TableHeader title="" hideSearch showAddBtn onAdd={()=>navigate.push("/training/manage-trainers/training-sessions/add-training-session")}/>
       <HorizaontalTabs
         tabsDataArray={[
           "Home",
