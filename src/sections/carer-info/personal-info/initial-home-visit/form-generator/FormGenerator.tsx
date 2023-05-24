@@ -17,7 +17,7 @@ const FormGenerator: FC<any> = ({
   disabled,
 }) => {
   const theme: any = useTheme();
-
+  console.log(defaultValues);
   const methods: any = useForm({
     // mode: "onTouched",
     ...(!!FormSchema && { resolver: yupResolver(FormSchema) }),

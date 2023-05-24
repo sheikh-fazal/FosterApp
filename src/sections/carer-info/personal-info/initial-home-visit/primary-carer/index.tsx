@@ -27,7 +27,7 @@ export const FormValues = {
   postalCode: "",
   maritalStatus: "",
   ethnicity: "",
-  offsetEthnicity: "",
+  offSetEthnicity: "",
   nationalInsuranceNo: "",
   religion: "",
   practising: "",
@@ -35,6 +35,38 @@ export const FormValues = {
   howLongLiveInLocalArea: "",
   detailsOfPreviousMarriages: "",
   convictedOfAnyCriminal: "",
+};
+
+export const defaultValuesPrimaryCarer = (data: any) => {
+  console.log(data);
+  return {
+    dateOfVisit: new Date(data?.dateOfVisit) || "",
+    nameOfAgencyWorkingVisiting: data?.nameOfAgencyWorkingVisiting,
+    title: data?.title,
+    firstName: data?.firstName || "",
+    middleName: data?.middleName,
+    lastName: data?.lastName,
+    dateOfBirth: new Date(data?.dateOfBirth),
+    gender: data?.gender,
+    address: data?.address,
+    addressLine2: data?.addressLine2,
+    city: data?.city,
+    mobilePhone: data?.mobilePhone,
+    email: data?.email,
+    county: data?.county,
+    country: data?.country,
+    postalCode: data?.postalCode,
+    maritalStatus: data?.maritalStatus,
+    ethnicity: data?.ethnicity,
+    offSetEthnicity: data?.offSetEthnicity,
+    nationalInsuranceNo: data?.nationalInsuranceNo,
+    religion: data?.religion,
+    practising: data?.practising,
+    countryWhereBorn: data?.countryWhereBorn,
+    howLongLiveInLocalArea: data?.howLongLiveInLocalArea,
+    detailsOfPreviousMarriages: data?.detailsOfPreviousMarriages,
+    convictedOfAnyCriminal: data?.convictedOfAnyCriminal,
+  };
 };
 
 export const FormSchema = Yup.object().shape({
@@ -87,7 +119,7 @@ export const FormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
   maritalStatus: Yup.string().required("Marital status is required"),
   ethnicity: Yup.string().required("Ethnicity is required"),
-  offsetEthnicity: Yup.string().required("Offset ethnicity is required"),
+  offSetEthnicity: Yup.string().required("Offset ethnicity is required"),
   religion: Yup.string().required("Religion is required"),
   nationalInsuranceNo: Yup.string().required(
     "National insurance no is required"
@@ -246,7 +278,7 @@ export const fieldsInfo = [
   },
   {
     type: "select",
-    name: "offsetEthnicity",
+    name: "offSetEthnicity",
     label: "Offset Ethnicity",
     select: true,
 

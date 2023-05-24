@@ -18,7 +18,8 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Initial Home Visit";
+// const PAGE_TITLE = "Initial Home Visit";
+// const PAGE_TITLE = "React App";
 
 // ----------------------------------------------------------------------
 
@@ -27,8 +28,9 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard">
+      // title={PAGE_TITLE}
+      variant="dashboard"
+    >
       {page}
     </Layout>
   );
@@ -37,9 +39,5 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InitialHomeVisit() {
-  return (
-    <Page title={PAGE_TITLE}>
-      <InitialHomeVisitTab />
-    </Page>
-  );
+  return <InitialHomeVisitTab />;
 }
