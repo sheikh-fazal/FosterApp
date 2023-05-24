@@ -29,12 +29,12 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     postRegularAssessmentDetail: builder.mutation({
-      query: ({ formData }: any) => ({
+      query: (body) => ({
         url: `/assessment-stage-one/regular-assessment-meeting`,
         method: "POST",
-        body: formData,
+        body,
       }),
-      invalidatesTags: [TAG],
+      // invalidatesTags: [TAG],
     }),
 
     // postCarerFamilyApi: builder.mutation<null, void>({
@@ -66,6 +66,7 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
 export const {
   useGetRegularAssessmentDetailsQuery,
   useGetSingleRegularAssessmentDetailQuery,
+  useLazyGetSingleRegularAssessmentDetailQuery,
   usePatchRegularAssessmentDetailMutation,
   usePostRegularAssessmentDetailMutation,
 } = assessmentStageOneApi;

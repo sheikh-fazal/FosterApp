@@ -4,8 +4,14 @@ import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-import { useGetSingleRegularAssessmentDetailQuery } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
+import {
+  useGetSingleRegularAssessmentDetailQuery,
+  useLazyGetSingleRegularAssessmentDetailQuery,
+  usePostRegularAssessmentDetailMutation,
+} from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
 import dayjs from "dayjs";
+import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 
@@ -109,59 +115,106 @@ const RegularAssessmentMeetingForm = (props: any) => {
   const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType } = props;
   const theme: any = useTheme();
   const todayDate = dayjs().format("MM/DD/YYYY");
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetSingleRegularAssessmentDetailQuery({ id: id });
+  const currentTime = dayjs().format("HH:MM");
+  const [loading, setLoading] = useState(true);
+  // const { data } = useGetSingleRegularAssessmentDetailQuery({ id: id });
+  const [singleRegulaAssessmentrDetail] = useLazyGetSingleRegularAssessmentDetailQuery();
+  const [postRegularMutation] = usePostRegularAssessmentDetailMutation({});
 
   const handleClose = () => {
     setOpen(false);
     setFieldsDisable(false);
   };
 
-  console.log("singledata", data);
+  // console.log("singledata", data?.data);
   console.log("actionType", actionType);
-  console.log("actionType", data?.data?.meetingOutcomes);
 
   const defaultValues = {
-    meetingDate: new Date(data?.data?.meetingDate),
-    meetingTime: data?.data?.meetingTime,
-    meetingAgenda: data?.data?.meetingAgenda,
-    meetingAttendees: data?.data?.meetingAttendees,
-    meetingOutcomes: data?.data?.meetingOutcomes,
-    meetingAction: data?.data?.meetingAction,
-    nextAssessmentDate: new Date(data?.data?.nextAssessmentDate),
-    nextAssessmentTime: "",
-    uploadMeetingRecording: "nil",
+    meetingDate: new Date(todayDate),
+    meetingTime: dayjs().format("HH:MM"),
+
+    meetingAgenda: "Nil",
+    meetingAttendees: "Nil",
+    meetingOutcomes: "Nil",
+    meetingAction: "Nil",
+    nextAssessmentDate: new Date(todayDate),
+    nextAssessmentTime: currentTime,
+    uploadMeetingRecording: "",
   };
 
   const FormSchema = Yup.object().shape({
-    meetingDate: Yup.string().required("required"),
-    meetingTime: Yup.string().required("Time is required"),
+    meetingDate: Yup.string().required("Required Field"),
+    meetingTime: Yup.string().required("Required Field"),
     // .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
 
-    meetingAgenda: Yup.string().required("required"),
-    meetingAttendees: Yup.string().required("required"),
-    meetingOutcomes: Yup.string().required("required"),
-    meetingAction: Yup.string().required("required"),
-    nextAssessmentDate: Yup.string().required("Time is required"),
-    nextAssessmentTime: Yup.string().required("Time is required"),
+    meetingAgenda: Yup.string().required("Required Field"),
+    meetingAttendees: Yup.string().required("Required Field"),
+    meetingOutcomes: Yup.string().required("Required Field"),
+    meetingAction: Yup.string().required("Required Field"),
+    nextAssessmentDate: Yup.string().required("Required Field"),
+    nextAssessmentTime: Yup.string().required("Required Field"),
   });
+
   const methods: any = useForm({
-    // mode: "onTouched",
+    mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const { data, isError } = await singleRegulaAssessmentrDetail({ id }, true);
+      setLoading(false);
+      if (isError) {
+        enqueueSnackbar("Error occured", { variant: "error" });
+        return defaultValues;
+      }
+      if (actionType === "add") return defaultValues;
+      const responseData = {
+        ...data.data,
+        meetingDate: new Date(data?.data?.meetingDate),
+        nextAssessmentDate: new Date(data?.data?.nextAssessmentDate),
+      };
+
+      // for (const key in responseData) {
+      //   const value = responseData[key];
+      //   if (formatters[key]) responseData[key] = formatters[key](value);
+      // }
+
+      return responseData;
+    },
   });
+
   const { reset, handleSubmit } = methods;
   const onSubmitHandler = (data: any) => {
-    console.log(data);
+    console.log("🚀 ~ file: RegularAssessmentMeetingForm.tsx:160 ~ onSubmitHandler ~ data:", data);
+    const regularAssessmentForm = new FormData();
 
-    const formData = { meetingDate: dayjs(data?.meetingDate).format("MM/DD/YYYY"), ...data };
-
-    console.log(
-      "🚀 ~ file: RegularAssessmentMeetingForm.tsx:158 ~ onSubmitHandler ~ formData:",
-      formData
+    regularAssessmentForm.append("meetingDate", dayjs(data?.meetingDate).format("MM/DD/YYYY"));
+    // regularAssessmentForm.append("meetingDate", "05/04/2022");
+    regularAssessmentForm.append("meetingTime ", dayjs(data?.meetingTime).format("HH:MM"));
+    // regularAssessmentForm.append("meetingTime ", "00:12");
+    regularAssessmentForm.append("meetingAgenda", data?.meetingAgenda);
+    regularAssessmentForm.append("meetingAttendees", data?.meetingAttendees);
+    regularAssessmentForm.append("meetingOutcomes", data?.meetingOutcomes);
+    regularAssessmentForm.append("meetingAction", data?.meetingAction);
+    regularAssessmentForm.append(
+      "nextAssessmentDate",
+      dayjs(data?.nextAssessmentDate).format("MM/DD/YYYY")
     );
+    // regularAssessmentForm.append("nextAssessmentDate", "05/04/2022");
+    regularAssessmentForm.append(
+      "nextAssessmentTime",
+      dayjs(data?.nextAssessmentTime).format("HH:MM")
+    );
+    // regularAssessmentForm.append("nextAssessmentTime", "00:12");
+    regularAssessmentForm.append("uploadMeetingRecording", data?.uploadMeetingRecording);
+    // for (var pair of regularAssessmentForm.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+
+    // postRegularMutation(regularAssessmentForm);
     setOpen(false);
   };
+  // if (loading) {
+  //   return <p>Loading</p>;
+  // }
   return (
     <Modal
       open={open}
@@ -171,56 +224,63 @@ const RegularAssessmentMeetingForm = (props: any) => {
     >
       <Box sx={Styles.root}>
         <p>{id}</p>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
-          <Grid container rowSpacing={2} columnSpacing={3} alignItems="center">
-            {formFields?.map((form: any) => {
-              return (
-                <Grid item xs={12} md={form?.gridLength} key={form?.id}>
-                  <>
-                    {" "}
-                    {form.component ? (
-                      <Grid>
-                        <Typography color={theme.palette.primary.main} variant="body2">
-                          {form.heading}
+        {loading && <p>loading...</p>}
+        {!loading && (
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
+            <Grid container rowSpacing={2} columnSpacing={3} alignItems="center">
+              {formFields?.map((form: any) => {
+                return (
+                  <Grid item xs={12} md={form?.gridLength} key={form?.id}>
+                    <>
+                      {" "}
+                      {form.component ? (
+                        <Grid>
+                          <Typography color={theme.palette.primary.main} variant="body2">
+                            {form.heading}
+                          </Typography>
+                          <form.component
+                            disabled={fieldsDisable}
+                            size="small"
+                            {...form.otherOptions}
+                          >
+                            {form.otherOptions
+                              ? form.options?.map((option: any) => (
+                                  <option key={option.value} value={option.value}>
+                                    {" "}
+                                    {option.label}{" "}
+                                  </option>
+                                ))
+                              : null}
+                          </form.component>
+                        </Grid>
+                      ) : (
+                        <Typography variant={form.variant} color={theme.palette.primary.main}>
+                          {" "}
+                          {form.heading}{" "}
                         </Typography>
-                        <form.component
-                          disabled={fieldsDisable}
-                          size="small"
-                          {...form.otherOptions}
-                        >
-                          {form.otherOptions
-                            ? form.options?.map((option: any) => (
-                                <option key={option.value} value={option.value}>
-                                  {" "}
-                                  {option.label}{" "}
-                                </option>
-                              ))
-                            : null}
-                        </form.component>
-                      </Grid>
-                    ) : (
-                      <Typography variant={form.variant} color={theme.palette.primary.main}>
-                        {" "}
-                        {form.heading}{" "}
-                      </Typography>
-                    )}{" "}
-                  </>
-                </Grid>
-              );
-            })}
-            <Grid item xs={12}>
-              <RHFUploadFile name="chosenFile" {...methods} />
+                      )}{" "}
+                    </>
+                  </Grid>
+                );
+              })}
+              <Grid item xs={12}>
+                <RHFUploadFile
+                  name="uploadMeetingRecording"
+                  {...methods}
+                  disabled={fieldsDisable}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-          <Box sx={Styles.buttonWrapper}>
-            <Button type={"submit"} sx={Styles.buttonSuccess(theme)}>
-              Upload
-            </Button>
-            <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
-              Clear
-            </Button>
-          </Box>
-        </FormProvider>
+            <Box sx={Styles.buttonWrapper}>
+              <Button type={"submit"} sx={Styles.buttonSuccess(theme)}>
+                Upload
+              </Button>
+              <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
+                Clear
+              </Button>
+            </Box>
+          </FormProvider>
+        )}
       </Box>
     </Modal>
   );
