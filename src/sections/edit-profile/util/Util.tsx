@@ -6,7 +6,7 @@ export const nameShortner = (name: string) => {
 };
 
 export const displaySuccessMessage = (data: any, notifier: any) => {
-  const successMesg = data?.data.message;
+  const successMesg = data?.data?.message;
   notifier(successMesg ? successMesg : "Operation Completed Successfully", {
     variant: "success",
   });
