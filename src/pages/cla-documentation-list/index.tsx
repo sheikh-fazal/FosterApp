@@ -1,44 +1,45 @@
-import Layout from "@root/layouts";
 import React from "react";
+//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
+import Layout from "@root/layouts";
+import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
-import TrainingProfileTable from "@root/sections/carer-info/training-profile/TrainingProfile";
+import ClaDocumentationListTable from "@root/sections/cla-documentation-list/ClaDocumentationList";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
+    name: "Child Info",
+    href: "/",
   },
   {
-    name: "Trainings List",
+    name: "CLA Documentation List",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Training Profile";
+const PAGE_TITLE = "CLA Documentation List";
 // ----------------------------------------------------------------------
 
-TrainingProfile.getLayout = function getLayout(page: any) {
+ClaDocumentationList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
+      title={PAGE_TITLE}>
       {page}
     </Layout>
   );
 };
 
-// ----------------------------------------------------------------------
-
-export default function TrainingProfile() {
+export default function ClaDocumentationList() {
   return (
     <Page title={PAGE_TITLE}>
-      <TrainingProfileTable />
+      <Paper elevation={3}>
+        <ClaDocumentationListTable />
+      </Paper>
     </Page>
-  )
+  );
 }
