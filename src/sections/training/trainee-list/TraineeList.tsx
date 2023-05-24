@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -7,7 +6,6 @@ import {
   FormControl,
   Grid,
   InputAdornment,
-  InputLabel,
   Menu,
   MenuItem,
   Stack,
@@ -21,41 +19,22 @@ import CustomAccordian from "@root/components/CustomAccordian";
 import TaineeListTable from "./tainee-list-table/TaineeListTable";
 import TraineeListModal from "./trainee-list-modal/TraineeListModal";
 import { sortingData } from ".";
+import { useTraineeList } from "./useTraineeList";
 
 const TraineeLists = () => {
-  const [items, setitems] = React.useState("");
-  const [addRow, setAddRow] = useState(sortingData);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [editRowId, setEditRowId] = useState("");
-  const [modalType, setModalType] = useState({
-    type: "",
-    value: null,
-  });
-
-  const handleChange = (event: any) => {
-    setitems(event.target.value);
-  };
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const addRowHandler = (data: any, editRowId: any) => {
-    const newObj = {
-      id: Math.random(),
-
-      title: data?.title,
-
-      component: <TaineeListTable />,
-    };
-
-    const filteredRows = addRow.filter((row: any) => row.id !== editRowId.id);
-
-    setAddRow([...filteredRows, newObj]);
-  };
+  const {
+    items,
+    addRow,
+    anchorEl,
+    editRowId,
+    setEditRowId,
+    modalType,
+    setModalType,
+    handleChange,
+    handleClick,
+    handleClose,
+    addRowHandler,
+  } = useTraineeList();
 
   return (
     <Card sx={{ p: 2 }}>

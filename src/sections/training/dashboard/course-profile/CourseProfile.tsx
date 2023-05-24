@@ -1,12 +1,8 @@
-import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Box, Grid, Typography } from "@mui/material";
+import { chartTitles } from ".";
 
 const CourseProfile = () => {
-  const chartTitles = [
-    { title: "Optional", color: "#F6460F" },
-    { title: "Mandatory", color: "#F6830F" },
-    { title: "Most Popular", color: "#2CB764" },
-  ];
   return (
     <Box sx={styles.containerDev}>
       <Grid container>

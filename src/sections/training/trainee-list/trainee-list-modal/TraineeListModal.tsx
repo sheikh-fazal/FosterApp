@@ -17,14 +17,8 @@ const FormSchema = Yup.object().shape({
 const TraineeListModal = (props: any) => {
   const { open, handleClose, editRowId, addRowHandler } = props;
   const theme: any = useTheme();
-  // console.log("handleTitleEdit", editRowId?.title)
-
-  // const defaultValues = {
-  //     title: editRowId?.title || '',
-  // }
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    // defaultValues,
   });
 
   const { handleSubmit, setValue } = methods;

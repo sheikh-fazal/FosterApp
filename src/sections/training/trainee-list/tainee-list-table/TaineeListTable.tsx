@@ -1,8 +1,6 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import { useTraineeTable } from "./useTraineeTable";
-import dayjs from "dayjs";
-import { Box, Button, Typography } from "@mui/material";
 
 const TaineeListTable = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear } =
@@ -11,7 +9,10 @@ const TaineeListTable = () => {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
         tableKey="exampleTable"
-        moreActionBtn
+        view
+        print
+        share
+        disabled
         columns={[
           {
             inputType: "textField",

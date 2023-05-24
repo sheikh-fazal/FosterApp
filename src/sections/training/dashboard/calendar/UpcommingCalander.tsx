@@ -4,11 +4,11 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { useTheme } from "@mui/material";
 import Calendar from "react-calendar";
+import { useUpcommingCalander } from "./useUpcommingCalander";
 
 const UpcommingCalander = () => {
-  const theme: any = useTheme();
+  const { theme } = useUpcommingCalander();
 
   return (
     <>

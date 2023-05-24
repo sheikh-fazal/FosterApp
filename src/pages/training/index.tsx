@@ -12,7 +12,7 @@ import BarChart from "@root/sections/training/dashboard/charts/BarChart";
 import UpcommingCalander from "@root/sections/training/dashboard/calendar/UpcommingCalander";
 import TrainingTasks from "@root/sections/training/dashboard/tasks/TrainingTasks";
 import TrainingNotifications from "@root/sections/training/dashboard/notification/TrainingNotifications";
-import CourseProfile from "@root/sections/training/dashboard/course-profile";
+import CourseProfile from "@root/sections/training/dashboard/course-profile/CourseProfile";
 
 const PAGE_TILE = "Dashboard";
 
