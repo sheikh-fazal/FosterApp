@@ -61,12 +61,6 @@ const ChildrenTable = () => {
           },
         ]}
       />
-      <Button type="submit" variant="contained">
-        Submit
-      </Button>
-      <Button variant="outlined" sx={{ ml: 2 }} onClick={onClear}>
-        Clear
-      </Button>
     </FormProvider>
   );
 };

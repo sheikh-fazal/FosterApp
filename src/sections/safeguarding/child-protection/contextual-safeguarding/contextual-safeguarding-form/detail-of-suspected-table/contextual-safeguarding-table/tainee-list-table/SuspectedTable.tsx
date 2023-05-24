@@ -6,7 +6,7 @@ import { Box, Button, Typography } from "@mui/material";
 
 const SuspectedTable = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear } =
-  useSuspectedTable();
+    useSuspectedTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
@@ -18,7 +18,7 @@ const SuspectedTable = () => {
             key: "name",
             defaultValue: "Remus corner",
             label: "Name",
-            validation: (Yup: any) => { },
+            validation: (Yup: any) => {},
           },
           {
             inputType: "datePicker",
@@ -41,7 +41,7 @@ const SuspectedTable = () => {
             key: "ethnicity",
             defaultValue: "Reporting ",
             label: "Ethnicity",
-            validation: (Yup: any) => { },
+            validation: (Yup: any) => {},
           },
           {
             inputType: "textField",
@@ -49,16 +49,10 @@ const SuspectedTable = () => {
             key: "address",
             defaultValue: "Once upon a time",
             label: "Address",
-            validation: (Yup: any) => { },
+            validation: (Yup: any) => {},
           },
         ]}
       />
-      <Button type="submit" variant="contained">
-        Submit
-      </Button>
-      <Button variant="outlined" sx={{ ml: 2 }} onClick={onClear}>
-        Clear
-      </Button>
     </FormProvider>
   );
 };

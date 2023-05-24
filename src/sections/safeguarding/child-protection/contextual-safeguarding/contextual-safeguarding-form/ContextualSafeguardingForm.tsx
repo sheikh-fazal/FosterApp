@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { useContextualSafeguardingForm } from "./useContextualSafeguardingForm";
-import ContextualSafeguardingFormTable from "../contextual-safeguarding-table/tainee-list-table/ContextualSafeguardingFormTable";
+
 
 const ContextualSafeguardingForm = ({ disabled }: any) => {
   const { methods, ContextualFormData, handleSubmit, onSubmit } =

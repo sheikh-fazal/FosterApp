@@ -47,7 +47,15 @@ export default function PieChart({ selectedChart, setSelectedChart }: any) {
   return (
     <Box>
       <Grid container>
-        <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
+        <Grid
+          item
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={12}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <Box>
             <ReactApexChart
               options={options}
@@ -66,8 +74,14 @@ export default function PieChart({ selectedChart, setSelectedChart }: any) {
           md={6}
           sm={6}
           xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <FormControl sx={{display: "flex" }}>
+          <FormControl sx={{ display: "flex", justifyContent: "center" }}>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -87,22 +101,23 @@ export default function PieChart({ selectedChart, setSelectedChart }: any) {
               />
             </RadioGroup>
           </FormControl>
-
-          {chartTitles?.map((item) => (
-            <Box key={item?.color} sx={{ mt: 0.5 }}>
-              <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                <Box
-                  sx={{
-                    width: "10px",
-                    height: "10px",
-                    background: item?.color,
-                    borderRadius: "50%",
-                  }}
-                ></Box>
-                <Typography variant="subtitle2">{item?.title}</Typography>
+          <Box>
+            {chartTitles?.map((item) => (
+              <Box key={item?.color} sx={{ mt: 0.5 }}>
+                <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                  <Box
+                    sx={{
+                      width: "10px",
+                      height: "10px",
+                      background: item?.color,
+                      borderRadius: "50%",
+                    }}
+                  ></Box>
+                  <Typography variant="subtitle2">{item?.title}</Typography>
+                </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Grid>
       </Grid>
     </Box>

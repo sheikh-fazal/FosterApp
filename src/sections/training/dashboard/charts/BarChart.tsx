@@ -79,14 +79,25 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
   return (
     <Box>
       <Grid container>
-        <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
+        <Grid
+          item
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={12}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
           <Box>
             <ReactApexChart
               options={baroptions}
               series={barseries}
               type="bar"
               width={200}
-              height={186}
+              height={158}
             />
           </Box>
         </Grid>
@@ -98,8 +109,14 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
           md={6}
           sm={6}
           xs={12}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <FormControl sx={{display: "flex" }}>
+          <FormControl sx={{ display: "flex" }}>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
