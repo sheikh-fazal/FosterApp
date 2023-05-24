@@ -2,12 +2,11 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CourseResourcePoolList from "@root/sections/training/manage-courses/course-resource-pool/course-resource-pool-list/CourseResourcePoolList";
+import CourseListMain from "@root/sections/training/manage-courses/course-resource-pool/course-list-card/CourseListMain";
 
+const PAGE_TILE = "Course List";
 
-const PAGE_TILE = "Course Categories";
-
-CoursePool.getLayout = function getLayout(page: any) {
+CourseList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -18,7 +17,7 @@ CoursePool.getLayout = function getLayout(page: any) {
           href: "/training",
         },
         {
-          name: "Course Categories",
+          name: "Course Sub Categories",
         },
       ]}
       title={PAGE_TILE}
@@ -28,10 +27,10 @@ CoursePool.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function CoursePool() {
+export default function CourseList() {
   return (
     <Page title={PAGE_TILE}>
-      <CourseResourcePoolList />
+      <CourseListMain />
     </Page>
   );
 }
