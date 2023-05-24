@@ -1,5 +1,6 @@
 import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { useStickyNotesMutation } from "@root/services/stickyNotes";
+import CircularProgress from "@mui/material/CircularProgress";
 import { BsCheck2, BsX } from "react-icons/bs";
 import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
@@ -11,7 +12,7 @@ export const FormSchema = Yup.object().shape({
 });
 
 function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
-  const [addNotes] = useStickyNotesMutation();
+  const [addNotes, { isLoading }] = useStickyNotesMutation();
 
   const {
     register,
@@ -22,8 +23,9 @@ function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
   const onSubmit = async (content: any) => {
     const data = {
       ...content,
-      date,
+      date: dayjs(date).format('YYYY-MM-DDTHH:mm:ss.SSSZ'),
     };
+    
 
     try {
       const res: any = await addNotes(data).unwrap();
@@ -54,15 +56,23 @@ function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
             </IconButton>
           </Box>
         </Box>
+        {isLoading ? (
+          <Box sx={{width:"100%" ,height:110,display:"flex",justifyContent:'center',alignItems:"center"}}>
+          <CircularProgress color="inherit" />
+          </Box>
+        ) : (
+          <>
+            <TextField
+              sx={style.textbox}
+              id="standard-multiline-static"
+              multiline
+              {...register("content")}
+              rows={4}
+              variant="standard"
+            />
+          </>
+        )}
 
-        <TextField
-          sx={style.textbox}
-          id="standard-multiline-static"
-          multiline
-          {...register("content")}
-          rows={4}
-          variant="standard"
-        />
         <Box sx={style.flexsbox}>
           <Typography sx={style.datecolor}>
             {dayjs(date).format("MMMM DD, YYYY")}
@@ -86,6 +96,17 @@ const commonClass = {
 };
 
 const style = {
+  loder: {
+    backgroundColor: "#ffff",
+    p: 1,
+    mt: 2,
+    borderRadius: "8px",
+    height: "5rem",
+    with: 30,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   mainContainer: {
     backgroundColor: "#FFEFB7",
     p: 1,

@@ -1,12 +1,15 @@
-import { useDeleteStickyNotesMutation, useLazyGetStickyNotesByDateQuery } from "@root/services/stickyNotes";
-import { AiOutlineUnorderedList } from "react-icons/ai";
 import { Box, List, ListItem, Typography } from "@mui/material";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 import { HiOutlinePlusSm } from "react-icons/hi";
+import {
+  useDeleteStickyNotesMutation,
+  useLazyGetStickyNotesByDateQuery,
+} from "@root/services/stickyNotes";
 import { useEffect, useState } from "react";
-import { RxCross2 } from 'react-icons/rx';
+import { enqueueSnackbar } from "notistack";
+import { RxCross2 } from "react-icons/rx";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { enqueueSnackbar } from "notistack";
 
 export const FormSchema = Yup.object().shape({
   content: Yup.string(),
@@ -15,27 +18,29 @@ export const FormSchema = Yup.object().shape({
 function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   const [showlist, setShowlist] = useState(false);
 
-  const [getInitialContactData, { data, isLoading: dataLoding }] =
-  useLazyGetStickyNotesByDateQuery();
+  const [getInitialContactData, { data, isLoading: dataLoding, isFetching }] =
+    useLazyGetStickyNotesByDateQuery();
 
   const getdata = async (date: any) => {
     const paramsObj: any = {};
     if (date) paramsObj["date"] = date;
-    const query:any = "by-date?" + new URLSearchParams(paramsObj).toString();
-    await getInitialContactData({query});
+    const query: any = "by-date?" + new URLSearchParams(paramsObj).toString();
+    await getInitialContactData({ query });
   };
   useEffect(() => {
     getdata(dayjs(date).format("YYYY-MM-DD"));
   }, [date]);
 
-  const [deleteNotes, { isSuccess: successMessage }] =
-  useDeleteStickyNotesMutation();
+  const [
+    deleteNotes,
+    { isSuccess: successMessage, isLoading: deleteIsloading },
+  ] = useDeleteStickyNotesMutation();
 
-if (successMessage) {
-  enqueueSnackbar("Notes Deleted Successfully", {
-    variant: "success",
-  });
-}
+  if (successMessage) {
+    enqueueSnackbar("Notes Deleted Successfully", {
+      variant: "success",
+    });
+  }
 
   return (
     <Box>
@@ -56,13 +61,13 @@ if (successMessage) {
         </Box>
       </Box>
       <Box sx={{ height: 150, overflow: "auto" }}>
-        {!dataLoding ? (
+        {deleteIsloading ? (
+          <Box sx={{ mt: 1 }}>Loading.....</Box>
+        ) : !isFetching ? (
           data && data?.length > 0 ? (
             data.map((item: any) => (
               <List key={item?.id}>
-                <ListItem
-                  sx={style.listStyle}                  
-                >
+                <ListItem sx={style.listStyle}>
                   <Typography
                     sx={{
                       whiteSpace: "nowrap",
@@ -75,7 +80,11 @@ if (successMessage) {
                       setEdit(true);
                     }}
                   >{`"${item?.content}"`}</Typography>
-                  <RxCross2 onClick={()=>{deleteNotes(item?.id)}}/>
+                  <RxCross2
+                    onClick={() => {
+                      deleteNotes(item?.id);
+                    }}
+                  />
                 </ListItem>
               </List>
             ))
@@ -83,7 +92,7 @@ if (successMessage) {
             <Box sx={{ mt: 1 }}>No Notes on this date!</Box>
           )
         ) : (
-          <Box sx={{ mt: 1, }}>Loading.....</Box>
+          <Box sx={{ mt: 1 }}>Loading.....</Box>
         )}
       </Box>
     </Box>
@@ -159,8 +168,8 @@ const style = {
     p: 0,
     color: theme.palette.grey[900],
     cursor: "pointer",
-    display:"flex",
-    justifyContent:"space-between",
-    alignItems:"center"    
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   }),
 };

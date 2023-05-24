@@ -1,5 +1,6 @@
 import { Box, IconButton, TextField, Typography } from "@mui/material";
 import { useEditStickyNotesMutation } from "@root/services/stickyNotes";
+import CircularProgress from "@mui/material/CircularProgress";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { BsCheck2, BsX } from "react-icons/bs";
@@ -25,7 +26,7 @@ function EditStickyNotes({
   console.log(item);
   const [update, setUpdate] = useState(false);
   const id = item?.id;
-  const [editData] = useEditStickyNotesMutation();
+  const [editData, { isLoading }] = useEditStickyNotesMutation();
 
   const {
     register,
@@ -86,16 +87,31 @@ function EditStickyNotes({
           </Box>
         )}
         <>
-          <TextField
-            sx={style.textbox}
-            id="standard-multiline-static"
-            multiline
-            {...register("content")}
-            rows={4}
-            disabled={!update}
-            defaultValue={item?.content}
-            variant="standard"
-          />
+          {isLoading ? (
+            <Box
+              sx={{
+                width: "100%",
+                height: 110,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress color="inherit" />
+            </Box>
+          ) : (
+            <TextField
+              sx={style.textbox}
+              id="standard-multiline-static"
+              multiline
+              {...register("content")}
+              rows={4}
+              disabled={!update}
+              defaultValue={item?.content}
+              variant="standard"
+            />
+          )}
+
           <Box sx={style.flexsbox}>
             <Typography sx={style.datecolor}>
               {" "}
