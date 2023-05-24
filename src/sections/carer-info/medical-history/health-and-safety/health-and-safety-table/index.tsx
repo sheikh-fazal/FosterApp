@@ -48,13 +48,6 @@ export const columns = [
     header: "Next Inspection Date",
     isSortable: true,
   },
-  // {
-  //   accessorFn: (row: any) => row.nextInspectionDate,
-  //   id: "nextInspectionDate",
-  //   cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-  //   header: "Name Of Pet",
-  //   isSortable: true,
-  // },
   {
     accessorFn: (row: any) => row.status,
     id: "status",
@@ -67,8 +60,8 @@ export const columns = [
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction type="edit" onClicked={() => alert("Edit")} />
-        {/* <TableAction type="delete" onClicked={() => alert("Delete")} /> */}
-        <DeleteModel onDeleteClick={() => {}} />
+        <TableAction type="delete" onClicked={() => alert("Delete")} />
+        {/* <DeleteModel onDeleteClick={() => {}} /> */}
         <TableAction type="view" onClicked={() => alert("View")} />
         {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
       </Box>

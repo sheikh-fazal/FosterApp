@@ -30,7 +30,7 @@ export const HealthAndSafetyTable = () => {
           title="Health & Safety"
           searchKey="search"
           showAddBtn
-          onAdd={()=>router.push('/carer-info/medical-history/health-and-safety/health-and-safety-table-tabs')}
+          onAdd={()=>router.push('/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs')}
           onChanged={headerChangeHandler}
           // selectFilters={SELECT_FILTERS}
         />
