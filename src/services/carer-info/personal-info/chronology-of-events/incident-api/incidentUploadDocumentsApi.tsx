@@ -25,10 +25,19 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
     }),
+    deleteIncidentDocuments: builder.mutation({
+      query: (payload: any) => ({
+        url: `/chronology-events/incidentDocument/delete${payload.id}`,
+        method: "DELETE",
+        body: payload,
+      }),
+      invalidatesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
+    }),
   }),
 });
 export const {
   useIncidentUploadDocumentListQuery,
   usePostIncidentDocumentsMutation,
   useLazyIncidentUploadDocumentBYIDQuery,
+  useDeleteIncidentDocumentsMutation,
 } = incidentUploadDocumentApi;

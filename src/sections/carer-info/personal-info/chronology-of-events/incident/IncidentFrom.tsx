@@ -18,7 +18,7 @@ import {
 } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import Paper from "@mui/material/Paper";
-import { FormSchema, IncidentFormData } from "./Index";
+import { FormSchema, IncidentFormData } from ".";
 import router from "next/router";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import useIncidentFrom from "./useIncidentFrom";
@@ -69,14 +69,17 @@ const IncFrom = (props: any) => {
                           shrink: action === "view" ? true : undefined,
                           disabled: action === "view" ? true : undefined,
                         }}
+                        
                       >
-                        {form.otherOptions.select
-                          ? form.options.map((option: any) => (
+                        {form.otherOptions.select ? (
+                          
+                            form.options.map((option: any) => (
                               <option key={option.value} value={option.value}>
                                 {option.label}
                               </option>
                             ))
-                          : null}
+                          
+                        ) : null}
                       </form.component>
                     )}
                     {form.component === "RadioGroup" && (

@@ -4,7 +4,10 @@ import {
 } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentApi";
 import { enqueueSnackbar } from "notistack";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useIncidentUploadDocumentListQuery } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
+import {
+  useDeleteIncidentDocumentsMutation,
+  useIncidentUploadDocumentListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
 import React from "react";
 const useIncidentTable = () => {
   const [search, setsearch] = React.useState("");
@@ -26,6 +29,7 @@ const useIncidentTable = () => {
   console.log("ds", incidentUploadlist);
 
   const [deleteIncidentByID] = useDeleteIncidentByIdMutation({});
+  const [deleteIncidentDocuments] = useDeleteIncidentDocumentsMutation({});
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const deleteHander = (id: any) => {
@@ -41,7 +45,22 @@ const useIncidentTable = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
+  // UPLOAD DELETE DOCUMENTS
+  const uploadDeleteHandler = (id: any) => {
+    deleteIncidentDocuments({ id: id })
+      .unwrap()
+      .then((res) => {
+        console.log(res);
 
+        enqueueSnackbar("Information deleted  Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return {
     incidentlist,
     incidentListError,
@@ -57,6 +76,7 @@ const useIncidentTable = () => {
     deleteHander,
     pageChangeHandler,
     sortChangeHandler,
+    uploadDeleteHandler,
   };
 };
 

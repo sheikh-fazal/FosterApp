@@ -8,7 +8,7 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 
 import { usePostIncidentDocumentsMutation } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
-import { defaultValues, formatters } from "./Index";
+import { defaultValues, formatters } from ".";
 
 const useIncidentFrom = (action: any, id: any) => {
   // API,STATES,API,HANDERS
@@ -18,7 +18,7 @@ const useIncidentFrom = (action: any, id: any) => {
   const [modelOpen, setmodelOpen] = useState(false);
 
   //UPLOADING MODEL HANDLER
-  const modelHander = (action: any) =>
+  const modelHander = () =>
     modelOpen === true ? setmodelOpen(false) : setmodelOpen(true);
   //------------------------------------------------
 

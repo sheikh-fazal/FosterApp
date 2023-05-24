@@ -7,7 +7,6 @@ import { DatePicker } from "@mui/x-date-pickers";
 
 export default function RHFDatePicker({ name, label, ...other }: any) {
   const { control } = useFormContext();
-  console.log(other);
   return (
     <Controller
       name={name}

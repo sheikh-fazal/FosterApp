@@ -13,7 +13,7 @@ import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
-import { UploadDocFormData, formSchemaModel } from "../Index";
+import { UploadDocFormData, formSchemaModel } from "..";
 import { LoadingButton } from "@mui/lab";
 
 const incidentUploadDocumentModal = (props: any) => {
