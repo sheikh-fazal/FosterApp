@@ -1,9 +1,7 @@
 import { Box, Grid, Button, Modal, Backdrop, Typography } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { UploadDocFormData, defaultValues, formSchema } from "./index";
+import { UploadDocFormData } from "./index";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
@@ -11,12 +9,9 @@ import { LoadingButton } from "@mui/lab";
 
 function UploadDocumentsModal(props: any) {
   const { open, setOpen } = props;
-  const { theme, onSubmit, action } = useUploadDocumentsTable();
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
+  const { theme, onSubmit, action, handleSubmit, methods } =
+    useUploadDocumentsTable();
+
   return (
     <>
       {open && (
@@ -71,19 +66,18 @@ function UploadDocumentsModal(props: any) {
                 </Grid>
               </Grid>
               <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-                {action === "add" ||
-                  (action === "edit" && (
-                    <LoadingButton
-                      type="submit"
-                      sx={{
-                        bgcolor: theme.palette.primary.main,
-                        "&:hover": { bgcolor: theme.palette.orange.main },
-                      }}
-                      variant="contained"
-                    >
-                      Upload
-                    </LoadingButton>
-                  ))}
+                {action === "add" || action === "edit" ? (
+                  <LoadingButton
+                    type="submit"
+                    sx={{
+                      bgcolor: theme.palette.primary.main,
+                      "&:hover": { bgcolor: theme.palette.orange.main },
+                    }}
+                    variant="contained"
+                  >
+                    Upload
+                  </LoadingButton>
+                ) : null}
                 <Button
                   sx={{
                     bgcolor: theme.palette.orange.main,

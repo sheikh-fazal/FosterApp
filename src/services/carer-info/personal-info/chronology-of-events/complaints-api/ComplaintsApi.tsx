@@ -20,7 +20,7 @@ export const complaintsApi = baseAPI.injectEndpoints({
       invalidatesTags: ["COMPLAINT_LIST"],
     }),
     singleComplaintList: builder.query({
-      query: (id: any) => `chronology-events/incidentDocuments/${id}`,
+      query: (id: any) => `chronology-events/complaint/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;

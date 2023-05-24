@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
@@ -8,6 +9,8 @@ import {
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { formSchema, defaultValues } from "./index";
 export const useUploadDocumentsTable = () => {
   const [search, setSearch] = React.useState("");
   const router = useRouter();
@@ -48,6 +51,11 @@ export const useUploadDocumentsTable = () => {
 
   const allegationDocuments = data?.data?.allegation_documents;
   const meta = data?.meta;
+  const methods: any = useForm({
+    resolver: yupResolver(formSchema),
+    defaultValues,
+  });
+  const { handleSubmit } = methods;
   //Submit Function To Submit Form Data
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -68,6 +76,7 @@ export const useUploadDocumentsTable = () => {
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
   };
+
   return {
     router,
     tableHeaderRefTwo,
@@ -81,6 +90,7 @@ export const useUploadDocumentsTable = () => {
     loadingList,
     allegationDocuments,
     error,
+    id,
     meta,
     setError,
     isLoading,
@@ -90,5 +100,7 @@ export const useUploadDocumentsTable = () => {
     action,
     listDeleteHandler,
     setSearch,
+    handleSubmit,
+    methods,
   };
 };

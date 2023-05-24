@@ -5,6 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import { useComplaintsTable } from "./useComplaintsTable";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
+import dayjs from "dayjs";
 
 const ComplaintsTable = () => {
   const {
@@ -31,9 +32,11 @@ const ComplaintsTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.complaintDate ?? "-",
+      accessorFn: (row: any) => row?.complaintDate ?? "-",
       id: "complaintDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+      },
       header: () => <span>Date of Complaints</span>,
       isSortable: true,
     },
@@ -104,7 +107,7 @@ const ComplaintsTable = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/complaints",
-              query: { action: "add" },
+              query: { action: "add", id: "" },
             });
           }}
         />

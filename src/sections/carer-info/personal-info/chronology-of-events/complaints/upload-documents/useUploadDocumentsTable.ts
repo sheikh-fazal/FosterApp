@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
@@ -9,6 +10,8 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { formSchema, defaultValues } from "./index";
 
 export const useUploadDocumentsTable = () => {
   const [search, setSearch] = React.useState("");
@@ -47,26 +50,37 @@ export const useUploadDocumentsTable = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-
+  const methods: any = useForm({
+    resolver: yupResolver(formSchema),
+    defaultValues,
+  });
+  const { handleSubmit } = methods;
+  //Submit Function Handles Here
   const onSubmit = async (data: any) => {
-    const formData = new FormData();
-    formData.append("type", data.type);
-    formData.append(
-      "documentDate",
-      dayjs(data?.documentDate).format("MM/DD/YYYY")
-    );
-    formData.append("password", data.password);
-    formData.append("file", data.file);
-    formData.append("complaintId", id);
-    try {
-      await postComplaintDetails(formData).unwrap();
-      enqueueSnackbar("Documents Uploaded Successfully", {
-        variant: "success",
+    if (!id) {
+      enqueueSnackbar("Please Fill The Complaint Form First", {
+        variant: "error",
       });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      router.push("/carer-info/personal-info/carer-chronology-of-events");
+    } else {
+      const formData = new FormData();
+      formData.append("type", data.type);
+      formData.append(
+        "documentDate",
+        dayjs(data?.documentDate).format("MM/DD/YYYY")
+      );
+      formData.append("password", data.password);
+      formData.append("file", data.file);
+      formData.append("complaintId", id);
+      try {
+        await postComplaintDetails(formData).unwrap();
+        enqueueSnackbar("Documents Uploaded Successfully", {
+          variant: "success",
+        });
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+        router.push("/carer-info/personal-info/carer-chronology-of-events");
+      }
     }
   };
   return {
@@ -91,5 +105,8 @@ export const useUploadDocumentsTable = () => {
     action,
     listDeleteHandler,
     setSearch,
+    handleSubmit,
+    methods,
+    id,
   };
 };

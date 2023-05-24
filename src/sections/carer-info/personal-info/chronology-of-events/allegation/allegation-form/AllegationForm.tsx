@@ -7,23 +7,27 @@ import {
   Radio,
 } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { allegationFormData, formSchema } from "./index";
+import { allegationFormData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAllegationForm } from "./useAllegationForm";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 function AllegationForm(props: any) {
   const { action, id } = props;
   //Allegation Custom Hook
-  const { router, theme, onSubmit, isLoading, getDefaultValue } =
-    useAllegationForm(action, id);
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: getDefaultValue,
-  });
-  const { setValue, trigger, handleSubmit, getValues } = methods;
+  const {
+    router,
+    onSubmit,
+    isLoading,
+    theme,
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    methods,
+    isFetching,
+  } = useAllegationForm(action, id);
 
   if (isLoading) return <SkeletonFormdata />;
   return (
@@ -39,6 +43,7 @@ function AllegationForm(props: any) {
         URN Number : CH001
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
           {allegationFormData.map((form: any) => {
             return (
@@ -79,8 +84,6 @@ function AllegationForm(props: any) {
                         name={form.otherOptions.name}
                         defaultValue={getValues(`${form.otherOptions.name}`)}
                         onChange={(e) => {
-                          console.log(form.otherOptions.name);
-
                           setValue(
                             `${form.otherOptions.name}`,
                             `${e.target.value === "yes" ? true : false}`

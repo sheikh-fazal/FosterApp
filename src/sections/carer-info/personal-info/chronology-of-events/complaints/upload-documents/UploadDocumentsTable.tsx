@@ -7,6 +7,8 @@ import TableAction from "@root/components/TableAction";
 import UploadDocumentsModal from "./UploadDocumentsModal";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import ViewDocumentsModal from "./ViewDocumentsModal";
+import Link from "next/link";
+import { enqueueSnackbar } from "notistack";
 function UploadedDocumentsTable() {
   const {
     listDeleteHandler,
@@ -16,6 +18,10 @@ function UploadedDocumentsTable() {
     isFetching,
     isSuccess,
     meta,
+    action,
+    id,
+    pageChangeHandler,
+    sortChangeHandler,
     setSearch,
   } = useUploadDocumentsTable();
 
@@ -52,7 +58,7 @@ function UploadedDocumentsTable() {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.personUploaded ?? "-",
+      accessorFn: (row: any) => row.uploadBy ?? "-",
       id: "personUploaded",
       cell: (info: any) => info.getValue(),
       header: () => <span>Person Uploaded</span>,
@@ -69,17 +75,20 @@ function UploadedDocumentsTable() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
-          />
+          <Link
+            target="__blank"
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
+          >
+            <TableAction size="small" type="download" />
+          </Link>
+          {/* Calling Delete Modal */}
+          {action === "add" || action === "edit" ? (
+            <DeletePrompt
+              onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+            />
+          ) : null}
           {/* Modal To Display Specific Document Record */}
           <ViewDocumentsModal id={info?.row?.original?.id} />
-          {/* Calling Delete Modal */}
-          <DeletePrompt
-            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-          />
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -92,11 +101,19 @@ function UploadedDocumentsTable() {
       <TableHeader
         title="Uploaded Documents"
         searchKey="search"
-        showAddBtn
+        showAddBtn={action === "view" ? false : true}
         onChanged={(e: any) => {
           setSearch(e.search);
         }}
-        onAdd={modelHander}
+        onAdd={() => {
+          if (action === "add" && id === "") {
+            enqueueSnackbar("Please Fill The Complaint Form First", {
+              variant: "error",
+            });
+          } else {
+            return modelHander();
+          }
+        }}
       />
       {/* Upload Documents Modal */}
       <UploadDocumentsModal open={open} setOpen={setOpen} />
@@ -110,8 +127,8 @@ function UploadedDocumentsTable() {
         isPagination={true}
         currentPage={meta?.page}
         totalPages={meta?.pages}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

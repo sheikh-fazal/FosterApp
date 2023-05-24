@@ -18,18 +18,18 @@ function ViewDocumentsModal(props: any) {
     useLazySingleComplaintDocumentQuery();
   const [open, setOpen] = React.useState(false);
   const { id } = props;
-  const { theme, action } = useUploadDocumentsTable();
+  const { theme } = useUploadDocumentsTable();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: async () => {
-      setIsLoading(true);
       const { data, isError } = await getSingleComplaintDocument(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      return data;
+      const responseData = { ...data.data };
+      return responseData;
     },
   });
   const { handleSubmit, getValues } = methods;
@@ -77,9 +77,7 @@ function ViewDocumentsModal(props: any) {
                     <form.component
                       {...form.componentProps}
                       size="small"
-                      disabled={
-                        action === "view" || action === "edit" ? true : false
-                      }
+                      disabled={true}
                     >
                       {form.componentProps.select
                         ? form.componentProps.options.map((option: any) => (

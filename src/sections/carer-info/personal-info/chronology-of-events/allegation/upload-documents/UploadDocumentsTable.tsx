@@ -8,6 +8,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import ViewDocumentsModal from "./ViewDocumentsModal";
 import UploadDocumentsModal from "./UploadDocumentsModal";
+import { enqueueSnackbar } from "notistack";
+import Link from "next/link";
 function UploadedDocumentsTable() {
   const {
     loadingList,
@@ -20,6 +22,8 @@ function UploadedDocumentsTable() {
     pageChangeHandler,
     sortChangeHandler,
     listDeleteHandler,
+    action,
+    id,
   } = useUploadDocumentsTable();
   const [open, setOpen] = React.useState(false);
   const modelHander = () => (open === true ? setOpen(false) : setOpen(true));
@@ -73,17 +77,20 @@ function UploadedDocumentsTable() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
-          />
+          <Link
+            target="__blank"
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
+          >
+            <TableAction size="small" type="download" />
+          </Link>
+          {/* Calling Delete Modal */}
+          {action === "add" || action === "edit" ? (
+            <DeletePrompt
+              onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+            />
+          ) : null}
           {/* Modal To Display Specific Document Record */}
           <ViewDocumentsModal id={info?.row?.original?.id} />
-          {/* Calling Delete Modal */}
-          <DeletePrompt
-            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-          />
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -96,11 +103,19 @@ function UploadedDocumentsTable() {
         <TableHeader
           title="Uploaded Documents"
           searchKey="search"
-          showAddBtn
+          showAddBtn={action === "view" ? false : true}
           onChanged={(e: any) => {
             setSearch(e.search);
           }}
-          onAdd={modelHander}
+          onAdd={() => {
+            if (action === "add" && id === "") {
+              enqueueSnackbar("Please Fill The Allegation Form First", {
+                variant: "error",
+              });
+            } else {
+              return modelHander();
+            }
+          }}
         />
       </Box>
       {/* Upload Documents Modal */}

@@ -107,7 +107,7 @@ const AllegationTable = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/allegation",
-              query: { action: "add" },
+              query: { action: "add", id: "" },
             });
           }}
         />
