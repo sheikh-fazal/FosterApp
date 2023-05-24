@@ -134,22 +134,6 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
               })}
             </Grid>
           </Grid>
-          {!disabled && (
-            <Grid item sm={12} container direction="column">
-              <Grid item container spacing={1}>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Save
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Continue
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
-          )}
         </Grid>
       </Grid>
     </FormProvider>
