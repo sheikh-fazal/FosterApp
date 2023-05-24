@@ -1,20 +1,14 @@
-export const TableData=[
+export const defaultValues = {
+  exampleTable: [
     {
-        Attendee: "Remus Lupin",
-        Course_Id: "256",
-        Course_Name: "Reporting ",
-        Course_Type: "Devplan.PDF",
-        Status: "Certificate  ",
-        Manage_Certificate: "Certificate ",
-        Trainer: "Draco Malfoy",
-      },
-    {
-        Attendee: "Remus Lupin",
-        Course_Id: "256",
-        Course_Name: "Reporting ",
-        Course_Type: "Devplan.PDF",
-        Status: "Certificate Pending ",
-        Manage_Certificate: "Certificate ",
-        Trainer: "Draco Malfoy",
-      },
-]
+      
+      attendee: "Jon",
+      courseId: "256",
+      courseName: "Reporting and Recording Fostering",
+      courseType: "Devplan.PDF",
+      status: "Certificate Pending ",
+      manageCertifiacte: "Delegate Certificate",
+      trainer: "Draco Malfoy ",
+    },
+  ],
+};

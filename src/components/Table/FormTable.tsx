@@ -15,7 +15,7 @@ import { FormProvider, RHFTextField } from "../hook-form";
 import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 
-const ANON_FUNC = () => {};
+const ANON_FUNC = () => { };
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -103,11 +103,11 @@ function TableFormModal(props: any) {
   );
 }
 
-// ----------------------------------------------------------------------
+
 // Form Table
 
 export default function FormTable(props: any) {
-  const { tableKey, columns: tableColumns } = props;
+  const { tableKey, columns: tableColumns, moreActionBtn } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
@@ -135,7 +135,24 @@ export default function FormTable(props: any) {
   columns.push({
     id: "actions",
     cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center", alignItems: "center" }}>
+        {moreActionBtn && (
+          <>
+            <TableAction
+              type="view"
+              onClicked={(id: number) => alert()}
+            />
+            <TableAction
+              type="print"
+              onClicked={(id: number) => alert()}
+            />
+            <TableAction
+              type="share"
+              onClicked={(id: number) => alert()}
+            />
+          </>)
+
+        }
         <TableAction
           type="edit"
           onClicked={(id: number) => onEditHandler(info.row.index)}
@@ -144,6 +161,7 @@ export default function FormTable(props: any) {
           type="delete"
           onClicked={(id: number) => onDeleted(info.row.index)}
         />
+
       </Box>
     ),
     header: () => <span>actions</span>,
