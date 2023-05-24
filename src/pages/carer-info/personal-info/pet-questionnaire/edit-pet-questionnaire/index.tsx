@@ -10,8 +10,14 @@ import PetQuestionnaireB from "@root/sections/carer-info/personal-info/pet-quest
 import PetQuestionnaireC from "@root/sections/carer-info/personal-info/pet-questionnaire/C/PetQuestionnaireCFrom";
 import PetQuestionnaireD from "@root/sections/carer-info/personal-info/pet-questionnaire/D/PetQuestionnaireDFrom";
 import { useRouter } from "next/router";
-import { useGetPetQuestionnaireByIdQuery } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
-import IsFetching from "@root/components/loaders/IsFetching";
+import {
+  useGetPetQuestionnaireByIdQuery,
+  usePatchPetQuestionnaireAApiMutation,
+  usePatchPetQuestionnaireBApiMutation,
+  usePatchPetQuestionnaireCApiMutation,
+  usePatchPetQuestionnaireDApiMutation,
+} from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -49,10 +55,15 @@ export default function EditPetQuestionnaire() {
 
   const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(id);
 
+  const [patchDataA] = usePatchPetQuestionnaireAApiMutation();
+  const [patchDataB] = usePatchPetQuestionnaireBApiMutation();
+  const [patchDataC] = usePatchPetQuestionnaireCApiMutation();
+  const [patchDataD, { isSuccess }] = usePatchPetQuestionnaireDApiMutation();
+
   return (
     <Page title={PAGE_TITLE}>
       {isLoading ? (
-        <IsFetching isFetching={isLoading} />
+        <SkeletonFormdata />
       ) : (
         <HorizaontalTabs
           tabsDataArray={[
@@ -62,7 +73,13 @@ export default function EditPetQuestionnaire() {
             "Pet Questionnaire D",
           ]}
         >
-          <PetQuestionnaireA initialValueProps={data?.petQuestionnaire1} />
+          <PetQuestionnaireA
+            initialValueProps={data?.petQuestionnaire1}
+            onSubmitHandler={(data: any) => patchDataA({ ...data, id })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
+          />
           <PetQuestionnaireB
             initialValueProps={{
               ...data?.petQuestionnaire2,
@@ -70,12 +87,20 @@ export default function EditPetQuestionnaire() {
                 ? "Yes"
                 : "No",
             }}
+            onSubmitHandler={(data: any) => patchDataB({ ...data, id })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
           />
           <PetQuestionnaireC
             initialValueProps={{
               ...data?.petQuestionnaire3,
               date: new Date(data?.petQuestionnaire3?.date),
             }}
+            onSubmitHandler={(data: any) => patchDataC({ ...data, id })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
           />
           <PetQuestionnaireD
             initialValueProps={{
@@ -83,6 +108,10 @@ export default function EditPetQuestionnaire() {
               date1: new Date(data?.petQuestionnaire4?.date1),
               date2: new Date(data?.petQuestionnaire4?.date2),
             }}
+            onSubmitHandler={(data: any) => patchDataD({ ...data, id })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
           />
         </HorizaontalTabs>
       )}

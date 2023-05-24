@@ -15,6 +15,8 @@ export default function PetQuestionnaireD({
   onSubmitHandler,
   initialValueProps = defaultValues,
   message,
+  isError,
+  isSuccess,
 }: any) {
   const methods: any = useForm({
     resolver: yupResolver(DFormValidationSchema),
@@ -83,8 +85,9 @@ export default function PetQuestionnaireD({
               variant="contained"
               sx={{ mr: 2 }}
               loading={isSubmitting}
+              color={isError ? "error" : isSuccess ? "success" : "primary"}
             >
-              Submit
+              {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
             <Link
               href={"/carer-info/personal-info/pet-questionnaire"}

@@ -14,6 +14,9 @@ export default function PetQuestionnaireA({
   onSubmitHandler,
   initialValueProps = defaultValues,
   message,
+  isError,
+  isSuccess,
+  isAdding = false,
 }: any) {
   const methods: any = useForm({
     resolver: yupResolver(AFormValidationSchema),
@@ -34,10 +37,12 @@ export default function PetQuestionnaireA({
           variant: "success",
         }
       );
-      console.log(res);
-      router.push(
-        `/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire?${res.id}`
-      );
+      {
+        isAdding &&
+          router.push(
+            `/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire?${res.id}`
+          );
+      }
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -65,8 +70,9 @@ export default function PetQuestionnaireA({
               variant="contained"
               sx={{ mr: 2 }}
               loading={isSubmitting}
+              color={isError ? "error" : isSuccess ? "success" : "primary"}
             >
-              Next
+              {isError ? "Try Again!" : isSuccess ? "Success" : "Next"}
             </LoadingButton>
             <Link
               href={"/carer-info/personal-info/pet-questionnaire"}
