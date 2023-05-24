@@ -8,10 +8,15 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 const CustomAccordian = ({ data, className, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState<string | false>(false);
   const theme: any = useTheme();
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
   return (
     <>
-      {data?.map((item: any) => (
+      {data?.map((item: any, idx:any) => (
         <Accordion
           key={item.title}
           disableGutters
@@ -25,6 +30,7 @@ const CustomAccordian = ({ data, className, ...rest }: any) => {
               display: "none",
             },
           }}
+          expanded={expanded === `panel${idx+1}`} onChange={handleChange(`panel${idx+1}`)}
         >
           <AccordionSummary
             sx={{
@@ -37,8 +43,8 @@ const CustomAccordian = ({ data, className, ...rest }: any) => {
               borderRadius: "5px",
             }}
             className="summary-Icon"
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+            aria-controls={`panel${idx+1}bh-content`}
+            id={`panel${idx+1}bh-header`}
             expandIcon={
               <Avatar
                 sx={{
