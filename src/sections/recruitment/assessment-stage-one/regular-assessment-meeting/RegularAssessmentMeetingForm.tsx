@@ -112,7 +112,7 @@ export const formFields = [
 ];
 
 const RegularAssessmentMeetingForm = (props: any) => {
-  const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType } = props;
+  const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType, setId } = props;
   const theme: any = useTheme();
   const todayDate = dayjs().format("MM/DD/YYYY");
   const currentTime = dayjs().format("HH:MM");
@@ -124,6 +124,7 @@ const RegularAssessmentMeetingForm = (props: any) => {
   const handleClose = () => {
     setOpen(false);
     setFieldsDisable(false);
+    setId("");
   };
 
   // console.log("singledata", data?.data);
@@ -156,7 +157,6 @@ const RegularAssessmentMeetingForm = (props: any) => {
   });
 
   const methods: any = useForm({
-    mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, isError } = await singleRegulaAssessmentrDetail({ id }, true);
@@ -165,7 +165,10 @@ const RegularAssessmentMeetingForm = (props: any) => {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      if (actionType === "add") return defaultValues;
+      if (actionType === "add") {
+        console.log("Returning default values");
+        return defaultValues;
+      }
       const responseData = {
         ...data.data,
         meetingDate: new Date(data?.data?.meetingDate),

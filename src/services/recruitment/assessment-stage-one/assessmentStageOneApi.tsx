@@ -21,12 +21,11 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     patchRegularAssessmentDetail: builder.mutation({
-      query: ({ id, formData }: any) => ({
+      query: ({ body, id }) => ({
         url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
         method: "PATCH",
-        body: formData,
+        body,
       }),
-      invalidatesTags: [TAG],
     }),
     postRegularAssessmentDetail: builder.mutation({
       query: (body) => ({

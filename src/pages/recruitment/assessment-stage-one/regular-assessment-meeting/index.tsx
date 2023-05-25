@@ -51,6 +51,7 @@ export default function RegularAssessmentMeeting() {
           open={open}
           setOpen={setOpen}
           id={id}
+          setId={setId}
           fieldsDisable={fieldsDisable}
           setFieldsDisable={setFieldsDisable}
           actionType={actionType}

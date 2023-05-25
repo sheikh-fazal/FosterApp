@@ -115,7 +115,10 @@ const RegularAssessmentMeetingList = (props: any) => {
         title="Meeting Agenda"
         searchKey="search"
         showAddBtn
-        onAdd={() => setOpen(true)}
+        onAdd={() => {
+          setOpen(true);
+          setActionType("add");
+        }}
         onChanged={headerChangeHandler}
         selectFilters={SELECT_FILTERS}
       />
