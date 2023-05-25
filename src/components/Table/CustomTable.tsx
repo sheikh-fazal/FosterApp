@@ -266,7 +266,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(even)": {
-    backgroundColor:
+    background:
       theme.palette.mode === "light"
         ? alpha(theme.palette.primary.main, 0.12)
         : theme.palette.grey[700],
@@ -274,11 +274,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
   // hide last border
   " &:last-child th": {
-    backgroundColor:
+    background:
       theme.palette.mode === "light"
         ? alpha(theme.palette.primary.main, 0.45)
         : theme.palette.grey[700],
-    backdropFilter: " blur(20px)",
+        
+    backdropFilter: "blur(20px)",
 
     border: 0,
   },

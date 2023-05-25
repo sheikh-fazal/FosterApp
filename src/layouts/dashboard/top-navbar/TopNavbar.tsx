@@ -58,9 +58,10 @@ const Topnavbar = (props: any) => {
       sx={{
         width: {
           xs: "100%",
-          lg: leftopen ? "calc(100% - 300px)" : "calc(100% - 75.5px)",
+          md: leftopen ? "calc(100% - 300px)" : "calc(100% - 75.5px)",
         },
-        position: { sm: "fixed", xs: "unset" },
+        position: { lg: "fixed", sm: "fixed", xs: "unset" },
+
         zIndex: 1000,
         transition: theme.transitions.create("width", {
           duration: 400,
