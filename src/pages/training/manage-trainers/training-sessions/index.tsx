@@ -12,6 +12,7 @@ import { TrainingSessionsBudget } from "@root/sections/training/manage-trainers/
 import TableHeader from "@root/components/TableHeader";
 import { useRouter } from "next/router";
 
+
 const PAGE_TILE = "Training Sessions";
 
 TrainingSessions.getLayout = function getLayout(page: any) {
@@ -39,6 +40,27 @@ TrainingSessions.getLayout = function getLayout(page: any) {
 export default function TrainingSessions() {
   const theme = useTheme();
   const navigate = useRouter()
+  const tabs = [
+    {
+      id: 1,
+      title: 'Tab 1',
+      content: <p>Content for Tab 1</p>,
+    },
+    {
+      id: 2,
+      title: 'Tab 2',
+      content: <p>Content for Tab 2</p>,
+    },
+    {
+      id: 3,
+      title: 'Tab 3',
+      content: <p>Content for Tab 3</p>,
+    },
+  ];
+  const tabsdata = [
+    "new",
+    "old"
+  ]
   return (
     <Page title={PAGE_TILE}>
       <TableHeader title="" hideSearch showAddBtn onAdd={()=>navigate.push("/training/manage-trainers/training-sessions/add-training-session")}/>

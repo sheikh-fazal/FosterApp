@@ -130,7 +130,7 @@ const EventHistory = () => {
     },
   ];
   return (
-    <div>
+    <div style={{width:'72vw'}}>
     <CustomTable
       data={data}
       columns={columns}

@@ -131,7 +131,7 @@ const OngoingEvent = () => {
     },
   ];
   return (
-    <div>
+    <div style={{width:'72vw'}}>
       <CustomTable
         data={data}
         columns={columns}
