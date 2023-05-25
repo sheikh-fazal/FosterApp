@@ -17,7 +17,7 @@ export default function ClaDocumentationListForm() {
   };
 
   return (
-    <Paper elevation={4} sx={{padding:3}}>
+    <Paper elevation={4} sx={{ padding: 3 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {ClaDocumentationListFormData?.map((item: any) => (
@@ -25,6 +25,13 @@ export default function ClaDocumentationListForm() {
               <item.component
                 {...item.componentProps}
                 size={"small"}>
+                {item?.componentProps?.select
+                  ? item?.options?.map((option: any) => (
+                    <option key={option?.value} value={option?.value}>
+                      {option?.label}
+                    </option>
+                  ))
+                  : null}
                 {item?.heading}
               </item.component>
             </Grid>
