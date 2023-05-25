@@ -8,6 +8,9 @@ import useIncidentFrom from "./useIncidentFrom";
 import dayjs from "dayjs";
 import IncidentUploadDocumentModal from "./modals/incidentUploadDocumentModal";
 import IncidentViewDocumentModel from "./modals/incidentViewDocumentModel";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { enqueueSnackbar } from "notistack";
+import Link from "next/link";
 
 function UploadedDocuments(props: any) {
   //   const tableHeaderRefTwo = useRef<any>();
@@ -15,6 +18,7 @@ function UploadedDocuments(props: any) {
   const { action, id } = props;
   const { onUploadSubmit, uploadingDocumentisLoading, modelOpen, modelHander } =
     useIncidentFrom(action, id);
+
   const {
     incidentUploadlist,
     incidentUploadListError,
@@ -24,6 +28,7 @@ function UploadedDocuments(props: any) {
     setsearch,
     pageChangeHandler,
     sortChangeHandler,
+    uploadDeleteHandler,
   }: any = useIncidentTable();
 
   const columns = [
@@ -75,12 +80,16 @@ function UploadedDocuments(props: any) {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          {/* <IncidentViewDocumentModel id={info.row.original.id} /> */}
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
+          <IncidentViewDocumentModel id={info.row.original.id} />
+          <DeletePrompt
+            onDeleteClick={() => uploadDeleteHandler(info.row.original.id)}
           />
+          <Link
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
+            target="_blank"
+          >
+            <TableAction size="small" type="download" />
+          </Link>
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -98,7 +107,15 @@ function UploadedDocuments(props: any) {
             setsearch(e.search);
           }}
           showAddBtn
-          onAdd={modelHander}
+          onAdd={() => {
+            if (action === "add" && id === "") {
+              enqueueSnackbar("Please Fill The Incident Form First", {
+                variant: "error",
+              });
+            } else {
+              return modelHander();
+            }
+          }}
         />
       </Box>
       <IncidentUploadDocumentModal

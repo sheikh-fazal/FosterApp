@@ -21,7 +21,9 @@ const Incident = () => {
     deleteHander,
     pageChangeHandler,
     sortChangeHandler,
+    setsearch,
   } = useIncidentTable();
+
   const columns = [
     {
       accessorFn: (row: any) => row?.id,
@@ -106,8 +108,8 @@ const Incident = () => {
               query: { action: "add", id: "" },
             });
           }}
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
+          onChanged={(e: any) => {
+            setsearch(e.search);
           }}
         />
       </Box>
