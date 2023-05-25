@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-import { summaryAndRecommendationFormData, FormSchema, defaultValues } from ".";
-import { LoadingButton } from "@mui/lab";
+import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
 
 export const HouseholdConditionA = (props: any) => {
-  const { disabled, formData, isLoading, isError, isSuccess } = props;
+  const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
+    props;
   const theme: any = useTheme();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
@@ -19,6 +19,11 @@ export const HouseholdConditionA = (props: any) => {
   const onSubmit = (data: any) => {
     formData(data);
   };
+  useEffect(() => {
+    breadCrumbData("Household Condition - A");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const router = useRouter();
   return (
     <Page title="Household Condition - A">
@@ -29,7 +34,7 @@ export const HouseholdConditionA = (props: any) => {
               <Typography variant="h6">Summary And Recommendation</Typography>
             </Grid> */}
 
-            {summaryAndRecommendationFormData?.map((form: any) => {
+            {householdConditionA_Data?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                   <>
@@ -39,7 +44,6 @@ export const HouseholdConditionA = (props: any) => {
                         {...form.componentProps}
                         disabled={disabled || isLoading}
                         size="small"
-                        fullWidth={true}
                       >
                         {form?.componentProps.select
                           ? form?.componentProps.options.map((option: any) => (
@@ -80,7 +84,7 @@ export const HouseholdConditionA = (props: any) => {
                 sx={{
                   bgcolor: theme?.palette?.orange?.main,
                   "&:hover": { bgcolor: theme?.palette?.orange?.main },
-                  ml:1
+                  ml: 1,
                 }}
                 variant="contained"
                 onClick={() => router.back()}

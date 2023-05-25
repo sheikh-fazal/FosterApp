@@ -11,9 +11,24 @@ import { SafetyFactorsIndoorsE } from "@root/sections/carer-info/medical-history
 import { SafetyFactorsOutdoors } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-outdoors/SafetyFactorsOutdoors";
 import { UploadDocument } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/upload-document/UploadDocument";
 
-import React from "react";
+import React, { useState } from "react";
 
-AddHealthAndSafetyTableTabs.getLayout = function getLayout(page: any) {
+// AddHealthAndSafetyTableTabs.getLayout = function getLayout(page: any) {
+export default function AddHealthAndSafetyTableTabs() {
+  const [breadCrumbData, setBreadCrumbData] = useState(
+    "Household Condition - A"
+  );
+  const tabsData = [
+    "Household Condition-A",
+    "B",
+    "Safety Factors - Indoors A",
+    "B \u00a0\u00a0",
+    "C",
+    "D",
+    "E",
+    "Safety Factors - Outdoor",
+    "Upload Documents",
+  ];
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -28,40 +43,25 @@ AddHealthAndSafetyTableTabs.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={"Health & Safety"}
+      title={breadCrumbData}
     >
-      {page}
-    </Layout>
-  );
-};
-export default function AddHealthAndSafetyTableTabs() {
-  const tabsData = [
-    "Household Condition-A",
-    "B",
-    "Safety Factors - Indoors A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "Safety Factors - Outdoor",
-    "Upload Documents",
-  ];
-  return (
-    <>
-      <HorizaontalTabs
-        tabsDataArray={tabsData}
-      >
-        <HouseholdConditionA />
-        <HouseholdConditionB />
-        <SafetyFactorsIndoorsA/>
-        <SafetyFactorsIndoorsB/>
-        <SafetyFactorsIndoorsC/>
-        <SafetyFactorsIndoorsD/>
-        <SafetyFactorsIndoorsE/>
-        <SafetyFactorsOutdoors/>
-        <UploadDocument/>
+      {/* {page} */}
 
+      {/* return ( */}
+      <HorizaontalTabs tabsDataArray={tabsData}>
+        <HouseholdConditionA
+          formData={(data: any) => console.log(data)}
+          breadCrumbData={setBreadCrumbData}
+        />
+        <HouseholdConditionB breadCrumbData={setBreadCrumbData} />
+        <SafetyFactorsIndoorsA breadCrumbData={setBreadCrumbData} />
+        <SafetyFactorsIndoorsB />
+        <SafetyFactorsIndoorsC />
+        <SafetyFactorsIndoorsD />
+        <SafetyFactorsIndoorsE />
+        <SafetyFactorsOutdoors />
+        <UploadDocument />
       </HorizaontalTabs>
-    </>
+    </Layout>
   );
 }

@@ -16,7 +16,7 @@ export const defaultValues = {
   inspectionDate: new Date(todayDate),
   nextInspectedDate: new Date(todayDate),
 
-  onFile: false,
+  hasFile: false,
   HasPetQuestionnaireCompleted: true,
 
   isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt:
@@ -25,50 +25,65 @@ export const defaultValues = {
 
   improvementsRequireOne: "Text",
 
-  dateOfSocialWorker: new Date(todayDate),
-  signatureOfSocialWorker: "Signature",
+  isThereSufficientSpaceForChildrenToPursueTheirHomework: false,
+  dateToBeCarriedOutTwo: new Date(todayDate),
 
-  nameOfTeamManager: "Brown Cater",
-  signatureOfTeamManager: "signature",
-  dateOfTeamManager: new Date(todayDate),
+  improvementsRequireTwo: "text",
+
+  doRoomsHaveSufficientLightToReadAndPlayBy: false,
+  dateToBeCarriedOutThree: new Date(todayDate),
+
+  improvementsRequireThree: "text",
+
+  willChildOrYoungPersonHisOrHerOwnBedCot: false,
+  dateToBeCarriedOutFour: new Date(todayDate),
+
+  improvementsRequireFour: "text",
 };
 
 export const FormSchema = Yup.object().shape({
   inspectionDate: Yup.date().required("Required"),
   nextInspectedDate: Yup.date().required("Date is required"),
 
-  onFile: Yup.string().required("Required"),
-  HasPetQuestionnaireCompleted: Yup.string().required("Required"),
+  // hasFile: Yup.boolean().required(),
+  // HasPetQuestionnaireCompleted: Yup.string().required("Required"),
 
-  isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt:
-    Yup.string().required("Required"),
+  // isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt:
+  //   Yup.string().required("Required"),
   dateToBeCarriedOutOne: Yup.date().required("Required"),
 
   improvementsRequireOne: Yup.string().required("Required"),
 
-  dateOfSocialWorker: Yup.date().required("Required"),
-  signatureOfSocialWorker: Yup.string().required("Required"),
+  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  // isThereSufficientSpaceForChildrenToPursueTheirHomework:
+  //   Yup.string().required("Required"),
 
-  nameOfTeamManager: Yup.string().required("Required"),
-  signatureOfTeamManager: Yup.string().required("Required"),
-  dateOfTeamManager: Yup.date().required("Required"),
+  improvementsRequireTwo: Yup.string().required("Required"),
+
+  // doRoomsHaveSufficientLightToReadAndPlayBy: Yup.string().required("Required"),
+  dateToBeCarriedOutThree: Yup.date().required("Required"),
+
+  improvementsRequireThree: Yup.string().required("Required"),
+
+  // willChildOrYoungPersonHisOrHerOwnBedCot: Yup.string().required("Required"),
+  dateToBeCarriedOutFour: Yup.date().required("Required"),
+
+  improvementsRequireFour: Yup.string().required("Required"),
+  
 });
 
-export const summaryAndRecommendationFormData = [
-  // {
-  //   id: 0.5,
-  //   variant: "subtitle2",
-  //   heading: "Time scales",
-  // },
+export const householdConditionA_Data = [
   {
     id: 1,
     componentProps: {
       name: "inspectionDate",
+      fullWidth:true,
       label: "Inspection Date",
       multiline: true,
       minRows: 3,
     },
     gridLength: 6,
+
     component: RHFDatePicker,
   },
   {
@@ -77,25 +92,17 @@ export const summaryAndRecommendationFormData = [
       name: "nextInspectedDate",
       label: "Next Inspection Date",
       multiline: true,
+      fullWidth:true,
       minRows: 3,
     },
     gridLength: 6,
     component: RHFDatePicker,
   },
-
-  // {
-  //   id: 3,
-  //   componentProps: {
-  //     name: "anyComments",
-  //     label: "Any comment about duration of assessment",
-  //   },
-  //   gridLength: 6,
-  //   component: RHFTextField,
-  // },
   {
     id: 3,
     gridLength: 6,
     componentProps: {
+      fullWidth:true,
       name: "hasFile",
       label: "Has File",
     },
@@ -105,6 +112,7 @@ export const summaryAndRecommendationFormData = [
     id: 4,
     gridLength: 6,
     componentProps: {
+      fullWidth:true,
       name: "HasPetQuestionnaireCompleted",
       label: "Has pet questionnaire completed ?",
     },
@@ -119,6 +127,7 @@ export const summaryAndRecommendationFormData = [
     id: 5,
     gridLength: 6,
     componentProps: {
+      fullWidth:true,
       name: "isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt",
       label:
         "Is the accomodation suitable for the number of children/young people living or proposed to live in it ?",
@@ -128,6 +137,7 @@ export const summaryAndRecommendationFormData = [
   {
     id: 6,
     componentProps: {
+      fullWidth:true,
       name: "dateToBeCarriedOutOne",
       label: "Date to be carried out",
     },
@@ -146,65 +156,100 @@ export const summaryAndRecommendationFormData = [
     gridLength: 12,
     component: RHFTextField,
   },
-  //   {
-  //     id: 5,
-  //     gridLength: 12,
-  //     otherOptions: {
-  //         name: "response",
-  //         label: "Return response",
-  //         multiline: true,
-  //         minRows: 3,
-  //         fullWidth: true,
-  //     },
-  //     component: RHFTextField,
-  // },
   {
     id: 8,
     gridLength: 6,
     componentProps: {
+      fullWidth:true,
       name: "isThereSufficientSpaceForChildrenToPursueTheirHomework",
       label:
         "Is there sufficient space for the children to pursue their homework ?",
     },
-    component: RHFCheckbox, 
+    component: RHFCheckbox,
   },
-  {
-    id: 8,
-    componentProps: {
-      name: "signatureOfSocialWorker",
-      label: "Signature of social worker completing the report",
-    },
-    gridLength: 6,
-    component: RHFTextField,
-  },
-
   {
     id: 9,
     componentProps: {
-      name: "nameOfTeamManager",
-      label: "Name of team manager responsible for the report",
+      fullWidth:true,
+      name: "dateToBeCarriedOutTwo",
+      label: "Date to be carried out",
     },
     gridLength: 6,
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
 
   {
     id: 10,
     componentProps: {
-      name: "signatureOfTeamManager",
-      label: "Signature of team manager responsible the report",
+      name: "improvementsRequireTwo",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
     },
-    gridLength: 6,
+    gridLength: 12,
     component: RHFTextField,
   },
 
   {
-    id: 11,
+    id:11,
+    gridLength: 6,
     componentProps: {
-      name: "dateOfTeamManager",
-      label: "Date",
+      name: "doRoomsHaveSufficientLightToReadAndPlayBy",
+      label: "Do rooms have sufficient light to read and play by ?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 12,
+    componentProps: {
+      name: "dateToBeCarriedOutThree",
+      label: "Date to be carried out",
     },
     gridLength: 6,
     component: RHFDatePicker,
+  },
+  {
+    id: 13,
+    componentProps: {
+      name: "improvementsRequireThree",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 14,
+    gridLength: 6,
+    componentProps: {
+      name: "willChildOrYoungPersonHisOrHerOwnBedCot",
+      label:
+        "Will the child/young person his/her own bed/cot ? (Note, top bunks not suitable for under 5s)",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 15,
+    componentProps: {
+      name: "dateToBeCarriedOutFour",
+      label: "Date to be carried out",
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 16,
+    componentProps: {
+      name: "improvementsRequireFour",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
   },
 ];
