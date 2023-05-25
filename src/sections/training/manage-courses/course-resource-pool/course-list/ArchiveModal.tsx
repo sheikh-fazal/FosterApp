@@ -5,7 +5,7 @@ import { archiveCourseData } from '.'
 import { FormProvider } from '@root/components/hook-form'
 import { LoadingButton } from '@mui/lab'
 
-const ArchiveModal = ({ open, onClose }: any) => {
+const ArchiveModal = ({ open, onClose, handleArchive }: any) => {
   const { formDataArr } = archiveCourseData;
   const { methods, handleSubmit, onSubmit, isSubmitting } = useCourseArchive();
   return (
@@ -39,13 +39,18 @@ const ArchiveModal = ({ open, onClose }: any) => {
             <Grid item xs={12} sx={{ mt: '-20px' }}>
               <Box
                 sx={{ display: "flex", gap: '1rem' }}>
-                <LoadingButton
+                {/* <LoadingButton
                   type="submit"
                   variant="contained"
                   loading={isSubmitting}
                 >
                   Archive
-                </LoadingButton>
+                </LoadingButton> */}
+                <Button
+                  type="button"
+                  variant="contained"
+                  onClick={handleArchive}
+                >Archive</Button>
                 <Button
                   sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}
                   type="button"

@@ -2,11 +2,13 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CourseArchive from "@root/sections/training/manage-courses/course-resource-pool/course-archive/CourseArchive";
+import { useTheme } from "@mui/material";
+import CourseArchive from "@root/sections/training/manage-courses/course-resource-pool/course-list/CourseList";
 
-const PAGE_TILE = "Course List";
 
-ArchiveCourse.getLayout = function getLayout(page: any) {
+const PAGE_TILE = "Child Protection and Safeguarding";
+
+CourseList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -27,7 +29,8 @@ ArchiveCourse.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function ArchiveCourse() {
+export default function CourseList() {
+  const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
       <CourseArchive />

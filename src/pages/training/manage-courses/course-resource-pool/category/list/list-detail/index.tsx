@@ -2,11 +2,11 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CourseListMain from "@root/sections/training/manage-courses/course-resource-pool/course-list-card/CourseListMain";
+import CourseArchive from "@root/sections/training/manage-courses/course-resource-pool/course-list/CourseList";
 
 const PAGE_TILE = "Child Protection and Safeguarding";
 
-CourseList.getLayout = function getLayout(page: any) {
+ArchiveCourse.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -27,10 +27,10 @@ CourseList.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function CourseList() {
+export default function ArchiveCourse() {
   return (
     <Page title={PAGE_TILE}>
-      <CourseListMain name='courseList' />
+      <CourseArchive  />
     </Page>
   );
 }

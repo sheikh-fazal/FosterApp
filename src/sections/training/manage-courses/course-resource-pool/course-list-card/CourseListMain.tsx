@@ -1,15 +1,16 @@
 import React from 'react'
 import CourseListCard from './CourseListCard'
 import { SELECT_FILTERS, courseList } from '.'
-import { Box, Grid } from '@mui/material'
+import { Box, Card, Grid, Typography } from '@mui/material'
 import TableHeader from '@root/components/TableHeader'
 import { useCourseListCard } from './useCourseListCard'
-const CourseListMain = () => {
+const CourseListMain = ({ name }: any) => {
 
   const { handleCardClick } = useCourseListCard();
 
   return (
-    <Box sx={styles.box}>
+    <Card sx={styles.box}>
+      <Typography variant='subtitle1' sx={{ mb: 2 }}>Course List</Typography>
       <TableHeader
         title={''}
         showSelectFilters
@@ -30,13 +31,13 @@ const CourseListMain = () => {
               isStatus={item.isStatus}
               coverImage={item.coverImage}
               isMandatory={item.isMandatory}
-              handleClick={handleCardClick}
+              handleClick={() => handleCardClick(item.isMandatory, name)}
               maxWidth={'100%'}
             />
           </Grid>
         ))}
       </Grid>
-    </Box>
+    </Card>
   )
 }
 
@@ -44,6 +45,7 @@ export default CourseListMain;
 
 const styles = {
   box: {
+    p: 2,
     '& .MuiStack-root': {
       backgroundColor: 'transparent !important',
       p: '0px !important',

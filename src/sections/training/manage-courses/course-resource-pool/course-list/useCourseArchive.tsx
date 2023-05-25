@@ -7,10 +7,18 @@ export const useCourseArchive = () => {
 
   const { courses } = archiveCourseData;
   const [archiveModal, setArchiveModal] = useState(false);
+  const [rejectModal, setRejectModal] = useState(false);
   const [isArchive, setIsArchive] = useState(false);
+  const [reasonVal, setReasonVal] = useState('');
 
-  const handleArchiveModal = () => setArchiveModal(!archiveModal);
-  const handleIsArchive = () => setIsArchive(true);
+  const handleOpenArchiveModal = () => setArchiveModal(true);
+  const handleCloseArchiveModal = () => setArchiveModal(false);
+  const handleRejectModal = () => setRejectModal(!rejectModal);
+  const hanldeApprove = () => alert('snack bar here');
+  const handleIsArchive = () => { setIsArchive(true); setArchiveModal(false) };
+
+  const handleReasonSubmit = () => { setRejectModal(reasonVal ? false : true) };
+  const handleReasonChange = (event: any) => setReasonVal(event.target.value);
 
   const DurationToHourMin = (i: number) => {
     const totalMinutes: number = courses[i].component.reduce((acc: number, { duration }: any) => {
@@ -44,13 +52,19 @@ export const useCourseArchive = () => {
 
   return {
     DurationToHourMin,
-    handleArchiveModal,
+    handleOpenArchiveModal,
+    handleCloseArchiveModal,
+    handleIsArchive,
+    handleRejectModal,
+    onSubmit,
+    hanldeApprove,
     archiveModal,
     isArchive,
-    handleIsArchive,
     methods,
-    onSubmit,
     handleSubmit,
-    isSubmitting
+    rejectModal,
+    isSubmitting,
+    handleReasonSubmit,
+    handleReasonChange
   }
 }
