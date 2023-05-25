@@ -114,14 +114,13 @@ const Incident = () => {
         />
       </Box>
       <CustomTable
-        data={incidentlist?.data?.incident}
+        data={incidentlist?.data?.incident ?? []}
         columns={columns}
         isLoading={incidentListIsloading}
         isFetching={incidentlistIsfetching}
         isError={incidentListError}
         isSuccess={incidentListIsSuccess}
         isPagination={true}
-        // showSerialNo={true}
         totalPages={incidentlist?.data?.meta?.pages ?? 0}
         currentPage={incidentlist?.data?.meta?.page ?? 1}
         onPageChange={pageChangeHandler}

@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import NextOFKin from "@root/sections/carer-info/other-information/next-of-kin/NextOFKin";
+import NextOfKinForm from "@root/sections/carer-info/other-information/next-of-kin/nextOfKinForm";
 
 // Constants
 const BREADCRUMBS = [
@@ -23,7 +23,7 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "Next of Kin";
 // ----------------------------------------------------------------------
 
-NextOfKin.getLayout = function getLayout(page: any) {
+NextOfKinAction.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -37,10 +37,10 @@ NextOfKin.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function NextOfKin() {
+export default function NextOfKinAction() {
   return (
     <Box>
-      <NextOFKin />
+      <NextOfKinForm />
     </Box>
   );
 }
