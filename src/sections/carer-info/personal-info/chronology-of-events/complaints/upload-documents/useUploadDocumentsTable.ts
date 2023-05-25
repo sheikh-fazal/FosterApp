@@ -19,7 +19,8 @@ export const useUploadDocumentsTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const theme: any = useTheme();
   const [error, setError] = React.useState<any>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const modelHandler = () => (open === true ? setOpen(false) : setOpen(true));
 
   const {
     data,
@@ -72,6 +73,7 @@ export const useUploadDocumentsTable = () => {
       enqueueSnackbar("Documents Uploaded Successfully", {
         variant: "success",
       });
+      setOpen(false);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -92,8 +94,6 @@ export const useUploadDocumentsTable = () => {
     complaintDocument,
     setError,
     loadingList,
-    isLoading,
-    setIsLoading,
     postComplaintDetails,
     theme,
     onSubmit,
@@ -105,5 +105,7 @@ export const useUploadDocumentsTable = () => {
     isSubmitting,
     id,
     getValues,
+    modelHandler,
+    open,
   };
 };

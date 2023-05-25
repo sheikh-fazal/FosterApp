@@ -39,7 +39,15 @@ const ViewProfile = () => {
       </Box>
       <Typography variant="subtitle2" sx={styles.locationText}>
         {isLoading ? (
-          <Skeleton animation="wave" variant="text" />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "0 auto",
+            }}
+          >
+            <Skeleton animation="wave" variant="text" width={350} />
+          </Box>
         ) : (
           data?.data?.location ?? "-"
         )}

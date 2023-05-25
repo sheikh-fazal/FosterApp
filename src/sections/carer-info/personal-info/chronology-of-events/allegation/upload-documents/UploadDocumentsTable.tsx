@@ -24,9 +24,10 @@ function UploadedDocumentsTable() {
     listDeleteHandler,
     action,
     id,
+    modelHandler,
+    uploadDocumentsHandler,
+    open,
   } = useUploadDocumentsTable();
-  const [open, setOpen] = React.useState(false);
-  const modelHander = () => (open === true ? setOpen(false) : setOpen(true));
 
   const columns = [
     {
@@ -113,13 +114,17 @@ function UploadedDocumentsTable() {
                 variant: "error",
               });
             } else {
-              return modelHander();
+              return modelHandler();
             }
           }}
         />
       </Box>
       {/* Upload Documents Modal */}
-      <UploadDocumentsModal open={open} setOpen={setOpen} />
+      <UploadDocumentsModal
+        open={open}
+        setOpen={modelHandler}
+        uploadDocumentsHandler={uploadDocumentsHandler}
+      />
       <CustomTable
         data={allegationDocuments}
         columns={columns}

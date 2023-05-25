@@ -122,7 +122,6 @@ const ComplaintsTable = () => {
         isPagination={true}
         currentPage={meta?.page}
         totalPages={meta?.pages}
-        showSerialNo
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

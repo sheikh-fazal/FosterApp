@@ -6,18 +6,15 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 import { LoadingButton } from "@mui/lab";
+import useAuth from "@root/hooks/useAuth";
 
 function UploadDocumentsModal(props: any) {
-  const { open, setOpen } = props;
+  const { open, setOpen, onSubmit } = props;
   const {
-    theme,
-    onSubmit,
-    action,
-    handleSubmit,
-    methods,
-    isSubmitting,
-    getValues,
-  } = useUploadDocumentsTable();
+    user: { firstName, lastName },
+  }: any = useAuth();
+  const { theme, action, handleSubmit, methods, isSubmitting } =
+    useUploadDocumentsTable();
   return (
     <>
       {open && (
@@ -39,7 +36,7 @@ function UploadDocumentsModal(props: any) {
               sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
             >
               <Typography variant="subtitle1">
-                Person Uploaded: {getValues("uploadBy")}
+                Person Uploaded: {`${firstName} ${lastName}`}
               </Typography>
               <CloseIcon
                 onClick={() => setOpen(false)}

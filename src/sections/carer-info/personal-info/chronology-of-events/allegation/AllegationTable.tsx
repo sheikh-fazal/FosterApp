@@ -121,7 +121,6 @@ const AllegationTable = () => {
         isSuccess={allegationListIsSuccess}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
-        showSerialNo
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

@@ -20,13 +20,13 @@ function UploadedDocumentsTable() {
     meta,
     action,
     id,
+    onSubmit,
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
+    modelHandler,
+    open,
   } = useUploadDocumentsTable();
-
-  const [open, setOpen] = React.useState(false);
-  const modelHander = () => (open === true ? setOpen(false) : setOpen(true));
 
   const columns = [
     {
@@ -111,12 +111,16 @@ function UploadedDocumentsTable() {
               variant: "error",
             });
           } else {
-            return modelHander();
+            return modelHandler();
           }
         }}
       />
       {/* Upload Documents Modal */}
-      <UploadDocumentsModal open={open} setOpen={setOpen} />
+      <UploadDocumentsModal
+        open={open}
+        setOpen={modelHandler}
+        onSubmit={onSubmit}
+      />
       <CustomTable
         data={complaintDocument}
         columns={columns}

@@ -15,10 +15,10 @@ export const useUploadDocumentsTable = () => {
   const [search, setSearch] = React.useState("");
   const router = useRouter();
   const { id, action }: any = router.query;
+  const [open, setOpen] = React.useState(false);
+  const modelHandler = () => (open === true ? setOpen(false) : setOpen(true));
   const tableHeaderRefTwo = useRef<any>();
   const theme: any = useTheme();
-  const [error, setError] = React.useState<any>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const {
@@ -48,7 +48,6 @@ export const useUploadDocumentsTable = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-
   const allegationDocuments = data?.data?.allegation_documents;
   const meta = data?.meta;
   const methods: any = useForm({
@@ -61,7 +60,7 @@ export const useUploadDocumentsTable = () => {
     formState: { isSubmitting },
   } = methods;
   //Submit Function To Submit Form Data
-  const onSubmit = async (data: any) => {
+  const uploadDocumentsHandler = async (data: any) => {
     const formData = new FormData();
     formData.append("type", data.type);
     formData.append("documentDate", data.documentDate);
@@ -70,12 +69,11 @@ export const useUploadDocumentsTable = () => {
     formData.append("allegationId", id);
     try {
       await postAllegationDetails(formData).unwrap();
-      setIsLoading(false);
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });
+      setOpen(false);
     } catch (error: any) {
-      setIsLoading(false);
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
@@ -87,17 +85,13 @@ export const useUploadDocumentsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     isError,
-    onSubmit,
+    uploadDocumentsHandler,
     isFetching,
     isSuccess,
     loadingList,
     allegationDocuments,
-    error,
     id,
     meta,
-    setError,
-    isLoading,
-    setIsLoading,
     postAllegationDetails,
     theme,
     action,
@@ -107,5 +101,7 @@ export const useUploadDocumentsTable = () => {
     methods,
     isSubmitting,
     getValues,
+    modelHandler,
+    open,
   };
 };
