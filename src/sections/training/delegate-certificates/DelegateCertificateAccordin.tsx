@@ -1,29 +1,39 @@
-import CustomAccordian from '@root/components/CustomAccordian'
+// states here
 import React, { useState } from 'react'
-import { accordionData } from '.'
+
+// material ui tags import
 import { Box, Button, Card, FormControl, Grid, InputAdornment, Menu, MenuItem, Stack, TextField } from '@mui/material'
-import { useRouter } from 'next/router'
+
+// table,global component and  table data
+import DelegateCertificatesTable from './delegate-certificates-table/DelegateCertificatesTable'
+import { accordionData } from '.'
+import CustomAccordian from '@root/components/CustomAccordian'
+
+// modals 
+import TitleInputModal from './title-input-modal/TitleInputModal'
+import DeleteModel from '@root/components/modal/DeleteModel'
+
+// material ui icons assets
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import PrintIcon from "@mui/icons-material/Print";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
-import DelegateCertificatesTable from './delegate-certificates-table/DelegateCertificatesTable'
-import TitleInputModal from './title-input-modal/TitleInputModal'
 
 
 const DelegateCertificateAccordin = () => {
+
+  // states here
   const [items, setitems] = React.useState("");
+  const [cancelDelete, setCancelDelete] = React.useState(false);
   const [addRow, setAddRow] = useState(accordionData);
   const [editRowId, setEditRowId] = useState('');
-  const [modalType, setModalType] = useState({
-    type: "",
-    value: ""
-  });
+  const [modalType, setModalType] = useState({type: "",value: ""});
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  // const here
   const handleChange = (event: any) => {
     setitems(event.target.value);
   };
-
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -31,7 +41,6 @@ const DelegateCertificateAccordin = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
 
   const addRowHandler = (data: any, editRowId: any) => {
     const newObj = {
@@ -44,7 +53,6 @@ const DelegateCertificateAccordin = () => {
     setAddRow([...filteredRows, newObj]);
 
   };
-
 
   return (
     <Card sx={{ p: 2 }}>
@@ -133,10 +141,15 @@ const DelegateCertificateAccordin = () => {
                   type: "Edit"
                 })
               }}
+              handleRowDelete={(item: any) => {
+                setCancelDelete(!cancelDelete)
+                console.log("delete group",item)
+              }}
             />
           </Grid>
         </Grid>
         <TitleInputModal open={modalType.type} editRowId={editRowId} addRowHandler={addRowHandler} handleClose={() => { setModalType({ type: "", value: "" }); }} />
+        <DeleteModel open={cancelDelete} onDeleteClick={(event: any) => {event.stopPropagation(); event.nativeEvent.preventDefault(); setCancelDelete(!cancelDelete)}} handleClose={(event: any) => { event.stopPropagation();event.nativeEvent.preventDefault();setCancelDelete(!cancelDelete)}} />
 
       </Box>
     </Card>

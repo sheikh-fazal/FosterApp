@@ -39,6 +39,7 @@ const TitleInputModal = (props: any) => {
     reset(); // Reset the form
   };
 
+  
   const cancelTitleModal = () => {
     handleClose();
     reset(); // Reset the form

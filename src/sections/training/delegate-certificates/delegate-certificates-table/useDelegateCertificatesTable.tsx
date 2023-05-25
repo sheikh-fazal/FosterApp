@@ -1,9 +1,6 @@
 
-import React, { useRef, useState } from 'react'
-import TableAction from '@root/components/TableAction';
-import { useTableParams } from '@root/hooks/useTableParams';
+import React, {useState } from 'react'
 import { defaultValues } from ".";
-import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 export const useDelegateCertificatesTable = () => {

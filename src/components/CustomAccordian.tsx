@@ -7,14 +7,9 @@ import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
-import DeleteModel from "./modal/DeleteModel";
-const CustomAccordian = ({ handleTitleEdit, showBtn, data, className, ...rest }: any) => {
+const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn, data, className, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
-  const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
-  const handleDelete = () => {
-    setCancelDelete(!cancelDelete);
-  };
   return (
     <>
       {data?.map((item: any) => (
@@ -80,36 +75,15 @@ const CustomAccordian = ({ handleTitleEdit, showBtn, data, className, ...rest }:
                 <Stack direction="row" spacing={1}>
                   <TableAction size="small" type="edit" onClicked={(event: any) => {
                     event.stopPropagation();
-                    event.nativeEvent.preventDefault();
-                    
+                    event.nativeEvent.preventDefault();                   
                     handleTitleEdit(item);
                   }} />
-                  <TableAction
-                    size="small"
-                    type="delete"
-                    onClicked={(event: any) => {
-                      setCancelDelete(!cancelDelete)
+                  <TableAction size="small" type="delete" onClicked={(event: any) => {
                       event.stopPropagation();
                       event.nativeEvent.preventDefault();
+                      handleRowDelete(item)
                     }}
                   />
-
-                  <DeleteModel
-                    open={cancelDelete}
-                    onDeleteClick={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                      handleDelete();
-
-                    }}
-                    handleClose={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                      setCancelDelete(!cancelDelete)
-                    }}
-
-                  />
-
                 </Stack>
 
               )}
