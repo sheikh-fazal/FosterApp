@@ -9,8 +9,15 @@ import { LoadingButton } from "@mui/lab";
 
 function UploadDocumentsModal(props: any) {
   const { open, setOpen } = props;
-  const { theme, onSubmit, action, handleSubmit, methods } =
-    useUploadDocumentsTable();
+  const {
+    theme,
+    onSubmit,
+    action,
+    handleSubmit,
+    methods,
+    isSubmitting,
+    getValues,
+  } = useUploadDocumentsTable();
   return (
     <>
       {open && (
@@ -31,7 +38,9 @@ function UploadDocumentsModal(props: any) {
             <Box
               sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
             >
-              <Typography variant="subtitle1">Person Uploaded: </Typography>
+              <Typography variant="subtitle1">
+                Person Uploaded: {getValues("uploadBy")}
+              </Typography>
               <CloseIcon
                 onClick={() => setOpen(false)}
                 sx={{ cursor: "pointer" }}
@@ -69,6 +78,7 @@ function UploadDocumentsModal(props: any) {
                   (action === "edit" && (
                     <LoadingButton
                       type="submit"
+                      loading={isSubmitting}
                       sx={{
                         bgcolor: theme.palette.primary.main,
                         "&:hover": { bgcolor: theme.palette.orange.main },

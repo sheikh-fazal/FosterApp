@@ -45,7 +45,13 @@ export const useComplaintsForm = (action: any, id: any) => {
     defaultValues: getDefaultValue,
   });
 
-  const { setValue, trigger, handleSubmit, getValues } = methods;
+  const {
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = methods;
 
   // Submit Function
   const onSubmit = async (data: any) => {
@@ -113,5 +119,6 @@ export const useComplaintsForm = (action: any, id: any) => {
     handleSubmit,
     getValues,
     methods,
+    isSubmitting,
   };
 };

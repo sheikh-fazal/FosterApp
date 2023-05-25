@@ -6,7 +6,6 @@ import {
   usePostComplaintDocumentsMutation,
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/uploadDocumentsApi";
-import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
@@ -55,7 +54,11 @@ export const useUploadDocumentsTable = () => {
     resolver: yupResolver(formSchema),
     defaultValues,
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = methods;
   //Submit Function Handles Here
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -99,6 +102,8 @@ export const useUploadDocumentsTable = () => {
     setSearch,
     handleSubmit,
     methods,
+    isSubmitting,
     id,
+    getValues,
   };
 };

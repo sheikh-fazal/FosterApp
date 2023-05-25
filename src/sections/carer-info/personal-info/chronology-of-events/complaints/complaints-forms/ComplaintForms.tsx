@@ -13,6 +13,7 @@ import { complaintsFormData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useComplaintsForm } from "./useComplaintsForm";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { LoadingButton } from "@mui/lab";
 function ComplaintForms(props: any) {
   const { action, id } = props;
   //Complaints Custom Hook
@@ -27,6 +28,7 @@ function ComplaintForms(props: any) {
     handleSubmit,
     getValues,
     methods,
+    isSubmitting,
   } = useComplaintsForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
@@ -122,8 +124,9 @@ function ComplaintForms(props: any) {
               }}
               item
             >
-              <Button
+              <LoadingButton
                 type="submit"
+                loading={isSubmitting}
                 sx={{
                   bgcolor: theme.palette.primary.main,
                   "&:hover": { bgcolor: theme.palette.primary.main },
@@ -131,7 +134,7 @@ function ComplaintForms(props: any) {
                 variant="contained"
               >
                 Submit
-              </Button>
+              </LoadingButton>
               <Button
                 sx={{
                   bgcolor: theme.palette.grey[800],
@@ -158,7 +161,7 @@ function ComplaintForms(props: any) {
                   )
                 }
               >
-                back
+                Back
               </Button>
             </Grid>
           ) : null}
@@ -180,7 +183,7 @@ function ComplaintForms(props: any) {
                 )
               }
             >
-              back
+              Back
             </Button>
           </Grid>
         </Grid>

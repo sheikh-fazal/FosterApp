@@ -55,7 +55,11 @@ export const useUploadDocumentsTable = () => {
     resolver: yupResolver(formSchema),
     defaultValues,
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = methods;
   //Submit Function To Submit Form Data
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -76,7 +80,6 @@ export const useUploadDocumentsTable = () => {
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
   };
-
   return {
     router,
     tableHeaderRefTwo,
@@ -102,5 +105,7 @@ export const useUploadDocumentsTable = () => {
     setSearch,
     handleSubmit,
     methods,
+    isSubmitting,
+    getValues,
   };
 };

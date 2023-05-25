@@ -27,6 +27,7 @@ function AllegationForm(props: any) {
     getValues,
     methods,
     isFetching,
+    isSubmitting,
   } = useAllegationForm(action, id);
 
   if (isLoading) return <SkeletonFormdata />;
@@ -125,6 +126,7 @@ function AllegationForm(props: any) {
             >
               <LoadingButton
                 type="submit"
+                loading={isSubmitting}
                 sx={{
                   bgcolor: theme.palette.primary.main,
                   "&:hover": { bgcolor: theme.palette.primary.main },
@@ -159,7 +161,7 @@ function AllegationForm(props: any) {
                   )
                 }
               >
-                back
+                Back
               </LoadingButton>
             </Grid>
           ) : null}
@@ -181,7 +183,7 @@ function AllegationForm(props: any) {
                 )
               }
             >
-              back
+              Back
             </LoadingButton>
           </Grid>
         </Grid>

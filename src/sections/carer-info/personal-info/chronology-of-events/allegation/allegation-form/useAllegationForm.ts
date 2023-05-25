@@ -46,7 +46,13 @@ export const useAllegationForm = (action: any, id: any) => {
     resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
-  const { setValue, trigger, handleSubmit, getValues } = methods;
+  const {
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = methods;
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
@@ -108,5 +114,6 @@ export const useAllegationForm = (action: any, id: any) => {
     getValues,
     methods,
     isFetching,
+    isSubmitting,
   };
 };
