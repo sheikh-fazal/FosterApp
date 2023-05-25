@@ -20,13 +20,32 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
-    patchRegularAssessmentDetail: builder.mutation({
-      query: ({ body, id }) => ({
-        url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
-        method: "PATCH",
-        body,
-      }),
+    patchRegularAssessmentDetail: builder.mutation<null, void>({
+      query: (data: any) => {
+        const { id, regularAssessmentForm } = data;
+        console.log("🚀 ~ file: assessmentStageOneApi.tsx:27 ~ id:", id);
+
+        return {
+          url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
+
+          method: "PATCH",
+
+          body: regularAssessmentForm,
+        };
+      },
+
+      invalidatesTags: [TAG],
     }),
+    // patchRegularAssessmentDetail: builder.mutation<null, void>({
+    //   query: ( body:any) => ({
+    //     const {id,regularAssessmentForm}=body;
+    //     return{
+    //       url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
+    //       method: "PATCH",
+    //       body:regularAssessmentForm
+    //     }
+    //   }),
+    // }),
     postRegularAssessmentDetail: builder.mutation({
       query: (body) => ({
         url: `/assessment-stage-one/regular-assessment-meeting`,

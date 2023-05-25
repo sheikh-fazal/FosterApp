@@ -71,9 +71,10 @@ const RegularAssessmentMeetingList = (props: any) => {
     },
 
     {
-      accessorFn: (row: any) => row?.nextAssessmentDate + " " + row?.nextAssessmentTime,
+      accessorFn: (row: any) =>
+        row?.nextAssessmentDate + " " + dayjs(row?.nextAssessmentTime).format("hh:mm A"),
       id: "nextAssessmentDate",
-      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      // cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "Next Assessment plan",
       isSortable: true,
     },
