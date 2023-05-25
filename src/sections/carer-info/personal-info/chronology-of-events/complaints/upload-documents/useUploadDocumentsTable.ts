@@ -21,6 +21,7 @@ export const useUploadDocumentsTable = () => {
   const theme: any = useTheme();
   const [error, setError] = React.useState<any>(null);
   const [isLoading, setIsLoading] = React.useState(true);
+
   const {
     data,
     isError,
@@ -57,30 +58,21 @@ export const useUploadDocumentsTable = () => {
   const { handleSubmit } = methods;
   //Submit Function Handles Here
   const onSubmit = async (data: any) => {
-    if (!id) {
-      enqueueSnackbar("Please Fill The Complaint Form First", {
-        variant: "error",
+    const formData = new FormData();
+    formData.append("type", data.type);
+    formData.append("documentDate", data?.documentDate);
+    formData.append("password", data.password);
+    formData.append("file", data.file);
+    formData.append("complaintId", id);
+    try {
+      await postComplaintDetails(formData).unwrap();
+      enqueueSnackbar("Documents Uploaded Successfully", {
+        variant: "success",
       });
-    } else {
-      const formData = new FormData();
-      formData.append("type", data.type);
-      formData.append(
-        "documentDate",
-        dayjs(data?.documentDate).format("MM/DD/YYYY")
-      );
-      formData.append("password", data.password);
-      formData.append("file", data.file);
-      formData.append("complaintId", id);
-      try {
-        await postComplaintDetails(formData).unwrap();
-        enqueueSnackbar("Documents Uploaded Successfully", {
-          variant: "success",
-        });
-      } catch (error: any) {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-        router.push("/carer-info/personal-info/carer-chronology-of-events");
-      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      router.push("/carer-info/personal-info/carer-chronology-of-events");
     }
   };
   return {
