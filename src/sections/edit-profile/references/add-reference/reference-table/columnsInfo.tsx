@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
-export const Columns = (parms: any) => {
+export const getColumns = (parms: any) => {
   const { openUpdateModel } = parms;
   return [
     {

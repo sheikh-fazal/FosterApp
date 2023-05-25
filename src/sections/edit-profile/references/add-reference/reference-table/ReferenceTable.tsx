@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import { useRefereneceTable } from "./use-reference-table";
+import { useRefereneceTable } from "./useReferenceTable";
 import CustomTable from "@root/components/Table/CustomTable";
-import { Columns } from "./columns-info";
+import { getColumns } from "./columnsInfo";
 import UpdateRefForm from "./update-reference-form/UpdateRefForm";
 // import { columns } from "./columns-info";
 
@@ -22,7 +22,7 @@ const ReferenceTable = () => {
   const openUpdateModel = (id: string) => {
     setTableStatusInfo((pre) => ({ ...pre, updateModel: true, updateId: id }));
   };
-  const columns = Columns({ openUpdateModel });
+  const columns = getColumns({ openUpdateModel });
   return (
     <>
       <Grid container>
