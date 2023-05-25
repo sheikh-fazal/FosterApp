@@ -11,7 +11,10 @@ export const UPLOADDOCUMENTSFORMDATA = [
       fullWidth: true,
       select: true,
     },
-    options: [{ value: "word", label: "Word" }],
+    options: [
+      { value: "word", label: "Word" },
+      { value: "pdf", label: "PDF" },
+    ],
     component: RHFSelect,
   },
   {
@@ -19,7 +22,7 @@ export const UPLOADDOCUMENTSFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "Document Date",
-      name: "documentDate",
+      name: "date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -30,7 +33,7 @@ export const UPLOADDOCUMENTSFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "Password To Open Document",
-      name: "passwordToOpenDocument",
+      name: "password",
       fullWidth: true,
     },
     component: RHFTextField,

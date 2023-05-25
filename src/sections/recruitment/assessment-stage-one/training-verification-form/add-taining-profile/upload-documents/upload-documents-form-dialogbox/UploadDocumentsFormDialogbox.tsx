@@ -45,13 +45,6 @@ const UploadDocumentsFormDialogbox = (props: any) => {
                   <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                     <>
                       <Grid>
-                        {/* <Typography
-                          color={theme.palette.primary.main}
-                          variant="body2"
-                        >
-                          {form.heading}
-                        </Typography> */}
-
                         <form.component
                           disabled={disabled}
                           size="small"
@@ -73,7 +66,7 @@ const UploadDocumentsFormDialogbox = (props: any) => {
 
               <Grid item xs={12} md={12} p={2}>
                 <Typography variant="h6">Front Sheet</Typography>
-                <RHFUploadFile name="chooseFile" {...methods} />
+                <RHFUploadFile name="file" {...methods} />
               </Grid>
 
               <Grid item xs={12}>

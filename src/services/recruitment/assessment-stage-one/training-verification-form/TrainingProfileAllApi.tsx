@@ -27,9 +27,16 @@ export const trainingPRofileAllApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     getTrainingProfileAllDocument: builder.query({
-      query: (trainingProfileId:any) => `/training-profile/document/all`,
+      query: (trainingProfileId:any) => `/training-profile/document/all?trainingProfileId=${trainingProfileId}`,
 
     }),
+    postTrainingProfileDocument: builder.mutation<null, void>({
+      query: ({body, trainingProfileId}:any)=>({
+        url: `/training-profile/document?trainingProfileId=${trainingProfileId}`,
+        method: 'POST',
+        body
+      })
+    })
   }),
 });
 
@@ -38,5 +45,6 @@ export const {
   useGetSingleTrainingProfileDataQuery,
   usePostTrainingProfileApiMutation,
   usePatchTrainingProfileApiMutation,
-  useGetTrainingProfileAllDocumentQuery
+  useGetTrainingProfileAllDocumentQuery,
+  usePostTrainingProfileDocumentMutation
 } = trainingPRofileAllApi;

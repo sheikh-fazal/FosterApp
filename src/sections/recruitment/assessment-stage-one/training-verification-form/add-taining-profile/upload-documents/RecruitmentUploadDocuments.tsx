@@ -5,44 +5,54 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import UploadDocumentsFormDialogbox from "./upload-documents-form-dialogbox/UploadDocumentsFormDialogbox";
 import useRecruitmentUploadDocuments from "./useRecruitmentUploadDocuments";
+import IsFetching from "@root/components/loaders/IsFetching";
+import { columnsRecruitmentUpload } from ".";
 
 const RecruitmentUploadDocuments = () => {
-  const { columns, data, openFormDialog, setOpenFormDialog, deleteList } =
-    useRecruitmentUploadDocuments();
+  const {
+    data,
+    openFormDialog,
+    setOpenFormDialog,
+    deleteList,
+    isFetching,
+    isLoading,
+  } = useRecruitmentUploadDocuments();
 
   return (
     <>
-      <Card>
-        <TableHeader
-          showAddBtn
-          title="Uploaded Documents"
-          onAdd={() => {
-            setOpenFormDialog(true);
-          }}
-        />
-        <CustomTable
-          data={data}
-          columns={columns}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          // rootSX={{ my: theme.spacing(2) }}
-        />
-      </Card>
-      
+      {isLoading ? (
+        <IsFetching isFetching={isLoading} />
+      ) : (
+        <Card>
+          <TableHeader
+            showAddBtn
+            title="Uploaded Documents"
+            onAdd={() => {
+              setOpenFormDialog(true);
+            }}
+          />
+          <CustomTable
+            data={data?.data?.docs}
+            columns={columnsRecruitmentUpload}
+            isLoading={false}
+            isFetching={false}
+            isError={false}
+            isSuccess={true}
+            currentPage={1}
+            onPageChange={(data: any) => {
+              console.log("Current page data: ", data);
+            }}
+            onSortByChange={(data: any) => {
+              console.log("Sort by: ", data);
+            }}
+          />
+        </Card>
+      )}
+
       <UploadDocumentsFormDialogbox
         openFormDialog={openFormDialog}
         setOpenFormDialog={setOpenFormDialog}
       />
-      
     </>
   );
 };
