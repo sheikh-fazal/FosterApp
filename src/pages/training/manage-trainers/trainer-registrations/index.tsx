@@ -2,11 +2,12 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CourseEvaluation from "@root/sections/training/manage-trainees/course-evaluation-form/CourseEvaluation";
+import { Card, useTheme } from "@mui/material";
+import TrainerRegistrationtTable from "@root/sections/training/manage-trainers/trainer-registration/TrainerRegistrationTable";
 
-const PAGE_TILE = "Trainer Evaluation Form";
+const PAGE_TILE = "Trainer Registration managment";
 
-TrainerEvaluationForm.getLayout = function getLayout(page: any) {
+TrainerRegistration.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -27,10 +28,13 @@ TrainerEvaluationForm.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function TrainerEvaluationForm() {
+export default function TrainerRegistration() {
+  const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
-      <CourseEvaluation />
+      <Card sx={{ p: 2 }}>
+        <TrainerRegistrationtTable />
+      </Card>
     </Page>
   );
 }

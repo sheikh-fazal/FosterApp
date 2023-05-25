@@ -2,11 +2,10 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CourseEvaluation from "@root/sections/training/manage-trainees/course-evaluation-form/CourseEvaluation";
+import { EmployeeResources } from "@root/sections/training/manage-courses/course-resource-pool/employee-resources/EmployeeResources";
+const PAGE_TILE = "Course Sub Categories";
 
-const PAGE_TILE = "Trainer Evaluation Form";
-
-TrainerEvaluationForm.getLayout = function getLayout(page: any) {
+FosterCarerResource.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,7 +16,7 @@ TrainerEvaluationForm.getLayout = function getLayout(page: any) {
           href: "/training",
         },
         {
-          name: "Manage Trainers",
+          name: "Course Categories",
         },
       ]}
       title={PAGE_TILE}
@@ -27,10 +26,10 @@ TrainerEvaluationForm.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function TrainerEvaluationForm() {
+export default function FosterCarerResource() {
   return (
     <Page title={PAGE_TILE}>
-      <CourseEvaluation />
+      <EmployeeResources />
     </Page>
   );
 }
