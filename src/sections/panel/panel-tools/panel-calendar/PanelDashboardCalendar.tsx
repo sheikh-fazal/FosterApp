@@ -5,7 +5,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import dayjs from 'dayjs';
 import { Typography, styled, useTheme } from '@mui/material';
 
-const PanelCalendar = () => {
+const PanelDashboardCalendar = () => {
     const theme = useTheme();
     return (
         <NewCalender
@@ -17,7 +17,7 @@ const PanelCalendar = () => {
     )
 }
 
-export default PanelCalendar
+export default PanelDashboardCalendar
 
 const NewCalender = styled(({ iconsStyles, ...props }: any) => (
     <Calendar

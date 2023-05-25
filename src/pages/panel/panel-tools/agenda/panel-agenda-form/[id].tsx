@@ -2,8 +2,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import { useRouter } from "next/router";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home";
-import PanelAgendaForm from "@root/sections/panel/panel-agenda/panel-agenda-form/panelAgendaForm";
+import HomeIcon from "@mui/icons-material/Home"; 
+import PanelAgendaForm from "@root/sections/panel/panel-tools/panel-agenda/panel-agenda-form/panelAgendaForm";
 
 // =======================================================================================================
 
