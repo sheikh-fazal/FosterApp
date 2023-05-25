@@ -166,7 +166,7 @@ export const summaryAndRecommendationFormData = [
       label:
         "Is there sufficient space for the children to pursue their homework ?",
     },
-    component: RHFCheckbox,
+    component: RHFCheckbox, 
   },
   {
     id: 8,
