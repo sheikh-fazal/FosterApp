@@ -84,7 +84,7 @@ export const BForm = [
   {
     id: 7,
     componentProps: {
-      name: "noFurtherAction",
+      name: "multiCheck",
       sx: { mb: 4 },
       value:"Permanant",
       options: ["Q&A, Participants Questions", "Training session: Presentation Mode"]
@@ -106,43 +106,27 @@ export const BForm = [
 ];
 
 export const defaultValues = {
-  userCode: "",
-  referredBy: "",
-  referralDate: "",
-  approvedBy: "",
-  userGeography: "",
-  localAuthority: "",
-  requestDateNotified: "",
-  branchManagerEmail: "",
-  branchAddress: "",
-  branchManagerName: "",
-  branchManagerTelephone: "",
-  areaTeam: "",
-  EDTNumber: "",
-  behavioural: "",
-  otherDetails: "",
-  referralStatus: "",
-  noFurtherAction: "",
+  title: "",
+  date: "",
+  time: "",
+  duration: "",
+  timeZone: "",
+  venue: "",
+  trainingSessionAgenda: "",
+  multiCheck: "",
+  uploadImage: "",
 };
 
 export const BFormValidationSchema = Yup.object().shape({
-  userCode: Yup.string().trim().required("Field is Required"),
-  referredBy: Yup.string().trim().required("Field is Required"),
-  referralDate: Yup.string().trim().required("Field is Required"),
-  approvedBy: Yup.string().trim().required("Field is Required"),
-  userGeography: Yup.string().trim().required("Field is Required"),
-  localAuthority: Yup.string().trim().required("Field is Required"),
-  requestDateNotified: Yup.string().trim().required("Field is Required"),
-  branchManagerEmail: Yup.string().trim().required("Field is Required"),
-  branchAddress: Yup.string().trim().required("Field is Required"),
-  branchManagerName: Yup.string().trim().required("Field is Required"),
-  branchManagerTelephone: Yup.string().trim().required("Field is Required"),
-  areaTeam: Yup.string().trim().required("Field is Required"),
-  EDTNumber: Yup.string().trim().required("Field is Required"),
-  behavioural: Yup.string().trim().required("Field is Required"),
-  otherDetails: Yup.string().trim().required("Field is Required"),
-  referralStatus: Yup.string().trim().required("Field is Required"),
-  noFurtherAction: Yup.string().trim().required("Field is Required"),
+  title: Yup.string().trim().required("Field is Required"),
+  date: Yup.string().trim().required("Field is Required"),
+  time: Yup.string().trim().required("Field is Required"),
+  duration: Yup.string().trim().required("Field is Required"),
+  timeZone: Yup.string().trim().required("Field is Required"),
+  venue: Yup.string().trim().required("Field is Required"),
+  trainingSessionAgenda: Yup.string().trim().required("Field is Required"),
+  multiCheck: Yup.string().trim().required("Field is Required"),
+  uploadImage: Yup.string().trim().required("Field is Required"),
 });
 
 export { default as AddTrainingSessionDetails } from "./AddTrainingSessionDetails";
