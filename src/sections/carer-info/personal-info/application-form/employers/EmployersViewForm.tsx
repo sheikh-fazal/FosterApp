@@ -16,7 +16,7 @@ export default function EmployersViewForm(props: any) {
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: props?.employerData,
   });
 
   const {
@@ -59,7 +59,11 @@ export default function EmployersViewForm(props: any) {
         {formData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
-              <form.component size="small" {...form.otherOptions}>
+              <form.component
+                size="small"
+                disabled={props.disabled}
+                {...form.otherOptions}
+              >
                 {form.otherOptions.select
                   ? form.options.map((option: any) => (
                       <option key={option.value} value={option.value}>
@@ -75,7 +79,7 @@ export default function EmployersViewForm(props: any) {
         <Grid item xs={12}>
           <Button
             onClick={() => {
-              props.changeView(false);
+              props.changeView(null);
             }}
             type="button"
             variant="contained"

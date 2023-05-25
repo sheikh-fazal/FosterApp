@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 // utils
@@ -15,6 +17,7 @@ export const defaultValues = {
 
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
+  middleName: Yup.string().required("Middle Name is required"),
   lastName: Yup.string().required("Last Name is required"),
   address: Yup.string()
     .required("Address is required")
@@ -34,12 +37,12 @@ export const formData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "lastName", label: "Last Name", fullWidth: true },
+    otherOptions: { name: "middleName", label: "Middle Name", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "telephone", label: "Telephone", fullWidth: true },
+    otherOptions: { name: "lastName", label: "Last Name", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -69,4 +72,46 @@ export const formData = [
     component: RHFTextField,
   },
 ];
-export { default as Reference } from "./Reference";
+
+export const columns = (changeView: any, setRefData: any) =>{
+  return[
+    {
+      accessorFn: (row: any) => `${row.firstName}  ${row.lastName}`,
+      id: "firstName",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Name</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.phone,
+      id: "phone",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Phone</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.email,
+      id: "email",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Email</span>,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="view"
+            onClicked={() => {
+              setRefData(info.row.original);
+              changeView("view");
+            }}
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
+  
+} 
+export { default as Reference } from "./ReferenceTable";

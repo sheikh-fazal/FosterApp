@@ -19,9 +19,9 @@ import {
   defaultValues as placementPreferenceDefaultValues,
 } from "@root/sections/carer-info/personal-info/application-form/placement-preference";
 import FamilyTable from "@root/sections/carer-info/personal-info/application-form/family/FamilyTable";
-import Reference from "@root/sections/carer-info/personal-info/application-form/reference/Reference";
-import Employers from "@root/sections/carer-info/personal-info/application-form/employers/Employers";
-import ExPartners from "@root/sections/carer-info/personal-info/application-form/ex-partners/ExPartners";
+import Reference from "@root/sections/carer-info/personal-info/application-form/reference/ReferenceTable";
+import Employers from "@root/sections/carer-info/personal-info/application-form/employers/EmployersTable";
+import ExPartners from "@root/sections/carer-info/personal-info/application-form/ex-partners/ExPartnersTable";
 import IsFetching from "@root/components/loaders/IsFetching";
 
 //  @mui icons
@@ -109,9 +109,9 @@ export default function ApplicationForm() {
           }}
           disabled={true}
         />
-        <FamilyTable />
-        <Reference />
-        <Employers />
+        <FamilyTable apllicationFormid={data?.data?.id} />
+        <Reference apllicationFormid={data?.data?.id} />
+        <Employers apllicationFormid={data?.data?.id} />
         <OtherInfoForm
           data={{
             ...otherInfoDefaultValues,
@@ -125,7 +125,7 @@ export default function ApplicationForm() {
           }}
           disabled={true}
         />
-        <ExPartners />
+        <ExPartners apllicationFormid={data?.data?.id} />
         <PlacementPreferenceForm
           data={{
             ...placementPreferenceDefaultValues,

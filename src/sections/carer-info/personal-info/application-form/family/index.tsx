@@ -1,3 +1,6 @@
+import { Box } from "@mui/material";
+import dayjs from "dayjs";
+
 export const defaultValues = [
   {
     srNo: "U4721XBUCA",
@@ -19,13 +22,6 @@ export const defaultValues = [
 
 export const columns = [
   {
-    accessorFn: (row: any) => row.srNo,
-    id: "Sr. No",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Sr. No</span>,
-    isSortable: true,
-  },
-  {
     accessorFn: (row: any) => row.memberName,
     id: "member_name",
     cell: (info: any) => info.getValue(),
@@ -35,7 +31,9 @@ export const columns = [
   {
     accessorFn: (row: any) => row.dob,
     id: "dob",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => {
+      return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+    },
     header: () => <span>Date of Birth</span>,
     isSortable: true,
   },
@@ -53,8 +51,8 @@ export const columns = [
   },
   {
     accessorFn: (row: any) => row.isLivingAtHome,
-    id: "is_living_at_home",
-    cell: (info: any) => info.getValue(),
+    id: "isLivingAtHome",
+    cell: (info: any) => (info.getValue() ? "Yes" : "No"),
     header: () => <span>Is Living at home</span>,
   },
 ];

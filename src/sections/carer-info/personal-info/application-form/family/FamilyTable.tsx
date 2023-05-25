@@ -4,8 +4,9 @@ import TableHeader from "@root/components/TableHeader";
 import React, { useRef } from "react";
 import { useFamilyTable } from "./useFamilyTable";
 import { columns, defaultValues } from ".";
+import { useGetFamilyDetailsQuery } from "@root/services/carer-info/personal-info/application-form/FamilyApi";
 
-export default function FamilyTable() {
+export default function FamilyTable({ apllicationFormid }: any) {
   const {
     router,
     tableHeaderRef,
@@ -14,12 +15,14 @@ export default function FamilyTable() {
     sortChangeHandler,
     theme,
   } = useFamilyTable();
-
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetFamilyDetailsQuery(apllicationFormid);
   return (
     <Grid container>
       <Grid xs={12} item>
         <TableHeader
           ref={tableHeaderRef}
+          disabled={isLoading}
           title="Existing Family Member(s) Details"
           searchKey="search"
           onChanged={(data: any) => {
@@ -27,12 +30,12 @@ export default function FamilyTable() {
           }}
         />
         <CustomTable
-          data={defaultValues}
+          data={data?.data}
           columns={columns}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
           showSerialNo
           // count={Math.ceil(data?.data?.meta?.total / limit)}
           currentPage={1}

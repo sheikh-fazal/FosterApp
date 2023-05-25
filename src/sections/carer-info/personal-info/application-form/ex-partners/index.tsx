@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 // utils
@@ -97,4 +99,46 @@ export const formData = [
     component: RHFTextField,
   },
 ];
-export { default as ExPartners } from "./ExPartners";
+
+export const columns = (changeView: any, setExPartnerData: any) => {
+  return [
+    {
+      accessorFn: (row: any) => `${row.firstName} ${row.lastName}`,
+      id: "name",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Name</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.phoneNumber,
+      id: "phoneNumber",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Phone</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.email,
+      id: "email",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Email</span>,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="view"
+            onClicked={() => {
+              setExPartnerData(info?.row?.original);
+              changeView("view");
+            }}
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
+};
+
+export { default as ExPartners } from "./ExPartnersTable";

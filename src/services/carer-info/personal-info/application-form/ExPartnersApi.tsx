@@ -6,7 +6,7 @@ export const exPartnersApi = baseAPI.injectEndpoints({
       query: (params: any) => "/application-form/ex-partner-detail",
     }),
     getExPartnerDetails: builder.query({
-      query: (params: any) => "/application-form/ex-partner-details",
+      query: (id: any) => `/application-form/ex-partner-details/${id}`,
     }),
     postExPartnerDetail: builder.mutation({
       query: ({ id, formData }: any) => ({

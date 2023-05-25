@@ -1,3 +1,5 @@
+import { Box } from "@mui/material";
+import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
@@ -125,4 +127,45 @@ export const formData = [
     component: RHFTextField,
   },
 ];
-export { default as Employers } from "./Employers";
+
+export const columns = (changeView: any, setEmployerData: any) => {
+  return [
+    {
+      accessorFn: (row: any) => row.contactName,
+      id: "contactName",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Name</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.phone,
+      id: "phone",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Phone</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.email,
+      id: "email",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Email</span>,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="view"
+            onClicked={() => {
+              setEmployerData(info?.row?.original);
+              changeView("view");
+            }}
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
+};
+export { default as Employers } from "./EmployersTable";

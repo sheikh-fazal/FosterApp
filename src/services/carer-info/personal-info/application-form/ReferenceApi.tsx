@@ -3,10 +3,10 @@ import { baseAPI, TAGS } from "@root/services/baseApi";
 export const referenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getReferenceDetail: builder.query({
-      query: (params: any) => "/application-form/refrence-detail",
+      query: (params: any) => "/application-form/reference-detail",
     }),
     getReferenceDetails: builder.query({
-      query: (params: any) => "/application-form/refrence-details",
+      query: (id: any) => `/application-form/reference-details/${id}`,
     }),
     postReferenceDetail: builder.mutation({
       query: ({ id, formData }: any) => ({
