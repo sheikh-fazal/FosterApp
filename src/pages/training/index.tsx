@@ -48,12 +48,7 @@ export default function Training() {
       <TrainingTabs tabsDataArray={TABSDATAARRY}>
         {TABSDATAARRY?.map((item) => (
           <Fragment key={item?.index}>
-            <Grid
-              container
-              spacing={2}
-              minHeight={"140px"}
-              alignItems={"center"}
-            >
+            <Grid container spacing={2} minHeight={"230px"}>
               {item?.innerDataArray?.map((innerItem) => (
                 <Grid key={innerItem.id} item xl={3} lg={4} md={6} xs={12}>
                   <NextLink
@@ -114,7 +109,6 @@ export default function Training() {
                 })}
               </HorizaontalTabs>
             </Card>
-            
           </Grid>
           <Grid item lg={6} xs={12}>
             <Card sx={styles.cardStyles}>

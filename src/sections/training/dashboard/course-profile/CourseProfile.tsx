@@ -7,7 +7,7 @@ const CourseProfile = () => {
     <Box sx={styles.containerDev}>
       <Grid container>
         <Grid item xl={6} lg={6} md={6} sm={6} xs={12}>
-          <Box sx={{ width: "20rem", height: "17.8vh", position: "relative" }}>
+          <Box sx={{ width: "20rem", height: "165px", position: "relative" }}>
             <Box sx={styles.Mandatory}>
               <Box sx={styles.number}>09</Box>
               <Box sx={styles.text}>Mandatory</Box>
