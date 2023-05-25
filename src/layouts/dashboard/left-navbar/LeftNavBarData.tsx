@@ -131,7 +131,7 @@ export const NAV_LINKS = [
   {
     text: "Reports",
     img: <AssessmentOutlinedIcon />,
-    link: "",
+    link: "/reports",
   },
   {
     text: "Contact Directory",
