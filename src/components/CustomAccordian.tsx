@@ -3,10 +3,10 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, alpha, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-const CustomAccordian = ({ data, className, ...rest }: any) => {
+const CustomAccordian = ({ data, className, subTitle, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
   const theme: any = useTheme();
   return (
@@ -55,19 +55,34 @@ const CustomAccordian = ({ data, className, ...rest }: any) => {
               </Avatar>
             }
           >
-            <Typography
-              variant="subtitle1"
-              className="title"
-              sx={{
-                padding: "5px 10px",
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.grey[500]
-                    : theme.palette.grey[700],
-              }}
+            <Box
+              width={'100%'} display={'flex'}
+              alignItems={'center'} justifyContent={'space-between'}
+              gap={2} flexWrap={'wrap'}
             >
-              {item.title}
-            </Typography>
+              <Typography
+                variant="subtitle1"
+                className="title"
+                sx={{
+                  padding: "5px 10px",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[700],
+                }}
+              >
+                {item.title}
+              </Typography>
+
+              {subTitle && <Typography
+                variant="subtitle2"
+                className="title"
+                sx={{ pr: '5px' }}
+              >
+                {item?.lectures?.length} lectuers - {item?.minutes} min
+              </Typography>}
+            </Box>
+
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
         </Accordion>

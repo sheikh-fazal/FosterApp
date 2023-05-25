@@ -2,11 +2,11 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import CertificateManagement from "@root/sections/training/manage-courses/certificate-management/CertificateManagement";
+import CourseArchive from "@root/sections/training/manage-courses/course-resource-pool/course-list/CourseList";
 
+const PAGE_TILE = "Course List";
 
-const PAGE_TILE = "Certificate Management";
-CertificateManagementPage.getLayout = function getLayout(page: any) {
+CourseDetail.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,7 +17,7 @@ CertificateManagementPage.getLayout = function getLayout(page: any) {
           href: "/training",
         },
         {
-          name: "Certificate Management",
+          name: "Course Sub Categories",
         },
       ]}
       title={PAGE_TILE}
@@ -27,10 +27,10 @@ CertificateManagementPage.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function CertificateManagementPage() {
+export default function CourseDetail() {
   return (
     <Page title={PAGE_TILE}>
-      <CertificateManagement />
+      <CourseArchive />
     </Page>
   );
 }
