@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home";
-import PanelAgenda from "@root/sections/panel/panel-agenda/PanelAgenda";
+import HomeIcon from "@mui/icons-material/Home"; 
+import PanelAgenda from "@root/sections/panel/panel-tools/panel-agenda/PanelAgenda";
 
 // ================================================================================
 
