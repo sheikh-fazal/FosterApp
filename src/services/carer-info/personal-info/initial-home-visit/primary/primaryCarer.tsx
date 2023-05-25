@@ -13,6 +13,7 @@ export const primaryCarerApi = baseAPI.injectEndpoints({
         body: putDataParameter.body,
         params: putDataParameter.params,
       }),
+      invalidatesTags: ["INITIAL_HOME_VISIT"],
     }),
   }),
 });

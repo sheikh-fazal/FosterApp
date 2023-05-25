@@ -5,17 +5,17 @@ import dayjs from "dayjs";
 
 import * as Yup from "yup";
 
-const todayDate = dayjs().format("DD/MM/YYYY");
+const todayDate = dayjs().format("MM/DD/YYYY");
 const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
 
 export const FormValues = {
-  dateOfVisit: new Date(),
+  dateOfVisit: todayDate,
   nameOfAgencyWorkingVisiting: "",
   title: "",
   firstName: "",
   middleName: "",
   lastName: "",
-  dateOfBirth: new Date(ageOf18Years),
+  dateOfBirth: ageOf18Years,
   gender: "",
   address: "",
   addressLine2: "",
@@ -37,13 +37,13 @@ export const FormValues = {
   convictedOfAnyCriminal: "",
 };
 
-export const defaultValuesPrimaryCarer = (data: any) => {
+export const defaultValuesPrimaryCarer = (data = FormValues) => {
   console.log(data);
   return {
-    dateOfVisit: new Date(data?.dateOfVisit) || "",
+    dateOfVisit: new Date(data?.dateOfVisit),
     nameOfAgencyWorkingVisiting: data?.nameOfAgencyWorkingVisiting,
     title: data?.title,
-    firstName: data?.firstName || "",
+    firstName: data?.firstName,
     middleName: data?.middleName,
     lastName: data?.lastName,
     dateOfBirth: new Date(data?.dateOfBirth),

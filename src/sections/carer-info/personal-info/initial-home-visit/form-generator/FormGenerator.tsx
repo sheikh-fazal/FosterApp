@@ -8,6 +8,8 @@ import { useTheme } from "@mui/material/styles";
 // components
 import { FormProvider } from "@root/components/hook-form";
 import FormField from "./FormField";
+import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const FormGenerator: FC<any> = ({
   FormSchema,
@@ -15,9 +17,12 @@ const FormGenerator: FC<any> = ({
   fieldsInfo,
   submitClickHand,
   disabled,
+  isFormSubmitting,
+  isSkeletonVisible,
+  defaultRole,
 }) => {
   const theme: any = useTheme();
-  console.log(defaultValues);
+  console.log({ defaultRole });
   const methods: any = useForm({
     // mode: "onTouched",
     ...(!!FormSchema && { resolver: yupResolver(FormSchema) }),
@@ -36,7 +41,7 @@ const FormGenerator: FC<any> = ({
   const onSubmit = async (data: any) => {
     submitClickHand(data);
   };
-
+  if (isSkeletonVisible) return <SkeletonFormdata />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3} mb={5}>
@@ -94,9 +99,20 @@ const FormGenerator: FC<any> = ({
           );
         })}
         <Grid item xs={12}>
-          <Button size="large" type="submit" variant="contained">
+          {/* <Button size="large" type="submit" variant="contained">
             Submit
-          </Button>
+          </Button> */}
+          <LoadingButton
+            // fullWidth
+            color="primary"
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isFormSubmitting}
+            disabled={isFormSubmitting}
+          >
+            Submit
+          </LoadingButton>
         </Grid>
         {/* <Grid xs={12}>
           <Box

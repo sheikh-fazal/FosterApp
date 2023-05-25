@@ -1,12 +1,21 @@
 import * as Yup from "yup";
-import { Typography } from "@mui/material";
 
-export const InterestFormValues = {
-  perviousExperience: "I am previousExp",
-  motivation: "I am motivitaion",
-  impactOfTheTask: "I am impactOfTask",
-  skilledOffered: "I am SkilledOffer",
-  knowledgeOfTheReason: "I am knowledge",
+export const interestFormValues = {
+  perviousExperience: "",
+  motivation: "",
+  impactOfTheTask: "",
+  skilledOffered: "",
+  knowledgeOfTheReason: "",
+};
+
+export const defaultValueInterestForm = (data: any = interestFormValues) => {
+  return {
+    perviousExperience: data.perviousExperience,
+    motivation: data.motivation,
+    impactOfTheTask: data.impactOfTheTask,
+    skilledOffered: data.skilledOffered,
+    knowledgeOfTheReason: data.knowledgeOfTheReason,
+  };
 };
 
 export const InterestFormSchema = Yup.object().shape({

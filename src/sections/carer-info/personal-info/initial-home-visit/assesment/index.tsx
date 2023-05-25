@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const FormValues = {
+export const assesmentFormValues = {
   familyBackground: "",
   theFamilyHouse: "",
   pets: "",
@@ -11,6 +11,18 @@ export const FormValues = {
   managerRecommendation: "",
 };
 
+export const defaultValuesAssesmentForm = (data = assesmentFormValues) => {
+  return {
+    familyBackground: data.familyBackground,
+    theFamilyHouse: data.theFamilyHouse,
+    pets: data.pets,
+    finance: data.finance,
+    assesment: data.assesment,
+    outcome: data.outcome,
+    managerComments: data.managerComments,
+    managerRecommendation: data.managerRecommendation,
+  };
+};
 export const FormSchema = Yup.object().shape({
   familyBackground: Yup.string()
     .required("Family background is required")

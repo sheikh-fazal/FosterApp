@@ -6,53 +6,45 @@ import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/perso
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { defaultValuesPrimaryCarer } from ".";
+import useAuth from "@root/hooks/useAuth";
 
 export const usePrimaryCarerForm = () => {
-  const query = useRouter();
-  console.log(query);
+  const { query } = useRouter();
+  // console.log(query?.fosterCarerId);
+  const { user }: any = useAuth();
+  console.log(user);
   const [postPrimaryCarerDataTrigger, postPrimaryCarerDataStatus] =
     usePostPrimaryCarerDataMutation();
   const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
     useLazyGetAllInitialHomeVisitDataQuery();
   const params = {
     value: "primaryCarer",
-    fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId:
+      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
   };
 
   const dataParameter = { params };
-  const dataParameters = { params: "ji" };
-  // const { data, isLoading, isError, isSuccess } =
-  //   useGetAllInitialHomeVisitDataQuery(dataParameter);
 
   const setPrimaryCarerDefaultValue = async () => {
-    const { data, isError, error } = await getAllInitialHomeVisitDataTrigger(
-      dataParameter
+    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
+      dataParameter,
+      true
     );
-    console.log(data);
-    // if (primaryCarerDefaultValues?.isSuccess) {
-    //   const assignDefaultValuesPrimaryCarer = defaultValuesPrimaryCarer(
-    //     primaryCarerDefaultValues?.data
-    //   );
-    //   console.log(assignDefaultValuesPrimaryCarer);
-    //   const assss = {
-    //     firstName: "Ali",
-    //   };
-    //   return assss;
-    // }
+    console.log(getAllInitialHomeVisitDataStatus);
     if (isError) {
-      return defaultValuesPrimaryCarer;
+      return defaultValuesPrimaryCarer(data);
     }
-    console.log(data);
+
     return defaultValuesPrimaryCarer(data);
-    // return data;
   };
 
   const submitPrimaryCarerForm = async (data: any) => {
     const putParams = {
-      fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      fosterCarerId:
+        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
     const putDataParameter = { params: putParams, body: data };
-    console.log(data);
+    // console.log(data);
     try {
       const res: any = await postPrimaryCarerDataTrigger(
         putDataParameter
@@ -67,5 +59,7 @@ export const usePrimaryCarerForm = () => {
     submitPrimaryCarerForm,
     setPrimaryCarerDefaultValue,
     getAllInitialHomeVisitDataStatus,
+    postPrimaryCarerDataStatus,
+    user,
   };
 };

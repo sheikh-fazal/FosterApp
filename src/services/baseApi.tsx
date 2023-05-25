@@ -20,7 +20,8 @@ export const TAGS = [
   "ALLEGATION_DOCUMENTS",
   "COMPLAINT_LIST",
   "INCIENT_UPLOAD_DOCUMENTS",
-  "INITIAL_CONTACT"
+  "INITIAL_CONTACT",
+  "INITIAL_HOME_VISIT",
 ];
 
 // Create our baseQuery instance

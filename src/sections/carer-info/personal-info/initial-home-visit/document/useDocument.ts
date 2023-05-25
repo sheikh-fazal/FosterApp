@@ -15,20 +15,11 @@ export const useDocument = () => {
     useState(false);
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
-  const [dataTemp, setDataTemp] = useState([
-    {
-      documentName: "ninninnn",
-      documentType: "123213",
-      createdAt: "11/22/312313",
-      personUploaded: "12qeqee",
-      password: 1231,
-    },
-  ]);
   const initialHomeDocumentTableColumns =
-  initialHomeDocumentTableColumnsFunction(SetIsSingleDocumentDetailViewed);
+    initialHomeDocumentTableColumnsFunction(SetIsSingleDocumentDetailViewed);
   const params = {
     offset: page,
-    limit: 1,
+    limit: 10,
     search: searchValue,
     fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
   };
@@ -51,7 +42,5 @@ export const useDocument = () => {
     isSingleDocumentDetailViewed,
     SetIsSingleDocumentDetailViewed,
     initialHomeDocumentTableColumns,
-    dataTemp,
-    setDataTemp,
   };
 };

@@ -9,6 +9,17 @@ export const backgroundFormValues = {
   conviction: "",
 };
 
+export const defaultValuesBackgroundForm = (data = backgroundFormValues) => {
+  return {
+    knowledgeOfSexualHarmful: data.knowledgeOfSexualHarmful,
+    availability: data.availability,
+    supportNetwork: data.supportNetwork,
+    interestAndHobby: data.interestAndHobby,
+    health: data.health,
+    conviction: data.conviction,
+  };
+};
+
 export const BackgroundFormSchema = Yup.object().shape({
   knowledgeOfSexualHarmful: Yup.string()
     .required("Knowledge of sexual harmful is required")

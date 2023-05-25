@@ -1,26 +1,45 @@
 import { usePostInitialHomeBackgroundDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/background/background";
-import { useGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import {
+  useGetAllInitialHomeVisitDataQuery,
+  useLazyGetAllInitialHomeVisitDataQuery,
+} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
+import { backgroundFormValues, defaultValuesBackgroundForm } from ".";
+import { useRouter } from "next/router";
 
 export const useBackgroundForm = () => {
+  const { query } = useRouter();
   const [
     postInitialHomeBackgroundDataTrigger,
     postInitialHomeBackgroundDataStatus,
   ] = usePostInitialHomeBackgroundDataMutation();
+  const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
+    useLazyGetAllInitialHomeVisitDataQuery();
   const params = {
     value: "backGround",
-    fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId:
+      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
   };
 
   const dataParameter = { params };
-  const { data, isLoading, isError, isSuccess } =
-    useGetAllInitialHomeVisitDataQuery(dataParameter);
+
+  const setBackgroundFormDefaultValue = async () => {
+    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
+      dataParameter
+    );
+    if (isError) {
+      return backgroundFormValues;
+    }
+    return defaultValuesBackgroundForm(
+      !!Object.keys(data)?.length ? data : undefined
+    );
+  };
   const submitBackgroundForm = async (data: any) => {
     const putParams = {
-      fosterCarerId: "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      fosterCarerId:
+        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
     const putDataParameter = { params: putParams, body: data };
-    console.log({ data });
     try {
       const res: any = await postInitialHomeBackgroundDataTrigger(
         putDataParameter
@@ -33,5 +52,8 @@ export const useBackgroundForm = () => {
 
   return {
     submitBackgroundForm,
+    setBackgroundFormDefaultValue,
+    getAllInitialHomeVisitDataStatus,
+    postInitialHomeBackgroundDataStatus,
   };
 };

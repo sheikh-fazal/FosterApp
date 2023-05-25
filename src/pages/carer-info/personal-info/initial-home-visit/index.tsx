@@ -18,8 +18,7 @@ const BREADCRUMBS = [
   },
 ];
 
-// const PAGE_TITLE = "Initial Home Visit";
-// const PAGE_TITLE = "React App";
+const PAGE_TITLE = "Initial Home Visit";
 
 // ----------------------------------------------------------------------
 
@@ -39,5 +38,9 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InitialHomeVisit() {
-  return <InitialHomeVisitTab />;
+  return (
+    <Page title={PAGE_TITLE}>
+      <InitialHomeVisitTab />
+    </Page>
+  );
 }
