@@ -1,23 +1,28 @@
 import { Box, Card, Typography, useTheme } from "@mui/material";
 import { BsPlus } from "react-icons/bs";
-import React,{useState}from "react";
+import React, { useState } from "react";
 import AddExperiencesModal from "./add-experience";
+import { useGetExperienceQuery } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
 
 function EmploymentDetailsCards() {
   const [open, setOpen] = useState(false);
-  console.log(open); 
   const theme: any = useTheme();
+
+  const {data} = useGetExperienceQuery();
+
+  console.log("dfdfef", data);
+
   return (
     <Card>
       <Box sx={styles.header}>
         <Typography sx={{ fontWeight: 600, fontSize: "1.3rem" }}>
           Experience
         </Typography>
-        <Box sx={styles.addBtnStyles(theme)}  onClick={() => setOpen(true)}>
+        <Box sx={styles.addBtnStyles(theme)} onClick={() => setOpen(true)}>
           <BsPlus style={styles.addBtnIconStyles(theme)} />
         </Box>
       </Box>
-      <AddExperiencesModal open={open} setOpen={setOpen}/>
+      <AddExperiencesModal open={open} setOpen={setOpen} />
     </Card>
   );
 }

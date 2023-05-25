@@ -1,4 +1,8 @@
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
@@ -23,6 +27,8 @@ const FormField: FC<any> = (props) => {
       return <RHFRadioGroupWithLabel {...prop} />;
     case "upload":
       return <RHFUploadFile {...prop} />;
+    case "checkbox":
+      return <RHFCheckbox name={prop.name} label={prop.label}/>;
     case "select":
       return (
         <RHFSelect {...prop}>

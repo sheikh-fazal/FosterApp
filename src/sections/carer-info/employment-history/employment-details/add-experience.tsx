@@ -1,127 +1,104 @@
 import { useForm } from "react-hook-form";
-import { Box, Button, Grid, Modal,Typography,useTheme } from "@mui/material";
+import { Box, Button, Grid, Modal, Typography, useTheme } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AddFormSchema, AddFormValues } from ".";
+import { AddFormSchema, AddFormValues, addExperienceForm } from ".";
 import FormField from "../../personal-info/initial-home-visit/form-generator/FormField";
-
-
-
-const addExperienceForm = [
-    {
-      type: "text",
-      name: "title",
-      label: "Title",
-    },
-    {
-      type: "text",
-      name: "employmentType",
-      label: "Employment Type",
-    },
-    {
-      type: "text",
-      name: "companyName",
-      label: "Company Name",
-    },
-    {
-      type: "text",
-      name: "Location",
-      label: "Location",
-    },
-    {
-      type: "date",
-      name: "startDate",
-      label: "Start Date",
-    },
-    {
-      type: "date",
-      name: "endDate",
-      label: "End Date",
-    },
-    {
-      type: "textarea",
-      name: "headline",
-      label: "Headline",
-      gridSize: { xs: 12 },
-    },
-    {
-      type: "textarea",
-      name: "industry",
-      label: "Industry",
-      gridSize: { xs: 12 },
-    },
-    {
-      type: "textarea",
-      name: "description",
-      label: "Description",
-      gridSize: { xs: 12 },
-    },
-    {
-      type: "upload",
-      name: "media",
-      label: "Media",
-    },
-  ];
-
+import { enqueueSnackbar } from "notistack";
+import { useExperienceMutation } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
+import dayjs from "dayjs";
 
 function AddExperiencesModal({ open, setOpen }: any) {
+
+  const [addExperiences, { isLoading }] = useExperienceMutation();
+
   const methods: any = useForm({
     resolver: yupResolver(AddFormSchema),
     defaultValues: AddFormValues,
   });
+  const FORMDATA: any = new FormData();
   const theme: any = useTheme();
   const {
     handleSubmit,
     formState: { isValid },
   } = methods;
 
+  const onSubmit = async (data: any) => {
+    FORMDATA.append("title", data.title);
+    FORMDATA.append("employmentType", data.employmentType);
+    FORMDATA.append("companyName", data.companyName);
+    FORMDATA.append("location", data.location);
+    FORMDATA.append("currentlyWorking", data.currentlyWorking);
+    FORMDATA.append("startDate",dayjs(data.startDate).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString());
+    FORMDATA.append("endDate", dayjs(data.endDate).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString());
+    FORMDATA.append("headline", data.headline);
+    FORMDATA.append("industry", data.industry);
+    FORMDATA.append("description", data.description);
+    FORMDATA.append("media", data.media);
+
+    for (let [key, value] of FORMDATA.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    try {
+      const res: any = await addExperiences(FORMDATA).unwrap();
+      if (res) {
+        console.log(res);
+        
+      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+
   return (
     <Modal
       open={open}
-      onClose={()=>setOpen(false)}
+      onClose={() => setOpen(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       closeAfterTransition
     >
       <Box sx={styles.root}>
         <Typography sx={styles.title(theme)}>Add Experience</Typography>
-        <FormProvider methods={methods}>
-        <Grid container spacing={2} mb={5}>
-        {addExperienceForm.map((data: any, index: number) => {
-          const {
-            type,
-            name,
-            label,
-            title,
-            options,
-            gridSize = { xs: 12, md: 6 },
-            getOptionLabel,
-            ...other
-          } = data;        
-          return (
-            <Grid key={index} item {...gridSize}>       
-              <FormField
-                fieldType={type}
-                name={name}
-                label={label}
-                fullWidth={true}
-                // disabled={isSubmitting || disabled}
-                options={options}
-                size="small"
-                getOptionLabel={getOptionLabel}
-                {...other}
-                {...methods}
-              />
-            </Grid>
-          );
-        })}
-         
-      </Grid>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={2} mb={5}>
+            {addExperienceForm.map((data: any, index: number) => {
+              const {
+                type,
+                name,
+                label,
+                title,
+                options,
+                gridSize = { xs: 12, md: 6 },
+                getOptionLabel,
+                ...other
+              } = data;
+              return (
+                <Grid key={index} item {...gridSize}>
+                  <FormField
+                    fieldType={type}
+                    name={name}
+                    label={label}
+                    fullWidth={true}
+                    options={options}
+                    size="small"
+                    getOptionLabel={getOptionLabel}
+                    {...other}
+                    {...methods}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
           <Box sx={styles.actionBtnBox}>
-            <Button disabled={!isValid} sx={styles.btnSuccess}>
+            <Button type="submit" sx={styles.btnSuccess}>
               Submit
             </Button>
-            <Button sx={styles.btnError} onClick={()=>setOpen(false)}>Back</Button>
+            <Button sx={styles.btnError} onClick={() => setOpen(false)}>
+              Back
+            </Button>
           </Box>
         </FormProvider>
       </Box>
@@ -144,10 +121,10 @@ const styles = {
     px: 2,
     py: 2,
   }),
-  title:(theme:any)=>({
+  title: (theme: any) => ({
     color: theme.palette.primary.main,
-    fontWeight:600,
-    marginBottom:"1rem"
+    fontWeight: 600,
+    marginBottom: "1rem",
   }),
   actionBtnBox: (theme: any) => ({
     display: "flex",

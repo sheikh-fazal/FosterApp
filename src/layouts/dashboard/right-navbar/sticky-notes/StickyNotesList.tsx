@@ -10,6 +10,7 @@ import { enqueueSnackbar } from "notistack";
 import { RxCross2 } from "react-icons/rx";
 import * as Yup from "yup";
 import dayjs from "dayjs";
+import SkeletonStickyNotes from "@root/components/skeleton/SkeletonStickyNotes";
 
 export const FormSchema = Yup.object().shape({
   content: Yup.string(),
@@ -25,7 +26,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
     const paramsObj: any = {};
     if (date) paramsObj["date"] = date;
     const query: any = "by-date?" + new URLSearchParams(paramsObj).toString();
-    await getInitialContactData({ query });
+    await getInitialContactData({ query }, true);
   };
   useEffect(() => {
     getdata(dayjs(date).format("YYYY-MM-DD"));
@@ -62,7 +63,8 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
       </Box>
       <Box sx={{ height: 150, overflow: "auto" }}>
         {deleteIsloading ? (
-          <Box sx={{ mt: 1 }}>Loading.....</Box>
+         
+            <SkeletonStickyNotes />
         ) : !isFetching ? (
           data && data?.length > 0 ? (
             data.map((item: any) => (
@@ -92,7 +94,9 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
             <Box sx={{ mt: 1 }}>No Notes on this date!</Box>
           )
         ) : (
-          <Box sx={{ mt: 1 }}>Loading.....</Box>
+         
+          <SkeletonStickyNotes />
+        
         )}
       </Box>
     </Box>

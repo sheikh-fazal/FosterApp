@@ -25,7 +25,6 @@ function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
       ...content,
       date: dayjs(date).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString(),
     };
-    
 
     try {
       const res: any = await addNotes(data).unwrap();
@@ -57,8 +56,16 @@ function AddStickyNotes({ setAddNotes, date, setEdit }: any) {
           </Box>
         </Box>
         {isLoading ? (
-          <Box sx={{width:"100%" ,height:110,display:"flex",justifyContent:'center',alignItems:"center"}}>
-          <CircularProgress color="inherit" />
+          <Box
+            sx={{
+              width: "100%",
+              height: 110,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress color="inherit" />
           </Box>
         ) : (
           <>
