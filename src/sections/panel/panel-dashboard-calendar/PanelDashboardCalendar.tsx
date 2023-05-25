@@ -3,9 +3,11 @@ import Calendar from 'react-calendar';
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import dayjs from 'dayjs';
-import { Typography, styled, useTheme } from '@mui/material';
+import { Typography, styled, useMediaQuery, useTheme } from '@mui/material';
+import { useRouter } from 'next/router';
 
 const PanelDashboardCalendar = () => {
+    const nav = useRouter();
     const theme = useTheme();
     return (
         <NewCalender
@@ -13,16 +15,18 @@ const PanelDashboardCalendar = () => {
                 fontSize: "25px",
                 color: theme.palette.primary.main,
             }}
+            nav={nav}
         />
     )
 }
 
 export default PanelDashboardCalendar
 
-const NewCalender = styled(({ iconsStyles, ...props }: any) => (
+const NewCalender = styled(({ iconsStyles, nav, ...props  }: any) => (
     <Calendar
         {...props}
         nextLabel={<ArrowRightIcon sx={iconsStyles} />}
+        onClickDay={() => nav.push('/panel/panel-tools/calendar')}
         next2Label={null}
         prevLabel={<ArrowLeftIcon sx={iconsStyles} />}
         prev2Label={null}
@@ -52,6 +56,13 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
         },
         width: "50px !important",
         height: "50px !important"
+    },
+    "& .react-calendar__navigation__label__labelText" : {
+        "& span": {
+            "@media (max-width: 500px)": {
+                fontSize: "12px"
+            }
+        }
     },
     "& .react-calendar__tile--now": {
         background: '#F6830F',
