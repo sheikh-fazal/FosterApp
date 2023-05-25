@@ -1,8 +1,8 @@
 import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
-import Page from '@root/components/Page';
-import PanelCalendar from '@root/sections/panel/panel-calendar/PanelCalendar';
+import Page from '@root/components/Page'; 
+import PanelCalendar from '@root/sections/panel/panel-tools/panel-calendar/PanelCalendar';
 
 const PAGE_TILE = "View Panel Dashboard";
 
@@ -17,7 +17,7 @@ Calendar.getLayout = function getLayout(page: any) {
                     href: "/",
                 },
                 {
-                    name: "Panel Dashboard",
+                    name: "Panel Calendar",
                 },
             ]}
             title={PAGE_TILE}

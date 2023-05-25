@@ -1,8 +1,8 @@
 import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
-import Page from '@root/components/Page';
-import EditPanelChecklist from '@root/sections/panel/panel-checklist/edit-panel-checklist/EditPanelChecklist';
+import Page from '@root/components/Page'; 
+import EditPanelChecklist from '@root/sections/panel/panel-tools/panel-checklist/edit-panel-checklist/EditPanelChecklist';
 
 const PAGE_TILE = "Edit Panel Checklist";
 

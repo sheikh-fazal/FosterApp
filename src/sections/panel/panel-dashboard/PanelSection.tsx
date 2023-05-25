@@ -2,10 +2,10 @@ import React, { Fragment } from 'react'
 import PanelTab from './panel-tab/PanelTab'
 import { PANELTABSDATAARRY } from './panel-tab'
 import { Card, Grid, Typography, useTheme } from '@mui/material'
-import NextLink from 'next/link';
-import PanelCalendar from './panel-calendar/PanelCalendar';
+import NextLink from 'next/link'; 
+import PanelDashboardCalendar from '../panel-tools/panel-calendar/PanelDashboardCalendar';
 import PanelNotifications from './panel-notifications/PanelNotifications';
-import PanelMember from '@root/sections/panel/panel-member/PanelMember';
+import PanelMember from './panel-member/PanelMember';
 
 
 const PanelSection = () => {
@@ -34,7 +34,7 @@ const PanelSection = () => {
             </PanelTab>
             <Grid container spacing={2} sx={{ mt: 'initial' }}>
                 <Grid item lg={5} xs={12}>
-                    <PanelCalendar />
+                    <PanelDashboardCalendar />
                 </Grid>
                 <Grid item lg={7} xs={12}>
                     <Grid container spacing={2}>

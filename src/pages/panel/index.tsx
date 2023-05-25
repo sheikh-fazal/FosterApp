@@ -1,8 +1,8 @@
 import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import Page from "@root/components/Page";
-import PanelSection from "@root/sections/panel/PanelSection";
+import Page from "@root/components/Page"; 
+import PanelSection from "@root/sections/panel/panel-dashboard/PanelSection";
 
 const PAGE_TILE = "View Panel Dashboard";
 
