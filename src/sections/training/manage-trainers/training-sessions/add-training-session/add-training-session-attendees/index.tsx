@@ -1,4 +1,9 @@
-import { RHFCheckbox, RHFMultiCheckbox, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFMultiCheckbox,
+  RHFSwitch,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { RHFSelect } from "@root/components/hook-form";
 import { Controller, useFormContext } from "react-hook-form";
@@ -8,31 +13,10 @@ import { FormHelperText, Typography } from "@mui/material";
 
 export const BForm = [
   {
-    id:1,
-    componentProps: {
-      name: "title",
-      label: "Title",
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
-  {
-    id: 3,
-    componentProps: {
-      name: "date",
-      label: "Date",
-      fullWidth: true,
-      sx: { mb: 4 },
-    },
-    component: RHFDatePicker,
-    md: 6,
-  },
-  {
     id: 1,
     componentProps: {
-      name: "time",
-      label: "Time",
+      name: "requireAttendees",
+      label: "Require Attendees",
       sx: { mb: 4 },
     },
     component: RHFSelect,
@@ -41,8 +25,8 @@ export const BForm = [
   {
     id: 1,
     componentProps: {
-      name: "duration",
-      label: "Duration",
+      name: "webinarSize",
+      label: "Webinar Size",
       sx: { mb: 4 },
     },
     component: RHFSelect,
@@ -51,57 +35,72 @@ export const BForm = [
   {
     id: 1,
     componentProps: {
-      name: "timeZone",
-      label: "Time Zone",
+      name: "registerOutsiderTrainee",
+      label: "Registration form: Want your outsider trainee to register for this training?",
       sx: { mb: 4 },
     },
-    component: RHFSelect,
-    md: 6,
+    component: RHFSwitch,
   },
   {
-    id: 1,
+    gridLength: 12,
+    heading: "This is the form your attendees will find out when they sign up",
     componentProps: {
-      name: "venue",
-      label: "Venue",
+      variant: "body2",
+      fontSize: "16px",
+      fontWeight: 600,
+      color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 4 },
     },
-    component: RHFSelect,
-    md: 6,
-  },
-  {
-    id: 6,
-    componentProps: {
-      name: "trainingSessionAgenda",
-      label: "Training Session Agenda",
-      multiline: true,
-      minRows: 3,
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
+    component: Typography,
   },
 
   {
-    id: 7,
+    id: 1,
     componentProps: {
-      name: "noFurtherAction",
+      name: "firstName",
+      label: "First Name",
       sx: { mb: 4 },
-      value:"Permanant",
-      options: ["Q&A, Participants Questions", "Training session: Presentation Mode"]
     },
-    component: RHFMultiCheckbox,
+    component: RHFTextField,
     md: 6,
   },
   {
-    id: 3,
+    id: 1,
     componentProps: {
-      name: "uploadImage",
-      label: "Upload Image",
-      fullWidth: true,
-      sx: { mb: 8 },
+      name: "lastName",
+      label: "Last Name",
+      sx: { mb: 4 },
     },
-    component: RHFUploadFile,
+    component: RHFTextField,
     md: 6,
+  },
+  {
+    id: 1,
+    componentProps: {
+      name: "email",
+      label: "Email",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 1,
+    componentProps: {
+      name: "sendReminder",
+      label: "Send reminder notification to all attendees",
+      sx: { mb: 4 },
+    },
+    component: RHFSwitch,
+  },
+  {
+    id: 1,
+    componentProps: {
+      name: "sendThankYouEmail",
+      label: "Send Thank you email to all attendees after event has ended",
+      sx: { mb: 4 },
+    },
+    component: RHFSwitch,
   },
 ];
 
@@ -145,7 +144,7 @@ export const BFormValidationSchema = Yup.object().shape({
   noFurtherAction: Yup.string().trim().required("Field is Required"),
 });
 
-export { default as AddTrainingSessionDetails } from "./AddTrainingSessionDetails";
+export { default as AddTrainingSessionAttendees } from "./AddTrainingSessionAttendees";
 
 function RHFUploadFile(props: any) {
   const { disabled, name, ...other } = props;

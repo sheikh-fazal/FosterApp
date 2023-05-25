@@ -5,6 +5,7 @@ import Page from "@root/components/Page";
 import { Card, useTheme } from "@mui/material";
 import { AddTrainingSessionDetails } from "@root/sections/training/manage-trainers/training-sessions/add-training-session/add-training-session-details";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import { AddTrainingSessionAttendees } from "@root/sections/training/manage-trainers/training-sessions/add-training-session/add-training-session-attendees";
 
 const PAGE_TILE = "Add training Sessions";
 
@@ -44,6 +45,7 @@ export default function TrainingSessions() {
         >
 
         <AddTrainingSessionDetails />
+        <AddTrainingSessionAttendees />
         </HorizaontalTabs>
       </Card>
     </Page>

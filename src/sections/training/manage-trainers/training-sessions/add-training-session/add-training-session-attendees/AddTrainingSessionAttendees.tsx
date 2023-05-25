@@ -4,16 +4,16 @@ import { Button, Grid } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { BForm, defaultValues } from ".";
 import { FormProvider } from "@root/components/hook-form";
-import { useAddTrainingSessionDetails } from "./useAddTrainingSessionDetails";
+import { useAddTrainingSessionAttendees } from "./useAddTrainingSessionAttendees";
 
-export default function AddTrainingSessionDetails({
+export default function AddTrainingSessionAttendees({
   disabled,
   onSubmitHandler,
   initialValueProps = defaultValues,
   message,
 }: any) {
 
-  const { methods, onSubmit, handleSubmit, isSubmitting } = useAddTrainingSessionDetails({
+  const { methods, onSubmit, handleSubmit, isSubmitting } = useAddTrainingSessionAttendees({
     disabled,
     onSubmitHandler,
     initialValueProps,
@@ -42,8 +42,16 @@ export default function AddTrainingSessionDetails({
               sx={{ mr: 2 }}
               loading={isSubmitting}
             >
-              Save & Next
+              Schedule
             </LoadingButton>
+            <Link
+              href={"/referral/social-worker-request-form"}
+              style={{ textDecoration: "none" }}
+            >
+              <Button type="button" variant="contained">
+                Back
+              </Button>
+            </Link>
           </Grid>
         )}
       </Grid>
