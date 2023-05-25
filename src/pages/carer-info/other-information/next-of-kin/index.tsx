@@ -2,7 +2,8 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import NextOFKin from "@root/sections/carer-info/other-information/next-of-kin/NextOFKin";
+import NextOFKin from "@root/sections/carer-info/other-information/next-of-kin/nextOFKin";
+
 
 // Constants
 const BREADCRUMBS = [
