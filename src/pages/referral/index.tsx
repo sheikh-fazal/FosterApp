@@ -11,9 +11,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import PieChart from "@root/sections/referral/dashboard/charts/PieChart";
 import ReferralNotifications from "@root/sections/referral/dashboard/referral-notifications/ReferralNotifications";
 import BarChart from "@root/sections/referral/dashboard/charts/BarChart";
-import workFlowIcon from "../../assets/img/referral-dashobard/work-flow.png";
 import { chartTitles } from "@root/sections/referral/dashboard/charts";
-import Image from "next/image";
 import ReferralStats from "@root/sections/referral/dashboard/referral-stats/ReferralStats";
 import ReferralWorkflow from "@root/sections/referral/dashboard/referral-workflow/ReferralWorkflow";
 
@@ -49,22 +47,11 @@ export default function Referral() {
       <ReferralTabs tabsDataArray={TABSDATAARRY}>
         {TABSDATAARRY?.map((item) => (
           <Fragment key={item?.index}>
-            <Grid
-              container
-              spacing={2}
-              minHeight={"140px"}
-              alignItems={"center"}
-            >
+            <Grid container spacing={2} minHeight={"140px"} alignItems={"center"}>
               {item?.innerDataArray?.map((innerItem, index) => (
                 <Grid key={index} item xl={3} lg={4} md={6} xs={12}>
-                  <NextLink
-                    href={innerItem?.link}
-                    style={styles?.nextLinkContainer}
-                  >
-                    <Card
-                      sx={styles.tabsItems(item?.background)}
-                      key={innerItem?.id}
-                    >
+                  <NextLink href={innerItem?.link} style={styles?.nextLinkContainer}>
+                    <Card sx={styles.tabsItems(item?.background)} key={innerItem?.id}>
                       <Typography sx={styles.innerTitle(theme.palette.mode)}>
                         {innerItem?.title}
                       </Typography>
@@ -98,9 +85,7 @@ export default function Referral() {
                   </Box>
                   {showStatistics && (
                     <Box sx={styles.statisticsContainer}>
-                      <Typography sx={styles.statisticsHeading}>
-                        Statistics
-                      </Typography>
+                      <Typography sx={styles.statisticsHeading}>Statistics</Typography>
                       <Box sx={{ pb: "10px", pt: "6px", ml: "16px" }}>
                         {chartTitles?.map((item, index) => (
                           <Box key={index} sx={{ mt: 1 }}>
@@ -162,7 +147,7 @@ const styles = {
   },
   iconStyles: {
     position: "absolute",
-    top: "16%",
+    top: { lg: "16%", sm: "14%", xs: "12%" },
     right: "1.5%",
     cursor: "pointer",
   },

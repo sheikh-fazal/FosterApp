@@ -29,7 +29,7 @@ export default function PieChart() {
     <Grid sx={{ px: { lg: 0, sm: 2, xs: 1 } }} container spacing={2}>
       <Grid item lg={6} md={6} xs={12}>
         <Box>
-          <ReactApexChart options={options} series={series} type="pie" height={330} />
+          <ReactApexChart options={options} series={series} type="pie" height={300} />
         </Box>
       </Grid>
       <Grid item lg={6} md={6} xs={12}>

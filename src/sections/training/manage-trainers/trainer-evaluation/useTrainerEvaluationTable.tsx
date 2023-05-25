@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { TableDummyData } from ".";
 import { Box, Checkbox } from "@mui/material";
+import Image from "next/image";
+
+import documentIcon from "../../../../assets/img/documentIcon.png";
 
 export const useTrainerEvaluationTable = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
@@ -55,7 +58,11 @@ export const useTrainerEvaluationTable = () => {
     {
       accessorFn: (row: any) => row.evaluationForm,
       id: "evaluationForm",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => (
+        <Box sx={{ cursor: "pointer", display: "flex", justifyContent: "center" }}>
+          <Image src={documentIcon} alt="Document" />
+        </Box>
+      ),
       header: () => <span>Evaluation Form</span>,
       isSortable: true,
     },
