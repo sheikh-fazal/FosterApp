@@ -4,7 +4,7 @@ const TAG = "UPDATE_PROFILE";
 
 export const referenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getPersonalInfo: builder.query({
+    getReferencesInfo: builder.query({
       query: () => ({
         url: "user-profile/all-profile?infoToget=reference",
         method: "GET",
@@ -39,7 +39,7 @@ export const referenceApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetPersonalInfoQuery,
+  useGetReferencesInfoQuery,
   useAddReferenceMutation,
   useUpdateReferenceMutation,
   useDeleteRefernceMutation,

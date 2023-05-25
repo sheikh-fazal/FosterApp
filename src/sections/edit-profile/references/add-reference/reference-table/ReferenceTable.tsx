@@ -10,18 +10,17 @@ import UpdateRefForm from "./update-reference-form/UpdateRefForm";
 
 const ReferenceTable = () => {
   const theme: any = useTheme();
-  const { tableRows } = useRefereneceTable();
+  const {
+    tableRows,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    tableStatusInfo,
+    openUpdateModel,
+    closeUpdateModel,
+  } = useRefereneceTable();
 
-  const [tableStatusInfo, setTableStatusInfo] = useState({
-    updateModel: false,
-    updateId: "iamid",
-  });
-  const closeUpdateModel = () => {
-    setTableStatusInfo((pre) => ({ ...pre, updateModel: false }));
-  };
-  const openUpdateModel = (id: string) => {
-    setTableStatusInfo((pre) => ({ ...pre, updateModel: true, updateId: id }));
-  };
   const columns = getColumns({ openUpdateModel });
   return (
     <>
@@ -42,13 +41,11 @@ const ReferenceTable = () => {
           <CustomTable
             data={tableRows ?? []}
             columns={columns}
-            isLoading={false}
-            isFetching={false}
-            isError={false}
-            isSuccess={true}
+            isLoading={isLoading}
+            isFetching={isFetching}
+            isError={isError}
+            isSuccess={isSuccess}
             isPagination={false}
-            totalPages={0}
-            currentPage={1}
           />
         </Grid>
       </Grid>
@@ -65,7 +62,9 @@ const ReferenceTable = () => {
           sm={5}
           xs={10}
         >
-          <UpdateRefForm close={closeUpdateModel} defValues={tableRows[0]} />
+          {tableRows && (
+            <UpdateRefForm close={closeUpdateModel} defValues={tableRows[0]} />
+          )}
         </Grid>
       </Modal>
     </>

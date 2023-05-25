@@ -78,7 +78,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="delete"
-            onClicked={() => alert(JSON.stringify(info.row.original.id))}
+            onClicked={() => alert(JSON.stringify(info))}
           />
         </Box>
       ),
