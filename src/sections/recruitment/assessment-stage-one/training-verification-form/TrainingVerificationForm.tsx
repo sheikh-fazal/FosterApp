@@ -6,7 +6,7 @@ import useTrainingVerificationForm from "./useTrainingVerificationForm";
 
 export default function TrainingVerificationForm() {
   const {
-    columns,
+    columnsTrainingVerificationFuntion,
     trainingPRofileData,
     router,
     isLoading,
@@ -37,7 +37,7 @@ export default function TrainingVerificationForm() {
         />
         <CustomTable
           data={trainingPRofileData}
-          columns={columns}
+          columns={columnsTrainingVerificationFuntion}
           isLoading={isLoading}
           isFetching={isFetching}
           isError={isError}

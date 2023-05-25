@@ -6,7 +6,7 @@ import React from "react";
 import UploadDocumentsFormDialogbox from "./upload-documents-form-dialogbox/UploadDocumentsFormDialogbox";
 import useRecruitmentUploadDocuments from "./useRecruitmentUploadDocuments";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { columnsRecruitmentUpload } from ".";
+
 
 const RecruitmentUploadDocuments = () => {
   const {
@@ -16,6 +16,7 @@ const RecruitmentUploadDocuments = () => {
     deleteList,
     isFetching,
     isLoading,
+    columnsRecruitmentUploadFunction
   } = useRecruitmentUploadDocuments();
 
   return (
@@ -33,7 +34,7 @@ const RecruitmentUploadDocuments = () => {
           />
           <CustomTable
             data={data?.data?.docs}
-            columns={columnsRecruitmentUpload}
+            columns={columnsRecruitmentUploadFunction}
             isLoading={false}
             isFetching={false}
             isError={false}

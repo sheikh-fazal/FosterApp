@@ -42,15 +42,9 @@ const useTraingingProfile = (onSubmitHandler: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = async (data: any) => {
-    try {
-      const res: any = await onSubmitHandler(data).unwrap();
-      enqueueSnackbar(res?.message ?? `Successfully!`, {
-        variant: "success",
-      });
-    } catch (error) {
-      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
-    }
+  const onSubmit =  (data: any) => {
+    const res: any = onSubmitHandler(data)
+   
     console.log(data);
   };
 

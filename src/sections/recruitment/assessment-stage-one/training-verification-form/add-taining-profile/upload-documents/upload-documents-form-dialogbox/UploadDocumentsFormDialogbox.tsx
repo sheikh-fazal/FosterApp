@@ -66,7 +66,7 @@ const UploadDocumentsFormDialogbox = (props: any) => {
 
               <Grid item xs={12} md={12} p={2}>
                 <Typography variant="h6">Front Sheet</Typography>
-                <RHFUploadFile name="file" {...methods} />
+                <RHFUploadFile name="file" {...methods}  />
               </Grid>
 
               <Grid item xs={12}>

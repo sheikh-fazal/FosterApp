@@ -5,7 +5,8 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import RecruitmentTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/training-profile/RecruitmentTrainingProfile";
 import RecruitmentUploadDocuments from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/upload-documents/RecruitmentUploadDocuments";
 import { usePostTrainingProfileApiMutation } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
-
+import { useState } from "react";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Recruitment";
 
@@ -17,7 +18,7 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Assessment stage 1",
-          href: "/recruitment",
+          href: "/recruitment/assessment-stage-one/training-verification-form",
         },
         {
           name: "Training Profile",
@@ -30,19 +31,34 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
   );
 };
 
+// ["Training Profile", "Upload Documents"]
 export default function AddTraingVerification() {
+  const [postData, { isError, isSuccess }] =
+    usePostTrainingProfileApiMutation();
+  const [tabsArr, setTabsArr] = useState(["Training Profile"]);
 
-  const [postData, { isError, isSuccess }] = usePostTrainingProfileApiMutation()
+  const updateTabs = async (data: any) => {
+    try {
+      
+
+      const res: any = await postData(data).unwrap();
+
+      if (res?.error) return;
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+
+      setTabsArr(["Training Profile", "Upload Documents"]);
+    } catch (error: any) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
+  };
+
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs
-        tabsDataArray={["Training Profile", "Upload Documents"]}
-      >
-
-        <RecruitmentTrainingProfile onSubmitHandler={postData} />
+      <HorizaontalTabs tabsDataArray={tabsArr}>
+        <RecruitmentTrainingProfile onSubmitHandler={updateTabs} />
         <RecruitmentUploadDocuments />
-
-
       </HorizaontalTabs>
     </Page>
   );
