@@ -18,6 +18,7 @@ import {
   usePatchPetQuestionnaireDApiMutation,
 } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import Error from "@root/components/Error";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -59,6 +60,8 @@ export default function EditPetQuestionnaire() {
   const [patchDataB] = usePatchPetQuestionnaireBApiMutation();
   const [patchDataC] = usePatchPetQuestionnaireCApiMutation();
   const [patchDataD, { isSuccess }] = usePatchPetQuestionnaireDApiMutation();
+
+  if (isError) return <Error />;
 
   return (
     <Page title={PAGE_TITLE}>
