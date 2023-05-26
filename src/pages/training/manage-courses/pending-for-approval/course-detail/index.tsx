@@ -2,10 +2,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
-import PendingForApproval from "@root/sections/training/manage-courses/pending-for-approval/PendingForApproval";
 import CourseArchive from "@root/sections/training/manage-courses/course-resource-pool/course-list/CourseList";
-
+import { useRouter } from "next/router";
 
 const PAGE_TILE = "Child Protection and Safeguarding";
 
@@ -31,10 +29,11 @@ pendingApproval.getLayout = function getLayout(page: any) {
 };
 
 export default function pendingApproval() {
-  const theme = useTheme();
+  const router = useRouter();
+  const { name } = router.query
   return (
     <Page title={PAGE_TILE}>
-      <CourseArchive />
+      <CourseArchive name={name}/>
     </Page>
   );
 }

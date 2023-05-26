@@ -6,19 +6,19 @@ export const useCourseListCard = () => {
   const archiveCoursePath = '/training/manage-courses/archive-course/course-detail';
   const approvalPath = '/training/manage-courses/pending-for-approval/course-detail';
   const router = useRouter();
-  const handleCardClick = (mandatory?: any, name?: string) => {
+  const handleCardClick = (name?: string) => {
     switch (name) {
       case 'searchCourse':
         router.push({ pathname: searchCoursePath, });
         break;
       case 'courseList':
-        router.push({ pathname: courseListPath, query: { mandatory } });
+        router.push({ pathname: courseListPath });
         break;
       case 'archiveCourse':
         router.push({ pathname: archiveCoursePath });
         break;
       case 'pendingForApproval':
-        router.push({ pathname: approvalPath });
+        router.push({ pathname: approvalPath, query: { name } });
         break;
       default:
         break;

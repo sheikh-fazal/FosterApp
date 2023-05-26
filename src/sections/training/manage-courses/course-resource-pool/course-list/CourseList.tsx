@@ -19,7 +19,7 @@ import CourseListCard from '../course-list-card/CourseListCard';
 import { useRouter } from 'next/router';
 import RejectModal from './RejectModal';
 
-const CourseArchive = () => {
+const CourseArchive = ({ name }: any) => {
   const { learn, requirements, description, courses, archivedCourse, author } = archiveCourseData;
   const { archiveModal, DurationToHourMin, handleCloseArchiveModal, handleOpenArchiveModal, handleIsArchive,
     isArchive, hanldeApprove, handleRejectModal, rejectModal, handleReasonChange, handleReasonSubmit
@@ -90,10 +90,10 @@ const CourseArchive = () => {
             <Box sx={styles.topSection}>
               <Typography sx={{ ...styles.head, my: '0px' }}>What you'll learn</Typography>
               <Box>
-                {!mandatory &&
+                {!name &&
                   <Button variant='contained' onClick={handleOpenArchiveModal} disabled={isArchive}>Archive Course</Button>
                 }
-                {mandatory && <>
+                {name && <>
                   <Button
                     variant='contained'
                     onClick={hanldeApprove}
