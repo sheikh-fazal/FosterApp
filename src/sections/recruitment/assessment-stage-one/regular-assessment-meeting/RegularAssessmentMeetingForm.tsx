@@ -22,6 +22,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "meetingDate",
+      label: "Meeting Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -32,7 +33,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "meetingTime",
-
+      label: "Time",
       fullWidth: true,
     },
     component: RHFTimePicker,
@@ -67,7 +68,7 @@ export const formFields = [
     gridLength: 12,
     otherOptions: {
       name: "meetingOutcomes",
-      label: "Meeting outcomes:",
+      label: "Meeting Outcomes",
       multiline: true,
       minRows: 2,
       fullWidth: true,
@@ -79,7 +80,7 @@ export const formFields = [
     gridLength: 12,
     otherOptions: {
       name: "meetingAction",
-      label: "Meeting Action:",
+      label: "Meeting Action",
       multiline: true,
       minRows: 2,
       fullWidth: true,
@@ -92,7 +93,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "nextAssessmentDate",
-
+      label: "Next Assessment Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -103,7 +104,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "nextAssessmentTime",
-
+      label: "Next Assessment Time",
       fullWidth: true,
     },
 
@@ -114,8 +115,6 @@ export const formFields = [
 const RegularAssessmentMeetingForm = (props: any) => {
   const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType, setId } = props;
   const theme: any = useTheme();
-  const todayDate = dayjs().format("MM/DD/YYYY");
-  const currentTime = dayjs().format("");
   const [loading, setLoading] = useState(true);
   // const { data } = useGetSingleRegularAssessmentDetailQuery({ id: id });
   const [singleRegulaAssessmentrDetail] = useLazyGetSingleRegularAssessmentDetailQuery();
@@ -132,28 +131,28 @@ const RegularAssessmentMeetingForm = (props: any) => {
   console.log("actionType", actionType);
 
   const defaultValues = {
-    meetingDate: new Date(todayDate),
-    meetingTime: dayjs().format("HH:MM"),
+    meetingDate: null,
+    meetingTime: null,
 
     meetingAgenda: "Nil",
     meetingAttendees: "Nil",
     meetingOutcomes: "Nil",
     meetingAction: "Nil",
-    nextAssessmentDate: new Date(todayDate),
-    nextAssessmentTime: dayjs().format("HH:MM"),
+    nextAssessmentDate: null,
+    nextAssessmentTime: null,
+    uploadMeetingRecording: null,
   };
 
   const FormSchema = Yup.object().shape({
     meetingDate: Yup.string().required("Required Field"),
     meetingTime: Yup.string().required("Required Field"),
-    // .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
-
     meetingAgenda: Yup.string().required("Required Field"),
     meetingAttendees: Yup.string().required("Required Field"),
     meetingOutcomes: Yup.string().required("Required Field"),
     meetingAction: Yup.string().required("Required Field"),
     nextAssessmentDate: Yup.string().required("Required Field"),
     nextAssessmentTime: Yup.string().required("Required Field"),
+    uploadMeetingRecording: Yup.mixed().required("Please upload a valid document"),
   });
 
   const methods: any = useForm({
@@ -172,10 +171,11 @@ const RegularAssessmentMeetingForm = (props: any) => {
         ...data.data,
         meetingDate: new Date(data?.data?.meetingDate),
         nextAssessmentDate: new Date(data?.data?.nextAssessmentDate),
-        meetingTime: dayjs(data?.data?.meetingTime),
-        nextAssessmentTime: dayjs(data?.data?.nextAssessmentTime),
+        meetingTime: new Date(data?.data?.meetingTime),
+        nextAssessmentTime: new Date(data?.data?.nextAssessmentTime),
+        uploadMeetingRecording: data ? { name: data?.data?.uploadMeetingRecording } : null,
       };
-
+      console.log(responseData);
       // for (const key in responseData) {
       //   const value = responseData[key];
       //   if (formatters[key]) responseData[key] = formatters[key](value);
@@ -186,14 +186,12 @@ const RegularAssessmentMeetingForm = (props: any) => {
   });
 
   const { reset, handleSubmit } = methods;
+
   const onSubmitHandler = (data: any) => {
-    console.log("🚀 ~ file: RegularAssessmentMeetingForm.tsx:160 ~ onSubmitHandler ~ data:", data);
     const regularAssessmentForm = new FormData();
 
     regularAssessmentForm.append("meetingDate", dayjs(data?.meetingDate).format("MM/DD/YYYY"));
-    // regularAssessmentForm.append("meetingDate", "05/04/2022");
-    regularAssessmentForm.append("meetingTime ", data?.meetingTime);
-    // regularAssessmentForm.append("meetingTime ", "00:12");
+    regularAssessmentForm.append("meetingTime", new Date(data?.meetingTime));
     regularAssessmentForm.append("meetingAgenda", data?.meetingAgenda);
     regularAssessmentForm.append("meetingAttendees", data?.meetingAttendees);
     regularAssessmentForm.append("meetingOutcomes", data?.meetingOutcomes);
@@ -202,14 +200,13 @@ const RegularAssessmentMeetingForm = (props: any) => {
       "nextAssessmentDate",
       dayjs(data?.nextAssessmentDate).format("MM/DD/YYYY")
     );
-    // regularAssessmentForm.append("nextAssessmentDate", "05/04/2022");
-    regularAssessmentForm.append("nextAssessmentTime", data?.nextAssessmentTime);
-    // regularAssessmentForm.append("nextAssessmentTime", "00:12");
+
+    regularAssessmentForm.append("nextAssessmentTime", new Date(data?.nextAssessmentTime));
     regularAssessmentForm.append("uploadMeetingRecording", data?.uploadMeetingRecording);
 
-    for (var pair of regularAssessmentForm.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    // for (var pair of regularAssessmentForm.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
     // POST request
     if (actionType === "add") {
@@ -283,7 +280,13 @@ const RegularAssessmentMeetingForm = (props: any) => {
                 <Button type={"submit"} sx={Styles.buttonSuccess(theme)}>
                   Upload
                 </Button>
-                <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
+                <Button
+                  onClick={() => {
+                    // handleClose();
+                    reset();
+                  }}
+                  sx={Styles.buttonError(theme)}
+                >
                   Clear
                 </Button>
               </Box>

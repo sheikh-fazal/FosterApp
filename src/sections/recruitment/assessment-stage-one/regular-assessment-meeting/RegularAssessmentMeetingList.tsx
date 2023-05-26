@@ -34,7 +34,7 @@ const RegularAssessmentMeetingList = (props: any) => {
   ];
   const meetingListColumns = [
     {
-      accessorFn: (row: any) => row?.meetingDate,
+      accessorFn: (row: any) => row?.meetingDate + " " + dayjs(row?.meetingTime).format("hh:mm A"),
       id: "meetingDate",
       cell: (info: any) => info.getValue(),
       header: "Meeting Date/time",
