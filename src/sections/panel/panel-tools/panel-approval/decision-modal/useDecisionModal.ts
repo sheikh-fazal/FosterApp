@@ -12,9 +12,6 @@ export const useDecisionModal = () => {
 
   const {
     reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   }: any = methods;

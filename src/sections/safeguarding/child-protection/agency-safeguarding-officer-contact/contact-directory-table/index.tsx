@@ -1,3 +1,26 @@
+import EditIcon from "../../../../../assets/svg/safeguarding/edit.svg";
+import ShareIcon from "../../../../../assets/svg/safeguarding/share.svg";
+import EmailIcon from "../../../../../assets/svg/safeguarding/Email.svg";
+import PhoneIcon from "../../../../../assets/svg/safeguarding/Phone.svg";
+import DeleteIcon from "../../../../../assets/svg/safeguarding/delete.svg";
+import WhatsApp from "../../../../../assets/svg/safeguarding/whatsapp.svg";
+import InactiveLock from "../../../../../assets/svg/safeguarding/inactiveLock.svg";
+
+// ============================================================================================
+
+export const tableActionIcons = [
+  { type: "edit", id: "edit", img: EditIcon },
+  { type: "inactiveLock", id: "inactiveLock", img: InactiveLock },
+  { type: "share", id: "share", img: ShareIcon },
+  { type: "delete", id: "delete", img: DeleteIcon },
+  { type: "phone", id: "phone", img: PhoneIcon },
+  { type: "email", id: "email", img: EmailIcon },
+  { type: "whatsapp", id: "whatsapp", img: WhatsApp },
+];
+
+// ==================================================================================================
+
+
 export const contactDirectoryTableData = [
   {
     name: "Alberto Delrio",
@@ -10,7 +33,7 @@ export const contactDirectoryTableData = [
     company: "-",
     address: "Dunedin Road, London",
     postCode: "E10 5PE",
-    country: '',
+    country: "",
     colorCode: "#b0d6e3",
   },
   {
@@ -124,7 +147,8 @@ export const contactDirectoryTableData = [
     postCode: "E10 5PE",
     country: "",
     colorCode: "",
-  },{
+  },
+  {
     name: "Alberto Delrio",
     role: "Foster Carer",
     safeguardingRole: "Fostering",
@@ -137,7 +161,8 @@ export const contactDirectoryTableData = [
     postCode: "E10 5PE",
     country: "",
     colorCode: "",
-  },{
+  },
+  {
     name: "Alberto Delrio",
     role: "Foster Carer",
     safeguardingRole: "Fostering",
@@ -150,7 +175,8 @@ export const contactDirectoryTableData = [
     postCode: "E10 5PE",
     country: "",
     colorCode: "",
-  },{
+  },
+  {
     name: "Alberto Delrio",
     role: "Foster Carer",
     safeguardingRole: "Fostering",

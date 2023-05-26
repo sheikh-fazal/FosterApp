@@ -1,5 +1,6 @@
 import React from "react";
 import { data } from ".";
+import { Card } from "@mui/material";
 import { usePanelChair } from "./usePanelChair";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -9,7 +10,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 const PanelChair = () => {
   const { columns, theme } = usePanelChair();
   return (
-    <>
+    <Card sx={{ px: 1, py: 2 }}>
       <TableHeader
         title="Panel Case List"
         searchKey="search"
@@ -31,9 +32,9 @@ const PanelChair = () => {
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}
-        rootSX={{ my: theme.spacing(2) }}
+        rootSX={{ my: theme.spacing(2), mt: 0 }}
       />
-    </>
+    </Card>
   );
 };
 export default PanelChair;

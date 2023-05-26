@@ -1,8 +1,7 @@
 import * as Yup from "yup";
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
 
-// ================================================================================
-
+// ================================================================================================
 export const defaultValues = {
   name: "",
   role: "",
@@ -16,8 +15,8 @@ export const defaultValues = {
   postCode: "",
   country: "",
   colorCode: "",
-};
- // ===================================================================================
+}
+ // ===============================================================================================
 export const FormSchema = Yup.object().shape({
   name: Yup.string().required("Field is required"),
   role: Yup.string().required("Field is required"),
@@ -33,6 +32,7 @@ export const FormSchema = Yup.object().shape({
   colorCode: Yup.string().required("Field is required"),
 });
 
+// ================================================================================================
 export const formData = [
   {
     gridLength: 6,
@@ -151,6 +151,14 @@ export const formData = [
     fontWeight: 600,
     otherOptions: { name: "colorCode", fullWidth: true, type: "color"},
     component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      name: "markPrivate",
+      label: "Mark as Private",
+    },
+    component: RHFCheckbox,
   },
 ];
 

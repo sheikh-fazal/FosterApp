@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Button, Typography, Card } from "@mui/material";
 // components
 import { originalChildFormData } from "./index";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
@@ -9,11 +9,11 @@ import { useOriginalChildReferralForm } from "./useOriginalChildReferralForm";
 // ====================================================================================================================
 
 const OriginalChildReferralForm = (props: any) => {
-  const { theme, router, handleSubmit, onSubmit,methods } = useOriginalChildReferralForm();
+  const { theme, router, handleSubmit, onSubmit, methods } = useOriginalChildReferralForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={styles.card}>
+      <Card sx={{ px: 1, py: 2 }}>
         <Grid container columnSpacing={4} pb={3}>
           <Grid item xs={12} md={12}>
             <Typography pt="10px" pb="30px" sx={{ fontSize: "16px", fontWeight: 700, color: theme.palette.primary.main }}>
@@ -75,19 +75,8 @@ const OriginalChildReferralForm = (props: any) => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Card>
     </FormProvider>
   );
 };
 export default OriginalChildReferralForm;
-
-// ===========================================
-const styles = {
-  card: {
-    background: "#FFFFFF",
-    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-    borderRadius: "10px",
-    px: 1,
-    py: 2,
-  },
-};

@@ -6,7 +6,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const defaultValues = {
   admDecision: "",
-  decisionDate: "",
+  decisionDate: new Date(),
   status: "",
 };
 

@@ -1,34 +1,151 @@
 import React from "react";
+import Image from "next/image";
+import { Box } from "@mui/material";
+import { tableActionIcons } from ".";
 import { TableContainer } from "@mui/material";
 import PhoneModal from "../phone-modal/PhoneModal";
 import ShareModal from "@root/components/modal/shareModal";
 import { useContactDirectory } from "./useContactDirectory";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import CustomTable from "@root/components/Table/CustomTable";
-import SendEmailModal from "../../../../../components/modal/SendEmailModal/SendEmailModal";
+import DeleteModel from "@root/components/modal/DeleteModel";
+import ContactInfoModal from "../contact-info-modal/ContactInfoModal";
+import UkFlag from "../../../../../assets/svg/safeguarding/uk-flag.svg";
+import SendEmailModal from "@root/components/modal/SendEmailModal/SendEmailModal";
 
 // ===========================================================================================
 
-const ContactDirectory = ({ filteredData,contactInfoModal,setContactInfoModal }: any) => {
+const ContactDirectory = ({ data, id }: any) => {
   const {
-    agencySafeguardingColumns,
     isShareModal,
-    setIsShareModal,
+    handleShareClose,
     isEmailModal,
-    setIsEmailModal,
+    handleEmailClose,
+    handleTableAction,
     isDeleteModal,
-    setIsDeleteModal,
+    handleDeleteClose,
     isPhoneModal,
-    setIsPhoneModal,
-  } = useContactDirectory(contactInfoModal,setContactInfoModal);
+    handlePhoneClose,
+    isEditModal,
+    handleEditClose,
+  } = useContactDirectory();
+
+  const columns = [
+    {
+      accessorFn: (row: any) => row.name,
+      id: "name",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Name</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.role,
+      id: "role",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Role</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.safeguardingRole,
+      id: "safeguardingRole",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Department</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.branch,
+      id: "branch",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Branch</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.businessPhone,
+      id: "businessPhone",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Business Phone</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.email,
+      id: "email",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Email</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.mobile,
+      id: "mobile",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Mobile</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.company,
+      id: "company",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Company</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.address,
+      id: "address",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Address</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.postCode,
+      id: "postCode",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Postcode</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.country,
+      id: "country",
+      cell: (info: any) => <Image src={UkFlag} alt="img" />,
+      header: () => <span>Country</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.colorCode,
+      id: "colorCode",
+      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" }} />,
+      header: () => <span>Color Code</span>,
+      isSortable: true,
+    },
+    {
+      id: "actions",
+      cell: (data: any) => {
+        return (
+          <Box sx={{ width: "120px", display: "flex", gap: "5px", flexWrap: "wrap", justifyContent: "center", mb: "2px" }}>
+            {tableActionIcons.map(({ id, type, img }: any) => (
+              <Image
+                key={id}
+                style={{ cursor: "pointer" }}
+                id={id}
+                src={img}
+                onClick={() => handleTableAction(type, data.row.id)}
+                alt={`UserProfile${id}`}
+                width={23}
+                height={23}
+              />
+            ))}
+          </Box>
+        );
+      },
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
 
   return (
     <>
-      <TableContainer>
+      <TableContainer id={id}>
         <CustomTable
-          data={filteredData}
+          data={data}
           rootSX={{ overflowX: "scroll" }}
-          columns={agencySafeguardingColumns}
+          columns={columns}
           isSuccess={true}
           currentPage={1}
           onPageChange={(data: any) => {
@@ -39,10 +156,11 @@ const ContactDirectory = ({ filteredData,contactInfoModal,setContactInfoModal }:
           }}
         />
       </TableContainer>
-      {isShareModal && <ShareModal open={isShareModal} data={[{ email: "Adadsa@gmail.com" }]} handleClose={() => setIsShareModal(false)} />}
-      {isEmailModal && <SendEmailModal open={isEmailModal} handleClose={() => setIsEmailModal(false)} />}
-      {isDeleteModal && <DeleteModel open={isDeleteModal} handleClose={() => setIsDeleteModal(false)} />}
-      {isPhoneModal && <PhoneModal setIsPhoneModal={setIsPhoneModal} />}
+      {isShareModal && <ShareModal open={isShareModal} data={[{ email: "Adadsa@gmail.com" }]} handleClose={handleShareClose} />}
+      {isEmailModal && <SendEmailModal open={isEmailModal} handleClose={handleEmailClose} />}
+      {isDeleteModal && <DeleteModel open={isDeleteModal} handleClose={handleDeleteClose} />}
+      {isPhoneModal && <PhoneModal open={isPhoneModal} handleClose={handlePhoneClose} />}
+      {isEditModal && <ContactInfoModal open={isEditModal} onClose={handleEditClose} />}
     </>
   );
 };
