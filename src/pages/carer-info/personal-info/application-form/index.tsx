@@ -75,6 +75,7 @@ ApplicationForm.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ApplicationForm() {
+  let role = "IFA";
   const { data, isLoading, isError }: any = useGetApplicationFormDataQuery({});
   if (isLoading) {
     return (
@@ -88,6 +89,8 @@ export default function ApplicationForm() {
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={ApplicationTabsData}>
         <BasicInformationForm
+          role={role}
+          disabled={role == "foster-carer" ? true : false}
           data={{
             ...BasicdefaultValues,
             ...(data?.data?.basicInformation && {
@@ -98,21 +101,23 @@ export default function ApplicationForm() {
               dateOfBirth: new Date(data?.data?.basicInformation?.dateOfBirth),
             }),
           }}
-          disabled={true}
         />
         <ContactForm
+          role={role}
+          apllicationFormid={data?.data?.id}
           data={{
             ...contactDefaultValues,
             ...(data?.data?.contact && {
               ...data?.data?.contact,
             }),
           }}
-          disabled={true}
+          disabled={role == "foster-carer" ? true : false}
         />
-        <FamilyTable apllicationFormid={data?.data?.id} />
-        <Reference apllicationFormid={data?.data?.id} />
-        <Employers apllicationFormid={data?.data?.id} />
+        <FamilyTable role={role} apllicationFormid={data?.data?.id} />
+        <Reference role={role} apllicationFormid={data?.data?.id} />
+        <Employers role={role} apllicationFormid={data?.data?.id} />
         <OtherInfoForm
+          role={role}
           data={{
             ...otherInfoDefaultValues,
             ...(data?.data?.otherInfo && {
@@ -125,17 +130,18 @@ export default function ApplicationForm() {
           }}
           disabled={true}
         />
-        <ExPartners apllicationFormid={data?.data?.id} />
+        <ExPartners role={role} apllicationFormid={data?.data?.id} />
         <PlacementPreferenceForm
+          role={role}
           data={{
             ...placementPreferenceDefaultValues,
             ...(data?.data?.placementPreference && {
               ...data?.data?.placementPreference,
             }),
           }}
-          disabled={true}
+          disabled={role == "foster-carer" ? true : false}
         />
-        <DocumentTable />
+        <DocumentTable role={role} />
       </HorizaontalTabs>
     </Page>
   );

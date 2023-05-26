@@ -73,8 +73,8 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setRefData: any) =>{
-  return[
+export const columns = (changeView: any, setRefData: any, role: any) => {
+  return [
     {
       accessorFn: (row: any) => `${row.firstName}  ${row.lastName}`,
       id: "firstName",
@@ -102,16 +102,33 @@ export const columns = (changeView: any, setRefData: any) =>{
           <TableAction
             type="view"
             onClicked={() => {
-              setRefData(info.row.original);
+              setRefData({ ...info.row.original });
               changeView("view");
             }}
           />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setRefData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <TableAction
+                type="delete"
+                onClicked={() => {
+                  setRefData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,
       isSortable: false,
     },
   ];
-  
-} 
+};
 export { default as Reference } from "./ReferenceTable";

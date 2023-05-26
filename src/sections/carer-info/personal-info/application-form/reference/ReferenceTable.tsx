@@ -7,10 +7,9 @@ import TableAction from "@root/components/TableAction";
 import { columns } from ".";
 import { useGetReferenceDetailsQuery } from "@root/services/carer-info/personal-info/application-form/ReferenceApi";
 
-export default function Reference({ apllicationFormid }: any) {
+export default function Reference({ apllicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
   let [refData, setRefData] = useState(null);
-
   const tableHeaderRef = useRef<any>();
   const theme: any = useTheme();
 
@@ -21,25 +20,11 @@ export default function Reference({ apllicationFormid }: any) {
     setViewData(val);
   };
 
-  // const [data, setData] = React.useState([
-  //   {
-  //     srNo: "U4721XBUCA",
-  //     name: "John",
-  //     phone: "123456789",
-  //     email: "john@xyz",
-  //   },
-  //   {
-  //     srNo: "U3721XBUCB",
-  //     name: "John Doe",
-  //     phone: "12345678109",
-  //     email: "johndoe2@xyz",
-  //   },
-  // ]);
-
   return (
     <>
       {viewData ? (
         <ReferenceViewForm
+          role
           disabled={viewData == "view" ? true : false}
           refData={refData}
           changeView={changeView}
@@ -50,6 +35,10 @@ export default function Reference({ apllicationFormid }: any) {
             disabled={isLoading}
             ref={tableHeaderRef}
             title="Existing Ex-References(s) Details"
+            showAddBtn={role == "foster-carer" ? false : true}
+            onAdd={() => {
+              changeView("add");
+            }}
             searchKey="search"
             onChanged={(data: any) => {
               console.log("Updated params: ", data);
@@ -58,7 +47,7 @@ export default function Reference({ apllicationFormid }: any) {
           <CustomTable
             showSerialNo
             data={data?.data}
-            columns={columns(changeView, setRefData)}
+            columns={columns(changeView, setRefData, role)}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

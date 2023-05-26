@@ -5,9 +5,11 @@ import { columns } from ".";
 import React, { useRef } from "react";
 import TableHeader from "@root/components/TableHeader";
 import UploadDocumentsModel from "./UploadDocumentModal";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
 export function DocumentTable({ changeView }: any) {
-  const theme: any = useTheme();
+  const { postAllegationDetails, router, theme, onSubmit } =
+    useUploadDocumentsTable();
   const tableHeaderRef = useRef<any>();
   const [open, setOpen] = React.useState(false);
   const isOpenModal = () => setOpen(!open);

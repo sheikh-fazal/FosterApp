@@ -3,15 +3,17 @@ import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
+import { useUpdateContactMutation } from "@root/services/carer-info/personal-info/application-form/ContactApi";
+import { enqueueSnackbar } from "notistack";
 
-export const useContactForm = (data: any) => {
+export const useContactForm = (data: any, apllicationFormid: any) => {
   const theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: data,
   });
-
+  const [updateContact, { isLoading }] = useUpdateContactMutation({});
   const {
     reset,
     control,
@@ -21,21 +23,21 @@ export const useContactForm = (data: any) => {
     formState: { errors, isSubmitting, isDirty },
   } = methods;
 
-  const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log("data", data);
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-          startDate: data.startDate && fTimestamp(data.startDate),
-          endDate: data.endDate && fTimestamp(data.endDate),
-        },
-        null,
-        2
-      )
-    );
-    reset();
+  const onSubmit = async (formData: any) => {
+    try {
+      let res: any = await updateContact({
+        id: apllicationFormid,
+        formData,
+      }).unwrap();
+      console.log("sadasd", res?.data);
+      if (res.data) {
+        reset({
+          ...res?.data?.contact,
+        });
+        enqueueSnackbar("Record Updated Successfully", { variant: "success" });
+      }
+    } catch (error) {}
+    // console.log("data", formData);
   };
 
   return {
