@@ -1,13 +1,10 @@
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { AForm, AFormValidationSchema, defaultValues } from "./";
-import { enqueueSnackbar } from "notistack";
+import { AForm, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
-import router from "next/router";
+import { usePetQuestionnaireAFrom } from "./usePetQuestionnaireAFrom";
 
 export default function PetQuestionnaireA({
   disabled,
@@ -18,36 +15,13 @@ export default function PetQuestionnaireA({
   isSuccess,
   isAdding = false,
 }: any) {
-  const methods: any = useForm({
-    resolver: yupResolver(AFormValidationSchema),
-    defaultValues: initialValueProps,
-  });
-
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
-
-  const onSubmit = async (data: any) => {
-    try {
-      const res: any = await onSubmitHandler(data).unwrap();
-      enqueueSnackbar(
-        res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        {
-          variant: "success",
-        }
-      );
-      {
-        isAdding &&
-          router.push(
-            `/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire?${res.id}`
-          );
-      }
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-    }
-  };
+  const { methods, handleSubmit, onSubmit, isSubmitting } =
+    usePetQuestionnaireAFrom({
+      onSubmitHandler,
+      initialValueProps,
+      message,
+      isAdding,
+    });
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

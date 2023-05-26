@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SignaturePad from "@root/components/hook-form/SignaturePad";
-import { fData } from "@root/utils/formatNumber";
 import * as Yup from "yup";
 
 export const CForm = [
