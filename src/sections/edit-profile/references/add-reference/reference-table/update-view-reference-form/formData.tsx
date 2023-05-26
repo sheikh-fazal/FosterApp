@@ -1,13 +1,5 @@
 import * as Yup from "yup";
 
-export const defaultValues = {
-  referenceType: "",
-  refereeName: "",
-  contactNo: "",
-  email: "",
-  contactNow: false,
-};
-
 export const FormSchema = Yup.object().shape({
   referenceType: Yup.string()
     .required("refType is required")

@@ -11,7 +11,7 @@ import { FormProvider } from "@root/components/hook-form";
 // import { FormSchema, defaultValues } from ".";
 //mui icons
 import CloseIcon from "@mui/icons-material/Close";
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import { FormSchema, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
@@ -23,7 +23,7 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const UpdateRefForm: FC<any> = ({ close, defValues, disabled }) => {
+const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
   // const [disabled, setDisabled] = useState(false);
   // const [isUpdating, setIsUpdating] = useState(false);
@@ -134,4 +134,4 @@ const UpdateRefForm: FC<any> = ({ close, defValues, disabled }) => {
   );
 };
 
-export default UpdateRefForm;
+export default UpdateViewRefForm;

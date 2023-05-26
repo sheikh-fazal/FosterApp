@@ -5,7 +5,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import { useRefereneceTable } from "./useReferenceTable";
 import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
-import UpdateRefForm from "./update-reference-form/UpdateRefForm";
+import UpdateViewRefForm from "./update-view-reference-form/UpdateViewRefForm";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 // import { columns } from "./columns-info";
 
@@ -18,13 +18,11 @@ const ReferenceTable = () => {
     isFetching,
     isSuccess,
     tableStatusInfo,
-    openUpdateModel,
-    closeUpdateModel,
-    openViewModel,
-    closeViewModel,
+    openViewUpdateModel,
+    closeViewUpdateModel,
   } = useRefereneceTable();
 
-  const columns = getColumns({ openUpdateModel, openViewModel });
+  const columns = getColumns({ openViewUpdateModel });
   if (isLoading) return <FormSkeleton />;
   return (
     <>
@@ -53,7 +51,10 @@ const ReferenceTable = () => {
           />
         </Grid>
       </Grid>
-      <Modal open={tableStatusInfo.updateModel} onClose={closeUpdateModel}>
+      <Modal
+        open={tableStatusInfo.updateViewModel}
+        onClose={closeViewUpdateModel}
+      >
         <Grid
           container
           sx={{
@@ -66,13 +67,14 @@ const ReferenceTable = () => {
           sm={5}
           xs={10}
         >
-          <UpdateRefForm
-            close={closeUpdateModel}
+          <UpdateViewRefForm
+            close={closeViewUpdateModel}
             defValues={tableStatusInfo?.refFormDataHolder}
+            disabled={tableStatusInfo.isDisabled}
           />
         </Grid>
       </Modal>
-      <Modal open={tableStatusInfo.viewModel} onClose={closeViewModel}>
+      {/* <Modal open={tableStatusInfo.viewModel} onClose={closeViewModel}>
         <Grid
           container
           sx={{
@@ -85,13 +87,13 @@ const ReferenceTable = () => {
           sm={5}
           xs={10}
         >
-          <UpdateRefForm
+          <UpdateViewRefForm
             close={closeViewModel}
             defValues={tableStatusInfo?.refFormDataHolder}
             disabled
           />
         </Grid>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

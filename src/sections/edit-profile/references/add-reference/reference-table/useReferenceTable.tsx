@@ -5,37 +5,39 @@ export const useRefereneceTable = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetReferencesInfoQuery({});
   const [tableStatusInfo, setTableStatusInfo] = useState({
-    updateModel: false,
-    updateId: "iamid",
+    updateViewModel: false,
+    updateId: "",
     refFormDataHolder: null,
+    isDisabled: true,
     viewModel: false,
   });
 
-  const closeUpdateModel = () => {
-    setTableStatusInfo((pre) => ({ ...pre, updateModel: false }));
+  const closeViewUpdateModel = () => {
+    setTableStatusInfo((pre) => ({ ...pre, updateViewModel: false }));
   };
-  const openUpdateModel = (id: string) => {
+  const openViewUpdateModel = (id: string, disabled: boolean) => {
     const tableRows = data?.data ?? [];
     const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
     setTableStatusInfo((pre) => ({
       ...pre,
-      updateModel: true,
+      updateViewModel: true,
       updateId: id,
       refFormDataHolder: tableRows[indexOf],
+      isDisabled: Boolean(disabled),
     }));
   };
-  const closeViewModel = () => {
-    setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
-  };
-  const openViewModel = (id: string) => {
-    const tableRows = data?.data ?? [];
-    const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
-    setTableStatusInfo((pre) => ({
-      ...pre,
-      viewModel: true,
-      refFormDataHolder: tableRows[indexOf],
-    }));
-  };
+  // const closeViewModel = () => {
+  //   setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
+  // };
+  // const openViewModel = (id: string) => {
+  //   const tableRows = data?.data ?? [];
+  //   const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
+  //   setTableStatusInfo((pre) => ({
+  //     ...pre,
+  //     viewModel: true,
+  //     refFormDataHolder: tableRows[indexOf],
+  //   }));
+  // };
 
   return {
     tableRows: data?.data,
@@ -44,9 +46,7 @@ export const useRefereneceTable = () => {
     isFetching,
     isSuccess,
     tableStatusInfo,
-    closeUpdateModel,
-    openUpdateModel,
-    closeViewModel,
-    openViewModel,
+    closeViewUpdateModel,
+    openViewUpdateModel,
   };
 };
