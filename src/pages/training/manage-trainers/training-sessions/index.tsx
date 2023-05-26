@@ -3,6 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
+import TrainingSessionMainModule from "@root/sections/training/manage-trainers/training-sessions";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { TrainingSessionsHome } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-home";
 import { TrainingSessionsSchedule } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-schedule";
@@ -11,6 +12,7 @@ import { TrainingSessionsAttendees } from "@root/sections/training/manage-traine
 import { TrainingSessionsBudget } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-budget";
 import TableHeader from "@root/components/TableHeader";
 import { useRouter } from "next/router";
+
 
 
 const PAGE_TILE = "Training Sessions";
@@ -63,22 +65,7 @@ export default function TrainingSessions() {
   ]
   return (
     <Page title={PAGE_TILE}>
-      <TableHeader title="" hideSearch showAddBtn onAdd={()=>navigate.push("/training/manage-trainers/training-sessions/add-training-session")}/>
-      <HorizaontalTabs
-        tabsDataArray={[
-          "Home",
-          "Schedule",
-          "Speakers",
-          "Attendees",
-          "Budget"
-        ]}
-      >
-      <TrainingSessionsHome />
-      <TrainingSessionsSchedule />
-      <TrainingSessionsSpeakers />
-      <TrainingSessionsAttendees />
-      <TrainingSessionsBudget />
-      </HorizaontalTabs>
+      <TrainingSessionMainModule />
     </Page>
   );
 }

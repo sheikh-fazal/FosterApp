@@ -3,6 +3,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { SyntheticEvent, useState } from "react";
+import { Grid } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -19,11 +20,12 @@ function TabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
+      // style={{width:"80%"}}
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 2 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ px: 2, width:"100%" }}>
+          {children}
         </Box>
       )}
     </div>
@@ -45,35 +47,33 @@ export default function VerticalSmallTabs({ tabs, children }: any) {
   };
 
   return (
-    <Box
-      sx={{
-        flexGrow: 1,
-        bgcolor: "background.paper",
-        display: "flex",
-        // height: 300,
-      }}
-    >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs"
-        sx={{ borderRight: 1, borderColor: "divider" }}
-      >
-        {tabs.map((tabs: any, idx: number) => {
-          return <Tab label={tabs} {...a11yProps(idx)} />;
-        })}
-      </Tabs>
-      <div style={{width:'62vw'}}>
-      {children.map((content: any, idx: any) => {
-        return (
-          <TabPanel value={value} index={idx}>
-            {content}
-          </TabPanel>
-        );
-      })}
-      </div>
-    </Box>
+
+      <Grid container>
+        <Grid item xs={2}>
+          <Tabs
+            orientation="vertical"
+            variant="scrollable"
+            value={value}
+            onChange={handleChange}
+            aria-label="Vertical tabs"
+            centered={true}
+            sx={{ borderRight: 1, borderColor: "divider"}}
+          >
+            {tabs.map((tabs: any, idx: number) => {
+              return <Tab label={tabs} {...a11yProps(idx)} sx={{marginRight: "50px", alignItems:"start"}}/>;
+            })}
+          </Tabs>
+        </Grid>
+        <Grid item xs={10} sx={{width:"80%"}}>
+          {children.map((content: any, idx: any) => {
+            return (
+              <TabPanel value={value} index={idx} >
+                {content}
+              </TabPanel>
+            );
+          })}
+        </Grid>
+      </Grid>
+
   );
 }
