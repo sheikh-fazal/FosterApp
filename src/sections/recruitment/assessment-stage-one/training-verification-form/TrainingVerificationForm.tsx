@@ -3,6 +3,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import useTrainingVerificationForm from "./useTrainingVerificationForm";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 export default function TrainingVerificationForm() {
   const {
@@ -18,9 +19,18 @@ export default function TrainingVerificationForm() {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    trainingProfileId,
+    closeDeleteProfile,
+    deleteTrainingProfile
   } = useTrainingVerificationForm();
   return (
     <>
+      <DeleteModel
+        open={trainingProfileId}
+        onDeleteClick={deleteTrainingProfile}
+        handleClose={closeDeleteProfile}
+      />
+
       <Card>
         <TableHeader
           showAddBtn
@@ -30,7 +40,7 @@ export default function TrainingVerificationForm() {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/recruitment/assessment-stage-one/training-verification-form/add-taining-profile"
+              "/recruitment/assessment-stage-one/training-verification-form/new-taining-profile"
             );
           }}
           onChanged={headerChangeHandler}

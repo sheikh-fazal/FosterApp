@@ -1,20 +1,48 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetTrainingProfileAllDataQuery } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
+import {
+  useDeleteTrainingProfileApiMutation,
+  useGetTrainingProfileAllDataQuery,
+} from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { columnsTrainingVerification } from ".";
+import { enqueueSnackbar } from "notistack";
 
 const useTrainingVerificationForm = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
+  const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  
+
+  const [deleteProfile] = useDeleteTrainingProfileApiMutation();
+
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
-  
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
+
+  const deleteTrainingProfile = async () => {
+    console.log(trainingProfileId);
+
+    const res: any = deleteProfile(trainingProfileId)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Training Profile deleted  Successfully", {
+          variant: "success",
+        });
+        setTrainingProfileId(null);
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
+  const openDeleteModel = (id: string) => {
+    console.log("ProfileID: ", id);
+    setTrainingProfileId(id);
+  };
+
+  const closeDeleteProfile = (id: string) => {
+    setTrainingProfileId(null);
   };
 
   const { data, isLoading, isError, isFetching, isSuccess } =
@@ -23,11 +51,16 @@ const useTrainingVerificationForm = () => {
   const trainingPRofileData = data?.data?.trainingProfile;
   const meta = data?.data?.meta;
 
-  const columnsTrainingVerificationFuntion = columnsTrainingVerification(handleDelete,router,cancelDelete,setCancelDelete);
-  
+  const columnsTrainingVerificationFuntion = columnsTrainingVerification(
+    deleteTrainingProfile,
+    router,
+    cancelDelete,
+    setCancelDelete,
+    openDeleteModel
+  );
+
   console.log(data, "training profile");
 
-  
   return {
     columnsTrainingVerificationFuntion,
     trainingPRofileData,
@@ -41,6 +74,9 @@ const useTrainingVerificationForm = () => {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    trainingProfileId,
+    closeDeleteProfile,
+    deleteTrainingProfile,
   };
 };
 

@@ -1,11 +1,12 @@
 import { baseAPI } from "@root/services/baseApi";
 
-const TAG = "TRAINING_PROFILE";
+const TAGS:any = ["POST_DATA", "DELETE_PROFILE", "UPDATE_DATA", "GET_DATA"]
 
-export const trainingPRofileAllApi = baseAPI.injectEndpoints({
+export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getTrainingProfileAllData: builder.query({
       query: (params: any) => "/training-profile/all",
+      invalidatesTags: TAGS
     }),
     getSingleTrainingProfileData: builder.query({
       query: (trainingProfileId: any) =>
@@ -17,6 +18,7 @@ export const trainingPRofileAllApi = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: TAGS,
     }),
     patchTrainingProfileApi: builder.mutation<null, void>({
       query: ({ trainingProfileId, data }: any) => ({
@@ -24,19 +26,26 @@ export const trainingPRofileAllApi = baseAPI.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: [TAG],
+      invalidatesTags: TAGS,
+    }),
+    deleteTrainingProfileApi: builder.mutation<null, void>({
+      query: (id: any) => ({
+        url: `/training-profile/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: TAGS,
     }),
     getTrainingProfileAllDocument: builder.query({
-      query: (trainingProfileId:any) => `/training-profile/document/all?trainingProfileId=${trainingProfileId}`,
-
+      query: (trainingProfileId: any) =>
+        `/training-profile/document/all?trainingProfileId=${trainingProfileId}`,
     }),
     postTrainingProfileDocument: builder.mutation<null, void>({
-      query: ({body, trainingProfileId}:any)=>({
+      query: ({ body, trainingProfileId }: any) => ({
         url: `/training-profile/document?trainingProfileId=${trainingProfileId}`,
-        method: 'POST',
-        body
-      })
-    })
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -46,5 +55,6 @@ export const {
   usePostTrainingProfileApiMutation,
   usePatchTrainingProfileApiMutation,
   useGetTrainingProfileAllDocumentQuery,
-  usePostTrainingProfileDocumentMutation
+  useDeleteTrainingProfileApiMutation,
+  usePostTrainingProfileDocumentMutation,
 } = trainingPRofileAllApi;

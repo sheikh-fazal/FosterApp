@@ -7,7 +7,8 @@ export const columnsTrainingVerification = (
   handleDelete: any,
   router: any,
   cancelDelete: any,
-  setCancelDelete: any
+  setCancelDelete: any,
+  openDeleteModel:any
 ) => [
   {
     id: "select",
@@ -75,14 +76,10 @@ export const columnsTrainingVerification = (
         />
         <TableAction
           type="delete"
-          onClicked={() => setCancelDelete(true)}
+          onClicked={() => openDeleteModel(info.getValue())}
           size="small"
         />
-        <DeleteModel
-          open={cancelDelete}
-          onDeleteClick={handleDelete}
-          handleClose={() => setCancelDelete(!cancelDelete)}
-        />
+        
 
         <TableAction
           type="view"
