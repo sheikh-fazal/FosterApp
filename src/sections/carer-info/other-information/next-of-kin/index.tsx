@@ -1,6 +1,7 @@
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-
+import SignaturePad from "@root/components/hook-form/SignaturePad";
+import * as Yup from "yup";
 export const DummyData = [
   {
     personName: "abid",
@@ -198,6 +199,15 @@ export const NextofkinFromData = [
     },
     component: RHFDatePicker,
   },
+  {
+    id: 16,
+    gridLength: 6,
+    otherOptions: {
+      name: "nextofKin.sign",
+      label: "Signature",
+    },
+    component: SignaturePad,
+  },
 ];
 
 export const nextofkinFormValues = {
@@ -214,7 +224,32 @@ export const nextofkinFormValues = {
   },
   nextofKin: {
     name: "",
-    telationship: "",
+    telephone: "",
+    relationship: "",
     address: "",
+    date: "",
+    sign: "",
   },
 };
+
+export const FormSchema = Yup.object().shape({
+  firstName: Yup.string().required("required"),
+  lastname: Yup.string().required("required"),
+  address: Yup.string().required("required"),
+  telephone: Yup.string().required("required"),
+  mobile: Yup.string().required("required"),
+  ninNumber: Yup.string().required("required"),
+  doctorDetails: Yup.object().shape({
+    name: Yup.string().required("required"),
+    telephone: Yup.string().required("required"),
+    address: Yup.string().required("required"),
+  }),
+  nextofKin: Yup.object().shape({
+    name: Yup.string().required("required"),
+    telephone: Yup.string().required("required"),
+    relationship: Yup.string().required("required"),
+    address: Yup.string().required("required"),
+    date: Yup.date().required("required"),
+    // sign: Yup.object().required("required"),
+  }),
+});

@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Grid,
   Paper,
   TextField,
@@ -9,11 +10,14 @@ import {
 import React from "react";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 import { FormProvider } from "@root/components/hook-form";
-import { NextofkinFromData, nextofkinFormValues } from ".";
-const NextOfKinForm = () => {
+import { FormSchema, NextofkinFromData, nextofkinFormValues } from ".";
+import router from "next/router";
+import { yupResolver } from "@hookform/resolvers/yup";
+const NextOfKinForm = (props: any) => {
+  const { action, id } = props;
   const methods: any = useForm({
     // mode: "onTouched",
-    // resolver: yupResolver(FormSchema),
+    resolver: yupResolver(FormSchema),
     defaultValues: nextofkinFormValues,
   });
   const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
@@ -21,7 +25,7 @@ const NextOfKinForm = () => {
     console.log(data);
   };
 
-  const theme = useTheme();
+  const theme: any = useTheme();
   console.log(theme);
 
   return (
@@ -49,12 +53,57 @@ const NextOfKinForm = () => {
                             {form.label}
                           </Typography>
                         ) : (
-                          <form.component size="small" {...form.otherOptions} />
+                          <form.component
+                            size="small"
+                            {...form.otherOptions}
+                            disabled={action === "view" ? true : false}
+                            InputLabelProps={{
+                              shrink: action === "view" ? true : undefined,
+                              disabled: action === "view" ? true : undefined,
+                            }}
+                          />
                         )}
                       </Box>
                     </Grid>
                   );
                 })}
+                <Grid
+                  item
+                  sx={{
+                    mt: 2,
+                    display: "flex",
+                    gap: "15px",
+                    flexWrap: "wrap",
+                    px: 0.9,
+                  }}
+                  xs={12}
+                >
+                  {action === "edit" && (
+                    <Button
+                      sx={{
+                        bgcolor: theme.palette.primary.main,
+                        "&:hover": { bgcolor: theme.palette.primary.main },
+                      }}
+                      variant="contained"
+                      type="submit"
+                    >
+                      Submit
+                    </Button>
+                  )}
+
+                  <Button
+                    sx={{
+                      bgcolor: theme.palette.orange.main,
+                      "&:hover": { bgcolor: theme.palette.orange.main },
+                    }}
+                    variant="contained"
+                    onClick={() =>
+                      router.push("/carer-info/other-information/next-of-kin")
+                    }
+                  >
+                    back
+                  </Button>
+                </Grid>
               </Grid>
             </FormProvider>
           </Grid>

@@ -3,7 +3,7 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import NextOfKinForm from "@root/sections/carer-info/other-information/next-of-kin/nextOfKinForm";
-
+import { useRouter } from "next/router";
 // Constants
 const BREADCRUMBS = [
   {
@@ -38,9 +38,11 @@ NextOfKinAction.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function NextOfKinAction() {
+  const Router: any = useRouter();
+  const { action, id } = Router.query;
   return (
     <Box>
-      <NextOfKinForm />
+      <NextOfKinForm action={action} id={id} />
     </Box>
   );
 }

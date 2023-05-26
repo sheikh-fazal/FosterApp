@@ -5,6 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import dayjs from "dayjs";
 import React from "react";
 import { DummyData } from ".";
+import router from "next/router";
 
 const NextOFKin = () => {
   const columns = [
@@ -50,9 +51,29 @@ const NextOFKin = () => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <TableAction size="small" type="edit" onClicked={() => {}} />
+            <TableAction
+              size="small"
+              type="edit"
+              onClicked={() => {
+                router.push({
+                  pathname:
+                    "/carer-info/other-information/next-of-kin/action",
+                  query: { action: "edit", id: "" },
+                });
+              }}
+            />
 
-            <TableAction size="small" type="view" onClicked={() => {}} />
+            <TableAction
+              size="small"
+              type="view"
+              onClicked={() => {
+                router.push({
+                  pathname:
+                    "/carer-info/other-information/next-of-kin/action",
+                  query: { action: "view", id:""  },
+                });
+              }}
+            />
           </Box>
         );
       },
