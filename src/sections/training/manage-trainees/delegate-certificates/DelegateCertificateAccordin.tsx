@@ -27,7 +27,7 @@ const DelegateCertificateAccordin = () => {
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const [addRow, setAddRow] = useState(accordionData);
   const [editRowId, setEditRowId] = useState('');
-  const [modalType, setModalType] = useState({type: "",value: ""});
+  const [modalType, setModalType] = useState({ type: "", value: "" });
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   // const here
@@ -91,7 +91,7 @@ const DelegateCertificateAccordin = () => {
               justifyContent="end"
               spacing={1}
             >
-              <Button variant="contained">
+              <Button variant="contained" onClick={() => { window.print() }}>
                 <PrintIcon sx={{ fontSize: "25px" }} />
               </Button>
 
@@ -143,13 +143,13 @@ const DelegateCertificateAccordin = () => {
               }}
               handleRowDelete={(item: any) => {
                 setCancelDelete(!cancelDelete)
-                console.log("delete group",item)
+                console.log("delete group", item)
               }}
             />
           </Grid>
         </Grid>
         <TitleInputModal open={modalType.type} editRowId={editRowId} addRowHandler={addRowHandler} handleClose={() => { setModalType({ type: "", value: "" }); }} />
-        <DeleteModel open={cancelDelete} onDeleteClick={(event: any) => {event.stopPropagation(); event.nativeEvent.preventDefault(); setCancelDelete(!cancelDelete)}} handleClose={(event: any) => { event.stopPropagation();event.nativeEvent.preventDefault();setCancelDelete(!cancelDelete)}} />
+        <DeleteModel open={cancelDelete} onDeleteClick={(event: any) => { event.stopPropagation(); event.nativeEvent.preventDefault(); setCancelDelete(!cancelDelete) }} handleClose={(event: any) => { event.stopPropagation(); event.nativeEvent.preventDefault(); setCancelDelete(!cancelDelete) }} />
 
       </Box>
     </Card>
