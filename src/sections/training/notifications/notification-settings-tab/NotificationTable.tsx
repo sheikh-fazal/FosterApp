@@ -5,7 +5,8 @@ import { Grid, ThemeProvider} from "@mui/material";
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { NotificationTableData } from '.';
 import { useNotificationTable } from './useNotificationTable';
-import NotificationModal from '../modals/notification-modal/NotificationModal';
+import NotificationModal from '../../manage-courses/training-clock-engine/modals/notification-modal/NotificationModal';
+
 
 
 

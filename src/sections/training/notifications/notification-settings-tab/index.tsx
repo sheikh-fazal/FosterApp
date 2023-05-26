@@ -32,13 +32,13 @@ export const NotificationTableData=[
       configurationItem:"Send Escalation To Social Wo....",
       value : "7 days",
       notificationType: "Escalation ",
-      description: "Number of Days after the course Date  -  Escalation 1 ,Mandatory Cours social workers and employee courses ",
+      description: "Number of Days after the course Date  -  Escalation 1 ,Mandatory Cours.... ",
     },
     { 
       id:'6',
       configurationItem:"Send Escalation To Manager on... ",
       value : "7 days",
       notificationType: "Escalation",
-      description: "Number of Days after the course Date  -  Escalation 1 ,Mandatory Cours social workers and employee courses",
+      description: "Number of Days after the course Date  -  Escalation 1, Mandatory Course....",
     },
 ]
