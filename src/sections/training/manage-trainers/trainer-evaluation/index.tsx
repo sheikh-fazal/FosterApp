@@ -6,7 +6,7 @@ export const TableDummyData = [
     evaluationForm: "",
     evaluationProvideBy: "John Carlos",
     evaluationDate: "24.04.2021",
-    approvedDate: "12.11.2021",
+    approvedDate: "16.05.2022",
   },
   {
     trainingName: "Foster Carer Basic Training",
