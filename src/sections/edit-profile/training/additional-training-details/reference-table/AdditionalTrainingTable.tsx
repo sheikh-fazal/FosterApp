@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import { useRefereneceTable } from "./useReferenceTable";
+import { useAdditionalTable } from "./useAdditionalTable";
 import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
-import UpdateViewRefForm from "./update-view-reference-form/UpdateViewRefForm";
+import UpdateViewRefForm from "./update-view-reference-form/UpdateViewAdditionalForm";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
+import UpdateViewAdditionalForm from "./update-view-reference-form/UpdateViewAdditionalForm";
 
-const ReferenceTable = () => {
+const AdditionalTrainingTable = () => {
   const theme: any = useTheme();
   const {
     tableRows,
@@ -19,7 +20,7 @@ const ReferenceTable = () => {
     tableStatusInfo,
     openViewUpdateModel,
     closeViewUpdateModel,
-  } = useRefereneceTable();
+  } = useAdditionalTable();
 
   const columns = getColumns({ openViewUpdateModel });
   // if (isLoading) return <FormSkeleton />;
@@ -63,35 +64,15 @@ const ReferenceTable = () => {
           sm={5}
           xs={10}
         >
-          <UpdateViewRefForm
+          <UpdateViewAdditionalForm
             close={closeViewUpdateModel}
             defValues={tableStatusInfo?.refFormDataHolder}
             disabled={tableStatusInfo.isDisabled}
           />
         </Grid>
       </Modal>
-      {/* <Modal open={tableStatusInfo.viewModel} onClose={closeViewModel}>
-        <Grid
-          container
-          sx={{
-            background: "white",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
-          sm={5}
-          xs={10}
-        >
-          <UpdateViewRefForm
-            close={closeViewModel}
-            defValues={tableStatusInfo?.refFormDataHolder}
-            disabled
-          />
-        </Grid>
-      </Modal> */}
     </>
   );
 };
 
-export default ReferenceTable;
+export default AdditionalTrainingTable;

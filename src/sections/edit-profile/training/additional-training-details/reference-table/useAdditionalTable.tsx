@@ -1,7 +1,7 @@
 import { useGetAdditionalTrainingDetailsQuery } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import { useState } from "react";
 
-export const useRefereneceTable = () => {
+export const useAdditionalTable = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetAdditionalTrainingDetailsQuery({});
   const [tableStatusInfo, setTableStatusInfo] = useState({

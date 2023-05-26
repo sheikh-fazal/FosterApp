@@ -43,10 +43,18 @@ export const trainingAndWorkHistoryApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
-    updateAdditionalTrainingDetails: builder.mutation<null, void>({
-      query: (body) => ({
-        url: "user-profile/update-additional-training/63a32044f4df02ffb06b7e16",
+    updateAdditionalTrainingDetails: builder.mutation<null, any>({
+      query: ({ body, trainingId }: any) => ({
+        url: `user-profile/update-additional-training/${trainingId}`,
         method: "PATCH",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    deleteAdditionalTrainingDetailsDocs: builder.mutation<null, any>({
+      query: ({ body, trainingId }: any) => ({
+        url: `user-profile/add-additional-training?trainingId=${trainingId}`,
+        method: "DELETE",
         body,
       }),
       invalidatesTags: [TAG],
@@ -127,6 +135,7 @@ export const {
   useGetAdditionalTrainingDetailsQuery,
   useAddAdditionalTrainingDetailsMutation,
   useUpdateAdditionalTrainingDetailsMutation,
+  useDeleteAdditionalTrainingDetailsDocsMutation,
 
   useGetWorkExperienceQuery,
   useAddWorkExperienceMutation,

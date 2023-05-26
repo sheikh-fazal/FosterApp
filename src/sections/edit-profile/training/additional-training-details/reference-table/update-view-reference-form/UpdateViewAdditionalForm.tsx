@@ -11,34 +11,44 @@ import { FormProvider } from "@root/components/hook-form";
 // import { FormSchema, defaultValues } from ".";
 //mui icons
 import CloseIcon from "@mui/icons-material/Close";
-import { FormSchema, fieldsInfo } from "./formData";
+import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
-import { useUpdateReferenceMutation } from "@root/services/update-profile/reference/referenceApi";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import MultipleFileUploader from "@root/sections/edit-profile/file-uploaders/multifile-uploader/MultipleFileUploader";
+import IsFetching from "@root/components/loaders/IsFetching";
+import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
-import IsFetching from "@root/components/loaders/IsFetching";
+import {
+  useAddAdditionalTrainingDetailsMutation,
+  useDeleteAdditionalTrainingDetailsDocsMutation,
+  useUpdateAdditionalTrainingDetailsMutation,
+} from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 
-const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
+const UpdateViewAdditionalForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
+  const { id, trainingName, issuedDate, expiryDate, certificate } = defValues;
   // const [disabled, setDisabled] = useState(false);
-  // const [isUpdating, setIsUpdating] = useState(false);
-  const [updateReference] = useUpdateReferenceMutation();
-  const { id, refereeName, referenceType, email, contactNo, contactNow } =
-    defValues;
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [documents, setDocuments] = useState([]);
+  const [availableFiles, setAvailableFiles] = useState<any>(certificate);
+  const [updateAdditionalTrainingDetails] =
+    useUpdateAdditionalTrainingDetailsMutation();
+  const [deleteAdditionalTrainingDetailsDocs] =
+    useDeleteAdditionalTrainingDetailsDocsMutation();
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      refereeName,
-      referenceType,
-      email,
-      contactNo,
-      contactNow,
+      trainingName,
+      issuedDate: new Date(),
+      expiryDate: new Date(),
     },
   });
 
@@ -52,33 +62,53 @@ const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    // reset({ keepIsSubmitted: true });
-    const formData = {
-      ...data,
-    };
+    // console.log({ data });
+    const formData = new FormData();
+    documents.forEach((doc) => formData.append("certificates", doc));
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
     try {
-      // setIsUpdating(true);
-      const data = await updateReference({ body: formData, id });
-      // setIsUpdating(false);
+      const data = await updateAdditionalTrainingDetails({
+        body: formData,
+        trainingId: id,
+      });
       displaySuccessMessage(data, enqueueSnackbar);
       close();
       // activateNextForm();
     } catch (error: any) {
-      // setIsUpdating(false);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
 
+  const deleteDocument = async (docId: string) => {
+    try {
+      setIsUpdating(true);
+      const data = await deleteAdditionalTrainingDetailsDocs({
+        body: { imgId: docId },
+        trainingId: id,
+      });
+      displaySuccessMessage(data, enqueueSnackbar);
+      setIsUpdating(false);
+      return true;
+    } catch (error) {
+      setIsUpdating(false);
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
+  };
   return (
     <>
-      {isSubmitting && <IsFetching isFetching />}
+      {(isSubmitting || isUpdating) && <IsFetching isFetching />}
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container justifyContent="center">
           <Grid container item xs={12}>
             {/* Header Area  */}
             <Grid item sx={{ padding: "0.5em" }} container>
               <Grid item sm={11}>
-                <Typography sx={{ fontWeight: 600 }}>Add Reference</Typography>
+                <Typography sx={{ fontWeight: 600 }}>
+                  Additional Training Details
+                </Typography>
               </Grid>
               <Grid item sm={1} container justifyContent="flex-end">
                 <IconButton onClick={close}>
@@ -110,6 +140,27 @@ const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
                   </Fragment>
                 );
               })}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ padding: "0.5em" }}>
+                  <MultipleFileUploader
+                    availableFiles={availableFiles}
+                    setAvailableFiles={setAvailableFiles}
+                    setDocuments={setDocuments}
+                    deleteDocument={deleteDocument}
+                  />
+                </Grid>
+              </Grid>
+              {/* Custom Fields On Half Width  */}
+              <Grid item sm={6} container direction="column">
+                <Grid item sx={{ padding: "0.5em" }}>
+                  <RHFDatePicker name="issueDate" label="certificate issued?" />
+                </Grid>
+              </Grid>
+              <Grid item sm={6} container direction="column">
+                <Grid item sx={{ padding: "0.5em" }}>
+                  <RHFDatePicker name="expiryDate" label="Expiry Date" />
+                </Grid>
+              </Grid>
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
@@ -134,4 +185,4 @@ const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
   );
 };
 
-export default UpdateViewRefForm;
+export default UpdateViewAdditionalForm;
