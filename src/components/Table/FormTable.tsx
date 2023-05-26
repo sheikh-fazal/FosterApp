@@ -163,7 +163,10 @@ export default function FormTable(props: any) {
           />
         )}
         {print && (
-          <TableAction type="print" onClicked={(id: number) => alert()} />
+          <TableAction
+            type="print"
+            onClicked={(id: number) => window.print()}
+          />
         )}
         {share && (
           <TableAction type="share" onClicked={(id: number) => alert()} />
