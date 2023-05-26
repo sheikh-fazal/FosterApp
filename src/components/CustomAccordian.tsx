@@ -3,10 +3,11 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, alpha, useTheme,Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-const CustomAccordian = ({ data, className, subTitle, ...rest }: any) => {
+import TableAction from "./TableAction";
+const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, data, className, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
@@ -79,6 +80,24 @@ const CustomAccordian = ({ data, className, subTitle, ...rest }: any) => {
               >
                 {item.title}
               </Typography>
+              {showBtn && (
+
+                <Stack direction="row" spacing={1}>
+                  <TableAction size="small" type="edit" onClicked={(event: any) => {
+                    event.stopPropagation();
+                    event.nativeEvent.preventDefault();                   
+                    handleTitleEdit(item);
+                  }} />
+                  <TableAction size="small" type="delete" onClicked={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      handleRowDelete(item)
+                    }}
+                  />
+                </Stack>
+
+              )}
+            
 
               {subTitle && <Typography
                 variant="subtitle2"
