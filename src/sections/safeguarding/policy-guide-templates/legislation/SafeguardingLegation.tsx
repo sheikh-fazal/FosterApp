@@ -7,6 +7,7 @@ import VericalTabs from "@root/components/VericalTabs";
 import { LEGISLATIONTABSDATA } from ".";  
 import { useSafeguardingLegation } from "./useSafeguardingLegation";
 
+
 const SafeguardingLegislation = ({setPageTitle}:any) => {
  const { theme } = useSafeguardingLegation();
   return (

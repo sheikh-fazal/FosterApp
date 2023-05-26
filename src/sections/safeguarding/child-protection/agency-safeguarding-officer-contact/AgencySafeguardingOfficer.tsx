@@ -5,40 +5,24 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import ContactInformationModal from "./contact-info-modal/ContactInfoModal";
 import ContactDirectoryTable from "./contact-directory-table/ContactDirectory";
 import { useAgencySafeguardingOfficer } from "./useAgencySafeguardingOfficer";
+import { useContactDirectory } from "./contact-directory-table/useContactDirectory";
 
 // =============================================================================
 
 const AgencySafeguardingOfficer = () => {
-  const {
-    tableHeaderRef,
-    filteredData,
-    tabsArr,
-    alphabets,
-    handleClick,
-    activeTab,
-    setActiveTab,
-    contactInfoModal,
-    setContactInfoModal,
-    selectedAlphabet,
-    contactDirectoryTabs,
-  } = useAgencySafeguardingOfficer();
+  const { tableHeaderRef, filteredData, tabsArr, alphabets, handleClick, activeTab, setActiveTab, selectedAlphabet, contactDirectoryTabs } =
+    useAgencySafeguardingOfficer();
+
+  const { handleEditOpen, isEditModal } = useContactDirectory();
 
   return (
     <>
       <Card sx={styles.card}>
-        <TableHeader
-          title={"Contact Directory"}
-          ref={tableHeaderRef}
-          searchKey="search"
-          showAddBtn
-          onAdd={() => {
-            setContactInfoModal({ isToggle: true, data: {} });
-          }}
-        />
+        <TableHeader title={"Contact Directory"} ref={tableHeaderRef} searchKey="search" showAddBtn onAdd={handleEditOpen} />
         <HorizaontalTabs tabsDataArray={tabsArr} setActiveTab={setActiveTab}>
           {contactDirectoryTabs.map((item: any, index: number) => (
             <Fragment key={index}>
-              <ContactDirectoryTable filteredData={filteredData} contactInfoModal={contactInfoModal} setContactInfoModal={setContactInfoModal} />
+              <ContactDirectoryTable data={filteredData} contactInfoModal={isEditModal} setContactInfoModal={handleEditOpen} />
             </Fragment>
           ))}
         </HorizaontalTabs>
@@ -53,7 +37,7 @@ const AgencySafeguardingOfficer = () => {
           </Box>
         )}
       </Card>
-      {contactInfoModal.isToggle && <ContactInformationModal open={contactInfoModal} setOpen={setContactInfoModal} />}
+      {isEditModal && <ContactInformationModal open={isEditModal} onClose={handleEditOpen} />}
     </>
   );
 };

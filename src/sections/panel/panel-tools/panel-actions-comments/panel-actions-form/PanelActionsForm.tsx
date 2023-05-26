@@ -1,5 +1,5 @@
 // @mui
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Grid, Box, Button, Typography, Card } from "@mui/material";
 // components
 import { LoadingButton } from "@mui/lab";
 import { panelActionData } from "./index";
@@ -9,12 +9,11 @@ import { usePanelActionsForm } from "./usePanelActionsForms";
 // ================================================================================
 
 const PanelActionsForm = (props: any) => {
-
   const { theme, router, methods, onSubmit, handleSubmit, isSubmitting } = usePanelActionsForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={styles.card}>
+      <Card sx={{ px: 1, py: 2 }}>
         <Grid container columnSpacing={4} rowSpacing={3}>
           {panelActionData.map((form: any, i: any) => {
             return (
@@ -69,19 +68,8 @@ const PanelActionsForm = (props: any) => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </Card>
     </FormProvider>
   );
 };
 export default PanelActionsForm;
-
-//  ========================================================================
-const styles = {
-  card: {
-    background: "#FFFFFF",
-    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-    borderRadius: "10px",
-    px: 1,
-    py: 2,
-  },
-};

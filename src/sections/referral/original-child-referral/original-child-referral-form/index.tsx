@@ -1,7 +1,14 @@
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-// ----------------------------------------------------------------------
+// ====================================================================================
+
+export const defaultValues = {
+  uploadDate: new Date(),
+  referralDate: new Date(),
+};
+
+// ======================================================================================
 
 export const originalChildFormData = [
   {
@@ -16,12 +23,12 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "areaOffice", label: "First Name", placeholder: "Maryam", fullWidth: true },
+    otherOptions: { name: "firstName", label: "First Name", placeholder: "Maryam", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "areaOffice", label: "Last Name", fullWidth: true },
+    otherOptions: { name: "lastName", label: "Last Name", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -40,62 +47,62 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Gender", fullWidth: true },
+    otherOptions: { name: "gender", label: "Gender", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Ethnicity", fullWidth: true },
+    otherOptions: { name: "ethnicity", label: "Ethnicity", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Ofstead Ethnicity", fullWidth: true },
+    otherOptions: { name: "ofsteadEthnicity", label: "Ofstead Ethnicity", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Special Needs", fullWidth: true },
+    otherOptions: { name: "specialNeeds", label: "Special Needs", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Nationality", fullWidth: true },
+    otherOptions: { name: "nationality", label: "Nationality", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Language", fullWidth: true },
+    otherOptions: { name: "language", label: "Language", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Religion", fullWidth: true },
+    otherOptions: { name: "religion", label: "Religion", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Legal Status", fullWidth: true },
+    otherOptions: { name: "legalStatus", label: "Legal Status", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Immigration Status", fullWidth: true },
+    otherOptions: { name: "immigrationStatus", label: "Immigration Status", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Behaviour", fullWidth: true },
+    otherOptions: { name: "behaviour", label: "Behaviour", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Is the Child Currently in Education?", fullWidth: true },
+    otherOptions: { name: "childEducation", label: "Is the Child Currently in Education?", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Are there any other Sibling?", fullWidth: true },
+    otherOptions: { name: "sibling", label: "Are there any other Sibling?", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -116,7 +123,7 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Referral Name", fullWidth: true },
+    otherOptions: { name: "referralName", label: "Referral Name", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -124,7 +131,7 @@ export const originalChildFormData = [
     otherOptions: {
       placeholder: "John Doe",
       label: "Referral Date",
-      name: "uploadDate",
+      name: "referralDate",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -132,7 +139,7 @@ export const originalChildFormData = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "Text",
+      name: "reason",
       label: "Reason",
       multiline: true,
       minRows: 3,
@@ -143,22 +150,22 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Child Placing Authority", fullWidth: true },
+    otherOptions: { name: "childAuthority", label: "Child Placing Authority", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "LA  Worker Name", fullWidth: true },
+    otherOptions: { name: "workerName", label: "LA  Worker Name", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Local Authority", fullWidth: true },
+    otherOptions: { name: "localAuthority", label: "Local Authority", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "age", label: "Date LA Notified", fullWidth: true },
+    otherOptions: { name: "dateNoticed", label: "Date LA Notified", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -176,7 +183,7 @@ export const originalChildFormData = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "description",
+      name: "otherDetails",
       label: "Other Details",
       multiline: true,
       minRows: 3,

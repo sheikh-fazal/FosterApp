@@ -2,7 +2,18 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 
-// ======================================================================================
+// ===================================================================================
+export const defaultValues = {
+  carerName: "",
+  time: new Date(),
+  caseName: "",
+  uploadDate: new Date(),
+  submittedUploadDate: new Date(),
+  Status: "",
+  Minutes: "",
+};
+
+// =========================================================================================
 export const administratorData = [
   {
     gridLength: 6,
@@ -48,7 +59,7 @@ export const administratorData = [
     gridLength: 6,
     otherOptions: {
       label: "Date Submitted to chair for Recommendation",
-      name: "uploadDate",
+      name: "submittedUploadDate",
       fullWidth: true,
     },
     component: RHFDatePicker,

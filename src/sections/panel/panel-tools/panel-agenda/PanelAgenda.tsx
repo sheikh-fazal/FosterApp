@@ -1,5 +1,6 @@
 import React from "react";
 import { data } from ".";
+import { Card } from "@mui/material";
 import { usePanelAgenda } from "./usePanelAgenda";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -7,13 +8,13 @@ import CustomTable from "@root/components/Table/CustomTable";
 // =======================================================================
 
 const PanelAgenda = () => {
-  const { theme, router, columns } = usePanelAgenda();
+  const { theme, router, columns, tableHeaderRef } = usePanelAgenda();
 
   return (
-    <>
+    <Card sx={{ px: 1, py: 2 }}>
       <TableHeader
         title="Panel Case List"
-        ref={TableHeader}
+        ref={tableHeaderRef}
         searchKey="search"
         showAddBtn
         onAdd={() => {
@@ -34,9 +35,9 @@ const PanelAgenda = () => {
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}
-        rootSX={{ my: theme.spacing(2) }}
+        rootSX={{ my: theme.spacing(2), mt: 0 }}
       />
-    </>
+    </Card>
   );
 };
 export default PanelAgenda;

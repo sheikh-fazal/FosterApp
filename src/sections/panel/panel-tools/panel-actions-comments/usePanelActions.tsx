@@ -4,6 +4,7 @@ import TableAction from "@root/components/TableAction";
 import { Box, Checkbox, useTheme } from "@mui/material";
 
  // ==========================================================
+ 
 export const usePanelActions = () => {
   const theme = useTheme();
   const router = useRouter();
@@ -15,7 +16,6 @@ export const usePanelActions = () => {
     {
       id: "select",
       header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
         return (
           <Box>
             <Checkbox checked={table.getIsAllRowsSelected()} onChange={table.getToggleAllRowsSelectedHandler()} />
