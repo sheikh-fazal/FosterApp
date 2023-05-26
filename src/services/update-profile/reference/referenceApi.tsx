@@ -19,9 +19,9 @@ export const referenceApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
-    updateReference: builder.mutation<null, void>({
-      query: (body) => ({
-        url: "user-profile/update-reference/63a32044f4df02ffb06b7e16",
+    updateReference: builder.mutation<null, any>({
+      query: ({ body, id }: any) => ({
+        url: `user-profile/update-reference/${id}`,
         method: "PATCH",
         body,
       }),

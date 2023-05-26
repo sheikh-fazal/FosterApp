@@ -32,13 +32,7 @@ export const getColumns = (parms: any) => {
       header: "Email ID",
       isSortable: false,
     },
-    {
-      accessorFn: (row: any) => row.status,
-      id: "approvalStatus",
-      cell: (info: any) => info.getValue(),
-      header: "Approval Status",
-      isSortable: false,
-    },
+
     {
       accessorFn: (row: any) => row.status,
       id: "approvalStatus",
@@ -73,7 +67,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="edit"
-            onClicked={() => openUpdateModel("I am updaedid")}
+            onClicked={() => openUpdateModel(info.row.original.id)}
           />
           <TableAction
             size="small"

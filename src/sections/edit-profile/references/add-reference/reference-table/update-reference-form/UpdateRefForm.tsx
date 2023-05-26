@@ -15,7 +15,7 @@ import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
-import { useAddReferenceMutation } from "@root/services/update-profile/reference/referenceApi";
+import { useUpdateReferenceMutation } from "@root/services/update-profile/reference/referenceApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
@@ -23,13 +23,12 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const UpdateRefForm: FC<any> = ({ close, defValues }) => {
+const UpdateRefForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [isUpdating, setIsUpdating] = useState(false);
-  console.log({ defValues });
-  const [addReference] = useAddReferenceMutation();
-  const { refereeName, referenceType, email, contactNo, contactNow } =
+  // const [disabled, setDisabled] = useState(false);
+  // const [isUpdating, setIsUpdating] = useState(false);
+  const [updateReference] = useUpdateReferenceMutation();
+  const { id, refereeName, referenceType, email, contactNo, contactNow } =
     defValues;
   const methods: any = useForm({
     // mode: "onTouched",
@@ -58,14 +57,14 @@ const UpdateRefForm: FC<any> = ({ close, defValues }) => {
       ...data,
     };
     try {
-      setIsUpdating(true);
-      const data = await addReference(formData);
-      setIsUpdating(false);
+      // setIsUpdating(true);
+      const data = await updateReference({ body: formData, id });
+      // setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);
       close();
       // activateNextForm();
     } catch (error: any) {
-      setIsUpdating(false);
+      // setIsUpdating(false);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };

@@ -11,12 +11,12 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   referenceType: Yup.string()
     .required("refType is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
+    .min(2, "Mininum 6 characters")
+    .max(20, "Maximum 50 characters"),
   refereeName: Yup.string()
     .required("refname is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
+    .min(2, "Mininum 6 characters")
+    .max(20, "Maximum 50 characters"),
   contactNo: Yup.string().required("refcontact is required"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   contactNow: Yup.boolean().required("canwereq is required"),

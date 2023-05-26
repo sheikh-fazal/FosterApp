@@ -2,18 +2,28 @@ import { useGetReferencesInfoQuery } from "@root/services/update-profile/referen
 import { useState } from "react";
 
 export const useRefereneceTable = () => {
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetReferencesInfoQuery({});
   const [tableStatusInfo, setTableStatusInfo] = useState({
     updateModel: false,
     updateId: "iamid",
+    refFormDataHolder: null,
   });
+
   const closeUpdateModel = () => {
     setTableStatusInfo((pre) => ({ ...pre, updateModel: false }));
   };
   const openUpdateModel = (id: string, index: string | number) => {
-    setTableStatusInfo((pre) => ({ ...pre, updateModel: true, updateId: id }));
+    const tableRows = data?.data ?? [];
+    const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
+    setTableStatusInfo((pre) => ({
+      ...pre,
+      updateModel: true,
+      updateId: id,
+      refFormDataHolder: tableRows[indexOf],
+    }));
   };
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetReferencesInfoQuery({});
+
   return {
     tableRows: data?.data,
     isLoading,

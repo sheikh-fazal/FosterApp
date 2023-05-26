@@ -6,6 +6,7 @@ import { useRefereneceTable } from "./useReferenceTable";
 import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
 import UpdateRefForm from "./update-reference-form/UpdateRefForm";
+import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 // import { columns } from "./columns-info";
 
 const ReferenceTable = () => {
@@ -22,6 +23,7 @@ const ReferenceTable = () => {
   } = useRefereneceTable();
 
   const columns = getColumns({ openUpdateModel });
+  if (isLoading) return <FormSkeleton />;
   return (
     <>
       <Grid container>
@@ -62,9 +64,10 @@ const ReferenceTable = () => {
           sm={5}
           xs={10}
         >
-          {tableRows && (
-            <UpdateRefForm close={closeUpdateModel} defValues={tableRows[0]} />
-          )}
+          <UpdateRefForm
+            close={closeUpdateModel}
+            defValues={tableStatusInfo?.refFormDataHolder}
+          />
         </Grid>
       </Modal>
     </>
