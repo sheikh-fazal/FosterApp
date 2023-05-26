@@ -7,7 +7,6 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
 import UpdateViewRefForm from "./update-view-reference-form/UpdateViewRefForm";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
-// import { columns } from "./columns-info";
 
 const ReferenceTable = () => {
   const theme: any = useTheme();
@@ -23,7 +22,7 @@ const ReferenceTable = () => {
   } = useRefereneceTable();
 
   const columns = getColumns({ openViewUpdateModel });
-  if (isLoading) return <FormSkeleton />;
+  // if (isLoading) return <FormSkeleton />;
   return (
     <>
       <Grid container>
