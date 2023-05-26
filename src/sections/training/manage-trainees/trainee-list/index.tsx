@@ -12,3 +12,18 @@ export const sortingData = [
     component: <TaineeListTable />,
   },
 ];
+
+export const sortingByData = [
+  {
+    name: "Option 1",
+    value: "option 1",
+  },
+  {
+    name: "Option 2",
+    value: "option 2",
+  },
+  {
+    name: "Option 3",
+    value: "option 3",
+  },
+];

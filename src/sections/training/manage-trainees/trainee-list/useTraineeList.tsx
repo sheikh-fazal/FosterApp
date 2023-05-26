@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TaineeListTable from "./tainee-list-table/TaineeListTable";
-import { sortingData } from ".";
+import { sortingData, sortingByData } from ".";
 
 export const useTraineeList = () => {
   const [items, setitems] = useState("");
@@ -48,5 +48,6 @@ export const useTraineeList = () => {
     handleClick,
     handleClose,
     addRowHandler,
+    sortingByData
   }
 }

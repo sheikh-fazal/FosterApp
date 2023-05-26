@@ -34,6 +34,7 @@ const TraineeLists = () => {
     handleClick,
     handleClose,
     addRowHandler,
+    sortingByData,
   } = useTraineeList();
 
   return (
@@ -72,7 +73,7 @@ const TraineeLists = () => {
               justifyContent="end"
               spacing={1}
             >
-              <Button variant="contained">
+              <Button onClick={() => window.print()} variant="contained">
                 <PrintIcon sx={{ fontSize: "25px" }} />
               </Button>
 
@@ -95,9 +96,13 @@ const TraineeLists = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Option 1</MenuItem>
-                <MenuItem onClick={handleClose}>Option 2</MenuItem>
-                <MenuItem onClick={handleClose}>Option 3</MenuItem>
+                {sortingByData.map((item, index) => {
+                  return (
+                    <MenuItem key={index} onClick={handleClose}>
+                      {item.name}
+                    </MenuItem>
+                  );
+                })}
               </Menu>
 
               <Button
