@@ -1,7 +1,6 @@
 import { Box, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
 import React, { useRef, useState } from 'react'
-import { TrainingClockEngineTableData } from '.';
 
 
 export const useTrainingClockEngineTable = () => {
@@ -11,7 +10,6 @@ export const useTrainingClockEngineTable = () => {
     const [actionType, setActionType] = useState('add');
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
-
     const handleEditClicked = (rowId: any) => {
         setSelectedRowId(rowId);
         setIsOpenTrainingClockModal(true);
@@ -61,7 +59,7 @@ export const useTrainingClockEngineTable = () => {
 
                     <TableAction
                         type="edit"
-                        onClicked={() => { setIsOpenTrainingClockModal(true); handleEditClicked(info.row.id) }}
+                        onClicked={() => { setIsOpenTrainingClockModal(true), handleEditClicked(info.row.id) }}
                         size="small"
                     />
                     <TableAction
@@ -85,10 +83,11 @@ export const useTrainingClockEngineTable = () => {
         theme,
         IsOpenTrainingClockModal,
         setIsOpenTrainingClockModal,
-        actionType,
-        setActionType,
         selectedRowId,
-        handleEditClicked
+        handleEditClicked,
+        actionType,
+        setActionType
+
 
     }
 }

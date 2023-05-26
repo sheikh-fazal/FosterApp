@@ -5,7 +5,8 @@ import { Grid } from "@mui/material";
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { TrainingClockEngineTableData } from '.';
 import { useTrainingClockEngineTable } from './useTrainingClockEngineTable';
-import TrainingClockEngineModal from '../modals/training-clock-engine-modal/TrainingClockEngineModal';
+import TrainingClockEngineModal from '../../manage-courses/training-clock-engine/modals/training-clock-engine-modal/TrainingClockEngineModal';
+
 
 
 
@@ -16,9 +17,8 @@ const TrainingClockEngineTable = () => {
     IsOpenTrainingClockModal,
     setIsOpenTrainingClockModal,
     setActionType,
-    selectedRowId,
-     actionType,
-     handleEditClicked
+    handleEditClicked,
+    selectedRowId, actionType,
   } = useTrainingClockEngineTable()
   console.log("Selected row ID:", selectedRowId);
 
