@@ -3,12 +3,27 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-const CustomAccordian = ({ data, className, ...rest }: any) => {
+import TableAction from "./TableAction";
+import DeleteModel from "./modal/DeleteModel";
+
+const CustomAccordian = ({
+  handleTitleEdit,
+  showBtn,
+  data,
+  className,
+  ...rest
+}: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
+  const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
+  
+  const handleDelete = () => {
+    alert("deleted successfully");
+    setCancelDelete(!cancelDelete);
+  };
   return (
     <>
       {data?.map((item: any) => (
@@ -55,19 +70,63 @@ const CustomAccordian = ({ data, className, ...rest }: any) => {
               </Avatar>
             }
           >
-            <Typography
-              variant="subtitle1"
-              className="title"
+            <Box
               sx={{
-                padding: "5px 10px",
-                color:
-                  theme.palette.mode === "dark"
-                    ? theme.palette.grey[500]
-                    : theme.palette.grey[700],
+                display: "flex",
+                justifyContent: "space-between",
+                width: "100%",
+                alignItems: "center",
               }}
             >
-              {item.title}
-            </Typography>
+              <Typography
+                variant="subtitle1"
+                className="title"
+                sx={{
+                  padding: "5px 10px",
+                  color:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[700],
+                }}
+              >
+                {item.title}
+              </Typography>
+              {showBtn && (
+                <Stack direction="row" spacing={1}>
+                  <TableAction
+                    size="small"
+                    type="edit"
+                    onClicked={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      handleTitleEdit(item);
+                    }}
+                  />
+                  <TableAction
+                    size="small"
+                    type="delete"
+                    onClicked={(event: any) => {
+                      setCancelDelete(!cancelDelete);
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                    }}
+                  />
+                  <DeleteModel
+                    open={cancelDelete}
+                    onDeleteClick={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      handleDelete();
+                    }}
+                    handleClose={(event: any) => {
+                      event.stopPropagation();
+                      event.nativeEvent.preventDefault();
+                      setCancelDelete(!cancelDelete);
+                    }}
+                  />
+                </Stack>
+              )}
+            </Box>
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
         </Accordion>

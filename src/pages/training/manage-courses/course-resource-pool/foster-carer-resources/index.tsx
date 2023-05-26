@@ -2,9 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
-import FosterCarerResources from "@root/sections/training/manage-courses/course-resource-pool/foster-carer-resources/FosterCarerResources";
-
+import { FosterCarerResourcesCard } from "@root/sections/training/manage-courses/course-resource-pool/foster-carer-resources/FosterCarerResources";
 
 const PAGE_TILE = "Course Sub Categories";
 
@@ -30,10 +28,9 @@ FosterCarerResource.getLayout = function getLayout(page: any) {
 };
 
 export default function FosterCarerResource() {
-  const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
-     <FosterCarerResources/>
+      <FosterCarerResourcesCard />
     </Page>
   );
 }
