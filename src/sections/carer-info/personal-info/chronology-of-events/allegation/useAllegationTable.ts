@@ -13,6 +13,7 @@ export const useAllegationTable = () => {
   const router = useRouter();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
+  //GET API For Allegation List
   const {
     data: allegationlist,
     isError: allegationListError,
@@ -23,7 +24,7 @@ export const useAllegationTable = () => {
   const allegations = allegationlist?.data?.allegation;
   const meta = allegationlist?.data?.meta;
   const [deleteList] = useDeleteAllegationListMutation();
-  //API For Deleting Document List
+  //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()

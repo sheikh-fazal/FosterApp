@@ -14,12 +14,12 @@ export const useComplaintsTable = () => {
   const router = useRouter();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  //API for getting Complaint Details
+  //GET API For Complaint List
   const { data, isError, isLoading, isFetching, isSuccess }: any =
     useComplaintsListQuery({ search: search });
   //API for Deleting Complaint
   const [deleteList] = useDeleteComplaintListMutation();
-  //API For Deleting Document List
+  //DELETE API For Deleting Complaint List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()

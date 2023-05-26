@@ -35,7 +35,7 @@ const AllegationTable = () => {
       accessorFn: (row: any) => row?.allegationDate ?? "-",
       id: "allegationDate",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: () => <span>Date of Allegation</span>,
       isSortable: true,

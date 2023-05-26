@@ -55,7 +55,7 @@ function UploadedDocumentsTable() {
       accessorFn: (row: any) => row?.documentDate ?? "-",
       id: "documentDate",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: () => <span>Document Date</span>,
       isSortable: true,

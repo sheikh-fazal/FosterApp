@@ -11,7 +11,7 @@ import PetQuestionnaireD from "@root/sections/carer-info/personal-info/chronolog
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Supervisory Home Visit List",
+    name: "Pet Questionnaire List",
     href: "/carer-info/personal-info/carer-chronology-of-events",
   },
   {

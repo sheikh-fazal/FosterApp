@@ -32,12 +32,15 @@ function UploadDocumentsModal(props: any) {
       >
         <Box sx={Styles.root}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-            <Typography variant="subtitle1">
+            <Typography
+              variant="subtitle1"
+              sx={{ color: theme.palette.grey[600] }}
+            >
               Person Uploaded: {`${firstName} ${lastName}` ?? "-"}
             </Typography>
             <CloseIcon
-              onClick={() => setOpen(false)} 
-              sx={{ cursor: "pointer" }}
+              onClick={() => setOpen(false)}
+              sx={{ cursor: "pointer", color: theme.palette.grey[600] }}
             />
           </Box>
           <FormProvider

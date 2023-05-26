@@ -1,3 +1,7 @@
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import * as Yup from "yup";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+
 export const UPLOAD_DOCUMENTS = [
   {
     srNo: 1,
@@ -24,13 +28,6 @@ export const UPLOAD_DOCUMENTS = [
     password: "123abc",
   },
 ];
-
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import * as Yup from "yup";
-import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import TableAction from "@root/components/TableAction";
-import { Box } from "@mui/material";
-import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const UploadDocFormData = [
   {
@@ -81,9 +78,11 @@ export const defaultValues = {
   type: "",
   documentDate: new Date(),
   password: "",
+  file: null,
 };
 export const formSchema = Yup.object().shape({
-  type: Yup.string().required("required"),
-  documentDate: Yup.date().required("required"),
-  password: Yup.string().required("required"),
+  type: Yup.string().required("Document Type Required"),
+  documentDate: Yup.date().required("Document Date Required"),
+  password: Yup.string().required("Password Required"),
+  file: Yup.mixed().required("File Required"),
 });

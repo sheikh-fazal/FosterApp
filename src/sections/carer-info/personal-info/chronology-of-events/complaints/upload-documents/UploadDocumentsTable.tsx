@@ -9,6 +9,7 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import ViewDocumentsModal from "./ViewDocumentsModal";
 import Link from "next/link";
 import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
 function UploadedDocumentsTable() {
   const {
     listDeleteHandler,
@@ -51,9 +52,11 @@ function UploadedDocumentsTable() {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.documentDate ?? "-",
+      accessorFn: (row: any) => row?.documentDate ?? "-",
       id: "documentDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Document Date</span>,
       isSortable: true,
     },

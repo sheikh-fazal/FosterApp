@@ -91,8 +91,8 @@ export const defaultValues = {
   file: null,
 };
 export const formSchema = Yup.object().shape({
-  type: Yup.string().required("required"),
-  documentDate: Yup.date().required("required"),
-  password: Yup.string().required("required"),
-  file: Yup.mixed().required("required"),
+  type: Yup.string().required("Document Type Required"),
+  documentDate: Yup.date().required("Document Date Required"),
+  password: Yup.string().required("Password Required"),
+  file: Yup.mixed().required("File Required"),
 });

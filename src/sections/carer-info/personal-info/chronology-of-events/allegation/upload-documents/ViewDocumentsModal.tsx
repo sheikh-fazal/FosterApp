@@ -63,12 +63,15 @@ function ViewDocumentsModal(props: any) {
               <Box
                 sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
               >
-                <Typography variant="subtitle1">
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: theme.palette.grey[600] }}
+                >
                   Person Uploaded: {getValues("uploadBy")}
                 </Typography>
                 <CloseIcon
                   onClick={() => setOpen(false)}
-                  sx={{ cursor: "pointer" }}
+                  sx={{ cursor: "pointer", color: theme.palette.grey[600] }}
                 />
               </Box>
               <Grid container rowSpacing={4} columnSpacing={2}>
@@ -91,7 +94,7 @@ function ViewDocumentsModal(props: any) {
                 ))}
                 <Grid xs={12} item>
                   <RHFTextField
-                    label="Document Name"
+                    label="Choose File"
                     size="small"
                     name="documentName"
                     disabled={true}

@@ -3,8 +3,8 @@ import AnnualReview from "./annual-review/AnnualReviewTable";
 import Complaints from "./complaints/ComplaintsTable";
 import Incident from "./incident/IncidentTable";
 import Report from "./ooh-report/ReportTable";
-import PetQuestionnaire from "./pet-questionnaire/PetQuestionnaire";
-import SupervisoryVisit from "./supervisory-visit/SupervisoryVisit";
+import PetQuestionnaireTable from "./pet-questionnaire/PetQuestionnaireTable";
+import SupervisoryVisitTable from "./supervisory-visit/SupervisoryVisitTable";
 import UnannouncedVisit from "./unannounced-visit/UnannouncedVisit";
 
 export const accordionData = [
@@ -14,7 +14,7 @@ export const accordionData = [
   },
   {
     title: "Supervisory Home Visit",
-    component: <SupervisoryVisit />,
+    component: <SupervisoryVisitTable />,
   },
   {
     title: "Unannounced Home Visit",
@@ -26,7 +26,7 @@ export const accordionData = [
   },
   {
     title: "Pet Questionnaire",
-    component: <PetQuestionnaire />,
+    component: <PetQuestionnaireTable />,
   },
   {
     title: "Allegation",
