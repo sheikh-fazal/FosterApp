@@ -2,7 +2,6 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
 import SupervisionTrainingPolicy from "@root/sections/supervision-training-support-policy/SupervisionTrainingPolicyTable";
 
 

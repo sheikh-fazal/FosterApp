@@ -11,8 +11,8 @@ import { useSupervisionTrainingPolicy } from './useSupervisionTrainingPolicyTabl
 
 
 const SupervisionTrainingPolicy = () => {
-  const {router,tableHeaderRef,theme }=useSupervisionTrainingPolicy();
-
+  const {router,tableHeaderRef,theme ,}=useSupervisionTrainingPolicy();
+ 
  const SupervisionTrainingPolicyColumns = [
     {
       id: "select",
@@ -87,7 +87,8 @@ const SupervisionTrainingPolicy = () => {
             <TableAction
               type="view"
               onClicked={() => {
-                router.push({ pathname: `/${info.row.original.id}`, query: { action: "view" } })
+               router.push( `/supervision-training-support-policy/${info.row.original.id}` );
+              
               }}
               size="small"
             />
@@ -118,8 +119,9 @@ const SupervisionTrainingPolicy = () => {
         title="Supervision Training Support Policy"
         searchKey="search"
         showAddBtn
-        onAdd={() => {router.push( "supervision-training-support-policy/add-supervision-training-support-policy" )
-        }}
+        onAdd={() => {router.push( `/supervision-training-support-policy/add-supervision-training-support-policy` );
+        // setIsFormDisabled(false); 
+      }}
        
         onChanged={(data: any) => {
           console.log(": ", data);
