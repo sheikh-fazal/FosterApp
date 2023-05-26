@@ -4,6 +4,7 @@ import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddTrainingDocForm from "./addTrainingForm/AddTrainingDocForm";
+import ReferenceTable from "./reference-table/ReferenceTable";
 const AdditionalTrainingDetails = () => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
@@ -34,6 +35,9 @@ const AdditionalTrainingDetails = () => {
       </Grid>
       <Grid item sx={{ mt: 2 }}>
         <Button variant="contained">continue</Button>
+      </Grid>
+      <Grid item sm={12}>
+        <ReferenceTable />
       </Grid>
       <Modal open={flags.addRefModel} onClose={addRefModelClose}>
         <Grid
