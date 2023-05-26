@@ -31,7 +31,7 @@ const CourseListMain = ({ name }: any) => {
               isStatus={item.isStatus}
               coverImage={item.coverImage}
               isMandatory={item.isMandatory}
-              handleClick={() => handleCardClick(item.isMandatory, name)}
+              handleClick={() => handleCardClick(name)}
               maxWidth={'100%'}
             />
           </Grid>
