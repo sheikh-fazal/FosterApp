@@ -8,18 +8,31 @@ export const useRefereneceTable = () => {
     updateModel: false,
     updateId: "iamid",
     refFormDataHolder: null,
+    viewModel: false,
   });
 
   const closeUpdateModel = () => {
     setTableStatusInfo((pre) => ({ ...pre, updateModel: false }));
   };
-  const openUpdateModel = (id: string, index: string | number) => {
+  const openUpdateModel = (id: string) => {
     const tableRows = data?.data ?? [];
     const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
     setTableStatusInfo((pre) => ({
       ...pre,
       updateModel: true,
       updateId: id,
+      refFormDataHolder: tableRows[indexOf],
+    }));
+  };
+  const closeViewModel = () => {
+    setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
+  };
+  const openViewModel = (id: string) => {
+    const tableRows = data?.data ?? [];
+    const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
+    setTableStatusInfo((pre) => ({
+      ...pre,
+      viewModel: true,
       refFormDataHolder: tableRows[indexOf],
     }));
   };
@@ -33,5 +46,7 @@ export const useRefereneceTable = () => {
     tableStatusInfo,
     closeUpdateModel,
     openUpdateModel,
+    closeViewModel,
+    openViewModel,
   };
 };

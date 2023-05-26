@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 export const getColumns = (parms: any) => {
-  const { openUpdateModel } = parms;
+  const { openUpdateModel, openViewModel } = parms;
   return [
     {
       accessorFn: (row: any) => row.referenceType,
@@ -62,7 +62,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="view"
-            onClicked={() => alert(JSON.stringify(info.row.original.id))}
+            onClicked={() => openViewModel(info.row.original.id)}
           />
           <TableAction
             size="small"
