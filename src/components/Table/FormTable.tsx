@@ -14,6 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { FormProvider, RHFTextField } from "../hook-form";
 import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
+import { type } from "os";
 
 const ANON_FUNC = () => { };
 
@@ -33,6 +34,7 @@ function TableFormModal(props: any) {
     columns = [],
     defaultValues = {},
     type: actionType = "Add",
+    disabled = actionType === "View",
   } = props;
 
   const schema: any = {};
@@ -80,19 +82,22 @@ function TableFormModal(props: any) {
               const Component = FIELDS_OBJ[inputType];
               return (
                 <Grid key={key} item xs={12} md={6}>
-                  <Component name={key} label={label} />
+                  <Component name={key} label={label} disabled={disabled} />
                 </Grid>
               );
             })}
           </Grid>
           <Box sx={styles.actionBtnBox}>
-            <Button
-              onClick={onAcceptHandler}
-              disabled={!isValid}
-              sx={styles.btnSuccess}
-            >
-              {actionType}
-            </Button>
+            {!disabled && (
+              <Button
+                onClick={onAcceptHandler}
+                disabled={!isValid}
+                sx={styles.btnSuccess}
+              >
+                {actionType}
+              </Button>
+            )}
+
             <Button onClick={onCancel} sx={styles.btnError}>
               Cancel
             </Button>
@@ -107,10 +112,18 @@ function TableFormModal(props: any) {
 // Form Table
 
 export default function FormTable(props: any) {
-  const { tableKey, columns: tableColumns, moreActionBtn } = props;
+  const {
+    disabled,
+    view,
+    print,
+    share,
+    tableKey,
+    columns: tableColumns,
+  } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
+  const [viewModal, setViewModal] = useState(false);
 
   /* Set up formatters for updating the display data */
   const formatters: any = {};
@@ -135,27 +148,33 @@ export default function FormTable(props: any) {
   columns.push({
     id: "actions",
     cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center", alignItems: "center" }}>
-        {moreActionBtn && (
-          <>
-            <TableAction
-              type="view"
-              onClicked={(id: number) => alert()}
-            />
-            <TableAction
-              type="print"
-              onClicked={(id: number) => alert()}
-            />
-            <TableAction
-              type="share"
-              onClicked={(id: number) => alert()}
-            />
-          </>)
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {view && (
+          <TableAction
+            type="view"
+            onClicked={(id: number) => onViewHandler(info.row.index)}
+          />
+        )}
+        {print && (
+          <TableAction
+            type="print"
+            onClicked={(id: number) => window.print()}
+          />
+        )}
+        {share && (
+          <TableAction type="share" onClicked={(id: number) => alert()} />
+        )}
 
-        }
         <TableAction
           type="edit"
-          onClicked={(id: number) => onEditHandler(info.row.index)}
+          onClicked={(id: number) => onViewHandler(info.row.index, "Update")}
         />
         <TableAction
           type="delete"
@@ -171,6 +190,7 @@ export default function FormTable(props: any) {
   /* CANCEL HANDLER */
   function onCancelHandler() {
     setActionData(null);
+    setViewModal(false);
   }
 
   /* ADD HANDLER */
@@ -200,12 +220,13 @@ export default function FormTable(props: any) {
     setValue(tableKey, [...leftArr, ...rightArr]);
   }
 
-  /* UPDATE HANDLER */
-  function onEditHandler(index: any) {
+  /* UPDATE and VIEW HANDLER */
+
+  function onViewHandler(index: any, actionType: string = "View") {
     const tableRowData = getValues()[tableKey][index];
 
     setActionData({
-      type: "Update",
+      type: actionType,
       index,
       defaultValues: tableRowData,
     });
@@ -222,6 +243,15 @@ export default function FormTable(props: any) {
 
   return (
     <div>
+      {viewModal && (
+        <TableFormModal
+          disabled={disabled}
+          columns={tableColumns}
+          onCancel={onCancelHandler}
+          {...actionData}
+        />
+      )}
+
       {actionData && (
         <TableFormModal
           columns={tableColumns}

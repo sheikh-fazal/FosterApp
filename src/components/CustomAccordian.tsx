@@ -3,13 +3,19 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, alpha, useTheme,Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
-const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn, data, className, ...rest }: any) => {
+const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, data, className, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
+  const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
+  
+  const handleDelete = () => {
+    alert("deleted successfully");
+    setCancelDelete(!cancelDelete);
+  };
   return (
     <>
       {data?.map((item: any) => (
@@ -56,7 +62,11 @@ const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn, data, class
               </Avatar>
             }
           >
-           <Box sx={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "center" }}>
+            <Box
+              width={'100%'} display={'flex'}
+              alignItems={'center'} justifyContent={'space-between'}
+              gap={2} flexWrap={'wrap'}
+            >
               <Typography
                 variant="subtitle1"
                 className="title"
@@ -87,7 +97,17 @@ const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn, data, class
                 </Stack>
 
               )}
+            
+
+              {subTitle && <Typography
+                variant="subtitle2"
+                className="title"
+                sx={{ pr: '5px' }}
+              >
+                {item?.lectures?.length} lectuers - {item?.minutes} min
+              </Typography>}
             </Box>
+
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
         </Accordion>
