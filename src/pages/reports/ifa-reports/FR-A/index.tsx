@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FRASection from "@root/sections/reports/FRA/FRA";
 
 const PAGE_TITLE = "Reports";
 
@@ -19,10 +20,10 @@ FRA.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-A Supervising social worker report"
+          name: "FR-A Supervising social worker report"
         }
       ]}
       title={PAGE_TITLE}
@@ -36,6 +37,7 @@ FRA.getLayout = function getLayout(page: any) {
 export default function FRA() {
   return (
     <Page title={PAGE_TITLE}>
+      <FRASection />
     </Page>
   );
 }

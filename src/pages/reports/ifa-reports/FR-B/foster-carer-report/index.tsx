@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRBSection from "@root/sections/reports/FR-B/FRB";
+import FosterCarerReport from "@root/sections/reports/FR-B/foster-carer-report/FosterCarerReport";
 
 const PAGE_TITLE = "Reports";
 
@@ -20,10 +20,10 @@ FRB.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-B FOSTER CARER REPORT"
+          name: "FR-B FOSTER CARER REPORT"
         }
       ]}
       title={PAGE_TITLE}
@@ -37,7 +37,7 @@ FRB.getLayout = function getLayout(page: any) {
 export default function FRB() {
   return (
     <Page title={PAGE_TITLE}>
-      <FRBSection />
+      <FosterCarerReport />
     </Page>
   );
 }
