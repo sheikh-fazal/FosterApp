@@ -1,8 +1,8 @@
 import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
-import Page from '@root/components/Page'; 
-import SetupComp from '@root/sections/panel/panel-tools/setup/setup';
+import Page from '@root/components/Page';
+import PanelSetup from '@root/sections/panel/panel-tools/setup/setup';
 
 const PAGE_TILE = "View Panel Dashboard";
 
@@ -30,7 +30,7 @@ Setup.getLayout = function getLayout(page: any) {
 export default function Setup() {
     return (
         <Page title={PAGE_TILE}>
-            <SetupComp />
+            <PanelSetup />
         </Page>
     );
 }
