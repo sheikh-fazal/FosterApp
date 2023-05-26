@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
-import TraineeLists from "@root/sections/training/trainee-list/TraineeList";
+import TraineeLists from "@root/sections/training/manage-trainees/trainee-list/TraineeList";
 
 const PAGE_TILE = "Trainee List";
 

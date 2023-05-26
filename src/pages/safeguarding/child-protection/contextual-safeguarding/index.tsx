@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box } from '@mui/material';
+import React from "react";
+import { Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import Layout from '@root/layouts';
-import Page from '@root/components/Page';
-import ContextualSafeguardingTable from '@root/sections/safeguarding/child-protection/contextual-safeguarding/ContextualSafeguardingTable'; 
+import Layout from "@root/layouts";
+import Page from "@root/components/Page";
+import ContextualSafeguardingTable from "@root/sections/safeguarding/child-protection/contextual-safeguarding/ContextualSafeguardingTable";
 
 const PAGE_TITLE = "Contextual Safeguarding List";
 
