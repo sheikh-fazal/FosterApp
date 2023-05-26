@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -7,59 +6,44 @@ import {
   FormControl,
   Grid,
   InputAdornment,
-  InputLabel,
   Menu,
   MenuItem,
   Stack,
   TextField,
 } from "@mui/material";
-import Select from "@mui/material/Select";
-import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import PrintIcon from "@mui/icons-material/Print";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import CustomAccordian from "@root/components/CustomAccordian";
 import TaineeListTable from "./tainee-list-table/TaineeListTable";
+import TraineeListModal from "./trainee-list-modal/TraineeListModal";
+import { sortingData } from ".";
+import { useTraineeList } from "./useTraineeList";
 
 const TraineeLists = () => {
-  const [items, setitems] = React.useState("");
-  const [cancelDelete, setCancelDelete] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleChange = (event: any) => {
-    setitems(event.target.value);
-  };
-
-  const router = useRouter();
-
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
-  };
-
-  const handleClick = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const sortingData = [
-    {
-      title: "Option 1",
-      component: <TaineeListTable/>
-    },
-  ];
+  const {
+    items,
+    addRow,
+    anchorEl,
+    editRowId,
+    setEditRowId,
+    modalType,
+    setModalType,
+    handleChange,
+    handleClick,
+    handleClose,
+    addRowHandler,
+    sortingByData,
+  } = useTraineeList();
 
   return (
     <Card sx={{ p: 2 }}>
       <Box>
         <Grid spacing={2} container>
-          <Grid item xl={6} lg={6} md={12} xs={12}>
-            <FormControl>
+          <Grid item xl={3} lg={4} md={5} sm={5} xs={12}>
+            <FormControl sx={{ width: "100%" }}>
               <TextField
-                fullWidth
                 size="medium"
                 name="{searchKey}"
                 placeholder="Search"
@@ -77,19 +61,19 @@ const TraineeLists = () => {
             </FormControl>
           </Grid>
 
-          <Grid item xl={6} lg={6} md={12} xs={12}>
+          <Grid item xl={9} lg={8} md={7} sm={7} xs={12}>
             <Stack
               direction={{
                 xl: "row",
                 lg: "row",
                 md: "row",
                 xs: "column",
-                sm: "column",
+                sm: "row",
               }}
               justifyContent="end"
               spacing={1}
             >
-              <Button variant="contained">
+              <Button onClick={() => window.print()} variant="contained">
                 <PrintIcon sx={{ fontSize: "25px" }} />
               </Button>
 
@@ -112,20 +96,54 @@ const TraineeLists = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Option 1</MenuItem>
-                <MenuItem onClick={handleClose}>Option 2</MenuItem>
-                <MenuItem onClick={handleClose}>Option 3</MenuItem>
+                {sortingByData.map((item, index) => {
+                  return (
+                    <MenuItem key={index} onClick={handleClose}>
+                      {item.name}
+                    </MenuItem>
+                  );
+                })}
               </Menu>
-              <Button size="large" variant="contained">
+
+              <Button
+                size="large"
+                variant="contained"
+                onClick={() => {
+                  setModalType({
+                    ...modalType,
+                    type: "Add",
+                    value: null,
+                  });
+                }}
+              >
                 Add Group
               </Button>
             </Stack>
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-            <CustomAccordian data={sortingData} />
+            <CustomAccordian
+              data={addRow}
+              showBtn
+              handleTitleEdit={(item: any) => {
+                setEditRowId(item);
+                setModalType({
+                  ...modalType,
+                  type: "Edit",
+                });
+              }}
+            />
           </Grid>
         </Grid>
+
+        <TraineeListModal
+          open={modalType.type}
+          editRowId={editRowId}
+          addRowHandler={addRowHandler}
+          handleClose={() => {
+            setModalType({ type: "", value: null });
+          }}
+        />
       </Box>
     </Card>
   );
@@ -142,5 +160,6 @@ const styles = {
     border: "unset",
     boxShadow: "unset",
     borderRadius: "4px",
+    width: "100%",
   }),
 };

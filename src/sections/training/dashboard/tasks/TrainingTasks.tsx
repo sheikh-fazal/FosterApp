@@ -1,38 +1,12 @@
 import React from "react";
-import {
-  Box,
-  Card,
-  Checkbox,
-  Divider,
-  FormControlLabel,
-  FormGroup,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { Box, Card, Divider, FormGroup, Typography } from "@mui/material";
 import TaskIcon from "../../../../assets/svg/training/taskIcon.svg";
 import Image from "next/image";
+import { TASKSDATA } from ".";
+import { useTrainingTasks } from "./useTrainingTasks";
 
 export default function TrainingTasks() {
-  const theme: any = useTheme();
-
-  const TASKSDATA = [
-    {
-      title: "Course ( basic first aid fostering) is in Draft",
-      date: "Jan 06, 2022",
-    },
-    {
-      title: "Course ( Allegations & Safer Caring Awareness) ",
-      date: "Jan 04, 2022",
-    },
-    {
-      title: "Course ( Child Development Therapeutic)  ",
-      date: "Jan 02, 2022",
-    },
-    {
-      title: "Course ( basic first aid fostering) is in Draft",
-      date: "Mar 02, 2022",
-    },
-  ];
+  const { theme } = useTrainingTasks();
 
   return (
     <Card
@@ -78,6 +52,7 @@ export default function TrainingTasks() {
                   color: theme.palette.black,
                   fontSize: "14px",
                   fontWeight: "500",
+                  pl: 1,
                 }}
               >
                 {item?.date}

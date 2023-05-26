@@ -1,12 +1,11 @@
 import React from "react";
 import Layout from "@root/layouts";
-import Page from '@root/components/Page';
+import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import HomeIcon from "@mui/icons-material/Home";
 import { PesonalInfoForm } from "@root/sections/referral/foster-carer-request-form/personal-info-form";
 import { ApprovedDetailsForm } from "@root/sections/referral/foster-carer-request-form/approved-details-form";
 import UploadDocTable from "@root/sections/referral/foster-carer-request-form/upload-documents/UploadDocTable";
-
 
 const PAGE_TITLE = "Add Carer Request Form";
 

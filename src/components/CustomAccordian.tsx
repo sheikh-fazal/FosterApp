@@ -8,7 +8,13 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 const CustomAccordian = ({ data, className, subTitle, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
+  const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
+  
+  const handleDelete = () => {
+    alert("deleted successfully");
+    setCancelDelete(!cancelDelete);
+  };
   return (
     <>
       {data?.map((item: any) => (
