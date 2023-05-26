@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const useFRB = () => {
+export const useFRC1 = () => {
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-B/foster-carer-report';
+  const path = '/reports/ifa-reports/FR-C1/household-comments';
   const [deleteModal, setDeleteModal] = useState(false);
 
   const handleDeleteModal = () => setDeleteModal(!deleteModal);

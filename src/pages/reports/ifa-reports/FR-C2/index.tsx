@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FRC2Section from '../../../../sections/reports/FR-C2/FRC2';
 
 const PAGE_TITLE = "Reports";
 
@@ -19,10 +20,10 @@ FRC2.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"
+          name: "FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"
         }
       ]}
       title={PAGE_TITLE}
@@ -36,6 +37,7 @@ FRC2.getLayout = function getLayout(page: any) {
 export default function FRC2() {
   return (
     <Page title={PAGE_TITLE}>
+      <FRC2Section />
     </Page>
   );
 }

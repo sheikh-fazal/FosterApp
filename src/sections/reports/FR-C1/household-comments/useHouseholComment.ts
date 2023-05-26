@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form";
 import { formSchema, initialValues } from ".";
 import { useRouter } from "next/router";
 
-export const usePartA = (handleNextTab: any) => {
+export const useHouseholdComments = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-B')
+  const handleBack = () => router.push('/reports/ifa-reports/FR-C1');
 
 
   const methods: any = useForm({
@@ -26,7 +26,6 @@ export const usePartA = (handleNextTab: any) => {
 
   const onSubmit = (data: any) => {
     console.log(data);
-    handleNextTab()
   };
 
   return {

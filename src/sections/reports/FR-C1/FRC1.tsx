@@ -2,16 +2,16 @@ import React from 'react';
 import { Box, Button, Card, Checkbox, Grid, MenuItem, Select, Typography } from '@mui/material';
 import Image from 'next/image';
 import automatedIcon from '../../../assets/svg/reports/automatedIcon.svg';
-import { FRBFilterData, tableSubHeader, tableMockData } from '.';
-import { useFRB } from './useFRB';
+import { useFRC1 } from './useFRC1';
 import TableHeader from '@root/components/TableHeader';
 import TableSubHeader from '../table-sub-header/TableSubHeader';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
 import DeleteModel from '@root/components/modal/DeleteModel';
+import { FRC1FilterData, tableMockData, tableSubHeader } from '.';
 
-const FRBSection = () => {
-  const { handleSearch, handleAction, handleDeleteModal, deleteModal } = useFRB();
+const FRC1 = () => {
+  const { handleSearch, handleAction, handleDeleteModal, deleteModal } = useFRC1();
 
   const columns = [
     {
@@ -34,6 +34,12 @@ const FRBSection = () => {
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr. No</span>,
       isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.childName,
+      id: "childName",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Child's Name (DOB)</span>,
     },
     {
       accessorFn: (row: any) => row.socialWorker,
@@ -60,18 +66,6 @@ const FRBSection = () => {
       header: () => <span>Created By</span>,
     },
     {
-      accessorFn: (row: any) => row.modifiedDate,
-      id: "modifiedDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Modified Date</span>,
-    },
-    {
-      accessorFn: (row: any) => row.modifiedBy,
-      id: "modifiedBy",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Modified By</span>,
-    },
-    {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
@@ -89,15 +83,14 @@ const FRBSection = () => {
   return (
     <>
       <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexWrap={'wrap'} gap={2}
+        <Box display={'flex'} justifyContent={'end'}
           sx={{ px: 2 }}
         >
-          <Typography sx={styles.title}>View Report</Typography>
           <Image src={automatedIcon} alt='icon' />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>
           <Grid container spacing={2}>
-            {FRBFilterData.map((data: any, i: number) => (
+            {FRC1FilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
                 <Typography sx={styles.title}>{data.title}</Typography>
                 <Select {...data.otherOptions}>
@@ -132,7 +125,7 @@ const FRBSection = () => {
   )
 }
 
-export default FRBSection;
+export default FRC1;
 
 
 const styles = {

@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRC1Section from '../../../../sections/reports/FR-C1/FRC1';
+import HouseholdComments from "@root/sections/reports/FR-C1/household-comments/HouseholdComments";
 const PAGE_TITLE = "Reports";
 
 FRC1.getLayout = function getLayout(page: any) {
@@ -36,7 +36,7 @@ FRC1.getLayout = function getLayout(page: any) {
 export default function FRC1() {
   return (
     <Page title={PAGE_TITLE}>
-      <FRC1Section />
+      <HouseholdComments />
     </Page>
   );
 }

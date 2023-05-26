@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRC1Section from '../../../../sections/reports/FR-C1/FRC1';
+import HouseHoldComments from "@root/sections/reports/FR-C1/household-comments/HouseholdComments";
+import { useRouter } from "next/router";
 const PAGE_TITLE = "Reports";
 
 FRC1.getLayout = function getLayout(page: any) {
@@ -34,9 +35,11 @@ FRC1.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function FRC1() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <FRC1Section />
+      <HouseHoldComments action={action} id={id} />
     </Page>
   );
 }
