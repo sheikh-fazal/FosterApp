@@ -191,7 +191,7 @@ const RegularAssessmentMeetingForm = (props: any) => {
     const regularAssessmentForm = new FormData();
 
     regularAssessmentForm.append("meetingDate", dayjs(data?.meetingDate).format("MM/DD/YYYY"));
-    regularAssessmentForm.append("meetingTime", new Date(data?.meetingTime));
+    regularAssessmentForm.append("meetingTime", new Date(data?.meetingTime).toISOString());
     regularAssessmentForm.append("meetingAgenda", data?.meetingAgenda);
     regularAssessmentForm.append("meetingAttendees", data?.meetingAttendees);
     regularAssessmentForm.append("meetingOutcomes", data?.meetingOutcomes);
@@ -201,7 +201,10 @@ const RegularAssessmentMeetingForm = (props: any) => {
       dayjs(data?.nextAssessmentDate).format("MM/DD/YYYY")
     );
 
-    regularAssessmentForm.append("nextAssessmentTime", new Date(data?.nextAssessmentTime));
+    regularAssessmentForm.append(
+      "nextAssessmentTime",
+      new Date(data?.nextAssessmentTime).toISOString()
+    );
     regularAssessmentForm.append("uploadMeetingRecording", data?.uploadMeetingRecording);
 
     // for (var pair of regularAssessmentForm.entries()) {

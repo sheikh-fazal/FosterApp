@@ -20,7 +20,7 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
-    patchRegularAssessmentDetail: builder.mutation<null, void>({
+    patchRegularAssessmentDetail: builder.mutation({
       query: (data: any) => {
         const { id, regularAssessmentForm } = data;
         for (var pair of regularAssessmentForm.entries()) {
