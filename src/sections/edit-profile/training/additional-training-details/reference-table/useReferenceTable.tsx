@@ -1,9 +1,9 @@
-import { useGetReferencesInfoQuery } from "@root/services/update-profile/reference/referenceApi";
+import { useGetAdditionalTrainingDetailsQuery } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import { useState } from "react";
 
 export const useRefereneceTable = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetReferencesInfoQuery({});
+    useGetAdditionalTrainingDetailsQuery({});
   const [tableStatusInfo, setTableStatusInfo] = useState({
     updateViewModel: false,
     updateId: "",
@@ -11,7 +11,7 @@ export const useRefereneceTable = () => {
     isDisabled: true,
     viewModel: false,
   });
-
+  console.log({ data });
   const closeViewUpdateModel = () => {
     setTableStatusInfo((pre) => ({ ...pre, updateViewModel: false }));
   };
@@ -26,18 +26,6 @@ export const useRefereneceTable = () => {
       isDisabled: Boolean(disabled),
     }));
   };
-  // const closeViewModel = () => {
-  //   setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
-  // };
-  // const openViewModel = (id: string) => {
-  //   const tableRows = data?.data ?? [];
-  //   const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
-  //   setTableStatusInfo((pre) => ({
-  //     ...pre,
-  //     viewModel: true,
-  //     refFormDataHolder: tableRows[indexOf],
-  //   }));
-  // };
 
   return {
     tableRows: data?.data,

@@ -5,55 +5,34 @@ export const getColumns = (parms: any) => {
   const { openViewUpdateModel } = parms;
   return [
     {
-      accessorFn: (row: any) => row.referenceType,
-      id: "ReferenceType",
+      accessorFn: (row: any) => row.trainingName,
+      id: "trainingName",
       cell: (info: any) => info.getValue(),
-      header: "Reference Type",
+      header: "Taining Name",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.refereeName,
-      id: "fullName",
-      cell: (info: any) => info.getValue(),
-      header: "Full name of the referee",
+      accessorFn: (row: any) => row.createdAt,
+      id: "certificateissued",
+      cell: (info: any) => "Issue Date",
+      header: "Certificate issued",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.contactNo,
-      id: "contactNo",
-      cell: (info: any) => info.getValue(),
-      header: "Contact No. ",
+      accessorFn: (row: any) => row.updatedAt,
+      id: "certificateExp",
+      cell: (info: any) => "Expiry Date",
+      header: "Certificate Expiry Date",
       isSortable: false,
     },
     {
       accessorFn: (row: any) => row.email,
       id: "emailID",
-      cell: (info: any) => info.getValue(),
-      header: "Email ID",
+      cell: (info: any) => "Email",
+      header: "Attachments",
       isSortable: false,
     },
 
-    {
-      accessorFn: (row: any) => row.status,
-      id: "approvalStatus",
-      cell: (info: any) => info.getValue(),
-      header: "Approval Status",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.createdAt,
-      id: "refView",
-      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-      header: "Ref. viewed on",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.updatedAt,
-      id: "refeCompletedOn",
-      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-      header: "Ref. completed on",
-      isSortable: false,
-    },
     {
       accessorFn: (row: any) => row.id,
       id: "actions",
@@ -61,18 +40,8 @@ export const getColumns = (parms: any) => {
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
           <TableAction
             size="small"
-            type="view"
-            onClicked={() => openViewUpdateModel(info.row.original.id, true)}
-          />
-          <TableAction
-            size="small"
             type="edit"
             onClicked={() => openViewUpdateModel(info.row.original.id)}
-          />
-          <TableAction
-            size="small"
-            type="delete"
-            onClicked={() => alert(JSON.stringify(info))}
           />
         </Box>
       ),
