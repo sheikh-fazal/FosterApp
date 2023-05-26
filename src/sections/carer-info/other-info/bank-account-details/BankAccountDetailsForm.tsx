@@ -33,7 +33,7 @@ export default function BankAccountDetailsForm(props: any) {
   const theme: any = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const selectedRow = content?.row?.original;
+  let selectedRow = content?.row?.original;
 
   const handleOpen = () => {
     setOpen(true);
@@ -72,7 +72,7 @@ export default function BankAccountDetailsForm(props: any) {
             >
               Person Uploaded :{selectedRow?.personUploaded}
             </Typography>
-            <DocumentModalForm
+            <FormPiece
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
@@ -89,7 +89,7 @@ export default function BankAccountDetailsForm(props: any) {
               >
                 {readOnly ? "Close" : "Cancel"}
               </Button>
-            </DocumentModalForm>
+            </FormPiece>
           </Box>
         </Fade>
       </Modal>
@@ -97,16 +97,16 @@ export default function BankAccountDetailsForm(props: any) {
   );
 }
 
-const DocumentModalForm = (props: any) => {
+const FormPiece = (props: any) => {
   const { disableForm, children, selectedRow, formData } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
-    accountNumber: selectedRow?.accountNumber || "123456",
-    sortName: selectedRow?.sortName || "Name sort",
-    nameOfBank: selectedRow?.nameOfBank || "HBL",
-    accountName: selectedRow?.accountName || "Name of HBL",
-    accountType: selectedRow?.accountType || "platinum",
+    accountNumber: selectedRow?.accountNumber || "",
+    sortName: selectedRow?.sortName || "",
+    nameOfBank: selectedRow?.nameOfBank || "",
+    accountName: selectedRow?.accountName || "",
+    accountType: selectedRow?.accountType || "gold",
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
@@ -165,8 +165,8 @@ const DocumentModalForm = (props: any) => {
               variant="contained"
               sx={{
                 mt: 1,
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.dark },
+                bgcolor: theme.palette.primary.main,
+                "&:hover": { bgcolor: theme.palette.primary.dark },
               }}
             >
               Submit
@@ -240,8 +240,8 @@ export const formDataArray = [
           label: "Plus",
         },
         {
-          value: "standard",
-          label: "Standard",
+          value: "Savings",
+          label: "Savings",
         },
       ],
       fullWidth: true,

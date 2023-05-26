@@ -108,7 +108,7 @@ export default function InitialEnquiry() {
 
       {/*---------------------- Fourth Tab---------------------- */}
       <UploadDocuments
-        readOnly={true}
+        readOnly={false}
         tableData={tableData}
         isLoading={isDocumentLoading}
         isFetching={isFetching}

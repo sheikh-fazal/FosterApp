@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { BankAccountDetailsTable } from "./BankAccountDetailsTable";
 import BankAccountDetailsForm from "./BankAccountDetailsForm";
 
-export default function BankAccountDetails() {
+export default function BankAccountDetailsSection() {
   const [openModal, setOpenModal] = useState(false);
   const changeHandler = (i: any) => {
     console.log(i);
@@ -18,10 +18,11 @@ export default function BankAccountDetails() {
       />
       <BankAccountDetailsTable />
       <BankAccountDetailsForm
+        content={{}}
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) =>
-          console.log("oooooooooooooooooooooi data", data)
+          console.log("oooooooooooooooooooooi Add", data)
         }
       />
     </div>

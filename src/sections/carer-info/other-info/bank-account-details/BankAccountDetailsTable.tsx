@@ -1,16 +1,35 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
+import BankAccountDetailsForm from "./BankAccountDetailsForm";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 // ----------------------------------------------------------------------
 export const BankAccountDetailsTable = (props: any) => {
   const { readOnly, isLoading, isError, isFetching, isSuccess, tableData } =
     props;
-
+  const [openDeleteModal, setOpenDeleteModal] = useState<any>(false);
   // ----------------------------------------------------------------------
-
+  const tableRows = [
+    {
+      id: 1,
+      accountNumber: "522",
+      accountType: "Savings",
+      accountName: "Ahmed Shah",
+      nameOfBank: "HBL",
+      sortName: "name",
+    },
+    {
+      id: 2,
+      accountNumber: "888",
+      accountType: "platinum",
+      accountName: "Butt",
+      nameOfBank: "Alfalah",
+      sortName: "none",
+    },
+  ];
   const columns = [
     {
       accessorFn: (row: any) => row.accountNumber,
@@ -48,11 +67,28 @@ export const BankAccountDetailsTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {/* <ActionModal content={info} readOnly={readOnly} btnType="view" /> */}
+          <BankAccountDetailsForm
+            content={info}
+            btnType="edit"
+            closeModal={() => {}}
+            formData={(data: any) =>
+              console.log("oooooooooooooooooooooi Edit", {
+                ...info.row?.original,
+                ...data,
+              })
+            }
+          />
           <TableAction
-            type="download"
-            onClicked={() => alert("Download")}
+            type="delete"
+            onClicked={() => setOpenDeleteModal(info.row?.original)}
             size="small"
+          />
+
+          <BankAccountDetailsForm
+            content={info}
+            readOnly
+            btnType="view"
+            closeModal={() => {}}
           />
         </Box>
       ),
@@ -63,13 +99,32 @@ export const BankAccountDetailsTable = (props: any) => {
 
   return (
     <Grid container>
+      <DeleteModel
+        open={openDeleteModal}
+        onDeleteClick={() => alert(openDeleteModal?.nameOfBank)}
+        handleClose={() => {
+          setOpenDeleteModal(false);
+        }}
+      />
       <CustomTable
-        data={tableData}
+        data={tableRows}
         columns={columns}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
+        isLoading={
+          false
+          // isLoading
+        }
+        isFetching={
+          false
+          // isFetching
+        }
+        isError={
+          false
+          // isError
+        }
+        isSuccess={
+          true
+          // isSuccess
+        }
         showSerialNo
         // count={Math.ceil(data?.data?.meta?.total / limit)}
         currentPage={1}
