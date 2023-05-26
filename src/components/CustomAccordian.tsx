@@ -3,19 +3,10 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, alpha, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import TableAction from "./TableAction";
-import DeleteModel from "./modal/DeleteModel";
-
-const CustomAccordian = ({
-  handleTitleEdit,
-  showBtn,
-  data,
-  className,
-  ...rest
-}: any) => {
+const CustomAccordian = ({ data, className, subTitle, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
@@ -71,12 +62,9 @@ const CustomAccordian = ({
             }
           >
             <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                alignItems: "center",
-              }}
+              width={'100%'} display={'flex'}
+              alignItems={'center'} justifyContent={'space-between'}
+              gap={2} flexWrap={'wrap'}
             >
               <Typography
                 variant="subtitle1"
@@ -91,42 +79,16 @@ const CustomAccordian = ({
               >
                 {item.title}
               </Typography>
-              {showBtn && (
-                <Stack direction="row" spacing={1}>
-                  <TableAction
-                    size="small"
-                    type="edit"
-                    onClicked={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                      handleTitleEdit(item);
-                    }}
-                  />
-                  <TableAction
-                    size="small"
-                    type="delete"
-                    onClicked={(event: any) => {
-                      setCancelDelete(!cancelDelete);
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                    }}
-                  />
-                  <DeleteModel
-                    open={cancelDelete}
-                    onDeleteClick={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                      handleDelete();
-                    }}
-                    handleClose={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                      setCancelDelete(!cancelDelete);
-                    }}
-                  />
-                </Stack>
-              )}
+
+              {subTitle && <Typography
+                variant="subtitle2"
+                className="title"
+                sx={{ pr: '5px' }}
+              >
+                {item?.lectures?.length} lectuers - {item?.minutes} min
+              </Typography>}
             </Box>
+
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
         </Accordion>
