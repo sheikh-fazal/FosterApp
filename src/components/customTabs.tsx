@@ -10,7 +10,7 @@ const CustomHorizaontalTab = (props: any) => {
     <Card sx={{ px: 2 }}>
       <Tabs
         selectionFollowsFocus
-        orientation="horizontal"
+        orientation="vertical"
         variant="scrollable"
         sx={styles.tabRoot(theme)}
         TabIndicatorProps={styles.tabIndicator(theme)}

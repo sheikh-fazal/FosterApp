@@ -9,8 +9,13 @@ import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
 const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, data, className, ...rest }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
-  const [cancelDelete, setCancelDelete] = React.useState(false);
+  const [expanded, setExpanded] = React.useState<string | false>(false);
   const theme: any = useTheme();
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+  const [cancelDelete, setCancelDelete] = React.useState(false);
   
   const handleDelete = () => {
     alert("deleted successfully");
@@ -18,7 +23,7 @@ const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, da
   };
   return (
     <>
-      {data?.map((item: any) => (
+      {data?.map((item: any, idx:any) => (
         <Accordion
           key={item.title}
           disableGutters
@@ -32,6 +37,7 @@ const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, da
               display: "none",
             },
           }}
+          expanded={expanded === `panel${idx+1}`} onChange={handleChange(`panel${idx+1}`)}
         >
           <AccordionSummary
             sx={{
@@ -44,8 +50,8 @@ const CustomAccordian = ({ handleRowDelete,handleTitleEdit, showBtn,subTitle, da
               borderRadius: "5px",
             }}
             className="summary-Icon"
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+            aria-controls={`panel${idx+1}bh-content`}
+            id={`panel${idx+1}bh-header`}
             expandIcon={
               <Avatar
                 sx={{

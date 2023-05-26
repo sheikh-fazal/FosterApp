@@ -8,7 +8,7 @@ import { Box, Checkbox, Grid, Typography, useTheme } from "@mui/material";
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
 import { SAFE_CARING_POLICY_TABLE_DATA } from '@root/dropdown-data/safeCaringPolicyList';
-import { SOCIAL_WORKER_TABLE_DATA } from '@root/dropdown-data/social-worker-data';
+import { SOCIAL_WORKER_TABLE_DATA } from '@root/dropdown-data/socialWorkerData';
 import DeleteModel from '@root/components/modal/DeleteModel';
 
 const PAGE_TITLE = "SW List";
