@@ -1,55 +1,30 @@
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { Box, Button, Grid, Modal, Typography, useTheme } from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AddFormSchema, AddFormValues, addExperienceForm } from ".";
+import AddIcon from "@mui/icons-material/Add";
 import FormField from "../../personal-info/initial-home-visit/form-generator/FormField";
 import { enqueueSnackbar } from "notistack";
 import { useExperienceMutation } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
 import dayjs from "dayjs";
+import { useState } from "react";
 
 function AddExperiencesModal({ open, setOpen }: any) {
-
-  const [addExperiences, { isLoading }] = useExperienceMutation();
-
-  const methods: any = useForm({
-    resolver: yupResolver(AddFormSchema),
-    defaultValues: AddFormValues,
-  });
-  const FORMDATA: any = new FormData();
   const theme: any = useTheme();
-  const {
-    handleSubmit,
-    formState: { isValid },
-  } = methods;
+  // const { register, control, handleSubmit } = useForm();
 
-  const onSubmit = async (data: any) => {
-    FORMDATA.append("title", data.title);
-    FORMDATA.append("employmentType", data.employmentType);
-    FORMDATA.append("companyName", data.companyName);
-    FORMDATA.append("location", data.location);
-    FORMDATA.append("currentlyWorking", data.currentlyWorking);
-    FORMDATA.append("startDate",dayjs(data.startDate).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString());
-    FORMDATA.append("endDate", dayjs(data.endDate).format("YYYY-MM-DDTHH:mm:ss.SSS[Z]").toString());
-    FORMDATA.append("headline", data.headline);
-    FORMDATA.append("industry", data.industry);
-    FORMDATA.append("description", data.description);
-    FORMDATA.append("media", data.media);
+  const methods: any = useForm();
 
-    for (let [key, value] of FORMDATA.entries()) {
-      console.log(`${key}: ${value}`);
-    }
+  const { control, register, handleSubmit } = methods;
 
-    try {
-      const res: any = await addExperiences(FORMDATA).unwrap();
-      if (res) {
-        console.log(res);
-        
-      }
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    }
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "experiences",
+  });
+
+  const onSubmit = (data: any) => {
+    console.log(data);
   };
 
   return (
@@ -60,47 +35,46 @@ function AddExperiencesModal({ open, setOpen }: any) {
       aria-describedby="modal-modal-description"
       closeAfterTransition
     >
-      <Box sx={styles.root}>
-        <Typography sx={styles.title(theme)}>Add Experience</Typography>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <Grid container spacing={2} mb={5}>
-            {addExperienceForm.map((data: any, index: number) => {
-              const {
-                type,
-                name,
-                label,
-                title,
-                options,
-                gridSize = { xs: 12, md: 6 },
-                getOptionLabel,
-                ...other
-              } = data;
-              return (
-                <Grid key={index} item {...gridSize}>
-                  <FormField
-                    fieldType={type}
-                    name={name}
-                    label={label}
-                    fullWidth={true}
-                    options={options}
-                    size="small"
-                    getOptionLabel={getOptionLabel}
-                    {...other}
-                    {...methods}
-                  />
-                </Grid>
-              );
-            })}
+      <Box>
+        <Box sx={styles.root}>
+          <Typography sx={styles.title(theme)}>Add Experience</Typography>
+          
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={1}>
+            <Grid item xs={6}>
+            <RHFTextField name="companyname" label="Company Name"  size="small"/>
+            </Grid>
+            <Grid item xs={6}>
+            <RHFTextField name="location" label="Location"  size="small"/>
+            </Grid>
+            {fields.map((field, index) => (
+              <div key={field.id}>
+                <RHFTextField name={`experiences.${index}.title`}  size="small" />
+                {/* <input
+            {...register(`experiences.${index}.company`)}
+            placeholder="Company"
+          /> */}
+                {/* Add more fields here */}
+              </div>
+            ))}
+            <Box>
+              <Button
+                variant="text"
+                startIcon={<AddIcon />}
+                onClick={() => append({})}
+              >
+                Add
+              </Button>
+            </Box>
+            <Grid item xs={12}>
+            <Box sx={{ display: "flex", gap: 2, justifyContent: "end" }}>
+              <Button sx={styles.btnBack}>Cancel</Button>
+              <Button sx={styles.btnSuccess}>Submit</Button>
+            </Box>
+            </Grid>
           </Grid>
-          <Box sx={styles.actionBtnBox}>
-            <Button type="submit" sx={styles.btnSuccess}>
-              Submit
-            </Button>
-            <Button sx={styles.btnError} onClick={() => setOpen(false)}>
-              Back
-            </Button>
-          </Box>
-        </FormProvider>
+          </FormProvider>
+        </Box>
       </Box>
     </Modal>
   );
@@ -114,7 +88,7 @@ const styles = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "min(95vw, 50rem)",
+    width: "min(95vw, 60rem)",
     bgcolor: "background.paper",
     borderRadius: "4px",
     boxShadow: 24,
@@ -132,7 +106,7 @@ const styles = {
     gap: "10px",
     mt: 2,
   }),
-  btnError: (theme: any) => ({
+  btnBack: (theme: any) => ({
     bgcolor: theme.palette.orange.main,
     color: theme.palette.primary.contrastText,
   }),

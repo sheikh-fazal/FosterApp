@@ -1,17 +1,24 @@
 import * as Yup from "yup";
-
-export const AddFormValues = {
+export const EXPERIENCE = {
   title: "",
   employmentType: "",
-  companyName: "",
-  location: "",
-  currentlyWorking:false,
+  currentlyWorking: false,
   startDate: new Date(),
-  endDate:new Date(),
+  endDate: new Date(),
   headline: "",
   industry: "",
   description: "",
+}
+
+export const AddFormValues = {
+  companyName: "",
+  location: "",
   media: "",
+  experiences:[
+    {
+     ...EXPERIENCE
+    }
+  ]
 };
 
 export const AddFormSchema = Yup.object().shape({

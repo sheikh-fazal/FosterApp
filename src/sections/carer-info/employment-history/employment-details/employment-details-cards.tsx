@@ -8,9 +8,9 @@ function EmploymentDetailsCards() {
   const [open, setOpen] = useState(false);
   const theme: any = useTheme();
 
-  const {data} = useGetExperienceQuery();
+  const {data,isLoading} = useGetExperienceQuery();
 
-  console.log("dfdfef", data);
+
 
   return (
     <Card>
@@ -22,6 +22,8 @@ function EmploymentDetailsCards() {
           <BsPlus style={styles.addBtnIconStyles(theme)} />
         </Box>
       </Box>
+            
+     
       <AddExperiencesModal open={open} setOpen={setOpen} />
     </Card>
   );
