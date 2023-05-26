@@ -6,7 +6,6 @@ export const initialValues = {
   instructor: "",
   fieldOfStudy: "",
 };
-const optionsArr = ["Strongly Agree", "Agree", "Neutral", "Disagree", "Strongly Disagree"];
 export const formSchema = Yup.object().shape({});
 
 let hideLabel = {
@@ -64,7 +63,13 @@ export const courseEvaluation = [
   {
     gridLength: 12,
     head: "Please choose the best answer for each of the following.",
-    labels: ["strongly agree", "agree", "neutral", "disagree", "strongly disagree"],
+    labels: [
+      { title: "strongly agree", ml: "-38px", mr: "0" },
+      { title: "agree", ml: "18px", mr: "0" },
+      { title: "neutral", ml: "48px", mr: "0" },
+      { title: "disagree", ml: "40px", mr: "0" },
+      { title: "strongly disagree", ml: "0", mr: "20px" },
+    ],
   },
   {
     gridLength: 12,
@@ -79,7 +84,8 @@ export const courseEvaluation = [
       options: ["strongly agree", "agree", "netural", "disagree", "strongly disagree"],
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         width: { xl: "45rem", xs: "auto" },
         paddingInline: { md: "10px", xs: "0" },
         py: 0.5,
@@ -104,7 +110,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         paddingInline: { md: "10px", xs: "0" },
         py: 1.8,
         ...hideLabel,
@@ -128,7 +135,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         paddingInline: { md: "10px", xs: "0" },
         py: 1.8,
         ...hideLabel,
@@ -152,7 +160,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         paddingInline: { md: "10px", xs: "0" },
         py: 0.5,
         ...hideLabel,
@@ -176,7 +185,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         paddingInline: { md: "10px", xs: "0" },
         py: 0.5,
         ...hideLabel,
@@ -200,7 +210,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         px: { md: "10px", xs: "0" },
         py: 1.8,
         ...hideLabel,
@@ -224,7 +235,8 @@ export const courseEvaluation = [
       sx: {
         justifyContent: { xl: "space-around", xs: "space-between" },
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
+        borderBottom: { xl: "none" },
         px: { md: "10px", xs: "0" },
         py: 0.5,
         ...hideLabel,
@@ -250,7 +262,7 @@ export const courseEvaluation = [
         justifyContent: { xl: "space-around", xs: "space-between" },
         display: "flex",
         width: { xl: "45rem", xs: "auto" },
-        border: { md: "1px solid #DBDBDB", xs: "none" },
+        border: { lg: "1px solid #DBDBDB", xs: "none" },
         py: 1.8,
         paddingInline: { md: "10px", xs: "0" },
         ...hideLabel,

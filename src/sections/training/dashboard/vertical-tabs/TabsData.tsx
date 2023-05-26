@@ -71,7 +71,7 @@ export const TABSDATAARRY = [
       {
         id: 1,
         title: "Tariner Registrations",
-        link: "/training/manage-trainers/tariner-registrations",
+        link: "/training/manage-trainers/trainer-registrations",
       },
       {
         id: 2,
