@@ -1,5 +1,4 @@
 import { baseAPI } from "@root/services/baseApi";
-import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const carInsuranceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
