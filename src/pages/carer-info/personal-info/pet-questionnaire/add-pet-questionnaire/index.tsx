@@ -64,7 +64,11 @@ export default function AddPetQuestionnaire() {
           "Pet Questionnaire D",
         ]}
       >
-        <PetQuestionnaireA onSubmitHandler={postDataA} message="Added" />
+        <PetQuestionnaireA
+          onSubmitHandler={postDataA}
+          message="Added"
+          isAdding
+        />
         <PetQuestionnaireB onSubmitHandler={postDataB} message="Added" />
         <PetQuestionnaireC onSubmitHandler={postDataC} message="Added" />
         <PetQuestionnaireD onSubmitHandler={postDataD} message="Added" />

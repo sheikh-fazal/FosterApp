@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import { RHFCheckbox, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SignaturePad from "@root/components/hook-form/SignaturePad";
-import { fData } from "@root/utils/formatNumber";
 import * as Yup from "yup";
 
 export const DForm = [
@@ -113,40 +112,16 @@ export const defaultValues = {
   date2: null,
 };
 
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-
-const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
 export const DFormValidationSchema = Yup.object().shape({
   information1: Yup.boolean(),
   information2: Yup.boolean(),
   comments: Yup.string().trim(),
   signature1: Yup.mixed()
     .nullable()
-    .required("Signature Of Interviewee is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature Of Interviewee is required"),
   signature2: Yup.mixed()
     .nullable()
-    .required("Signature Of Interviewee is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature Of Interviewee is required"),
   date1: Yup.date().required("Date is required"),
   date2: Yup.date().required("Date is required"),
 });

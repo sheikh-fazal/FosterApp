@@ -11,7 +11,7 @@ import {
   usePutCarerFamilyByIdMutation,
 } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
 import Error from "@root/components/Error";
-import IsFetching from "@root/components/loaders/IsFetching";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -57,7 +57,7 @@ export default function EditFamilySupport() {
   return (
     <Page title={PAGE_TITLE}>
       {isLoading ? (
-        <IsFetching isFetching={isLoading} />
+        <SkeletonFormdata />
       ) : (
         <CarerFamilySupportNetworkForm
           initialValueProps={{
