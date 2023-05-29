@@ -4,31 +4,31 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     uploadDocumentList: builder.query<null, object>({
       query: (search: any) => ({
-        url: "chronology-events/list-allegationDocuments",
+        url: "chronology-events/list-complaintDocuments",
         method: "GET",
         params: search,
       }),
-      providesTags: ["ALLEGATION_DOCUMENTS"],
+      providesTags: ["COMPLAINT_LIST"],
     }),
-    postAllegationDocuments: builder.mutation({
+    postComplaintDocuments: builder.mutation({
       query: (list: any) => ({
-        url: "chronology-events/allegationDocuments",
+        url: "chronology-events/complaintDocuments",
         method: "POST",
         body: list,
       }),
-      invalidatesTags: ["ALLEGATION_DOCUMENTS"],
+      invalidatesTags: ["COMPLAINT_LIST"],
     }),
-    singleAllegetionDocument: builder.query({
-      query: (id: any) => `chronology-events/allegationDocuments/${id}`,
+    singleComplaintDocument: builder.query({
+      query: (id: any) => `chronology-events/complaintDocuments/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
       },
       providesTags: ["ALLEGATION_DOCUMENTS"],
     }),
-    deleteDocumentList: builder.mutation({
+    deleteComplaintDocumentList: builder.mutation({
       query: (id: any) => ({
-        url: `chronology-events/allegationDocument/delete${id}`,
+        url: `chronology-events/complaintDocument/delete${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ALLEGATION_DOCUMENTS"],
@@ -37,7 +37,7 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
 });
 export const {
   useUploadDocumentListQuery,
-  usePostAllegationDocumentsMutation,
-  useLazySingleAllegetionDocumentQuery,
-  useDeleteDocumentListMutation,
+  usePostComplaintDocumentsMutation,
+  useDeleteComplaintDocumentListMutation,
+  useLazySingleComplaintDocumentQuery,
 } = uploadDocumentsApi;

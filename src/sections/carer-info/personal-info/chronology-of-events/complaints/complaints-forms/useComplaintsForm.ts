@@ -7,12 +7,15 @@ import {
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React from "react";
-import { defaultValues, formatters } from "./index";
+import { defaultValues, formSchema, formatters } from "./index";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useComplaintsForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isFetching, setIsFetching] = React.useState(false);
   const [getComplaintList] = useLazySingleComplaintListQuery();
   const [postComplaintDetails] = usePostComplaintListMutation();
   const [editComplaintList] = usePatchComplaintListMutation();
@@ -26,12 +29,10 @@ export const useComplaintsForm = (action: any, id: any) => {
         return defaultValues;
       }
       const responseData = { ...data.data };
-
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
-
       return responseData;
     } else {
       setIsLoading(false);
@@ -39,13 +40,27 @@ export const useComplaintsForm = (action: any, id: any) => {
     }
   };
 
+  const methods: any = useForm({
+    resolver: yupResolver(formSchema),
+    defaultValues: getDefaultValue,
+  });
+
+  const {
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    formState: { isSubmitting },
+  } = methods;
+
+  // Submit Function
   const onSubmit = async (data: any) => {
     if (action === "add") {
-      setIsLoading(true);
+      setIsFetching(true);
       postComplaintDetails(data)
         .unwrap()
         .then((res: any) => {
-          setIsLoading(false);
+          setIsFetching(false);
           enqueueSnackbar("Complaint Added Successfully", {
             variant: "success",
           });
@@ -57,7 +72,7 @@ export const useComplaintsForm = (action: any, id: any) => {
             })
 
             .catch((error) => {
-              setIsLoading(false);
+              setIsFetching(false);
               const errMsg = error?.data?.message;
               enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
               router.push(
@@ -66,7 +81,7 @@ export const useComplaintsForm = (action: any, id: any) => {
             });
         });
     } else if (action === "edit") {
-      setIsLoading(true);
+      setIsFetching(true);
       const formData = {
         id,
         ...data,
@@ -80,13 +95,13 @@ export const useComplaintsForm = (action: any, id: any) => {
           router.push(
             "/carer-info/personal-info/carer-chronology-of-events/complaints"
           );
-          setIsLoading(false);
+          setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push("/carer-info/personal-info/carer-chronology-of-events");
-          setIsLoading(false);
+          setIsFetching(false);
         });
     } else {
       return null;
@@ -98,5 +113,12 @@ export const useComplaintsForm = (action: any, id: any) => {
     onSubmit,
     theme,
     getDefaultValue,
+    isFetching,
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    methods,
+    isSubmitting,
   };
 };

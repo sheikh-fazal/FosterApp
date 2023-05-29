@@ -2,11 +2,12 @@ import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import React from "react";
 import { useRef } from "react";
 
-const PetQuestionnaire = () => {
+const PetQuestionnaireTable = () => {
   const router = useRouter();
   const tableHeaderRef = useRef<any>();
   const [data, setData] = React.useState([
@@ -35,16 +36,20 @@ const PetQuestionnaire = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.questionnaireDate,
+      accessorFn: (row: any) => row?.questionnaireDate ?? "-",
       id: "questionnaireDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Pet Questionnaire Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.nextInspectionDate,
+      accessorFn: (row: any) => row?.nextInspectionDate ?? "-",
       id: "nextInspectionDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Next Inspection Date</span>,
       isSortable: true,
     },
@@ -86,9 +91,7 @@ const PetQuestionnaire = () => {
           ref={tableHeaderRef}
           title="Questionaire"
           searchKey="search"
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
+          onChanged={(data: any) => {}}
         />
       </Box>
       <CustomTable
@@ -108,4 +111,4 @@ const PetQuestionnaire = () => {
   );
 };
 
-export default PetQuestionnaire;
+export default PetQuestionnaireTable;

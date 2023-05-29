@@ -1,10 +1,14 @@
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
+import TableHeader from "@root/components/TableHeader";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useRef } from "react";
 
 const UnannouncedVisit = () => {
   const router = useRouter();
+  const tableHeaderRef = useRef<any>();
   const [data, setData] = React.useState([
     {
       srNo: 1,
@@ -31,9 +35,11 @@ const UnannouncedVisit = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dateVisit,
+      accessorFn: (row: any) => row?.dateVisit ?? "-",
       id: "dateVisit",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Date of Visit</span>,
       isSortable: true,
     },
@@ -76,19 +82,27 @@ const UnannouncedVisit = () => {
     },
   ];
   return (
-    <CustomTable
-      data={data}
-      columns={columns}
-      isLoading={false}
-      isFetching={false}
-      isError={false}
-      isPagination={false}
-      isSuccess={true}
-      // count={Math.ceil(data?.data?.meta?.total / limit)}
-      currentPage={1}
-      onPageChange={(data: any) => {}}
-      onSortByChange={(data: any) => {}}
-    />
+    <>
+      <TableHeader
+        ref={tableHeaderRef}
+        title="Unannounced Home Visit"
+        searchKey="search"
+        onChanged={(data: any) => {}}
+      />
+      <CustomTable
+        data={data}
+        columns={columns}
+        isLoading={false}
+        isFetching={false}
+        isError={false}
+        isPagination={false}
+        isSuccess={true}
+        // count={Math.ceil(data?.data?.meta?.total / limit)}
+        currentPage={1}
+        onPageChange={(data: any) => {}}
+        onSortByChange={(data: any) => {}}
+      />
+    </>
   );
 };
 

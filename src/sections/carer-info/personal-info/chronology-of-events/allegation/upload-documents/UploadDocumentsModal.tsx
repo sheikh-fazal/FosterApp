@@ -1,23 +1,20 @@
 import { Box, Grid, Button, Modal, Backdrop, Typography } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { UploadDocFormData, defaultValues, formSchema } from "./index";
+import { UploadDocFormData } from "./index";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
+import { LoadingButton } from "@mui/lab";
+import useAuth from "@root/hooks/useAuth";
 
-function UploadDocumentsModel(props: any) {
-  const { open, setOpen, action } = props;
-  const { postAllegationDetails, router, theme, onSubmit } =
+function UploadDocumentsModal(props: any) {
+  const { open, setOpen, uploadDocumentsHandler } = props;
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
+  const { theme, action, handleSubmit, methods, isSubmitting } =
     useUploadDocumentsTable();
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
-
   return (
     <>
       <Modal
@@ -35,15 +32,21 @@ function UploadDocumentsModel(props: any) {
       >
         <Box sx={Styles.root}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
-            <Typography variant="subtitle1">
-              Person Uploaded: Name Xname
+            <Typography
+              variant="subtitle1"
+              sx={{ color: theme.palette.grey[600] }}
+            >
+              Person Uploaded: {`${firstName} ${lastName}` ?? "-"}
             </Typography>
             <CloseIcon
               onClick={() => setOpen(false)}
-              sx={{ cursor: "pointer" }}
+              sx={{ cursor: "pointer", color: theme.palette.grey[600] }}
             />
           </Box>
-          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <FormProvider
+            methods={methods}
+            onSubmit={handleSubmit(uploadDocumentsHandler)}
+          >
             <Grid container rowSpacing={4} columnSpacing={2}>
               {UploadDocFormData.map((form: any) => (
                 <Grid item xs={12} md={form?.gridLength} key={form.id}>
@@ -63,20 +66,27 @@ function UploadDocumentsModel(props: any) {
                 </Grid>
               ))}
               <Grid xs={12} item>
-                <RHFUploadFile name="file" {...methods} />
+                <RHFUploadFile
+                  disabled={action === "view" ? true : false}
+                  name={"file"}
+                  {...methods}
+                />
               </Grid>
             </Grid>
             <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-              <Button
-                type="submit"
-                sx={{
-                  bgcolor: theme.palette.primary.main,
-                  "&:hover": { bgcolor: theme.palette.orange.main },
-                }}
-                variant="contained"
-              >
-                Upload
-              </Button>
+              {action === "add" || action === "edit" ? (
+                <LoadingButton
+                  type="submit"
+                  loading={isSubmitting}
+                  sx={{
+                    bgcolor: theme.palette.primary.main,
+                    "&:hover": { bgcolor: theme.palette.orange.main },
+                  }}
+                  variant="contained"
+                >
+                  Upload
+                </LoadingButton>
+              ) : null}
               <Button
                 sx={{
                   bgcolor: theme.palette.orange.main,
@@ -85,7 +95,7 @@ function UploadDocumentsModel(props: any) {
                 variant="contained"
                 onClick={() => setOpen(false)}
               >
-                Clear
+                Cancel
               </Button>
             </Box>
           </FormProvider>
@@ -95,7 +105,7 @@ function UploadDocumentsModel(props: any) {
   );
 }
 
-export default UploadDocumentsModel;
+export default UploadDocumentsModal;
 
 // styles
 const Styles = {

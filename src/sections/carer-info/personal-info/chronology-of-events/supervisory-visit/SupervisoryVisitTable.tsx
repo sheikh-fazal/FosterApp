@@ -1,29 +1,16 @@
 import CustomTable from "@root/components/Table/CustomTable";
 import React, { useRef } from "react";
-import { useReportTable } from "./useReportTable";
+import { useSupervisoryVisit } from "./useSupervisoryVisit";
 import TableHeader from "@root/components/TableHeader";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import dayjs from "dayjs";
 
-const ReportTable = () => {
+const SupervisoryVisitTable = () => {
   const tableHeaderRef = useRef<any>();
   //OOH Report Custom Hook
-  const { router } = useReportTable();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      reportingTime: "10/10/2021",
-      placementRequired: "Text",
-      status: "Text",
-    },
-    {
-      srNo: 2,
-      reportingTime: "10/10/2021",
-      placementRequired: "Text",
-      status: "Text",
-    },
-  ]);
+  const { data, router } = useSupervisoryVisit();
+
   const columns = [
     {
       accessorFn: (row: any) => row.srNo,
@@ -33,19 +20,28 @@ const ReportTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.reportingTime ?? "-",
-      id: "reportingTime",
+      accessorFn: (row: any) => row?.socialWorker ?? "-",
+      id: "socialWorker",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
-      header: () => <span>Reporting Date/Time</span>,
+      header: () => <span>DSupervising Social Worker</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.placementRequired,
-      id: "placementRequired",
+      accessorFn: (row: any) => row?.dateVisit ?? "-",
+      id: "dateVisit",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
+      header: () => <span>Date of Visit</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.visitType,
+      id: "visitType",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Emergency Placement Required</span>,
+      header: () => <span>Visit Type</span>,
       isSortable: true,
     },
     {
@@ -56,6 +52,27 @@ const ReportTable = () => {
       isSortable: true,
     },
     {
+      accessorFn: (row: any) => row.locked,
+      id: "locked",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Locked</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.childOutcome,
+      id: "childOutcome",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Child Outcome</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.fcSignature,
+      id: "fcSignature",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Fc Signature</span>,
+      isSortable: true,
+    },
+    {
       id: "actions",
       cell: (info: any) => (
         <TableAction
@@ -63,7 +80,7 @@ const ReportTable = () => {
           type="view"
           onClicked={() =>
             router.push(
-              "/carer-info/personal-info/carer-chronology-of-events/ooh-report"
+              "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit"
             )
           }
         />
@@ -77,7 +94,7 @@ const ReportTable = () => {
     <>
       <TableHeader
         ref={tableHeaderRef}
-        title="OOH Report"
+        title="Supervisory Home Visit"
         searchKey="search"
         onChanged={(data: any) => {}}
       />
@@ -98,4 +115,4 @@ const ReportTable = () => {
   );
 };
 
-export default ReportTable;
+export default SupervisoryVisitTable;

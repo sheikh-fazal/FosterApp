@@ -7,6 +7,7 @@ import MedicalAdvisorTable from "./medical-advisor/MedicalAdvisorTable";
 import PartnerReferenceTable from "./partner-reference/PartnerReferenceTable";
 import ReferenceOneTable from "./reference-1/ReferenceOneTable";
 import ReferenceTwoTable from "./reference-2/ReferenceTwoTable";
+import ReferenceThreeTable from "./reference-3/ReferenceThreeTable";
 
 //Accordian Data
 export const statutoryAccordionData = [
@@ -48,7 +49,7 @@ export const statutoryAccordionData = [
   },
   {
     title: "Reference 3",
-    component: "",
+    component: <ReferenceThreeTable />,
   },
 ];
 

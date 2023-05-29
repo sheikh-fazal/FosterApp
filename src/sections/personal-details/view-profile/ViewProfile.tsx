@@ -39,7 +39,15 @@ const ViewProfile = () => {
       </Box>
       <Typography variant="subtitle2" sx={styles.locationText}>
         {isLoading ? (
-          <Skeleton animation="wave" variant="text" />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "0 auto",
+            }}
+          >
+            <Skeleton animation="wave" variant="text" width={350} />
+          </Box>
         ) : (
           data?.data?.location ?? "-"
         )}
@@ -59,36 +67,39 @@ const ViewProfile = () => {
         )}
       </Box>
       <Box sx={styles.linksWrapper}>
-        <Link
-          href="/personal-details/update-profile"
-          style={{ textDecoration: "none" }}
-        >
-          <Typography
-            variant="subtitle2"
-            sx={{ color: theme.palette.primary.main }}
+        {isLoading ? (
+          <Skeleton variant="text" animation="wave" width={100} />
+        ) : (
+          <Link
+            href="/personal-details/update-profile"
+            style={{
+              textDecoration: "none",
+              color: theme.palette.primary.main,
+            }}
           >
-            {isLoading ? (
-              <Skeleton variant="text" animation="wave" width={100} />
-            ) : (
-              `Edit Full Profile`
-            )}
-          </Typography>
-        </Link>
-        <Link
-          href="/personal-details/profile"
-          style={{ textDecoration: "none" }}
-        >
-          <Typography
-            variant="subtitle2"
-            sx={{ color: theme.palette.primary.main }}
+            <Typography
+              variant="subtitle2"
+              sx={{ color: theme.palette.primary.main }}
+            >
+              Edit Full Profile
+            </Typography>
+          </Link>
+        )}
+        {isLoading ? (
+          <Skeleton variant="text" animation="wave" width={100} />
+        ) : (
+          <Link
+            href="/personal-details/profile"
+            style={{ textDecoration: "none" }}
           >
-            {isLoading ? (
-              <Skeleton variant="text" animation="wave" width={100} />
-            ) : (
-              `View Profile`
-            )}
-          </Typography>
-        </Link>
+            <Typography
+              variant="subtitle2"
+              sx={{ color: theme.palette.primary.main }}
+            >
+              View Profile
+            </Typography>
+          </Link>
+        )}
       </Box>
     </Card>
   );

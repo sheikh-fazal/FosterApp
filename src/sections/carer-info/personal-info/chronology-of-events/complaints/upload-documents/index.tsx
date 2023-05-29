@@ -1,3 +1,7 @@
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import * as Yup from "yup";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+
 export const UPLOAD_DOCUMENTS = [
   {
     srNo: 1,
@@ -24,13 +28,6 @@ export const UPLOAD_DOCUMENTS = [
     password: "123abc",
   },
 ];
-
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import * as Yup from "yup";
-import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import TableAction from "@root/components/TableAction";
-import { Box } from "@mui/material";
-import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const UploadDocFormData = [
   {
@@ -81,74 +78,11 @@ export const defaultValues = {
   type: "",
   documentDate: new Date(),
   password: "",
+  file: null,
 };
 export const formSchema = Yup.object().shape({
-  type: Yup.string().required("required"),
-  documentDate: Yup.date().required("required"),
-  password: Yup.string().required("required"),
+  type: Yup.string().required("Document Type Required"),
+  documentDate: Yup.date().required("Document Date Required"),
+  password: Yup.string().required("Password Required"),
+  file: Yup.mixed().required("File Required"),
 });
-export const getColumns = (deleteList: any) => [
-  {
-    accessorFn: (row: any) => row.id ?? "-",
-    id: "srNo",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Sr. No</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.documentName ?? "-",
-    id: "documentName",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Document Name</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.type,
-    id: "documentType",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Document Type</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.documentDate ?? "-",
-    id: "documentDate",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Document Date</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.personUploaded ?? "-",
-    id: "personUploaded",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Person Uploaded</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.password ?? "-",
-    id: "password",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Password</span>,
-    isSortable: true,
-  },
-  {
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-        <TableAction
-          size="small"
-          type="download"
-          onClicked={() => alert("Download")}
-        />
-        <TableAction
-          size="small"
-          type="view"
-          onClicked={() => alert("hello")}
-        />
-        {/* Delete Modal */}
-        <DeleteModel onDeleteClick={() => deleteList(info.srNo)} />
-      </Box>
-    ),
-    header: () => <span>actions</span>,
-    isSortable: false,
-  },
-];

@@ -8,23 +8,28 @@ import {
   Button,
 } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { complaintsFormData, formSchema } from "./index";
+import { complaintsFormData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useComplaintsForm } from "./useComplaintsForm";
+import IsFetching from "@root/components/loaders/IsFetching";
+import { LoadingButton } from "@mui/lab";
 function ComplaintForms(props: any) {
   const { action, id } = props;
   //Complaints Custom Hook
-  const { router, theme, getDefaultValue, isLoading, onSubmit } =
-    useComplaintsForm(action, id);
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: getDefaultValue,
-  });
-  const { setValue, trigger, handleSubmit, getValues } = methods;
-
+  const {
+    router,
+    theme,
+    isLoading,
+    onSubmit,
+    isFetching,
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    methods,
+    isSubmitting,
+  } = useComplaintsForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <>
@@ -39,6 +44,7 @@ function ComplaintForms(props: any) {
         URN Number : CH001
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
           {complaintsFormData.map((form: any) => {
             return (
@@ -79,8 +85,6 @@ function ComplaintForms(props: any) {
                         name={form.otherOptions.name}
                         defaultValue={getValues(`${form.otherOptions.name}`)}
                         onChange={(e) => {
-                          console.log(form.otherOptions.name);
-
                           setValue(
                             `${form.otherOptions.name}`,
                             `${e.target.value === "yes" ? true : false}`
@@ -120,8 +124,9 @@ function ComplaintForms(props: any) {
               }}
               item
             >
-              <Button
+              <LoadingButton
                 type="submit"
+                loading={isSubmitting}
                 sx={{
                   bgcolor: theme.palette.primary.main,
                   "&:hover": { bgcolor: theme.palette.primary.main },
@@ -129,7 +134,7 @@ function ComplaintForms(props: any) {
                 variant="contained"
               >
                 Submit
-              </Button>
+              </LoadingButton>
               <Button
                 sx={{
                   bgcolor: theme.palette.grey[800],
@@ -156,7 +161,7 @@ function ComplaintForms(props: any) {
                   )
                 }
               >
-                back
+                Back
               </Button>
             </Grid>
           ) : null}
@@ -178,7 +183,7 @@ function ComplaintForms(props: any) {
                 )
               }
             >
-              back
+              Back
             </Button>
           </Grid>
         </Grid>
