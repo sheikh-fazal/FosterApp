@@ -39,7 +39,7 @@ const FRC1 = () => {
       accessorFn: (row: any) => row.childName,
       id: "childName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Child's Name (DOB)</span>,
+      header: () => <span>{`Child's Name (DOB)`}</span>,
     },
     {
       accessorFn: (row: any) => row.socialWorker,
@@ -51,7 +51,7 @@ const FRC1 = () => {
       accessorFn: (row: any) => row.fosterCarer,
       id: "fosterCarer",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Foster Carer(s)</span>,
+      header: () => <span>{`Foster Carer(s)`}</span>,
     },
     {
       accessorFn: (row: any) => row.createdDate,

@@ -31,7 +31,7 @@ const TitleInputModal = (props: any) => {
     } else {
       setValue('title', editRowId?.title); // Set form value when editing a group
     }
-  }, [open, editRowId?.title]);
+  }, [open,setValue, editRowId?.title]);
 
   const onSubmit = (data: any) => {
     addRowHandler(data, editRowId); // Pass editRowId object instead of editRowId.index

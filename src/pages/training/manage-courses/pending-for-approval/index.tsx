@@ -8,7 +8,7 @@ import PendingForApproval from "@root/sections/training/manage-courses/pending-f
 
 const PAGE_TILE = "Course List";
 
-pendingApproval.getLayout = function getLayout(page: any) {
+PendingApproval.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -29,7 +29,7 @@ pendingApproval.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function pendingApproval() {
+export default function PendingApproval() {
   const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>

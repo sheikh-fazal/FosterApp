@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const PAGE_TILE = "Child Protection and Safeguarding";
 
-pendingApproval.getLayout = function getLayout(page: any) {
+PendingApproval.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -28,7 +28,7 @@ pendingApproval.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function pendingApproval() {
+export default function PendingApproval() {
   const router = useRouter();
   const { name } = router.query
   return (
