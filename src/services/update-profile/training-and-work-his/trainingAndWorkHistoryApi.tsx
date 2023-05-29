@@ -94,7 +94,7 @@ export const trainingAndWorkHistoryApi = baseAPI.injectEndpoints({
     }),
     addUnemploymentPeriod: builder.mutation<null, any>({
       query: (body) => ({
-        url: "user-profile/add-work-experience",
+        url: "user-profile/add-unemployement",
         method: "PATCH",
         body,
       }),

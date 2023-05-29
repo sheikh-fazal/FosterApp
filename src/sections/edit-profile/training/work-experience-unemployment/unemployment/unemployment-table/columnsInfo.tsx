@@ -6,48 +6,34 @@ export const getColumns = (parms: any) => {
   const { openViewUpdateModel } = parms;
   return [
     {
-      accessorFn: (row: any) => row.employerName,
-      id: "employeName",
-      cell: (info: any) => info.getValue(),
-      header: "Name of Employer",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.position,
-      id: "position",
-      cell: (info: any) => info.getValue(),
-      header: "Position",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.experience,
-      id: "exp",
+      accessorFn: (row: any) => row.leavingReason,
+      id: "resForUnemplo",
       cell: (info: any) => shortName(info.getValue()),
-      header: "Experience",
+      header: "Reason",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.email,
-      id: "leavingRes",
-      cell: (info: any) => "Not Avialable",
-      header: "Reason for leaving",
-      isSortable: false,
-    },
-
-    {
-      accessorFn: (row: any) => row.createdAt,
+      accessorFn: (row: any) => row.startDate,
       id: "startDate",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "Start Date",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.updatedAt,
+      accessorFn: (row: any) => row.endDate,
       id: "endDate",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "End Date",
       isSortable: false,
     },
+    {
+      accessorFn: (row: any) => row.email,
+      id: "unemployment",
+      cell: (info: any) => "Not Avialable",
+      header: "Unemployed",
+      isSortable: false,
+    },
+
     {
       accessorFn: (row: any) => row.id,
       id: "actions",

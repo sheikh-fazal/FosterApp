@@ -11,29 +11,49 @@ import { FormProvider } from "@root/components/hook-form";
 // import { FormSchema, defaultValues } from ".";
 //mui icons
 import CloseIcon from "@mui/icons-material/Close";
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import { FormSchema, fieldsInfo, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import IsFetching from "@root/components/loaders/IsFetching";
 import {
-  useAddUnemploymentPeriodMutation,
   useAddWorkExperienceMutation,
+  useUpdateWorkExperienceMutation,
 } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
 
-const UnemployementPeriodForm: FC<any> = ({ close }) => {
+const UpdateUnemploymentForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [addUnemploymentPeriod] = useAddUnemploymentPeriodMutation();
+  // const [disabled, setDisabled] = useState(false);
+  const {
+    id,
+    employerName,
+    position,
+    experience,
+    leavingReason,
+    startDate,
+    endDate,
+    currentlyWorking,
+  } = defValues;
+  console.log({ startDate, endDate });
+  const [updateWorkExperience] = useUpdateWorkExperienceMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: {
+      employerName,
+      position,
+      experience,
+      leavingReason,
+      startDate: new Date(),
+      endDate: new Date(),
+      currentlyWorking,
+    },
   });
 
   const {
@@ -49,8 +69,9 @@ const UnemployementPeriodForm: FC<any> = ({ close }) => {
     const jsonData = {
       ...data,
     };
+    console.log({ data });
     try {
-      const data = await addUnemploymentPeriod(jsonData);
+      const data = await updateWorkExperience({ body: jsonData, workId: id });
       displaySuccessMessage(data, enqueueSnackbar);
       close();
       // activateNextForm();
@@ -69,7 +90,7 @@ const UnemployementPeriodForm: FC<any> = ({ close }) => {
             <Grid item sx={{ padding: "0.5em" }} container>
               <Grid item sm={11}>
                 <Typography sx={{ fontWeight: 600 }}>
-                  Add Unemployement Period
+                  Add Work Experience
                 </Typography>
               </Grid>
               <Grid item sm={1} container justifyContent="flex-end">
@@ -102,21 +123,12 @@ const UnemployementPeriodForm: FC<any> = ({ close }) => {
                   </Fragment>
                 );
               })}
-              {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                   <Grid item>
-                    <Button variant="contained" type="submit" onClick={close}>
+                    <Button variant="contained" onClick={close}>
                       Cancel
                     </Button>
                   </Grid>
@@ -135,4 +147,4 @@ const UnemployementPeriodForm: FC<any> = ({ close }) => {
   );
 };
 
-export default UnemployementPeriodForm;
+export default UpdateUnemploymentForm;
