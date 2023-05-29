@@ -4,13 +4,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
 import TrainingSessionMainModule from "@root/sections/training/manage-trainers/training-sessions";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import { TrainingSessionsHome } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-home";
-import { TrainingSessionsSchedule } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-schedule";
-import { TrainingSessionsSpeakers } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-speakers";
-import { TrainingSessionsAttendees } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-attendees";
-import { TrainingSessionsBudget } from "@root/sections/training/manage-trainers/training-sessions/training-sessions-budget";
-import TableHeader from "@root/components/TableHeader";
 import { useRouter } from "next/router";
 
 
