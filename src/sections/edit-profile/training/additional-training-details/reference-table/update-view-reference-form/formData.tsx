@@ -11,7 +11,7 @@ export const FormSchema = Yup.object().shape({
     .required("trainingName is required")
     .min(6, "Mininum 6 characters")
     .max(50, "Maximum 50 characters"),
-  issueDate: Yup.date().required("Issue Date Is Required"),
+  issuedDate: Yup.date().required("Issue Date Is Required"),
   expiryDate: Yup.date().required("Expiry Date Is Required"),
 });
 

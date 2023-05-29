@@ -33,6 +33,7 @@ import {
 const UpdateViewAdditionalForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
   const { id, trainingName, issuedDate, expiryDate, certificate } = defValues;
+  console.log({ issuedDate, expiryDate });
   // const [disabled, setDisabled] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const [documents, setDocuments] = useState([]);
@@ -47,8 +48,8 @@ const UpdateViewAdditionalForm: FC<any> = ({ close, defValues, disabled }) => {
     resolver: yupResolver(FormSchema),
     defaultValues: {
       trainingName,
-      issuedDate: new Date(),
-      expiryDate: new Date(),
+      issuedDate: new Date(issuedDate),
+      expiryDate: new Date(expiryDate),
     },
   });
 
@@ -153,7 +154,10 @@ const UpdateViewAdditionalForm: FC<any> = ({ close, defValues, disabled }) => {
               {/* Custom Fields On Half Width  */}
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFDatePicker name="issueDate" label="certificate issued?" />
+                  <RHFDatePicker
+                    name="issuedDate"
+                    label="certificate issued?"
+                  />
                 </Grid>
               </Grid>
               <Grid item sm={6} container direction="column">

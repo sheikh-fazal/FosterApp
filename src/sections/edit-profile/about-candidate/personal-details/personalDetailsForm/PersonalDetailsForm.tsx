@@ -54,12 +54,11 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
 
   const onSubmit = async (data: any) => {
     // reset({ keepIsSubmitted: true });
-    const formData = {
+    const jsonData = {
       ...data,
-      natnationality: "Pakistani",
     };
     try {
-      const data = await updatePersonalInfo(formData);
+      const data = await updatePersonalInfo(jsonData);
       displaySuccessMessage(data, enqueueSnackbar);
       activateNextForm();
     } catch (error: any) {
