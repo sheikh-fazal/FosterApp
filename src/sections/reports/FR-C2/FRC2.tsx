@@ -39,7 +39,7 @@ const FRC1 = () => {
       accessorFn: (row: any) => row.personName,
       id: "personName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Young Person's Name (DOB)</span>,
+      header: () => <span>{`Young Person's Name (DOB)`}</span>,
     },
     {
       accessorFn: (row: any) => row.socialWorker,

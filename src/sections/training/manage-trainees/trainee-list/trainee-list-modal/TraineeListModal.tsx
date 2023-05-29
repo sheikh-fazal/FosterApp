@@ -24,7 +24,7 @@ const TraineeListModal = (props: any) => {
   const { handleSubmit, setValue } = methods;
   React.useEffect(() => {
     setValue("title", editRowId?.title);
-  }, [editRowId?.title]);
+  }, [editRowId?.title,setValue]);
 
   const onSubmit = (data: any) => {
     addRowHandler(data, editRowId); // Pass editRowId object instead of editRowId.title

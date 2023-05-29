@@ -60,14 +60,14 @@ export default function VerticalSmallTabs({ tabs, children }: any) {
             sx={{ borderRight: 1, borderColor: "divider"}}
           >
             {tabs.map((tabs: any, idx: number) => {
-              return <Tab label={tabs} {...a11yProps(idx)} sx={{marginRight: "50px", alignItems:"start"}}/>;
+              return <Tab label={tabs} key={idx} {...a11yProps(idx)} sx={{marginRight: "50px", alignItems:"start"}}/>;
             })}
           </Tabs>
         </Grid>
         <Grid item xs={10} sx={{width:"80%"}}>
           {children.map((content: any, idx: any) => {
             return (
-              <TabPanel value={value} index={idx} >
+              <TabPanel key={idx} value={value} index={idx} >
                 {content}
               </TabPanel>
             );

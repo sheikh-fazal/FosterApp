@@ -88,7 +88,7 @@ const CourseEvaluation = () => {
                   variant="contained"
                   onClick={() =>
                     router.push(
-                      "/safeguarding/child-protection/child-abuse-and-expolitation-management"
+                      "/training"
                     )
                   }
                 >
