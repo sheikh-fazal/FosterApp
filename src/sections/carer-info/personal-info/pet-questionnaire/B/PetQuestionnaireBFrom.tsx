@@ -1,57 +1,25 @@
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
-import { BForm, BFormValidationSchema, defaultValues } from "./";
-import { enqueueSnackbar } from "notistack";
+import { BForm, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
-import { useRouter } from "next/router";
+import { usePetQuestionnaireBFrom } from "./usePetQuestionnaireBFrom";
 
 export default function PetQuestionnaireB({
   disabled,
   onSubmitHandler,
   initialValueProps = defaultValues,
   message,
+  isError,
+  isSuccess,
 }: any) {
-  const methods: any = useForm({
-    resolver: yupResolver(BFormValidationSchema),
-    defaultValues: initialValueProps,
-  });
-  const {
-    handleSubmit,
-    watch,
-    formState: { isSubmitting },
-  } = methods;
-
-  const { registeredAVet } = watch({ name: "registeredAVet" });
-
-  // Get id from url
-  const router = useRouter();
-  const query = router.query;
-  const id = Object.keys(query)[0];
-
-  const onSubmit = async (data: any) => {
-    try {
-      const updatedData = {
-        ...data,
-        id,
-        registeredAVet: registeredAVet === "Yes" ? true : false,
-      };
-      const res: any = await onSubmitHandler(updatedData).unwrap();
-      enqueueSnackbar(
-        res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        {
-          variant: "success",
-        }
-      );
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-    }
-  };
-
+  const { methods, handleSubmit, onSubmit, isSubmitting, registeredAVet } =
+    usePetQuestionnaireBFrom({
+      onSubmitHandler,
+      initialValueProps,
+      message,
+    });
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container>
@@ -75,8 +43,9 @@ export default function PetQuestionnaireB({
               variant="contained"
               sx={{ mr: 2 }}
               loading={isSubmitting}
+              color={isError ? "error" : isSuccess ? "success" : "primary"}
             >
-              Next
+              {isError ? "Try Again!" : isSuccess ? "Success" : "Next"}
             </LoadingButton>
             <Link
               href={"/carer-info/personal-info/pet-questionnaire"}
