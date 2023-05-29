@@ -17,7 +17,8 @@ import { UploadDocFormData, formSchemaModel } from "..";
 import { LoadingButton } from "@mui/lab";
 
 const incidentUploadDocumentModal = (props: any) => {
-  const { open, setOpen, onUploadSubmit, uploadingDocumentisLoading } = props;
+  const { open, setOpen, onUploadSubmit, uploadingDocumentisLoading, id } =
+    props;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const theme: any = useTheme();
   const defaultValues = {

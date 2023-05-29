@@ -85,7 +85,7 @@ export const DocumentTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <ActionModal content={info} readOnly={readOnly} />
+          <ActionModal content={info} readOnly={readOnly} btnType="view" />
           <TableAction
             type="download"
             onClicked={() => alert("Download")}

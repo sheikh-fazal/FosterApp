@@ -3,7 +3,7 @@ import { useState, useRef, FC } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, useWatch } from "react-hook-form";
 // @mui
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // utils
 // components
@@ -29,6 +29,8 @@ import {
 } from "@root/services/update-profile/background-checks/backgroundChecksApi";
 import FormSkeleton from "../../render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
+import { enqueueSnackbar } from "notistack";
 
 const WriteToWork: FC<any> = () => {
   const theme: any = useTheme();
@@ -44,7 +46,7 @@ const WriteToWork: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getWriteToWorkInfo(null, true);
+      const { data, isError } = await getWriteToWorkInfo(null, false);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
       if (isError) {
@@ -54,7 +56,7 @@ const WriteToWork: FC<any> = () => {
       const { rightToWork, visaType, BRP, expiryDate, code } = data?.data;
       console.log({ rightToWork, visaType, BRP, expiryDate, code });
       return {
-        rightToWork: "Yes",
+        rightToWork,
         visaType,
         BRP,
         expiryDate: new Date(),
@@ -74,21 +76,32 @@ const WriteToWork: FC<any> = () => {
 
   const rightToWork = useWatch({ control, name: "rightToWork" });
   const onSubmit = async (data: any) => {
+    const formData = new FormData();
+    documents.forEach((doc) => formData.append("certificate", doc));
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+    try {
+      const data = await updateWriteToWorkInfo(formData);
+      displaySuccessMessage(data, enqueueSnackbar);
+      // activateNextForm();
+    } catch (error: any) {
+      displayErrorMessage(error, enqueueSnackbar);
+    }
     console.log({ data });
   };
   const deleteDocument = async (docId: string) => {
-    console.log({ docId });
-    // try {
-    //   setIsUpdating(true);
-    //   const data = await deleteTrainingAndWorkHistoryInfoDocu({ imgId: docId });
-    //   displaySuccessMessage(data, enqueueSnackbar);
-    //   setIsUpdating(false);
-    //   return true;
-    // } catch (error) {
-    //   setIsUpdating(false);
-    //   displayErrorMessage(error, enqueueSnackbar);
-    //   return false;
-    // }
+    try {
+      setIsUpdating(true);
+      const data = await deleteWriteToWorkDocu({ imgId: docId });
+      displaySuccessMessage(data, enqueueSnackbar);
+      setIsUpdating(false);
+      return true;
+    } catch (error) {
+      setIsUpdating(false);
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
   };
   if (isLoading) return <FormSkeleton />;
   return (
@@ -164,6 +177,22 @@ const WriteToWork: FC<any> = () => {
             )}
           </Grid>
         </Grid>
+        {!disabled && (
+          <Grid item sm={12} container direction="column">
+            <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+              <Grid item>
+                <Button variant="contained" type="submit">
+                  Save
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" type="submit">
+                  Continue
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        )}
       </FormProvider>
     </>
   );

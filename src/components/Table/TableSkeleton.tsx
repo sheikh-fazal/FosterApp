@@ -3,7 +3,6 @@ import { Box, Skeleton, useTheme } from "@mui/material";
 
 const TableSkeleton = (): JSX.Element => {
   const theme: any = useTheme();
-  console.log(theme);
 
   return (
     <Box sx={{ mt: 1 }}>

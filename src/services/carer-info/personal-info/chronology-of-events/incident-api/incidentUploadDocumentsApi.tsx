@@ -11,7 +11,7 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
     }),
     incidentUploadDocumentBYID: builder.query<null, object>({
       query: (Payload: any) => ({
-        url: "/chronology-events/list-incidentDocuments",
+        url: `/chronology-events/incidentDocuments/${Payload.id}`,
         method: "GET",
         params: Payload,
       }),
@@ -25,10 +25,19 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
     }),
+    deleteIncidentDocuments: builder.mutation({
+      query: (payload: any) => ({
+        url: `/chronology-events/incidentDocument/delete${payload.id}`,
+        method: "DELETE",
+        body: payload,
+      }),
+      invalidatesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
+    }),
   }),
 });
 export const {
   useIncidentUploadDocumentListQuery,
   usePostIncidentDocumentsMutation,
   useLazyIncidentUploadDocumentBYIDQuery,
+  useDeleteIncidentDocumentsMutation,
 } = incidentUploadDocumentApi;

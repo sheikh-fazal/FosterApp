@@ -22,11 +22,17 @@ import { FormSchema, IncidentFormData } from ".";
 import router from "next/router";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import useIncidentFrom from "./useIncidentFrom";
+import IsFetching from "@root/components/loaders/IsFetching";
 const IncFrom = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
-  const { incidentById, onSubmitHandler, getDefaultValue, isLoading } =
-    useIncidentFrom(action, id);
+  const {
+    incidentById,
+    onSubmitHandler,
+    getDefaultValue,
+    isLoading,
+    isfatching,
+  } = useIncidentFrom(action, id);
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -55,6 +61,7 @@ const IncFrom = (props: any) => {
           methods={methods}
           onSubmit={handleSubmit(onSubmitHandler)}
         >
+          <IsFetching isFetching={isfatching} />
           <Grid container>
             {IncidentFormData.map((form: any) => {
               return (

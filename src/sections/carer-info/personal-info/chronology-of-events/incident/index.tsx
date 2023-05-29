@@ -6,7 +6,6 @@ import {
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-
 export const IncidentFormData = [
   {
     id: 1,
@@ -71,8 +70,87 @@ export const IncidentFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "Death of a child.",
+        label: "Death of a child.",
+      },
+      {
+        value: "Information has been provided to the DBS re Foster Carers",
+        label: "Information has been provided to the DBS re Foster Carers",
+      },
+      {
+        value: "Serious illness or serious accident of fostered child.",
+        label: "Serious illness or serious accident of fostered child.",
+      },  
+      {
+        value:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+        label:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+      },
+      {
+        value:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+        label:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+      },
+      {
+        value:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+        label:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+      },
+      {
+        value: "Any serious complaint about any Foster Carer.",
+        label: "Any serious complaint about any Foster Carer.",
+      },
+      {
+        value:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+        label:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+      },
+      {
+        value:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+        label:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+      },
+      {
+        value: "Child placed with Foster Carers is missing from placement.",
+        label: "Child placed with Foster Carers is missing from placement.",
+      },
+      
+      {
+        value: "Behavioural issues",
+        label: "Behavioural issues",
+      },
+      {
+        value: "child protection inquiry",
+        label: "child protection inquiry",
+      },
+      {
+        value: "minor accident",
+        label: "minor accident",
+      },
+      {
+        value: "restraint",
+        label: "restraint",
+      },
+      {
+        value: "school exclusion",
+        label: "school exclusion",
+      },
+      {
+        value: "serious incident necessitating police call",
+        label: "serious incident necessitating police call",
+      },
+      {
+        value: "unauthorized absence",
+        label: "unauthorized absence",
+      },
+      {
+        value: "“Other , Please specify if any”",
+        label: "“Other , Please specify if any”",
       },
     ],
   },
@@ -233,8 +311,98 @@ export const IncidentFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "Death of a child.",
+        label: "Death of a child.",
+      },
+      {
+        value: "Information has been provided to the DBS re Foster Carers",
+        label: "Information has been provided to the DBS re Foster Carers",
+      },
+      {
+        value: "Serious illness or serious accident of fostered child.",
+        label: "Serious illness or serious accident of fostered child.",
+      },
+      {
+        value:
+          "Outbreak at the Foster Carer's home of an infectious disease which in the opinion of the General Practitioner is sufficiently serious to be notifiable.",
+        label:
+          "Outbreak at the Foster Carer's home of an infectious disease which in the opinion of the General Practitioner is sufficiently serious to be notifiable.",
+      },
+      {
+        value:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+        label:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+      },
+      {
+        value:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+        label:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+      },
+      {
+        value:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+        label:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+      },
+      {
+        value: "Any serious complaint about any Foster Carer.",
+        label: "Any serious complaint about any Foster Carer.",
+      },
+      {
+        value:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+        label:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+      },
+      {
+        value:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+        label:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+      },
+      {
+        value: "Child placed with Foster Carers is missing from placement.",
+        label: "Child placed with Foster Carers is missing from placement.",
+      },
+      {
+        value:
+          "this list is not exhaustive and other situations may warrant a critical incident report, for example serious illness of the foster carer or concerns raised about people within the wider community. If in doubt, Supervising Social Workers should consult with the Fostering Team Manager.",
+        label:
+          "this list is not exhaustive and other situations may warrant a critical incident report, for example serious illness of the foster carer or concerns raised about people within the wider community. If in doubt, Supervising Social Workers should consult with the Fostering Team Manager.",
+      },
+      {
+        value: "Behavioural issues",
+        label: "Behavioural issues",
+      },
+      {
+        value: "child protection inquiry",
+        label: "child protection inquiry",
+      },
+      {
+        value: "minor accident",
+        label: "minor accident",
+      },
+      {
+        value: "restraint",
+        label: "restraint",
+      },
+      {
+        value: "school exclusion",
+        label: "school exclusion",
+      },
+      {
+        value: "serious incident necessitating police call",
+        label: "serious incident necessitating police call",
+      },
+      {
+        value: "unauthorized absence",
+        label: "unauthorized absence",
+      },
+      {
+        value: "“Other , Please specify if any”",
+        label: "“Other , Please specify if any”",
       },
     ],
   },
@@ -311,8 +479,98 @@ export const IncidentFormData = [
     gridLength: 6,
     options: [
       {
-        value: "Diasabeled Choice",
-        label: "Diasabeled Choice",
+        value: "Death of a child.",
+        label: "Death of a child.",
+      },
+      {
+        value: "Information has been provided to the DBS re Foster Carers",
+        label: "Information has been provided to the DBS re Foster Carers",
+      },
+      {
+        value: "Serious illness or serious accident of fostered child.",
+        label: "Serious illness or serious accident of fostered child.",
+      },
+      {
+        value:
+          "Outbreak at the Foster Carer's home of an infectious disease which in the opinion of the General Practitioner is sufficiently serious to be notifiable.",
+        label:
+          "Outbreak at the Foster Carer's home of an infectious disease which in the opinion of the General Practitioner is sufficiently serious to be notifiable.",
+      },
+      {
+        value:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+        label:
+          " Allegation that a Child placed with the Foster Carer's home has committed a serious offence.",
+      },
+      {
+        value:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+        label:
+          "Involvement or suspected involvement of a child placed in the Foster Carer's home in Child Sexual Exploitation.",
+      },
+      {
+        value:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+        label:
+          "Serious incident relating to a child placed in the Foster Carer's home necessitating calling the police to the home.",
+      },
+      {
+        value: "Any serious complaint about any Foster Carer.",
+        label: "Any serious complaint about any Foster Carer.",
+      },
+      {
+        value:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+        label:
+          "Investigation and outcome of any child protection enquiry involving any foster carer.",
+      },
+      {
+        value:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+        label:
+          "Any form of physical intervention by a Foster Carer to restrict a child's movements.",
+      },
+      {
+        value: "Child placed with Foster Carers is missing from placement.",
+        label: "Child placed with Foster Carers is missing from placement.",
+      },
+      {
+        value:
+          "this list is not exhaustive and other situations may warrant a critical incident report, for example serious illness of the foster carer or concerns raised about people within the wider community. If in doubt, Supervising Social Workers should consult with the Fostering Team Manager.",
+        label:
+          "this list is not exhaustive and other situations may warrant a critical incident report, for example serious illness of the foster carer or concerns raised about people within the wider community. If in doubt, Supervising Social Workers should consult with the Fostering Team Manager.",
+      },
+      {
+        value: "Behavioural issues",
+        label: "Behavioural issues",
+      },
+      {
+        value: "child protection inquiry",
+        label: "child protection inquiry",
+      },
+      {
+        value: "minor accident",
+        label: "minor accident",
+      },
+      {
+        value: "restraint",
+        label: "restraint",
+      },
+      {
+        value: "school exclusion",
+        label: "school exclusion",
+      },
+      {
+        value: "serious incident necessitating police call",
+        label: "serious incident necessitating police call",
+      },
+      {
+        value: "unauthorized absence",
+        label: "unauthorized absence",
+      },
+      {
+        value: "“Other , Please specify if any”",
+        label: "“Other , Please specify if any”",
       },
     ],
   },
@@ -587,6 +845,9 @@ export const UploadDocFormData = [
     },
     gridLength: 6,
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -601,3 +862,57 @@ export const UploadDocFormData = [
     component: RHFTextField,
   },
 ];
+export const UploadViewDocFormData = [
+  {
+    id: 2,
+    gridLength: 12,
+    componentProps: {
+      fullWidth: true,
+      name: "type",
+      label: "Document Type",
+      select: true,
+      options: [
+        {
+          value: "PDF",
+          label: "PDF",
+        },
+        {
+          value: "WORD",
+          label: "WORD",
+        },
+      ],
+    },
+    component: RHFSelect,
+  },
+  {
+    id: 3,
+    componentProps: {
+      name: "documentDate",
+      label: "Date Of Enquiry",
+      fullWidth: true,
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
+  },
+  {
+    id: 4,
+    gridLength: 6,
+    componentProps: {
+      name: "password",
+      label: "Password to Open Document",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+];
+export const Formet: any = {};
+
+for (const formControl of UploadViewDocFormData) {
+  if (formControl.format)
+    Formet[formControl.componentProps.name] = formControl.format;
+}
