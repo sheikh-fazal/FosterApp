@@ -28,17 +28,35 @@ RegularAssessmentMeeting.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-
 export default function RegularAssessmentMeeting() {
   const [open, setOpen] = useState(false);
+  const [fieldsDisable, setFieldsDisable] = useState(false);
+  const [actionType, setActionType] = useState("");
+  const [id, setId] = useState("");
 
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 1 }}>
-        <RegularAssessmentMeetingList open={open} setOpen={setOpen} />
+        <RegularAssessmentMeetingList
+          open={open}
+          setOpen={setOpen}
+          setId={setId}
+          setFieldsDisable={setFieldsDisable}
+          setActionType={setActionType}
+        />
       </Card>
 
-      {open && <RegularAssessmentMeetingForm open={open} setOpen={setOpen} />}
+      {open && (
+        <RegularAssessmentMeetingForm
+          open={open}
+          setOpen={setOpen}
+          id={id}
+          setId={setId}
+          fieldsDisable={fieldsDisable}
+          setFieldsDisable={setFieldsDisable}
+          actionType={actionType}
+        />
+      )}
     </Page>
   );
 }

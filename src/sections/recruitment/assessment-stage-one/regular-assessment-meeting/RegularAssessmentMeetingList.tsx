@@ -7,85 +7,104 @@ import { useGetRegularAssessmentDetailsQuery } from "@root/services/recruitment/
 import dayjs from "dayjs";
 import React, { useRef } from "react";
 
-const meetingListColumns = [
-  {
-    accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-    id: "name",
-    cell: (info: any) => info.getValue(),
-    header: "Meeting Date/time",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "meetingAgenda",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Meeting Agenda",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "meetingAttendees",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Meeting Attendees",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "meetingOutcomes",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Meeting Outcomes",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "meetingActions",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Meeting Actions",
-    isSortable: true,
-  },
-
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "nextAssessmentPlan",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Next Assessment plan",
-    isSortable: true,
-  },
-
-  {
-    accessorFn: (row: any) => row?.id,
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction type="edit" onClicked={() => console.log("s")} />
-        <TableAction type="view" onClicked={() => console.log("s")} />
-      </Box>
-    ),
-    header: "Actions",
-    isSortable: false,
-  },
-];
-
 const RegularAssessmentMeetingList = (props: any) => {
+  const { setOpen, setId, setFieldsDisable, setActionType } = props;
+  const tableHeaderRef = useRef<any>();
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } = useTableParams();
   const { data, isLoading, isError, isFetching, isSuccess } = useGetRegularAssessmentDetailsQuery({
     params,
   });
-  console.log(
-    "🚀 ~ file: RegularAssessmentMeetingList.tsx:80 ~ RegularAssessmentMeetingList ~ data:",
-    data
-  );
-  const { setOpen } = props;
   const meta = data?.meta;
-  const regularassessmentList = data?.regularassessmentList;
-  const tableHeaderRef = useRef<any>();
+  const regularAssessmentList = data?.regularAssessmentList;
+  console.log(regularAssessmentList);
+  const filteredAttendees =
+    regularAssessmentList
+      ?.map((item: any) => item?.meetingAttendees)
+      .filter((names: any, index: any, currentVal: any) => currentVal.indexOf(names) === index)
+      ?.map((item: any) => ({ value: item, label: item })) || [];
+
   const SELECT_FILTERS = [
     {
       key: "attendees",
 
       label: "Attendees",
 
-      options: [{ label: "All", value: "all" }],
+      options: [{ label: "All", value: "all" }, ...filteredAttendees],
+    },
+  ];
+  const meetingListColumns = [
+    {
+      accessorFn: (row: any) => row?.meetingDate + " " + dayjs(row?.meetingTime).format("hh:mm A"),
+      id: "meetingDate",
+      cell: (info: any) => info.getValue(),
+      header: "Meeting Date/time",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.meetingAgenda,
+      id: "meetingAgenda",
+      cell: (info: any) => info.getValue(),
+      header: "Meeting Agenda",
+      isSortable: true,
+    },
+
+    {
+      accessorFn: (row: any) => row?.meetingAttendees,
+      id: "meetingAttendees",
+      cell: (info: any) => info.getValue(),
+      header: "Meeting Attendees",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.meetingOutcomes,
+      id: "meetingOutcomes",
+      cell: (info: any) => info.getValue(),
+      header: "Meeting Outcomes",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.meetingAction,
+      id: "meetingAction",
+      cell: (info: any) => info.getValue(),
+      header: "Meeting Actions",
+      isSortable: true,
+    },
+
+    {
+      accessorFn: (row: any) =>
+        row?.nextAssessmentDate + " " + dayjs(row?.nextAssessmentTime).format("hh:mm A"),
+      id: "nextAssessmentDate",
+      // cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      header: "Next Assessment plan",
+      isSortable: true,
+    },
+
+    {
+      accessorFn: (row: any) => row?.id,
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              setOpen(true);
+              setId(info?.row?.original?.id);
+              setActionType("edit");
+            }}
+          />
+          <TableAction
+            type="view"
+            onClicked={() => {
+              setOpen(true);
+              setId(info?.row?.original?.id);
+              setFieldsDisable(true);
+              setActionType("view");
+            }}
+          />
+        </Box>
+      ),
+      header: "Actions",
+      isSortable: false,
     },
   ];
   return (
@@ -97,12 +116,15 @@ const RegularAssessmentMeetingList = (props: any) => {
         title="Meeting Agenda"
         searchKey="search"
         showAddBtn
-        onAdd={() => setOpen(true)}
+        onAdd={() => {
+          setOpen(true);
+          setActionType("add");
+        }}
         onChanged={headerChangeHandler}
         selectFilters={SELECT_FILTERS}
       />
       <CustomTable
-        data={regularassessmentList}
+        data={regularAssessmentList}
         columns={meetingListColumns}
         isLoading={isLoading}
         isFetching={isFetching}
