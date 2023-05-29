@@ -3,45 +3,42 @@ import { useState, FC, Fragment } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 // @mui
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, IconButton, Typography } from "@mui/material";
+// utils
 // components
 import { FormProvider } from "@root/components/hook-form";
 //
 // import { FormSchema, defaultValues } from ".";
 //mui icons
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import CloseIcon from "@mui/icons-material/Close";
+import { FormSchema, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
+import { useUpdateReferenceMutation } from "@root/services/update-profile/reference/referenceApi";
 import {
-  useLazyGetNextOfKinInfoQuery,
-  useUpdateNextOfKinInfoMutation,
-} from "@root/services/update-profile/other-information/otherInformationApi";
-import FormSkeleton from "../../render-form/FormSkeleton";
-import IsFetching from "@root/components/loaders/IsFetching";
-import { displaySuccessMessage } from "../../util/Util";
+  displayErrorMessage,
+  displaySuccessMessage,
+} from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
+import IsFetching from "@root/components/loaders/IsFetching";
 
-const NextOfKin: FC<any> = () => {
+const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const [getNextOfKinInfo] = useLazyGetNextOfKinInfoQuery();
-  const [updateNextOfKinInfo] = useUpdateNextOfKinInfoMutation();
-
+  // const [disabled, setDisabled] = useState(false);
+  // const [isUpdating, setIsUpdating] = useState(false);
+  const [updateReference] = useUpdateReferenceMutation();
+  const { id, refereeName, referenceType, email, contactNo, contactNow } =
+    defValues;
   const methods: any = useForm({
+    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: async () => {
-      const { data, isError } = await getNextOfKinInfo(null, true);
-      console.log("t", data);
-      setIsLoading(false);
-      if (isError) {
-        return defaultValues;
-      }
-      return {
-        ...data?.data,
-      };
+    defaultValues: {
+      refereeName,
+      referenceType,
+      email,
+      contactNo,
+      contactNow,
     },
   });
 
@@ -55,31 +52,39 @@ const NextOfKin: FC<any> = () => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    const payload = {
+    // reset({ keepIsSubmitted: true });
+    const formData = {
       ...data,
     };
     try {
-      const data = await updateNextOfKinInfo(payload);
+      // setIsUpdating(true);
+      const data = await updateReference({ body: formData, id });
+      // setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);
+      close();
       // activateNextForm();
     } catch (error: any) {
-      displaySuccessMessage(error, enqueueSnackbar);
+      // setIsUpdating(false);
+      displayErrorMessage(error, enqueueSnackbar);
     }
   };
-  if (isLoading) return <FormSkeleton />;
+
   return (
     <>
       {isSubmitting && <IsFetching isFetching />}
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container justifyContent="center">
           <Grid container item xs={12}>
-            <Grid item sx={{ padding: "0.5em" }}>
-              <Typography
-                variant="formTopHeading"
-                sx={{ color: theme.palette.primary.main }}
-              >
-                Next Of Kin
-              </Typography>
+            {/* Header Area  */}
+            <Grid item sx={{ padding: "0.5em" }} container>
+              <Grid item sm={11}>
+                <Typography sx={{ fontWeight: 600 }}>Add Reference</Typography>
+              </Grid>
+              <Grid item sm={1} container justifyContent="flex-end">
+                <IconButton onClick={close}>
+                  <CloseIcon />
+                </IconButton>
+              </Grid>
             </Grid>
             <Grid item sm={12} container>
               {/* Dynamically Generated Fields  */}
@@ -105,27 +110,18 @@ const NextOfKin: FC<any> = () => {
                   </Fragment>
                 );
               })}
-              {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                   <Grid item>
-                    <Button variant="contained" type="submit">
-                      Save
+                    <Button variant="contained" type="submit" onClick={close}>
+                      Cancel
                     </Button>
                   </Grid>
                   <Grid item>
                     <Button variant="contained" type="submit">
-                      Continue
+                      Save
                     </Button>
                   </Grid>
                 </Grid>
@@ -138,4 +134,4 @@ const NextOfKin: FC<any> = () => {
   );
 };
 
-export default NextOfKin;
+export default UpdateViewRefForm;

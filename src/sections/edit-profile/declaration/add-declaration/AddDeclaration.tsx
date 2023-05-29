@@ -6,7 +6,11 @@ import { useForm } from "react-hook-form";
 import { Button, Grid, Typography } from "@mui/material";
 // utils
 // components
-import { FormProvider, RHFTextField } from "@root/components/hook-form";
+import {
+  FormProvider,
+  RHFRadioGroup,
+  RHFTextField,
+} from "@root/components/hook-form";
 
 import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
@@ -14,6 +18,12 @@ import FullWidthFormField from "@root/components/form-generator/FullWidthFormFie
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { RHFSwitch } from "@root/components/hook-form";
+import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import { DotedHeadingWithDisc, HeadingWithDisc } from "./Headings/Headings";
+import {
+  DotedHeadingsWithDesInfo,
+  HeadingsWithDesInfo,
+} from "./static-info/heading-data";
 
 const AddDeclaration: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
@@ -39,9 +49,9 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" sx={{ padding: "0.5em" }}>
         <Grid container item xs={12}>
-          <Grid item sx={{ padding: "0.5em" }}>
+          <Grid item>
             <Typography
               variant="formTopHeading"
               sx={{ color: theme.palette.primary.main }}
@@ -50,8 +60,8 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
             </Typography>
           </Grid>
           <Grid item sm={12} container>
-            <Grid item sm={12} sx={{ padding: "0.5em" }}>
-              <Typography>
+            <Grid item sm={12}>
+              <Typography sx={{ margin: "0.5em 0", fontWeight: "500" }}>
                 The following declaration statements are asked to candidates.
               </Typography>
               <Typography>
@@ -64,50 +74,66 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
                 registration details.
               </Typography>
             </Grid>
-            <Grid item sm={6} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField name="from" label="From" />
-              </Grid>
-            </Grid>
-            <Grid item sm={6} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField name="to" label="To" />
-              </Grid>
-            </Grid>
-            <Grid item sm={6} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFSwitch
-                  name="currentAddress"
-                  label="This is the current address"
-                />
-              </Grid>
-            </Grid>
-            {/* A Custom Field On Full Width  */}
-            {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
-          </Grid>
-          {!disabled && (
+
             <Grid item sm={12} container direction="column">
-              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Save
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Continue
-                  </Button>
-                </Grid>
+              <Grid item>
+                <RHFSwitch
+                  name="agreeToAboveDec"
+                  label="I agree to the above Declaration."
+                />
               </Grid>
             </Grid>
-          )}
+            {/* Does the candidate have the right to work  */}
+            <Grid item sm={12} sx={{ margin: "0.5em 0" }}>
+              <Typography sx={{ fontWeight: "500" }}>
+                Does the candidate have the right to work in UK?
+              </Typography>
+            </Grid>
+            <Grid item sm={12} container direction="column">
+              <Grid item sx={{ padding: "0 0.5em" }}>
+                <RHFRadioGroup
+                  name="rightToWork"
+                  options={["Yes", "No"]}
+                ></RHFRadioGroup>
+              </Grid>
+            </Grid>
+            <Grid item sm={12} container>
+              <RHFTextField
+                multiline
+                rows={4}
+                name="moreDetails"
+                label="If Yes, please provide more details"
+              />
+            </Grid>
+            {/* are you willing to  */}
+            <Grid item sm={12} sx={{ margin: "0.5em 0" }}>
+              <Typography sx={{ fontWeight: "500" }}>
+                Are you willing to undergo a full enhanced DBA check at a price
+                of £55 ?
+              </Typography>
+            </Grid>
+            <Grid item sm={12} container direction="column">
+              <Grid item sx={{ padding: "0 0.5em" }}>
+                <RHFRadioGroup
+                  name="areYouWilling"
+                  options={["Yes", "No"]}
+                ></RHFRadioGroup>
+              </Grid>
+            </Grid>
+
+            <Grid item sm={12}>
+              {HeadingsWithDesInfo.map(({ heading, des, com }): any => {
+                return (
+                  <HeadingWithDisc heading={heading} des={des} com={com} />
+                );
+              })}
+            </Grid>
+            <Grid item sm={12}>
+              {DotedHeadingsWithDesInfo.map(({ heading, des }): any => {
+                return <DotedHeadingWithDisc heading={heading} des={des} />;
+              })}
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </FormProvider>

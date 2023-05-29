@@ -21,7 +21,7 @@ const EditProfileLayout = () => {
 
   return (
     <Grid container>
-      <Grid item sm={4} sx={{ padding: "10px" }}>
+      <Grid item md={4} sx={{ padding: "10px" }}>
         <Sidebar
           tabs={tabs}
           expanded={expanded}
@@ -31,7 +31,7 @@ const EditProfileLayout = () => {
           diffInfoHandler={diffInfoHandler}
         />
       </Grid>
-      <Grid item sm={8} sx={{ padding: "10px" }}>
+      <Grid item md={8} sx={{ padding: "10px" }}>
         <Card
           sx={{
             boxShadow: theme.shadows[10],

@@ -15,7 +15,7 @@ import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 
-const UmberllaCompany: FC<any> = () => {
+const UmberllaCompany: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const methods: any = useForm({
@@ -35,6 +35,7 @@ const UmberllaCompany: FC<any> = () => {
 
   const onSubmit = async (data: any) => {
     console.log({ data });
+    activateNextForm();
   };
 
   return (

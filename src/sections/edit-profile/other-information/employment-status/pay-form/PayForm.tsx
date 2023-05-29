@@ -18,7 +18,7 @@ import {
 import { FormSchema, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 
-const DBS: FC<any> = () => {
+const DBS: FC<any> = ({ setEmploymentStatus }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const methods: any = useForm({
@@ -39,6 +39,7 @@ const DBS: FC<any> = () => {
   const havePs45 = useWatch({ control, name: "havePs45" });
   const onSubmit = async (data: any) => {
     console.log({ data });
+    setEmploymentStatus("limitedCom");
   };
 
   return (

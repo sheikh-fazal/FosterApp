@@ -3,31 +3,32 @@ import { Grid, IconButton, Modal, Typography } from "@mui/material";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 const TimeSelector = () => {
   return (
-    <Grid item container sm={12}>
-      <Grid
-        item
-        sm={6}
-        container
-        sx={{ border: "1px solid black", padding: 0.5, borderRadius: "5px" }}
-      >
+    <>
+      <Grid item container sm={12}>
         <Grid
           item
-          sx={{
-            flexGrow: 1,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-          }}
+          sm={6}
+          container
+          sx={{ border: "1px solid black", padding: 0.5, borderRadius: "5px" }}
         >
-          <p>9am to 12pm</p>
+          <Grid
+            item
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+            }}
+          >
+            <p>9am to 12pm</p>
+          </Grid>
+          <Grid item>
+            <IconButton>
+              <AccessTimeFilledIcon />
+            </IconButton>
+          </Grid>
         </Grid>
-        <Grid item>
-          <IconButton>
-            <AccessTimeFilledIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
-      {/* <Modal open={true}>
+        {/* <Modal open={true}>
         <Grid
           container
           sx={{
@@ -42,7 +43,8 @@ const TimeSelector = () => {
           A New Design That is missing in figma
         </Grid>
       </Modal> */}
-    </Grid>
+      </Grid>
+    </>
   );
 };
 

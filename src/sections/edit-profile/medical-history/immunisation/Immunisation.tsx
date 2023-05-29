@@ -30,12 +30,27 @@ import FullWidthFormField from "@root/components/form-generator/FullWidthFormFie
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { RHFSwitch } from "@root/components/hook-form";
+import {
+  useLazyGetImmunisationInfoQuery,
+  useUpdateImmunisationInfoMutation,
+  useDeleteImmunisationInfoDocuMutation,
+} from "@root/services/update-profile/medical-history/medicalHistory";
+import MultipleFileUploader from "../../file-uploaders/multifile-uploader/MultipleFileUploader";
 
 const Immunisation: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const fileInputRef: any = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [documents, setDocuments] = useState([]);
+  const [availableFiles, setAvailableFiles] = useState<any>(null);
+
+  const [getImmunisationInfo] = useLazyGetImmunisationInfoQuery();
+  const [updateImmunisationInfo] = useUpdateImmunisationInfoMutation();
+  const [deleteImmunisationInfoDocu] = useDeleteImmunisationInfoDocuMutation();
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -63,17 +78,21 @@ const Immunisation: FC<any> = ({ activateNextForm }) => {
 
   const onSubmit = async (data: any) => {
     console.log({ data });
-    activateNextForm();
+    // activateNextForm();
   };
 
-  const passwordEndAdornment = {
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton onClick={handleShowPassword} edge="end">
-          {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-        </IconButton>
-      </InputAdornment>
-    ),
+  const deleteDocument = async (docId: string) => {
+    console.log({ docId });
+    // try {
+    //   setIsUpdating(true);
+    //   const data = await deleteAddressDetailsDocu({ imgId: docId });
+    //   displaySuccessMessage(data, enqueueSnackbar);
+    //   setIsUpdating(false);
+    //   return true;
+    // } catch (error) {
+    //   displayErrorMessage(error, enqueueSnackbar);
+    //   return false;
+    // }
   };
 
   return (
@@ -139,8 +158,15 @@ const Immunisation: FC<any> = ({ activateNextForm }) => {
                   </Grid>
                 </Grid>
                 {/* File Uploader  */}
-                <Grid item sm={12}>
-                  File Uploader
+                <Grid item sm={12} container direction="column">
+                  <Grid item sx={{ padding: "0.5em" }}>
+                    <MultipleFileUploader
+                      availableFiles={availableFiles}
+                      setAvailableFiles={setAvailableFiles}
+                      setDocuments={setDocuments}
+                      deleteDocument={deleteDocument}
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>

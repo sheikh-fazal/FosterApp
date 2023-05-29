@@ -1,28 +1,28 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  accUserName: "Essex",
-  bankName: "Essex",
-  sortCode: "Essex",
-  accNum: "Essex",
-  accType: "Essex",
-  accPerf: "Essex",
+  userName: "",
+  bankName: "",
+  sortCode: "",
+  accountNumber: "",
+  accountType: "",
+  accountPreference: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  accUserName: Yup.string(),
+  userName: Yup.string(),
   bankName: Yup.string(),
   sortCode: Yup.string(),
-  accNum: Yup.string(),
-  accType: Yup.string(),
-  accPerf: Yup.string(),
+  accountNumber: Yup.string(),
+  accountType: Yup.string(),
+  accountPreference: Yup.string(),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "accUserName",
+      name: "userName",
       label: "Account User Name",
       fieldHeader: null,
     },
@@ -42,7 +42,7 @@ export const fieldsInfo = [
     },
     {
       type: "TEXT",
-      name: "accNum",
+      name: "accountNumber",
       label: "Account Number",
       fieldHeader: null,
     },
@@ -50,13 +50,13 @@ export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "accType",
+      name: "accountType",
       label: "Account Type",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "accPerf",
+      name: "accountPreference",
       label: "Account Preference",
       fieldHeader: null,
     },
