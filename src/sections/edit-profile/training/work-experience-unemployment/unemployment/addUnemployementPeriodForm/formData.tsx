@@ -1,24 +1,24 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  resForLeaving: "I don't want to discuss",
+  leavingReason: "I don't want to discuss",
   startDate: new Date(),
   endDate: new Date(),
-  currentworking: false,
+  currentlyUnemployed: false,
 };
 
 export const FormSchema = Yup.object().shape({
-  resForLeaving: Yup.string().required("resForLeaving is required"),
+  leavingReason: Yup.string().required("resForLeaving is required"),
   startDate: Yup.date().required("Issue Date Is Required"),
   endDate: Yup.date().required("Expiry Date Is Required"),
-  currentworking: Yup.boolean(),
+  currentlyUnemployed: Yup.boolean(),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT_MULTILINE",
-      name: "resForLeaving",
+      name: "leavingReason",
       label: "Reason for Unemployment",
       fieldHeader: null,
     },
@@ -40,7 +40,7 @@ export const fieldsInfo = [
   [
     {
       type: "SWITCH",
-      name: "currentworking",
+      name: "currentlyUnemployed",
       label: "Currently Unemployement",
       fieldHeader: null,
     },

@@ -43,13 +43,11 @@ const WorkExperinceForm: FC<any> = ({ closeModel }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    const formData = new FormData();
-    // documents.forEach((doc) => formData.append("certificates", doc));
-    for (var key in data) {
-      formData.append(key, data[key]);
-    }
+    const jsonData = {
+      ...data,
+    };
     try {
-      const data = await addWorkExperience(formData);
+      const data = await addWorkExperience(jsonData);
       displaySuccessMessage(data, enqueueSnackbar);
       closeModel();
       // activateNextForm();

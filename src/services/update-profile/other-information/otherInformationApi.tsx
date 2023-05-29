@@ -107,7 +107,7 @@ export const referenceApi = baseAPI.injectEndpoints({
     updateOpportunityDecla: builder.mutation<null, any>({
       query: (body) => ({
         url: "user-profile/opportunity-declaration",
-        method: "POST",
+        method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
@@ -171,5 +171,33 @@ export const referenceApi = baseAPI.injectEndpoints({
   }),
 });
 
-export const { useLazyGetNextOfKinInfoQuery, useUpdateNextOfKinInfoMutation } =
-  referenceApi;
+export const {
+  useLazyGetNextOfKinInfoQuery,
+  useUpdateNextOfKinInfoMutation,
+  useLazyGetContactPreferenceQuery,
+  useUpdateContactPreferenceMutation,
+
+  useLazyGetOtherPayInfoQuery,
+  useUpdateOtherPayInfoMutation,
+
+  useLazyGetOtherLimitedCompanyInfoQuery,
+  useUpdateOtherLimitedCompanyInfoMutation,
+
+  useLazyGetOtherSelfEmployedInfoQuery,
+  useUpdateOtherSelfEmployedInfoMutation,
+
+  useLazyGetOtherUmbrellaCompanyInfoQuery,
+  useUpdateOtherUmbrellaCompanyInfoMutation,
+
+  useLazyGetOpportunityDeclaQuery,
+  useUpdateOpportunityDeclaMutation,
+
+  useGetOtherInfoAdditionalDocsQuery,
+  useAddOtherInfoAdditionalDocsMutation,
+  useUpdateOtherInfoAdditionalDocsMutation,
+  useDeleteOtherInfoAdditionalDocsDocsMutation,
+
+  useGetOtherBankDetailsInfoQuery,
+  useAddOtherBankDetailsInfoMutation,
+  useUpdateOtherBankDetailsInfoMutation,
+} = referenceApi;

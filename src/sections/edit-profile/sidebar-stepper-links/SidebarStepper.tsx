@@ -25,7 +25,7 @@ export const StepperItem: FC<any> = (props) => {
             <div className={classes.linCon}>
               <div className={classes.line}></div>
             </div>
-            <div>{status}</div>
+            <div style={{ whiteSpace: "nowrap" }}>{status}</div>
           </div>
           <div className={classes.active}></div>
         </li>

@@ -13,14 +13,36 @@ import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
+import {
+  useLazyGetNextOfKinInfoQuery,
+  useUpdateNextOfKinInfoMutation,
+} from "@root/services/update-profile/other-information/otherInformationApi";
+import FormSkeleton from "../../render-form/FormSkeleton";
+import IsFetching from "@root/components/loaders/IsFetching";
+import { displaySuccessMessage } from "../../util/Util";
+import { enqueueSnackbar } from "notistack";
 
 const NextOfKin: FC<any> = () => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [getNextOfKinInfo] = useLazyGetNextOfKinInfoQuery();
+  const [updateNextOfKinInfo] = useUpdateNextOfKinInfoMutation();
+
   const methods: any = useForm({
-    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const { data, isError } = await getNextOfKinInfo(null, true);
+      console.log("t", data);
+      setIsLoading(false);
+      if (isError) {
+        return defaultValues;
+      }
+      return {
+        ...data?.data,
+      };
+    },
   });
 
   const {
@@ -33,47 +55,58 @@ const NextOfKin: FC<any> = () => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    console.log({ data });
+    const payload = {
+      ...data,
+    };
+    try {
+      const data = await updateNextOfKinInfo(payload);
+      displaySuccessMessage(data, enqueueSnackbar);
+      // activateNextForm();
+    } catch (error: any) {
+      displaySuccessMessage(error, enqueueSnackbar);
+    }
   };
-
+  if (isLoading) return <FormSkeleton />;
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container justifyContent="center">
-        <Grid container item xs={12}>
-          <Grid item sx={{ padding: "0.5em" }}>
-            <Typography
-              variant="formTopHeading"
-              sx={{ color: theme.palette.primary.main }}
-            >
-              Next Of Kin
-            </Typography>
-          </Grid>
-          <Grid item sm={12} container>
-            {/* Dynamically Generated Fields  */}
-            {fieldsInfo.map((item: any, index: number) => {
-              return (
-                <Fragment key={index}>
-                  {/* if there is only one field that is accoupies whole width   */}
-                  {item.length === 1 && (
-                    <FullWidthFormField
-                      item={item}
-                      isSubmitting={isSubmitting}
-                      disabled={disabled}
-                    />
-                  )}
-                  {/* if there are two fields with 50% 50% width   */}
-                  {item.length === 2 && (
-                    <HalfWidthFormField
-                      item={item}
-                      isSubmitting={isSubmitting}
-                      disabled={disabled}
-                    />
-                  )}
-                </Fragment>
-              );
-            })}
-            {/* A Custom Field On Full Width  */}
-            {/* <Grid item sm={12} container direction="column">
+    <>
+      {isSubmitting && <IsFetching isFetching />}
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Grid container justifyContent="center">
+          <Grid container item xs={12}>
+            <Grid item sx={{ padding: "0.5em" }}>
+              <Typography
+                variant="formTopHeading"
+                sx={{ color: theme.palette.primary.main }}
+              >
+                Next Of Kin
+              </Typography>
+            </Grid>
+            <Grid item sm={12} container>
+              {/* Dynamically Generated Fields  */}
+              {fieldsInfo.map((item: any, index: number) => {
+                return (
+                  <Fragment key={index}>
+                    {/* if there is only one field that is accoupies whole width   */}
+                    {item.length === 1 && (
+                      <FullWidthFormField
+                        item={item}
+                        isSubmitting={isSubmitting}
+                        disabled={disabled}
+                      />
+                    )}
+                    {/* if there are two fields with 50% 50% width   */}
+                    {item.length === 2 && (
+                      <HalfWidthFormField
+                        item={item}
+                        isSubmitting={isSubmitting}
+                        disabled={disabled}
+                      />
+                    )}
+                  </Fragment>
+                );
+              })}
+              {/* A Custom Field On Full Width  */}
+              {/* <Grid item sm={12} container direction="column">
               <Grid item sx={{ padding: "0.5em" }}>
                 <RHFTextField
                   name="previousExpCustom"
@@ -81,26 +114,27 @@ const NextOfKin: FC<any> = () => {
                 />
               </Grid>
             </Grid> */}
-          </Grid>
-          {!disabled && (
-            <Grid item sm={12} container direction="column">
-              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Save
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Continue
-                  </Button>
+            </Grid>
+            {!disabled && (
+              <Grid item sm={12} container direction="column">
+                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                  <Grid item>
+                    <Button variant="contained" type="submit">
+                      Save
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" type="submit">
+                      Continue
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          )}
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </FormProvider>
+      </FormProvider>
+    </>
   );
 };
 

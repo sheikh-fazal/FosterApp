@@ -27,7 +27,7 @@ const style = {
   p: 2,
 };
 
-export default function ActionModal(props: any) {
+export default function UploadDocumentModal(props: any) {
   const theme: any = useTheme();
   const { content, readOnly, btnType, openModal, closeModal, formData } = props;
   const selectedRow = content?.row?.original;

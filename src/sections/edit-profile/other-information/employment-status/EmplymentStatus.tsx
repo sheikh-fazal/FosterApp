@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import {
   Grid,
@@ -14,7 +14,7 @@ import LimitedCompany from "./limited-company/LimitedCompany";
 import SelfEmployed from "./self-employed/SelfEmployed";
 import UmberllaCompany from "./umbrella-company/UmbrellaCompany";
 
-const EmplymentStatus = () => {
+const EmplymentStatus: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [employmentStatus, setEmploymentStatus] = useState("");
 
@@ -66,10 +66,18 @@ const EmplymentStatus = () => {
         </FormControl>
       </Grid>
       <Grid item sm={12} container sx={{ padding: "0.5em" }}>
-        {employmentStatus === "paye" && <PayForm />}
-        {employmentStatus === "limitedCom" && <LimitedCompany />}
-        {employmentStatus === "self" && <SelfEmployed />}
-        {employmentStatus === "umbrella" && <UmberllaCompany />}
+        {employmentStatus === "paye" && (
+          <PayForm setEmploymentStatus={setEmploymentStatus} />
+        )}
+        {employmentStatus === "limitedCom" && (
+          <LimitedCompany setEmploymentStatus={setEmploymentStatus} />
+        )}
+        {employmentStatus === "self" && (
+          <SelfEmployed setEmploymentStatus={setEmploymentStatus} />
+        )}
+        {employmentStatus === "umbrella" && (
+          <UmberllaCompany activateNextForm={activateNextForm} />
+        )}
       </Grid>
     </Grid>
   );

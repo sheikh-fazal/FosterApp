@@ -1,7 +1,7 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/ActionModal";
+// import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/ActionModal";
 import dayjs from "dayjs";
 import { useState } from "react";
 

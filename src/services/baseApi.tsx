@@ -21,9 +21,13 @@ export const TAGS = [
   "COMPLAINT_LIST",
   "INCIENT_UPLOAD_DOCUMENTS",
   "INITIAL_CONTACT",
+<<<<<<< HEAD
   "INITIAL_HOME_VISIT",
   "Experience",
   "CAR_INSURANCE",
+=======
+  "Experience",
+>>>>>>> valeed
 ];
 
 // Create our baseQuery instance

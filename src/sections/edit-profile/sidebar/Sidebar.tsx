@@ -70,7 +70,7 @@ const Sidebar: React.FC<any> = (props) => {
                           active={diffInfoHandler.activeFormName === name}
                           status={status}
                         >
-                          <p>{name}</p>
+                          <p style={{ whiteSpace: "nowrap" }}>{name}</p>
                         </StepperItem>
                       );
                     })}

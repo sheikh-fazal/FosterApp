@@ -1,18 +1,18 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  docName: "Essex",
+  documentName: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  docName: Yup.string(),
+  documentName: Yup.string(),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "docName",
+      name: "documentName",
       label: "Documents Name",
       fieldHeader: null,
     },

@@ -26,7 +26,7 @@ const IdUpload: FC<any> = ({ activateNextForm }) => {
       const { name } = data?.data;
       setFile({ name: name || "filename" });
     }
-  }, [isSuccess]);
+  }, [isSuccess, data?.data]);
 
   const setFileHandler = (file: File | null) => {
     setFile(file);

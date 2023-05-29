@@ -32,7 +32,7 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
       console.log({ imgUrl });
       setFile(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`);
     }
-  }, [isSuccess]);
+  }, [isSuccess, data?.data]);
   const selectFile = () => {
     if (fileRef.current) {
       fileRef.current.click();

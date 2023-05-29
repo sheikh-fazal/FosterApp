@@ -3,6 +3,7 @@ import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal } from "@mui/material";
 import ButtonWithIcon from "@root/sections/edit-profile/locals/ButtonWithIcon";
 import WorkExperinceForm from "./addExperinceForm/WorkExperinceForm";
+import WorkexperinceTable from "./workexperince-table/WorkexperinceTable";
 const WorkExperience = () => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ workExperienceModel: false });
@@ -15,13 +16,14 @@ const WorkExperience = () => {
   };
 
   return (
-    <Grid container direction="column">
-      <Grid item container>
+    <Grid container direction="column" sx={{ margin: "1em 0em" }}>
+      <Grid item container sx={{ margin: "0.5em 0em" }}>
         <ButtonWithIcon
           text="Add Work Experience"
           onClick={workExperienceModelOpen}
         />
       </Grid>
+      <WorkexperinceTable />
       <Grid item sx={{ mt: 2 }}>
         <Button variant="contained">continue</Button>
       </Grid>

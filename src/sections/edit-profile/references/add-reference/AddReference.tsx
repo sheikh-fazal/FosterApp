@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import PersonIcon from "@mui/icons-material/Person";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddRefForm from "./addRefForm/AddRefForm";
+import ReferenceTable from "./reference-table/ReferenceTable";
 const AddReference = () => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
@@ -36,6 +37,7 @@ const AddReference = () => {
       <Grid item container>
         <ButtonWithIcon text="Add Reference" onClick={addRefModelOpen} />
       </Grid>
+      <ReferenceTable />
       <Grid item sx={{ mt: 2 }}>
         <Button variant="contained">continue</Button>
       </Grid>

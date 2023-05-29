@@ -1,4 +1,5 @@
 import Layout from "@root/layouts";
+import BankAccountDetailsSection from "@root/sections/carer-info/other-info/bank-account-details/BankAccountDetailsSection";
 import React from "react";
 
 // ----------------------------------------------------------------------
@@ -10,5 +11,5 @@ BankAccountDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function BankAccountDetails() {
-  return <div>BankAccountDetails</div>;
+  return <BankAccountDetailsSection />;
 }
