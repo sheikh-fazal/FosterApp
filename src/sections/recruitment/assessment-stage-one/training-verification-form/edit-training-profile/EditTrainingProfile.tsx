@@ -1,15 +1,6 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-<<<<<<< HEAD
-import { TrainingProfileData } from ".";
-import Link from "next/link";
-import useEditTraingingProfile from "./useEditTrainingProfile";
-import { defaultValues } from ".";
-const EditTrainingProfile = (props: any) => {
-  const {
-    disabled,
-=======
 import { TrainingProfileData } from "./";
 import Link from "next/link";
 import useEditTraingingProfile from "./useEditTrainingProfile";
@@ -19,24 +10,17 @@ const EditTrainingProfile = (props: any) => {
     onSubmitHandler,
     trainingProfileId,
     defaultValues,
->>>>>>> ijaz
     initialValueProps = defaultValues,
     isError,
     isSuccess,
   } = props;
-<<<<<<< HEAD
-
-  const { methods, handleSubmit, onSubmit } = useEditTraingingProfile({initialValueProps});
-=======
   const { methods, handleSubmit, onSubmit } = useEditTraingingProfile({
     initialValueProps,
     onSubmitHandler,
-    trainingProfileId
+    trainingProfileId,
   });
 
   console.log(methods.formState.errors);
-  
->>>>>>> ijaz
 
   return (
     <>
