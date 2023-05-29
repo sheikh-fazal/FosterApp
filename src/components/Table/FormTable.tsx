@@ -17,7 +17,7 @@ import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
 
-const ANON_FUNC = () => {};
+const ANON_FUNC = () => { };
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -109,7 +109,7 @@ function TableFormModal(props: any) {
   );
 }
 
-// ----------------------------------------------------------------------
+
 // Form Table
 
 export default function FormTable(props: any) {
@@ -185,6 +185,7 @@ export default function FormTable(props: any) {
           type="delete"
           onClicked={(id: number) => onDeleted(info.row.index)}
         />
+
       </Box>
     ),
     header: () => <span>actions</span>,

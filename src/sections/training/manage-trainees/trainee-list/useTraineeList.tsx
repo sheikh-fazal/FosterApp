@@ -39,7 +39,6 @@ export const useTraineeList = () => {
   };
 
   const handleDelete = () => {
-    alert("deleted successfully");
     setCancelDelete(!cancelDelete);
   };
 

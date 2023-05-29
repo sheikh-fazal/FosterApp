@@ -3,26 +3,34 @@ import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
+import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
-
 const CustomAccordian = ({
-  handleDelete,
+  handleRowDelete,
   handleTitleEdit,
   showBtn,
+  subTitle,
   data,
   className,
   ...rest
 }: any) => {
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
-  const [cancelDelete, setCancelDelete] = React.useState(false);
+  const [expanded, setExpanded] = React.useState<string | false>(false);
   const theme: any = useTheme();
+  const handleChange =
+    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    };
+  const [cancelDelete, setCancelDelete] = React.useState(false);
 
+  const handleDelete = () => {
+    setCancelDelete(!cancelDelete);
+  };
   return (
     <>
-      {data?.map((item: any) => (
+      {data?.map((item: any, idx: any) => (
         <Accordion
           key={item.title}
           disableGutters
@@ -36,6 +44,8 @@ const CustomAccordian = ({
               display: "none",
             },
           }}
+          expanded={expanded === `panel${idx + 1}`}
+          onChange={handleChange(`panel${idx + 1}`)}
         >
           <AccordionSummary
             sx={{
@@ -48,8 +58,8 @@ const CustomAccordian = ({
               borderRadius: "5px",
             }}
             className="summary-Icon"
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+            aria-controls={`panel${idx + 1}bh-content`}
+            id={`panel${idx + 1}bh-header`}
             expandIcon={
               <Avatar
                 sx={{
@@ -67,12 +77,12 @@ const CustomAccordian = ({
             }
           >
             <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                width: "100%",
-                alignItems: "center",
-              }}
+              width={"100%"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+              gap={2}
+              flexWrap={"wrap"}
             >
               <Typography
                 variant="subtitle1"
@@ -105,9 +115,20 @@ const CustomAccordian = ({
                       handleDelete();
                       event.stopPropagation();
                       event.nativeEvent.preventDefault();
+                      handleRowDelete(item);
                     }}
                   />
                 </Stack>
+              )}
+
+              {subTitle && (
+                <Typography
+                  variant="subtitle2"
+                  className="title"
+                  sx={{ pr: "5px" }}
+                >
+                  {item?.lectures?.length} lectuers - {item?.minutes} min
+                </Typography>
               )}
             </Box>
           </AccordionSummary>

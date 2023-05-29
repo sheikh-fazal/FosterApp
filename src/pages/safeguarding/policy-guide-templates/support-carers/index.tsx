@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box } from '@mui/material';
 import { SupportCarersCard } from '@root/sections/safeguarding/policy-guide-templates/support-carers/support-carers-card';
-import { SUPPORT_CARERS_CARDS } from '@root/dropdown-data/support-carers-data';
+import { SUPPORT_CARERS_CARDS } from '@root/dropdown-data/supportCarersData';
 
 const PAGE_TITLE = "Safeguarding Templates";
 

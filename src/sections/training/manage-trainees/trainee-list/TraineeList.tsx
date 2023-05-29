@@ -126,17 +126,22 @@ const TraineeLists = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+             
             <CustomAccordian
               data={addRow}
-              showBtn
+              showBtn={true}
               handleTitleEdit={(item: any) => {
                 setEditRowId(item);
+
                 setModalType({
                   ...modalType,
+
                   type: "Edit",
                 });
               }}
-              handleDelete={() => setCancelDelete(!cancelDelete)}
+              handleRowDelete={(item: any) => {
+                setCancelDelete(!cancelDelete);
+              }}
             />
           </Grid>
         </Grid>

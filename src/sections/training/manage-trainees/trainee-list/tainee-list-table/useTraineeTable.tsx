@@ -27,7 +27,6 @@ export const useTraineeTable = () => {
   };
 
   const handleShare = () => {
-    alert("share successfully")
     setShareModal(!shareModal)
   }
 

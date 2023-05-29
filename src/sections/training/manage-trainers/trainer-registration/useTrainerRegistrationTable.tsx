@@ -108,7 +108,7 @@ export const useTrainerRegistrationTable = () => {
             type="edit"
             onClicked={() => {
               router.push(
-                "/safeguarding/child-protection/incident-management/edit-incident-management"
+                "/training/manage-trainees/course-evaluation"
               );
             }}
             size="small"
@@ -122,7 +122,7 @@ export const useTrainerRegistrationTable = () => {
             type="view"
             onClicked={() => {
               router.push(
-                "/safeguarding/child-protection/incident-management/view-incident-management"
+                "/training/manage-trainees/course-evaluation"
               );
             }}
             size="small"

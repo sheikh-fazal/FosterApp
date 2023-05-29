@@ -43,19 +43,21 @@ const CourseEvaluation = () => {
                     >
                       {form.head}
                     </Typography>
-                    {form.labels?.map((label: string) => (
+                    {form.labels?.map((item: any) => (
                       <Typography
                         sx={{
                           display: { xl: "inline", xs: "none" },
                           fontWeight: 600,
                           mt: "20px",
                           mb: "-15px",
+                          ml: item?.ml,
+                          mr: item?.mr,
                           textTransform: "capitalize",
                           color: theme.palette.grey[600],
                         }}
-                        key={label}
+                        key={item?.title}
                       >
-                        {label}
+                        {item?.title}
                       </Typography>
                     ))}
                   </Box>
@@ -86,7 +88,7 @@ const CourseEvaluation = () => {
                   variant="contained"
                   onClick={() =>
                     router.push(
-                      "/safeguarding/child-protection/child-abuse-and-expolitation-management"
+                      "/training"
                     )
                   }
                 >
