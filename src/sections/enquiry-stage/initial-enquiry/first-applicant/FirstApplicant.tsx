@@ -42,7 +42,9 @@ export default function FirstApplicant(props: any) {
   });
 
   const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+
   console.log(methods.formState.errors);
+
   useEffect(() => {
     const subscription = watch((values: any) => {
       const dateOfBirth = values["dateOfBirth"];
@@ -56,6 +58,7 @@ export default function FirstApplicant(props: any) {
   }, [watch, setValue]);
 
   const onSubmitHandler = (data: any) => {
+    if (globallyDisabled) return;
     console.log(data);
     // onSubmit(data);
     // reset();
@@ -64,7 +67,7 @@ export default function FirstApplicant(props: any) {
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>
-        <Grid item xs={12} md={12}>
+        {/* <Grid item xs={12} md={12}>
           <RHFCheckbox
             disabled={globallyDisabled}
             value={getValues("isJointApplicant")}
@@ -75,7 +78,7 @@ export default function FirstApplicant(props: any) {
             name="isJointApplicant"
             label="If Joint Applicant, tick the Checkbox"
           />
-        </Grid>
+        </Grid> */}
         {formData.map((form: any, index) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form.id + index}>

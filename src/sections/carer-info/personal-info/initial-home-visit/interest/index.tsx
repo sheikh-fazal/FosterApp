@@ -1,12 +1,21 @@
 import * as Yup from "yup";
-import { Typography } from "@mui/material";
 
-export const InterestFormValues = {
-  perviousExperience: "I am previousExp",
-  motivation: "I am motivitaion",
-  impactOfTheTask: "I am impactOfTask",
-  skilledOffered: "I am SkilledOffer",
-  knowledgeOfTheReason: "I am knowledge",
+export const interestFormValues = {
+  perviousExperience: "",
+  motivation: "",
+  impactOfTheTask: "",
+  skilledOffered: "",
+  knowledgeOfTheReason: "",
+};
+
+export const defaultValueInterestForm = (data: any = interestFormValues) => {
+  return {
+    perviousExperience: data.perviousExperience,
+    motivation: data.motivation,
+    impactOfTheTask: data.impactOfTheTask,
+    skilledOffered: data.skilledOffered,
+    knowledgeOfTheReason: data.knowledgeOfTheReason,
+  };
 };
 
 export const InterestFormSchema = Yup.object().shape({
@@ -32,7 +41,7 @@ export const InterestFormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 });
 
-export const fieldsInfo = [
+export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
     name: "perviousExperience",
@@ -40,6 +49,7 @@ export const fieldsInfo = [
     title:
       "Pervious Experience (Have you ever Fostered before? if so, with whom and how did this end?)",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 
   {
@@ -49,6 +59,7 @@ export const fieldsInfo = [
     title:
       "Motivation (Explore with the applicants their reasons for wishing to foster.How did they learn of fostering? How did they reach their decision?Why now?Have they discussed this with family and friends? Do they know foster carer? and what is their experience of fostering? )",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -57,6 +68,7 @@ export const fieldsInfo = [
     title:
       "Impact of the task  (Have the applicants considerd how fostering might impact on themselves and their relationship with others? have they considerd the impact on their day to functioning)",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -65,6 +77,7 @@ export const fieldsInfo = [
     title:
       "Skilled Offered (What skills are they offering? And how would propose to develop their skills)",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -73,5 +86,6 @@ export const fieldsInfo = [
     title:
       " Knowledge of the reason for child being locked after (What knowledge does the applicant/s have of this? Do they appreciate how chlidren may present/behave as a consequence? And how the would they address these issues? )",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 ];

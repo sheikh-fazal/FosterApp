@@ -9,6 +9,10 @@ import PetQuestionnaireA from "@root/sections/carer-info/personal-info/pet-quest
 import PetQuestionnaireB from "@root/sections/carer-info/personal-info/pet-questionnaire/B/PetQuestionnaireBFrom";
 import PetQuestionnaireC from "@root/sections/carer-info/personal-info/pet-questionnaire/C/PetQuestionnaireCFrom";
 import PetQuestionnaireD from "@root/sections/carer-info/personal-info/pet-questionnaire/D/PetQuestionnaireDFrom";
+import { useGetPetQuestionnaireByIdQuery } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
+import { useRouter } from "next/router";
+import Error from "@root/components/Error";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -41,21 +45,56 @@ ViewPetQuestionnaire.getLayout = function getLayout(page: any) {
 };
 
 export default function ViewPetQuestionnaire() {
+  const router = useRouter();
+  const id = Object.keys(router?.query)[0];
+
+  const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(id);
+
+  if (isError) return <Error />;
+
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs
-        tabsDataArray={[
-          "Pet Questionnaire A",
-          "Pet Questionnaire B",
-          "Pet Questionnaire C",
-          "Pet Questionnaire D",
-        ]}
-      >
-        <PetQuestionnaireA disabled />
-        <PetQuestionnaireB disabled />
-        <PetQuestionnaireC disabled />
-        <PetQuestionnaireD disabled />
-      </HorizaontalTabs>
+      {isLoading ? (
+        <SkeletonFormdata />
+      ) : (
+        <HorizaontalTabs
+          tabsDataArray={[
+            "Pet Questionnaire A",
+            "Pet Questionnaire B",
+            "Pet Questionnaire C",
+            "Pet Questionnaire D",
+          ]}
+        >
+          <PetQuestionnaireA
+            disabled
+            initialValueProps={data?.petQuestionnaire1}
+          />
+          <PetQuestionnaireB
+            disabled
+            initialValueProps={{
+              ...data?.petQuestionnaire2,
+              registeredAVet: data?.petQuestionnaire2?.registeredAVet
+                ? "Yes"
+                : "No",
+            }}
+          />
+          <PetQuestionnaireC
+            disabled
+            initialValueProps={{
+              ...data?.petQuestionnaire3,
+              date: new Date(data?.petQuestionnaire3?.date),
+            }}
+          />
+          <PetQuestionnaireD
+            disabled
+            initialValueProps={{
+              ...data?.petQuestionnaire4,
+              date1: new Date(data?.petQuestionnaire4?.date1),
+              date2: new Date(data?.petQuestionnaire4?.date2),
+            }}
+          />
+        </HorizaontalTabs>
+      )}
     </Page>
   );
 }

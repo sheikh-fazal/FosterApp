@@ -7,8 +7,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { CarerFamilySupportNetworkForm } from "@root/sections/carer-info/personal-info/carer-family-support-network";
 import { useGetCarerFamilyByIdQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
-import IsFetching from "@root/components/loaders/IsFetching";
 import Error from "@root/components/Error";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -53,7 +53,7 @@ export default function ViewFamilySupport() {
   return (
     <Page title={PAGE_TITLE}>
       {isLoading ? (
-        <IsFetching isFetching={isLoading} />
+        <SkeletonFormdata />
       ) : (
         <CarerFamilySupportNetworkForm
           disabled

@@ -3,36 +3,59 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import useTrainingVerificationForm from "./useTrainingVerificationForm";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 export default function TrainingVerificationForm() {
-  const { columns, data, router } = useTrainingVerificationForm();
+  const {
+    columnsTrainingVerificationFuntion,
+    trainingPRofileData,
+    router,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    headerChangeHandler,
+    tableHeaderRef,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    trainingProfileId,
+    closeDeleteProfile,
+    deleteTrainingProfile
+  } = useTrainingVerificationForm();
   return (
     <>
+      <DeleteModel
+        open={trainingProfileId}
+        onDeleteClick={deleteTrainingProfile}
+        handleClose={closeDeleteProfile}
+      />
+
       <Card>
         <TableHeader
           showAddBtn
+          ref={tableHeaderRef}
+          disabled={isLoading}
           title="Training Profile"
+          searchKey="search"
           onAdd={() => {
             router.push(
-              "/recruitment/assessment-stage-one/training-verification-form/add-taining-profile"
+              "/recruitment/assessment-stage-one/training-verification-form/new-taining-profile"
             );
           }}
+          onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={data}
-          columns={columns}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          // rootSX={{ my: theme.spacing(2) }}
+          data={trainingPRofileData}
+          columns={columnsTrainingVerificationFuntion}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          currentPage={meta?.page}
+          totalPages={meta?.pages}
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
         />
       </Card>
     </>
