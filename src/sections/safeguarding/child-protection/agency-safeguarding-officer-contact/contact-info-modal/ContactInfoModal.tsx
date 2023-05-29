@@ -1,20 +1,20 @@
 import React from "react";
 import { formData } from ".";
-import { useContactInfoModal } from "./useContactInfoModal";
 import { FormProvider } from "@root/components/hook-form";
+import { useContactInfoModal } from "./useContactInfoModal";
 import { Modal, Backdrop, Grid, Button, Box, Typography } from "@mui/material";
 
 // ======================================================================================================
 
 const ContactInfoModal = (props: any) => {
-  const { open, setOpen } = props;
+  const { open, onClose } = props;
   const { methods, handleSubmit, onSubmit } = useContactInfoModal();
 
   return (
     <Box>
       <Modal
-        open={open.isToggle}
-        onClose={() => setOpen({ isToggle: false, data: {} })}
+        open={open}
+        onClose={onClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         closeAfterTransition
@@ -62,7 +62,7 @@ const ContactInfoModal = (props: any) => {
                     }}
                     type="button"
                     variant="contained"
-                    onClick={() => setOpen({ isToggle: false, data: {} })}
+                    onClick={onClose}
                   >
                     Cancel
                   </Button>
