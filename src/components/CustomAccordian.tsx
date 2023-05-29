@@ -7,9 +7,9 @@ import { Avatar, Box, Stack, alpha, useTheme } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import TableAction from "./TableAction";
-import DeleteModel from "./modal/DeleteModel";
 
 const CustomAccordian = ({
+  handleDelete,
   handleTitleEdit,
   showBtn,
   data,
@@ -19,11 +19,7 @@ const CustomAccordian = ({
   const [accordianExpanded, setAccordianExpanded] = React.useState(false);
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
-  
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
-  };
+
   return (
     <>
       {data?.map((item: any) => (
@@ -106,22 +102,9 @@ const CustomAccordian = ({
                     size="small"
                     type="delete"
                     onClicked={(event: any) => {
-                      setCancelDelete(!cancelDelete);
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
-                    }}
-                  />
-                  <DeleteModel
-                    open={cancelDelete}
-                    onDeleteClick={(event: any) => {
-                      event.stopPropagation();
-                      event.nativeEvent.preventDefault();
                       handleDelete();
-                    }}
-                    handleClose={(event: any) => {
                       event.stopPropagation();
                       event.nativeEvent.preventDefault();
-                      setCancelDelete(!cancelDelete);
                     }}
                   />
                 </Stack>

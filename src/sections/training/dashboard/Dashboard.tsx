@@ -1,19 +1,18 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import NextLink from "next/link";
-import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Card, Grid, Typography } from "@mui/material";
 import TrainingTabs from "@root/sections/training/dashboard/vertical-tabs/TrainingTabs";
 import { TABSDATAARRY } from "@root/sections/training/dashboard/vertical-tabs/TabsData";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import PieChart from "@root/sections/training/dashboard/charts/PieChart";
-import BarChart from "@root/sections/training/dashboard/charts/BarChart";
 import UpcommingCalander from "@root/sections/training/dashboard/calendar/UpcommingCalander";
 import TrainingTasks from "@root/sections/training/dashboard/tasks/TrainingTasks";
 import TrainingNotifications from "@root/sections/training/dashboard/notification/TrainingNotifications";
 import CourseProfile from "@root/sections/training/dashboard/course-profile/CourseProfile";
 import { useDashboard } from "./useDashboard";
+import TrainingProfile from "./training-profile/TrainingProfile";
 
 const Dashboard = () => {
-  const { selectedChart, setSelectedChart, theme } = useDashboard();
+  const { theme } = useDashboard();
   return (
     <Box>
       <TrainingTabs tabsDataArray={TABSDATAARRY}>
@@ -48,38 +47,7 @@ const Dashboard = () => {
       <Box sx={{ mt: 1 }}>
         <Grid container spacing={2}>
           <Grid item lg={6} xs={12}>
-            <Card sx={styles.cardStyles}>
-              <Typography
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  padding: "16px",
-                  paddingBottom: "0",
-                  color: theme.palette.primary.main,
-                }}
-              >
-                Training Profile
-              </Typography>
-              <HorizaontalTabs
-                tabsDataArray={["Foster Carer", "Social Worker", "Employee"]}
-              >
-                {[1, 2, 3].map((item: any, index: any) => {
-                  return selectedChart === "pie" ? (
-                    <PieChart
-                      key={index}
-                      selectedChart={selectedChart}
-                      setSelectedChart={setSelectedChart}
-                    />
-                  ) : (
-                    <BarChart
-                      key={index}
-                      selectedChart={selectedChart}
-                      setSelectedChart={setSelectedChart}
-                    />
-                  );
-                })}
-              </HorizaontalTabs>
-            </Card>
+            <TrainingProfile />
           </Grid>
           <Grid item lg={6} xs={12}>
             <Card sx={styles.cardStyles}>

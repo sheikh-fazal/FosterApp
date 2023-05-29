@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 export const useTraineeTable = () => {
   const [tableData, setTableDate] = useState<any>(null);
+  const [shareModal, setShareModal] = useState(false);
   const methods: any = useForm({
     defaultValues,
   });
@@ -25,6 +26,11 @@ export const useTraineeTable = () => {
     setTableDate(JSON.stringify(data));
   };
 
+  const handleShare = () => {
+    alert("share successfully")
+    setShareModal(!shareModal)
+  }
+
   return {
     methods,
     handleSubmit,
@@ -35,5 +41,8 @@ export const useTraineeTable = () => {
     isSubmitting,
     tableData,
     onClear,
+    shareModal,
+    setShareModal,
+    handleShare
   };
 };

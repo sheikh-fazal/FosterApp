@@ -5,12 +5,13 @@ import { sortingData, sortingByData } from ".";
 export const useTraineeList = () => {
   const [items, setitems] = useState("");
   const [addRow, setAddRow] = useState(sortingData);
-  const [anchorEl, setAnchorEl] =  useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const [editRowId, setEditRowId] = useState("");
   const [modalType, setModalType] = useState({
     type: "",
     value: null,
   });
+  const [cancelDelete, setCancelDelete] = useState(false);
 
   const handleChange = (event: any) => {
     setitems(event.target.value);
@@ -36,6 +37,12 @@ export const useTraineeList = () => {
 
     setAddRow([...filteredRows, newObj]);
   };
+
+  const handleDelete = () => {
+    alert("deleted successfully");
+    setCancelDelete(!cancelDelete);
+  };
+
   return {
     items,
     addRow,
@@ -48,6 +55,9 @@ export const useTraineeList = () => {
     handleClick,
     handleClose,
     addRowHandler,
-    sortingByData
-  }
-}
+    sortingByData,
+    setCancelDelete,
+    cancelDelete,
+    handleDelete,
+  };
+};
