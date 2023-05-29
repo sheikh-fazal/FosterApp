@@ -28,6 +28,8 @@ export default function Reference({ apllicationFormid, role }: any) {
           disabled={viewData == "view" ? true : false}
           refData={refData}
           changeView={changeView}
+          viewData={viewData}
+          apllicationFormid={apllicationFormid}
         />
       ) : (
         <>

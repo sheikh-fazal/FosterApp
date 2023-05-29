@@ -7,20 +7,23 @@ export const referenceApi = baseAPI.injectEndpoints({
     }),
     getReferenceDetails: builder.query({
       query: (id: any) => `/application-form/reference-details/${id}`,
+      providesTags: ["POST_REFERENCE", "EDIT_REFERENCE"],
     }),
     postReferenceDetail: builder.mutation({
-      query: ({ id, formData }: any) => ({
-        url: `/application-form/reference-detail`,
+      query: (params: any) => ({
+        url: `/application-form/reference-detail/${params.apllicationFormid}`,
         method: "Post",
-        body: formData,
+        body: params.formData,
       }),
+      invalidatesTags: ["POST_REFERENCE"],
     }),
     updateReference: builder.mutation({
-      query: ({ id, formData }: any) => ({
-        url: `/application-form/reference-details`,
-        method: "PATCH",
-        body: formData,
+      query: (params: any) => ({
+        url: `/application-form/reference-details/${params.id}`,
+        method: "PUT",
+        body: params.formData,
       }),
+      invalidatesTags: ["EDIT_REFERENCE"],
     }),
   }),
 });

@@ -10,31 +10,14 @@ import { fTimestamp } from "@root/utils/formatTime";
 // components
 import { FormProvider } from "@root/components/hook-form";
 //
-import { FormSchema, defaultValues, formData } from ".";
+import { formData } from ".";
+import { useReferenceViewForm } from "./useReferenceViewForm";
 
 export default function ReferenceViewForm(props: any) {
-  const { refData } = props;
+  const { changeView } = props;
 
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues: refData,
-  });
-
-  const {
-    reset,
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
-
-  const onSubmit = async (formData: any) => {
-    console.log("data", formData);
-
-    reset();
-  };
+  let { methods, handleSubmit, onSubmit, isSubmitting, isDirty } =
+    useReferenceViewForm(props);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -73,7 +56,7 @@ export default function ReferenceViewForm(props: any) {
 
         <LoadingButton
           onClick={() => {
-            props.changeView(null);
+            changeView(null);
           }}
           type="button"
           sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
