@@ -5,17 +5,17 @@ import dayjs from "dayjs";
 
 import * as Yup from "yup";
 
-const todayDate = dayjs().format("DD/MM/YYYY");
+const todayDate = dayjs().format("MM/DD/YYYY");
 const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
 
 export const FormValues = {
-  dateOfVisit: new Date(),
+  dateOfVisit: todayDate,
   nameOfAgencyWorkingVisiting: "",
   title: "",
   firstName: "",
   middleName: "",
   lastName: "",
-  dateOfBirth: new Date(ageOf18Years),
+  dateOfBirth: ageOf18Years,
   gender: "",
   address: "",
   addressLine2: "",
@@ -27,7 +27,7 @@ export const FormValues = {
   postalCode: "",
   maritalStatus: "",
   ethnicity: "",
-  offsetEthnicity: "",
+  offSetEthnicity: "",
   nationalInsuranceNo: "",
   religion: "",
   practising: "",
@@ -35,6 +35,38 @@ export const FormValues = {
   howLongLiveInLocalArea: "",
   detailsOfPreviousMarriages: "",
   convictedOfAnyCriminal: "",
+};
+
+export const defaultValuesPrimaryCarer = (data = FormValues) => {
+  console.log(data);
+  return {
+    dateOfVisit: new Date(data?.dateOfVisit),
+    nameOfAgencyWorkingVisiting: data?.nameOfAgencyWorkingVisiting,
+    title: data?.title,
+    firstName: data?.firstName,
+    middleName: data?.middleName,
+    lastName: data?.lastName,
+    dateOfBirth: new Date(data?.dateOfBirth),
+    gender: data?.gender,
+    address: data?.address,
+    addressLine2: data?.addressLine2,
+    city: data?.city,
+    mobilePhone: data?.mobilePhone,
+    email: data?.email,
+    county: data?.county,
+    country: data?.country,
+    postalCode: data?.postalCode,
+    maritalStatus: data?.maritalStatus,
+    ethnicity: data?.ethnicity,
+    offSetEthnicity: data?.offSetEthnicity,
+    nationalInsuranceNo: data?.nationalInsuranceNo,
+    religion: data?.religion,
+    practising: data?.practising,
+    countryWhereBorn: data?.countryWhereBorn,
+    howLongLiveInLocalArea: data?.howLongLiveInLocalArea,
+    detailsOfPreviousMarriages: data?.detailsOfPreviousMarriages,
+    convictedOfAnyCriminal: data?.convictedOfAnyCriminal,
+  };
 };
 
 export const FormSchema = Yup.object().shape({
@@ -87,7 +119,7 @@ export const FormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
   maritalStatus: Yup.string().required("Marital status is required"),
   ethnicity: Yup.string().required("Ethnicity is required"),
-  offsetEthnicity: Yup.string().required("Offset ethnicity is required"),
+  offSetEthnicity: Yup.string().required("Offset ethnicity is required"),
   religion: Yup.string().required("Religion is required"),
   nationalInsuranceNo: Yup.string().required(
     "National insurance no is required"
@@ -106,16 +138,18 @@ export const FormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 });
 
-export const fieldsInfo = [
+export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "date",
     name: "dateOfVisit",
     label: "Date Of Visit",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "nameOfAgencyWorkingVisiting",
     label: "Name of Agency working visitng",
+    disabled: isFieldDisable,
   },
   {
     heading: "Personal Details",
@@ -125,6 +159,7 @@ export const fieldsInfo = [
     name: "title",
     label: "Title",
     select: true,
+    disabled: isFieldDisable,
     options: [
       {
         value: "Mr",
@@ -141,16 +176,19 @@ export const fieldsInfo = [
     type: "text",
     name: "firstName",
     label: "First Name",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "middleName",
     label: "Middle Name",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "lastName",
     label: "Last Name",
+    disabled: isFieldDisable,
   },
   {
     type: "date",
@@ -158,12 +196,14 @@ export const fieldsInfo = [
     label: "Date Of Birth",
     disableFuture: true,
     maxDate: new Date(ageOf18Years),
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "gender",
     label: "Gender",
     select: true,
+    disabled: isFieldDisable,
     options: GENDERDROPDOWNDATA,
   },
   {
@@ -174,32 +214,38 @@ export const fieldsInfo = [
     name: "address",
     label: "Address",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
     name: "addressLine2",
     label: "Address Line 2",
+    disabled: isFieldDisable,
     gridSize: { xs: 12 },
   },
   {
     type: "text",
     name: "city",
     label: "Town/City",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "mobilePhone",
     label: "Mobile Phone",
+    disabled: isFieldDisable,
   },
   {
     type: "email",
     name: "email",
     label: "Email",
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "county",
     label: "County",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -212,6 +258,7 @@ export const fieldsInfo = [
     type: "select",
     name: "country",
     label: "Country",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -224,11 +271,13 @@ export const fieldsInfo = [
     type: "text",
     name: "postalCode",
     label: "Postal Code",
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "maritalStatus",
     label: "Marital Status",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -241,13 +290,15 @@ export const fieldsInfo = [
     type: "select",
     name: "ethnicity",
     label: "Ethnicity",
+    disabled: isFieldDisable,
     select: true,
     options: ETHNICITYDROPDOWN,
   },
   {
     type: "select",
-    name: "offsetEthnicity",
+    name: "offSetEthnicity",
     label: "Offset Ethnicity",
+    disabled: isFieldDisable,
     select: true,
 
     options: ETHNICITYDROPDOWN,
@@ -258,11 +309,13 @@ export const fieldsInfo = [
     label: "Religion",
     select: true,
     options: RELIGIONDROPDOWN,
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "nationalInsuranceNo",
     label: "National Insurance NO",
+    disabled: isFieldDisable,
   },
   {
     type: "radio",
@@ -270,12 +323,14 @@ export const fieldsInfo = [
     label: "Practising",
     options: [true, false],
     getOptionLabel: ["Yes", "No"],
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "countryWhereBorn",
     label: "What Country was Primary Carer Born in?",
     select: true,
+    disabled: isFieldDisable,
     options: [
       {
         value: "single",
@@ -287,6 +342,7 @@ export const fieldsInfo = [
     type: "text",
     name: "howLongLiveInLocalArea",
     label: "How Long have they lived in the local area?",
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -294,6 +350,7 @@ export const fieldsInfo = [
     label:
       "Detail of previous marriages/civil partnerships/relationships where you have lives together?",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "radio",
@@ -303,5 +360,6 @@ export const fieldsInfo = [
     options: [true, false],
     getOptionLabel: ["Yes", "No"],
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 ];

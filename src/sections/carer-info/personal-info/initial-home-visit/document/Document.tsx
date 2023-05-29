@@ -20,10 +20,7 @@ const Document = () => {
     isSingleDocumentDetailViewed,
     SetIsSingleDocumentDetailViewed,
     initialHomeDocumentTableColumns,
-    dataTemp,
-    setDataTemp,
   } = useDocument();
-  // console.log(data);
 
   return (
     <>
@@ -40,14 +37,12 @@ const Document = () => {
 
         <CustomTable
           data={data?.initialDocuments}
-          // data={dataTemp}
           columns={initialHomeDocumentTableColumns}
           isLoading={isLoading}
           isFetching={false}
           isError={isError}
           isPagination={true}
           isSuccess={isSuccess}
-          // count={Math.ceil(data?.data?.meta?.total / limit)}
           currentPage={data?.meta?.page}
           totalPages={data?.meta?.pages}
           onPageChange={(data: any) => {
@@ -56,7 +51,6 @@ const Document = () => {
           onSortByChange={(data: any) => {
             console.log("Sort by: ", data);
           }}
-          // rootSX={{ my: theme.spacing(2) }}
         />
       </Box>
       {isSingleDocumentDetailViewed && (
