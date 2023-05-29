@@ -15,6 +15,7 @@ import { FormProvider, RHFTextField } from "../hook-form";
 import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 import { type } from "os";
+import ShareModal from "../modal/shareModal";
 
 const ANON_FUNC = () => { };
 
@@ -124,6 +125,7 @@ export default function FormTable(props: any) {
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
   const [viewModal, setViewModal] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
 
   /* Set up formatters for updating the display data */
   const formatters: any = {};
@@ -169,7 +171,10 @@ export default function FormTable(props: any) {
           />
         )}
         {share && (
-          <TableAction type="share" onClicked={(id: number) => alert()} />
+          <TableAction
+            type="share"
+            onClicked={() => setShareModal(!shareModal)}
+          />
         )}
 
         <TableAction
@@ -186,6 +191,10 @@ export default function FormTable(props: any) {
     header: () => <span>actions</span>,
     isSortable: false,
   });
+
+  const handleShare = () => {
+    setShareModal(false);
+  };
 
   /* CANCEL HANDLER */
   function onCancelHandler() {
@@ -243,6 +252,18 @@ export default function FormTable(props: any) {
 
   return (
     <div>
+      {shareModal && (
+        <ShareModal
+          open={shareModal}
+          data={[{ email: "hassan@gmail.com" }]}
+          handleClose={handleShare}
+          onSubmit={(values: any) => {
+            console.log(values);
+            setShareModal(false);
+          }}
+        />
+      )}
+
       {viewModal && (
         <TableFormModal
           disabled={disabled}

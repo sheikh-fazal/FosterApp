@@ -20,6 +20,7 @@ import TaineeListTable from "./tainee-list-table/TaineeListTable";
 import TraineeListModal from "./trainee-list-modal/TraineeListModal";
 import { sortingData } from ".";
 import { useTraineeList } from "./useTraineeList";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 const TraineeLists = () => {
   const {
@@ -35,6 +36,9 @@ const TraineeLists = () => {
     handleClose,
     addRowHandler,
     sortingByData,
+    setCancelDelete,
+    cancelDelete,
+    handleDelete,
   } = useTraineeList();
 
   return (
@@ -122,15 +126,21 @@ const TraineeLists = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
+             
             <CustomAccordian
               data={addRow}
-              showBtn
+              showBtn={true}
               handleTitleEdit={(item: any) => {
                 setEditRowId(item);
+
                 setModalType({
                   ...modalType,
+
                   type: "Edit",
                 });
+              }}
+              handleRowDelete={(item: any) => {
+                setCancelDelete(!cancelDelete);
               }}
             />
           </Grid>
@@ -142,6 +152,20 @@ const TraineeLists = () => {
           addRowHandler={addRowHandler}
           handleClose={() => {
             setModalType({ type: "", value: null });
+          }}
+        />
+
+        <DeleteModel
+          open={cancelDelete}
+          onDeleteClick={(event: any) => {
+            event.stopPropagation();
+            event.nativeEvent.preventDefault();
+            handleDelete();
+          }}
+          handleClose={(event: any) => {
+            event.stopPropagation();
+            event.nativeEvent.preventDefault();
+            setCancelDelete(!cancelDelete);
           }}
         />
       </Box>

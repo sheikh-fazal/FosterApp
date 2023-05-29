@@ -97,7 +97,7 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
               series={barseries}
               type="bar"
               width={200}
-              height={158}
+              height={150}
             />
           </Box>
         </Grid>
