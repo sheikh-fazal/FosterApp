@@ -1,9 +1,18 @@
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { baseAPI } from "./baseApi";
 
 export const userAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getStickyNotes: builder.query<null, void>({
       query: () => "sticky-notes",
+      providesTags: ["STICKY_NOTES"],
+    }),
+    getStickyNotesByDate: builder.query({
+      query: ({query}: any) => `sticky-notes/date/${query}`,
+      transformResponse: (response: any) => {
+        parseDatesToTimeStampByKey(response.data);
+        return response.data;
+      },
       providesTags: ["STICKY_NOTES"],
     }),
     stickyNotes: builder.mutation({
@@ -22,6 +31,13 @@ export const userAPI = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["STICKY_NOTES"],
     }),
+    deleteStickyNotes: builder.mutation({
+      query: (id: any) => ({
+        url: `sticky-notes/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["STICKY_NOTES"],
+    }),
   }),
   
 });
@@ -29,6 +45,8 @@ export const userAPI = baseAPI.injectEndpoints({
 export const {
     useStickyNotesMutation,
     useGetStickyNotesQuery,
-    useEditStickyNotesMutation
+    useLazyGetStickyNotesByDateQuery,
+    useEditStickyNotesMutation,
+    useDeleteStickyNotesMutation   
 
 } = userAPI;
