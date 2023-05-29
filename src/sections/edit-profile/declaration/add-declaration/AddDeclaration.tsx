@@ -122,15 +122,26 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
             </Grid>
 
             <Grid item sm={12}>
-              {HeadingsWithDesInfo.map(({ heading, des, com }): any => {
+              {HeadingsWithDesInfo.map(({ heading, des, com }, index): any => {
                 return (
-                  <HeadingWithDisc heading={heading} des={des} com={com} />
+                  <HeadingWithDisc
+                    key={index}
+                    heading={heading}
+                    des={des}
+                    com={com}
+                  />
                 );
               })}
             </Grid>
             <Grid item sm={12}>
-              {DotedHeadingsWithDesInfo.map(({ heading, des }): any => {
-                return <DotedHeadingWithDisc heading={heading} des={des} />;
+              {DotedHeadingsWithDesInfo.map(({ heading, des }, index): any => {
+                return (
+                  <DotedHeadingWithDisc
+                    key={index}
+                    heading={heading}
+                    des={des}
+                  />
+                );
               })}
             </Grid>
           </Grid>
