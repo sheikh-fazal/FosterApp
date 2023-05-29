@@ -76,8 +76,8 @@ export const trainingAndWorkHistoryApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     updateWorkExperience: builder.mutation<null, any>({
-      query: (body) => ({
-        url: "user-profile/update-work-experience/workId",
+      query: ({ body, workId }) => ({
+        url: `user-profile/update-work-experience/${workId}`,
         method: "PATCH",
         body,
       }),

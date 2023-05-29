@@ -11,26 +11,49 @@ import { FormProvider } from "@root/components/hook-form";
 // import { FormSchema, defaultValues } from ".";
 //mui icons
 import CloseIcon from "@mui/icons-material/Close";
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import { FormSchema, fieldsInfo, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { useAddWorkExperienceMutation } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
+import {
+  useAddWorkExperienceMutation,
+  useUpdateWorkExperienceMutation,
+} from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
 
-const WorkExperinceForm: FC<any> = ({ closeModel }) => {
+const UpdateViewWorkForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [addWorkExperience] = useAddWorkExperienceMutation();
+  // const [disabled, setDisabled] = useState(false);
+  const {
+    id,
+    employerName,
+    position,
+    experience,
+    leavingReason,
+    startDate,
+    endDate,
+    currentlyWorking,
+  } = defValues;
+  console.log({ startDate, endDate });
+  const [updateWorkExperience] = useUpdateWorkExperienceMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: {
+      employerName,
+      position,
+      experience,
+      leavingReason,
+      startDate: new Date(),
+      endDate: new Date(),
+      currentlyWorking,
+    },
   });
 
   const {
@@ -47,9 +70,9 @@ const WorkExperinceForm: FC<any> = ({ closeModel }) => {
       ...data,
     };
     try {
-      const data = await addWorkExperience(jsonData);
+      const data = await updateWorkExperience({ body: jsonData, workId: id });
       displaySuccessMessage(data, enqueueSnackbar);
-      closeModel();
+      close();
       // activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
@@ -104,7 +127,7 @@ const WorkExperinceForm: FC<any> = ({ closeModel }) => {
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                   <Grid item>
-                    <Button variant="contained" onClick={closeModel}>
+                    <Button variant="contained" onClick={close}>
                       Cancel
                     </Button>
                   </Grid>
@@ -123,4 +146,4 @@ const WorkExperinceForm: FC<any> = ({ closeModel }) => {
   );
 };
 
-export default WorkExperinceForm;
+export default UpdateViewWorkForm;

@@ -4,7 +4,7 @@ import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddTrainingDocForm from "./addTrainingForm/AddTrainingDocForm";
-import AdditionalTrainingTable from "./reference-table/AdditionalTrainingTable";
+import AdditionalTrainingTable from "./additional-training-table/AdditionalTrainingTable";
 const AdditionalTrainingDetails = () => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });

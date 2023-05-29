@@ -1,8 +1,15 @@
+// for getting shortname with extension name
 export const nameShortner = (name: string) => {
   if (name.length <= 10) return name;
   return (
     name.slice(0, 4) + ".." + name.slice(name.lastIndexOf("."), name.length)
   );
+};
+
+// for getting shortname for large text
+export const shortName = (name: string) => {
+  if (name.length <= 10) return name;
+  return name.slice(0, 6) + "...";
 };
 
 export const displaySuccessMessage = (data: any, notifier: any) => {
