@@ -2,13 +2,15 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { TrainingProfileData } from ".";
-import useTraingingProfile from "./useTraingingProfile";
+
 import Link from "next/link";
+import useViewTraingProfile from "./useViewTraingProfile";
 
-const RecruitmentTrainingProfile = (props: any) => {
-  const { disabled, onSubmitHandler ,handleCloseForm, router, formState } = props;
+const ViewTraingProfile = (props: any) => {
+  const { defaultValues, initialValueProps = defaultValues } = props;
 
-  const { methods, handleSubmit, onSubmit } = useTraingingProfile(onSubmitHandler);
+  const { methods, handleSubmit, onSubmit } =
+    useViewTraingProfile(initialValueProps);
 
   return (
     <>
@@ -20,7 +22,7 @@ const RecruitmentTrainingProfile = (props: any) => {
                 <>
                   <Grid>
                     <form.component
-                      disabled={disabled}
+                      disabled={true}
                       size="small"
                       {...form.otherOptions}
                     >
@@ -37,30 +39,10 @@ const RecruitmentTrainingProfile = (props: any) => {
               </Grid>
             );
           })}
-
-          <Grid item xs={12}>
-            <Button size="large" type="submit" variant="contained">
-             {formState === 'add' ? "Submit"  :  "Update"}
-            </Button>
-            <Link href={"/recruitment"}> 
-              <Button
-                type="button"
-                sx={{
-                  color: "#fff",
-                  ml: 1,
-                  backgroundColor: "#F6830F",
-                }}
-                size="large"
-                variant="contained"
-              >
-                Back
-              </Button>
-            </Link>
-          </Grid>
         </Grid>
       </FormProvider>
     </>
   );
 };
 
-export default RecruitmentTrainingProfile;
+export default ViewTraingProfile;

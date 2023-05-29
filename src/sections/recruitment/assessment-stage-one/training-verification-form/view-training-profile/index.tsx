@@ -4,6 +4,7 @@ import {
     RHFTextField,
   } from "@root/components/hook-form";
   import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+  import { COURSEATTENDED } from "@root/dropdown-data/courseAttended";
   
   export const TrainingProfileData = [
     {
@@ -34,17 +35,15 @@ import {
         fullWidth: true,
         select: true,
       },
-      options: [
-          { value: "Select Value", label: "Select Vaue" },
-      ],
+      options: COURSEATTENDED,
       component: RHFSelect,
     },
     {
       id: 4,
       gridLength: 6,
       otherOptions: {
-        label: "Expire Date",
         name: "expiryDate",
+        label: "Expire Date",
         fullWidth: true,
       },
       component: RHFDatePicker,
@@ -54,12 +53,14 @@ import {
       gridLength: 6,
       otherOptions: {
         name: "courseStatus",
-        label: "Course Status  ",
+        label: "Course Status",
         fullWidth: true,
         select: true,
       },
       options: [
-          { value: "Select Value", label: "Select Vaue" },
+        { value: "attended", label: "Attended" },
+        { value: "not-attended", label: "Not Attended" },
+        { value: "online", label: "Online" },
       ],
       component: RHFSelect,
     },
@@ -67,8 +68,8 @@ import {
       id: 6,
       gridLength: 6,
       otherOptions: {
-        label: "Attended Date",
         name: "date",
+        label: "Attended Date",
         fullWidth: true,
       },
       component: RHFDatePicker,
@@ -120,20 +121,3 @@ import {
     },
   ];
   
-
-  export const defaultValues = {
-    addtionalInfo: "addtionalInfo",
-    attendance: false,
-    carerName: "John Doe",
-    comments: "comments",
-    courseAttended: "courseAttended",
-    courseStatus: "courseStatus",
-    createdAt: "2023-05-17T12:46:08.000Z",
-    date: "2020-12-08T19:00:00.000Z",
-    expiryDate: "2020-12-08T19:00:00.000Z",
-    id: "5e10536d-a759-463d-960a-1040e12e1e87",
-    otherTraining: "otherTraining",
-    trainingNeeds: "trainingNeeds",
-    updatedAt: "2023-05-17T12:46:08.000Z",
-    userId: "4f7512fb-2916-451b-8240-97f529ded73d",
-  };

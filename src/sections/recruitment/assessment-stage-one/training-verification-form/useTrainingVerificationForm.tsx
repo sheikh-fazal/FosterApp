@@ -1,122 +1,83 @@
-import { Box, Checkbox } from "@mui/material";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import TableAction from "@root/components/TableAction";
-import dayjs from "dayjs";
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useDeleteTrainingProfileApiMutation,
+  useGetTrainingProfileAllDataQuery,
+} from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { columnsTrainingVerification } from ".";
+import { enqueueSnackbar } from "notistack";
 
 const useTrainingVerificationForm = () => {
+  const [cancelDelete, setCancelDelete] = useState(false);
+  const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+
+  const [deleteProfile] = useDeleteTrainingProfileApiMutation();
+
+  const tableHeaderRef = useRef<any>();
   const router = useRouter();
 
-  const [data, setData] = useState([
-    {
-      id: 1,
-      srNo: "1",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-    {
-      id: 2,
-      srNo: "2",
-      documentName: "Activity Info",
-      documentType: "PDF",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123abc",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-  ]);
+  const deleteTrainingProfile = async () => {
+    console.log(trainingProfileId);
 
-  const columns = [
-    {
-      id: "select",
-      header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
-        return (
-          <Box>
-            <Checkbox
-              checked={table.getIsAllRowsSelected()}
-              onChange={table.getToggleAllRowsSelectedHandler()}
-            />
-          </Box>
-        );
-      },
-      cell: ({ row, table }: any) => (
-        <Box>
-          <Checkbox
-            disabled={row?.original?.Assigned}
-            checked={row?.original?.Assigned ? false : row.getIsSelected()}
-            onChange={row.getToggleSelectedHandler()}
-          />
-        </Box>
-      ),
-    },
-    {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr.No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentName,
-      id: "documentName",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Name</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentType,
-      id: "documentType",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Type</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentDate,
-      id: "documentDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.password,
-      id: "password",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Password</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.id,
-      id: "actions",
-      cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            type="edit"
-            onClicked={() =>
-              router.push(
-                "/recruitment/assessment-stage-one/training-verification-form/add-taining-profile"
-              )
-            }
-          />
-          <DeleteModel onDeleteClick={() => {}} />
-          <TableAction
-            type="view"
-            onClicked={() => console.log(info.getValue())}
-          />
-        </Box>
-      ),
-      header: () => <span>Actions</span>,
-      isSortable: false,
-    },
-  ];
-  return { columns, data, router };
+    const res: any = deleteProfile(trainingProfileId)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Training Profile deleted  Successfully", {
+          variant: "success",
+        });
+        setTrainingProfileId(null);
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
+  const openDeleteModel = (id: string) => {
+    console.log("ProfileID: ", id);
+    setTrainingProfileId(id);
+  };
+
+  const closeDeleteProfile = (id: string) => {
+    setTrainingProfileId(null);
+  };
+
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetTrainingProfileAllDataQuery({ params });
+
+  const trainingPRofileData = data?.data?.trainingProfile;
+  const meta = data?.data?.meta;
+
+  const columnsTrainingVerificationFuntion = columnsTrainingVerification(
+    deleteTrainingProfile,
+    router,
+    cancelDelete,
+    setCancelDelete,
+    openDeleteModel
+  );
+
+  console.log(data, "training profile");
+
+  return {
+    columnsTrainingVerificationFuntion,
+    trainingPRofileData,
+    router,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    headerChangeHandler,
+    tableHeaderRef,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    trainingProfileId,
+    closeDeleteProfile,
+    deleteTrainingProfile,
+  };
 };
 
 export default useTrainingVerificationForm;
