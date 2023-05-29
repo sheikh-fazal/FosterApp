@@ -138,16 +138,18 @@ export const FormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 });
 
-export const fieldsInfo = [
+export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "date",
     name: "dateOfVisit",
     label: "Date Of Visit",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "nameOfAgencyWorkingVisiting",
     label: "Name of Agency working visitng",
+    disabled: isFieldDisable,
   },
   {
     heading: "Personal Details",
@@ -157,6 +159,7 @@ export const fieldsInfo = [
     name: "title",
     label: "Title",
     select: true,
+    disabled: isFieldDisable,
     options: [
       {
         value: "Mr",
@@ -173,16 +176,19 @@ export const fieldsInfo = [
     type: "text",
     name: "firstName",
     label: "First Name",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "middleName",
     label: "Middle Name",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "lastName",
     label: "Last Name",
+    disabled: isFieldDisable,
   },
   {
     type: "date",
@@ -190,12 +196,14 @@ export const fieldsInfo = [
     label: "Date Of Birth",
     disableFuture: true,
     maxDate: new Date(ageOf18Years),
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "gender",
     label: "Gender",
     select: true,
+    disabled: isFieldDisable,
     options: GENDERDROPDOWNDATA,
   },
   {
@@ -206,32 +214,38 @@ export const fieldsInfo = [
     name: "address",
     label: "Address",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
     name: "addressLine2",
     label: "Address Line 2",
+    disabled: isFieldDisable,
     gridSize: { xs: 12 },
   },
   {
     type: "text",
     name: "city",
     label: "Town/City",
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "mobilePhone",
     label: "Mobile Phone",
+    disabled: isFieldDisable,
   },
   {
     type: "email",
     name: "email",
     label: "Email",
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "county",
     label: "County",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -244,6 +258,7 @@ export const fieldsInfo = [
     type: "select",
     name: "country",
     label: "Country",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -256,11 +271,13 @@ export const fieldsInfo = [
     type: "text",
     name: "postalCode",
     label: "Postal Code",
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "maritalStatus",
     label: "Marital Status",
+    disabled: isFieldDisable,
     select: true,
     options: [
       {
@@ -273,6 +290,7 @@ export const fieldsInfo = [
     type: "select",
     name: "ethnicity",
     label: "Ethnicity",
+    disabled: isFieldDisable,
     select: true,
     options: ETHNICITYDROPDOWN,
   },
@@ -280,6 +298,7 @@ export const fieldsInfo = [
     type: "select",
     name: "offSetEthnicity",
     label: "Offset Ethnicity",
+    disabled: isFieldDisable,
     select: true,
 
     options: ETHNICITYDROPDOWN,
@@ -290,11 +309,13 @@ export const fieldsInfo = [
     label: "Religion",
     select: true,
     options: RELIGIONDROPDOWN,
+    disabled: isFieldDisable,
   },
   {
     type: "text",
     name: "nationalInsuranceNo",
     label: "National Insurance NO",
+    disabled: isFieldDisable,
   },
   {
     type: "radio",
@@ -302,12 +323,14 @@ export const fieldsInfo = [
     label: "Practising",
     options: [true, false],
     getOptionLabel: ["Yes", "No"],
+    disabled: isFieldDisable,
   },
   {
     type: "select",
     name: "countryWhereBorn",
     label: "What Country was Primary Carer Born in?",
     select: true,
+    disabled: isFieldDisable,
     options: [
       {
         value: "single",
@@ -319,6 +342,7 @@ export const fieldsInfo = [
     type: "text",
     name: "howLongLiveInLocalArea",
     label: "How Long have they lived in the local area?",
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -326,6 +350,7 @@ export const fieldsInfo = [
     label:
       "Detail of previous marriages/civil partnerships/relationships where you have lives together?",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "radio",
@@ -335,5 +360,6 @@ export const fieldsInfo = [
     options: [true, false],
     getOptionLabel: ["Yes", "No"],
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 ];

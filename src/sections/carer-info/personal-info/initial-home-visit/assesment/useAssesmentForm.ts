@@ -5,10 +5,19 @@ import {
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { assesmentFormValues, defaultValuesAssesmentForm } from ".";
+import {
+  assesmentFormFieldsInfoFunction,
+  assesmentFormValues,
+  defaultValuesAssesmentForm,
+} from ".";
+import useAuth from "@root/hooks/useAuth";
 
 export const useAssesmentForm = () => {
   const { query } = useRouter();
+  const { user }: any = useAuth();
+  const assesmentFormFieldsInfo = assesmentFormFieldsInfoFunction(
+    user?.defaultRole === "FOSTER_CARER"
+  );
   const [
     postInitialHomeAssessmentDataTrigger,
     postInitialHomeAssessmentDataStatus,
@@ -58,5 +67,6 @@ export const useAssesmentForm = () => {
     setAssesmentFormDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeAssessmentDataStatus,
+    assesmentFormFieldsInfo,
   };
 };

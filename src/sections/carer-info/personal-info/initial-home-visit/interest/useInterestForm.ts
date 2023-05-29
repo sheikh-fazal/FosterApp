@@ -4,11 +4,16 @@ import {
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostInitialHomeInterestDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/interest/interest";
 import { enqueueSnackbar } from "notistack";
-import { defaultValueInterestForm, interestFormValues } from ".";
+import { defaultValueInterestForm, interestFormFieldsInfoFunction, interestFormValues } from ".";
 import { useRouter } from "next/router";
+import useAuth from "@root/hooks/useAuth";
 
 export const useInterestForm = () => {
   const { query } = useRouter();
+  const { user }: any = useAuth();
+  const interestFormFieldsInfo = interestFormFieldsInfoFunction(
+    user?.defaultRole === "FOSTER_CARER"
+  );
   const [
     postInitialHomeInterestDataTrigger,
     postInitialHomeInterestDataStatus,
@@ -57,5 +62,6 @@ export const useInterestForm = () => {
     setInterestDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeInterestDataStatus,
+    interestFormFieldsInfo
   };
 };

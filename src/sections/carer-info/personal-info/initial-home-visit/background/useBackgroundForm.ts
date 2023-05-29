@@ -4,11 +4,16 @@ import {
   useLazyGetAllInitialHomeVisitDataQuery,
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
-import { backgroundFormValues, defaultValuesBackgroundForm } from ".";
+import { backgroundFormFieldsInfoFunction, backgroundFormValues, defaultValuesBackgroundForm } from ".";
 import { useRouter } from "next/router";
+import useAuth from "@root/hooks/useAuth";
 
 export const useBackgroundForm = () => {
   const { query } = useRouter();
+  const { user }: any = useAuth();
+  const backgroundFormFieldsInfo = backgroundFormFieldsInfoFunction(
+    user?.defaultRole === "FOSTER_CARER"
+  );
   const [
     postInitialHomeBackgroundDataTrigger,
     postInitialHomeBackgroundDataStatus,
@@ -55,5 +60,6 @@ export const useBackgroundForm = () => {
     setBackgroundFormDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
+    backgroundFormFieldsInfo
   };
 };

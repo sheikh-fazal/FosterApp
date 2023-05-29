@@ -1,5 +1,5 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { FormValues, FormSchema, fieldsInfo } from ".";
+import { FormValues, FormSchema } from ".";
 import { usePrimaryCarerForm } from "./usePrimaryCarerForm";
 
 const PrimaryCarerForm = (props: any) => {
@@ -9,12 +9,13 @@ const PrimaryCarerForm = (props: any) => {
     getAllInitialHomeVisitDataStatus,
     postPrimaryCarerDataStatus,
     user,
+    primaryCarerFieldsInfo,
   } = usePrimaryCarerForm();
   return (
     <FormGenerator
       FormSchema={FormSchema}
       defaultValues={setPrimaryCarerDefaultValue}
-      fieldsInfo={fieldsInfo}
+      fieldsInfo={primaryCarerFieldsInfo}
       submitClickHand={submitPrimaryCarerForm}
       isFormSubmitting={postPrimaryCarerDataStatus.isLoading}
       isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}

@@ -5,14 +5,16 @@ import {
 import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/primary/primaryCarer";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { defaultValuesPrimaryCarer } from ".";
+import { defaultValuesPrimaryCarer, primaryCarerFieldsInfoFunction } from ".";
 import useAuth from "@root/hooks/useAuth";
 
 export const usePrimaryCarerForm = () => {
   const { query } = useRouter();
   // console.log(query?.fosterCarerId);
   const { user }: any = useAuth();
-  console.log(user);
+  const primaryCarerFieldsInfo = primaryCarerFieldsInfoFunction(
+    user?.defaultRole === "FOSTER_CARER"
+  );
   const [postPrimaryCarerDataTrigger, postPrimaryCarerDataStatus] =
     usePostPrimaryCarerDataMutation();
   const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
@@ -61,5 +63,6 @@ export const usePrimaryCarerForm = () => {
     getAllInitialHomeVisitDataStatus,
     postPrimaryCarerDataStatus,
     user,
+    primaryCarerFieldsInfo,
   };
 };

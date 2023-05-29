@@ -47,7 +47,7 @@ export const BackgroundFormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 });
 
-export const fieldsInfo = [
+export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
     name: "knowledgeOfSexualHarmful",
@@ -55,6 +55,7 @@ export const fieldsInfo = [
     title:
       "Knowledge of Sexual harmful behaviour (What knowledge does the applicant/s have this?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -63,6 +64,7 @@ export const fieldsInfo = [
     title:
       "Availability (At least one carer needs to be available at all times):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -71,6 +73,7 @@ export const fieldsInfo = [
     title:
       "Support Network (The applicant/s will need to describe their support network and its reliability):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -79,6 +82,7 @@ export const fieldsInfo = [
     title:
       "Interest, Hobbies, Talents (What are these? Where? When? With whom? Are they pursued individually or with others or both?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -87,6 +91,7 @@ export const fieldsInfo = [
     title:
       "Health /Recent loss (How do they describe their health; any recent operations ; are they taking medication? Have they experienced any recent loss or bereavement?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -95,5 +100,6 @@ export const fieldsInfo = [
     title:
       "Conviction (Do the applicant/s have any post, pending or currrent convictions?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 ];

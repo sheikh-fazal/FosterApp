@@ -102,17 +102,19 @@ const FormGenerator: FC<any> = ({
           {/* <Button size="large" type="submit" variant="contained">
             Submit
           </Button> */}
-          <LoadingButton
-            // fullWidth
-            color="primary"
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={isFormSubmitting}
-            disabled={isFormSubmitting}
-          >
-            Submit
-          </LoadingButton>
+          {defaultRole !== "FOSTER_CARER" && (
+            <LoadingButton
+              // fullWidth
+              color="primary"
+              size="large"
+              type="submit"
+              variant="contained"
+              loading={isFormSubmitting}
+              disabled={isFormSubmitting}
+            >
+              Submit
+            </LoadingButton>
+          )}
         </Grid>
         {/* <Grid xs={12}>
           <Box
