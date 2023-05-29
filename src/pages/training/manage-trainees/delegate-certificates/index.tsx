@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
-import DelegateCertificateAccordin from "@root/sections/training/delegate-certificates/DelegateCertificateAccordin";
+import DelegateCertificateAccordin from "@root/sections/training/manage-trainees/delegate-certificates/DelegateCertificateAccordin";
 
 const PAGE_TILE = "Delegate Certificates";
 

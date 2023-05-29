@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { useTheme } from "@mui/material";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import TrainingClockEngineTable from "@root/sections/training/notifications/training-clock-engine-tab/TrainingClockEngineTable";
+import NotificationTable from "@root/sections/training/notifications/notification-settings-tab/NotificationTable";
 
-const PAGE_TILE = "Notification";
 
-Notification.getLayout = function getLayout(page: any) {
+const PAGE_TILE = "Notification Setting";
+
+Notifications.getLayout = function getLayout(page: any) {
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,7 +21,7 @@ Notification.getLayout = function getLayout(page: any) {
           href: "/training",
         },
         {
-          name: "Training Dashboard",
+          name: "training Dashboard",
         },
       ]}
       title={PAGE_TILE}
@@ -27,11 +31,20 @@ Notification.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Notification() {
-  const theme = useTheme();
+export default function Notifications() {
+
   return (
     <Page title={PAGE_TILE}>
-      <div>Notification</div>
+      <HorizaontalTabs
+        tabsDataArray={[
+          "Training Clock Engine",
+          "Notification Settings",
+        ]}
+     
+      >
+        <TrainingClockEngineTable />
+        <NotificationTable/>
+      </HorizaontalTabs>
     </Page>
   );
 }

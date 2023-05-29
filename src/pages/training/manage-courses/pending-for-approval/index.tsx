@@ -3,11 +3,12 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
+import PendingForApproval from "@root/sections/training/manage-courses/pending-for-approval/PendingForApproval";
 
 
 const PAGE_TILE = "Course List";
 
-CourseList.getLayout = function getLayout(page: any) {
+PendingApproval.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -28,11 +29,11 @@ CourseList.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function CourseList() {
+export default function PendingApproval() {
   const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
-      <div>pending-for-approval</div>;
+      <PendingForApproval />
     </Page>
   );
 }

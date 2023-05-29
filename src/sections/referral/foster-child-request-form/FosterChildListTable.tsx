@@ -103,7 +103,7 @@ const FosterChildList = () => {
              <DeleteModel open={IsDeleteModal} handleClose={() => setIsDeleteModal(false)} />
             <TableAction
               type="edit"
-              onClicked={() => {
+               onClicked={() => {
                 router.push({ pathname: `/referral/foster-child-request-form/edit-foster-child-request-form/${info.row.original.id}`, query: { action: "edit" } })
               }}
               size="small"

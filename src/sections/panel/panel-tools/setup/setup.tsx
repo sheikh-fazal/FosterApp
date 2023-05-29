@@ -7,7 +7,7 @@ import { useSetup } from './useSetup'
 import SetupForm from './setup-form/SetupForm'
 import DeleteModel from '@root/components/modal/DeleteModel'
 
-const SetupComp = () => {
+const PanelSetup = () => {
   const {
     handleOpenModal,
     handleAction,
@@ -17,7 +17,6 @@ const SetupComp = () => {
     deleteModal,
     handleDeleteFunc
   } = useSetup();
-
   const columns = [
     {
       title: 'Carer Name (Code)',
@@ -65,4 +64,4 @@ const SetupComp = () => {
   )
 }
 
-export default SetupComp
+export default PanelSetup
