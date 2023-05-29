@@ -1,7 +1,7 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/ActionModal";
+// import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/ActionModal";
 import dayjs from "dayjs";
 import { useState } from "react";
 
@@ -92,7 +92,7 @@ export const columnsRecruitmentUpload= (cancelDelete:any, setCancelDelete:any, h
             onDeleteClick={handleDelete}
             handleClose={() => setCancelDelete(!cancelDelete)}
           />
-        <ActionModal content={info} readOnly={true} btnType="view" />
+        {/* <ActionModal content={info} readOnly={true} btnType="view" /> */}
       </Box>
     ),
     header: () => <span>Actions</span>,
