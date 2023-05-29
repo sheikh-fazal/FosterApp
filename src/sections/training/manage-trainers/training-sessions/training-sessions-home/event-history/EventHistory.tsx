@@ -5,9 +5,14 @@ import { useEventHistory } from "./useEventHistory";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { useRouter } from "next/router";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MicIcon from '@mui/icons-material/Mic';
+import GroupsIcon from '@mui/icons-material/Groups';
 const EventHistory = () => {
   const { data, openDelete, setOpenDelete } = useEventHistory();
   const theme = useTheme();
+  const navigate = useRouter()
   const columns = [
     {
       id: "select",
@@ -54,21 +59,21 @@ const EventHistory = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.schedule,
+      accessorFn: (row: any) => <span style={{cursor:"pointer"}} onClick={()=>{alert("calender clicked")}}><CalendarMonthIcon /></span>,
       id: "Schedule",
       cell: (info: any) => info.getValue(),
       header: () => <span>Schedule</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.presenter,
+      accessorFn: (row: any) => <span style={{cursor:"pointer"}} onClick={()=>{alert("Presenter clicked")}}><MicIcon /></span>,
       id: "Presenter",
       cell: (info: any) => info.getValue(),
       header: () => <span>Presenter</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.attendees,
+      accessorFn: (row: any) =><span style={{cursor:"pointer"}} onClick={()=>{alert("Attendee clicked")}}> <GroupsIcon /></span>,
       id: "Attendees",
       cell: (info: any) => info.getValue(),
       header: () => <span>Attendees</span>,
@@ -121,7 +126,7 @@ const EventHistory = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => alert("Reload")} />
+          <TableAction type="edit" onClicked={() => {navigate.push("/training/manage-trainers/training-sessions/add-training-session")}} />
           <TableAction type="delete" onClicked={() => setOpenDelete(true)} />
         </Box>
       ),

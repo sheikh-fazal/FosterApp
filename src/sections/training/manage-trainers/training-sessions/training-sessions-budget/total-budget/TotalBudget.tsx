@@ -5,6 +5,7 @@ import { useTotalBudget } from "./useTotalBudget";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 const TotalBudget = () => {
   const { data, openDelete, setOpenDelete } = useTotalBudget();
   const theme = useTheme();
@@ -75,7 +76,7 @@ const TotalBudget = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.schedule,
+      accessorFn: (row: any) => <CheckBoxIcon />,
       id: "Under Budget",
       cell: (info: any) => info.getValue(),
       header: () => <span>Under Budget</span>,

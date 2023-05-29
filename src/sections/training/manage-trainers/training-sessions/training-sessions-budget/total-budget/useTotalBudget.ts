@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { ONGOING_EVENT_TRAINING_SESSIONS_DATA } from '@root/dropdown-data/ongoingEventTrainingSessionsData'
+import { TOTAL_BUDGET_DATA } from '@root/dropdown-data/totalBudgetTableData';
 export const useTotalBudget = () => {
   const [openDelete, setOpenDelete] = useState(false);
-  const [data, setData] = useState(ONGOING_EVENT_TRAINING_SESSIONS_DATA)
+  const [data, setData] = useState(TOTAL_BUDGET_DATA)
   return {
     data,
     openDelete,

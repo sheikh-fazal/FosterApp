@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material";
 import { useAllSpeakers } from "./useAllSpeakers";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import DoneIcon from '@mui/icons-material/Done';
 import DeleteModel from "@root/components/modal/DeleteModel";
 const AllSpeakers = () => {
   const { data, openDelete, setOpenDelete } = useAllSpeakers();
@@ -68,7 +69,7 @@ const AllSpeakers = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.attendees,
+      accessorFn: (row: any) => <DoneIcon />,
       id: "Confirmed",
       cell: (info: any) => info.getValue(),
       header: () => <span>Confirmed?</span>,

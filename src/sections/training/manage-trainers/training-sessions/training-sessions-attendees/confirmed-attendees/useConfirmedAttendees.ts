@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { ONGOING_EVENT_TRAINING_SESSIONS_DATA } from '@root/dropdown-data/ongoingEventTrainingSessionsData'
+import { All_ATTENDEES_DATA } from '@root/dropdown-data/allAttendeesTableData';
 export const useConfirmedAttendees = () => {
   const [openDelete, setOpenDelete] = useState(false);
-  const [data, setData] = useState(ONGOING_EVENT_TRAINING_SESSIONS_DATA)
+  const [data, setData] = useState(All_ATTENDEES_DATA)
   return {
     data,
     openDelete,
