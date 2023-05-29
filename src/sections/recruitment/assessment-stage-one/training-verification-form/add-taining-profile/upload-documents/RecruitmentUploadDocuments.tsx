@@ -4,11 +4,11 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import UploadDocumentsFormDialogbox from "./upload-documents-form-dialogbox/UploadDocumentsFormDialogbox";
-import useRecruitmentUploadDocuments from "./useRecruitmentUploadDocuments";
 import IsFetching from "@root/components/loaders/IsFetching";
+import useRecruitmentUploadDocuments from "./useRecruitmentUploadDocuments";
 
+const RecruitmentUploadDocuments = (props: any) => {
 
-const RecruitmentUploadDocuments = () => {
   const {
     data,
     openFormDialog,
@@ -16,11 +16,19 @@ const RecruitmentUploadDocuments = () => {
     deleteList,
     isFetching,
     isLoading,
-    columnsRecruitmentUploadFunction
+    columnsRecruitmentUploadFunction,
+    closeDeleteProfile,
+    profileId,
+    deleteTrainingProfile,
   } = useRecruitmentUploadDocuments();
 
   return (
     <>
+      <DeleteModel
+        open={profileId}
+        onDeleteClick={deleteTrainingProfile}
+        handleClose={closeDeleteProfile}
+      />
       {isLoading ? (
         <IsFetching isFetching={isLoading} />
       ) : (

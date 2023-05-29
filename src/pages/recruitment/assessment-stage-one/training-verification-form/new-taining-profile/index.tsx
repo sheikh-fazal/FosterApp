@@ -46,11 +46,9 @@ export default function AddTraingVerification() {
   const updateTabs = async (data: any) => {
     try {
       let res: any = null;
-
       if (formState === "add") res = await postData(data).unwrap();
-
-      else res = await updateData({trainingProfileId:profileId, data}).unwrap();
-        
+      else
+        res = await updateData({ trainingProfileId: profileId, data }).unwrap();
 
       if (res?.error) return;
 
@@ -58,7 +56,6 @@ export default function AddTraingVerification() {
 
       setFormState("update");
       setProfileId(res.data.id);
-
       enqueueSnackbar(res?.message ?? `Successfully!`, {
         variant: "success",
       });
@@ -77,7 +74,7 @@ export default function AddTraingVerification() {
           formState={formState}
           onSubmitHandler={updateTabs}
         />
-        <RecruitmentUploadDocuments  />
+        <RecruitmentUploadDocuments />
       </HorizaontalTabs>
     </Page>
   );

@@ -5,9 +5,7 @@ import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/
 import dayjs from "dayjs";
 import { useState } from "react";
 
-
-
-export const columnsRecruitmentUpload= (cancelDelete:any, setCancelDelete:any, handleDelete:any) => [
+export const columnsRecruitmentUpload = (openDeleteModel: any) => [
   {
     id: "select",
     header: ({ table, row }: any) => {
@@ -55,7 +53,7 @@ export const columnsRecruitmentUpload= (cancelDelete:any, setCancelDelete:any, h
   {
     accessorFn: (row: any) => row.date,
     id: "date",
-    cell: (info: any) => dayjs(info.getValue()).format('MM/DD/YYYY'),
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: () => <span>Document Date</span>,
     isSortable: true,
   },
@@ -83,15 +81,11 @@ export const columnsRecruitmentUpload= (cancelDelete:any, setCancelDelete:any, h
           onClicked={() => console.log(info.getValue())}
         />
         <TableAction
-              type="delete"
-              onClicked={() => setCancelDelete(true)}
-              size="small"
-            />
-          <DeleteModel
-            open={cancelDelete}
-            onDeleteClick={handleDelete}
-            handleClose={() => setCancelDelete(!cancelDelete)}
-          />
+          type="delete"
+          onClicked={() => openDeleteModel(info.getValue())}
+          size="small"
+        />
+
         <ActionModal content={info} readOnly={true} btnType="view" />
       </Box>
     ),

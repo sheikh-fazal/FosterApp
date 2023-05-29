@@ -46,7 +46,6 @@ const useEditTraingingProfile = ({
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
-  
     const updatedData = {
       trainingProfileId,
       data,
@@ -60,7 +59,9 @@ const useEditTraingingProfile = ({
         variant: "success",
       });
 
-      router.push('/recruitment/assessment-stage-one/training-verification-form');
+      router.push(
+        "/recruitment/assessment-stage-one/training-verification-form"
+      );
     } catch (error) {
       enqueueSnackbar("Something Went Wrong!", { variant: "error" });
     }
