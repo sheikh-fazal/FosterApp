@@ -3,16 +3,19 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
-import ActionModal from "./ActionModal";
-import { useGetInitialInquiryDocumentsDataQuery } from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
+import ActionModal from "./UploadDocumentModal";
 
 // ----------------------------------------------------------------------
-export const DocumentTable = (props: any) => {
-  const { readOnly } = props;
+export const UploadDocumentTable = (props: any) => {
+  const {
+    readOnly,
+    tableData,
+    isLoading,
+    isFetching,
+    isError,
+    isSuccess,
+  }: any = props;
 
-  const { data, isLoading, isFetching, isError, isSuccess }: any =
-    useGetInitialInquiryDocumentsDataQuery({});
-  const tableData = data?.data?.documents;
   // ----------------------------------------------------------------------
 
   const columns = [
@@ -85,7 +88,13 @@ export const DocumentTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <ActionModal content={info} readOnly={readOnly} />
+          {/* Can move it outside of the table if need arises */}
+          <ActionModal
+            content={info}
+            readOnly={readOnly}
+            btnType="view"
+            closeModal={() => {}}
+          />
           <TableAction
             type="download"
             onClicked={() => alert("Download")}
@@ -101,7 +110,7 @@ export const DocumentTable = (props: any) => {
   return (
     <Grid container>
       <CustomTable
-        data={tableData ?? [{}]}
+        data={tableData}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

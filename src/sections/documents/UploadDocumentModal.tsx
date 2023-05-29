@@ -27,10 +27,10 @@ const style = {
   p: 2,
 };
 
-export default function ActionModal(props: any) {
+export default function UploadDocumentModal(props: any) {
   const theme: any = useTheme();
-  const { content, readOnly } = props;
-  const selectedRow = content.row.original;
+  const { content, readOnly, btnType, openModal, closeModal, formData } = props;
+  const selectedRow = content?.row?.original;
   console.log(content);
 
   const onSubmit = (data: any) => {
@@ -41,18 +41,23 @@ export default function ActionModal(props: any) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
-    console.log("View", content.row.original);
+    console.log("View", content?.row?.original);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    !readOnly && closeModal(false);
+  };
   console.log(theme.palette.orange);
 
   return (
     <div>
-      <TableAction type="view" onClicked={handleOpen} size="small" />
+      {btnType && (
+        <TableAction type={btnType} onClicked={handleOpen} size="small" />
+      )}
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
+        open={openModal || open}
         onClose={handleClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
@@ -62,7 +67,7 @@ export default function ActionModal(props: any) {
           },
         }}
       >
-        <Fade in={open}>
+        <Fade in={openModal || open}>
           <Box sx={style}>
             <Typography
               id="transition-modal-title"
@@ -70,9 +75,13 @@ export default function ActionModal(props: any) {
               component="p"
               mb={3}
             >
-              Person Uploaded :{selectedRow.personUploaded}
+              Person Uploaded :{selectedRow?.personUploaded}
             </Typography>
-            <DocumentModalForm disableForm={readOnly} selectedRow={selectedRow}>
+            <DocumentModalForm
+              disableForm={readOnly}
+              selectedRow={selectedRow}
+              formData={formData}
+            >
               <Button
                 size="small"
                 variant="contained"
@@ -94,7 +103,7 @@ export default function ActionModal(props: any) {
 }
 
 const DocumentModalForm = (props: any) => {
-  const { disableForm, children, selectedRow } = props;
+  const { disableForm, children, selectedRow, formData } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
@@ -121,13 +130,14 @@ const DocumentModalForm = (props: any) => {
   const { reset, handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    console.log(data, "submitted data");
+    // console.log(data, "submitted data");
+    formData(data);
     // reset();
   };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3}>
-        {formData.map((form: any) => {
+        {formDataArray.map((form: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form.id}>
               <form.component
@@ -173,7 +183,7 @@ const DocumentModalForm = (props: any) => {
   );
 };
 
-export const formData = [
+export const formDataArray = [
   {
     id: 1,
     componentProps: {
