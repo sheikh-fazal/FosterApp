@@ -1,16 +1,23 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { InterestFormSchema, InterestFormValues, fieldsInfo } from ".";
+import { InterestFormSchema, interestFormValues } from ".";
 import { useInterestForm } from "./useInterestForm";
 
 const InterestForm = (props: any) => {
-  const { defaultValuesInterestForm = InterestFormValues } = props;
-  const { submitInterestForm } = useInterestForm();
+  const {
+    submitInterestForm,
+    setInterestDefaultValue,
+    getAllInitialHomeVisitDataStatus,
+    postInitialHomeInterestDataStatus,
+    interestFormFieldsInfo,
+  } = useInterestForm();
   return (
     <FormGenerator
       FormSchema={InterestFormSchema}
-      defaultValues={defaultValuesInterestForm}
-      fieldsInfo={fieldsInfo}
+      defaultValues={setInterestDefaultValue}
+      fieldsInfo={interestFormFieldsInfo}
       submitClickHand={submitInterestForm}
+      isFormSubmitting={postInitialHomeInterestDataStatus.isLoading}
+      isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
     />
   );
 };

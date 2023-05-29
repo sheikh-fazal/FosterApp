@@ -46,7 +46,6 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
     patchPetQuestionnaireCApi: builder.mutation<null, void>({
       query: (data: any) => {
         const { id, formData } = data;
-
         return {
           url: `pet-questionnaire/questionnaire3/${id}`,
           method: "PATCH",
@@ -66,13 +65,19 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
+    getPetQuestionnaireById: builder.query({
+      query: (id) => `/pet-questionnaire/getquestionnaire/${id}`,
+      providesTags: [TAG],
+    }),
   }),
 });
 
 export const {
   useGetPetQuestionnaireTableApiQuery,
   usePostPetQuestionnaireAApiMutation,
+  usePatchPetQuestionnaireAApiMutation,
   usePatchPetQuestionnaireBApiMutation,
   usePatchPetQuestionnaireCApiMutation,
   usePatchPetQuestionnaireDApiMutation,
+  useGetPetQuestionnaireByIdQuery,
 } = petQuestionnaireApi;

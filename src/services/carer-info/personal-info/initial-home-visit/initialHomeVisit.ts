@@ -8,8 +8,12 @@ export const initialHomeVisitApi = baseAPI.injectEndpoints({
         method: "GET",
         params: dataParameter.params,
       }),
+      providesTags: ["INITIAL_HOME_VISIT"],
     }),
   }),
 });
 
-export const { useGetAllInitialHomeVisitDataQuery } = initialHomeVisitApi;
+export const {
+  useGetAllInitialHomeVisitDataQuery,
+  useLazyGetAllInitialHomeVisitDataQuery,
+} = initialHomeVisitApi;

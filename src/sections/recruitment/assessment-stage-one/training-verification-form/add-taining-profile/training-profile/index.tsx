@@ -4,6 +4,7 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { COURSEATTENDED } from "@root/dropdown-data/courseAttended";
 
 export const TrainingProfileData = [
   {
@@ -20,7 +21,7 @@ export const TrainingProfileData = [
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "certificateReceived",
+      name: "attendance",
       label: "Has the Foster Carer received Certificates of attendace",
     },
     component: RHFCheckbox,
@@ -34,9 +35,7 @@ export const TrainingProfileData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-        { value: "Select Value", label: "Select Vaue" },
-    ],
+    options: COURSEATTENDED,
     component: RHFSelect,
   },
   {
@@ -44,7 +43,7 @@ export const TrainingProfileData = [
     gridLength: 6,
     otherOptions: {
       label: "Expire Date",
-      name: "expiredDate",
+      name: "expirydDate",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -59,7 +58,9 @@ export const TrainingProfileData = [
       select: true,
     },
     options: [
-        { value: "Select Value", label: "Select Vaue" },
+      { value: "attended", label: "Attended" },
+      { value: "not-attended", label: "Not Attended" },
+      { value: "online", label: "Online" },
     ],
     component: RHFSelect,
   },
@@ -68,7 +69,7 @@ export const TrainingProfileData = [
     gridLength: 6,
     otherOptions: {
       label: "Attended Date",
-      name: "attendedDate",
+      name: "date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -78,7 +79,7 @@ export const TrainingProfileData = [
     gridLength: 12,
     otherOptions: {
       label: "Comment on Course Status",
-      name: "commentCourseStatus",
+      name: "comments",
       multiline: true,
       minRows: 2,
     },
@@ -89,7 +90,7 @@ export const TrainingProfileData = [
     gridLength: 12,
     otherOptions: {
       label: "Carers Identified training needs",
-      name: "carersIdentifiedTraining",
+      name: "trainingNeeds",
       multiline: true,
       minRows: 2,
     },
@@ -101,7 +102,7 @@ export const TrainingProfileData = [
     otherOptions: {
       label:
         "Other training which the Foster Carer will be independently completing",
-      name: "independentlyCompleting",
+      name: "otherTraining",
       multiline: true,
       minRows: 2,
     },
@@ -112,7 +113,7 @@ export const TrainingProfileData = [
     gridLength: 12,
     otherOptions: {
       label: "Additional Information",
-      name: "additionalInformation",
+      name: "addtionalInfo",
       multiline: true,
       minRows: 2,
     },

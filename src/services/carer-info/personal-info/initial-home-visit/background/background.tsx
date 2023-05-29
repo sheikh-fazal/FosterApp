@@ -6,11 +6,14 @@ export const initialHomeBackgroundApi = baseAPI.injectEndpoints({
       query: (params: any) => "carer-Info/personal-info/initial-home-visit/background",
     }),
     postInitialHomeBackgroundData: builder.mutation({
-      query: (formData: any) => ({
+      query: (putDataParameter: any) => ({
         url: "carer-Info/personal-info/initial-home-visit/background",
         method: "PUT",
-        body: formData,
+        body: putDataParameter.body,
+        params: putDataParameter.params,
       }),
+      invalidatesTags: ["INITIAL_HOME_VISIT"],
+
     }),
   }),
 });

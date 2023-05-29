@@ -6,9 +6,9 @@ import useTraingingProfile from "./useTraingingProfile";
 import Link from "next/link";
 
 const RecruitmentTrainingProfile = (props: any) => {
-  const { disabled, handleCloseForm, router } = props;
+  const { disabled, onSubmitHandler ,handleCloseForm, router, formState } = props;
 
-  const { methods, handleSubmit, onSubmit } = useTraingingProfile();
+  const { methods, handleSubmit, onSubmit } = useTraingingProfile(onSubmitHandler);
 
   return (
     <>
@@ -40,7 +40,7 @@ const RecruitmentTrainingProfile = (props: any) => {
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
-              Submit
+             {formState === 'add' ? "Submit"  :  "Update"}
             </Button>
             <Link href={"/recruitment"}> 
               <Button

@@ -1,15 +1,23 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { FormValues, FormSchema, fieldsInfo } from ".";
+import { FormSchema } from ".";
 import { useAssesmentForm } from "./useAssesmentForm";
 
 const AssesmentForm = () => {
-  const { submitAssesmentForm } = useAssesmentForm();
+  const {
+    submitAssesmentForm,
+    setAssesmentFormDefaultValue,
+    getAllInitialHomeVisitDataStatus,
+    postInitialHomeAssessmentDataStatus,
+    assesmentFormFieldsInfo,
+  } = useAssesmentForm();
   return (
     <FormGenerator
       FormSchema={FormSchema}
-      defaultValues={FormValues}
-      fieldsInfo={fieldsInfo}
+      defaultValues={setAssesmentFormDefaultValue}
+      fieldsInfo={assesmentFormFieldsInfo}
       submitClickHand={submitAssesmentForm}
+      isFormSubmitting={postInitialHomeAssessmentDataStatus.isLoading}
+      isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
     />
   );
 };

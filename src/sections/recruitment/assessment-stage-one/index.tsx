@@ -116,7 +116,7 @@ export const ASSESSMENTSTAGEONEDATA = [
     text: "Training Verification",
     informationText: "Digital Application Pack/ info Pack",
     viewForms:'View Form',
-    href:'#',
+    href:'/recruitment/assessment-stage-one/training-verification-form',
     status: "Passed",
   },
   {

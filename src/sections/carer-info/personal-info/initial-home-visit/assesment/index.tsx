@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const FormValues = {
+export const assesmentFormValues = {
   familyBackground: "",
   theFamilyHouse: "",
   pets: "",
@@ -11,6 +11,18 @@ export const FormValues = {
   managerRecommendation: "",
 };
 
+export const defaultValuesAssesmentForm = (data = assesmentFormValues) => {
+  return {
+    familyBackground: data.familyBackground,
+    theFamilyHouse: data.theFamilyHouse,
+    pets: data.pets,
+    finance: data.finance,
+    assesment: data.assesment,
+    outcome: data.outcome,
+    managerComments: data.managerComments,
+    managerRecommendation: data.managerRecommendation,
+  };
+};
 export const FormSchema = Yup.object().shape({
   familyBackground: Yup.string()
     .required("Family background is required")
@@ -46,13 +58,14 @@ export const FormSchema = Yup.object().shape({
     .max(50, "Maximum 50 characters"),
 });
 
-export const fieldsInfo = [
+export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
     name: "familyBackground",
     label: "",
     title: "Family background",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -60,6 +73,7 @@ export const fieldsInfo = [
     label: "",
     title: "The family Home (is the accomodation suitable for fostering?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -68,6 +82,7 @@ export const fieldsInfo = [
     title:
       "Pets (Do the Applicant/s have any dogs that are currently included on the Dangerous Dogs Act List? Do the Applicant/s keep any other animals at the home?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -76,6 +91,7 @@ export const fieldsInfo = [
     title:
       "Finance (Are there any outstanding debts? Are accounts kept up to date or are there any arrears?):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -83,6 +99,7 @@ export const fieldsInfo = [
     label: "",
     title: "Assesment (By the officer undertaking the initial visit):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -91,6 +108,7 @@ export const fieldsInfo = [
     title:
       "Outcome/Recommendation (State with reasons weather or not the agency should proceed to Stage 1 / Skills to Foster Training):",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -98,6 +116,7 @@ export const fieldsInfo = [
     label: "",
     title: "Manager Comment",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
   {
     type: "textarea",
@@ -105,5 +124,6 @@ export const fieldsInfo = [
     label: "",
     title: "Manager Recommendation",
     gridSize: { xs: 12 },
+    disabled: isFieldDisable,
   },
 ];

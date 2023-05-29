@@ -85,13 +85,15 @@ export const FormSchema = Yup.object().shape({
   spareBedrooms: Yup.string().required("Field is required"),
 });
 export const formData = [
-  //   {
-  //     id: 1,
-  //     name: "isJointApplicant",
-  //     label: "If Joint Applicant, tick the Checkbox",
-  //     gridLength: 12,
-  //     component: RHFCheckbox,
-  //   },
+  {
+    id: 1,
+    componentProps: {
+      name: "isJointApplicant",
+      label: "If Joint Applicant, tick the Checkbox",
+    },
+    gridLength: 12,
+    component: RHFCheckbox,
+  },
   {
     id: 2,
     componentProps: {

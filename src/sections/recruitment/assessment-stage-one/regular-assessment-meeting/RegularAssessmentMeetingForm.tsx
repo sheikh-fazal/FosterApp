@@ -4,7 +4,14 @@ import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import {
+  useLazyGetSingleRegularAssessmentDetailQuery,
+  usePatchRegularAssessmentDetailMutation,
+  usePostRegularAssessmentDetailMutation,
+} from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
 import dayjs from "dayjs";
+import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 
@@ -15,7 +22,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "meetingDate",
-
+      label: "Meeting Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -26,7 +33,7 @@ export const formFields = [
     gridLength: 6,
     otherOptions: {
       name: "meetingTime",
-
+      label: "Time",
       fullWidth: true,
     },
     component: RHFTimePicker,
@@ -61,7 +68,7 @@ export const formFields = [
     gridLength: 12,
     otherOptions: {
       name: "meetingOutcomes",
-      label: "Meeting outcomes:",
+      label: "Meeting Outcomes",
       multiline: true,
       minRows: 2,
       fullWidth: true,
@@ -73,7 +80,7 @@ export const formFields = [
     gridLength: 12,
     otherOptions: {
       name: "meetingAction",
-      label: "Meeting Action:",
+      label: "Meeting Action",
       multiline: true,
       minRows: 2,
       fullWidth: true,
@@ -85,8 +92,8 @@ export const formFields = [
     title: "Next Assessment Date",
     gridLength: 6,
     otherOptions: {
-      name: "meetingDate",
-
+      name: "nextAssessmentDate",
+      label: "Next Assessment Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -96,62 +103,123 @@ export const formFields = [
     title: "Next Assessment Time",
     gridLength: 6,
     otherOptions: {
-      name: "meetingTime",
+      name: "nextAssessmentTime",
+      label: "Next Assessment Time",
+      fullWidth: true,
+    },
 
-      fullWidth: true,
-    },
     component: RHFTimePicker,
-  },
-  {
-    id: 9,
-    gridLength: 12,
-    componentProps: {
-      name: "image",
-      fullWidth: true,
-      size: "small",
-    },
-    component: RHFUploadFile,
   },
 ];
 
 const RegularAssessmentMeetingForm = (props: any) => {
-  const { open, setOpen } = props;
+  const { open, setOpen, id, fieldsDisable, setFieldsDisable, actionType, setId } = props;
   const theme: any = useTheme();
-  const todayDate = dayjs().format("MM/DD/YYYY");
-  const handleClose = () => setOpen(false);
+  const [loading, setLoading] = useState(true);
+  // const { data } = useGetSingleRegularAssessmentDetailQuery({ id: id });
+  const [singleRegulaAssessmentrDetail] = useLazyGetSingleRegularAssessmentDetailQuery();
+  const [postRegularMutation] = usePostRegularAssessmentDetailMutation({});
+  const [patchRegularAssessmentDetail] = usePatchRegularAssessmentDetailMutation({});
+
+  const handleClose = () => {
+    setOpen(false);
+    setFieldsDisable(false);
+    setId("");
+  };
+
+  // console.log("singledata", data?.data);
+  console.log("actionType", actionType);
 
   const defaultValues = {
-    meetingDate: new Date(todayDate),
-    meetingTime: "",
+    meetingDate: null,
+    meetingTime: null,
+
     meetingAgenda: "Nil",
     meetingAttendees: "Nil",
     meetingOutcomes: "Nil",
     meetingAction: "Nil",
-    nextAssessmentDate: new Date(todayDate),
-    nextAssessmentTime: "",
+    nextAssessmentDate: null,
+    nextAssessmentTime: null,
+    uploadMeetingRecording: null,
   };
+
   const FormSchema = Yup.object().shape({
-    meetingDate: Yup.date().required("required"),
-    meetingTime: Yup.string().required("Time is required"),
-    // .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format (HH:mm)"),
-
-    meetingAgenda: Yup.string().required("required"),
-    meetingAttendees: Yup.string().required("required"),
-    meetingOutcomes: Yup.string().required("required"),
-    meetingAction: Yup.string().required("required"),
-    nextAssessmentDate: Yup.date().required("required"),
-    nextAssessmentTime: Yup.string().required("Time is required"),
+    meetingDate: Yup.string().required("Required Field"),
+    meetingTime: Yup.string().required("Required Field"),
+    meetingAgenda: Yup.string().required("Required Field"),
+    meetingAttendees: Yup.string().required("Required Field"),
+    meetingOutcomes: Yup.string().required("Required Field"),
+    meetingAction: Yup.string().required("Required Field"),
+    nextAssessmentDate: Yup.string().required("Required Field"),
+    nextAssessmentTime: Yup.string().required("Required Field"),
+    uploadMeetingRecording: Yup.mixed().required("Please upload a valid document"),
   });
+
   const methods: any = useForm({
-    mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { reset, handleSubmit } = methods;
-  const onSubmitHandler = (data: any) => {
-    console.log("🚀 ~ file: RegularAssessmentMeetingForm.tsx:70 ~ onSubmitHandler ~ data:", data);
+    defaultValues: async () => {
+      const { data, isError } = await singleRegulaAssessmentrDetail({ id }, true);
+      setLoading(false);
+      if (isError) {
+        enqueueSnackbar("Error occured", { variant: "error" });
+        return defaultValues;
+      }
+      if (actionType === "add") {
+        return defaultValues;
+      }
+      const responseData = {
+        ...data.data,
+        meetingDate: new Date(data?.data?.meetingDate),
+        nextAssessmentDate: new Date(data?.data?.nextAssessmentDate),
+        meetingTime: new Date(data?.data?.meetingTime),
+        nextAssessmentTime: new Date(data?.data?.nextAssessmentTime),
+        uploadMeetingRecording: data ? { name: data?.data?.uploadMeetingRecording } : null,
+      };
+      console.log(responseData);
+      // for (const key in responseData) {
+      //   const value = responseData[key];
+      //   if (formatters[key]) responseData[key] = formatters[key](value);
+      // }
 
-    reset();
+      return responseData;
+    },
+  });
+
+  const { reset, handleSubmit } = methods;
+
+  const onSubmitHandler = (data: any) => {
+    const regularAssessmentForm = new FormData();
+
+    regularAssessmentForm.append("meetingDate", dayjs(data?.meetingDate).format("MM/DD/YYYY"));
+    regularAssessmentForm.append("meetingTime", new Date(data?.meetingTime).toISOString());
+    regularAssessmentForm.append("meetingAgenda", data?.meetingAgenda);
+    regularAssessmentForm.append("meetingAttendees", data?.meetingAttendees);
+    regularAssessmentForm.append("meetingOutcomes", data?.meetingOutcomes);
+    regularAssessmentForm.append("meetingAction", data?.meetingAction);
+    regularAssessmentForm.append(
+      "nextAssessmentDate",
+      dayjs(data?.nextAssessmentDate).format("MM/DD/YYYY")
+    );
+
+    regularAssessmentForm.append(
+      "nextAssessmentTime",
+      new Date(data?.nextAssessmentTime).toISOString()
+    );
+    regularAssessmentForm.append("uploadMeetingRecording", data?.uploadMeetingRecording);
+
+    // for (var pair of regularAssessmentForm.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
+
+    // POST request
+    if (actionType === "add") {
+      postRegularMutation(regularAssessmentForm);
+    }
+    // PATCH request
+    else {
+      regularAssessmentForm.append("id", id);
+      patchRegularAssessmentDetail({ regularAssessmentForm, id });
+    }
     setOpen(false);
   };
   return (
@@ -162,53 +230,79 @@ const RegularAssessmentMeetingForm = (props: any) => {
       aria-describedby="modal-modal-description"
     >
       <Box sx={Styles.root}>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
-          <Grid container rowSpacing={2} columnSpacing={3} alignItems="center">
-            {formFields?.map((form: any) => {
-              return (
-                <Grid item xs={12} md={form?.gridLength} key={form?.id}>
-                  <>
-                    {" "}
-                    {form.component ? (
-                      <Grid>
-                        <Typography color={theme.palette.primary.main} variant="body2">
-                          {form.heading}
+        {loading && <h4>Loading...</h4>}
+        {!loading && (
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
+            <h4 style={{ marginBottom: "20px" }}>Person Uploaded: XYZ</h4>
+            <Grid container rowSpacing={2} columnSpacing={3} alignItems="center">
+              {formFields?.map((form: any) => {
+                return (
+                  <Grid item xs={12} md={form?.gridLength} key={form?.id}>
+                    <>
+                      {" "}
+                      {form.component ? (
+                        <Grid>
+                          <Typography color={theme.palette.primary.main} variant="body2">
+                            {form.heading}
+                          </Typography>
+                          <form.component
+                            disabled={fieldsDisable}
+                            size="small"
+                            {...form.otherOptions}
+                          >
+                            {form.otherOptions
+                              ? form.options?.map((option: any) => (
+                                  <option key={option.value} value={option.value}>
+                                    {" "}
+                                    {option.label}{" "}
+                                  </option>
+                                ))
+                              : null}
+                          </form.component>
+                        </Grid>
+                      ) : (
+                        <Typography variant={form.variant} color={theme.palette.primary.main}>
+                          {" "}
+                          {form.heading}{" "}
                         </Typography>
-                        <form.component
-                          // disabled={disabled}
-                          size="small"
-                          {...form.otherOptions}
-                        >
-                          {form.otherOptions
-                            ? form.options?.map((option: any) => (
-                                <option key={option.value} value={option.value}>
-                                  {" "}
-                                  {option.label}{" "}
-                                </option>
-                              ))
-                            : null}
-                        </form.component>
-                      </Grid>
-                    ) : (
-                      <Typography variant={form.variant} color={theme.palette.primary.main}>
-                        {" "}
-                        {form.heading}{" "}
-                      </Typography>
-                    )}{" "}
-                  </>
-                </Grid>
-              );
-            })}
-          </Grid>
-          <Box sx={Styles.buttonWrapper}>
-            <Button onClick={onSubmitHandler} sx={Styles.buttonSuccess(theme)}>
-              Upload
-            </Button>
-            <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
-              Clear
-            </Button>
-          </Box>
-        </FormProvider>
+                      )}{" "}
+                    </>
+                  </Grid>
+                );
+              })}
+              <Grid item xs={12}>
+                <RHFUploadFile
+                  name="uploadMeetingRecording"
+                  {...methods}
+                  disabled={fieldsDisable}
+                />
+              </Grid>
+            </Grid>
+            {!(actionType === "view") && (
+              <Box sx={Styles.buttonWrapper}>
+                <Button type={"submit"} sx={Styles.buttonSuccess(theme)}>
+                  Upload
+                </Button>
+                <Button
+                  onClick={() => {
+                    // handleClose();
+                    reset();
+                  }}
+                  sx={Styles.buttonError(theme)}
+                >
+                  Clear
+                </Button>
+              </Box>
+            )}
+            {actionType === "view" && (
+              <Box sx={Styles.buttonWrapper}>
+                <Button onClick={handleClose} sx={Styles.buttonError(theme)}>
+                  Back
+                </Button>
+              </Box>
+            )}
+          </FormProvider>
+        )}
       </Box>
     </Modal>
   );
