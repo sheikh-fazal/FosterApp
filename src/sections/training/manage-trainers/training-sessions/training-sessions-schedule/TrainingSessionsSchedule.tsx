@@ -1,9 +1,10 @@
-import VericalTabs from "@root/components/VericalTabs";
 import React from "react";
 import { useTrainingSessionsSchedule } from "./useTrainingSessionsSchedule";
-import { ScheduleDataTable } from "./schedule-data-table";
 import VerticalSmallTabs from "@root/components/VerticalSmallTabs";
-import { Box } from "@mui/material";
+import FullSchedule from "./full-schedule/FullSchedule";
+import ThursdaySchedule from "./thursday-schedule/ThursdaySchedule";
+import FridaySchedule from "./friday-schedule/FridaySchedule";
+import FullCalenderView from "./full-calender-view/FullCalenderView";
 
 const TrainingSessionsSchedule = () => {
   const { scheduleDataMap } = useTrainingSessionsSchedule();
@@ -12,7 +13,7 @@ const TrainingSessionsSchedule = () => {
     "Full Schedule",
     "Thursday schedule (11/18)",
     "Friday schedule (11/19)",
-    "Full",
+    "Full Calender view",
   ];
   return (
     <div>
@@ -20,10 +21,10 @@ const TrainingSessionsSchedule = () => {
         <ScheduleDataTable />
       </VericalTabs> */}
       <VerticalSmallTabs tabs={tabs}>
-        <ScheduleDataTable />
-        <ScheduleDataTable />
-        <ScheduleDataTable />
-        <ScheduleDataTable />
+        <FullSchedule />
+        <ThursdaySchedule />
+        <FridaySchedule />
+        <FullCalenderView />
       </VerticalSmallTabs>
     </div>
   );

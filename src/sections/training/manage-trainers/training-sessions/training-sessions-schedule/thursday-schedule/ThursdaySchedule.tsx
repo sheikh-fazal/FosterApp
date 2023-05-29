@@ -1,12 +1,12 @@
 import CustomTable from "@root/components/Table/CustomTable";
 import React from "react";
 import { useTheme } from "@mui/material";
-import { useScheduleDataTable } from "./useScheduleDataTable";
+import { useThursdaySchedule } from "./useThursdaySchedule";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
-const ScheduleDataTable = () => {
-  const { data, openDelete, setOpenDelete } = useScheduleDataTable();
+const ThursdaySchedule = () => {
+  const { data, openDelete, setOpenDelete } = useThursdaySchedule();
   const theme = useTheme();
   const columns = [
     {
@@ -34,100 +34,54 @@ const ScheduleDataTable = () => {
     },
     {
       accessorFn: (row: any) => row.date,
-      id: "Date",
+      id: "Activity",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Date</span>,
+      header: () => <span>Activity</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.trainingTopic,
-      id: "Training Topic",
+      id: "Type",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Training Topic</span>,
+      header: () => <span>Type</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.manager,
-      id: "Manager",
+      id: "Start",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Manager</span>,
+      header: () => <span>Start</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.schedule,
-      id: "Schedule",
+      id: "End",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Schedule</span>,
+      header: () => <span>End</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.presenter,
-      id: "Presenter",
+      id: "Location",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Presenter</span>,
+      header: () => <span>Location</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.attendees,
-      id: "Attendees",
+      id: "Speakers",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Attendees</span>,
+      header: () => <span>Speaker(s)</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.budget,
-      id: "Budget",
+      id: "Notes",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Budget</span>,
+      header: () => <span>Notes</span>,
       isSortable: true,
     },
-    {
-      accessorFn: (row: any) => row.approver,
-      id: "Approver(role)",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Approver(role)</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.approved,
-      id: "Approved Date",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Approved Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.trainingType,
-      id: "Training Type",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Training Type</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.trainingEvaluationForm,
-      id: "Training Evaluation Form",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Training Evaluation Form</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.courseEvaluationForm,
-      id: "Course Evaluation Form",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Course Evaluation Form</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.actions,
-      id: "actions",
-      cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => alert("Reload")} />
-          <TableAction type="delete" onClicked={() => setOpenDelete(true)} />
-        </Box>
-      ),
-      header: () => <span>actions</span>,
-      isSortable: false,
-    },
+  
   ];
   return (
     <div style={{overflow: "scroll"}}>
@@ -157,4 +111,4 @@ const ScheduleDataTable = () => {
   );
 };
 
-export default ScheduleDataTable;
+export default ThursdaySchedule;

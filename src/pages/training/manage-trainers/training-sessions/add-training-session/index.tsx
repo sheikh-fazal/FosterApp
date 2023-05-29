@@ -17,7 +17,7 @@ TrainingSessions.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "training",
-          href: "/training",
+          href: "/training/manage-trainers/training-sessions",
         },
         {
           name: "Manage Trainers",
