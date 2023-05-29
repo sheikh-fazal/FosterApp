@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import { Box, Button, Grid, IconButton, Typography } from "@mui/material";
@@ -20,6 +20,8 @@ const drawerWidth = 290;
 
 const Rightnavbar = (props: any) => {
   const theme: any = useTheme();
+
+  const [date, setDate] = useState(new Date());
 
   const Media = useMediaQuery(theme.breakpoints.down("lg"));
   const SvgRapper = styled("svg")`
@@ -190,6 +192,8 @@ const Rightnavbar = (props: any) => {
             <Grid container>
               <Grid xs={12} item>
                 <NewCalender
+                onChange={setDate}
+                 value={date}
                   iconsStyles={{
                     fontSize: "25px",
                     color: theme.palette.primary.main,
@@ -197,7 +201,7 @@ const Rightnavbar = (props: any) => {
                 />
 
                 <Box>
-                  <StickyNotes />
+                  <StickyNotes date={date}/>
                 </Box>
                 <Box
                   sx={{

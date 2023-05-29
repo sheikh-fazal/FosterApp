@@ -1,150 +1,55 @@
-import {
-  Box,
-  IconButton,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import { HiOutlinePlusSm } from "react-icons/hi";
-import { RiPencilFill } from "react-icons/ri";
-import { AiOutlineUnorderedList } from "react-icons/ai";
-import { BsCheck2, BsX } from "react-icons/bs";
+import { Box } from "@mui/material";
 import * as Yup from "yup";
-import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { enqueueSnackbar } from "notistack";
-import {
-  useEditStickyNotesMutation,
-  useGetStickyNotesQuery,
-  useStickyNotesMutation,
-} from "@root/services/stickyNotes";
-
+import StickyNotesList from "./StickyNotesList";
+import AddStickyNotes from "./AddStickyNotes";
+import EditStickyNotes from "./EditStickyNotes";
 export const FormSchema = Yup.object().shape({
   content: Yup.string(),
 });
-
-function StickyNotes() {
-  const theme: any = useTheme();
+function StickyNotes({ date }: any) {
+  const [addNotes, setAddNotes] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [handleUpdate, setHandleUpdate] = useState(false);
-  const [showlist, setShowlist] = useState(false);
-  const { data, isLoading: dataLoding }:any = useGetStickyNotesQuery<any>();
-  const [viewData, setViewData] = useState<any>(
-    !dataLoding && data[0]?.content
-  );
-  const [id,setId] = useState<any>(!dataLoding && data[0]?.id);
-
-  const [addNotes, { isLoading }] = useStickyNotesMutation();
-  const [editData] = useEditStickyNotesMutation();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = async (data: any) => {
-    try {
-      const res: any = await editData({payload:{...data},id}).unwrap();
-      if (res) {
-        setEdit(false);
-      }
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    }
-  };
-
+  const [item, setItem] = useState("");
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Box sx={edit ? style.editContainer : style.mainContainer}>
-        {edit ? (
-          <Box sx={style.flexsbox}>
-            <Box sx={style.redIcon}>
-              <BsX
-                color="#ffff"
-                fontSize="1.3rem"
-                onClick={() => setEdit(false)}
+    <>
+      {addNotes ? (
+        <Box sx={addNotes ? style.editContainer : style.mainContainer}>
+          <AddStickyNotes
+            setAddNotes={setAddNotes}
+            date={date}
+            setEdit={setEdit}
+          />
+        </Box>
+      ) : (
+        <>
+          {!edit && (
+            <Box sx={addNotes ? style.editContainer : style.mainContainer}>
+              <StickyNotesList
+                setAddNotes={setAddNotes}
+                setEdit={setEdit}
+                date={date}
+                setItem={setItem}
               />
             </Box>
-            <Box sx={style.greenIcon}>
-              <IconButton type="submit">
-                <BsCheck2 color="#ffff" fontSize="1.3rem" />
-              </IconButton>
-            </Box>
-          </Box>
-        ) : (
-          <Box sx={style.flexsbox}>
-            <Box sx={style.iconStyle}>
-              <AiOutlineUnorderedList
-                color="#ffff"
-                fontSize="1.1rem"
-                onClick={() => setShowlist(!showlist)}
-              />
-            </Box>
-            <Box sx={style.iconStyle}>
-              <HiOutlinePlusSm
-                color="#ffff"
-                fontSize="1.5rem"
-                onClick={() => setEdit(!edit)}
-              />
-            </Box>
-          </Box>
-        )}
-
-        {!showlist ? (
-          <>
-            <TextField
-              sx={style.textbox}
-              id="standard-multiline-static"
-              multiline
-              {...register("content")}
-              rows={4}
-              disabled={!edit}
-              defaultValue={viewData}
-              variant="standard"
+          )}
+          {edit && (
+            <EditStickyNotes
+              setAddNotes={setAddNotes}
+              setEdit={setEdit}
+              date={date}
+              item={item}
             />
-            <Box sx={style.flexsbox}>
-              <Typography sx={style.datecolor}>july 21,2021</Typography>
-              {!edit && (
-                <Box sx={style.iconStyle}>
-                  <RiPencilFill
-                    color="#ffff"
-                    fontSize="1.1rem"
-                    onClick={() => {setEdit(true),setHandleUpdate(true)}}
-                  />
-                </Box>
-              )}
-            </Box>
-          </>
-        ) : (
-          <Box sx={{ height: 150, overflow: "auto" }}>
-            {!dataLoding &&
-              data?.map((item: any) => (
-                <List key={item?.id}>
-                  <ListItem
-                  
-                    sx={style.listStyle}
-                    onClick={() => {
-                      setShowlist(false), setViewData(item?.content),setId(item?.id),setHandleUpdate(true)
-                    }}
-                  >
-                    {`"${item?.content.split("").slice(0, 20).join("")}...."`}
-                  </ListItem>
-                </List>
-              ))}
-          </Box>
-        )}
-      </Box>
-    </form>
+          )}
+        </>
+      )}
+    </>
   );
 }
 
 export default StickyNotes;
 
-const commonClass={
+const commonClass = {
   borderRadius: "50%",
   display: "flex",
   alignItems: "center",
@@ -152,7 +57,7 @@ const commonClass={
   width: 25,
   height: 25,
   cursor: "pointer",
-}
+};
 
 const style = {
   mainContainer: {
@@ -167,7 +72,7 @@ const style = {
     mt: 2,
     borderRadius: "8px",
   },
-  
+
   flexsbox: {
     display: "flex",
     alignItems: "center",
@@ -175,15 +80,15 @@ const style = {
   },
   iconStyle: (theme: any) => ({
     backgroundColor: theme.palette.primary.main,
-    ...commonClass,   
+    ...commonClass,
   }),
   redIcon: {
     backgroundColor: "#F24822",
-    ...commonClass
+    ...commonClass,
   },
   greenIcon: {
     backgroundColor: "#14AE5C",
-    ...commonClass
+    ...commonClass,
   },
   textbox: (theme: any) => ({
     mt: 0.5,
