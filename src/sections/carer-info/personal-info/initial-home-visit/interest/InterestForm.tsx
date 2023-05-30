@@ -9,6 +9,7 @@ const InterestForm = (props: any) => {
     getAllInitialHomeVisitDataStatus,
     postInitialHomeInterestDataStatus,
     interestFormFieldsInfo,
+    user,
   } = useInterestForm();
   return (
     <FormGenerator
@@ -18,6 +19,7 @@ const InterestForm = (props: any) => {
       submitClickHand={submitInterestForm}
       isFormSubmitting={postInitialHomeInterestDataStatus.isLoading}
       isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
+      defaultRole={user?.defaultRole}
     />
   );
 };

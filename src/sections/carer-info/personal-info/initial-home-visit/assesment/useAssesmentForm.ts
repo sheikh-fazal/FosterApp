@@ -56,6 +56,9 @@ export const useAssesmentForm = () => {
       const res: any = await postInitialHomeAssessmentDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -68,5 +71,6 @@ export const useAssesmentForm = () => {
     getAllInitialHomeVisitDataStatus,
     postInitialHomeAssessmentDataStatus,
     assesmentFormFieldsInfo,
+    user,
   };
 };

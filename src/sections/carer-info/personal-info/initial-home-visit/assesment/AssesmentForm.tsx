@@ -9,6 +9,7 @@ const AssesmentForm = () => {
     getAllInitialHomeVisitDataStatus,
     postInitialHomeAssessmentDataStatus,
     assesmentFormFieldsInfo,
+    user,
   } = useAssesmentForm();
   return (
     <FormGenerator
@@ -18,6 +19,7 @@ const AssesmentForm = () => {
       submitClickHand={submitAssesmentForm}
       isFormSubmitting={postInitialHomeAssessmentDataStatus.isLoading}
       isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
+      defaultRole={user?.defaultRole}
     />
   );
 };
