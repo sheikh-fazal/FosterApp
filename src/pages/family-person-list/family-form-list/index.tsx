@@ -6,6 +6,7 @@ import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import FamilyOrgInvolvedForm from "@root/sections/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 
 // ----------------------------------------------------------------------
@@ -37,16 +38,22 @@ FamilyPersonList.getLayout = function getLayout(page: any) {
 };
 
 export default function FamilyPersonList() {
+
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <HorizaontalTabs
-          tabsDataArray={["Family Org Involved", "Uploaded documents"]}
-        >
+        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
 
           <FamilyOrgInvolvedForm />
-          {/* <RecruitmentUploadDocuments /> */}
-
+          <UploadDocuments
+            readOnly={false}
+            // tableData={tableData}
+            // isLoading={isDocumentLoading}
+            // isFetching={isFetching}
+            // isError={hasDocumentError}
+            // isSuccess={isSuccess}
+            // modalData={(data: any) => console.log("All data here", data)}
+          />
 
         </HorizaontalTabs>
 
