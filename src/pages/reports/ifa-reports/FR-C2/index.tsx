@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRC2Section from '../../../../sections/reports/FR-C2/FRC2';
+import FRC2Section from '../../../../sections/reports/ifa-reports/FR-C2/FRC2';
 
 const PAGE_TITLE = "Reports";
 

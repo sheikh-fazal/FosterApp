@@ -1,0 +1,1 @@
+export {default as BirthParent} from './BirthParent'

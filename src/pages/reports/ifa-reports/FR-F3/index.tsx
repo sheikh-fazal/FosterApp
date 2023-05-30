@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import { BirthParent } from "@root/sections/reports/ifa-reports/FR-F3";
 
 const PAGE_TITLE = "Reports";
 
@@ -36,6 +37,7 @@ FRF3.getLayout = function getLayout(page: any) {
 export default function FRF3() {
   return (
     <Page title={PAGE_TITLE}>
+      <BirthParent />
     </Page>
   );
 }

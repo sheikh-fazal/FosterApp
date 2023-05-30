@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import { FosteringServiceManagerReport } from "@root/sections/reports/ifa-reports/FR-H";
 
 const PAGE_TITLE = "Reports";
 
@@ -36,6 +37,7 @@ FRH.getLayout = function getLayout(page: any) {
 export default function FRH() {
   return (
     <Page title={PAGE_TITLE}>
+      <FosteringServiceManagerReport />
     </Page>
   );
 }
