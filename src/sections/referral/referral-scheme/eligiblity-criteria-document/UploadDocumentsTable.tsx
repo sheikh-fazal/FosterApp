@@ -1,12 +1,12 @@
 
-import {Card } from '@mui/material'
+import { Card } from '@mui/material'
 import CustomTable from '@root/components/Table/CustomTable';
 import TableHeader from '@root/components/TableHeader';
 import UploadDocumentModal from "../../../../components/modal/UploadDocumentModal/UploadDocumentModal"
 import { useUploadDocumentsTable } from './useUploadDocumentsTable';
 
 const UploadDocumentsTable = (props: any) => {
-  const { TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, IsAddDocumentModal, setIsAddDocumentModal, viewOpenModal, setViewOpenModal, router, theme,columns } = useUploadDocumentsTable(props)
+  const { TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, IsAddDocumentModal, setIsAddDocumentModal, viewOpenModal, setViewOpenModal, router, theme, columns } = useUploadDocumentsTable(props)
 
 
   const onSubmit = () => {
@@ -50,8 +50,8 @@ const UploadDocumentsTable = (props: any) => {
         />
       </>
 
-      
-      <UploadDocumentModal open={IsAddDocumentModal} handleClose={() => setIsAddDocumentModal(false)} onSubmit={onSubmit} />
+
+      <UploadDocumentModal open={IsAddDocumentModal} handleClose={() => setIsAddDocumentModal(false)} onSubmit={onSubmit} isHideSubmitButton />
       <UploadDocumentModal open={viewOpenModal} handleClose={() => setViewOpenModal(false)} disabled />
     </Card>
   )
