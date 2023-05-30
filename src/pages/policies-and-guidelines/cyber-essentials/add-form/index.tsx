@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import CyberEssentials from "@root/sections/policies-and-guidelines/cyber-essentials/CyberEssentials";
+import CyberEssentialsTabs from "@root/sections/policies-and-guidelines/cyber-essentials/cyber-accordan-data/cyber-essentials-tabs/CyberEssentialsTabs";
 
 // ============================================================================================
 
@@ -16,7 +16,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/policies-and-guidelines",
+          href: "/policies-and-guidelines/cyber-essentials",
         },
         {
           name: "General Data Protection",
@@ -32,7 +32,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-      <CyberEssentials />
+     <CyberEssentialsTabs />
     </Page>
   );
 }
