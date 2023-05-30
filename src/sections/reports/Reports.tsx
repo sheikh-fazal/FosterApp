@@ -11,6 +11,7 @@ import {
 import NextLink from "next/link";
 import VericalTabs from "@root/components/VericalTabs";
 import { REPORTTABSDATAARRY } from ".";
+import { useReports } from "./useReports";
 
 
 export default function Reports() {

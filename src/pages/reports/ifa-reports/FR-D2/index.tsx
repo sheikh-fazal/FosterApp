@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FRD2Section from '../../../../sections/reports/ifa-reports/FR-D2/FR-D2';
 
 const PAGE_TITLE = "Reports";
 
@@ -36,6 +37,7 @@ FRD2.getLayout = function getLayout(page: any) {
 export default function FRD2() {
   return (
     <Page title={PAGE_TITLE}>
+      <FRD2Section />
     </Page>
   );
 }

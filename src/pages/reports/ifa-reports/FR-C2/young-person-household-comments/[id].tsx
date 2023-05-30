@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import YoungPersonLivingComments from "@root/sections/reports/ifa-reports/FR-C2/young-person-living-comments/YoungPersonLivingComments";
+import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Reports";
 
@@ -19,10 +21,10 @@ FRC2.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"
+          name: "FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"
         }
       ]}
       title={PAGE_TITLE}
@@ -34,8 +36,11 @@ FRC2.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function FRC2() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
+      <YoungPersonLivingComments action={action} id={id} />
     </Page>
   );
 }

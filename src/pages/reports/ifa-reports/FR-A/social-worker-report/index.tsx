@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import SupervisingSocialWorkerReport from "@root/sections/reports/FRA/supervising-social-worker-report/SupervisingSocialWorkerReport";
+import SupervisingSocialWorkerReport from "@root/sections/reports/ifa-reports/FRA/supervising-social-worker-report/SupervisingSocialWorkerReport";
 
 const PAGE_TITLE = "Reports";
 

@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FRD1Section from '../../../../sections/reports/ifa-reports/FR-D1/FRD1';
 
 const PAGE_TITLE = "Reports";
 
-FRD2.getLayout = function getLayout(page: any) {
+FRD1.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -19,10 +20,10 @@ FRD2.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-D1 FOSTERED CHILD’S COMMENTS"
+          name: "FR-D1 FOSTERED CHILD’S COMMENTS"
         }
       ]}
       title={PAGE_TITLE}
@@ -33,9 +34,10 @@ FRD2.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRD2() {
+export default function FRD1() {
   return (
     <Page title={PAGE_TITLE}>
+      <FRD1Section />
     </Page>
   );
 }
