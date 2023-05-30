@@ -2,54 +2,58 @@ import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React from "react";
+import { useCarInsuranceTable } from "./useCarInsuranceTable";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 const CarInsuranceTable = () => {
-  const tableHeaderRefTwo = useRef<any>();
-  const router = useRouter();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      registerNumber: "123",
-      insuranceName: "xyz",
-      policyNumber: "123",
-      validDate: "07/02/2021",
-    },
-  ]);
+  const {
+    router,
+    tableHeaderRefTwo,
+    carInsuranceListIsloading,
+    carInsuranceData,
+    carInsuranceListIsfetching,
+    carInsuranceListError,
+    carInsuranceListIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+    listDeleteHandler,
+  } = useCarInsuranceTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr. No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.registerNumber,
-      id: "registerNumber",
+      accessorFn: (row: any) => row.registrationNumber ?? "-",
+      id: "registrationNumber",
       cell: (info: any) => info.getValue(),
       header: () => <span>Register Number</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.insuranceName,
-      id: "insuranceName",
+      accessorFn: (row: any) => row.insurerName ?? "-",
+      id: "insurerName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Insurance Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.policyNumber,
+      accessorFn: (row: any) => row.policyNumber ?? "-",
       id: "policyNumber",
       cell: (info: any) => info.getValue(),
       header: () => <span>Policy Number</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.validDate,
-      id: "validDate",
+      accessorFn: (row: any) => row.validToDate ?? "-",
+      id: "validToDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Valid Date</span>,
       isSortable: true,
@@ -65,9 +69,13 @@ const CarInsuranceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/car-insurance",
-                query: { action: "edit", id: "" },
+                query: { action: "edit", id: info?.row?.original?.id },
               })
             }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
           />
           <TableAction
             size="small"
@@ -76,7 +84,7 @@ const CarInsuranceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/car-insurance",
-                query: { action: "view", id: "" },
+                query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
@@ -100,19 +108,21 @@ const CarInsuranceTable = () => {
             query: { action: "add", id: "" },
           });
         }}
-        onChanged={(data: any) => {}}
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
       />
       <CustomTable
-        data={data}
+        data={carInsuranceData}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={carInsuranceListIsloading}
+        isFetching={carInsuranceListIsfetching}
+        isError={carInsuranceListError}
+        isSuccess={carInsuranceListIsSuccess}
+        // totalPages={meta?.pages ?? 0}
+        // currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

@@ -33,9 +33,15 @@ CarInsurance.getLayout = function getLayout(page: any) {
 };
 
 export default function CarInsurance() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/personal-info/carer-chronology-of-events");
+  }
+
   return (
     <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
-      <CarInsuranceForm />
+      <CarInsuranceForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );
