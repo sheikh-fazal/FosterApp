@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FRESection from '../../../../sections/reports/ifa-reports/FRE/FRE';
 
 const PAGE_TITLE = "Reports";
 
@@ -19,10 +20,10 @@ FRE.getLayout = function getLayout(page: any) {
           name: "Reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports"
         },
         {
-          name:"FR-E CHILD’S SOCIAL WORKER REPORT"
+          name: "FR-E CHILD’S SOCIAL WORKER REPORT"
         }
       ]}
       title={PAGE_TITLE}
@@ -36,6 +37,7 @@ FRE.getLayout = function getLayout(page: any) {
 export default function FRE() {
   return (
     <Page title={PAGE_TITLE}>
+      <FRESection />
     </Page>
   );
 }

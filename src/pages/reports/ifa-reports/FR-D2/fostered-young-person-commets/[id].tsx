@@ -2,11 +2,12 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRC2Section from '../../../../sections/reports/ifa-reports/FR-C2/FRC2';
+import { useRouter } from "next/router";
+import FosteredYoungPersonCommets from "@root/sections/reports/ifa-reports/FR-D2/fostered-young-person-commets/FosteredYoungPersonCommets";
 
 const PAGE_TITLE = "Reports";
 
-FRC2.getLayout = function getLayout(page: any) {
+FRD2.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -23,7 +24,7 @@ FRC2.getLayout = function getLayout(page: any) {
           name: "IFA Reports"
         },
         {
-          name: "FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"
+          name: "FR-D1 FOSTERED YOUNG PERSON'S COMMENTS"
         }
       ]}
       title={PAGE_TITLE}
@@ -34,10 +35,12 @@ FRC2.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRC2() {
+export default function FRD2() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <FRC2Section />
+      <FosteredYoungPersonCommets action={action} id={id} />
     </Page>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FosterCarerReport from "@root/sections/reports/FR-B/foster-carer-report/FosterCarerReport";
+import FosterCarerReport from "@root/sections/reports/ifa-reports/FR-B/foster-carer-report/FosterCarerReport";
 import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Reports";
