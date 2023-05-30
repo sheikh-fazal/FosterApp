@@ -86,7 +86,7 @@ export const columnsRecruitmentUpload = (openDeleteModel: any) => [
           size="small"
         />
 
-        <ActionModal content={info} readOnly={true} btnType="view" />
+        {/* <ActionModal content={info} readOnly={true} btnType="view" /> */}
       </Box>
     ),
     header: () => <span>Actions</span>,
