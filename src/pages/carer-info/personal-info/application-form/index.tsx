@@ -128,7 +128,7 @@ export default function ApplicationForm() {
               haveApplied: data?.data?.otherInfo.haveApplied ? "Yes" : "No",
             }),
           }}
-          disabled={true}
+          disabled={role == "foster-carer" ? true : false}
         />
         <ExPartners role={role} apllicationFormid={data?.data?.id} />
         <PlacementPreferenceForm
