@@ -1,16 +1,12 @@
-import {
-  RHFCheckbox,
-  RHFSelect,
-  RHFTextField,
-} from "@root/components/hook-form";
+import { RHFCheckbox, RHFTextField } from "@root/components/hook-form";
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
+// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
+// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
   ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild: false,
@@ -35,19 +31,17 @@ export const defaultValues = {
 
   doPetsPosePhysicalThreatToChildren: false,
   dateToBeCarriedOutFive: new Date(todayDate),
-  
-  improvementsRequireFive: "text",
-  
-  areSleepingAndFeedingArrangementsForPetsHygienic: false,
-  
-  dateToBeCarriedOutSix: new Date(todayDate),
-  
-  
-  improvementsRequireSix: "text",
-  
-  doAdultsUnderstandHowInfectionsAreTransmitted:false,
-  dateToBeCarriedOutSeven: new Date(todayDate),
 
+  improvementsRequireFive: "text",
+
+  areSleepingAndFeedingArrangementsForPetsHygienic: false,
+
+  dateToBeCarriedOutSix: new Date(todayDate),
+
+  improvementsRequireSix: "text",
+
+  doAdultsUnderstandHowInfectionsAreTransmitted: false,
+  dateToBeCarriedOutSeven: new Date(todayDate),
 
   improvementsRequireSeven: "text",
 };
@@ -70,13 +64,13 @@ export const FormSchema = Yup.object().shape({
   improvementsRequireFour: Yup.string().required("Required"),
 
   dateToBeCarriedOutFive: Yup.date().required("Required"),
-  
+
   improvementsRequireFive: Yup.string().required("Required"),
-  
+
   dateToBeCarriedOutSix: Yup.date().required("Required"),
-  
+
   improvementsRequireSix: Yup.string().required("Required"),
-  
+
   dateToBeCarriedOutSeven: Yup.date().required("Required"),
 
   improvementsRequireSeven: Yup.string().required("Required"),
