@@ -1,18 +1,17 @@
 // components
 import FormTable from "@root/components/Table/FormTable";
-import { useCertificateManagement } from './useCertificateManagement';
+import { useCertificateManagement } from "./useCertificateManagement";
 // form react hook
 import { FormProvider } from "@root/components/hook-form";
 import TableHeader from "@root/components/TableHeader";
-
+import { Card } from "@mui/material";
 
 const CertificateManagement = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear } = useCertificateManagement();
+  const { methods, handleSubmit, tableData, onSubmit, onClear } =
+    useCertificateManagement();
   return (
-    <>
-      <TableHeader
-        title="Child Education Info"
-      />
+    <Card sx={{ p: 2 }}>
+      <TableHeader title="Child Education Info" />
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <FormTable
           tableKey="exampleTable"
@@ -24,7 +23,7 @@ const CertificateManagement = () => {
               defaultValue: "66",
               label: "Course ID",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -34,7 +33,7 @@ const CertificateManagement = () => {
               defaultValue: "Child Protection",
               label: "Course Name",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -44,7 +43,7 @@ const CertificateManagement = () => {
               defaultValue: "Yes",
               label: "Certificate Required",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -54,7 +53,7 @@ const CertificateManagement = () => {
               defaultValue: "Draco ( Director)",
               label: "Approver",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -64,7 +63,7 @@ const CertificateManagement = () => {
               defaultValue: "Yes",
               label: "Use Digital Signature",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -74,16 +73,14 @@ const CertificateManagement = () => {
               defaultValue: "Social Worker",
               label: "Social Worker",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
-
           ]}
         />
-
       </FormProvider>
-    </>
+    </Card>
   );
-}
+};
 
-export default CertificateManagement
+export default CertificateManagement;
