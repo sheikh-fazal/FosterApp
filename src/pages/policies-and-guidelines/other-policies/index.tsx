@@ -17,7 +17,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
           href: "/policies-and-guidelines",
         },
         {
-          name: "All",
+          name: "Other Policies",
         },
       ]}
       title={PAGE_TITLE}

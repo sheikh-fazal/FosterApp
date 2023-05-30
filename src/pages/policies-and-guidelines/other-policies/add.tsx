@@ -17,7 +17,7 @@ OtherPoliciesTabsAdd.getLayout = function getLayout(page: any) {
           href: "/",
         },
         {
-          name: "Organisational Policies",
+          name: "Other Policies",
         },
       ]}
       title={PAGE_TILE}

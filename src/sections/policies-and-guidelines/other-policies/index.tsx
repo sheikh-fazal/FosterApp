@@ -1,11 +1,11 @@
-import RecruitmentAssessmentPolicyIcon from "../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy.svg";
-import PanelPolicyIcon from "../../../assets/svg/policy-guidelines/Panel-Policy.svg";
+import Performance from "../../../assets/svg/policy-guidelines/performance.svg";
+import HeathandCare from "../../../assets/svg/policy-guidelines/healthandcare.svg";
 
 export const OtherPoliciesData = [
   {
     index: 0,
     title: "Health and Social Care",
-    img: RecruitmentAssessmentPolicyIcon,
+    img: HeathandCare,
     innerData: [
       {
         title: "Health and Social",
@@ -19,7 +19,7 @@ export const OtherPoliciesData = [
   {
     index: 1,
     title: "Performance Management",
-    img: PanelPolicyIcon,
+    img: Performance,
     innerData: [
       {
         title: "Performance Management",
