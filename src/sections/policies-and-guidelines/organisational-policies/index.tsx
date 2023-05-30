@@ -20,6 +20,7 @@ export const OrganisationalPoliciesData = [
         img: RecruitmentAssessmentPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -34,6 +35,7 @@ export const OrganisationalPoliciesData = [
         img: PanelPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -48,6 +50,7 @@ export const OrganisationalPoliciesData = [
         img: SafeGuardingPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -62,6 +65,7 @@ export const OrganisationalPoliciesData = [
         img: AllegationsPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -76,6 +80,7 @@ export const OrganisationalPoliciesData = [
         img: EqualitiesPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -90,6 +95,7 @@ export const OrganisationalPoliciesData = [
         img: MissingCarePolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -104,6 +110,7 @@ export const OrganisationalPoliciesData = [
         img: BehaviourManagementPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -118,6 +125,7 @@ export const OrganisationalPoliciesData = [
         img: StandardsCarePolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -132,6 +140,7 @@ export const OrganisationalPoliciesData = [
         img: SupervisionTrainingSupportPolicy,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -146,6 +155,7 @@ export const OrganisationalPoliciesData = [
         img: HealthPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -160,6 +170,7 @@ export const OrganisationalPoliciesData = [
         img: EducationalPolicyPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -174,6 +185,7 @@ export const OrganisationalPoliciesData = [
         img: PromotingContactPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -188,6 +200,7 @@ export const OrganisationalPoliciesData = [
         img: StaffSupervisionPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -202,6 +215,7 @@ export const OrganisationalPoliciesData = [
         img: RecordingKeepingPolicyIcon,
         innerData: [
             {
+                no: '1',
                 title: 'Parental Responsibility',
                 dateUploaded: '01/08/2020',
                 author: "John",

@@ -36,46 +36,55 @@ const PolicyVerticalTable = (props: any) => {
             ),
         },
         {
+            accessorFn: (row: any) => row.no,
+            id: "Sr. No",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Sr. No</span>,
+            isSortable: true,
+        },
+        {
             accessorFn: (row: any) => row.title,
             id: "Title",
             cell: (info: any) => info.getValue(),
             header: () => <span>Title</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.dateUploaded,
             id: "Date Uploaded",
             cell: (info: any) => info.getValue(),
             header: () => <span>Date Uploaded</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.author,
             id: "Author",
             cell: (info: any) => info.getValue(),
             header: () => <span>Author</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentType,
             id: "Document Type",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Type</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.version,
             id: "Versions",
             cell: (info: any) => info.getValue(),
             header: () => <span>Versions</span>,
+            isSortable: true,
         },
         {
             id: "actions",
-            cell: (info: any) => (
-                <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-                    <TableAction type="view" />
-                    <TableAction type="print" />
-                    <TableAction type="download" />
-                </Box>
-            ),
+            cell: (info: any) => <Box display={'flex'} gap={0.5}>
+                {['view', 'print', 'download'].map((action) => <span key={action} style={{ flexShrink: 0 }}>
+                    <TableAction type={action} onClicked={() => alert(action)} />
+                </span>)}
+            </Box>,
             header: () => <span>actions</span>,
-            isSortable: false,
         },
     ];
 
@@ -87,6 +96,7 @@ const PolicyVerticalTable = (props: any) => {
                         <TableHeader
                             title={item.title}
                             showAddBtn
+                            onAdd={() => navigate.push(addNewTabNavigation)}
                         />
                         <CustomTable
                             data={item.innerData}
