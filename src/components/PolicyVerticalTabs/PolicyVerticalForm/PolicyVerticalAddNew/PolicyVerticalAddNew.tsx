@@ -6,11 +6,11 @@ import { usePolicyVerticalAddNew } from "./usePolicyVerticalAddNew";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const PolicyVerticalAddNew = (props: any) => {
-  const { disabled, onSubmit } = props;
-  const { methods, handleSubmit, PolicyVerticalAddNewFormData, handleNextTab } = usePolicyVerticalAddNew();
+  const { disabled, onSubmit, handleAddNewBack } = props;
+  const { methods, handleSubmit, PolicyVerticalAddNewFormData } = usePolicyVerticalAddNew();
 
   return (
-    <FormProvider methods={methods} onSubmit={() => { handleSubmit(onSubmit); handleNextTab() }}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {PolicyVerticalAddNewFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
@@ -48,7 +48,7 @@ const PolicyVerticalAddNew = (props: any) => {
             </Button>
           )}
 
-          <Link href={"/policies-and-guidelines/organisational-policies/"} style={{ textDecoration: "none" }}>
+          <Link href={handleAddNewBack} style={{ textDecoration: "none" }}>
             <Button
               type="button"
               variant="contained"
