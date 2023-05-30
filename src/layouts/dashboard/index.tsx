@@ -36,7 +36,7 @@ export default function DashboardLayout({ children, ...other }: any) {
           <Topnavbar leftopen={open} handleDrawer={handleDrawer} />
           <Box
             className="allset"
-             sx={styles.childrenStyles(theme, rightnavbars)}
+            sx={styles.childrenStyles(theme, rightnavbars)}
           >
             {showTitleWithBreadcrumbs && (
               <TitleWithBreadcrumbLinks sx={{ mb: 2 }} {...other} />
@@ -65,26 +65,6 @@ const styles = {
     [theme.breakpoints.up("xs")]: {
       width: "100%",
     },
-    [theme.breakpoints.up("sm")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "100%",
-      transition: "0.4s",
-      overflowY: "auto",
-    },
-    [theme.breakpoints.up("md")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "100%",
-      maxWidth: "calc(100% - 0px)",
-      transition: "0.4s",
-    },
-    [theme.breakpoints.up("lg")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "calc(100% - 80px)",
-      transition: "0.4s",
-      overflowY: "auto",
-    },
-    [theme.breakpoints.up("xl")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "calc(100% - 80px)",
-      transition: "0.4s",
-      overflowY: "auto",
-    },
   }),
 
   childrenStyles: (theme: any, rightnavbars: boolean) => ({
@@ -95,7 +75,7 @@ const styles = {
       pb: theme.spacing(5),
     },
     [theme.breakpoints.up("sm")]: {
-     transition: "0.4s",
+      transition: "0.4s",
       overflowY: "auto",
       pt: theme.spacing(10),
       pl: theme.spacing(2.5),
