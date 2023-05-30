@@ -48,7 +48,7 @@ const PolicyVerticalAddNew = (props: any) => {
             </Button>
           )}
 
-          <Link href={"/supervision-training-support-policy"} style={{ textDecoration: "none" }}>
+          <Link href={"/policies-and-guidelines/organisational-policies/"} style={{ textDecoration: "none" }}>
             <Button
               type="button"
               variant="contained"
