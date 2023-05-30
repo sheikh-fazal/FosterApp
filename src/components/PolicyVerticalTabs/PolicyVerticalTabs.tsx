@@ -69,9 +69,9 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
               aria-labelledby={`vertical-tab-${item?.index}`}
               {...other}
             >
-              <Card >
+              <Card sx={{ px: 1, py: 2 }}>
                 {arrayChildren?.map((child, index) => (
-                  <Box key={index} sx={{ px: 3 }}>
+                  <Box key={index} >
                     {value === index && child}
                   </Box>
                 ))}
@@ -125,12 +125,12 @@ const styles = {
     background: "#0E918C",
     mb: "15px",
     borderRadius: "10px",
-    // border: "6px solid #0E918C",
+    border: "6px solid #0E918C",
     height: "100%",
     minHeight: "80px",
     "&.Mui-selected": {
       width: "100% !important",
-      // border: "6px solid #FFFFFF",
+      border: "6px solid #FFFFFF",
       height: "100%",
       minHeight: "80px",
     }
