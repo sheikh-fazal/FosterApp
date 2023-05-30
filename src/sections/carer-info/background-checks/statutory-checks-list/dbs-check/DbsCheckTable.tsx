@@ -2,53 +2,64 @@ import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React from "react";
+import { useDbsCheckTable } from "./useDbsCheckTable";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import dayjs from "dayjs";
 
 const DbsCheckTable = () => {
-  const tableHeaderRefTwo = useRef<any>();
-  const router = useRouter();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      sentToCarerDate: "123",
-      sentToDbsDate: "xyz",
-      disclosureDate: "123",
-      result: "07/02/2021",
-    },
-  ]);
+  const {
+    router,
+    tableHeaderRefTwo,
+    dbsCheckListIsloading,
+    dbsCheckListData,
+    dbsCheckListIsfetching,
+    dbsCheckListError,
+    dbsCheckListIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+    listDeleteHandler,
+  } = useDbsCheckTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr. No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.sentToCarerDate,
+      accessorFn: (row: any) => row?.sentToCarerDate ?? "-",
       id: "sentToCarerDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Sent To Carer Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.sentToDbsDate,
+      accessorFn: (row: any) => row?.sentToDbsDate ?? "-",
       id: "sentToDbsDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Sent To Dbs Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.disclosureDate,
+      accessorFn: (row: any) => row?.disclosureDate ?? "-",
       id: "disclosureDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Disclosure Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.result,
+      accessorFn: (row: any) => row.result ?? "-",
       id: "result",
       cell: (info: any) => info.getValue(),
       header: () => <span>Result</span>,
@@ -65,9 +76,13 @@ const DbsCheckTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/dbs-check",
-                query: { action: "edit", id: "" },
+                query: { action: "edit", id: info?.row?.original?.id },
               })
             }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
           />
           <TableAction
             size="small"
@@ -76,7 +91,7 @@ const DbsCheckTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/dbs-check",
-                query: { action: "view", id: "" },
+                query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
@@ -100,19 +115,21 @@ const DbsCheckTable = () => {
             query: { action: "add", id: "" },
           });
         }}
-        onChanged={(data: any) => {}}
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
       />
       <CustomTable
-        data={data}
+        data={dbsCheckListData}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={dbsCheckListIsloading}
+        isFetching={dbsCheckListIsfetching}
+        isError={dbsCheckListError}
+        isSuccess={dbsCheckListIsSuccess}
+        // totalPages={meta?.pages ?? 0}
+        // currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );
