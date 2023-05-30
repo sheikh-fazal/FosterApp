@@ -8,10 +8,13 @@ import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one
 import { useRouter } from "next/router";
 import {
   useGetSingleTrainingProfileDataQuery,
+  useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
 import dayjs from "dayjs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Recruitment";
 
@@ -43,15 +46,56 @@ export default function AddTraingVerification() {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
+  const {
+    data: uploadDocuments,
+    isLoading: uploadDocumentsIsLoading,
+    isError: uploadDocumentsIsError,
+    isFetching: uploadDocumentsIsFetching,
+  } = useGetTrainingProfileAllDocumentQuery(id);
+
+  console.log(uploadDocuments, "uploaded documents");
+
   const [postTrainingProfileData] = usePatchTrainingProfileApiMutation();
+
+  const uploadDocumentsHandler = async (postData: any) => {
+    // console.log(data);
+    
+    const data = {
+      documentType: postData.documentType,
+      date:postData.documentDate,
+      password: postData.password,
+      file: postData.chosenFile
+    }
+
+    console.log(postData);
+    
+    
+    const updatedData = {
+      trainingProfileId: id,
+      data,
+    };
+    
+    try {
+      const res: any = await postTrainingProfileData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+
+      router.push(
+        "/recruitment/assessment-stage-one/training-verification-form"
+      );
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
+  };
 
   // console.log(data?.data?.expiryDate, "single trining profile");
 
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Training Profile", "Upload Documents"]}>
-        {isLoading ? (
-          <IsFetching isFetching={isLoading} />
+        {uploadDocumentsIsLoading ? (
+          <IsFetching isFetching={uploadDocumentsIsLoading} />
         ) : (
           <>
             <EditTrainingProfile
@@ -75,7 +119,22 @@ export default function AddTraingVerification() {
             />
           </>
         )}
-        <RecruitmentUploadDocuments />
+
+        {isLoading ? (
+          <IsFetching isFetching={isLoading} />
+        ) : (
+          <>
+            <UploadDocuments
+              readOnly={false}
+              tableData={uploadDocuments?.data?.docs}
+              isLoading={uploadDocumentsIsLoading}
+              isFetching={uploadDocumentsIsFetching}
+              isError={uploadDocumentsIsError}
+              isSuccess={isSuccess}
+              modalData={(data: any) => uploadDocumentsHandler(data)}
+            />
+          </>
+        )}
       </HorizaontalTabs>
     </Page>
   );
