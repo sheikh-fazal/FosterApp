@@ -1,16 +1,14 @@
 import { Box, Card, Typography, useTheme } from "@mui/material";
 import { BsPlus } from "react-icons/bs";
 import React, { useState } from "react";
-import AddExperiencesModal from "./add-experience";
+import AddExperiencesModal from "./add-experience-modal";
 import { useGetExperienceQuery } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
 
 function EmploymentDetailsCards() {
   const [open, setOpen] = useState(false);
   const theme: any = useTheme();
 
-  const {data,isLoading} = useGetExperienceQuery();
-
-
+  const { data, isLoading } = useGetExperienceQuery();
 
   return (
     <Card>
@@ -22,9 +20,8 @@ function EmploymentDetailsCards() {
           <BsPlus style={styles.addBtnIconStyles(theme)} />
         </Box>
       </Box>
-            
-     
-      <AddExperiencesModal open={open} setOpen={setOpen} />
+
+      {open && <AddExperiencesModal open={open} setOpen={setOpen} />}
     </Card>
   );
 }
