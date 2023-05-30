@@ -15,7 +15,7 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import VericalTabs from "@root/components/VericalTabs";
 // sections
-import { TABSDATAARRY } from "@root/sections/carer-info/CarerInfoData";
+import { FOSTERCHILDTABSDATAARRAY } from "@root/sections/foster-child/FosterChildData";
 //  @mui icons
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import DoneIcon from "@mui/icons-material/Done";
@@ -23,7 +23,7 @@ import HomeIcon from "@mui/icons-material/Home";
 
 // ----------------------------------------------------------------------
 // Constants
-const PAGE_TITLE = "Carer Info";
+const PAGE_TITLE = "Foster Child";
 
 const BREADCRUMBS = [
   {
@@ -38,7 +38,7 @@ const BREADCRUMBS = [
 
 // ----------------------------------------------------------------------
 
-CarerInfo.getLayout = function getLayout(page: any) {
+FosterChild.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -52,13 +52,13 @@ CarerInfo.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function CarerInfo() {
+export default function FosterChild() {
   const theme: any = useTheme();
 
   return (
     <Page title={PAGE_TITLE}>
-      <VericalTabs tabsDataArray={TABSDATAARRY}>
-        {TABSDATAARRY?.map((item) => (
+      <VericalTabs tabsDataArray={FOSTERCHILDTABSDATAARRAY}>
+        {FOSTERCHILDTABSDATAARRAY?.map((item) => (
           <Fragment key={item?.index}>
             {item?.innerDataArray?.map((innerItem) => (
               <Box key={innerItem?.id} sx={styles?.container}>
