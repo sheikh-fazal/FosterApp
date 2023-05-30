@@ -2,8 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import NextOfKinForm from "@root/sections/carer-info/other-information/next-of-kin/nextOfKinForm";
+
 import { useRouter } from "next/router";
+import NextOfKinForm from "@root/sections/carer-info/other-information/next-of-kin/nextOfKinForm";
 // Constants
 const BREADCRUMBS = [
   {

@@ -9,6 +9,7 @@ const BackgroundForm = (props: any) => {
     getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
     backgroundFormFieldsInfo,
+    user,
   } = useBackgroundForm();
   return (
     <FormGenerator
@@ -18,6 +19,7 @@ const BackgroundForm = (props: any) => {
       submitClickHand={submitBackgroundForm}
       isFormSubmitting={postInitialHomeBackgroundDataStatus.isLoading}
       isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
+      defaultRole={user?.defaultRole}
     />
   );
 };
