@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import RiskAssessmentForm from "@root/sections/reports/ifa-reports/risk-assessment-form/RiskAssessmentForm";
+import ViewCarerFeedBackForm from "@root/sections/reports/ifa-reports/carer-feedback/view-carer-feedback/ViewCarerFeedBack";
+import { Card } from "@mui/material";
 
 const PAGE_TITLE = "Reports";
 
@@ -17,7 +18,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
-          name: "RISK ASSESSENT FORM",
+          name: "CARER FEEDBACK FOR EMPLOYEES APRAISAL",
         },
       ]}
       title={PAGE_TITLE}
@@ -31,7 +32,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 export default function RiskAssessment() {
   return (
     <Page title={PAGE_TITLE}>
-      <RiskAssessmentForm />
+        <ViewCarerFeedBackForm disabled={true} />
     </Page>
   );
 }

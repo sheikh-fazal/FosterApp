@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import RiskAssessmentForm from "@root/sections/reports/ifa-reports/risk-assessment-form/RiskAssessmentForm";
+import CareerFeedback from "@root/sections/reports/ifa-reports/carer-feedback/CarerFeedback";
 
 const PAGE_TITLE = "Reports";
 
-RiskAssessment.getLayout = function getLayout(page: any) {
+CarerFeedbackLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,8 +17,9 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
-          name: "RISK ASSESSENT FORM",
+          name: "CARER FEEDBACK FOR EMPLOYEES APRAISAL",
         },
+       
       ]}
       title={PAGE_TITLE}
     >
@@ -28,10 +29,10 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function RiskAssessment() {
+export default function CarerFeedbackLayout() {
   return (
     <Page title={PAGE_TITLE}>
-      <RiskAssessmentForm />
+      <CareerFeedback  />
     </Page>
   );
 }

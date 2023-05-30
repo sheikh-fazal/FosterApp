@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import { SupervisoryHomeVisit } from "@root/sections/reports/ifa-reports/supervisory-home-visit/SupervisoryHomeVisit";
 
 const PAGE_TITLE = "Reports";
 
-SupervisoryHomeVisit.getLayout = function getLayout(page: any) {
+SupervisoryHomeVisitLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -18,7 +19,7 @@ SupervisoryHomeVisit.getLayout = function getLayout(page: any) {
         {
           name: "Supervisory Home Visit",
         },
-       
+
       ]}
       title={PAGE_TITLE}
     >
@@ -28,9 +29,10 @@ SupervisoryHomeVisit.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function SupervisoryHomeVisit() {
+export default function SupervisoryHomeVisitLayout() {
   return (
     <Page title={PAGE_TITLE}>
+      <SupervisoryHomeVisit />
     </Page>
   );
 }

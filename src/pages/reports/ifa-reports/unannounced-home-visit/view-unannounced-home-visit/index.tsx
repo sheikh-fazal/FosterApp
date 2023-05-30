@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import RiskAssessmentForm from "@root/sections/reports/ifa-reports/risk-assessment-form/RiskAssessmentForm";
+import TabsSection from "@root/sections/reports/ifa-reports/unannounced-home-visit/tabs";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Report";
 
-RiskAssessment.getLayout = function getLayout(page: any) {
+ViewUnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,7 +17,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
-          name: "RISK ASSESSENT FORM",
+          name: "Unannounced Home Visit",
         },
       ]}
       title={PAGE_TITLE}
@@ -28,10 +28,10 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function RiskAssessment() {
+export default function ViewUnannouncedHomeVisitLayout() {
   return (
     <Page title={PAGE_TITLE}>
-      <RiskAssessmentForm />
+      <TabsSection />
     </Page>
   );
 }
