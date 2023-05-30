@@ -37,6 +37,7 @@ export default function DashboardLayout({ children, ...other }: any) {
           <Box
             className="allset"
             sx={styles.childrenStyles(theme, rightnavbars)}
+            
           >
             {showTitleWithBreadcrumbs && (
               <TitleWithBreadcrumbLinks sx={{ mb: 2 }} {...other} />
