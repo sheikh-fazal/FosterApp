@@ -5,6 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { useCarInsuranceTable } from "./useCarInsuranceTable";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import dayjs from "dayjs";
 
 const CarInsuranceTable = () => {
   const {
@@ -52,10 +53,12 @@ const CarInsuranceTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.validToDate ?? "-",
+      accessorFn: (row: any) => row?.validToDate ?? "-",
       id: "validToDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Valid Date</span>,
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
+      header: () => <span>Date of Allegation</span>,
       isSortable: true,
     },
     {

@@ -36,7 +36,7 @@ export default function CarInsurance() {
   const router = useRouter();
   const { action, id } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/personal-info/carer-chronology-of-events");
+    router.push("/carer-info/background-checks/statutory-checks-list");
   }
 
   return (

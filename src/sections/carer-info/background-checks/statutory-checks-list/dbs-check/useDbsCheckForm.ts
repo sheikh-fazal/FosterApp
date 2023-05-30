@@ -6,26 +6,26 @@ import { defaultValues, formSchema, formatters } from "./index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  usePatchCarInsuranceMutation,
-  usePostCarInsuranceMutation,
-  useLazySingleCarInsuranceListQuery,
-} from "@root/services/carer-info/background-checks/statutory-check-list/car-insurance/carInsuranceApi";
-export const useCarInsuranceForm = (action: any, id: any) => {
+  useLazySingleDbsCheckListQuery,
+  usePatchDbsCheckListMutation,
+  usePostDbsCheckListMutation,
+} from "@root/services/carer-info/background-checks/statutory-check-list/dbs-checks/dbsCheckApi";
+export const useDbsCheckForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
-  const [getCarInsuranceList] = useLazySingleCarInsuranceListQuery();
-  //API For Posting Car Insurance Form
-  const [postCarInsuranceDetails] = usePostCarInsuranceMutation();
-  //API For Patch Car Insurance List
-  const [editCarInsuranceList] = usePatchCarInsuranceMutation();
+  const [getDbsCheckList] = useLazySingleDbsCheckListQuery();
+  //API For Posting Dbs Check Form
+  const [postDbsCheckList] = usePostDbsCheckListMutation();
+  //API For Patch Dbs Check List
+  const [editDbsCheckList] = usePatchDbsCheckListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getCarInsuranceList(id, true);
+      const { data, isError } = await getDbsCheckList(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -46,7 +46,6 @@ export const useCarInsuranceForm = (action: any, id: any) => {
     resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
-
   const {
     setValue,
     trigger,
@@ -57,7 +56,7 @@ export const useCarInsuranceForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postCarInsuranceDetails(data)
+      postDbsCheckList(data)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -66,7 +65,7 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/car-insurance",
+              "/carer-info/background-checks/statutory-checks-list/dbs-check",
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
@@ -74,7 +73,9 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/background-checks/statutory-checks-list");
+          router.push(
+            "/carer-info/background-checks/statutory-checks-list/dbs-check"
+          );
         });
     } else if (action === "edit") {
       setIsFetching(true);
@@ -82,14 +83,14 @@ export const useCarInsuranceForm = (action: any, id: any) => {
         id,
         ...data,
       };
-      editCarInsuranceList(formData)
+      editDbsCheckList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
           router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
+            "/carer-info/background-checks/statutory-checks-list/dbs-check"
           );
           setIsFetching(false);
         })
@@ -97,7 +98,7 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
+            "/carer-info/background-checks/statutory-checks-list/dbs-check"
           );
           setIsFetching(false);
         });
@@ -111,12 +112,12 @@ export const useCarInsuranceForm = (action: any, id: any) => {
     isLoading,
     getDefaultValue,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
+    setValue,
+    trigger,
+    getValues,
   };
 };

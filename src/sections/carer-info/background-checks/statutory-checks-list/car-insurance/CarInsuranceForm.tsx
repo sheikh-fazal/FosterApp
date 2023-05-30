@@ -1,16 +1,17 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Grid, useTheme, Button } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { carInsuranceData } from "./index";
 import { useCarInsuranceForm } from "./useCarInsuranceForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 const CarInsuranceForm = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
   //Car Insurance  Custom Hook
-  const { router, methods, onSubmit, handleSubmit, isSubmitting } =
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } =
     useCarInsuranceForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <Grid container>
@@ -52,7 +53,7 @@ const CarInsuranceForm = (props: any) => {
               sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
               item
             >
-              {action === "view" ||
+              {action === "add" ||
                 (action === "edit" ? (
                   <LoadingButton
                     type="submit"
