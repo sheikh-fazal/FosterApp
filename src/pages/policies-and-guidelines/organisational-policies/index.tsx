@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import OrganisationalPolicies from "@root/sections/policies-and-guidelines/organisational-policies/OrganisationalPolicies";
 
-const PAGE_TILE = "View Panel Dashboard";
+const PAGE_TILE = "Policies and Guidelines";
 
 Panel.getLayout = function getLayout(page: any) {
   return (
@@ -13,11 +13,11 @@ Panel.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Panel",
+          name: "IFA",
           href: "/",
         },
         {
-          name: "Panel Dashboard",
+          name: "Organisational Policies",
         },
       ]}
       title={PAGE_TILE}
