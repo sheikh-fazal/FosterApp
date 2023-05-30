@@ -9,41 +9,42 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild: false,
+  isThereAdequateArtificalOrNaturalLight: false,
   dateToBeCarriedOutOne: new Date(todayDate),
 
   improvementsRequireOne: "Text",
 
-  canChildEatInComfortableAndRelaxedAtmosphere: false,
+  areAllBanistersFilledInOrHaveAMaximumGapBetweenRallOf4Inches: false,
   dateToBeCarriedOutTwo: new Date(todayDate),
 
   improvementsRequireTwo: "Text",
 
-  isAccommodationHygienicallyCleanAndFree: false,
+  isStairGateFitted: false,
   dateToBeCarriedOutThree: new Date(todayDate),
 
   improvementsRequireThree: "text",
 
-  areThereAnyObviousHazards: false,
+  doHighChairsBuggiesAndChildEquipmentConfirmToBritishStandards: false,
   dateToBeCarriedOutFour: new Date(todayDate),
 
   improvementsRequireFour: "text",
 
-  doPetsPosePhysicalThreatToChildren: false,
+  isThereAnAccessibleFirstAidBox: false,
   dateToBeCarriedOutFive: new Date(todayDate),
 
   improvementsRequireFive: "text",
 
-  areSleepingAndFeedingArrangementsForPetsHygienic: false,
+  areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach: false,
 
   dateToBeCarriedOutSix: new Date(todayDate),
 
   improvementsRequireSix: "text",
 
-  doAdultsUnderstandHowInfectionsAreTransmitted: false,
+  areAlcoholCigarettesAndLightersKeptOutOfReach: false,
   dateToBeCarriedOutSeven: new Date(todayDate),
 
   improvementsRequireSeven: "text",
+
 };
 
 export const FormSchema = Yup.object().shape({
@@ -74,13 +75,14 @@ export const FormSchema = Yup.object().shape({
   dateToBeCarriedOutSeven: Yup.date().required("Required"),
 
   improvementsRequireSeven: Yup.string().required("Required"),
+
 });
 
-export const householdConditionB_Data = [
+export const safetyFactorsIndoorsC_Data = [
   {
     id: 0.5,
     variant: "subtitle2",
-    heading: `Part 1: General Household Conditions - B`,
+    heading: `General Safety Factors - Indoors C`,
   },
 
   {
@@ -88,9 +90,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild",
+      name: "isThereAdequateArtificalOrNaturalLight",
       label:
-        "If children over eight years old will be sharing a room, will it be with a child of the same sex ?",
+        "Is there adequate artificial/natural light to illuminate any steps?",
     },
     component: RHFCheckbox,
   },
@@ -121,8 +123,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "canChildEatInComfortableAndRelaxedAtmosphere",
-      label: "Can child eat in a comfortable and relaxed atmosphere ?",
+      name: "areAllBanistersFilledInOrHaveAMaximumGapBetweenRallOf4Inches",
+      label:
+        "Are all banisters filled in or have a maximum gap between ralls of 4 inches?",
     },
     component: RHFCheckbox,
   },
@@ -153,9 +156,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isAccommodationHygienicallyCleanAndFree",
-      label:
-        "Is the accommodation hygienically clean and free from the odour of pets, cigarette smoke, urine and rubbish ?",
+      name: "isStairGateFitted",
+      label: "Is the stair gate fitted?",
     },
     component: RHFCheckbox,
   },
@@ -186,8 +188,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areThereAnyObviousHazards",
-      label: "Are there any obvious hazards ?",
+      name: "doHighChairsBuggiesAndChildEquipmentConfirmToBritishStandards",
+      label: "Do high chairs, buggies and child equipment confirm to British Standards?",
     },
     component: RHFCheckbox,
   },
@@ -218,8 +220,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doPetsPosePhysicalThreatToChildren",
-      label: "Do pets pose a physical threat to children ?",
+      name: "isThereAnAccessibleFirstAidBox",
+      label:
+        "Is there an accessible First Aid box?",
     },
     component: RHFCheckbox,
   },
@@ -250,8 +253,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSleepingAndFeedingArrangementsForPetsHygienic",
-      label: "Are sleeping and feeding arrangements for pets hygienic?",
+      name: "areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach",
+      label: "Are glassware, china and other fragile objects kept out of reach?",
     },
     component: RHFCheckbox,
   },
@@ -284,8 +287,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doAdultsUnderstandHowInfectionsAreTransmitted",
-      label: "Do adults understand how infections are transmitted ?",
+      name: "areAlcoholCigarettesAndLightersKeptOutOfReach",
+      label: "Are alcohol, cigarettes and lighters kept out of reach?",
     },
     component: RHFCheckbox,
   },
@@ -310,5 +313,5 @@ export const householdConditionB_Data = [
     },
     gridLength: 12,
     component: RHFTextField,
-  },
+  }
 ];

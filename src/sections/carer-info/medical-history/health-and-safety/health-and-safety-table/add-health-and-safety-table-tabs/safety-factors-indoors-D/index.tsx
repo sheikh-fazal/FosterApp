@@ -9,38 +9,38 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild: false,
+  kitchenAreFlexesShortAndOutOfReach: false,
   dateToBeCarriedOutOne: new Date(todayDate),
 
   improvementsRequireOne: "Text",
 
-  canChildEatInComfortableAndRelaxedAtmosphere: false,
+  areChestFreezersKeptLocked: false,
   dateToBeCarriedOutTwo: new Date(todayDate),
 
   improvementsRequireTwo: "Text",
 
-  isAccommodationHygienicallyCleanAndFree: false,
+  areKnivesAndOtherUtensilsKeptOutOfReach: false,
   dateToBeCarriedOutThree: new Date(todayDate),
 
   improvementsRequireThree: "text",
 
-  areThereAnyObviousHazards: false,
+  isACookerGuardFitted: false,
   dateToBeCarriedOutFour: new Date(todayDate),
 
   improvementsRequireFour: "text",
 
-  doPetsPosePhysicalThreatToChildren: false,
+  areKitchenWorkSurfacesAndFlooringUndamagedAndKeptClean: false,
   dateToBeCarriedOutFive: new Date(todayDate),
 
   improvementsRequireFive: "text",
 
-  areSleepingAndFeedingArrangementsForPetsHygienic: false,
+  areFoodsApproriatelyStoredAndFridgeKeptAtCorrectTemprature: false,
 
   dateToBeCarriedOutSix: new Date(todayDate),
 
   improvementsRequireSix: "text",
 
-  doAdultsUnderstandHowInfectionsAreTransmitted: false,
+  arePoisonousSubstancesStoredInTheirOriginalContainers: false,
   dateToBeCarriedOutSeven: new Date(todayDate),
 
   improvementsRequireSeven: "text",
@@ -76,11 +76,11 @@ export const FormSchema = Yup.object().shape({
   improvementsRequireSeven: Yup.string().required("Required"),
 });
 
-export const householdConditionB_Data = [
+export const safetyFactorsIndoorsD_Data = [
   {
     id: 0.5,
     variant: "subtitle2",
-    heading: `Part 1: General Household Conditions - B`,
+    heading: `General Safety Factors - Indoors D`,
   },
 
   {
@@ -88,9 +88,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild",
-      label:
-        "If children over eight years old will be sharing a room, will it be with a child of the same sex ?",
+      name: "kitchenAreFlexesShortAndOutOfReach",
+      label: "Kitchen Are flexes short and out of reach?",
     },
     component: RHFCheckbox,
   },
@@ -121,8 +120,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "canChildEatInComfortableAndRelaxedAtmosphere",
-      label: "Can child eat in a comfortable and relaxed atmosphere ?",
+      name: "areChestFreezersKeptLocked",
+      label: "Are chest freezers kept locked?",
     },
     component: RHFCheckbox,
   },
@@ -153,9 +152,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isAccommodationHygienicallyCleanAndFree",
-      label:
-        "Is the accommodation hygienically clean and free from the odour of pets, cigarette smoke, urine and rubbish ?",
+      name: "areKnivesAndOtherUtensilsKeptOutOfReach",
+      label: "Are knives and other utensils kept out of reach?",
     },
     component: RHFCheckbox,
   },
@@ -186,8 +184,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areThereAnyObviousHazards",
-      label: "Are there any obvious hazards ?",
+      name: "isACookerGuardFitted",
+      label: "Is A cooker guard fitted?",
     },
     component: RHFCheckbox,
   },
@@ -218,8 +216,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doPetsPosePhysicalThreatToChildren",
-      label: "Do pets pose a physical threat to children ?",
+      name: "areKitchenWorkSurfacesAndFlooringUndamagedAndKeptClean",
+      label: "Are kitchen work surfaces and flooring undamaged and kept clean?",
     },
     component: RHFCheckbox,
   },
@@ -250,8 +248,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSleepingAndFeedingArrangementsForPetsHygienic",
-      label: "Are sleeping and feeding arrangements for pets hygienic?",
+      name: "areFoodsApproriatelyStoredAndFridgeKeptAtCorrectTemprature",
+      label:
+        "Are foods appropriately stored and the fridge kept at correct temprature?",
     },
     component: RHFCheckbox,
   },
@@ -284,8 +283,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doAdultsUnderstandHowInfectionsAreTransmitted",
-      label: "Do adults understand how infections are transmitted ?",
+      name: "arePoisonousSubstancesStoredInTheirOriginalContainers",
+      label: "Are bleach, poisonous substances, matches etc, stored in their original containers out of reach of small children?",
     },
     component: RHFCheckbox,
   },
