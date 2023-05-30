@@ -4,6 +4,7 @@ import TableHeader from '@root/components/TableHeader';
 import React, { useRef } from 'react'
 import { useTableParams } from '@root/hooks/useTableParams';
 import { columns } from '.';
+import router from 'next/router';
 
 export default function ClaDocumentationListTable() {
 
@@ -29,11 +30,12 @@ export default function ClaDocumentationListTable() {
         <Card sx={{ p: 2 }}>
             <TableHeader
                 ref={tableHeaderRef}
+                showAddBtn
                 title="CLA Documentation"
                 searchKey="search"
-                onChanged={(data: any) => {
+                onAdd={(data: any) => {
                     console.log("Updated params: ", data);
-                }}
+                  }}
             />
             <CustomTable
                 data={data}

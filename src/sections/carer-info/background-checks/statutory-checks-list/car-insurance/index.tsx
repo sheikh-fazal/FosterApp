@@ -39,11 +39,14 @@ export const carInsuranceData = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "validDate",
+      name: "validToDate",
       label: "Valid to Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
@@ -51,24 +54,32 @@ export const carInsuranceData = [
     otherOptions: {
       name: "comments",
       label: "Comments",
-      multiline: false,
+      multiline: true,
       minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
   },
 ];
+
+export const formatters: any = {};
+
+for (const formControl of carInsuranceData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
   registrationNumber: "",
   insurerName: "",
   policyNumber: "",
-  validDate: new Date(),
+  validToDate: new Date(),
   comments: "",
 };
-export const FormSchema = Yup.object().shape({
-  registrationNumber: Yup.string().required("required"),
-  insurerName: Yup.string().required("required"),
-  policyNumber: Yup.string().required("required"),
-  validDate: Yup.date().required("required"),
-  comments: Yup.string().required("required"),
+export const formSchema = Yup.object().shape({
+  registrationNumber: Yup.string(),
+  insurerName: Yup.string(),
+  policyNumber: Yup.string(),
+  validToDate: Yup.date(),
+  comments: Yup.string(),
 });

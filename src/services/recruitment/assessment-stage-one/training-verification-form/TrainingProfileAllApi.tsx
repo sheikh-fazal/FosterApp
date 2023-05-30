@@ -5,8 +5,12 @@ const TAGS: any = ["POST_DATA", "DELETE_PROFILE", "UPDATE_DATA", "GET_DATA"];
 export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getTrainingProfileAllData: builder.query({
-      query: (params: any) => "/training-profile/all",
-      invalidatesTags: TAGS,
+      query: ({params}: any) => ({
+        url: "/training-profile/all",
+        method: "GET",
+        params,
+      }),
+      providesTags: [TAGS],
     }),
     getSingleTrainingProfileData: builder.query({
       query: (trainingProfileId: any) =>
@@ -46,12 +50,12 @@ export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
         body,
       }),
     }),
-    deleteTrainingProfileDocument : builder.mutation<null, void>({
-      query: ({trainingProfileId , profileId }:any) => ({
-        url:`/training-profile/document/${profileId}?trainingProfileId=${trainingProfileId}`,
-        method:"DELETE"
-      })
-    })
+    deleteTrainingProfileDocument: builder.mutation<null, void>({
+      query: ({ trainingProfileId, profileId }: any) => ({
+        url: `/training-profile/document/${profileId}?trainingProfileId=${trainingProfileId}`,
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -63,5 +67,5 @@ export const {
   useGetTrainingProfileAllDocumentQuery,
   useDeleteTrainingProfileApiMutation,
   usePostTrainingProfileDocumentMutation,
-  useDeleteTrainingProfileDocumentMutation
+  useDeleteTrainingProfileDocumentMutation,
 } = trainingPRofileAllApi;
