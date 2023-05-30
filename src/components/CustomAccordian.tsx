@@ -6,31 +6,28 @@ import Typography from "@mui/material/Typography";
 import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import TableAction from "./TableAction";
-const CustomAccordian = ({
-  handleRowDelete,
-  handleTitleEdit,
-  showBtn,
-  subTitle,
-  data,
-  className,
-  ...rest
-}: any) => {
-  const [accordianExpanded, setAccordianExpanded] = React.useState(false);
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-  const theme: any = useTheme();
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
+
+const CustomAccordian = ({ handleRowDelete, handleTitleEdit, showBtn, addIcon, handleAdd, subTitle, data, className, ...rest }: any) => {
+  const [accordianExpanded, setAccordianExpanded] = React.useState<null | number>();
   const [cancelDelete, setCancelDelete] = React.useState(false);
+  const theme: any = useTheme();
+  const handleAccordionChange = (index: number) => {
+    if (accordianExpanded === index) {
+      setAccordianExpanded(null);
+    } else {
+      setAccordianExpanded(index);
+    }
+  };
 
   const handleDelete = () => {
     setCancelDelete(!cancelDelete);
   };
+
   return (
     <>
-      {data?.map((item: any, idx: any) => (
+      {data?.map((item: any, index: any) => (
         <Accordion
           key={item.title}
           disableGutters
@@ -44,22 +41,19 @@ const CustomAccordian = ({
               display: "none",
             },
           }}
-          expanded={expanded === `panel${idx + 1}`}
-          onChange={handleChange(`panel${idx + 1}`)}
+          expanded={accordianExpanded === index}
+          onChange={() => handleAccordionChange(index)}
         >
           <AccordionSummary
             sx={{
               display: "flex",
               flexDirection: "row-reverse",
-              backgroundColor:
-                theme.palette.mode === "dark"
-                  ? theme.palette.grey[700]
-                  : alpha(theme.palette.primary.main, 0.12),
+              backgroundColor: theme.palette.mode === "dark" ? theme.palette.grey[700] : alpha(theme.palette.primary.main, 0.12),
               borderRadius: "5px",
             }}
             className="summary-Icon"
-            aria-controls={`panel${idx + 1}bh-content`}
-            id={`panel${idx + 1}bh-header`}
+            aria-controls={`panel${index + 1}bh-content`}
+            id={`panel${index + 1}bh-header`}
             expandIcon={
               <Avatar
                 sx={{
@@ -76,23 +70,13 @@ const CustomAccordian = ({
               </Avatar>
             }
           >
-            <Box
-              width={"100%"}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
-              gap={2}
-              flexWrap={"wrap"}
-            >
+            <Box width={"100%"} display={"flex"} alignItems={"center"} justifyContent={"space-between"} gap={2} flexWrap={"wrap"}>
               <Typography
                 variant="subtitle1"
                 className="title"
                 sx={{
                   padding: "5px 10px",
-                  color:
-                    theme.palette.mode === "dark"
-                      ? theme.palette.grey[500]
-                      : theme.palette.grey[700],
+                  color: theme.palette.mode === "dark" ? theme.palette.grey[500] : theme.palette.grey[700],
                 }}
               >
                 {item.title}
@@ -122,13 +106,12 @@ const CustomAccordian = ({
               )}
 
               {subTitle && (
-                <Typography
-                  variant="subtitle2"
-                  className="title"
-                  sx={{ pr: "5px" }}
-                >
+                <Typography variant="subtitle2" className="title" sx={{ pr: "5px" }}>
                   {item?.lectures?.length} lectuers - {item?.minutes} min
                 </Typography>
+              )}
+              {addIcon && accordianExpanded === index && (
+                <AddCircleIcon onClick={() => handleAdd(item?.id)} width={33} height={33} style={{ color: "#F6830F" }} />
               )}
             </Box>
           </AccordionSummary>

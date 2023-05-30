@@ -14,11 +14,6 @@ const CyberEssentials = () => {
     const index = titleArr.indexOf("(");
     const newTitle = titleArr.slice(0, index).join("");
     router.push({ pathname: "/policies-and-guidelines/cyber-essentials/add-form", query: { title: newTitle } });
-    // const foundItem = accordionData.find((obj) => obj.id === id);
-    // if (foundItem) {
-    //   const newTitle = foundItem.title.trim();
-    //   router.push({ pathname: "/policies-and-guidelines/cyber-essentials/add-form", query: { title: newTitle } });
-    // }
   };
   return (
     <>
