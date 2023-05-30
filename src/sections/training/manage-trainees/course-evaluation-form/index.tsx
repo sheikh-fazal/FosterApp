@@ -5,8 +5,12 @@ export const initialValues = {
   courseNumber: "",
   instructor: "",
   fieldOfStudy: "",
+  question1: "",
 };
-export const formSchema = Yup.object().shape({});
+export const formSchema = Yup.object().shape({
+  courseNumber: Yup.string().required("Field is required"),
+  instructor: Yup.string().required("Field is required"),
+});
 
 let hideLabel = {
   "& .MuiFormControlLabel-label": {
