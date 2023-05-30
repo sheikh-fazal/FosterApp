@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { formSchema, initialValues } from ".";
 import { useRouter } from "next/router";
 
-export const useAddOtherProfessionals = () => {
+export const useAddAdultHouseHoldMember = () => {
   const router = useRouter();
 
   const handleBack = () => router.push('/reports/ifa-reports/FR-D1');

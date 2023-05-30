@@ -2,13 +2,13 @@ import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { LoadingButton } from "@mui/lab";
-import { useAddOtherProfessionals } from "./useAddOtherProfessionals";
+import { useAddAdultHouseHoldMember } from "./useAddAdultHouseHoldMember";
 import { FRD1FormData } from ".";
 
-const AddOtherProfessionals = ({ action, id }: any) => {
+const AddAdultHouseHoldMember = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit, handleBack } =
-    useAddOtherProfessionals();
+  useAddAdultHouseHoldMember();
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
@@ -20,7 +20,7 @@ const AddOtherProfessionals = ({ action, id }: any) => {
             color: "#898989",
           }}
         >
-          FR-F1: OTHER PROFESSIONALS
+          FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER
         </Typography>
         <Typography
           sx={{
@@ -87,4 +87,4 @@ const AddOtherProfessionals = ({ action, id }: any) => {
   );
 };
 
-export default AddOtherProfessionals;
+export default AddAdultHouseHoldMember;
