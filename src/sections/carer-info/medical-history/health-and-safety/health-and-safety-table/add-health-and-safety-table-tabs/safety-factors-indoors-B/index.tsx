@@ -9,41 +9,47 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild: false,
+  areGasFiresAndWaterHeatersServicedAnnually: false,
   dateToBeCarriedOutOne: new Date(todayDate),
 
   improvementsRequireOne: "Text",
 
-  canChildEatInComfortableAndRelaxedAtmosphere: false,
+  areAllLargeAreasOfGlassFittedWithSafetyGlass: false,
   dateToBeCarriedOutTwo: new Date(todayDate),
 
   improvementsRequireTwo: "Text",
 
-  isAccommodationHygienicallyCleanAndFree: false,
+  areThereAnyLooseOrUnevenFloorCovering: false,
   dateToBeCarriedOutThree: new Date(todayDate),
 
   improvementsRequireThree: "text",
 
-  areThereAnyObviousHazards: false,
+  doSoftFurnishingsConfirmToBritishStandards: false,
   dateToBeCarriedOutFour: new Date(todayDate),
 
   improvementsRequireFour: "text",
 
-  doPetsPosePhysicalThreatToChildren: false,
+  areYouCommittedToEnsuringsThatNewFurnitureConfirmsToBritishStandards: false,
   dateToBeCarriedOutFive: new Date(todayDate),
 
   improvementsRequireFive: "text",
 
-  areSleepingAndFeedingArrangementsForPetsHygienic: false,
+  isFurnitureSave: false,
 
   dateToBeCarriedOutSix: new Date(todayDate),
 
   improvementsRequireSix: "text",
 
-  doAdultsUnderstandHowInfectionsAreTransmitted: false,
+  doWindowsGaveLocks: false,
   dateToBeCarriedOutSeven: new Date(todayDate),
 
   improvementsRequireSeven: "text",
+
+  areAllWindowsAndDoorsKeysEasilyAvailableInTheEventOfFire: false,
+
+  dateToBeCarriedOutEight: new Date(todayDate),
+
+  improvementsRequireEight: "text",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -74,13 +80,17 @@ export const FormSchema = Yup.object().shape({
   dateToBeCarriedOutSeven: Yup.date().required("Required"),
 
   improvementsRequireSeven: Yup.string().required("Required"),
+
+  dateToBeCarriedOutEight: Yup.date().required("Required"),
+
+  improvementsRequireEight: Yup.string().required("Required"),
 });
 
-export const householdConditionB_Data = [
+export const safetyFactorsIndoorsB_Data = [
   {
     id: 0.5,
     variant: "subtitle2",
-    heading: `Part 1: General Household Conditions - B`,
+    heading: `General Safety Factors - Indoors B`,
   },
 
   {
@@ -88,9 +98,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild",
+      name: "areGasFiresAndWaterHeatersServicedAnnually",
       label:
-        "If children over eight years old will be sharing a room, will it be with a child of the same sex ?",
+        "Are gas fires and gas water heaters serviced annually?",
     },
     component: RHFCheckbox,
   },
@@ -121,8 +131,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "canChildEatInComfortableAndRelaxedAtmosphere",
-      label: "Can child eat in a comfortable and relaxed atmosphere ?",
+      name: "areAllLargeAreasOfGlassFittedWithSafetyGlass",
+      label:
+        "Are all large areas of glass fitted with safety glass?",
     },
     component: RHFCheckbox,
   },
@@ -153,9 +164,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isAccommodationHygienicallyCleanAndFree",
-      label:
-        "Is the accommodation hygienically clean and free from the odour of pets, cigarette smoke, urine and rubbish ?",
+      name: "areThereAnyLooseOrUnevenFloorCovering",
+      label: "Are there any loose or uneven floor coverings?",
     },
     component: RHFCheckbox,
   },
@@ -186,8 +196,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areThereAnyObviousHazards",
-      label: "Are there any obvious hazards ?",
+      name: "doSoftFurnishingsConfirmToBritishStandards",
+      label: "Do soft furnishings confirm to British Standard BS:5852:2006?",
     },
     component: RHFCheckbox,
   },
@@ -218,8 +228,9 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doPetsPosePhysicalThreatToChildren",
-      label: "Do pets pose a physical threat to children ?",
+      name: "areYouCommittedToEnsuringsThatNewFurnitureConfirmsToBritishStandards",
+      label:
+        "Are you committed to ensurings that any new furniture confirms to the British Standards?",
     },
     component: RHFCheckbox,
   },
@@ -250,8 +261,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSleepingAndFeedingArrangementsForPetsHygienic",
-      label: "Are sleeping and feeding arrangements for pets hygienic?",
+      name: "isFurnitureSave",
+      label: "Is furniture save?",
     },
     component: RHFCheckbox,
   },
@@ -284,8 +295,8 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doAdultsUnderstandHowInfectionsAreTransmitted",
-      label: "Do adults understand how infections are transmitted ?",
+      name: "doWindowsGaveLocks",
+      label: "Do windows have locks/restrictors?",
     },
     component: RHFCheckbox,
   },
@@ -303,6 +314,38 @@ export const householdConditionB_Data = [
     id: 21,
     componentProps: {
       name: "improvementsRequireSeven",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 22,
+    gridLength: 6,
+    componentProps: {
+      fullWidth: true,
+      name: "areAllWindowsAndDoorsKeysEasilyAvailableInTheEventOfFire",
+      label: "Are all windows and door keys easily available in the event of a fire?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 23,
+    componentProps: {
+      fullWidth: true,
+      name: "dateToBeCarriedOutEight",
+      label: "Date to be carried out",
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 24,
+    componentProps: {
+      name: "improvementsRequireEight",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
