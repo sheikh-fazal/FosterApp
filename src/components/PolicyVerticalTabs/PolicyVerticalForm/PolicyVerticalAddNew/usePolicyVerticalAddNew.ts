@@ -13,7 +13,7 @@ export const usePolicyVerticalAddNew = () => {
     defaultValues: PolicyVerticalAddNewDefaultValues,
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
 
   return {
     methods,
@@ -23,5 +23,6 @@ export const usePolicyVerticalAddNew = () => {
     currentTab,
     setCurrentTab,
     handlePreviousTab,
+    reset
   };
 };
