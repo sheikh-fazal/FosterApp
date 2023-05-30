@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
-import ClaDocumentationListForm from "@root/sections/cla-documentation-list/ClaDocumentationListForm";
+import { CLADocumentationForm } from "@root/sections/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -38,7 +38,7 @@ export default function ClaDocumentationForm() {
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <ClaDocumentationListForm />
+        <CLADocumentationForm />
       </Paper>
     </Page>
   );

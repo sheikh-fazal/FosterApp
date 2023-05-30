@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -6,7 +6,7 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TableAction from "@root/components/TableAction";
-import { Grid, TextField, useTheme } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -28,24 +28,28 @@ const style = {
 };
 
 export default function UploadDocumentModal(props: any) {
-  const theme: any = useTheme();
-  const { content, readOnly, btnType, openModal, closeModal, formData } = props;
-  const selectedRow = content?.row?.original;
-  console.log(content);
+  const [open, setOpen] = useState(false);
 
-  const onSubmit = (data: any) => {
-    console.log(data, "submitted data");
-    handleClose();
-    // reset();
-  };
-  const [open, setOpen] = React.useState(false);
+  const theme: any = useTheme();
+
+  const {
+    content,
+    readOnly,
+    btnType,
+    openModal,
+    closeModal,
+    formData,
+    column,
+  } = props;
+  const selectedRow = content?.row?.original;
+
   const handleOpen = () => {
     setOpen(true);
     console.log("View", content?.row?.original);
   };
   const handleClose = () => {
     setOpen(false);
-    !readOnly && closeModal(false);
+    closeModal && closeModal(false);
   };
   console.log(theme.palette.orange);
 
@@ -75,12 +79,13 @@ export default function UploadDocumentModal(props: any) {
               component="p"
               mb={3}
             >
-              Person Uploaded :{selectedRow?.personUploaded}
+              Person Uploaded :{selectedRow?.[column[3]]}
             </Typography>
             <DocumentModalForm
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
+              column={column}
             >
               <Button
                 size="small"
@@ -103,16 +108,16 @@ export default function UploadDocumentModal(props: any) {
 }
 
 const DocumentModalForm = (props: any) => {
-  const { disableForm, children, selectedRow, formData } = props;
+  const { disableForm, children, selectedRow, formData, column } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
-    documentType: selectedRow?.documentType,
+    documentType: selectedRow?.[column[1]],
     documentDate: new Date(
-      dayjs(selectedRow?.documentDate).format("MM/DD/YYYY")
+      dayjs(selectedRow?.[column[2]]).format("MM/DD/YYYY")
     ),
-    password: selectedRow?.password,
-    chosenFile: { name: selectedRow?.document },
+    password: selectedRow?.[column[3]],
+    chosenFile: { name: selectedRow?.[column[4]] },
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({

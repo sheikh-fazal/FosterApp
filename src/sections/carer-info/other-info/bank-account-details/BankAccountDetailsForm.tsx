@@ -72,7 +72,7 @@ export default function BankAccountDetailsForm(props: any) {
             >
               Person Uploaded :{selectedRow?.personUploaded}
             </Typography>
-            <DocumentModalForm
+            <FormPiece
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
@@ -89,7 +89,7 @@ export default function BankAccountDetailsForm(props: any) {
               >
                 {readOnly ? "Close" : "Cancel"}
               </Button>
-            </DocumentModalForm>
+            </FormPiece>
           </Box>
         </Fade>
       </Modal>
@@ -97,15 +97,15 @@ export default function BankAccountDetailsForm(props: any) {
   );
 }
 
-const DocumentModalForm = (props: any) => {
+const FormPiece = (props: any) => {
   const { disableForm, children, selectedRow, formData } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
-    accountNumber: selectedRow?.accountNumber || "123456",
-    sortName: selectedRow?.sortName || "Name sort",
-    nameOfBank: selectedRow?.nameOfBank || "HBL",
-    accountName: selectedRow?.accountName || "Name of HBL",
+    accountNumber: selectedRow?.accountNumber || "",
+    sortName: selectedRow?.sortName || "",
+    nameOfBank: selectedRow?.nameOfBank || "",
+    accountName: selectedRow?.accountName || "",
     accountType: selectedRow?.accountType || "platinum",
   };
   //-----------------------------------------------//

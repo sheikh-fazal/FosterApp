@@ -46,7 +46,7 @@ const DeletePrompt = (props: any) => {
                       onClick={onDeleteClick}
                       sx={Styles.buttonError(theme)}
                     >
-                      Yes,delete it
+                      Yes, delete it
                     </Button>
                     <Button
                       onClick={handleClose}

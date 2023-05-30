@@ -22,12 +22,12 @@ import FamilyTable from "@root/sections/carer-info/personal-info/application-for
 import Reference from "@root/sections/carer-info/personal-info/application-form/reference/ReferenceTable";
 import Employers from "@root/sections/carer-info/personal-info/application-form/employers/EmployersTable";
 import ExPartners from "@root/sections/carer-info/personal-info/application-form/ex-partners/ExPartnersTable";
-import IsFetching from "@root/components/loaders/IsFetching";
 
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import { DocumentTable } from "@root/sections/carer-info/personal-info/application-form/documents/DocumentTable";
 import { useGetApplicationFormDataQuery } from "@root/services/carer-info/personal-info/application-form/ApplicationFormAllApi";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -75,12 +75,12 @@ ApplicationForm.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ApplicationForm() {
-  let role = "IFA";
+  let role = "foster-carer";
   const { data, isLoading, isError }: any = useGetApplicationFormDataQuery({});
   if (isLoading) {
     return (
       <Page title={PAGE_TITLE}>
-        <IsFetching isFetching={isLoading} />
+        <SkeletonFormdata />
       </Page>
     );
   }
@@ -128,7 +128,7 @@ export default function ApplicationForm() {
               haveApplied: data?.data?.otherInfo.haveApplied ? "Yes" : "No",
             }),
           }}
-          disabled={true}
+          disabled={role == "foster-carer" ? true : false}
         />
         <ExPartners role={role} apllicationFormid={data?.data?.id} />
         <PlacementPreferenceForm

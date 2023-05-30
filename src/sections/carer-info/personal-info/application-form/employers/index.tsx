@@ -31,7 +31,7 @@ export const FormSchema = Yup.object().shape({
   phone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   contactName: Yup.string().required("Field is required"),
   noticePeriod: Yup.string().required("Field is required"),
   disciplinaryCareer: Yup.string().required("Field is required"),
@@ -128,7 +128,7 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setEmployerData: any) => {
+export const columns = (changeView: any, setEmployerData: any, role: any) => {
   return [
     {
       accessorFn: (row: any) => row.contactName,
@@ -161,6 +161,23 @@ export const columns = (changeView: any, setEmployerData: any) => {
               changeView("view");
             }}
           />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setEmployerData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <TableAction
+                type="delete"
+                onClicked={() => {
+                  console.log("delete");
+                }}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,

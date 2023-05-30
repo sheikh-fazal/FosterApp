@@ -61,7 +61,7 @@ export const columns = [
   },
 ];
 
-export const ClaDocumentationListFormData = [
+export const EHCPFormData = [
   {
     id: 1,
     heading: "Foster Placement Agreement",
@@ -688,6 +688,66 @@ export const ClaDocumentationListFormData = [
     md: 12,
   },
 ];
+export const PEPFormData = [
+  {
+    id: 1,
+    componentProps: {
+      name: "name",
+      label: "Name",
+      sx: { mb: 4 },
+      multiline: true,
+      rows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
+  {
+    id: 2,
+    componentProps: {
+      name: "class",
+      label: "Class",
+      sx: { mb: 4 },
+      multiline: true,
+      rows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
+  {
+    id: 3,
+    componentProps: {
+      name: "plan",
+      label: "Plan",
+      sx: { mb: 4 },
+      multiline: true,
+      rows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
+  {
+    id: 4,
+    componentProps: {
+      name: "pepDuration",
+      label: "Pep Duration",
+      sx: { mb: 4 },
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    md: 6,
+  },
+  {
+    id: 6,
+    componentProps: {
+      name: "assessment",
+      label: "Assessment",
+      sx: { mb: 4 },
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    md: 6,
+  },
+];
 
 // export const defaultValues = {
 //   nameOfOwner: "",
@@ -697,12 +757,20 @@ export const ClaDocumentationListFormData = [
 //   housingAndRoutines: "",
 // };
 
-export const ClaDocumentationListFormValidation = Yup.object().shape({
+export const EHCPFormValidation = Yup.object().shape({
   nameOfOwner: Yup.string().trim().required("Name of Owner is Required"),
   nameOfAnimal: Yup.string().trim().required("Name of Animal is Required"),
   typeOfAnimal: Yup.string().trim().required("Type of Animal is Required"),
   description: Yup.string().trim(),
   housingAndRoutines: Yup.string().trim(),
 });
+export const PEPFormValidation = Yup.object().shape({
+  name: Yup.string().trim().required("Name of Owner is Required"),
+  class: Yup.string().trim().required("Name of Animal is Required"),
+  plan: Yup.string().trim().required("Type of Animal is Required"),
+  pepDuration: Yup.string().trim(),
+  assessment: Yup.string().trim(),
+});
+
 
 export { default as ClaDocumentationList } from "./ClaDocumentationList"
