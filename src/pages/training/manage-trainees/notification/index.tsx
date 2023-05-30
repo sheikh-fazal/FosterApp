@@ -5,6 +5,7 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import TrainingClockEngineTable from "@root/sections/training/notifications/training-clock-engine-tab/TrainingClockEngineTable";
 import NotificationTable from "@root/sections/training/notifications/notification-settings-tab/NotificationTable";
+import CustomHorizaontalTab from "@root/components/customTabs";
 
 
 const PAGE_TILE = "Notification Setting";
@@ -32,19 +33,20 @@ Notifications.getLayout = function getLayout(page: any) {
 };
 
 export default function Notifications() {
-
+  const [currentTab, setCurrentTab] = useState(1);
+   const tabsArray = [
+    "Training Clock Engine",
+    "Notification Settings",
+  ];
   return (
     <Page title={PAGE_TILE}>
-      <HorizaontalTabs
-        tabsDataArray={[
-          "Training Clock Engine",
-          "Notification Settings",
-        ]}
-     
-      >
+      <CustomHorizaontalTab
+        tabsArray={tabsArray}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}>
         <TrainingClockEngineTable />
         <NotificationTable/>
-      </HorizaontalTabs>
+      </CustomHorizaontalTab>
     </Page>
   );
 }

@@ -19,7 +19,7 @@ export const tabsArray = [
 
 // ----------------------------------------------------------------------
 
-ApplicationForm.getLayout = function getLayout(page: any) {
+FosterChildEequestForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -43,7 +43,7 @@ ApplicationForm.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function ApplicationForm() {
+export default function FosterChildEequestForm() {
   const [currentTab, setCurrentTab] = useState(0);
   const handleNextTab = () => setCurrentTab(currentTab + 1);
   const handlePreviousTab = () => setCurrentTab(currentTab - 1);

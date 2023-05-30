@@ -1,17 +1,18 @@
-import React, { useRef, useState } from "react";
-import { useRouter } from "next/router";
-import { Box, Checkbox } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Checkbox, Grid, Button, Link } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import CustomTable from "@root/components/Table/CustomTable";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
-import Image from "next/image";
-import RefreshIcon from "../../../../assets/svg/referral/RefreshIcon.svg";
-import { UploadDocumentsTableData } from ".";
+
 import { useUploadDocumentsTableData } from "./useUploadDocumentsTable";
 
-const UploadDocumentTable = ({ disabled }: any) => {
+const UploadDocumentTable = ({
+  disabled,
+  props = {},
+  handlePreviousBtn,
+}: any) => {
   const {
     IsDeleteModal,
     setIsDeleteModal,
@@ -19,10 +20,9 @@ const UploadDocumentTable = ({ disabled }: any) => {
     setIsOpenDocuementModal,
     tableHeaderRefTwo,
     router,
-    actionType,
-    setActionType
+    SupervisionTrainingUploadDocData,
+    actionType,setActionType,
   } = useUploadDocumentsTableData();
-
   const columns = [
     {
       id: "select",
@@ -97,13 +97,9 @@ const UploadDocumentTable = ({ disabled }: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <Box sx={{ cursor: "pointer" }}>
-            <Image src={RefreshIcon} alt="RefreshIcon" width={30} height={30} />
-          </Box>
           <TableAction
             size="small"
             type="download"
-            
             onClicked={() =>
               router.push({
                 pathname: "",
@@ -125,8 +121,12 @@ const UploadDocumentTable = ({ disabled }: any) => {
           <TableAction
             size="small"
             type="view"
-            onClicked={() => {console.log(info.row.original.id);  setIsOpenDocuementModal(!IsOpenDocuementModal); setActionType('view')}}/>
-            </Box>
+            onClicked={() => {
+              console.log(info.row.original.id);
+              setIsOpenDocuementModal(!IsOpenDocuementModal);setActionType('view')
+            }}
+          />
+        </Box>
       ),
       header: () => <span>actions</span>,
       isSortable: false,
@@ -135,35 +135,74 @@ const UploadDocumentTable = ({ disabled }: any) => {
 
   return (
     <>
+      <Grid container>
+        <Grid item xs={12}>
+          {!disabled ? (
+            <TableHeader
+              ref={tableHeaderRefTwo}
+              title="Uploaded Documents"
+              searchKey="search"
+              showAddBtn
+              onAdd={() => {
+                setIsOpenDocuementModal(!IsOpenDocuementModal);setActionType('add')
+              }}
+              onChanged={(data: any) => {
+                console.log("Updated params: ", data);
+              }}
+            />
+          ) : (
+            <TableHeader
+              ref={tableHeaderRefTwo}
+              title="Uploaded Documents"
+              searchKey="search"
+              onAdd={() => {
+                setIsOpenDocuementModal(!IsOpenDocuementModal);
+              }}
+              onChanged={(data: any) => {
+                console.log("Updated params: ", data);
+              }}
+            />
+          )}
+          <CustomTable
+            data={SupervisionTrainingUploadDocData}
+            columns={columns}
+            isLoading={false}
+            isFetching={false}
+            isError={false}
+            isPagination={false}
+            isSuccess={true}
+            currentPage={1}
+            onPageChange={(data: any) => {}}
+            onSortByChange={(data: any) => {}}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          {!disabled && (
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{ mr: 2 }}
+              onClick={() => setIsOpenDocuementModal(true)}
+            >
+              Submit
+            </Button>
+          )}
 
-
-        <TableHeader
-          ref={tableHeaderRefTwo}
-          title="Uploaded Documents"
-          searchKey="search"
-          disabled={disabled}
-          showAddBtn={!disabled}
-          onAdd={() => {
-            setIsOpenDocuementModal(!IsOpenDocuementModal); setActionType('add')
-          }}
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
-        />
-     
-       
-      <CustomTable
-        data={UploadDocumentsTableData}
-        columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
-      />
+          <Button
+            type="button"
+            variant="contained"
+            sx={{
+              backgroundColor: "#F6830F",
+              "&:hover": { backgroundColor: "#F6830F" },
+            }}
+            onClick={() => {
+              handlePreviousBtn();
+            }}
+          >
+            Back
+          </Button>
+        </Grid>
+      </Grid>
       {actionType==='view' ? (
         <UploadDocumentModal
         disabled

@@ -1,3 +1,4 @@
+import { SupervisionTrainingUploadDocData } from '.';
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -7,7 +8,6 @@ export const useUploadDocumentsTableData = () => {
   const [actionType, setActionType] = useState('add');
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-
   return {
     IsDeleteModal,
     setIsDeleteModal,
@@ -15,7 +15,7 @@ export const useUploadDocumentsTableData = () => {
     setIsOpenDocuementModal,
     tableHeaderRefTwo,
     router,
-    actionType,
-    setActionType
+    SupervisionTrainingUploadDocData,
+    actionType,setActionType
   };
 };
