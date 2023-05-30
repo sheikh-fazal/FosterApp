@@ -14,6 +14,7 @@ const UploadDocuments = (props: any) => {
     isError,
     isSuccess,
     modalData,
+    column,
   } = props;
   const [openModal, setOpenModal] = useState(false);
   const changeHandler = (i: any) => {
@@ -34,6 +35,7 @@ const UploadDocuments = (props: any) => {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
+        column={column}
       />
       <UploadDocumentModal
         closeModal={setOpenModal}

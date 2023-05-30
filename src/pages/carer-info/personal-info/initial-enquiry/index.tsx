@@ -108,12 +108,13 @@ export default function InitialEnquiry() {
 
       {/*---------------------- Fourth Tab---------------------- */}
       <UploadDocuments
-        readOnly={false}
+        readOnly={true}
         tableData={tableData}
         isLoading={isDocumentLoading}
         isFetching={isFetching}
         isError={hasDocumentError}
         isSuccess={isSuccess}
+        column={["document", "documentType", "date", "personName", "password"]}
         modalData={(data: any) => console.log("data all the way here", data)}
       />
     </HorizaontalTabs>
