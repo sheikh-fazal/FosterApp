@@ -23,6 +23,7 @@ const Document = () => {
     isSingleDocumentDetailViewed,
     SetIsSingleDocumentDetailViewed,
     initialHomeDocumentTableColumns,
+    submitInitialHomeVisitDocument,
   } = useDocument();
 
   return (
@@ -65,15 +66,9 @@ const Document = () => {
     // </>
     <UploadDocuments
       readOnly={user?.defaultRole === "FOSTER_CARER"}
-      tableData={data?.initialDocuments.map((x: any) => ({
-        document: x.documentName,
-        date: x?.documentDate,
-        personName: x.personUploaded,
-        password: x.password,
-        documentType: x?.documentType,
-      }))}
+      tableData={data?.initialDocuments}
       isLoading={isLoading}
-      columns={[
+      column={[
         "documentName",
         "documentType",
         "documentDate",
@@ -83,7 +78,10 @@ const Document = () => {
       isFetching={isFetching}
       isError={isError}
       isSuccess={isSuccess}
-      modalData={(data: any) => console.log("data all the way here", data)}
+      modalData={(data: any) => {
+        console.log("data all the way here", data);
+        submitInitialHomeVisitDocument(data);
+      }}
     />
   );
 };
