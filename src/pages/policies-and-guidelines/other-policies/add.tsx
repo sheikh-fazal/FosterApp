@@ -14,7 +14,7 @@ OtherPoliciesTabsAdd.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/",
+          href: "/policies-and-guidelines/other-policies",
         },
         {
           name: "Other Policies",

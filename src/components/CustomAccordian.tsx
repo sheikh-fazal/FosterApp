@@ -25,9 +25,7 @@ const CustomAccordian = ({
     };
   const [cancelDelete, setCancelDelete] = React.useState(false);
 
-  const handleDelete = () => {
-    setCancelDelete(!cancelDelete);
-  };
+ 
   return (
     <>
       {data?.map((item: any, idx: any) => (
@@ -112,7 +110,6 @@ const CustomAccordian = ({
                     size="small"
                     type="delete"
                     onClicked={(event: any) => {
-                      handleDelete();
                       event.stopPropagation();
                       event.nativeEvent.preventDefault();
                       handleRowDelete(item);
