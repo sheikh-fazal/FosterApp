@@ -5,8 +5,8 @@ import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import FamilyOrgInvolvedForm from "@root/sections/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 
 
 // ----------------------------------------------------------------------

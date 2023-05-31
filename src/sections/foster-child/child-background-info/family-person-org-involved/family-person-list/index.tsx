@@ -57,7 +57,7 @@ export const columns = [
           type="edit"
           onClicked={() =>
             router.push(
-              `/family-person-list/family-form-list`
+              `/foster-child/child-background-info/family-person-org-involved/family-form-list`
             )
           }
         />

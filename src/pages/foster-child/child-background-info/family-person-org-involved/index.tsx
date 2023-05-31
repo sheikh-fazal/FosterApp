@@ -10,7 +10,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
-import FamilyPersonListTable from "@root/sections/family-person-list/FamilyPersonListTable";
+import FamilyPersonListTable from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/FamilyPersonListTable";
 
 
 // ----------------------------------------------------------------------

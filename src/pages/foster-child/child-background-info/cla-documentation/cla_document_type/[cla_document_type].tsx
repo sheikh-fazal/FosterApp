@@ -1,29 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
-import { CLADocumentationForm } from "@root/sections/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
+import { useRouter } from "next/router";
+import { CLADocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "CLA Document",
-    href: "/",
+    name: "CLA Documentation List",
+    href: "/foster-child/child-background-info/cla-documentation",
   },
   {
-    name: "CLA Documentation List",
-    href: "",
+    name: "CLA Document",
+    href: "/",
+
   },
 ];
 
-const PAGE_TITLE = "View EHCP Document";
+let PAGE_TITLE: any;
 // ----------------------------------------------------------------------
 
 ClaDocumentationForm.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+  PAGE_TITLE = `View ${router?.query?.cla_document_type} Document`
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -35,6 +39,10 @@ ClaDocumentationForm.getLayout = function getLayout(page: any) {
 };
 
 export default function ClaDocumentationForm() {
+  const router = useRouter();
+  PAGE_TITLE = `View ${router?.query?.cla_document_type} Document`
+
+
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
