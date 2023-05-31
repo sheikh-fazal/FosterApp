@@ -13,7 +13,7 @@ export const useDecisionSheet = () => {
         router.push({ pathname: path });
         break;
       case "edit":
-        router.push({ pathname: path });
+        router.push({ pathname: path+"/edit" });
         break;
       case "view":
         router.push({ pathname: path+"/view" });

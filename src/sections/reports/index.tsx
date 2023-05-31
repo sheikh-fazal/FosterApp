@@ -110,12 +110,24 @@ export const REPORTTABSDATAARRY = [
     index: 1,
     title: "Carer Reports",
     background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%);",
-    innerDataArray: [],
+    innerDataArray: [
+      {
+        id: 1,
+        title: "Reference Link",
+        link: "/carer-reports",
+      },
+    ]
   },
   {
     index: 2,
     title: "Child Reports",
     background: "linear-gradient(106.35deg, #2CB764 0%, #33E87C 100%)",
-    innerDataArray: [],
+    innerDataArray: [
+      {
+        id: 1,
+        title: "Reference Link",
+        link: "/child-reports",
+      },
+    ]
   },
 ];
