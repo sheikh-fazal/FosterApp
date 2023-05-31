@@ -25,13 +25,21 @@ function BehavioralInfoForm(props: any) {
     resolver: yupResolver(FormSchema),
     defaultValues: BehaviouralInfoDefultValue,
   });
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+  const {
+    trigger,
+    setValue,
+    handleSubmit,
+    getValues,
+    watch,
+    reset,
+    formState: { errors },
+  } = methods;
   const submitHander = (data: any) => {
     console.log(data);
   };
 
   const theme: any = useTheme();
-  console.log(theme);
+  console.log(errors);
   return (
     <Paper elevation={2} sx={{ borderRadius: 2 }}>
       <Box sx={{ px: 1, py: 2 }}>
@@ -82,7 +90,7 @@ function BehavioralInfoForm(props: any) {
                   }}
                   xs={12}
                 >
-                  {action === "edit" && (
+                  {action === "edit" || action === "add" ? (
                     <Button
                       sx={{
                         bgcolor: theme.palette.primary.main,
@@ -93,7 +101,7 @@ function BehavioralInfoForm(props: any) {
                     >
                       Submit
                     </Button>
-                  )}
+                  ) : null}
 
                   <Button
                     sx={{

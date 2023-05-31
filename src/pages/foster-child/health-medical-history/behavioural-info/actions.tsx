@@ -16,6 +16,7 @@ BehaviouralInfo.getLayout = function GetLayout(page: any) {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
+      name: PAGE_TITLE,
       href: "",
     },
     {

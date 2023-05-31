@@ -160,7 +160,7 @@ export const BehaviouralInfoDefultValue = {
   habitsOfSmokingDrugs: false,
   habitsofConsumingAlcohol: false,
   childIsDiagnosedADHD: false,
-  overallBehaviour: 0,
+  overallBehaviour: undefined,
   summary: "",
 };
 export const FormSchema = Yup.object().shape({
