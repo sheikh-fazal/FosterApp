@@ -8,9 +8,10 @@ import TableHeader from '@root/components/TableHeader';
 import TableSubHeader from '../../table-sub-header/TableSubHeader';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
+import DeleteModel from '@root/components/modal/DeleteModel';
 
 const OthersProfessionals = () => {
-  const { handleSearch, handleAction } = useOtherProfessionals();
+  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } = useOtherProfessionals();
 
   const columns = [
     {
@@ -87,6 +88,7 @@ const OthersProfessionals = () => {
     },
   ];
   return (
+    <>
     <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
       <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexWrap={'wrap'} gap={2}
         sx={{ px: 2 }}
@@ -122,6 +124,12 @@ const OthersProfessionals = () => {
         columns={columns}
       />
     </Card>
+    <DeleteModel
+        open={openDelete}
+        handleClose={handleCloseDeleteModal}
+        onDeleteClick={handleCloseDeleteModal}
+      />
+    </>
   )
 }
 
