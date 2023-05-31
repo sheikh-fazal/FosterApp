@@ -35,7 +35,7 @@ const UpdateViewBankDetailsForm: FC<any> = ({ close, defValues, disabled }) => {
     id,
   } = defValues;
   console.log({ defValues });
-  const [file, setFile] = useState<File | any>(null);
+  const [file, setFile] = useState<File | any>(defValues?.bankStatement);
   const [avialableFile, setAvialableFile] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateOtherBankDetailsInfo] = useUpdateOtherBankDetailsInfoMutation();
