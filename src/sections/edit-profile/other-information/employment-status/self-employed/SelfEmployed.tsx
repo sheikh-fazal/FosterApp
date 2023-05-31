@@ -16,7 +16,7 @@ import FullWidthFormField from "@root/components/form-generator/FullWidthFormFie
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import SingleFileUploader from "@root/sections/edit-profile/file-uploaders/SingleFileUploader";
 
-const SelfEmployed: FC<any> = () => {
+const SelfEmployed: FC<any> = ({ setEmploymentStatus }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [file, setFile] = useState<File | any>(null);
@@ -38,6 +38,7 @@ const SelfEmployed: FC<any> = () => {
 
   const onSubmit = async (data: any) => {
     console.log({ data });
+    setEmploymentStatus("umbrella");
   };
   const setFileHandler = (file: File | null) => {
     setFile(file);
