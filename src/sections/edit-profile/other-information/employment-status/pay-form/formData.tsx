@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const defaultValues = {
   taxCode: "Yes",
   insuranceNo: "Essex",
-  previousEmployer: "No",
+  previousEmployer: "Yes",
   studentLaon: "Yes",
   completeOrLeave: "Yes",
   repayingByDebit: "No",

@@ -29,6 +29,7 @@ import {
 import { enqueueSnackbar } from "notistack";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { isString } from "lodash";
 
 const DBS: FC<any> = ({ setEmploymentStatus }) => {
   const theme: any = useTheme();
@@ -45,14 +46,16 @@ const DBS: FC<any> = ({ setEmploymentStatus }) => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError, error } = await getOtherPayInfo(null, true);
-      console.log(data?.data?.paye?.previousEmployer);
-      // setAvailableFiles(data?.data?.documents);
+      const { data, isError, error } = await getOtherPayInfo(null, false);
+      setFilep45(data?.data?.paye?.p45Document || null);
+      setFile(data?.data?.paye?.referance || null);
+      console.log({ data });
       setIsLoading(false);
       if (isError) {
         displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
+
       return {
         ...data?.data?.paye,
       };
@@ -67,29 +70,25 @@ const DBS: FC<any> = ({ setEmploymentStatus }) => {
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     const { name } = data?.data;
-  //     setFile({ name: name || "filename" });
-  //   }
-  // }, [isSuccess, data?.data]);
+
   const havePs45 = useWatch({ control, name: "previousEmployer" });
+
   const onSubmit = async (data: any) => {
-    console.log({ data });
-    // setEmploymentStatus("limitedCom");
     const formData = new FormData();
-    // documents.forEach((doc) => formData.append("documents", doc));
+    filep45 && formData.append("p45Document", filep45);
+    file && formData.append("referance", file);
     for (var key in data) {
       formData.append(key, data[key]);
     }
     try {
       const data = await updateOtherPayInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      setEmploymentStatus("limitedCom");
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
+
   const setFileHandler = (file: File | null) => {
     setFile(file);
   };
