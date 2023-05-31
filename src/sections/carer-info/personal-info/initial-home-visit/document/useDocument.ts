@@ -40,11 +40,17 @@ export const useDocument = () => {
 
   const submitInitialHomeVisitDocument = async (data: any) => {
     console.log(data);
+    const documentFormData = new FormData();
+
+    documentFormData.append("documentType", data.documentType);
+    documentFormData.append("documentDate", data.documentDate);
+    documentFormData.append("password", data.password);
+    documentFormData.append("documentFile", data.chosenFile);
     const putParams = {
       fosterCarerId:
         query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
-    const putDataParameter = { params: putParams, body: data };
+    const putDataParameter = { params: putParams, body: documentFormData };
     try {
       const res: any = await postInitialHomeDocumentDataTrigger(
         putDataParameter

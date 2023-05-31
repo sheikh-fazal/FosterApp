@@ -82,6 +82,15 @@ const Document = () => {
         console.log("data all the way here", data);
         submitInitialHomeVisitDocument(data);
       }}
+      searchParam={(data: any) => {
+        setSearchValue(data.search);
+        console.log("Updated params: ", data);
+      }}
+      currentPage={data?.meta?.page}
+      totalPages={data?.meta?.pages}
+      onPageChange={(data: any) => {
+        setPage((page) => data - 1);
+      }}
     />
   );
 };

@@ -30,7 +30,7 @@ export const FormValues = {
   offSetEthnicity: "",
   nationalInsuranceNo: "",
   religion: "",
-  practising: "",
+  practising: 'No',
   countryWhereBorn: "",
   howLongLiveInLocalArea: "",
   detailsOfPreviousMarriages: "",
@@ -39,6 +39,7 @@ export const FormValues = {
 
 export const defaultValuesPrimaryCarer = (data = FormValues) => {
   console.log(data);
+  // const p = data?.practising === "true" ? true : false;
   return {
     dateOfVisit: new Date(data?.dateOfVisit),
     nameOfAgencyWorkingVisiting: data?.nameOfAgencyWorkingVisiting,
@@ -61,7 +62,8 @@ export const defaultValuesPrimaryCarer = (data = FormValues) => {
     offSetEthnicity: data?.offSetEthnicity,
     nationalInsuranceNo: data?.nationalInsuranceNo,
     religion: data?.religion,
-    practising: data?.practising,
+    // practising: data?.practising === "true" ? "Yes" : "No",
+    practising: 'No',
     countryWhereBorn: data?.countryWhereBorn,
     howLongLiveInLocalArea: data?.howLongLiveInLocalArea,
     detailsOfPreviousMarriages: data?.detailsOfPreviousMarriages,
@@ -124,7 +126,7 @@ export const FormSchema = Yup.object().shape({
   nationalInsuranceNo: Yup.string().required(
     "National insurance no is required"
   ),
-  practising: Yup.string().required("Practising is required"),
+  // practising: Yup.mixed().required("Practising is required"),
   convictedOfAnyCriminal: Yup.string().required(
     "Conviction knowledge is required"
   ),
