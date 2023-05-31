@@ -129,17 +129,17 @@ export const referenceApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     updateOtherInfoAdditionalDocs: builder.mutation<null, any>({
-      query: (body) => ({
-        url: "user-profile/additional-docs/iamdocid",
+      query: ({ body, docId }: any) => ({
+        url: `user-profile/additional-docs/${docId}`,
         method: "PATCH",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     deleteOtherInfoAdditionalDocsDocs: builder.mutation<null, any>({
-      query: (body) => ({
-        url: "user-profile/additional-docs?docsId=asas",
-        method: "POST",
+      query: ({ body, docsId }: any) => ({
+        url: `user-profile/additional-docs?docsId=${docsId}`,
+        method: "DELETE",
         body,
       }),
       invalidatesTags: [TAG],

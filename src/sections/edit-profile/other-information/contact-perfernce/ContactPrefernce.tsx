@@ -13,9 +13,24 @@ import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
 import { FormSchema, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import TimeSelector from "./TimeSelector/TimeSelector";
+import dayjs, { Dayjs } from "dayjs";
 
 const ContactPrefernce: FC<any> = () => {
   const theme: any = useTheme();
+  const [timeValues, setTimeValues] = useState<{
+    from: Dayjs | null;
+    to: Dayjs | null;
+    fromString: string;
+    toString: string;
+  }>({
+    from: dayjs(new Date()),
+    to: dayjs(new Date()),
+    fromString: "--",
+    toString: "--",
+  });
+  const [contactPrefernceGenInfos, setContactPrefernceGenInfos] = useState({
+    timeRangeModel: false,
+  });
   const [disabled, setDisabled] = useState(false);
   const methods: any = useForm({
     // mode: "onTouched",
@@ -34,6 +49,21 @@ const ContactPrefernce: FC<any> = () => {
 
   const onSubmit = async (data: any) => {
     console.log({ data });
+  };
+
+  const openTimeRangeModel = () => {
+    setContactPrefernceGenInfos((pre) => ({ ...pre, timeRangeModel: true }));
+  };
+  const closeTimeRangeModel = () => {
+    setContactPrefernceGenInfos((pre) => ({ ...pre, timeRangeModel: false }));
+  };
+  const saveToTime = () => {
+    setTimeValues((pre) => ({
+      ...pre,
+      fromString: dayjs(timeValues.from).format("LT"),
+      toString: dayjs(timeValues.to).format("LT"),
+    }));
+    closeTimeRangeModel();
   };
 
   return (
@@ -75,7 +105,14 @@ const ContactPrefernce: FC<any> = () => {
               direction="column"
               sx={{ paddingLeft: "0.5em" }}
             >
-              <TimeSelector />
+              <TimeSelector
+                timeValues={timeValues}
+                setTimeValues={setTimeValues}
+                openTimeRangeModel={openTimeRangeModel}
+                closeTimeRangeModel={closeTimeRangeModel}
+                contactPrefernceGenInfos={contactPrefernceGenInfos}
+                saveToTime={saveToTime}
+              />
             </Grid>
             {/* Email  */}
             <Grid item sm={12} container direction="column">
