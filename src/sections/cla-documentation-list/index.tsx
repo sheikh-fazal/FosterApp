@@ -42,7 +42,7 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              `/cla-documentation-list/cla-documentation-form`
+              `/foster-child/child-background-info/cla-documentation-list/cla-documentation-form`
             )
           }
         />
