@@ -1,21 +1,24 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  Box,
   Button,
-  Card,
-  FormControlLabel,
+  useTheme,
+  Typography,
   Grid,
   Radio,
   RadioGroup,
-  Typography,
+  FormControlLabel,
 } from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
-import React from "react";
+import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { FormSchema, defaultValues, otherDetailsFormData } from ".";
-import FormNotificationExtension from "../../extensions/FormNotificationExtension";
+import { FormSchema, defaultValues, SUBSTITUTECARERFORMDATA } from ".";
+import dayjs from "dayjs";
+import IsFetching from "@root/components/loaders/IsFetching";
 import Error from "@root/components/Error";
 
-export default function OtherDetails(props: any) {
+//component function
+export default function SubstituteCarerForm(props: any) {
   const { disabled, onSubmit, data, isError } = props;
   const methods: any = useForm({
     // mode: "onTouched",
@@ -40,28 +43,22 @@ export default function OtherDetails(props: any) {
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>
-        <Grid item md={12}>
-          <Typography variant="h6">Other Details</Typography>
-        </Grid>
-        {otherDetailsFormData.map((form: any) => {
+        {SUBSTITUTECARERFORMDATA.map((form: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form.id}>
-              {
-                // form.id !== 7.5 &&
-                <form.component
-                  size="small"
-                  {...form.otherOptions}
-                  disabled={disabled}
-                >
-                  {form.otherOptions.select
-                    ? form.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
-                    : null}
-                </form.component>
-              }
+              <form.component
+                size="small"
+                {...form.componentProps}
+                disabled={disabled}
+              >
+                {form.componentProps.select
+                  ? form.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </form.component>
             </Grid>
           );
         })}
@@ -73,7 +70,6 @@ export default function OtherDetails(props: any) {
           </Grid>
         )}
       </Grid>
-      {!disabled && <FormNotificationExtension />}
     </FormProvider>
   );
 

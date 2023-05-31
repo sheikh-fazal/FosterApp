@@ -40,8 +40,8 @@ export const defaultValues = {
   mobileNo: "0011", //17
   email: "abc@yopmail.com", //18
   spareBedrooms: "USD", //19
-  permanentResidencyInUk: "No", //20
-  outStandingCourtOrders: "No", //21
+  permanentResidencyInUk: false, //20
+  outStandingCourtOrders: true, //21
 };
 
 export const FormSchema = Yup.object().shape({

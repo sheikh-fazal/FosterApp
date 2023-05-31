@@ -17,15 +17,12 @@ import dayjs from "dayjs";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import IsFetching from "@root/components/loaders/IsFetching";
 import FormNotificationExtension from "../../extensions/FormNotificationExtension";
-import { useLazyGetInitialInquiryDataQuery } from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
 import Error from "@root/components/Error";
 
 export default function FirstApplicant(props: any) {
   const { disabled: globallyDisabled, data, isLoading, isError } = props;
 
   const theme = useTheme();
-
-  const [getInitialEnquiry] = useLazyGetInitialInquiryDataQuery();
 
   // Update the default values API
   const methods: any = useForm({
