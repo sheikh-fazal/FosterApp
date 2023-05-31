@@ -17,6 +17,7 @@ import { Box } from "@mui/material";
 import dayjs from "dayjs";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { useUploadDocumentsMutation } from "@root/services/carer-info/personal-info/initial-enquiry/documentsApi";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -59,6 +60,8 @@ InitialEnquiry.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InitialEnquiry() {
+  const formData = new FormData();
+
   const { data, isLoading, isError }: any = useGetInitialInquiryDataQuery({});
 
   const {
@@ -69,11 +72,21 @@ export default function InitialEnquiry() {
     isSuccess,
   }: any = useGetInitialInquiryDocumentsDataQuery({});
 
+  const [postDocuments] = useUploadDocumentsMutation();
+
+  const documentUploadHandler = (data: any) => {
+    formData.append("documentType", data.documentType);
+    formData.append("date", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("document", data.chosenFile);
+    postDocuments(formData);
+  };
+
   const tableData: any = documentData?.data?.documents;
+  const metaData: any = documentData?.data?.meta;
 
   //---------------------// uncovering Data //-------------------------------//
-  const firstApplicant = data?.[0]?.firstApplicant;
-  console.log(data, "from parent");
+
   const firstApplicantSubmitHandler = (data: any) => {
     console.log(data, "from parent");
   };
@@ -108,14 +121,20 @@ export default function InitialEnquiry() {
 
       {/*---------------------- Fourth Tab---------------------- */}
       <UploadDocuments
-        readOnly={true}
+        // readOnly={true}
+        searchParam={(searchedText: string) =>
+          console.log("searched Value", searchedText)
+        }
         tableData={tableData}
         isLoading={isDocumentLoading}
         isFetching={isFetching}
         isError={hasDocumentError}
         isSuccess={isSuccess}
         column={["document", "documentType", "date", "personName", "password"]}
-        modalData={(data: any) => console.log("data all the way here", data)}
+        modalData={documentUploadHandler}
+        onPageChange={(page: any) => console.log("parent log", page)}
+        currentPage={metaData?.page}
+        totalPages={metaData?.pages}
       />
     </HorizaontalTabs>
   );
