@@ -2,12 +2,13 @@ import { Box, Grid, Paper } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import dayjs from "dayjs";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { DummyData } from ".";
 
-const activepath = "/carer-info/other-information/next-of-kin/action";
+const activepath =
+  "/foster-child/health-medical-history/behavioural-info/actions";
 
 function BehavioralInfoTable() {
   const columns = [
@@ -70,8 +71,8 @@ function BehavioralInfoTable() {
     <Box>
       <Grid container>
         <Grid item xs={12}>
-          <Paper elevation={2}>
-            <Box sx={{ p: 2 }}>
+          <Paper elevation={2} sx={{ borderRadius: "8px" }}>
+            <Box sx={{ p: 1 }}>
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
@@ -79,10 +80,16 @@ function BehavioralInfoTable() {
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
+                  onAdd={() => {
+                    router.push({
+                      pathname: activepath,
+                      query: { action: "add", id: "" },
+                    });
+                  }}
                 />
               </Box>
               <CustomTable
-                data={[]}
+                data={DummyData ?? []}
                 columns={columns}
                 isLoading={false}
                 isFetching={false}
