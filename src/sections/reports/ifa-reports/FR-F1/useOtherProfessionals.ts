@@ -18,7 +18,7 @@ export const useOtherProfessionals = () => {
         router.push({ pathname: path });
         break;
       case "view":
-        router.push({ pathname: path });
+        router.push({ pathname: path+"/view" });
         break;
       case "delete":
         setOpenDelete(true);

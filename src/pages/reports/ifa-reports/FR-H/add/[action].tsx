@@ -3,8 +3,7 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import AddDecisionSheet from "@root/sections/reports/ifa-reports/FR-I/add/AddDecisionSheet";
-
+import AddFosteringServiceManagerReport from "@root/sections/reports/ifa-reports/FR-H/add/AddFosteringServiceManagerReport";
 
 const PAGE_TITLE = "Reports";
 
@@ -27,8 +26,8 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-I: DECISION SHEET",
-          href: "/reports/ifa-reports/FR-I",
+          name:"FR-H: FOSTERING SERVICE MANAGER REPORT",
+          href: "/reports/ifa-reports/FR-H",
         },
         {
           name: "Add"
@@ -47,7 +46,7 @@ export default function FRD1() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      {/* <AddDecisionSheet action={action} id={id} /> */}
+      <AddFosteringServiceManagerReport action={action} id={id} />
     </Page>
   );
 }

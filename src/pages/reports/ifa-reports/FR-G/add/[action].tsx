@@ -46,7 +46,7 @@ export default function FRD1() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      {/* <AddReviewingOfficerReport action={action} id={id} /> */}
+      <AddReviewingOfficerReport action={action} id={id} />
     </Page>
   );
 }

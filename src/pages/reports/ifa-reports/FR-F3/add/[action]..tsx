@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import AddAdultHouseHoldMember from "@root/sections/reports/ifa-reports/FR-F2/add/AddAdultHouseHoldMember";
+import AddBirthParent from "@root/sections/reports/ifa-reports/FR-F3/add/AddBirthParent";
 
 const PAGE_TITLE = "Reports";
 
@@ -26,8 +26,8 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER",
-          href: "/reports/ifa-reports/FR-F2",
+          name:"FR-F3: BIRTH PARENT/BIRTH FAMILY MEMBER",
+          href: "/reports/ifa-reports/FR-F3",
         },
         {
           name: "Add"
@@ -46,7 +46,7 @@ export default function FRD1() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      {/* <AddAdultHouseHoldMember action={action} id={id} /> */}
+      <AddBirthParent action={action} id={id} />
     </Page>
   );
 }
