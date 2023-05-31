@@ -7,6 +7,7 @@ export const HandbookPoliciesData = [
         img: RecruitmentAssessmentPolicyIcon,
         innerData: [
             {
+                no: "1",
                 title: 'Foster Carer Handbook',
                 dateUploaded: '01/08/2020',
                 author: "John",
@@ -21,11 +22,12 @@ export const HandbookPoliciesData = [
         img: UnderstandingFosteringIcon,
         innerData: [
             {
+                no: "10",
                 title: 'Understanding Fostering',
                 dateUploaded: '01/08/2020',
                 author: "John",
                 documentType: 'POLICY.PDF',
-                version: '1'
+                version: '4'
             }
         ]
     },

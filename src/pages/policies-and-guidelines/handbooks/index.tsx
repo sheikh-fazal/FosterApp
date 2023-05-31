@@ -2,7 +2,6 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-// import OrganisationalPolicies from "@root/sections/policies-and-guidelines/organisational-policies/OrganisationalPolicies";
 import HandbookPolicies from "@root/sections/policies-and-guidelines/handbooks-policies/HandbookPolicies";
 
 const PAGE_TILE = "Policies and Guidelines";
@@ -15,7 +14,7 @@ Panel.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/",
+          href: "/policies-and-guidelines",
         },
         {
           name: "Handbooks",

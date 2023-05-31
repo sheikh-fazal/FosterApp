@@ -17,11 +17,9 @@ export const useUploadDocumentsTable = (props: any) => {
 
   const tableHeaderRefTwo = useRef<any>();
   const [IsDeleteModal, setIsDeleteModal] = useState(false)
-  const [IsAddDocumentModal, setIsAddDocumentModal] = useState(false)
-  const [viewOpenModal, setViewOpenModal] = useState(false);
+  const [isModalType, setIsModalType] = useState({ type: "", value: "" })
   const router = useRouter()
   const theme: any = useTheme();
-
 
   // table column start here
   const columns = [
@@ -94,11 +92,11 @@ export const useUploadDocumentsTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={styles.tableAction}>
-          <TableAction type="refresh" onClicked={() => alert()} />
+          <TableAction type="refresh" onClicked={() => alert("")} />
           <TableAction type="download" onClicked={() => alert()} />
           {!props.disabled && <TableAction type="delete" onClicked={() => setIsDeleteModal(true)} />}
           <DeleteModel onDeleteClick={handleDelete} open={IsDeleteModal} handleClose={() => setIsDeleteModal(false)} />
-          <TableAction size="small" type="view" onClicked={() => setViewOpenModal(!viewOpenModal)} />
+          <TableAction size="small" type="view" onClicked={() => setIsModalType({ ...isModalType, type: "view", value: "" })} />
         </Box>
 
       ),
@@ -110,10 +108,14 @@ export const useUploadDocumentsTable = (props: any) => {
     alert("deleted successfully")
     setIsDeleteModal(!IsDeleteModal)
   }
+  const onSubmit = () => {
+    alert("submit successfully")
+    setIsModalType({ type: "", value: "" })
+  }
 
 
   return {
-    TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, IsAddDocumentModal, setIsAddDocumentModal, viewOpenModal, setViewOpenModal, router, theme, columns
+    TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, router, theme, columns, isModalType, setIsModalType, onSubmit
   }
 
 }

@@ -6,13 +6,7 @@ import UploadDocumentModal from "../../../../components/modal/UploadDocumentModa
 import { useUploadDocumentsTable } from './useUploadDocumentsTable';
 
 const UploadDocumentsTable = (props: any) => {
-  const { TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, IsAddDocumentModal, setIsAddDocumentModal, viewOpenModal, setViewOpenModal, router, theme, columns } = useUploadDocumentsTable(props)
-
-
-  const onSubmit = () => {
-    alert("deleted successfully")
-    setIsDeleteModal(!IsDeleteModal)
-  }
+  const { TableData, tableHeaderRefTwo, theme, columns, isModalType, setIsModalType, onSubmit } = useUploadDocumentsTable(props)
 
   return (
     <Card>
@@ -23,7 +17,7 @@ const UploadDocumentsTable = (props: any) => {
           title="Uploaded Documents"
           disabled={props.disabled}
           showAddBtn={!props.disabled}
-          onAdd={() => setIsAddDocumentModal(true)}
+          onAdd={() => setIsModalType({ ...isModalType, type: "add", value: "" })}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}
@@ -50,9 +44,8 @@ const UploadDocumentsTable = (props: any) => {
         />
       </>
 
+      <UploadDocumentModal open={!!isModalType.type} handleClose={() => setIsModalType({ type: "", value: "" })} disabled={isModalType.type === "view"} onSubmit={onSubmit} isHideSubmitButton />
 
-      <UploadDocumentModal open={IsAddDocumentModal} handleClose={() => setIsAddDocumentModal(false)} onSubmit={onSubmit} isHideSubmitButton />
-      <UploadDocumentModal open={viewOpenModal} handleClose={() => setViewOpenModal(false)} disabled />
     </Card>
   )
 }
