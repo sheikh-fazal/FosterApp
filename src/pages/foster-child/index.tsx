@@ -15,7 +15,7 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import VericalTabs from "@root/components/VericalTabs";
 // sections
-import { FOSTERCHILDTABSDATAARRAY } from "@root/sections/foster-child/health-medical-history/behavioral-info-list/FosterChildData";
+import { FOSTERCHILDTABSDATAARRAY } from "@root/sections/foster-child/FosterChildData";
 //  @mui icons
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import DoneIcon from "@mui/icons-material/Done";
