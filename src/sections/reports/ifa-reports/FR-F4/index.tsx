@@ -86,4 +86,3 @@ export const viewReportsFilterData = [
     }
   ]
 
-export {default as ChildArrangement} from './ChildArrangement'

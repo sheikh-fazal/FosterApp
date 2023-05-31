@@ -87,5 +87,3 @@ export const viewReportsFilterData = [
 
     }
   ]
-
-export {default as FosteringServiceManagerReport} from './FosteringServiceManagerReport'

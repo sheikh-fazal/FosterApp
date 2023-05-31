@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import {ChildArrangement} from "@root/sections/reports/ifa-reports/FR-F4"
+import ChildArrangement from "@root/sections/reports/ifa-reports/FR-F4/ChildArrangement";
 
 const PAGE_TITLE = "Reports";
 
@@ -18,9 +18,11 @@ FRF4.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name:"FR-F4: PARENT IN PARENT AND CHILD ARRANGEMENT"

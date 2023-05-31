@@ -87,6 +87,3 @@ export const viewReportsFilterData = [
 
     }
   ]
-
-
-export {default as DecisionSheet} from './DecisionSheet'

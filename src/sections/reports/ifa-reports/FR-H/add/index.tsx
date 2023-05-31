@@ -145,4 +145,3 @@ export const FRD1FormData = [
     component: RHFDatePicker
   },
 ]
-

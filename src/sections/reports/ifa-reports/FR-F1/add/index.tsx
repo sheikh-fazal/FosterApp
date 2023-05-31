@@ -4,29 +4,33 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from 'yup';
 
 export const initialValues = {
-  fosterCarer: 'foster carer',
-  supervisingSocialWorker: 'social worker',
-  fosterChildName: 'person name',
-  childDOB: new Date(),
-  likeAboutFostering: 'some text',
-  fosterCarersHelpedYou: 'some text',
-  fosterAnyThingDifferent: 'some text',
-  socialWorkerAnyThingDifferent: 'some text',
-  unhappyLivingWithYourCarers: 'some text',
-  drawAPicture: 'some text',
+  name: '',
+  position: '',
+  nameOfChild: '',
+  nameOfFosterCarer: '',
+  roleWithChildAndFosterCarer: '',
+  fosterCarersHelped: '',
+  strengthsOFTheFosterCarer: '',
+  forsterCarerLimitations: '',
+  fosterCarersCommunication: '',
+  anythingElse: '',
+  signature: '',
+  date: '',
 };
 
 export const formSchema = Yup.object().shape({
-  fosterCarer: Yup.string().required('Field is required.'),
-  supervisingSocialWorker: Yup.string().required('Field is required.'),
-  fosterChildName: Yup.string().required('Field is required.'),
-  childDOB: Yup.string().required('Field is required.'),
-  likeAboutFostering: Yup.string().required('Field is required.'),
-  fosterCarersHelpedYou: Yup.string().required('Field is required.'),
-  fosterAnyThingDifferent: Yup.string().required('Field is required.'),
-  socialWorkerAnyThingDifferent: Yup.string().required('Field is required.'),
-  unhappyLivingWithYourCarers: Yup.string().required('Field is required.'),
-  drawAPicture: Yup.string().required('Field is required.'),
+  name: Yup.string().required('Field is required.'),
+  position: Yup.string().required('Field is required.'),
+  nameOfChild: Yup.string().required('Field is required.'),
+  nameOfFosterCarer: Yup.string().required('Field is required.'),
+  roleWithChildAndFosterCarer: Yup.string().required('Field is required.'),
+  fosterCarersHelped: Yup.string().required('Field is required.'),
+  strengthsOFTheFosterCarer: Yup.string().required('Field is required.'),
+  forsterCarerLimitations: Yup.string().required('Field is required.'),
+  fosterCarersCommunication: Yup.string().required('Field is required.'),
+  anythingElse: Yup.string().required('Field is required.'),
+  signature: Yup.string().required('Field is required.'),
+  date: Yup.string().required('Field is required.'),
 })
 
 export const FRD1FormData = [
@@ -73,7 +77,7 @@ export const FRD1FormData = [
     gridLength: 6,
     title: 'Name of foster carer',
     otherOptions: {
-      name: 'name',
+      name: 'nameOfFosterCarer',
       fullWidth: true,
       select: true,
       options: [
@@ -153,21 +157,19 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Name of Foster carer',
+    title: 'Signature',
     otherOptions: {
-      name: 'childDOB',
+      name: 'signature',
     },
     component: SignaturePad
   },
   {
     gridLength: 6,
-    title: 'Name of Foster carer',
+    title: 'Date',
     otherOptions: {
-      name: 'childDOB',
+      name: 'date',
       fullWidth: true,
     },
     component: RHFDatePicker
   },
 ]
-
-export {default as AddOtherProfessionals} from './AddOtherProfessionals'

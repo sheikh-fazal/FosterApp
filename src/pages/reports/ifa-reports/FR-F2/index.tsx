@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import { AdultHouseHoldMember } from "@root/sections/reports/ifa-reports/FR-F2";
+import AdultHouseHoldMember from "@root/sections/reports/ifa-reports/FR-F2/AdultHouseHoldMember";
 
 const PAGE_TITLE = "Reports";
 
@@ -18,9 +18,11 @@ FRF2.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name:"FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER"

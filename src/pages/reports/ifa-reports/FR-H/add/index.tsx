@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import AddBirthParent from "@root/sections/reports/ifa-reports/FR-F3/add/AddBirthParent";
+import AddFosteringServiceManagerReport from "@root/sections/reports/ifa-reports/FR-H/add/AddFosteringServiceManagerReport";
 
 const PAGE_TITLE = "Reports";
 
@@ -25,8 +25,8 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-F3: BIRTH PARENT/BIRTH FAMILY MEMBER",
-          href: "/reports/ifa-reports/FR-F3",
+          name:"FR-H: FOSTERING SERVICE MANAGER REPORT",
+          href: "/reports/ifa-reports/FR-H",
         },
         {
           name: "Add"
@@ -43,7 +43,7 @@ FRD1.getLayout = function getLayout(page: any) {
 export default function FRD1() {
   return (
     <Page title={PAGE_TITLE}>
-      <AddBirthParent/>
+      <AddFosteringServiceManagerReport />
     </Page>
   );
 }

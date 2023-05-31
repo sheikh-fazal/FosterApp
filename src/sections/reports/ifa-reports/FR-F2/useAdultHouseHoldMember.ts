@@ -11,6 +11,9 @@ export const useAdultHouseHoldMember = () => {
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
     switch (action) {
+      case "add":
+        router.push({ pathname: path });
+        break;
       case "edit":
         router.push({ pathname: path });
         break;

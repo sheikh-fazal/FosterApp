@@ -86,5 +86,3 @@ export const viewReportsFilterData = [
 
     }
   ]
-
-export {default as ReviewingOfficerReport} from './ReviewingOfficerReport'

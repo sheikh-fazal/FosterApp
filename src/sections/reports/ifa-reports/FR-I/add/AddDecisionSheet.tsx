@@ -2,42 +2,16 @@ import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { LoadingButton } from "@mui/lab";
-import { useAddChildArrangement } from "./useAddChildArrangement";
+import { useAddDecisionSheet } from "./useAddDecisionSheet";
 import { FRD1FormData } from ".";
 
-const AddChildArrangement = ({ action, id }: any) => {
+const AddDecisionSheet = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit, handleBack } =
-  useAddChildArrangement();
+  useAddDecisionSheet();
   return (
     <Card sx={{ p: 2 }}>
-      <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
-          FR-F4: PARENT IN PARENT AND CHILD ARRANGEMENT
-        </Typography>
-        <Typography
-          sx={{
-            fontWeight: 500,
-            mb: "30px",
-            fontSize: "16px",
-            color: "#898989",
-          }}
-        >
-          Please note that this report will be shared with the foster carer(s).
-          If you have relevent information that you think should not be shared
-          with the foster carer(s) then please discuss this with the supervising
-          social worker.
-        </Typography>
-        <h1>No Flow</h1>
-      </Box>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
@@ -83,9 +57,9 @@ const AddChildArrangement = ({ action, id }: any) => {
             </Box>
           </Grid>
         </Grid>
-      </FormProvider> */}
+      </FormProvider>
     </Card>
   );
 };
 
-export default AddChildArrangement;
+export default AddDecisionSheet;

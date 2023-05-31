@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import { ReviewingOfficerReport } from "@root/sections/reports/ifa-reports/FR-G";
+import ReviewingOfficerReport from "@root/sections/reports/ifa-reports/FR-G/ReviewingOfficerReport";
 
 const PAGE_TITLE = "Reports";
 
@@ -18,9 +18,11 @@ FRG.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name:"FR-G REVIEWING OFFICER REPORT"

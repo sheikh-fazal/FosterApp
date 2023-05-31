@@ -3,7 +3,8 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import { AddOtherProfessionals } from "@root/sections/reports/ifa-reports/FR-F1/add";
+import AddDecisionSheet from "@root/sections/reports/ifa-reports/FR-I/add/AddDecisionSheet";
+
 
 const PAGE_TITLE = "Reports";
 
@@ -19,13 +20,19 @@ FRD1.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name: "FR-D1 FOSTERED CHILD’S COMMENTS"
-        }
+          name:"FR-I: DECISION SHEET",
+          href: "/reports/ifa-reports/FR-I",
+        },
+        {
+          name: "Add"
+        },
       ]}
       title={PAGE_TITLE}
     >
@@ -40,7 +47,7 @@ export default function FRD1() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      {/* <AddOtherProfessionals action={action} id={id} /> */}
+      {/* <AddDecisionSheet action={action} id={id} /> */}
     </Page>
   );
 }

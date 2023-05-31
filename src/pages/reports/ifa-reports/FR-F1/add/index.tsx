@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import { AddOtherProfessionals } from "@root/sections/reports/ifa-reports/FR-F1/add";
+import AddOtherProfessionals from "@root/sections/reports/ifa-reports/FR-F1/add/AddOtherProfessionals";
 
 const PAGE_TITLE = "Reports";
 
@@ -18,13 +18,19 @@ FRD1.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name: "FR-D1 FOSTERED CHILD’S COMMENTS"
-        }
+          name:"FR-F1: OTHER PROFESSIONALS",
+          href: "/reports/ifa-reports/FR-F1",
+        },
+        {
+          name: "Add"
+        },
       ]}
       title={PAGE_TITLE}
     >

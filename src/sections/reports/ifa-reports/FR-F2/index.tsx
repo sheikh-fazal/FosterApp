@@ -98,5 +98,3 @@ export const viewReportsFilterData = [
       createdBy: 'john doe',
     }
   ]
-
-export {default as AdultHouseHoldMember} from './AdultHouseHoldMember'

@@ -1,214 +1,233 @@
 import SignaturePad from "@root/components/SignaturePad";
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFRadioGroup,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const initialValues = {
-  fosterCarer: 'foster carer',
-  supervisingSocialWorker: 'social worker',
-  fosterChildName: 'person name',
-  childDOB: new Date(),
-  likeAboutFostering: 'some text',
-  fosterCarersHelpedYou: 'some text',
-  fosterAnyThingDifferent: 'some text',
-  socialWorkerAnyThingDifferent: 'some text',
-  unhappyLivingWithYourCarers: 'some text',
-  drawAPicture: 'some text',
+  nameOfFosterCarer: "",
+  dateOfReview: "",
+  dateOfPanel: "",
+  relationshipToChild: "",
+  nameOfDecisionMaker: "",
+  fosterHomeReview: "",
+  fosteringPanelMinutes: "",
+  otherMaterials: "",
+  comments1: "",
+  agreeWithProcess: "",
+  comments2: "",
+  consideredAdditionalMaterial: "",
+  comments3: "",
+  reasonsOfDecision: "",
+  adviceToFosteringService: "",
+  signature: "",
+  date: "",
 };
 
 export const formSchema = Yup.object().shape({
-  fosterCarer: Yup.string().required('Field is required.'),
-  supervisingSocialWorker: Yup.string().required('Field is required.'),
-  fosterChildName: Yup.string().required('Field is required.'),
-  childDOB: Yup.string().required('Field is required.'),
-  likeAboutFostering: Yup.string().required('Field is required.'),
-  fosterCarersHelpedYou: Yup.string().required('Field is required.'),
-  fosterAnyThingDifferent: Yup.string().required('Field is required.'),
-  socialWorkerAnyThingDifferent: Yup.string().required('Field is required.'),
-  unhappyLivingWithYourCarers: Yup.string().required('Field is required.'),
-  drawAPicture: Yup.string().required('Field is required.'),
-})
+  nameOfFosterCarer: Yup.string().required("Field is required."),
+  dateOfReview: Yup.string().required("Field is required."),
+  dateOfPanel: Yup.string().required("Field is required."),
+  relationshipToChild: Yup.string().required("Field is required."),
+  nameOfDecisionMaker: Yup.string().required("Field is required."),
+  fosterHomeReview: Yup.string().required("Field is required."),
+  fosteringPanelMinutes: Yup.string().required("Field is required."),
+  otherMaterials: Yup.string().required("Field is required."),
+  comments1: Yup.string().required("Field is required."),
+  agreeWithProcess: Yup.string().required("Field is required."),
+  comments2: Yup.string().required("Field is required."),
+  consideredAdditionalMaterial: Yup.string().required("Field is required."),
+  comments3: Yup.string().required("Field is required."),
+  reasonsOfDecision: Yup.string().required("Field is required."),
+  adviceToFosteringService: Yup.string().required("Field is required."),
+  signature: Yup.string().required("Field is required."),
+  date: Yup.string().required("Field is required."),
+});
 
 export const FRD1FormData = [
   {
     gridLength: 6,
     title: "Name of foster carer",
     otherOptions: {
-      name: 'name',
+      name: "nameOfFosterCarer",
       fullWidth: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Date of review',
+    title: "Date of review",
     otherOptions: {
-      name: 'childDOB',
+      name: "dateOfReview",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    title: 'Date of panel (if appilcable)',
+    title: "Date of panel (if appilcable)",
     otherOptions: {
-      name: 'childDOB',
+      name: "dateOfPanel",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    title: 'Relationship to Child',
+    title: "Relationship to Child",
     otherOptions: {
-      name: 'relationshipToChild',
+      name: "relationshipToChild",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
   {
     gridLength: 6,
-    title: 'Name of Decision maker',
+    title: "Name of Decision maker",
     otherOptions: {
-      name: 'nameOfFosterCarer',
+      name: "nameOfDecisionMaker",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
   {
     gridLength: 12,
-    title: 'Foster home review consisting of form-A-H (where applicable)',
+    title: "Foster home review consisting of form-A-H (where applicable)",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "fosterHomeReview",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Fostering panel minutes',
+    title: "Fostering panel minutes",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "fosteringPanelMinutes",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Other material that was available at the time of the review (if yes, please list)',
+    title:
+      "Other material that was available at the time of the review (if yes, please list)",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "otherMaterials",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Comments',
+    title: "Comments",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "comments1",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'I agree with the process and approach of the review (including panel where applicable), am satisfied as its fairness, satisfied that the arguments have been properly addressed:',
+    title:
+      "I agree with the process and approach of the review (including panel where applicable), am satisfied as its fairness, satisfied that the arguments have been properly addressed:",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "agreeWithProcess",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Comments',
+    title: "Comments",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "comments2",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'I have considered additional material that was not available at the time of the review (and panel if applicable)',
+    title:
+      "I have considered additional material that was not available at the time of the review (and panel if applicable)",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "consideredAdditionalMaterial",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Comments',
+    title: "Comments",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "comments3",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'Reasons of decision',
+    title: "Reasons of decision",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "reasonsOfDecision",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'Advice to fostering service',
+    title: "Advice to fostering service",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "adviceToFosteringService",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Signed by decision maker',
+    title: "Signature",
     otherOptions: {
-      name: 'childDOB',
+      name: "signature",
     },
-    component: SignaturePad
+    component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: 'Date',
+    title: "Date",
     otherOptions: {
-      name: 'childDOB',
+      name: "date",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
-]
-
-export {default as AddAdultHouseHoldMember} from './AddDecisionMaker'
+];

@@ -4,11 +4,14 @@ import { useState } from "react";
 export const useFosteringServiceManagerReport = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-H';
+  const path = '/reports/ifa-reports/FR-H/add';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
     switch (action) {
+      case "add":
+        router.push({ pathname: path });
+        break;
       case "edit":
         router.push({ pathname: path });
         break;

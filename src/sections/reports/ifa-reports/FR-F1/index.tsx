@@ -110,5 +110,3 @@ export const viewReportsFilterData = [
       createdBy: 'john doe',
     }
   ]
-
-export {default as OthersProfessionals} from './OthersProfessionals'

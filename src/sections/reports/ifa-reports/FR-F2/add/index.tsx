@@ -1,146 +1,151 @@
 import SignaturePad from "@root/components/SignaturePad";
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFRadioGroup,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const initialValues = {
-  fosterCarer: 'foster carer',
-  supervisingSocialWorker: 'social worker',
-  fosterChildName: 'person name',
-  childDOB: new Date(),
-  likeAboutFostering: 'some text',
-  fosterCarersHelpedYou: 'some text',
-  fosterAnyThingDifferent: 'some text',
-  socialWorkerAnyThingDifferent: 'some text',
-  unhappyLivingWithYourCarers: 'some text',
-  drawAPicture: 'some text',
+  name: "",
+  nameOfFosterCarer: "",
+  relationshipToFosterCarer: "",
+  positiveAspects: "",
+  negativeAspects: "",
+  strengthsOFTheFosterCarer: "",
+  feelSupported: "",
+  anythingElse: "",
+  signature: "",
+  date: "",
 };
 
 export const formSchema = Yup.object().shape({
-  fosterCarer: Yup.string().required('Field is required.'),
-  supervisingSocialWorker: Yup.string().required('Field is required.'),
-  fosterChildName: Yup.string().required('Field is required.'),
-  childDOB: Yup.string().required('Field is required.'),
-  likeAboutFostering: Yup.string().required('Field is required.'),
-  fosterCarersHelpedYou: Yup.string().required('Field is required.'),
-  fosterAnyThingDifferent: Yup.string().required('Field is required.'),
-  socialWorkerAnyThingDifferent: Yup.string().required('Field is required.'),
-  unhappyLivingWithYourCarers: Yup.string().required('Field is required.'),
-  drawAPicture: Yup.string().required('Field is required.'),
-})
+  name: Yup.string().required("Field is required."),
+  nameOfFosterCarer: Yup.string().required("Field is required."),
+  relationshipToFosterCarer: Yup.string().required("Field is required."),
+  positiveAspects: Yup.string().required("Field is required."),
+  negativeAspects: Yup.string().required("Field is required."),
+  strengthsOFTheFosterCarer: Yup.string().required("Field is required."),
+  feelSupported: Yup.string().required("Field is required."),
+  anythingElse: Yup.string().required("Field is required."),
+  signature: Yup.string().required("Field is required."),
+  date: Yup.string().required("Field is required."),
+});
 
 export const FRD1FormData = [
   {
     gridLength: 6,
     title: "Name",
     otherOptions: {
-      name: 'name',
+      name: "name",
       fullWidth: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Name of foster carer',
+    title: "Name of foster carer",
     otherOptions: {
-      name: 'nameOfFosterCarer',
+      name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
   {
     gridLength: 6,
-    title: 'Relationship to foster carer',
+    title: "Relationship to foster carer",
     otherOptions: {
-      name: 'name',
+      name: "relationshipToFosterCarer",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
 
   {
     gridLength: 12,
-    title: 'What are the positive aspects of living in the fostering household or supporting a foster carer?',
+    title:
+      "What are the positive aspects of living in the fostering household or supporting a foster carer?",
     otherOptions: {
-      name: 'positiveAspects',
+      name: "positiveAspects",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'What are the negative aspects of living in the fostering household or supporting a foster carer?',
+    title:
+      "What are the negative aspects of living in the fostering household or supporting a foster carer?",
     otherOptions: {
-      name: 'negativeAspects',
+      name: "negativeAspects",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'Please comment on the strengths of the foster carer',
+    title: "Please comment on the strengths of the foster carer",
     otherOptions: {
-      name: 'strengthsOFTheFosterCarer',
+      name: "strengthsOFTheFosterCarer",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'Do you feel adequately supported by the fostering service?',
+    title: "Do you feel adequately supported by the fostering service?",
     otherOptions: {
-      name: 'haveAgreementWithSocialWorker',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
+      name: "feelSupported",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: 'Is there anything else you would like to say?',
+    title: "Is there anything else you would like to say?",
     otherOptions: {
-      name: 'anythingElse',
+      name: "anythingElse",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Name of Foster carer',
+    title: "Signature",
     otherOptions: {
-      name: 'childDOB',
+      name: "signature",
     },
-    component: SignaturePad
+    component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: 'Name of Foster carer',
+    title: "Date",
     otherOptions: {
-      name: 'childDOB',
+      name: "date",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
-]
+];
 
-export {default as AddAdultHouseHoldMember} from './AddAdultHouseHoldMember'
