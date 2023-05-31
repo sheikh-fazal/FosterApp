@@ -62,7 +62,7 @@ export default function InterviewRecordAndAnalysis() {
     isError,
   }: any = useGetInterviewRecordAnalysisQuery();
 
-  if (isError) {
+  if (role == "foster-carer" && isError) {
     return <Error />;
   }
 
