@@ -2,37 +2,33 @@ import { useState, FC, Fragment } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import InfoIcon from "@mui/icons-material/Info";
 // @mui
 import { Button, Grid, IconButton, Typography } from "@mui/material";
 // utils
 // components
 import { FormProvider } from "@root/components/hook-form";
-//
-// import { FormSchema, defaultValues } from ".";
-//mui icons
 import CloseIcon from "@mui/icons-material/Close";
 import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
-import MultipleFileUploader from "@root/sections/edit-profile/file-uploaders/multifile-uploader/MultipleFileUploader";
-import { useAddOtherInfoAdditionalDocsMutation } from "@root/services/update-profile/other-information/otherInformationApi";
+import SingleFileUploader from "@root/sections/edit-profile/file-uploaders/SingleFileUploader";
+import { useAddOtherBankDetailsInfoMutation } from "@root/services/update-profile/other-information/otherInformationApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
-import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
+const UpdateViewBankDetailsForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [availableFiles, setAvailableFiles] = useState<any>(null);
+  // const [disabled, setDisabled] = useState(false);
+  console.log({ defValues });
+  const [file, setFile] = useState<File | any>(null);
+  const [avialableFile, setAvialableFile] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [documents, setDocuments] = useState([]);
-  const [addOtherInfoAdditionalDocs] = useAddOtherInfoAdditionalDocsMutation();
+  const [addOtherBankDetailsInfo] = useAddOtherBankDetailsInfoMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -48,33 +44,24 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
     formState: { errors, isSubmitting, isDirty },
   } = methods;
 
+  const setFileHandler = (file: File | null) => {
+    setFile(file);
+  };
+
   const onSubmit = async (data: any) => {
     const formData = new FormData();
-    documents.forEach((doc) => formData.append("certificate", doc));
+    file && formData.append("bankStatement", file);
     for (var key in data) {
       formData.append(key, data[key]);
     }
     try {
-      const data = await addOtherInfoAdditionalDocs(formData);
+      const data = await addOtherBankDetailsInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
+      close();
       // activateNextForm();
     } catch (error: any) {
-      console.log("reesr");
       displayErrorMessage(error, enqueueSnackbar);
     }
-  };
-  const deleteDocument = async (docId: string) => {
-    // try {
-    //   setIsUpdating(true);
-    //   const data = await deleteTrainingAndWorkHistoryInfoDocu({ imgId: docId });
-    //   displaySuccessMessage(data, enqueueSnackbar);
-    //   setIsUpdating(false);
-    //   return true;
-    // } catch (error) {
-    //   setIsUpdating(false);
-    //   displayErrorMessage(error, enqueueSnackbar);
-    //   return false;
-    // }
   };
   return (
     <>
@@ -91,7 +78,7 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
                   </Typography>
                 </Grid>
                 <Grid item sm={1} container justifyContent="flex-end">
-                  <IconButton onClick={addRefModelClose}>
+                  <IconButton onClick={close}>
                     <CloseIcon />
                   </IconButton>
                 </Grid>
@@ -122,63 +109,31 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
                 })}
 
                 {/* A Custom Field On Full Width  */}
-                {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
-              </Grid>
-            </Grid>
-            {/* Upload Certificate Form  */}
-            <Grid item sm={12} sx={{ padding: "0.5em" }}>
-              <Grid item container>
-                <Grid item>
-                  <Typography
-                    sx={{
-                      fontWeight: 600,
-                      color: theme.palette.primary.main,
-                    }}
-                  >
-                    Upload Certificates
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <InfoIcon sx={{ color: theme.palette.primary.main }} />
+                <Grid item sm={12} container sx={{ padding: "0.5em" }}>
+                  <SingleFileUploader
+                    file={file}
+                    setFileHandler={setFileHandler}
+                    avialableFile={avialableFile}
+                  />
                 </Grid>
               </Grid>
-            </Grid>
-            {/* multifile uploader  */}
-            <Grid item sm={12} sx={{ padding: "0.5em" }}>
-              <MultipleFileUploader
-                availableFiles={availableFiles}
-                setAvailableFiles={setAvailableFiles}
-                setDocuments={setDocuments}
-                deleteDocument={deleteDocument}
-              />
-            </Grid>
-            {!disabled && (
-              <Grid item sm={12} container direction="column">
-                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                  <Grid item>
-                    <Button variant="contained" type="submit">
-                      Save
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      onClick={addRefModelClose}
-                    >
-                      Cancel
-                    </Button>
+              {!disabled && (
+                <Grid item sm={12} container direction="column">
+                  <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                    <Grid item>
+                      <Button variant="contained" type="submit">
+                        Save
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button variant="contained" onClick={close}>
+                        Cancel
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            )}
+              )}
+            </Grid>
           </Grid>
         </FormProvider>
       </Grid>
@@ -186,4 +141,4 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
   );
 };
 
-export default AdditionalDocForm;
+export default UpdateViewBankDetailsForm;
