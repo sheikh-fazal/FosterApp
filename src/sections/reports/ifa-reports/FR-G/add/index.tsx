@@ -181,7 +181,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    head: "Working with the supervising social worker/fostering service",
+    title: "REPORTS INFORMATION THE REVIEW MEETING",
   },
   {
     gridLength: 12,
@@ -268,7 +268,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    border: true,
+    title: "CHECKS AND MEDICALS",
   },
   {
     gridLength: 12,
@@ -339,7 +339,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    border: true,
+    title: "OTHER DOCUMENTS",
   },
   {
     gridLength: 12,
@@ -428,11 +428,35 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    border: true,
+    title: "RECOMMENDATIONS OF LAST REVIEWING MEETING",
   },
   {
     gridLength: 12,
-    title: "Exemptions/placements outside terms of approvel",
+    title:
+      "If any required checks are not available or issues have arisen from the checks, please comment:",
+    otherOptions: {
+      name: "ifRequiredCheckNotAvailable",
+      fullWidth: true,
+      minRows: 3,
+      multiline: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    gridLength: 12,
+    title:
+      "Recommendations made, action taken and outstanding actions (with timescale)",
+    otherOptions: {
+      name: "ifRequiredCheckNotAvailable",
+      fullWidth: true,
+      minRows: 3,
+      multiline: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    gridLength: 12,
+    title: "EXEMPTIONS/PLACEMENTS OUTSIDE TERMS OF APPROVEL",
   },
   {
     gridLength: 12,
@@ -549,7 +573,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Next Review meeting",
+    title: "NEXT REVIEW MEETING",
   },
   {
     gridLength: 6,
