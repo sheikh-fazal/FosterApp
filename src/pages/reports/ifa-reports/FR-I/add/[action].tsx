@@ -2,11 +2,13 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import HouseHoldComments from "@root/sections/reports/ifa-reports/FR-C1/household-comments/HouseholdComments";
 import { useRouter } from "next/router";
+import AddDecisionSheet from "@root/sections/reports/ifa-reports/FR-I/add/AddDecisionSheet";
+
+
 const PAGE_TITLE = "Reports";
 
-FRC1.getLayout = function getLayout(page: any) {
+FRD1.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -18,13 +20,19 @@ FRC1.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name: "FR-C1 CHILD LIVING IN THE HOUSEHOLD’S COMMENTS"
-        }
+          name:"FR-I: DECISION SHEET",
+          href: "/reports/ifa-reports/FR-I",
+        },
+        {
+          name: "Add"
+        },
       ]}
       title={PAGE_TITLE}
     >
@@ -34,12 +42,12 @@ FRC1.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRC1() {
+export default function FRD1() {
   const router = useRouter();
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <HouseHoldComments action={action} id={id} />
+      <AddDecisionSheet action={action} id={id} />
     </Page>
   );
 }

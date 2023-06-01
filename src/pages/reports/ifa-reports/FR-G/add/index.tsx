@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FRASection from "@root/sections/reports/ifa-reports/FRA/FRA";
+import AddReviewingOfficerReport from "@root/sections/reports/ifa-reports/FR-G/add/AddReviewingOfficerReport";
 
 const PAGE_TITLE = "Reports";
 
-FRA.getLayout = function getLayout(page: any) {
+FRD1.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -18,13 +18,19 @@ FRA.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name: "FR-A Supervising social worker report"
-        }
+          name:"FR-G: REVIEWING OFFICER REPORT",
+          href: "/reports/ifa-reports/FR-G",
+        },
+        {
+          name: "Add"
+        },
       ]}
       title={PAGE_TITLE}
     >
@@ -34,10 +40,10 @@ FRA.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRA() {
+export default function FRD1() {
   return (
     <Page title={PAGE_TITLE}>
-      <FRASection />
+      <AddReviewingOfficerReport />
     </Page>
   );
 }
