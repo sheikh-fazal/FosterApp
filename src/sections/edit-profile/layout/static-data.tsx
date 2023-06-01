@@ -29,7 +29,7 @@ export const tabs = [
 export const tabsItems = [
   { name: "Personal Info", status: "Done" },
   { name: "Address Details", status: "Done" },
-  { name: "Photo for ID Badge", status: " Inprogress" },
+  { name: "Photo for ID Badge", status: " Pending" },
   { name: "ID Upload (Passport/DL)", status: "Pending" },
   { name: "Add Reference", status: "Pending" },
   { name: "Training Certificates", status: "Pending" },

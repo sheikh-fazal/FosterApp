@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { localFormNames, tabs } from "./static-data";
+import { enqueueSnackbar } from "notistack";
 export const useLayoutInfo = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
   const [diffInfoHandler, setDiffInfoHandler] = useState({
     activeFormName: "Personal Info",
   });
   const [tabsItems, settabsItems] = useState([
-    { name: "Personal Info", status: "Done" },
-    { name: "Address Details", status: "Done" },
-    { name: "Photo for ID Badge", status: " Inprogress" },
+    { name: "Personal Info", status: "Pending" },
+    { name: "Address Details", status: "Pending" },
+    { name: "Photo for ID Badge", status: "Pending" },
     { name: "ID Upload (Passport/DL)", status: "Pending" },
     { name: "Add Reference", status: "Pending" },
     { name: "Training Certificates", status: "Pending" },
@@ -29,9 +30,25 @@ export const useLayoutInfo = () => {
   ]);
 
   const itemClickHand = (itemName: string) => {
-    // check if form status is pending
     const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
-    if (formStatus === "Pending") return;
+    // for handling click on last pending form
+    const indexOfClickItem = tabsItems.findIndex(
+      ({ name }) => itemName === name
+    );
+    const indexOfFirstPending = tabsItems.findIndex(
+      ({ status }) => status === "Pending"
+    );
+    // for handling click on last pending form
+    console.log({ indexOfClickItem, indexOfFirstPending });
+    // check if clicked form is status is pending and it is not first pending status form
+    console.table(indexOfClickItem !== indexOfFirstPending);
+    console.log({ formStatus });
+    if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
+      enqueueSnackbar("Please Fill The Previous Form First", {
+        variant: "info",
+      });
+      return;
+    }
     setDiffInfoHandler((pre) => ({ ...pre, activeFormName: itemName }));
   };
 
@@ -46,8 +63,8 @@ export const useLayoutInfo = () => {
     );
 
     const updatedTabs = [...tabsItems];
-    updatedTabs[indexOfCurrentForm].status = "Done1";
-    updatedTabs[indexOfCurrentForm + 1].status = "Inprogress";
+    updatedTabs[indexOfCurrentForm].status = "Done";
+    updatedTabs[indexOfCurrentForm + 1].status === "Done" ? "Done" : "Pending";
     settabsItems(updatedTabs);
     // tabsItems[
     //   localFormNames.indexOf(diffInfoHandler.activeFormName) - 1

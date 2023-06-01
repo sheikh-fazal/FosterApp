@@ -56,6 +56,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
 
   const onSubmit = async (data: any) => {
     // reset({ keepIsSubmitted: true });
+    activateNextForm();
     const jsonData = {
       ...data,
     };
