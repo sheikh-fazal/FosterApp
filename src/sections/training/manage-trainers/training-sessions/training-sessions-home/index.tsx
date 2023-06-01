@@ -1,6 +1,6 @@
-import { OngoingEvent } from './ongoing-event'
-import { FutureEvents } from './future-events'
-import { EventHistory } from './event-history'
+import OngoingEvent from './ongoing-event/OngoingEvent'
+import FutureEvents from './future-events/FutureEvents'
+import EventHistory from './event-history/EventHistory'
 export const data = [
     {
       title: "Ongoing Event",
@@ -15,5 +15,3 @@ export const data = [
       component: <EventHistory />
     },
   ]
-
-export {default as TrainingSessionsHome} from './TrainingSessionsHome'

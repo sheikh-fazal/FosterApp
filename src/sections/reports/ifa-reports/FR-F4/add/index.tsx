@@ -1,30 +1,32 @@
 import SignaturePad from "@root/components/SignaturePad";
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFRadioGroup,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const initialValues = {
   name: "",
-  nameOfChild: "",
-  relationshipToChild: "",
   nameOfFosterCarer: "",
-  whatFosterCarerHasDone: "",
-  whatFosterCarerHasDoneBetter: "",
-  informationAboutComplaint: "",
-  anythingElse: "",
+  whatPositiveThings: "",
+  howFosterCarerHelpedYou: "",
+  whatSocialWorkershouldDo: "",
+  haveYouBeenProvidedInfoAboutMakingComplaint: "",
+  anythingElseYouWantToSay: "",
   signature: "",
   date: "",
 };
 
 export const formSchema = Yup.object().shape({
   name: Yup.string().required("Field is required."),
-  nameOfChild: Yup.string().required("Field is required."),
-  relationshipToChild: Yup.string().required("Field is required."),
   nameOfFosterCarer: Yup.string().required("Field is required."),
-  whatFosterCarerHasDone: Yup.string().required("Field is required."),
-  whatFosterCarerHasDoneBetter: Yup.string().required("Field is required."),
-  informationAboutComplaint: Yup.string().required("Field is required."),
-  anythingElse: Yup.string().required("Field is required."),
+  whatPositiveThings: Yup.string().required("Field is required."),
+  howFosterCarerHelpedYou: Yup.string().required("Field is required."),
+  whatSocialWorkershouldDo: Yup.string().required("Field is required."),
+  haveYouBeenProvidedInfoAboutMakingComplaint: Yup.string().required("Field is required."),
+  anythingElseYouWantToSay: Yup.string().required("Field is required."),
   signature: Yup.string().required("Field is required."),
   date: Yup.string().required("Field is required."),
 });
@@ -34,115 +36,98 @@ export const FRD1FormData = [
     gridLength: 6,
     title: "Name",
     otherOptions: {
-      name: 'name',
-      fullWidth: true,
-    },
-    component: RHFTextField
-  },
-  {
-    gridLength: 6,
-    title: 'Name of Child',
-    otherOptions: {
-      name: 'nameOfChild',
+      name: "name",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
   {
     gridLength: 6,
-    title: 'Relationship to Child',
+    title: "Name of foster carer",
     otherOptions: {
-      name: 'relationshipToChild',
+      name: "nameOfFosterCarer",
       fullWidth: true,
-      select: true,
-      options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
-      ],
     },
-    component: RHFSelect
-  },
-  {
-    gridLength: 6,
-    title: 'Name of Foster Carer',
-    otherOptions: {
-      name: 'nameOfFosterCarer',
-      fullWidth: true,
-      select: true,
-      options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
-      ],
-    },
-    component: RHFSelect
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'What has been the foster carer done well in caring for your child/children?',
+    title:
+      "What are the positive things about living in this fostering household?",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "whatPositiveThings",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'What could the foster carer have done better in caring for your child/children?',
+    title: "How has the foster carer helped you?",
     otherOptions: {
-      name: 'whatFosterCarerHasDoneBetter',
+      name: "howFosterCarerHelpedYou",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'Have you been provided with information about how to make a complaint, if you want to?',
+    title: "Would you like your social worker to do anything different?",
     otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
-    },
-    component: RHFRadioGroup
-  },
-  {
-    gridLength: 12,
-    title: 'Is there anything else you would like to say?',
-    otherOptions: {
-      name: 'anythingElse',
+      name: "whatSocialWorkershouldDo",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
+  },
+  {
+    gridLength: 12,
+    title:
+      "Have you been provided with information about how you can make a complaint, if you want to?",
+    otherOptions: {
+      name: "haveYouBeenProvidedInfoAboutMakingComplaint",
+      options: ["Yes", "No"],
+      sx: { gap: { lg: "70px", xs: "10px" } },
+    },
+    component: RHFRadioGroup,
+  },
+  {
+    gridLength: 12,
+    title:
+      "Is there anything else you would like to say about living in this fostering household?",
+    otherOptions: {
+      name: "anythingElseYouWantToSay",
+      fullWidth: true,
+      minRows: 3,
+      multiline: true,
+    },
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Signature',
+    title: "Signature",
     otherOptions: {
-      name: 'signature',
+      name: "signature",
     },
-    component: SignaturePad
+    component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: 'Date',
+    title: "Date",
     otherOptions: {
-      name: 'date',
+      name: "date",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
-]
-
+];
