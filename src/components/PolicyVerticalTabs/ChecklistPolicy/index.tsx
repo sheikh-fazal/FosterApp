@@ -1,5 +1,6 @@
 export const GDPRChecklistData = [
     {
+        id: "1",
         no: "1",
         title: "GDPR",
         dateUploaded: "01/08/2020",
@@ -11,6 +12,7 @@ export const GDPRChecklistData = [
 
 export const JobDescriptionData = [
     {
+        id: "2",
         no: "1",
         title: "Job",
         dateUploaded: "01/08/2020",

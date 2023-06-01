@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 const PolicyVerticalAddNew = (props: any) => {
   const { disabled, onSubmit, handleAddNewBack } = props;
   const { methods, handleSubmit, PolicyVerticalAddNewFormData, currentPage } = usePolicyVerticalAddNew();
+  
 
   const selectedArray = [
     { value: "Home Safety Checklist", label: "Home Safety Checklist" },

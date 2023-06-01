@@ -101,7 +101,7 @@ const PolicyVerticalTable = (props: any) => {
                                 <TableHeader
                                     title={item.title}
                                     showAddBtn
-                                    onAdd={() => navigate.push(addNewTabNavigation)}
+                                    onAdd={() => navigate.push({pathname: addNewTabNavigation, query: item.title})}
                                 />
                                 <CustomTable
                                     data={item.innerData}

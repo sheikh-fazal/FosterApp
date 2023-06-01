@@ -10,6 +10,8 @@ import TableAction from "./TableAction";
 const CustomAccordian = ({
   handleRowDelete,
   handleTitleEdit,
+  addShowBtn,
+  handleRowAdd,
   showBtn,
   subTitle,
   data,
@@ -120,6 +122,17 @@ const CustomAccordian = ({
                   />
                 </Stack>
               )}
+              {addShowBtn &&
+                <TableAction
+                  size="small"
+                  type="add"
+                  onClicked={(event: any) => {
+                    event.stopPropagation();
+                    event.nativeEvent.preventDefault();
+                    handleRowAdd(item);
+                  }}
+                />
+              }
 
               {subTitle && (
                 <Typography

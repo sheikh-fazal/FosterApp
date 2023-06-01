@@ -8,11 +8,11 @@ import DeleteModel from '@root/components/modal/DeleteModel'
 import { useChecklistPoliciesTabs } from './useChecklistPoliciesTabs'
 
 const ChecklistPoliciesTabs = () => {
-   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count } = useChecklistPoliciesTabs();
-
+   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count, route } = useChecklistPoliciesTabs();
+   
     return (
         <>
-            <CustomHorizaontalTab tabsArray={["Add New Policy", "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+            <CustomHorizaontalTab tabsArray={[`${route.query.name}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
                 <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/checklists'} />
 
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />

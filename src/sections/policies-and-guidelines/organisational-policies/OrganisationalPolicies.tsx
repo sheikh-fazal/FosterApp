@@ -6,7 +6,7 @@ import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/Po
 const OrganisationalPolicies = () => {
     return (
         <>
-            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/add'}  />
+            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/organisational-policies-form/'}  />
         </>
     )
 }

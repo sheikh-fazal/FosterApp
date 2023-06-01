@@ -27,7 +27,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item md={4} >
+        <Grid item md={3.5} xs={12}>
           <Box sx={styles.GridWrapper}>
             <Box sx={styles.imageWrapper} onClick={handleAddTabs}><Image src={AddIcon} alt="add-icon" /></Box>
             <Tabs
@@ -59,7 +59,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
           </Box>
         </Grid>
 
-        <Grid item md={8} >
+        <Grid item md={8.5} xs={12}>
           {tabsDataArray?.map((item: any) => (
             <div
               role="tabpanel"
@@ -152,5 +152,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    flexShrink: 0
   }
 };
