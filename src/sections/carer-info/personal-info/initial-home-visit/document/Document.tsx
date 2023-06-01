@@ -65,7 +65,7 @@ const Document = () => {
     //   )}
     // </>
     <UploadDocuments
-      readOnly={user?.defaultRole === "FOSTER_CARER"}
+      readOnly={user?.defaultRole !== "FOSTER_CARER"}
       tableData={data?.initialDocuments}
       isLoading={isLoading}
       column={[
