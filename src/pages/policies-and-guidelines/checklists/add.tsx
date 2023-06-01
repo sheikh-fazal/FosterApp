@@ -2,9 +2,10 @@ import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-import TemplatePolicies from '@root/sections/policies-and-guidelines/template-policies/TemplatePolicies';
+import ChecklistPolicies from '@root/sections/policies-and-guidelines/checklists-policies/ChecklistPolicies';
+import ChecklistPoliciesTabs from '@root/sections/policies-and-guidelines/checklists-policies/checklist-policies-tabs/ChecklistPoliciesTabs';
 
-const PAGE_TITLE = "Templates";
+const PAGE_TITLE = "Checklists";
 
 PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
   return (
@@ -13,11 +14,11 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Policies and Guidelines",
-          href: "/policies-and-guidelines",
+          name: "Checklist Policies",
+          href: "/policies-and-guidelines/checklists",
         },
         {
-          name: "All",
+          name: "Add",
         },
       ]}
       title={PAGE_TITLE}
@@ -30,7 +31,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     <TemplatePolicies />
+      <ChecklistPoliciesTabs />
     </Page>
   );
 }
