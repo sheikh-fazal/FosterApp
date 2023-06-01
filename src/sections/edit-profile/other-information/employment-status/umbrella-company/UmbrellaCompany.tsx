@@ -14,10 +14,13 @@ import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
+import SingleFileUploader from "@root/sections/edit-profile/file-uploaders/SingleFileUploader";
 
 const UmberllaCompany: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
+  const [file, setFile] = useState<File | any>(null);
+  const [avialableFile, setAvialableFile] = useState(null);
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -37,7 +40,9 @@ const UmberllaCompany: FC<any> = ({ activateNextForm }) => {
     console.log({ data });
     activateNextForm();
   };
-
+  const setFileHandler = (file: File | null) => {
+    setFile(file);
+  };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container justifyContent="center">
@@ -75,6 +80,13 @@ const UmberllaCompany: FC<any> = ({ activateNextForm }) => {
                 />
               </Grid>
             </Grid> */}
+          </Grid>
+          <Grid item sm={12} sx={{ padding: "0.5em" }}>
+            <SingleFileUploader
+              file={file}
+              setFileHandler={setFileHandler}
+              avialableFile={avialableFile}
+            />
           </Grid>
           {!disabled && (
             <Grid item sm={12} container direction="column">

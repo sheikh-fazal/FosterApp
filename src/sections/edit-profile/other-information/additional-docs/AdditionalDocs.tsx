@@ -4,6 +4,7 @@ import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AdditionalDocForm from "./additionalDocForm/AdditionalDocForm";
+import AdditionalDocsTable from "./additional-docs-table/AdditionalDocsTable";
 const AdditionalDocs = () => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
@@ -29,9 +30,10 @@ const AdditionalDocs = () => {
           <InfoIcon sx={{ color: theme.palette.primary.main }} />
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container sx={{ margin: "0.5em 0em" }}>
         <ButtonWithIcon text="Add Documents" onClick={addRefModelOpen} />
       </Grid>
+      <AdditionalDocsTable />
       <Grid item sx={{ mt: 2 }}>
         <Button variant="contained">continue</Button>
       </Grid>

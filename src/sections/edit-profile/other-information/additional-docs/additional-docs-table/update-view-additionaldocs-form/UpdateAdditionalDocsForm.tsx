@@ -17,7 +17,11 @@ import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import MultipleFileUploader from "@root/sections/edit-profile/file-uploaders/multifile-uploader/MultipleFileUploader";
-import { useAddOtherInfoAdditionalDocsMutation } from "@root/services/update-profile/other-information/otherInformationApi";
+import {
+  useAddOtherInfoAdditionalDocsMutation,
+  useDeleteOtherInfoAdditionalDocsDocsMutation,
+  useUpdateOtherInfoAdditionalDocsMutation,
+} from "@root/services/update-profile/other-information/otherInformationApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
@@ -26,17 +30,25 @@ import { enqueueSnackbar } from "notistack";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
+const UpdateAdditionalDocsForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
-  const [availableFiles, setAvailableFiles] = useState<any>(null);
+  // const [disabled, setDisabled] = useState(false);
+  const { id, certificate, documentName } = defValues;
+  console.log(defValues);
+  const [availableFiles, setAvailableFiles] = useState<any>(certificate);
   const [isUpdating, setIsUpdating] = useState(false);
   const [documents, setDocuments] = useState([]);
   const [addOtherInfoAdditionalDocs] = useAddOtherInfoAdditionalDocsMutation();
+  const [updateOtherInfoAdditionalDocs] =
+    useUpdateOtherInfoAdditionalDocsMutation();
+  const [deleteOtherInfoAdditionalDocsDocs] =
+    useDeleteOtherInfoAdditionalDocsDocsMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: {
+      documentName,
+    },
   });
 
   const {
@@ -55,8 +67,12 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
       formData.append(key, data[key]);
     }
     try {
-      const data = await addOtherInfoAdditionalDocs(formData);
+      const data = await updateOtherInfoAdditionalDocs({
+        body: formData,
+        docId: id,
+      });
       displaySuccessMessage(data, enqueueSnackbar);
+      close();
       // activateNextForm();
     } catch (error: any) {
       console.log("reesr");
@@ -64,17 +80,20 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
     }
   };
   const deleteDocument = async (docId: string) => {
-    // try {
-    //   setIsUpdating(true);
-    //   const data = await deleteTrainingAndWorkHistoryInfoDocu({ imgId: docId });
-    //   displaySuccessMessage(data, enqueueSnackbar);
-    //   setIsUpdating(false);
-    //   return true;
-    // } catch (error) {
-    //   setIsUpdating(false);
-    //   displayErrorMessage(error, enqueueSnackbar);
-    //   return false;
-    // }
+    try {
+      setIsUpdating(true);
+      const data = await deleteOtherInfoAdditionalDocsDocs({
+        body: { imgId: docId },
+        docsId: id,
+      });
+      displaySuccessMessage(data, enqueueSnackbar);
+      setIsUpdating(false);
+      return true;
+    } catch (error) {
+      setIsUpdating(false);
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
   };
   return (
     <>
@@ -91,7 +110,7 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
                   </Typography>
                 </Grid>
                 <Grid item sm={1} container justifyContent="flex-end">
-                  <IconButton onClick={addRefModelClose}>
+                  <IconButton onClick={close}>
                     <CloseIcon />
                   </IconButton>
                 </Grid>
@@ -120,16 +139,6 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
                     </Fragment>
                   );
                 })}
-
-                {/* A Custom Field On Full Width  */}
-                {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
               </Grid>
             </Grid>
             {/* Upload Certificate Form  */}
@@ -168,11 +177,7 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      onClick={addRefModelClose}
-                    >
+                    <Button variant="contained" onClick={close}>
                       Cancel
                     </Button>
                   </Grid>
@@ -186,4 +191,4 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
   );
 };
 
-export default AdditionalDocForm;
+export default UpdateAdditionalDocsForm;
