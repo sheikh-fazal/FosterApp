@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-2/UploadDocuments";
 import EmploymentReferenceTwoForm from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-2/EmploymentReferenceTwoForm";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -32,11 +33,16 @@ EmployementReference2.getLayout = function getLayout(page: any) {
 };
 
 export default function EmployementReference2() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
   return (
     <HorizaontalTabs
       tabsDataArray={["Employment Reference 2", "Upload Documents"]}
     >
-      <EmploymentReferenceTwoForm />
+      <EmploymentReferenceTwoForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );

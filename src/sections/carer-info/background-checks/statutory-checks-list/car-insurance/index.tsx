@@ -77,9 +77,9 @@ export const defaultValues = {
   comments: "",
 };
 export const formSchema = Yup.object().shape({
-  registrationNumber: Yup.string(),
-  insurerName: Yup.string(),
-  policyNumber: Yup.string(),
-  validToDate: Yup.date(),
-  comments: Yup.string(),
+  registrationNumber: Yup.string().required("Required"),
+  insurerName: Yup.string().required("Required"),
+  policyNumber: Yup.string().required("Required"),
+  validToDate: Yup.date().required("Required"),
+  comments: Yup.string().required("Required"),
 });

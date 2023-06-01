@@ -122,8 +122,8 @@ const CarInsuranceTable = () => {
         isFetching={carInsuranceListIsfetching}
         isError={carInsuranceListError}
         isSuccess={carInsuranceListIsSuccess}
-        // totalPages={meta?.pages ?? 0}
-        // currentPage={meta?.page ?? 1}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

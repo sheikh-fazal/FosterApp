@@ -2,55 +2,64 @@ import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import { useLocalAuthorityTable } from "./useLocalAuthorityTable";
+import dayjs from "dayjs";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 const LocalAuthorityTable = () => {
-  const tableHeaderRefTwo = useRef<any>();
-  const router = useRouter();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      name: "123",
-      sentDate: "xyz",
-      receivedDate: "123",
-      verifiedDate: "07/02/2021",
-    },
-  ]);
-
+  const {
+    router,
+    tableHeaderRefTwo,
+    localAuthorityData,
+    localAuthorityError,
+    localAuthorityIsloading,
+    localAuthorityIsfetching,
+    localAuthorityIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+    listDeleteHandler,
+  } = useLocalAuthorityTable();
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr. No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.name,
+      accessorFn: (row: any) => row.name ?? "-",
       id: "name",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.sentDate,
-      id: "sentDate",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.sentToDate ?? "-",
+      id: "sentToDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Sent Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.receivedDate,
+      accessorFn: (row: any) => row?.receivedDate ?? "-",
       id: "receivedDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Received Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.verifiedDate,
+      accessorFn: (row: any) => row?.verifiedDate ?? "-",
       id: "verifiedDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Verified Date</span>,
       isSortable: true,
     },
@@ -65,9 +74,13 @@ const LocalAuthorityTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/local-authority",
-                query: { action: "edit", id: "" },
+                query: { action: "edit", id: info?.row?.original?.id },
               })
             }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
           />
           <TableAction
             size="small"
@@ -76,7 +89,7 @@ const LocalAuthorityTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/local-authority",
-                query: { action: "view", id: "" },
+                query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
@@ -100,19 +113,21 @@ const LocalAuthorityTable = () => {
             query: { action: "add", id: "" },
           });
         }}
-        onChanged={(data: any) => {}}
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
       />
       <CustomTable
-        data={data}
+        data={localAuthorityData}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={localAuthorityIsloading}
+        isFetching={localAuthorityIsfetching}
+        isError={localAuthorityError}
+        isSuccess={localAuthorityIsSuccess}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );
