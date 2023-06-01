@@ -25,6 +25,7 @@ export const TAGS = [
   "Experience",
   "CAR_INSURANCE",
   "DBS_CHECK",
+  "INITIAL_HOME_VISIT_DOCUMENTS",
 ];
 
 // Create our baseQuery instance
