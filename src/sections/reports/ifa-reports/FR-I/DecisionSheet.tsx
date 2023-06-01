@@ -18,9 +18,11 @@ import TableSubHeader from "../../table-sub-header/TableSubHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { DatePicker } from "@mui/x-date-pickers";
 
 const DecisionSheet = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal  } = useDecisionSheet();
+  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } =
+    useDecisionSheet();
 
   const columns = [
     {
@@ -51,24 +53,42 @@ const DecisionSheet = () => {
       id: "nameOfFosterCarer",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of foster carer</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.dateOfPanel,
       id: "dateOfPanel",
       cell: (info: any) => info.getValue(),
       header: () => <span>Date of panel</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.nameOfDecisionMaker,
       id: "nameOfDecisionMaker",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name Of Decision Maker</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.reviewDate,
       id: "reviewDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Review Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
+      isSortable: true,
     },
     {
       id: "actions",
@@ -94,12 +114,11 @@ const DecisionSheet = () => {
         <Box
           display={"flex"}
           alignItems={"center"}
-          justifyContent={"space-between"}
+          justifyContent={"flex-end"}
           flexWrap={"wrap"}
           gap={2}
           sx={{ px: 2 }}
         >
-          <Typography sx={styles.title}></Typography>
           <Image src={automatedIcon} alt="icon" />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>
@@ -107,13 +126,21 @@ const DecisionSheet = () => {
             {viewReportsFilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
                 <Typography sx={styles.title}>{data.title}</Typography>
-                <Select {...data.otherOptions}>
-                  {data.options.map((item: any, j: number) => (
-                    <MenuItem key={j} value={item.value}>
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </Select>
+                {data.requireDatePicker ? (
+                  <DatePicker
+                    slotProps={{
+                      textField: { ...data.otherOptions },
+                    }}
+                  />
+                ) : (
+                  <Select {...data.otherOptions}>
+                    {data.options.map((item: any, j: number) => (
+                      <MenuItem key={j} value={item.value}>
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
               </Grid>
             ))}
             <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>

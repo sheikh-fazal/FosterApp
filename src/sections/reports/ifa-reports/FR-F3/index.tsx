@@ -108,5 +108,7 @@ export const viewReportsFilterData = [
       signedDate: '03/10/21',
       createdDate: '03/10/21',
       createdBy: 'john doe',
+      modifiedDate: '03/10/21',
+      modifiedBy: 'john doe',
     }
   ]

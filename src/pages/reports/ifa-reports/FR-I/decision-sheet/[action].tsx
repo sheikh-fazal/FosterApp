@@ -3,11 +3,12 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import AddChildArrangement from "@root/sections/reports/ifa-reports/FR-F4/add/AddChildArrangement";
+import AddDecisionSheet from "@root/sections/reports/ifa-reports/FR-I/add/AddDecisionSheet";
+
 
 const PAGE_TITLE = "Reports";
 
-FRD1.getLayout = function getLayout(page: any) {
+FRI.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -26,11 +27,8 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-F4: PARENT IN PARENT AND CHILD ARRANGEMENT",
-          href: "/reports/ifa-reports/FR-F4",
-        },
-        {
-          name: "Add"
+          name:"FR-I DECISION SHEET",
+          href: "/reports/ifa-reports/FR-I",
         },
       ]}
       title={PAGE_TITLE}
@@ -41,12 +39,12 @@ FRD1.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRD1() {
+export default function FRI() {
   const router = useRouter();
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <AddChildArrangement action={action} id={id} />
+      <AddDecisionSheet action={action} id={id} />
     </Page>
   );
 }

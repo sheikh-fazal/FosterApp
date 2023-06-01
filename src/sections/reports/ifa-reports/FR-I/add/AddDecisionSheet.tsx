@@ -7,10 +7,20 @@ import { FRD1FormData } from ".";
 
 const AddDecisionSheet = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods, onSubmit, handleSubmit, handleBack } =
-  useAddDecisionSheet();
+  const { methods, onSubmit, handleSubmit, handleBack } = useAddDecisionSheet();
   return (
     <Card sx={{ p: 2 }}>
+      <Typography
+        sx={{
+          fontWeight: 700,
+          mb: "20px",
+          fontSize: "17px",
+          color: "#898989",
+          textAlign: "center",
+        }}
+      >
+        FR-I: DECISION SHEET
+      </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (

@@ -22,19 +22,6 @@ const AddFosteringServiceManagerReport = ({ action, id }: any) => {
         >
           FR-H: FOSTERING SERVICE MANAGER REPORT
         </Typography>
-        <Typography
-          sx={{
-            fontWeight: 500,
-            mb: "30px",
-            fontSize: "16px",
-            color: "#898989",
-          }}
-        >
-          Please note that this report will be shared with the foster carer(s).
-          If you have relevent information that you think should not be shared
-          with the foster carer(s) then please discuss this with the supervising
-          social worker.
-        </Typography>
         <h1>No Flow</h1>
       </Box>
       {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

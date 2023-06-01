@@ -18,6 +18,7 @@ import TableSubHeader from "../../table-sub-header/TableSubHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { DatePicker } from "@mui/x-date-pickers";
 
 const FosteringServiceManagerReport = () => {
   const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } =
@@ -52,24 +53,42 @@ const FosteringServiceManagerReport = () => {
       id: "nameOfFosterCarer",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of foster carer</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.meetingReviewDate,
       id: "meetingReviewDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Meeting Review Date</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.nameOfFosteringManager,
       id: "nameOfFosteringManager",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of Fostering Manager</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.date,
       id: "date",
       cell: (info: any) => info.getValue(),
       header: () => <span>Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
+      isSortable: true,
     },
     {
       id: "actions",
@@ -95,12 +114,11 @@ const FosteringServiceManagerReport = () => {
         <Box
           display={"flex"}
           alignItems={"center"}
-          justifyContent={"space-between"}
+          justifyContent={"flex-end"}
           flexWrap={"wrap"}
           gap={2}
           sx={{ px: 2 }}
         >
-          <Typography sx={styles.title}></Typography>
           <Image src={automatedIcon} alt="icon" />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>
@@ -108,13 +126,21 @@ const FosteringServiceManagerReport = () => {
             {viewReportsFilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
                 <Typography sx={styles.title}>{data.title}</Typography>
-                <Select {...data.otherOptions}>
-                  {data.options.map((item: any, j: number) => (
-                    <MenuItem key={j} value={item.value}>
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </Select>
+                {data.requireDatePicker ? (
+                  <DatePicker
+                    slotProps={{
+                      textField: { ...data.otherOptions },
+                    }}
+                  />
+                ) : (
+                  <Select {...data.otherOptions}>
+                    {data.options.map((item: any, j: number) => (
+                      <MenuItem key={j} value={item.value}>
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                )}
               </Grid>
             ))}
             <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>

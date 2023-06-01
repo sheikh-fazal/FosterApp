@@ -33,7 +33,7 @@ export const formSchema = Yup.object().shape({
   date: Yup.string().required('Field is required.'),
 })
 
-export const FRD1FormData = [
+export const FRF1FormData = [
   {
     gridLength: 6,
     title: 'Name',

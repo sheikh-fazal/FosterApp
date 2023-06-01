@@ -21,8 +21,7 @@ FRG.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "IFA Reports",
-          href: "/reports",
+          name: "Child Reports",
         },
         {
           name:"FR-G REVIEWING OFFICER REPORT"

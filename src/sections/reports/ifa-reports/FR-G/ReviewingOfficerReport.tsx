@@ -52,24 +52,28 @@ const ReviewingOfficerReport = () => {
       id: "createdDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Created Date</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.createdBy,
       id: "createdBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Created By</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.modifiedDate,
       id: "modifiedDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Modified Date</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.modifiedBy,
       id: "modifiedBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Modified By</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.childName,
