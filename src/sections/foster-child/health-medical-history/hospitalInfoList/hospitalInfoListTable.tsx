@@ -5,9 +5,11 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { dummy } from ".";
+import ModelUploadDoc from "./modelUploadDoc";
 
 const activepath =
-  "/foster-child/health-medical-history/behavioural-info/actions";
+  "/foster-child/health-medical-history/hospital-info-list/actions";
 
 function HospitalInfoListTable() {
   const columns = [
@@ -39,6 +41,7 @@ function HospitalInfoListTable() {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
             <DeletePrompt />
+
             <TableAction
               size="small"
               type="edit"
@@ -88,7 +91,7 @@ function HospitalInfoListTable() {
                 />
               </Box>
               <CustomTable
-                data={[]}
+                data={dummy ?? []}
                 columns={columns}
                 isLoading={false}
                 isFetching={false}
