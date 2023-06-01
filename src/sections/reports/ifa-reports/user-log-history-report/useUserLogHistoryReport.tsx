@@ -82,17 +82,6 @@ export const useUserLogHistoryReport = () => {
       header: "Modified By",
       isSortable: true,
     },
-
-    {
-      id: "actions",
-      cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction size="small" type="view" />
-        </Box>
-      ),
-      header: "Action",
-      isSortable: false,
-    },
   ];
 
   return {

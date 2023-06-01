@@ -1,9 +1,10 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
-export const useUploadDocument =()=>{
-  const router = useRouter();
+export const useUploadDocument = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const columns = [
     {
       id: "select",
@@ -80,9 +81,7 @@ export const useUploadDocument =()=>{
           <TableAction
             size="small"
             type="view"
-            // onClicked={() => {
-            //   router.push("/reports/ifa-reports/risk-assessment-form/view-risk-assessment-form");
-            // }}
+            onClicked={() => setOpenModal(true)}
           />
         </Box>
       ),
@@ -90,8 +89,9 @@ export const useUploadDocument =()=>{
       isSortable: false,
     },
   ];
-  return{
+  return {
     columns,
-  }
-}
-
+    openModal,
+    setOpenModal,
+  };
+};

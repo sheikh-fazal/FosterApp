@@ -3,9 +3,10 @@ import React from "react";
 import { TableDemoData } from ".";
 import { useUploadDocument } from "./useUploadDoucument";
 import TableHeader from "@root/components/TableHeader";
+import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 
 const SupervisoryUploadDocuments = () => {
-  const { columns } = useUploadDocument();
+  const { columns, openModal, setOpenModal } = useUploadDocument();
 
   return (
     <>
@@ -23,6 +24,13 @@ const SupervisoryUploadDocuments = () => {
         }}
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
+        }}
+      />
+      <UploadDocumentModal
+        disabled={true}
+        open={openModal}
+        handleClose={() => {
+          setOpenModal(false);
         }}
       />
     </>
