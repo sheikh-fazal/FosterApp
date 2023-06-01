@@ -5,12 +5,11 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { DummyData } from ".";
 
 const activepath =
   "/foster-child/health-medical-history/behavioural-info/actions";
 
-function BehavioralInfoTable() {
+function HospitalInfoListTable() {
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,17 +19,17 @@ function BehavioralInfoTable() {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.overallBehavious,
-      id: "overallBehavious",
+      accessorFn: (row: any) => row.hospitalName,
+      id: "hospitalName",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Overall Behavious (in Scale 1 to 10)</span>,
+      header: () => <span>Hospital Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.summary,
-      id: "summary",
+      accessorFn: (row: any) => row.city,
+      id: "city",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Summary</span>,
+      header: () => <span>City</span>,
       isSortable: true,
     },
 
@@ -76,7 +75,7 @@ function BehavioralInfoTable() {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="behavioural info"
+                  title="Hospital Info list"
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
@@ -89,7 +88,7 @@ function BehavioralInfoTable() {
                 />
               </Box>
               <CustomTable
-                data={DummyData ?? []}
+                data={[]}
                 columns={columns}
                 isLoading={false}
                 isFetching={false}
@@ -110,4 +109,4 @@ function BehavioralInfoTable() {
   );
 }
 
-export default BehavioralInfoTable;
+export default HospitalInfoListTable;
