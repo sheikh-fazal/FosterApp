@@ -9,6 +9,10 @@ export const defaultValues = {
   optC: false,
   studentLoanType1: "Yes",
   postgraduateLoan: "Yes",
+  comStuBefore6th: "No",
+  repayingDirect: "No",
+  plan1: true,
+  plan2: true,
 };
 
 export const FormSchema = Yup.object().shape({
