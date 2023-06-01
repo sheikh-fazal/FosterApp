@@ -1,147 +1,133 @@
 import SignaturePad from "@root/components/SignaturePad";
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFMultiCheckbox,
+  RHFRadioGroup,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export const initialValues = {
-  name: "",
-  nameOfChild: "",
-  relationshipToChild: "",
-  nameOfFosterCarer: "",
-  whatFosterCarerHasDone: "",
-  whatFosterCarerHasDoneBetter: "",
-  informationAboutComplaint: "",
-  anythingElse: "",
+  dateOfReviewMeeting: "",
+  recommendation: "",
+  reason: "",
+  comments: "",
+  nameOfFosteringServiceManager: "",
   signature: "",
   date: "",
+  checkBox: "",
 };
 
 export const formSchema = Yup.object().shape({
-  name: Yup.string().required("Field is required."),
-  nameOfChild: Yup.string().required("Field is required."),
-  relationshipToChild: Yup.string().required("Field is required."),
   nameOfFosterCarer: Yup.string().required("Field is required."),
-  whatFosterCarerHasDone: Yup.string().required("Field is required."),
-  whatFosterCarerHasDoneBetter: Yup.string().required("Field is required."),
-  informationAboutComplaint: Yup.string().required("Field is required."),
-  anythingElse: Yup.string().required("Field is required."),
+  dateOfReviewMeeting: Yup.string().required("Field is required."),
+  recommendation: Yup.string().required("Field is required."),
+  reason: Yup.string().required("Field is required."),
+  comments: Yup.string().required("Field is required."),
+  nameOfFosteringServiceManager: Yup.string().required("Field is required."),
   signature: Yup.string().required("Field is required."),
   date: Yup.string().required("Field is required."),
+  checkBox: Yup.string().required("Field is required."),
 });
 
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name",
+    title: "Name of foster carer",
     otherOptions: {
-      name: 'name',
-      fullWidth: true,
-    },
-    component: RHFTextField
-  },
-  {
-    gridLength: 6,
-    title: 'Name of Child',
-    otherOptions: {
-      name: 'nameOfChild',
+      name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
       options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
+        { value: "select 1", label: "select 1" },
+        { value: "select 2", label: "select 2" },
+        { value: "select 3", label: "select 3" },
       ],
     },
-    component: RHFSelect
+    component: RHFSelect,
   },
   {
     gridLength: 6,
-    title: 'Relationship to Child',
+    title: "Date of review meeting",
     otherOptions: {
-      name: 'relationshipToChild',
+      name: "dateOfReviewMeeting",
       fullWidth: true,
-      select: true,
-      options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
-      ],
     },
-    component: RHFSelect
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    title: 'Name of Foster Carer',
+    title: "Recommendation",
     otherOptions: {
-      name: 'nameOfFosterCarer',
+      name: "recommendation",
       fullWidth: true,
-      select: true,
-      options: [
-        { value: 'select 1', label: 'select 1' },
-        { value: 'select 2', label: 'select 2' },
-        { value: 'select 3', label: 'select 3' },
-      ],
     },
-    component: RHFSelect
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'What has been the foster carer done well in caring for your child/children?',
+    title: "Reason",
     otherOptions: {
-      name: 'whatFosterCarerHasDone',
+      name: "reason",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: 'What could the foster carer have done better in caring for your child/children?',
+    title: "Comments",
     otherOptions: {
-      name: 'whatFosterCarerHasDoneBetter',
+      name: "comments",
       fullWidth: true,
       minRows: 3,
-      multiline: true
+      multiline: true,
     },
-    component: RHFTextField
-  },
-  {
-    gridLength: 12,
-    title: 'Have you been provided with information about how to make a complaint, if you want to?',
-    otherOptions: {
-      name: 'informationAboutComplaint',
-      options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
-    },
-    component: RHFRadioGroup
-  },
-  {
-    gridLength: 12,
-    title: 'Is there anything else you would like to say?',
-    otherOptions: {
-      name: 'anythingElse',
-      fullWidth: true,
-      minRows: 3,
-      multiline: true
-    },
-    component: RHFTextField
+    component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: 'Signature',
+    title: "Name of fostering service manager",
     otherOptions: {
-      name: 'signature',
+      name: "nameOfFosteringServiceManager",
+      fullWidth: true,
     },
-    component: SignaturePad
+    component: RHFTextField,
+  },
+
+  {
+    gridLength: 6,
+    title: "Signed By fostering manager",
+    otherOptions: {
+      name: "signature",
+    },
+    component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: 'Date',
+    title: "Date",
     otherOptions: {
-      name: 'date',
+      name: "date",
       fullWidth: true,
     },
-    component: RHFDatePicker
+    component: RHFDatePicker,
   },
-]
+  {
+    gridLength: 6,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      name: "checkBox",
+      label:
+        "This review (consisting of Form FR Sections A-H) is ready to be considered by the fostering panel or the decision maker",
+      sx: { mb: 4 },
+      value: "checkBox",
+    },
+    component: RHFCheckbox,
+    md: 6,
+  },
+];

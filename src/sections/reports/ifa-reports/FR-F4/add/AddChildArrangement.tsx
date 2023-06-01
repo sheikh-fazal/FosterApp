@@ -35,9 +35,8 @@ const AddChildArrangement = ({ action, id }: any) => {
           with the foster carer(s) then please discuss this with the supervising
           social worker.
         </Typography>
-        <h1>No Flow</h1>
       </Box>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
@@ -83,7 +82,7 @@ const AddChildArrangement = ({ action, id }: any) => {
             </Box>
           </Grid>
         </Grid>
-      </FormProvider> */}
+      </FormProvider>
     </Card>
   );
 };

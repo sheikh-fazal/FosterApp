@@ -22,9 +22,8 @@ const AddFosteringServiceManagerReport = ({ action, id }: any) => {
         >
           FR-H: FOSTERING SERVICE MANAGER REPORT
         </Typography>
-        <h1>No Flow</h1>
       </Box>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
@@ -70,7 +69,7 @@ const AddFosteringServiceManagerReport = ({ action, id }: any) => {
             </Box>
           </Grid>
         </Grid>
-      </FormProvider> */}
+      </FormProvider>
     </Card>
   );
 };
