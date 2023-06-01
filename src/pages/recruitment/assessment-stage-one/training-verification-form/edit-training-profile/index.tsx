@@ -81,12 +81,11 @@ export default function AddTraingVerification() {
       );
     } catch (error) {
       console.log(error);
-      
+
       enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };
 
-  // console.log(data?.data?.expiryDate, "single trining profile");
 
   return (
     <Page title={PAGE_TITLE}>
