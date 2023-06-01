@@ -20,19 +20,36 @@ import {
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { useUpdateOtherBankDetailsInfoMutation } from "@root/services/update-profile/other-information/otherInformationApi";
 
 const UpdateViewBankDetailsForm: FC<any> = ({ close, defValues, disabled }) => {
   const theme: any = useTheme();
   // const [disabled, setDisabled] = useState(false);
+  const {
+    userName,
+    bankName,
+    sortCode,
+    accountNumber,
+    accountType,
+    accountPreference,
+    id,
+  } = defValues;
   console.log({ defValues });
-  const [file, setFile] = useState<File | any>(null);
+  const [file, setFile] = useState<File | any>(defValues?.bankStatement);
   const [avialableFile, setAvialableFile] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [addOtherBankDetailsInfo] = useAddOtherBankDetailsInfoMutation();
+  const [updateOtherBankDetailsInfo] = useUpdateOtherBankDetailsInfoMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: {
+      userName,
+      bankName,
+      sortCode,
+      accountNumber,
+      accountType,
+      accountPreference,
+    },
   });
 
   const {
@@ -55,7 +72,7 @@ const UpdateViewBankDetailsForm: FC<any> = ({ close, defValues, disabled }) => {
       formData.append(key, data[key]);
     }
     try {
-      const data = await addOtherBankDetailsInfo(formData);
+      const data = await updateOtherBankDetailsInfo({ body: formData, id });
       displaySuccessMessage(data, enqueueSnackbar);
       close();
       // activateNextForm();
