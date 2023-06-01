@@ -18,7 +18,6 @@ const BREADCRUMBS = [
   {
     name: "CLA Document",
     href: "/",
-
   },
 ];
 
@@ -26,13 +25,13 @@ let PAGE_TITLE: any;
 // ----------------------------------------------------------------------
 
 ClaDocumentationForm.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-  PAGE_TITLE = `View ${router?.query?.cla_document_type} Document`
+  PAGE_TITLE = `View Document`;
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}>
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
@@ -40,8 +39,7 @@ ClaDocumentationForm.getLayout = function getLayout(page: any) {
 
 export default function ClaDocumentationForm() {
   const router = useRouter();
-  PAGE_TITLE = `View ${router?.query?.cla_document_type} Document`
-
+  PAGE_TITLE = `View ${router?.query?.cla_document_type} Document`;
 
   return (
     <Page title={PAGE_TITLE}>
@@ -51,4 +49,3 @@ export default function ClaDocumentationForm() {
     </Page>
   );
 }
-
