@@ -60,7 +60,6 @@ export const columns = [
     isSortable: false,
   },
 ];
-
 export const EHCPFormData = [
   {
     id: 1,
