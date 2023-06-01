@@ -2,19 +2,18 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import RecruitmentTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/training-profile/RecruitmentTrainingProfile";
-import RecruitmentUploadDocuments from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/upload-documents/RecruitmentUploadDocuments";
 import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
+  usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
-import dayjs from "dayjs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 
 const PAGE_TITLE = "Recruitment";
 
@@ -40,6 +39,9 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
 };
 
 export default function AddTraingVerification() {
+  const [params, setParams] = useState("");
+  const formData = new FormData();
+
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
 
@@ -51,30 +53,23 @@ export default function AddTraingVerification() {
     isLoading: uploadDocumentsIsLoading,
     isError: uploadDocumentsIsError,
     isFetching: uploadDocumentsIsFetching,
-  } = useGetTrainingProfileAllDocumentQuery(id);
+  } = useGetTrainingProfileAllDocumentQuery({ id, params });
 
   console.log(uploadDocuments, "uploaded documents");
 
-  const [postTrainingProfileData] = usePatchTrainingProfileApiMutation();
+  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
-    // console.log(data);
-    
-    const data = {
-      documentType: postData.documentType,
-      date:postData.documentDate,
-      password: postData.password,
-      file: postData.chosenFile
-    }
+    formData.append("documentType", postData.documentType);
+    formData.append("date", postData.documentDate);
+    formData.append("password", postData.password);
+    formData.append("file", postData.chosenFile);
 
-    console.log(postData);
-    
-    
     const updatedData = {
       trainingProfileId: id,
-      data,
+      data: formData,
     };
-    
+
     try {
       const res: any = await postTrainingProfileData(updatedData).unwrap();
       enqueueSnackbar(res?.message ?? `Successfully!`, {
@@ -85,11 +80,12 @@ export default function AddTraingVerification() {
         "/recruitment/assessment-stage-one/training-verification-form"
       );
     } catch (error) {
-      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+      console.log(error);
+
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };
 
-  // console.log(data?.data?.expiryDate, "single trining profile");
 
   return (
     <Page title={PAGE_TITLE}>
@@ -127,11 +123,25 @@ export default function AddTraingVerification() {
             <UploadDocuments
               readOnly={false}
               tableData={uploadDocuments?.data?.docs}
+              searchParam={
+                (searchedText: string) => setParams(searchedText)
+                // console.log(searchedText)
+              }
               isLoading={uploadDocumentsIsLoading}
               isFetching={uploadDocumentsIsFetching}
               isError={uploadDocumentsIsError}
+              column={[
+                "documentType",
+                "documentType",
+                "date",
+                "uploadBy",
+                "password",
+              ]}
               isSuccess={isSuccess}
               modalData={(data: any) => uploadDocumentsHandler(data)}
+              onPageChange={(page: any) => console.log(page)}
+              currentPage={uploadDocuments?.data?.meta?.page}
+              totalPages={uploadDocuments?.data?.meta?.pages}
             />
           </>
         )}

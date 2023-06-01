@@ -1,11 +1,15 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
-// import ActionModal from "@root/sections/enquiry-stage/initial-enquiry/documents/ActionModal";
 import dayjs from "dayjs";
-import { useState } from "react";
 
-export const columnsRecruitmentUpload = (openDeleteModel: any) => [
+export const columnsTrainingProfilesList = (
+  handleDelete: any,
+  router: any,
+  cancelDelete: any,
+  setCancelDelete: any,
+  openDeleteModel: any
+) => [
   {
     id: "select",
     header: ({ table, row }: any) => {
@@ -37,38 +41,24 @@ export const columnsRecruitmentUpload = (openDeleteModel: any) => [
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.documentName,
-    id: "documentName",
+    accessorFn: (row: any) => row.carerName,
+    id: "carerName",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Document Name</span>,
+    header: () => <span>Carer Name</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.documentType,
-    id: "documentType",
+    accessorFn: (row: any) => row.courseAttended,
+    id: "courseAttended",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Document Type</span>,
+    header: () => <span>Courses Attended</span>,
     isSortable: true,
   },
   {
     accessorFn: (row: any) => row.date,
     id: "date",
     cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: () => <span>Document Date</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.uploadBy,
-    id: "uploadBy",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Person Uploaded</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.password,
-    id: "password",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Password</span>,
+    header: () => <span>Attended Date</span>,
     isSortable: true,
   },
   {
@@ -77,8 +67,8 @@ export const columnsRecruitmentUpload = (openDeleteModel: any) => [
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
-          type="download"
-          onClicked={() => console.log(info.getValue())}
+          type="edit"
+          onClicked={() => router.push(`${info.getValue()}`)}
         />
         <TableAction
           type="delete"
@@ -86,7 +76,10 @@ export const columnsRecruitmentUpload = (openDeleteModel: any) => [
           size="small"
         />
 
-        {/* <ActionModal content={info} readOnly={true} btnType="view" /> */}
+        <TableAction
+          type="view"
+          onClicked={() => router.push(`?${info.getValue()}`)}
+        />
       </Box>
     ),
     header: () => <span>Actions</span>,

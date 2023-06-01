@@ -18,7 +18,7 @@ export const StageOneApprovalFormData = [
     gridLength: 12,
     otherOptions: {
       label: "Social worker recommendation",
-      name: "socialWorkerRecommendation",
+      name: "recommendations",
       multiline: true,
       minRows: 2,
     },
@@ -29,7 +29,7 @@ export const StageOneApprovalFormData = [
     gridLength: 12,
     otherOptions: {
       label: "Social worker comments",
-      name: "socialWorkerComments",
+      name: "comments",
       multiline: true,
       minRows: 2,
     },
@@ -40,7 +40,7 @@ export const StageOneApprovalFormData = [
     gridLength: 6,
     otherOptions: {
       label: "Name of social Worker",
-      name: "nameOfWorker",
+      name: "workerName",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -50,7 +50,7 @@ export const StageOneApprovalFormData = [
     gridLength: 6,
     otherOptions: {
       label: "Date",
-      name: "socaialWorkerAssessmentDate",
+      name: "Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -59,7 +59,7 @@ export const StageOneApprovalFormData = [
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "socialWorkerSignature",
+      name: "signature",
       label: "SW Signature",
       // height: "130px",
       // sx: { mb: 10 },
@@ -71,7 +71,7 @@ export const StageOneApprovalFormData = [
     gridLength: 12,
     otherOptions: {
       label: "Team manager decision/recommendation",
-      name: "teamManagerDecision",
+      name: "managerRecommendation",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -81,7 +81,7 @@ export const StageOneApprovalFormData = [
     gridLength: 12,
     otherOptions: {
       label: "Team manager comments",
-      name: "teamManagerComments",
+      name: "managerComments",
       multiline: true,
       minRows: 2,
     },
@@ -92,7 +92,7 @@ export const StageOneApprovalFormData = [
     gridLength: 6,
     otherOptions: {
       label: "Name of Team manager",
-      name: "nameTeamManager",
+      name: "teamManagerName",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -102,7 +102,7 @@ export const StageOneApprovalFormData = [
     gridLength: 6,
     otherOptions: {
       label: "Date",
-      name: "teamManagerAssessmentDate",
+      name: "teamManagersignatureDate",
       fullWidth: true,
     },
     component: RHFDatePicker,
