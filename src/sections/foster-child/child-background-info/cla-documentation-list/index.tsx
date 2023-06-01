@@ -42,7 +42,7 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              `/cla-documentation-list/cla-documentation-form`
+              `/foster-child/child-background-info/cla-documentation/cla_document_type/${info?.row?.original?.DocumentType}`
             )
           }
         />
@@ -60,7 +60,6 @@ export const columns = [
     isSortable: false,
   },
 ];
-
 export const EHCPFormData = [
   {
     id: 1,
@@ -695,11 +694,9 @@ export const PEPFormData = [
       name: "name",
       label: "Name",
       sx: { mb: 4 },
-      multiline: true,
-      rows: 3,
     },
     component: RHFTextField,
-    md: 12,
+    md: 6,
   },
   {
     id: 2,
@@ -707,11 +704,9 @@ export const PEPFormData = [
       name: "class",
       label: "Class",
       sx: { mb: 4 },
-      multiline: true,
-      rows: 3,
     },
     component: RHFTextField,
-    md: 12,
+    md: 6,
   },
   {
     id: 3,
@@ -719,11 +714,9 @@ export const PEPFormData = [
       name: "plan",
       label: "Plan",
       sx: { mb: 4 },
-      multiline: true,
-      rows: 3,
     },
     component: RHFTextField,
-    md: 12,
+    md: 6,
   },
   {
     id: 4,
@@ -737,7 +730,7 @@ export const PEPFormData = [
     md: 6,
   },
   {
-    id: 6,
+    id: 5,
     componentProps: {
       name: "assessment",
       label: "Assessment",
@@ -747,7 +740,59 @@ export const PEPFormData = [
     component: RHFDatePicker,
     md: 6,
   },
+
 ];
+
+export const PEPContentData = [
+  {
+    id: 1,
+    heading: "Targets / Objectives:",
+    componentProps: {
+      variant: "h6",
+      color: (theme: any) => theme.palette.primary.main,
+      sx: { mb: 2 },
+    },
+    component: Typography,
+  },
+  {
+    id: 2,
+    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 6,
+  },
+  {
+    id: 3,
+    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 6,
+  },
+  {
+    id: 4,
+    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 6,
+  },
+  {
+    id: 5,
+    componentProps: {
+      name: "",
+      label: "",
+      sx: { my: 4 },
+      multiline: true,
+      rows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
+
+];
+
 
 // export const defaultValues = {
 //   nameOfOwner: "",

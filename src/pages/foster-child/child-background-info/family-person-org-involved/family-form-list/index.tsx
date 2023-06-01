@@ -4,7 +4,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
-import FamilyPersonListTable from "@root/sections/family-person-list/FamilyPersonListTable";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 
 
 // ----------------------------------------------------------------------
@@ -36,10 +38,25 @@ FamilyPersonList.getLayout = function getLayout(page: any) {
 };
 
 export default function FamilyPersonList() {
+
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <FamilyPersonListTable />
+        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
+
+          <FamilyOrgInvolvedForm />
+          <UploadDocuments
+            readOnly={false}
+            // tableData={tableData}
+            // isLoading={isDocumentLoading}
+            // isFetching={isFetching}
+            // isError={hasDocumentError}
+            // isSuccess={isSuccess}
+            // modalData={(data: any) => console.log("All data here", data)}
+          />
+
+        </HorizaontalTabs>
+
       </Paper>
     </Page>
   );
