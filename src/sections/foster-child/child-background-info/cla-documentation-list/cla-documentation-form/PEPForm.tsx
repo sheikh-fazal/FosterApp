@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { Grid, Paper } from '@mui/material';
-import { PEPContentData, PEPFormData, PEPFormValidation } from '..';
+import { PEPFormData, PEPFormValidation } from '..';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
 
@@ -14,6 +14,7 @@ export default function PEPForm() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
 
   };
 
@@ -37,24 +38,6 @@ export default function PEPForm() {
               </item.component>
             </Grid>
           ))}
-        </Grid>
-        
-        <Grid container columnSpacing={4}>
-          {PEPContentData.map((item) => {
-            const Component: any = item.component;
-            if (item.para) {
-              const [firstWord, ...restWords] = item.para.split(" ");
-              return (
-                <Grid item xs={12} md={item?.md} key={item?.id}>
-                  <Component>
-                    <span style={{ fontWeight: "bold" }}>{firstWord}</span>
-                    {restWords.join(" ")}
-                  </Component>
-                </Grid>
-              );
-            }
-            return <Component key={item.id} {...item.componentProps} />;
-          })}
         </Grid>
       </FormProvider>
     </Paper>
