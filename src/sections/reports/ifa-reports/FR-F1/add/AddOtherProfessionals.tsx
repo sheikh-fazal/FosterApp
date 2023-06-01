@@ -3,7 +3,7 @@ import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { LoadingButton } from "@mui/lab";
 import { useAddOtherProfessionals } from "./useAddOtherProfessionals";
-import { FRD1FormData } from ".";
+import { FRF1FormData } from ".";
 
 const AddOtherProfessionals = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
@@ -38,7 +38,7 @@ const AddOtherProfessionals = ({ action, id }: any) => {
       </Box>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
-          {FRD1FormData.map((form, i) => (
+          {FRF1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
               <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
                 {form.title}

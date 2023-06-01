@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useDecisionSheet = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-I/add';
+  const path = '/reports/ifa-reports/FR-I/decision-sheet';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

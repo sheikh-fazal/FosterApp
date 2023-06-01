@@ -2,11 +2,12 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import AddOtherProfessionals from "@root/sections/reports/ifa-reports/FR-F1/add/AddOtherProfessionals";
+import { useRouter } from "next/router";
+import AddBirthParent from "@root/sections/reports/ifa-reports/FR-F3/add/AddBirthParent";
 
 const PAGE_TITLE = "Reports";
 
-FRD1.getLayout = function getLayout(page: any) {
+FRF3.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -25,11 +26,8 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-F1: OTHER PROFESSIONALS",
-          href: "/reports/ifa-reports/FR-F1",
-        },
-        {
-          name: "Add"
+          name:"FR-F3: BIRTH PARENT/BIRTH FAMILY MEMBER",
+          href: "/reports/ifa-reports/FR-F3",
         },
       ]}
       title={PAGE_TITLE}
@@ -40,10 +38,12 @@ FRD1.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRD1() {
+export default function FRF3() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <AddOtherProfessionals />
+      <AddBirthParent action={action} id={id} />
     </Page>
   );
 }

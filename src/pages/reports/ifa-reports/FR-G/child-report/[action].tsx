@@ -3,11 +3,11 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import AddOtherProfessionals from "@root/sections/reports/ifa-reports/FR-F1/add/AddOtherProfessionals";
+import AddReviewingOfficerReport from "@root/sections/reports/ifa-reports/FR-G/add/AddReviewingOfficerReport";
 
 const PAGE_TITLE = "Reports";
 
-FRD1.getLayout = function getLayout(page: any) {
+FRG.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -22,15 +22,12 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "IFA Reports",
+          name: "Child Reports",
           href: "/reports",
         },
         {
-          name: "FR-F1: OTHER PROFESSIONALS",
-          href: "/reports/ifa-reports/FR-F1",
-        },
-        {
-          name: "Add",
+          name: "FR-G: REVIEWING OFFICER REPORT",
+          href: "/reports/ifa-reports/FR-G",
         },
       ]}
       title={PAGE_TITLE}
@@ -41,12 +38,12 @@ FRD1.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRD1() {
+export default function FRG() {
   const router = useRouter();
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <AddOtherProfessionals action={action} id={id} />
+      <AddReviewingOfficerReport action={action} id={id} />
     </Page>
   );
 }

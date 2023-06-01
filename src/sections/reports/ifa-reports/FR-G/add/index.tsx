@@ -120,14 +120,8 @@ export const FRD1FormData = [
     otherOptions: {
       name: "dateOfReviewMeeting",
       fullWidth: true,
-      select: true,
-      options: [
-        { value: "select 1", label: "select 1" },
-        { value: "select 2", label: "select 2" },
-        { value: "select 3", label: "select 3" },
-      ],
     },
-    component: RHFSelect,
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
@@ -593,4 +587,3 @@ export const FRD1FormData = [
     component: RHFDatePicker,
   },
 ];
-

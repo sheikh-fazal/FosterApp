@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddAdultHouseHoldMember = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-D1');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-F2');
 
 
   const methods: any = useForm({

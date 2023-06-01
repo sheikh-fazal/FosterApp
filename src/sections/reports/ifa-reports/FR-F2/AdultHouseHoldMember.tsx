@@ -20,7 +20,8 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const AdultHouseHoldMember = () => {
-  const { handleSearch, handleAction, openDelete,handleCloseDeleteModal  } = useAdultHouseHoldMember();
+  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } =
+    useAdultHouseHoldMember();
 
   const columns = [
     {
@@ -82,6 +83,18 @@ const AdultHouseHoldMember = () => {
       id: "createdBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Created By</span>,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
     },
     {
       id: "actions",

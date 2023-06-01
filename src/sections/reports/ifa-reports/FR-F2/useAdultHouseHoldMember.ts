@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useAdultHouseHoldMember = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-F2/add';
+  const path = '/reports/ifa-reports/FR-F2/adult-household-member';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

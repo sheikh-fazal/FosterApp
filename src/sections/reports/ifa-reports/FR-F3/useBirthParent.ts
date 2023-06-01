@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useBirthParent = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-F3/add';
+  const path = '/reports/ifa-reports/FR-F3/birth';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
@@ -13,10 +13,10 @@ export const useBirthParent = () => {
         router.push({ pathname: path });
         break;
       case "edit":
-        router.push({ pathname: path+"/edit" });
+        router.push({ pathname: path + "/edit" });
         break;
       case "view":
-        router.push({ pathname: path+"/view" });
+        router.push({ pathname: path + "/view" });
         break;
       case "delete":
         setOpenDelete(true);
