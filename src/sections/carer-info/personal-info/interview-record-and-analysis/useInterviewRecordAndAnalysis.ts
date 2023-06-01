@@ -32,6 +32,7 @@ export const useInterviewRecordAndAnalysis = (
   } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log("aaa");
     var form_data = new FormData();
     for (var key in data) {
       form_data.append(key, data[key]);
@@ -44,6 +45,7 @@ export const useInterviewRecordAndAnalysis = (
           ...res.data,
           interviewDate: new Date(res?.data.interviewDate),
           signatureDate: new Date(res?.data.signatureDate),
+          accessorSignatureDate: new Date(res?.data.signatureDate),
         });
         enqueueSnackbar("Record Updated Successfully", { variant: "success" });
       }
@@ -61,5 +63,6 @@ export const useInterviewRecordAndAnalysis = (
     isSubmitting,
     isDirty,
     theme,
+    isLoading,
   };
 };
