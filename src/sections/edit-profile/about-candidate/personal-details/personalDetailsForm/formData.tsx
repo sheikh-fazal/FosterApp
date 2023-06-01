@@ -1,16 +1,16 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  firstName: "Ali",
-  lastName: "Khan",
+  firstName: "",
+  lastName: "",
   dob: new Date(),
-  gender: "Male",
-  phoneNumber: "+9230164028524",
-  email: "iamemial@email.com",
-  nationality: "Pakistani",
-  applyingFor: "Senior Software Developer",
-  linkedId: "Fooster App.",
-  validLicence: "LTV",
+  gender: "",
+  phoneNumber: "",
+  email: "",
+  nationality: "",
+  jobApplyingFor: "",
+  linkedin: "",
+  validDrivingLicence: "",
 };
 
 export const FormSchema = Yup.object().shape({
