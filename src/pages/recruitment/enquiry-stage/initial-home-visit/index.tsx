@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import InitialHomeVisitTab from "@root/sections/recruitment/enquiry-stage/initial-home-visit/initial-home-visit-tab/InitialHomeVisitTab";
+import InitialHomeVisitTab from "@root/sections/carer-info/personal-info/initial-home-visit/initial-home-visit-tab/InitialHomeVisitTab";
 
 // ----------------------------------------------------------------------
 // Constants
