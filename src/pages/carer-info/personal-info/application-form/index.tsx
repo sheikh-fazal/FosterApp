@@ -75,7 +75,7 @@ ApplicationForm.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ApplicationForm() {
-  let role = "foster-carer";
+  let role = "ifa";
   const { data, isLoading, isError }: any = useGetApplicationFormDataQuery({});
   if (isLoading) {
     return (

@@ -55,7 +55,7 @@ InterviewRecordAndAnalysis.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InterviewRecordAndAnalysis() {
-  let role = "foster-carer";
+  let role = "ifa";
   const {
     data: fetchData,
     isLoading,
@@ -79,6 +79,9 @@ export default function InterviewRecordAndAnalysis() {
                 ...fetchData?.data,
                 interviewDate: new Date(fetchData?.data.interviewDate),
                 signatureDate: new Date(fetchData?.data.signatureDate),
+                accessorSignatureDate: new Date(
+                  fetchData?.data.accessorSignatureDate
+                ),
               }),
             }}
             disabled={role == "foster-carer" ? true : false}
