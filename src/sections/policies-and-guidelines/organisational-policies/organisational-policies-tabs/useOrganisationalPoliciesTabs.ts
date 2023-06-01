@@ -44,6 +44,6 @@ export const useOrganisationalPoliciesTabs = () => {
     handleAction,
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count
+    count,
   };
 };

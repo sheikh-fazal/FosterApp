@@ -9,7 +9,8 @@ export const useUploadedDocument = () => {
   const theme = useTheme();
   const router = useRouter();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
-
+  const [isModalType, setIsModalType] = useState({ type: "", value: "" });
+  
   const handleClose = () => setIsDeleteModal(false);
 
   const columns = [
@@ -80,7 +81,7 @@ export const useUploadedDocument = () => {
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction size="small" type="download" onClicked={() => alert("download")} />
           <TableAction size="small" type="delete" onClicked={() => setIsDeleteModal(true)} />
-          <TableAction type="view" onClicked={() => alert("view")} />
+          <TableAction type="view" onClicked={() => setIsModalType({type:"View", value:info})} />
         </Box>
       ),
       header: () => <span>action</span>,
@@ -94,5 +95,7 @@ export const useUploadedDocument = () => {
     isDeleteModal,
     handleClose,
     router,
+    isModalType,
+    setIsModalType,
   };
 };

@@ -6,12 +6,10 @@ import CyberEseentialsForm from "./cyber-essentials-form/CyberEseentialsForm";
 
 // =====================================================================================
 
-const CyberEssentialsTabs = () => {
-  const router = useRouter();
-  const { title } = router.query;
+const CyberEssentialsTabs = ({ disabled, title }: any) => {
   return (
     <HorizaontalTabs tabsDataArray={[title, "Uploaded Documents"]}>
-      <CyberEseentialsForm />
+      <CyberEseentialsForm disabled={disabled} />
       <UploadedDocument />
     </HorizaontalTabs>
   );

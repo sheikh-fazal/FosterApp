@@ -1,19 +1,31 @@
 import * as React from "react";
+import TableAction from "./TableAction";
 import Accordion from "@mui/material/Accordion";
+import Typography from "@mui/material/Typography";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import TableAction from "./TableAction";
+import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 
-const CustomAccordian = ({ handleRowDelete, handleTitleEdit, showBtn, addIcon, handleAdd, subTitle, data, className, ...rest }: any) => {
+interface CUSTOMACCORDIAN {
+  handleRowDelete?: any;
+  handleTitleEdit?: any;
+  showBtn?: any;
+  addIcon?: any;
+  handleAdd?: any;
+  subTitle?: any;
+  data: any;
+  className?: any;
+  firstAccStyle?: any;
+}
+const CustomAccordian = (props: CUSTOMACCORDIAN) => {
+  const { handleRowDelete, handleTitleEdit, showBtn, addIcon, handleAdd, subTitle, data, className, firstAccStyle, ...rest } = props;
   const [accordianExpanded, setAccordianExpanded] = React.useState<null | number>();
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
-  const handleAccordionChange = (index: number) => {
+
+  const handleAccordionChange = (index: any) => {
     if (accordianExpanded === index) {
       setAccordianExpanded(null);
     } else {
@@ -32,7 +44,7 @@ const CustomAccordian = ({ handleRowDelete, handleTitleEdit, showBtn, addIcon, h
           key={item.title}
           disableGutters
           sx={{
-            marginTop: "20px",
+            marginTop: firstAccStyle && index === 0 ? "0px" : "20px",
             borderRadius: "5px",
             "&:not(:last-child)": {
               borderBottom: 0,
@@ -110,9 +122,7 @@ const CustomAccordian = ({ handleRowDelete, handleTitleEdit, showBtn, addIcon, h
                   {item?.lectures?.length} lectuers - {item?.minutes} min
                 </Typography>
               )}
-              {addIcon && accordianExpanded === index && (
-                <AddCircleIcon onClick={() => handleAdd(item?.id)} width={33} height={33} style={{ color: "#F6830F" }} />
-              )}
+              {addIcon && accordianExpanded === index && <TableAction size="small" type="add" onClick={() => handleAdd(item.title)} />}
             </Box>
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
