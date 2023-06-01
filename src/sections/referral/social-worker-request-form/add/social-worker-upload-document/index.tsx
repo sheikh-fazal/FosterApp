@@ -2,6 +2,26 @@ import { Typography } from "@mui/material";
 import { RHFRadioGroup, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 
+
+export const SOCIAL_WORKER_UPLOAD_DOCUMENT_TABLE_DATA = [
+  {
+      srNo: 1,
+      documentName: "Form Name",
+      docuementType: "XLS",
+      documentDate: 30/4/2011,
+      personUploaded: "Richard",
+      password:"orcalo123",
+  },
+  {
+      srNo: 2,
+      documentName: "Form file",
+      docuementType: "PDF",
+      documentDate: 30/4/2011,
+      personUploaded: "Johnson",
+      password:"orcalo123",
+  },
+]
+
 export const BForm = [
   {
     id:1,
@@ -175,5 +195,3 @@ export const BFormValidationSchema = Yup.object().shape({
   safety: Yup.string().trim(),
   breedingOrEmployment: Yup.string().trim(),
 });
-
-export { default as PetQuestionnaireBFrom } from "./UploadDocument";

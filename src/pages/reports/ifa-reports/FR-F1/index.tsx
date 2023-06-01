@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-
+import OthersProfessionals from "@root/sections/reports/ifa-reports/FR-F1/OthersProfessionals";
 const PAGE_TITLE = "Reports";
 
 FRF1.getLayout = function getLayout(page: any) {
@@ -17,9 +17,11 @@ FRF1.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name:"FR-F1: OTHER PROFESSIONALS"
@@ -36,6 +38,7 @@ FRF1.getLayout = function getLayout(page: any) {
 export default function FRF1() {
   return (
     <Page title={PAGE_TITLE}>
+      <OthersProfessionals />
     </Page>
   );
 }
