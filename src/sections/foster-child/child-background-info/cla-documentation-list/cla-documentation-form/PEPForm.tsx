@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { Grid, Paper } from '@mui/material';
-import { PEPFormData, PEPFormValidation } from '..';
+import { PEPContentData, PEPFormData, PEPFormValidation } from '..';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
 
@@ -34,7 +34,24 @@ export default function PEPForm(){
                 ))
                 : null}
               {item?.heading}
-            </item.component>
+            </item.component> 
+          </Grid>
+        ))}
+        {PEPContentData?.map((item: any) => (
+          <Grid item xs={12} md={item?.md} key={item?.id}>
+            <item.component
+              {...item.componentProps}
+              size={"small"}>
+              {/* {item?.componentProps?.select
+                ? item?.options?.map((option: any) => (
+                  <option key={option?.value} value={option?.value}>
+                    {option?.label}
+                  </option>
+                ))
+                : null} */}
+              {item?.heading}
+              {item?.para}
+            </item.component> 
           </Grid>
         ))}
         
