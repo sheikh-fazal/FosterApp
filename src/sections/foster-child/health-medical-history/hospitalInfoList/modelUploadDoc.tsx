@@ -197,7 +197,7 @@ function ModelUploadDoc(props: model) {
                         </Grid>
                       </Grid>
                       <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-                        {action !== "view" && (
+                      
                           <Button
                             sx={{
                               bgcolor: theme.palette.primary.main,
@@ -210,7 +210,7 @@ function ModelUploadDoc(props: model) {
                           >
                             Submit
                           </Button>
-                        )}
+                        
                         <Button
                           sx={{
                             bgcolor: theme.palette.orange.main,
