@@ -22,11 +22,10 @@ FRD1.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-H",
         },
         {
           name:"FR-H: FOSTERING SERVICE MANAGER REPORT",
-          href: "/reports/ifa-reports/FR-H",
         },
       ]}
       title={PAGE_TITLE}

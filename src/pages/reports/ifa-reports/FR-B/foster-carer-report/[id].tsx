@@ -1,12 +1,13 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import SocialWorkerReport from "@root/sections/reports/ifa-reports/FRE/social-worker-report/SocialWorkerReport";
+import FosterCarerReport from "@root/sections/reports/ifa-reports/FR-B/foster-carer-report/FosterCarerReport";
+import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Reports";
 
-FRE.getLayout = function getLayout(page: any) {
+FRB.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -22,10 +23,10 @@ FRE.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-E",
+          href: "/reports/ifa-reports/FR-B",
         },
         {
-          name: "FR-E CHILD’S SOCIAL WORKER REPORT"
+          name: "FR-B: FOSTER CARER REPORT"
         }
       ]}
       title={PAGE_TITLE}
@@ -36,10 +37,12 @@ FRE.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function FRE() {
+export default function FRB() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <SocialWorkerReport />
+      <FosterCarerReport action={action} id={id} />
     </Page>
   );
 }

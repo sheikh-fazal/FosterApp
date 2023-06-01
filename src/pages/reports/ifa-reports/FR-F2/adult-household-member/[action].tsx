@@ -23,11 +23,10 @@ FRF2.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-F2",
         },
         {
-          name:"FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER",
-          href: "/reports/ifa-reports/FR-F2",
+          name: "FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER",
         },
       ]}
       title={PAGE_TITLE}
