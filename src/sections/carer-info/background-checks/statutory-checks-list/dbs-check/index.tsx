@@ -11,7 +11,7 @@ export const carInsuranceData = [
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "enhancedDbs",
+      name: "isEnhancedDbs",
       label: "Is Enhanced DBS",
     },
     component: RHFCheckbox,
@@ -20,7 +20,7 @@ export const carInsuranceData = [
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "inProgress",
+      name: "inProcess",
       label: "In Progress",
     },
     component: RHFCheckbox,
@@ -29,41 +29,53 @@ export const carInsuranceData = [
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "sentCarerDate",
+      name: "sentToCarerDate",
       label: "Sent To Carer Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "receivedCarerDate",
+      name: "receivedFromCarerDate",
       label: "Received From Carer Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "sentDbsDate",
+      name: "sentToDbsDate",
       label: "Sent To DBS Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "recieveDbsDate",
+      name: "receivedFromDbsDate",
       label: "Received From DBS Check",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 7,
@@ -85,16 +97,22 @@ export const carInsuranceData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "renewDbsDate",
+      name: "renewFromDbsDate",
       label: "Renew From DBS Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 10,
@@ -116,7 +134,7 @@ export const carInsuranceData = [
     gridLength: 6,
     Options: [true, false],
     otherOptions: {
-      name: "updateService",
+      name: "subscribeToUpdateService",
       label: "Subscribe To Update Service:",
     },
     component: "RadioGroup",
@@ -134,31 +152,39 @@ export const carInsuranceData = [
     component: RHFTextField,
   },
 ];
+
+export const formatters: any = {};
+
+for (const formControl of carInsuranceData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
-  enhancedDbs: "",
-  inProgress: "",
-  sentCarerDate: new Date(),
-  receivedCarerDate: new Date(),
-  sentDbsDate: new Date(),
-  recieveDbsDate: new Date(),
+  isEnhancedDbs: false,
+  inProcess: false,
+  sentToCarerDate: new Date(),
+  receivedFromCarerDate: new Date(),
+  sentToDbsDate: new Date(),
+  receivedFromDbsDate: new Date(),
   disclosureNumber: "",
   disclosureDate: new Date(),
-  renewDbsDate: new Date(),
+  renewFromDbsDate: new Date(),
   result: "",
-  updateService: false,
+  subscribeToUpdateService: false,
   comments: "",
 };
-export const FormSchema = Yup.object().shape({
-  enhancedDbs: Yup.string().required("required"),
-  inProgress: Yup.string().required("required"),
-  sentCarerDate: Yup.date().required("required"),
-  receivedCarerDate: Yup.date().required("required"),
-  sentDbsDate: Yup.date().required("required"),
-  recieveDbsDate: Yup.date().required("required"),
-  disclosureNumber: Yup.string().required("required"),
-  disclosureDate: Yup.date().required("required"),
-  renewDbsDate: Yup.date().required("required"),
-  result: Yup.string().required("required"),
-  updateService: Yup.boolean().required("required"),
-  comments: Yup.string().required("required"),
+export const formSchema = Yup.object().shape({
+  isEnhancedDbs: Yup.boolean(),
+  inProcess: Yup.boolean(),
+  sentToCarerDate: Yup.date(),
+  receivedFromCarerDate: Yup.date(),
+  sentToDbsDate: Yup.date(),
+  receivedFromDbsDate: Yup.date(),
+  disclosureNumber: Yup.string(),
+  disclosureDate: Yup.date(),
+  renewFromDbsDate: Yup.date(),
+  result: Yup.string(),
+  subscribeToUpdateService: Yup.boolean(),
+  comments: Yup.string(),
 });

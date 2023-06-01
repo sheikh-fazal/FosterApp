@@ -1,3 +1,5 @@
+export * from "./nextOFKin";
+export * from "./nextOfKinForm";
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SignaturePad from "@root/components/hook-form/SignaturePad";

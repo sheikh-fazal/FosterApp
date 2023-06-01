@@ -51,6 +51,9 @@ export const usePrimaryCarerForm = () => {
       const res: any = await postPrimaryCarerDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
