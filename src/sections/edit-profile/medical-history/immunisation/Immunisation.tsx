@@ -53,7 +53,7 @@ const Immunisation: FC<any> = ({ activateNextForm }) => {
 
   const [getImmunisationInfo] = useLazyGetImmunisationInfoQuery();
   const [updateImmunisationInfo] = useUpdateImmunisationInfoMutation();
-  // const [deleteImmunisationInfoDocu] = useDeleteImmunisationInfoDocuMutation();
+  const [deleteImmunisationInfoDocu] = useDeleteImmunisationInfoDocuMutation();
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
@@ -109,22 +109,21 @@ const Immunisation: FC<any> = ({ activateNextForm }) => {
   };
 
   const deleteDocument = async (docId: string) => {
-    console.log({ docId });
-    // try {
-    //   setIsUpdating(true);
-    //   const data = await deleteAddressDetailsDocu({ imgId: docId });
-    //   displaySuccessMessage(data, enqueueSnackbar);
-    //   setIsUpdating(false);
-    //   return true;
-    // } catch (error) {
-    //   displayErrorMessage(error, enqueueSnackbar);
-    //   return false;
-    // }
+    try {
+      setIsUpdating(true);
+      const data = await deleteImmunisationInfoDocu({ imgId: docId });
+      displaySuccessMessage(data, enqueueSnackbar);
+      setIsUpdating(false);
+      return true;
+    } catch (error) {
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
   };
   if (isLoading) return <FormSkeleton />;
   return (
     <>
-      {isSubmitting && <IsFetching isFetching />}
+      {(isSubmitting || isUpdating) && <IsFetching isFetching />}
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container justifyContent="center">
           <Grid container item xs={12}>
