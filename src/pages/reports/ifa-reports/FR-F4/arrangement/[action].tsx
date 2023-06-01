@@ -23,11 +23,10 @@ FRF4.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-F4",
         },
         {
           name:"FR-F4: PARENT IN PARENT AND CHILD ARRANGEMENT",
-          href: "/reports/ifa-reports/FR-F4",
         },
       ]}
       title={PAGE_TITLE}

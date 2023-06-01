@@ -22,10 +22,10 @@ FRB.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-B",
         },
         {
-          name: "FR-B FOSTER CARER REPORT"
+          name: "FR-B: FOSTER CARER REPORT"
         }
       ]}
       title={PAGE_TITLE}

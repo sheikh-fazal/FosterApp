@@ -21,7 +21,7 @@ FRC1.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-C1",
         },
         {
           name: "FR-C1 CHILD LIVING IN THE HOUSEHOLD’S COMMENTS"

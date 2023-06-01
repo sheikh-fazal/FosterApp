@@ -24,11 +24,10 @@ FRI.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-I",
         },
         {
           name:"FR-I DECISION SHEET",
-          href: "/reports/ifa-reports/FR-I",
         },
       ]}
       title={PAGE_TITLE}
