@@ -43,6 +43,9 @@ export const UploadDocumentTable = (props: any) => {
     isError,
     isSuccess,
     column,
+    onPageChange,
+    currentPage,
+    totalPages,
   }: any = props;
 
   // ----------------------------------------------------------------------
@@ -63,7 +66,6 @@ export const UploadDocumentTable = (props: any) => {
     // Clean up
     URL.revokeObjectURL(tempLink.href);
   };
-  console.log(column);
   const columns = [
     // {
     //   id: "select",
@@ -97,14 +99,14 @@ export const UploadDocumentTable = (props: any) => {
           ? ". . ." + info.getValue()?.slice(-15)
           : info.getValue(),
       header: () => <span>Document Name</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row[column[1]],
       id: "Document Type",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Type</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row[column[2]],
@@ -173,7 +175,7 @@ export const UploadDocumentTable = (props: any) => {
   return (
     <Grid container>
       <UploadDocumentModal
-        readOnly={readOnly}
+        readOnly={true}
         openModal={openModal}
         column={column}
         content={openModal}
@@ -189,14 +191,12 @@ export const UploadDocumentTable = (props: any) => {
         isError={isError}
         isSuccess={isSuccess}
         showSerialNo
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        // onSortByChange={(data: any) => {
+        //   console.log("Sort by: ", data);
+        // }}
       />
     </Grid>
   );

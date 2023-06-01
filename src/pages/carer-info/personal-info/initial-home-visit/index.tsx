@@ -27,7 +27,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      // title={PAGE_TITLE}
+      title={PAGE_TITLE}
       variant="dashboard"
     >
       {page}
