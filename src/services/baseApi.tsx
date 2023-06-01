@@ -28,6 +28,8 @@ export const TAGS = [
   "EMPLOYMENT_REFERENCE1",
   "EMPLOYMENT_REFERENCE2",
   "LOCAL_AUTHORITY",
+  "MEDICAL_ADVISOR",
+  "PARTNER_REFERENCE",
 ];
 
 // Create our baseQuery instance

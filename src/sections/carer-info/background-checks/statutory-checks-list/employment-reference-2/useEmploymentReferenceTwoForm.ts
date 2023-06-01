@@ -50,6 +50,8 @@ export const useEmploymentReferenceTwoForm = (action: any, id: any) => {
     handleSubmit,
     formState: { isSubmitting },
   } = methods;
+
+  //OnSubmit Function
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
