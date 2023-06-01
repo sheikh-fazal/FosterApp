@@ -18,9 +18,11 @@ FRB.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name: "FR-B FOSTER CARER REPORT"

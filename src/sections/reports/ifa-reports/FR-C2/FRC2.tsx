@@ -9,7 +9,6 @@ import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { FRC2FilterData, tableMockData, tableSubHeader } from '.';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 const FRC2 = () => {
   const { handleSearch, handleAction, handleDeleteModal, deleteModal } = useFRC2();
@@ -85,10 +84,9 @@ const FRC2 = () => {
     <>
       <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
         <Box display={'flex'} justifyContent={'end'}
-          sx={{ px: 2 }} gap={1}
+          sx={{ px: 2 }}
         >
           <Image src={automatedIcon} alt='icon' />
-          <SettingsIcon />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>
           <Grid container spacing={2}>
