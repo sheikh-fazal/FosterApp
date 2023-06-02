@@ -5,17 +5,15 @@ import React from 'react'
 import { uploadDocumentData } from '.'
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal'
 import DeleteModel from '@root/components/modal/DeleteModel'
-import { useOrganisationalPoliciesTabs } from './useOrganisationalPoliciesTabs'
+import { useTemplatePoliciesTabs } from './useTemplatePoliciesTabs'
 
-const OrganisationalPoliciesTabs = () => {
-   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
-
-   console.log('route', route.query)
+const TemplatePoliciesTabs = () => {
+   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count } = useTemplatePoliciesTabs();
 
     return (
         <>
-            <CustomHorizaontalTab tabsArray={[`${route.query.action === 'add' || 'view' ? route.query.name : 'Add New Policy'}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
-                <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/organisational-policies/'} />
+            <CustomHorizaontalTab tabsArray={["Add New Policy", "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+                <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/templates'} />
 
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />
             </CustomHorizaontalTab>
@@ -27,4 +25,4 @@ const OrganisationalPoliciesTabs = () => {
     )
 }
 
-export default OrganisationalPoliciesTabs
+export default TemplatePoliciesTabs
