@@ -9,14 +9,11 @@ import ChecklistPolicy from './ChecklistPolicy/ChecklistPolicy';
 
 const PolicyVerticalTable = (props: any) => {
     const { data, addNewTabNavigation } = props;
-    const [actionId, setActionId] = useState<any>();
-    const filteredData = data.filter((item: any) => item?.innerData.some((data: any) => data?.id === actionId));
-    console.log('filteredData', filteredData);
     const navigate = useRouter();
     const theme = useTheme();
-    // useEffect(() => {},[actionId])
 
-    const columns = [
+
+    const columns = (title: string) => [
         {
             id: "select",
             header: ({ table, row }: any) => {
@@ -83,8 +80,8 @@ const PolicyVerticalTable = (props: any) => {
         },
         {
             id: "actions",
-            cell: (info: any) => <Box display={'flex'} gap={0.5}>
-                <TableAction type="view" onClicked={() => { setActionId(String(info.row.original.id)); navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: filteredData?.title,  action: 'view' } });  }} />
+            cell: (info: any) => <Box display={'flex'} gap={0.5} flexShrink={'0'}>
+                <TableAction type="view" onClicked={() =>  navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
                 <TableAction type="print" />
                 <TableAction type="download" />
             </Box>,
@@ -108,7 +105,7 @@ const PolicyVerticalTable = (props: any) => {
                                 />
                                 <CustomTable
                                     data={item.innerData}
-                                    columns={columns}
+                                    columns={columns(item.title)}
                                     isLoading={false}
                                     isFetching={false}
                                     isError={false}
