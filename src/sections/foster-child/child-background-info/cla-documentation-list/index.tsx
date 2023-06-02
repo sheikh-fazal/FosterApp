@@ -1,10 +1,10 @@
 import * as Yup from "yup";
 import router from "next/router";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import ListItem from '@mui/material/ListItem';
+import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
 
 export const columns = [
   {
@@ -43,7 +43,7 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              `/foster-child/child-background-info/cla-documentation/cla_document_type/${info?.row?.original?.DocumentType}`
+              `/foster-child/child-background-info/cla-documentation/${info?.row?.original?.id}`
             )
           }
         />
@@ -494,7 +494,6 @@ export const EHCPFormData = [
     component: RHFTextField,
     md: 12,
   },
-
   {
     id: 37,
     heading: "PEP Date",
@@ -722,7 +721,7 @@ export const PEPFormData = [
   {
     id: 4,
     componentProps: {
-      name: "pepDuration",
+      name: "pep",
       label: "Pep Duration",
       sx: { mb: 4 },
       fullWidth: true,
@@ -730,7 +729,6 @@ export const PEPFormData = [
     component: RHFDatePicker,
     md: 6,
   },
-
   {
     id: 5,
     componentProps: {
@@ -744,16 +742,15 @@ export const PEPFormData = [
   },
   {
     id: 5,
-
     component: TargetsAndObjectives,
     md: 12,
   },
   {
     id: 6,
     componentProps: {
-      name: "nill",
-      label: "Nill",
-      sx: { mt: 2 },
+      name: "overallOutcome",
+      label: "Overall Outcome",
+      sx: { my: 3 },
       fullWidth: true,
       multiline: true,
       minRows: 3,
@@ -762,7 +759,6 @@ export const PEPFormData = [
     md: 12,
   },
 ];
-
 export const TargetsAndObjectivesData = [
   {
     id: 1,
@@ -785,8 +781,8 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 3,
-    paraTitle: 'T1 ',
-    para: " -Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    paraTitle: 'T2 ',
+    para: "- Child will Improve auditory memory skills by means of sequencing and predication.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
     component: Typography,
@@ -794,8 +790,17 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 4,
-    paraTitle: 'T1 ',
-    para: " -Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    paraTitle: 'T3 ',
+    para: "- Child will know and recognize the first 40 keywords and be able to use them orally in context and in written form relation to T1.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 5,
+    paraTitle: 'T4 ',
+    para: "- Child will consolidate number and continue to develop those skills by adding and subtraction whith 20. Child will be able to recognize numbers up to 20 in both written and numerical form.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
     component: Typography,
@@ -805,25 +810,26 @@ export const TargetsAndObjectivesData = [
 export const StrategiesAndEvidence = [
   {
     id: 1,
-    heading: "Strategies / Evidence::",
+    heading: "Strategies / Evidence:",
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
-      sx: { mb: 2 },
+      sx: { mb: 2, listStyleType: "none" },
     },
     component: Typography,
   },
   {
     id: 2,
     para: " Use of Phonographix programme and letterland sounds consolidate / help retention.",
-    color: (theme: any) => theme.palette.primary.main,
     component: Typography,
     md: 12,
   },
   {
     id: 3,
     para: "Tape recorder etc to produce and identify their own sounds.",
-    color: (theme: any) => theme.palette.primary.main,
+    componentProps: {
+      sx: { mb: 2 },
+    },
     component: Typography,
     md: 12,
   },
@@ -846,8 +852,9 @@ export const StrategiesAndEvidence = [
   {
     id: 5,
     para: "My Grandmother went to th market.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
+    componentProps: {
+      sx: { mb: 2 },
+    },
     component: Typography,
     md: 12,
   },
@@ -870,53 +877,46 @@ export const StrategiesAndEvidence = [
   {
     id: 8,
     para: "Busy bee.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
+    componentProps: {
+      sx: { mb: 2 },
+    },
     component: Typography,
     md: 12,
   },
   {
     id: 9,
     para: "Deboys and Pitt early number work ideas.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
     component: Typography,
     md: 12,
   },
   {
     id: 10,
     para: "Multiple cubes.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
     component: Typography,
     md: 12,
   },
   {
     id: 11,
     para: "Practical number games within 20.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
     component: Typography,
     md: 12,
   },
   {
     id: 12,
     para: "Genesis Key Stage.",
-    color: (theme: any) => theme.palette.primary.main,
-    sx: { mb: 2 },
     component: Typography,
     md: 12,
   },
 ];
 
+export const defaultValues = {
+  nameOfOwner: "",
+  nameOfAnimal: "",
+  typeOfAnimal: "",
+  description: "",
+  housingAndRoutines: "",
+};
 
-// export const defaultValues = {
-//   nameOfOwner: "",
-//   nameOfAnimal: "",
-//   typeOfAnimal: "",
-//   description: "",
-//   housingAndRoutines: "",
-// };
 
 export const EHCPFormValidation = Yup.object().shape({
   nameOfOwner: Yup.string().trim().required("Name of Owner is Required"),
@@ -927,55 +927,13 @@ export const EHCPFormValidation = Yup.object().shape({
 });
 export const PEPFormValidation = Yup.object().shape({
   name: Yup.string().trim().required("Name of Owner is Required"),
-  class: Yup.string().trim().required("Name of Animal is Required"),
-  plan: Yup.string().trim().required("Type of Animal is Required"),
-  pepDuration: Yup.string().trim(),
-  assessment: Yup.string().trim(),
+  class: Yup.string().trim().required("class is Required"),
+  plan: Yup.string().trim().required("Plan Required"),
+  pep: Yup.date().required(),
+  assessment: Yup.date().required(),
+  overallOutcome: Yup.string().trim().required("overcall outcome Required"),
+
+  
 });
-
-export default function TargetsAndObjectives() {
-  return (
-
-    <Grid container columnSpacing={4}>
-      <Grid item xs={12} md={6}>
-        {TargetsAndObjectivesData?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
-              {...item.componentProps}
-              size={"small"}>
-              {item?.heading}
-              <Box sx={{ display: "flex", alignItems: "top", flexWrap: "nowrap" }}>
-                <h4> {item?.paraTitle}</h4>
-                <Box sx={{ mb: 2 }}>{item?.para}</Box>
-              </Box>
-            </item.component>
-          </Grid>
-        ))}
-      </Grid>
-      <Grid item xs={12} md={6}>
-        {StrategiesAndEvidence?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
-              {...item.componentProps}
-              size={"small"}>
-              {item?.heading}
-              <ul>
-                <li>
-
-                  <Box sx={{ mb: 2 }}>{item?.para}</Box>
-
-                </li>
-              </ul>
-              {/* <Box sx={{ display: "flex", alignItems: "top", flexWrap: "nowrap" }}>
-                <h4> {item?.paraTitle}</h4>
-                <Box sx={{mb:2}}>{item?.para}</Box>
-              </Box> */}
-            </item.component>
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
-  )
-}
 
 export { default as ClaDocumentationList } from "./ClaDocumentationList"

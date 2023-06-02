@@ -1,18 +1,22 @@
-import { Grid, Paper } from '@mui/material'
+import { Box, Grid, Paper } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from "@root/components/hook-form";
 import { EHCPFormValidation, EHCPFormData } from '..';
+import { LoadingButton } from '@mui/lab';
 
-export default function EHCPForm() {
+export default function EHCPForm(props: any) {
+  const { defaultValues } = props;
 
   const methods: any = useForm({
     resolver: yupResolver(EHCPFormValidation),
+    defaultValues
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
 
   };
 
@@ -37,6 +41,24 @@ export default function EHCPForm() {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ display: "flex", mb: "1rem" }}>
+          <LoadingButton
+            sx={{ marginRight: "1rem" }}
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </LoadingButton>
+          <LoadingButton
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained"
+          >
+            back
+          </LoadingButton>
+        </Box>
+
       </FormProvider>
     </Paper>
   )
