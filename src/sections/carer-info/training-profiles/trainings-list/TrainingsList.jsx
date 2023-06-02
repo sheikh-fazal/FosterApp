@@ -39,7 +39,7 @@ const TrainingsList = () => {
           title="Training Profile"
           searchKey="search"
           onAdd={() => {
-            router.push("");
+            router.push("/carer-info/training-profiles/new-trainings-profile");
           }}
           onChanged={headerChangeHandler}
         />

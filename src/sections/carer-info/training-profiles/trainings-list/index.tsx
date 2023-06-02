@@ -68,7 +68,9 @@ export const columnsTrainingProfilesList = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => {}}
+          onClicked={() => {
+            router.push(`/carer-info/training-profiles/edit-trainings-profile`);
+          }}
         />
         <TableAction
           type="delete"
@@ -78,7 +80,9 @@ export const columnsTrainingProfilesList = (
 
         <TableAction
           type="view"
-          onClicked={() => {}}
+          onClicked={() => {
+            router.push(`/carer-info/training-profiles/view-trainings-profile`);
+          }}
         />
       </Box>
     ),

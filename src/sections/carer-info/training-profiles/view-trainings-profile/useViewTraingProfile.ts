@@ -3,8 +3,9 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
-const useTraingingProfile = (onSubmitHandler: any) => {
+const useViewTraingsProfile = (initialValueProps: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
@@ -17,8 +18,8 @@ const useTraingingProfile = (onSubmitHandler: any) => {
     otherTraining: "",
     addtionalInfo: "",
     attendance: false,
-    expiryDate: new Date(todayDate),
-    date: new Date(todayDate),
+    expiryDate: new Date(),
+    date: new Date(),
   };
 
   const tainingProfileSchema = Yup.object().shape({
@@ -36,18 +37,16 @@ const useTraingingProfile = (onSubmitHandler: any) => {
 
   const methods: any = useForm({
     resolver: yupResolver(tainingProfileSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
 
   const { handleSubmit } = methods;
 
-  const onSubmit =  (data: any) => {
-    const res: any = onSubmitHandler(data)
-   
+  const onSubmit = async (data: any) => {
     console.log(data);
   };
 
   return { methods, handleSubmit, onSubmit, router };
 };
 
-export default useTraingingProfile;
+export default useViewTraingsProfile;
