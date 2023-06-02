@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { healthTherapyInfoFormDataFunction } from ".";
 import { useRouter } from "next/router";
 
-export const useHealthTherapyInfo = () => {
+export const useGPDetailsInfo = () => {
   const { query } = useRouter();
   console.log(!!query.id);
   const healthTherapyInfoFormData = healthTherapyInfoFormDataFunction(!!!query?.id);

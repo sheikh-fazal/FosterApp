@@ -1,12 +1,13 @@
 import { RHFCheckbox, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const healthTherapyInfoFormDataFunction = () => [
+export const healthTherapyInfoFormDataFunction = (isFieldDisable = false) => [
   {
     id: 1,
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 6,
     component: RHFCheckbox,
@@ -16,6 +17,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 6,
     component: RHFCheckbox,
@@ -26,6 +28,7 @@ export const healthTherapyInfoFormDataFunction = () => [
       name: "referralDate",
       label: "Referral Date",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     gridLength: 6,
     component: RHFDatePicker,
@@ -36,6 +39,7 @@ export const healthTherapyInfoFormDataFunction = () => [
       name: "appointmentDate",
       label: "Appointment Date",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     gridLength: 6,
     component: RHFDatePicker,
@@ -45,6 +49,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 12,
     component: RHFCheckbox,
@@ -57,6 +62,7 @@ export const healthTherapyInfoFormDataFunction = () => [
       label: "Additional Source Information",
       multiline: true,
       minRows: 3,
+      disabled: isFieldDisable,
     },
     gridLength: 12,
     component: RHFTextField,
@@ -69,6 +75,7 @@ export const healthTherapyInfoFormDataFunction = () => [
       label: "Additional Source Information",
       multiline: true,
       minRows: 3,
+      disabled: isFieldDisable,
     },
     gridLength: 12,
     component: RHFTextField,
@@ -78,6 +85,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 4,
     component: RHFCheckbox,
@@ -87,6 +95,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 4,
     component: RHFCheckbox,
@@ -96,6 +105,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "referralToCAMHS",
       label: "Referral to CAMHS",
+      disabled: isFieldDisable,
     },
     gridLength: 4,
     component: RHFCheckbox,
@@ -105,6 +115,7 @@ export const healthTherapyInfoFormDataFunction = () => [
     componentProps: {
       name: "firstName",
       label: "First Name",
+      disabled: isFieldDisable,
     },
     gridLength: 12,
     component: RHFTextField,
