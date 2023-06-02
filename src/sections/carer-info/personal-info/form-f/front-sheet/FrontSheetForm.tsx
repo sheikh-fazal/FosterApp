@@ -25,7 +25,9 @@ export default function FrontSheetForm(props: any) {
   const onSubmit = (data: any) => {
     FORMDATA.append(
       "updatePhoto",
-      new Blob([data.updatePhoto], { type: "application/octet-stream" })
+      // new Blob([data.updatePhoto], { type: "application/octet-stream" })
+      data.updatePhoto
+      // "users/4f7512fb-2916-451b-8240-97f529ded73d/formf/847470dd-1a57-4454-bcb6-6d3f04620b2a.png"
     );
     FORMDATA.append("nameOfApplicants", data.nameOfApplicants);
     FORMDATA.append(

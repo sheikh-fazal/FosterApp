@@ -11,7 +11,7 @@ export default function BankAccountDetailsSection() {
   return (
     <div>
       <TableHeader
-        title="Uploaded Documents"
+        title="Bank Details"
         onChanged={changeHandler}
         showAddBtn
         onAdd={() => setOpenModal(true)}
