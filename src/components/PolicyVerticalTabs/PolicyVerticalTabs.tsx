@@ -121,10 +121,10 @@ const styles = {
   }),
 
   innerTabs: (theme: any) => ({
-    background: "#0E918C",
+    background: theme.palette.primary.main,
     mb: "15px",
     borderRadius: "10px",
-    border: "6px solid #0E918C",
+    border: `6px solid ${theme.palette.primary.main}`,
     height: "100%",
     minHeight: "80px",
     "&.Mui-selected": {
