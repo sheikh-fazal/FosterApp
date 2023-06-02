@@ -1,9 +1,7 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const therapyInfoTableColumnsFunction = (
-  SetIsSingleDocumentDetailViewed?: any
-) => [
+export const therapyInfoTableColumnsFunction = (router?: any) => [
   //   {
   //     id: "select",
   //     header: ({ table, row }: any) => {
@@ -44,22 +42,33 @@ export const therapyInfoTableColumnsFunction = (
   {
     accessorFn: (row: any) => row?.id,
     id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="delete"
-          onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
-        />
-        <TableAction
-          type="edit"
-          onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
-        />
-        <TableAction
-          type="view"
-          onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
-        />
-      </Box>
-    ),
+    cell: (info: any) => {
+      console.log(info);
+      return (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="delete"
+            // onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
+          />
+          <TableAction
+            type="edit"
+            onClicked={() =>
+              router.push(
+                `/foster-child/health-medical-history/therapy-info/edit-child-therapy-info/${info?.row?.id}`
+              )
+            }
+          />
+          <TableAction
+            type="view"
+            onClicked={() =>
+              router.push(
+                "/foster-child/health-medical-history/therapy-info/child-therapy-info"
+              )
+            }
+          />
+        </Box>
+      );
+    },
     header: () => <span>Action</span>,
     isSortable: false,
   },
