@@ -3,7 +3,6 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import FRBSection from "@root/sections/reports/ifa-reports/FR-B/FRB";
-
 const PAGE_TITLE = "Reports";
 
 FRB.getLayout = function getLayout(page: any) {
@@ -18,9 +17,11 @@ FRB.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name: "FR-B FOSTER CARER REPORT"

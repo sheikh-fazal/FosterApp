@@ -38,7 +38,9 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function UnannouncedHomeVisitLayout() {
-  return <Page title={PAGE_TITLE}>
-    <UnannouncedHomeVisitTable />
-  </Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <UnannouncedHomeVisitTable />
+    </Page>
+  );
 }

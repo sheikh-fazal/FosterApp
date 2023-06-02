@@ -6,11 +6,11 @@ import TableHeader from "@root/components/TableHeader";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 
 const SupervisoryUploadDocuments = () => {
-  const { columns, openModal, setOpenModal } = useUploadDocument();
+  const { columns, openModal, handleOpenModal } = useUploadDocument();
 
   return (
     <>
-      <TableHeader title={'Uploaded Documents'} hideSearch />
+      <TableHeader title={"Uploaded Documents"} hideSearch />
       <CustomTable
         data={TableDemoData}
         columns={columns}
@@ -29,9 +29,7 @@ const SupervisoryUploadDocuments = () => {
       <UploadDocumentModal
         disabled={true}
         open={openModal}
-        handleClose={() => {
-          setOpenModal(false);
-        }}
+        handleClose={handleOpenModal}
       />
     </>
   );

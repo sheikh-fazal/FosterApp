@@ -25,7 +25,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Risk Assessment Form",
+          name: "RISK ASSESSENT FORM",
         },
       ]}
       title={PAGE_TITLE}

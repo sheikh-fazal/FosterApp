@@ -27,7 +27,6 @@ CarerFeedbackLayout.getLayout = function getLayout(page: any) {
         {
           name: "CARER FEEDBACK FOR EMPLOYEES APRAISAL",
         },
-       
       ]}
       title={PAGE_TITLE}
     >
@@ -40,7 +39,7 @@ CarerFeedbackLayout.getLayout = function getLayout(page: any) {
 export default function CarerFeedbackLayout() {
   return (
     <Page title={PAGE_TITLE}>
-      <CareerFeedback  />
+      <CareerFeedback />
     </Page>
   );
 }

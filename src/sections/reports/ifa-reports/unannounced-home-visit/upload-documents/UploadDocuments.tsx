@@ -6,7 +6,7 @@ import TableHeader from "@root/components/TableHeader";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 
 const UnannouncedHomeVisitUploadDocuments = () => {
-  const { columns, openModal, setOpenModal } = useUploadDocument();
+  const { columns, openModal, handleOpenModal } = useUploadDocument();
 
   return (
     <>
@@ -29,9 +29,7 @@ const UnannouncedHomeVisitUploadDocuments = () => {
       <UploadDocumentModal
         disabled={true}
         open={openModal}
-        handleClose={() => {
-          setOpenModal(false);
-        }}
+        handleClose={handleOpenModal}
       />
     </>
   );

@@ -7,9 +7,29 @@ import CustomTable from '@root/components/Table/CustomTable';
 import { Box, Checkbox, Grid, Typography, useTheme } from "@mui/material";
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
-import { SAFE_CARING_POLICY_TABLE_DATA } from '@root/dropdown-data/safeCaringPolicyList';
-import { SOCIAL_WORKER_TABLE_DATA } from '@root/dropdown-data/socialWorkerData';
 import DeleteModel from '@root/components/modal/DeleteModel';
+
+
+export const SOCIAL_WORKER_TABLE_DATA = [
+  {
+      social_worker: "Palwasha",
+      gender: "female",
+      date_of_birth: 30/4/2011,
+      status: "Placed",
+      referral_date: 30/4/2011,
+      referred_by:"Madiha",
+      referred_role: "Social Worker"
+  },
+  {
+      social_worker: "John",
+      gender: "male",
+      date_of_birth: 30/4/2011,
+      status: "Current Referral",
+      referral_date: 30/4/2011,
+      referred_by:"khunsa",
+      referred_role: "Social Worker"
+  },
+]
 
 const PAGE_TITLE = "SW List";
 

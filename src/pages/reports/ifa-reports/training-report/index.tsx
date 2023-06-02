@@ -37,7 +37,9 @@ TrainingReport.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function TrainingReport() {
-  return <Page title={PAGE_TITLE}>
-    <TrainingReportTable/>
-  </Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <TrainingReportTable />
+    </Page>
+  );
 }

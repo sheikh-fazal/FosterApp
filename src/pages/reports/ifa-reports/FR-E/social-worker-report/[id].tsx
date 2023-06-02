@@ -19,9 +19,11 @@ FRE.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/FR-E",
         },
         {
           name: "FR-E CHILD’S SOCIAL WORKER REPORT"

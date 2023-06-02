@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import {
-  TableDemoData,
-} from ".";
+import { TableDemoData } from ".";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
@@ -82,18 +80,15 @@ export const useCarerFeedback = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-    
-          <TableAction
-            size="small"
-            type="view"
-            onClicked={() => {
-              router.push(
-                "/reports/ifa-reports/carer-feedback/view-carer-feedback"
-              );
-            }}
-          />
-        </Box>
+        <TableAction
+          size="small"
+          type="view"
+          onClicked={() => {
+            router.push(
+              "/reports/ifa-reports/carer-feedback/view-carer-feedback"
+            );
+          }}
+        />
       ),
       header: "Action",
       isSortable: false,

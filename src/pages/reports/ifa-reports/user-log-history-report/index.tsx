@@ -37,7 +37,9 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function UnannouncedHomeVisitLayout() {
-  return <Page title={PAGE_TITLE}>
-    <UserLogHistoryReport/>
-  </Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <UserLogHistoryReport />
+    </Page>
+  );
 }

@@ -3,7 +3,6 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import FRC2Section from '../../../../sections/reports/ifa-reports/FR-C2/FRC2';
-
 const PAGE_TITLE = "Reports";
 
 FRC2.getLayout = function getLayout(page: any) {
@@ -18,9 +17,11 @@ FRC2.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
           name: "FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS"

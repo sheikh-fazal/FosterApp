@@ -4,7 +4,11 @@ import {
   useLazyGetAllInitialHomeVisitDataQuery,
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
-import { backgroundFormFieldsInfoFunction, backgroundFormValues, defaultValuesBackgroundForm } from ".";
+import {
+  backgroundFormFieldsInfoFunction,
+  backgroundFormValues,
+  defaultValuesBackgroundForm,
+} from ".";
 import { useRouter } from "next/router";
 import useAuth from "@root/hooks/useAuth";
 
@@ -49,6 +53,9 @@ export const useBackgroundForm = () => {
       const res: any = await postInitialHomeBackgroundDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -60,6 +67,7 @@ export const useBackgroundForm = () => {
     setBackgroundFormDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
-    backgroundFormFieldsInfo
+    backgroundFormFieldsInfo,
+    user,
   };
 };

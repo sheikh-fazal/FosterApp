@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { TableDemoData } from ".";
 import { Box, Checkbox } from "@mui/material";
-import TableAction from "@root/components/TableAction";
 
 export const useUserLogHistoryReport = () => {
   const [filterValue, setFilterValue] = useState({

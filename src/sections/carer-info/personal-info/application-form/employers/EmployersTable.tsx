@@ -7,7 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
 import { useGetEmployerDetailsQuery } from "@root/services/carer-info/personal-info/application-form/EmployersApi";
 
-export default function Employers({ apllicationFormid }: any) {
+export default function Employers({ apllicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
   let [employerData, setEmployerData] = useState(null);
   const tableHeaderRef = useRef<any>();
@@ -18,20 +18,6 @@ export default function Employers({ apllicationFormid }: any) {
 
   const theme: any = useTheme();
 
-  // const [data, setData] = React.useState([
-  //   {
-  //     srNo: "U4721XBUCA",
-  //     name: "John",
-  //     phone: "123456789",
-  //     email: "john@xyz",
-  //   },
-  //   {
-  //     srNo: "U3721XBUCB",
-  //     name: "John Doe",
-  //     phone: "12345678109",
-  //     email: "johndoe2@xyz",
-  //   },
-  // ]);
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetEmployerDetailsQuery(apllicationFormid);
 
@@ -39,15 +25,22 @@ export default function Employers({ apllicationFormid }: any) {
     <>
       {viewData ? (
         <EmployersViewForm
+          role
           disabled={viewData == "view" ? true : false}
           employerData={employerData}
           changeView={changeView}
+          viewData={viewData}
+          apllicationFormid={apllicationFormid}
         />
       ) : (
         <>
           <TableHeader
             ref={tableHeaderRef}
             title="Existing Employer(s) Details"
+            showAddBtn={role == "foster-carer" ? false : true}
+            onAdd={() => {
+              changeView("add");
+            }}
             searchKey="search"
             onChanged={(data: any) => {
               console.log("Updated params: ", data);
@@ -56,7 +49,7 @@ export default function Employers({ apllicationFormid }: any) {
           <CustomTable
             showSerialNo
             data={data?.data}
-            columns={columns(changeView, setEmployerData)}
+            columns={columns(changeView, setEmployerData, role)}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

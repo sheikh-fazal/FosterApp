@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import DecisionSheet from "@root/sections/reports/ifa-reports/FR-I/DecisionSheet";
 
 const PAGE_TITLE = "Reports";
 
@@ -14,15 +15,17 @@ FRI.getLayout = function getLayout(page: any) {
           icon: <HomeIcon />,
           name: "Dashboard",
           href: "/dashboard",
-        },
+        },        
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name:"IFA Reports"
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name:"FR-I-DECISION SHEET Grid"
+          name:"FR-I-DECISION SHEET"
         }
       ]}
       title={PAGE_TITLE}
@@ -36,6 +39,7 @@ FRI.getLayout = function getLayout(page: any) {
 export default function FRI() {
   return (
     <Page title={PAGE_TITLE}>
+      <DecisionSheet />
     </Page>
   );
 }

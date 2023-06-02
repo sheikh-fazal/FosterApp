@@ -113,8 +113,8 @@ export const REPORTTABSDATAARRY = [
     innerDataArray: [
       {
         id: 1,
-        title: "Reference Link",
-        link: "/carer-reports",
+        title: "Carer Report Dashboard",
+        link: "/carer-reports-dashboard",
       },
     ]
   },
@@ -125,8 +125,8 @@ export const REPORTTABSDATAARRY = [
     innerDataArray: [
       {
         id: 1,
-        title: "Reference Link",
-        link: "/child-reports",
+        title: "Child Report Dashboard",
+        link: "/child-reports-dashboard",
       },
     ]
   },
