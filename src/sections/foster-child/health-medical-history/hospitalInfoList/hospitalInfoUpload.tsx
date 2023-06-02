@@ -12,8 +12,7 @@ import { uploadDummyData } from ".";
 
 function HospitalInfoUpload() {
   const [modelOpen, setModelOpen] = React.useState(false);
-  const ref = React.useRef();
-  console.log(ref);
+
 
   const columns = [
     {
@@ -66,10 +65,14 @@ function HospitalInfoUpload() {
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
           <DeletePrompt />
           <ModelUploadDoc
-            parentState={false}
             showActions={true}
+            isFetching={false}
             action="edit"
+            onSubmit={(data: any) => {
+              console.log(data);
+            }}
           />
+          <ModelUploadDoc showActions={true} action="view" isFetching={false} />
           <Link
             href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
             target="_blank"
@@ -98,9 +101,10 @@ function HospitalInfoUpload() {
         />
       </Box>
       <ModelUploadDoc
-        parentState={true}
+        action={"add"}
         modelOpen={modelOpen}
         setModelOpen={setModelOpen}
+        isFetching={false}
       />
       <CustomTable
         data={uploadDummyData ?? []}

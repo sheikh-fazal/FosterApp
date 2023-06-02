@@ -208,5 +208,54 @@ export const uploadDummyData = [
     documentDate: "zyz",
     incidentId: "zyz",
     password: "zyz",
+    
+  },
+];
+export const UploadDocFormData = [
+  {
+    id: 2,
+    gridLength: 12,
+    componentProps: {
+      fullWidth: true,
+      name: "type",
+      label: "Document Type",
+      select: true,
+      options: [
+        {
+          value: "PDF",
+          label: "PDF",
+        },
+        {
+          value: "WORD",
+          label: "WORD",
+        },
+      ],
+    },
+    component: RHFSelect,
+  },
+  {
+    id: 3,
+    componentProps: {
+      name: "documentDate",
+      label: "Date Of Enquiry",
+      fullWidth: true,
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
+  },
+  {
+    id: 4,
+    gridLength: 6,
+    componentProps: {
+      name: "password",
+      label: "Password to Open Document",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
   },
 ];
