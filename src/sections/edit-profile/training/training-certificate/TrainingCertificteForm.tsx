@@ -41,13 +41,15 @@ const TrainingCertificteForm: FC<any> = ({ activateNextForm }) => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getTrainingAndWorkHistoryInfo(
+      const { data, isError, error } = await getTrainingAndWorkHistoryInfo(
         null,
         false
       );
+      console.log({ data });
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

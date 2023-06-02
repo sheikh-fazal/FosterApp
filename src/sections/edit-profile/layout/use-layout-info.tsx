@@ -30,25 +30,25 @@ export const useLayoutInfo = () => {
   ]);
 
   const itemClickHand = (itemName: string) => {
-    const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
-    // for handling click on last pending form
-    const indexOfClickItem = tabsItems.findIndex(
-      ({ name }) => itemName === name
-    );
-    const indexOfFirstPending = tabsItems.findIndex(
-      ({ status }) => status === "Pending"
-    );
-    // for handling click on last pending form
-    console.log({ indexOfClickItem, indexOfFirstPending });
-    // check if clicked form is status is pending and it is not first pending status form
-    console.table(indexOfClickItem !== indexOfFirstPending);
-    console.log({ formStatus });
-    if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
-      enqueueSnackbar("Please Fill The Previous Form First", {
-        variant: "info",
-      });
-      return;
-    }
+    // const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
+    // // for handling click on last pending form
+    // const indexOfClickItem = tabsItems.findIndex(
+    //   ({ name }) => itemName === name
+    // );
+    // const indexOfFirstPending = tabsItems.findIndex(
+    //   ({ status }) => status === "Pending"
+    // );
+    // // for handling click on last pending form
+    // console.log({ indexOfClickItem, indexOfFirstPending });
+    // // check if clicked form is status is pending and it is not first pending status form
+    // console.table(indexOfClickItem !== indexOfFirstPending);
+    // console.log({ formStatus });
+    // if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
+    //   enqueueSnackbar("Please Fill The Previous Form First", {
+    //     variant: "info",
+    //   });
+    //   return;
+    // }
     setDiffInfoHandler((pre) => ({ ...pre, activeFormName: itemName }));
   };
 
