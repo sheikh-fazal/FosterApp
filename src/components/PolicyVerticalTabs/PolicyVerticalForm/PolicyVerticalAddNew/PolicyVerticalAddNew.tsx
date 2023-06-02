@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 const PolicyVerticalAddNew = (props: any) => {
   const { disabled, onSubmit, handleAddNewBack } = props;
-  const { methods, handleSubmit, PolicyVerticalAddNewFormData, currentPage } = usePolicyVerticalAddNew();
+  const { methods, handleSubmit, PolicyVerticalAddNewFormData, currentPage, route } = usePolicyVerticalAddNew();
 
   const selectedArray = [
     { value: "Home Safety Checklist", label: "Home Safety Checklist" },
@@ -48,13 +48,15 @@ const PolicyVerticalAddNew = (props: any) => {
             </item.component>
           </Grid>
         ))}
-        <Grid item xs={12} md={6} sx={{ "@media screen and (max-width: 899px)": { mb: "20px" } }}>
-          <Typography sx={styles.title}>Choose Files</Typography>
-          <RHFUploadFile name="updatePhoto" disabled={disabled} {...methods} required />
-        </Grid>
+        {route.query.action !== 'view' &&
+          <Grid item xs={12} md={6} sx={{ "@media screen and (max-width: 899px)": { mb: "20px" } }}>
+            <Typography sx={styles.title}>Choose Files</Typography>
+            <RHFUploadFile name="updatePhoto" disabled={disabled} {...methods} required />
+          </Grid> 
+        }
 
         <Grid item xs={12}>
-          {!disabled && (
+          {route.query.action !== 'view' &&
             <Button
               disabled={disabled}
               type="submit"
@@ -63,7 +65,8 @@ const PolicyVerticalAddNew = (props: any) => {
             >
               Submit
             </Button>
-          )}
+          }
+
 
           <Link href={handleAddNewBack} style={{ textDecoration: "none" }}>
             <Button

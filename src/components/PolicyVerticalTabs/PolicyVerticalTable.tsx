@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Box, Checkbox, useTheme } from '@mui/material'
 import PolicyVerticalTabs from '@root/components/PolicyVerticalTabs/PolicyVerticalTabs';
 import TableHeader from '@root/components/TableHeader';
@@ -12,11 +12,11 @@ const PolicyVerticalTable = (props: any) => {
     const navigate = useRouter();
     const theme = useTheme();
 
-    const columns = [
+
+    const columns = (title: string) => [
         {
             id: "select",
             header: ({ table, row }: any) => {
-                console.log(table.getSelectedRowModel().flatRows);
                 return (
                     <Box>
                         <Checkbox
@@ -80,10 +80,10 @@ const PolicyVerticalTable = (props: any) => {
         },
         {
             id: "actions",
-            cell: (info: any) => <Box display={'flex'} gap={0.5}>
-                {['view', 'print', 'download'].map((action) => <span key={action} style={{ flexShrink: 0 }}>
-                    <TableAction type={action} onClicked={() => alert(action)} />
-                </span>)}
+            cell: (info: any) => <Box display={'flex'} gap={0.5} flexShrink={'0'}>
+                <TableAction type="view" onClicked={() =>  navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
+                <TableAction type="print" />
+                <TableAction type="download" />
             </Box>,
             header: () => <span>actions</span>,
         },
@@ -101,11 +101,11 @@ const PolicyVerticalTable = (props: any) => {
                                 <TableHeader
                                     title={item.title}
                                     showAddBtn
-                                    onAdd={() => navigate.push(addNewTabNavigation)}
+                                    onAdd={() => navigate.push({ pathname: addNewTabNavigation, query: { name: item.title, action: 'add' } })}
                                 />
                                 <CustomTable
                                     data={item.innerData}
-                                    columns={columns}
+                                    columns={columns(item.title)}
                                     isLoading={false}
                                     isFetching={false}
                                     isError={false}

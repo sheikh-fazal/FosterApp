@@ -4,14 +4,9 @@ import { Box, Checkbox, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
 
-const ChecklistPolicyTable = ({ tableData }: any) => {
+const ChecklistPolicyTable = ({ tableData, checklistName }: any) => {
     const theme = useTheme();
-    const [checklistActionObj, setChecklistActionObj] = useState({});
     const route = useRouter();
-
-    const handleTableAction = (action: any) => {
-        setChecklistActionObj(action);
-    }
 
     const columns = [
         {
@@ -75,12 +70,11 @@ const ChecklistPolicyTable = ({ tableData }: any) => {
         {
             id: "actions",
             cell: (info: any) => (
-                <Box display={"flex"} gap={0.5}>
-                    {["view", "print", "download"].map((action) => (
-                        <span key={action} style={{ flexShrink: 0 }}>
-                            <TableAction type={action} onClicked={() => handleTableAction(info.row.original)} />
-                        </span>
-                    ))}
+                <Box display={"flex"} gap={0.5} >
+                    <TableAction type="view" onClicked={() => route.push({ pathname: `/policies-and-guidelines/checklists/checklist-form`, query: { name: checklistName, id: info.row.original.id, action: "view" } })} />
+                    <TableAction type="print" onClicked={() => console.log(info.row.original.id)} />
+                    <TableAction type="download" />
+
                 </Box>
             ),
             header: () => <span>actions</span>,
