@@ -10,7 +10,6 @@ const PolicyVerticalAddNew = (props: any) => {
   const { disabled, onSubmit, handleAddNewBack } = props;
   const { methods, handleSubmit, PolicyVerticalAddNewFormData, currentPage } = usePolicyVerticalAddNew();
   
-
   const selectedArray = [
     { value: "Home Safety Checklist", label: "Home Safety Checklist" },
     { value: "Foster Carer Checklist", label: "Foster Carer Checklist" },

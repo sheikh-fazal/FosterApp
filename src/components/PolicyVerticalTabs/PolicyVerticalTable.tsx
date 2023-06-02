@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Box, Checkbox, useTheme } from '@mui/material'
 import PolicyVerticalTabs from '@root/components/PolicyVerticalTabs/PolicyVerticalTabs';
 import TableHeader from '@root/components/TableHeader';
@@ -9,14 +9,17 @@ import ChecklistPolicy from './ChecklistPolicy/ChecklistPolicy';
 
 const PolicyVerticalTable = (props: any) => {
     const { data, addNewTabNavigation } = props;
+    const [actionId, setActionId] = useState<any>();
+    const filteredData = data.filter((item: any) => item?.innerData.some((data: any) => data?.id === actionId));
+    console.log('filteredData', filteredData);
     const navigate = useRouter();
     const theme = useTheme();
+    // useEffect(() => {},[actionId])
 
     const columns = [
         {
             id: "select",
             header: ({ table, row }: any) => {
-                console.log(table.getSelectedRowModel().flatRows);
                 return (
                     <Box>
                         <Checkbox
@@ -81,9 +84,9 @@ const PolicyVerticalTable = (props: any) => {
         {
             id: "actions",
             cell: (info: any) => <Box display={'flex'} gap={0.5}>
-                {['view', 'print', 'download'].map((action) => <span key={action} style={{ flexShrink: 0 }}>
-                    <TableAction type={action} onClicked={() => alert(action)} />
-                </span>)}
+                <TableAction type="view" onClicked={() => { setActionId(String(info.row.original.id)); navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: filteredData?.title,  action: 'view' } });  }} />
+                <TableAction type="print" />
+                <TableAction type="download" />
             </Box>,
             header: () => <span>actions</span>,
         },
@@ -101,7 +104,7 @@ const PolicyVerticalTable = (props: any) => {
                                 <TableHeader
                                     title={item.title}
                                     showAddBtn
-                                    onAdd={() => navigate.push({pathname: addNewTabNavigation, query: item.title})}
+                                    onAdd={() => navigate.push({ pathname: addNewTabNavigation, query: { name: item.title, action: 'add' } })}
                                 />
                                 <CustomTable
                                     data={item.innerData}

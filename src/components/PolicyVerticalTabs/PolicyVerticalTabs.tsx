@@ -21,7 +21,6 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
   };
 
   const arrayChildren = Children.toArray(children);
-  console.log('arrayChildren', arrayChildren);
   const theme: any = useTheme();
 
   return (
