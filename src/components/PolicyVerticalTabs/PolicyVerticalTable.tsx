@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
-import { Box, Checkbox, useTheme } from "@mui/material";
-import PolicyVerticalTabs from "@root/components/PolicyVerticalTabs/PolicyVerticalTabs";
-import TableHeader from "@root/components/TableHeader";
-import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
-import { useRouter } from "next/router";
+import React, { Fragment } from 'react'
+import { Box, Checkbox, useTheme } from '@mui/material'
+import PolicyVerticalTabs from '@root/components/PolicyVerticalTabs/PolicyVerticalTabs';
+import TableHeader from '@root/components/TableHeader';
+import CustomTable from '@root/components/Table/CustomTable';
+import TableAction from '@root/components/TableAction';
+import { useRouter } from 'next/router';
+import ChecklistPolicy from './ChecklistPolicy/ChecklistPolicy';
 
 const PolicyVerticalTable = (props: any) => {
   const { data, addNewTabNavigation } = props;
@@ -89,33 +90,43 @@ const PolicyVerticalTable = (props: any) => {
     },
   ];
 
-  return (
-    <>
-      <PolicyVerticalTabs tabsDataArray={data} handleAddTabs={() => navigate.push(addNewTabNavigation)}>
-        {data?.map((item: any) => (
-          <Fragment key={item?.index}>
-            <TableHeader title={item.title} showAddBtn onAdd={() => navigate.push(addNewTabNavigation)} />
-            <CustomTable
-              data={item.innerData}
-              columns={columns}
-              isLoading={false}
-              isFetching={false}
-              isError={false}
-              isSuccess={true}
-              currentPage={1}
-              onPageChange={(data: any) => {
-                console.log("Current page data: ", data);
-              }}
-              onSortByChange={(data: any) => {
-                console.log("Sort by: ", data);
-              }}
-              rootSX={{ my: theme.spacing(2) }}
-            />
-          </Fragment>
-        ))}
-      </PolicyVerticalTabs>
-    </>
-  );
-};
+    return (
+        <>
+            <PolicyVerticalTabs tabsDataArray={data} handleAddTabs={() => navigate.push(addNewTabNavigation)} >
+                {data?.map((item: any) => (
+                    <Fragment key={item?.index}>
+                        {item?.title === "General Data Protection Checklist" ?
+                            <ChecklistPolicy />
+                            :
+                            <>
+                                <TableHeader
+                                    title={item.title}
+                                    showAddBtn
+                                    onAdd={() => navigate.push(addNewTabNavigation)}
+                                />
+                                <CustomTable
+                                    data={item.innerData}
+                                    columns={columns}
+                                    isLoading={false}
+                                    isFetching={false}
+                                    isError={false}
+                                    isSuccess={true}
+                                    currentPage={1}
+                                    onPageChange={(data: any) => {
+                                        console.log("Current page data: ", data);
+                                    }}
+                                    onSortByChange={(data: any) => {
+                                        console.log("Sort by: ", data);
+                                    }}
+                                    rootSX={{ my: theme.spacing(2) }}
+                                />
+                            </>
+                        }
+                    </Fragment>
+                ))}
+            </PolicyVerticalTabs>
+        </>
+    )
+}
 
 export default PolicyVerticalTable;

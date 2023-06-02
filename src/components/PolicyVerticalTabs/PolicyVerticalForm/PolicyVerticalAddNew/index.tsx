@@ -6,10 +6,10 @@ import SignaturePad from "@root/components/SignaturePad";
 import { fData } from "@root/utils/formatNumber";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const PolicyVerticalAddNewDefaultValues = {
+  selectTitle: "",
   title: "",
   dateUploaded: null,
   description: "",
@@ -25,9 +25,17 @@ export const PolicyVerticalAddNewDefaultValues = {
   eSignatureofApprover: "",
   updatePhoto: ""
 };
+ 
+let isSelect = false;
+
+export const handleInputFields = (value: any) => {
+  isSelect = value;
+}
+
 
 export const PolicyVerticalAddNewValidationSchema = Yup.object().shape({
-  title: Yup.string().required("Field is Required"),
+  // selectTitle: isSelect ? Yup.string().required("Field is Required") : Yup.string(),
+  // title: isSelect ? Yup.string() : Yup.string().required("Field is Required"),
   dateUploaded: Yup.date().required("Field is Required"),
   description: Yup.string().required("Field is Required"),
   version: Yup.string().required("Field is Required"),
@@ -49,16 +57,6 @@ export const PolicyVerticalAddNewValidationSchema = Yup.object().shape({
 
 
 export const PolicyVerticalAddNewFormData = [
-  {
-    id: 1,
-    title: "Title",
-    componentProps: {
-      name: "title",
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
   {
     id: 2,
     title: "Date Uploaded",
