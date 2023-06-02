@@ -9,7 +9,7 @@ import GPDetailsInfoTabs from "@root/sections/foster-child/health-medical-histor
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Health",
+    name: "Health Info",
     href: "/foster-child/health-medical-history/therapy-info",
   },
   {
