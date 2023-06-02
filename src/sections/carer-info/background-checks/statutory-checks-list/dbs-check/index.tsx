@@ -30,7 +30,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "sentToCarerDate",
-      label: "Sent To Carer Date:",
+      label: "Sent To Carer Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -43,7 +43,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "receivedFromCarerDate",
-      label: "Received From Carer Date:",
+      label: "Received From Carer Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -56,7 +56,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "sentToDbsDate",
-      label: "Sent To DBS Date:",
+      label: "Sent To DBS Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -82,7 +82,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "disclosureNumber",
-      label: "Disclosure Number:",
+      label: "Disclosure Number",
       multiline: false,
       fullWidth: true,
     },
@@ -93,7 +93,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "disclosureDate",
-      label: "Disclose Date:",
+      label: "Disclose Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -106,7 +106,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "renewFromDbsDate",
-      label: "Renew From DBS Date:",
+      label: "Renew From DBS Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -119,7 +119,7 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "result",
-      label: "Result:",
+      label: "Result",
       fullWidth: true,
       select: true,
     },
@@ -135,7 +135,7 @@ export const carInsuranceData = [
     Options: [true, false],
     otherOptions: {
       name: "subscribeToUpdateService",
-      label: "Subscribe To Update Service:",
+      label: "Subscribe To Update Servic",
     },
     component: "RadioGroup",
   },
@@ -144,7 +144,7 @@ export const carInsuranceData = [
     gridLength: 12,
     otherOptions: {
       name: "comments",
-      label: "comments::",
+      label: "comments",
       multiline: true,
       rows: 3,
       fullWidth: true,
@@ -161,8 +161,8 @@ for (const formControl of carInsuranceData) {
 }
 
 export const defaultValues = {
-  isEnhancedDbs: false,
-  inProcess: false,
+  isEnhancedDbs: null,
+  inProcess: null,
   sentToCarerDate: new Date(),
   receivedFromCarerDate: new Date(),
   sentToDbsDate: new Date(),
@@ -171,7 +171,7 @@ export const defaultValues = {
   disclosureDate: new Date(),
   renewFromDbsDate: new Date(),
   result: "",
-  subscribeToUpdateService: false,
+  subscribeToUpdateService: null,
   comments: "",
 };
 export const formSchema = Yup.object().shape({

@@ -28,7 +28,25 @@ const About = () => {
                     {key ?? "-"}
                   </Typography>
                   <Typography variant="body2" sx={styles.keyValues}>
-                    {val ?? "-"}
+                    {/* {val ?? "-"} */}
+                    {Array.isArray(val) ? (
+                      <>
+                        {val.length === 0 && "-"}
+                        {val.map((val: any, i: any) => (
+                          <Typography
+                            variant="body2"
+                            sx={styles.keyValues}
+                            key={i}
+                          >
+                            {val}
+                          </Typography>
+                        ))}
+                      </>
+                    ) : (
+                      <Typography variant="body2" sx={styles.keyValues}>
+                        {val ?? "-"}
+                      </Typography>
+                    )}
                   </Typography>
                   <Divider sx={styles.divider} />
                 </Box>
