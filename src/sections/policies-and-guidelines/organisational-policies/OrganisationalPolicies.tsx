@@ -4,9 +4,10 @@ import { OrganisationalPoliciesData } from '.';
 import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
 
 const OrganisationalPolicies = () => {
+    
     return (
         <>
-            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/add'}  />
+            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/organisational-policies-form/'}  />
         </>
     )
 }
