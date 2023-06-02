@@ -13,6 +13,14 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
+    getRegularAssessmentAttendees: builder.query({
+      query: ({ params }: any) => ({
+        url: `/assessment-stage-one/regular-assessment-attendees`,
+        method: "GET",
+        params,
+      }),
+      providesTags: [TAG],
+    }),
     getSingleRegularAssessmentDetail: builder.query({
       query: ({ id }: any) => ({
         url: `/assessment-stage-one/regular-assessment-meeting/${id}`,
@@ -56,4 +64,5 @@ export const {
   useLazyGetSingleRegularAssessmentDetailQuery,
   usePatchRegularAssessmentDetailMutation,
   usePostRegularAssessmentDetailMutation,
+  useGetRegularAssessmentAttendeesQuery
 } = assessmentStageOneApi;
