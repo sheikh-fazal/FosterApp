@@ -5,7 +5,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import CyberEssentialsTabs from "@root/sections/policies-and-guidelines/cyber-essentials/cyber-accordan-data/cyber-essentials-tabs/CyberEssentialsTabs";
 
-// ============================================================================================
+// ============================================================================================================================
 
 const PAGE_TITLE = "Cyber Essentials";
 
@@ -29,6 +29,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
+
 
 export default function PolicyGuidelinesPage() {
   const { query } = useRouter();

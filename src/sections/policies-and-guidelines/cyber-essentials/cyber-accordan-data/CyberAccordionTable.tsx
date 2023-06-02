@@ -80,7 +80,9 @@ const CyberAccordionTable = ({ name }: any) => {
           <TableAction
             size="small"
             type="view"
-            onClick={() => router.push({ pathname: "/policies-and-guidelines/cyber-essentials/add-form", query: { title: name, action: "view" } })}
+            onClick={() =>
+              router.push({ pathname: "/policies-and-guidelines/cyber-essentials/cyber-essentials-form", query: { title: name, action: "view" } })
+            }
           />
           <TableAction size="small" type="print" onClick={() => alert("printer icon")} />
           <TableAction size="small" type="download" onClick={() => alert("printer icon")} />
