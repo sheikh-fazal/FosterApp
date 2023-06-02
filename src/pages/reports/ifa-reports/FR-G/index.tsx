@@ -21,11 +21,12 @@ FRG.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Child Reports",
+          name: "IFA Reports",
+          href: "/reports",
         },
         {
-          name:"FR-G REVIEWING OFFICER REPORT"
-        }
+          name: "FR-G REVIEWING OFFICER REPORT",
+        },
       ]}
       title={PAGE_TITLE}
     >

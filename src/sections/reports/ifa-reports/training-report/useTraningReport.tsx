@@ -69,13 +69,11 @@ export const useTrainingReport = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
-          />
-        </Box>
+        <TableAction
+          size="small"
+          type="download"
+          onClicked={() => alert("Download")}
+        />
       ),
       header: "Action",
       isSortable: false,

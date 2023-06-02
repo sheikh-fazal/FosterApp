@@ -18,12 +18,11 @@ import { careerFeedbackFilterData } from ".";
 import { useCarerFeedback } from "./useCarerFeedback";
 
 const CareerFeedback = () => {
-  const { TableDemoData, HandlerSearch, columns, setFilterValue, filterValue } =
-    useCarerFeedback();
+  const { TableDemoData, HandlerSearch, columns } = useCarerFeedback();
 
   return (
     <Card sx={{ p: 1 }}>
-      <Box display={'flex'} justifyContent={'flex-end'}>
+      <Box display={"flex"} justifyContent={"flex-end"}>
         <Image src={automatedIcon} width={25} height={25} alt="icon" />
       </Box>
       <Card sx={{ p: 2, my: 2 }}>
@@ -33,17 +32,20 @@ const CareerFeedback = () => {
               <Typography sx={(theme) => styles.title(theme)}>
                 {data.title}
               </Typography>
-              {i === 0 ?
-                <TextField {...data.otherOptions} /> :
+              {i === 0 ? (
+                <TextField {...data.otherOptions} />
+              ) : (
                 <Select {...data.otherOptions}>
-                  {data.options && data.options.map((item: any, i: number) => {
-                    return (
-                      <MenuItem key={i} value={item.value}>
-                        {item.label}
-                      </MenuItem>
-                    );
-                  })}
-                </Select>}
+                  {data.options &&
+                    data.options.map((item: any, i: number) => {
+                      return (
+                        <MenuItem key={i} value={item.value}>
+                          {item.label}
+                        </MenuItem>
+                      );
+                    })}
+                </Select>
+              )}
             </Grid>
           ))}
           <Grid item xs={12} md={6} mb={4}>

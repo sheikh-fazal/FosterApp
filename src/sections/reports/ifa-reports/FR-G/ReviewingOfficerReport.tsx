@@ -106,12 +106,9 @@ const ReviewingOfficerReport = () => {
         <Box
           display={"flex"}
           alignItems={"center"}
-          justifyContent={"space-between"}
-          flexWrap={"wrap"}
-          gap={2}
+          justifyContent={"flex-end"}
           sx={{ px: 2 }}
         >
-          <Typography sx={styles.title}></Typography>
           <Image src={automatedIcon} alt="icon" />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>

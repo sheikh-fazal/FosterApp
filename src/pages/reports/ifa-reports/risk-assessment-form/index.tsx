@@ -17,6 +17,14 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports",
+        },
+        {
           name: "RISK ASSESSENT FORM",
         },
       ]}

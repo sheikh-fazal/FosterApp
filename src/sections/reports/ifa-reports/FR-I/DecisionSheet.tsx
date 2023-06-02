@@ -115,8 +115,6 @@ const DecisionSheet = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"flex-end"}
-          flexWrap={"wrap"}
-          gap={2}
           sx={{ px: 2 }}
         >
           <Image src={automatedIcon} alt="icon" />

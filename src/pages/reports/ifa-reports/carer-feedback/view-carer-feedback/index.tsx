@@ -3,7 +3,6 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ViewCarerFeedBackForm from "@root/sections/reports/ifa-reports/carer-feedback/view-carer-feedback/ViewCarerFeedBack";
-import { Card } from "@mui/material";
 
 const PAGE_TITLE = "Reports";
 
@@ -16,6 +15,14 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           icon: <HomeIcon />,
           name: "Dashboard",
           href: "/dashboard",
+        },
+        {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/carer-feedback",
         },
         {
           name: "CARER FEEDBACK FOR EMPLOYEES APRAISAL",
@@ -32,7 +39,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 export default function RiskAssessment() {
   return (
     <Page title={PAGE_TITLE}>
-        <ViewCarerFeedBackForm disabled={true} />
+      <ViewCarerFeedBackForm disabled={true} />
     </Page>
   );
 }

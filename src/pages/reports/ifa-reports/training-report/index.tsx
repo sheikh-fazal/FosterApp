@@ -17,6 +17,14 @@ TrainingReport.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports",
+        },
+        {
           name: "Instructor Reports",
         },
       ]}
@@ -29,7 +37,9 @@ TrainingReport.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function TrainingReport() {
-  return <Page title={PAGE_TITLE}>
-    <TrainingReportTable/>
-  </Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <TrainingReportTable />
+    </Page>
+  );
 }

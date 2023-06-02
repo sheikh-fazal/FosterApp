@@ -17,6 +17,14 @@ AddSupervisoryHomeVisitLayout.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/supervisory-home-visit",
+        },
+        {
           name: "Supervisory Home Visit",
         },
       ]}

@@ -17,6 +17,14 @@ ViewUnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/unannounced-home-visit",
+        },
+        {
           name: "Unannounced Home Visit",
         },
       ]}
