@@ -102,7 +102,7 @@ const PolicyVerticalTable = (props: any) => {
                             data={item.innerData}
                             columns={columns}
                             isLoading={false}
-                            isFetching
+                            isFetching={false}
                             isError={false}
                             isSuccess={true}
                             currentPage={1}

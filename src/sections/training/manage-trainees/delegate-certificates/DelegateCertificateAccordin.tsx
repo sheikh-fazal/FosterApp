@@ -51,8 +51,8 @@ const DelegateCertificateAccordin = () => {
 
     const filteredRows = addRow.filter((row) => row.id !== editRowId?.id);
     setAddRow([...filteredRows, newObj]);
-
   };
+
 
   return (
     <Card sx={{ p: 2 }}>
