@@ -7,10 +7,10 @@ import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
-import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
 import { uploadDummyData } from ".";
+import ModelUploadDoc from "@root/components/modal/modelUploadDoc";
 
-function HospitalInfoUpload() {
+const ChildMedicationInfoUploadTable = () => {
   const [modelOpen, setModelOpen] = React.useState(false);
 
   const columns = [
@@ -121,6 +121,6 @@ function HospitalInfoUpload() {
       />
     </>
   );
-}
+};
 
-export default HospitalInfoUpload;
+export default ChildMedicationInfoUploadTable;

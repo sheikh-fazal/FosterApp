@@ -8,9 +8,9 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
 
 const activepath =
-  "/foster-child/health-medical-history/hospitalisation/actions";
+  "/foster-child/health-medical-history/child-medication-info/actions";
 
-const HospitalizationTable = () => {
+const ChildMedicationInfotable = () => {
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,24 +20,18 @@ const HospitalizationTable = () => {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.hospitalName,
-      id: "hospitalName",
+      accessorFn: (row: any) => row.medicationName,
+      id: "medicationName",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Hospital Name</span>,
+      header: () => <span>Medication Name</span>,
       isSortable: true,
     },
+
     {
-      accessorFn: (row: any) => row.AdmissionDate,
-      id: "AdmissionDate",
+      accessorFn: (row: any) => row.dateIssued,
+      id: "dateIssued",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Admission Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.DischargeDate,
-      id: "DischargeDate",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Discharge Date</span>,
+      header: () => <span>Date Issued</span>,
       isSortable: true,
     },
 
@@ -118,4 +112,4 @@ const HospitalizationTable = () => {
   );
 };
 
-export default HospitalizationTable;
+export default ChildMedicationInfotable;

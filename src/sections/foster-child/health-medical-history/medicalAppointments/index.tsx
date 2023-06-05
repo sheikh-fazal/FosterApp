@@ -4,63 +4,26 @@ import * as Yup from "yup";
 export const dummy = [
   {
     id: 1,
-    hospitalName: "Hull Royal Infirmary",
-    AdmissionDate: "05/05/2021",
-    DischargeDate: "05/05/2021",
+    dateOfAppointmentVisit: "16 May 2021",
+    doctorName: "Robert Brown",
   },
 ];
 
-export const HospitalizationFromvalue = [
+export const medicalAppointmentsFormValue = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "hospitalName",
-      label: "Hospital Name",
+      name: "appointmentDate",
+      label: "Appointment Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 2,
-    gridLength: 12,
-    otherOptions: {
-      name: "ReasonForHospitalization",
-      label: "Reason for hospitalisation",
-      multiline: true,
-      minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 3,
-    gridLength: 6,
-    otherOptions: {
-      name: "admissionDate",
-      label: "Admission Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
-    gridLength: 6,
-    otherOptions: {
-      name: "dischargeDate",
-      label: "Discharge Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
     gridLength: 6,
     otherOptions: {
       name: "doctorName",
@@ -71,13 +34,24 @@ export const HospitalizationFromvalue = [
     },
     component: RHFTextField,
   },
-
   {
-    id: 4,
-    gridLength: 12,
+    id: 2,
+    gridLength: 6,
     otherOptions: {
-      name: "dayToDayDetails",
-      label: "Day to Day Details",
+      name: "healthAppointmentType",
+      label: "Health Appointment Type",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 2,
+    gridLength: 6,
+    otherOptions: {
+      name: "details",
+      label: "Details",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -85,11 +59,11 @@ export const HospitalizationFromvalue = [
     component: RHFTextField,
   },
   {
-    id: 4,
-    gridLength: false,
+    id: 1,
+    gridLength: 6,
     otherOptions: {
-      name: "followUpDate",
-      label: "Follow up Date",
+      name: "dateOfNextAppointment",
+      label: "Date of Next Appointment",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
@@ -97,24 +71,19 @@ export const HospitalizationFromvalue = [
     component: RHFDatePicker,
   },
 ];
-
-export const HospitalizationListValue = {
-  hospitalName: "",
-  ReasonForHospitalization: "",
-  admissionDate: "",
-  dischargeDate: "",
+export const MedicalAppointmentsInfoListValue = {
+  appointmentDate: "",
   doctorName: "",
-  dayToDayDetails: "",
-  followUpDate: "",
+  healthAppointmentType: "",
+  details: "",
+  dateOfNextAppointment: "",
 };
 export const FormSchema = Yup.object().shape({
-  hospitalName: Yup.string().required("required"),
-  ReasonForHospitalization: Yup.string().required("required"),
-  admissionDate: Yup.date().required("required"),
-  dischargeDate: Yup.date().required("required"),
+  appointmentDate: Yup.date().required("required"),
   doctorName: Yup.string().required("required"),
-  dayToDayDetails: Yup.string().required("required"),
-  followUpDate: Yup.date().required("required"),
+  healthAppointmentType: Yup.string().required("required"),
+  details: Yup.string().required("required"),
+  dateOfNextAppointment: Yup.date().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({

@@ -4,31 +4,30 @@ import * as Yup from "yup";
 export const dummy = [
   {
     id: 1,
-    hospitalName: "Hull Royal Infirmary",
-    AdmissionDate: "05/05/2021",
-    DischargeDate: "05/05/2021",
+    dateOfImmunisation: "16 May 2021",
+    immunisationtype: "Messenger RNA",
   },
 ];
 
-export const HospitalizationFromvalue = [
+export const immunisationInfoFormValue = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "hospitalName",
-      label: "Hospital Name",
+      name: "dateOfImmunisation",
+      label: "Date Of Immunisation",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "ReasonForHospitalization",
-      label: "Reason for hospitalisation",
+      name: "immunisationtype",
+      label: "immunisation Type",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -39,57 +38,8 @@ export const HospitalizationFromvalue = [
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "admissionDate",
-      label: "Admission Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
-    gridLength: 6,
-    otherOptions: {
-      name: "dischargeDate",
-      label: "Discharge Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
-    gridLength: 6,
-    otherOptions: {
-      name: "doctorName",
-      label: "Doctor Name",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-
-  {
-    id: 4,
-    gridLength: 12,
-    otherOptions: {
-      name: "dayToDayDetails",
-      label: "Day to Day Details",
-      multiline: true,
-      minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 4,
-    gridLength: false,
-    otherOptions: {
-      name: "followUpDate",
-      label: "Follow up Date",
+      name: "dueDate",
+      label: "Due Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
@@ -97,24 +47,16 @@ export const HospitalizationFromvalue = [
     component: RHFDatePicker,
   },
 ];
-
-export const HospitalizationListValue = {
-  hospitalName: "",
-  ReasonForHospitalization: "",
-  admissionDate: "",
-  dischargeDate: "",
-  doctorName: "",
-  dayToDayDetails: "",
-  followUpDate: "",
+export const immunisationInfoListValue = {
+  dateOfImmunisation: "",
+  immunisationtype: "",
+  dueDate: "",
 };
+
 export const FormSchema = Yup.object().shape({
-  hospitalName: Yup.string().required("required"),
-  ReasonForHospitalization: Yup.string().required("required"),
-  admissionDate: Yup.date().required("required"),
-  dischargeDate: Yup.date().required("required"),
-  doctorName: Yup.string().required("required"),
-  dayToDayDetails: Yup.string().required("required"),
-  followUpDate: Yup.date().required("required"),
+  dateOfImmunisation: Yup.date().required("required"),
+  immunisationtype: Yup.string().required("required"),
+  dueDate: Yup.date().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({

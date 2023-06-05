@@ -1,83 +1,60 @@
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 export const dummy = [
   {
     id: 1,
-    hospitalName: "Hull Royal Infirmary",
-    AdmissionDate: "05/05/2021",
-    DischargeDate: "05/05/2021",
+    medicationName: "Amoxillin",
+    dateIssued: "Date Issued",
   },
 ];
-
-export const HospitalizationFromvalue = [
+export const childMedicationInfoData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "hospitalName",
-      label: "Hospital Name",
+      name: "prescriptionIssueDate",
+      label: "Prescription Issue Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 2,
-    gridLength: 12,
+    gridLength: 6,
     otherOptions: {
-      name: "ReasonForHospitalization",
-      label: "Reason for hospitalisation",
-      multiline: true,
-      minRows: 3,
+      name: "nextPrescriptionDueDate",
+      label: "Next Prescription Due Date",
+      multiline: false,
+      //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "admissionDate",
-      label: "Admission Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
-    gridLength: 6,
-    otherOptions: {
-      name: "dischargeDate",
-      label: "Discharge Date",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 4,
-    gridLength: 6,
-    otherOptions: {
-      name: "doctorName",
-      label: "Doctor Name",
+      name: "nameofMedication",
+      label: "Name of Medication",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
   },
-
   {
     id: 4,
-    gridLength: 12,
+    gridLength: 6,
     otherOptions: {
-      name: "dayToDayDetails",
-      label: "Day to Day Details",
+      name: "dosageFrequencyGiven",
+      label: "Dosage Frequency Given",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -85,36 +62,103 @@ export const HospitalizationFromvalue = [
     component: RHFTextField,
   },
   {
-    id: 4,
-    gridLength: false,
+    id: 5,
+    gridLength: 6,
     otherOptions: {
-      name: "followUpDate",
-      label: "Follow up Date",
+      name: "givenBy",
+      label: "Given By (Person Name)",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 6,
+    gridLength: 6,
+    otherOptions: {
+      name: "prescribedByGP",
+      label: "Prescribed by GP",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 7,
+    gridLength: 6,
+    otherOptions: {
+      name: "issuetoCarer",
+      label: "Issue to Carer",
+      fullWidth: true,
+      select: true,
+    },
+    options: [
+      {
+        value: "",
+        label: "",
+      },
+    ],
+    component: RHFSelect,
+  },
+  {
+    id: 8,
+    gridLength: 6,
+    otherOptions: {
+      name: "dateIssued",
+      label: "Date Issued",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
     component: RHFDatePicker,
   },
+  {
+    id: 9,
+    gridLength: 6,
+    otherOptions: {
+      name: "anyReactions",
+      label: "Any Reactions",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 10,
+    gridLength: 6,
+    otherOptions: {
+      name: "comments",
+      label: "Comments",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
 ];
-
-export const HospitalizationListValue = {
-  hospitalName: "",
-  ReasonForHospitalization: "",
-  admissionDate: "",
-  dischargeDate: "",
-  doctorName: "",
-  dayToDayDetails: "",
-  followUpDate: "",
+export const ChildMedicationInfoListValue = {
+  prescriptionIssueDate: "",
+  nextPrescriptionDueDate: "",
+  nameofMedication: "",
+  dosageFrequencyGiven: "",
+  givenBy: "",
+  prescribedByGP: "",
+  issuetoCarer: "",
+  dateIssued: "",
+  anyReactions: "",
+  comments: "",
 };
 export const FormSchema = Yup.object().shape({
-  hospitalName: Yup.string().required("required"),
-  ReasonForHospitalization: Yup.string().required("required"),
-  admissionDate: Yup.date().required("required"),
-  dischargeDate: Yup.date().required("required"),
-  doctorName: Yup.string().required("required"),
-  dayToDayDetails: Yup.string().required("required"),
-  followUpDate: Yup.date().required("required"),
+  prescriptionIssueDate: Yup.date().required("required"),
+  nextPrescriptionDueDate: Yup.date().required("required"),
+  nameofMedication: Yup.string().required("required"),
+  dosageFrequencyGiven: Yup.string().required("required"),
+  givenBy: Yup.string().required("required"),
+  prescribedByGP: Yup.string().required("required"),
+  issuetoCarer: Yup.string().required("required"),
+  dateIssued: Yup.date().required("required"),
+  anyReactions: Yup.string().required("required"),
+  comments: Yup.string().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({

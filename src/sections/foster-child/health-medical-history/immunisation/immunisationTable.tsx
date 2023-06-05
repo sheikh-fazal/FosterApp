@@ -7,10 +7,8 @@ import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
 
-const activepath =
-  "/foster-child/health-medical-history/hospitalisation/actions";
-
-const HospitalizationTable = () => {
+const activepath = "/foster-child/health-medical-history/immunisation/actions";
+const ImmunisationTable = () => {
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,24 +18,17 @@ const HospitalizationTable = () => {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.hospitalName,
-      id: "hospitalName",
+      accessorFn: (row: any) => row.dateOfImmunisation,
+      id: "dateOfImmunisation",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Hospital Name</span>,
+      header: () => <span>Date Of Immunisation</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.AdmissionDate,
-      id: "AdmissionDate",
+      accessorFn: (row: any) => row.immunisationtype,
+      id: "immunisationtype",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Admission Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.DischargeDate,
-      id: "DischargeDate",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Discharge Date</span>,
+      header: () => <span>Immunisation type</span>,
       isSortable: true,
     },
 
@@ -84,7 +75,7 @@ const HospitalizationTable = () => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="hospitalization"
+                  title="Child Immunisation Info"
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
@@ -118,4 +109,4 @@ const HospitalizationTable = () => {
   );
 };
 
-export default HospitalizationTable;
+export default ImmunisationTable;

@@ -15,7 +15,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import TableAction from "@root/components/TableAction";
-import { UploadDocFormData, UploadViewDocFormData, formSchemaModel } from ".";
+import {
+  UploadDocFormData,
+  UploadViewDocFormData,
+  formSchemaModel,
+} from "../../sections/foster-child/health-medical-history/hospitalInfoList";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { LoadingButton } from "@mui/lab";
 import IsFetching from "@root/components/loaders/IsFetching";
@@ -279,6 +283,3 @@ const Styles = {
     height: 40,
   }),
 };
-function resolved(Model: any) {
-  throw new Error("Function not implemented.");
-}

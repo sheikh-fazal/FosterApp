@@ -6,7 +6,7 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
-import ModelUploadDoc from "./modelUploadDoc";
+import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
 
 const activepath =
   "/foster-child/health-medical-history/hospital-info-list/actions";
