@@ -21,12 +21,13 @@ const OtherPoliciesTabsForm = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
+    route,
   } = useOtherPoliciesTabsForm();
 
   return (
     <>
       <CustomHorizaontalTab
-        tabsArray={["Add New Policy", "Upload document"]}
+        tabsArray={[`${route.query.action === 'add' || 'view' ? route.query.name : 'Add New Policy'}`, "Upload document"]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         isDisabled={true}

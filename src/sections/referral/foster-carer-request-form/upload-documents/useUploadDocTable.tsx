@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { tableData } from "."
+import { tableData } from ".";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
@@ -9,7 +9,7 @@ import UploadDocumentModal from "./upload-document-form/UploadDocumentForm";
 export const useUploadDocTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const theme = useTheme()
+  const theme = useTheme();
   const [cancelDelete, setCancelDelete] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [viewOpenModal, setViewOpenModal] = useState(false);
@@ -23,7 +23,6 @@ export const useUploadDocTable = () => {
     alert("data submitted");
     setOpenModal(!openModal);
   };
-
 
   const columns = [
     {
@@ -130,14 +129,12 @@ export const useUploadDocTable = () => {
             type="view"
             onClicked={() => setViewOpenModal(!viewOpenModal)}
           />
-          
         </Box>
       ),
       header: () => <span>actions</span>,
       isSortable: false,
     },
   ];
-
 
   return {
     tableHeaderRefTwo,
@@ -148,6 +145,6 @@ export const useUploadDocTable = () => {
     columns,
     setViewOpenModal,
     viewOpenModal,
-    theme
+    theme,
   };
 };
