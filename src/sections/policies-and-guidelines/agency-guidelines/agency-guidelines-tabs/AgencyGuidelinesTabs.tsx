@@ -8,11 +8,11 @@ import DeleteModel from '@root/components/modal/DeleteModel'
 import { useAgencyGuidelinesTabs } from './useAgencyGuidelinesTabs'
 
 const AgencyGuidelinesTabs = () => {
-   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count } = useAgencyGuidelinesTabs();
+   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count, route } = useAgencyGuidelinesTabs();
 
     return (
         <>
-            <CustomHorizaontalTab tabsArray={["Add New Policy", "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+            <CustomHorizaontalTab tabsArray={[`${route.query.action === 'add' || route.query.action === 'view' ? route.query.name : 'Add New Policy'}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
                 <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/agency-guidelines'} />
 
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />

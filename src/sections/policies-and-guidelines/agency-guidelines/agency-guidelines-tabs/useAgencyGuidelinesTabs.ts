@@ -7,7 +7,7 @@ export const useAgencyGuidelinesTabs = () => {
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
-  const navgiate = useRouter();
+  const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -16,7 +16,7 @@ export const useAgencyGuidelinesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      navgiate.push("/policies-and-guidelines/agency-guidelines");
+      route.push("/policies-and-guidelines/agency-guidelines");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -44,6 +44,7 @@ export const useAgencyGuidelinesTabs = () => {
     handleAction,
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count
+    count,
+    route
   };
 };
