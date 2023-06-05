@@ -14,6 +14,7 @@ const UploadDocTable = (props: any) => {
     columns,
     setViewOpenModal,
     viewOpenModal,
+    theme,
   } = useUploadDocTable();
 
   return (
@@ -39,6 +40,7 @@ const UploadDocTable = (props: any) => {
         currentPage={1}
         onPageChange={(data: any) => {}}
         onSortByChange={(data: any) => {}}
+        rootSX={{ my: theme.spacing(2) }}
       />
       <UploadDocumentModal
         disabled

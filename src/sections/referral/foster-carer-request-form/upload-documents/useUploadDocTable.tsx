@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { tableData } from "."
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import UploadDocumentModal from "./upload-document-form/UploadDocumentForm";
@@ -9,6 +9,7 @@ import UploadDocumentModal from "./upload-document-form/UploadDocumentForm";
 export const useUploadDocTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const theme = useTheme()
   const [cancelDelete, setCancelDelete] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [viewOpenModal, setViewOpenModal] = useState(false);
@@ -146,6 +147,7 @@ export const useUploadDocTable = () => {
     tableData,
     columns,
     setViewOpenModal,
-    viewOpenModal
+    viewOpenModal,
+    theme
   };
 };
