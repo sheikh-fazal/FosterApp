@@ -24,6 +24,7 @@ const Sidebar: React.FC<any> = (props) => {
       setExpanded(isExpanded ? panel : false);
     };
   const theme: any = useTheme();
+  console.log(theme.palette?.mode)
   return (
     <Card
       sx={{
@@ -46,7 +47,7 @@ const Sidebar: React.FC<any> = (props) => {
               >
                 <Grid
                   container
-                  sx={{ backgroundColor: "#EBEBEB", padding: "10px" }}
+                  sx={{ backgroundColor: `${theme.palette?.mode !== "dark" ? "#EBEBEB":"transparent"}`, padding: "10px"}}
                   alignItems="center"
                 >
                   <Grid item sm={1} container>

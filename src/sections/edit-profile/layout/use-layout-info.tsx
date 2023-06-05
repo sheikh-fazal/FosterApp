@@ -7,48 +7,48 @@ export const useLayoutInfo = () => {
     activeFormName: "Personal Info",
   });
   const [tabsItems, settabsItems] = useState([
-    { name: "Personal Info", status: "Pending" },
-    { name: "Address Details", status: "Pending" },
-    { name: "Photo for ID Badge", status: "Pending" },
-    { name: "ID Upload (Passport/DL)", status: "Pending" },
-    { name: "Add Reference", status: "Pending" },
-    { name: "Training Certificates", status: "Pending" },
-    { name: "Additional Training Details", status: "Pending" },
-    { name: "Work Experience", status: "Pending" },
-    { name: "Specialities", status: "Pending" },
-    { name: "DBS", status: "Pending" },
-    { name: "Right to work", status: "Pending" },
-    { name: "Next Of kin", status: "Pending" },
-    { name: "Contact Preference", status: "Pending" },
-    { name: "Employment Status", status: "Pending" },
-    { name: "Opportunity Declaration", status: "Pending" },
-    { name: "Additional Docs", status: "Pending" },
-    { name: "Bank Details", status: "Pending" },
-    { name: "Immunisation", status: "Pending" },
-    { name: "Medical Questionnaire", status: "Pending" },
-    { name: "Add Declaration", status: "Pending" },
+    { name: "Personal Info", status: "Done" },
+    { name: "Address Details", status: "Done" },
+    { name: "Photo for ID Badge", status: "Done" },
+    { name: "ID Upload (Passport/DL)", status: "Done" },
+    { name: "Add Reference", status: "Done" },
+    { name: "Training Certificates", status: "Done" },
+    { name: "Additional Training Details", status: "Done" },
+    { name: "Work Experience", status: "Done" },
+    { name: "Specialities", status: "Done" },
+    { name: "DBS", status: "Done" },
+    { name: "Right to work", status: "Done" },
+    { name: "Next Of kin", status: "Done" },
+    { name: "Contact Preference", status: "Done" },
+    { name: "Employment Status", status: "Done" },
+    { name: "Opportunity Declaration", status: "Done" },
+    { name: "Additional Docs", status: "Done" },
+    { name: "Bank Details", status: "Done" },
+    { name: "Immunisation", status: "Done" },
+    { name: "Medical Questionnaire", status: "Done" },
+    { name: "Add Declaration", status: "Done" },
   ]);
 
   const itemClickHand = (itemName: string) => {
-    // const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
-    // // for handling click on last pending form
-    // const indexOfClickItem = tabsItems.findIndex(
-    //   ({ name }) => itemName === name
-    // );
-    // const indexOfFirstPending = tabsItems.findIndex(
-    //   ({ status }) => status === "Pending"
-    // );
-    // // for handling click on last pending form
-    // console.log({ indexOfClickItem, indexOfFirstPending });
-    // // check if clicked form is status is pending and it is not first pending status form
-    // console.table(indexOfClickItem !== indexOfFirstPending);
-    // console.log({ formStatus });
-    // if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
-    //   enqueueSnackbar("Please Fill The Previous Form First", {
-    //     variant: "info",
-    //   });
-    //   return;
-    // }
+    const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
+    // for handling click on last pending form
+    const indexOfClickItem = tabsItems.findIndex(
+      ({ name }) => itemName === name
+    );
+    const indexOfFirstPending = tabsItems.findIndex(
+      ({ status }) => status === "Pending"
+    );
+    // for handling click on last pending form
+    console.log({ indexOfClickItem, indexOfFirstPending });
+    // check if clicked form is status is pending and it is not first pending status form
+    console.table(indexOfClickItem !== indexOfFirstPending);
+    console.log({ formStatus });
+    if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
+      enqueueSnackbar("Please Fill The Previous Form First", {
+        variant: "info",
+      });
+      return;
+    }
     setDiffInfoHandler((pre) => ({ ...pre, activeFormName: itemName }));
   };
 
