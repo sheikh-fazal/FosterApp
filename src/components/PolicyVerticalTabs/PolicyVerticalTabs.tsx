@@ -22,13 +22,12 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
   };
 
   const arrayChildren = Children.toArray(children);
-  console.log("arrayChildren", arrayChildren);
   const theme: any = useTheme();
 
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item md={4}>
+        <Grid item md={3.5} xs={12}>
           <Box sx={styles.GridWrapper}>
             <Box sx={styles.imageWrapper} onClick={handleAddTabs}>
               <Image src={AddIcon} alt="add-icon" />
@@ -64,7 +63,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
           </Box>
         </Grid>
 
-        <Grid item md={8}>
+        <Grid item md={8.5} xs={12}>
           {tabsDataArray?.map((item: any) => (
             <div
               role="tabpanel"
@@ -129,10 +128,10 @@ const styles = {
   }),
 
   innerTabs: (theme: any) => ({
-    background: "#0E918C",
+    background: theme.palette.primary.main,
     mb: "15px",
     borderRadius: "10px",
-    border: "6px solid #0E918C",
+    border: `6px solid ${theme.palette.primary.main}`,
     height: "100%",
     minHeight: "80px",
     "&.Mui-selected": {
@@ -159,5 +158,6 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-  },
+    flexShrink: 0
+  }
 };

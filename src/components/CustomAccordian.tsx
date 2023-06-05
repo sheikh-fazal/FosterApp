@@ -18,9 +18,11 @@ interface CUSTOMACCORDIAN {
   data: any;
   className?: any;
   firstAccStyle?: any;
+  addShowBtn?:any;
+  handleRowAdd?:any;
 }
 const CustomAccordian = (props: CUSTOMACCORDIAN) => {
-  const { handleRowDelete, handleTitleEdit, showBtn, addIcon, handleAdd, subTitle, data, className, firstAccStyle, ...rest } = props;
+  const { handleRowDelete, handleTitleEdit,  addShowBtn, handleRowAdd, showBtn, addIcon, handleAdd, subTitle, data, className, firstAccStyle, ...rest } = props;
   const [accordianExpanded, setAccordianExpanded] = React.useState<null | number>();
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
@@ -116,6 +118,17 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                   />
                 </Stack>
               )}
+              {addShowBtn &&
+                <TableAction
+                  size="small"
+                  type="add"
+                  onClicked={(event: any) => {
+                    event.stopPropagation();
+                    event.nativeEvent.preventDefault();
+                    handleRowAdd(item);
+                  }}
+                />
+              }
 
               {subTitle && (
                 <Typography variant="subtitle2" className="title" sx={{ pr: "5px" }}>

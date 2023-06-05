@@ -7,7 +7,7 @@ export const useOrganisationalPoliciesTabs = () => {
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
-  const navgiate = useRouter();
+  const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -16,11 +16,12 @@ export const useOrganisationalPoliciesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      navgiate.push("/policies-and-guidelines/organisational-policies/");
+      route.push("/policies-and-guidelines/organisational-policies/");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
   };
+
 
   const handleAction = (action: any, id: any) => {
     switch (action) {
@@ -45,5 +46,6 @@ export const useOrganisationalPoliciesTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
+    route
   };
 };
