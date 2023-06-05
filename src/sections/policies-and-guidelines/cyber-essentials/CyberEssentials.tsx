@@ -2,7 +2,7 @@ import React from "react";
 import { CyberEssentialsData, accordionData } from ".";
 import { useCyberEseentials } from "./useCyberEssentials";
 import CustomAccordian from "@root/components/CustomAccordian";
-import PolicyVerticalTabs from "@root/components/PolicyVerticalTabs/PolicyVerticalTabs";
+import PolicyVerticalTabs from "@root/components/policy-vertical-tabs/PolicyVerticalTabs";
 
 // =====================================================================================
 
