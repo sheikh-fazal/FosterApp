@@ -6,7 +6,7 @@ export const carerAddressHistoryApi = baseAPI.injectEndpoints({
       query: (params: any) => "/carer-address-history",
     }),
     postAddressHistory: builder.mutation({
-      query: ({ id, formData }: any) => ({
+      query: ({ formData }: any) => ({
         url: `/carer-address-history`,
         method: "Post",
         body: formData,

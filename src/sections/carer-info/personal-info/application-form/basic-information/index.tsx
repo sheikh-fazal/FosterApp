@@ -84,7 +84,7 @@ export const FormSchema = Yup.object().shape({
   mobile: Yup.string()
     .required("Mobile Ethnicity is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   languagesSpoken: Yup.string().trim().required("Languages Spoken is required"),
   relationshipType: Yup.string()

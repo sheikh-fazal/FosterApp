@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
@@ -14,7 +15,7 @@ export const defaultValues = {
   address: "",
   phoneNumber: "",
   email: "",
-  childrenTogether: false,
+  childrenTogether: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -100,7 +101,12 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setExPartnerData: any, role: any) => {
+export const columns = (
+  changeView: any,
+  setExPartnerData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
   return [
     {
       accessorFn: (row: any) => `${row.firstName} ${row.lastName}`,
@@ -142,11 +148,8 @@ export const columns = (changeView: any, setExPartnerData: any, role: any) => {
                   changeView("edit");
                 }}
               />
-              <TableAction
-                type="delete"
-                onClicked={() => {
-                  console.log("delete");
-                }}
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
               />
             </>
           )}

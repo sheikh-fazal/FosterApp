@@ -31,9 +31,11 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getProfileInfoQuery(null, false);
+      const { data, isError, error } = await getProfileInfoQuery(null, false);
+      console.log(data);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data) {
+        displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

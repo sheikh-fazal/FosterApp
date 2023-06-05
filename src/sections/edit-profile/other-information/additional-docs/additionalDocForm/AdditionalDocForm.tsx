@@ -59,6 +59,7 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
       displaySuccessMessage(data, enqueueSnackbar);
       // activateNextForm();
     } catch (error: any) {
+      console.log("reesr");
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
