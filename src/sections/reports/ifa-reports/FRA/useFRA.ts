@@ -7,9 +7,10 @@ export const useFRA = () => {
   const handleAction = (action?: string, id?: string) => {
     switch (action) {
       case 'add':
-        router.push({ pathname: path })
+        // router.push({ pathname: path })
         break;
-
+      case 'view':
+        router.push({ pathname: `${path}/${id}`, query: { action } })
       default:
         break;
     }
