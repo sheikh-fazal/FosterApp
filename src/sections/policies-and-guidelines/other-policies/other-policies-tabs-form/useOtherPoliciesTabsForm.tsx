@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { usePolicyVerticalAddNew } from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/usePolicyVerticalAddNew";
+import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
 
 export const useOtherPoliciesTabsForm = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } =
@@ -18,7 +18,7 @@ export const useOtherPoliciesTabsForm = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      route.push("/policies-and-guidelines/other-policies/");
+      route.push("/policies-and-guidelines/other-policies");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -47,6 +47,6 @@ export const useOtherPoliciesTabsForm = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
-    route
+    route,
   };
 };
