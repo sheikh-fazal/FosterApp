@@ -2,7 +2,7 @@ import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-import AgencyGuidelines from '@root/sections/policies-and-guidelines/agency-guidelines/AgencyGuidelines';
+import AgencyGuidelinesTabs from '@root/sections/policies-and-guidelines/agency-guidelines/agency-guidelines-tabs/AgencyGuidelinesTabs';
 
 const PAGE_TITLE = "Policies And Guidelines";
 
@@ -14,10 +14,10 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/policies-and-guidelines",
+          href: "/policies-and-guidelines/agency-guidelines",
         },
         {
-          name: "Agency Guidlines",
+          name: "Agency Guidelines",
         },
       ]}
       title={PAGE_TITLE}
@@ -25,12 +25,12 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       {page}
     </Layout>
   );
-};
+};  
 
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     <AgencyGuidelines />
+     <AgencyGuidelinesTabs />
     </Page>
   );
 }

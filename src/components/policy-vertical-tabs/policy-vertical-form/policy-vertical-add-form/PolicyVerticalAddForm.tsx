@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { Button, Grid, Typography } from "@mui/material";
 import { FormProvider, RHFSelect, RHFTextField } from "@root/components/hook-form";
-import { usePolicyVerticalAddNew } from "./usePolicyVerticalAddNew";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { useRouter } from "next/router";
+import { usePolicyVerticalAddNew } from "./usePolicyVerticalAddForm";
 
 const PolicyVerticalAddNew = (props: any) => {
   const { disabled, onSubmit, handleAddNewBack } = props;

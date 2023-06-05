@@ -32,34 +32,36 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
             <Box sx={styles.imageWrapper} onClick={handleAddTabs}>
               <Image src={AddIcon} alt="add-icon" />
             </Box>
-            <Tabs
-              selectionFollowsFocus
-              orientation="vertical"
-              variant="scrollable"
-              sx={styles.tabRoot}
-              TabIndicatorProps={styles.tabIndicator}
-              value={value}
-              role="tabpanel"
-              onChange={handleChange}
-            >
-              {tabsDataArray?.map((item: any) => (
-                <Tab
-                  wrapped
-                  key={item?.title}
-                  sx={styles.innerTabs(theme)}
-                  label={
-                    <Box sx={styles.tabLabel(item?.background)}>
-                      <Box sx={styles.tabsIcon}>
-                        <Image src={item.img} alt="" width={20} height={20} />
+            <Box sx={{ maxHeight: "72vh", overflowY: "auto" }}>
+              <Tabs
+                selectionFollowsFocus
+                orientation="vertical"
+                variant="scrollable"
+                sx={styles.tabRoot}
+                TabIndicatorProps={styles.tabIndicator}
+                value={value}
+                role="tabpanel"
+                onChange={handleChange}
+              >
+                {tabsDataArray?.map((item: any) => (
+                  <Tab
+                    wrapped
+                    key={item?.title}
+                    sx={styles.innerTabs(theme)}
+                    label={
+                      <Box sx={styles.tabLabel(item?.background)}>
+                        <Box sx={styles.tabsIcon}>
+                          <Image src={item.img} alt="" width={20} height={20} />
+                        </Box>
+                        <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
+                          {item?.title.length > 46 ? `${item.title.slice(0, 46)}...` : item.title}
+                        </Typography>
                       </Box>
-                      <Typography variant="h5" component="h5" color={"#ffffff"} textAlign="left">
-                        {item?.title}
-                      </Typography>
-                    </Box>
-                  }
-                />
-              ))}
-            </Tabs>
+                    }
+                  />
+                ))}
+              </Tabs>
+            </Box>
           </Box>
         </Grid>
 
@@ -124,7 +126,7 @@ const styles = {
     padding: "12px",
     gap: "15px",
     height: "100%",
-    maxHeight: "85px",
+    minHeight: "85px",
   }),
 
   innerTabs: (theme: any) => ({
@@ -159,5 +161,12 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
     flexShrink: 0
+  },
+  tabsTitle: {
+    fontSize: "18px !important",
+    color: "#Ffff",
+    lineHeight: "24px !important",
+    fontWeight: 600,
+    textAlign: "left !important",
   }
 };
