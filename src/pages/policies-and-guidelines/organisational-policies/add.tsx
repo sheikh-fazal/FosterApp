@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import OrganisationalPoliciesTabs from "@root/sections/policies-and-guidelines/organisational-policies/organisational-policies-tabs/OrganisationalPoliciesTabs";
 
-const PAGE_TILE = "Policies and Guidelines";
+const PAGE_TILE = "Organisational";
 
 OrganisationalPoliciesAdd.getLayout = function getLayout(page: any) {
   return (
@@ -13,11 +13,11 @@ OrganisationalPoliciesAdd.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "IFA",
-          href: "/",
+          name: "Organisational Policies",
+          href: "/policies-and-guidelines/organisational-policies",
         },
         {
-          name: "Organisational Policies",
+          name: "Add",
         },
       ]}
       title={PAGE_TILE}
