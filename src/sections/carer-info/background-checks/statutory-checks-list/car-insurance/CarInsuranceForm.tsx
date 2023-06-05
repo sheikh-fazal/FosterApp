@@ -52,20 +52,19 @@ const CarInsuranceForm = (props: any) => {
             sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
             item
           >
-            {action === "add" ||
-              (action === "edit" ? (
-                <LoadingButton
-                  type="submit"
-                  loading={isSubmitting}
-                  sx={{
-                    bgcolor: theme.palette.primary.main,
-                    "&:hover": { bgcolor: theme.palette.primary.main },
-                  }}
-                  variant="contained"
-                >
-                  Submit
-                </LoadingButton>
-              ) : null)}
+            {action === "add" || action === "edit" ? (
+              <LoadingButton
+                type="submit"
+                loading={isSubmitting}
+                sx={{
+                  bgcolor: theme.palette.primary.main,
+                  "&:hover": { bgcolor: theme.palette.primary.main },
+                }}
+                variant="contained"
+              >
+                Submit
+              </LoadingButton>
+            ) : null}
             <Button
               sx={{
                 bgcolor: theme.palette.orange.main,

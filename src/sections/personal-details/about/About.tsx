@@ -28,7 +28,6 @@ const About = () => {
                     {key ?? "-"}
                   </Typography>
                   <Typography variant="body2" sx={styles.keyValues}>
-                    {/* {val ?? "-"} */}
                     {Array.isArray(val) ? (
                       <>
                         {val.length === 0 && "-"}
