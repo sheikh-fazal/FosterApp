@@ -26,8 +26,8 @@ const PesonalInfoForm = ({ disabled }: any) => {
               {item.componentProps.select
                 ? item.options.map((option: any) => (
                   <option key={option.value} value={option.value}>
-                    {" "}
-                    {option.label}{" "}
+                  
+                    {option.label}
                   </option>
                 ))
                 : null}
