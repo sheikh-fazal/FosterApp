@@ -1,4 +1,5 @@
-import PolicyVerticalTable from '@root/components/PolicyVerticalTabs/PolicyVerticalTable'
+// import PolicyVerticalTable from '@root/components/PolicyVerticalTabs/PolicyVerticalTable'
+import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVerticalTable';
 import { HandbookPoliciesData } from '.';
 import React from 'react'
 

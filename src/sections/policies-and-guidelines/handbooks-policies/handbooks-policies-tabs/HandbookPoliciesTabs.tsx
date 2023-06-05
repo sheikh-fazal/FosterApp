@@ -1,11 +1,13 @@
 import React from 'react'
-import PolicyVerticalAddNew from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/PolicyVerticalAddNew';
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
+// import PolicyVerticalAddNew from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/PolicyVerticalAddNew';
+// import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
 import CustomHorizaontalTab from '@root/components/customTabs';
 import { uploadDocumentData } from '.'
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal';
 import DeleteModel from '@root/components/modal/DeleteModel';
 import { useHandbookPoliciesTabs } from './useHandbookPoliciesTabs';
+import PolicyVerticalAddNew from '@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm';
+import PolicyVerticalUploadDocument from '@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument';
 
 const HandbookPoliciesTabs = () => {
     const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useHandbookPoliciesTabs();
