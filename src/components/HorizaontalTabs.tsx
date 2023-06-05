@@ -18,8 +18,9 @@ const HorizaontalTabs = ({
   setActiveTab = () => {},
   variant,
   spacing,
+  defaultValue=0,
 }: any) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(defaultValue);
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -37,7 +38,7 @@ const HorizaontalTabs = ({
         sx={styles.tabRoot(theme)}
         TabIndicatorProps={styles.tabIndicator(theme)}
         value={value}
-        defaultValue={2}
+        defaultValue={defaultValue}
         onChange={handleChange}
       >
         {tabsDataArray?.map((title: string) => (
