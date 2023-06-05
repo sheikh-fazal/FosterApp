@@ -15,8 +15,11 @@ ActionComment.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
+          href: "/dashboard",
+        },
+        {
           name: "Panel",
-          href: "/panel",
+          href:'/panel'
         },
         {
           name: "Panel Actions/Comments",
