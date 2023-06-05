@@ -1,16 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Box, Checkbox, useTheme } from '@mui/material'
-import PolicyVerticalTabs from '@root/components/PolicyVerticalTabs/PolicyVerticalTabs';
 import TableHeader from '@root/components/TableHeader';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
-import ChecklistPolicy from './ChecklistPolicy/ChecklistPolicy';
+import PolicyVerticalTabs from './PolicyVerticalTabs';
+import ChecklistPolicy from './checklist-policy/ChecklistPolicy';
 
 const PolicyVerticalTable = (props: any) => {
-    const { data, addNewTabNavigation } = props;
-    const navigate = useRouter();
-    const theme = useTheme();
+  const { data, addNewTabNavigation } = props;
+  const navigate = useRouter();
+  const theme = useTheme();
 
 
     const columns = (title: string) => [

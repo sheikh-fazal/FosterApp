@@ -2,8 +2,9 @@ import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
+import AgencyGuidelines from '@root/sections/policies-and-guidelines/agency-guidelines/AgencyGuidelines';
 
-const PAGE_TITLE = "Agency Guidelines";
+const PAGE_TITLE = "Policies And Guidelines";
 
 PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
   return (
@@ -12,11 +13,11 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Policies and Guidelines",
+          name: "IFA",
           href: "/policies-and-guidelines",
         },
         {
-          name: "All",
+          name: "Agency Guidlines",
         },
       ]}
       title={PAGE_TITLE}
@@ -29,7 +30,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     {PAGE_TITLE}
+     <AgencyGuidelines />
     </Page>
   );
 }

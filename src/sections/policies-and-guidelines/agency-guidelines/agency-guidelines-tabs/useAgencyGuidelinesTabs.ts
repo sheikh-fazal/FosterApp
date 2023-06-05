@@ -2,7 +2,7 @@ import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/p
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const useOrganisationalPoliciesTabs = () => {
+export const useAgencyGuidelinesTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } = usePolicyVerticalAddNew();
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
@@ -16,12 +16,11 @@ export const useOrganisationalPoliciesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      route.push("/policies-and-guidelines/organisational-policies/");
+      route.push("/policies-and-guidelines/agency-guidelines");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
   };
-
 
   const handleAction = (action: any, id: any) => {
     switch (action) {

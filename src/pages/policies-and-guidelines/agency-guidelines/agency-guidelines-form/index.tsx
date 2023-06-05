@@ -1,12 +1,10 @@
-import React from "react";
-import Layout from "@root/layouts";
-import Page from "@root/components/Page";
+import Layout from '@root/layouts';
+import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
-import CyberEssentials from "@root/sections/policies-and-guidelines/cyber-essentials/CyberEssentials";
+import Page from '@root/components/Page';
+import AgencyGuidelinesTabs from '@root/sections/policies-and-guidelines/agency-guidelines/agency-guidelines-tabs/AgencyGuidelinesTabs';
 
-// ============================================================================================
-
-const PAGE_TITLE = "Cyber Essentials";
+const PAGE_TITLE = "Policies And Guidelines";
 
 PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
   return (
@@ -16,10 +14,10 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/policies-and-guidelines",
+          href: "/policies-and-guidelines/agency-guidelines",
         },
         {
-          name: "General Data Protection",
+          name: "Agency Guidelines",
         },
       ]}
       title={PAGE_TITLE}
@@ -27,12 +25,12 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       {page}
     </Layout>
   );
-};
+};  
 
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-      <CyberEssentials />
+     <AgencyGuidelinesTabs />
     </Page>
   );
 }
