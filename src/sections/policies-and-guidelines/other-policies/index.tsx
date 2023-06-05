@@ -8,6 +8,7 @@ export const OtherPoliciesData = [
     img: HeathandCare,
     innerData: [
       {
+        no: "01",
         title: "Health and Social",
         dateUploaded: "01/08/2020",
         author: "John",
@@ -22,6 +23,7 @@ export const OtherPoliciesData = [
     img: Performance,
     innerData: [
       {
+        no: "01",
         title: "Performance Management",
         dateUploaded: "01/08/2020",
         author: "John",

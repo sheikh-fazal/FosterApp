@@ -13,7 +13,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Policies and Guidelines",
+          name: "IFA",
           href: "/policies-and-guidelines",
         },
         {
