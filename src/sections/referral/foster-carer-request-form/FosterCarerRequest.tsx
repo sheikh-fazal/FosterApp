@@ -4,8 +4,14 @@ import TableHeader from "@root/components/TableHeader";
 import { useFosterCarerRequest } from "./useFosterCarerRequest";
 
 const FosterCarerRequestFormTable: React.FC = () => {
-  const { router, tableHeaderRefTwo, SELECT_FILTERS, tableData, columns } =
-    useFosterCarerRequest();
+  const {
+    router,
+    tableHeaderRefTwo,
+    SELECT_FILTERS,
+    tableData,
+    columns,
+    theme,
+  } = useFosterCarerRequest();
 
   return (
     <>
@@ -24,6 +30,7 @@ const FosterCarerRequestFormTable: React.FC = () => {
           });
         }}
         onChanged={(data: any) => {}}
+       
       />
       <CustomTable
         data={tableData}
@@ -36,6 +43,7 @@ const FosterCarerRequestFormTable: React.FC = () => {
         currentPage={1}
         onPageChange={(data: any) => {}}
         onSortByChange={(data: any) => {}}
+        rootSX={{ my: theme.spacing(2) }}
       />
     </>
   );

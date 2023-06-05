@@ -2,22 +2,22 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import OrganisationalPolicies from "@root/sections/policies-and-guidelines/organisational-policies/OrganisationalPolicies";
+import OtherPoliciesTabsForm from "@root/sections/policies-and-guidelines/other-policies/other-policies-tabs-form/OtherPoliciesTabsForm";
 
-const PAGE_TILE = "Organisational Policies";
+const PAGE_TILE = "Other Policies";
 
-Panel.getLayout = function getLayout(page: any) {
+OtherPoliciesTabsAdd.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Policies and Guidelines",
-          href: "/policies-and-guidelines",
+          name: "IFA",
+          href: "/policies-and-guidelines/other-policies",
         },
         {
-          name: "All",
+          name: "Other Policies",
         },
       ]}
       title={PAGE_TILE}
@@ -27,10 +27,10 @@ Panel.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Panel() {
+export default function OtherPoliciesTabsAdd() {
   return (
     <Page title={PAGE_TILE}>
-      <OrganisationalPolicies />
+      <OtherPoliciesTabsForm />
     </Page>
   );
 }

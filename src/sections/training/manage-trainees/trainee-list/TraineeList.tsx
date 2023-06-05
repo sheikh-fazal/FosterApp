@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -16,11 +16,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import PrintIcon from "@mui/icons-material/Print";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import CustomAccordian from "@root/components/CustomAccordian";
-import TaineeListTable from "./tainee-list-table/TaineeListTable";
 import TraineeListModal from "./trainee-list-modal/TraineeListModal";
-import { sortingData } from ".";
 import { useTraineeList } from "./useTraineeList";
-import DeleteModel from "@root/components/modal/DeleteModel";
 
 const TraineeLists = () => {
   const {
@@ -36,8 +33,6 @@ const TraineeLists = () => {
     handleClose,
     addRowHandler,
     sortingByData,
-    setCancelDelete,
-    cancelDelete,
     handleDelete,
   } = useTraineeList();
 
@@ -126,7 +121,6 @@ const TraineeLists = () => {
           </Grid>
 
           <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
-             
             <CustomAccordian
               data={addRow}
               showBtn={true}
@@ -140,7 +134,7 @@ const TraineeLists = () => {
                 });
               }}
               handleRowDelete={(item: any) => {
-                setCancelDelete(!cancelDelete);
+                handleDelete(item);
               }}
             />
           </Grid>
@@ -152,20 +146,6 @@ const TraineeLists = () => {
           addRowHandler={addRowHandler}
           handleClose={() => {
             setModalType({ type: "", value: null });
-          }}
-        />
-
-        <DeleteModel
-          open={cancelDelete}
-          onDeleteClick={(event: any) => {
-            event.stopPropagation();
-            event.nativeEvent.preventDefault();
-            handleDelete();
-          }}
-          handleClose={(event: any) => {
-            event.stopPropagation();
-            event.nativeEvent.preventDefault();
-            setCancelDelete(!cancelDelete);
           }}
         />
       </Box>
