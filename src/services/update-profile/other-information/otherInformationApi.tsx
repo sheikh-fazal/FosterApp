@@ -161,8 +161,8 @@ export const referenceApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     updateOtherBankDetailsInfo: builder.mutation<null, any>({
-      query: (body) => ({
-        url: "user-profile/bank-detail?id=asas",
+      query: ({ body, id }) => ({
+        url: `user-profile/bank-detail?id=${id}`,
         method: "PATCH",
         body,
       }),
