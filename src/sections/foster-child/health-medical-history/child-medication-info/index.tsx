@@ -1,40 +1,50 @@
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 export const dummy = [
   {
     id: 1,
-    hospitalName: "Hull Royal Infirmary",
-    city: "East Raiding of Yorkshire",
+    medicationName: "Amoxillin",
+    dateIssued: "Date Issued",
   },
 ];
-export const HospitalInfoListForm = [
+export const childMedicationInfoData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "hospitalName",
-      label: "Hospital Name",
+      name: "prescriptionIssueDate",
+      label: "Prescription Issue Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 2,
-    gridLength: 12,
-    label: "Contact details",
-    component: "label",
+    gridLength: 6,
+    otherOptions: {
+      name: "nextPrescriptionDueDate",
+      label: "Next Prescription Due Date",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
   },
   {
     id: 3,
-    gridLength: 12,
+    gridLength: 6,
     otherOptions: {
-      name: "contactdetails.commits",
-      label: "Comments",
-      multiline: true,
-      minRows: 3,
+      name: "nameofMedication",
+      label: "Name of Medication",
+      multiline: false,
+      //   minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -43,10 +53,10 @@ export const HospitalInfoListForm = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.TownCity",
-      label: "Town/City",
-      multiline: false,
-      //   minRows: 3,
+      name: "dosageFrequencyGiven",
+      label: "Dosage Frequency Given",
+      multiline: true,
+      minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -55,87 +65,100 @@ export const HospitalInfoListForm = [
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.officePhone",
-      label: "Office phone",
+      name: "givenBy",
+      label: "Given By (Person Name)",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
+  },
+  {
+    id: 6,
+    gridLength: 6,
+    otherOptions: {
+      name: "prescribedByGP",
+      label: "Prescribed by GP",
+    },
+    component: RHFCheckbox,
   },
   {
     id: 7,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.email",
-      label: "Email",
-      multiline: false,
-      //   minRows: 3,
+      name: "issuetoCarer",
+      label: "Issue to Carer",
       fullWidth: true,
+      select: true,
     },
-    component: RHFTextField,
+    options: [
+      {
+        value: "",
+        label: "",
+      },
+    ],
+    component: RHFSelect,
   },
   {
     id: 8,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.county",
-      label: "County",
+      name: "dateIssued",
+      label: "Date Issued",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.country",
-      label: "country",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.postalCode",
-      label: "postal code",
-      multiline: false,
-      //   minRows: 3,
+      name: "anyReactions",
+      label: "Any Reactions",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 10,
+    gridLength: 6,
+    otherOptions: {
+      name: "comments",
+      label: "Comments",
+      multiline: true,
+      minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
   },
 ];
-export const HospitalInfoListValue = {
-  hospitalName: "",
-  contactdetails: {
-    commits: "",
-    TownCity: "",
-    officePhone: "",
-    email: "",
-    county: "",
-    country: "",
-    postalCode: "",
-  },
+export const ChildMedicationInfoListValue = {
+  prescriptionIssueDate: "",
+  nextPrescriptionDueDate: "",
+  nameofMedication: "",
+  dosageFrequencyGiven: "",
+  givenBy: "",
+  prescribedByGP: "",
+  issuetoCarer: "",
+  dateIssued: "",
+  anyReactions: "",
+  comments: "",
 };
-
 export const FormSchema = Yup.object().shape({
-  hospitalName: Yup.string().required("required"),
-  contactdetails: Yup.object().shape({
-    commits: Yup.string().required("required"),
-    TownCity: Yup.string().required("required"),
-    officePhone: Yup.string().required("required"),
-    email: Yup.string().required("required"),
-    county: Yup.string().required("required"),
-    country: Yup.string().required("required"),
-    postalCode: Yup.string().required("required"),
-  }),
+  prescriptionIssueDate: Yup.date().required("required"),
+  nextPrescriptionDueDate: Yup.date().required("required"),
+  nameofMedication: Yup.string().required("required"),
+  dosageFrequencyGiven: Yup.string().required("required"),
+  givenBy: Yup.string().required("required"),
+  prescribedByGP: Yup.string().required("required"),
+  issuetoCarer: Yup.string().required("required"),
+  dateIssued: Yup.date().required("required"),
+  anyReactions: Yup.string().required("required"),
+  comments: Yup.string().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({
@@ -208,7 +231,6 @@ export const uploadDummyData = [
     documentDate: "zyz",
     incidentId: "zyz",
     password: "zyz",
-    
   },
 ];
 export const UploadDocFormData = [

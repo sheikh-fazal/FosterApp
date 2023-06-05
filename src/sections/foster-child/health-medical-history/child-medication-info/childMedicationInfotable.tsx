@@ -6,12 +6,11 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
-import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
 
 const activepath =
-  "/foster-child/health-medical-history/hospital-info-list/actions";
+  "/foster-child/health-medical-history/child-medication-info/actions";
 
-function HospitalInfoListTable() {
+const ChildMedicationInfotable = () => {
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -21,17 +20,18 @@ function HospitalInfoListTable() {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.hospitalName,
-      id: "hospitalName",
+      accessorFn: (row: any) => row.medicationName,
+      id: "medicationName",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Hospital Name</span>,
+      header: () => <span>Medication Name</span>,
       isSortable: true,
     },
+
     {
-      accessorFn: (row: any) => row.city,
-      id: "city",
+      accessorFn: (row: any) => row.dateIssued,
+      id: "dateIssued",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>City</span>,
+      header: () => <span>Date Issued</span>,
       isSortable: true,
     },
 
@@ -78,7 +78,7 @@ function HospitalInfoListTable() {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="Hospital Info list"
+                  title="hospitalization"
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
@@ -110,6 +110,6 @@ function HospitalInfoListTable() {
       </Grid>
     </Box>
   );
-}
+};
 
-export default HospitalInfoListTable;
+export default ChildMedicationInfotable;

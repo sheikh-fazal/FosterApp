@@ -4,35 +4,30 @@ import * as Yup from "yup";
 export const dummy = [
   {
     id: 1,
-    hospitalName: "Hull Royal Infirmary",
-    city: "East Raiding of Yorkshire",
+    dateOfImmunisation: "16 May 2021",
+    immunisationtype: "Messenger RNA",
   },
 ];
-export const HospitalInfoListForm = [
+
+export const immunisationInfoFormValue = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "hospitalName",
-      label: "Hospital Name",
+      name: "dateOfImmunisation",
+      label: "Date Of Immunisation",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 2,
     gridLength: 12,
-    label: "Contact details",
-    component: "label",
-  },
-  {
-    id: 3,
-    gridLength: 12,
     otherOptions: {
-      name: "contactdetails.commits",
-      label: "Comments",
+      name: "immunisationtype",
+      label: "immunisation Type",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -40,102 +35,28 @@ export const HospitalInfoListForm = [
     component: RHFTextField,
   },
   {
-    id: 4,
+    id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "contactdetails.TownCity",
-      label: "Town/City",
+      name: "dueDate",
+      label: "Due Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
-  },
-  {
-    id: 5,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.officePhone",
-      label: "Office phone",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 7,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.email",
-      label: "Email",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.county",
-      label: "County",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.country",
-      label: "country",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 9,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.postalCode",
-      label: "postal code",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
 ];
-export const HospitalInfoListValue = {
-  hospitalName: "",
-  contactdetails: {
-    commits: "",
-    TownCity: "",
-    officePhone: "",
-    email: "",
-    county: "",
-    country: "",
-    postalCode: "",
-  },
+export const immunisationInfoListValue = {
+  dateOfImmunisation: "",
+  immunisationtype: "",
+  dueDate: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  hospitalName: Yup.string().required("required"),
-  contactdetails: Yup.object().shape({
-    commits: Yup.string().required("required"),
-    TownCity: Yup.string().required("required"),
-    officePhone: Yup.string().required("required"),
-    email: Yup.string().required("required"),
-    county: Yup.string().required("required"),
-    country: Yup.string().required("required"),
-    postalCode: Yup.string().required("required"),
-  }),
+  dateOfImmunisation: Yup.date().required("required"),
+  immunisationtype: Yup.string().required("required"),
+  dueDate: Yup.date().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({
@@ -208,7 +129,6 @@ export const uploadDummyData = [
     documentDate: "zyz",
     incidentId: "zyz",
     password: "zyz",
-    
   },
 ];
 export const UploadDocFormData = [
