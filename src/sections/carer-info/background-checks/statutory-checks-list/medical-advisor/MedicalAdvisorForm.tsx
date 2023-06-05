@@ -1,70 +1,77 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Grid, useTheme, Button } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { FormSchema, carInsuranceData, defaultValues } from ".";
-import router from "next/router";
-const MedicalAdvisorForm = () => {
-  const theme: any = useTheme();
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { reset, handleSubmit } = methods;
-
-  const onSubmitHandler = (data: any) => {
-    reset();
-  };
-
+import { medicalAdvisorData } from "./index";
+import { useMedicalAdvisorForm } from "./useMedicalAdvisorForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { LoadingButton } from "@mui/lab";
+const MedicalAdvisorForm = (props: any) => {
+  const { action, id } = props;
+  //Local Medical Advisor Custom Hook
+  const {
+    router,
+    methods,
+    onSubmit,
+    handleSubmit,
+    isSubmitting,
+    theme,
+    isLoading,
+  } = useMedicalAdvisorForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <Grid container>
-        <FormProvider
-          methods={methods}
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-            {carInsuranceData.map((form: any) => {
+            {medicalAdvisorData.map((form: any) => {
               return (
-                <Grid item xs={12} md={form?.gridLength} key={form.id}>
-                  {form.component !== "RadioGroup" && (
-                    <form.component
-                      size="small"
-                      {...form.otherOptions}
-                      // disabled={true}
-                    >
-                      {form.otherOptions.select
-                        ? form.options.map((option: any) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))
-                        : null}
-                    </form.component>
-                  )}
+                <Grid
+                  item
+                  xs={12}
+                  md={form?.gridLength}
+                  key={form.id}
+                  sx={{ mt: 1 }}
+                >
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
+                    {form.otherOptions.select
+                      ? form.options.map((option: any) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : null}
+                  </form.component>
                 </Grid>
               );
             })}
 
             <Grid
               xs={12}
-              sx={{ mt: 2, display: "flex", gap: "15px", flexWrap: "wrap" }}
-              spacing={2}
+              sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
               item
             >
-              <Button
-                type="submit"
-                sx={{
-                  bgcolor: theme.palette.primary.main,
-                  "&:hover": { bgcolor: theme.palette.primary.main },
-                }}
-                variant="contained"
-              >
-                Submit
-              </Button>
+              {action === "add" || action === "edit" ? (
+                <LoadingButton
+                  type="submit"
+                  loading={isSubmitting}
+                  sx={{
+                    bgcolor: theme.palette.primary.main,
+                    "&:hover": { bgcolor: theme.palette.primary.main },
+                  }}
+                  variant="contained"
+                >
+                  Submit
+                </LoadingButton>
+              ) : null}
               <Button
                 sx={{
                   bgcolor: theme.palette.orange.main,
@@ -77,7 +84,7 @@ const MedicalAdvisorForm = () => {
                   )
                 }
               >
-                back
+                Back
               </Button>
             </Grid>
           </Grid>

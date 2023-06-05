@@ -39,6 +39,7 @@ export function CarerAddressHistoryTable() {
           isFetching={false}
           isError={false}
           isSuccess={true}
+          showSerialNo
           // count={Math.ceil(data?.data?.meta?.total / limit)}
           currentPage={1}
           onPageChange={(data: any) => {

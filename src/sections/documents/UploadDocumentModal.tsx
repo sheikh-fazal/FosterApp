@@ -12,7 +12,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { FormProvider, RHFTextField } from "@root/components/hook-form";
+import {
+  FormProvider,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import dayjs from "dayjs";
 
 const style = {
@@ -42,6 +46,7 @@ export default function UploadDocumentModal(props: any) {
     column,
   } = props;
   const selectedRow = content?.row?.original;
+  console.log(selectedRow);
 
   const handleOpen = () => {
     setOpen(true);
@@ -51,7 +56,6 @@ export default function UploadDocumentModal(props: any) {
     setOpen(false);
     closeModal && closeModal(false);
   };
-  console.log(theme.palette.orange);
 
   return (
     <div>
@@ -116,8 +120,8 @@ const DocumentModalForm = (props: any) => {
     documentDate: new Date(
       dayjs(selectedRow?.[column[2]]).format("MM/DD/YYYY")
     ),
-    password: selectedRow?.[column[3]],
-    chosenFile: { name: selectedRow?.[column[4]] },
+    password: selectedRow?.[column[4]],
+    chosenFile: { name: selectedRow?.[column[0]] },
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
@@ -149,7 +153,16 @@ const DocumentModalForm = (props: any) => {
                 {...form.componentProps}
                 size="small"
                 disabled={disableForm}
-              />
+              >
+                {" "}
+                {form.componentProps.select
+                  ? form.componentProps.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </form.component>
             </Grid>
           );
         })}
@@ -191,13 +204,18 @@ const DocumentModalForm = (props: any) => {
 export const formDataArray = [
   {
     id: 1,
+    gridLength: 12,
     componentProps: {
       name: "documentType",
       label: "Document Type",
       fullWidth: true,
+      select: true,
+      options: [
+        { value: "word", label: "Word" },
+        { value: "pdf", label: "PDF" },
+      ],
     },
-    gridLength: 12,
-    component: RHFTextField,
+    component: RHFSelect,
   },
   {
     id: 2,

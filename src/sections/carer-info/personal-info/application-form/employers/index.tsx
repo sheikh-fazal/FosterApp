@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
@@ -128,7 +129,12 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setEmployerData: any, role: any) => {
+export const columns = (
+  changeView: any,
+  setEmployerData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
   return [
     {
       accessorFn: (row: any) => row.contactName,
@@ -170,11 +176,8 @@ export const columns = (changeView: any, setEmployerData: any, role: any) => {
                   changeView("edit");
                 }}
               />
-              <TableAction
-                type="delete"
-                onClicked={() => {
-                  console.log("delete");
-                }}
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
               />
             </>
           )}
