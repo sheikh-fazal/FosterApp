@@ -7,13 +7,12 @@ import React, { useState } from "react";
 
 export default function AddImmunisationsTableTabs() {
   const [breadCrumbData, setBreadCrumbData] = useState("Immunisation Info");
-  const [breadCrumbMiddleName, setBreadCrumbMiddleName] = useState("Immunisation List");
-  
+
   const tabsData = ["Immunisations Info", "Upload Documents"];
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: breadCrumbMiddleName,
+      name: "Immunisation List",
       href: "/carer-info/medical-history/immunisations/",
     },
     {
@@ -28,7 +27,7 @@ export default function AddImmunisationsTableTabs() {
     >
       <HorizaontalTabs tabsDataArray={tabsData}>
         <ImmunisationInfoTab breadCrumbData={setBreadCrumbData} />
-        <UploadDocumentsTable breadCrumbMiddleName={setBreadCrumbMiddleName} breadCrumbData={setBreadCrumbData} />
+        <UploadDocumentsTable breadCrumbData={setBreadCrumbData} />
       </HorizaontalTabs>
     </Layout>
   );

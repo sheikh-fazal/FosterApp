@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 
 export const useUploadDocumentsTable = (
   breadCrumbData: any,
-  breadCrumbMiddleName: any
 ) => {
   // const {breadCrumbData}= props;
   const [open, setOpen] = React.useState(false);
@@ -15,7 +14,7 @@ export const useUploadDocumentsTable = (
   const tableHeaderRef = useRef<any>();
   useEffect(() => {
     breadCrumbData("Upload Documents");
-    breadCrumbMiddleName("Immunisations");
+    // breadCrumbMiddleName("Immunisations");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {

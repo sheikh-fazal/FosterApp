@@ -8,7 +8,7 @@ import TableHeader from "@root/components/TableHeader";
 import { UPLOAD_DOCUMENT_DATA, columns } from ".";
 // import UploadDocuments from "@root/sections/documents/UploadDocuments";
 export const UploadDocumentsTable = (props: any) => {
-  const { breadCrumbData, breadCrumbMiddleName } = props;
+  const { breadCrumbData } = props;
   const {
     open,
     setOpen,
@@ -17,7 +17,7 @@ export const UploadDocumentsTable = (props: any) => {
     theme,
     router,
     tableHeaderRef,
-  } = useUploadDocumentsTable(breadCrumbData, breadCrumbMiddleName);
+  } = useUploadDocumentsTable(breadCrumbData);
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   return (
@@ -31,9 +31,10 @@ export const UploadDocumentsTable = (props: any) => {
           searchKey="search"
           showAddBtn
           onAdd={() =>
-            router.push(
-              "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs"
-            )
+            // router.push(
+            //   "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs"
+            // )
+            {}
           }
           onChanged={headerChangeHandler}
           // selectFilters={SELECT_FILTERS}
