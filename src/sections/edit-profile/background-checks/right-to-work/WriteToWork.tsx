@@ -46,15 +46,15 @@ const WriteToWork: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getWriteToWorkInfo(null, false);
+      const { data, error ,isError } = await getWriteToWorkInfo(null, false);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
-      if (isError) {
-        setIsLoading(false);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       const { rightToWork, visaType, BRP, expiryDate, code } = data?.data;
-      console.log({ rightToWork, visaType, BRP, expiryDate, code });
+    
       return {
         rightToWork,
         visaType,

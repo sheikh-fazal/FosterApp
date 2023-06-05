@@ -30,10 +30,10 @@ const MedicalQuestionnaire: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getMedicalQuestionnaire(null, true);
-      console.log({ data });
+      const { data, error,isError } = await getMedicalQuestionnaire(null, true);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

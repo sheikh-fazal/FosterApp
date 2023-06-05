@@ -19,7 +19,7 @@ import {
 } from "@root/services/update-profile/other-information/otherInformationApi";
 import FormSkeleton from "../../render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { displaySuccessMessage } from "../../util/Util";
+import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
 import { enqueueSnackbar } from "notistack";
 
 const NextOfKin: FC<any> = () => {
@@ -33,10 +33,10 @@ const NextOfKin: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getNextOfKinInfo(null, true);
-      console.log("t", data);
+      const { data, error,isError } = await getNextOfKinInfo(null, true);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

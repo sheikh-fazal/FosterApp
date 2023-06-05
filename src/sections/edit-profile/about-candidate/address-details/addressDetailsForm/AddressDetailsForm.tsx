@@ -45,8 +45,8 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
       const { data, isError, error } = await getAddressDetails(null, true);
       setAvailableFiles(data?.data?.documents);
       setIsLoading(false);
-      if (isError || !data) {
-        displayErrorMessage(error, enqueueSnackbar);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

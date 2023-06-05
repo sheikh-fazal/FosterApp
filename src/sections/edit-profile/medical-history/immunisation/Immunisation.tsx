@@ -58,11 +58,11 @@ const Immunisation: FC<any> = ({ activateNextForm }) => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getImmunisationInfo(null, false);
-      console.log({ data });
+      const { data,error, isError } = await getImmunisationInfo(null, false);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

@@ -49,13 +49,13 @@ const TrainingCertificteForm: FC<any> = ({ activateNextForm }) => {
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
       if (isError || !data?.data) {
-        displayErrorMessage(error, enqueueSnackbar);
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {
         ...data?.data,
-        issuedDate: new Date(),
-        expiryDate: new Date(),
+        issuedDate: new Date(data?.data?.issuedDate),
+        expiryDate: new Date(data?.data?.expiryDate),
       };
     },
   });

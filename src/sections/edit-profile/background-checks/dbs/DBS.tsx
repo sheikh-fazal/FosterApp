@@ -43,11 +43,11 @@ const DBS: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getDbsInfo(null, true);
+      const { data, isError,error } = await getDbsInfo(null, true);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
-      if (isError) {
-        setIsLoading(false);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       const { validDBS, certificateName, issueDate, online, updateService } =

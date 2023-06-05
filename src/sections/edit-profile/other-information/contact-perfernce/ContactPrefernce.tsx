@@ -46,18 +46,21 @@ const ContactPrefernce: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getContactPreference(null, false);
-      console.log({ data, isError });
+      const { data, error,isError } = await getContactPreference(null, false);
+      console.log((data?.data))
+      setIsLoading(false);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
+        return defaultValues;
+      }
       const { from, to } = data?.data;
       setTimeValues((pre) => ({
         ...pre,
         fromString: dayjs(from).format("LT"),
         toString: dayjs(to).format("LT"),
       }));
-      setIsLoading(false);
-      if (isError) {
-        return defaultValues;
-      }
+     
+    
       return {
         ...data?.data,
       };

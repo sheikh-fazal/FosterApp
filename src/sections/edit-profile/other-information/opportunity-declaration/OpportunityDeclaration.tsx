@@ -33,9 +33,10 @@ const OpportunityDeclaration: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getOpportunityDecla(null, true);
+      const { data, error,isError } = await getOpportunityDecla(null, true);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {
