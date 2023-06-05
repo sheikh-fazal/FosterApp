@@ -7,7 +7,7 @@ const OrganisationalPolicies = () => {
     
     return (
         <>
-            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/organisational-policies-form/'}  />
+            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/add'}  />
         </>
     )
 }
