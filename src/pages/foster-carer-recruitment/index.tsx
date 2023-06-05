@@ -5,6 +5,7 @@ import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import FosterCarerRecruitmentHeader from "@root/sections/foster-carer-recruitment/FosterCarerRecruitmentHeader";
+import { FosterCarerRecruitmentTable } from "@root/sections/foster-carer-recruitment/foster-carer-table";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -41,6 +42,7 @@ export default function FosterCarerRecruitment() {
   return (
     <Page title={PAGE_TITLE}>
       <FosterCarerRecruitmentHeader />
+      <FosterCarerRecruitmentTable />
     </Page>
   );
 }
