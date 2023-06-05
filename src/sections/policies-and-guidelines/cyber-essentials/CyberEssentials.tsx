@@ -1,8 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { CyberEssentialsData, accordionData } from ".";
-import PolicyVerticalTabs from "@root/components/PolicyVerticalTabs/PolicyVerticalTabs";
 import CustomAccordian from "@root/components/CustomAccordian";
+import PolicyVerticalTabs from "@root/components/policy-vertical-tabs/PolicyVerticalTabs";
 
 // =====================================================================================
 

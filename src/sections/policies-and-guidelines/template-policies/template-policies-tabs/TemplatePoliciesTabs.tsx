@@ -1,11 +1,11 @@
-import PolicyVerticalAddNew from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/PolicyVerticalAddNew'
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument'
 import CustomHorizaontalTab from '@root/components/customTabs'
 import React from 'react'
 import { uploadDocumentData } from '.'
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal'
 import DeleteModel from '@root/components/modal/DeleteModel'
 import { useTemplatePoliciesTabs } from './useTemplatePoliciesTabs'
+import PolicyVerticalAddNew from '@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm'
+import PolicyVerticalUploadDocument from '@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument'
 
 const TemplatePoliciesTabs = () => {
    const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count } = useTemplatePoliciesTabs();
