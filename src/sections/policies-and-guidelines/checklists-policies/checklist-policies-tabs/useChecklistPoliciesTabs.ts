@@ -7,7 +7,7 @@ export const useChecklistPoliciesTabs = () => {
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
-  const navgiate = useRouter();
+  const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -16,7 +16,7 @@ export const useChecklistPoliciesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      navgiate.push("/policies-and-guidelines/checklists");
+      route.push("/policies-and-guidelines/checklists");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -44,6 +44,7 @@ export const useChecklistPoliciesTabs = () => {
     handleAction,
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count
+    count,
+    route
   };
 };

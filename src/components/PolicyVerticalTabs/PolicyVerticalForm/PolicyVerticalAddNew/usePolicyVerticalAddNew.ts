@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 export const usePolicyVerticalAddNew = () => {
   const currentPage = useRouter();
   const [currentTab, setCurrentTab] = useState(0);
+  const route = useRouter();
   const handleNextTab = () => setCurrentTab(currentTab + 1);
   const handlePreviousTab = () => setCurrentTab(currentTab - 1);
 
@@ -30,6 +31,7 @@ export const usePolicyVerticalAddNew = () => {
     setCurrentTab,
     handlePreviousTab,
     reset,
-    currentPage
+    currentPage,
+    route
   };
 };
