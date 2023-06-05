@@ -1,16 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { Box, Grid, List, Paper, Typography } from '@mui/material';
-import { PEPFormData, PEPFormValidation, StrategiesAndEvidence, TargetsAndObjectivesData } from '..';
+import { Box, Grid, Paper } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { PEPFormData, PEPFormValidation, StrategiesAndEvidence, TargetsAndObjectivesData } from '..';
+import { useRouter } from 'next/router';
 
 
 export default function PEPForm(props: any) {
 
-  const { defaultValues } = props;
-
+  const { defaultValues, disabled } = props;
+  // const { query } = useRouter()
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),
     defaultValues
@@ -31,6 +32,8 @@ export default function PEPForm(props: any) {
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
+                disabled={disabled}
+                // disabled={query.action === "view"}
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (

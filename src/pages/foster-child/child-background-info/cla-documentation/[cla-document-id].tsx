@@ -3,6 +3,7 @@ import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import { ClaDocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
+import { useRouter } from "next/router";
 
 
 // Constants
@@ -33,6 +34,10 @@ ViewClaDocumentationList.getLayout = function getLayout(page: any) {
 };
 
 export default function ViewClaDocumentationList() {
+    const { query } = useRouter();
+    const disabled = query.action === "view"
+
+    console.log("disabled", disabled)
     // cla-document-id
     // Call api with above ID
     // get data from the response
@@ -43,7 +48,7 @@ export default function ViewClaDocumentationList() {
                 {/* SHow form skeleton if loadin */}
 
                 {/* show form is not loading */}
-                <ClaDocumentationForm defaultFormType="EHCP" disable />
+                <ClaDocumentationForm defaultFormType="EHCP" disabled={disabled} />
             </Paper>
         </Page>
     );

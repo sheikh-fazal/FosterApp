@@ -9,6 +9,7 @@ import router, { useRouter } from 'next/router';
 export default function ClaDocumentationListTable() {
     const navigate = useRouter()
     const tableHeaderRef = useRef<any>();
+   
 
     // const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     //     useTableParams();
