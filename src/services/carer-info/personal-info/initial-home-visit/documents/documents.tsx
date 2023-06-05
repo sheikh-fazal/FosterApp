@@ -8,9 +8,11 @@ export const initialHomeDocumentApi = baseAPI.injectEndpoints({
         method: "GET",
         params: dataParameter.params,
       }),
+      providesTags: ["INITIAL_HOME_VISIT_DOCUMENTS"],
     }),
     getInitialHomeDocumentDataById: builder.query({
-      query: (params: any) => `carer-Info/personal-info/initial-home-visit/documents/${params.id}`,
+      query: (params: any) =>
+        `carer-Info/personal-info/initial-home-visit/documents/${params.id}`,
     }),
     deleteInitialHomeDocumentDataById: builder.mutation({
       query: (params: any) => ({
@@ -19,11 +21,13 @@ export const initialHomeDocumentApi = baseAPI.injectEndpoints({
       }),
     }),
     postInitialHomeDocumentData: builder.mutation({
-      query: (formData: any) => ({
+      query: (putDataParameter: any) => ({
         url: "carer-Info/personal-info/initial-home-visit/documents",
-        method: "PUT",
-        body: formData,
+        method: "POST",
+        body: putDataParameter.body,
+        params: putDataParameter.params,
       }),
+      invalidatesTags: ["INITIAL_HOME_VISIT_DOCUMENTS"],
     }),
   }),
 });

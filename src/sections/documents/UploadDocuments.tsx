@@ -14,10 +14,16 @@ const UploadDocuments = (props: any) => {
     isError,
     isSuccess,
     modalData,
+    column,
+    searchParam,
+    currentPage,
+    totalPages,
+    onPageChange,
   } = props;
   const [openModal, setOpenModal] = useState(false);
+
   const changeHandler = (i: any) => {
-    console.log(i);
+    searchParam(i);
   };
   return (
     <div>
@@ -34,6 +40,10 @@ const UploadDocuments = (props: any) => {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
+        column={column}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
       />
       <UploadDocumentModal
         closeModal={setOpenModal}

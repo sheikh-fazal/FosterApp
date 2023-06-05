@@ -22,18 +22,19 @@ const FormGenerator: FC<any> = ({
   defaultRole,
 }) => {
   const theme: any = useTheme();
-  console.log({ defaultRole });
+  console.log({ defaultValues });
   const methods: any = useForm({
     // mode: "onTouched",
     ...(!!FormSchema && { resolver: yupResolver(FormSchema) }),
     defaultValues,
   });
-
+  console.log({ methods });
   const {
     reset,
     control,
     register,
     setValue,
+    getValues,
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
@@ -41,6 +42,7 @@ const FormGenerator: FC<any> = ({
   const onSubmit = async (data: any) => {
     submitClickHand(data);
   };
+  console.log(getValues("practising"))
   if (isSkeletonVisible) return <SkeletonFormdata />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

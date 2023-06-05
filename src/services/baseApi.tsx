@@ -24,6 +24,13 @@ export const TAGS = [
   "INITIAL_HOME_VISIT",
   "Experience",
   "CAR_INSURANCE",
+  "DBS_CHECK",
+  "EMPLOYMENT_REFERENCE1",
+  "EMPLOYMENT_REFERENCE2",
+  "LOCAL_AUTHORITY",
+  "MEDICAL_ADVISOR",
+  "PARTNER_REFERENCE",
+  "INITIAL_HOME_VISIT_DOCUMENTS",
 ];
 
 // Create our baseQuery instance

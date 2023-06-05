@@ -1,21 +1,37 @@
-import React, { useState } from "react";
-import { Grid, IconButton, Modal, TextField, Typography } from "@mui/material";
+import React, { FC, useState } from "react";
+import {
+  Button,
+  Grid,
+  IconButton,
+  Modal,
+  TextField,
+  Typography,
+} from "@mui/material";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import dayjs, { Dayjs } from "dayjs";
 import { DesktopTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
-const TimeSelector = () => {
-  const [timeVales, setValue] = React.useState<{
-    from: Dayjs | null;
-    to: Dayjs | null;
-  }>({ from: dayjs(new Date()), to: dayjs(new Date()) });
+import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
+const TimeSelector: FC<any> = ({
+  timeValues,
+  setTimeValues,
+  contactPrefernceGenInfos,
+  openTimeRangeModel,
+  closeTimeRangeModel,
+  saveToTime,
+}) => {
+  // const [timeVales, setValue] = React.useState<{
+  //   from: Dayjs | null;
+  //   to: Dayjs | null;
+  // }>({ from: dayjs(new Date()), to: dayjs(new Date()) });
   const setFromValue = (newValue: any) => {
-    setValue((pre) => ({ ...pre, from: newValue }));
+    setTimeValues((pre: any) => ({ ...pre, from: newValue }));
   };
   const setToValue = (newValue: any) => {
-    setValue((pre) => ({ ...pre, to: newValue }));
-    console.log("Teetstst");
+    console.log({ newValue });
+    console.log(dayjs(newValue).format("LT"));
+    setTimeValues((pre: any) => ({ ...pre, to: newValue }));
   };
   return (
     <>
@@ -35,15 +51,22 @@ const TimeSelector = () => {
               justifyContent: "center",
             }}
           >
-            <p>9am to 12pm</p>
+            <p>
+              {timeValues.fromString}{" "}
+              {timeValues.fromString === "--" ? "--" : "to"}{" "}
+              {timeValues.toString}
+            </p>
           </Grid>
           <Grid item>
-            <IconButton>
+            <IconButton onClick={openTimeRangeModel}>
               <AccessTimeFilledIcon />
             </IconButton>
           </Grid>
         </Grid>
-        <Modal open={true}>
+        <Modal
+          open={contactPrefernceGenInfos.timeRangeModel}
+          onClose={closeTimeRangeModel}
+        >
           <Grid
             container
             sx={{
@@ -58,22 +81,30 @@ const TimeSelector = () => {
           >
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Grid item container>
-                <Grid item sm={6}>
+                <Grid item sm={6} sx={{ padding: "1em" }}>
                   <DesktopTimePicker
                     label="From"
-                    value={timeVales.from}
+                    value={timeValues.from}
                     onChange={setFromValue}
-                    // renderInput={(params:any) => <TextField {...params} />}
+                    sx={{ width: "100%" }}
                   />
                 </Grid>
-                <Grid item sm={6}>
+                <Grid item sm={6} sx={{ padding: "1em" }}>
                   <DesktopTimePicker
                     label="To"
-                    value={timeVales.to}
+                    value={timeValues.to}
                     onChange={setToValue}
-                    onAccept={() => console.log("Tettttttttt")}
-                    // renderInput={(params:any) => <TextField {...params} />}
+                    sx={{ width: "100%" }}
                   />
+                </Grid>
+                <Grid item sm={12} sx={{ padding: "0 1em" }}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    onClick={saveToTime}
+                  >
+                    Confirm
+                  </Button>
                 </Grid>
               </Grid>
             </LocalizationProvider>

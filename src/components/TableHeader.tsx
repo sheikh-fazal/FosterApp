@@ -1,13 +1,6 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 // @mui
-import {
-  InputAdornment,
-  MenuItem,
-  Stack,
-  TextField,
-  Typography,
-  alpha,
-} from "@mui/material";
+import { InputAdornment, MenuItem, Stack, TextField, Typography, alpha } from "@mui/material";
 
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
@@ -55,9 +48,7 @@ const TableHeader = forwardRef(function TableHeader(
   }: any,
   ref
 ) {
-  const [params, setParams] = useState<any>(
-    getDefaultParams({ searchKey, selectFilters })
-  );
+  const [params, setParams] = useState<any>(getDefaultParams({ searchKey, selectFilters }));
 
   // Add the functions to the ref
   useImperativeHandle(ref, () => {
@@ -78,8 +69,7 @@ const TableHeader = forwardRef(function TableHeader(
       let filteredParams: any = {};
       for (let param in updatedParams) {
         const paramValue = updatedParams[param];
-        if (paramValue.trim() !== "" || param === searchKey)
-          filteredParams[param] = paramValue;
+        if (paramValue.trim() !== "") filteredParams[param] = paramValue;
       }
 
       // Use debounce if search is updated
@@ -105,11 +95,7 @@ const TableHeader = forwardRef(function TableHeader(
   return (
     <Stack sx={styles.rootBoxStyles}>
       {/* Title and Searchbar */}
-      <Stack
-        sx={(theme) =>
-          styles.headerStackStyles({ theme, showAddBtn, showSelectFilters })
-        }
-      >
+      <Stack sx={(theme) => styles.headerStackStyles({ theme, showAddBtn, showSelectFilters })}>
         <Typography component="p" variant="body1" fontWeight="600">
           {title}
         </Typography>
@@ -159,32 +145,18 @@ const TableHeader = forwardRef(function TableHeader(
       )}
 
       {/* Delete Button */}
-      {showDeleteBtn && (
-        <TableAction disabled={disabled} onClicked={onDelete} type="delete" />
-      )}
+      {showDeleteBtn && <TableAction disabled={disabled} onClicked={onDelete} type="delete" />}
       {/* Add Button */}
-      {showAddBtn && (
-        <TableAction disabled={disabled} onClicked={onAdd} type="add" />
-      )}
+      {showAddBtn && <TableAction disabled={disabled} onClicked={onAdd} type="add" />}
 
       {/* Share Button */}
-      {showShareBtn && (
-        <TableAction
-          disabled={disabled}
-          onClicked={onShare}
-          type="headerShare"
-        />
-      )}
+      {showShareBtn && <TableAction disabled={disabled} onClicked={onShare} type="headerShare" />}
 
       {/* Print Button */}
-      {showPrintBtn && (
-        <TableAction disabled={disabled} onClicked={onPrint} type="print" />
-      )}
+      {showPrintBtn && <TableAction disabled={disabled} onClicked={onPrint} type="print" />}
 
       {/* Diagram Button */}
-      {showDiagramBtn && (
-        <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
-      )}
+      {showDiagramBtn && <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />}
     </Stack>
   );
 });
@@ -223,9 +195,7 @@ const styles = {
   searchStyles: (theme: any) => ({
     width: { xs: "100%", sm: "auto" },
     backgroundColor:
-      theme.palette.mode === "light"
-        ? theme.palette.common.white
-        : theme.palette.grey[800],
+      theme.palette.mode === "light" ? theme.palette.common.white : theme.palette.grey[800],
     border: "unset",
     boxShadow: "unset",
     borderRadius: "4px",
@@ -239,9 +209,7 @@ const styles = {
   selectFieldStyles: (theme: any) => ({
     width: { xs: "100%", sm: "min(100vw, 200px)" },
     backgroundColor:
-      theme.palette.mode === "light"
-        ? theme.palette.common.white
-        : theme.palette.grey[800],
+      theme.palette.mode === "light" ? theme.palette.common.white : theme.palette.grey[800],
     borderRadius: "4px",
   }),
   addBtnStyles: (theme: any) => ({
