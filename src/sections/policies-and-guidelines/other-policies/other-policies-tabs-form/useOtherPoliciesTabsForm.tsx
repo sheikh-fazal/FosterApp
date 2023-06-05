@@ -1,10 +1,12 @@
-import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
 
-export const useAgencyGuidelinesTabs = () => {
-  const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } = usePolicyVerticalAddNew();
-  const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
+export const useOtherPoliciesTabsForm = () => {
+  const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } =
+    usePolicyVerticalAddNew();
+  const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] =
+    useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
   const route = useRouter();
@@ -16,7 +18,7 @@ export const useAgencyGuidelinesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      route.push("/policies-and-guidelines/agency-guidelines");
+      route.push("/policies-and-guidelines/other-policies");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -45,6 +47,6 @@ export const useAgencyGuidelinesTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
-    route
+    route,
   };
 };

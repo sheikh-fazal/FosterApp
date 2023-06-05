@@ -2,11 +2,11 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import OtherPolicies from "@root/sections/policies-and-guidelines/other-policies/OtherPolicies";
+import OtherPoliciesTabsForm from "@root/sections/policies-and-guidelines/other-policies/other-policies-tabs-form/OtherPoliciesTabsForm";
 
-const PAGE_TITLE = "Other Policies";
+const PAGE_TILE = "Other Policies";
 
-PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
+OtherPoliciesTabsAdd.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -14,23 +14,23 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/policies-and-guidelines",
+          href: "/policies-and-guidelines/other-policies",
         },
         {
           name: "Other Policies",
         },
       ]}
-      title={PAGE_TITLE}
+      title={PAGE_TILE}
     >
       {page}
     </Layout>
   );
 };
 
-export default function PolicyGuidelinesPage() {
+export default function OtherPoliciesTabsAdd() {
   return (
-    <Page title={PAGE_TITLE}>
-      <OtherPolicies />
+    <Page title={PAGE_TILE}>
+      <OtherPoliciesTabsForm />
     </Page>
   );
 }

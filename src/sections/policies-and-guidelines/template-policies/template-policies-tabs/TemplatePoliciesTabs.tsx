@@ -1,18 +1,18 @@
-import PolicyVerticalAddNew from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/PolicyVerticalAddNew'
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument'
 import CustomHorizaontalTab from '@root/components/customTabs'
 import React from 'react'
 import { uploadDocumentData } from '.'
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal'
 import DeleteModel from '@root/components/modal/DeleteModel'
 import { useTemplatePoliciesTabs } from './useTemplatePoliciesTabs'
+import PolicyVerticalAddNew from '@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm'
+import PolicyVerticalUploadDocument from '@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument'
 
 const TemplatePoliciesTabs = () => {
-   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count } = useTemplatePoliciesTabs();
+   const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal,setIsDeleteOpenModal, count, route } = useTemplatePoliciesTabs();
 
     return (
         <>
-            <CustomHorizaontalTab tabsArray={["Add New Policy", "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+            <CustomHorizaontalTab tabsArray={[`${route?.query?.action === 'add' || route?.query?.action === 'view' ? route?.query?.name : 'Add New Policy'}`, "Upload document"]}  currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
                 <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/templates'} />
 
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />

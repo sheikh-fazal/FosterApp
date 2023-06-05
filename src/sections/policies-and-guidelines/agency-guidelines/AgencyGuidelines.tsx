@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import PolicyVerticalTable from '@root/components/PolicyVerticalTabs/PolicyVerticalTable'
 import { OrganisationalPoliciesData } from '.';
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
+import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVerticalTable';
 
 const AgencyGuidelines = () => {
     return (
