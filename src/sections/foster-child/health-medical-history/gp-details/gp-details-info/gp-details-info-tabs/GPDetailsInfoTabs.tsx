@@ -3,7 +3,7 @@ import Documents from "../documents/Documents";
 import GPDetailsInfo from "../gp-details-info/GPDetailsInfo";
 
 
-const CHILDTHERAPYINFOTABSDATA = ["GP Details Info", "Documents"];
+const CHILDTHERAPYINFOTABSDATA = ["GP Details Info", "Upload Documents"];
 
 const GPDetailsInfoTabs = () => {
   // const {

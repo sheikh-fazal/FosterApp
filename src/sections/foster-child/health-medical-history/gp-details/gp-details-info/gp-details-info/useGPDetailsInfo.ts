@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { healthTherapyInfoFormDataFunction } from ".";
+
 import { useRouter } from "next/router";
+import { gpDetailsInfoFormDataFunction } from ".";
 
 export const useGPDetailsInfo = () => {
   const { query } = useRouter();
-  console.log(!!query.id);
-  const healthTherapyInfoFormData = healthTherapyInfoFormDataFunction(!!!query?.id);
+  const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(query?.action === "view");
   const methods: any = useForm({
     defaultValues: {},
   });
@@ -14,7 +14,7 @@ export const useGPDetailsInfo = () => {
     console.log(data);
   };
   return {
-    healthTherapyInfoFormData,
+    gpDetailsInfoFormData,
     methods,
     handleSubmit,
     onSubmitHandler,

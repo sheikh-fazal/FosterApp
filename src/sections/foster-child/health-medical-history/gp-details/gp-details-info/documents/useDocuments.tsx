@@ -4,7 +4,6 @@ import {
   usePostInitialHomeDocumentDataMutation,
 } from "@root/services/carer-info/personal-info/initial-home-visit/documents/documents";
 import { useRef, useState } from "react";
-import { initialHomeDocumentTableColumnsFunction } from ".";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -15,17 +14,12 @@ export const useDocuments = () => {
   const { query } = useRouter();
   // ----------------------------------------------------------------------
   const tableHeaderRef = useRef<any>();
-  // const [data, setData] = useState([]);
-  const [isSingleDocumentDetailViewed, SetIsSingleDocumentDetailViewed] =
-    useState(false);
   const [
     postInitialHomeDocumentDataTrigger,
     postInitialHomeDocumentDataStatus,
   ] = usePostInitialHomeDocumentDataMutation();
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
-  const initialHomeDocumentTableColumns =
-    initialHomeDocumentTableColumnsFunction(SetIsSingleDocumentDetailViewed);
   const params = {
     offset: page,
     limit: 10,
@@ -39,7 +33,6 @@ export const useDocuments = () => {
     useGetInitialHomeDocumentDataQuery(dataParameter);
 
   const submitInitialHomeVisitDocument = async (data: any) => {
-    console.log(data);
     const documentFormData = new FormData();
 
     documentFormData.append("documentType", data.documentType);
@@ -65,19 +58,12 @@ export const useDocuments = () => {
   };
 
   return {
-    theme,
-    tableHeaderRef,
-    page,
     setPage,
-    searchValue,
     setSearchValue,
     data,
     isLoading,
     isError,
     isSuccess,
-    isSingleDocumentDetailViewed,
-    SetIsSingleDocumentDetailViewed,
-    initialHomeDocumentTableColumns,
     user,
     isFetching,
     submitInitialHomeVisitDocument,

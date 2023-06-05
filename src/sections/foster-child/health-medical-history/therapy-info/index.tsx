@@ -54,7 +54,7 @@ export const therapyInfoTableColumnsFunction = (router?: any) => [
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/therapy-info/edit-child-therapy-info/${info?.row?.id}`
+                `/foster-child/health-medical-history/therapy-info/child-therapy-info/${info?.row?.id}?action=edit`
               )
             }
           />
@@ -62,7 +62,7 @@ export const therapyInfoTableColumnsFunction = (router?: any) => [
             type="view"
             onClicked={() =>
               router.push(
-                "/foster-child/health-medical-history/therapy-info/child-therapy-info"
+                `/foster-child/health-medical-history/therapy-info/child-therapy-info/${info?.row?.id}?action=view`
               )
             }
           />

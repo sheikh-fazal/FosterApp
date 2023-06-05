@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const initialHomeDocumentTableColumnsFunction = (
+export const gpDetailsInfoDocumentsTableColumnsFunction = (
   SetIsSingleDocumentDetailViewed: any
 ) => [
   {

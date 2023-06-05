@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 
 export const useHealthTherapyInfo = () => {
   const { query } = useRouter();
-  console.log(!!query.id);
-  const healthTherapyInfoFormData = healthTherapyInfoFormDataFunction(!!!query?.id);
+  const healthTherapyInfoFormData = healthTherapyInfoFormDataFunction(query?.action === "view");
   const methods: any = useForm({
     defaultValues: {},
   });
