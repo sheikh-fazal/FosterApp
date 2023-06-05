@@ -3,16 +3,12 @@ import { localFormNames, tabs } from "./static-data";
 import { enqueueSnackbar } from "notistack";
 import { useGetProfileStatusQuery } from "@root/services/update-profile/about-the-candidate/aboutTheCandidateApi";
 export const useLayoutInfo = () => {
-  const {data,isSuccess,isError,error} =  useGetProfileStatusQuery({});
-  console.log({data})
+  const { data, isSuccess, isError, error } = useGetProfileStatusQuery({});
   const [expanded, setExpanded] = useState<string | false>(false);
   const [diffInfoHandler, setDiffInfoHandler] = useState({
     activeFormName: "Personal Info",
   });
-  useEffect(() => {
-  //  isSuccess && settabsItems(data);
-  //  setExpanded("BACKGROUND CHECKS")
-  },[isSuccess,data]);
+
   const [tabsItems, settabsItems] = useState([
     { name: "Personal Info", status: "Done" },
     { name: "Address Details", status: "Done" },
@@ -35,7 +31,13 @@ export const useLayoutInfo = () => {
     { name: "Medical Questionnaire", status: "Done" },
     { name: "Add Declaration", status: "Done" },
   ]);
-
+  useEffect(() => {
+    if (!isSuccess) return;
+    // const localIndexOfForm = localFormNames.indexOf(data?.activeFormName);
+    // const formName = localFormNames[localIndexOfForm - 1];
+    // isSuccess && settabsItems(data?.forms);
+    // setExpanded("BACKGROUND CHECKS");
+  }, [isSuccess, data]);
   const itemClickHand = (itemName: string) => {
     const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
     // for handling click on last pending form
@@ -46,10 +48,7 @@ export const useLayoutInfo = () => {
       ({ status }) => status === "Pending"
     );
     // for handling click on last pending form
-    console.log({ indexOfClickItem, indexOfFirstPending });
-    // check if clicked form is status is pending and it is not first pending status form
-    console.table(indexOfClickItem !== indexOfFirstPending);
-    console.log({ formStatus });
+
     if (formStatus === "Pending" && indexOfClickItem !== indexOfFirstPending) {
       enqueueSnackbar("Please Fill The Previous Form First", {
         variant: "info",
@@ -68,8 +67,8 @@ export const useLayoutInfo = () => {
     const indexOfCurrentForm = tabsItems.findIndex(
       ({ name }) => name === diffInfoHandler.activeFormName
     );
-
     const updatedTabs = [...tabsItems];
+
     updatedTabs[indexOfCurrentForm].status = "Done";
     updatedTabs[indexOfCurrentForm + 1].status === "Done" ? "Done" : "Pending";
     settabsItems(updatedTabs);
