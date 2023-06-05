@@ -5,7 +5,7 @@ import { CarerSectionBFromDate } from ".";
 import { useCarerSectionB } from "./useCarerSectionB";
 import Link from "next/link";
 
-const SuperVisoryCarerSectionB = ({ disabled }: any) => {
+const SuperVisoryCarerSectionB = ({ disabled, handleBack }: any) => {
   const { methods } = useCarerSectionB();
   return (
     <FormProvider methods={methods}>
@@ -27,23 +27,19 @@ const SuperVisoryCarerSectionB = ({ disabled }: any) => {
           </Grid>
         ))}
         <Grid item xs={12}>
-          <Link
-            href={"/reports/ifa-reports/supervisory-home-visit"}
-            style={{ textDecoration: "none" }}
-          >
-            <Button
-              type="button"
-              variant="contained"
-              sx={{
+          <Button
+            type="button"
+            variant="contained"
+            sx={{
+              backgroundColor: "#F6830F",
+              "&:hover": {
                 backgroundColor: "#F6830F",
-                "&:hover": {
-                  backgroundColor: "#F6830F",
-                },
-              }}
-            >
-              back
-            </Button>
-          </Link>
+              },
+            }}
+            onClick={handleBack}
+          >
+            back
+          </Button>
         </Grid>
       </Grid>
     </FormProvider>
