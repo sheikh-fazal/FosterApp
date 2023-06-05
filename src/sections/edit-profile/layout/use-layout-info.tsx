@@ -35,8 +35,8 @@ export const useLayoutInfo = () => {
     if (!isSuccess) return;
     // const localIndexOfForm = localFormNames.indexOf(data?.activeFormName);
     // const formName = localFormNames[localIndexOfForm - 1];
-    // isSuccess && settabsItems(data?.forms);
-    // setExpanded("BACKGROUND CHECKS");
+    isSuccess && settabsItems(data?.forms);
+    setExpanded("BACKGROUND CHECKS");
   }, [isSuccess, data]);
   const itemClickHand = (itemName: string) => {
     const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
@@ -67,10 +67,17 @@ export const useLayoutInfo = () => {
     const indexOfCurrentForm = tabsItems.findIndex(
       ({ name }) => name === diffInfoHandler.activeFormName
     );
-    const updatedTabs = [...tabsItems];
-
-    updatedTabs[indexOfCurrentForm].status = "Done";
-    updatedTabs[indexOfCurrentForm + 1].status === "Done" ? "Done" : "Pending";
+    let updatedTabs = [...tabsItems];
+    // update status of current form
+    const updateCurrentForm = { ...updatedTabs[indexOfCurrentForm] };
+    updateCurrentForm.status = "Done";
+    // update status of next from
+    const updateNexttForm = { ...updatedTabs[indexOfCurrentForm + 1] };
+    updateNexttForm.status === "Done" ? "Done" : "Pending";
+    updatedTabs[indexOfCurrentForm] = updateCurrentForm;
+    updatedTabs[indexOfCurrentForm + 1] = updateNexttForm;
+    // updatedTabs[indexOfCurrentForm].status = "Done";
+    // updatedTabs[indexOfCurrentForm + 1].status === "Done" ? "Done" : "Pending";
     settabsItems(updatedTabs);
     // tabsItems[
     //   localFormNames.indexOf(diffInfoHandler.activeFormName) - 1
