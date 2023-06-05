@@ -8,9 +8,9 @@ import { useRouter } from "next/router";
 import ChecklistPolicy from "./ChecklistPolicy/ChecklistPolicy";
 
 const PolicyVerticalTable = (props: any) => {
-    const { data, addNewTabNavigation } = props;
-    const navigate = useRouter();
-    const theme = useTheme();
+  const { data, addNewTabNavigation } = props;
+  const navigate = useRouter();
+  const theme = useTheme();
 
 
     const columns = (title: string) => [

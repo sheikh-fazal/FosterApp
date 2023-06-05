@@ -1,41 +1,63 @@
 import * as React from "react";
+import TableAction from "./TableAction";
 import Accordion from "@mui/material/Accordion";
+import Typography from "@mui/material/Typography";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
-import TableAction from "./TableAction";
-const CustomAccordian = ({
-  handleRowDelete,
-  handleTitleEdit,
-  addShowBtn,
-  handleRowAdd,
-  showBtn,
-  subTitle,
-  data,
-  className,
-  ...rest
-}: any) => {
-  const [accordianExpanded, setAccordianExpanded] = React.useState(false);
-  const [expanded, setExpanded] = React.useState<string | false>(false);
-  const theme: any = useTheme();
-  const handleChange =
-    (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      setExpanded(isExpanded ? panel : false);
-    };
-  const [cancelDelete, setCancelDelete] = React.useState(false);
+import { Avatar, Box, alpha, useTheme, Stack } from "@mui/material";
 
- 
+interface CUSTOMACCORDIAN {
+  handleRowDelete?: any;
+  handleTitleEdit?: any;
+  showBtn?: any;
+  addIcon?: any;
+  handleAdd?: any;
+  subTitle?: any;
+  data: any;
+  className?: any;
+  firstAccStyle?: any;
+  addShowBtn?: any;
+  handleRowAdd?: any;
+}
+const CustomAccordian = (props: CUSTOMACCORDIAN) => {
+  const {
+    handleRowDelete,
+    handleTitleEdit,
+    addShowBtn,
+    handleRowAdd,
+    showBtn,
+    addIcon,
+    handleAdd,
+    subTitle,
+    data,
+    className,
+    firstAccStyle,
+    ...rest
+  } = props;
+  const [accordianExpanded, setAccordianExpanded] = React.useState<
+    null | number
+  >();
+  const [cancelDelete, setCancelDelete] = React.useState(false);
+  const theme: any = useTheme();
+
+  const handleAccordionChange = (index: any) => {
+    if (accordianExpanded === index) {
+      setAccordianExpanded(null);
+    } else {
+      setAccordianExpanded(index);
+    }
+  };
+
   return (
     <>
-      {data?.map((item: any, idx: any) => (
+      {data?.map((item: any, index: any) => (
         <Accordion
           key={item.title}
           disableGutters
           sx={{
-            marginTop: "20px",
+            marginTop: firstAccStyle && index === 0 ? "0px" : "20px",
             borderRadius: "5px",
             "&:not(:last-child)": {
               borderBottom: 0,
@@ -44,8 +66,8 @@ const CustomAccordian = ({
               display: "none",
             },
           }}
-          expanded={expanded === `panel${idx + 1}`}
-          onChange={handleChange(`panel${idx + 1}`)}
+          expanded={accordianExpanded === index}
+          onChange={() => handleAccordionChange(index)}
         >
           <AccordionSummary
             sx={{
@@ -58,8 +80,8 @@ const CustomAccordian = ({
               borderRadius: "5px",
             }}
             className="summary-Icon"
-            aria-controls={`panel${idx + 1}bh-content`}
-            id={`panel${idx + 1}bh-header`}
+            aria-controls={`panel${index + 1}bh-content`}
+            id={`panel${index + 1}bh-header`}
             expandIcon={
               <Avatar
                 sx={{
@@ -119,7 +141,7 @@ const CustomAccordian = ({
                   />
                 </Stack>
               )}
-              {addShowBtn &&
+              {addShowBtn && (
                 <TableAction
                   size="small"
                   type="add"
@@ -129,7 +151,7 @@ const CustomAccordian = ({
                     handleRowAdd(item);
                   }}
                 />
-              }
+              )}
 
               {subTitle && (
                 <Typography
@@ -139,6 +161,13 @@ const CustomAccordian = ({
                 >
                   {item?.lectures?.length} lectuers - {item?.minutes} min
                 </Typography>
+              )}
+              {addIcon && accordianExpanded === index && (
+                <TableAction
+                  size="small"
+                  type="add"
+                  onClick={() => handleAdd(item.title)}
+                />
               )}
             </Box>
           </AccordionSummary>
