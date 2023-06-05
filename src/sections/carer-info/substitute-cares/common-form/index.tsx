@@ -6,19 +6,16 @@ import {
 } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { fDate } from "@root/utils/formatTime";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
 import { RHFInputWithLabel } from "@root/sections/enquiry-stage/extensions/RHFInputWithLabel";
-import { HEAREDABOUTAGENCY } from "@root/dropdown-data/hearAboutAgency";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import { Typography } from "@mui/material";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 const maxAgeCheck = dayjs().subtract(18.1, "year");
 const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
   title: "USD",
@@ -28,6 +25,35 @@ export const defaultValues = {
   dateOfBirth: new Date(ageOf18Years),
   dateOfEnquiry: new Date(todayDate),
   gender: "Male",
+  address: "address initial value",
+  telephone: "+440000000",
+  email: "test@test.com",
+  ethnicity: "Roma",
+  language: "",
+  religion: "Islam",
+  practisingStatus: "Practicing",
+  areChecksRequired: "",
+  occupation: "",
+  numberOfApplicantSeen: "",
+  level: "Level 1",
+  // dateOfBirth2: new Date(ageOf18Years),
+  question1: "question 1",
+  question2: "question 2",
+  background: "Background",
+  health: "health",
+  education: "education",
+  contact: "contact",
+  valuingDiversity: "valuingDiversity",
+  acceptingChild: "acceptingChild",
+  affection: "affection",
+  selfCare: "selfCare",
+  behaviorManagement: "behaviorManagement",
+  applicantSupportNetwork: "applicantSupportNetwork",
+  socialWorkersAssessment: "socialWorkersAssessment",
+  conclusion: "conclusion",
+  statutoryChecks: "statutoryChecks",
+  training: "training",
+  healthAndSafety: "healthAndSafety",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -37,6 +63,19 @@ export const FormSchema = Yup.object().shape({
   lastName: Yup.string().required("Last name is required"),
   dateOfBirth: Yup.date().required("Date of Birth is required"),
   gender: Yup.string().required("Field is required"),
+  address: Yup.string().required("Field is required"),
+  telephone: Yup.string().required("Field is required"),
+  email: Yup.string().required("Field is required"),
+  ethnicity: Yup.string().required("Field is required"),
+  language: Yup.string().required("Field is required"),
+  religion: Yup.string().required("Field is required"),
+  practisingStatus: Yup.string().required("Field is required"),
+  occupation: Yup.string().required("Field is required"),
+  numberOfApplicantSeen: Yup.string().required("Field is required"),
+  // dateOfBirth2: Yup.date().required("Field is required"),
+  question1: Yup.string().required("Field is required"),
+  question2: Yup.string().required("Field is required"),
+  background: Yup.string().required("Field is required"),
 });
 
 export const SUBSTITUTECARERFORMDATA = [
@@ -102,6 +141,7 @@ export const SUBSTITUTECARERFORMDATA = [
       name: "dateOfBirth",
       label: "Date Of Birth",
       fullWidth: true,
+      minData: maxAgeCheck,
     },
     gridLength: 6,
     component: RHFDatePicker,
@@ -118,35 +158,370 @@ export const SUBSTITUTECARERFORMDATA = [
     gridLength: 6,
     options: GENDERDROPDOWNDATA,
   },
+  {
+    id: 7,
+    componentProps: {
+      typographyText: "Contact Details",
+    },
+    component: Typography,
+    gridLength: 12,
+  },
+  {
+    id: 8,
+    componentProps: {
+      name: "address",
+      label: "Address",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 9,
+    componentProps: {
+      name: "telephone",
+      label: "Telephone",
+    },
+    gridLength: 6,
+    component: RHFTextField,
+  },
+  {
+    id: 10,
+    componentProps: {
+      name: "email",
+      label: "Email",
+    },
+    gridLength: 6,
+    component: RHFTextField,
+  },
+
+  {
+    id: 11,
+    componentProps: {
+      name: "ethnicity",
+      label: "Ethnicity",
+      select: true,
+      fullWidth: true,
+    },
+    component: RHFSelect,
+    gridLength: 6,
+    options: ETHNICITYDROPDOWN,
+  },
+  {
+    id: 12,
+    componentProps: {
+      name: "language",
+      label: "Language Spoken",
+    },
+    gridLength: 6,
+    component: RHFTextField,
+  },
+  {
+    id: 12,
+    componentProps: {
+      name: "religion",
+      label: "Religion",
+      select: true,
+      fullWidth: true,
+    },
+    component: RHFSelect,
+    gridLength: 6,
+    options: RELIGIONDROPDOWN,
+  },
+  {
+    id: 12,
+    componentProps: {
+      name: "practisingStatus",
+      label: "Practising Status",
+      select: true,
+      fullWidth: true,
+    },
+    component: RHFSelect,
+    gridLength: 6,
+    options: [
+      {
+        value: "Practicing",
+        label: "Practicing",
+      },
+      {
+        value: "Non Practicing",
+        label: "Non Practicing",
+      },
+    ],
+  },
+  {
+    id: 13,
+    componentProps: {
+      name: "areChecksRequired",
+      label: "Are Checks Required",
+    },
+    gridLength: 12,
+    component: RHFCheckbox,
+  },
+  {
+    id: 14,
+    componentProps: {
+      name: "occupation",
+      label: "Occupation",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 15,
+    componentProps: {
+      name: "numberOfApplicantSeen",
+      label: "Data and number of times applicant seen",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 16,
+    componentProps: {
+      name: "level",
+      text: "Level",
+      Component: RHFRadioGroup,
+      options: ["Level 1", "Level 2"],
+      getOptionLabel: ["Level 1", "Level 2"],
+      typographyProps: {
+        variant: "body1",
+        fontWeight: 600,
+      },
+    },
+    gridLength: 12,
+    component: RHFInputWithLabel,
+  },
+
   // {
-  //   id: 6,
+  //   id: 16.5,
   //   componentProps: {
-  //     name: "mainCarerAbleToGiveUpwork",
-  //     label: "Is the main carer able to give up work:",
-  //     select: true,
+  //     name: "dateOfBirth2",
+  //     label: "Date Of Birth2",
   //     fullWidth: true,
   //   },
-  //   component: RHFSelect,
   //   gridLength: 6,
-  //   options: [
-  //     {
-  //       value: "USD",
-  //       label: "$",
-  //     },
-  //     {
-  //       value: "EUR",
-  //       label: "€",
-  //     },
-  //     {
-  //       value: "BTC",
-  //       label: "฿",
-  //     },
-  //     {
-  //       value: "JPY",
-  //       label: "¥",
-  //     },
-  //   ],
+  //   component: RHFDatePicker,
   // },
+
+  {
+    id: 17,
+    componentProps: {
+      name: "question1",
+      text: "Why do you want to support the Foster Carer?",
+      label: "Field Value",
+      Component: RHFTextField,
+      typographyProps: {
+        variant: "body2",
+        mb: "10px",
+      },
+    },
+    gridLength: 6,
+    component: RHFInputWithLabel,
+  },
+  {
+    id: 18,
+    componentProps: {
+      name: "question2",
+      text: "Do you know the CHildren Currently in placement?",
+      label: "Field Value",
+      Component: RHFTextField,
+      typographyProps: {
+        variant: "body2",
+        mb: "10px",
+      },
+    },
+    gridLength: 6,
+    component: RHFInputWithLabel,
+  },
+  {
+    id: 19,
+    componentProps: {
+      name: "background",
+      label: "Background",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 20,
+    componentProps: {
+      name: "health",
+      label: "Health",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 21,
+    componentProps: {
+      name: "education",
+      label: "Education",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 22,
+    componentProps: {
+      name: "contact",
+      label: "Contact",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 23,
+    componentProps: {
+      name: "valuingDiversity",
+      label: "Valuing Diversity",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 24,
+    componentProps: {
+      name: "acceptingChild",
+      label: "Accepting the Child as he/she is",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 25,
+    componentProps: {
+      name: "affection",
+      label: "Affection",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 26,
+    componentProps: {
+      name: "selfCare",
+      label: "Self Care",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 27,
+    componentProps: {
+      name: "behaviorManagement",
+      label: "Behavior Management",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 28,
+    componentProps: {
+      name: "applicantSupportNetwork",
+      label: "Applicant Support Network",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 29,
+    componentProps: {
+      name: "socialWorkersAssessment",
+      label: "Social Workers`s Assessment",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 30,
+    componentProps: {
+      name: "conclusion",
+      label: "Conclusion/Recommendation",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 31,
+    componentProps: {
+      name: "statutoryChecks",
+      label: "Statutory Checks",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 32,
+    componentProps: {
+      name: "training",
+      label: "Training",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 22,
+    componentProps: {
+      name: "healthAndSafety",
+      label: "HealthAndSafety",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
   // {
   //   id: 7,
   //   componentProps: {

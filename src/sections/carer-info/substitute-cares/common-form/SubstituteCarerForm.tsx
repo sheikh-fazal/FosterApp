@@ -1,20 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Box,
-  Button,
-  useTheme,
-  Typography,
-  Grid,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-} from "@mui/material";
-import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
-import React, { useEffect, useState } from "react";
+import { Grid, Button } from "@mui/material";
+import { FormProvider } from "@root/components/hook-form";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues, SUBSTITUTECARERFORMDATA } from ".";
-import dayjs from "dayjs";
-import IsFetching from "@root/components/loaders/IsFetching";
 import Error from "@root/components/Error";
 
 //component function
@@ -26,16 +15,11 @@ export default function SubstituteCarerForm(props: any) {
     defaultValues: disabled ? data : defaultValues,
   });
 
-  const {
-    reset,
-    trigger,
-    setValue,
-    getValues,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
+  const { reset, handleSubmit } = methods;
 
   const onSubmitHandler = (data: any) => {
+    console.log("submitted Data", data);
+
     onSubmit(data);
     reset();
   };
@@ -57,7 +41,7 @@ export default function SubstituteCarerForm(props: any) {
                         {option.label}
                       </option>
                     ))
-                  : null}
+                  : form.componentProps.typographyText}
               </form.component>
             </Grid>
           );
