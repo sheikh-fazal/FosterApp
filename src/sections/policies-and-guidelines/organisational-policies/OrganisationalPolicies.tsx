@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import PolicyVerticalTable from '@root/components/PolicyVerticalTabs/PolicyVerticalTable'
-import { OrganisationalPoliciesData } from '.';
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
+import React, { useState } from "react";
+import PolicyVerticalTable from "@root/components/PolicyVerticalTabs/PolicyVerticalTable";
+import { OrganisationalPoliciesData } from ".";
+import PolicyVerticalUploadDocument from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument";
 
 const OrganisationalPolicies = () => {
     
@@ -12,4 +12,4 @@ const OrganisationalPolicies = () => {
     )
 }
 
-export default OrganisationalPolicies
+export default OrganisationalPolicies;
