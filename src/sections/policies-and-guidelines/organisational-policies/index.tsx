@@ -1,4 +1,4 @@
-import RecruitmentAssessmentPolicyIcon from "../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy.svg";
+import RecruitmentAssessmentPolicy from '../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy'
 import PanelPolicyIcon from "../../../assets/svg/policy-guidelines/Panel-Policy.svg";
 import SafeGuardingPolicyIcon from "../../../assets/svg/policy-guidelines/SafeGuarding-Policy.svg";
 import AllegationsPolicyIcon from "../../../assets/svg/policy-guidelines/Allegations-Policy.svg";
@@ -17,7 +17,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 0,
         title: "Recruitment and Assessment Policy ",
-        img: RecruitmentAssessmentPolicyIcon,
+        img: <RecruitmentAssessmentPolicy/>,
         innerData: [
             {
                 id: '1',
