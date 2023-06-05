@@ -37,6 +37,7 @@ const HorizaontalTabs = ({
         sx={styles.tabRoot(theme)}
         TabIndicatorProps={styles.tabIndicator(theme)}
         value={value}
+        defaultValue={2}
         onChange={handleChange}
       >
         {tabsDataArray?.map((title: string) => (

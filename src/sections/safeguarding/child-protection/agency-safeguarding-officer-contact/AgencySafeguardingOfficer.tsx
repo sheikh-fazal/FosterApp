@@ -19,7 +19,7 @@ const AgencySafeguardingOfficer = () => {
     <>
       <Card sx={styles.card}>
         <TableHeader title={"Contact Directory"} ref={tableHeaderRef} searchKey="search" showAddBtn onAdd={handleEditOpen} />
-        <HorizaontalTabs tabsDataArray={tabsArr} setActiveTab={setActiveTab}>
+        <HorizaontalTabs tabsDataArray={tabsArr} setActiveTab={setActiveTab} defaultValue>
           {contactDirectoryTabs.map((item: any, index: number) => (
             <Fragment key={index}>
               <ContactDirectoryTable data={filteredData} contactInfoModal={isEditModal} setContactInfoModal={handleEditOpen} />
