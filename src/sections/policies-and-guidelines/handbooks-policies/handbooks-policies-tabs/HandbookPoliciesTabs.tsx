@@ -8,10 +8,10 @@ import DeleteModel from '@root/components/modal/DeleteModel';
 import { useHandbookPoliciesTabs } from './useHandbookPoliciesTabs';
 
 const HandbookPoliciesTabs = () => {
-    const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count } = useHandbookPoliciesTabs();
+    const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useHandbookPoliciesTabs();
     return (
         <>
-            <CustomHorizaontalTab tabsArray={["Add New Handbook", "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+            <CustomHorizaontalTab tabsArray={[`${route.query.action === 'add' || 'view' ? route.query.name : 'Add New Handbook'}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
                 <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/handbooks/'} />
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />
             </CustomHorizaontalTab>
