@@ -1,13 +1,13 @@
-import CustomHorizaontalTab from "@root/components/customTabs";
 import React from "react";
+import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm";
+import CustomHorizaontalTab from "@root/components/customTabs";
+import { useGovtLegislationTabs } from "./useGovtLegislationTabs";
 import { uploadDocumentData } from ".";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { useOrganisationalPoliciesTabs } from "./useOrganisationalPoliciesTabs";
-import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm";
 import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
 
-const OrganisationalPoliciesTabs = () => {
+const GovtLegislationsTabs = () => {
   const {
     currentTab,
     setCurrentTab,
@@ -22,7 +22,7 @@ const OrganisationalPoliciesTabs = () => {
     setIsDeleteOpenModal,
     count,
     route,
-  } = useOrganisationalPoliciesTabs();
+  } = useGovtLegislationTabs();
 
   return (
     <>
@@ -41,9 +41,8 @@ const OrganisationalPoliciesTabs = () => {
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}
-          handleAddNewBack={"/policies-and-guidelines/organisational-policies/"}
+          handleAddNewBack={"/policies-and-guidelines/govt-legislations/"}
         />
-
         <PolicyVerticalUploadDocument
           data={uploadDocumentData}
           addUploadDocument={() => setIsUploadDocumentOpenModal(true)}
@@ -69,4 +68,4 @@ const OrganisationalPoliciesTabs = () => {
   );
 };
 
-export default OrganisationalPoliciesTabs;
+export default GovtLegislationsTabs;
