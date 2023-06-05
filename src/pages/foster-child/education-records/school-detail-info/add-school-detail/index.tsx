@@ -5,26 +5,27 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import { SchoolDetailInfoTable } from "@root/sections/foster-child/education-records/school-detail-info";
+import { Card } from "@mui/material";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Child Info",
-    href: "/foster-child",
+    name: "School Detail Info List",
+    href: "/foster-child/education-records/school-detail-info",
   },
   {
-    name: "School Detail Info List",
+    name: "School Detail Info",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "School Detail Info ";
+const PAGE_TITLE = "School Detail Info";
 // ----------------------------------------------------------------------
 
-SchoolDetailInfo.getLayout = function getLayout(page: any) {
+AddSchoolDetail.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -35,10 +36,10 @@ SchoolDetailInfo.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function SchoolDetailInfo() {
+export default function AddSchoolDetail() {
   return (
-    <Page title={PAGE_TITLE}>
-      <SchoolDetailInfoTable />
-    </Page>
+    <HorizaontalTabs tabsDataArray={["School Detail Info", "Upload Document"]}>
+    
+  </HorizaontalTabs>
   );
 }
