@@ -24,8 +24,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  // const { data, isLoading, isError, isFetching, isSuccess } =
-  //   useLazyGetPersonalInfoQuery({});
+  
   const [getProfileInfoQuery] = useLazyGetPersonalInfoQuery();
   const [updatePersonalInfo] = useUpdatePersonalInfoMutation();
   const methods: any = useForm({
