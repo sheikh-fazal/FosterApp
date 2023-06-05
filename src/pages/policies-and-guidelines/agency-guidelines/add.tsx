@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import AgencyGuidelinesTabs from '@root/sections/policies-and-guidelines/agency-guidelines/agency-guidelines-tabs/AgencyGuidelinesTabs';
 
-const PAGE_TITLE = "Agency Guidelines";
+const PAGE_TITLE = "Policies And Guidelines";
 
 PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
   return (
@@ -17,7 +17,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
           href: "/policies-and-guidelines/agency-guidelines",
         },
         {
-          name: "Recruitment",
+          name: "Agency Guidelines",
         },
       ]}
       title={PAGE_TITLE}
@@ -25,7 +25,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       {page}
     </Layout>
   );
-};
+};  
 
 export default function PolicyGuidelinesPage() {
   return (
