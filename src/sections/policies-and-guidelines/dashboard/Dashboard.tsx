@@ -20,7 +20,7 @@ const Dashboard = () => {
                                     <Typography sx={styles.cardsText}>{card.title}
                                     </Typography>
                                 </Box>
-                                <Box sx={{ flexBasis: "content" }}><Image src={card.icon} alt="icon" /></Box>
+                                <Box sx={{ flexBasis: "content" }}>{card.icon}</Box>
                             </Box>
                         </Link>
                     </Grid>))}
