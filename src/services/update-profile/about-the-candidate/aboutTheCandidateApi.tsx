@@ -4,6 +4,35 @@ const TAG = "UPDATE_PROFILE";
 
 export const aboutTheCandidateApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
+    getProfileStatus: builder.query({
+      query: () => ({
+        url: "user-profile/all-profile-status",
+        method: "GET",
+      }),
+      providesTags: [TAG],
+      transformResponse: (response: any) => ([
+        { name: "Personal Info", status: "Done" },
+        { name: "Address Details", status: "Pending" },
+        { name: "Photo for ID Badge", status: "Pending" },
+        { name: "ID Upload (Passport/DL)", status: "Pending" },
+        { name: "Add Reference", status: "Pending" },
+        { name: "Training Certificates", status: "Pending" },
+        { name: "Additional Training Details", status: "Pending" },
+        { name: "Work Experience", status: "Pending" },
+        { name: "Specialities", status: "Pending" },
+        { name: "DBS", status: "Pending" },
+        { name: "Right to work", status: "Pending" },
+        { name: "Next Of kin", status: "Pending" },
+        { name: "Contact Preference", status: "Pending" },
+        { name: "Employment Status", status: "Pending" },
+        { name: "Opportunity Declaration", status: "Pending" },
+        { name: "Additional Docs", status: "Pending" },
+        { name: "Bank Details", status: "Pending" },
+        { name: "Immunisation", status: "Pending" },
+        { name: "Medical Questionnaire", status: "Pending" },
+        { name: "Add Declaration", status: "Pending" },
+      ]),
+    }),
     getPersonalInfo: builder.query({
       query: () => ({
         url: "user-profile/all-profile?infoToget=personalInfo",
@@ -80,6 +109,7 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
 });
 
 export const {
+  useGetProfileStatusQuery,
   useLazyGetPersonalInfoQuery,
   useUpdatePersonalInfoMutation,
   useLazyGetAddressDetailsQuery,

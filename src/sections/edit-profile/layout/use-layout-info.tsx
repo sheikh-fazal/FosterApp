@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { localFormNames, tabs } from "./static-data";
 import { enqueueSnackbar } from "notistack";
+import { useGetProfileStatusQuery } from "@root/services/update-profile/about-the-candidate/aboutTheCandidateApi";
 export const useLayoutInfo = () => {
+  const {data,isSuccess,isError,error} =  useGetProfileStatusQuery({});
+  console.log({data})
   const [expanded, setExpanded] = useState<string | false>(false);
   const [diffInfoHandler, setDiffInfoHandler] = useState({
     activeFormName: "Personal Info",
   });
+  useEffect(() => {
+  //  isSuccess && settabsItems(data);
+  //  setExpanded("BACKGROUND CHECKS")
+  },[isSuccess,data]);
   const [tabsItems, settabsItems] = useState([
     { name: "Personal Info", status: "Done" },
     { name: "Address Details", status: "Done" },
