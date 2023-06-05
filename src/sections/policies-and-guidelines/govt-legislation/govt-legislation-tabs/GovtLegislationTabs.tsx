@@ -1,11 +1,11 @@
 import React from "react";
-import PolicyVerticalAddNew from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/PolicyVerticalAddNew";
-import PolicyVerticalUploadDocument from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument";
+import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm";
 import CustomHorizaontalTab from "@root/components/customTabs";
 import { useGovtLegislationTabs } from "./useGovtLegislationTabs";
 import { uploadDocumentData } from ".";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
 
 const GovtLegislationsTabs = () => {
   const {
@@ -21,12 +21,20 @@ const GovtLegislationsTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
+    route,
   } = useGovtLegislationTabs();
 
   return (
     <>
       <CustomHorizaontalTab
-        tabsArray={["Add New Policy", "Upload document"]}
+        tabsArray={[
+          `${
+            route?.query?.action === "add" || route?.query?.action === "view"
+              ? route?.query?.name
+              : "Add New Policy"
+          }`,
+          "Upload document",
+        ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         isDisabled={true}

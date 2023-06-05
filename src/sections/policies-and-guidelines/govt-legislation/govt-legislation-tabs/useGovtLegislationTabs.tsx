@@ -1,4 +1,4 @@
-import { usePolicyVerticalAddNew } from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/usePolicyVerticalAddNew";
+import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -8,7 +8,7 @@ export const useGovtLegislationTabs = () => {
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
-  const navgiate = useRouter();
+  const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -17,7 +17,7 @@ export const useGovtLegislationTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      navgiate.push("/policies-and-guidelines/govt-legislations");
+      route.push("/policies-and-guidelines/govt-legislations");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -46,5 +46,6 @@ export const useGovtLegislationTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
+    route,
   };
 };
