@@ -1,10 +1,13 @@
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { PolicyVerticalAddNewDefaultValues, PolicyVerticalAddNewValidationSchema, PolicyVerticalAddNewFormData } from ".";
-import { useState } from "react";
+import { PolicyVerticalAddNewDefaultValues, PolicyVerticalAddNewValidationSchema, PolicyVerticalAddNewFormData, handleInputFields } from ".";
+import { useRouter } from "next/router";
 
 export const usePolicyVerticalAddNew = () => {
+  const currentPage = useRouter();
   const [currentTab, setCurrentTab] = useState(0);
+  const route = useRouter();
   const handleNextTab = () => setCurrentTab(currentTab + 1);
   const handlePreviousTab = () => setCurrentTab(currentTab - 1);
 
@@ -15,6 +18,10 @@ export const usePolicyVerticalAddNew = () => {
 
   const { handleSubmit, reset } = methods;
 
+  useEffect(() => (
+    handleInputFields(currentPage.pathname === '/policies-and-guidelines/checklists/add')
+  ), [currentPage.pathname]);
+
   return {
     methods,
     handleSubmit,
@@ -23,6 +30,8 @@ export const usePolicyVerticalAddNew = () => {
     currentTab,
     setCurrentTab,
     handlePreviousTab,
-    reset
+    reset,
+    currentPage,
+    route
   };
 };
