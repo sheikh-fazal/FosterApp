@@ -33,9 +33,13 @@ export const useLayoutInfo = () => {
   ]);
   useEffect(() => {
     if (!isSuccess) return;
-    // const localIndexOfForm = localFormNames.indexOf(data?.activeFormName);
-    // const formName = localFormNames[localIndexOfForm - 1];
+    const localIndexOfForm = localFormNames.indexOf(data?.activeFormName);
+    const formName = localFormNames[localIndexOfForm - 1];
     isSuccess && settabsItems(data?.forms);
+    setDiffInfoHandler((pre) => ({
+      ...pre,
+      activeFormName: formName,
+    }));
     setExpanded("BACKGROUND CHECKS");
   }, [isSuccess, data]);
   const itemClickHand = (itemName: string) => {

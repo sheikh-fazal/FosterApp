@@ -11,9 +11,9 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => ({
-        forms:[
+        forms: [
           { name: "Personal Info", status: "Done" },
-          { name: "Address Details", status: "Pending" },
+          { name: "Address Details", status: "Done" },
           { name: "Photo for ID Badge", status: "Pending" },
           { name: "ID Upload (Passport/DL)", status: "Pending" },
           { name: "Add Reference", status: "Pending" },
@@ -33,7 +33,7 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
           { name: "Medical Questionnaire", status: "Pending" },
           { name: "Add Declaration", status: "Pending" },
         ],
-        activeFormName:"addressdetail"
+        activeFormName: "badgeId",
       }),
     }),
     getPersonalInfo: builder.query({
