@@ -23,18 +23,18 @@ const useTrainingsList = () => {
     const deleteTrainingProfile = async () => {
       console.log(trainingProfileId);
   
-      const res: any = deleteProfile(trainingProfileId)
-        .unwrap()
-        .then((res: any) => {
-          enqueueSnackbar("Training Profile deleted  Successfully", {
-            variant: "success",
-          });
-          setTrainingProfileId(null);
-        })
-        .catch((error: any) => {
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-        });
+    //   const res: any = deleteProfile(trainingProfileId)
+    //     .unwrap()
+    //     .then((res: any) => {
+    //       enqueueSnackbar("Training Profile deleted  Successfully", {
+    //         variant: "success",
+    //       });
+    //       setTrainingProfileId(null);
+    //     })
+    //     .catch((error: any) => {
+    //       const errMsg = error?.data?.message;
+    //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    //     });
     };
   
     const openDeleteModel = (id: string) => {

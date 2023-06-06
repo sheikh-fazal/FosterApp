@@ -31,13 +31,12 @@ export default function DashboardLayout({ children, ...other }: any) {
 
         <Box
           className="parenttop"
-          sx={styles.parentChildrenStyles(theme, rightnavbars)}
+          sx={styles.parentChildrenStyles(theme, rightnavbars, open)}
         >
           <Topnavbar leftopen={open} handleDrawer={handleDrawer} />
           <Box
             className="allset"
             sx={styles.childrenStyles(theme, rightnavbars)}
-            
           >
             {showTitleWithBreadcrumbs && (
               <TitleWithBreadcrumbLinks sx={{ mb: 2 }} {...other} />
@@ -62,9 +61,15 @@ const styles = {
     position: "relative",
     width: "100%",
   },
-  parentChildrenStyles: (theme: any, rightnavbars: boolean) => ({
+  parentChildrenStyles: (theme: any, rightnavbars: boolean, open: boolean) => ({
     [theme.breakpoints.up("xs")]: {
       width: "100%",
+    },
+    [theme.breakpoints.up("xl")]: {
+      transition: theme.transitions.create("width", {
+        duration: "0.4s",
+      }),
+      width: open === true ? "calc(100% - 290px)" : "calc(100% - 80px)",
     },
   }),
 
@@ -104,6 +109,7 @@ const styles = {
     [theme.breakpoints.up("xl")]: {
       transition: "0.4s",
       overflowY: "auto",
+
       maxWidth: "calc(100% - 100px)",
       pt: theme.spacing(10),
       pl: theme.spacing(2.5),
