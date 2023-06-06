@@ -2,19 +2,19 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import GPDetailsList from "@root/sections/foster-child/health-medical-history/gp-details/GPDetailsList";
+import ChildTherapyInfoTabs from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/child-therapy-info-tabs/ChildTherapyInfoTabs";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "/ Child Info",
-    href: "/foster-child",
+    name: "/ Therapy Info List",
+    href: "/foster-child/health-medical-history/therapy-info",
   },
   {
-    name: "Therapy Info List",
-    href: "/foster-child/health-medical-history/therapy-info",
+    name: "Child Therapy Info",
+    href: "#",
   },
 ];
 
@@ -40,7 +40,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 export default function InitialHomeVisit() {
   return (
     <Page title={PAGE_TITLE}>
-      <GPDetailsList />
+      <ChildTherapyInfoTabs />
     </Page>
   );
 }
