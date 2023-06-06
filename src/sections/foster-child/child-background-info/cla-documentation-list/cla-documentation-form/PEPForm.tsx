@@ -26,13 +26,13 @@ export default function PEPForm(props: any) {
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)} disabled={disabled}>
         <Grid container columnSpacing={4}>
           {PEPFormData?.map((item: any) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
-                disabled={disabled}
+                
                 // disabled={query.action === "view"}
                 size={"small"}>
                 {item?.componentProps?.select

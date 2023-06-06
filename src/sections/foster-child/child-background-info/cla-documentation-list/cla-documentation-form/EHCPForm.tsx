@@ -5,11 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { EHCPFormValidation, EHCPFormData } from '..';
-import { useRouter } from 'next/router';
 
 export default function EHCPForm(props: any) {
+
   const { defaultValues, disabled } = props;
-  // const { query } = useRouter()
+
   const methods: any = useForm({
     resolver: yupResolver(EHCPFormValidation),
     defaultValues
@@ -25,13 +25,13 @@ export default function EHCPForm(props: any) {
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)} disabled={disabled}>
         <Grid container columnSpacing={4}>
           {EHCPFormData?.map((item: any) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
-                disabled={disabled}
+            
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (

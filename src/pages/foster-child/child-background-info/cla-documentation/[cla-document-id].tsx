@@ -50,6 +50,6 @@ export default function ViewClaDocumentationList() {
                 {/* show form is not loading */}
                 <ClaDocumentationForm defaultFormType="EHCP" disabled={disabled} />
             </Paper>
-        </Page>
+        </Page> 
     );
 }

@@ -44,10 +44,10 @@ export default function ClaDocumentationListTable() {
                 data={data}
                 columns={columns}
                 isSuccess={true}
-                //   isLoading={false}
-                //   isFetching={false}
-                //   currentPage={1}
-                //   isError={false}
+                  isLoading={false}
+                  isFetching={false}
+                  currentPage={1}
+                  isError={false}
                 // count={Math.ceil(data?.data?.meta?.total / limit)}
                 onPageChange={(data: any) => {
                     console.log("Current page data: ", data);

@@ -23,8 +23,7 @@ export const ClaDocumentationForm = (props: any) => {
             </NativeSelect>
             {selectForm === 'EHCP' && <EHCPForm disabled={disabled} defaultValues={defaultValues} />}
             {selectForm === 'PEP' && <PEPForm disabled={disabled} defaultValues={defaultValues} />} */}
-            <Box sx={{ width: '200px', m: 2 }}>
-                <FormControl disabled={disabled}>
+                <FormControl disabled={disabled} sx={{ width: '300px', m: 2 }}>
                     <Select
                         value={selectForm}
                         onChange={handleSelectChange}
@@ -33,7 +32,6 @@ export const ClaDocumentationForm = (props: any) => {
                         <MenuItem value="PEP">PEP</MenuItem>
                     </Select>
                 </FormControl>
-            </Box>
 
             {selectForm === 'EHCP' && (
                 <EHCPForm disabled={disabled} defaultValues={defaultValues} />
