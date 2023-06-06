@@ -23,7 +23,7 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
 import { enqueueSnackbar } from "notistack";
 
-const ContactPrefernce: FC<any> = () => {
+const ContactPrefernce: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [getContactPreference] = useLazyGetContactPreferenceQuery();
   const [updateContactPreference] = useUpdateContactPreferenceMutation();
@@ -46,8 +46,8 @@ const ContactPrefernce: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, error,isError } = await getContactPreference(null, false);
-      console.log((data?.data))
+      const { data, error, isError } = await getContactPreference(null, false);
+      console.log(data?.data);
       setIsLoading(false);
       if (isError || !data?.data) {
         data?.data && displayErrorMessage(error, enqueueSnackbar);
@@ -59,8 +59,7 @@ const ContactPrefernce: FC<any> = () => {
         fromString: dayjs(from).format("LT"),
         toString: dayjs(to).format("LT"),
       }));
-     
-    
+
       return {
         ...data?.data,
       };
@@ -85,7 +84,7 @@ const ContactPrefernce: FC<any> = () => {
     try {
       const data = await updateContactPreference(jsonData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }

@@ -32,7 +32,7 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
 import { enqueueSnackbar } from "notistack";
 
-const WriteToWork: FC<any> = () => {
+const WriteToWork: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [availableFiles, setAvailableFiles] = useState<any>(null);
@@ -46,7 +46,7 @@ const WriteToWork: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, error ,isError } = await getWriteToWorkInfo(null, false);
+      const { data, error, isError } = await getWriteToWorkInfo(null, false);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
       if (isError || !data?.data) {
@@ -54,7 +54,7 @@ const WriteToWork: FC<any> = () => {
         return defaultValues;
       }
       const { rightToWork, visaType, BRP, expiryDate, code } = data?.data;
-    
+
       return {
         rightToWork,
         visaType,
@@ -84,7 +84,7 @@ const WriteToWork: FC<any> = () => {
     try {
       const data = await updateWriteToWorkInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }

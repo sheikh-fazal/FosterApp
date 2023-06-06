@@ -21,7 +21,7 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
 import { enqueueSnackbar } from "notistack";
 
-const MedicalQuestionnaire: FC<any> = () => {
+const MedicalQuestionnaire: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +30,10 @@ const MedicalQuestionnaire: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, error,isError } = await getMedicalQuestionnaire(null, true);
+      const { data, error, isError } = await getMedicalQuestionnaire(
+        null,
+        true
+      );
       setIsLoading(false);
       if (isError || !data?.data) {
         data?.data && displayErrorMessage(error, enqueueSnackbar);
@@ -60,7 +63,7 @@ const MedicalQuestionnaire: FC<any> = () => {
     try {
       const data = await updateMedicalQuestionnaire(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }

@@ -67,7 +67,7 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    activateNextForm();
+    // activateNextForm();
     if (!isDirty) return;
     const formData = new FormData();
     documents.forEach((doc) => formData.append("documents", doc));

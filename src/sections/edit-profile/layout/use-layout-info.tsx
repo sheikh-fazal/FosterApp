@@ -4,7 +4,7 @@ import { enqueueSnackbar } from "notistack";
 import { useGetProfileStatusQuery } from "@root/services/update-profile/about-the-candidate/aboutTheCandidateApi";
 export const useLayoutInfo = () => {
   const { data, isSuccess, isError, error } = useGetProfileStatusQuery({});
-  const [expanded, setExpanded] = useState<string | false>(false);
+  const [expanded, setExpanded] = useState<any>(false);
   const [diffInfoHandler, setDiffInfoHandler] = useState({
     activeFormName: "Personal Info",
   });
@@ -36,11 +36,23 @@ export const useLayoutInfo = () => {
     const localIndexOfForm = localFormNames.indexOf(data?.activeFormName);
     const formName = localFormNames[localIndexOfForm - 1];
     isSuccess && settabsItems(data?.forms);
+    // find name of active section
+    // Get Index of current form where the user is when he submitted the form
+    const indexOfCurrentForm = tabsItems.findIndex(
+      ({ name }) => name === formName
+    );
+    // setting active section form name
+    const activeSec = tabs.find(({ limit }: any) => {
+      return indexOfCurrentForm >= limit[0] && indexOfCurrentForm < limit[1];
+    })?.name;
+    // console.log({ activeSec });
+    expanded !== activeSec && setExpanded(activeSec);
+    // find name of active section
+
     setDiffInfoHandler((pre) => ({
       ...pre,
       activeFormName: formName,
     }));
-    setExpanded("BACKGROUND CHECKS");
   }, [isSuccess, data]);
   const itemClickHand = (itemName: string) => {
     const formStatus = tabsItems.find(({ name }) => name === itemName)?.status;
@@ -86,12 +98,10 @@ export const useLayoutInfo = () => {
     // setting active section form name
     const indexOfNextOfForm = indexOfCurrentForm + 1;
     const activeSec = tabs.find(({ limit }: any) => {
-      console.log({ limit, indexOfNextOfForm });
-      // if (indexOfNextOfForm > limit[0]  && indexOfNextOfForm < limit[1] )
       return indexOfNextOfForm >= limit[0] && indexOfNextOfForm < limit[1];
-    });
-
-    console.log({ activeSec });
+    })?.name;
+    expanded !== activeSec && setExpanded(activeSec);
+    // console.log({ activeSec });
     settabsItems(updatedTabs);
     setDiffInfoHandler((pre) => ({
       ...pre,

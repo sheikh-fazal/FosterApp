@@ -24,7 +24,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const [getProfileInfoQuery] = useLazyGetPersonalInfoQuery();
   const [updatePersonalInfo] = useUpdatePersonalInfoMutation();
   const methods: any = useForm({
@@ -55,7 +55,6 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
 
   const onSubmit = async (data: any) => {
     // reset({ keepIsSubmitted: true });
-    activateNextForm();
     const jsonData = {
       ...data,
     };
@@ -68,6 +67,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
     }
   };
   if (isLoading) return <FormSkeleton />;
+  console.log({ isSubmitting });
   return (
     <>
       {isSubmitting && <IsFetching isFetching />}

@@ -34,7 +34,9 @@ const WorkExperienceUnemployment: FC<any> = ({ activateNextForm }) => {
       {currentTab === "work" && <WorkExperience />}
       {currentTab === "unemployement" && <Unemployement />}
       <Grid item>
-        <Button variant="contained">continue</Button>
+        <Button variant="contained" onClick={activateNextForm}>
+          continue
+        </Button>
       </Grid>
     </Grid>
   );
