@@ -68,7 +68,7 @@ export const columnsChildExclusionInfoTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/view-child-exclusion-info?${info.getValue()}`)}
+          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info?${info.getValue()}`)}
         />
         <TableAction
           type="delete"
