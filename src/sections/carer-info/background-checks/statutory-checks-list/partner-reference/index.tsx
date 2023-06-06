@@ -2,13 +2,13 @@ import { RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const carInsuranceData = [
+export const partnerReferenceData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "registrationNumber",
-      label: "Registration Number",
+      name: "name",
+      label: "Name",
       multiline: false,
       fullWidth: true,
     },
@@ -18,31 +18,40 @@ export const carInsuranceData = [
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "insurerName",
-      label: "Insurer Name",
+      name: "sendDate",
+      label: "Sent Date",
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "policyNumber",
-      label: "Policy Number",
+      name: "receivedDate",
+      label: "Received Date",
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "validDate",
-      label: "Valid to Date",
+      name: "verifiedDate",
+      label: "Verified Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
@@ -50,24 +59,32 @@ export const carInsuranceData = [
     otherOptions: {
       name: "comments",
       label: "Comments",
-      multiline: false,
+      multiline: true,
       minRows: 3,
       fullWidth: true,
     },
     component: RHFTextField,
   },
 ];
+
+export const formatters: any = {};
+
+for (const formControl of partnerReferenceData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
-  registrationNumber: "",
-  insurerName: "",
-  policyNumber: "",
-  validDate: new Date(),
+  name: "",
+  sendDate: new Date(),
+  receivedDate: new Date(),
+  verifiedDate: new Date(),
   comments: "",
 };
-export const FormSchema = Yup.object().shape({
-  registrationNumber: Yup.string().required("required"),
-  insurerName: Yup.string().required("required"),
-  policyNumber: Yup.string().required("required"),
-  validDate: Yup.date().required("required"),
-  comments: Yup.string().required("required"),
+export const formSchema = Yup.object().shape({
+  name: Yup.string().required("Required"),
+  sendDate: Yup.date().required("Required"),
+  receivedDate: Yup.date().required("Required"),
+  verifiedDate: Yup.date().required("Required"),
+  comments: Yup.string().required("Required"),
 });

@@ -126,8 +126,8 @@ const DbsCheckTable = () => {
         isFetching={dbsCheckListIsfetching}
         isError={dbsCheckListError}
         isSuccess={dbsCheckListIsSuccess}
-        // totalPages={meta?.pages ?? 0}
-        // currentPage={meta?.page ?? 1}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

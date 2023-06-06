@@ -25,6 +25,13 @@ export const exPartnersApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["EDIT_EXPARTNER"],
     }),
+    deleteExPartner: builder.mutation({
+      query: (id: any) => ({
+        url: `/application-form/ex-partner-detail/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["EDIT_EXPARTNER"],
+    }),
   }),
 });
 
@@ -33,4 +40,5 @@ export const {
   useGetExPartnerDetailsQuery,
   usePostExPartnerDetailMutation,
   useUpdateExPartnerDetailMutation,
+  useDeleteExPartnerMutation,
 } = exPartnersApi;

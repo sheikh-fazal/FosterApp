@@ -3,7 +3,7 @@ import { generalTags } from "@root/utils/apiHelper";
 
 const TAG = "ASSESSMENT_STAGE_ONE";
 
-export const assessmentStageOneApi = baseAPI.injectEndpoints({
+export const assessmentStageOneApi:any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getRegularAssessmentDetails: builder.query({
       query: ({ params }: any) => ({
@@ -55,6 +55,15 @@ export const assessmentStageOneApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
+
+    postStageOneApprovalDetail: builder.mutation({
+      query: (body) => ({
+        url: `/assessment-stage-one/stage_1_approval`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
   }),
 });
 
@@ -64,5 +73,6 @@ export const {
   useLazyGetSingleRegularAssessmentDetailQuery,
   usePatchRegularAssessmentDetailMutation,
   usePostRegularAssessmentDetailMutation,
-  useGetRegularAssessmentAttendeesQuery
+  useGetRegularAssessmentAttendeesQuery,
+  usePostStageOneApprovalDetailMutation
 } = assessmentStageOneApi;

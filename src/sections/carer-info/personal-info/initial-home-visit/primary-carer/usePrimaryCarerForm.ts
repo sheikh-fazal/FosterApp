@@ -19,6 +19,7 @@ export const usePrimaryCarerForm = () => {
     usePostPrimaryCarerDataMutation();
   const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
     useLazyGetAllInitialHomeVisitDataQuery();
+  // get api params
   const params = {
     value: "primaryCarer",
     fosterCarerId:
@@ -41,6 +42,7 @@ export const usePrimaryCarerForm = () => {
   };
 
   const submitPrimaryCarerForm = async (data: any) => {
+    console.log(data);
     const putParams = {
       fosterCarerId:
         query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",

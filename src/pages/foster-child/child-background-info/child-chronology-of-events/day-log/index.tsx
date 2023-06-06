@@ -27,7 +27,7 @@ DayLog.getLayout = function getLayout(page: any) {
 
 export default function DayLog() {
   return (
-    <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documents"]}>
+    <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documentss"]}>
       <DayLogForm />
       <ChildChronologyOfEventsDocumentsTable />
     </HorizaontalTabs>

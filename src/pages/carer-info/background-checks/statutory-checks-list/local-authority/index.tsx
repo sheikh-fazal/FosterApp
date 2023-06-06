@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/local-authority/UploadDocuments";
 import LocalAuthorityForm from "@root/sections/carer-info/background-checks/statutory-checks-list/local-authority/LocalAuthorityForm";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -32,11 +33,17 @@ LocalAuthority.getLayout = function getLayout(page: any) {
 };
 
 export default function LocalAuthority() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
+
   return (
     <HorizaontalTabs
       tabsDataArray={["Local Authority S.S.D", "Upload Documents"]}
     >
-      <LocalAuthorityForm />
+      <LocalAuthorityForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );
