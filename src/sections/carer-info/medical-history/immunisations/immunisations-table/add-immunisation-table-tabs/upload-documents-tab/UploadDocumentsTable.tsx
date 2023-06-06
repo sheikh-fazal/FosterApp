@@ -1,14 +1,13 @@
+import React from "react";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useUploadDocument } from "./useUploadDocument";
+import Page from "@root/components/Page";
 import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
 import { UPLOAD_DOCUMENT_DATA, columns } from ".";
 // import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import Page from "@root/components/Page";
-
-export const UploadDocument = (props: any) => {
+export const UploadDocumentsTable = (props: any) => {
   const { breadCrumbData } = props;
   const {
     open,
@@ -18,37 +17,37 @@ export const UploadDocument = (props: any) => {
     theme,
     router,
     tableHeaderRef,
-  } = useUploadDocument(breadCrumbData);
+  } = useUploadDocumentsTable(breadCrumbData);
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-
   return (
     <Page title="Upload Documents">
       <Card sx={{ p: 1 }}>
         <TableHeader
-        ref={tableHeaderRef}
-        // showSelectFilters
-        // disabled={isLoading}
-        title="Upload Documents"
-        searchKey="search"
-        showAddBtn
-        onAdd={() =>
-          router.push(
-            "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs"
-          )
-        }
-        onChanged={headerChangeHandler}
-        // selectFilters={SELECT_FILTERS}
-      /> 
+          ref={tableHeaderRef}
+          // showSelectFilters
+          // disabled={isLoading}
+          title="Upload Documents"
+          searchKey="search"
+          showAddBtn
+          onAdd={() =>
+            // router.push(
+            //   "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs"
+            // )
+            {}
+          }
+          onChanged={headerChangeHandler}
+          // selectFilters={SELECT_FILTERS}
+        />
         <CustomTable
-        data={UPLOAD_DOCUMENT_DATA}
-        columns={columns}
-        // showSerialNo
-        onPageChange={pageChangeHandler}
-        onSortByChange={sortChangeHandler}
-        isSuccess={true}
-        isPagination={false}
-      />
+          data={UPLOAD_DOCUMENT_DATA}
+          columns={columns}
+          // showSerialNo
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
+          isSuccess={true}
+          isPagination={false}
+        />
         {/* <UploadDocuments
       tableData={UPLOAD_DOCUMENT_DATA}
       columns={columns}
