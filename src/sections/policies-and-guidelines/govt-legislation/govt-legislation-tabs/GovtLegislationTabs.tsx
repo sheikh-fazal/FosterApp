@@ -41,7 +41,7 @@ const GovtLegislationsTabs = () => {
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}
-          handleAddNewBack={"/policies-and-guidelines/govt-legislations/"}
+          handleAddNewBack={"/policies-and-guidelines/govt-legislations/govt-legislations-form"}
         />
         <PolicyVerticalUploadDocument
           data={uploadDocumentData}

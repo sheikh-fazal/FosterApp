@@ -7,7 +7,7 @@ const GovtLegislations = () => {
     <>
       <PolicyVerticalTable
         data={GovtLegislationData}
-        addNewTabNavigation={"/policies-and-guidelines/govt-legislations/add"}
+        addNewTabNavigation={"/policies-and-guidelines/govt-legislations/govt-legislations-form"}
       />
     </>
   );
