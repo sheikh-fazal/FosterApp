@@ -10,7 +10,9 @@ import { BsPlus } from "react-icons/bs";
 import React, { useState } from "react";
 import AddExperiencesModal from "./add-experience-modal";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useGetExperienceQuery } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
+import Image from "next/image";
 
 function EmploymentDetailsCards() {
   const [open, setOpen] = useState(false);
@@ -30,9 +32,24 @@ function EmploymentDetailsCards() {
       <Box>
         {data?.data?.map((item: any) => {
           return (
-            <Box sx={{ px: 2, py: 1 }} key={item.id}>
+            <Box sx={{ px: 2, pt: 1 }} key={item.id}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography>{item.companyName}</Typography>
+                <Box sx={{ display: "flex", alignItems: "start", gap: 1 }}>
+                  <Box sx={{ mt: 0.5 }}>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_IMG_URL}${item?.media}`}
+                      alt=""
+                      width={30}
+                      height={30}
+                    />
+                  </Box>
+                  <Box>
+                    <Typography variant="h5">{item.companyName}</Typography>
+                    <Typography variant="subtitle2">
+                      {item.totalYears} Yrs {item.totalMonths} mos
+                    </Typography>
+                  </Box>
+                </Box>
 
                 <IconButton
                   // onClick={onClicked}
@@ -41,6 +58,54 @@ function EmploymentDetailsCards() {
                 >
                   <ModeEditIcon fontSize="small" sx={styles.iconStyles} />
                 </IconButton>
+              </Box>
+              <Box sx={{ mt: 1 }}>
+                {item?.experiences?.map((data: any, index: number) => {
+                  const isLastChild = index === item?.experiences?.length - 1;
+                  return (
+                    <Box key={data.id}>
+                      <Box
+                        sx={{ display: "flex", alignItems: "start", gap: 1 }}
+                      >
+                        <Box>
+                          <FiberManualRecordIcon
+                            fontSize="medium"
+                            sx={{ color: theme.palette.grey[400] }}
+                          />
+                        </Box>
+                        <Box>
+                          <Typography variant="subtitle1">
+                            {data?.employmentType}
+                          </Typography>
+                          <Box
+                            sx={{
+                              position: "relative",
+                              ...(!isLastChild && {
+                                "::before": {
+                                  content: '""',
+                                  position: "absolute",
+                                  top: 0,
+                                  left: -23,
+                                  width: "1px",
+                                  height: "100%",
+                                  borderLeft: `2px solid ${theme.palette.grey[400]}`,
+                                },
+                              }),
+                            }}
+                          >
+                            <Typography variant="body1" sx={{ pb: 0.5 }}>
+                              {data?.timeSpent?.years} Yrs{" "}
+                              {data?.timeSpent?.months} mos
+                            </Typography>
+                            <Typography variant="body1" sx={{ pb: 1 }}>
+                              {data?.description}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                  );
+                })}
               </Box>
             </Box>
           );
@@ -77,6 +142,13 @@ const styles = {
   }),
   btnStyle: (theme: any) => ({
     backgroundColor: theme.palette.grey[500],
+    width: "2rem",
+    height: "2rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: "50%",
+    cursor: "pointer",
     ":hover": {
       backgroundColor: darken(theme.palette.grey[500], 0.15),
     },
