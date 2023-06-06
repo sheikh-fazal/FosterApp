@@ -66,9 +66,9 @@ export { default as ReferralListForm } from "./ReferralListForm";
 export const ReferralListFormData = [
   {
     gridLength: 6,
+    label: "Referral Date",
     componentProps: {
       name: "referralDate",
-      label: "Referral Date",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -77,9 +77,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Status",
     componentProps: {
       name: "status",
-      label: "Status",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -94,9 +94,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Referred By",
     componentProps: {
       name: "referredBy",
-      label: "Referred By",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -104,9 +104,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Referrer Role",
     componentProps: {
       name: "referrerRole",
-      label: "Referrer Role",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -117,9 +117,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Area Office",
     componentProps: {
       name: "areaOffice",
-      label: "Area Office",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -130,9 +130,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Local Authority",
     componentProps: {
       name: "localAuthority",
-      label: "Local Authority",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -143,9 +143,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 12,
+    label: "Reason",
     componentProps: {
       name: "reason",
-      label: "Reason",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -171,9 +171,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "First Name",
     componentProps: {
       name: "firstName",
-      label: "First Name",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -181,9 +181,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Middle Name",
     componentProps: {
       name: "middleName",
-      label: "Middle Name",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -191,9 +191,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Last Name",
     componentProps: {
       name: "lastName",
-      label: "Last Name",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -201,9 +201,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Date of eSignature of Author",
     componentProps: {
       name: "DOB",
-      label: "Date of eSignature of Author",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -211,9 +211,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Age",
     componentProps: {
       name: "age",
-      label: "Age",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -221,9 +221,9 @@ export const ReferralListFormData = [
 
   {
     gridLength: 6,
+    label: "Gender",
     componentProps: {
       name: "gender",
-      label: "Gender",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -238,9 +238,9 @@ export const ReferralListFormData = [
 
   {
     gridLength: 6,
+    label: "Ethnicity",
     componentProps: {
       name: "ethnicity",
-      label: "Ethnicity",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -251,9 +251,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Ofsted Ethnicity",
     componentProps: {
       name: "ofstedEthnicity",
-      label: "Ofsted Ethnicity",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -264,9 +264,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Special Needs",
     componentProps: {
       name: "specialNeeds",
-      label: "Special Needs",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -280,9 +280,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "child Geography",
     componentProps: {
       name: "childGeography",
-      label: "child Geography",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -293,9 +293,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Religion",
     componentProps: {
       name: "religion",
-      label: "Religion",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -306,9 +306,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 12,
+    label: "Address",
     componentProps: {
       name: "address",
-      label: "Address",
       fullWidth: true,
       sx: { mb: 4 },
       multiline: true,
@@ -318,9 +318,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Is the child currently in education?",
     componentProps: {
       name: "currentlyEducation",
-      label: "Is the child currently in education?",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -329,9 +329,9 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
+    label: "Are there any other siblings?",
     componentProps: {
       name: "otherSiblings",
-      label: "Are there any other siblings?",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -339,5 +339,3 @@ export const ReferralListFormData = [
     md: 6,
   },
 ];
-
-

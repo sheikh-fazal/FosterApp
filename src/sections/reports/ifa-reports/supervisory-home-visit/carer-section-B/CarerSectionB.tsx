@@ -1,10 +1,11 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { CarerSectionBFromDate } from ".";
 import { useCarerSectionB } from "./useCarerSectionB";
+import Link from "next/link";
 
-const SuperVisoryCarerSectionB = ({ disabled }: any) => {
+const SuperVisoryCarerSectionB = ({ disabled, handleBack }: any) => {
   const { methods } = useCarerSectionB();
   return (
     <FormProvider methods={methods}>
@@ -25,6 +26,21 @@ const SuperVisoryCarerSectionB = ({ disabled }: any) => {
             )}
           </Grid>
         ))}
+        <Grid item xs={12}>
+          <Button
+            type="button"
+            variant="contained"
+            sx={{
+              backgroundColor: "#F6830F",
+              "&:hover": {
+                backgroundColor: "#F6830F",
+              },
+            }}
+            onClick={handleBack}
+          >
+            back
+          </Button>
+        </Grid>
       </Grid>
     </FormProvider>
   );

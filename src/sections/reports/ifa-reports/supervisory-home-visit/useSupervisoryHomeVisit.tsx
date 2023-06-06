@@ -3,9 +3,15 @@ import { TableDemoData } from ".";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import Image from "next/image";
+import { useState } from "react";
 
 export const useSupervisoryHomeVisit = () => {
   const router = useRouter();
+  const [currentTab, setCurrentTab] = useState(0);
+  const handleTabChange = (value: any) => setCurrentTab(value);
+  const handleNextTab = () => setCurrentTab(currentTab + 1);
+  const handlePreviousTab = () => setCurrentTab(currentTab - 1);
+
   const columns = [
     {
       id: "select",
@@ -118,5 +124,9 @@ export const useSupervisoryHomeVisit = () => {
     TableDemoData,
     router,
     columns,
+    handleNextTab,
+    handlePreviousTab,
+    currentTab,
+    handleTabChange
   };
 };
