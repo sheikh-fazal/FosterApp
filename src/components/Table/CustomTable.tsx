@@ -293,8 +293,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const styles = {
   tableContainer: (tableContainerSX: any, theme: any) => ({
     "&::-webkit-scrollbar": {
-      width: 5,
-      height: 4,
+      width: 10,
+      height: 10,
     },
 
     "&::-webkit-scrollbar-thumb": {
