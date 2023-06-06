@@ -68,6 +68,7 @@ export const useLayoutInfo = () => {
       localFormNames.length - 2
     )
       return;
+    // Get Index of current form where the user is when he submitted the form
     const indexOfCurrentForm = tabsItems.findIndex(
       ({ name }) => name === diffInfoHandler.activeFormName
     );
@@ -78,17 +79,20 @@ export const useLayoutInfo = () => {
     // update status of next from
     const updateNexttForm = { ...updatedTabs[indexOfCurrentForm + 1] };
     updateNexttForm.status === "Done" ? "Done" : "Pending";
+    // update current and next forms in updatedTabs
     updatedTabs[indexOfCurrentForm] = updateCurrentForm;
     updatedTabs[indexOfCurrentForm + 1] = updateNexttForm;
-    // updatedTabs[indexOfCurrentForm].status = "Done";
-    // updatedTabs[indexOfCurrentForm + 1].status === "Done" ? "Done" : "Pending";
+
+    // setting active section form name
+    const indexOfNextOfForm = indexOfCurrentForm + 1;
+    const activeSec = tabs.find(({ limit }: any) => {
+      console.log({ limit, indexOfNextOfForm });
+      // if (indexOfNextOfForm > limit[0]  && indexOfNextOfForm < limit[1] )
+      return indexOfNextOfForm >= limit[0] && indexOfNextOfForm < limit[1];
+    });
+
+    console.log({ activeSec });
     settabsItems(updatedTabs);
-    // tabsItems[
-    //   localFormNames.indexOf(diffInfoHandler.activeFormName) - 1
-    // ].status = "Done1";
-    // tabsItems[localFormNames.indexOf(diffInfoHandler.activeFormName)].status =
-    //   "inprogress";
-    // console.log(localFormNames.indexOf(diffInfoHandler.activeFormName));
     setDiffInfoHandler((pre) => ({
       ...pre,
       activeFormName:
