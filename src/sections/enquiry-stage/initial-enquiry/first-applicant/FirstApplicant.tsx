@@ -1,14 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  Box,
-  Button,
-  useTheme,
-  Typography,
-  Grid,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-} from "@mui/material";
+import { Box, Button, useTheme, Typography, Grid } from "@mui/material";
 import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -21,7 +12,6 @@ import Error from "@root/components/Error";
 
 export default function FirstApplicant(props: any) {
   const { disabled: globallyDisabled, data, isLoading, isError } = props;
-
   const theme = useTheme();
 
   // Update the default values API
@@ -38,12 +28,12 @@ export default function FirstApplicant(props: any) {
       : defaultValues,
   });
 
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+  const { setValue, handleSubmit, watch } = methods;
 
   useEffect(() => {
     const subscription = watch((values: any) => {
       const dateOfBirth = values["dateOfBirth"];
-      if (dateOfBirth) {
+      if (dateOfBirth && dayjs(dateOfBirth).isValid()) {
         const newAge = dayjs().diff(dayjs(dateOfBirth), "y");
         values.age !== newAge &&
           setValue("age", dayjs().diff(dayjs(dateOfBirth), "y"));

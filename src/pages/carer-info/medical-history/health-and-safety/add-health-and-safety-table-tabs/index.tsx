@@ -73,9 +73,15 @@ export default function AddHealthAndSafetyTableTabs() {
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
         />
-        <SafetyFactorsIndoorsE  />
-        <SafetyFactorsOutdoors />
-        <UploadDocument />
+        <SafetyFactorsIndoorsE
+          formData={(data: any) => console.log(data)}
+          breadCrumbData={setBreadCrumbData}
+        />
+        <SafetyFactorsOutdoors
+          formData={(data: any) => console.log(data)}
+          breadCrumbData={setBreadCrumbData}
+        />
+        <UploadDocument breadCrumbData={setBreadCrumbData} />
       </HorizaontalTabs>
     </Layout>
   );

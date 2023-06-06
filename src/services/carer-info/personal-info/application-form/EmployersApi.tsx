@@ -25,6 +25,13 @@ export const employerApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["EDIT_EMPLOYEE"],
     }),
+    deleteEmployer: builder.mutation({
+      query: (id: any) => ({
+        url: `/application-form/employer-detail/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["EDIT_EMPLOYEE"],
+    }),
   }),
 });
 
@@ -33,4 +40,5 @@ export const {
   useGetEmployerDetailsQuery,
   usePostEmployerDetailMutation,
   useUpdateEmployerDetailMutation,
+  useDeleteEmployerMutation,
 } = employerApi;

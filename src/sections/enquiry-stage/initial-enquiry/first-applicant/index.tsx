@@ -13,6 +13,7 @@ import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
 import { RHFInputWithLabel } from "../../extensions/RHFInputWithLabel";
 import { HEAREDABOUTAGENCY } from "@root/dropdown-data/hearAboutAgency";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import RHFBooleanRadioGroup from "@root/components/hook-form/RHFBooleanRadioGroup";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 const maxAgeCheck = dayjs().subtract(18.1, "year");
@@ -353,7 +354,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "permanentResidencyInUk",
       text: "Do you have permanent residency in UK?",
-      Component: RHFRadioGroup,
+      Component: RHFBooleanRadioGroup,
       options: [true, false],
       getOptionLabel: ["Yes", "No"],
     },
@@ -365,7 +366,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "outStandingCourtOrders",
       text: "Have you ever been convicted of any criminal or civil offense? Have you got any cautions or outstanding court orders?",
-      Component: RHFRadioGroup,
+      Component: RHFBooleanRadioGroup,
       options: [true, false],
       getOptionLabel: ["Yes", "No"],
     },

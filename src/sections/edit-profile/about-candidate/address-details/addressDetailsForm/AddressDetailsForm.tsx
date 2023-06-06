@@ -31,7 +31,6 @@ import MultipleFileUploader from "@root/sections/edit-profile/file-uploaders/mul
 const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
-  const [error, setError] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
   const [documents, setDocuments] = useState([]);
@@ -44,11 +43,9 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, isError, error } = await getAddressDetails(null, true);
-      console.log(data?.data?.documents);
       setAvailableFiles(data?.data?.documents);
       setIsLoading(false);
       if (isError) {
-        setError("Something went wrong.");
         displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
@@ -70,6 +67,7 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
+    if (!isDirty) return;
     const formData = new FormData();
     documents.forEach((doc) => formData.append("documents", doc));
     for (var key in data) {

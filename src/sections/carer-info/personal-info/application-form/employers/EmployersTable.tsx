@@ -1,25 +1,26 @@
 import React, { useRef, useState } from "react";
 import EmployersViewForm from "./EmployersViewForm";
 import TableHeader from "@root/components/TableHeader";
-import { Box, useTheme } from "@mui/material";
-import TableAction from "@root/components/TableAction";
 import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
-import { useGetEmployerDetailsQuery } from "@root/services/carer-info/personal-info/application-form/EmployersApi";
+import { useEmployerTable } from "./useEmployerTable";
 
 export default function Employers({ apllicationFormid, role }: any) {
-  let [viewData, setViewData] = useState(null);
-  let [employerData, setEmployerData] = useState(null);
-  const tableHeaderRef = useRef<any>();
-
-  const changeView = (val: any) => {
-    setViewData(val);
-  };
-
-  const theme: any = useTheme();
-
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetEmployerDetailsQuery(apllicationFormid);
+  let {
+    changeView,
+    viewData,
+    setViewData,
+    theme,
+    employerData,
+    setEmployerData,
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+    tableHeaderRef,
+  } = useEmployerTable(apllicationFormid, role);
 
   return (
     <>
@@ -49,7 +50,12 @@ export default function Employers({ apllicationFormid, role }: any) {
           <CustomTable
             showSerialNo
             data={data?.data}
-            columns={columns(changeView, setEmployerData, role)}
+            columns={columns(
+              changeView,
+              setEmployerData,
+              role,
+              listDeleteHandler
+            )}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

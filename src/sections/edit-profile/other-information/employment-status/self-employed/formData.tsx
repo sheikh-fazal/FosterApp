@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  iNum: "Orcalo Holdings",
-  utr: "XYZ",
+  incuranceNo: "Orcalo Holdings",
+  UTR: "XYZ",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -14,13 +14,13 @@ export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "iNum",
+      name: "incuranceNo",
       label: "National Insurance No.",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "utr",
+      name: "UTR",
       label: "UTR",
       fieldHeader: null,
     },
