@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-3/UploadDocuments";
 import ReferenceThreeForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-3/ReferenceThreeForm";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -32,9 +33,14 @@ Reference3.getLayout = function getLayout(page: any) {
 };
 
 export default function Reference3() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
   return (
     <HorizaontalTabs tabsDataArray={["References 3", "Upload Documents"]}>
-      <ReferenceThreeForm />
+      <ReferenceThreeForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );
