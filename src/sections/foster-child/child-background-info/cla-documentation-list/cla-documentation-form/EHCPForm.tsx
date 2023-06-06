@@ -7,7 +7,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { EHCPFormValidation, EHCPFormData } from '..';
 
 export default function EHCPForm(props: any) {
-
+  
   const { defaultValues, disabled } = props;
 
   const methods: any = useForm({
@@ -25,13 +25,13 @@ export default function EHCPForm(props: any) {
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)} disabled={disabled}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {EHCPFormData?.map((item: any) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
-            
+                disabled={disabled}
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
@@ -50,13 +50,13 @@ export default function EHCPForm(props: any) {
           <LoadingButton
             sx={{ marginRight: "1rem" }}
             type="submit"
-            variant="contained">
+            variant="contained" disabled={disabled}>
             Submit
           </LoadingButton>
           <LoadingButton
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
-            variant="contained">
+            variant="contained" disabled={disabled}>
             back
           </LoadingButton>
         </Box>
