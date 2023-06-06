@@ -7,6 +7,7 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import { tableData } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list";
 
 
 // ----------------------------------------------------------------------
@@ -47,7 +48,7 @@ export default function FamilyPersonList() {
           <FamilyOrgInvolvedForm />
           <UploadDocuments
             readOnly={false}
-            // tableData={tableData}
+            tableData={tableData}
             // isLoading={isDocumentLoading}
             // isFetching={isFetching}
             // isError={hasDocumentError}

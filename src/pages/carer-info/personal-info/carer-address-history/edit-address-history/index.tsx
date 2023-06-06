@@ -6,6 +6,7 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import CarerAddressHistoryForm from "@root/sections/carer-info/personal-info/carer-address-history/CarerAddressHistoryForms";
 import { Card } from "@mui/material";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 
@@ -38,6 +39,9 @@ EditAddressHistory.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function EditAddressHistory() {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log("id", id);
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>

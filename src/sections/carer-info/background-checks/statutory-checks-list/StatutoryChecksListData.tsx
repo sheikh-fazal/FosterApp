@@ -28,7 +28,7 @@ export const statutoryAccordionData = [
     component: <EmployementReferenceTwoTable />,
   },
   {
-    title: "Local Authority",
+    title: "Local Authority S.S.D",
     component: <LocalAuthorityTable />,
   },
   {
