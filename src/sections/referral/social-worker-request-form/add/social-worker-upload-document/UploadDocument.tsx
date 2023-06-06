@@ -2,23 +2,25 @@ import React from "react";
 import { Box, Checkbox } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction"; 
+import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 import { useUploadDocument } from "./useUploadDocument";
 
-
 export default function UploadDocument() {
   const {
-    openDelete, 
-    setOpenDelete,     
+    openDelete,
+    setOpenDelete,
+    openDeleteFunc,
     tableHeaderRefTwo,
     openModal,
-    setOpenModal,
+    openModalFunc,
+    uploadModalDisabled,
+    uploadModalDisabledFunc,
     theme,
-    data 
+    data,
   } = useUploadDocument();
-  
+
   const columns = [
     {
       id: "select",
@@ -90,24 +92,14 @@ export default function UploadDocument() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            type="refresh"
-            onClicked={() =>
-              alert("Reload")
-            }
-          />
-          <TableAction
-            type="download"
-            onClicked={() =>
-              alert("Download")
-            }
-          />
-          <TableAction type="delete" onClicked={() => setOpenDelete(true)} />
+          <TableAction type="refresh" onClicked={() => alert("Reload")} />
+          <TableAction type="download" onClicked={() => alert("Download")} />
+          <TableAction type="delete" onClicked={() => openDeleteFunc(true)} />
           <TableAction
             type="view"
-            onClicked={() =>
-              setOpenModal(true)
-            }
+            onClicked={() => {
+              uploadModalDisabledFunc("view");
+            }}
           />
         </Box>
       ),
@@ -124,7 +116,7 @@ export default function UploadDocument() {
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          setOpenModal(true)
+          uploadModalDisabledFunc("add");
         }}
       />
       <CustomTable
@@ -134,7 +126,7 @@ export default function UploadDocument() {
         isFetching={false}
         isError={false}
         isPagination={false}
-        isSuccess={true} 
+        isSuccess={true}
         currentPage={1}
         onPageChange={(data: any) => {
           console.log("Current page data: ", data);
@@ -146,10 +138,16 @@ export default function UploadDocument() {
       />
       <DeleteModel
         open={openDelete}
-        handleClose={() => setOpenDelete(false)}
-        onDeleteClick={() => setOpenDelete(false)}
+        handleClose={() => openDeleteFunc(false)}
+        onDeleteClick={() => openDeleteFunc(false)}
       />
-      <UploadDocumentModal open={openModal} handleClose={()=>{setOpenModal(false)}}/>
+      <UploadDocumentModal
+        disabled={uploadModalDisabled}
+        open={openModal}
+        handleClose={() => {
+          openModalFunc(false);
+        }}
+      />
     </React.Fragment>
   );
 }
