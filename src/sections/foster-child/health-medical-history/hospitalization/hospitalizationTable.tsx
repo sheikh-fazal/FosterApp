@@ -6,12 +6,11 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
-import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
 
 const activepath =
-  "/foster-child/health-medical-history/hospital-info-list/actions";
+  "/foster-child/health-medical-history/hospitalisation/actions";
 
-function HospitalInfoListTable() {
+const HospitalizationTable = () => {
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -28,10 +27,17 @@ function HospitalInfoListTable() {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.city,
-      id: "city",
+      accessorFn: (row: any) => row.AdmissionDate,
+      id: "AdmissionDate",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>City</span>,
+      header: () => <span>Admission Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.DischargeDate,
+      id: "DischargeDate",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: () => <span>Discharge Date</span>,
       isSortable: true,
     },
 
@@ -78,7 +84,7 @@ function HospitalInfoListTable() {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="Hospital Info list"
+                  title="hospitalization"
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
@@ -110,6 +116,6 @@ function HospitalInfoListTable() {
       </Grid>
     </Box>
   );
-}
+};
 
-export default HospitalInfoListTable;
+export default HospitalizationTable;

@@ -5,10 +5,12 @@ export const dummy = [
   {
     id: 1,
     hospitalName: "Hull Royal Infirmary",
-    city: "East Raiding of Yorkshire",
+    AdmissionDate: "05/05/2021",
+    DischargeDate: "05/05/2021",
   },
 ];
-export const HospitalInfoListForm = [
+
+export const HospitalizationFromvalue = [
   {
     id: 1,
     gridLength: 6,
@@ -24,15 +26,58 @@ export const HospitalInfoListForm = [
   {
     id: 2,
     gridLength: 12,
-    label: "Contact details",
-    component: "label",
+    otherOptions: {
+      name: "ReasonForHospitalization",
+      label: "Reason for hospitalisation",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
   },
   {
     id: 3,
+    gridLength: 6,
+    otherOptions: {
+      name: "admissionDate",
+      label: "Admission Date",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 4,
+    gridLength: 6,
+    otherOptions: {
+      name: "dischargeDate",
+      label: "Discharge Date",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 4,
+    gridLength: 6,
+    otherOptions: {
+      name: "doctorName",
+      label: "Doctor Name",
+      multiline: false,
+      //   minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+
+  {
+    id: 4,
     gridLength: 12,
     otherOptions: {
-      name: "contactdetails.commits",
-      label: "Comments",
+      name: "dayToDayDetails",
+      label: "Day to Day Details",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -41,101 +86,35 @@ export const HospitalInfoListForm = [
   },
   {
     id: 4,
-    gridLength: 6,
+    gridLength: false,
     otherOptions: {
-      name: "contactdetails.TownCity",
-      label: "Town/City",
+      name: "followUpDate",
+      label: "Follow up Date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
-    component: RHFTextField,
-  },
-  {
-    id: 5,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.officePhone",
-      label: "Office phone",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 7,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.email",
-      label: "Email",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.county",
-      label: "County",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.country",
-      label: "country",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 9,
-    gridLength: 6,
-    otherOptions: {
-      name: "contactdetails.postalCode",
-      label: "postal code",
-      multiline: false,
-      //   minRows: 3,
-      fullWidth: true,
-    },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
 ];
-export const HospitalInfoListValue = {
-  hospitalName: "",
-  contactdetails: {
-    commits: "",
-    TownCity: "",
-    officePhone: "",
-    email: "",
-    county: "",
-    country: "",
-    postalCode: "",
-  },
-};
 
+export const HospitalizationListValue = {
+  hospitalName: "",
+  ReasonForHospitalization: "",
+  admissionDate: "",
+  dischargeDate: "",
+  doctorName: "",
+  dayToDayDetails: "",
+  followUpDate: "",
+};
 export const FormSchema = Yup.object().shape({
   hospitalName: Yup.string().required("required"),
-  contactdetails: Yup.object().shape({
-    commits: Yup.string().required("required"),
-    TownCity: Yup.string().required("required"),
-    officePhone: Yup.string().required("required"),
-    email: Yup.string().required("required"),
-    county: Yup.string().required("required"),
-    country: Yup.string().required("required"),
-    postalCode: Yup.string().required("required"),
-  }),
+  ReasonForHospitalization: Yup.string().required("required"),
+  admissionDate: Yup.date().required("required"),
+  dischargeDate: Yup.date().required("required"),
+  doctorName: Yup.string().required("required"),
+  dayToDayDetails: Yup.string().required("required"),
+  followUpDate: Yup.date().required("required"),
 });
 //upload document
 export const formSchemaModel = Yup.object().shape({
@@ -208,7 +187,6 @@ export const uploadDummyData = [
     documentDate: "zyz",
     incidentId: "zyz",
     password: "zyz",
-    
   },
 ];
 export const UploadDocFormData = [
