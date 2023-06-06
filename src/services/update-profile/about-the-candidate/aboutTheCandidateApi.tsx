@@ -15,34 +15,10 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => {
-        const resData = "badgeId";
-        let fromNowItIsPending = false;
         const genForms = generateLocalFormsStatuses("specialities");
-        console.log(genForms);
         return {
-          forms: [
-            { name: "Personal Info", status: "Done" },
-            { name: "Address Details", status: "Done" },
-            { name: "Photo for ID Badge", status: "Pending" },
-            { name: "ID Upload (Passport/DL)", status: "Pending" },
-            { name: "Add Reference", status: "Pending" },
-            { name: "Training Certificates", status: "Pending" },
-            { name: "Additional Training Details", status: "Pending" },
-            { name: "Work Experience", status: "Pending" },
-            { name: "Specialities", status: "Pending" },
-            { name: "DBS", status: "Pending" },
-            { name: "Right to work", status: "Pending" },
-            { name: "Next Of kin", status: "Pending" },
-            { name: "Contact Preference", status: "Pending" },
-            { name: "Employment Status", status: "Pending" },
-            { name: "Opportunity Declaration", status: "Pending" },
-            { name: "Additional Docs", status: "Pending" },
-            { name: "Bank Details", status: "Pending" },
-            { name: "Immunisation", status: "Pending" },
-            { name: "Medical Questionnaire", status: "Pending" },
-            { name: "Add Declaration", status: "Pending" },
-          ],
-          activeFormName: "badgeId",
+          forms: genForms,
+          activeFormName: "specialities",
         };
       },
     }),
