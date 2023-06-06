@@ -20,29 +20,7 @@ export const data = [
 ];
 
 export const columns = [
-  {
-    id: "select",
-    header: ({ table, row }: any) => {
-      console.log(table.getSelectedRowModel().flatRows);
-      return (
-        <Box>
-          <Checkbox
-            checked={table.getIsAllRowsSelected()}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-          />
-        </Box>
-      );
-    },
-    cell: ({ row, table }: any) => (
-      <Box>
-        <Checkbox
-          disabled={row?.original?.Assigned}
-          checked={row?.original?.Assigned ? false : row.getIsSelected()}
-          onChange={row.getToggleSelectedHandler()}
-        />
-      </Box>
-    ),
-  },
+  
   {
     accessorFn: (row: any) => row.srNo,
     id: "srNo",

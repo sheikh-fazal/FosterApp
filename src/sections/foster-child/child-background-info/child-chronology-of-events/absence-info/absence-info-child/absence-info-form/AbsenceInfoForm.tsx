@@ -17,7 +17,7 @@ import {
   } from "@mui/material";
   import React from "react";
   import { FormProvider } from "@root/components/hook-form";
-  import { allegationFormData } from "./index";
+  import { absenceInfoFormData } from "./index";
   import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
   import { useAbsenceInfoForm } from "./useAbsenceInfoForm";
   import { LoadingButton } from "@mui/lab";
@@ -42,7 +42,7 @@ import {
     if (isLoading) return <SkeletonFormdata />;
     return (
       <>
-        <Typography
+        {/* <Typography
           sx={{
             color: theme.palette.grey[500],
             fontWeight: theme.typography.fontWeightMedium,
@@ -51,11 +51,11 @@ import {
           variant="subtitle2"
         >
           URN Number : CH001
-        </Typography>
+        </Typography> */}
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <IsFetching isFetching={isFetching} />
           <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
-            {allegationFormData.map((form: any) => {
+            {absenceInfoFormData.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form.id}>
                   <Box sx={{ px: 0.9, py: 1 }}>
