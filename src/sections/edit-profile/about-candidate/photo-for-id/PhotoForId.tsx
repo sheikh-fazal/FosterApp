@@ -29,8 +29,8 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
   useEffect(() => {
     if (isSuccess) {
       const imgUrl = data?.data;
-      console.log({ imgUrl });
-      setFile(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`);
+      // console.log({ imgUrl });
+      imgUrl && setFile(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`);
     }
   }, [isSuccess, data?.data]);
   const selectFile = () => {
