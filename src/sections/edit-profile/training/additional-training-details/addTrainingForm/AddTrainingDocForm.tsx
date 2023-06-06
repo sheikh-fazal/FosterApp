@@ -121,7 +121,7 @@ const AddTrainingDocForm: FC<any> = ({ addRefModelClose }) => {
               {/* Custom Fields On Half Width  */}
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFDatePicker name="issueDate" label="certificate issued?" />
+                  <RHFDatePicker name="issuedDate" label="certificate issued?" />
                 </Grid>
               </Grid>
               <Grid item sm={6} container direction="column">
