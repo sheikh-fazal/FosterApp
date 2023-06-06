@@ -3,9 +3,13 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useTableParams } from "@root/hooks/useTableParams";
 import React, { useRef } from "react";
-import { columnsFosterCarerTask, dataFosterCarerTask } from "./";
+import {
+  SELECTFILTERS,
+  columnsFosterCarerRecruitment,
+  dataFosterCarerRecruitment,
+} from "./";
 
-const FosterCarerTaskTable = () => {
+export default function FosterCarerRecruitmentTable() {
   const tableHeaderRef = useRef<any>();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -15,18 +19,20 @@ const FosterCarerTaskTable = () => {
       <TableHeader
         ref={tableHeaderRef}
         //   disabled={isLoading}
-        title="Foster Carer Task"
+        title="Carer List"
+        showSelectFilters
+        selectFilters={SELECTFILTERS}
         onChanged={headerChangeHandler}
         showAddBtn
-        hideSearch
       />
       <CustomTable
-        data={dataFosterCarerTask}
-        columns={columnsFosterCarerTask}
+        data={dataFosterCarerRecruitment}
+        columns={columnsFosterCarerRecruitment}
         isLoading={false}
         isFetching={false}
         isError={false}
         isSuccess={true}
+        showSerialNo
         //   isLoading={isLoading}
         //   isFetching={isFetching}
         //   isError={isError}
@@ -38,6 +44,4 @@ const FosterCarerTaskTable = () => {
       />
     </Card>
   );
-};
-
-export default FosterCarerTaskTable;
+}
