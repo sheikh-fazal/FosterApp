@@ -13,14 +13,55 @@ import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
 import { FormSchema, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import TimeSelector from "./TimeSelector/TimeSelector";
+import dayjs, { Dayjs } from "dayjs";
+import {
+  useLazyGetContactPreferenceQuery,
+  useUpdateContactPreferenceMutation,
+} from "@root/services/update-profile/other-information/otherInformationApi";
+import FormSkeleton from "../../render-form/FormSkeleton";
+import IsFetching from "@root/components/loaders/IsFetching";
+import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
+import { enqueueSnackbar } from "notistack";
 
 const ContactPrefernce: FC<any> = () => {
   const theme: any = useTheme();
+  const [getContactPreference] = useLazyGetContactPreferenceQuery();
+  const [updateContactPreference] = useUpdateContactPreferenceMutation();
+  const [isLoading, setIsLoading] = useState(true);
+  const [timeValues, setTimeValues] = useState<{
+    from: Dayjs | null;
+    to: Dayjs | null;
+    fromString: string;
+    toString: string;
+  }>({
+    from: dayjs(new Date()),
+    to: dayjs(new Date()),
+    fromString: "--",
+    toString: "--",
+  });
+  const [contactPrefernceGenInfos, setContactPrefernceGenInfos] = useState({
+    timeRangeModel: false,
+  });
   const [disabled, setDisabled] = useState(false);
   const methods: any = useForm({
-    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const { data, isError } = await getContactPreference(null, false);
+      console.log({ data, isError });
+      const { from, to } = data?.data;
+      setTimeValues((pre) => ({
+        ...pre,
+        fromString: dayjs(from).format("LT"),
+        toString: dayjs(to).format("LT"),
+      }));
+      setIsLoading(false);
+      if (isError) {
+        return defaultValues;
+      }
+      return {
+        ...data?.data,
+      };
+    },
   });
 
   const {
@@ -33,95 +74,134 @@ const ContactPrefernce: FC<any> = () => {
   } = methods;
 
   const onSubmit = async (data: any) => {
-    console.log({ data });
+    const jsonData = {
+      ...data,
+      from: timeValues.from,
+      to: timeValues.to,
+    };
+    try {
+      const data = await updateContactPreference(jsonData);
+      displaySuccessMessage(data, enqueueSnackbar);
+      // activateNextForm();
+    } catch (error: any) {
+      displayErrorMessage(error, enqueueSnackbar);
+    }
   };
 
+  const openTimeRangeModel = () => {
+    setContactPrefernceGenInfos((pre) => ({ ...pre, timeRangeModel: true }));
+  };
+  const closeTimeRangeModel = () => {
+    setContactPrefernceGenInfos((pre) => ({ ...pre, timeRangeModel: false }));
+  };
+  const saveToTime = () => {
+    setTimeValues((pre) => ({
+      ...pre,
+      fromString: dayjs(timeValues.from).format("LT"),
+      toString: dayjs(timeValues.to).format("LT"),
+    }));
+    closeTimeRangeModel();
+  };
+  if (isLoading) return <FormSkeleton />;
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container justifyContent="center">
-        <Grid container item xs={12}>
-          <Grid item sx={{ padding: "0.5em" }}>
-            <Typography
-              variant="formTopHeading"
-              sx={{ color: theme.palette.primary.main }}
-            >
-              Contact Preference
-            </Typography>
-          </Grid>
-          <Grid item sm={12} container>
-            {/* Phone  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="phone" label="Phone" />
+    <>
+      {isSubmitting && <IsFetching isFetching />}
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Grid container justifyContent="center">
+          <Grid container item xs={12}>
+            <Grid item sx={{ padding: "0.5em" }}>
+              <Typography
+                variant="formTopHeading"
+                sx={{ color: theme.palette.primary.main }}
+              >
+                Contact Preference
+              </Typography>
+            </Grid>
+            <Grid item sm={12} container>
+              {/* Phone  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="phone" label="Phone" />
+                </Grid>
+              </Grid>
+              {/* Whatsapp  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="whatsapp" label="Whatsapp" />
+                </Grid>
+              </Grid>
+              {/* Sms  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="sms" label="Sms" />
+                </Grid>
+              </Grid>
+              {/* Time Selector  */}
+              <Grid
+                item
+                sm={12}
+                container
+                direction="column"
+                sx={{ paddingLeft: "0.5em" }}
+              >
+                <TimeSelector
+                  timeValues={timeValues}
+                  setTimeValues={setTimeValues}
+                  openTimeRangeModel={openTimeRangeModel}
+                  closeTimeRangeModel={closeTimeRangeModel}
+                  contactPrefernceGenInfos={contactPrefernceGenInfos}
+                  saveToTime={saveToTime}
+                />
+              </Grid>
+              {/* Email  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="email" label="Email" />
+                </Grid>
+              </Grid>
+              {/* notification  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox
+                    name="notification"
+                    label="Mobile Notification"
+                  />
+                </Grid>
+              </Grid>
+              {/* both  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="both" label="Both" />
+                </Grid>
+              </Grid>
+              {/* both  */}
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ paddingLeft: "0.5em" }}>
+                  <RHFCheckbox name="noneof" label="None Of the Above" />
+                </Grid>
               </Grid>
             </Grid>
-            {/* Whatsapp  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="whatsapp" label="Whatsapp" />
-              </Grid>
-            </Grid>
-            {/* Sms  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="sms" label="Sms" />
-              </Grid>
-            </Grid>
-            {/* Time Selector  */}
-            <Grid
-              item
-              sm={12}
-              container
-              direction="column"
-              sx={{ paddingLeft: "0.5em" }}
-            >
-              <TimeSelector />
-            </Grid>
-            {/* Email  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="email" label="Email" />
-              </Grid>
-            </Grid>
-            {/* notification  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="notification" label="Mobile Notification" />
-              </Grid>
-            </Grid>
-            {/* both  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="both" label="Both" />
-              </Grid>
-            </Grid>
-            {/* both  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ paddingLeft: "0.5em" }}>
-                <RHFCheckbox name="noneof" label="None Of the Above" />
-              </Grid>
-            </Grid>
-          </Grid>
 
-          {!disabled && (
-            <Grid item sm={12} container direction="column">
-              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Save
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit">
-                    Continue
-                  </Button>
+            {!disabled && (
+              <Grid item sm={12} container direction="column">
+                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                  <Grid item>
+                    <Button variant="contained" type="submit">
+                      Save
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" type="submit">
+                      Continue
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-          )}
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </FormProvider>
+      </FormProvider>
+    </>
   );
 };
 

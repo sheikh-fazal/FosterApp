@@ -18,7 +18,7 @@ export default function CarerAddressHistoryForm(props: any) {
     isDirty,
     theme,
     router,
-  } = useCarerAddressHistoryForms();
+  } = useCarerAddressHistoryForms(formType);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
