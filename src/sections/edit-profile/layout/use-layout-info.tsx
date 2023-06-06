@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { localFormNames, tabs, tabsItems } from "./static-data";
 export const useLayoutInfo = () => {
+  const [expanded, setExpanded] = useState<string | false>(false);
   const [diffInfoHandler, setDiffInfoHandler] = useState({
     activeFormName: "Personal Info",
   });
@@ -23,8 +24,6 @@ export const useLayoutInfo = () => {
         ],
     }));
   };
-
-  const [expanded, setExpanded] = useState<string | false>(false);
 
   return {
     tabs,

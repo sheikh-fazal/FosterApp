@@ -1,5 +1,7 @@
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import { MARITALSTATUSDROPDOWN } from "@root/dropdown-data/maritalStatus";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
 import dayjs from "dayjs";
 
@@ -30,15 +32,16 @@ export const FormValues = {
   offSetEthnicity: "",
   nationalInsuranceNo: "",
   religion: "",
-  practising: "",
+  practising: "No",
   countryWhereBorn: "",
   howLongLiveInLocalArea: "",
   detailsOfPreviousMarriages: "",
-  convictedOfAnyCriminal: "",
+  convictedOfAnyCriminal: "No",
 };
 
 export const defaultValuesPrimaryCarer = (data = FormValues) => {
   console.log(data);
+  // const p = data?.practising === "true" ? true : false;
   return {
     dateOfVisit: new Date(data?.dateOfVisit),
     nameOfAgencyWorkingVisiting: data?.nameOfAgencyWorkingVisiting,
@@ -61,11 +64,14 @@ export const defaultValuesPrimaryCarer = (data = FormValues) => {
     offSetEthnicity: data?.offSetEthnicity,
     nationalInsuranceNo: data?.nationalInsuranceNo,
     religion: data?.religion,
-    practising: data?.practising,
+    // practising: data?.practising === "true" ? "Yes" : "No",
+    practising: data?.practising === "true",
+    // practising: data?.practising,
+
     countryWhereBorn: data?.countryWhereBorn,
     howLongLiveInLocalArea: data?.howLongLiveInLocalArea,
     detailsOfPreviousMarriages: data?.detailsOfPreviousMarriages,
-    convictedOfAnyCriminal: data?.convictedOfAnyCriminal,
+    convictedOfAnyCriminal: data?.convictedOfAnyCriminal === "true",
   };
 };
 
@@ -124,10 +130,10 @@ export const FormSchema = Yup.object().shape({
   nationalInsuranceNo: Yup.string().required(
     "National insurance no is required"
   ),
-  practising: Yup.string().required("Practising is required"),
-  convictedOfAnyCriminal: Yup.string().required(
-    "Conviction knowledge is required"
-  ),
+  // practising: Yup.string().required("Practising is required"),
+  // convictedOfAnyCriminal: Yup.string().required(
+  //   "Conviction knowledge is required"
+  // ),
   countryWhereBorn: Yup.string().required("Country where born is required"),
   howLongLiveInLocalArea: Yup.string().required(
     "Local area life span is required"
@@ -260,12 +266,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     label: "Country",
     disabled: isFieldDisable,
     select: true,
-    options: [
-      {
-        value: "pakistan",
-        label: "Pakistan",
-      },
-    ],
+    options: COUNTRIESDROPDOWN,
   },
   {
     type: "text",
@@ -279,12 +280,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     label: "Marital Status",
     disabled: isFieldDisable,
     select: true,
-    options: [
-      {
-        value: "single",
-        label: "Single",
-      },
-    ],
+    options: MARITALSTATUSDROPDOWN,
   },
   {
     type: "select",
@@ -300,7 +296,6 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     label: "Offset Ethnicity",
     disabled: isFieldDisable,
     select: true,
-
     options: ETHNICITYDROPDOWN,
   },
   {
@@ -322,6 +317,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     name: "practising",
     label: "Practising",
     options: [true, false],
+    // options: ["Yes", "No"],
     getOptionLabel: ["Yes", "No"],
     disabled: isFieldDisable,
   },
@@ -331,12 +327,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     label: "What Country was Primary Carer Born in?",
     select: true,
     disabled: isFieldDisable,
-    options: [
-      {
-        value: "single",
-        label: "Single",
-      },
-    ],
+    options: COUNTRIESDROPDOWN,
   },
   {
     type: "text",

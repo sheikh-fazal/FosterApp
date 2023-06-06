@@ -1,28 +1,30 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  uComName: "Orcalo Holdings",
-  uComPhone: "XYZ",
-  uComEmail: "creative@test.com",
+  companyName: "Orcalo Holdings",
+  companyPhone: "XYZ",
+  companyEmail: "creative@test.com",
 };
 
 export const FormSchema = Yup.object().shape({
-  uComName: Yup.string(),
-  uComPhone: Yup.string(),
-  uComEmail: Yup.string().required("Email is required").email("Invalid Email"),
+  companyName: Yup.string(),
+  companyPhone: Yup.string(),
+  companyEmail: Yup.string()
+    .required("Email is required")
+    .email("Invalid Email"),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "uComName",
+      name: "companyName",
       label: "Umbrella Company Name*",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "uComPhone",
+      name: "companyPhone",
       label: "Umbrella Company Phone*",
       fieldHeader: null,
     },
@@ -30,7 +32,7 @@ export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "uComEmail",
+      name: "companyEmail",
       label: "Umbrella Company Email*",
       fieldHeader: null,
     },

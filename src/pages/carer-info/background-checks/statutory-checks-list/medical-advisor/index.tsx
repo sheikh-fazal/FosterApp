@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/UploadDocuments";
 import MedicalAdvisorForm from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/MedicalAdvisorForm";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -32,9 +33,15 @@ MedicalAdvisor.getLayout = function getLayout(page: any) {
 };
 
 export default function MedicalAdvisor() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
+
   return (
     <HorizaontalTabs tabsDataArray={["Medical Advisor", "Upload Documents"]}>
-      <MedicalAdvisorForm />
+      <MedicalAdvisorForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );

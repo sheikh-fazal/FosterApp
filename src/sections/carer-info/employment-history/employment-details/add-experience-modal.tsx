@@ -25,9 +25,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
       setCollapsedIndexes([...collapsedIndexes, index]);
     }
   };
-  const methods: any = useForm({
-    resolver: yupResolver(AddFormSchema),
-  });
+  const methods: any = useForm();
 
   const { control, handleSubmit } = methods;
 
@@ -105,7 +103,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                   </Grid>
                   {collapsedIndexes.includes(index)  ? null : (
                     <>
-                      <Grid item xs={6} onClick={() => toggleCollapse(index)}>
+                      <Grid item xs={6} >
                         <RHFTextField
                           name={`experiences.${index}.title`}
                           label="Title"

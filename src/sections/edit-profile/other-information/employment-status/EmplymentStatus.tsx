@@ -16,7 +16,7 @@ import UmberllaCompany from "./umbrella-company/UmbrellaCompany";
 
 const EmplymentStatus: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
-  const [employmentStatus, setEmploymentStatus] = useState("");
+  const [employmentStatus, setEmploymentStatus] = useState("paye");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmploymentStatus((event.target as HTMLInputElement).value);
