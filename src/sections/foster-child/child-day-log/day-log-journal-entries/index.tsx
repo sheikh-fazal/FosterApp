@@ -35,17 +35,38 @@ export const columns = [
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.contactName,
-    id: "contactName",
+    accessorFn: (row: any) => row.date,
+    id: "date",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Contact Name</span>,
+    header: () => <span>Date of Occurance/Time</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.contactType,
-    id: "contactType",
+    accessorFn: (row: any) => row.type,
+    id: "type",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Contact Type</span>,
+    header: () => <span>Type</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.subject,
+    id: "subject",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Subject</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.status,
+    id: "status",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Status</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.locked,
+    id: "locked",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Locked</span>,
     isSortable: true,
   },
   {
@@ -57,7 +78,7 @@ export const columns = [
           type="edit"
           onClicked={() =>
             router.push(
-              `/foster-child/child-background-info/family-person-org-involved/family-form-list`
+              `/foster-child/`
             )
           }
         />
@@ -73,7 +94,7 @@ export const columns = [
   },
 ];
 
-export const familyPersontableData = [
+export const dayLogJournalEntriestableData = [
   {
     id:1,
     document:"Family Involved",
