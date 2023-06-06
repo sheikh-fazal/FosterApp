@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useTraingingProfile = (onSubmitHandler: any) => {
+const useNewTrainingsProfile = (onSubmitHandler: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
@@ -41,13 +41,13 @@ const useTraingingProfile = (onSubmitHandler: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit =  (data: any) => {
-    const res: any = onSubmitHandler(data)
-   
+  const onSubmit = (data: any) => {
+    const res: any = onSubmitHandler(data);
+
     console.log(data);
   };
 
   return { methods, handleSubmit, onSubmit, router };
 };
 
-export default useTraingingProfile;
+export default useNewTrainingsProfile;

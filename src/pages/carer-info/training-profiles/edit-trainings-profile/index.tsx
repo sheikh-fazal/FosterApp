@@ -2,19 +2,20 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
-import ViewTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/view-training-profile/ViewTrainingProfile";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
+  usePatchTrainingProfileApiMutation,
   usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
-import { useState } from "react";
-import { enqueueSnackbar } from "notistack";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import IsFetching from "@root/components/loaders/IsFetching";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 
-const PAGE_TITLE = "Recruitment";
+const PAGE_TITLE = "Training Profile";
 
 AddTraingVerification.getLayout = function getLayout(page: any) {
   return (
@@ -23,11 +24,11 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Assessment stage 1",
-          href: "/recruitment/assessment-stage-one/training-verification-form",
+          name: "Training List",
+          href: "/carer-info/training-profiles/trainings-list",
         },
         {
-          name: "Training Profile",
+          name: "Training",
         },
       ]}
       title={PAGE_TITLE}
@@ -69,20 +70,20 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    try {
-      const res: any = await postTrainingProfileData(updatedData).unwrap();
-      enqueueSnackbar(res?.message ?? `Successfully!`, {
-        variant: "success",
-      });
+    // try {
+    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
+    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
+    //     variant: "success",
+    //   });
 
-      router.push(
-        "/recruitment/assessment-stage-one/training-verification-form"
-      );
-    } catch (error) {
-      console.log(error);
+    //   router.push(
+    //     "/recruitment/assessment-stage-one/training-verification-form"
+    //   );
+    // } catch (error) {
+    //   console.log(error);
 
-      enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    }
+    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    // }
   };
 
   return (
@@ -92,7 +93,7 @@ export default function AddTraingVerification() {
           <IsFetching isFetching={isLoading} />
         ) : (
           <>
-            <ViewTrainingProfile
+            <EditTrainingProfile
               initialValueProps={{
                 carerName: data?.data?.carerName,
                 courseAttended: data?.data?.courseAttended,
@@ -106,6 +107,7 @@ export default function AddTraingVerification() {
                 date: new Date(data?.data?.date),
               }}
               trainingProfileId={id}
+              onSubmitHandler={postTrainingProfileData}
               message={"Updated"}
               isError={isError}
               isSuccess={isSuccess}
@@ -118,7 +120,7 @@ export default function AddTraingVerification() {
         ) : (
           <>
             <UploadDocuments
-              readOnly={true}
+              readOnly={false}
               tableData={uploadDocuments?.data?.docs}
               searchParam={
                 (searchedText: string) => setParams(searchedText)

@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
-export const columnsTrainingProfilesList = (
+export const columnsChildExclusionInfoTable = (
   handleDelete: any,
   router: any,
   cancelDelete: any,
@@ -41,24 +41,24 @@ export const columnsTrainingProfilesList = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.carerName,
-    id: "carerName",
+    accessorFn: (row: any) => row.exclusionDate,
+    id: "exclusionDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Carer Name</span>,
+    header: () => <span>Exclusion Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.courseAttended,
-    id: "courseAttended",
+    accessorFn: (row: any) => row.returnDate,
+    id: "returnDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Courses Attended</span>,
+    header: () => <span>Return Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.date,
-    id: "date",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: () => <span>Attended Date</span>,
+    accessorFn: (row: any) => row.typeExclusion,
+    id: "typeExclusion",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Type of Exclusion</span>,
     isSortable: true,
   },
   {
@@ -68,9 +68,7 @@ export const columnsTrainingProfilesList = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => {
-            router.push(`/carer-info/training-profiles/edit-trainings-profile`);
-          }}
+          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info?${info.getValue()}`)}
         />
         <TableAction
           type="delete"
@@ -80,13 +78,21 @@ export const columnsTrainingProfilesList = (
 
         <TableAction
           type="view"
-          onClicked={() => {
-            router.push(`/carer-info/training-profiles/view-trainings-profile`);
-          }}
+          onClicked={() => router.push(`?${info.getValue()}`)}
         />
       </Box>
     ),
     header: () => <span>Actions</span>,
     isSortable: false,
+  },
+];
+
+export const DummyChildExclusionData = [
+  {
+    id: 1,
+    srNo: "1",
+    returnDate: new Date().toDateString(),
+    exclusionDate: new Date().toDateString(),
+    typeExclusion: "abc",
   },
 ];

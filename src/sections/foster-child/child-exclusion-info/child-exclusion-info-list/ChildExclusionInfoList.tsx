@@ -1,28 +1,24 @@
+import React from "react";
+import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
-import useTrainingsList from "./useTrainingsList";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { Card } from "@mui/material";
+import useChildExclusionInfoList from "./useChildExclusionInfoList";
+import { DummyChildExclusionData } from ".";
 
-const TrainingsList = () => {
+export const ChildExclusionInfoList = () => {
   const {
-    columnsTrainingVerificationFuntion,
-    trainingPRofileData,
+    columnsChildExclusionInfoTableFuntion,
+    // trainingPRofileData,
     router,
-    isLoading,
-    isError,
-    isFetching,
-    isSuccess,
     headerChangeHandler,
     tableHeaderRef,
-    meta,
     pageChangeHandler,
     sortChangeHandler,
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
-  } = useTrainingsList();
+  } = useChildExclusionInfoList();
   return (
     <>
       <DeleteModel
@@ -35,29 +31,23 @@ const TrainingsList = () => {
         <TableHeader
           showAddBtn
           ref={tableHeaderRef}
-          disabled={isLoading}
-          title="Training Profile"
+          title="Child Exclusion Info"
           searchKey="search"
           onAdd={() => {
-            router.push("/carer-info/training-profiles/new-trainings-profile");
+            router.push('/foster-child/education-records/child-exclusion-info/new-child-exclusion-info');
           }}
           onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={trainingPRofileData}
-          columns={columnsTrainingVerificationFuntion}
-          isLoading={isLoading}
-          isFetching={isFetching}
-          isError={isError}
-          isSuccess={isSuccess}
-          currentPage={meta?.page}
-          totalPages={meta?.pages}
+          columns={columnsChildExclusionInfoTableFuntion}
+          data={DummyChildExclusionData}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
+          isSuccess={true}
+          isPagination={false}
+
         />
       </Card>
     </>
   );
-};
-
-export default TrainingsList;
+}

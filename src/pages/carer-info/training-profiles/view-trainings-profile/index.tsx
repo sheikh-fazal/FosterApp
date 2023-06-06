@@ -13,8 +13,9 @@ import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import IsFetching from "@root/components/loaders/IsFetching";
+import ViewTraingsProfile from "@root/sections/carer-info/training-profiles/view-trainings-profile/ViewTrainingProfile";
 
-const PAGE_TITLE = "Recruitment";
+const PAGE_TITLE = "Training Profile";
 
 AddTraingVerification.getLayout = function getLayout(page: any) {
   return (
@@ -23,11 +24,11 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Assessment stage 1",
-          href: "/recruitment/assessment-stage-one/training-verification-form",
+          name: "Trainings List",
+          href: "/carer-info",
         },
         {
-          name: "Training Profile",
+          name: "Training",
         },
       ]}
       title={PAGE_TITLE}
@@ -69,20 +70,20 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    try {
-      const res: any = await postTrainingProfileData(updatedData).unwrap();
-      enqueueSnackbar(res?.message ?? `Successfully!`, {
-        variant: "success",
-      });
+    // try {
+    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
+    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
+    //     variant: "success",
+    //   });
 
-      router.push(
-        "/recruitment/assessment-stage-one/training-verification-form"
-      );
-    } catch (error) {
-      console.log(error);
+    //   router.push(
+    //     "/recruitment/assessment-stage-one/training-verification-form"
+    //   );
+    // } catch (error) {
+    //   console.log(error);
 
-      enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    }
+    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    // }
   };
 
   return (
@@ -92,7 +93,7 @@ export default function AddTraingVerification() {
           <IsFetching isFetching={isLoading} />
         ) : (
           <>
-            <ViewTrainingProfile
+            <ViewTraingsProfile
               initialValueProps={{
                 carerName: data?.data?.carerName,
                 courseAttended: data?.data?.courseAttended,
