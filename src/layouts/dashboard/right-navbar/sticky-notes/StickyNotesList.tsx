@@ -33,7 +33,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   };
   useEffect(() => {
     getdata(dayjs(date).format("YYYY-MM-DD"));
-  }, [date]);
+  }, [date,getdata]);
 
   const [
     deleteNotes,
@@ -46,9 +46,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
     });
   }
   const deleteNoteListItem = async () => {
-  const res: any = deleteNotes(deleteItemId)
-  .unwrap()
-  .then((res: any) => {
+  const res: any = deleteNotes(deleteItemId).unwrap().then((res: any) => {
     setOpenDelete(false)
     enqueueSnackbar("Notes Deleted Successfully", {
       variant: "success",
@@ -89,12 +87,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
               <List key={item?.id}>
                 <ListItem sx={style.listStyle}>
                   <Typography
-                    sx={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      maxWidth: "200px",
-                      textOverflow: "ellipsis",
-                    }}
+                    sx={style.listContent}
                     onClick={() => {
                       setItem(item);
                       setEdit(true);
@@ -110,7 +103,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
               </List>
             ))
           ) : (
-            <Box sx={{ mt: 1 }}>No Notes on this date!</Box>
+            <Box sx={style.msgStyle}>No Notes on this date!</Box>
           )
         ) : (
           <SkeletonStickyNotes />
@@ -120,6 +113,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
         <DeleteModel
           open={openDelete}
           handleClose={() => setOpenDelete(false)}
+          
           onDeleteClick={deleteNoteListItem}
         />
       )}
@@ -200,4 +194,14 @@ const style = {
     justifyContent: "space-between",
     alignItems: "center",
   }),
+  listContent:{
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    maxWidth: "200px",
+    textOverflow: "ellipsis",
+  },
+  msgStyle:(theme: any)=>({
+    mt:1,
+    color: theme.palette.grey[800],
+  })
 };

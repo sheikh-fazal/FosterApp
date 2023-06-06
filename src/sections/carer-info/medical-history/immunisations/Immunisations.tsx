@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
+import { ImmunisationsTable } from "./immunisations-table/ImmunisationsTable";
 
-export const Immunisations = () => {
-  return (
-    <div>Immunisations</div>
-  )
-}
+export const ImmunisationMain = () => {
+  return <ImmunisationsTable />;
+};

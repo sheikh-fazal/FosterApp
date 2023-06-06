@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const PAGE_TITLE = "Recruitment";
 
@@ -87,48 +88,60 @@ export default function AddTraingVerification() {
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Training Profile", "Upload Documents"]}>
-        <ViewTrainingProfile
-          initialValueProps={{
-            carerName: data?.data?.carerName,
-            courseAttended: data?.data?.courseAttended,
-            courseStatus: data?.data?.courseStatus,
-            comments: data?.data?.comments,
-            trainingNeeds: data?.data?.trainingNeeds,
-            otherTraining: data?.data?.otherTraining,
-            addtionalInfo: data?.data?.addtionalInfo,
-            attendance: data?.data?.attendance,
-            expiryDate: new Date(data?.data?.expiryDate),
-            date: new Date(data?.data?.date),
-          }}
-          trainingProfileId={id}
-          message={"Updated"}
-          isError={isError}
-          isSuccess={isSuccess}
-        />
+        {isLoading ? (
+          <IsFetching isFetching={isLoading} />
+        ) : (
+          <>
+            <ViewTrainingProfile
+              initialValueProps={{
+                carerName: data?.data?.carerName,
+                courseAttended: data?.data?.courseAttended,
+                courseStatus: data?.data?.courseStatus,
+                comments: data?.data?.comments,
+                trainingNeeds: data?.data?.trainingNeeds,
+                otherTraining: data?.data?.otherTraining,
+                addtionalInfo: data?.data?.addtionalInfo,
+                attendance: data?.data?.attendance,
+                expiryDate: new Date(data?.data?.expiryDate),
+                date: new Date(data?.data?.date),
+              }}
+              trainingProfileId={id}
+              message={"Updated"}
+              isError={isError}
+              isSuccess={isSuccess}
+            />
+          </>
+        )}
 
-        <UploadDocuments
-          readOnly={false}
-          tableData={uploadDocuments?.data?.docs}
-          searchParam={
-            (searchedText: string) => setParams(searchedText)
-            // console.log(searchedText)
-          }
-          isLoading={uploadDocumentsIsLoading}
-          isFetching={uploadDocumentsIsFetching}
-          isError={uploadDocumentsIsError}
-          column={[
-            "documentType",
-            "documentType",
-            "date",
-            "uploadBy",
-            "password",
-          ]}
-          isSuccess={isSuccess}
-          modalData={(data: any) => uploadDocumentsHandler(data)}
-          onPageChange={(page: any) => console.log(page)}
-          currentPage={uploadDocuments?.data?.meta?.page}
-          totalPages={uploadDocuments?.data?.meta?.pages}
-        />
+        {uploadDocumentsIsLoading ? (
+          <IsFetching isFetching={uploadDocumentsIsLoading} />
+        ) : (
+          <>
+            <UploadDocuments
+              readOnly={true}
+              tableData={uploadDocuments?.data?.docs}
+              searchParam={
+                (searchedText: string) => setParams(searchedText)
+                // console.log(searchedText)
+              }
+              isLoading={uploadDocumentsIsLoading}
+              isFetching={uploadDocumentsIsFetching}
+              isError={uploadDocumentsIsError}
+              column={[
+                "documentType",
+                "documentType",
+                "date",
+                "uploadBy",
+                "password",
+              ]}
+              isSuccess={isSuccess}
+              modalData={(data: any) => uploadDocumentsHandler(data)}
+              onPageChange={(page: any) => console.log(page)}
+              currentPage={uploadDocuments?.data?.meta?.page}
+              totalPages={uploadDocuments?.data?.meta?.pages}
+            />
+          </>
+        )}
       </HorizaontalTabs>
     </Page>
   );
