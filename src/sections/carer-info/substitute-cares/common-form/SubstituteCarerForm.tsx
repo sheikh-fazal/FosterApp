@@ -29,7 +29,13 @@ export default function SubstituteCarerForm(props: any) {
       <Grid container spacing={3}>
         {SUBSTITUTECARERFORMDATA.map((form: any) => {
           return (
-            <Grid item xs={12} md={form?.gridLength} key={form.id}>
+            <Grid
+              item
+              xs={12}
+              md={form?.gridLength}
+              key={form.id}
+              {...form.gridProps}
+            >
               <form.component
                 size="small"
                 {...form.componentProps}

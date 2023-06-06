@@ -36,7 +36,7 @@ export const defaultValues = {
   occupation: "",
   numberOfApplicantSeen: "",
   level: "Level 1",
-  // dateOfBirth2: new Date(ageOf18Years),
+  dateOfAssessment: new Date(todayDate),
   question1: "question 1",
   question2: "question 2",
   background: "Background",
@@ -72,7 +72,7 @@ export const FormSchema = Yup.object().shape({
   practisingStatus: Yup.string().required("Field is required"),
   occupation: Yup.string().required("Field is required"),
   numberOfApplicantSeen: Yup.string().required("Field is required"),
-  // dateOfBirth2: Yup.date().required("Field is required"),
+  dateOfAssessment: Yup.date().required("Field is required"),
   question1: Yup.string().required("Field is required"),
   question2: Yup.string().required("Field is required"),
   background: Yup.string().required("Field is required"),
@@ -162,6 +162,7 @@ export const SUBSTITUTECARERFORMDATA = [
     id: 7,
     componentProps: {
       typographyText: "Contact Details",
+      color: (theme: any) => theme.palette.primary.main,
     },
     component: Typography,
     gridLength: 12,
@@ -174,6 +175,7 @@ export const SUBSTITUTECARERFORMDATA = [
       multiline: true,
       minRows: 3,
       fullWidth: true,
+      maxDate: maxAgeCheck,
     },
     gridLength: 12,
     component: RHFTextField,
@@ -297,20 +299,23 @@ export const SUBSTITUTECARERFORMDATA = [
         fontWeight: 600,
       },
     },
-    gridLength: 12,
+    gridLength: 6,
     component: RHFInputWithLabel,
   },
 
-  // {
-  //   id: 16.5,
-  //   componentProps: {
-  //     name: "dateOfBirth2",
-  //     label: "Date Of Birth2",
-  //     fullWidth: true,
-  //   },
-  //   gridLength: 6,
-  //   component: RHFDatePicker,
-  // },
+  {
+    id: 16.5,
+    componentProps: {
+      name: "dateOfAssessment",
+      label: "Date Of Assessment Visit",
+      fullWidth: true,
+    },
+    gridLength: 6,
+    gridProps: {
+      sx: { mt: { md: "24px", xs: "unset" } },
+    },
+    component: RHFDatePicker,
+  },
 
   {
     id: 17,

@@ -13,19 +13,19 @@ const BREADCRUMBS = [
   },
   {
     name: "Carer Info",
-    href: "/carer-info/substitute-cares/backup-carer",
+    href: "/carer-info/substitute-cares/respite-carer",
   },
   {
-    name: "Backup Carer",
-    href: "/carer-info/substitute-cares/backup-carer/details",
+    name: "Respite Carer",
+    href: "/carer-info/substitute-cares/respite-carer/respite-carer-details",
   },
 ];
 
-const PAGE_TITLE = "Backup Carer";
+const PAGE_TITLE = "Respite Carer";
 
-export const TABSDATA = ["Backup Carer", "Upload Documents"];
+export const TABSDATA = ["Respite Carer", "Upload Documents"];
 
-Details.getLayout = function getLayout(page: any) {
+RespiteCarerDetails.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -40,7 +40,7 @@ Details.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function Details() {
+export default function RespiteCarerDetails() {
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm />
