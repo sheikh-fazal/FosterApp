@@ -38,28 +38,14 @@ export const useRefereneceTable = () => {
 
   const delReference = async (id: string) => {
     try {
-      // setIsUpdating(true);
-      const data = await deleteRefernce({ body: null, id: id });
+      const data = await deleteRefernce({ id });
       displaySuccessMessage(data, enqueueSnackbar);
-      // setIsUpdating(false);
       return true;
     } catch (error) {
       displayErrorMessage(error, enqueueSnackbar);
       return false;
     }
   };
-  // const closeViewModel = () => {
-  //   setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
-  // };
-  // const openViewModel = (id: string) => {
-  //   const tableRows = data?.data ?? [];
-  //   const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
-  //   setTableStatusInfo((pre) => ({
-  //     ...pre,
-  //     viewModel: true,
-  //     refFormDataHolder: tableRows[indexOf],
-  //   }));
-  // };
 
   return {
     tableRows: data?.data,
