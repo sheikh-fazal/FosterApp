@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { UPLOAD_DOCUMENT_DATA, columns } from ".";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
+// import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import Page from "@root/components/Page";
 
 export const UploadDocument = (props: any) => {

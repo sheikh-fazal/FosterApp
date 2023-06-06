@@ -40,6 +40,7 @@ export const useExPartnersViewForm = (props: any) => {
       middleName,
       phoneNumber,
       relationShipType,
+      childrenTogether,
     } = data;
     let formData = {
       firstName,
@@ -49,6 +50,7 @@ export const useExPartnersViewForm = (props: any) => {
       email,
       phoneNumber,
       relationShipType,
+      childrenTogether: true,
     };
     if (Formtype == "add") {
       try {
