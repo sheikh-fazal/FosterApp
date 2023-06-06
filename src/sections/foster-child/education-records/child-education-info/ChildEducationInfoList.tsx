@@ -21,7 +21,7 @@ const ChildEducationInfoList = () => {
         showAddBtn
         onAdd={() =>
           router.push({
-            pathname: "/foster-child/education-records/child-education-info/child-education-form",
+            pathname: "/foster-child/education-records/child-education/form",
             query: {
               action: "add",
               id: "",

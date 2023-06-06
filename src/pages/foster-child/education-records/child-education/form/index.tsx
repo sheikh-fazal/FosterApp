@@ -42,7 +42,7 @@ export default function ChildEducationForm() {
   const router = useRouter();
   const { action, id } = router.query;
   if (!action && !id) {
-    router.push("/foster-child/education-records/child-education-info");
+    router.push("/foster-child/education-records/child-education/list");
   }
   return (
     <HorizaontalTabs tabsDataArray={["Allegation", "Uploaded Documents"]}>

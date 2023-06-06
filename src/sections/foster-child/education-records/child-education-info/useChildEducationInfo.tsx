@@ -85,14 +85,14 @@ export const useChildEducationInfo = () => {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push("/referral/referral-history/referral-history-form")
+              router.push("")
             }
             // onClicked={() =>console.log(info,'info')}
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push("/referral/referral-history/referral-history-form")
+              router.push("")
             }
             // onClicked={() =>console.log(info,'info')}
           />

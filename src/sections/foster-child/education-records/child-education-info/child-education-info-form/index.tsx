@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { RHFCheckbox, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
@@ -7,6 +8,41 @@ export const defaultValues = {
 
 export const educationInfoFormData = [
   {
+    id: 1,
+    gridLength: 12,
+    otherOptions: {
+      name: "placement",
+      label: "Does this child have a Placement?",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 2,
+    heading:
+      "Describe Any issue in relation to health and hygiene, and how they will be managed?",
+    componentProps: {
+      variant: "body2",
+      color: (theme: any) => theme.palette.primary.main,
+      sx: { mb: 1 },
+    },
+    component: Typography,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    otherOptions: {
+      name: "address",
+      label: "Address",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+      size: "small",
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 4,
     gridLength: 6,
     otherOptions: {
       name: "parentAndChild",
@@ -34,11 +70,15 @@ export const educationInfoFormData = [
   //   },
   //   component: RHFDatePicker,
   // },
-  // {
-  //   gridLength: 12,
-  //   otherOptions: { name: "areaOffice", label: "If Joint applicant, tick the Checkbox", fullWidth: true },
-  //   component: RHFCheckbox,
-  // },
+  {
+    gridLength: 12,
+    otherOptions: {
+      name: "areaOffice",
+      label: "If Joint applicant, tick the Checkbox",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
   // {
   //   head: "Personal Details",
   // },

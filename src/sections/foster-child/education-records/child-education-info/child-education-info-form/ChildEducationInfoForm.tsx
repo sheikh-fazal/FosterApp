@@ -17,21 +17,6 @@ const ChildEducationInfoForm = ({ action, id }: any) => {
   });
   return (
     <FormProvider methods={methods}>
-      <Grid container columnSpacing={4} pb={3}>
-        <Grid item xs={12} md={12}>
-          <Typography
-            pt="10px"
-            pb="30px"
-            sx={{
-              fontSize: "16px",
-              fontWeight: 700,
-              color: theme.palette.primary.main,
-            }}
-          >
-            Personal Details
-          </Typography>
-        </Grid>
-      </Grid>
       <Grid container columnSpacing={4} rowSpacing={3}>
         {educationInfoFormData.map((form: any, i: any) => {
           return (
@@ -54,13 +39,13 @@ const ChildEducationInfoForm = ({ action, id }: any) => {
                   size="small"
                   {...form.otherOptions}
                 >
-                  {form.otherOptions.select
+                  {form?.otherOptions?.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
                       ))
-                    : null}
+                    : form?.heading}
                 </form.component>
               ) : (
                 <Typography
