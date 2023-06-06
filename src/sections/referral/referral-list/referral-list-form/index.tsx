@@ -280,7 +280,7 @@ export const ReferralListFormData = [
   },
   {
     gridLength: 6,
-    label: "child Geography",
+    label: "Child Geography",
     componentProps: {
       name: "childGeography",
       fullWidth: true,
