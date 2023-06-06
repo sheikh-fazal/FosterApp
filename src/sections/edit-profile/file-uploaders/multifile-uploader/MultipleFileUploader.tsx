@@ -33,9 +33,13 @@ const MultipleFileUploader: FC<any> = ({
 
   const removeFile = (fileIndex: number) => {
     const fileArray = [...files];
+    console.log({ fileIndex, fileArray });
+
     fileArray.splice(fileIndex, 1);
-    fileArray.length === 0 ? setFiles(null) : setFiles(fileArray);
-    fileArray.length === 0 ? setDocuments([]) : setDocuments(fileArray);
+    fileArray.length === 0 ? setFiles(null) : setFiles(fileArray.reverse());
+    fileArray.length === 0
+      ? setDocuments([])
+      : setDocuments(fileArray.reverse());
   };
 
   // deleting file from server

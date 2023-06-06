@@ -90,8 +90,8 @@ export default function AddTraingVerification() {
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Training Profile", "Upload Documents"]}>
-        {uploadDocumentsIsLoading ? (
-          <IsFetching isFetching={uploadDocumentsIsLoading} />
+        {isLoading ? (
+          <IsFetching isFetching={isLoading} />
         ) : (
           <>
             <EditTrainingProfile
@@ -116,8 +116,8 @@ export default function AddTraingVerification() {
           </>
         )}
 
-        {isLoading ? (
-          <IsFetching isFetching={isLoading} />
+        {uploadDocumentsIsLoading ? (
+          <IsFetching isFetching={uploadDocumentsIsLoading} />
         ) : (
           <>
             <UploadDocuments
