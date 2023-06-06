@@ -104,7 +104,7 @@ const PartnerReferenceTable = () => {
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
-        title="Former Partner Reference"
+        title="Former Partner References"
         searchKey="search"
         showAddBtn
         onAdd={() => {

@@ -1,10 +1,6 @@
-import { useState } from "react";
+
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import { Button, Card } from "@mui/material";
-
-import Page from "@root/components/Page";
-import { ManageLoginDropDown } from "@root/sections/recruitment/manage-login-dropdown/ManageLoginDropDown";
 import ChildChronologyOfEventsList from "@root/sections/foster-child/child-background-info/child-chronology-of-events/ChildChronologyOfEventsList";
 
 const BREADCRUMBS = [
