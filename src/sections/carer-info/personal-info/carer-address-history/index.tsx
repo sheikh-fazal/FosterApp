@@ -4,6 +4,7 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
 import router from "next/router";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 // utils
 
@@ -11,7 +12,7 @@ import router from "next/router";
 
 export const defaultValues = {
   type: "Pre Approved",
-  dateMovedOut: "",
+  datedMoved: "",
   currentAddress: "Yes",
   address: "",
   townCity: "",
@@ -22,32 +23,36 @@ export const defaultValues = {
   county: "",
   country: "",
   postalCode: "",
+  dateMovedOut: new Date(),
+  localAuthority: "",
 };
 
 export const FormSchema = Yup.object().shape({
   type: Yup.string().required("Field is required"),
-  dateMovedOut: Yup.string().required("Field is required"),
+  datedMoved: Yup.string().required("Field is required"),
   currentAddress: Yup.string().required("Field is required"),
   address: Yup.string().required("Field is required"),
   townCity: Yup.string().required("Field is required"),
   telephone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   officePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   mobilePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   email: Yup.string()
     .required("Field is required")
     .email("Invalid Email Address"),
   county: Yup.string().required("Field is required"),
   country: Yup.string().required("Field is required"),
   postalCode: Yup.string().required("Field is required"),
+  dateMovedOut: Yup.date().required("Date of Interview is required"),
+  localAuthority: Yup.string().required("Field is required"),
 });
 export const formData = [
   {
@@ -63,7 +68,7 @@ export const formData = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "dateMovedOut",
+      name: "datedMoved",
       label: "Dated Moved",
       multiline: true,
       minRows: 3,
@@ -161,38 +166,32 @@ export const formData = [
     otherOptions: { name: "postalCode", label: "Postal Code", fullWidth: true },
     component: RHFTextField,
   },
+  {
+    gridLength: 6,
+    otherOptions: {
+      name: "dateMovedOut",
+      label: "Date Moved Out",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      name: "localAuthority",
+      label: "Local Authority",
+      fullWidth: true,
+      select: true,
+    },
+    options: [
+      { value: "Pakistan", label: "Pakistan" },
+      { value: "India", label: "India" },
+    ],
+    component: RHFSelect,
+  },
 ];
 
 export const columns = [
-  {
-    id: "select",
-    header: ({ table, row }: any) => {
-      console.log(table.getSelectedRowModel().flatRows);
-      return (
-        <Box>
-          <Checkbox
-            checked={table.getIsAllRowsSelected()}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-          />
-        </Box>
-      );
-    },
-    cell: ({ row, table }: any) => (
-      <Box>
-        <Checkbox
-          disabled={row?.original?.Assigned}
-          checked={row?.original?.Assigned ? false : row.getIsSelected()}
-          onChange={row.getToggleSelectedHandler()}
-        />
-      </Box>
-    ),
-  },
-  {
-    accessorFn: (row: any) => row.srNo,
-    id: "srNo",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Sr. No</span>,
-  },
   {
     accessorFn: (row: any) => row.city,
     id: "city",
@@ -225,7 +224,7 @@ export const columns = [
           type="edit"
           onClicked={() =>
             router.push(
-              "/carer-info/personal-info/carer-address-history/edit-address-history?123"
+              `/carer-info/personal-info/carer-address-history/edit-address-history?id=${info?.row?.original?.id}`
             )
           }
         />
@@ -234,7 +233,7 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              "/carer-info/personal-info/carer-address-history/view-address-history?123"
+              `/carer-info/personal-info/carer-address-history/view-address-history?id=${info?.row?.original?.id}`
             )
           }
         />
