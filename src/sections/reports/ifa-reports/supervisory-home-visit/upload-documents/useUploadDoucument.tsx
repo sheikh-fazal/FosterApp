@@ -1,8 +1,10 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import { useRouter } from "next/router";
+import { useState } from "react";
 
 export const useUploadDocument = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => setOpenModal(!openModal);
   const columns = [
     {
       id: "select",
@@ -74,9 +76,7 @@ export const useUploadDocument = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction size="small" type="view" />
-        </Box>
+          <TableAction size="small" type="view" onClicked={handleOpenModal} />
       ),
       header: "Action",
       isSortable: false,
@@ -84,5 +84,7 @@ export const useUploadDocument = () => {
   ];
   return {
     columns,
+    openModal,
+    handleOpenModal,
   };
 };

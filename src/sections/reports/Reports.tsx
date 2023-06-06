@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import {
   Box,
-  IconButton,
   List,
   ListItem,
   ListItemAvatar,
@@ -11,13 +10,14 @@ import {
 import NextLink from "next/link";
 import VericalTabs from "@root/components/VericalTabs";
 import { REPORTTABSDATAARRY } from ".";
-import { useReports } from "./useReports";
-
 
 export default function Reports() {
   const theme: any = useTheme();
   return (
-    <VericalTabs tabsDataArray={REPORTTABSDATAARRY}>
+    <VericalTabs
+      tabsDataArray={REPORTTABSDATAARRY}
+      customStyle={{ maxHeight: 700, overflowY: 'auto' }}
+    >
       {REPORTTABSDATAARRY?.map((item) => (
         <Fragment key={item?.index}>
           {item?.innerDataArray?.map((innerItem) => (
@@ -61,12 +61,6 @@ const styles = {
           : theme.palette.grey[900],
       borderRadius: 1,
     },
-  }),
-  listIconButton: (theme: any) => ({
-    "&:hover": { background: "transparent !important" },
-    color: theme.palette.grey[600],
-    fontWeight: 500,
-    fontSize: "14px",
   }),
   listItemAvatar: (background: any) => ({
     background: `${background}`,

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { TableDemoData } from ".";
 import { Box, Checkbox } from "@mui/material";
-import TableAction from "@root/components/TableAction";
 
 export const useUserLogHistoryReport = () => {
   const [filterValue, setFilterValue] = useState({
@@ -81,17 +80,6 @@ export const useUserLogHistoryReport = () => {
       cell: (info: any) => info.getValue(),
       header: "Modified By",
       isSortable: true,
-    },
-
-    {
-      id: "actions",
-      cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction size="small" type="view" />
-        </Box>
-      ),
-      header: "Action",
-      isSortable: false,
     },
   ];
 

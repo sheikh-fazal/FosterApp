@@ -8,50 +8,55 @@ export const EXPERIENCE = {
   headline: "",
   industry: "",
   description: "",
-}
+};
 
 export const AddFormValues = {
   companyName: "",
   location: "",
   media: "",
-  experiences:[
+  experiences: [
     {
-     ...EXPERIENCE
-    }
-  ]
+      ...EXPERIENCE,
+    },
+  ],
 };
 
+export const EmploymentType = [
+  {
+    label: "Contract",
+    value: "Contract",
+  },
+  {
+    label: "Part time",
+    value: "Part time",
+  },
+  {
+    value: "Full time",
+    label: "Full time",
+  },
+  {
+    value: "Permanent",
+    label: "Permanent",
+  },
+];
+
 export const AddFormSchema = Yup.object().shape({
-  title: Yup.string()
-    .required("Title is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
-    employmentType: Yup.string()
-    .required("Employment Type is required"),
-    companyName: Yup.string()
-    .required("Company Name is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
-    location: Yup.string()
-    .required("Location is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
-    currentlyWorking:Yup.boolean().required("Current Working is Required"),
-    startDate: Yup.date()
-    .typeError("StartDate is required")
-    .required("StartDate is required"),
-    endDate:  Yup.date()
-    .typeError("EndDate is required")
-    .required("EndDate is required"),
-    headline: Yup.string()
-    .required("HeadLine is required"),
-    industry: Yup.string()
-    .required("Industry is required"),
-    description: Yup.string()
-    .required("Description is required"),
+  companyname: Yup.string().required("Company Name is required"),
+  location: Yup.string().required("Location is required"),
+  updatePhoto: Yup.mixed().required("Photo is required"),
+  experiences: Yup.array().of(
+    Yup.object().shape({
+      title: Yup.string().required("Title is required"),
+      employmentType: Yup.string().required("Employment Type is required"),
+      currentlyWorking: Yup.boolean(),
+      startDate: Yup.date().required("Start Date is required"),
+      endDate: Yup.date().required("Start Date is required"),
+      headline: Yup.string().required("HeadLine is required"),
+      industry: Yup.string().required("Industry is required"),
+      description: Yup.string().required("Description is required"),
+    })
+  ),
 });
-
-
 export const addExperienceForm = [
   {
     type: "text",
@@ -113,3 +118,45 @@ export const addExperienceForm = [
     label: "Media",
   },
 ];
+
+
+
+
+
+
+// <Fragment key={field.id}>
+                  
+// <Grid item xs={6}  onClick={() => toggleCollapse(index)}
+// style={{ cursor: "pointer" }}>
+//   <RHFTextField
+//     name={`experiences.${index}.title`}
+//     label="Title"
+//     size="small"
+//   />
+// </Grid>
+// {collapsedIndexes.includes(index) ? null : (
+// <>
+//   <RHFTextField
+//     multiline
+//     rows={3}
+//     name={`experiences.${index}.headline`}
+//     label="HeadLine"
+//     size="small"
+//   />
+//   <RHFTextField
+//     multiline
+//     rows={3}
+//     name={`experiences.${index}.industry`}
+//     label="Industry"
+//     size="small"
+//   />
+//   <RHFTextField
+//     multiline
+//     rows={3}
+//     name={`experiences.${index}.description`}
+//     label="Description"
+//     size="small"
+//   />
+// </>
+// )}
+// </Fragment>

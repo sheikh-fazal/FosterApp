@@ -23,7 +23,7 @@ export const useUploadDocumentsTable = () => {
     isLoading: loadingList,
     isFetching,
     isSuccess,
-  }: any = useUploadDocumentListQuery();
+  }: any = useUploadDocumentListQuery({});
   const [postAllegationDetails] = usePostAllegationDocumentsMutation();
   const allegationDocuments = data?.data?.allegation_documents;
   const meta = data?.meta;

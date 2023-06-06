@@ -18,12 +18,14 @@ FRB.getLayout = function getLayout(page: any) {
         },
         {
           name: "Reports",
+          href: "/reports",
         },
         {
-          name: "IFA Reports"
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/FR-B",
         },
         {
-          name: "FR-B FOSTER CARER REPORT"
+          name: "FR-B: FOSTER CARER REPORT"
         }
       ]}
       title={PAGE_TITLE}

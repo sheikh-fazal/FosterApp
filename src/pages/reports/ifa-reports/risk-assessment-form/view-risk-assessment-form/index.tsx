@@ -18,9 +18,16 @@ RiskAssessment.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports/ifa-reports/risk-assessment-form",
+        },
+        {
           name: "RISK ASSESSENT FORM",
         },
-       
       ]}
       title={PAGE_TITLE}
     >
@@ -33,7 +40,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 export default function RiskAssessment() {
   return (
     <Page title={PAGE_TITLE}>
-      <RiskAssessmentViewForm disabled={true}/>
+      <RiskAssessmentViewForm disabled={true} />
     </Page>
   );
 }

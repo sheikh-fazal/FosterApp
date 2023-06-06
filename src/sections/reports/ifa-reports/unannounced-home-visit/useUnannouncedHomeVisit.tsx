@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { TableDemoData } from ".";
-import { Box, Checkbox, Typography } from "@mui/material";
+import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import Image from "next/image";
-import signCover from "../../../../assets/svg/reports/signCover.svg";
 
 export const useUnannouncedHomeVisit = () => {
   const router = useRouter();
@@ -65,12 +63,13 @@ export const useUnannouncedHomeVisit = () => {
       accessorFn: (row: any) => row.signature,
       id: "signature",
       cell: (info: any) => (
-        <Typography sx={styles.imageCover}>
-          <Image src={info.getValue()} width={30} height={30} alt="Picture" />
-          <Typography sx={styles.image}>
-            <Image src={signCover} width={30} height={30} alt="Picture" />
-          </Typography>
-        </Typography>
+        <Image
+          src={info.getValue()}
+          width={30}
+          height={30}
+          alt="Picture"
+          style={{ margin: "0 auto" }}
+        />
       ),
       header: () => <span>FC Signature</span>,
       isSortable: true,
@@ -79,18 +78,15 @@ export const useUnannouncedHomeVisit = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {/* <ActionModal content={info} /> */}
-          <TableAction
-            size="small"
-            type="view"
-            onClicked={() => {
-              router.push(
-                "/reports/ifa-reports/unannounced-home-visit/view-unannounced-home-visit"
-              );
-            }}
-          />
-        </Box>
+        <TableAction
+          size="small"
+          type="view"
+          onClicked={() => {
+            router.push(
+              "/reports/ifa-reports/unannounced-home-visit/view-unannounced-home-visit"
+            );
+          }}
+        />
       ),
       header: "Action",
       isSortable: false,
@@ -102,15 +98,4 @@ export const useUnannouncedHomeVisit = () => {
     router,
     columns,
   };
-};
-
-const styles = {
-  imageCover: () => ({
-    display: "flex",
-    justifyContent: "center",
-    position: "relative",
-  }),
-  image: () => ({
-    position: "absolute",
-  }),
 };

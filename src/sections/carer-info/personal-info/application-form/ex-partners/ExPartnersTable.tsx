@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 import { columns } from ".";
 import { useGetExPartnerDetailsQuery } from "@root/services/carer-info/personal-info/application-form/ExPartnersApi";
 
-export default function ExPartnersView({ apllicationFormid }: any) {
+export default function ExPartnersView({ apllicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
   let [exPartnerData, setExPartnerData] = useState(null);
 
@@ -18,33 +18,27 @@ export default function ExPartnersView({ apllicationFormid }: any) {
   };
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetExPartnerDetailsQuery(apllicationFormid);
-  // const [data, setData] = React.useState([
-  //   {
-  //     srNo: "U4721XBUCA",
-  //     name: "John",
-  //     phone: "123456789",
-  //     email: "john@xyz",
-  //   },
-  //   {
-  //     srNo: "U3721XBUCB",
-  //     name: "John Doe",
-  //     phone: "12345678109",
-  //     email: "johndoe2@xyz",
-  //   },
-  // ]);
+
   return (
     <>
       {viewData ? (
         <ExPartnersViewForm
+          role
           disabled={viewData == "view" ? true : false}
           exPartnerData={exPartnerData}
           changeView={changeView}
+          viewData={viewData}
+          apllicationFormid={apllicationFormid}
         />
       ) : (
         <>
           <TableHeader
             ref={tableHeaderRef}
             title="Existing Ex-Partners(s) Details"
+            showAddBtn={role == "foster-carer" ? false : true}
+            onAdd={() => {
+              changeView("add");
+            }}
             searchKey="search"
             onChanged={(data: any) => {
               console.log("Updated params: ", data);
@@ -53,7 +47,7 @@ export default function ExPartnersView({ apllicationFormid }: any) {
           <CustomTable
             showSerialNo
             data={data?.data}
-            columns={columns(changeView, setExPartnerData)}
+            columns={columns(changeView, setExPartnerData, role)}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

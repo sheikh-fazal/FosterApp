@@ -17,6 +17,14 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports",
+        },
+        {
           name: "User Log History Report",
         },
       ]}
@@ -29,7 +37,9 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function UnannouncedHomeVisitLayout() {
-  return <Page title={PAGE_TITLE}>
-    <UserLogHistoryReport/>
-  </Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <UserLogHistoryReport />
+    </Page>
+  );
 }

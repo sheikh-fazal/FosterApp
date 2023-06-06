@@ -4,7 +4,11 @@ import {
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostInitialHomeInterestDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/interest/interest";
 import { enqueueSnackbar } from "notistack";
-import { defaultValueInterestForm, interestFormFieldsInfoFunction, interestFormValues } from ".";
+import {
+  defaultValueInterestForm,
+  interestFormFieldsInfoFunction,
+  interestFormValues,
+} from ".";
 import { useRouter } from "next/router";
 import useAuth from "@root/hooks/useAuth";
 
@@ -52,6 +56,9 @@ export const useInterestForm = () => {
       const res: any = await postInitialHomeInterestDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -62,6 +69,7 @@ export const useInterestForm = () => {
     setInterestDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeInterestDataStatus,
-    interestFormFieldsInfo
+    interestFormFieldsInfo,
+    user,
   };
 };

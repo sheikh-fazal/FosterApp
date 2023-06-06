@@ -22,11 +22,10 @@ FRF3.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports",
+          href: "/reports/ifa-reports/FR-F3",
         },
         {
           name:"FR-F3: BIRTH PARENT/BIRTH FAMILY MEMBER",
-          href: "/reports/ifa-reports/FR-F3",
         },
       ]}
       title={PAGE_TITLE}
