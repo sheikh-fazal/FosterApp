@@ -4,8 +4,6 @@ import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWith
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
-
-// ----------------------------------------------------------------------
 // Styles
 const styles = {
   optionsFullWidth: {
@@ -17,6 +15,7 @@ const styles = {
   marginBottom: {
     marginBottom: "39px !important",
   },
+
 };
 
 export const SafeguardingAssessmentAddForm = [
@@ -62,7 +61,6 @@ export const SafeguardingAssessmentAddForm = [
     md: 6,
   },
 
-
   {
 
     id: 5,
@@ -77,7 +75,6 @@ export const SafeguardingAssessmentAddForm = [
     component: RHFRadioGroupWithLabel,
 
   },
-
 
   {
     id: 6,
@@ -492,8 +489,6 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
   {
     id: 37,
     heading: "Associations ",
@@ -657,8 +652,6 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
   {
     id: 49,
     heading: "Behaviour/Presentation  ",
@@ -813,14 +806,11 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
-  // ////////////////////////////////////////////////////////////////////////
-
+  // /////////////////////////////////////////////////Coercion/Control
 
   {
     id: 61,
-    heading: "Coercion/Control  ",
+    heading: "Coercion/Control",
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
@@ -989,11 +979,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
-
-  // ////////////////////////////////////////////////////////////////
-
+  // ////////////////////////////////////////////////////////////////Education/Training
 
   {
     id: 74,
@@ -1103,13 +1089,10 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
-
-  // //////////////////////////////////////////
+  // //////////////////////////////////////////Engagement in adult activity
   {
     id: 82,
-    heading: "Engagement in adult activity ",
+    heading: "Engagement in adult activity",
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
@@ -1188,10 +1171,10 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // ///////////////////////////////////////
+  // ///////////////////////////////////////Exchanging sexual or criminal activity for goods, money
   {
     id: 88,
-    heading: "Exchanging sexual or criminal activity for goods, money  ",
+    heading: "Exchanging sexual or criminal activity for goods, money",
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
@@ -1254,9 +1237,6 @@ export const SafeguardingAssessmentAddForm = [
     component: RHFTextField,
     md: 12,
   },
-
-
-
 
 
   {
@@ -1574,7 +1554,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // ////////////////////////////////
+  // ////////////////////////////////Home Life
   {
     id: 116,
     heading: "Home Life",
@@ -1712,7 +1692,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // ////////////////////////////////////
+  // ////////////////////////////////////Mental health and Wellbeing
   {
     id: 126,
     heading: "Mental health and Wellbeing",
@@ -1835,7 +1815,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////////
+  // /////////////////////////////////////Missing From Home/Care/Education
   {
     id: 135,
     heading: "Missing From Home/Care/Education",
@@ -1958,10 +1938,10 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////////////////////
+  // /////////////////////////////////////////////////Physical/Sexual Assault
   {
     id: 144,
-    heading: "Physical/Sexual Assault ",
+    heading: "Physical/Sexual Assault",
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
@@ -2054,7 +2034,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // /////////////////////////////////
+  // /////////////////////////////////Pregnancy
   {
     id: 151,
     heading: "Pregnancy",
@@ -2150,8 +2130,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-
-  // /////////////////////////////////
+  // /////////////////////////////////Relationships
   {
     id: 158,
     heading: "Relationships",
@@ -2218,17 +2197,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-
-
-
-
-
-
-
-
-
-
-  // /////////////////////////////////
+  // /////////////////////////////////Sexual Activity and Behaviours
   {
     id: 163,
     heading: "Sexual Activity and Behaviours ",
@@ -3174,10 +3143,10 @@ export const AssessmentFormValidationSchema = Yup.object().shape({
   // childVulnerabilitiesConcerns: Yup.string().trim().required("Field is Required"),
   // childSafeguardingMeasures: Yup.string().trim().required("Field is Required"),
   // InterventionPreferences: Yup.string().trim().required("Field is Required"),
-  // jobTitle: Yup.string().trim().required("Field is Required"),
-  // organiation: Yup.string().trim().required("Field is Required"),
-  // email: Yup.string().trim().required("Field is Required"),
-  // telephone: Yup.string().trim().required("Field is Required"),
+  jobTitle: Yup.string().trim().required("Field is Required"),
+  organiation: Yup.string().trim().required("Field is Required"),
+  email: Yup.string().trim().required("Field is Required"),
+  telephone: Yup.string().trim().required("Field is Required"),
 });
 
 export { default as SafeguardingAssessmentForm } from "./SafeguardingAssessmentForm";
