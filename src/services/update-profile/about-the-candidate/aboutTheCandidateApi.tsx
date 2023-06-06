@@ -1,3 +1,7 @@
+import {
+  generateLocalFormsStatuses,
+  tabsItems,
+} from "@root/sections/edit-profile/layout/static-data";
 import { baseAPI } from "@root/services/baseApi";
 
 const TAG = "UPDATE_PROFILE";
@@ -11,6 +15,10 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => {
+        const resData = "badgeId";
+        let fromNowItIsPending = false;
+        const genForms = generateLocalFormsStatuses("specialities");
+        console.log(genForms);
         return {
           forms: [
             { name: "Personal Info", status: "Done" },

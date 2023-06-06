@@ -91,3 +91,18 @@ export const localFormNames = [
   "Add Declaration",
   "declaration",
 ];
+
+export const generateLocalFormsStatuses = (formName: string) => {
+  let fromNowItIsPending = false;
+  const localFormName = localFormNames[localFormNames.indexOf(formName) - 1];
+  return tabsItems.map(({ name }: any) => {
+    if (name === localFormName) {
+      fromNowItIsPending = true;
+      return { name, status: "Pending" };
+    } else {
+      return fromNowItIsPending
+        ? { name, status: "Pending" }
+        : { name, status: "Done" };
+    }
+  });
+};

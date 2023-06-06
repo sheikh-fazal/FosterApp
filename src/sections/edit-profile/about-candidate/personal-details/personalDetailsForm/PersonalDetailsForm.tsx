@@ -31,7 +31,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, isError, error } = await getProfileInfoQuery(null, false);
-      console.log(data);
+      // console.log(data);
       setIsLoading(false);
       if (isError || !data) {
         displayErrorMessage(error, enqueueSnackbar);
@@ -67,7 +67,6 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
     }
   };
   if (isLoading) return <FormSkeleton />;
-  console.log({ isSubmitting });
   return (
     <>
       {isSubmitting && <IsFetching isFetching />}
