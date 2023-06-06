@@ -15,10 +15,10 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => {
-        const genForms = generateLocalFormsStatuses("specialities");
+        const genForms = generateLocalFormsStatuses("declaration");
         return {
           forms: genForms,
-          activeFormName: "specialities",
+          activeFormName: "declaration",
         };
       },
     }),
