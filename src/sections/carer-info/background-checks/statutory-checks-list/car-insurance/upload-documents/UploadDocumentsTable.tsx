@@ -11,7 +11,7 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import Link from "next/link";
 import ViewDocumentsModal from "./ViewUploadDocuments";
 
-const UploadDocuments = () => {
+const UploadDocumentsTable = () => {
   const {
     tableHeaderRefTwo,
     pageChangeHandler,
@@ -142,4 +142,4 @@ const UploadDocuments = () => {
   );
 };
 
-export default UploadDocuments;
+export default UploadDocumentsTable;

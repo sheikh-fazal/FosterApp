@@ -77,7 +77,7 @@ export const useUploadDocuments = () => {
   //Submit Function To Submit Form Data
   const handleSubmitForm = async (data: any) => {
     const formData = new FormData();
-    formData.append("formName", "CAR_INSURANCE");
+    formData.append("formName", "EMPLOYMENT_REFERENCE_1");
     formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);

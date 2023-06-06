@@ -2,9 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-1/EmployementReferenceOneTable";
 import EmploymentReferenceOneForm from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-1/EmploymentReferenceOneForm";
 import { useRouter } from "next/router";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-1/upload-documents/UploadDocumentsTable";
 
 // Constants
 const BREADCRUMBS = [
@@ -44,7 +44,7 @@ export default function EmployementReference1() {
       tabsDataArray={["Employment Reference 1", "Upload Documents"]}
     >
       <EmploymentReferenceOneForm action={action} id={id} />
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }
