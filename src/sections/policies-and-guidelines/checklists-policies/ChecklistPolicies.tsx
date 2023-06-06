@@ -5,7 +5,7 @@ import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVer
 const ChecklistPolicies = () => {
     return (
         <>
-            <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={'/policies-and-guidelines/checklists/add'}  />
+            <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={'/policies-and-guidelines/checklists/checklist-form'}  />
         </>
     )
 }

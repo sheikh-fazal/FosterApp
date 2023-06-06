@@ -4,7 +4,7 @@ import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVer
 
 const TemplatePolicies = () => {
     return (
-        <PolicyVerticalTable data={TemplatePoliciesData} addNewTabNavigation={'/policies-and-guidelines/templates/add'} />
+        <PolicyVerticalTable data={TemplatePoliciesData} addNewTabNavigation={'/policies-and-guidelines/templates/template-policies-form'} />
     )
 }
 
