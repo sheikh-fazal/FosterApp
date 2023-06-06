@@ -61,7 +61,7 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info/${info?.row?.id}?action=edit`
+                `/foster-child/health-medical-history/gp-details/gp-details-info/${info.getValue()}?action=edit`
               )
             }
           />
@@ -69,7 +69,7 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info/${info?.row?.id}?action=view`
+                `/foster-child/health-medical-history/gp-details/gp-details-info/${info.getValue()}?action=view`
               )
             }
           />
