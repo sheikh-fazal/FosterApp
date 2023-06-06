@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Layout from "@root/layouts";
 import Page from '@root/components/Page';
 import HomeIcon from "@mui/icons-material/Home";
-import PersonalInfoForm from "@root/sections/referral/foster-child-request-form/personal-info-form/PersonalInfoForm";
-import LADetailsForm from "@root/sections/referral/foster-child-request-form/la-details-form/LADetailsForm";
-import UploadDocumentTable from "@root/sections/referral/foster-child-request-form/upload-documents/UploadDocumentsTable";
 import { useRouter } from "next/router";
 import CustomHorizaontalTab from "@root/components/customTabs";
+import PersonalInfoForm from "@root/sections/referral/foster-child-request-form/add-foster-child-request-form/personal-info-form/PersonalInfoForm";
+import LADetailsForm from "@root/sections/referral/foster-child-request-form/add-foster-child-request-form/la-details-form/LADetailsForm";
+import UploadDocumentTable from "@root/sections/referral/foster-child-request-form/add-foster-child-request-form/upload-documents/UploadDocumentsTable";
 
 
 const PAGE_TITLE = "Child Request Form";

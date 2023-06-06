@@ -14,7 +14,6 @@ export const PersonalInfoFormData = [
     title:'Child Code',
     componentProps: {
       name: "childCode",
-      label: "CHC-2",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -26,7 +25,6 @@ export const PersonalInfoFormData = [
     title:'Child Identifier',
     componentProps: {
       name: "childIdentifier",
-      label:"Child Identifier",
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -39,7 +37,6 @@ export const PersonalInfoFormData = [
     title:'Child Or Parent & Child',
     componentProps: {
       name: "childParentChild",
-      label: "Child",
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -54,7 +51,6 @@ export const PersonalInfoFormData = [
     title:'Area Office',
     componentProps: {
       name: "areaOffice",
-     
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -90,7 +86,7 @@ export const PersonalInfoFormData = [
   {
     id: 6,
     title:'First Name',
-    componentProps: { name: "firstName", label: "First Name", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "firstName", fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
   },
@@ -100,7 +96,6 @@ export const PersonalInfoFormData = [
     title:'Middle Name',
     componentProps: {
       name: "middleName",
-      label: "Middle Name",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -111,7 +106,7 @@ export const PersonalInfoFormData = [
     id: 8,
     gridLength: 6,
     title:'Last Name',
-    componentProps: { name: "lastName", label: "Last Name", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "lastName",  fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
   },
@@ -127,7 +122,7 @@ export const PersonalInfoFormData = [
     id: 10,
     gridLength: 6,
     title:'Age',
-    componentProps: { name: "age", label: "Age", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "age",  fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
   },

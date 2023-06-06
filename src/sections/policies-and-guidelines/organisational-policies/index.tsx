@@ -1,23 +1,23 @@
-import RecruitmentAssessmentPolicy from '../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy'
-import PanelPolicyIcon from '../../../assets/svg/policy-guidelines/panel-policy-icon'
-import SafeGuardingPolicyIcon from "../../../assets/svg/policy-guidelines/Safeguarding-policy";
-import AllegationsPolicyIcon from "../../../assets/svg/policy-guidelines/allegations-policy";
-import EqualitiesPolicyIcon from "../../../assets/svg/policy-guidelines/equalities-policy";
-import MissingCarePolicyIcon from "../../../assets/svg/policy-guidelines/missing-care-policy-icon";
-import BehaviourManagementPolicyIcon from "../../../assets/svg/policy-guidelines/behaviour-management-policy-icon";
-import StandardsCarePolicyIcon from "../../../assets/svg/policy-guidelines/standards-care-policy-icon";
-import SupervisionTrainingSupportPolicyIcon from "../../../assets/svg/policy-guidelines/supervision-training-support-policy";
-import HealthPolicyIcon from "../../../assets/svg/policy-guidelines/health-policy-icon";
-import EducationalPolicyIcon from "../../../assets/svg/policy-guidelines/educational-policy-icon";
-import PromotingContactPolicyIcon from "../../../assets/svg/policy-guidelines/promoting-contact-policy-icon";
-import StaffSupervisionPolicyIcon from "../../../assets/svg/policy-guidelines/staff-supervision-policy-icon";
-import RecordingKeepingPolicyIcon from "../../../assets/svg/policy-guidelines/recording-keeping-policy-icon"
+import RecruitmentAssessmentPolicyIcon from "../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy.svg";
+import PanelPolicyIcon from "../../../assets/svg/policy-guidelines/Panel-Policy.svg";
+import SafeGuardingPolicyIcon from "../../../assets/svg/policy-guidelines/SafeGuarding-Policy.svg";
+import AllegationsPolicyIcon from "../../../assets/svg/policy-guidelines/Allegations-Policy.svg";
+import EqualitiesPolicyIcon from "../../../assets/svg/policy-guidelines/Equalities-Policy.svg";
+import MissingCarePolicyIcon from "../../../assets/svg/policy-guidelines/MissingCarerPolicyIcon.svg";
+import BehaviourManagementPolicyIcon from "../../../assets/svg/policy-guidelines/Behaviour-Management-Policy.svg";
+import StandardsCarePolicyIcon from "../../../assets/svg/policy-guidelines/Standards-Care-Policy.svg";
+import SupervisionTrainingSupportPolicy from "../../../assets/svg/policy-guidelines/Supervision-Training-Support-Policy.svg";
+import HealthPolicyIcon from "../../../assets/svg/policy-guidelines/Health-Policy.svg";
+import EducationalPolicyPolicyIcon from "../../../assets/svg/policy-guidelines/Educational-Policy.svg";
+import PromotingContactPolicyIcon from "../../../assets/svg/policy-guidelines/Promoting-Contact-Policy.svg";
+import StaffSupervisionPolicyIcon from "../../../assets/svg/policy-guidelines/Staff-Supervision-Policy.svg";
+import RecordingKeepingPolicyIcon from "../../../assets/svg/policy-guidelines/Recording-Keeping-Policy.svg";
 
 export const OrganisationalPoliciesData = [
     {
         index: 0,
         title: "Recruitment and Assessment Policy ",
-        img: <RecruitmentAssessmentPolicy/>,
+        img: RecruitmentAssessmentPolicyIcon,
         innerData: [
             {
                 id: '1',
@@ -33,7 +33,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 1,
         title: "Panel Policy",
-        img: <PanelPolicyIcon/>,
+        img: PanelPolicyIcon,
         innerData: [
             {
                 id: '2',
@@ -49,7 +49,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 2,
         title: "Safe Guarding Policy",
-        img: <SafeGuardingPolicyIcon/>,
+        img: SafeGuardingPolicyIcon,
         innerData: [
             {
                 id: '3',
@@ -65,7 +65,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 3,
         title: "Allegations Policy",
-        img: <AllegationsPolicyIcon/>,
+        img: AllegationsPolicyIcon,
         innerData: [
             {
                 id: '4',
@@ -81,7 +81,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 4,
         title: "Equalities Policy",
-        img: <EqualitiesPolicyIcon/>,
+        img: EqualitiesPolicyIcon,
         innerData: [
             {
                 id: '5',
@@ -97,7 +97,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 5,
         title: "Missing From Care Policy",
-        img: <MissingCarePolicyIcon/>,
+        img: MissingCarePolicyIcon,
         innerData: [
             {
                 id: '6',
@@ -113,7 +113,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 6,
         title: "Behaviour Management Policy",
-        img: <BehaviourManagementPolicyIcon/>,
+        img: BehaviourManagementPolicyIcon,
         innerData: [
             {
                 id: '7',
@@ -129,7 +129,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 7,
         title: "7 Standards of Care Policy",
-        img: <StandardsCarePolicyIcon/>,
+        img: StandardsCarePolicyIcon,
         innerData: [
             {
                 id: '8',
@@ -145,7 +145,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 8,
         title: "Supervision Training Support Policy",
-        img: <SupervisionTrainingSupportPolicyIcon/>,
+        img: SupervisionTrainingSupportPolicy,
         innerData: [
             {
                 id: '9',
@@ -161,7 +161,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 9,
         title: "Health Policy",
-        img: <HealthPolicyIcon/>,
+        img: HealthPolicyIcon,
         innerData: [
             {
                 id: '10',
@@ -177,7 +177,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 10,
         title: "Educational Policy",
-        img: <EducationalPolicyIcon/>,
+        img: EducationalPolicyPolicyIcon,
         innerData: [
             {
                 id: '11',
@@ -193,7 +193,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 11,
         title: "Promoting Contact Policy",
-        img: <PromotingContactPolicyIcon/>,
+        img: PromotingContactPolicyIcon,
         innerData: [
             {
                 id: '12',
@@ -209,7 +209,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 12,
         title: "Staff Supervision Policy",
-        img: <StaffSupervisionPolicyIcon/>,
+        img: StaffSupervisionPolicyIcon,
         innerData: [
             {
                 id: '13',
@@ -225,7 +225,7 @@ export const OrganisationalPoliciesData = [
     {
         index: 13,
         title: "Recording Keeping Policy",
-        img: <RecordingKeepingPolicyIcon/>,
+        img: RecordingKeepingPolicyIcon,
         innerData: [
             {
                 id: '14',

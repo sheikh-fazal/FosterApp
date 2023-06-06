@@ -51,8 +51,8 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
                     label={
                       <Box sx={styles.tabLabel(item?.background)}>
                         <Box sx={styles.tabsIcon}>
-                          {/* <Image src={item.img} alt="" width={20} height={20} /> */}
-                          {item?.img}
+                          <Image src={item.img} alt="" width={20} height={20} />
+                         
                         </Box>
                         <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
                           {item?.title.length > 46 ? `${item.title.slice(0, 46)}...` : item.title}

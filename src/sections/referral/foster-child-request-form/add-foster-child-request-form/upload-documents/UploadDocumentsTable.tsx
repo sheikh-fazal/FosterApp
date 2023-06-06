@@ -7,7 +7,7 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import CustomTable from "@root/components/Table/CustomTable";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 import Image from "next/image";
-import RefreshIcon from "../../../../assets/svg/referral/RefreshIcon.svg";
+import RefreshIcon from "../../../../../assets/svg/Referrals/refresh.svg";
 import { UploadDocumentsTableData } from ".";
 import { useUploadDocumentsTableData } from "./useUploadDocumentsTable";
 
