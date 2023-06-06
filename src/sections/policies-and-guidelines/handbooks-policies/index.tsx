@@ -1,10 +1,10 @@
-import RecruitmentAssessmentPolicyIcon from "../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy.svg";
+import FosterCarerHandbookIcon from "../../../assets/svg/policy-guidelines/FosterCarerHandbook.svg";
 import UnderstandingFosteringIcon from "../../../assets/svg/policy-guidelines/UnderstandingFostering.svg";
 export const HandbookPoliciesData = [
     {
         index: 0,
         title: "Foster Carer Handbook",
-        img: RecruitmentAssessmentPolicyIcon,
+        img: FosterCarerHandbookIcon,
         innerData: [
             {
                 no: "1",
