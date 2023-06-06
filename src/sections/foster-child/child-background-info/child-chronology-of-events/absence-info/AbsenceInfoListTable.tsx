@@ -1,12 +1,13 @@
 import React from "react";
-import { columns } from ".";
 import { data } from ".";
 import router from "next/router";
 import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
+import { useAbsenceInfoListTable } from "./useAbsenceInfoListTable";
 
 export default function AbsenceInfoListTable() {
+  const {columns} = useAbsenceInfoListTable()
   return (
     <>
       <Card>
@@ -15,7 +16,7 @@ export default function AbsenceInfoListTable() {
           title="Absence Info"
           onAdd={() => {
             router.push(
-              `/foster-child/child-background-info/child-chronology-of-events/absence-info/absence-info-form`
+              `/foster-child/child-background-info/child-chronology-of-events/absence-info/add-absence-info`
             );
           }}
         />

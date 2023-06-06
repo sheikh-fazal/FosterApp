@@ -2,9 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-
-import { useRouter } from "next/router";
-import AllegationForm from "@root/sections/carer-info/personal-info/chronology-of-events/allegation/allegation-form/AllegationForm";
+import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/absence-info-child/absence-info-form/AbsenceInfoForm";
 import UploadedDocumentsTable from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/absence-info-child/upload-documents/UploadDocumentsTable";
 
 // Constants
@@ -21,7 +19,7 @@ const BREADCRUMBS = [
 ];
 
 const PAGE_TITLE = "Absence Info";
-AbsenceInfoForm.getLayout = function getLayout(page: any) {
+AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -32,11 +30,11 @@ AbsenceInfoForm.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function AbsenceInfoForm() {
+export default function AbsenceInfoFormLayout() {
   return (
     <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AllegationForm />
-      <UploadedDocumentsTable />
+   <AbsenceInfoForm/>
+   <UploadedDocumentsTable />
     </HorizaontalTabs>
   );
 }
