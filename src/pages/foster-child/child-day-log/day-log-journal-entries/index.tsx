@@ -2,7 +2,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-import ClaDocumentationListTable from "@root/sections/foster-child/child-background-info/cla-documentation-list/ClaDocumentationList";
+import DayLogjournalentriesListTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogjournalentriesList";
 
 // ----------------------------------------------------------------------
 
@@ -37,7 +37,7 @@ export default function DayLogJournalEntries() {
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <ClaDocumentationListTable />
+        <DayLogjournalentriesListTable />
       </Paper>
     </Page>
   );

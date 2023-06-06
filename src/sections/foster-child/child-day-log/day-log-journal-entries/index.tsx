@@ -82,6 +82,14 @@ export const columns = [
             )
           }
         />
+        <TableAction
+          type="delete"
+          onClicked={() =>
+            router.push(
+              `/foster-child/`
+            )
+          }
+        />
         <DeleteModel onDeleteClick={() => { }} />
         <TableAction
           type="view"
@@ -94,23 +102,23 @@ export const columns = [
   },
 ];
 
-export const dayLogJournalEntriestableData = [
-  {
-    id:1,
-    document:"Family Involved",
-    documentType: "Family Involved",
-    date:"19/05/2021",
-    personName:"Name Xame",
-    password:"123abc",
-  },
-  {
-    id:2,
-    document:"Family Involved",
-    documentType: "Family Involved",
-    date:"19/05/2021",
-    personName:"Name Xame",
-    password:"123abc",
-  },
-]
+// export const DayLogjournalentriesListTableData = [
+//   {
+//     id:1,
+//     document:"Family Involved",
+//     documentType: "Family Involved",
+//     date:"19/05/2021",
+//     personName:"Name Xame",
+//     password:"123abc",
+//   },
+//   {
+//     id:2,
+//     document:"Family Involved",
+//     documentType: "Family Involved",
+//     date:"19/05/2021",
+//     personName:"Name Xame",
+//     password:"123abc",
+//   },
+// ]
 
 

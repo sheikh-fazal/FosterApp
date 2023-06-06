@@ -43,7 +43,7 @@ export default function FamilyPersonList() {
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
+        <HorizaontalTabs tabsDataArray={["Day Log Journal", "Uploaded documents"]}>
 
           <FamilyOrgInvolvedForm />
           <UploadDocuments
