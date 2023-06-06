@@ -4,7 +4,6 @@ import HospitalisationInfo from "@root/pages/foster-child/child-background-info/
 import ImmunisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/immunisation-info";
 import IncidentsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/incidents-info";
 import OfstedNotifications from "@root/pages/foster-child/child-background-info/child-chronology-of-events/ofsted-notifications";
-import OHHReports from "@root/pages/foster-child/child-background-info/child-chronology-of-events/ooh-reports";
 import SATSExam from "@root/pages/foster-child/child-background-info/child-chronology-of-events/sats-exam";
 import AbsenceInfo from "@root/pages/foster-child/education-records/absence-info";
 import VocationalCourseInfo from "@root/pages/foster-child/education-records/vocational-course-info";
@@ -13,15 +12,16 @@ import TherapyInfo from "@root/pages/foster-child/health-medical-history/therapy
 import RiskAssessment from "@root/pages/foster-child/other-information/risk-assessment";
 import AllegationsInfo from "./allegations-info";
 import DayLogTable from "./day-log/DayLogTable";
+import OOHReportsTable from "./ooh-reports";
 
-export const childChronologyListData =[
+export const childChronologyListData = [
   {
     title: "Day Log / Journal Entries",
     component: <DayLogTable />,
   },
   {
     title: "OOH Reports",
-    component: <OHHReports />,
+    component: <OOHReportsTable />,
   },
   {
     title: "Ofsted Notifications",
@@ -75,4 +75,4 @@ export const childChronologyListData =[
     title: "Incidents Info",
     component: <IncidentsInfo />,
   },
-]
+];
