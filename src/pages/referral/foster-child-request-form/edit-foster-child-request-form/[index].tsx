@@ -51,13 +51,13 @@ export default function FosterChildEequestForm() {
   let disabled = query.action === "view" ? true : false;
   return (
     <Page title={PAGE_TITLE}>
-      <CustomHorizaontalTab  tabsArray={tabsArray}
-      currentTab={currentTab}
-      setCurrentTab={setCurrentTab}>
-      <PersonalInfoForm  disabled={disabled} handleNextBtn={handleNextTab}/>
-      <LADetailsForm disabled={disabled}  handlePreviousBtn={handlePreviousTab}/>
-      <UploadDocumentTable disabled={disabled}/>
-    </CustomHorizaontalTab>
+      <CustomHorizaontalTab tabsArray={tabsArray}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}>
+        <PersonalInfoForm disabled={disabled} handleNextBtn={handleNextTab} />
+        <LADetailsForm disabled={disabled} handlePreviousBtn={handlePreviousTab} />
+        <UploadDocumentTable disabled={disabled} />
+      </CustomHorizaontalTab>
     </Page>
   );
 }
