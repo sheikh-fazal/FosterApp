@@ -16,6 +16,7 @@ import { ResetPasswordFormSchema, defaultValues } from ".";
 
 import { useResetPasswordMutation } from "@root/services/authApi";
 import { useState } from "react";
+import { PATH_AUTH } from "@root/routes/paths";
 
 // ----------------------------------------------------------------------
 
@@ -43,7 +44,7 @@ export default function ResetPassword({ data }: any) {
 
     try {
       const res: any = await resetTrigger(payload).unwrap();
-      res && router.push("/auth/login");
+      res && router.push(PATH_AUTH.login);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error Occured", { variant: "error" });

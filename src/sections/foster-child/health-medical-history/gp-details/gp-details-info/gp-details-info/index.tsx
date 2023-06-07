@@ -9,7 +9,7 @@ export const gpDetailsInfoFormValues = {
   address: "",
   town: "",
   telephone: "",
-  mobilePhone:"",
+  phoneNo:"",
   email:"",
   county:"",
   country:"",
@@ -18,13 +18,14 @@ export const gpDetailsInfoFormValues = {
 
 
 export const defaultValueGpDetailsInfoForm = (data: any = gpDetailsInfoFormValues) => {
+  console.log({data})
   return {
     physicianName: data.physicianName,
     physicianType: data.physicianType,
     address: data.address,
     town: data.town,
     telephone: data.telephone,
-    mobilePhone:data.mobilePhone,
+    phoneNo:data.phoneNo,
     email:data.email,
     county:data.county,
     country:data.country,
@@ -53,7 +54,7 @@ export const gpDetailsFormSchema = Yup.object().shape({
     .required("Telephone is required")
     .min(6, "Mininum 6 characters")
     .max(50, "Maximum 50 characters"),
-    mobilePhone: Yup.string()
+    phoneNo: Yup.string()
     .required("Mobile phone is required")
     .min(6, "Mininum 6 characters")
     .max(50, "Maximum 50 characters"),
@@ -117,7 +118,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     id: 4,
     componentProps: {
       fullWidth: true,
-      name: "city",
+      name: "town",
       label: "Town/City",
       disabled: isFieldDisable,
     },
@@ -139,7 +140,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     id: 6,
     componentProps: {
       fullWidth: true,
-      name: "mobilePhone",
+      name: "phoneNo",
       label: "Mobile Phone",
       disabled: isFieldDisable,
     },

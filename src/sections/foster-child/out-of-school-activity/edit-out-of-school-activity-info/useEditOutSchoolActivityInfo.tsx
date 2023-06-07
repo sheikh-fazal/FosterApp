@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useNewChildExclusionInfo = () => {
+const useEditOutSchoolActivityInfo = () => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
@@ -18,7 +18,7 @@ const useNewChildExclusionInfo = () => {
     outcome: "",
   };
 
-  const childExclusionSchema = Yup.object().shape({
+  const tainingProfileSchema = Yup.object().shape({
     classStudying: Yup.string().required("Required"),
     typeExclusion: Yup.string().required("Required"),
     returnDate: Yup.date().required("Required"),
@@ -29,7 +29,7 @@ const useNewChildExclusionInfo = () => {
   });
 
   const methods: any = useForm({
-    resolver: yupResolver(childExclusionSchema),
+    resolver: yupResolver(tainingProfileSchema),
     defaultValues,
   });
 
@@ -42,4 +42,4 @@ const useNewChildExclusionInfo = () => {
   return { methods, handleSubmit, onSubmit, router };
 };
 
-export default useNewChildExclusionInfo;
+export default useEditOutSchoolActivityInfo;

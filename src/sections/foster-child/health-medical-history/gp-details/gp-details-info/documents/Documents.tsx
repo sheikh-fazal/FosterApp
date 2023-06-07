@@ -16,18 +16,19 @@ const Documents = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
+    query
   } = useDocuments();
 
   return (
     <UploadDocuments
-      readOnly={user?.defaultRole !== "FOSTER_CARER"}
-      tableData={data?.initialDocuments}
+      readOnly={query?.action === "view"}
+      tableData={data?.data}
       isLoading={isLoading}
       column={[
         "documentName",
         "documentType",
         "documentDate",
-        "personUploaded",
+        "uploadBy",
         "password",
       ]}
       isFetching={isFetching}

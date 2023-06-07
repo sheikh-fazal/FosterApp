@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { useGPDetailsList } from "./useGPDetailsList";
 
 const GPDetailsList = () => {
-  const { gpDetailsInfoTableColumns, tableHeaderRef, data, dataTable } =
+  const { gpDetailsInfoTableColumns, tableHeaderRef,data, isLoading , isSuccess, isError , isFetching , setSearchValue , router} =
   useGPDetailsList();
   return (
     <>
@@ -14,22 +14,22 @@ const GPDetailsList = () => {
           title="Child GP Details"
           searchKey="search"
           showAddBtn={true}
-          // onAdd={() => setOpenModal(true)}
-          //   onChanged={(data: any) => {
-          //     setSearchValue(data.search);
-          //     console.log("Updated params: ", data);
-          //   }}
+          onAdd={() => router.push('/foster-child/health-medical-history/gp-details/gp-details-info')}
+            onChanged={(data: any) => {
+              setSearchValue(data?.search);
+              console.log("Updated params: ", data);
+            }}
         />
 
         <CustomTable
-          data={dataTable}
+          data={data?.data}
           columns={gpDetailsInfoTableColumns}
-          isLoading={false}
+          isLoading={isLoading}
           showSerialNo
-          isFetching={false}
-          isError={false}
+          isFetching={isFetching}
+          isError={isError}
           isPagination={true}
-          isSuccess={true}
+          isSuccess={isSuccess}
           currentPage={data?.meta?.page ?? 1}
           totalPages={data?.meta?.pages ?? 2}
           //   onPageChange={(data: any) => {
