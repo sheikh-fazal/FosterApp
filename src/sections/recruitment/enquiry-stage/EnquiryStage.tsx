@@ -21,6 +21,10 @@ export default function EnquiryStage() {
     setFormDialogId,
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
+    // isLoading,
+    // isError,
+    // isFetching,
+    // isSuccess,
   } = useEnquiryStage();
 
   return (
