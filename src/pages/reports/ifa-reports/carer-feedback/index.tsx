@@ -25,7 +25,7 @@ CarerFeedbackLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "CARER FEEDBACK FOR EMPLOYEES APRAISAL",
+          name: "Carer Feedback for Employees Apraisal",
         },
       ]}
       title={PAGE_TITLE}

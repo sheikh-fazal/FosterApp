@@ -5,7 +5,8 @@ import Link from "next/link";
 import { CarerFeedbackFormData } from ".";
 import { useViewCarerFeedback } from "./useViewCarerFeedback";
 
-const ViewCarerFeedBackForm = ({ disabled }: any) => {
+const ViewCarerFeedBackForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods } = useViewCarerFeedback();
   return (
     <Card sx={{ py: 2, px: 1 }}>

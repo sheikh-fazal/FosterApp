@@ -6,12 +6,22 @@ import Image from "next/image";
 import { useState } from "react";
 
 export const useSupervisoryHomeVisit = () => {
+  const path = "/reports/ifa-reports/supervisory-home-visit";
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState(0);
   const handleTabChange = (value: any) => setCurrentTab(value);
   const handleNextTab = () => setCurrentTab(currentTab + 1);
   const handlePreviousTab = () => setCurrentTab(currentTab - 1);
 
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      default:
+        break;
+    }
+  };
   const columns = [
     {
       id: "select",
@@ -105,15 +115,12 @@ export const useSupervisoryHomeVisit = () => {
     {
       id: "actions",
       cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
-          size="small"
           type="view"
-          onClicked={() => {
-            router.push(
-              "/reports/ifa-reports/supervisory-home-visit/view-supervisory-home-visit"
-            );
-          }}
+          onClicked={() => handleAction("view", info.row.original.id)}
         />
+      </Box>
       ),
       header: "Action",
       isSortable: false,

@@ -6,7 +6,7 @@ import SupervisoryUploadDocuments from "./upload-documents/UploadDoucment";
 import CustomHorizaontalTab from "@root/components/customTabs";
 import { useSupervisoryHomeVisit } from "./useSupervisoryHomeVisit";
 
-const TabsSection = () => {
+const TabsSection = ({action}:any) => {
   const { handlePreviousTab, currentTab, handleTabChange } =
     useSupervisoryHomeVisit();
   return (
@@ -15,9 +15,9 @@ const TabsSection = () => {
       setCurrentTab={handleTabChange}
       tabsArray={["Carer Section A", "Carer Section B", "Upload Documents"]}
     >
-      <SuperVisoryCarerSectionA disabled={true} />
+      <SuperVisoryCarerSectionA action={action} />
       <SuperVisoryCarerSectionB
-        disabled={true}
+       action={action} 
         handleBack={handlePreviousTab}
       />
       <SupervisoryUploadDocuments />

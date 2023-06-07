@@ -24,7 +24,7 @@ FRC1.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "FR-C1 CHILD LIVING IN THE HOUSEHOLD’S COMMENTS"
+          name: "FR-C1 Child Living In The Household's Comments"
         }
       ]}
       title={PAGE_TITLE}

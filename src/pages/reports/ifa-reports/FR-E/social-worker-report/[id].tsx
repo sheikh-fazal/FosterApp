@@ -26,7 +26,7 @@ FRE.getLayout = function getLayout(page: any) {
           href: "/reports/ifa-reports/FR-E",
         },
         {
-          name: "FR-E CHILD’S SOCIAL WORKER REPORT"
+          name: "FR-E Child's Social Worker Report"
         }
       ]}
       title={PAGE_TITLE}

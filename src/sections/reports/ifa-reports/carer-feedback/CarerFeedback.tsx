@@ -3,11 +3,12 @@ import {
   Box,
   Button,
   Card,
+  FormControl,
   Grid,
+  InputLabel,
   MenuItem,
   Select,
   TextField,
-  Typography,
 } from "@mui/material";
 import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
 import Image from "next/image";
@@ -29,28 +30,30 @@ const CareerFeedback = () => {
         <Grid container columnSpacing={4}>
           {careerFeedbackFilterData.map((data: any, i) => (
             <Grid item xs={12} md={data.gridlength} mb={4} key={i}>
-              <Typography sx={(theme) => styles.title(theme)}>
-                {data.title}
-              </Typography>
               {i === 0 ? (
                 <TextField {...data.otherOptions} />
               ) : (
-                <Select {...data.otherOptions}>
-                  {data.options &&
-                    data.options.map((item: any, i: number) => {
-                      return (
-                        <MenuItem key={i} value={item.value}>
-                          {item.label}
-                        </MenuItem>
-                      );
-                    })}
-                </Select>
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">
+                    {data.label}
+                  </InputLabel>
+                  <Select {...data.otherOptions}>
+                    {data.options &&
+                      data.options.map((item: any, i: number) => {
+                        return (
+                          <MenuItem key={i} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        );
+                      })}
+                  </Select>
+                </FormControl>
               )}
             </Grid>
           ))}
           <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={styles.title}>Date To</Typography>
             <DatePicker
+              label="Date To"
               slotProps={{
                 textField: {
                   fullWidth: true,
@@ -98,12 +101,6 @@ const CareerFeedback = () => {
 export default CareerFeedback;
 
 const styles = {
-  title: (theme: any) => ({
-    fontSize: "16px",
-    fontWeight: 600,
-    color:
-      theme.palette.mode === "dark" ? theme.palette.common.white : "#343A40",
-  }),
   button: (theme: any) => ({
     padding: "10px 17px",
     float: "right",

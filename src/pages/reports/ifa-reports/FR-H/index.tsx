@@ -25,7 +25,7 @@ FRH.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-H FOSTERING SERVICE MANAGER REPORT"
+          name:"FR-H Fostering Service Manager Report"
         }
       ]}
       title={PAGE_TITLE}

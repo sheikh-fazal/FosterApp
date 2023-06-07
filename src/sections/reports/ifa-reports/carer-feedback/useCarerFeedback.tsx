@@ -5,6 +5,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const useCarerFeedback = () => {
+  const path = "/reports/ifa-reports/carer-feedback";
   const [filterValue, setFilterValue] = useState({
     empolyeeName: "",
     position: "",
@@ -16,6 +17,17 @@ export const useCarerFeedback = () => {
     var objString = JSON.stringify(filterValue);
     alert(objString);
   };
+
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      default:
+        break;
+    }
+  };
+
   const columns = [
     {
       id: "select",
@@ -80,15 +92,12 @@ export const useCarerFeedback = () => {
     {
       id: "actions",
       cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
-          size="small"
           type="view"
-          onClicked={() => {
-            router.push(
-              "/reports/ifa-reports/carer-feedback/view-carer-feedback"
-            );
-          }}
+          onClicked={() => handleAction("view", info.row.original.id)}
         />
+      </Box>
       ),
       header: "Action",
       isSortable: false,

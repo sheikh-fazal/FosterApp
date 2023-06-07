@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { selectValues } from ".";
+import {viewReportsFilterData } from ".";
 import {
   Box,
   Button,
   Card,
+  FormControl,
   Grid,
+  InputLabel,
   MenuItem,
   Select,
-  Typography,
 } from "@mui/material";
 import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
 import Image from "next/image";
@@ -17,74 +18,46 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { DatePicker } from "@mui/x-date-pickers";
 
 const RiskAssessmentForm = () => {
-  const {
-    TableDemoData,
-    HandlerSearch,
-    columns,
-    setFilterValue,
-    filterValue,
-  } = useAssessmentForm();
+  const { TableDemoData, HandlerSearch, columns} =
+    useAssessmentForm();
 
   return (
     <Card sx={{ p: 1 }}>
-      <Box display={'flex'} justifyContent={'flex-end'}>
+      <Box display={"flex"} justifyContent={"flex-end"}>
         <Image src={automatedIcon} width={25} height={25} alt="icon" />
       </Box>
       <Card sx={{ p: 2, my: 2 }}>
-        <Grid container columnSpacing={4}>
-          <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={(theme) => styles.title(theme)}>
-              Date From
-            </Typography>
-            <DatePicker
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  size: "small",
-                },
-              }}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, dateFrom: e });
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={styles.title}>Date To</Typography>
-            <DatePicker
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  size: "small",
-                },
-              }}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, dateTo: e });
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={styles.title}>Role</Typography>
-            <Select
-              fullWidth
-              size="small"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filterValue.role}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, role: e.target.value });
-              }}
-            >
-              {selectValues.map((item, i) => {
-                return (
-                  <MenuItem key={i} value={item.value}>
-                    {item.label}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </Grid>
+        <Grid container spacing={4}>
+        {viewReportsFilterData.map((data: any, i: number) => (
+              <Grid item key={i} md={data.gridlength} xs={12}>
+                {data.requireDatePicker ? (
+                  <DatePicker 
+                  label={data.label}
+                    slotProps={{
+                      textField: { ...data.otherOptions },
+                    }}
+                  />
+                ) : (
+                  <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">{data.label}</InputLabel>
+                  <Select {...data.otherOptions}>
+                    {data.options.map((item: any, j: number) => (
+                      <MenuItem key={j} value={item.value}>
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  </FormControl>
+                )}
+              </Grid>
+            ))}
           <Grid item xs={12}>
-            <Button sx={(theme) => styles.button(theme)} onClick={HandlerSearch}>Search</Button>
+            <Button
+              sx={(theme) => styles.button(theme)}
+              onClick={HandlerSearch}
+            >
+              Search
+            </Button>
           </Grid>
         </Grid>
       </Card>
@@ -117,12 +90,6 @@ const RiskAssessmentForm = () => {
 export default RiskAssessmentForm;
 
 const styles = {
-  title: (theme: any) => ({
-    fontSize: "16px",
-    fontWeight: 600,
-    color:
-      theme.palette.mode === "dark" ? theme.palette.common.white : "#343A40",
-  }),
   button: (theme: any) => ({
     padding: "10px 17px",
     float: "right",

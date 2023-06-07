@@ -6,7 +6,8 @@ import { RiskAssessmentFormData } from ".";
 import { useRiskAssessmentViewForm } from "./useViewRiskAssessmentForm";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const RiskAssessmentViewForm = ({ disabled }: any) => {
+const RiskAssessmentViewForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods } = useRiskAssessmentViewForm();
   return (
     <Card sx={{ py: 2, px: 1 }}>
@@ -26,10 +27,10 @@ const RiskAssessmentViewForm = ({ disabled }: any) => {
                   {form?.heading}
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     : null}
                 </form.component>
               )}

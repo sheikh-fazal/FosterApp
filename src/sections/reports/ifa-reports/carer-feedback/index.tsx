@@ -1,28 +1,19 @@
-import { TextField } from "@mui/material";
-
-export const selectPositionValues = [
-  { value: "user", label: "User" }
-];
-export const selectLineManagerValues = [
-  { value: "user", label: "User" }
-];
-
 export const TableDemoData = [
-  {
+  { id:1,
     sNO: "1",
     employeeName: "Anne Teak",
     lineManager: "User ",
     position: "12.30 AM",
     date: "26/12/2021",
   },
-  {
+  { id:2,
     sNO: "2",
     employeeName: "Anne Teak",
     lineManager: "User  ",
     position: "12.30 AM",
     date: "26/12/2021",
   },
-  {
+  { id:3,
     sNO: "3",
     employeeName: "Anne Teak",
     lineManager: "User ",
@@ -31,39 +22,36 @@ export const TableDemoData = [
   },
 ];
 
-
 export const careerFeedbackFilterData = [
   {
     gridlength: 6,
-    title: 'Employee Name',
     otherOptions: {
-      name: 'employeeName',
+      label: "Employee Name",
+      name: "employeeName",
       fullWidth: true,
-      size: 'small',
+      size: "small",
     },
   },
   {
     gridlength: 6,
-    title: 'Postion',
+    label: "Postion",
     otherOptions: {
-      name: 'postion',
+      label: "Postion",
+      name: "postion",
       fullWidth: true,
-      size: 'small',
+      size: "small",
     },
-    options: [
-      { value: 'all', label: 'all' }
-    ],
+    options: [{ value: "all", label: "all" }],
   },
   {
     gridlength: 6,
-    title: 'Line Manager',
+    label: "Line Manager",
     otherOptions: {
-      name: 'lineManager',
+      label: "Line Manager",
+      name: "lineManager",
       fullWidth: true,
-      size: 'small',
+      size: "small",
     },
-    options: [
-      { value: 'today', label: 'today' }
-    ],
+    options: [{ value: "john", label: "john" }],
   },
 ];
