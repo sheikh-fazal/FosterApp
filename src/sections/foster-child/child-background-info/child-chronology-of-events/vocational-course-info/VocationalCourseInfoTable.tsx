@@ -3,10 +3,9 @@ import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useVocationalCourseInfoTable } from "./useVocationalCourseInfoTable";
 
-const DayLogTable = () => {
+const VocationalCourseInfoTable = () => {
   const {
     listDeleteHandler,
     router,
@@ -19,36 +18,27 @@ const DayLogTable = () => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useVocationalCourseInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.dateOfOccurence,
-      id: "dateOfOccurence",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
-      header: "Date of Occurence",
+      accessorFn: (row: any) => row?.courseType,
+      id: "courseType",
+      cell: (info: any) => info.getValue(),
+      header: "Course Type",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
+      accessorFn: (row: any) => row?.duration,
+      id: "duration",
       cell: (info: any) => info.getValue(),
-      header: "Type",
+      header: "Duration",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.subject,
-      id: "subject",
+      accessorFn: (row: any) => row?.qualification,
+      id: "qualification",
       cell: (info: any) => info.getValue(),
-      header: "Subject",
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.status,
-      id: "status",
-      cell: (info: any) => info.getValue(),
-      header: "Status",
+      header: "Qualification",
       isSortable: true,
     },
     {
@@ -61,7 +51,8 @@ const DayLogTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/vocational-course-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -73,7 +64,8 @@ const DayLogTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/vocational-course-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -94,7 +86,8 @@ const DayLogTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/vocational-course-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -120,4 +113,4 @@ const DayLogTable = () => {
   );
 };
 
-export default DayLogTable;
+export default VocationalCourseInfoTable;

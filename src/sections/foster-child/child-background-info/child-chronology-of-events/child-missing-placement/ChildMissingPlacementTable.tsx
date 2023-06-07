@@ -4,9 +4,9 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useChildMissingPlacementTable } from "./useChildMissingPlacementTable";
 
-const DayLogTable = () => {
+const ChildMissingPlacementTable = () => {
   const {
     listDeleteHandler,
     router,
@@ -19,36 +19,32 @@ const DayLogTable = () => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useChildMissingPlacementTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.dateOfOccurence,
-      id: "dateOfOccurence",
+      accessorFn: (row: any) => row?.childMissingDate,
+      id: "childMissingDate",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
-      header: "Date of Occurence",
+      header: "Child Missing Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
-      cell: (info: any) => info.getValue(),
-      header: "Type",
+      accessorFn: (row: any) => row?.reportedDate,
+      id: "reportedDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
+      header: "Reported Date",
       isSortable: true,
     },
+
     {
-      accessorFn: (row: any) => row?.subject,
-      id: "subject",
+      accessorFn: (row: any) => row?.missingReason,
+      id: "missingReason",
       cell: (info: any) => info.getValue(),
-      header: "Subject",
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.status,
-      id: "status",
-      cell: (info: any) => info.getValue(),
-      header: "Status",
+      header: "Missing Reason",
       isSortable: true,
     },
     {
@@ -61,7 +57,8 @@ const DayLogTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -73,14 +70,15 @@ const DayLogTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
         </Box>
       ),
-      header: "Action",
+      header: "Actions",
       isSortable: false,
     },
   ];
@@ -94,7 +92,8 @@ const DayLogTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
             query: { action: "add", id: "" },
           });
         }}
@@ -120,4 +119,4 @@ const DayLogTable = () => {
   );
 };
 
-export default DayLogTable;
+export default ChildMissingPlacementTable;

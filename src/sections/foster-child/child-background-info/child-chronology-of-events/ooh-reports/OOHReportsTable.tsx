@@ -4,9 +4,9 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useOOHReportsTable } from "./useOOHReportsTable";
 
-const DayLogTable = () => {
+const OOHReportsTable = () => {
   const {
     listDeleteHandler,
     router,
@@ -19,29 +19,22 @@ const DayLogTable = () => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useOOHReportsTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.dateOfOccurence,
-      id: "dateOfOccurence",
+      accessorFn: (row: any) => row?.reportingDateAndTime,
+      id: "reportingDateAndTime",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
-      header: "Date of Occurence",
+      header: "Reporting Date and Time",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
+      accessorFn: (row: any) => row?.emergencyPlacementRequired,
+      id: "emergencyPlacementRequired",
       cell: (info: any) => info.getValue(),
-      header: "Type",
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.subject,
-      id: "subject",
-      cell: (info: any) => info.getValue(),
-      header: "Subject",
+      header: "Emergency Placement Required",
       isSortable: true,
     },
     {
@@ -61,7 +54,8 @@ const DayLogTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -73,14 +67,15 @@ const DayLogTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
         </Box>
       ),
-      header: "Action",
+      header: "Actions",
       isSortable: false,
     },
   ];
@@ -94,7 +89,7 @@ const DayLogTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
             query: { action: "add", id: "" },
           });
         }}
@@ -120,4 +115,4 @@ const DayLogTable = () => {
   );
 };
 
-export default DayLogTable;
+export default OOHReportsTable;

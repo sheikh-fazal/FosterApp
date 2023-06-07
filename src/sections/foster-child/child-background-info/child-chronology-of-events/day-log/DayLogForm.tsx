@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { DayLogFormFields } from "./DayLogData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import theme from "@root/theme";
 
 const defaultValues = {
   dateOfOccurence: "sd",
@@ -35,11 +34,7 @@ const DayLogForm = () => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id} sx={{ mt: 1 }}>
                 {form.component !== "RadioGroup" && (
-                  <form.component
-                    size="small"
-                    {...form.otherOptions}
-                    disabled={true}
-                  >
+                  <form.component size="small" {...form.otherOptions} disabled={true}>
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -71,7 +66,11 @@ const DayLogForm = () => {
                   Notification
                 </Typography>
                 <Grid item xs={6}>
-                  <RHFSelect label={"Select User to be Notified"} name={"SelectUsertobeNotified"} disabled/>
+                  <RHFSelect
+                    label={"Select User to be Notified"}
+                    name={"SelectUsertobeNotified"}
+                    disabled
+                  />
                 </Grid>
 
                 <Grid item xs={12} sx={{ mt: 2 }}>
