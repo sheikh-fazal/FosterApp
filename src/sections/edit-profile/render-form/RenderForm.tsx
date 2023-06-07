@@ -2,14 +2,19 @@ import { FC, Suspense } from "react";
 import FormSkeleton from "./FormSkeleton";
 import { RForm } from "./Forms";
 
-const RenderForm: FC<{ name: string; activateNextForm: () => void }> = ({
-  name,
-  activateNextForm,
-}) => {
+const RenderForm: FC<{
+  name: string;
+  activateNextForm: () => void;
+  MoveTo: (secName: string, formName: string) => void;
+}> = ({ name, activateNextForm, MoveTo }) => {
   return (
     <>
       <Suspense fallback={<FormSkeleton />}>
-        <RForm name={name} activateNextForm={activateNextForm} />
+        <RForm
+          name={name}
+          activateNextForm={activateNextForm}
+          MoveTo={MoveTo}
+        />
       </Suspense>
     </>
   );

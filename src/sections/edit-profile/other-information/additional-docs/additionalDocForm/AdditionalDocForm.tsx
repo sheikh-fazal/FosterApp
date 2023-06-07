@@ -57,9 +57,8 @@ const AdditionalDocForm: FC<any> = ({ addRefModelClose }) => {
     try {
       const data = await addOtherInfoAdditionalDocs(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      addRefModelClose();
     } catch (error: any) {
-      console.log("reesr");
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
