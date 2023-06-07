@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/local-authority/UploadDocuments";
+import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/local-authority/upload-documents/UploadDocumentsTable";
 import LocalAuthorityForm from "@root/sections/carer-info/background-checks/statutory-checks-list/local-authority/LocalAuthorityForm";
 import { useRouter } from "next/router";
 

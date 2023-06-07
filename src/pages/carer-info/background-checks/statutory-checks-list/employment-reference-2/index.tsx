@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-2/UploadDocuments";
+import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-2/upload-documents/UploadDocumentsTable";
 import EmploymentReferenceTwoForm from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-2/EmploymentReferenceTwoForm";
 import { useRouter } from "next/router";
 

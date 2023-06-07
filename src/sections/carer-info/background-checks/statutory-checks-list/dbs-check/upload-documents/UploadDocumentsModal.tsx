@@ -6,7 +6,7 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
 import { LoadingButton } from "@mui/lab";
 import useAuth from "@root/hooks/useAuth";
-import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
+import { useUploadDocuments } from "./useUploadDocuments";
 
 function UploadDocumentsModal(props: any) {
   const { open, setOpen, handleSubmitForm } = props;
@@ -14,7 +14,7 @@ function UploadDocumentsModal(props: any) {
     user: { firstName, lastName },
   }: any = useAuth();
   const { theme, action, handleSubmit, methods, isSubmitting } =
-    useUploadDocumentsTable();
+    useUploadDocuments();
   return (
     <>
       <Modal

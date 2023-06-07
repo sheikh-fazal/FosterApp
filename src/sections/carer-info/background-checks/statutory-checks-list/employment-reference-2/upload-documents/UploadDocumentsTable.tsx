@@ -3,15 +3,15 @@ import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useUploadDocuments } from "./useUploadDocuments";
 import dayjs from "dayjs";
 import UploadDocumentsModal from "./UploadDocumentsModal";
 import { enqueueSnackbar } from "notistack";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import Link from "next/link";
 import ViewDocumentsModal from "./ViewUploadDocuments";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
-const UploadDocuments = () => {
+const UploadDocumentsTable = () => {
   const {
     tableHeaderRefTwo,
     pageChangeHandler,
@@ -29,7 +29,7 @@ const UploadDocuments = () => {
     meta,
     open,
     listDeleteHandler,
-  } = useUploadDocuments();
+  } = useUploadDocumentsTable();
 
   const columns = [
     {
@@ -109,9 +109,12 @@ const UploadDocuments = () => {
         showAddBtn={action === "view" ? false : true}
         onAdd={() => {
           if (action === "add" && id === "") {
-            enqueueSnackbar("Please Fill The Car Insurance Form First", {
-              variant: "error",
-            });
+            enqueueSnackbar(
+              "Please Fill The Employement Reference 2 Form First",
+              {
+                variant: "error",
+              }
+            );
           } else {
             return modelHandler();
           }
@@ -142,4 +145,4 @@ const UploadDocuments = () => {
   );
 };
 
-export default UploadDocuments;
+export default UploadDocumentsTable;

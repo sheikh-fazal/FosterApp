@@ -5,7 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
 
-const UploadDocuments = () => {
+const UploadDocumentsTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [data, setData] = React.useState([
@@ -122,4 +122,4 @@ const UploadDocuments = () => {
   );
 };
 
-export default UploadDocuments;
+export default UploadDocumentsTable;

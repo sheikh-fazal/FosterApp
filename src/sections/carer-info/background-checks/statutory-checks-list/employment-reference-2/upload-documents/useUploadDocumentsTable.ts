@@ -8,16 +8,11 @@ import { useForm } from "react-hook-form";
 import { formSchema, defaultValues } from "./index";
 import {
   useDeleteStatutoryUploadDocumentsMutation,
-  useLazySingleStatutoryUploadDocumentsQuery,
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-export const useUploadDocuments = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
+export const useUploadDocumentsTable = () => {
   const [search, setSearch] = React.useState("");
-  //API For Getting Single Document Details
-  const [getSingleAllegetionDocument]: any =
-    useLazySingleStatutoryUploadDocumentsQuery();
   const router = useRouter();
   const { id, action }: any = router.query;
   const [open, setOpen] = React.useState(false);
@@ -58,16 +53,7 @@ export const useUploadDocuments = () => {
   const meta = data?.meta;
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: async () => {
-      const { data, isError } = await getSingleAllegetionDocument(id, true);
-      setIsLoading(false);
-      if (isError) {
-        enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
-      }
-      const responseData = { ...data.data };
-      return responseData;
-    },
+    defaultValues,
   });
   const {
     handleSubmit,
@@ -76,9 +62,8 @@ export const useUploadDocuments = () => {
   } = methods;
   //Submit Function To Submit Form Data
   const handleSubmitForm = async (data: any) => {
-    console.log("data", data);
     const formData = new FormData();
-    formData.append("formName", "CAR_INSURANCE");
+    formData.append("formName", "EMPLOYMENT_REFERENCE_2");
     formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);
