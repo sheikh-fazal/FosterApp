@@ -1,8 +1,8 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { InterestFormSchema, interestFormValues } from ".";
+import { interestFormSchema } from ".";
 import { useInterestForm } from "./useInterestForm";
 
-const InterestForm = (props: any) => {
+const InterestForm = () => {
   const {
     submitInterestForm,
     setInterestDefaultValue,
@@ -13,7 +13,7 @@ const InterestForm = (props: any) => {
   } = useInterestForm();
   return (
     <FormGenerator
-      FormSchema={InterestFormSchema}
+      FormSchema={interestFormSchema}
       defaultValues={setInterestDefaultValue}
       fieldsInfo={interestFormFieldsInfo}
       submitClickHand={submitInterestForm}
