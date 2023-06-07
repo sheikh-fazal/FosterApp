@@ -278,10 +278,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
       theme.palette.mode === "light"
         ? alpha(theme.palette.primary.main, 0.45)
         : theme.palette.grey[700],
-        
     backdropFilter: "blur(20px)",
-
     border: 0,
+    borderRadius: 0,
   },
   "&:first-of-type": {
     boxShadow: "unset",
@@ -294,15 +293,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const styles = {
   tableContainer: (tableContainerSX: any, theme: any) => ({
     "&::-webkit-scrollbar": {
-      width: 5,
-      height: 4,
+      width: 10,
+      height: 10,
     },
 
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: theme.palette.primary.main,
       borderRadius: 2,
     },
-    maxHeight: 560,
     mt: theme.palette.mode === "dark" ? 0.5 : 0,
     backgroundColor:
       theme.palette.mode === "light" ? "#F8FCFF" : theme.palette.grey[800],

@@ -59,7 +59,10 @@ export default function Health() {
   //--------------------recieve functions----------------------------------//
   const receiveDataHandlerApplicant1 = async (formData: any) => {
     try {
-      const res: any = await putHealthApplication1Data(formData).unwrap();
+      const res: any = await putHealthApplication1Data({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -72,7 +75,10 @@ export default function Health() {
 
   const receiveDataHandlerApplicant2 = async (formData: any) => {
     try {
-      const res: any = await putHealthApplication2Data(formData).unwrap();
+      const res: any = await putHealthApplication2Data({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
