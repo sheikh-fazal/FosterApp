@@ -78,22 +78,25 @@ export const columns = [
           type="edit"
           onClicked={() =>
             router.push(
-              `/foster-child/`
+              `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form`
             )
           }
         />
-        <TableAction
+         <TableAction
           type="delete"
-          onClicked={() =>
-            router.push(
-              `/foster-child/`
-            )
-          }
+          // onClicked={() => openDeleteModel(info.getValue())}
+          size="small"
         />
+
         <DeleteModel onDeleteClick={() => { }} />
         <TableAction
           type="view"
-          onClicked={() => console.log(info.getValue())}
+          // onClicked={() => console.log(info.getValue())}
+          onClicked={() =>
+            router.push(
+              `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form?action=view`
+            )
+          }
         />
       </Box>
     ),
@@ -102,23 +105,23 @@ export const columns = [
   },
 ];
 
-// export const DayLogjournalentriesListTableData = [
-//   {
-//     id:1,
-//     document:"Family Involved",
-//     documentType: "Family Involved",
-//     date:"19/05/2021",
-//     personName:"Name Xame",
-//     password:"123abc",
-//   },
-//   {
-//     id:2,
-//     document:"Family Involved",
-//     documentType: "Family Involved",
-//     date:"19/05/2021",
-//     personName:"Name Xame",
-//     password:"123abc",
-//   },
-// ]
+export const DayLogjournalentriesListTableData = [
+  {
+    id:1,
+    document:"Doc Name",
+    documentType: "PDF",
+    date:"19/05/2021",
+    personName:"Name Xame",
+    password:"123abc",
+  },
+  {
+    id:2,
+    document:"Doc Name",
+    documentType: "PDF",
+    date:"19/05/2021",
+    personName:"Name Xame",
+    password:"123abc",
+  },
+]
 
 

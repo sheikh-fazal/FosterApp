@@ -5,7 +5,7 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 
-export default function DayLogjournalentriesListTable() {
+export default function DayLogJournalEntriesTable() {
 
   const data = [
     {
@@ -29,7 +29,7 @@ export default function DayLogjournalentriesListTable() {
           title="Day Log/Journal Entries"
           onAdd={() => {
             router.push(
-              `/foster-child/`
+              `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form`
             );
           }}
         />

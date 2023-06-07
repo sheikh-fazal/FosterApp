@@ -6,8 +6,8 @@ import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
-import { familyPersontableData } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list";
+import DayLogJournalForm from "@root/sections/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form/DayLogJournalForm";
+import { DayLogjournalentriesListTableData } from "@root/sections/foster-child/child-day-log/day-log-journal-entries";
 
 
 // ----------------------------------------------------------------------
@@ -15,16 +15,16 @@ import { familyPersontableData } from "@root/sections/foster-child/child-backgro
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Child Info",
-    href: "/foster-child/child-background-info/cla-documentation",
+    name: "Day Log/Journal Entries List",
+    href: "/foster-child/child-day-log/day-log-journal-entries",
   },
   {
-    name: "Family Persons & Org Involved List",
+    name: "Day Log / Journal Entry",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Family Persons & Org Involved";
+const PAGE_TITLE = "Day Log/Journal Entries";
 // ----------------------------------------------------------------------
 
 FamilyPersonList.getLayout = function getLayout(page: any) {
@@ -43,15 +43,15 @@ export default function FamilyPersonList() {
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
+        <HorizaontalTabs tabsDataArray={["Day Log Journal", "Uploaded documents"]}>
 
-          <FamilyOrgInvolvedForm />
+          <DayLogJournalForm />
           <UploadDocuments
             readOnly={false}
             searchParam={(searchedText: string) =>
               console.log("searched Value", searchedText)
             }
-            tableData={familyPersontableData}
+            tableData={DayLogjournalentriesListTableData}
             isLoading={false}
             isFetching={false}
             isError={false}
