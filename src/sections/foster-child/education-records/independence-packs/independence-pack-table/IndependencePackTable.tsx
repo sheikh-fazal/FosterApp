@@ -3,13 +3,13 @@ import BronzeLevel from "@root/assets/svg/bronze-level";
 import SilverLevel from "@root/assets/svg/silver-level";
 import GoldLevel from "@root/assets/svg/gold-level";
 import { Box, Button, Grid } from "@mui/material";
-import LevelButtons from "./Levels/LevelButtons";
+import LevelButtons from "../Levels/LevelButtons";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { useIndependencePackTable } from "./useIndependencePackTable";
-import { IndependencePackData, columns } from ".";
-import LevelButtonsModal from "./Levels/LevelButtonsModal";
-
+import { IndependencePackData, columns } from "..";
+import LevelButtonsModal from "../Levels/LevelButtonsModal";
+import SingleLevel from "../Levels/SingleLevel";
 export default function IndependencePackTable() {
   let [open, setOpen] = useState(false);
   const {
@@ -25,7 +25,15 @@ export default function IndependencePackTable() {
   };
   return (
     <>
-      <LevelButtons />
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <LevelButtons />
+        <Box sx={{ mt: 1 }}>
+          <SingleLevel isBadge={true} levelName="Bronze" bgColor={"#A46628"}>
+            <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
+          </SingleLevel>
+        </Box>
+      </Box>
+
       <Grid container>
         <Grid xs={12} item>
           <TableHeader

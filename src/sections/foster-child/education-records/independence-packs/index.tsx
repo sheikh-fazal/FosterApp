@@ -1,6 +1,10 @@
 import { Box, Checkbox, Rating } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
 import router from "next/router";
@@ -27,39 +31,12 @@ export const FormSchema = Yup.object().shape({
   duration: Yup.string().required("Field is required"),
   outcome: Yup.string().required("Field is required"),
 });
-export const formData = [
+export const formData1 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "typesofHobbies",
-      label: "Types of Hobbies",
-      fullWidth: true,
-      select: true,
-    },
-    options: [
-      { value: "Male", label: "Male" },
-      { value: "Female", label: "Female" },
-    ],
-    component: RHFSelect,
-  },
-  {
-    gridLength: 12,
-    otherOptions: {
-      name: "description",
-      label: "Description",
-      multiline: true,
-      minRows: 3,
-      fullWidth: true,
-      size: "small",
-    },
-    component: RHFTextField,
-  },
-
-  {
-    gridLength: 6,
-    otherOptions: {
-      name: "date",
-      label: "Date",
+      name: "toDate",
+      label: "To Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -67,16 +44,48 @@ export const formData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "time",
-      label: "Time",
+      name: "certificateAwarded",
+      label: "Certificate Awarded",
       fullWidth: true,
+      size: "small",
     },
-    component: RHFTimePicker,
+    component: RHFUploadFile,
+  },
+];
+export const ListOfSkills = [
+  {
+    gridLength: 12,
+    otherOptions: {
+      name: "travelBus",
+      label: "I can travel by bus",
+    },
+    component: RHFCheckbox,
   },
   {
     gridLength: 6,
     otherOptions: {
-      name: "uploadImage",
+      name: "travelBusEveidence",
+      label: "My Evidence",
+      fullWidth: true,
+      size: "small",
+    },
+    component: RHFUploadFile,
+  },
+];
+export const ListOfSkillsWithEvidence = [
+  {
+    gridLength: 12,
+    otherOptions: {
+      name: "localBusStop",
+      label: "I know where the local bus stop is to take me town",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      name: "localBusStop",
+      label: "My Evidence",
       fullWidth: true,
       size: "small",
     },
@@ -157,4 +166,4 @@ export const IndependencePackData = [
     outcome: "extra",
   },
 ];
-export { default as IndependencePackTable } from "./IndependencePackTable";
+export { default as IndependencePackTable } from "./independence-pack-table/IndependencePackTable";

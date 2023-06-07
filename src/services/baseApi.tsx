@@ -35,6 +35,10 @@ export const TAGS = [
   "REFERENCE_TWO",
   "REFERENCE_THREE",
   "STATUTORY_LIST_UPLOAD_DOCUMENTS",
+  "POST_REFERENCE",
+  "EDIT_REFERENCE",
+  "POST_EMPLOYEE",
+  "EDIT_EMPLOYEE",
 ];
 
 // Create our baseQuery instance
