@@ -1,20 +1,27 @@
-import { Grid, Paper } from '@mui/material'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useForm } from 'react-hook-form';
+import { Box, Grid, Paper } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider } from '@root/components/hook-form';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { EHCPFormValidation, EHCPFormData } from '..';
 
-export default function EHCPForm() {
+export default function EHCPForm(props: any) {
+  
+  const { defaultValues, disabled } = props;
 
   const methods: any = useForm({
     resolver: yupResolver(EHCPFormValidation),
+    defaultValues
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
 
   };
+
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -24,6 +31,7 @@ export default function EHCPForm() {
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
+                disabled={disabled}
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
@@ -37,6 +45,22 @@ export default function EHCPForm() {
             </Grid>
           ))}
         </Grid>
+
+        <Box sx={{ display: "flex", mb: "1rem" }}>
+          <LoadingButton
+            sx={{ marginRight: "1rem" }}
+            type="submit"
+            variant="contained" disabled={disabled}>
+            Submit
+          </LoadingButton>
+          <LoadingButton
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained" disabled={disabled}>
+            back
+          </LoadingButton>
+        </Box>
+
       </FormProvider>
     </Paper>
   )

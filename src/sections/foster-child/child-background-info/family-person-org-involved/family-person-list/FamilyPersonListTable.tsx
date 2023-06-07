@@ -31,7 +31,7 @@ export default function FamilyPersonListTable() {
           title="Child Family / Persons & Org. Involved"
           onAdd={() => {
             router.push(
-              `/family-person-list/family-form-list`
+              `/foster-child/child-background-info/family-person-org-involved/family-form-list`
             );
           }}
         />
