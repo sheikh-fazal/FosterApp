@@ -23,38 +23,38 @@ export const defaultValuesAssesmentForm = (data = assesmentFormValues) => {
     managerRecommendation: data.managerRecommendation,
   };
 };
-export const FormSchema = Yup.object().shape({
+export const assessmentFormSchema = Yup.object().shape({
   familyBackground: Yup.string()
     .required("Family background is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   theFamilyHouse: Yup.string()
     .required("Family house is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   pets: Yup.string()
     .required("Pets is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   finance: Yup.string()
     .required("Finance is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   assesment: Yup.string()
     .required("Assesment is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   outcome: Yup.string()
     .required("Outcome is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   managerComments: Yup.string()
     .required("Manager comments is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   managerRecommendation: Yup.string()
     .required("Manager recommendation is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 
