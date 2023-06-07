@@ -1,37 +1,30 @@
-import React, { useRef, useState } from "react";
+import  { useRef, useState } from "react";
 
 import { useRouter } from "next/router";
 import { gpDetailsInfoTableColumnsFunction } from ".";
+import { useGetAllGpDetailsListDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsList";
 
 export const useGPDetailsList = () => {
   const router = useRouter();
   const { query } = useRouter();
-  const [isSingleDocumentDetailViewed, SetIsSingleDocumentDetailViewed] =
-    useState(false);
 
   const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(router);
+  const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
+  const params = {
+    search: searchValue,
+    // offset: page,
+    // limit: 10,
+  };
 
+  const dataParameter = { params };
+  const {data, isLoading , isSuccess, isError , isFetching } = useGetAllGpDetailsListDataQuery(dataParameter)
   const tableHeaderRef = useRef<any>();
 
-  const data: any = {};
-
-  const [dataTable, setDataTable] = React.useState([
-    {
-      physicianName: "Sijo Francis",
-      physicianType: "£40.00",
-      telephone:"+123334455982"
-    },
-    {
-      physicianName: "Sijo Francis",
-      physicianType: "£40.00",
-      telephone:"+123334455982"
-    },
-  ]);
   return {
     gpDetailsInfoTableColumns,
     tableHeaderRef,
-    data,
-    dataTable,
+    data, isLoading , isSuccess, isError , isFetching ,
+    setSearchValue,router
   };
 };

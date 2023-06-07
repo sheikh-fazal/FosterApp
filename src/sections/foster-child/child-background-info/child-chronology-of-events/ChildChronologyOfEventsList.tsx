@@ -10,12 +10,7 @@ const ChildChronologyOfEventsList = () => {
   return (
     <>
       <Box sx={{ display: "flex", gap: "12px" ,justifyContent:'end'}}>
-        <Button variant="contained">
-          <Print />
-        </Button>
-        <Button variant="contained">
-          <OpenInNewIcon />
-        </Button>
+       
         <Button variant="contained">
           <ImportExportIcon />  Sort By <ArrowDropDownIcon/>
         </Button>
