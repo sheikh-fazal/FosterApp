@@ -2,14 +2,26 @@ import React from "react";
 import Layout from "@root/layouts";
 import { useRouter } from "next/router";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home"; 
+import HomeIcon from "@mui/icons-material/Home";
 import PanelActionsForm from "@root/sections/panel/panel-tools/panel-actions-comments/panel-actions-form/PanelActionsForm";
 
 // ==============================================================================================================
 
-const PAGE_TILE = "View Panel Actions/Comments";
+const PAGE_TITLE_VIEW = "View Panel Actions/Comments";
+const PAGE_TITLE_EDIT = "Edit Panel Actions/Comments";
 
-Agenda.getLayout = function getLayout(page: any) {
+const getPageTitle = (action: string | string[] | undefined) => {
+  if (action === "view") {
+    return PAGE_TITLE_VIEW;
+  } else if (action === "edit") {
+    return PAGE_TITLE_EDIT;
+  }
+  return "";
+};
+
+const getLayout = (page: any) => {
+  const { query } = useRouter();
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -20,10 +32,10 @@ Agenda.getLayout = function getLayout(page: any) {
           href: "/panel/panel-tools/action-comment",
         },
         {
-          name: "Panel Actions/Comments",
+          name: getPageTitle(query.action),
         },
       ]}
-      title={PAGE_TILE}
+      title={getPageTitle(query.action)}
     >
       {page}
     </Layout>
@@ -36,8 +48,10 @@ export default function Agenda() {
   let disabled = query.action === "view" ? true : false;
 
   return (
-    <Page title={PAGE_TILE}>
-      <PanelActionsForm disabled={disabled} /> 
+    <Page title={getPageTitle(query.action)}>
+      <PanelActionsForm disabled={disabled} />
     </Page>
   );
 }
+
+Agenda.getLayout = getLayout;

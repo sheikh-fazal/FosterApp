@@ -12,7 +12,7 @@ const ChecklistPoliciesTabs = () => {
    
     return (
         <>
-            <CustomHorizaontalTab tabsArray={[`${route.query.name}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
+            <CustomHorizaontalTab tabsArray={[`${route?.query?.action === 'add' || route?.query?.action === 'view' ? route?.query?.name : 'Add New Policy'}`, "Upload document"]}  currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
                 <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/checklists'} />
 
                 <PolicyVerticalUploadDocument data={uploadDocumentData} addUploadDocument={() => setIsUploadDocumentOpenModal(true)} handleSubmit={handleUploadedSubmit} isUploadBackBtn={count === 1 && true} handleBackBtn={() => handlePreviousTab()} handleAction={handleAction} />

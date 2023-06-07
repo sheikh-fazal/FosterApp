@@ -1,4 +1,8 @@
-import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import { useFormContext, Controller } from "react-hook-form";
 import { Box, FormHelperText } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -6,7 +10,10 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
-
+import { NATIONALITYDROPDOWN } from "@root/dropdown-data/nationality";
+import { LANGUAGESDROPDOWNDATA } from "@root/dropdown-data/languages";
+import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import { IMMIGRATIONSTATUS } from "@root/dropdown-data/immigrationStatus";
 
 export const PersonalInfoFormData = [
   {
@@ -51,9 +58,7 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Hayes", label: "Hayes" },
-    ],
+    options: [{ value: "Hayes", label: "Hayes" }],
     component: RHFSelect,
     md: 6,
   },
@@ -66,15 +71,18 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Hayes", label: "Hayes" },
-    ],
+    options: [{ value: "Hayes", label: "Hayes" }],
     component: RHFSelect,
     md: 6,
   },
   {
     id: 6,
-    componentProps: { name: "firstName", label: "First Name", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: {
+      name: "firstName",
+      label: "First Name",
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
     component: RHFTextField,
     md: 6,
   },
@@ -93,21 +101,36 @@ export const PersonalInfoFormData = [
   {
     id: 8,
     gridLength: 6,
-    componentProps: { name: "lastName", label: "Last Name", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: {
+      name: "lastName",
+      label: "Last Name",
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
     component: RHFTextField,
     md: 6,
   },
   {
     id: 9,
     gridLength: 6,
-    componentProps: { name: "dob", label: "Date Of Birth", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: {
+      name: "dob",
+      label: "Date Of Birth",
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
     component: RHFDatePicker,
     md: 6,
   },
   {
     id: 10,
     gridLength: 6,
-    componentProps: { name: "age", label: "Age", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: {
+      name: "age",
+      label: "Age",
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
     component: RHFTextField,
     md: 6,
   },
@@ -121,10 +144,7 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Male", label: "Male" },
-      { value: "Female", label: "Female" },
-    ],
+    options: GENDERDROPDOWNDATA,
     component: RHFSelect,
     md: 6,
   },
@@ -169,10 +189,7 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: LANGUAGESDROPDOWNDATA,
     component: RHFSelect,
     md: 6,
   },
@@ -203,10 +220,7 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: NATIONALITYDROPDOWN,
     component: RHFSelect,
     md: 6,
   },
@@ -234,10 +248,7 @@ export const PersonalInfoFormData = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: IMMIGRATIONSTATUS,
     component: RHFSelect,
     md: 6,
   },
@@ -252,8 +263,8 @@ export const PersonalInfoFormData = [
       sx: { mb: 4 },
     },
     options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
+      { value: "Wife", label: "Wife" },
+      { value: "husband", label: "husband" },
     ],
     component: RHFSelect,
     md: 6,
@@ -269,8 +280,8 @@ export const PersonalInfoFormData = [
       sx: { mb: 4 },
     },
     options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
     ],
     component: RHFSelect,
     md: 6,
@@ -295,11 +306,10 @@ export const PersonalInfoFormData = [
       label: "Age Range",
       fullWidth: true,
       select: true,
-
     },
     options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
+      { value: "10-15", label: "10-15" },
+      { value: "15-20", label: "15-20" },
     ],
     component: RHFSelect,
     md: 6,
@@ -341,7 +351,6 @@ export const PersonalInfoFormValues = {
   otherDetails: "",
   ageRange: "",
   permanentResidency: "",
-
 };
 
 export const PersonalInfoFormValidationSchema = Yup.object().shape({
@@ -384,48 +393,49 @@ function RHFUploadFile(props: any) {
         const checkError = !!error && !field.value;
         return (
           <>
-          <Box sx={{mb: 4}}>
-            <label
-              htmlFor={name}
-              style={{
-                height: "40px",
-                borderRadius: "4px",
-                // border: `1px solid #A3A6BB`,
-                border: `1px solid ${other?.formState?.errors?.[`${name}`] ? "red" : "#E5E8EB"
+            <Box sx={{ mb: 4 }}>
+              <label
+                htmlFor={name}
+                style={{
+                  height: "40px",
+                  borderRadius: "4px",
+                  // border: `1px solid #A3A6BB`,
+                  border: `1px solid ${
+                    other?.formState?.errors?.[`${name}`] ? "red" : "#E5E8EB"
                   }`,
-                width: "100% !important",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                cursor: `${disabled ? "" : "pointer"}`,
-              }}
-            >
-              <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
-                {field?.value?.name || "Upload Image"}
-              </div>
-              <FileUploadIcon
-                sx={{
-                  color: "#A3A6BB",
-                  marginRight: "10px",
+                  width: "100% !important",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  cursor: `${disabled ? "" : "pointer"}`,
                 }}
+              >
+                <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
+                  {field?.value?.name || "Upload Image"}
+                </div>
+                <FileUploadIcon
+                  sx={{
+                    color: "#A3A6BB",
+                    marginRight: "10px",
+                  }}
+                />
+              </label>
+              <input
+                type="file"
+                disabled={disabled}
+                name={name}
+                id={name}
+                onChange={(e: any) => {
+                  const file: any = e.target.files?.[0];
+                  field.onChange({ target: { value: file, name: field.name } });
+                }}
+                style={{ display: "none" }}
               />
-            </label>
-            <input
-              type="file"
-              disabled={disabled}
-              name={name}
-              id={name}
-              onChange={(e: any) => {
-                const file: any = e.target.files?.[0];
-                field.onChange({ target: { value: file, name: field.name } });
-              }}
-              style={{ display: "none" }}
-            />
-            {checkError && (
-              <FormHelperText error sx={{ px: 2 }}>
-                {error.message}
-              </FormHelperText>
-            )}
+              {checkError && (
+                <FormHelperText error sx={{ px: 2 }}>
+                  {error.message}
+                </FormHelperText>
+              )}
             </Box>
           </>
         );

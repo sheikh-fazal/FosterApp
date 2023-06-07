@@ -1,7 +1,8 @@
-import Layout from '@root/layouts';
-import React from 'react'
+import Layout from "@root/layouts";
+import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import Page from '@root/components/Page';
+import Page from "@root/components/Page";
+import GovtLegislations from "@root/sections/policies-and-guidelines/govt-legislation/GovtLegislation";
 
 const PAGE_TITLE = "Govt. Legislations and Regulations";
 
@@ -29,7 +30,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     {PAGE_TITLE}
+      <GovtLegislations />
     </Page>
   );
 }

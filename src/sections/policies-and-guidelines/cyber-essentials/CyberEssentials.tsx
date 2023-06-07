@@ -1,17 +1,13 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { CyberEssentialsData, accordionData } from ".";
-import PolicyVerticalTabs from "@root/components/PolicyVerticalTabs/PolicyVerticalTabs";
+import { useCyberEseentials } from "./useCyberEssentials";
 import CustomAccordian from "@root/components/CustomAccordian";
+import PolicyVerticalTabs from "@root/components/policy-vertical-tabs/PolicyVerticalTabs";
 
 // =====================================================================================
 
 const CyberEssentials = () => {
-  const router = useRouter();
-  const path = "/policies-and-guidelines/cyber-essentials/cyber-essentials-form";
-  const handleAdd = (title: string) => {
-    router.push({ pathname: path, query: { title } });
-  };
+  const { router, handleAdd } = useCyberEseentials();
 
   return (
     <>

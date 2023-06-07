@@ -16,7 +16,7 @@ SafeguardingAssessment.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Safeguarding Panel",
-          href: "/",
+          href: "/safeguarding",
         },
         {
           name: "Safeguarding Assessment List ",

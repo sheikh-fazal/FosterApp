@@ -1,4 +1,4 @@
-import { usePolicyVerticalAddNew } from "@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalAddNew/usePolicyVerticalAddNew";
+import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -7,7 +7,7 @@ export const useTemplatePoliciesTabs = () => {
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const [count, setCount] = useState(0);
-  const navgiate = useRouter();
+  const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -16,7 +16,7 @@ export const useTemplatePoliciesTabs = () => {
 
   const handleUploadedSubmit = () => {
     if (count === 1) {
-      navgiate.push("/policies-and-guidelines/templates");
+      route.push("/policies-and-guidelines/templates");
     } else {
       setIsUploadDocumentOpenModal(true);
     }
@@ -44,6 +44,7 @@ export const useTemplatePoliciesTabs = () => {
     handleAction,
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count
+    count,
+    route
   };
 };

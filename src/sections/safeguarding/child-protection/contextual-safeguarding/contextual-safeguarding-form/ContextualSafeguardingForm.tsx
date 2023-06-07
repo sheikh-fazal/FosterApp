@@ -4,7 +4,6 @@ import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { useContextualSafeguardingForm } from "./useContextualSafeguardingForm";
 
-
 const ContextualSafeguardingForm = ({ disabled }: any) => {
   const { methods, ContextualFormData, handleSubmit, onSubmit } =
     useContextualSafeguardingForm();
