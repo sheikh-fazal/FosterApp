@@ -2,11 +2,11 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import HandbookPolicies from "@root/sections/policies-and-guidelines/handbooks-policies/HandbookPolicies";
+import GovtLegislationsTabs from "@root/sections/policies-and-guidelines/govt-legislation/govt-legislation-tabs/GovtLegislationTabs";
 
 const PAGE_TILE = "Policies and Guidelines";
 
-Panel.getLayout = function getLayout(page: any) {
+GovtLegislationsAdd.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -14,10 +14,10 @@ Panel.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "IFA",
-          href: "/policies-and-guidelines",
+          href: "/",
         },
         {
-          name: "Handbooks",
+          name: "Govt. Legislations and Regulations",
         },
       ]}
       title={PAGE_TILE}
@@ -27,11 +27,10 @@ Panel.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Panel() {
+export default function GovtLegislationsAdd() {
   return (
     <Page title={PAGE_TILE}>
-      <HandbookPolicies />
+      <GovtLegislationsTabs />
     </Page>
   );
 }
-

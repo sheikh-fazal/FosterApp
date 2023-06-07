@@ -71,7 +71,6 @@ const Dashboard = () => {
                     )}
                   </>
                 ))}
-                {/* <BarChart /> */}
               </HorizaontalTabs>
             </Card>
           </Grid>
@@ -80,13 +79,13 @@ const Dashboard = () => {
 
       <Box sx={{ mt: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xl={3} lg={12} xs={12}>
+          <Grid item xl={3} xs={12}>
             <UpcommingCalander />
           </Grid>
-          <Grid item xl={4.5} lg={6} md={12}>
+          <Grid item xl={4.5} lg={6} xs={12}>
             <TrainingTasks />
           </Grid>
-          <Grid item xl={4.5} lg={6} md={12}>
+          <Grid item xl={4.5} lg={6} xs={12}>
             <TrainingNotifications />
           </Grid>
         </Grid>
