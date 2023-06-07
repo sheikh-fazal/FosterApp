@@ -1,13 +1,16 @@
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 import { FormProvider } from "@root/components/hook-form";
 import { useGPDetailsInfo } from "./useGPDetailsInfo";
+import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const GPDetailsInfo = () => {
-  const { gpDetailsInfoFormData, methods, handleSubmit, onSubmitHandler } =
+  const { gpDetailsInfoFormData, methods, handleSubmit, submitGpDetailsInfoForm, getSingleGpDetailsInfoDataStatus, query } =
     useGPDetailsInfo();
+    if (getSingleGpDetailsInfoDataStatus?.isLoading) return <SkeletonFormdata />;
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(submitGpDetailsInfoForm)}>
       <Grid container spacing={5}>
         {gpDetailsInfoFormData.map((form: any, index: number) => {
           return (
@@ -27,7 +30,24 @@ const GPDetailsInfo = () => {
             </Grid>
           );
         })}
+       
       </Grid>
+     { query?.action !== "view"  &&
+     <Box sx={{ display: "flex", mb: "1rem", mt:'1rem' }}>
+          <LoadingButton
+            sx={{ marginRight: "1rem" }}
+            type="submit"
+            variant="contained" >
+            Submit
+          </LoadingButton>
+          <LoadingButton
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained">
+            back
+          </LoadingButton>
+        </Box>
+}
     </FormProvider>
   );
 };
