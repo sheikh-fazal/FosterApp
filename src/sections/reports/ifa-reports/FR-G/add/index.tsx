@@ -124,6 +124,10 @@ export const FRD1FormData = [
     component: RHFDatePicker,
   },
   {
+    gridLength: 12,
+    title: "PRESENT",
+  },
+  {
     gridLength: 6,
     title: "Reviewing officer",
     otherOptions: {
@@ -351,7 +355,7 @@ export const FRD1FormData = [
     title: "Foster home safety check",
     otherOptions: {
       name: "fosterHomeSafety",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -361,7 +365,7 @@ export const FRD1FormData = [
     title: "Unannounced visit",
     otherOptions: {
       name: "unAnnouncedVisit",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -371,7 +375,7 @@ export const FRD1FormData = [
     title: "First safety plan",
     otherOptions: {
       name: "firstSafetyPlan",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -381,7 +385,7 @@ export const FRD1FormData = [
     title: "Family safer caring policy",
     otherOptions: {
       name: "familySaferCaringPolicy",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -391,7 +395,7 @@ export const FRD1FormData = [
     title: "Pet assesments",
     otherOptions: {
       name: "petAssesments",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -401,7 +405,7 @@ export const FRD1FormData = [
     title: "Smoking assesments",
     otherOptions: {
       name: "smokingAssesments",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -411,7 +415,7 @@ export const FRD1FormData = [
     title: "Personal development plan",
     otherOptions: {
       name: "personalDevelopementPlan",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
@@ -421,7 +425,7 @@ export const FRD1FormData = [
     title: "Complete TSDS",
     otherOptions: {
       name: "completeTSDS",
-      options: ["Yes", "No"],
+      options: ["Yes", "No", "Not available"],
       sx: { gap: { lg: "70px", xs: "10px" } },
     },
     component: RHFRadioGroup,
