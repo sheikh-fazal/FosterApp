@@ -31,6 +31,7 @@ export const TAGS = [
   "MEDICAL_ADVISOR",
   "PARTNER_REFERENCE",
   "INITIAL_HOME_VISIT_DOCUMENTS",
+  "ASSESSMENT_STAGE_ONE",
 ];
 
 // Create our baseQuery instance
