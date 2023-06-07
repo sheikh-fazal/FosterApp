@@ -1,7 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import TableImage from "../../../assets/img/Approve.png";
 import Image from "next/image";
 import router from "next/router";
+import * as Yup from "yup";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import { RecruitmentStatusDropdown } from "./table-dropdown/recruitment-status-dropdown";
 
 export const SELECTFILTERS = [
   {
@@ -20,6 +24,17 @@ export const dataFosterCarerRecruitment = [
     areaLocality: "Male",
     areaOffice: "XYZ",
     detailsId: "2163421684589234523806598",
+    recruitmentStatus: "Enquiry stage",
+  },
+  {
+    img: TableImage,
+    carerCode: "John",
+    carerName: "Orcalo",
+    gender: "Pakistan",
+    areaLocality: "Male",
+    areaOffice: "XYZ",
+    detailsId: "2163421684589234523806598",
+    recruitmentStatus: "Contract & Declaration",
   },
 ];
 
@@ -88,10 +103,92 @@ export const columnsFosterCarerRecruitment = [
   {
     accessorFn: (row: any) => row?.recruitmentStatus,
     id: "recruitmentStatus",
-    cell: (info: any) => info.getValue() ?? "-",
+    cell: (info: any) => (
+      <Box display={"flex"} justifyContent={"center"}>
+        <RecruitmentStatusDropdown status={info?.getValue()} />
+      </Box>
+    ),
     header: "Recruitment Status",
     isSortable: false,
   },
 ];
+
+export const FosterCarerRecruitmentFormData = [
+  {
+    id: 1,
+    heading: "Add Prospective Foster Carer",
+    componentProps: {
+      variant: "h6",
+      color: (theme: any) => theme.palette.primary.main,
+    },
+    component: Typography,
+  },
+  {
+    id: 2,
+    componentProps: {
+      name: "carerCode",
+      label: "Carer Code",
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 3,
+    componentProps: {
+      name: "carerName",
+      label: "Carer Name",
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 4,
+    componentProps: {
+      name: "gender",
+      label: "Gender",
+      select: true,
+    },
+    component: RHFSelect,
+    md: 6,
+    options: GENDERDROPDOWNDATA,
+  },
+  {
+    id: 5,
+    componentProps: {
+      name: "areaLocality",
+      label: "Area/Locality",
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 6,
+    componentProps: {
+      name: "areaOffice",
+      label: "Area Office",
+      select: true,
+    },
+    component: RHFSelect,
+    options: GENDERDROPDOWNDATA,
+  },
+];
+
+export const defaultValues = {
+  carerCode: "",
+  carerName: "",
+  gender: "",
+  areaLocality: "",
+  areaOffice: "",
+  img: null,
+};
+
+export const FosterCarerRecruitmentFormSchema = Yup.object().shape({
+  carerCode: Yup.string().trim().required("Field is Required"),
+  carerName: Yup.string().trim().required("Field is Required"),
+  gender: Yup.string().trim().required("Field is Required"),
+  areaLocality: Yup.string().trim().required("Field is Required"),
+  areaOffice: Yup.string().trim().required("Field is Required"),
+  img: Yup.mixed().required("Field is Required"),
+});
 
 export { default as FosterCarerRecruitmentTable } from "./FosterCarerRecruitmentTable";

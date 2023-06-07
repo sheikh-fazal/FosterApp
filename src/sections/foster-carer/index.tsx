@@ -218,9 +218,10 @@ const MuiSelect = () => {
     <TextField
       select
       label="Select Action"
-      fullWidth
-      sx={{ textAlign: "left" }}
+      sx={{ textAlign: "left", width: "80%" }}
+      defaultValue={" "}
     >
+      <MenuItem value=" ">Select Option</MenuItem>
       {options.map((option: any) => (
         <MenuItem key={option.value} value={option.value}>
           {option.label}
