@@ -1,10 +1,12 @@
 import {
+  RHFCheckbox,
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { COURSEATTENDED } from "@root/dropdown-data/courseAttended";
 
-export const EditOutSchoolActivityInfoData = [
+export const NewOutSchoolActivityInfoData = [
   {
     id: 1,
     gridLength: 6,
