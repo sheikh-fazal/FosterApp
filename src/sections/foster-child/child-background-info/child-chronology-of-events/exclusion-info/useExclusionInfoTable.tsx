@@ -1,22 +1,22 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useGetDayLogListQuery,
-  useDeleteDayLogListMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useDeleteExclusionInfoListMutation,
+  useGetExclusionInfoListQuery,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/ExclusionInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useDayLogTable = () => {
+export const useExclusionInfoTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetDayLogListQuery({
+  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetExclusionInfoListQuery({
     search: search,
   });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteDayLogListMutation();
+  const [deleteList] = useDeleteExclusionInfoListMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
     deleteList(id)

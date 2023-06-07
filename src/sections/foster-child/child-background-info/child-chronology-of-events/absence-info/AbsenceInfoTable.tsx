@@ -4,9 +4,9 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useAbsenceInfoTable } from "./useAbsenceInfoTable";
 
-const DayLogTable = () => {
+const AbsenceInfoTable = () => {
   const {
     listDeleteHandler,
     router,
@@ -19,36 +19,32 @@ const DayLogTable = () => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useAbsenceInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.dateOfOccurence,
-      id: "dateOfOccurence",
+      accessorFn: (row: any) => row?.dateOfAbsence,
+      id: "dateOfAbsence",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+        return <Box>{dayjs(info.getValue()).format("D MMM YYYY")}</Box>;
       },
       header: "Date of Occurence",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
-      cell: (info: any) => info.getValue(),
-      header: "Type",
+      accessorFn: (row: any) => row?.dateOfReturnFromAbsence,
+      id: "dateOfReturnFromAbsence",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("D MMM YYYY")}</Box>;
+      },
+      header: "Date of Return",
       isSortable: true,
     },
+
     {
-      accessorFn: (row: any) => row?.subject,
-      id: "subject",
+      accessorFn: (row: any) => row?.reasonForAbsence,
+      id: "reasonForAbsence",
       cell: (info: any) => info.getValue(),
-      header: "Subject",
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.status,
-      id: "status",
-      cell: (info: any) => info.getValue(),
-      header: "Status",
+      header: "Reason For Absence",
       isSortable: true,
     },
     {
@@ -61,7 +57,8 @@ const DayLogTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/absence-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -73,14 +70,15 @@ const DayLogTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/absence-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
         </Box>
       ),
-      header: "Action",
+      header: "Actions",
       isSortable: false,
     },
   ];
@@ -94,7 +92,7 @@ const DayLogTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/absence-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -120,4 +118,4 @@ const DayLogTable = () => {
   );
 };
 
-export default DayLogTable;
+export default AbsenceInfoTable;

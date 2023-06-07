@@ -1,6 +1,6 @@
 import { baseAPI } from "@root/services/baseApi";
 
-const TAG = "DAY_LOG";
+const TAG = "CHILD_CHRONOLOGY_OF_EVENTS";
 
 export const dayLogApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({

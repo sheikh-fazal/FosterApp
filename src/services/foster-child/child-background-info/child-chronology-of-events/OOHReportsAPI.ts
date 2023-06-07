@@ -1,6 +1,6 @@
 import { baseAPI } from "@root/services/baseApi";
 
-const TAG = "OOH_REPORTS";
+const TAG = "CHILD_CHRONOLOGY_OF_EVENTS";
 
 export const OOHReportsApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({

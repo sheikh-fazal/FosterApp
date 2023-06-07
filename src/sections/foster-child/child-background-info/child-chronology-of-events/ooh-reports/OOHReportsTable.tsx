@@ -1,20 +1,26 @@
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
-import { useTableParams } from "@root/hooks/useTableParams";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { enqueueSnackbar } from "notistack";
-import {
-  useDeleteOOHReportsListMutation,
-  useGetOOHReportsListQuery,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/OOHReportsAPI";
+import { useOOHReportsTable } from "./useOOHReportsTable";
 
 const OOHReportsTable = () => {
-  const meetingListColumns = [
+  const {
+    listDeleteHandler,
+    router,
+    tableHeaderRefTwo,
+    setSearch,
+    data,
+    sortChangeHandler,
+    pageChangeHandler,
+    isSuccess,
+    isFetching,
+    isError,
+    isLoading,
+  } = useOOHReportsTable();
+  const columns = [
     {
       accessorFn: (row: any) => row?.reportingDateAndTime,
       id: "reportingDateAndTime",
@@ -73,36 +79,7 @@ const OOHReportsTable = () => {
       isSortable: false,
     },
   ];
-  const tableHeaderRefTwo = useRef<any>();
-  const router = useRouter();
-  const [search, setSearch] = useState("");
-  const {
-    data: OOHReportsList,
-    isError: OOHReportsListError,
-    isLoading: OOHReportsListIsloading,
-    isFetching: OOHReportsListIsfetching,
-    isSuccess: OOHReportsListIsSuccess,
-  }: any = useGetOOHReportsListQuery({ search: search });
-  const OOHReportsData = OOHReportsList?.data?.child_chronology_of_events;
-  console.log("🚀 ~ file: index.tsx:95 ~ OOHReportsTable ~ OOHReportsList:", OOHReportsData);
-  const meta = OOHReportsList?.data?.meta;
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteOOHReportsListMutation();
-  //DELETE API For Allegation List
-  const listDeleteHandler = (id: any) => {
-    deleteList(id)
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Deleted Successfully", {
-          variant: "success",
-        });
-      })
-      .catch((error: any) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
-  };
   return (
     <>
       <TableHeader
@@ -112,7 +89,7 @@ const OOHReportsTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
             query: { action: "add", id: "" },
           });
         }}
@@ -121,14 +98,14 @@ const OOHReportsTable = () => {
         }}
       />
       <CustomTable
-        data={OOHReportsData}
-        columns={meetingListColumns}
-        isLoading={OOHReportsListIsloading}
-        isFetching={OOHReportsListIsfetching}
-        isError={OOHReportsListError}
-        isSuccess={OOHReportsListIsSuccess}
-        currentPage={meta?.page}
-        totalPages={meta?.pages}
+        data={data?.data?.child_chronology_of_events}
+        columns={columns}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        currentPage={data?.data?.metameta?.page}
+        totalPages={data?.data?.metameta?.pages}
         showSerialNo
         isPagination
         onPageChange={pageChangeHandler}

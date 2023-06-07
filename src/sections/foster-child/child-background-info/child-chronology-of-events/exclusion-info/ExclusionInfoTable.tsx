@@ -4,9 +4,9 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useExclusionInfoTable } from "./useExclusionInfoTable";
 
-const DayLogTable = () => {
+const ExclusionInfoTable = () => {
   const {
     listDeleteHandler,
     router,
@@ -19,38 +19,34 @@ const DayLogTable = () => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useExclusionInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.dateOfOccurence,
-      id: "dateOfOccurence",
+      accessorFn: (row: any) => row?.exclusionDate,
+      id: "exclusionDate",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+        return <Box>{dayjs(info.getValue()).format("D MMM YYYY")}</Box>;
       },
-      header: "Date of Occurence",
+      header: "Exclusion Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
-      cell: (info: any) => info.getValue(),
-      header: "Type",
+      accessorFn: (row: any) => row?.dateOfReturnFromExclusion,
+      id: "dateOfReturnFromExclusion",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("D MMM YYYY")}</Box>;
+      },
+      header: "Return Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.subject,
-      id: "subject",
+      accessorFn: (row: any) => row?.typeOfExclusion,
+      id: "typeOfExclusion",
       cell: (info: any) => info.getValue(),
-      header: "Subject",
+      header: "Type of Exclusion",
       isSortable: true,
     },
-    {
-      accessorFn: (row: any) => row?.status,
-      id: "status",
-      cell: (info: any) => info.getValue(),
-      header: "Status",
-      isSortable: true,
-    },
+
     {
       accessorFn: (row: any) => row?.id,
       id: "actions",
@@ -61,7 +57,8 @@ const DayLogTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/exclusion-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -73,14 +70,15 @@ const DayLogTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/exclusion-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
         </Box>
       ),
-      header: "Action",
+      header: "Actions",
       isSortable: false,
     },
   ];
@@ -94,7 +92,8 @@ const DayLogTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/exclusion-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -120,4 +119,4 @@ const DayLogTable = () => {
   );
 };
 
-export default DayLogTable;
+export default ExclusionInfoTable;

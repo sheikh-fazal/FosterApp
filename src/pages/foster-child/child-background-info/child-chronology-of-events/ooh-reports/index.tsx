@@ -42,7 +42,6 @@ export default function OHHReports() {
         currentPage={"1"}
         totalPages={"1"}
       />
-      {/* <ChildChronologyOfEventsDocumentsTable /> */}
     </HorizaontalTabs>
   );
 }

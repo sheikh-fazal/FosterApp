@@ -1,22 +1,23 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useGetDayLogListQuery,
-  useDeleteDayLogListMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useDeleteOfstedNotificationsListMutation,
+  useGetOfstedNotificationsListQuery,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/OfstedNotificationsAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useDayLogTable = () => {
+export const useOfstedNotificationsTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetDayLogListQuery({
-    search: search,
-  });
+  const { data, isError, isLoading, isFetching, isSuccess }: any =
+    useGetOfstedNotificationsListQuery({
+      search: search,
+    });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteDayLogListMutation();
+  const [deleteList] = useDeleteOfstedNotificationsListMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
