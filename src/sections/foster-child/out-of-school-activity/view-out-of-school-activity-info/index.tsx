@@ -1,10 +1,7 @@
-import {
-  RHFSelect,
-  RHFTextField,
-} from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const EditOutSchoolActivityInfoData = [
+export const ViewOutSchoolActivityInfoData = [
   {
     id: 1,
     gridLength: 6,
