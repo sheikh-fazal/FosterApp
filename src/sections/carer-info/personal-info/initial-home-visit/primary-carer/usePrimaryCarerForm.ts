@@ -1,5 +1,4 @@
 import {
-  useGetAllInitialHomeVisitDataQuery,
   useLazyGetAllInitialHomeVisitDataQuery,
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/primary/primaryCarer";
@@ -10,7 +9,6 @@ import useAuth from "@root/hooks/useAuth";
 
 export const usePrimaryCarerForm = () => {
   const { query } = useRouter();
-  // console.log(query?.fosterCarerId);
   const { user }: any = useAuth();
   const primaryCarerFieldsInfo = primaryCarerFieldsInfoFunction(
     user?.defaultRole === "FOSTER_CARER"
@@ -42,10 +40,9 @@ export const usePrimaryCarerForm = () => {
   };
 
   const submitPrimaryCarerForm = async (data: any) => {
-    console.log(data);
     const putParams = {
       fosterCarerId:
-        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
     // console.log(data);
