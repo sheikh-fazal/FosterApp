@@ -6,6 +6,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import FosterCarerRecruitmentHeader from "@root/sections/foster-carer-recruitment/FosterCarerRecruitmentHeader";
 import { FosterCarerRecruitmentTable } from "@root/sections/foster-carer-recruitment/foster-carer-table";
+import { FosterCarerBody } from "@root/sections/foster-carer-recruitment/foster-carer-body";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -17,8 +18,8 @@ const BREADCRUMBS = [
     href: "/",
   },
   {
-    name: PAGE_TITLE,
-    href: "",
+    name: "Dashboard",
+    href: "/",
   },
 ];
 
@@ -43,6 +44,7 @@ export default function FosterCarerRecruitment() {
     <Page title={PAGE_TITLE}>
       <FosterCarerRecruitmentHeader />
       <FosterCarerRecruitmentTable />
+      <FosterCarerBody />
     </Page>
   );
 }
