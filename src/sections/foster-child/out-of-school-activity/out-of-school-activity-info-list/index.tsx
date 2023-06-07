@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
-export const columnsChildExclusionInfoTable = (
+export const columnsOutSchoolActivityTable = (
   handleDelete: any,
   router: any,
   cancelDelete: any,
@@ -68,7 +68,7 @@ export const columnsChildExclusionInfoTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info?${info.getValue()}`)}
+          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`)}
         />
         <TableAction
           type="delete"
@@ -78,7 +78,7 @@ export const columnsChildExclusionInfoTable = (
 
         <TableAction
           type="view"
-          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/view-child-exclusion-info?${info.getValue()}`)}
+          onClicked={() => router.push(`?${info.getValue()}`)}
         />
       </Box>
     ),
