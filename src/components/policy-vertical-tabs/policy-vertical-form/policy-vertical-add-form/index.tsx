@@ -22,15 +22,14 @@ export const PolicyVerticalAddNewDefaultValues = {
   modifiedBy: "",
   eSignatureofAuthor: "",
   eSignatureofApprover: "",
-  updatePhoto: ""
+  updatePhoto: "",
 };
- 
+
 let isSelect = false;
 
 export const handleInputFields = (value: any) => {
   isSelect = value;
-}
-
+};
 
 export const PolicyVerticalAddNewValidationSchema = Yup.object().shape({
   // title: Yup.string().required("Field is Required"),
@@ -44,18 +43,36 @@ export const PolicyVerticalAddNewValidationSchema = Yup.object().shape({
   creationTime: Yup.date().required("Field is Required"),
   lastModifiedTime: Yup.date().required("Field is Required"),
   modifiedBy: Yup.string().required("Field is Required"),
-  eSignatureofAuthor: Yup.mixed().nullable().required("Field is Required")
-  .test( "fileFormat", "Unsupported Format", (value: any) => value && FILE_FORMATS.includes(value.type))
-  .test(  "fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
-  eSignatureofApprover: Yup.mixed().nullable().required("Field is Required")
-  .test( "fileFormat", "Unsupported Format", (value: any) => value && FILE_FORMATS.includes(value.type))
-  .test(  "fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
+  eSignatureofAuthor: Yup.mixed()
+    .nullable()
+    .required("Field is Required")
+    .test(
+      "fileFormat",
+      "Unsupported Format",
+      (value: any) => value && FILE_FORMATS.includes(value.type)
+    )
+    .test(
+      "fileSize",
+      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+      (value: any) => value && value.size <= MAX_FILE_SIZE
+    ),
+  eSignatureofApprover: Yup.mixed()
+    .nullable()
+    .required("Field is Required")
+    .test(
+      "fileFormat",
+      "Unsupported Format",
+      (value: any) => value && FILE_FORMATS.includes(value.type)
+    )
+    .test(
+      "fileSize",
+      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+      (value: any) => value && value.size <= MAX_FILE_SIZE
+    ),
   updatePhoto: Yup.mixed().required("Field is Required"),
 });
 
-
 export const PolicyVerticalAddNewFormData = [
-  
   {
     id: 2,
     componentProps: {
@@ -136,7 +153,7 @@ export const PolicyVerticalAddNewFormData = [
       label: "Date of eSignature of Author",
       name: "author",
       fullWidth: true,
-      sx: { mb: 4 },
+      sx: { mb: 4, mt: 4 },
     },
     component: RHFDatePicker,
     md: 6,
@@ -147,7 +164,7 @@ export const PolicyVerticalAddNewFormData = [
       label: "Date of eSignature of Approver",
       name: "approver",
       fullWidth: true,
-      sx: { mb: 4 },
+      sx: { mb: 4, mt: 4 },
     },
     component: RHFDatePicker,
     md: 6,
@@ -184,6 +201,4 @@ export const PolicyVerticalAddNewFormData = [
     component: RHFTextField,
     md: 6,
   },
-
 ];
-
