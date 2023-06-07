@@ -29,7 +29,7 @@ export const tabs = [
 export const tabsItems = [
   { name: "Personal Info", status: "Done" },
   { name: "Address Details", status: "Done" },
-  { name: "Photo for ID Badge", status: " Inprogress" },
+  { name: "Photo for ID Badge", status: " Pending" },
   { name: "ID Upload (Passport/DL)", status: "Pending" },
   { name: "Add Reference", status: "Pending" },
   { name: "Training Certificates", status: "Pending" },
@@ -91,3 +91,18 @@ export const localFormNames = [
   "Add Declaration",
   "declaration",
 ];
+
+export const generateLocalFormsStatuses = (formName: string) => {
+  let fromNowItIsPending = false;
+  const localFormName = localFormNames[localFormNames.indexOf(formName) - 1];
+  return tabsItems.map(({ name }: any) => {
+    if (name === localFormName) {
+      fromNowItIsPending = true;
+      return { name, status: "Pending" };
+    } else {
+      return fromNowItIsPending
+        ? { name, status: "Pending" }
+        : { name, status: "Done" };
+    }
+  });
+};

@@ -24,15 +24,14 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  // const { data, isLoading, isError, isFetching, isSuccess } =
-  //   useLazyGetPersonalInfoQuery({});
+
   const [getProfileInfoQuery] = useLazyGetPersonalInfoQuery();
   const [updatePersonalInfo] = useUpdatePersonalInfoMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, isError, error } = await getProfileInfoQuery(null, false);
-      console.log(data);
+      // console.log(data);
       setIsLoading(false);
       if (isError || !data) {
         displayErrorMessage(error, enqueueSnackbar);

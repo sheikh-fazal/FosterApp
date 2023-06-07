@@ -43,7 +43,10 @@ export default function SummaryAndRecommendation() {
 
   const receiveDataHandler = async (formData: any) => {
     try {
-      const res: any = await putData(formData).unwrap();
+      const res: any = await putData({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

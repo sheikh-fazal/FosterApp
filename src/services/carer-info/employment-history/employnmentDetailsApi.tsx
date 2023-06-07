@@ -1,7 +1,7 @@
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { baseAPI } from "../../baseApi";
 
-export const userAPI = baseAPI.injectEndpoints({
+export const userAPI: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getExperience: builder.query<null, void>({
       query: () => "employment-history",

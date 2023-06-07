@@ -5,8 +5,6 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import React, { useRef } from "react";
 import { columnsFosterCarerTask, dataFosterCarerTask } from "./";
 
-// carer-info/[fc-id]
-
 const FosterCarerTaskTable = () => {
   const tableHeaderRef = useRef<any>();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
