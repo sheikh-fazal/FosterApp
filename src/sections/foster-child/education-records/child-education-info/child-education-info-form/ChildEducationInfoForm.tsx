@@ -8,15 +8,31 @@ import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { defaultValues, educationInfoFormData } from ".";
 import { useForm } from "react-hook-form";
+import { useChildEducationForm } from "./useChildEducationForm";
+import Link from "next/link";
 
-const ChildEducationInfoForm = ({ action, id }: any) => {
-  const router = useRouter();
-  const theme = useTheme();
-  const methods: any = useForm({
-    defaultValues,
-  });
+const ChildEducationInfoForm = (props: any) => {
+  const {
+    disabled,
+    onSubmitHandler,
+    initialValueProps = defaultValues,
+    message,
+    isError,
+    isSuccess,
+  } = props;
+  const { methods, handleSubmit, onSubmit, isSubmitting, theme } =
+    useChildEducationForm({
+      onSubmitHandler,
+      initialValueProps,
+      message,
+    });
+  // const router = useRouter();
+  // const theme = useTheme();
+  // const methods: any = useForm({
+  //   defaultValues,
+  // });
   return (
-    <FormProvider methods={methods}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4} rowSpacing={3}>
         {educationInfoFormData.map((form: any, i: any) => {
           return (
@@ -35,7 +51,7 @@ const ChildEducationInfoForm = ({ action, id }: any) => {
               </Typography>
               {form.component ? (
                 <form.component
-                  disabled={action === "view" ? true : false}
+                  disabled={disabled}
                   size="small"
                   {...form.otherOptions}
                 >
@@ -63,35 +79,27 @@ const ChildEducationInfoForm = ({ action, id }: any) => {
         })}
 
         <Grid item xs={12}>
-          <Box
-            sx={{
-              display: "flex",
-            }}
-          >
-            <Button
-              sx={{
-                backgroundColor: "#F6830F",
-                "&:hover": {
-                  backgroundColor: "#F6830F",
-                },
-              }}
-              onClick={() => {
-                router.push("/referral/referral-history");
-              }}
-              type="button"
-              variant="contained"
-            >
-              Back
-            </Button>
-            <LoadingButton
-              sx={{ marginLeft: "1rem" }}
-              type="submit"
-              variant="contained"
-              //   onClick={handleNextTab}
-            >
-              Submit
-            </LoadingButton>
-          </Box>
+          {!disabled && (
+            <Grid item xs={12}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                sx={{ mr: 2 }}
+                loading={isSubmitting}
+                color={isError ? "error" : isSuccess ? "success" : "primary"}
+              >
+                {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
+              </LoadingButton>
+              <Link
+                href={"/carer-info/personal-info/carer-family-support-network"}
+                style={{ textDecoration: "none" }}
+              >
+                <Button type="button" variant="contained">
+                  Back
+                </Button>
+              </Link>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </FormProvider>
