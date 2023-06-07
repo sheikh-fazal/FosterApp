@@ -7,9 +7,10 @@ import {
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./index";
+import { defaultValues, formSchema, absenceInfoFormData} from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { log } from "console";
 export const useAbsenceInfoForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
@@ -44,14 +45,14 @@ export const useAbsenceInfoForm = (action: any, id: any) => {
   };
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: getDefaultValue,
+    defaultValues: absenceInfoFormData,
   });
   const {
-    setValue,
-    trigger,
+    // setValue,
+    // trigger,
     handleSubmit,
-    getValues,
-    formState: { isSubmitting },
+    // getValues,
+    // formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
     // if (action === "add") {
@@ -101,19 +102,22 @@ export const useAbsenceInfoForm = (action: any, id: any) => {
     // } else {
     //   return null;
     // }
+    console.log("data", data);
+    
   };
   return {
     router,
     onSubmit,
-    isLoading,
-    getDefaultValue,
+    // isLoading,
+    // getDefaultValue,
     theme,
-    setValue,
-    trigger,
+    // setValue,
+    // trigger,
     handleSubmit,
-    getValues,
+    // getValues,
     methods,
-    isFetching,
-    isSubmitting,
+    // isFetching,
+    // isSubmitting,
+    absenceInfoFormData
   };
 };

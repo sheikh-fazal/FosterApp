@@ -65,12 +65,12 @@ export const absenceInfoFormData = [
     component: RHFTextField,
   },
 ];
-export const formatters: any = {};
+// export const formatters: any = {};
 
-for (const formControl of absenceInfoFormData) {
-  if (formControl.format)
-    formatters[formControl.otherOptions.name] = formControl.format;
-}
+// for (const formControl of absenceInfoFormData) {
+//   if (formControl.format)
+//     formatters[formControl.otherOptions.name] = formControl.format;
+// }
 
 export const defaultValues = {
   schoolName: "",

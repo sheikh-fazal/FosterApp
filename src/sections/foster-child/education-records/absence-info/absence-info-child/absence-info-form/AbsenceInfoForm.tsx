@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { absenceInfoFormData } from "./index";
+// import { absenceInfoFormData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAbsenceInfoForm } from "./useAbsenceInfoForm";
 import { LoadingButton } from "@mui/lab";
@@ -19,22 +19,23 @@ function AbsenceInfoForm(props: any) {
   const {
     router,
     onSubmit,
-    isLoading,
+    // isLoading,
     theme,
-    setValue,
-    trigger,
+    // setValue,
+    // trigger,
     handleSubmit,
-    getValues,
+    // getValues,
     methods,
-    isFetching,
-    isSubmitting,
+    // isFetching,
+    // isSubmitting,
+    absenceInfoFormData,
   } = useAbsenceInfoForm(action, id);
 
-  if (isLoading) return <SkeletonFormdata />;
+  // if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <IsFetching isFetching={isFetching} />
+        {/* <IsFetching isFetching={isFetching} /> */}
         <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
           {absenceInfoFormData.map((form: any) => {
             return (
@@ -116,7 +117,7 @@ function AbsenceInfoForm(props: any) {
             >
               <LoadingButton
                 type="submit"
-                loading={isSubmitting}
+                // loading={isSubmitting}
                 sx={{
                   bgcolor: theme.palette.primary.main,
                   "&:hover": { bgcolor: theme.palette.primary.main },
@@ -125,7 +126,7 @@ function AbsenceInfoForm(props: any) {
               >
                 Submit
               </LoadingButton>
-              <LoadingButton
+              {/* <LoadingButton
                 sx={{
                   bgcolor: theme.palette.grey[800],
                   "&:hover": { bgcolor: theme.palette.grey[800] },
@@ -138,7 +139,7 @@ function AbsenceInfoForm(props: any) {
                 }
               >
                 Save as draft
-              </LoadingButton>
+              </LoadingButton> */}
               <LoadingButton
                 sx={{
                   bgcolor: theme.palette.orange.main,
@@ -147,7 +148,7 @@ function AbsenceInfoForm(props: any) {
                 variant="contained"
                 onClick={() =>
                   router.push(
-                    "/carer-info/personal-info/carer-chronology-of-events"
+                    "/foster-child/education-records/absence-info"
                   )
                 }
               >
@@ -169,7 +170,7 @@ function AbsenceInfoForm(props: any) {
               variant="contained"
               onClick={() =>
                 router.push(
-                  "/carer-info/personal-info/carer-chronology-of-events"
+                  "/foster-child/education-records/absence-info"
                 )
               }
             >
