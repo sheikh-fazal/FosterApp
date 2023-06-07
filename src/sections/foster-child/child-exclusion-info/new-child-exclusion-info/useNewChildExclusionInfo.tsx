@@ -18,7 +18,7 @@ const useNewChildExclusionInfo = () => {
     outcome: "",
   };
 
-  const tainingProfileSchema = Yup.object().shape({
+  const childExclusionSchema = Yup.object().shape({
     classStudying: Yup.string().required("Required"),
     typeExclusion: Yup.string().required("Required"),
     returnDate: Yup.date().required("Required"),
@@ -29,7 +29,7 @@ const useNewChildExclusionInfo = () => {
   });
 
   const methods: any = useForm({
-    resolver: yupResolver(tainingProfileSchema),
+    resolver: yupResolver(childExclusionSchema),
     defaultValues,
   });
 

@@ -4,8 +4,11 @@ function path(root: string, sublink: string) {
   return `${root}${sublink}`;
 }
 
+// ----------------------------------------------------------------------
+
 const ROOTS_AUTH = "/auth";
 const ROOTS_DASHBOARD = "/dashboard";
+const ROOTS_COMPONENTS = "/components";
 
 // ----------------------------------------------------------------------
 
@@ -26,10 +29,10 @@ export const PATH_PAGE = {
   page404: "/404",
   page500: "/500",
   components: {
-    root: "/components",
-    textFields: "/components/text-fields",
-    tables: "/components/tables",
-    formTables: "/components/form-tables",
+    root: ROOTS_COMPONENTS,
+    textFields: path(ROOTS_COMPONENTS, "/text-fields"),
+    tables: path(ROOTS_COMPONENTS, "/tables"),
+    formTables: path(ROOTS_COMPONENTS, "/form-tables"),
   },
 };
 
@@ -65,5 +68,3 @@ export const PATH_DASHBOARD = {
     newPost: path(ROOTS_DASHBOARD, "/blog/new-post"),
   },
 };
-
-// export const PATH_DOCS = "";

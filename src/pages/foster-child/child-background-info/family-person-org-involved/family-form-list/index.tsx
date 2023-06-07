@@ -7,6 +7,7 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import { familyPersontableData } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list";
 
 
 // ----------------------------------------------------------------------
@@ -15,7 +16,7 @@ const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/",
+    href: "/foster-child/child-background-info/cla-documentation",
   },
   {
     name: "Family Persons & Org Involved List",
@@ -47,12 +48,16 @@ export default function FamilyPersonList() {
           <FamilyOrgInvolvedForm />
           <UploadDocuments
             readOnly={false}
-            // tableData={tableData}
-            // isLoading={isDocumentLoading}
-            // isFetching={isFetching}
-            // isError={hasDocumentError}
-            // isSuccess={isSuccess}
-            // modalData={(data: any) => console.log("All data here", data)}
+            searchParam={(searchedText: string) =>
+              console.log("searched Value", searchedText)
+            }
+            tableData={familyPersontableData}
+            isLoading={false}
+            isFetching={false}
+            isError={false}
+            isSuccess={true}
+            column={["document", "documentType", "date", "personName", "password"]}
+            onPageChange={(page: any) => console.log("parent log", page)}
           />
 
         </HorizaontalTabs>
