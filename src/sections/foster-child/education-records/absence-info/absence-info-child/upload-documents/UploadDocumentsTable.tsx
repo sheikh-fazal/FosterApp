@@ -12,23 +12,24 @@ import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
 import { UPLOAD_DOCUMENTS } from ".";
 function UploadedDocumentsTable() {
-  // const {
-  //   loadingList,
-  //   allegationDocuments,
-  //   isError,
-  //   isFetching,
-  //   isSuccess,
-  //   meta,
-  //   setSearch,
-  //   pageChangeHandler,
-  //   sortChangeHandler,
-  //   listDeleteHandler,
-  //   action,
-  //   id,
-  //   modelHandler,
-  //   uploadDocumentsHandler,
-  //   open,
-  // } = useUploadDocumentsTable();
+  const {
+    // loadingList,
+    // allegationDocuments,
+    // isError,
+    // isFetching,
+    // isSuccess,
+    // meta,
+    setSearch,
+    pageChangeHandler,
+    sortChangeHandler,
+    // listDeleteHandler,
+    action,
+    id,
+    modelHandler,
+    uploadDocumentsHandler,
+    open,
+    
+  } = useUploadDocumentsTable();
 
   const columns = [
     {
@@ -106,15 +107,15 @@ function UploadedDocumentsTable() {
           title="Uploaded Documents"
           searchKey="search"
           // showAddBtn={action === "view" ? false : true}
-          onChanged={(e: any) => {
-            // setSearch(e.search);
-          }}
+          // onChanged={(e: any) => {
+          //   // setSearch(e.search);
+          // }}
           onAdd={
             () => {
               // if (action === "add" && id === "") {
-              enqueueSnackbar("Please Fill The Allegation Form First", {
-                variant: "error",
-              });
+              // enqueueSnackbar("Please Fill The Allegation Form First", {
+              //   variant: "error",
+              // });
             }
             // else {
             //   // return modelHandler();
@@ -131,23 +132,23 @@ function UploadedDocumentsTable() {
       <CustomTable
         data={UPLOAD_DOCUMENTS}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
+        // isLoading={false}
+        // isFetching={false}
+        // isError={false}
         isSuccess={true}
-        currentPage={1}
+        // currentPage={1}
         // isLoading={false}
         // isFetching={false}
         // isError={false}
         // isSuccess={isSuccess}
         // isPagination={true}
         // currentPage={meta?.page}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
+        // onPageChange={(data: any) => {
+        //   console.log("Current page data: ", data);
+        // }}
+        // onSortByChange={(data: any) => {
+        //   console.log("Sort by: ", data);
+        // }}
         // totalPages={meta?.pages}
         // onPageChange={pageChangeHandler}
         // onSortByChange={sortChangeHandler}

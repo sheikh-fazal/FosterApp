@@ -76,7 +76,7 @@ export default function AbsenceInfoListTable() {
           onAdd={() => {
             router.push({
               pathname: `/foster-child/education-records/absence-info/add-absence-info`,
-              query: { action: "add", id: "" },
+              query: { action: "add" },
             });
           }}
         />

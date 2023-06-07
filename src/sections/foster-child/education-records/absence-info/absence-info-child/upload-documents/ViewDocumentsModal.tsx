@@ -21,20 +21,21 @@ function ViewDocumentsModal(props: any) {
   const { theme } = useUploadDocumentsTable();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: async () => {
-      const { data, isError } = await getSingleAllegetionDocument(id, true);
-      setIsLoading(false);
-      if (isError) {
-        enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
-      }
-      const responseData = { ...data.data };
-      return responseData;
-    },
+    defaultValues,
+    // : async () => {
+    //   const { data, isError } = await getSingleAllegetionDocument(id, true);
+    //   setIsLoading(false);
+    //   if (isError) {
+    //     enqueueSnackbar("Error occured", { variant: "error" });
+    //     return defaultValues;
+    //   }
+    //   const responseData = { ...data.data };
+    //   return responseData;
+    // },
   });
   const { handleSubmit, getValues } = methods;
   const onSubmit = (data: any) => {};
-  if (isLoading) return <SkeletonFormdata />;
+  // if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <TableAction

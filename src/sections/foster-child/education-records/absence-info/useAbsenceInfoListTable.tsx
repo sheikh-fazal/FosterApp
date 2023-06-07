@@ -53,6 +53,5 @@ export const useAbsenceInfoListTable = () => {
     sortChangeHandler,
     listDeleteHandler,
     setSearch,
- 
   };
 };
