@@ -15,15 +15,16 @@ const UploadDocTable = (props: any) => {
     setViewOpenModal,
     viewOpenModal,
     theme,
-  } = useUploadDocTable();
+  } = useUploadDocTable(props);
 
   return (
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
         title="Uploaded Documents"
+        disabled={props.disabled}
         searchKey="search"
-        showAddBtn
+        showAddBtn={!props.disabled}
         onAdd={() => setOpenModal(!openModal)}
         onChanged={(data: any) => {
           console.log("Updated params: ", data);

@@ -16,7 +16,7 @@ import RecordingKeepingPolicyIcon from "../../../assets/svg/policy-guidelines/Re
 export const OrganisationalPoliciesData = [
     {
         index: 0,
-        title: "Recruitment and Assessment Policy ",
+        title: "Recruitment and Assessment Policy",
         img: RecruitmentAssessmentPolicyIcon,
         innerData: [
             {

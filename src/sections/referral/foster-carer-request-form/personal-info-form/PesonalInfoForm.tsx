@@ -2,16 +2,11 @@ import React from "react";
 import Link from "next/link";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { usePersonalInfoForm } from "./usePersonalInfoForm"
-
+import { usePersonalInfoForm } from "./usePersonalInfoForm";
 
 const PesonalInfoForm = ({ disabled }: any) => {
-  const {
-    PersonalInfoFormData,
-    onSubmit,
-    handleSubmit,
-    methods,
-  } = usePersonalInfoForm()
+  const { PersonalInfoFormData, onSubmit, handleSubmit, methods, router } =
+    usePersonalInfoForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -25,11 +20,10 @@ const PesonalInfoForm = ({ disabled }: any) => {
             >
               {item.componentProps.select
                 ? item.options.map((option: any) => (
-                  <option key={option.value} value={option.value}>
-                  
-                    {option.label}
-                  </option>
-                ))
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))
                 : null}
               {item?.heading}
             </item.component>
@@ -48,6 +42,7 @@ const PesonalInfoForm = ({ disabled }: any) => {
 
           <Link href={""} style={{ textDecoration: "none" }}>
             <Button
+              onClick={() => router.push("/referral/foster-carer-request-form/")}
               type="button"
               variant="contained"
               sx={{
