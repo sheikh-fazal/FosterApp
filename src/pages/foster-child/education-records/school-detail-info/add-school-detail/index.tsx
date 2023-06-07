@@ -8,7 +8,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Card } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import SchoolDetailInfoForm from "@root/sections/foster-child/education-records/school-detail-info/SchoolDetailInfoForm";
-import UploadDocuments from "@root/sections/documents/UploadDocuments"
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -39,12 +39,10 @@ AddSchoolDetail.getLayout = function getLayout(page: any) {
   );
 };
 export default function AddSchoolDetail() {
-
-
   return (
     <HorizaontalTabs tabsDataArray={["School Detail Info", "Upload Document"]}>
-    <SchoolDetailInfoForm/>
-    <UploadDocuments
+      <SchoolDetailInfoForm />
+      <UploadDocuments
         // readOnly={true}
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
@@ -55,10 +53,13 @@ export default function AddSchoolDetail() {
         isError={false}
         isSuccess={true}
         column={["document", "documentType", "date", "personName", "password"]}
-        modalData={(data:any)=>{console.log("searched Value", data)}}
+        modalData={(data: any) => {
+          console.log("searched Value", data);
+        }}
         onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={'1'}
-        totalPages={'1'}
-      />  </HorizaontalTabs>
+        currentPage={"1"}
+        totalPages={"1"}
+      />{" "}
+    </HorizaontalTabs>
   );
 }
