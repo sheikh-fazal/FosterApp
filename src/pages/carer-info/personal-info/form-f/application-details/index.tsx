@@ -62,7 +62,10 @@ export default function ApplicationDetails() {
   const submitDataHandler1 = async (formData: any) => {
     // putApplicant1Data(formData);
     try {
-      const res: any = await putApplicant1Data(formData).unwrap();
+      const res: any = await putApplicant1Data({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Application Details Submitted!`, {
         variant: "success",
       });
@@ -75,7 +78,10 @@ export default function ApplicationDetails() {
 
   const submitDataHandler2 = async (formData: any) => {
     try {
-      const res: any = await putApplicant2Data(formData).unwrap();
+      const res: any = await putApplicant2Data({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Application Details Submitted!`, {
         variant: "success",
       });
