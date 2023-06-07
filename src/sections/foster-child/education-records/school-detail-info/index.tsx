@@ -1,7 +1,99 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import router from "next/router";
 import * as Yup from "yup";
+
+export const SchoolDeatilInfoFormData = [
+  {
+    id: 1,
+    componentProps: { name: "schoolName", label: "School Name:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 2,
+    componentProps: { name: "buildingNo", label: "Building Name/No:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 3,
+    componentProps: { name: "street", label: "Street:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 4,
+    component: RHFSelect,
+    md: 6,
+    componentProps: {
+      name: "city",
+      label: "City:",
+      select: true,
+    },
+    options: COUNTRIESDROPDOWN,
+  },
+  {
+    id: 5,
+    component: RHFSelect,
+    md: 6,
+    componentProps: {
+      name: "county",
+      label: "County:",
+      select: true,
+    },
+    options: COUNTRIESDROPDOWN,
+  },
+  {
+    id: 6,
+    component: RHFSelect,
+    md: 6,
+    componentProps: {
+      name: "country",
+      label: "Country:",
+      select: true,
+    },
+    options: COUNTRIESDROPDOWN,
+  },
+  {
+    id: 7,
+    componentProps: { name: "postalCode", label: "Postal Code:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 8,
+    componentProps: { name: "telephoneNumber", label: "Phone:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 9,
+    componentProps: { name: "mobileNumber", label: "Mobile:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 10,
+    componentProps: { name: "faxNumber", label: "Fax:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 11,
+    componentProps: { name: "email", label: "Email:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 3,
+    componentProps: { name: "principalName", label: "Principal Name:" },
+    component: RHFTextField,
+    md: 6,
+  },
+];
 
 export const defaultValues = {
   schoolName: "",
@@ -21,7 +113,7 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
   schoolName: Yup.string().trim().required("School Name is Required"),
   buildingNo: Yup.string().trim().required("Building Number/Name is Required"),
   street: Yup.string().trim().required("Street Number is Required"),
-  city: Yup.date().required("City is Required"),
+  city: Yup.string().trim().required("City is Required"),
   county: Yup.string().trim().required("County is Required"),
   country: Yup.string().trim().required("Country is Required"),
   postalCode: Yup.string().trim().required("Postal Code is Required"),
