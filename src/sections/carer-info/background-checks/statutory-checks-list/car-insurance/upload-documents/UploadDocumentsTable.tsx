@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import Link from "next/link";
 import ViewDocumentsModal from "./ViewUploadDocuments";
-import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
+import { useUploadDocuments } from "./useUploadDocuments";
 
 const UploadDocumentsTable = () => {
   const {
@@ -29,7 +29,7 @@ const UploadDocumentsTable = () => {
     meta,
     open,
     listDeleteHandler,
-  } = useUploadDocumentsTable();
+  } = useUploadDocuments();
 
   const columns = [
     {

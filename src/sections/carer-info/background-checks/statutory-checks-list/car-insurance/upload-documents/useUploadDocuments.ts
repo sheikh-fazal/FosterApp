@@ -11,7 +11,7 @@ import {
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-export const useUploadDocumentsTable = () => {
+export const useUploadDocuments = () => {
   const [search, setSearch] = React.useState("");
   const router = useRouter();
   const { id, action }: any = router.query;

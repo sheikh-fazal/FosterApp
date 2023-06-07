@@ -7,8 +7,8 @@ import { STATUTORY_UPLOAD_DOCUMENTS, defaultValues, formSchema } from "./index";
 import CloseIcon from "@mui/icons-material/Close";
 import { enqueueSnackbar } from "notistack";
 import TableAction from "@root/components/TableAction";
-import { useUploadDocuments } from "./useUploadDocumentsTable";
 import { useLazySingleStatutoryUploadDocumentsQuery } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
+import { useUploadDocuments } from "./useUploadDocuments";
 
 function ViewDocumentsModal(props: any) {
   const [isLoading, setIsLoading] = React.useState(true);
