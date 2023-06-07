@@ -53,7 +53,6 @@ export const UploadDocumentTable = (props: any) => {
   const downloadHandler = async (url: any) => {
     const response = await fetch(url);
     const blob = await response.blob();
-    console.log(blob);
 
     // Create a temporary anchor element
     const tempLink = document.createElement("a");
@@ -154,14 +153,11 @@ export const UploadDocumentTable = (props: any) => {
           )}
           <TableAction
             type="download"
-            onClicked={
-              () =>
-                downloadHandler(
-                  "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
-                    info.row.original[column[0]]
-                )
-
-              // downloadHandler(              )
+            onClicked={() =>
+              downloadHandler(
+                "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
+                  info.row.original[column[0]]
+              )
             }
             size="small"
           />

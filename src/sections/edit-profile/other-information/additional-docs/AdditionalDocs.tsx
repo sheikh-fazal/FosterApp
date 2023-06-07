@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AdditionalDocForm from "./additionalDocForm/AdditionalDocForm";
 import AdditionalDocsTable from "./additional-docs-table/AdditionalDocsTable";
-const AdditionalDocs = () => {
+const AdditionalDocs: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
   const addRefModelOpen = () => {
@@ -35,7 +35,9 @@ const AdditionalDocs = () => {
       </Grid>
       <AdditionalDocsTable />
       <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
+        <Button variant="contained" onClick={activateNextForm}>
+          continue
+        </Button>
       </Grid>
       <Modal open={flags.addRefModel} onClose={addRefModelClose}>
         <Grid
