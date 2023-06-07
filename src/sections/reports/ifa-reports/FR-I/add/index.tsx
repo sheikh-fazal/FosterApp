@@ -50,8 +50,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
     },
@@ -59,8 +59,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Date of review",
     otherOptions: {
+      label: "Date of review",
       name: "dateOfReview",
       fullWidth: true,
     },
@@ -68,8 +68,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Date of panel (if appilcable)",
     otherOptions: {
+      label: "Date of panel (if appilcable)",
       name: "dateOfPanel",
       fullWidth: true,
     },
@@ -77,8 +77,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Relationship to Child",
     otherOptions: {
+      label: "Relationship to Child",
       name: "relationshipToChild",
       fullWidth: true,
       select: true,
@@ -92,8 +92,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of Decision maker",
     otherOptions: {
+      label: "Name of Decision maker",
       name: "nameOfDecisionMaker",
       fullWidth: true,
       select: true,
@@ -138,8 +138,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Comments",
     otherOptions: {
+      label: "Comments",
       name: "comments1",
       fullWidth: true,
       minRows: 3,
@@ -160,8 +160,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Comments",
     otherOptions: {
+      label: "Comments",
       name: "comments2",
       fullWidth: true,
       minRows: 3,
@@ -182,8 +182,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Comments",
     otherOptions: {
+      label: "Comments",
       name: "comments3",
       fullWidth: true,
       minRows: 3,
@@ -193,8 +193,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Reasons of decision",
     otherOptions: {
+      label: "Reasons of decision",
       name: "reasonsOfDecision",
       fullWidth: true,
       minRows: 3,
@@ -204,8 +204,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Advice to fostering service",
     otherOptions: {
+      label: "Advice to fostering service",
       name: "adviceToFosteringService",
       fullWidth: true,
       minRows: 3,
@@ -215,16 +215,16 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Signature",
     otherOptions: {
+      label: "Signature",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       fullWidth: true,
     },

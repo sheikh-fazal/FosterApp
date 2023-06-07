@@ -101,8 +101,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
@@ -116,8 +116,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Date of review meeting",
     otherOptions: {
+      label: "Date of review meeting",
       name: "dateOfReviewMeeting",
       fullWidth: true,
     },
@@ -129,8 +129,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Reviewing officer",
     otherOptions: {
+      label: "Reviewing officer",
       name: "reviewingOfficer",
       fullWidth: true,
       select: true,
@@ -144,8 +144,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Supervising social worker",
     otherOptions: {
+      label: "Supervising social worker",
       name: "supervisingSocialWorker",
       fullWidth: true,
       select: true,
@@ -159,8 +159,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Foster Carer(s)",
     otherOptions: {
+      label: "Foster Carer(s)",
       name: "fosterCarer",
       fullWidth: true,
       select: true,
@@ -174,8 +174,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Others",
     otherOptions: {
+      label: "Others",
       name: "others",
       fullWidth: true,
       minRows: 3,
@@ -261,8 +261,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "If any required reports are not available, please comment:",
     otherOptions: {
+      label: "If any required reports are not available, please comment:",
       name: "ifReportNotAvailable",
       fullWidth: true,
       minRows: 3,
@@ -331,9 +331,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "If any required checks are not available or issues have arisen from the checks, please comment:",
     otherOptions: {
+      label:
+        "If any required checks are not available or issues have arisen from the checks, please comment:",
       name: "ifRequiredCheckNotAvailable",
       fullWidth: true,
       minRows: 3,
@@ -436,9 +436,10 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "If any required checks are not available or issues have arisen from the checks, please comment:",
+
     otherOptions: {
+      label:
+        "If any required checks are not available or issues have arisen from the checks, please comment:",
       name: "ifRequiredCheckNotAvailable",
       fullWidth: true,
       minRows: 3,
@@ -448,9 +449,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "Recommendations made, action taken and outstanding actions (with timescale)",
     otherOptions: {
+      label:
+        "Recommendations made, action taken and outstanding actions (with timescale)",
       name: "ifRequiredCheckNotAvailable",
       fullWidth: true,
       minRows: 3,
@@ -479,8 +480,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Impact of fostering",
     otherOptions: {
+      label: "Impact of fostering",
       name: "impactOfFostering",
       fullWidth: true,
       minRows: 3,
@@ -490,8 +491,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Needs of children",
     otherOptions: {
+      label: "Needs of children",
       name: "needsOfChildren",
       fullWidth: true,
       minRows: 3,
@@ -501,8 +502,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Working as a part of team",
     otherOptions: {
+      label: "Working as a part of team",
       name: "workingAsAPartOfTeam",
       fullWidth: true,
       minRows: 3,
@@ -512,8 +513,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Carers own development (carer 1)",
     otherOptions: {
+      label: "Carers own development (carer 1)",
       name: "carersOwnDevelopment1",
       fullWidth: true,
       minRows: 3,
@@ -523,8 +524,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Carers own development (carer 2)",
     otherOptions: {
+      label: "Carers own development (carer 2)",
       name: "carersOwnDevelopment2",
       fullWidth: true,
       minRows: 3,
@@ -538,8 +539,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Summary",
     otherOptions: {
+      label: "Summary",
       name: "summary",
       fullWidth: true,
       minRows: 3,
@@ -562,8 +563,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Recommendation",
     otherOptions: {
+      label: "Recommendation",
       name: "recommendation",
       fullWidth: true,
       minRows: 3,
@@ -581,8 +582,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date1",
       fullWidth: true,
     },
@@ -590,8 +591,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Time",
     otherOptions: {
+      label: "Time",
       name: "time",
       fullWidth: true,
     },
@@ -599,16 +600,16 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Signature",
     otherOptions: {
+      label: "Signature",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date2",
       fullWidth: true,
     },

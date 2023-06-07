@@ -36,8 +36,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name",
     otherOptions: {
+      label: "Name",
       name: "name",
       fullWidth: true,
     },
@@ -45,8 +45,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of Child",
     otherOptions: {
+      label: "Name of Child",
       name: "nameOfChild",
       fullWidth: true,
       select: true,
@@ -60,8 +60,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Relationship to Child",
     otherOptions: {
+      label: "Relationship to Child",
       name: "relationshipToChild",
       fullWidth: true,
       select: true,
@@ -75,8 +75,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of Foster Carer",
     otherOptions: {
+      label: "Name of Foster Carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
@@ -90,9 +90,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "What has been the foster carer done well in caring for your child/children?",
     otherOptions: {
+      label:
+      "What has been the foster carer done well in caring for your child/children?",
       name: "whatFosterCarerHasDone",
       fullWidth: true,
       minRows: 3,
@@ -102,9 +102,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "What could the foster carer have done better in caring for your child/children?",
     otherOptions: {
+      label:
+      "What could the foster carer have done better in caring for your child/children?",
       name: "whatFosterCarerHasDoneBetter",
       fullWidth: true,
       minRows: 3,
@@ -115,7 +115,7 @@ export const FRD1FormData = [
   {
     gridLength: 12,
     title:
-      "Have you been provided with information about how to make a complaint, if you want to?",
+    "Have you been provided with information about how to make a complaint, if you want to?",
     otherOptions: {
       name: "informationAboutComplaint",
       options: ["Yes", "No"],
@@ -125,8 +125,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Is there anything else you would like to say?",
     otherOptions: {
+      label: "Is there anything else you would like to say?",
       name: "anythingElse",
       fullWidth: true,
       minRows: 3,
@@ -136,16 +136,16 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Signature",
     otherOptions: {
+      label: "Signature",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       fullWidth: true,
     },

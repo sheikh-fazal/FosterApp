@@ -36,8 +36,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name",
     otherOptions: {
+      label: "Name",
       name: "name",
       fullWidth: true,
     },
@@ -45,8 +45,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
@@ -60,8 +60,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Relationship to foster carer",
     otherOptions: {
+      label: "Relationship to foster carer",
       name: "relationshipToFosterCarer",
       fullWidth: true,
       select: true,
@@ -76,9 +76,9 @@ export const FRD1FormData = [
 
   {
     gridLength: 12,
-    title:
-      "What are the positive aspects of living in the fostering household or supporting a foster carer?",
     otherOptions: {
+      label:
+      "What are the positive aspects of living in the fostering household or supporting a foster carer?",
       name: "positiveAspects",
       fullWidth: true,
       minRows: 3,
@@ -88,9 +88,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "What are the negative aspects of living in the fostering household or supporting a foster carer?",
     otherOptions: {
+      label:
+      "What are the negative aspects of living in the fostering household or supporting a foster carer?",
       name: "negativeAspects",
       fullWidth: true,
       minRows: 3,
@@ -100,8 +100,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Please comment on the strengths of the foster carer",
     otherOptions: {
+      label: "Please comment on the strengths of the foster carer",
       name: "strengthsOFTheFosterCarer",
       fullWidth: true,
       minRows: 3,
@@ -121,8 +121,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Is there anything else you would like to say?",
     otherOptions: {
+      label: "Is there anything else you would like to say?",
       name: "anythingElse",
       fullWidth: true,
       minRows: 3,
@@ -132,16 +132,16 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Signature",
     otherOptions: {
+      label: "Signature",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       fullWidth: true,
     },
