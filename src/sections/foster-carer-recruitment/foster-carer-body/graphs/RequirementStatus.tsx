@@ -52,8 +52,8 @@ export default function RequirementStatus() {
       </Grid>
       <Grid item xs={12} md={6} display={"flex"} justifyContent={"center"}>
         <Grid container alignItems={"center"}>
-          {legendsArray.map((item: any) => (
-            <Grid item xs={6}>
+          {legendsArray.map((item: any, index: any) => (
+            <Grid item xs={6} key={index}>
               <Typography variant={"body2"}>{item?.label}</Typography>
               <Box display={"flex"} gap={"10px"}>
                 <Box
