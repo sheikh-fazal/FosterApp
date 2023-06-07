@@ -9,6 +9,7 @@ import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/
 
 const OrganisationalPoliciesTabs = () => {
     const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
+    console.log(route?.query?.name)
 
     return (
         <>
