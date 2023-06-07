@@ -78,7 +78,7 @@ export const columnsChildExclusionInfoTable = (
 
         <TableAction
           type="view"
-          onClicked={() => router.push(`?${info.getValue()}`)}
+          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/view-child-exclusion-info?${info.getValue()}`)}
         />
       </Box>
     ),
