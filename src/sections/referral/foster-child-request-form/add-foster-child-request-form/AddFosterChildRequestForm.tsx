@@ -1,14 +1,15 @@
 import React from 'react'
 import CustomHorizaontalTab from '@root/components/customTabs';
 import PersonalInfoForm from './personal-info-form/PersonalInfoForm';
+import useAddFosterChildRequestForm from './useAddFosterChildRequestForm';
 import LADetailsForm from './la-details-form/LADetailsForm';
 import UploadDocumentTable from './upload-documents/UploadDocumentsTable';
-import useAddFosterChildRequestForm from './useAddFosterChildRequestForm';
-import { useRouter } from 'next/router';
+
+
 
 const AddFosterChildRequestForm = () => {
   const { currentTab,setCurrentTab,
-    handleNextTab,handlePreviousTab,tabsArray, query,disabled}= useAddFosterChildRequestForm();
+    handleNextTab,handlePreviousTab,tabsArray,disabled}= useAddFosterChildRequestForm();
    
   return (
     <CustomHorizaontalTab tabsArray={tabsArray}

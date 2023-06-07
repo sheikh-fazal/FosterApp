@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { PersonalInfoFormData } from ".";
-import { usePersonalInfoForm } from "./usePersonalInfoForm";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import { usePersonalInfoForm } from "./usePersonalInfoForm";
+import { PersonalInfoFormData } from ".";
 
 
 
