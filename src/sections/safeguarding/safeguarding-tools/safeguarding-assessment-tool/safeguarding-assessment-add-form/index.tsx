@@ -21,9 +21,9 @@ const styles = {
 export const SafeguardingAssessmentAddForm = [
   {
     id: 1,
-    title: "Child’s  Surname:",
     componentProps: {
       name: "childSurname",
+      label: "Child’s  Surname:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -31,9 +31,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 2,
-    title: "Child’s Forenames:",
     componentProps: {
       name: "childForename",
+      label: "Child’s Forenames:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -41,9 +41,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 3,
-    title: "Gender Identity:",
     componentProps: {
       name: "genderIdentity",
+      label: "Gender Identity:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -51,9 +51,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 4,
-    title: "Date of Birth:",
     componentProps: {
       name: "dateOfBirth",
+      label: "Date of Birth:",
       fullWidth: true,
       sx: styles.marginBottom,
     },
@@ -78,9 +78,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 6,
-    title: "Name and Contact Details:",
     componentProps: {
       name: "description",
+      label: "Name and Contact Details:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -107,9 +107,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 8,
-    title: "Details:",
     componentProps: {
       name: "details",
+      label: "Details:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -134,9 +134,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 10,
-    title: "Please Specify:",
     componentProps: {
       name: "pleaseSpecify",
+      label: "Please Specify:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -173,9 +173,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 13,
-    title: "Details:",
     componentProps: {
       name: "impairmentDetail",
+      label: "Details:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -235,9 +235,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 17,
-    title: "If No,Why Not:",
     componentProps: {
       name: "completingAssessmentToolReason",
+      label: "If No,Why Not:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -247,9 +247,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 18,
-    title: "What are the child’s views now?",
     componentProps: {
       name: "childViewsNow",
+      label: "What are the child’s views now?",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -273,9 +273,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 20,
-    title: "If No,Why Not:",
     componentProps: {
       name: "parentInvolvedReason",
+      label: "If No,Why Not:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -347,9 +347,10 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 26,
-    title: "Analysis of Risk and Action already taken:",
+
     componentProps: {
       name: "analysisAction",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -397,9 +398,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 30,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "abductedAnalysisAction",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -478,9 +479,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 36,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "drugsRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -641,9 +642,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 48,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "associatingRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -706,9 +707,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 53,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "volatileBehaviourRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -743,9 +744,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 56,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "bereavementRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -795,9 +796,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 60,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "BullyingRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -806,7 +807,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////////////////////Coercion/Control
+  ////////////////////////////////////Coercion/Control/////////////////////////////////////
 
   {
     id: 61,
@@ -932,9 +933,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 70,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "coercionRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -968,9 +969,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 73,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "disabilityRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -979,7 +980,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // ////////////////////////////////////////////////////////////////Education/Training
+  ////////////////Education/Training///////////////
 
   {
     id: 74,
@@ -1078,9 +1079,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 81,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "eduactionRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1089,7 +1090,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // //////////////////////////////////////////Engagement in adult activity
+  ///////////////////////Engagement in adult activity///////////////////////////////
   {
     id: 82,
     heading: "Engagement in adult activity",
@@ -1159,9 +1160,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 87,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "pornographyRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1171,7 +1172,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // ///////////////////////////////////////Exchanging sexual or criminal activity for goods, money
+  //////////////////////////////Exchanging sexual or criminal activity for goods, money////////////////////////////////////////
   {
     id: 88,
     heading: "Exchanging sexual or criminal activity for goods, money",
@@ -1227,9 +1228,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 92,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "exchangingSexualRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1392,9 +1393,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 104,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "FamilyRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1543,9 +1544,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 115,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "gangAssociationRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1554,7 +1555,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // ////////////////////////////////Home Life
+  // ////////////////////////////////Home Life///////////////////////
   {
     id: 116,
     heading: "Home Life",
@@ -1680,9 +1681,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 125,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "homeLifeRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1692,7 +1693,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // ////////////////////////////////////Mental health and Wellbeing
+  // ////////////////////////////////////Mental health and Wellbeing////////////////////////////////
   {
     id: 126,
     heading: "Mental health and Wellbeing",
@@ -1804,9 +1805,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 134,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "mentalHealthRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1815,7 +1816,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////////Missing From Home/Care/Education
+  // /////////////////////////////////////Missing From Home/Care/Education///////////////////////
   {
     id: 135,
     heading: "Missing From Home/Care/Education",
@@ -1927,9 +1928,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 143,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "missingMentalHealthRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -1938,7 +1939,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////////////////////Physical/Sexual Assault
+  // /////////////////////////////////////////////////Physical/Sexual Assault//////////////////////////////////////////
   {
     id: 144,
     heading: "Physical/Sexual Assault",
@@ -2022,9 +2023,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 150,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "sexualAssaulthRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2034,7 +2035,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // /////////////////////////////////Pregnancy
+  /////////////////////////////////Pregnancy//////////////////////////////////
   {
     id: 151,
     heading: "Pregnancy",
@@ -2118,9 +2119,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 157,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "pregnancyRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2130,7 +2131,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // /////////////////////////////////Relationships
+  // /////////////////////////////////Relationships///////////////////////////////////
   {
     id: 158,
     heading: "Relationships",
@@ -2186,9 +2187,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 162,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "relationshipsRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2197,7 +2198,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////////////Sexual Activity and Behaviours
+  // /////////////////////////////////Sexual Activity and Behaviours////////////////////////////////
   {
     id: 163,
     heading: "Sexual Activity and Behaviours ",
@@ -2282,9 +2283,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 169,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "sexualActivityRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2293,7 +2294,7 @@ export const SafeguardingAssessmentAddForm = [
     md: 12,
   },
 
-  // /////////////////////////
+
   {
     id: 170,
     heading: "Sexual Health ",
@@ -2378,9 +2379,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 176,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "sexualHealthRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2390,7 +2391,7 @@ export const SafeguardingAssessmentAddForm = [
   },
 
 
-  // ///////////// social media/technology/phone //////////////////////////////////
+  ///////////// social media/technology/phone ////////////////////
   {
     id: 177,
     heading: "Social Media/ Technology /Phone",
@@ -2587,9 +2588,9 @@ export const SafeguardingAssessmentAddForm = [
 
   {
     id: 191,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "socialMediaRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2623,9 +2624,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 194,
-    title: "Analysis of Risk and Action already taken:",
     componentProps: {
       name: "traffickingRiskActionTaken",
+      label: "Analysis of Risk and Action already taken:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2680,9 +2681,7 @@ export const SafeguardingAssessmentAddForm = [
 
   },
 
-
-
-  // /////// summary /////////////////////////////
+  //////// summary ///////////
   {
     id: 197,
     heading: "In summary:",
@@ -2695,9 +2694,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 198,
-    title: "What is Working Well (Strengths) and Protective Factors:",
     componentProps: {
       name: "childStrengths",
+      label: "What is Working Well (Strengths) and Protective Factors:",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2719,9 +2718,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 200,
-    title: "Where risks are identified, what actions have been undertaken to safeguard the child from those risks?",
     componentProps: {
       name: "childSafeguardingMeasures",
+      label: "Where risks are identified, what actions have been undertaken to safeguard the child from those risks?",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2731,9 +2730,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 201,
-    title: "What interventions are you looking for?",
     componentProps: {
       name: "InterventionPreferences",
+      label: "What interventions are you looking for?",
       multiline: true,
       minRows: 3,
       sx: styles.marginBottom,
@@ -2743,9 +2742,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 202,
-    title: "Name and job title of person completing:",
     componentProps: {
       name: "jobTitle",
+      label: "Name and job title of person completing:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -2753,9 +2752,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 203,
-    title: "Organisation:",
     componentProps: {
       name: "organiation",
+      label: "Organisation:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -2763,9 +2762,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 204,
-    title: "E-mail:",
     componentProps: {
       name: "email",
+      label: "E-mail:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
@@ -2773,9 +2772,9 @@ export const SafeguardingAssessmentAddForm = [
   },
   {
     id: 205,
-    title: "Telephone:",
     componentProps: {
       name: "telephone",
+      label: "Telephone:",
       sx: styles.marginBottom,
     },
     component: RHFTextField,
