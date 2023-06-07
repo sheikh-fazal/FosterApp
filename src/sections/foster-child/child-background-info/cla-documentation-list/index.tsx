@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
 
 export const columns = [
   {
@@ -42,7 +43,7 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              `/foster-child/child-background-info/cla-documentation/cla_document_type/${info?.row?.original?.DocumentType}`
+              `/foster-child/child-background-info/cla-documentation/${info?.row?.original?.id}?action=view`
             )
           }
         />
@@ -74,7 +75,7 @@ export const EHCPFormData = [
   {
     id: 2,
     componentProps: {
-      name: "dateOne",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -85,7 +86,7 @@ export const EHCPFormData = [
   {
     id: 3,
     componentProps: {
-      name: "OnFileOne",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -100,7 +101,7 @@ export const EHCPFormData = [
   {
     id: 4,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -122,7 +123,7 @@ export const EHCPFormData = [
   {
     id: 6,
     componentProps: {
-      name: "dateTwo",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -133,7 +134,7 @@ export const EHCPFormData = [
   {
     id: 7,
     componentProps: {
-      name: "OnFileTwo",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -148,7 +149,7 @@ export const EHCPFormData = [
   {
     id: 8,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -170,7 +171,7 @@ export const EHCPFormData = [
   {
     id: 10,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -181,7 +182,7 @@ export const EHCPFormData = [
   {
     id: 11,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -196,7 +197,7 @@ export const EHCPFormData = [
   {
     id: 12,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -218,7 +219,7 @@ export const EHCPFormData = [
   {
     id: 14,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -229,7 +230,7 @@ export const EHCPFormData = [
   {
     id: 15,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -244,7 +245,7 @@ export const EHCPFormData = [
   {
     id: 16,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -266,7 +267,7 @@ export const EHCPFormData = [
   {
     id: 18,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -277,7 +278,7 @@ export const EHCPFormData = [
   {
     id: 19,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -292,7 +293,7 @@ export const EHCPFormData = [
   {
     id: 20,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -314,7 +315,7 @@ export const EHCPFormData = [
   {
     id: 22,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -325,7 +326,7 @@ export const EHCPFormData = [
   {
     id: 23,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -340,7 +341,7 @@ export const EHCPFormData = [
   {
     id: 24,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -362,7 +363,7 @@ export const EHCPFormData = [
   {
     id: 26,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -373,7 +374,7 @@ export const EHCPFormData = [
   {
     id: 27,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -388,7 +389,7 @@ export const EHCPFormData = [
   {
     id: 28,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -410,7 +411,7 @@ export const EHCPFormData = [
   {
     id: 30,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -421,7 +422,7 @@ export const EHCPFormData = [
   {
     id: 31,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -436,7 +437,7 @@ export const EHCPFormData = [
   {
     id: 32,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -458,7 +459,7 @@ export const EHCPFormData = [
   {
     id: 34,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -469,7 +470,7 @@ export const EHCPFormData = [
   {
     id: 35,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -484,7 +485,7 @@ export const EHCPFormData = [
   {
     id: 36,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -493,7 +494,6 @@ export const EHCPFormData = [
     component: RHFTextField,
     md: 12,
   },
-
   {
     id: 37,
     heading: "PEP Date",
@@ -507,7 +507,7 @@ export const EHCPFormData = [
   {
     id: 38,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -518,7 +518,7 @@ export const EHCPFormData = [
   {
     id: 39,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -533,7 +533,7 @@ export const EHCPFormData = [
   {
     id: 40,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -555,7 +555,7 @@ export const EHCPFormData = [
   {
     id: 42,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -566,7 +566,7 @@ export const EHCPFormData = [
   {
     id: 43,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -581,7 +581,7 @@ export const EHCPFormData = [
   {
     id: 44,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -603,7 +603,7 @@ export const EHCPFormData = [
   {
     id: 46,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -614,7 +614,7 @@ export const EHCPFormData = [
   {
     id: 47,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -629,7 +629,7 @@ export const EHCPFormData = [
   {
     id: 48,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -651,7 +651,7 @@ export const EHCPFormData = [
   {
     id: 50,
     componentProps: {
-      name: "dateThree",
+      name: "date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -662,7 +662,7 @@ export const EHCPFormData = [
   {
     id: 51,
     componentProps: {
-      name: "OnFileThree",
+      name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
       select: true
@@ -677,7 +677,7 @@ export const EHCPFormData = [
   {
     id: 52,
     componentProps: {
-      name: "Comments",
+      name: "comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -721,7 +721,7 @@ export const PEPFormData = [
   {
     id: 4,
     componentProps: {
-      name: "pepDuration",
+      name: "pep",
       label: "Pep Duration",
       sx: { mb: 4 },
       fullWidth: true,
@@ -740,10 +740,26 @@ export const PEPFormData = [
     component: RHFDatePicker,
     md: 6,
   },
-
+  {
+    id: 5,
+    component: TargetsAndObjectives,
+    md: 12,
+  },
+  {
+    id: 6,
+    componentProps: {
+      name: "overallOutcome",
+      label: "Overall Outcome",
+      sx: { my: 3 },
+      fullWidth: true,
+      multiline: true,
+      minRows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
 ];
-
-export const PEPContentData = [
+export const TargetsAndObjectivesData = [
   {
     id: 1,
     heading: "Targets / Objectives:",
@@ -756,66 +772,172 @@ export const PEPContentData = [
   },
   {
     id: 2,
-    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    paraTitle: 'T1 ',
+    para: " -Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
     component: Typography,
-    md: 6,
+    md: 12,
   },
   {
     id: 3,
-    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    paraTitle: 'T2 ',
+    para: "- Child will Improve auditory memory skills by means of sequencing and predication.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
     component: Typography,
-    md: 6,
+    md: 12,
   },
   {
     id: 4,
-    para: "T1 - Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
+    paraTitle: 'T3 ',
+    para: "- Child will know and recognize the first 40 keywords and be able to use them orally in context and in written form relation to T1.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
     component: Typography,
-    md: 6,
+    md: 12,
   },
   {
     id: 5,
-    componentProps: {
-      name: "",
-      label: "",
-      sx: { my: 4 },
-      multiline: true,
-      rows: 3,
-    },
-    component: RHFTextField,
+    paraTitle: 'T4 ',
+    para: "- Child will consolidate number and continue to develop those skills by adding and subtraction whith 20. Child will be able to recognize numbers up to 20 in both written and numerical form.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
     md: 12,
   },
-
+];
+export const StrategiesAndEvidence = [
+  {
+    id: 1,
+    heading: "Strategies / Evidence:",
+    componentProps: {
+      variant: "h6",
+      color: (theme: any) => theme.palette.primary.main,
+      sx: { mb: 2, listStyleType: "none" },
+    },
+    component: Typography,
+  },
+  {
+    id: 2,
+    para: " Use of Phonographix programme and letterland sounds consolidate / help retention.",
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 3,
+    para: "Tape recorder etc to produce and identify their own sounds.",
+    componentProps: {
+      sx: { mb: 2 },
+    },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 4,
+    para: "Sequencing pictures.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 5,
+    para: "Memory games.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 5,
+    para: "My Grandmother went to th market.",
+    componentProps: {
+      sx: { mb: 2 },
+    },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 6,
+    para: "Ladybird keywords.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 7,
+    para: "Fishing game.",
+    color: (theme: any) => theme.palette.primary.main,
+    sx: { mb: 2 },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 8,
+    para: "Busy bee.",
+    componentProps: {
+      sx: { mb: 2 },
+    },
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 9,
+    para: "Deboys and Pitt early number work ideas.",
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 10,
+    para: "Multiple cubes.",
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 11,
+    para: "Practical number games within 20.",
+    component: Typography,
+    md: 12,
+  },
+  {
+    id: 12,
+    para: "Genesis Key Stage.",
+    component: Typography,
+    md: 12,
+  },
 ];
 
+export const defaultValues = {
+  // EHCP Form Default Values
+  date: "",
+  OnFile: "",
+  comments: "",
 
-// export const defaultValues = {
-//   nameOfOwner: "",
-//   nameOfAnimal: "",
-//   typeOfAnimal: "",
-//   description: "",
-//   housingAndRoutines: "",
-// };
+  // PEP Form Default Values
+  name: "",
+  class: "",
+  plan: "",
+  pep: "",
+  assessment: "",
+  overallOutcome: "",
+};
+
 
 export const EHCPFormValidation = Yup.object().shape({
-  nameOfOwner: Yup.string().trim().required("Name of Owner is Required"),
-  nameOfAnimal: Yup.string().trim().required("Name of Animal is Required"),
-  typeOfAnimal: Yup.string().trim().required("Type of Animal is Required"),
-  description: Yup.string().trim(),
-  housingAndRoutines: Yup.string().trim(),
-});
-export const PEPFormValidation = Yup.object().shape({
-  name: Yup.string().trim().required("Name of Owner is Required"),
-  class: Yup.string().trim().required("Name of Animal is Required"),
-  plan: Yup.string().trim().required("Type of Animal is Required"),
-  pepDuration: Yup.string().trim(),
-  assessment: Yup.string().trim(),
+  date: Yup.string().trim().required("Date is Required"),
+  OnFile: Yup.string().trim().required("Selection is Required"),
+  comments: Yup.string().trim().required("Comments is Required"),
 });
 
+export const PEPFormValidation = Yup.object().shape({
+  name: Yup.string().trim().required("Name of Owner is Required"),
+  class: Yup.string().trim().required("class is Required"),
+  plan: Yup.string().trim().required("Plan Required"),
+  pep: Yup.date().required(),
+  assessment: Yup.date().required(),
+  overallOutcome: Yup.string().trim().required("overcall outcome Required"),
+});
 
 export { default as ClaDocumentationList } from "./ClaDocumentationList"

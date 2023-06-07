@@ -32,7 +32,7 @@ const LeftNavbar = (props: any) => {
 
   return (
     <Drawer variant="permanent" open={open}>
-      <Box sx={{ minHeight: "100vh" }}>
+      <Box sx={{ maxHeight: "100vh" }}>
         <DrawerHeader>
           {open && <Logo variant="light" iconWidth={160} />}
           {!open && <LogoIcon variant="light" />}

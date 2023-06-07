@@ -3,7 +3,10 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetRegularAssessmentDetailsQuery } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
+import {
+  useGetRegularAssessmentAttendeesQuery,
+  useGetRegularAssessmentDetailsQuery,
+} from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
 import dayjs from "dayjs";
 import React, { useRef } from "react";
 
@@ -14,12 +17,15 @@ const RegularAssessmentMeetingList = (props: any) => {
   const { data, isLoading, isError, isFetching, isSuccess } = useGetRegularAssessmentDetailsQuery({
     params,
   });
+  const { data: attendeesData } = useGetRegularAssessmentAttendeesQuery({
+    params,
+  });
+
   const meta = data?.meta;
   const regularAssessmentList = data?.regularAssessmentList;
-  console.log(regularAssessmentList);
   const filteredAttendees =
-    regularAssessmentList
-      ?.map((item: any) => item?.meetingAttendees)
+    attendeesData?.data
+      ?.map((item: any) => item)
       .filter((names: any, index: any, currentVal: any) => currentVal.indexOf(names) === index)
       ?.map((item: any) => ({ value: item, label: item })) || [];
 

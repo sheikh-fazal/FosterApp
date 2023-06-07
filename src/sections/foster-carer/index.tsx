@@ -1,6 +1,6 @@
 import Image from "next/image";
 import TableImage from "../../assets/img/Approve.png";
-import { Box, Button, MenuItem, TextField, useTheme } from "@mui/material";
+import { Box, Button, MenuItem, TextField } from "@mui/material";
 import router from "next/router";
 import dayjs from "dayjs";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -147,7 +147,7 @@ export const columnsFosterCarerTask = [
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
-            color={useTheme().palette.success.main}
+            color={(theme: any) => theme.palette.primary.main}
           >
             <ArrowUpwardIcon />
             High
@@ -157,7 +157,7 @@ export const columnsFosterCarerTask = [
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
-            color={useTheme().palette.error.main}
+            color={(theme: any) => theme.palette.primary.main}
           >
             <ArrowDownwardIcon />
             Low
