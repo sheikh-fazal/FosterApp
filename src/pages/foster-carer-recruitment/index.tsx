@@ -15,10 +15,11 @@ const PAGE_TITLE = "Foster Carer Recruitment";
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
+    name: "Dashboard",
     href: "/",
   },
   {
-    name: "Dashboard",
+    name: "Recruitment",
     href: "/",
   },
 ];
