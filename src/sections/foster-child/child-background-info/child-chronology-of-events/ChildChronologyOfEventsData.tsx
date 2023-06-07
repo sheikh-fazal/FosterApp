@@ -1,5 +1,4 @@
 import ComplaintsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/complaints-info";
-import DayLog from "@root/pages/foster-child/child-background-info/child-chronology-of-events/day-log";
 import ExclusionInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/exclusion-info";
 import HospitalisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info";
 import ImmunisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/immunisation-info";
@@ -13,11 +12,12 @@ import ChildMissingPlacement from "@root/pages/foster-child/events-and-notificat
 import TherapyInfo from "@root/pages/foster-child/health-medical-history/therapy-info";
 import RiskAssessment from "@root/pages/foster-child/other-information/risk-assessment";
 import AllegationsInfo from "./allegations-info";
+import DayLogTable from "./day-log/DayLogTable";
 
 export const childChronologyListData =[
   {
     title: "Day Log / Journal Entries",
-    component: <DayLog />,
+    component: <DayLogTable />,
   },
   {
     title: "OOH Reports",

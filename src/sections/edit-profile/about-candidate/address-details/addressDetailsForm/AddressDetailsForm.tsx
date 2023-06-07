@@ -45,14 +45,14 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
       const { data, isError, error } = await getAddressDetails(null, true);
       setAvailableFiles(data?.data?.documents);
       setIsLoading(false);
-      if (isError) {
-        displayErrorMessage(error, enqueueSnackbar);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {
         ...data?.data,
-        from: new Date(data?.data.from),
-        to: new Date(data?.data.to),
+        from: new Date(data?.data?.from),
+        to: new Date(data?.data?.to),
       };
     },
   });
@@ -67,6 +67,7 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
+    // activateNextForm();
     if (!isDirty) return;
     const formData = new FormData();
     documents.forEach((doc) => formData.append("documents", doc));

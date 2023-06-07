@@ -24,9 +24,7 @@ const Unemployement = () => {
         />
       </Grid>
       <UnemploymentTable />
-      <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
-      </Grid>
+
       <Modal
         open={flags.workExperienceModel}
         onClose={workExperienceModelClose}

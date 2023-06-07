@@ -8,14 +8,11 @@ import dayjs from "dayjs";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import IsFetching from "@root/components/loaders/IsFetching";
 import FormNotificationExtension from "../../extensions/FormNotificationExtension";
-import { useLazyGetInitialInquiryDataQuery } from "@root/services/carer-info/personal-info/initial-enquiry/initial-inquiry-all";
 import Error from "@root/components/Error";
 
 export default function FirstApplicant(props: any) {
   const { disabled: globallyDisabled, data, isLoading, isError } = props;
   const theme = useTheme();
-
-  const [getInitialEnquiry] = useLazyGetInitialInquiryDataQuery();
 
   // Update the default values API
   const methods: any = useForm({
@@ -32,8 +29,6 @@ export default function FirstApplicant(props: any) {
   });
 
   const { setValue, handleSubmit, watch } = methods;
-
-  console.log(methods.formState.errors);
 
   useEffect(() => {
     const subscription = watch((values: any) => {
@@ -128,6 +123,8 @@ export default function FirstApplicant(props: any) {
             </Grid>
           );
         })}
+        {!globallyDisabled && <FormNotificationExtension />}
+        <br />
         {!globallyDisabled && (
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
@@ -136,7 +133,6 @@ export default function FirstApplicant(props: any) {
           </Grid>
         )}
       </Grid>
-      {!globallyDisabled && <FormNotificationExtension />}
     </FormProvider>
   );
 

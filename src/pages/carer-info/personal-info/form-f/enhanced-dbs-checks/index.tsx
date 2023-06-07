@@ -45,7 +45,10 @@ export default function EnhancedDbsChecks() {
     usePutEnhancedDbsChecksMutation();
   const recieveDataHandler = async (formData: any) => {
     try {
-      const res: any = await putDBSChecksData(formData).unwrap();
+      const res: any = await putDBSChecksData({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
