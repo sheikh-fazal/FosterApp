@@ -1,4 +1,4 @@
-import { useState, FC, Fragment } from "react";
+import { useState, FC, Fragment, useEffect } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -12,7 +12,7 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import { FormSchema, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
@@ -24,10 +24,12 @@ import {
   DotedHeadingsWithDesInfo,
   HeadingsWithDesInfo,
 } from "./static-info/heading-data";
+import { useLayoutInfo } from "../../layout/use-layout-info";
 
 const AddDeclaration: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
+  const { Test } = useLayoutInfo();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
@@ -39,17 +41,30 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
     register,
     setValue,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-
+  useEffect(() => {
+    const subscription = watch((values: any) => {
+      console.log({ values });
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setValue]);
   const onSubmit = async (data: any) => {
-    console.log({ data });
     activateNextForm();
   };
-
+  const moveToDbsAndWriteToWork = () => {
+    console.log("Test");
+    Test();
+  };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container justifyContent="center" sx={{ padding: "0.5em" }}>
+      <Grid
+        container
+        justifyContent="center"
+        sx={{ padding: "0.5em" }}
+        onClick={moveToDbsAndWriteToWork}
+      >
         <Grid container item xs={12}>
           <Grid item>
             <Typography

@@ -112,7 +112,11 @@ export const useLayoutInfo = () => {
         ],
     }));
   };
-
+  const Test = () => {
+    console.log("Test From Lauout Ok");
+    console.log({ expanded });
+    setExpanded("MEDICAL HISTORY");
+  };
   return {
     tabs,
     expanded,
@@ -121,5 +125,7 @@ export const useLayoutInfo = () => {
     tabsItems,
     diffInfoHandler,
     activateNextForm,
+    setDiffInfoHandler,
+    Test,
   };
 };
