@@ -2,26 +2,22 @@ import React from "react";
 import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/PolicyVerticalAddForm";
 import CustomHorizaontalTab from "@root/components/customTabs";
 import { useGovtLegislationTabs } from "./useGovtLegislationTabs";
-import { uploadDocumentData } from ".";
-import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
+import AddWebsiteUrlModal from "../AddUrlModal/AddUrlModal";
 
 const GovtLegislationsTabs = () => {
   const {
+    route,
     currentTab,
     setCurrentTab,
     handlePreviousTab,
-    isUploadDocumentOpenModal,
     isDeleteOpenModal,
-    setCount,
-    handleSubmit,
-    handleUploadedSubmit,
-    handleAction,
-    setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count,
-    route,
+    isAddUrlModalOpen,
+    setIsAddUrlModalOpen,
+    handleSubmit,
+    handleAddUrlSubmit,
+    handleAction,
   } = useGovtLegislationTabs();
 
   return (
@@ -43,25 +39,12 @@ const GovtLegislationsTabs = () => {
           onSubmit={handleSubmit}
           handleAddNewBack={"/policies-and-guidelines/govt-legislations/govt-legislations-form"}
         />
-        <PolicyVerticalUploadDocument
-          data={uploadDocumentData}
-          addUploadDocument={() => setIsUploadDocumentOpenModal(true)}
-          handleSubmit={handleUploadedSubmit}
-          isUploadBackBtn={count === 1 && true}
-          handleBackBtn={() => handlePreviousTab()}
-          handleAction={handleAction}
+        <AddWebsiteUrlModal
+          onSubmit={handleAddUrlSubmit}
+          open={isAddUrlModalOpen}
+          handleClose={() => setIsAddUrlModalOpen(false)}
         />
       </CustomHorizaontalTab>
-
-      <UploadDocumentModal
-        open={isUploadDocumentOpenModal}
-        handleClose={() => setIsUploadDocumentOpenModal(false)}
-        isHideSubmitButton={true}
-        onSubmit={() => {
-          setIsUploadDocumentOpenModal(false);
-          setCount(1);
-        }}
-      />
 
       <DeleteModel open={isDeleteOpenModal} handleClose={() => setIsDeleteOpenModal(false)} />
     </>
