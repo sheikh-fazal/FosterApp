@@ -68,7 +68,7 @@ export const columnsOutSchoolActivityTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`?${info.getValue()}`)}
+          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`)}
         />
         <TableAction
           type="delete"
