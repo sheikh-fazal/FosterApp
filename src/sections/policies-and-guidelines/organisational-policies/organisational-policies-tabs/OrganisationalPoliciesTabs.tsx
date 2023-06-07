@@ -8,21 +8,8 @@ import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-v
 import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
 
 const OrganisationalPoliciesTabs = () => {
-  const {
-    currentTab,
-    setCurrentTab,
-    handlePreviousTab,
-    isUploadDocumentOpenModal,
-    isDeleteOpenModal,
-    setCount,
-    handleSubmit,
-    handleUploadedSubmit,
-    handleAction,
-    setIsUploadDocumentOpenModal,
-    setIsDeleteOpenModal,
-    count,
-    route,
-  } = useOrganisationalPoliciesTabs();
+    const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
+    console.log(route?.query?.name)
 
   return (
     <>
