@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { UPLOAD_DOCUMENT_DATA, columns } from ".";
-// import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import Page from "@root/components/Page";
 
 export const UploadDocument = (props: any) => {
@@ -25,7 +25,7 @@ export const UploadDocument = (props: any) => {
   return (
     <Page title="Upload Documents">
       <Card sx={{ p: 1 }}>
-        <TableHeader
+        {/* <TableHeader
         ref={tableHeaderRef}
         // showSelectFilters
         // disabled={isLoading}
@@ -48,34 +48,52 @@ export const UploadDocument = (props: any) => {
         onSortByChange={sortChangeHandler}
         isSuccess={true}
         isPagination={false}
-      />
+      /> */}
         {/* <UploadDocuments
       tableData={UPLOAD_DOCUMENT_DATA}
       columns={columns}
       isSuccess={true}
-      />
+      /> */}
         {/* <UploadDocuments
           // readOnly={user?.defaultRole === "FOSTER_CARER"}
-          tableData={UPLOAD_DOCUMENT_DATA.map((x: any) => ({
-            document: x.documentName,
-            documentType: x?.documentType,
-            date: x?.documentDate,
-            personName: x.personUploaded,
-            password: x.password,
-          }))}
-          // isLoading={isLoading}
-          columns={[
+          tableData={UPLOAD_DOCUMENT_DATA}
+          isLoading={false}
+          column={[
             "documentName",
             "documentType",
             "documentDate",
             "personUploaded",
             "password",
           ]}
-          // isFetching={isFetching}
-          // isError={isError}
-          // isSuccess={true}
+          isFetching={false}
+          isError={false}
+          isSuccess={true}
           modalData={(data: any) => console.log("data all the way here", data)}
         /> */}
+
+        <UploadDocuments
+          // readOnly={true}
+
+          searchParam={(searchedText: string) =>
+            console.log("searched Value", searchedText)
+          }
+          tableData={UPLOAD_DOCUMENT_DATA}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isSuccess={true}
+          column={[
+            "documentName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "password",
+          ]}
+          modalData={()=>{}}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={'1'}
+          totalPages={'1'}
+        />
       </Card>
     </Page>
   );
