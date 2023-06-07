@@ -4,11 +4,8 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-// components
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import PersonalInfo from "@root/sections/referral/social-worker-request-form/add/personal-info/PersonalInfo";
-import ApprovedDetails from "@root/sections/referral/social-worker-request-form/add/approved-details/ApprovedDetails";
-import UploadDocument from "@root/sections/referral/social-worker-request-form/add/social-worker-upload-document/UploadDocument"; 
+// components 
+import AddSocialWorkerForm from "@root/sections/referral/social-worker-request/add-social-worker-request-form/AddSocialWorkerForm";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -44,17 +41,7 @@ export default function AddSocialWorker() {
 
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs
-        tabsDataArray={[
-          "Personal Info",
-          "Approved Details",
-          "Upload Documents"
-        ]}
-      >
-        <PersonalInfo  message="Added" />
-        <ApprovedDetails  message="Added" />
-        <UploadDocument/>
-      </HorizaontalTabs>
+      <AddSocialWorkerForm/>
     </Page>
   );
 }
