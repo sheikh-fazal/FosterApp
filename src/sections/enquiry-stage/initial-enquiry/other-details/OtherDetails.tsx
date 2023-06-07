@@ -62,38 +62,11 @@ export default function OtherDetails(props: any) {
                     : null}
                 </form.component>
               }
-              {/* {form.id === 7.5 && (
-                <>
-                  <Typography variant="body2">
-                    Does this enquiry meet the criteria for IHV:
-                  </Typography>
-                  <RadioGroup
-                    name="IHVcriteria"
-                    sx={{ display: "flex", flexDirection: "row" }}
-                    value={getValues("IHVcriteria")}
-                    onChange={(e) => {
-                      setValue("IHVcriteria", e.target.value);
-                      trigger("IHVcriteria");
-                    }}
-                  >
-                    {[true, false].map((mode, index) => {
-                      return (
-                        <Grid key={index} item>
-                          <FormControlLabel
-                            disabled={disabled}
-                            label={mode ? "Yes" : "No"}
-                            control={<Radio />}
-                            value={mode}
-                          />
-                        </Grid>
-                      );
-                    })}
-                  </RadioGroup>
-                </>
-              )} */}
             </Grid>
           );
         })}
+        {!disabled && <FormNotificationExtension />}
+        <br />
         {!disabled && (
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
@@ -102,7 +75,6 @@ export default function OtherDetails(props: any) {
           </Grid>
         )}
       </Grid>
-      {!disabled && <FormNotificationExtension />}
     </FormProvider>
   );
 

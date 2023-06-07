@@ -1,19 +1,26 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { Grid, Paper } from '@mui/material';
-import { PEPContentData, PEPFormData, PEPFormValidation } from '..';
+import { Box, Grid, Paper } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { PEPFormData, PEPFormValidation, StrategiesAndEvidence, TargetsAndObjectivesData } from '..';
+import { useRouter } from 'next/router';
 
-export default function PEPForm() {
 
+export default function PEPForm(props: any) {
+
+  const { defaultValues, disabled } = props;
+  // const { query } = useRouter()
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),
+    defaultValues
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log(data);
 
   };
 
@@ -25,6 +32,8 @@ export default function PEPForm() {
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
+                disabled={disabled}
+                // disabled={query.action === "view"}
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
@@ -38,25 +47,56 @@ export default function PEPForm() {
             </Grid>
           ))}
         </Grid>
-        
-        <Grid container columnSpacing={4}>
-          {PEPContentData.map((item) => {
-            const Component: any = item.component;
-            if (item.para) {
-              const [firstWord, ...restWords] = item.para.split(" ");
-              return (
-                <Grid item xs={12} md={item?.md} key={item?.id}>
-                  <Component>
-                    <span style={{ fontWeight: "bold" }}>{firstWord}</span>
-                    {restWords.join(" ")}
-                  </Component>
-                </Grid>
-              );
-            }
-            return <Component key={item.id} {...item.componentProps} />;
-          })}
-        </Grid>
+        <Box sx={{ display: "flex", mb: "1rem" }}>
+          <LoadingButton
+            sx={{ marginRight: "1rem" }}
+            type="submit"
+            variant="contained" disabled={disabled}>
+            Submit
+          </LoadingButton>
+          <LoadingButton
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained" disabled={disabled}>
+            back
+          </LoadingButton>
+        </Box>
       </FormProvider>
     </Paper>
+  )
+};
+
+export function TargetsAndObjectives() {
+  return (
+
+    <Grid container columnSpacing={4}>
+      <Grid item xs={12} md={6}>
+        {TargetsAndObjectivesData?.map((item: any) => (
+          <Grid item xs={12} md={item?.md} key={item?.id}>
+            <item.component
+              {...item.componentProps}
+              size={"small"}>
+              {item?.heading}
+              <Box sx={{ display: "flex", alignItems: "top", flexWrap: "nowrap" }}>
+                <h4> {item?.paraTitle}</h4>
+                <Box sx={{ mb: 2 }}>{item?.para}</Box>
+              </Box>
+            </item.component>
+          </Grid>
+        ))}
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {StrategiesAndEvidence?.map((item: any) => (
+          <Grid item xs={12} md={item?.md} key={item?.id}>
+            <item.component
+              {...item.componentProps}
+              size={"small"}>
+              {item?.heading}
+              <li>{item?.para}</li>
+            </item.component>
+          </Grid>
+        ))}
+      </Grid>
+    </Grid>
   )
 }

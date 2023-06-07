@@ -79,8 +79,8 @@ export default function SignaturePad({ name, getSign, ...other }: any) {
               <Image
                 alt="sign"
                 width={1000}
-                height={1000}
-                style={{ width: "100%", height: "100%" }}
+                height={200}
+                // style={{ width: "100%", height: "100%" }}
                 src={`${process.env.NEXT_PUBLIC_IMG_URL}${showSignCanvas}`}
               />
             ) : (

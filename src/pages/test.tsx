@@ -16,6 +16,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { SignOffApproval } from "@root/sections/recruitment/assessment-stage-two/sign-off-approval";
 import PanelCaseListTable from "@root/sections/recruitment/assessment-stage-two/agency-decision/PanelCaseListTable";
 import BankAccountDetailsSection from "@root/sections/carer-info/other-info/bank-account-details/BankAccountDetailsSection";
+import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 
 // -----------------------------------------------------------------------
 // Constants
@@ -96,7 +97,7 @@ export default function FosteringPanelRecommendation() {
   // );
   return (
     <Page title={PAGE_TITLE}>
-      <BankAccountDetailsSection />
+      <SubstituteCarerForm />
     </Page>
   );
 }
