@@ -72,9 +72,7 @@ const AllegationTable = () => {
             }
           />
           {/* Delete Modal */}
-          <DeletePrompt
-            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-          />
+         
           <TableAction
             size="small"
             type="view"
