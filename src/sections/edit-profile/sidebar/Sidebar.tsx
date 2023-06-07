@@ -21,7 +21,6 @@ const Sidebar: React.FC<any> = (props) => {
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-      console.log({ panel });
       setExpanded(isExpanded ? panel : false);
     };
   const theme: any = useTheme();

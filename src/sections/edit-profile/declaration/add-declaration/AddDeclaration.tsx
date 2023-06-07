@@ -26,10 +26,10 @@ import {
 } from "./static-info/heading-data";
 import { useLayoutInfo } from "../../layout/use-layout-info";
 
-const AddDeclaration: FC<any> = ({ activateNextForm }) => {
+const AddDeclaration: FC<any> = ({ MoveTo }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
-  const { Test } = useLayoutInfo();
+
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
@@ -51,20 +51,14 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
     return () => subscription.unsubscribe();
   }, [watch, setValue]);
   const onSubmit = async (data: any) => {
-    activateNextForm();
+    // activateNextForm();
   };
-  const moveToDbsAndWriteToWork = () => {
-    console.log("Test");
-    Test();
+  const moveToDbsAndWriteToWork = (e: any) => {
+    MoveTo("BACKGROUND CHECKS", "Right to work");
   };
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid
-        container
-        justifyContent="center"
-        sx={{ padding: "0.5em" }}
-        onClick={moveToDbsAndWriteToWork}
-      >
+      <Grid container justifyContent="center" sx={{ padding: "0.5em" }}>
         <Grid container item xs={12}>
           <Grid item>
             <Typography
@@ -109,6 +103,7 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
                 <RHFRadioGroup
                   name="rightToWork"
                   options={["Yes", "No"]}
+                  onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
               </Grid>
             </Grid>
@@ -132,6 +127,7 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
                 <RHFRadioGroup
                   name="areYouWilling"
                   options={["Yes", "No"]}
+                  onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
               </Grid>
             </Grid>
