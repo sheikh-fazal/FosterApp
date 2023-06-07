@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const interestFormValues = {
-  perviousExperience: "",
+  previousExperience: "",
   motivation: "",
   impactOfTheTask: "",
   skilledOffered: "",
@@ -10,7 +10,7 @@ export const interestFormValues = {
 
 export const defaultValueInterestForm = (data: any = interestFormValues) => {
   return {
-    perviousExperience: data.perviousExperience,
+    previousExperience: data.previousExperience,
     motivation: data.motivation,
     impactOfTheTask: data.impactOfTheTask,
     skilledOffered: data.skilledOffered,
@@ -18,33 +18,33 @@ export const defaultValueInterestForm = (data: any = interestFormValues) => {
   };
 };
 
-export const InterestFormSchema = Yup.object().shape({
-  perviousExperience: Yup.string()
+export const interestFormSchema = Yup.object().shape({
+  previousExperience: Yup.string()
     .required("Previous experience is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   motivation: Yup.string()
     .required("Motivation is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   impactOfTheTask: Yup.string()
     .required("Impact of task is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   skilledOffered: Yup.string()
     .required("Skilled offer is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   knowledgeOfTheReason: Yup.string()
     .required("knowledge of the reason is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 
 export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
-    name: "perviousExperience",
+    name: "previousExperience",
     label: "",
     title:
       "Pervious Experience (Have you ever Fostered before? if so, with whom and how did this end?)",

@@ -1,5 +1,4 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import { HEAREDABOUTAGENCY } from "@root/dropdown-data/hearAboutAgency";
 import * as Yup from "yup";
 
@@ -18,61 +17,57 @@ export const gpDetailsInfoFormValues = {
 
 
 export const defaultValueGpDetailsInfoForm = (data: any = gpDetailsInfoFormValues) => {
-  console.log({data})
   return {
-    physicianName: data.physicianName,
-    physicianType: data.physicianType,
-    address: data.address,
-    town: data.town,
-    telephone: data.telephone,
-    phoneNo:data.phoneNo,
-    email:data.email,
-    county:data.county,
-    country:data.country,
-    postalCode:data.postalCode
+    physicianName: data?.physicianName,
+    physicianType: data?.physicianType,
+    address: data?.address,
+    town: data?.town,
+    telephone: data?.telephone,
+    phoneNo:data?.phoneNo,
+    email:data?.email,
+    county:data?.county,
+    country:data?.country,
+    postalCode:data?.postalCode
   };
 };
 
-export const gpDetailsFormSchema = Yup.object().shape({
+export const gpDetailsInfoFormSchema = Yup.object().shape({
   physicianName: Yup.string()
     .required("Physician name is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     physicianType: Yup.string()
     .required("Physician type is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     address: Yup.string()
     .required("Address is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     town: Yup.string()
     .required("Town is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     telephone: Yup.string()
     .required("Telephone is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     phoneNo: Yup.string()
     .required("Mobile phone is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    email: Yup.string()
-    .required("Email is required")
-    .min(6, "Mininum 6 characters")
-    .max(50, "Maximum 50 characters"),
+    email: Yup.string().required("Email is required").email("Invalid Email"),
     county: Yup.string()
     .required("County is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     country: Yup.string()
     .required("Country is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     postalCode: Yup.string()
     .required("Postal code is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 
@@ -97,7 +92,16 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       name: "physicianType",
       label: "Physician Type",
       select: true,
-      options: HEAREDABOUTAGENCY,
+      options: [{
+        id:1,
+        label:'Eye',
+        text:'Eye'
+      },
+      {
+        id:2,
+        label:'Physician',
+        text:'Physician'
+      }],
     },
   },
   {
@@ -175,12 +179,13 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       fullWidth: true,
       name: "country",
       label: "Country",
-      select: true,
-      options: COUNTRIESDROPDOWN,
+      // select: true,
+      // options: COUNTRIESDROPDOWN,
       disabled: isFieldDisable,
     },
     gridLength: 6,
-    component: RHFSelect,
+    // component: RHFSelect,
+    component: RHFTextField,
   },
   {
     id: 10,

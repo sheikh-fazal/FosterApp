@@ -10,7 +10,7 @@ import * as Yup from "yup";
 const todayDate = dayjs().format("MM/DD/YYYY");
 const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
 
-export const FormValues = {
+export const primaryCarerFormValues = {
   dateOfVisit: todayDate,
   nameOfAgencyWorkingVisiting: "",
   title: "",
@@ -39,8 +39,7 @@ export const FormValues = {
   convictedOfAnyCriminal: "No",
 };
 
-export const defaultValuesPrimaryCarer = (data = FormValues) => {
-  console.log(data);
+export const defaultValuesPrimaryCarer = (data = primaryCarerFormValues) => {
   // const p = data?.practising === "true" ? true : false;
   return {
     dateOfVisit: new Date(data?.dateOfVisit),
@@ -75,13 +74,13 @@ export const defaultValuesPrimaryCarer = (data = FormValues) => {
   };
 };
 
-export const FormSchema = Yup.object().shape({
+export const primaryCarerFormSchema = Yup.object().shape({
   dateOfVisit: Yup.date()
     .typeError("Date of visit is required")
     .required("Date of visit is required"),
   nameOfAgencyWorkingVisiting: Yup.string()
     .required("Agency is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   title: Yup.string().required("title is required"),
   firstName: Yup.string()
@@ -102,26 +101,26 @@ export const FormSchema = Yup.object().shape({
   gender: Yup.string().required("Gender is required"),
   address: Yup.string()
     .required("Address line 1 is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   addressLine2: Yup.string()
     .required("Address line 2 is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   city: Yup.string()
     .required("town is required")
-    // .min(6, "Mininum 6 characters")
+    // .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   mobilePhone: Yup.string()
     .required("mobile is required")
-    // .min(6, "Mininum 6 characters")
+    // .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   county: Yup.string().required("County is required"),
   country: Yup.string().required("Country is required"),
   postalCode: Yup.string()
     .required("Postal code is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   maritalStatus: Yup.string().required("Marital status is required"),
   ethnicity: Yup.string().required("Ethnicity is required"),
@@ -140,7 +139,7 @@ export const FormSchema = Yup.object().shape({
   ),
   detailsOfPreviousMarriages: Yup.string()
     .required("Previous marriages knowledge is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 
