@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import TrainingClockEngineTable from "@root/sections/training/notifications/training-clock-engine-tab/TrainingClockEngineTable";
-import NotificationTable from "@root/sections/training/notifications/notification-settings-tab/NotificationTable";
 import CustomHorizaontalTab from "@root/components/customTabs";
+import TrainingClockEngineTable from "@root/sections/training/manage-trainees/notifications/training-clock-engine-tab/TrainingClockEngineTable";
+import NotificationTable from "@root/sections/training/manage-trainees/notifications/notification-settings-tab/NotificationTable";
 
 
 const PAGE_TILE = "Notification Setting";
