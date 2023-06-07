@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { PolicyVerticalAddNewDefaultValues, PolicyVerticalAddNewValidationSchema, PolicyVerticalAddNewFormData, handleInputFields } from ".";
+import { PolicyVerticalAddNewValidationSchema, PolicyVerticalAddNewFormData, handleInputFields, PolicyVerticalAddNewDefaultValues } from ".";
 import { useRouter } from "next/router";
 
 export const usePolicyVerticalAddNew = () => {
@@ -32,6 +32,6 @@ export const usePolicyVerticalAddNew = () => {
     handlePreviousTab,
     reset,
     currentPage,
-    route
+    route,
   };
 };
