@@ -18,6 +18,7 @@ const AddReviewingOfficerReport = ({ action, id }: any) => {
               <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
                 {form.title}
               </Typography>
+              {form.head && <Typography sx={{ fontSize: '16px', fontWeight: 600, color: "#0E918C" }}>{form.head}</Typography>}
               {form.otherOptions && (
                 <form.component
                   disabled={disabled}

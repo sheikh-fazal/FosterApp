@@ -125,7 +125,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "PRESENT",
+    head: "Present",
   },
   {
     gridLength: 6,
@@ -185,7 +185,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "REPORTS INFORMATION THE REVIEW MEETING",
+    head: "Reports information the review meeting",
   },
   {
     gridLength: 12,
@@ -272,7 +272,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "CHECKS AND MEDICALS",
+    head: "Checks and medicals",
   },
   {
     gridLength: 12,
@@ -343,7 +343,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "OTHER DOCUMENTS",
+    head: "Other documents",
   },
   {
     gridLength: 12,
@@ -432,7 +432,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "RECOMMENDATIONS OF LAST REVIEWING MEETING",
+    head: "Recommendations of last reviewing meeting",
   },
   {
     gridLength: 12,
@@ -460,7 +460,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "EXEMPTIONS/PLACEMENTS OUTSIDE TERMS OF APPROVEL",
+    head: "Exemptions/placements outside terms of approvel",
   },
   {
     gridLength: 12,
@@ -475,7 +475,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "SUMMERY AND DISCUSSION",
+    head: "Summery and discussion",
   },
   {
     gridLength: 12,
@@ -534,7 +534,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "SUMMERY AND DISCUSSION",
+    head: "Summery and discussion",
   },
   {
     gridLength: 12,
@@ -577,7 +577,7 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "NEXT REVIEW MEETING",
+    head: "Next review meeting",
   },
   {
     gridLength: 6,
