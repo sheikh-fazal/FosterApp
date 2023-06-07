@@ -25,14 +25,36 @@ import {
   HeadingsWithDesInfo,
 } from "./static-info/heading-data";
 import { useLayoutInfo } from "../../layout/use-layout-info";
+import {
+  useLazyGetDeclarationInfoQuery,
+  useUpdateDeclarationInfoMutation,
+} from "@root/services/update-profile/declaration/declarationApi";
+import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
+import { enqueueSnackbar } from "notistack";
+import FormSkeleton from "../../render-form/FormSkeleton";
 
 const AddDeclaration: FC<any> = ({ MoveTo }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
+  const [getDeclarationInfo] = useLazyGetDeclarationInfoQuery();
+  const [updateDeclarationInfo] = useUpdateDeclarationInfoMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const { data, isError, error } = await getDeclarationInfo(null, false);
+      setIsLoading(false);
+      if (isError || !data) {
+        displayErrorMessage(error, enqueueSnackbar);
+        return defaultValues;
+      }
+      return {
+        ...data?.data,
+        workRight: "No",
+        dba: "No",
+      };
+    },
   });
 
   const {
@@ -45,8 +67,19 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
     formState: { errors, isSubmitting, isDirty },
   } = methods;
   useEffect(() => {
-    const subscription = watch((values: any) => {
-      console.log({ values });
+    const subscription = watch(async (values: any) => {
+      try {
+        console.log("Initial");
+        // Api Needs to be fixed
+        delete values?.workRight;
+        delete values?.dba;
+        // Api Needs to be fixed
+        const jsonData = { ...values };
+        const res = await updateDeclarationInfo(jsonData);
+        displaySuccessMessage(res, enqueueSnackbar);
+      } catch (error) {
+        displayErrorMessage(error, enqueueSnackbar);
+      }
     });
     return () => subscription.unsubscribe();
   }, [watch, setValue]);
@@ -56,6 +89,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
   const moveToDbsAndWriteToWork = (e: any) => {
     MoveTo("BACKGROUND CHECKS", "Right to work");
   };
+  if (isLoading) return <FormSkeleton />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container justifyContent="center" sx={{ padding: "0.5em" }}>
@@ -87,7 +121,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
             <Grid item sm={12} container direction="column">
               <Grid item>
                 <RHFSwitch
-                  name="agreeToAboveDec"
+                  name="agree"
                   label="I agree to the above Declaration."
                 />
               </Grid>
@@ -101,7 +135,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
             <Grid item sm={12} container direction="column">
               <Grid item sx={{ padding: "0 0.5em" }}>
                 <RHFRadioGroup
-                  name="rightToWork"
+                  name="workRight"
                   options={["Yes", "No"]}
                   onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
@@ -111,7 +145,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
               <RHFTextField
                 multiline
                 rows={4}
-                name="moreDetails"
+                name="detail"
                 label="If Yes, please provide more details"
               />
             </Grid>
@@ -125,7 +159,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
             <Grid item sm={12} container direction="column">
               <Grid item sx={{ padding: "0 0.5em" }}>
                 <RHFRadioGroup
-                  name="areYouWilling"
+                  name="dba"
                   options={["Yes", "No"]}
                   onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
@@ -154,6 +188,12 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
                   />
                 );
               })}
+            </Grid>
+            <Grid item sm={12}>
+              <RHFSwitch
+                name="dataPrivacy"
+                label="I agree to the above Declaration."
+              />
             </Grid>
           </Grid>
         </Grid>

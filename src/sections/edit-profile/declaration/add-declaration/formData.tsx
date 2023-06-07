@@ -1,25 +1,27 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  agreeToAboveDec: true,
-  rightToWork: "No",
-  moreDetails: "Provides Details",
-  areYouWilling: "No",
-  agreeToAboveDec2: false,
-  understandEntirly: true,
-  confidentialAgre: true,
-  penOpt: true,
+  agree: true,
+  workRight: "No",
+  detail: "Provides Details",
+  dba: "No",
+  workTimeDirective: false,
+  challengingBehaviour: true,
+  confidentialAgrement: true,
+  pension: true,
+  dataPrivacy: false,
 };
 
 export const FormSchema = Yup.object().shape({
-  agreeToAboveDec: Yup.boolean(),
-  rightToWork: Yup.string(),
-  moreDetails: Yup.string(),
-  areYouWilling: Yup.string(),
-  agreeToAboveDec2: Yup.boolean(),
-  understandEntirly: Yup.boolean(),
-  confidentialAgre: Yup.boolean(),
-  penOpt: Yup.boolean(),
+  agree: Yup.boolean(),
+  workRight: Yup.string(),
+  detail: Yup.string(),
+  dba: Yup.string(),
+  workTimeDirective: Yup.boolean(),
+  challengingBehaviour: Yup.boolean(),
+  confidentialAgrement: Yup.boolean(),
+  pension: Yup.boolean(),
+  dataPrivacy: Yup.boolean(),
 });
 
 // export const fieldsInfo = [
