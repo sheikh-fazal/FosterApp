@@ -17,7 +17,7 @@ import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
 
-const ANON_FUNC = () => { };
+const ANON_FUNC = () => {};
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -109,7 +109,6 @@ function TableFormModal(props: any) {
   );
 }
 
-
 // Form Table
 
 export default function FormTable(props: any) {
@@ -119,6 +118,7 @@ export default function FormTable(props: any) {
     print,
     share,
     tableKey,
+    route = "view",
     columns: tableColumns,
   } = props;
   const { setValue, getValues } = useFormContext();
@@ -177,15 +177,22 @@ export default function FormTable(props: any) {
           />
         )}
 
-        <TableAction
-          type="edit"
-          onClicked={(id: number) => onViewHandler(info.row.index, "Update")}
-        />
-        <TableAction
-          type="delete"
-          onClicked={(id: number) => onDeleted(info.row.index)}
-        />
-
+        {route === "view" ? (
+          ""
+        ) : (
+          <>
+            <TableAction
+              type="edit"
+              onClicked={(id: number) =>
+                onViewHandler(info.row.index, "Update")
+              }
+            />
+            <TableAction
+              type="delete"
+              onClicked={(id: number) => onDeleted(info.row.index)}
+            />
+          </>
+        )}
       </Box>
     ),
     header: () => <span>actions</span>,
@@ -288,9 +295,13 @@ export default function FormTable(props: any) {
         isPagination={false}
         isSuccess={true}
       />
-      <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
-        Add
-      </Button>
+      {route === "view" ? (
+        ""
+      ) : (
+        <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
+          Add
+        </Button>
+      )}
     </div>
   );
 }
