@@ -5,12 +5,13 @@ import dayjs from "dayjs";
 import { Box, Button, Typography } from "@mui/material";
 
 const SuspectedTable = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear } =
+  const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
     useSuspectedTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
         tableKey="exampleTable"
+        route={route}
         columns={[
           {
             inputType: "textField",

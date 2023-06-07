@@ -18,12 +18,27 @@ interface CUSTOMACCORDIAN {
   data: any;
   className?: any;
   firstAccStyle?: any;
-  addShowBtn?:any;
-  handleRowAdd?:any;
+  addShowBtn?: any;
+  handleRowAdd?: any;
 }
 const CustomAccordian = (props: CUSTOMACCORDIAN) => {
-  const { handleRowDelete, handleTitleEdit,  addShowBtn, handleRowAdd, showBtn, addIcon, handleAdd, subTitle, data, className, firstAccStyle, ...rest } = props;
-  const [accordianExpanded, setAccordianExpanded] = React.useState<null | number>();
+  const {
+    handleRowDelete,
+    handleTitleEdit,
+    addShowBtn,
+    handleRowAdd,
+    showBtn,
+    addIcon,
+    handleAdd,
+    subTitle,
+    data,
+    className,
+    firstAccStyle,
+    ...rest
+  } = props;
+  const [accordianExpanded, setAccordianExpanded] = React.useState<
+    null | number
+  >();
   const [cancelDelete, setCancelDelete] = React.useState(false);
   const theme: any = useTheme();
 
@@ -33,10 +48,6 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
     } else {
       setAccordianExpanded(index);
     }
-  };
-
-  const handleDelete = () => {
-    setCancelDelete(!cancelDelete);
   };
 
   return (
@@ -62,7 +73,10 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
             sx={{
               display: "flex",
               flexDirection: "row-reverse",
-              backgroundColor: theme.palette.mode === "dark" ? theme.palette.grey[700] : alpha(theme.palette.primary.main, 0.12),
+              backgroundColor:
+                theme.palette.mode === "dark"
+                  ? theme.palette.grey[700]
+                  : alpha(theme.palette.primary.main, 0.12),
               borderRadius: "5px",
             }}
             className="summary-Icon"
@@ -84,13 +98,23 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
               </Avatar>
             }
           >
-            <Box width={"100%"} display={"flex"} alignItems={"center"} justifyContent={"space-between"} gap={2} flexWrap={"wrap"}>
+            <Box
+              width={"100%"}
+              display={"flex"}
+              alignItems={"center"}
+              justifyContent={"space-between"}
+              gap={2}
+              flexWrap={"wrap"}
+            >
               <Typography
                 variant="subtitle1"
                 className="title"
                 sx={{
                   padding: "5px 10px",
-                  color: theme.palette.mode === "dark" ? theme.palette.grey[500] : theme.palette.grey[700],
+                  color:
+                    theme.palette.mode === "dark"
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[700],
                 }}
               >
                 {item.title}
@@ -110,7 +134,6 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                     size="small"
                     type="delete"
                     onClicked={(event: any) => {
-                      handleDelete();
                       event.stopPropagation();
                       event.nativeEvent.preventDefault();
                       handleRowDelete(item);
@@ -118,7 +141,7 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                   />
                 </Stack>
               )}
-              {addShowBtn &&
+              {addShowBtn && (
                 <TableAction
                   size="small"
                   type="add"
@@ -128,14 +151,24 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                     handleRowAdd(item);
                   }}
                 />
-              }
+              )}
 
               {subTitle && (
-                <Typography variant="subtitle2" className="title" sx={{ pr: "5px" }}>
+                <Typography
+                  variant="subtitle2"
+                  className="title"
+                  sx={{ pr: "5px" }}
+                >
                   {item?.lectures?.length} lectuers - {item?.minutes} min
                 </Typography>
               )}
-              {addIcon && accordianExpanded === index && <TableAction size="small" type="add" onClick={() => handleAdd(item.title)} />}
+              {addIcon && accordianExpanded === index && (
+                <TableAction
+                  size="small"
+                  type="add"
+                  onClick={() => handleAdd(item.title)}
+                />
+              )}
             </Box>
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>
