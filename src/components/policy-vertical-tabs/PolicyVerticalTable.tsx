@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Box, Checkbox, useTheme } from '@mui/material'
+import { Box, Card, Checkbox, useTheme } from '@mui/material'
 import TableHeader from '@root/components/TableHeader';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
@@ -8,9 +8,9 @@ import PolicyVerticalTabs from './PolicyVerticalTabs';
 import ChecklistPolicy from './checklist-policy/ChecklistPolicy';
 
 const PolicyVerticalTable = (props: any) => {
-  const { data, addNewTabNavigation } = props;
-  const navigate = useRouter();
-  const theme = useTheme();
+    const { data, addNewTabNavigation } = props;
+    const navigate = useRouter();
+    const theme = useTheme();
 
 
     const columns = (title: string) => [
@@ -81,7 +81,7 @@ const PolicyVerticalTable = (props: any) => {
         {
             id: "actions",
             cell: (info: any) => <Box display={'flex'} gap={0.5} flexShrink={'0'}>
-                <TableAction type="view" onClicked={() =>  navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
+                <TableAction type="view" onClicked={() => navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
                 <TableAction type="print" />
                 <TableAction type="download" />
             </Box>,
@@ -97,7 +97,7 @@ const PolicyVerticalTable = (props: any) => {
                         {item?.title === "General Data Protection Checklist" ?
                             <ChecklistPolicy />
                             :
-                            <>
+                            <Box sx={styles.tableCardWrap(item.title !== "General Data Protection Checklist")}>
                                 <TableHeader
                                     title={item.title}
                                     showAddBtn
@@ -119,7 +119,7 @@ const PolicyVerticalTable = (props: any) => {
                                     }}
                                     rootSX={{ my: theme.spacing(2) }}
                                 />
-                            </>
+                            </Box>
                         }
                     </Fragment>
                 ))}
@@ -129,3 +129,7 @@ const PolicyVerticalTable = (props: any) => {
 }
 
 export default PolicyVerticalTable;
+
+const styles = {
+    tableCardWrap: (item: any) => ({ backgroundColor: item ? '#fff' : "", py: item ? 2 : 0, px: item ? 1 : 0, borderRadius: "10px"})
+}

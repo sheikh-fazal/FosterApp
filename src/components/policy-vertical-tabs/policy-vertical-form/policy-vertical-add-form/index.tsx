@@ -31,7 +31,6 @@ export const handleInputFields = (value: any) => {
   isSelect = value;
 }
 
-
 export const PolicyVerticalAddNewValidationSchema = Yup.object().shape({
   // title: Yup.string().required("Field is Required"),
   dateUploaded: Yup.date().required("Field is Required"),
