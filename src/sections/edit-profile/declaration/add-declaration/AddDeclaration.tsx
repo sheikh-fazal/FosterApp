@@ -76,7 +76,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
         // Api Needs to be fixed
         const jsonData = { ...values };
         const res = await updateDeclarationInfo(jsonData);
-        displaySuccessMessage(res, enqueueSnackbar);
+        // displaySuccessMessage(res, enqueueSnackbar);
       } catch (error) {
         displayErrorMessage(error, enqueueSnackbar);
       }

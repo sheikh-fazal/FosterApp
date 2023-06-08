@@ -5,7 +5,7 @@ import { FC } from "react";
 const ProgressBar: FC<{ percentage: number }> = ({ percentage = 20 }) => {
   const theme: any = useTheme();
   return (
-    <Grid container>
+    <Grid container sx={{ backgroundColor: "0000001c", borderRadius: "20px" }}>
       <Grid
         container
         justifyContent="center"
