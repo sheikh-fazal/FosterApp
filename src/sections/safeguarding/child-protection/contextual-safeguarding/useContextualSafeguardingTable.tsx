@@ -4,10 +4,12 @@ import { TableData } from ".";
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { useTheme } from "@mui/material";
 
 export const useContextualSafeguardingTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const theme = useTheme()
   const [cancelDelete, setCancelDelete] = useState(false);
 
   const handleDelete = () => {
@@ -130,5 +132,6 @@ export const useContextualSafeguardingTable = () => {
     router,
     TableData,
     columns,
+    theme
   };
 };

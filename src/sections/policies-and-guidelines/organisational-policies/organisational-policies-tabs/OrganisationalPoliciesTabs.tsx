@@ -9,35 +9,51 @@ import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/
 
 const OrganisationalPoliciesTabs = () => {
     const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
+    console.log(route?.query?.name)
 
-    return (
-        <>
-            <CustomHorizaontalTab tabsArray={[`${route?.query?.action === 'add' || route?.query?.action === 'view' ? route?.query?.name : 'Add New Policy'}`, "Upload document"]} currentTab={currentTab} setCurrentTab={setCurrentTab} isDisabled={true}>
-                <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={'/policies-and-guidelines/organisational-policies/'} />
+  return (
+    <>
+      <CustomHorizaontalTab
+        tabsArray={[
+          `${
+            route?.query?.action === "add" || route?.query?.action === "view"
+              ? route?.query?.name
+              : "Add New Policy"
+          }`,
+          "Upload document",
+        ]}
+        currentTab={currentTab}
+        setCurrentTab={setCurrentTab}
+        isDisabled={true}
+      >
+        <PolicyVerticalAddNew
+          onSubmit={handleSubmit}
+          handleAddNewBack={"/policies-and-guidelines/organisational-policies/"}
+        />
 
-                <PolicyVerticalUploadDocument
-                    data={uploadDocumentData}
-                    addUploadDocument={() => setIsUploadDocumentOpenModal(true)}
-                    handleSubmit={handleUploadedSubmit}
-                    isUploadBackBtn={count === 1 && true}
-                    handleBackBtn={() => handlePreviousTab()}
-                    handleAction={handleAction}
-                />
-            </CustomHorizaontalTab>
+        <PolicyVerticalUploadDocument
+          data={uploadDocumentData}
+          addUploadDocument={() => setIsUploadDocumentOpenModal(true)}
+          handleSubmit={handleUploadedSubmit}
+          isUploadBackBtn={count === 1 && true}
+          handleBackBtn={() => handlePreviousTab()}
+          handleAction={handleAction}
+        />
+      </CustomHorizaontalTab>
 
-            <UploadDocumentModal
-                open={isUploadDocumentOpenModal}
-                handleClose={() => setIsUploadDocumentOpenModal(false)}
-                isHideSubmitButton={true}
-                onSubmit={() => {
-                    setIsUploadDocumentOpenModal(false);
-                    setCount(1);
-                }}
-            />
+      <UploadDocumentModal
+        open={isUploadDocumentOpenModal}
+        handleClose={() => setIsUploadDocumentOpenModal(false)}
+        isHideSubmitButton={true}
+        onSubmit={() => {
+          setIsUploadDocumentOpenModal(false);
+          setCount(1);
+        }}
+      />
 
-            <DeleteModel open={isDeleteOpenModal} handleClose={() => setIsDeleteOpenModal(false)} />
-        </>
-    );
+      <DeleteModel open={isDeleteOpenModal} handleClose={() => setIsDeleteOpenModal(false)} />
+    </>
+  );
 };
 
 export default OrganisationalPoliciesTabs;

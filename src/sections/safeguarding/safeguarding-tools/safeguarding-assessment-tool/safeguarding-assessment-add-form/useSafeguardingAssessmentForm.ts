@@ -4,19 +4,19 @@ import { useForm } from "react-hook-form";
 import { AssessmentFormValidationSchema, SafeguardingAssessmentAddForm, defaultValues } from ".";
 
 export const useSafeguardingAssessmentForm = () => {
-    const methods: any = useForm({
-        resolver: yupResolver(AssessmentFormValidationSchema),
-        defaultValues: defaultValues,
-      });
-    
-      const { handleSubmit } = methods;
-      const onSubmit = (data: any) => {
-        console.log(data, "submitted data");
-      };
-      return{
-        methods,handleSubmit,onSubmit
-      }
-    
+  const methods: any = useForm({
+    resolver: yupResolver(AssessmentFormValidationSchema),
+    defaultValues: defaultValues,
+  });
 
-  
+  const { handleSubmit } = methods;
+  const onSubmit = (data: any) => {
+    console.log(data, "submitted data");
+  };
+  return {
+    methods, handleSubmit, onSubmit
+  }
+
+
+
 }

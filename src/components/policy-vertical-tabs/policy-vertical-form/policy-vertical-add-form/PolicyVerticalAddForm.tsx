@@ -20,18 +20,16 @@ const PolicyVerticalAddNew = (props: any) => {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         <Grid item xs={6} md={6}>
-          <Typography sx={styles.title}>Title</Typography>
           {currentPage.pathname === '/policies-and-guidelines/checklists/add' ?
-            <RHFSelect name="selectTitle" disabled={disabled} required={true} size="small">
+            <RHFSelect name="selectTitle" disabled={disabled} required={true} size="small" label="Select">
               {selectedArray.map((item: any, index: number) => (
                 <option value={item.label} key={index}>{item.value}</option>
               ))}
-            </RHFSelect> : <RHFTextField name="title" disabled={disabled} size="small" />
+            </RHFSelect> : <RHFTextField name="title" disabled={disabled} size="small" label="Title" />
           }
         </Grid>
         {PolicyVerticalAddNewFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <Typography sx={styles.title} variant="h6" gutterBottom>{item.title}</Typography>
             <item.component
               {...item.componentProps}
               disabled={disabled}
@@ -50,8 +48,7 @@ const PolicyVerticalAddNew = (props: any) => {
         ))}
         {route.query.action !== 'view' &&
           <Grid item xs={12} md={6} sx={{ "@media screen and (max-width: 899px)": { mb: "20px" } }}>
-            <Typography sx={styles.title}>Choose Files</Typography>
-            <RHFUploadFile name="updatePhoto" disabled={disabled} {...methods} required />
+            <RHFUploadFile name="updatePhoto" disabled={disabled} label="Choose Files" {...methods} required />
           </Grid> 
         }
 

@@ -33,6 +33,7 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
   />
 ))(({ theme }: any) => ({
   color: theme.palette.grey[700],
+  width: "100% !important",
   boxShadow: theme.shadows[5],
   padding: "8px",
   border: "none",
