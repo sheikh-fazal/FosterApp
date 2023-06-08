@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
+import { useGetGpDetailsInfoDocumentDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
 
 export const useDocuments = () => {
   const theme: any = useTheme();
@@ -24,13 +25,13 @@ export const useDocuments = () => {
     offset: page,
     limit: 10,
     search: searchValue,
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
   };
-
-  const dataParameter = { params };
+const pathParams = {
+  gpInfoId:query?.gpInfoId
+}
+  const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetInitialHomeDocumentDataQuery(dataParameter);
+  useGetGpDetailsInfoDocumentDataQuery(dataParameter);
 
   const submitInitialHomeVisitDocument = async (data: any) => {
     const documentFormData = new FormData();
@@ -67,5 +68,6 @@ export const useDocuments = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
+    query
   };
 };

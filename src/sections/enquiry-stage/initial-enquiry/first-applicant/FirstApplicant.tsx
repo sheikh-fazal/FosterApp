@@ -124,7 +124,6 @@ export default function FirstApplicant(props: any) {
           );
         })}
         {!globallyDisabled && <FormNotificationExtension />}
-        <br />
         {!globallyDisabled && (
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">

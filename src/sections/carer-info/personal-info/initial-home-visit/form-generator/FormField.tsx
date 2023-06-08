@@ -1,7 +1,5 @@
-import { Typography } from "@mui/material";
 import {
   RHFCheckbox,
-  RHFRadioGroup,
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
@@ -27,14 +25,6 @@ const FormField: FC<any> = (props) => {
       return <RHFDatePicker {...prop} fullWidth={true} />;
     case "radio":
       return <RHFRadioGroupWithLabel {...prop} />;
-    // return (
-    //   <>
-    //     <>
-    //       <Typography variant="body2">{prop?.label || "Label"}</Typography>
-    //       <RHFRadioGroup {...prop} />
-    //     </>
-    //   </>
-    // );
     case "upload":
       return <RHFUploadFile {...prop} />;
     case "checkbox":

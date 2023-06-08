@@ -1,13 +1,13 @@
-import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Card, Grid, Typography } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Image from "next/image";
 import React from "react";
-import Caution from "@root/assets/img/foster-carer-recruitment/Caution.png";
 import { REMINDERSANDNOTIFICATIONS } from "./";
+import RequirementStatus from "./graphs/RequirementStatus";
+import ApprovedDetails from "./graphs/ApprovedDetails";
+import EnquiryDetails from "./graphs/EnquiryDetails";
 
 export default function FosterCarerBody() {
-  const theme = useTheme();
-
   return (
     <Grid container mt={2} spacing={2}>
       <Grid item xs={12} lg={7}>
@@ -19,9 +19,9 @@ export default function FosterCarerBody() {
               "Enquiry Details",
             ]}
           >
-            <>Graph 1</>
-            <>Graph 2</>
-            <>Graph 3</>
+            <RequirementStatus />
+            <ApprovedDetails />
+            <EnquiryDetails />
           </HorizaontalTabs>
         </Card>
       </Grid>
@@ -40,7 +40,7 @@ export default function FosterCarerBody() {
                   p={1}
                   display={"flex"}
                   alignItems={"center"}
-                  height={"100px"}
+                  height={"110px"}
                 >
                   <Image src={item?.src} alt={"Image"} width={0} height={0} />
                   <Typography variant="body2" ml={1} fontWeight={700}>

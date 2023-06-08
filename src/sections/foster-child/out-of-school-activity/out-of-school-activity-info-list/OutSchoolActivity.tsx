@@ -35,7 +35,7 @@ export const OutSchoolActivityList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/child-exclusion-info/new-child-exclusion-info"
+              "/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info"
             );
           }}
           onChanged={headerChangeHandler}
