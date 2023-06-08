@@ -29,7 +29,7 @@ const GovtLegislationsTabs = () => {
               ? route?.query?.name
               : "Add New Policy"
           }`,
-          "Upload document",
+          "Add Website URL",
         ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
@@ -41,6 +41,7 @@ const GovtLegislationsTabs = () => {
         />
         <AddWebsiteUrlModal
           onSubmit={handleAddUrlSubmit}
+          back={handlePreviousTab}
           open={isAddUrlModalOpen}
           handleClose={() => setIsAddUrlModalOpen(false)}
         />
