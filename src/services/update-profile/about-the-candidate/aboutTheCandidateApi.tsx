@@ -15,12 +15,13 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => {
-        const lastCompletedForm = response?.data?.nextProperty;
+        const lastCompletedForm =
+          response?.data?.nextProperty || "personalInfo";
         console.log({ lastCompletedForm });
-        const genForms = generateLocalFormsStatuses("declaration");
+        const genForms = generateLocalFormsStatuses(lastCompletedForm);
         return {
           forms: genForms,
-          activeFormName: "declaration",
+          activeFormName: lastCompletedForm,
         };
       },
     }),
