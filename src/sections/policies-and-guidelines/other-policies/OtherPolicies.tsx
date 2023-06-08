@@ -10,6 +10,9 @@ const OtherPolicies = () => {
         addNewTabNavigation={
           "/policies-and-guidelines/other-policies/other-policies-form/"
         }
+        addNewFormNavigation={
+          "/policies-and-guidelines/other-policies/other-policies-form/"
+        }
       />
     </>
   );

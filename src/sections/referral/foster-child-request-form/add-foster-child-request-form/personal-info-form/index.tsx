@@ -11,10 +11,9 @@ import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
 export const PersonalInfoFormData = [
   {
     id: 1,
-    title:'Child Code',
     componentProps: {
       name: "childCode",
-      label: "CHC-2",
+      label: "Child Code",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -23,10 +22,9 @@ export const PersonalInfoFormData = [
   },
   {
     id: 2,
-    title:'Child Identifier',
     componentProps: {
       name: "childIdentifier",
-      label:"Child Identifier",
+      label: "Child Identifier",
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -36,10 +34,9 @@ export const PersonalInfoFormData = [
   },
   {
     id: 3,
-    title:'Child Or Parent & Child',
     componentProps: {
       name: "childParentChild",
-      label: "Child",
+      label: "Child Or Parent & Child",
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -51,10 +48,9 @@ export const PersonalInfoFormData = [
 
   {
     id: 4,
-    title:'Area Office',
     componentProps: {
       name: "areaOffice",
-     
+      label: "Area Office",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -75,21 +71,24 @@ export const PersonalInfoFormData = [
     },
     component: Typography,
   },
+  // {
+  //   id: 5,
+  //   componentProps: {
+  //     name: "uploadPhoto",
+  //     label: "Upload image",
+  //     fullWidth: true,
+  //     size: "small",
+  //     sx: { mb: 4 },
+  //   },
+  //   component: RHFUploadFile,
+  //   md: 6,
+  // },
   {
-    id: 5,
-    title:'Upload image',
-    componentProps: {
-      name: "uploadImage",
-      fullWidth: true,
-      size: "small",
-      sx: { mb: 4 },
-    },
-    component: RHFUploadFile,
     md: 6,
+    uploadPhoto: true,
   },
   {
     id: 6,
-    title:'First Name',
     componentProps: { name: "firstName", label: "First Name", fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
@@ -97,7 +96,6 @@ export const PersonalInfoFormData = [
   {
     id: 7,
     gridLength: 6,
-    title:'Middle Name',
     componentProps: {
       name: "middleName",
       label: "Middle Name",
@@ -110,7 +108,6 @@ export const PersonalInfoFormData = [
   {
     id: 8,
     gridLength: 6,
-    title:'Last Name',
     componentProps: { name: "lastName", label: "Last Name", fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
@@ -118,15 +115,13 @@ export const PersonalInfoFormData = [
   {
     id: 9,
     gridLength: 6,
-    title:'Date of Birth',
-    componentProps: { name: "dateOfBirth",  fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "dateOfBirth", label: "Date of Birth", fullWidth: true, sx: { mb: 4 }, },
     component: RHFDatePicker,
     md: 6,
   },
   {
     id: 10,
     gridLength: 6,
-    title:'Age',
     componentProps: { name: "age", label: "Age", fullWidth: true, sx: { mb: 4 }, },
     component: RHFTextField,
     md: 6,
@@ -134,10 +129,9 @@ export const PersonalInfoFormData = [
   {
     id: 11,
     gridLength: 6,
-    title:'Gender',
     componentProps: {
       name: "gender",
-    
+      label: "Gender",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -152,10 +146,9 @@ export const PersonalInfoFormData = [
   {
     id: 12,
     gridLength: 6,
-    title:'Ethnicity',
     componentProps: {
       name: "ethnicity",
-     
+      label: "Ethnicity",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -167,10 +160,9 @@ export const PersonalInfoFormData = [
   {
     id: 13,
     gridLength: 6,
-    title:'Ofsted Ethnicity',
     componentProps: {
       name: "ofstedEthnicity",
-    
+      label: "Ofsted Ethnicity",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -185,10 +177,9 @@ export const PersonalInfoFormData = [
   {
     id: 14,
     gridLength: 6,
-    title:'Language',
     componentProps: {
       name: "language",
-      
+      label: "Language",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -203,10 +194,9 @@ export const PersonalInfoFormData = [
   {
     id: 15,
     gridLength: 6,
-    title:'Legal Status',
     componentProps: {
       name: "legalStatus",
-     
+      label: "Legal Status",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -221,10 +211,9 @@ export const PersonalInfoFormData = [
   {
     id: 16,
     gridLength: 6,
-    title:'Nationality',
     componentProps: {
       name: "nationality",
-    
+      label: "Nationality",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -239,9 +228,9 @@ export const PersonalInfoFormData = [
   {
     id: 17,
     gridLength: 6,
-    title:'Religion',
     componentProps: {
       name: "religion",
+      label: "Religion",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -253,10 +242,9 @@ export const PersonalInfoFormData = [
   {
     id: 18,
     gridLength: 6,
-    title:'Immigration Status',
     componentProps: {
       name: "immigrationStatus",
-      
+      label: "Immigration Status",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -271,9 +259,9 @@ export const PersonalInfoFormData = [
   {
     id: 19,
     gridLength: 6,
-    title:'Disability?',
     componentProps: {
       name: "disability",
+      label: "Disability",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -288,10 +276,9 @@ export const PersonalInfoFormData = [
   {
     id: 20,
     gridLength: 6,
-    title:'Behaviour',
     componentProps: {
       name: "behaviour",
-     
+      label: "Behaviour",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -305,9 +292,9 @@ export const PersonalInfoFormData = [
   },
   {
     id: 21,
-    title:'Synopsis',
     componentProps: {
       name: "synopsis",
+      label: "Synopsis",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -317,9 +304,9 @@ export const PersonalInfoFormData = [
   },
   {
     id: 22,
-    title:'Is the Child Currently in Education?',
     componentProps: {
       name: "isChildCurrentlyEducation",
+      label: "Is the Child Currently in Education?",
       fullWidth: true,
       select: true,
 
@@ -336,7 +323,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "areThereAnyOtherSiblings",
       label: "Are there any other Siblings?",
-      sx: { mb: 4 ,mt:2},
+      sx: { mb: 4, mt: -0.5 },
     },
     component: RHFCheckbox,
     md: 6,
@@ -348,7 +335,7 @@ export const PersonalInfoFormValues = {
   childIdentifier: "",
   childParentChild: "",
   areaOffice: "",
-  uploadImage: "",
+  updatePhoto: null,
   firstName: "",
   middleName: "",
   lastName: "",
@@ -366,7 +353,7 @@ export const PersonalInfoFormValues = {
   behaviour: "",
   synopsis: "",
   isChildCurrentlyEducation: "",
-  areThereAnyOtherSiblings:"",
+  areThereAnyOtherSiblings: "",
 
 };
 
@@ -375,7 +362,7 @@ export const PersonalInfoFormValidationSchema = Yup.object().shape({
   childIdentifier: Yup.string().trim().required("Field is Required"),
   childParentChild: Yup.string().trim().required("Field is Required"),
   areaOffice: Yup.string().trim().required("Field is Required"),
-  uploadImage: Yup.string().trim().required("Field is Required"),
+  updatePhoto: Yup.string().required("Field is Required"),
   firstName: Yup.string().trim().required("Field is Required"),
   middleName: Yup.string().trim().required("Field is Required"),
   lastName: Yup.string().trim().required("Field is Required"),
@@ -398,62 +385,3 @@ export const PersonalInfoFormValidationSchema = Yup.object().shape({
 
 export { default as PesonalInfoForm } from "./PersonalInfoForm";
 
-function RHFUploadFile(props: any) {
-  const { disabled, name, ...other } = props;
-  const { control } = useFormContext();
-
-  return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field, fieldState: { error } }) => {
-        const checkError = !!error && !field.value;
-        return (
-          <>
-            <label
-              htmlFor={name}
-              style={{
-                height: "40px",
-                borderRadius: "4px",
-                // border: `1px solid #A3A6BB`,
-                border: `1px solid ${other?.formState?.errors?.[`${name}`] ? "red" : "#E5E8EB"
-                  }`,
-                width: "100% !important",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                cursor: `${disabled ? "" : "pointer"}`,
-              }}
-            >
-              <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
-                {field?.value?.name || "Upload Image"}
-              </div>
-              <FileUploadIcon
-                sx={{
-                  color: "#A3A6BB",
-                  marginRight: "10px",
-                }}
-              />
-            </label>
-            <input
-              type="file"
-              disabled={disabled}
-              name={name}
-              id={name}
-              onChange={(e: any) => {
-                const file: any = e.target.files?.[0];
-                field.onChange({ target: { value: file, name: field.name } });
-              }}
-              style={{ display: "none" }}
-            />
-            {checkError && (
-              <FormHelperText error sx={{ px: 2 }}>
-                {error.message}
-              </FormHelperText>
-            )}
-          </>
-        );
-      }}
-    />
-  );
-}

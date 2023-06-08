@@ -7,9 +7,15 @@ import AddFosterChildRequestForm from "@root/sections/referral/foster-child-requ
 
 const PAGE_TITLE = "Child Request Form";
 
+export const tabsArray = [
+  "Personal Info",
+  "LA-Details",
+  "Upload Documents",
+];
+
 // ----------------------------------------------------------------------
 
-ApplicationForm.getLayout = function getLayout(page: any) {
+FosterChildEequestForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -20,7 +26,7 @@ ApplicationForm.getLayout = function getLayout(page: any) {
           href: "/referral",
         },
         {
-          name:"Child List",
+          name: "Carer list",
         },
       ]}
       title={PAGE_TITLE}
@@ -30,15 +36,14 @@ ApplicationForm.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-// ----------------------------------------------------------------------
-export default function ApplicationForm() {
- 
-  
 
-  
+// ----------------------------------------------------------------------
+
+export default function FosterChildEequestForm() {
+
   return (
     <Page title={PAGE_TITLE}>
-      <AddFosterChildRequestForm/>
-  </Page>
+      <AddFosterChildRequestForm />
+    </Page>
   );
 }
