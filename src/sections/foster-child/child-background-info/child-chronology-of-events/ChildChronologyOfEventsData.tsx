@@ -1,51 +1,52 @@
 import ComplaintsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/complaints-info";
-import DayLog from "@root/pages/foster-child/child-background-info/child-chronology-of-events/day-log";
-import ExclusionInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/exclusion-info";
 import HospitalisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info";
 import ImmunisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/immunisation-info";
 import IncidentsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/incidents-info";
-import OfstedNotifications from "@root/pages/foster-child/child-background-info/child-chronology-of-events/ofsted-notifications";
-import OHHReports from "@root/pages/foster-child/child-background-info/child-chronology-of-events/ooh-reports";
-import SATSExam from "@root/pages/foster-child/child-background-info/child-chronology-of-events/sats-exam";
-import AbsenceInfo from "@root/pages/foster-child/education-records/absence-info";
 import VocationalCourseInfo from "@root/pages/foster-child/education-records/vocational-course-info";
-import ChildMissingPlacement from "@root/pages/foster-child/events-and-notification/child-missing-placement";
 import TherapyInfo from "@root/pages/foster-child/health-medical-history/therapy-info";
 import RiskAssessment from "@root/pages/foster-child/other-information/risk-assessment";
 import AllegationsInfo from "./allegations-info";
+import DayLogTable from "./day-log/DayLogTable";
+import OOHReportsTable from "./ooh-reports/OOHReportsTable";
+import OfstedNotificationsTable from "./ofsted-notifications/OfstedNotificationsTable";
+import ChildMissingPlacementTable from "./child-missing-placement/ChildMissingPlacementTable";
+import AbsenceInfoTable from "./absence-info/AbsenceInfoTable";
+import ExclusiveInfoTable from "./exclusion-info/ExclusionInfoTable";
+import ExamGradeInfoTable from "./exam-grade-info/ExamGradeInfoTable";
+import VocationalCourseInfoTable from "./vocational-course-info/VocationalCourseInfoTable";
 
-export const childChronologyListData =[
+export const childChronologyListData = [
   {
     title: "Day Log / Journal Entries",
-    component: <DayLog />,
+    component: <DayLogTable />,
   },
   {
     title: "OOH Reports",
-    component: <OHHReports />,
+    component: <OOHReportsTable />,
   },
   {
     title: "Ofsted Notifications",
-    component: <OfstedNotifications />,
+    component: <OfstedNotificationsTable />,
   },
   {
     title: "Child Missing Placement",
-    component: <ChildMissingPlacement />,
+    component: <ChildMissingPlacementTable />,
   },
   {
     title: "Absence Info",
-    component: <AbsenceInfo />,
+    component: <AbsenceInfoTable />,
   },
   {
     title: "Exclusion Info",
-    component: <ExclusionInfo />,
+    component: <ExclusiveInfoTable />,
   },
   {
     title: "SATS / Exam / Grades Info",
-    component: <SATSExam />,
+    component: <ExamGradeInfoTable />,
   },
   {
     title: "Vocational Course Info",
-    component: <VocationalCourseInfo />,
+    component: <VocationalCourseInfoTable />,
   },
   {
     title: "Hospitalisation Info",
@@ -75,4 +76,4 @@ export const childChronologyListData =[
     title: "Incidents Info",
     component: <IncidentsInfo />,
   },
-]
+];

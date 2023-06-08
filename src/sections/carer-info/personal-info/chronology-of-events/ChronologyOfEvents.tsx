@@ -2,7 +2,7 @@ import * as React from "react";
 import { accordionData, sortingData } from "./ChronologyOfEventsData";
 import { FormControl, Grid, InputLabel, MenuItem, Stack } from "@mui/material";
 import Select from "@mui/material/Select";
-import CustomAccordian from "@root/components/CustomAccordian";
+import AccordianList from "@root/components/AccordianList";
 
 const ChronologyOfEvents = () => {
   const [items, setitems] = React.useState("");
@@ -30,8 +30,13 @@ const ChronologyOfEvents = () => {
           </Select>
         </FormControl>
       </Stack>
-      {/* Using Global Accordian */}
-      <CustomAccordian data={accordionData} />
+      <Grid container>
+        {accordionData.map((item: any) => (
+          <Grid item xs={12} key={item.title}>
+            <AccordianList title={item.title} component={item.component} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

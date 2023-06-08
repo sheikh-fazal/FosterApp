@@ -24,6 +24,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import LoadingScreen from "@root/components/LoadingScreen";
+import { PATH_AUTH } from "@root/routes/paths";
 
 // ----------------------------------------------------------------------
 
@@ -50,7 +51,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation(["common", "footer"]);
 
-  router.push("/auth/login");
+  router.push(PATH_AUTH.login);
 
   if (isLoading) return <LoadingScreen />;
 

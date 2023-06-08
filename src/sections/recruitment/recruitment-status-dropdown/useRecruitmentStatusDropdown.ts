@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useRecruitmentStatusDropdown = () => {
+export const useRecruitmentStatusDropdown = ({id, status, point}:any) => {
   const options = ["Failed", "To be reviewed", "Passed", "Pending"];
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLDivElement>(null);
@@ -12,6 +12,11 @@ export const useRecruitmentStatusDropdown = () => {
   };
 
   const handleMenuItemClick = (event: any, index: number) => {
+    // console.log( id, status, point, index);
+    // let x= options.forEach(({ele, ind}:any)=>console.log(ind === index)
+    // )
+    // console.log(x);
+    
     setOpen(false);
   };
 

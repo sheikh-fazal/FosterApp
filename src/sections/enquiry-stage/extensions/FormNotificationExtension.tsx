@@ -11,8 +11,9 @@ export default function FormNotificationExtension() {
       borderRadius={1}
       p={2}
       borderColor={theme.palette.primary.main}
+      marginLeft="1.6rem"
     >
-      <Grid item xs={12} mb={2}>
+      <Grid item xs={11} mb={2}>
         <Typography
           variant="body2"
           component="p"

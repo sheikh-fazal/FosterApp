@@ -8,8 +8,13 @@ export function useTableParams(defaultParams = {}) {
   });
 
   const headerChangeHandler = (data: any) => {
-    setParams((prev: any) => ({ ...prev, ...data }));
+    setParams((prev: any) => ({
+      page: prev.page,
+      offset: prev.offset,
+      ...data,
+    }));
   };
+  console.log("params ffrom hook: ", params);
 
   const pageChangeHandler = (pageNo: number) => {
     setParams((prev: any) => ({

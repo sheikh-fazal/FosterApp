@@ -3,7 +3,7 @@ import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { ENQUIRYSTAGEDATA } from "./index";
+// import { ENQUIRYSTAGEDATA } from "./index";
 import Image from "@root/components/Image";
 import { RecruitmentStatusDropdown } from "../recruitment-status-dropdown/recruitment-status-dropdown";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
@@ -21,12 +21,18 @@ export default function EnquiryStage() {
     setFormDialogId,
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
+    patchData,
+    enquiryStageData
+    // isLoading,
+    // isError,
+    // isFetching,
+    // isSuccess,
   } = useEnquiryStage();
 
   return (
     <div>
       <Grid container>
-        {ENQUIRYSTAGEDATA?.map((ele: any) => (
+        {enquiryStageData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
@@ -133,7 +139,11 @@ export default function EnquiryStage() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown id={ele?.id} status={ele?.status} />
+              <RecruitmentStatusDropdown
+                point={ele?.text}
+                id={ele?.id}
+                status={ele?.status}
+              />
             </Grid>
             <Grid
               container
