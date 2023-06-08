@@ -1,7 +1,8 @@
 import { Grid } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import { FC } from "react";
 
-const ProgressBar = () => {
+const ProgressBar: FC<{ percentage: number }> = ({ percentage = 20 }) => {
   const theme: any = useTheme();
   return (
     <Grid container>
@@ -10,12 +11,12 @@ const ProgressBar = () => {
         justifyContent="center"
         sx={{
           borderRadius: "20px",
-          width: "70%",
+          width: `${percentage}%`,
           backgroundColor: theme.palette.primary.main,
           color: "white",
         }}
       >
-        70%
+        {`${percentage}%`}
       </Grid>
     </Grid>
   );
