@@ -13,31 +13,30 @@ import { FormProvider } from "@root/components/hook-form";
 import { FormSchema, NextofkinFromData, nextofkinFormValues } from ".";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
+import useNextOfKinForm from "./useNextOfKinForm";
+import IsFetching from "@root/components/loaders/IsFetching";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 const NextOfKinForm = (props: any) => {
   const { action, id } = props;
+  const { SubmitData, getDefaultValue, isFatching, isloading } =
+    useNextOfKinForm({ action, id });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: nextofkinFormValues,
+    defaultValues: getDefaultValue,
   });
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
+  const { handleSubmit } = methods;
 
   const theme: any = useTheme();
-  console.log(theme);
-
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Paper elevation={2} sx={{ borderRadius: 2 }}>
       <Box sx={{ px: 1, py: 2 }}>
         <Grid container>
           <Grid item xs={12}>
-            <FormProvider
-              methods={methods}
-              onSubmit={handleSubmit(submitHander)}
-            >
+            <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
               <Grid container>
+                <IsFetching isFetching={isFatching} />
                 {NextofkinFromData.map((form: any, index) => {
                   return (
                     <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -78,7 +77,7 @@ const NextOfKinForm = (props: any) => {
                   }}
                   xs={12}
                 >
-                  {action === "edit" && (
+                  {action === "edit" || action === "add" ? (
                     <Button
                       sx={{
                         bgcolor: theme.palette.primary.main,
@@ -89,7 +88,7 @@ const NextOfKinForm = (props: any) => {
                     >
                       Submit
                     </Button>
-                  )}
+                  ) : null}
 
                   <Button
                     sx={{
