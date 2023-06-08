@@ -1,13 +1,15 @@
 import React from 'react'
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Box, Grid, Paper } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
-import LoadingButton from '@mui/lab/LoadingButton';
 import { PEPFormData, PEPFormValidation, StrategiesAndEvidence, TargetsAndObjectivesData } from '..';
 
 
 export default function PEPForm(props: any) {
+  const { query } = useRouter();
 
   const { defaultValues, disabled } = props;
   const methods: any = useForm({
@@ -44,6 +46,10 @@ export default function PEPForm(props: any) {
             </Grid>
           ))}
         </Grid>
+
+        {
+          query.action !== "view" &&
+
         <Box sx={{ display: "flex", mb: "1rem" }}>
           <LoadingButton
             sx={{ marginRight: "1rem" }}
@@ -58,6 +64,7 @@ export default function PEPForm(props: any) {
             back
           </LoadingButton>
         </Box>
+        }
       </FormProvider>
     </Paper>
   )
