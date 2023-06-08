@@ -30,7 +30,6 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
   );
 };
 
-
 export default function PolicyGuidelinesPage() {
   const { query } = useRouter();
   const disabled = query.action === "view" ? true : false;
