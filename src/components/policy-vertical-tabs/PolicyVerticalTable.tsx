@@ -79,50 +79,28 @@ const PolicyVerticalTable = (props: any) => {
     },
     {
       id: "actions",
-      cell: (info: any) => (
-        <Box display={"flex"} gap={0.5} flexShrink={"0"}>
-          <TableAction
-            type="view"
-            onClicked={() =>
-              navigate.push({
-                pathname: addNewTabNavigation,
-                query: {
-                  id: info.row.original.id,
-                  name: title,
-                  action: "view",
-                },
-              })
-            }
-          />
-          <TableAction type="print" />
-          <TableAction type="download" />
-        </Box>
-      ),
+      cell: (info: any) => <Box display={'flex'} gap={0.5} flexShrink={'0'}>
+        <TableAction type="view" onClicked={() => navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
+        <TableAction type="print" />
+        <TableAction type="download" />
+      </Box>,
       header: () => <span>actions</span>,
     },
   ];
 
   return (
     <>
-      <PolicyVerticalTabs
-        tabsDataArray={data}
-        handleAddTabs={() => navigate.push(addNewTabNavigation)}
-      >
+      <PolicyVerticalTabs tabsDataArray={data} handleAddTabs={() => navigate.push(addNewTabNavigation)} >
         {data?.map((item: any) => (
           <Fragment key={item?.index}>
-            {item?.title === "General Data Protection Checklist" ? (
+            {item?.title === "General Data Protection Checklist" ?
               <ChecklistPolicy />
-            ) : (
-              <>
+              :
+              <Box sx={styles.tableCardWrap(item.title !== "General Data Protection Checklist")}>
                 <TableHeader
                   title={item.title}
                   showAddBtn
-                  onAdd={() =>
-                    navigate.push({
-                      pathname: addNewTabNavigation,
-                      query: { name: item.title, action: "add" },
-                    })
-                  }
+                  onAdd={() => navigate.push({ pathname: addNewTabNavigation, query: { name: item.title, action: 'add' } })}
                 />
                 <CustomTable
                   data={item.innerData}
@@ -140,13 +118,17 @@ const PolicyVerticalTable = (props: any) => {
                   }}
                   rootSX={{ my: theme.spacing(2) }}
                 />
-              </>
-            )}
+              </Box>
+            }
           </Fragment>
         ))}
       </PolicyVerticalTabs>
     </>
-  );
-};
+  )
+}
 
 export default PolicyVerticalTable;
+
+const styles = {
+  tableCardWrap: (item: any) => ({ backgroundColor: item ? '#fff' : "", py: item ? 2 : 0, px: item ? 1 : 0, borderRadius: "10px" })
+}
