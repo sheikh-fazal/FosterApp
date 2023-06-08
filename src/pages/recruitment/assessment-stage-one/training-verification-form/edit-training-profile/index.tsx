@@ -138,6 +138,7 @@ export default function AddTraingVerification() {
                 "password",
               ]}
               isSuccess={isSuccess}
+              
               modalData={(data: any) => uploadDocumentsHandler(data)}
               onPageChange={(page: any) => console.log(page)}
               currentPage={uploadDocuments?.data?.meta?.page}
