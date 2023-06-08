@@ -1,6 +1,8 @@
-import React from 'react';
-import { ChecklistsPoliciesData } from '.';
-import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVerticalTable';
+import React from "react";
+import { ChecklistsPoliciesData } from ".";
+import PolicyVerticalTable from "@root/components/policy-vertical-tabs/PolicyVerticalTable";
+
+// ==========================================================================
 
 const ChecklistPolicies = () => {
     return (
@@ -10,4 +12,4 @@ const ChecklistPolicies = () => {
     )
 }
 
-export default ChecklistPolicies
+export default ChecklistPolicies;

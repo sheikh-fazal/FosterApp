@@ -5,9 +5,8 @@ import { useState } from "react";
 export const useGovtLegislationTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } =
     usePolicyVerticalAddNew();
-  const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
+  const [isAddUrlModalOpen, setIsAddUrlModalOpen] = useState(true);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
-  const [count, setCount] = useState(0);
   const route = useRouter();
 
   const handleSubmit = (data: any) => {
@@ -15,12 +14,8 @@ export const useGovtLegislationTabs = () => {
     reset();
   };
 
-  const handleUploadedSubmit = () => {
-    if (count === 1) {
-      route.push("/policies-and-guidelines/govt-legislations");
-    } else {
-      setIsUploadDocumentOpenModal(true);
-    }
+  const handleAddUrlSubmit = () => {
+    route.push("/policies-and-guidelines/govt-legislations");
   };
 
   const handleAction = (action: any, id: any) => {
@@ -37,15 +32,13 @@ export const useGovtLegislationTabs = () => {
     currentTab,
     setCurrentTab,
     handlePreviousTab,
-    isUploadDocumentOpenModal,
     isDeleteOpenModal,
-    setCount,
+    isAddUrlModalOpen,
+    setIsAddUrlModalOpen,
     handleSubmit,
-    handleUploadedSubmit,
+    handleAddUrlSubmit,
     handleAction,
-    setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
-    count,
     route,
   };
 };

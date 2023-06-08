@@ -1,6 +1,8 @@
-import React from 'react';
-import { TemplatePoliciesData } from '.';
-import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVerticalTable';
+import React from "react";
+import { TemplatePoliciesData } from ".";
+import PolicyVerticalTable from "@root/components/policy-vertical-tabs/PolicyVerticalTable";
+
+// ====================================================================
 
 const TemplatePolicies = () => {
     return (
@@ -8,4 +10,4 @@ const TemplatePolicies = () => {
     )
 }
 
-export default TemplatePolicies
+export default TemplatePolicies;
