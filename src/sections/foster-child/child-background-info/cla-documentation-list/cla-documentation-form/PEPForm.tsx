@@ -5,13 +5,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider } from '@root/components/hook-form';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { PEPFormData, PEPFormValidation, StrategiesAndEvidence, TargetsAndObjectivesData } from '..';
-import { useRouter } from 'next/router';
 
 
 export default function PEPForm(props: any) {
 
   const { defaultValues, disabled } = props;
-  // const { query } = useRouter()
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),
     defaultValues
@@ -33,7 +31,6 @@ export default function PEPForm(props: any) {
               <item.component
                 {...item.componentProps}
                 disabled={disabled}
-                // disabled={query.action === "view"}
                 size={"small"}>
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
