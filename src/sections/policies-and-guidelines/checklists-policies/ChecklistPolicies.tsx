@@ -5,11 +5,11 @@ import PolicyVerticalTable from "@root/components/policy-vertical-tabs/PolicyVer
 // ==========================================================================
 
 const ChecklistPolicies = () => {
-  return (
-    <>
-      <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={"/policies-and-guidelines/checklists/add"} />
-    </>
-  );
-};
+    return (
+        <>
+            <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={'/policies-and-guidelines/checklists/checklist-form'}  />
+        </>
+    )
+}
 
 export default ChecklistPolicies;

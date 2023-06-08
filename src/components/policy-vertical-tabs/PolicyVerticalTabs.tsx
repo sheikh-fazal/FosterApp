@@ -66,7 +66,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
           </Box>
         </Grid>
 
-        <Grid item md={8.5} xs={12}>
+        <Grid item md={8.5} xs={12} >
           {tabsDataArray?.map((item: any) => (
             <div
               role="tabpanel"
@@ -77,11 +77,11 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
               {...other}
             >
               {!accordianChild ? (
-                <Card sx={{ px: 1, py: 2 }}>
+                <Box>
                   {arrayChildren?.map((child, index) => (
                     <Box key={index}>{value === index && child}</Box>
                   ))}
-                </Card>
+                </Box>
               ) : (
                 arrayChildren?.map((child, index) => <Box key={index}>{value === index && child}</Box>)
               )}

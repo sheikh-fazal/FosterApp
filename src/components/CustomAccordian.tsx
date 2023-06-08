@@ -141,7 +141,7 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                   />
                 </Stack>
               )}
-              {addShowBtn && (
+              {addShowBtn && accordianExpanded === index && (
                 <TableAction
                   size="small"
                   type="add"
