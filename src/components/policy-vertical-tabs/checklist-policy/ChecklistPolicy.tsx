@@ -1,12 +1,12 @@
-import { Box, Checkbox, useTheme } from '@mui/material';
-import CustomAccordian from '@root/components/CustomAccordian';
-import ChecklistPolicyTable from './ChecklistPolicyTable';
-import React, { useMemo } from 'react';
-import { GDPRChecklistData, JobDescriptionData } from '.';
-import { useRouter } from 'next/router';
+import { Box, Checkbox, useTheme } from "@mui/material";
+import CustomAccordian from "@root/components/CustomAccordian";
+import ChecklistPolicyTable from "./ChecklistPolicyTable";
+import React, { useMemo } from "react";
+import { GDPRChecklistData, JobDescriptionData } from ".";
+import { useRouter } from "next/router";
 
 const ChecklistPolicy = () => {
-    const route = useRouter();
+  const route = useRouter();
 
     const ChecklistAccordianData = useMemo(() => [
         {

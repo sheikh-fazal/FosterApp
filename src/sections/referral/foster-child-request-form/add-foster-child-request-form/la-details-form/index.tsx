@@ -6,10 +6,9 @@ import * as Yup from "yup";
 export const LADetailsFormFormData = [
     {
         id: 1,
-        title:'Child Code',
         componentProps: {
           name: "childCode",
-          label: "CHC-2",
+          label: "Child Code",
           fullWidth: true,
           sx: { mb: 4 },
         },
@@ -18,7 +17,6 @@ export const LADetailsFormFormData = [
       },
   {
     id: 2,
-    title:'Referrer Name',
     componentProps: {
       name: "referrerName",
       label: "Referrer Name",
@@ -32,16 +30,15 @@ export const LADetailsFormFormData = [
   {
     id: 3,
     gridLength: 6,
-    title:'Referral Date',
-    componentProps: { name: "referralDate",  fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "referralDate",  label: "Referral Date",  fullWidth: true, sx: { mb: 4 }, },
     component: RHFDatePicker,
     md: 6,
   },
   {
     id: 4,
-    title:'LA Social Worker Name',
     componentProps: {
       name: "lASocialWorkerName",
+      label: "LA Social Worker Name",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -54,9 +51,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 5,
-    title:'Child Geography',
     componentProps: {
       name: "childGeography",
+      label: "Child Geography",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -69,10 +66,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 6,
-    title:'Child Placing Authority',
     componentProps: {
       name: "childPlacingAuthority",
-    
+      label: "Child Placing Authority",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -86,17 +82,17 @@ export const LADetailsFormFormData = [
   {
     id: 7,
     gridLength: 6,
-    title:'Date LA Notified',
-    componentProps: { name: "dateLANotified", fullWidth: true, sx: { mb: 4 }, },
+    componentProps: { name: "dateLANotified", label: "Date LA Notified", fullWidth: true, sx: { mb: 4 }, },
     component: RHFDatePicker,
     md: 6,
   },
   {
     id: 8,
-    title:'Local Authority',
     componentProps: {
       name: "localAuthority",
+      label: "Local Authority",
       fullWidth: true,
+      select: true,
       sx: { mb: 4 },
     },
     options: [
@@ -107,11 +103,13 @@ export const LADetailsFormFormData = [
       component: RHFSelect,
     md: 6,
   },
+
+
   {
     id: 9,
-    title:'LA Address',
     componentProps: {
       name: "lAAddress",
+      label: "LA Address",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -121,7 +119,6 @@ export const LADetailsFormFormData = [
   },
   {
     id: 10,
-    title:'LA Manager Name',
     componentProps: {
       name: "lAManagerName",
       label: "LA Manager Name",
@@ -134,7 +131,6 @@ export const LADetailsFormFormData = [
   },
   {
     id: 11,
-    title:'LA Manager Telephone',
     componentProps: {
       name: "lAManagerTelephone",
       label: "LA Manager Telephone",
@@ -147,7 +143,6 @@ export const LADetailsFormFormData = [
   },
   {
     id: 12,
-    title:'LA Manager Email',
     componentProps: {
       name: "lAManagerEmail",
       label: "LA Manager Email",
@@ -160,10 +155,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 13,
-    title:'Area Team',
     componentProps: {
       name: "areaTeam",
-      label: "Area Team",
+      label: 'Area Team',
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -173,10 +167,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 14,
-    title:'Edit Number',
     componentProps: {
       name: "editNumber",
-      label: "Edit Number",
+      label: 'Edit Number',
       fullWidth: true,
       size: "small",
       sx: { mb: 4 },
@@ -196,10 +189,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 16,
-    title:'Behavioural',
     componentProps: {
       name: "behavioural",
-      label: "Behavioural",
+      label: 'Behavioural',
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -209,10 +201,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 17,
-    title:'Other Details',
     componentProps: {
       name: "otherDetails",
-      label: "Other Details",
+      label: 'Other Details',
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -222,10 +213,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 18,
-    title:'Prior Placement Details',
     componentProps: {
       name: "priorPlacementDetails",
-      label: "Prior Placement Details",
+      label: 'Prior Placement Details',
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -235,10 +225,9 @@ export const LADetailsFormFormData = [
   },
   {
     id: 19,
-    title:'Recommended Carer',
     componentProps: {
       name: "recommendedCarer",
-      label: "Recommended Carer",
+      label: 'Recommended Carer',
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
