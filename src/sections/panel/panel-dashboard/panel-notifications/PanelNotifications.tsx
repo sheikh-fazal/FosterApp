@@ -15,14 +15,10 @@ import { NotificationData } from ".";
 
 export default function PanelNotifications() {
   let [expand, setExpand] = useState(false);
-  const [notifications, setNotifications] = useState(
-    NotificationData.slice(0, 3)
-  );
+  const [notifications, setNotifications] = useState(NotificationData.slice(0, 3));
   const handleExpand = () => {
     setExpand(!expand);
-    !expand
-      ? setNotifications(NotificationData)
-      : setNotifications(NotificationData.slice(0, 3));
+    !expand ? setNotifications(NotificationData) : setNotifications(NotificationData.slice(0, 3));
   };
   const theme: any = useTheme();
 
@@ -39,11 +35,7 @@ export default function PanelNotifications() {
         minHeight: "18rem",
       }}
     >
-      <Typography
-        variant="h6"
-        component="h6"
-        sx={{ color: theme.palette.primary.main, mb: 1 }}
-      >
+      <Typography variant="h6" component="h6" sx={{ color: theme.palette.primary.main, mb: 1 }}>
         Panel Notifications
       </Typography>
       <FormGroup>
@@ -60,7 +52,11 @@ export default function PanelNotifications() {
                   }}
                 />
               }
-              label={data.title}
+              label={
+                <Typography fontSize={16} fontWeight={500}>
+                  {data.title}
+                </Typography>
+              }
             />
           ))}
         </Box>

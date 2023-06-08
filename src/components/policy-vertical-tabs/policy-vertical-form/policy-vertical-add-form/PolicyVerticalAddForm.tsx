@@ -12,60 +12,27 @@ import { usePolicyVerticalAddNew } from "./usePolicyVerticalAddForm";
 
 const PolicyVerticalAddNew = (props: any) => {
   const { disabled, onSubmit, handleAddNewBack } = props;
-  const {
-    methods,
-    handleSubmit,
-    PolicyVerticalAddNewFormData,
-    currentPage,
-    route,
-  } = usePolicyVerticalAddNew();
+  const { methods, handleSubmit, PolicyVerticalAddNewFormData, currentPage, route, selectedArray } = usePolicyVerticalAddNew();
 
-  const selectedArray = [
-    { value: "Home Safety Checklist", label: "Home Safety Checklist" },
-    { value: "Foster Carer Checklist", label: "Foster Carer Checklist" },
-    {
-      value: "General Data Protection Checklist",
-      label: "General Data Protection Checklist",
-    },
-  ];
+  
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
-        <Grid item xs={12} md={6}>
-          <Box sx={{"@media screen and (max-width: 892px) ": { mb: 4,}}}>
-            {currentPage.pathname ===
-            "/policies-and-guidelines/checklists/add" ? (
-              <RHFSelect
-                name="selectTitle"
-                disabled={disabled}
-                required={true}
-                size="small"
-                label="Select"
-                fullWidth={true}
-              >
-                {selectedArray.map((item: any, index: number) => (
-                  <option value={item.label} key={index}>
-                    {item.value}
-                  </option>
-                ))}
-              </RHFSelect>
-            ) : (
-              <RHFTextField
-                name="title"
-                disabled={disabled}
-                size="small"
-                label="Title"
-                fullWidth={true}
-              />
-            )}
-          </Box>
+        <Grid item xs={6} md={6}>
+          {currentPage.pathname === '/policies-and-guidelines/checklists/add' ?
+            <RHFSelect name="selectTitle" disabled={route.query.action === 'view'} size="small" label="Select">
+              {selectedArray.map((item: any, index: number) => (
+                <option value={item.label} key={index}>{item.value}</option>
+              ))}
+            </RHFSelect> : <RHFTextField name="title" disabled={route.query.action === 'view'} size="small" label="Title" />
+          }
         </Grid>
         {PolicyVerticalAddNewFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
             <item.component
               {...item.componentProps}
-              disabled={disabled}
+              disabled={route.query.action === 'view'}
               size={"small"}
             >
               {item.componentProps.select
@@ -79,22 +46,11 @@ const PolicyVerticalAddNew = (props: any) => {
             </item.component>
           </Grid>
         ))}
-        {route.query.action !== "view" && (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{ "@media screen and (max-width: 899px)": { mb: "20px" } }}
-          >
-            <RHFUploadFile
-              name="updatePhoto"
-              disabled={disabled}
-              label="Choose Files"
-              {...methods}
-              required
-            />
+        {route.query.action !== 'view' &&
+          <Grid item xs={12} md={6} sx={{ "@media screen and (max-width: 899px)": { mb: "20px" } }}>
+            <RHFUploadFile name="updatePhoto" disabled={disabled} label="Choose Files" {...methods} required />
           </Grid>
-        )}
+        }
 
         <Grid item xs={12}>
           {route.query.action !== "view" && (

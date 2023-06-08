@@ -22,7 +22,7 @@ export const useSafeguardingTemplate = () => {
     const {
         reset,
         handleSubmit,
-        formState: { isSubmitting, isDirty },
+        formState: { isSubmitting },
     } = methods;
 
     const onSubmit = async (data: any) => {
@@ -137,7 +137,7 @@ export const useSafeguardingTemplate = () => {
         isDeleteModalOpen,
         tableHeaderRefTwo,
         handleClose,
-        isSubmitting, isDirty, methods, handleSubmit, onSubmit,
+        isSubmitting, methods, handleSubmit, onSubmit,
 
     };
 };
