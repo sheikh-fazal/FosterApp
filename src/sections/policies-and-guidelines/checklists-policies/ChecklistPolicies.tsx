@@ -1,13 +1,15 @@
-import React from 'react';
-import { ChecklistsPoliciesData } from '.';
-import PolicyVerticalTable from '@root/components/policy-vertical-tabs/PolicyVerticalTable';
+import React from "react";
+import { ChecklistsPoliciesData } from ".";
+import PolicyVerticalTable from "@root/components/policy-vertical-tabs/PolicyVerticalTable";
+
+// ==========================================================================
 
 const ChecklistPolicies = () => {
-    return (
-        <>
-            <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={'/policies-and-guidelines/checklists/add'}  />
-        </>
-    )
-}
+  return (
+    <>
+      <PolicyVerticalTable data={ChecklistsPoliciesData} addNewTabNavigation={"/policies-and-guidelines/checklists/add"} />
+    </>
+  );
+};
 
-export default ChecklistPolicies
+export default ChecklistPolicies;
