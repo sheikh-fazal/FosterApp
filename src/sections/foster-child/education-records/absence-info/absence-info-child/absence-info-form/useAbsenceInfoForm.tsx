@@ -17,11 +17,11 @@ export const useAbsenceInfoForm = (action: any, id: any) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
-  const [getAllegationList] = useLazySingleAllegetionListQuery();
+  // const [getAllegationList] = useLazySingleAllegetionListQuery();
   //API For Posting Allegation Form
-  const [postAllegationDetails] = usePostAllegationListMutation();
+  // const [postAllegationDetails] = usePostAllegationListMutation();
   //API For Patch Allegation List
-  const [editAllegationList] = usePatchAllegationListMutation();
+  // const [editAllegationList] = usePatchAllegationListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {};
