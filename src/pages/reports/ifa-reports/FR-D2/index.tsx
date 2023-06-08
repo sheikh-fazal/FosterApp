@@ -25,7 +25,7 @@ FRD2.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"FR-D2 FOSTERED YOUNG PERSON’S COMMENTS"
+          name:"FR-D2 Fostered Young Person's Comments"
         }
       ]}
       title={PAGE_TITLE}

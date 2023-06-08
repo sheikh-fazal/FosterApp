@@ -8,7 +8,7 @@ import { FRD1FormData } from ".";
 const AddChildArrangement = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit, handleBack } =
-  useAddChildArrangement();
+    useAddChildArrangement();
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>

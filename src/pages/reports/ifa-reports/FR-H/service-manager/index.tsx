@@ -25,7 +25,7 @@ FRD1.getLayout = function getLayout(page: any) {
           href: "/reports/ifa-reports/FR-H",
         },
         {
-          name:"FR-H: FOSTERING SERVICE MANAGER REPORT",
+          name:"FR-H Fostering Service Manager Report"
         },
       ]}
       title={PAGE_TITLE}

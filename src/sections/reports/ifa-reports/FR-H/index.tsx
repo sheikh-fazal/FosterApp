@@ -3,8 +3,9 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 export const viewReportsFilterData = [
   {
     gridlength: 6,
-    title: "Name of foster carer",
+    label: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       size: "small",
@@ -13,8 +14,9 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Name of fostering manager",
+    label: "Name of fostering manager",
     otherOptions: {
+      label: "Name of fostering manager",
       name: "nameOfFosterCarer",
       fullWidth: true,
       size: "small",
@@ -23,7 +25,7 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Date of review meeting",
+    label: "Date of review meeting",
     otherOptions: {
       name: "dateOfReviewMeeting",
       size: "small",
@@ -33,7 +35,7 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Date",
+    label: "Date",
     otherOptions: {
       name: "dateType",
       fullWidth: true,

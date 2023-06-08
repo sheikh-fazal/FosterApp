@@ -1,9 +1,10 @@
 export const viewReportsFilterData = [
   {
     gridlength: 6,
-    title: "Foster Carer",
+    label: "Foster Carer",
     otherOptions: {
       name: "fosterCarer",
+      label: "Foster Carer",
       fullWidth: true,
       size: "small",
     },
@@ -11,8 +12,9 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Name",
+    label: "Name",
     otherOptions: {
+      label: "Name",
       name: "name",
       fullWidth: true,
       size: "small",
@@ -21,9 +23,10 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Select Search Date",
+    label: "Select Search Date",
     otherOptions: {
       name: "selectSearchDate",
+      label: "Select Search Date",
       fullWidth: true,
       size: "small",
     },
@@ -31,8 +34,9 @@ export const viewReportsFilterData = [
   },
   {
     gridlength: 6,
-    title: "Date Type",
+    label: "Date Type",
     otherOptions: {
+      label: "Select Search Date",
       name: "dateType",
       fullWidth: true,
       size: "small",

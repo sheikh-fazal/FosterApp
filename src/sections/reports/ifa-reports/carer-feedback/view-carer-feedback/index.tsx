@@ -3,7 +3,6 @@ import SignaturePad from "@root/components/SignaturePad";
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
-
 const todayDate = dayjs().format("MM/DD/YYYY");
 
 export const CarerFeedbackDefaultValues = {
@@ -17,17 +16,16 @@ export const CarerFeedbackDefaultValues = {
   judgement: "Text",
   support: "",
   comments: "",
-  riskName: "",
+  riskName: "John Doe",
   date: new Date(todayDate),
   sign: "",
 };
-
 export const CarerFeedbackFormData = [
   {
     gridLength: 6,
-    title: "Employee Name",
     componentProps: {
       name: "employeeName",
+      label: "Employee Name",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -35,8 +33,8 @@ export const CarerFeedbackFormData = [
   },
   {
     gridLength: 6,
-    title: "Position",
     componentProps: {
+      label: "Position",
       name: "position",
       sx: { mb: 4 },
     },
@@ -45,8 +43,8 @@ export const CarerFeedbackFormData = [
   },
   {
     gridLength: 6,
-    title: "Line Manager",
     componentProps: {
+      label: "Line Manager",
       name: "lineManager",
       sx: { mb: 4 },
     },
@@ -194,8 +192,8 @@ export const CarerFeedbackFormData = [
   },
   {
     gridLength: 6,
-    title: "Name of risk",
     componentProps: {
+      label: "Name of risk",
       name: "riskName",
       sx: { mb: 4 },
     },
@@ -204,8 +202,8 @@ export const CarerFeedbackFormData = [
   },
   {
     gridLength: 6,
-    title: "Date ",
     componentProps: {
+      label: "Date ",
       name: "date",
       fullWidth: true,
       sx: { mb: 4 },

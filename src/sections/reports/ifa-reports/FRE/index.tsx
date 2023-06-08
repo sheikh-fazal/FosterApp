@@ -1,8 +1,9 @@
 export const FREFilterData = [
   {
     gridlength: 6,
-    title: "Name of Child (DOB)",
+    label: "Name of Child (DOB)",
     otherOptions: {
+      label: "Name of Child (DOB)",
       name: 'personName',
       fullWidth: true,
       size: 'small',
@@ -13,8 +14,9 @@ export const FREFilterData = [
   },
   {
     gridlength: 6,
-    title: 'Supervising Social Worker',
+    label: 'Supervising Social Worker',
     otherOptions: {
+      label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
       size: 'small',
@@ -25,8 +27,9 @@ export const FREFilterData = [
   },
   {
     gridlength: 6,
-    title: 'Foster Carer(s)',
+    label: 'Foster Carer(s)',
     otherOptions: {
+      label: 'Foster Carer(s)',
       name: 'fosterCarer',
       fullWidth: true,
       size: 'small',
@@ -37,8 +40,9 @@ export const FREFilterData = [
   },
   {
     gridlength: 6,
-    title: 'Local Authority',
+    label: 'Local Authority',
     otherOptions: {
+      label: 'Local Authority',
       name: 'localAuthority',
       fullWidth: true,
       size: 'small',
@@ -49,8 +53,9 @@ export const FREFilterData = [
   },
   {
     gridlength: 6,
-    title: 'Select Search Date',
+    label: 'Select Search Date',
     otherOptions: {
+      label: 'Select Search Date',
       name: 'searchDate',
       fullWidth: true,
       size: 'small',
@@ -61,8 +66,9 @@ export const FREFilterData = [
   },
   {
     gridlength: 6,
-    title: 'Date Type',
+    label: 'Date Type',
     otherOptions: {
+      label: 'Date Type',
       name: 'dateType',
       fullWidth: true,
       size: 'small',

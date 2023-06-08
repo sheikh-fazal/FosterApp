@@ -26,7 +26,7 @@ FRF2.getLayout = function getLayout(page: any) {
           href: "/reports/ifa-reports/FR-F2",
         },
         {
-          name: "FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER",
+          name:"FR-F2: Adult Household Member/Support To Foster Carer"
         },
       ]}
       title={PAGE_TITLE}

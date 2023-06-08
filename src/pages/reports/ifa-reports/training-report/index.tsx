@@ -25,7 +25,7 @@ TrainingReport.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Instructor Reports",
+          name: "Traning Reports",
         },
       ]}
       title={PAGE_TITLE}

@@ -5,7 +5,18 @@ import TableAction from "@root/components/TableAction";
 import Image from "next/image";
 
 export const useUnannouncedHomeVisit = () => {
+  const path = "/reports/ifa-reports/unannounced-home-visit";
   const router = useRouter();
+
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      default:
+        break;
+    }
+  };
   const columns = [
     {
       id: "select",
@@ -78,15 +89,12 @@ export const useUnannouncedHomeVisit = () => {
     {
       id: "actions",
       cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
-          size="small"
           type="view"
-          onClicked={() => {
-            router.push(
-              "/reports/ifa-reports/unannounced-home-visit/view-unannounced-home-visit"
-            );
-          }}
+          onClicked={() => handleAction("view", info.row.original.id)}
         />
+      </Box>
       ),
       header: "Action",
       isSortable: false,

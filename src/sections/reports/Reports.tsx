@@ -16,7 +16,7 @@ export default function Reports() {
   return (
     <VericalTabs
       tabsDataArray={REPORTTABSDATAARRY}
-      customStyle={{ maxHeight: 700, overflowY: 'auto' }}
+      customStyle={{ maxHeight: 700, overflowY: "auto" }}
     >
       {REPORTTABSDATAARRY?.map((item) => (
         <Fragment key={item?.index}>
@@ -35,6 +35,7 @@ export default function Reports() {
                       variant="subtitle1"
                       component="p"
                       color={theme.palette.grey[600]}
+                      sx={{ textTransform: "uppercase" }}
                     >
                       {innerItem?.title}
                     </Typography>
