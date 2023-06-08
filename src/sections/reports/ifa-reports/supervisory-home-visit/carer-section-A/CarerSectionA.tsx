@@ -5,7 +5,8 @@ import Link from "next/link";
 import { CarerSectionAFromDate } from ".";
 import { useCarerSectionA } from "./useCarerSectionA";
 
-const SuperVisoryCarerSectionA = ({ disabled }: any) => {
+const SuperVisoryCarerSectionA = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods } = useCarerSectionA();
   return (
     <FormProvider methods={methods}>

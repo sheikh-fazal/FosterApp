@@ -34,13 +34,12 @@ export const RiskAssessmentFormDefaultValues = {
   sign: "",
   date: new Date(todayDate),
 };
-
 export const RiskAssessmentFormData = [
   {
     gridLength: 6,
-    title: "Name of Child",
     componentProps: {
       name: "childName",
+      label: "Name of Child",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -48,9 +47,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Date of birth",
     componentProps: {
       name: "DOB",
+      label: "Date of birth",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -59,9 +58,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Name of carer",
     componentProps: {
       name: "carerName",
+      label: "Name of carer",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -69,9 +68,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Date of initial Assessment ",
     componentProps: {
       name: "initialAssessmentDate",
+      label: "Date of initial Assessment ",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -194,9 +193,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Name of Risk",
     componentProps: {
       name: "riskName",
+      label: "Name of Risk",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -205,9 +204,9 @@ export const RiskAssessmentFormData = [
 
   {
     gridLength: 6,
-    title: "Level Of Risk (Low, Medium, High)",
     componentProps: {
       name: "riskLevel",
+      label: "Level Of Risk (Low, Medium, High)",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -218,9 +217,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Probability Of Risk (Low, Medium, High)",
     componentProps: {
       name: "riskProbability",
+      label: "Probability Of Risk (Low, Medium, High)",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -231,9 +230,9 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Review OF Risk Date And Outcome",
     componentProps: {
       name: "riskReviewDate",
+      label: "Review OF Risk Date And Outcome",
       fullWidth: true,
       sx: { mb: 4 },
     },
@@ -335,11 +334,11 @@ export const RiskAssessmentFormData = [
   },
   {
     gridLength: 6,
-    title: "Date",
     componentProps: {
       name: "date",
+      label: "Date",
       fullWidth: true,
-      sx: { mb: 4 },
+      sx: { mt:2 },
     },
     component: RHFDatePicker,
     md: 6,

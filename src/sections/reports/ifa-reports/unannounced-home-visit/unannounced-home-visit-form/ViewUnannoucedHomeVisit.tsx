@@ -5,7 +5,8 @@ import Link from "next/link";
 import { UnannouncedHomeVisitFromDate } from ".";
 import { useViewUnannoucedHomeVisit } from "./useViewUnannoucedHomeVisit";
 
-const ViewUnannoucedHomeVisit = ({ disabled }: any) => {
+const ViewUnannoucedHomeVisit = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods} = useViewUnannoucedHomeVisit();
   return (
     <FormProvider methods={methods}>

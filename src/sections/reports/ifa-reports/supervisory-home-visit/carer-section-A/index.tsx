@@ -41,9 +41,9 @@ export const CarerSectionAFromDate = [
   },
   {
     gridLength: 6,
-    title: "Category",
     componentProps: {
       name: "category",
+      label: "Category",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -54,9 +54,9 @@ export const CarerSectionAFromDate = [
   },
   {
     gridLength: 6,
-    title: "Home Visit Type",
     componentProps: {
       name: "visitType",
+      label: "Home Visit Type",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -67,9 +67,9 @@ export const CarerSectionAFromDate = [
   },
   {
     gridLength: 6,
-    title: "Home Visit Status",
     componentProps: {
       name: "visitStatus",
+      label: "Home Visit Status",
       fullWidth: true,
       select: true,
       sx: { mb: 4 },
@@ -80,8 +80,8 @@ export const CarerSectionAFromDate = [
   },
   {
     gridLength: 6,
-    title: "Date of Visit",
     componentProps: {
+      label: "Date of Visit",
       name: "referralDate",
       fullWidth: true,
       sx: { mb: 4 },

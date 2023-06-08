@@ -38,9 +38,9 @@ export const UnannouncedHomeVisitFromDate = [
   },
   {
     gridLength: 6,
-    title: "Employee Name",
     componentProps: {
       name: "persoName",
+      label: "Employee Name",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -48,9 +48,9 @@ export const UnannouncedHomeVisitFromDate = [
   },
   {
     gridLength: 6,
-    title: "Date ",
     componentProps: {
       name: "visitDate",
+      label: "Date ",
       fullWidth: true,
       sx: { mb: 4 },
     },

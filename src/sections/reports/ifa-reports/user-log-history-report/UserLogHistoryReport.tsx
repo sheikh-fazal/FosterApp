@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { selectValues } from ".";
+import { viewReportsFilterData } from ".";
 import {
   Box,
   Button,
   Card,
+  FormControl,
   Grid,
+  InputLabel,
   MenuItem,
   Select,
   Typography,
@@ -22,7 +24,13 @@ const UserLogHistoryReport = () => {
 
   return (
     <Card sx={{ p: 1 }}>
-      <Box sx={{ display: "flex", justifyContent: "space-between", padding: "0px 15px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "0px 15px",
+        }}
+      >
         <Typography sx={(theme) => styles.title(theme)}>
           Search Criteira
         </Typography>
@@ -30,58 +38,30 @@ const UserLogHistoryReport = () => {
       </Box>
 
       <Card sx={{ p: 2, my: 2 }}>
-        <Grid container columnSpacing={4}>
-          <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={(theme) => styles.subtitle(theme)}>
-              Date From
-            </Typography>
-            <DatePicker
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  size: "small",
-                },
-              }}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, dateFrom: e });
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} mb={4}>
-            <Typography sx={styles.subtitle}>Date To</Typography>
-            <DatePicker
-              slotProps={{
-                textField: {
-                  fullWidth: true,
-                  size: "small",
-                },
-              }}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, dateTo: e });
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography sx={styles.subtitle}>Role</Typography>
-            <Select
-              fullWidth
-              size="small"
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filterValue.role}
-              onChange={(e: any) => {
-                setFilterValue({ ...filterValue, role: e.target.value });
-              }}
-            >
-              {selectValues.map((item, i) => {
-                return (
-                  <MenuItem key={i} value={item.value}>
-                    {item.label}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </Grid>
+        <Grid container spacing={4}>
+        {viewReportsFilterData.map((data: any, i: number) => (
+              <Grid item key={i} md={data.gridlength} xs={12}>
+                {data.requireDatePicker ? (
+                  <DatePicker 
+                  label={data.label}
+                    slotProps={{
+                      textField: { ...data.otherOptions },
+                    }}
+                  />
+                ) : (
+                  <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">{data.label}</InputLabel>
+                  <Select {...data.otherOptions}>
+                    {data.options.map((item: any, j: number) => (
+                      <MenuItem key={j} value={item.value}>
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                  </FormControl>
+                )}
+              </Grid>
+            ))}
           <Grid item xs={12}>
             <Button
               sx={(theme) => styles.button(theme)}
@@ -89,6 +69,7 @@ const UserLogHistoryReport = () => {
             >
               Search
             </Button>
+            
           </Grid>
         </Grid>
       </Card>
@@ -122,12 +103,6 @@ export default UserLogHistoryReport;
 
 const styles = {
   title: (theme: any) => ({
-    fontSize: "16px",
-    fontWeight: 600,
-    color:
-      theme.palette.mode === "dark" ? theme.palette.common.white : "#343A40",
-  }),
-  subtitle: (theme: any) => ({
     fontSize: "16px",
     fontWeight: 600,
     color:
