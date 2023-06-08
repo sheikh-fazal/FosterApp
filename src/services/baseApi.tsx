@@ -35,10 +35,11 @@ export const TAGS = [
   "GP_DETAILS_INFO_DOCUMENTS",
   "REFERENCE_ONE",
   "REFERENCE_TWO",
-  "REFERENCE_THREE",
   "STATUTORY_LIST_UPLOAD_DOCUMENTS",
+  "POST_REFERENCE",
+  "EDIT_REFERENCE",
+  "POST_EMPLOYEE",
 ];
-
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,

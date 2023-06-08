@@ -53,10 +53,10 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
       console.log(info);
       return (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
+          {/* <TableAction
             type="delete"
             // onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
-          />
+          /> */}
           <TableAction
             type="edit"
             onClicked={() =>

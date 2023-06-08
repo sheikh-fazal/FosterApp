@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "next/router";
-import { defaultValueGpDetailsInfoForm, gpDetailsInfoFormDataFunction } from ".";
+import { defaultValueGpDetailsInfoForm, gpDetailsInfoFormDataFunction, gpDetailsInfoFormSchema } from ".";
 import { useLazyGetSingleGpDetailsInfoDataQuery, usePatchGpDetailsInfoDataMutation, usePostGpDetailsInfoDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useGPDetailsInfo = () => {
   const { query } = useRouter();
@@ -39,6 +40,7 @@ const setGpDetailsInfoDefaultValue = async () => {
 };
 
   const methods: any = useForm({
+    resolver: yupResolver(gpDetailsInfoFormSchema) ,
     defaultValues: setGpDetailsInfoDefaultValue,
   });
   const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
@@ -53,8 +55,9 @@ const setGpDetailsInfoDefaultValue = async () => {
       const res: any = await postGpDetailsInfoDataTrigger(
         putDataParameter
       ).unwrap();
+      console.log(res)
       router.push(
-        `/foster-child/health-medical-history/gp-details`
+        `/foster-child/health-medical-history/gp-details/gp-details-info/${res?.data?.id}`
       )
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",

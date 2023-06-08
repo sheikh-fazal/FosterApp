@@ -87,20 +87,18 @@ export const columns = [
 
 export const UPLOAD_DOCUMENT_DATA = [
   {
-    id: 1,
-    srNo: "1",
+    
     documentName:'Activity info',
     documentType:'PDF',
-    documentDate: new Date(),
+    documentDate:'06/07/2023',
     personUploaded:'Sharukhan',
     password:'123abc'
   },
   {
-    id: 2,
-    srNo: "2",
+   
     documentName:'Activity info',
     documentType:'PDF',
-    documentDate: new Date(),
+    documentDate:'06/07/2023',
     personUploaded:'Sharukhan',
     password:'123abc'
   },
