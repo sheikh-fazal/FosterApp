@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home"; 
+import HomeIcon from "@mui/icons-material/Home";
 import PanelActionsComments from "@root/sections/panel/panel-tools/panel-actions-comments/PanelActionsComments";
 
 // ====================================================================================================
@@ -19,7 +19,7 @@ ActionComment.getLayout = function getLayout(page: any) {
         },
         {
           name: "Panel",
-          href:'/panel'
+          href: "/panel",
         },
         {
           name: "Panel Actions/Comments",
