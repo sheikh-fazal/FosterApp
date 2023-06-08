@@ -1,6 +1,8 @@
-import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
-import { useRouter } from "next/router";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { usePolicyVerticalAddNew } from "@root/components/policy-vertical-tabs/policy-vertical-form/policy-vertical-add-form/usePolicyVerticalAddForm";
+
+// ==================================================================================================
 
 export const useChecklistPoliciesTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } = usePolicyVerticalAddNew();
@@ -45,6 +47,6 @@ export const useChecklistPoliciesTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
-    route
+    route,
   };
 };

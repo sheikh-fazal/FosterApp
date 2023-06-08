@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home"; 
-import PanelAdministratorForm from "@root/sections/panel/panel-tools/panel-chair/panel-chair-form/PanelChairForm";
+import PanelAdministratorForm from "@root/sections/panel/panel-tools/panel-administrator/panel-administrator-form/panelAdministratorForm";
 
 // ====================================================================================================
 
