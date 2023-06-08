@@ -1,62 +1,174 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
+import { Box } from '@mui/material'
+import React from 'react'
+import {
+    BlobProvider,
+    Document,
+    Page,
+    Text,
+    View,
+    StyleSheet,
+    Image,
+} from "@react-pdf/renderer";
+import Certificatebg from '../../../../../../../public/delegateCertifactebg.jpg'
+import Of from '../../../../../../assets/img/Of.png'
+import Completion from '../../../../../../assets/img/Completion.png'
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { Box, styled, Typography, Modal } from '@mui/material';
-import theme from '@root/theme';
-import { css } from '@emotion/react';
 
-import backgroundImage from '../../../../../../assets/img/delegateCertifactebg.jpg';
-import Image from 'next/image';
+const styles = StyleSheet.create({
+    page: {
+        position: "relative",
+        width: "900px",
+        height: "800px",
+    },
+    section: {
+        position: "absolute",
+        top: 10,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    image: {
+        position: "relative",
+        width: "841px",
+        height: "841px",
 
-
+        zIndex: -1,
+    },
+    certificate: {
+        fontSize: 42,
+        fontWeight: 600,
+        marginBottom: "21px",
+    },
+    of: {
+        fontSize: 40,
+        fontWeight: 400,
+        marginBottom: "24px",
+    },
+    comoletion: {
+        marginBottom: "14px",
+        width: "290px",
+        height: "23px",
+    },
+    presentTo: {
+        fontSize: 20,
+        fontWeight: 300,
+        marginBottom: "27px",
+    },
+    name: {
+        fontSize: 38,
+        fontWeight: 500,
+        marginBottom: "41px",
+    },
+    course: {
+        fontSize: 18,
+        fontWeight: 300,
+        marginBottom: "10px",
+    },
+    courseDate: {
+        fontSize: 18,
+        fontWeight: 300,
+        marginBottom: "20px",
+    },
+    at: {
+        fontSize: 14,
+        fontWeight: 300,
+        marginBottom: "15px",
+    },
+    facilitator: {
+        fontSize: 14,
+        fontWeight: 300,
+        marginBottom: "20px",
+    },
+    facilitatorDate: {
+        fontSize: 20,
+        fontWeight: 400,
+        marginBottom: "20px",
+    },
+    modal: {
+        // position: "absolute",
+        left: "25%"
+    }
+});
 
 const DelegateCertificateModal = (props: any) => {
-    const { open, handleClose, onDeleteClick } = props;
-    const theme: any = useTheme();
+    const Of = "../../../../../../assets/img/Of.png"
+    const Completion = "../../../../../../assets/img/Completion.png"
+    const Certificatebg = "../../../../../../../public/delegateCertifactebg.jpg"
+    const { open, setOpen } = props
+    const theme = useTheme();
+    const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
-        <Modal
+        <Dialog
+            maxWidth="md"
+            fullWidth
             open={open}
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+            aria-labelledby="responsive-dialog-title"
+            sx={{ width: "100%", height: "841px" }}
         >
-            <Box sx={styles.CustomModal}>
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                    Text in a modal
-                </Typography>
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                </Typography>
-            </Box>
-        </Modal>
+
+            <div style={styles.modal}>
+                <BlobProvider
+                    document={
+                        <Document>
+                            <Page size="A4" style={styles.page}>
+                                <View style={styles.section}>
+                                    <Text style={styles.certificate}>Certificate</Text>
+
+                                    <Text style={styles.of}>
+                                        {/* <Image src={Of} /> */}
+                                    </Text>
+
+                                    <Text style={styles.presentTo}>Proudly Presented To</Text>
+                                    <Text style={styles.name}>Clare O’Roberts</Text>
+                                    <Text style={styles.course}>
+                                        Attended the course Social Care Network on:
+                                    </Text>
+                                    <Text style={styles.courseDate}>10/09/2017 - 15/09/2017</Text>
+                                    <Text style={styles.at}>At: East ChinaTraining Ground</Text>
+                                    <Text style={styles.facilitator}>
+                                        Facilitator: ClareFacilitator Roberts
+                                    </Text>
+                                    <Text style={styles.facilitatorDate}>27 . 10 . 2021</Text>
+                                </View>
+
+                                <Image src={Certificatebg} style={styles.image} />
+
+                            </Page>
+
+                        </Document>
+                    }
+                >
+                    {({ blob, url, loading, error }) =>
+                        loading
+                            ? "Loading document..."
+                            : blob && (
+                                <embed
+                                    src={URL.createObjectURL(blob)}
+                                    type="application/pdf"
+                                    style={{ width: "900px", height: "821px" }}
+                                />
+                            )
+                    }
+                </BlobProvider>
+            </div>
+
+        </Dialog>
     )
 }
 
-export default DelegateCertificateModal;
-
-
-
-const styles = {
-    CustomModal: {
-        backgroundImage: "url(https://i.imgur.com/HeGEEbu.jpg)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        position: 'absolute' as 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-    },
-}
+export default DelegateCertificateModal

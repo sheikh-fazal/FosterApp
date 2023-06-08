@@ -17,7 +17,7 @@ import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
-import DeleteModel from "../modal/DeleteModel";
+
 
 const ANON_FUNC = () => { };
 
@@ -130,6 +130,8 @@ export default function FormTable(props: any) {
   const [shareModal, setShareModal] = useState(false);
   const [certificateModal, setCertificateModal] = useState(false);
 
+  console.log("certificateModal", certificateModal)
+
   /* Set up formatters for updating the display data */
   const formatters: any = {};
   for (const column of tableColumns) {
@@ -154,19 +156,20 @@ export default function FormTable(props: any) {
     {
       id: "Manage Certificate",
       cell: (info: any) => (
-        <Box>
-          <Box onClick={() => {
-            setCertificateModal(true)
-          }}>
-            Delegate Certificate
-          </Box>
-          <DelegateCertificateModal open={certificateModal} handleClose={() => { setCertificateModal(!certificateModal) }} />
-        </Box>
+        <Box onClick={() => {
+          setCertificateModal(true)
+        }}>
+          Delegate Certificate
+        </Box >
+
+
+
       ),
       header: () => <span>Manage Certificate</span>,
       isSortable: false,
 
     },
+
     {
       id: "actions",
       cell: (info: any) => (
@@ -281,6 +284,7 @@ export default function FormTable(props: any) {
 
   return (
     <div>
+      {certificateModal && (<DelegateCertificateModal open={certificateModal} setOpen={setCertificateModal} />)}
       {shareModal && (
         <ShareModal
           open={shareModal}
