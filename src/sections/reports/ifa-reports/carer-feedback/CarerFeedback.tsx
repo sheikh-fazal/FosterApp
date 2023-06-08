@@ -62,11 +62,9 @@ const CareerFeedback = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12}>
-            <Button
-              sx={(theme) => styles.button(theme)}
-              onClick={HandlerSearch}
-            >
+
+          <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
+            <Button onClick={HandlerSearch} variant="contained">
               Search
             </Button>
           </Grid>
@@ -99,17 +97,3 @@ const CareerFeedback = () => {
 };
 
 export default CareerFeedback;
-
-const styles = {
-  button: (theme: any) => ({
-    padding: "10px 17px",
-    float: "right",
-    fontSize: "14px",
-    fontWeight: 400,
-    color: theme.palette.common.white,
-    background: theme.palette.primary.main,
-    "&, &:hover": {
-      backgroundColor: theme.palette.primary.main,
-    },
-  }),
-};

@@ -2,11 +2,12 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ActiveCarersContacts from "@root/sections/reports/carer-report/active-carers-contacts/ActiveCarersContacts";
+import { useRouter } from "next/router";
+import ActiveCarersContactForm from "@root/sections/reports/carer-report/active-carers-contacts/active-carers-contacts-form/ActiveCarersContactsForm";
 
 const PAGE_TITLE = "Reports";
 
-ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
+ActiveCarersContactFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -36,10 +37,12 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function ActiveCarersContactsLayout() {
+export default function ActiveCarersContactFormLayout() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <ActiveCarersContacts/>
+     <ActiveCarersContactForm action={action} id={id}/>
     </Page>
   );
 }

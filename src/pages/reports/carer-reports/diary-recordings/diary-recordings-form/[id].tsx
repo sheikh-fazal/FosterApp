@@ -2,11 +2,12 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ActiveCarersContacts from "@root/sections/reports/carer-report/active-carers-contacts/ActiveCarersContacts";
+import DiaryRecordingsForm from "@root/sections/reports/carer-report/diary-recordings/diary-recordings-form/DiaryRecordingsForm";
+import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Reports";
 
-ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
+DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -25,7 +26,7 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Active Carers Contacts Reports",
+          name: "Diary Recordings Carer",
         },
       ]}
       title={PAGE_TITLE}
@@ -36,10 +37,12 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function ActiveCarersContactsLayout() {
+export default function DiaryRecordingsFormLayout() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <ActiveCarersContacts/>
+     <DiaryRecordingsForm action={action} id={id}/>
     </Page>
   );
 }

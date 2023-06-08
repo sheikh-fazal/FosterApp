@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import ParentAndChild from "@root/sections/reports/carer-report/parent-and-child/ParentAndChild";
 
 const PAGE_TITLE = "Reports";
 
@@ -36,5 +37,7 @@ ParentAndChildLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ParentAndChildLayout() {
-  return <Page title={PAGE_TITLE}></Page>;
+  return <Page title={PAGE_TITLE}>
+    <ParentAndChild/>
+  </Page>;
 }
