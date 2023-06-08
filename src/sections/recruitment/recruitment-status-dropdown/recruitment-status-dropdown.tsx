@@ -12,7 +12,10 @@ import {
 import React from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useRecruitmentStatusDropdown } from "./useRecruitmentStatusDropdown";
-export const RecruitmentStatusDropdown = ({ id, status }: any) => {
+export const RecruitmentStatusDropdown = (props: any) => {
+  const { id, status, point } = props;
+  // console.log(id, status, point);
+  
   const {
     options,
     open,
@@ -21,7 +24,7 @@ export const RecruitmentStatusDropdown = ({ id, status }: any) => {
     handleMenuItemClick,
     handleClose,
     optionsColor,
-  } = useRecruitmentStatusDropdown();
+  } = useRecruitmentStatusDropdown({id, status, point});
   return (
     <>
       <Grid

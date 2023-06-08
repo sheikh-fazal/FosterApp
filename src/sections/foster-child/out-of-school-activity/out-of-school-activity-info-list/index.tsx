@@ -1,7 +1,5 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import dayjs from "dayjs";
 
 export const columnsOutSchoolActivityTable = (
   handleDelete: any,
@@ -41,24 +39,24 @@ export const columnsOutSchoolActivityTable = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.exclusionDate,
-    id: "exclusionDate",
+    accessorFn: (row: any) => row.formDate,
+    id: "formDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Exclusion Date</span>,
+    header: () => <span>Form Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.returnDate,
-    id: "returnDate",
+    accessorFn: (row: any) => row.toDate,
+    id: "toDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Return Date</span>,
+    header: () => <span>To Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.typeExclusion,
-    id: "typeExclusion",
+    accessorFn: (row: any) => row.activityType,
+    id: "activityType",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Type of Exclusion</span>,
+    header: () => <span>Activity Type</span>,
     isSortable: true,
   },
   {
@@ -91,8 +89,8 @@ export const DummyChildExclusionData = [
   {
     id: 1,
     srNo: "1",
-    returnDate: new Date().toDateString(),
-    exclusionDate: new Date().toDateString(),
-    typeExclusion: "abc",
+    formDate: new Date().toDateString(),
+    toDate: new Date().toDateString(),
+    activityType: "abc",
   },
 ];

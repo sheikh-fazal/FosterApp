@@ -39,7 +39,7 @@ export const BForm = [
   {
     id: 4,
     heading:
-      "Does the Animal(s) have routine vaccinations and perventative treatment?",
+      "Does the Animal(s) have routine vaccinations and preventative treatment?",
     componentProps: {
       variant: "body2",
       color: (theme: any) => theme.palette.primary.main,
@@ -61,7 +61,7 @@ export const BForm = [
   },
   {
     id: 6,
-    heading: "Is the animal(s) registerd with a vet?",
+    heading: "Is the animal(s) registered with a vet?",
     componentProps: {
       variant: "body2",
       color: (theme: any) => theme.palette.primary.main,
@@ -103,7 +103,7 @@ export const BForm = [
   },
   {
     id: 10,
-    heading: "Describe any safety issuess and how they will managed",
+    heading: "Describe any safety issues and how they will managed",
     componentProps: {
       variant: "body2",
       color: (theme: any) => theme.palette.primary.main,

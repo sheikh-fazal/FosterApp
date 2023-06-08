@@ -14,6 +14,7 @@ const PAGE_TITLE = "Foster Carer List";
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
+    name: "Dashboard",
     href: "/",
   },
   {
