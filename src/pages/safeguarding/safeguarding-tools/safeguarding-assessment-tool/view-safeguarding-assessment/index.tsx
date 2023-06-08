@@ -16,7 +16,7 @@ SafeguardingAssessment.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Safeguarding Panel",
-          href: "/",
+          href: "/safeguarding",
         },
         {
           name: "Safeguarding Assessment List ",
@@ -34,7 +34,7 @@ export default function SafeguardingAssessment() {
     //  <SafeguardingAssessmentAddForm/>
     <Page title={PAGE_TITLE}>
       <Box>
-      <SafeguardingAssessmentForm disabled/>
+        <SafeguardingAssessmentForm disabled />
       </Box>
 
     </Page>

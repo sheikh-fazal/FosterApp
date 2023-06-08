@@ -48,8 +48,9 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
 
           </Grid>
         ))}
-        {!disabled && (
-          <Grid item xs={12}>
+
+        <Grid item xs={12}>
+          {!disabled && (
             <LoadingButton
               type="submit"
               variant="contained"
@@ -58,16 +59,17 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
             >
               Submit
             </LoadingButton>
-            <Link
-              href={"/safeguarding/safeguarding-tools/safeguarding-assessment-tool"}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
-          </Grid>
-        )}
+          )}
+          <Link
+            href={"/safeguarding/safeguarding-tools/safeguarding-assessment-tool"}
+            style={{ textDecoration: "none" }}
+          >
+            <Button type="button" variant="contained">
+              Back
+            </Button>
+          </Link>
+        </Grid>
+
       </Grid>
     </FormProvider>
   );

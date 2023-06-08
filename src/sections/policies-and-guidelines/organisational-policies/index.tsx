@@ -3,7 +3,7 @@ import PanelPolicyIcon from "../../../assets/svg/policy-guidelines/Panel-Policy.
 import SafeGuardingPolicyIcon from "../../../assets/svg/policy-guidelines/SafeGuarding-Policy.svg";
 import AllegationsPolicyIcon from "../../../assets/svg/policy-guidelines/Allegations-Policy.svg";
 import EqualitiesPolicyIcon from "../../../assets/svg/policy-guidelines/Equalities-Policy.svg";
-import MissingCarePolicyIcon from "../../../assets/svg/policy-guidelines/Missing-Care-Policy.svg";
+import MissingCarePolicyIcon from "../../../assets/svg/policy-guidelines/MissingCarerPolicyIcon.svg";
 import BehaviourManagementPolicyIcon from "../../../assets/svg/policy-guidelines/Behaviour-Management-Policy.svg";
 import StandardsCarePolicyIcon from "../../../assets/svg/policy-guidelines/Standards-Care-Policy.svg";
 import SupervisionTrainingSupportPolicy from "../../../assets/svg/policy-guidelines/Supervision-Training-Support-Policy.svg";
@@ -16,7 +16,7 @@ import RecordingKeepingPolicyIcon from "../../../assets/svg/policy-guidelines/Re
 export const OrganisationalPoliciesData = [
     {
         index: 0,
-        title: "Recruitment and Assessment Policy ",
+        title: "Recruitment and Assessment Policy",
         img: RecruitmentAssessmentPolicyIcon,
         innerData: [
             {
