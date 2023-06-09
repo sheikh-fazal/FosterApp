@@ -2,55 +2,68 @@ import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React from "react";
+import { useMedicalAdvisorTable } from "./useMedicalAdvisorTable";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import dayjs from "dayjs";
 
 const MedicalAdvisorTable = () => {
-  const tableHeaderRefTwo = useRef<any>();
-  const router = useRouter();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      medicalAppointment: "123",
-      receivedFromDate: "xyz",
-      renewDate: "123",
-      receivedDate: "07/02/2021",
-    },
-  ]);
+  const {
+    router,
+    tableHeaderRefTwo,
+    medicalAdvisorData,
+    medicalAdvisorError,
+    medicalAdvisorIsloading,
+    medicalAdvisorIsfetching,
+    medicalAdvisorIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+    listDeleteHandler,
+  } = useMedicalAdvisorTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr. No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.medicalAppointment,
-      id: "medicalAppointment",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.medicalAppoinmentDate ?? "-",
+      id: "medicalAppoinmentDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Medical Appointment Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.receivedFromDate,
-      id: "receivedFromDate",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.receivedFromGPDate ?? "-",
+      id: "receivedFromGPDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Received From Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.renewDate,
+      accessorFn: (row: any) => row?.renewDate ?? "-",
       id: "renewDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Renew Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.receivedDate,
-      id: "receivedDate",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.receivedFromMedicalAdvisorDate ?? "-",
+      id: "receivedFromMedicalAdvisorDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Received Date</span>,
       isSortable: true,
     },
@@ -65,9 +78,13 @@ const MedicalAdvisorTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-                query: { action: "edit", id: "" },
+                query: { action: "edit", id: info?.row?.original?.id },
               })
             }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
           />
           <TableAction
             size="small"
@@ -76,7 +93,7 @@ const MedicalAdvisorTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-                query: { action: "view", id: "" },
+                query: { action: "view", id: info?.row?.original?.id },
               })
             }
           />
@@ -100,19 +117,21 @@ const MedicalAdvisorTable = () => {
             query: { action: "add", id: "" },
           });
         }}
-        onChanged={(data: any) => {}}
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
       />
       <CustomTable
-        data={data}
+        data={medicalAdvisorData}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={medicalAdvisorIsloading}
+        isFetching={medicalAdvisorIsfetching}
+        isError={medicalAdvisorError}
+        isSuccess={medicalAdvisorIsSuccess}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

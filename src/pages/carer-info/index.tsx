@@ -23,15 +23,19 @@ import HomeIcon from "@mui/icons-material/Home";
 
 // ----------------------------------------------------------------------
 // Constants
+const PAGE_TITLE = "Carer Info";
+
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
+    name: "Dashboard",
+    href: "/",
+  },
+  {
+    name: PAGE_TITLE,
     href: "",
   },
 ];
-
-const PAGE_TITLE = "Carer Info";
 
 // ----------------------------------------------------------------------
 

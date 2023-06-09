@@ -44,7 +44,10 @@ export default function FrontSheet() {
     useFrontSheetMutation();
   const submitDataHandler = async (formData: any) => {
     try {
-      const res: any = await postFrontSheetData(formData).unwrap();
+      const res: any = await postFrontSheetData({
+        formData,
+        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

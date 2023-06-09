@@ -32,7 +32,9 @@ export default function HouseholdFinancePetsAnimalsForm(props: any) {
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
             <Grid item md={12}>
-              <Typography variant="h6">Specialist Reports</Typography>
+              <Typography variant="h6">
+                Household finance Pets and Animals
+              </Typography>
             </Grid>
 
             {HOUSEHOLDFINANCEPETSANIMALSFORMDATA?.map((form: any) => {

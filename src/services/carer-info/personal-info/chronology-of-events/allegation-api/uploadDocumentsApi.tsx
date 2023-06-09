@@ -2,7 +2,7 @@ import { baseAPI } from "@root/services/baseApi";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const uploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    uploadDocumentList: builder.query<null, object>({
+    uploadDocumentList: builder.query({
       query: (search: any) => ({
         url: "chronology-events/list-allegationDocuments",
         method: "GET",

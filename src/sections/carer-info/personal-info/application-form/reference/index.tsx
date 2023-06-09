@@ -22,11 +22,11 @@ export const FormSchema = Yup.object().shape({
   address: Yup.string()
     .required("Address is required")
     .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 10 characters"),
+    .max(20, "Maximum 20 characters"),
   phoneNumber: Yup.string()
     .required("Telephone is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
 });
 export const formData = [

@@ -78,8 +78,7 @@ const TableHeader = forwardRef(function TableHeader(
       let filteredParams: any = {};
       for (let param in updatedParams) {
         const paramValue = updatedParams[param];
-        if (paramValue.trim() !== "" || param === searchKey)
-          filteredParams[param] = paramValue;
+        if (paramValue.trim() !== "") filteredParams[param] = paramValue;
       }
 
       // Use debounce if search is updated
