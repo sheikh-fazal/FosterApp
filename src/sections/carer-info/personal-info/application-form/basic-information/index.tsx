@@ -46,7 +46,7 @@ export const defaultValues = {
   applicationFilledDate: new Date(),
 };
 
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
+const MAX_FILE_SIZE = 3 * 1000 * 1000; // 3 Mb
 
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
@@ -93,19 +93,38 @@ export const FormSchema = Yup.object().shape({
   applicationFilledDate: Yup.date().required(
     "Applicant Filled Date is required"
   ),
-  media: Yup.mixed()
-    .nullable()
-    .required("Image is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+  media: Yup.lazy((value) => {
+    switch (typeof value) {
+      case "string":
+        return Yup.string().required("Image is required"); // schema for string
+      default:
+        return Yup.mixed()
+          .required("Image is required")
+          .test(
+            "fileFormat",
+            "Unsupported Format",
+            (value: any) => value && FILE_FORMATS.includes(value.type)
+          )
+          .test(
+            "fileSize",
+            `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+            (value: any) => value && value.size <= MAX_FILE_SIZE
+          ); // here you can decide what is the default
+    }
+  }),
+  // image: Yup.mixed()
+  //   .nullable()
+  //   .required("Image is required")
+  //   .test(
+  //     "fileFormat",
+  //     "Unsupported Format",
+  //     (value: any) => value && FILE_FORMATS.includes(value.type)
+  //   )
+  //   .test(
+  //     "fileSize",
+  //     `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //     (value: any) => value && value.size <= MAX_FILE_SIZE
+  //   ),
 });
 
 export const formDataAreaoffice = [

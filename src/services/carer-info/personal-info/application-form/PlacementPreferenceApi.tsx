@@ -4,10 +4,11 @@ export const placementPreferenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     updatePlacementPreference: builder.mutation({
       query: ({ id, formData }: any) => ({
-        url: `/application-form/placement-preference`,
-        method: "PATCH",
+        url: `/application-form/placement-preference?applicationFormId=${id}`,
+        method: "PUT",
         body: formData,
       }),
+      invalidatesTags: ["GET_BASICINFORMATION"],
     }),
   }),
 });
