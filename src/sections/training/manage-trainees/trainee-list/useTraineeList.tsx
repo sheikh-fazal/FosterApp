@@ -11,7 +11,6 @@ export const useTraineeList = () => {
     type: "",
     value: null,
   });
-  const [cancelDelete, setCancelDelete] = useState(false);
 
   const handleChange = (event: any) => {
     setitems(event.target.value);
@@ -38,8 +37,9 @@ export const useTraineeList = () => {
     setAddRow([...filteredRows, newObj]);
   };
 
-  const handleDelete = () => {
-    setCancelDelete(!cancelDelete);
+  const handleDelete = (itemToDelete: any) => {
+    const updatedArray = addRow.filter((item: any) => item !== itemToDelete);
+    setAddRow(updatedArray);
   };
 
   return {
@@ -55,8 +55,6 @@ export const useTraineeList = () => {
     handleClose,
     addRowHandler,
     sortingByData,
-    setCancelDelete,
-    cancelDelete,
     handleDelete,
   };
 };

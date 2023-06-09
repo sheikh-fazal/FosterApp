@@ -1,23 +1,14 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import { useTraineeTable } from "./useTraineeTable";
-import ShareModal from "@root/components/modal/shareModal";
 
 const TaineeListTable = () => {
-  const {
-    methods,
-    handleSubmit,
-    tableData,
-    onSubmit,
-    onClear,
-    shareModal,
-    setShareModal,
-    handleShare
-  } = useTraineeTable();
+  const { methods, handleSubmit, onSubmit } = useTraineeTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
         tableKey="exampleTable"
+        view
         share
         print
         disabled
