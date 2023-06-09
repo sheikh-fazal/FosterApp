@@ -32,7 +32,6 @@ export const useInterviewRecordAndAnalysis = (
   } = methods;
 
   const onSubmit = async (data: any) => {
-    console.log("aaa");
     var form_data = new FormData();
     for (var key in data) {
       form_data.append(key, data[key]);
