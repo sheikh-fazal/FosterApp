@@ -45,7 +45,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
     } else {
       initialRenderRef.current = false;
     }
-  }, [open]);
+  }, [open,append]);
 
   const onSubmit = (data: any) => {
 
