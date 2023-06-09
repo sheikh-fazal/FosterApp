@@ -58,7 +58,6 @@ const UploadModel = (props: any) => {
   });
   const { handleSubmit, getValues } = methods;
   const onSubmit = (data: any) => {};
-
   return (
     <Modal
       open={open}

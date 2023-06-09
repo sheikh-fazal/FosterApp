@@ -9,7 +9,7 @@ import {
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/upload-documents/UploadDocumentsTable";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/upload-documents/UploadDocumentsTable";
 // import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 // Constants
@@ -91,7 +91,7 @@ export default function CarInsurance() {
         currentPage={metaData?.page}
         totalPages={metaData?.pages}
       /> */}
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }

@@ -109,7 +109,7 @@ const UploadDocumentsTable = () => {
         showAddBtn={action === "view" ? false : true}
         onAdd={() => {
           if (action === "add" && id === "") {
-            enqueueSnackbar("Please Fill The DBS Check Form First", {
+            enqueueSnackbar("Please Fill DBS Check Form First", {
               variant: "error",
             });
           } else {

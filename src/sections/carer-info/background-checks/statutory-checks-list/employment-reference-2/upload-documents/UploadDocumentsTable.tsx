@@ -109,12 +109,9 @@ const UploadDocumentsTable = () => {
         showAddBtn={action === "view" ? false : true}
         onAdd={() => {
           if (action === "add" && id === "") {
-            enqueueSnackbar(
-              "Please Fill The Employement Reference 2 Form First",
-              {
-                variant: "error",
-              }
-            );
+            enqueueSnackbar("Please Fill Employement Reference 2 Form First", {
+              variant: "error",
+            });
           } else {
             return modelHandler();
           }

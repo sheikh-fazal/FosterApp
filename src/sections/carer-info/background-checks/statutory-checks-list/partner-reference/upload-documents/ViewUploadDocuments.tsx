@@ -37,15 +37,15 @@ function ViewDocumentsModal(props: any) {
 }
 
 const UploadModel = (props: any) => {
-  const { setIsLoading, open, setOpen, id, isLoading } = props;
+  const { setIsLoading, open, setOpen, id } = props;
   const { theme } = useUploadDocumentsTable();
   //API For Getting Single Document Details
-  const [getMedicalAdvisorDocument]: any =
+  const [getPartnerReferenceDocument]: any =
     useLazySingleStatutoryUploadDocumentsQuery();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: async () => {
-      const { data, isError } = await getMedicalAdvisorDocument(id, true);
+      const { data, isError } = await getPartnerReferenceDocument(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });

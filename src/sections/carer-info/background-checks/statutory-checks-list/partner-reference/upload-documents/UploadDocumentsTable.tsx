@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import Link from "next/link";
 import ViewDocumentsModal from "./ViewUploadDocuments";
-import { useUploadDocuments } from "./useUploadDocuments";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
 const UploadDocumentsTable = () => {
   const {
@@ -29,7 +29,7 @@ const UploadDocumentsTable = () => {
     meta,
     open,
     listDeleteHandler,
-  } = useUploadDocuments();
+  } = useUploadDocumentsTable();
 
   const columns = [
     {
@@ -109,7 +109,7 @@ const UploadDocumentsTable = () => {
         showAddBtn={action === "view" ? false : true}
         onAdd={() => {
           if (action === "add" && id === "") {
-            enqueueSnackbar("Please Fill Car Insurance Form First", {
+            enqueueSnackbar("Please Fill Partner Reference Form First", {
               variant: "error",
             });
           } else {

@@ -47,7 +47,7 @@ const AllegationTable = () => {
         <Badge
           invisible={info.badge}
           color="secondary"
-          badgeContent="Draft"
+          // badgeContent="Draft"
           sx={styles.badge}
         >
           {info.getValue() ?? "-"}

@@ -109,7 +109,7 @@ const UploadDocumentsTable = () => {
         showAddBtn={action === "view" ? false : true}
         onAdd={() => {
           if (action === "add" && id === "") {
-            enqueueSnackbar("Please Fill The Local Authority Form First", {
+            enqueueSnackbar("Please Fill Local Authority Form First", {
               variant: "error",
             });
           } else {
