@@ -106,7 +106,7 @@ export const NAV_LINKS = [
   {
     text: "Local Authority",
     img: <AssignmentOutlinedIcon />,
-    link: "",
+    link: "/local-authority",
   },
   {
     text: "Audits",
