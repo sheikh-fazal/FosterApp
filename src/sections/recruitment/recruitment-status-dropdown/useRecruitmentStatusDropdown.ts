@@ -61,21 +61,21 @@ any) => {
     // console.log(patchObj);
 
     setSelectedIndex(index);
-    switch (component) {
-      case "EnquiryStage":
-       return enquiryStagePatchData({
-          userId: "4f7512fb-2916-451b-8240-97f529ded73d",
-          // point: patchObj?.point,
-          // status: patchObj?.status,
-          body:patchObj
-        });
-      // case "assessmentStageOne":
-      // case "assessmentStageTwo":
-      // case "contractsAndDeclaratins":
-      // case "readyForPlacement":
+    // switch (component) {
+    //   case "EnquiryStage":
+    //    return enquiryStagePatchData({
+    //       userId: "4f7512fb-2916-451b-8240-97f529ded73d",
+    //       // point: patchObj?.point,
+    //       // status: patchObj?.status,
+    //       body:patchObj
+    //     });
+    //   // case "assessmentStageOne":
+    //   // case "assessmentStageTwo":
+    //   // case "contractsAndDeclaratins":
+    //   // case "readyForPlacement":
 
-      // default: alert('error');
-    }
+    //   // default: alert('error');
+    // }
     setOpen(false);
   };
 
