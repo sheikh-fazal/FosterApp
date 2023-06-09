@@ -49,11 +49,7 @@ export const columns = [
         />
         <TableAction
           type="share"
-          onClicked={() =>
-            router.push(
-              `?${info.getValue()}`
-            )
-          }
+          onClicked={() => router.push(`?${info.getValue()}`)}
         />
       </Box>
     ),
@@ -89,7 +85,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -137,7 +133,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -185,7 +181,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -233,7 +229,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -281,7 +277,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -329,7 +325,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -377,7 +373,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -425,7 +421,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -473,7 +469,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -521,7 +517,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -569,7 +565,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -617,7 +613,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -665,7 +661,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -772,7 +768,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 2,
-    paraTitle: 'T1 ',
+    paraTitle: "T1 ",
     para: " -Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -781,7 +777,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 3,
-    paraTitle: 'T2 ',
+    paraTitle: "T2 ",
     para: "- Child will Improve auditory memory skills by means of sequencing and predication.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -790,7 +786,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 4,
-    paraTitle: 'T3 ',
+    paraTitle: "T3 ",
     para: "- Child will know and recognize the first 40 keywords and be able to use them orally in context and in written form relation to T1.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -799,7 +795,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 5,
-    paraTitle: 'T4 ',
+    paraTitle: "T4 ",
     para: "- Child will consolidate number and continue to develop those skills by adding and subtraction whith 20. Child will be able to recognize numbers up to 20 in both written and numerical form.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -924,7 +920,6 @@ export const defaultValues = {
   overallOutcome: "",
 };
 
-
 export const EHCPFormValidation = Yup.object().shape({
   date: Yup.string().trim().required("Date is Required"),
   OnFile: Yup.string().trim().required("Selection is Required"),
@@ -940,4 +935,4 @@ export const PEPFormValidation = Yup.object().shape({
   overallOutcome: Yup.string().trim().required("overcall outcome Required"),
 });
 
-export { default as ClaDocumentationList } from "./ClaDocumentationList"
+export { default as ClaDocumentationList } from "./ClaDocumentationTable";
