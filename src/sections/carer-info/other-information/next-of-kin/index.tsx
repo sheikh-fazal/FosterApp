@@ -36,7 +36,7 @@ export const NextofkinFromData = [
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "lastname",
+      name: "lastName",
       label: "lastName",
       multiline: false,
       //   minRows: 3,
@@ -84,7 +84,7 @@ export const NextofkinFromData = [
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "ninNumber",
+      name: "nINumber",
       label: "N.I.Number",
       multiline: false,
       //   minRows: 3,
@@ -103,7 +103,7 @@ export const NextofkinFromData = [
     id: 8,
     gridLength: 6,
     otherOptions: {
-      name: "doctorDetails.name",
+      name: "doctorName",
       label: "Name",
       multiline: false,
       //   minRows: 3,
@@ -115,7 +115,7 @@ export const NextofkinFromData = [
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "doctorDetails.telephone",
+      name: "doctorTelephone",
       label: "Telephone",
       multiline: false,
       //   minRows: 3,
@@ -127,7 +127,7 @@ export const NextofkinFromData = [
     id: 10,
     gridLength: 12,
     otherOptions: {
-      name: "doctorDetails.address",
+      name: "doctorAddress",
       label: "Address",
       multiline: true,
       minRows: 3,
@@ -145,7 +145,7 @@ export const NextofkinFromData = [
     id: 11,
     gridLength: 6,
     otherOptions: {
-      name: "nextofKin.name",
+      name: "nkName",
       label: "Name",
       multiline: false,
       //   minRows: 3,
@@ -157,7 +157,7 @@ export const NextofkinFromData = [
     id: 12,
     gridLength: 6,
     otherOptions: {
-      name: "nextofKin.relationship",
+      name: "nkRelation",
       label: "Relationship",
       multiline: false,
       //   minRows: 3,
@@ -169,7 +169,7 @@ export const NextofkinFromData = [
     id: 13,
     gridLength: 12,
     otherOptions: {
-      name: "nextofKin.address",
+      name: "nkAddress",
       label: "Address",
       multiline: true,
       minRows: 3,
@@ -181,7 +181,7 @@ export const NextofkinFromData = [
     id: 14,
     gridLength: 6,
     otherOptions: {
-      name: "nextofKin.telephone",
+      name: "nkTelephone",
       label: "Telephone",
       multiline: false,
       //   minRows: 3,
@@ -193,65 +193,64 @@ export const NextofkinFromData = [
     id: 15,
     gridLength: 6,
     otherOptions: {
-      name: "nextofKin.date",
+      name: "date",
       label: "date",
       multiline: false,
       //   minRows: 3,
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 16,
     gridLength: 6,
     otherOptions: {
-      name: "nextofKin.sign",
+      name: "signature",
       label: "Signature",
     },
     component: SignaturePad,
   },
 ];
+export const formatters: any = {};
 
+for (const formControl of NextofkinFromData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
 export const nextofkinFormValues = {
-  firstname: "",
-  lastname: "",
+  firstName: "",
+  lastName: "",
   address: "",
   telephone: "",
   mobile: "",
-  ninNumber: "",
-  doctorDetails: {
-    name: "",
-    telephone: "",
-    address: "",
-  },
-  nextofKin: {
-    name: "",
-    telephone: "",
-    relationship: "",
-    address: "",
-    date: "",
-    sign: "",
-  },
+  nINumber: "",
+  doctorName: "",
+  doctorTelephone: "",
+  doctorAddress: "",
+  nkName: "",
+  nkRelation: "",
+  nkAddress: "",
+  nkTelephone: "",
+  date: new Date(),
+  signature: null,
 };
 
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string().required("required"),
-  lastname: Yup.string().required("required"),
+  lastName: Yup.string().required("required"),
   address: Yup.string().required("required"),
   telephone: Yup.string().required("required"),
   mobile: Yup.string().required("required"),
-  ninNumber: Yup.string().required("required"),
-  doctorDetails: Yup.object().shape({
-    name: Yup.string().required("required"),
-    telephone: Yup.string().required("required"),
-    address: Yup.string().required("required"),
-  }),
-  nextofKin: Yup.object().shape({
-    name: Yup.string().required("required"),
-    telephone: Yup.string().required("required"),
-    relationship: Yup.string().required("required"),
-    address: Yup.string().required("required"),
-    date: Yup.date().required("required"),
-    // sign: Yup.object().required("required"),
-  }),
+  nINumber: Yup.string().required("required"),
+  doctorName: Yup.string().required("required"),
+  doctorTelephone: Yup.string().required("required"),
+  doctorAddress: Yup.string().required("required"),
+  nkName: Yup.string().required("required"),
+  nkRelation: Yup.string().required("required"),
+  nkAddress: Yup.string().required("required"),
+  nkTelephone: Yup.string().required("required"),
+  date: Yup.date().required("required"),
 });
