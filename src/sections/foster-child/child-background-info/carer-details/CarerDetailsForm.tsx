@@ -54,7 +54,7 @@ export default function CarerDetailsForm({
                       {option?.label}
                     </option>
                   ))
-                : null}
+                : item?.heading}
             </item.component>
           </Grid>
         ))}

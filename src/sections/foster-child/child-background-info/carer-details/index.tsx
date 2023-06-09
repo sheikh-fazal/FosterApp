@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import {
   RHFCheckbox,
   RHFSelect,
@@ -11,6 +12,16 @@ import * as Yup from "yup";
 export const ageOf18Years = dayjs().subtract(18, "year");
 
 export const CarerDetailsFormData = [
+  {
+    id: 0,
+    heading: "Carer Details",
+    componentProps: {
+      variant: "body1",
+      fontWeight: 600,
+      color: (theme: any) => theme.palette.primary.main,
+    },
+    component: Typography,
+  },
   {
     id: 1,
     componentProps: {
