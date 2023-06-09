@@ -22,28 +22,28 @@ const ageOf16Years = dayjs().subtract(19, "year").format("DD/MMM/YYYY");
 
 export const defaultValues = {
   areaOffice: "",
-  image: null,
+  media: null,
   title: "",
   firstName: "",
   middleName: "",
   lastName: "",
   previousName: "",
-  age: "",
-  dob: new Date(ageOf16Years),
+  age: Number,
+  dateOfBirth: new Date(),
   gender: "",
   nationalInsuranceNo: "",
   ethnicity: "",
-  ofstedEthnicity: "",
+  ostedEthincity: "",
   religion: "",
-  mobile: "",
+  mobileNo: "",
   email: "",
-  languagesSpoken: "",
-  relationshipType: "",
+  languageSpoken: "",
+  relationShipType: "",
   hasDisability: false,
-  ciriminalOffense: false,
+  hasEverConvicted: false,
   sexualOrientation: "",
-  medicalConditions: "",
-  filledDate: new Date(),
+  medicalConditionsTreatment: "",
+  applicationFilledDate: new Date(),
 };
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
@@ -67,37 +67,33 @@ export const FormSchema = Yup.object().shape({
 
     .max(10, "Maximum 15 characters"),
 
-  dob: Yup.date().required("Date of Birth is required"),
-  age: Yup.number()
-    .typeError("Age is required")
-    .required("Age is required")
-    .positive("Age must be a positive number")
-    .integer()
-    .moreThan(18, "Age must be greater than or equal to 18")
-    .lessThan(120, "Age must be less than or equal to 120"),
+  dateOfBirth: Yup.date().required("Date of Birth is required"),
+
   gender: Yup.string().trim().required("Gender is required"),
   nationalInsuranceNo: Yup.string().required(
     "National Insurance Number is required"
   ),
   ethnicity: Yup.string().trim().required("Ethnicity is required"),
-  ofstedEthnicity: Yup.string().trim().required("Ofsted Ethnicity is required"),
-  religion: Yup.string().trim().required("Ofsted Ethnicity is required"),
-  mobile: Yup.string()
-    .required("Mobile Ethnicity is required")
+  ostedEthincity: Yup.string().trim().required("Ofsted Ethnicity is required"),
+  religion: Yup.string().trim().required("religion is required"),
+  mobileNo: Yup.string()
+    .required("Mobile  is required")
     .min(4, "Mininum 4 characters")
     .max(25, "Maximum 25 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
-  languagesSpoken: Yup.string().trim().required("Languages Spoken is required"),
-  relationshipType: Yup.string()
+  languageSpoken: Yup.string().trim().required("Languages Spoken is required"),
+  relationShipType: Yup.string()
     .trim()
     .required("Relationship Type is required"),
   sexualOrientation: Yup.string().required("Sexual Orientation is required"),
-  medicalConditions: Yup.string()
+  medicalConditionsTreatment: Yup.string()
     .required("medical conditions Spoken is required")
     .min(8, "Mininum 8 characters")
     .max(300, "Maximum 300 characters"),
-  filledDate: Yup.date().required("Applicant Filled Date is required"),
-  image: Yup.mixed()
+  applicationFilledDate: Yup.date().required(
+    "Applicant Filled Date is required"
+  ),
+  media: Yup.mixed()
     .nullable()
     .required("Image is required")
     .test(
@@ -133,7 +129,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "image",
+      name: "media",
       fullWidth: true,
       size: "small",
     },
@@ -175,12 +171,16 @@ export const formDataAreaPersonalInfo = [
   },
   {
     gridLength: 6,
-    componentProps: { name: "dob", label: "Date of Birth", fullWidth: true },
+    componentProps: {
+      name: "dateOfBirth",
+      label: "Date of Birth",
+      fullWidth: true,
+    },
     component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    componentProps: { name: "age", label: "Age", fullWidth: true },
+    componentProps: { value: 19, name: "age", label: "Age", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -217,7 +217,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "ofstedEthnicity",
+      name: "ostedEthincity",
       label: "Ofsted Ethnicity",
       fullWidth: true,
       select: true,
@@ -241,7 +241,7 @@ export const formDataAreaPersonalInfo = [
   },
   {
     gridLength: 6,
-    componentProps: { name: "mobile", label: "Mobile", fullWidth: true },
+    componentProps: { name: "mobileNo", label: "Mobile", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -252,7 +252,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "languagesSpoken",
+      name: "languageSpoken",
       label: "Languages Spoken",
       fullWidth: true,
       select: true,
@@ -263,7 +263,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "relationshipType",
+      name: "relationShipType",
       label: "Relationship Type",
       fullWidth: true,
       select: true,
@@ -291,7 +291,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "ciriminalOffense",
+      name: "hasEverConvicted",
       label:
         "Have you ever been convicted of any criminal or civil offence? Have you got anyu cations or outstanding court Orders?",
     },
@@ -300,7 +300,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 12,
     componentProps: {
-      name: "medicalConditions",
+      name: "medicalConditionsTreatment",
       label:
         "Provide details of any current or pending medical conditions, treatment or appointment below",
       multiline: true,
@@ -312,7 +312,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "filledDate",
+      name: "applicationFilledDate",
       label: "Applicant Filled Date",
       fullWidth: true,
     },

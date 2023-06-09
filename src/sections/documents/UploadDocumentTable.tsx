@@ -47,6 +47,7 @@ export const UploadDocumentTable = (props: any) => {
     onPageChange,
     currentPage,
     totalPages,
+    onDelete,
   }: any = props;
 
   // ----------------------------------------------------------------------
@@ -67,7 +68,7 @@ export const UploadDocumentTable = (props: any) => {
   };
   const deleteRowHandler = () => {
     console.log(openDeleteModalHasData);
-    // onDelete(openDeleteModalHasData);
+    onDelete(openDeleteModalHasData);
     setTimeout(() => {
       setOpenDeleteModalHasData(false);
     }, 1000);

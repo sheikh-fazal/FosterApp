@@ -97,6 +97,7 @@ const setGpDetailsInfoDefaultValue = async () => {
     handleSubmit,
     submitGpDetailsInfoForm,
     getSingleGpDetailsInfoDataStatus,
-    query
+    query,
+    router
   };
 };

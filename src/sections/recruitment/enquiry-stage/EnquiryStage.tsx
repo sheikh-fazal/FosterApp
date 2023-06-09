@@ -22,7 +22,8 @@ export default function EnquiryStage() {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     patchData,
-    enquiryStageData
+    enquiryStageData,
+    enquiryStageDatas
     // isLoading,
     // isError,
     // isFetching,
@@ -32,7 +33,7 @@ export default function EnquiryStage() {
   return (
     <div>
       <Grid container>
-        {enquiryStageData?.map((ele: any) => (
+        {enquiryStageData?.map((ele: any,ind:any) => (
           <Grid
             key={ele?.id}
             container
@@ -140,9 +141,12 @@ export default function EnquiryStage() {
               xs={12}
             >
               <RecruitmentStatusDropdown
-                point={ele?.text}
+                point={enquiryStageDatas}
                 id={ele?.id}
                 status={ele?.status}
+                selectedObj={ele}
+                component={"EnquiryStage"}
+                patchData={patchData}
               />
             </Grid>
             <Grid
