@@ -1,18 +1,61 @@
 import { Box, Typography, useTheme } from "@mui/material";
+import { useRouter } from "next/router";
 import React from "react";
-import BronzeLevel from "@root/assets/svg/bronze-level";
 
-export default function SingleLevel() {
+export default function SingleLevel({
+  levelName,
+  children,
+  bgColor,
+  isBadge,
+}: any) {
   const theme = useTheme();
-  return (
+  const router = useRouter();
+  const el = (
+    <Box
+      sx={{
+        borderRadius: "50%",
+        border: "1px solid transparent",
+        textAlign: "center",
+        width: "110px",
+        height: "110px",
+        backgroundColor: bgColor,
+        padding: "4px",
+      }}
+    >
+      {children}
+      <Typography
+        sx={{
+          fontSize: "10px",
+          marginTop: "0px",
+          marginBottom: "2px",
+          color: "#FFFFFF",
+        }}
+        variant="subtitle1"
+        className="title"
+      >
+        {levelName} Level
+      </Typography>
+    </Box>
+  );
+
+  return isBadge ? (
+    el
+  ) : (
     <>
       <Box sx={{ display: "flex" }}>
         <Box
+          onClick={() => {
+            router.push(
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=${levelName}`
+            );
+          }}
           sx={{
             padding: "9px 40px",
             background: "#FFFFFF",
             border: "1px solid #000000",
             borderRadius: "10px",
+            textAlign: "center",
+            cursor: "pointer",
           }}
         >
           <Typography
@@ -23,31 +66,9 @@ export default function SingleLevel() {
             variant="subtitle1"
             className="title"
           >
-            Bronze Level
+            {levelName} Level
           </Typography>
-          <Box
-            sx={{
-              borderRadius: "100%",
-              border: "1px solid #000000",
-              textAlign: "center",
-              padding: "10px 20px",
-              backgroundColor: "#A46628",
-            }}
-          >
-            <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
-            <Typography
-              sx={{
-                fontSize: "10px",
-                marginTop: "0px",
-                marginBottom: "2px",
-                color: "#FFFFFF",
-              }}
-              variant="subtitle1"
-              className="title"
-            >
-              Brozone Level
-            </Typography>
-          </Box>
+          {el}
         </Box>
       </Box>
     </>

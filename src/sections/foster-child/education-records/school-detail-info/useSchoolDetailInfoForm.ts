@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
-import { useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchoolDetailInfoFormSchema, defaultValues } from ".";
-import dayjs from "dayjs";
-import { fTimestamp } from "@root/utils/formatTime";
-import { enqueueSnackbar } from "notistack";
-import router from "next/router";
+
 
 
 export const useSchoolDetailInfoForm = ({

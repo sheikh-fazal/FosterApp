@@ -12,6 +12,7 @@ import Modal from "@mui/material/Modal";
 import { FormProvider } from "@root/components/hook-form";
 import SingleLevel from "./SingleLevel";
 //
+import BronzeLevel from "@root/assets/svg/bronze-level";
 
 const style = {
   position: "absolute",
@@ -56,8 +57,17 @@ export default function LevelButtonsModal({
         >
           Select Level
         </Typography>
-
-        <SingleLevel />
+        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <SingleLevel levelName="Bronze" bgColor={"#A46628"}>
+            <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
+          </SingleLevel>
+          <SingleLevel levelName="Silver" bgColor={"#A4B0C1"}>
+            <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
+          </SingleLevel>
+          <SingleLevel levelName="Gold" bgColor={"#FFBA01"}>
+            <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
+          </SingleLevel>
+        </Box>
       </Box>
     </Modal>
   );

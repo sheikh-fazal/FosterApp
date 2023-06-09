@@ -31,7 +31,8 @@ export const RHFUploadFile = (props: any) => {
               }}
             >
               <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
-                {field?.value?.name || "Upload Image"}
+                {field?.value?.name ||
+                  (other.label ? other?.label : "Upload Image")}
               </div>
               <FileUploadIcon
                 sx={{

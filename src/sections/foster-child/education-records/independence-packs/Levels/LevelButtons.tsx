@@ -3,12 +3,19 @@ import BronzeLevel from "@root/assets/svg/bronze-level";
 import SilverLevel from "@root/assets/svg/silver-level";
 import GoldLevel from "@root/assets/svg/gold-level";
 import { Box, Button } from "@mui/material";
+import { useRouter } from "next/router";
 
 export default function LevelButtons() {
+  const router = useRouter();
   return (
     <div>
       <Box sx={{ mt: 6, mb: 4 }}>
         <Button
+          onClick={() => {
+            router.push(
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Bronze`
+            );
+          }}
           sx={{
             mr: 2,
             color: "#A46628",
@@ -31,6 +38,11 @@ export default function LevelButtons() {
           Bronze Level
         </Button>
         <Button
+          onClick={() => {
+            router.push(
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Silver`
+            );
+          }}
           sx={{
             mr: 2,
             color: "#A4B0C1",
@@ -53,6 +65,11 @@ export default function LevelButtons() {
           Silver Level
         </Button>
         <Button
+          onClick={() => {
+            router.push(
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Gold`
+            );
+          }}
           sx={{
             color: "#FFBA01",
             fontWeight: "700",
