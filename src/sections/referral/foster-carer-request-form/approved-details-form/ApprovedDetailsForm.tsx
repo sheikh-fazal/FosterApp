@@ -11,7 +11,8 @@ const ApprovedDetailsForm = ({ disabled }: any) => {
     onSubmit,
     handleSubmit,
     ApprovedDetailsFormData,
-    methods
+    methods,
+    router
   } = useApprovedDetailsForm()
 
 
@@ -56,7 +57,7 @@ const ApprovedDetailsForm = ({ disabled }: any) => {
             href={""}
             style={{ textDecoration: "none" }}
           >
-            <Button type="button" variant="contained" sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}>
+            <Button onClick={() => router.push("/referral/foster-carer-request-form/")} type="button" variant="contained" sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}>
               Back
             </Button>
           </Link>

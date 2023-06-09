@@ -36,7 +36,7 @@ const CourseEvaluation = () => {
                     <Typography
                       sx={{
                         fontWeight: 600,
-                        flexBasis: "50%",
+                        flexBasis: { xl: "50%", xs: "100%" },
                         mt: "-10px",
                         color: theme.palette.grey[600],
                       }}
@@ -83,15 +83,7 @@ const CourseEvaluation = () => {
                 >
                   Submit
                 </LoadingButton>
-                <Button
-                  type="button"
-                  variant="contained"
-                  onClick={() =>
-                    router.push(
-                      "/training"
-                    )
-                  }
-                >
+                <Button type="button" variant="contained" onClick={() => router.push("/training")}>
                   Back
                 </Button>
               </Box>

@@ -4,7 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { useContextualSafeguardingTable } from "./useContextualSafeguardingTable";
 
 const ContextualSafeguardingTable = () => {
-  const { tableHeaderRefTwo, router, columns, TableData } =
+  const { tableHeaderRefTwo, router, columns, TableData, theme } =
     useContextualSafeguardingTable();
 
   return (
@@ -33,8 +33,13 @@ const ContextualSafeguardingTable = () => {
         isPagination={false}
         isSuccess={true}
         currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        onPageChange={(data: any) => {
+          console.log("Current page data: ", data);
+        }}
+        onSortByChange={(data: any) => {
+          console.log("Sort by: ", data);
+        }}
+        rootSX={{ my: theme.spacing(2) }}
       />
     </>
   );

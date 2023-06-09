@@ -3,34 +3,33 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { useTheme } from "@mui/material";
-import ReferralSchemeTable from "@root/sections/referral/referral-scheme/ReferralSchemeTable";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import ReferralSchemeAddForm from "@root/sections/referral/referral-scheme/referral-scheme-form/ReferralSchemeForm";
 import UploadDocumentsTable from "@root/sections/referral/referral-scheme/eligiblity-criteria-document/UploadDocumentsTable";
 
 const PAGE_TITLE = "Referral Scheme Form";
-export const ReferralSchemeTabsData = [ "Scheme Details","Eligiblity Criteria - Document",];
+export const ReferralSchemeTabsData = ["Scheme Details", "Eligiblity Criteria - Document",];
 ReferralScheme.getLayout = function getLayout(page: any) {
   return (
-<Layout
+    <Layout
 
       showTitleWithBreadcrumbs
-        breadcrumbs={[
-          {
+      breadcrumbs={[
+        {
           icon: <HomeIcon />,
           name: "Referral",
-          href: "/referral/referral-scheme",
-          },
-          {
+          href: "/referral",
+        },
+        {
           name: "Referral Scheme",
-          },
-        ]}
+        },
+      ]}
 
       title={PAGE_TITLE}
       variant="dashboard"
-      >
+    >
       {page}
- </Layout>
+    </Layout>
   );
 };
 
@@ -41,9 +40,9 @@ export default function ReferralScheme() {
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={ReferralSchemeTabsData}>
-            <ReferralSchemeAddForm/>
-            <UploadDocumentsTable/>
-     </HorizaontalTabs>
+        <ReferralSchemeAddForm />
+        <UploadDocumentsTable />
+      </HorizaontalTabs>
     </Page>
   );
 }
