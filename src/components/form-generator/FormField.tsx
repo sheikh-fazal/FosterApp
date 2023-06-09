@@ -18,9 +18,10 @@ const FormField: FC<any> = (props) => {
 
     case "TEXT_MULTILINE":
       return <RHFTextField multiline rows={4} {...prop} />;
-
+    case "TEXT_MULTILINE_TWO_LINES":
+      return <RHFTextField multiline rows={2} {...prop} />;
     case "DATE_PICKER":
-      return <RHFDatePicker {...prop} />;
+      return <RHFDatePicker fullWidth {...prop} />;
 
     case "SELECT":
       return (

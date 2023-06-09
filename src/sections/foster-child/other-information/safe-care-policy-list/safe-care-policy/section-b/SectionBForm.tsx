@@ -20,7 +20,7 @@ import {
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 
-const SectionAForm: FC<any> = ({ disabled = false }) => {
+const SectionBForm: FC<any> = ({ disabled = false }) => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -76,7 +76,7 @@ const SectionAForm: FC<any> = ({ disabled = false }) => {
                 variant="formTopHeading"
                 sx={{ color: theme.palette.primary.main }}
               >
-                Carer Name : Not Placed
+                General Policy
               </Typography>
             </Grid>
             <Grid item sm={12} container>
@@ -136,4 +136,4 @@ const SectionAForm: FC<any> = ({ disabled = false }) => {
   );
 };
 
-export default SectionAForm;
+export default SectionBForm;
