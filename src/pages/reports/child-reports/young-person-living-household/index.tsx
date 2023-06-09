@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import YoungPersonLivingHousehold from "@root/sections/reports/child-reports/young-person-living-household/YoungPersonLivingHousehold";
 
 const PAGE_TITLE = "Reports";
 
@@ -38,7 +39,7 @@ YoungPesonLivingHouseholdLayout.getLayout = function getLayout(page: any) {
 export default function YoungPesonLivingHouseholdLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <YoungPersonLivingHousehold />
     </Page>
   );
 }

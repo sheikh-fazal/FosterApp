@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FosteringServiceManager from "@root/sections/reports/child-reports/fostering-service-manager/FosteringServiceManager";
 
 const PAGE_TITLE = "Reports";
 
@@ -38,7 +39,7 @@ FosteringServiceManagerLayout.getLayout = function getLayout(page: any) {
 export default function FosteringServiceManagerLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <FosteringServiceManager />
     </Page>
   );
 }
