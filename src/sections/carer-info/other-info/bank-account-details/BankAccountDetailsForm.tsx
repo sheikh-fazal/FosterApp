@@ -15,6 +15,7 @@ import {
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
+import { LoadingButton } from "@mui/lab";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,7 +29,15 @@ const style = {
   p: 2,
 };
 export default function BankAccountDetailsForm(props: any) {
-  const { content, readOnly, btnType, openModal, closeModal, formData } = props;
+  const {
+    content,
+    readOnly,
+    btnType,
+    openModal,
+    closeModal,
+    formData,
+    status,
+  } = props;
 
   const theme: any = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -43,7 +52,9 @@ export default function BankAccountDetailsForm(props: any) {
     setOpen(false);
     !readOnly && closeModal(false);
   };
-
+  React.useEffect(() => {
+    status?.isSuccess && handleClose();
+  }, [status?.isSuccess, handleClose]);
   return (
     <div>
       {btnType && (
@@ -76,6 +87,8 @@ export default function BankAccountDetailsForm(props: any) {
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
+              isError={status?.isError}
+              isLoading={status?.isLoading}
             >
               <Button
                 size="small"
@@ -98,23 +111,31 @@ export default function BankAccountDetailsForm(props: any) {
 }
 
 const FormPiece = (props: any) => {
-  const { disableForm, children, selectedRow, formData } = props;
+  const {
+    disableForm,
+    children,
+    selectedRow,
+    formData,
+    isError: error,
+    isLoading,
+  } = props;
   const theme: any = useTheme();
+  let isError: any = false;
   //-------------------------------------------//
   const defaultValues = {
     accountNumber: selectedRow?.accountNumber || "",
     sortName: selectedRow?.sortName || "",
-    nameOfBank: selectedRow?.nameOfBank || "",
+    accountType: selectedRow?.accountType || "Platinum",
     accountName: selectedRow?.accountName || "",
-    accountType: selectedRow?.accountType || "platinum",
+    bankName: selectedRow?.bankName || "",
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
     accountNumber: Yup.string().required("Required"), //1
     sortName: Yup.string().required("Required"), //2
-    nameOfBank: Yup.string().required("Required"), //3
-    accountName: Yup.string().required("Required"), //3
-    accountType: Yup.string().required("Required"), //4
+    bankName: Yup.string().required("Required"), //3
+    accountName: Yup.string().required("Required"), //4
+    accountType: Yup.string().required("Required"), //5
   });
 
   const methods: any = useForm({
@@ -125,8 +146,9 @@ const FormPiece = (props: any) => {
   const { reset, handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    // console.log(data, "submitted data");
     formData(data);
+    isError = error;
+    console.log("test");
     // reset();
   };
   return (
@@ -159,18 +181,18 @@ const FormPiece = (props: any) => {
           justifyContent={"space-between"}
         >
           {!disableForm && (
-            <Button
+            <LoadingButton
               size="small"
+              loading={isLoading}
               type="submit"
               variant="contained"
+              color={isError ? "error" : "primary"}
               sx={{
                 mt: 1,
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.dark },
               }}
             >
-              Submit
-            </Button>
+              {isError ? "Try Again" : "Submit"}
+            </LoadingButton>
           )}
           {children}
         </Grid>
@@ -206,7 +228,7 @@ export const formDataArray = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "nameOfBank",
+      name: "bankName",
       label: "Name OF Bank",
     },
   },
@@ -228,20 +250,20 @@ export const formDataArray = [
       select: true,
       options: [
         {
-          value: "platinum",
+          value: "Platinum",
           label: "Platinum",
         },
         {
-          value: "gold",
+          value: "Gold",
           label: "Gold",
         },
         {
-          value: "plus",
+          value: "Plus",
           label: "Plus",
         },
         {
-          value: "standard",
-          label: "Standard",
+          value: "Primary",
+          label: "Primary",
         },
       ],
       fullWidth: true,

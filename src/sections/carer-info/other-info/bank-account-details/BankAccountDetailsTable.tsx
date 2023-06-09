@@ -8,28 +8,17 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 
 // ----------------------------------------------------------------------
 export const BankAccountDetailsTable = (props: any) => {
-  const { readOnly, isLoading, isError, isFetching, isSuccess, tableData } =
-    props;
+  const {
+    readOnly,
+    gettingStatus,
+    tableData,
+    editedData,
+    editingStatus,
+    onDelete,
+  } = props;
   const [openDeleteModal, setOpenDeleteModal] = useState<any>(false);
   // ----------------------------------------------------------------------
-  const tableRows = [
-    {
-      id: 1,
-      accountNumber: "522",
-      accountType: "Savings",
-      accountName: "Ahmed Shah",
-      nameOfBank: "HBL",
-      sortName: "name",
-    },
-    {
-      id: 2,
-      accountNumber: "888",
-      accountType: "platinum",
-      accountName: "Butt",
-      nameOfBank: "Alfalah",
-      sortName: "none",
-    },
-  ];
+
   const columns = [
     {
       accessorFn: (row: any) => row.accountNumber,
@@ -46,7 +35,7 @@ export const BankAccountDetailsTable = (props: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.nameOfBank,
+      accessorFn: (row: any) => row.bankName,
       id: "Name of the Bank",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of the Bank</span>,
@@ -70,11 +59,12 @@ export const BankAccountDetailsTable = (props: any) => {
           <BankAccountDetailsForm
             content={info}
             btnType="edit"
+            status={editingStatus}
             closeModal={() => {}}
             formData={(data: any) =>
-              console.log("oooooooooooooooooooooi Edit", {
-                ...info.row?.original,
-                ...data,
+              editedData({
+                id: info.row?.original?.id,
+                body: data,
               })
             }
           />
@@ -101,31 +91,31 @@ export const BankAccountDetailsTable = (props: any) => {
     <Grid container>
       <DeleteModel
         open={openDeleteModal}
-        onDeleteClick={() => alert(openDeleteModal?.nameOfBank)}
+        onDeleteClick={onDelete(openDeleteModal?.id)}
         handleClose={() => {
           setOpenDeleteModal(false);
         }}
       />
       <CustomTable
-        data={tableRows}
+        data={tableData}
         columns={columns}
         isLoading={
-          false
-          // isLoading
+          // false
+          gettingStatus?.isLoading
         }
         isFetching={
-          false
-          // isFetching
+          // false
+          gettingStatus?.isFetching
         }
         isError={
-          false
-          // isError
+          // false
+          gettingStatus?.isError
         }
         isSuccess={
-          true
-          // isSuccess
+          // true
+          gettingStatus?.isSuccess
         }
-        showSerialNo
+        // showSerialNo
         // count={Math.ceil(data?.data?.meta?.total / limit)}
         currentPage={1}
         onPageChange={(data: any) => {
