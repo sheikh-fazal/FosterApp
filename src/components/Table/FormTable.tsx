@@ -130,8 +130,6 @@ export default function FormTable(props: any) {
   const [shareModal, setShareModal] = useState(false);
   const [certificateModal, setCertificateModal] = useState(false);
 
-  console.log("certificateModal", certificateModal)
-
   /* Set up formatters for updating the display data */
   const formatters: any = {};
   for (const column of tableColumns) {
@@ -156,7 +154,7 @@ export default function FormTable(props: any) {
     {
       id: "Manage Certificate",
       cell: (info: any) => (
-        <Box onClick={() => {
+        <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }} onClick={() => {
           setCertificateModal(true)
         }}>
           Delegate Certificate

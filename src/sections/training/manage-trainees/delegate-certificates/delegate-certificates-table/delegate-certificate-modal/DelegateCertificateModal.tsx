@@ -9,7 +9,7 @@ import {
     StyleSheet,
     Image,
 } from "@react-pdf/renderer";
-import Certificatebg from '../../../../../../../public/delegateCertifactebg.jpg'
+import Certificatebg from '../../../../../../assets/img/delegateCertifactebg.jpg'
 import Of from '../../../../../../assets/img/Of.png'
 import Completion from '../../../../../../assets/img/Completion.png'
 import Dialog from '@mui/material/Dialog';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         fontWeight: 400,
         marginBottom: "24px",
     },
-    comoletion: {
+    completion: {
         marginBottom: "14px",
         width: "290px",
         height: "23px",
@@ -89,16 +89,13 @@ const styles = StyleSheet.create({
         fontWeight: 400,
         marginBottom: "20px",
     },
-    modal: {
-        // position: "absolute",
-        left: "25%"
-    }
+
 });
 
 const DelegateCertificateModal = (props: any) => {
     const Of = "../../../../../../assets/img/Of.png"
     const Completion = "../../../../../../assets/img/Completion.png"
-    const Certificatebg = "../../../../../../../public/delegateCertifactebg.jpg"
+    const Certificatebg = "../../../../../../assets/img/delegateCertifactebg.jpg"
     const { open, setOpen } = props
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -121,17 +118,23 @@ const DelegateCertificateModal = (props: any) => {
             sx={{ width: "100%", height: "841px" }}
         >
 
-            <div style={styles.modal}>
+            <div>
                 <BlobProvider
                     document={
                         <Document>
                             <Page size="A4" style={styles.page}>
                                 <View style={styles.section}>
                                     <Text style={styles.certificate}>Certificate</Text>
+                                    <Text style={styles.of}>Of</Text>
+                                    <Text style={styles.completion}>Completion</Text>
+                                    {/* *************************************************** below is imagees ******************************************************************* */}
 
-                                    <Text style={styles.of}>
-                                        {/* <Image src={Of} /> */}
+                                    {/* <Text style={styles.of}>                                    
+                                        <Image src={Of} />
                                     </Text>
+                                    <Text style={styles.completion}>
+                                        <Image src={Completion} />
+                                    </Text> */}
 
                                     <Text style={styles.presentTo}>Proudly Presented To</Text>
                                     <Text style={styles.name}>Clare O’Roberts</Text>
@@ -145,8 +148,8 @@ const DelegateCertificateModal = (props: any) => {
                                     </Text>
                                     <Text style={styles.facilitatorDate}>27 . 10 . 2021</Text>
                                 </View>
-
-                                <Image src={Certificatebg} style={styles.image} />
+                                {/* *********************************************************************************below is backgroubd image ************************************** */}
+                                {/* <Image src={Certificatebg} style={styles.image} /> */}
 
                             </Page>
 
