@@ -160,7 +160,7 @@ const DelegateCertificateModal = (props: any) => {
                   <Text style={styles.certificate}>Certificate</Text>
                   <Text style={styles.of}>Of</Text>
                   <Text style={styles.completion}>Completion</Text>
-                <img src={'https://i.ibb.co/cLcCbxN/Certificate.jpg'} />
+                <Image src={'https://i.ibb.co/cLcCbxN/Certificate.jpg'} alt={"pdf-bgImg"}/>
                   {/* *************************************************** below is imagees ******************************************************************* */}
 
                   {/* <Text style={styles.of}>                                    
