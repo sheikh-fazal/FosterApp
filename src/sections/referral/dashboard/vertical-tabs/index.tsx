@@ -44,7 +44,7 @@ export const TABSDATAARRY = [
       {
         id: 3,
         title: "Social Worker Request Form",
-        link: "/referral/social-worker-request-form",
+        link: "/referral/social-worker-request",
       },
       {
         id: 4,

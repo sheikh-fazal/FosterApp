@@ -28,17 +28,18 @@ const BREADCRUMBS = [
 // ----------------------------------------------------------------------
 
 AddIndependencePack.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-  const { level } = router.query;
+  // const router = useRouter();
+  // const { level } = router.query;
+  // Commenting out the hook
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         ...BREADCRUMBS,
-        {
-          name: level,
-          href: "",
-        },
+        // {
+        //   name: '',
+        //   href: "",
+        // },
       ]}
       title={PAGE_TITLE}
     >

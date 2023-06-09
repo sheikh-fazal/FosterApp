@@ -1,7 +1,7 @@
-
-
 const AbsenceInfo = () => {
-  return <div>AbsenceInfo</div>;
-};
+  return (
+    <div>AbsenceInfo</div>
+  )
+}
 
-export default AbsenceInfo;
+export default AbsenceInfo

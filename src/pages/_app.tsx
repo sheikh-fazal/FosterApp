@@ -27,7 +27,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 // utils
 import { getSettings } from "@root/utils/settings";
-
+ 
 //theme
 import ThemeProvider from "@root/theme";
 
