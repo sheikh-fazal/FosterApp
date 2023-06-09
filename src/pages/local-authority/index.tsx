@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import Dashboard from "@root/sections/referral/dashboard/Dashboard";
+import Dashboard from "@root/sections/local-authority/dashboard/Dashboard";
 
 const PAGE_TILE = "Local Authority Dashboard";
 
@@ -17,7 +17,7 @@ Referral.getLayout = function getLayout(page: any) {
                     href: "/dashboard",
                 },
                 {
-                    name: "Referral",
+                    name: "Local Authority",
                 },
             ]}
             title={PAGE_TILE}
@@ -31,6 +31,7 @@ export default function Referral() {
     return (
         <Page title={PAGE_TILE}>
             {/* <Dashboard /> */}
+            <Dashboard />
         </Page>
     );
 }

@@ -3,9 +3,9 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { Card, useTheme } from "@mui/material";
-import RequestSecureDataExhange from "@root/sections/local-authority/request-for-secure-data-exchange/RequestSecureDataExhange";
+import ViewAllLocalAuthority from "@root/sections/local-authority/view-all-local-authority/ViewAllLocalAuthority";
 
-const PAGE_TILE = "Secure Data Exchange";
+const PAGE_TILE = "Referral List";
 
 const dynamicTitle = (pageTitle: any) => {
     console.log("pageTitle", pageTitle);
@@ -18,11 +18,11 @@ ReferralList.getLayout = function getLayout(page: any) {
             breadcrumbs={[
                 {
                     icon: <HomeIcon />,
-                    name: "LADO",
+                    name: "Referral",
                     href: "/referral",
                 },
                 {
-                    name: "Secure Data Exchange",
+                    name: "",
                 },
             ]}
             title={PAGE_TILE}
@@ -36,7 +36,7 @@ export default function ReferralList() {
     return (
         <Page title={PAGE_TILE}>
             <Card sx={{ p: 2 }}>
-                <RequestSecureDataExhange />
+                <ViewAllLocalAuthority />
             </Card>
         </Page>
     );

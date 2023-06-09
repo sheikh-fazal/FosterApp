@@ -3,9 +3,9 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { Card, useTheme } from "@mui/material";
-import RequestSecureDataExhange from "@root/sections/local-authority/request-for-secure-data-exchange/RequestSecureDataExhange";
+import LaEmployeeDirectory from "@root/sections/local-authority/la-employee-directory/LaEmployeeDirectory";
 
-const PAGE_TILE = "Secure Data Exchange";
+const PAGE_TILE = "Local Authority";
 
 const dynamicTitle = (pageTitle: any) => {
     console.log("pageTitle", pageTitle);
@@ -36,7 +36,7 @@ export default function ReferralList() {
     return (
         <Page title={PAGE_TILE}>
             <Card sx={{ p: 2 }}>
-                <RequestSecureDataExhange />
+                <LaEmployeeDirectory />
             </Card>
         </Page>
     );
