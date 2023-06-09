@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
-const SafeCarePolicy = () => {
+const SafeCarePolicyList = () => {
   const [tabelData, setTabelData] = useState([
     {
       a: "a",
@@ -31,6 +31,7 @@ const SafeCarePolicy = () => {
     isSuccess,
     isError,
     isFetching,
+    setSearchValue,
   } = useSafeCarePolicy();
   return (
     <Box>
@@ -41,6 +42,7 @@ const SafeCarePolicy = () => {
         showAddBtn={true}
         onAdd={() => console.log("Test")}
         onChanged={(data: any) => {
+          setSearchValue(data?.search);
           console.log("Updated params: ", data);
         }}
       />
@@ -51,19 +53,21 @@ const SafeCarePolicy = () => {
         // showSerialNo
         isFetching={isFetching}
         isError={isError}
-        isPagination={false}
+        isPagination={true}
         isSuccess={isSuccess}
-        //   currentPage={data?.meta?.page ?? 1}
-        //   totalPages={data?.meta?.pages ?? 2}
-        //   onPageChange={(data: any) => {
-        //     setPage((page) => data - 1);
-        //   }}
-        //   onSortByChange={(data: any) => {
-        //     console.log("Sort by: ", data);
-        //   }}
+        currentPage={1}
+        totalPages={2}
+        onPageChange={(data: any) => {
+          return;
+          // setPage((page) => data - 1);
+        }}
+        onSortByChange={(data: any) => {
+          // console.log("Sort by: ", data);
+          return;
+        }}
       />
     </Box>
   );
 };
 
-export default SafeCarePolicy;
+export default SafeCarePolicyList;

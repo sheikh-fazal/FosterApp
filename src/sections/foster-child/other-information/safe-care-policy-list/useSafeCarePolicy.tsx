@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { getColumns } from "./columnsInfo";
 import { useRouter } from "next/router";
-import { useGetAllGpDetailsListDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsList";
 import { useSafeCarePolicyListQuery } from "@root/services/foster-child/other-information/safeCarePolicyApi";
 
 export const useSafeCarePolicy = () => {
@@ -17,12 +16,12 @@ export const useSafeCarePolicy = () => {
   };
   const tableHeaderRef = useRef<any>();
 
-  const columns = getColumns({});
+  const columns = getColumns({ router });
 
   const dataParameter = { params };
   const { data, isLoading, isSuccess, isError, isFetching } =
     useSafeCarePolicyListQuery(dataParameter);
-  console.log({ data });
+  // console.log({ data });
   return {
     tableHeaderRef,
     columns,
@@ -31,5 +30,6 @@ export const useSafeCarePolicy = () => {
     isSuccess,
     isError,
     isFetching,
+    setSearchValue,
   };
 };
