@@ -1,4 +1,4 @@
-import { RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 // ====================================================================================
@@ -6,6 +6,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 export const defaultValues = {
   uploadDate: new Date(),
   referralDate: new Date(),
+  dateNotified: new Date(),
 };
 
 // ======================================================================================
@@ -23,7 +24,7 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "firstName", label: "First Name", placeholder: "Maryam", fullWidth: true },
+    otherOptions: { name: "firstName", label: "First Name", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -109,7 +110,6 @@ export const originalChildFormData = [
     gridLength: 12,
     otherOptions: {
       name: "address",
-      placeholder: "Text",
       label: "Address",
       multiline: true,
       minRows: 3,
@@ -129,7 +129,6 @@ export const originalChildFormData = [
   {
     gridLength: 6,
     otherOptions: {
-      placeholder: "John Doe",
       label: "Referral Date",
       name: "referralDate",
       fullWidth: true,
@@ -150,8 +149,20 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "childAuthority", label: "Child Placing Authority", fullWidth: true },
-    component: RHFTextField,
+    otherOptions: {
+      name: "childAuthority",
+      label: "Child Placing Authority",
+      fullWidth: true,
+      select: true,
+    },
+    options: [
+      { value: "option 1", label: "option 1" },
+      {
+        value: "option 2",
+        label: "option 2",
+      },
+    ],
+    component: RHFSelect,
   },
   {
     gridLength: 6,
@@ -160,13 +171,29 @@ export const originalChildFormData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "localAuthority", label: "Local Authority", fullWidth: true },
-    component: RHFTextField,
+    otherOptions: {
+      name: "localAuthority",
+      label: "Local Authority",
+      fullWidth: true,
+      select: true,
+    },
+    options: [
+      { value: "option 1", label: "option 1" },
+      {
+        value: "option 2",
+        label: "option 2",
+      },
+    ],
+    component: RHFSelect,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "dateNoticed", label: "Date LA Notified", fullWidth: true },
-    component: RHFTextField,
+    otherOptions: {
+      label: "Date LA Notified",
+      name: "dateNotified",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
   },
   {
     gridLength: 12,

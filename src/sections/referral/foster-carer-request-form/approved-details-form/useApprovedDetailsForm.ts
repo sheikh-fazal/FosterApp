@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
-import { ApprovedDetailsFormData, ApprovedDetailsFormValues, ApprovedDetailsFormValidationSchema } from ".";
+import {
+  ApprovedDetailsFormData,
+  ApprovedDetailsFormValues,
+  ApprovedDetailsFormValidationSchema,
+} from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useRouter } from "next/router";
 
 export const useApprovedDetailsForm = () => {
   const methods: any = useForm({
@@ -9,6 +14,7 @@ export const useApprovedDetailsForm = () => {
   });
 
   const { handleSubmit } = methods;
+  const router = useRouter();
 
   const onSubmit = (data: any) => {
     console.log(data, "submitted data");
@@ -17,6 +23,7 @@ export const useApprovedDetailsForm = () => {
     onSubmit,
     handleSubmit,
     ApprovedDetailsFormData,
-    methods
-  }
-}
+    methods,
+    router,
+  };
+};

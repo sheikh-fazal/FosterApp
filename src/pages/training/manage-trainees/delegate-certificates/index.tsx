@@ -32,7 +32,7 @@ export default function DelegateCertificates() {
   const theme = useTheme();
   return (
     <Page title={PAGE_TILE}>
-      <DelegateCertificateAccordin/>
+      <DelegateCertificateAccordin />
     </Page>
   );
 }

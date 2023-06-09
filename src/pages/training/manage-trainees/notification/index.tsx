@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import TrainingClockEngineTable from "@root/sections/training/notifications/training-clock-engine-tab/TrainingClockEngineTable";
-import NotificationTable from "@root/sections/training/notifications/notification-settings-tab/NotificationTable";
+import Notifications from "@root/sections/training/manage-trainees/notifications/Notifications";
+
 
 
 const PAGE_TILE = "Notification Setting";
 
-Notifications.getLayout = function getLayout(page: any) {
+NotificationsTab.getLayout = function getLayout(page: any) {
 
   return (
     <Layout
@@ -31,20 +30,10 @@ Notifications.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function Notifications() {
-
+export default function NotificationsTab() {
   return (
     <Page title={PAGE_TILE}>
-      <HorizaontalTabs
-        tabsDataArray={[
-          "Training Clock Engine",
-          "Notification Settings",
-        ]}
-     
-      >
-        <TrainingClockEngineTable />
-        <NotificationTable/>
-      </HorizaontalTabs>
+     <Notifications/>
     </Page>
   );
 }

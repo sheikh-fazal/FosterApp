@@ -5,7 +5,6 @@ import { Box, Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import router from "next/router";
 
 export default function SchoolDetailInfoTable() {
   const [open, setOpen] = useState(false);
