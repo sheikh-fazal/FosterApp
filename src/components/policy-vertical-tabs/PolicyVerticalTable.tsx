@@ -79,7 +79,7 @@ const PolicyVerticalTable = (props: any) => {
     },
     {
       id: "actions",
-      cell: (info: any) => <Box display={'flex'} gap={0.5} flexShrink={'0'}>
+      cell: (info: any) => <Box display={'flex'} alignItems={'center'} gap={0.5} flexShrink={'0'}>
         <TableAction type="view" onClicked={() => navigate.push({ pathname: addNewTabNavigation, query: { id: info.row.original.id, name: title, action: 'view' } })} />
         <TableAction type="print" />
         <TableAction type="download" />
