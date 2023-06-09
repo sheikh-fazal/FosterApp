@@ -146,7 +146,7 @@ export const NAV_LINKS = [
   {
     text: "Policies & Guidelines",
     img: <PolicyOutlinedIcon />,
-    link: "",
+    link: "/policies-and-guidelines",
   },
   {
     text: "User Manual",
