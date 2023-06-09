@@ -149,7 +149,7 @@ const DelegateCertificateModal = (props: any) => {
 
                                     {certificateData.map((item: any) => {
                                         return (
-                                            <Box key={item.id}>
+                                            <div key={item.id}>
                                                 < Text style={styles.presentTo}>Proudly Presented To</Text>
                                                 <Text style={styles.name}>{item.name}</Text>
                                                 <Text style={styles.course}>
@@ -161,7 +161,7 @@ const DelegateCertificateModal = (props: any) => {
                                                     Facilitator: {item.facilitator}
                                                 </Text>
                                                 <Text style={styles.facilitatorDate}>{item.certificateDate}</Text>
-                                            </Box>
+                                            </div>
                                         )
                                     })}
                                 </View>
