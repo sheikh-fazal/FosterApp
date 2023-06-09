@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     },
     completion: {
         marginBottom: "14px",
-        width: "290px",
-        height: "23px",
+        // width: "290px",
+        // height: "23px",
     },
     presentTo: {
         fontSize: 20,
@@ -92,6 +92,16 @@ const styles = StyleSheet.create({
 
 });
 
+const certificateData = [
+    {
+        name: "Clare O’Roberts",
+        date: "10/09/2017 - 15/09/2017",
+        address: "East ChinaTraining Ground",
+        faclilator: "Clare Facilitator Roberts",
+        certificateDate: "27 . 10 . 2021"
+
+    }
+]
 const DelegateCertificateModal = (props: any) => {
     const Of = "../../../../../../assets/img/Of.png"
     const Completion = "../../../../../../assets/img/Completion.png"
@@ -136,17 +146,23 @@ const DelegateCertificateModal = (props: any) => {
                                         <Image src={Completion} />
                                     </Text> */}
 
-                                    <Text style={styles.presentTo}>Proudly Presented To</Text>
-                                    <Text style={styles.name}>Clare O’Roberts</Text>
-                                    <Text style={styles.course}>
-                                        Attended the course Social Care Network on:
-                                    </Text>
-                                    <Text style={styles.courseDate}>10/09/2017 - 15/09/2017</Text>
-                                    <Text style={styles.at}>At: East ChinaTraining Ground</Text>
-                                    <Text style={styles.facilitator}>
-                                        Facilitator: ClareFacilitator Roberts
-                                    </Text>
-                                    <Text style={styles.facilitatorDate}>27 . 10 . 2021</Text>
+                                    {certificateData.map((item: any) => {
+                                        return (
+                                            <>
+                                                < Text style={styles.presentTo}>Proudly Presented To</Text>
+                                                <Text style={styles.name}>{item.name}</Text>
+                                                <Text style={styles.course}>
+                                                    Attended the course Social Care Network on:
+                                                </Text>
+                                                <Text style={styles.courseDate}>{item.date}</Text>
+                                                <Text style={styles.at}>At: {item.address}</Text>
+                                                <Text style={styles.facilitator}>
+                                                    Facilitator: {item.facilitator}
+                                                </Text>
+                                                <Text style={styles.facilitatorDate}>{item.certificateDate}</Text>
+                                            </>
+                                        )
+                                    })}
                                 </View>
                                 {/* *********************************************************************************below is backgroubd image ************************************** */}
                                 {/* <Image src={Certificatebg} style={styles.image} /> */}
