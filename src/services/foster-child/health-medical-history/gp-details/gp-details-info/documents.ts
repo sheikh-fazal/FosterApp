@@ -26,7 +26,7 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
         url: `foster-child/gp-info/docs/${dataParameter?.pathParams?.gpInfoId}`,
         method: "POST",
         body: dataParameter?.body,
-        params: dataParameter?.params,
+        // params: dataParameter?.params,
       }),
       invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),

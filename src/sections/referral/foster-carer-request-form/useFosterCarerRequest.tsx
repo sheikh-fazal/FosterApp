@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { SELECT_FILTERS, tableData } from ".";
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const useFosterCarerRequest = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const theme = useTheme()
   const [cancelDelete, setCancelDelete] = useState(false);
 
   const handleDelete = () => {
@@ -137,5 +138,6 @@ export const useFosterCarerRequest = () => {
     SELECT_FILTERS,
     tableData,
     columns,
+    theme
   };
 };

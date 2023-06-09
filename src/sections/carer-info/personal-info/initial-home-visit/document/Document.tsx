@@ -13,11 +13,12 @@ const Document = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
+    onDeleteConfirm
   } = useDocument();
 
   return (
     <UploadDocuments
-      readOnly={user?.defaultRole !== "FOSTER_CARER"}
+      readOnly={user?.defaultRole === "FOSTER_CARER"}
       tableData={data?.initialDocuments}
       isLoading={isLoading}
       column={[
@@ -41,6 +42,7 @@ const Document = () => {
       onPageChange={(data: any) => {
         setPage((page) => data - 1);
       }}
+      onDelete={(data:any) => onDeleteConfirm(data)}
     />
   );
 };

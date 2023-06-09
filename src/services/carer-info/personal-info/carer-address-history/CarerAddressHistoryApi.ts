@@ -3,7 +3,19 @@ import { baseAPI, TAGS } from "@root/services/baseApi";
 export const carerAddressHistoryApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllHistory: builder.query({
-      query: (params: any) => "/carer-address-history",
+      query: ({ params }: any) => ({
+        url: "/carer-address-history",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["POST_CARER_ADDRESS"],
+    }),
+    getHistory: builder.query({
+      query: ({ id }: any) => ({
+        url: `/carer-address-history/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["POST_CARER_ADDRESS"],
     }),
     postAddressHistory: builder.mutation({
       query: ({ formData }: any) => ({
@@ -11,26 +23,29 @@ export const carerAddressHistoryApi = baseAPI.injectEndpoints({
         method: "Post",
         body: formData,
       }),
+      invalidatesTags: ["POST_CARER_ADDRESS"],
     }),
     updateAddressHistory: builder.mutation({
       query: ({ id, formData }: any) => ({
-        url: `/carer-address-history`,
+        url: `/carer-address-history/${id}`,
         method: "Put",
         body: formData,
       }),
+      invalidatesTags: ["POST_CARER_ADDRESS"],
     }),
     deleteAddressHistory: builder.mutation({
       query: (id: any) => ({
         url: `/carer-address-history/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["INCIDENT_LIST"],
+      invalidatesTags: ["POST_CARER_ADDRESS"],
     }),
   }),
 });
 
 export const {
   useGetAllHistoryQuery,
+  useGetHistoryQuery,
   useDeleteAddressHistoryMutation,
   usePostAddressHistoryMutation,
   useUpdateAddressHistoryMutation,

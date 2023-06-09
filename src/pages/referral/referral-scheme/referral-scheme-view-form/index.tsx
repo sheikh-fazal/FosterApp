@@ -9,19 +9,19 @@ import ReferralSchemeAddForm from "@root/sections/referral/referral-scheme/refer
 import UploadDocumentsTable from "@root/sections/referral/referral-scheme/eligiblity-criteria-document/UploadDocumentsTable";
 
 const PAGE_TITLE = "Referral Scheme";
-export const ReferralSchemeTabsData = [ "Scheme Details","Eligiblity Criteria - Document",];
+export const ReferralSchemeTabsData = ["Scheme Details", "Eligiblity Criteria - Document",];
 ReferralScheme.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
-        icon: <HomeIcon />,
-        name: "Referral",
-        href: "/referral/referral-scheme",
+          icon: <HomeIcon />,
+          name: "Referral",
+          href: "/referral",
         },
         {
-        name: "Referral Scheme",
+          name: "Referral Scheme",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,9 +38,9 @@ export default function ReferralScheme() {
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={ReferralSchemeTabsData}>
-            <ReferralSchemeAddForm disabled/>
-            <UploadDocumentsTable disabled/>
-     </HorizaontalTabs>
+        <ReferralSchemeAddForm disabled />
+        <UploadDocumentsTable disabled />
+      </HorizaontalTabs>
     </Page>
   );
 }

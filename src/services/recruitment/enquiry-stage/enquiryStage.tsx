@@ -6,13 +6,16 @@ export const enquiryStageAllApi: any = baseAPI.injectEndpoints({
       query: (id: string) => `/enquiry-stage/enquiry-stage/${id}`,
     }),
     patchEnquiryStageStatus: builder.mutation({
-      query: ({ userId, point, status }: any) => ({
-        url: `enquiry-stage/enquiry-stage/${userId}?enquiryStage=${point}&status=${status}`,
-        method:'PATCH',
+      query: ({ userId, body }: any) => ({
+        url: `enquiry-stage/enquiry-stage/${userId}?enquiryStage=${body?.point}&status=${body?.status}`,
+        method: "PATCH",
         // body:{}
       }),
     }),
   }),
 });
 
-export const { useGetEnquiryStageStatusQuery,usePatchEnquiryStageStatusMutation } = enquiryStageAllApi;
+export const {
+  useGetEnquiryStageStatusQuery,
+  usePatchEnquiryStageStatusMutation,
+} = enquiryStageAllApi;

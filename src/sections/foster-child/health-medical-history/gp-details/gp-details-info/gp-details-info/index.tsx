@@ -1,5 +1,4 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import { HEAREDABOUTAGENCY } from "@root/dropdown-data/hearAboutAgency";
 import * as Yup from "yup";
 
 export const gpDetailsInfoFormValues = {
