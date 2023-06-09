@@ -15,12 +15,21 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (response: any) => {
-        const genForms = generateLocalFormsStatuses("specialities");
+        const lastCompletedForm =
+          response?.data?.nextProperty || "personalInfo";
+        const genForms = generateLocalFormsStatuses(lastCompletedForm);
         return {
           forms: genForms,
-          activeFormName: "specialities",
+          activeFormName: lastCompletedForm,
         };
       },
+    }),
+    getProfileProgressInfo: builder.query({
+      query: () => ({
+        url: "user-profile/progress-bar",
+        method: "GET",
+      }),
+      providesTags: [TAG],
     }),
     getPersonalInfo: builder.query({
       query: () => ({
@@ -98,6 +107,7 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
 });
 
 export const {
+  useGetProfileProgressInfoQuery,
   useGetProfileStatusQuery,
   useLazyGetPersonalInfoQuery,
   useUpdatePersonalInfoMutation,

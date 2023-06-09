@@ -1,8 +1,6 @@
-import { Box } from "@mui/material";
-import TableAction from "@root/components/TableAction";
+
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
-import router from "next/router";
 import * as Yup from "yup";
 
 export const SchoolDeatilInfoFormData = [
@@ -132,67 +130,5 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
   principalName: Yup.string().trim().required("Principal Name is Required"),
 });
 
-export const columns = [
-  {
-    accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-    id: "name",
-    cell: (info: any) => info.getValue(),
-    header: "School Name",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.relation,
-    id: "relation",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Principal Name",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => (row?.livingAtHome ? "Yes" : "No"),
-    id: "livingAtHome",
-    cell: (info: any) => info.getValue(),
-    header: "Action",
-    isSortable: true,
-  },
-  {
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        {/* Can move it outside of the table if need arises */}
-
-        <TableAction
-          type="delete"
-          onClicked={() => {
-            console.log("delete this", info.row.original);
-            alert("delete");
-          }}
-          size="small"
-        />
-
-        <TableAction
-          type="edit"
-          onClicked={() =>
-            router.push(
-              `/foster-child/education-records/school-detail-info/edit-school-detail?${info.getValue()}`
-            )
-          }
-          size="small"
-        />
-
-        <TableAction
-          type="view"
-          onClicked={() =>
-            router.push(
-              `/foster-child/education-records/school-detail-info/view-school-detail?${info.getValue()}`
-            )
-          }
-          size="small"
-        />
-      </Box>
-    ),
-    header: "Actions",
-    isSortable: false,
-  },
-];
 
 export { default as SchoolDetailInfoTable } from "./SchoolDetailInfoTable";

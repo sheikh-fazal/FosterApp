@@ -35,7 +35,7 @@ const PanelActionsComments = () => {
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}
-        rootSX={{ my: theme.spacing(2), mt: 0 }}
+        rootSX={{ my: theme.spacing(2)}}
       />
       <DeleteModel open={isDeleteModal} handleClose={handleClose} />
     </Card>

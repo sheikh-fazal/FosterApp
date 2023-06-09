@@ -2,7 +2,7 @@ import { Children } from "react";
 import { Tabs, Tab, Typography, useTheme, Box, Card } from "@mui/material";
 
 const CustomHorizaontalTab = (props: any) => {
-  const { tabsArray = [], currentTab = 0, setCurrentTab = () => { }, children } = props;
+  const { tabsArray = [], currentTab = 0, setCurrentTab = () => { }, isDisabled, children } = props;
   const arrayChildren = Children.toArray(children);
   const theme: any = useTheme();
 
@@ -20,6 +20,7 @@ const CustomHorizaontalTab = (props: any) => {
         {tabsArray?.map((title: string) => (
           <Tab
             wrapped
+            disabled={isDisabled}
             key={title}
             label={
               <Typography

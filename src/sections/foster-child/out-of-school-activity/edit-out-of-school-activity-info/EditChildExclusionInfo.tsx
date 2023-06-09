@@ -2,7 +2,8 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { NewTrainingProfileData } from ".";
+// Couldn't find this. Please fix this
+// import { NewTrainingProfileData } from ".";
 import useViewChildExclusionInfo from "./useEditChildExclusionInfo";
 
 const EditChildExclusionInfo = (props: any) => {
@@ -15,7 +16,7 @@ const EditChildExclusionInfo = (props: any) => {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {NewTrainingProfileData?.map((form: any) => {
+          {/* {NewTrainingProfileData?.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
@@ -37,7 +38,7 @@ const EditChildExclusionInfo = (props: any) => {
                 </>
               </Grid>
             );
-          })}
+          })} */}
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">

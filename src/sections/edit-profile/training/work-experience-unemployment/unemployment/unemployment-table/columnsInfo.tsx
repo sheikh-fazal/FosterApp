@@ -8,7 +8,7 @@ export const getColumns = (parms: any) => {
     {
       accessorFn: (row: any) => row.leavingReason,
       id: "resForUnemplo",
-      cell: (info: any) => shortName(info.getValue()),
+      cell: (info: any) => shortName(info.getValue(), 10),
       header: "Reason",
       isSortable: false,
     },
