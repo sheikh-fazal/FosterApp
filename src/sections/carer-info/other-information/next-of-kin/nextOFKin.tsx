@@ -13,20 +13,23 @@ const activepath = "/carer-info/other-information/next-of-kin/action";
 const NextOFKin = () => {
   const {
     nextOfKinList,
+    nextOfKinListMeta,
     nextOfKinIsloading,
     nextOfKinIsSuccess,
     nextOfKinIsFetching,
     nextOfKinIsError,
+    setSearch,
+    pageChangeHandler,
   } = useNextOfKinTable();
   const { deleteHander } = useNextOfKinForm({});
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
+    {
+      accessorFn: (row: any) => row?.id,
+      id: "id",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: () => <span>Sr.No</span>,
+      isSortable: false,
+    },
     {
       accessorFn: (row: any) => `${row.firstName} ${row.lastName ?? "-"}`,
       id: "personName",
@@ -73,7 +76,7 @@ const NextOFKin = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: { action: "edit", id: info.row.original.id },
                 });
               }}
             />
@@ -84,7 +87,7 @@ const NextOFKin = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: { action: "view", id: info.row.original.id },
                 });
               }}
             />
@@ -107,7 +110,9 @@ const NextOFKin = () => {
                   title="Next of Kin"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
@@ -125,9 +130,9 @@ const NextOFKin = () => {
                 isSuccess={nextOfKinIsSuccess}
                 isPagination={true}
                 showSerialNo={false}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
+                totalPages={nextOfKinListMeta?.pages ?? 0}
+                currentPage={nextOfKinListMeta?.page ?? 1}
+                onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>

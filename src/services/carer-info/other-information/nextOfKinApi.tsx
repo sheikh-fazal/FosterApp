@@ -11,11 +11,10 @@ export const nextOfKin = baseAPI.injectEndpoints({
     }),
     nextofkinListBYID: builder.query({
       query: (payload: any) => ({
-        url: "/carer-other-info/next-of-kin",
+        url: `/carer-other-info/next-of-kin/${payload}`,
         method: "GET",
         params: payload,
       }),
-      providesTags: ["NEXT-OF-KIN"],
     }),
     nextofkinDelete: builder.mutation({
       query: (payload: any) => ({
@@ -27,9 +26,9 @@ export const nextOfKin = baseAPI.injectEndpoints({
     }),
     nextofkinPatch: builder.mutation({
       query: (payload: any) => ({
-        url: "/carer-other-info/next-of-kin/",
-        method: "Patch",
-        params: payload,
+        url: `/carer-other-info/next-of-kin/${payload.id}`,
+        method: "PATCH",
+        body: payload.formData,
       }),
       invalidatesTags: ["NEXT-OF-KIN"],
     }),

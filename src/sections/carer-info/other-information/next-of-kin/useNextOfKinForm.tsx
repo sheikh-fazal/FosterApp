@@ -7,6 +7,8 @@ import {
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
 import { formatters, nextofkinFormValues } from ".";
+import dayjs from "dayjs";
+import router from "next/router";
 
 const useNextOfKinForm = (props: any) => {
   const { action, id } = props;
@@ -20,12 +22,14 @@ const useNextOfKinForm = (props: any) => {
   const [nextofkinDelete] = useNextofkinDeleteMutation();
   //FUNCTIONS
   const SubmitData = (data: any) => {
-    console.log(data);
     let formData = new FormData();
     for (var key in data) {
-      formData.append(key, data[key]);
+      if (data[key] === data["date"]) {
+        formData.append(key, dayjs(data[key]).format("YYYY-MM-DD"));
+      } else {
+        formData.append(key, data[key]);
+      }
     }
-
     setisFatching(true);
     if (action === "add") {
       nextofkinPost(formData)
@@ -35,6 +39,7 @@ const useNextOfKinForm = (props: any) => {
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
+          router.push("/carer-info/other-information/next-of-kin/");
         })
         .catch((error: { data: { message: any } }) => {
           setisFatching(false);
@@ -42,13 +47,18 @@ const useNextOfKinForm = (props: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
         });
     } else if (action === "edit") {
-      nextofkinPatch(formData)
+      const payload = {
+        id,
+      formData,
+      };
+      nextofkinPatch(payload)
         .unwrap()
         .then(() => {
           setisFatching(false);
           enqueueSnackbar("Information Updated Successfully", {
             variant: "success",
           });
+          router.push("/carer-info/other-information/next-of-kin/");
         })
         .catch((error: { data: { message: any } }) => {
           setisFatching(false);
@@ -61,8 +71,12 @@ const useNextOfKinForm = (props: any) => {
   };
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
+    setisloading(true);
+
     if (action === "view" || action === "edit") {
-      const { data, isError } = await nextofkinListBYID(id, true);
+      const { data, isError } = await nextofkinListBYID(id);
+      console.log(data, "data");
+
       setisloading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });

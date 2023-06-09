@@ -57,8 +57,14 @@ const NextOfKinForm = (props: any) => {
                             {...form.otherOptions}
                             disabled={action === "view" ? true : false}
                             InputLabelProps={{
-                              shrink: action === "view" ? true : undefined,
-                              disabled: action === "view" ? true : undefined,
+                              shrink:
+                                action === "view" || action === "edit"
+                                  ? true
+                                  : undefined,
+                              disabled:
+                                action === "view" || action === "edit"
+                                  ? true
+                                  : undefined,
                             }}
                           />
                         )}
