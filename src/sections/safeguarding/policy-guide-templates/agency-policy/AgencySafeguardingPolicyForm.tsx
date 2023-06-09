@@ -28,7 +28,7 @@ export default function CarerAddressHistoryForm(props: any) {
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
-          <RHFUploadFile name="updatePhoto" {...methods} required />
+          <RHFUploadFile name="updatePhoto" {...methods} disabled={props.disabled} required />
         </Grid>
         {formData.map((form: any, i: any) => {
           return (
