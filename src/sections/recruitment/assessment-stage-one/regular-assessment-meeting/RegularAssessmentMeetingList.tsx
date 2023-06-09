@@ -35,7 +35,7 @@ const RegularAssessmentMeetingList = (props: any) => {
 
       label: "Attendees",
 
-      options: [{ label: "All", value: "all" }, ...filteredAttendees],
+      options: [{ label: "All", value: "" }, ...filteredAttendees],
     },
   ];
   const meetingListColumns = [

@@ -1,20 +1,24 @@
 import { useTheme } from "@mui/material";
 import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 import { ENQUIRYSTAGEDATA } from "./index";
-// import { useGetEnquiryStageStatusQuery } from "@root/services/recruitment/enquiry-stage/enquiryStage";
+import { useGetEnquiryStageStatusQuery } from "@root/services/recruitment/enquiry-stage/enquiryStage";
+
 // import { useRouter } from "next/router";
 import React from "react";
 
 export const useEnquiryStage = () => {
-  const [enquiryStageData] = React.useState(ENQUIRYSTAGEDATA)
+  const [enquiryStageData] = React.useState(ENQUIRYSTAGEDATA);
   // const router = useRouter()
   // const {_id}= router.query
-  // console.log(_id);
 
-  // // const _id = "123";
-  // const { data, isLoading, isError, isFetching, isSuccess } = useGetEnquiryStageStatusQuery({ id: _id });
-
-  // console.log(data, isLoading, isError, isFetching, isSuccess);
+  const id = "4f7512fb-2916-451b-8240-97f529ded73d";
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetEnquiryStageStatusQuery(id);
+    const enquiryStageDatas = data?.data
+  // const statusObj = {
+  //   initialContent:
+  // };
+  // console.log(data?.data);
   const [patchData] = usePatchEnquiryStageStatusMutation({});
   // patchData({ userId: 123, point: "initialContact", status: "Passed" });
   const theme: any = useTheme();
@@ -34,7 +38,8 @@ export const useEnquiryStage = () => {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     patchData,
-    enquiryStageData
+    enquiryStageData,
+    enquiryStageDatas,
     // isLoading,
     // isError,
     // isFetching,
