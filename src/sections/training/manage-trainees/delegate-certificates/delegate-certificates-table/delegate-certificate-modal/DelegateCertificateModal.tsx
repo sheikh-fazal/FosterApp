@@ -57,36 +57,43 @@ const styles = StyleSheet.create({
     presentTo: {
         fontSize: 20,
         fontWeight: 300,
+        margin: "0 auto",
         marginBottom: "27px",
     },
     name: {
         fontSize: 38,
         fontWeight: 500,
+        margin: "0 auto",
         marginBottom: "41px",
     },
     course: {
         fontSize: 18,
         fontWeight: 300,
+        margin: "0 auto",
         marginBottom: "10px",
     },
     courseDate: {
         fontSize: 18,
         fontWeight: 300,
+        margin: "0 auto",
         marginBottom: "20px",
     },
     at: {
         fontSize: 14,
         fontWeight: 300,
+        margin: "0 auto",
         marginBottom: "15px",
     },
     facilitator: {
         fontSize: 14,
         fontWeight: 300,
+        margin: "0 auto",
         marginBottom: "20px",
     },
     facilitatorDate: {
         fontSize: 20,
         fontWeight: 400,
+        margin: "0 auto",
         marginBottom: "20px",
     },
 
@@ -149,7 +156,8 @@ const DelegateCertificateModal = (props: any) => {
 
                                     {certificateData.map((item: any) => {
                                         return (
-                                            <div key={item.id}>
+                                            <div key={item.id} >
+
                                                 < Text style={styles.presentTo}>Proudly Presented To</Text>
                                                 <Text style={styles.name}>{item.name}</Text>
                                                 <Text style={styles.course}>
@@ -161,6 +169,7 @@ const DelegateCertificateModal = (props: any) => {
                                                     Facilitator: {item.facilitator}
                                                 </Text>
                                                 <Text style={styles.facilitatorDate}>{item.certificateDate}</Text>
+
                                             </div>
                                         )
                                     })}
