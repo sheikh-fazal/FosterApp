@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import SafeCarePolicy from "../../../../../sections/foster-child/other-information/safe-care-policy-list/SafeCarePolicyList";
+import SafeCarePolicy from "@root/sections/foster-child/other-information/safe-care-policy-list/safe-care-policy/SafeCarePolicy";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -40,8 +40,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 export default function InitialHomeVisit() {
   return (
     <Page title={PAGE_TITLE}>
-      Safe Care Policy
-      {/* <SafeCarePolicy /> */}
+      <SafeCarePolicy />
     </Page>
   );
 }

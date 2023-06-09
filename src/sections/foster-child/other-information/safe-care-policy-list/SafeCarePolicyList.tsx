@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSafeCarePolicy } from "./useSafeCarePolicy";
+import { useSafeCarePolicyList } from "./useSafeCarePolicyList";
 import { Box } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -32,7 +32,7 @@ const SafeCarePolicyList = () => {
     isError,
     isFetching,
     setSearchValue,
-  } = useSafeCarePolicy();
+  } = useSafeCarePolicyList();
   return (
     <Box>
       <TableHeader
