@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home"; 
+import HomeIcon from "@mui/icons-material/Home";
 import PanelChair from "@root/sections/panel/panel-tools/panel-chair/PanelChair";
 
 // =======================================================================================
 
-const PAGE_TILE = "View Panel Dashboard";
+const PAGE_TILE = "Panel Minutes-Chair";
 
 Chair.getLayout = function getLayout(page: any) {
   return (
@@ -15,11 +15,15 @@ Chair.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
+          name: "",
+          href: "/",
+        },
+        {
           name: "Panel",
           href: "/panel",
         },
         {
-          name: "Panel Dashboard",
+          name: "Panel Minutes",
         },
       ]}
       title={PAGE_TILE}

@@ -15,7 +15,7 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
       <Grid container columnSpacing={4}>
         {SafeguardingAssessmentAddForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <Typography sx={{ fontSize: "16px !important", fontWeight: "600 !important" }} variant="h6" gutterBottom>{item.title}</Typography>
+            <Typography sx={{ fontSize: "16px !important", fontWeight: "400 !important" }} variant="h6" gutterBottom>{item.title}</Typography>
 
 
             <item.component
@@ -48,8 +48,9 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
 
           </Grid>
         ))}
-        {!disabled && (
-          <Grid item xs={12}>
+
+        <Grid item xs={12}>
+          {!disabled && (
             <LoadingButton
               type="submit"
               variant="contained"
@@ -58,16 +59,17 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
             >
               Submit
             </LoadingButton>
-            <Link
-              href={"/safeguarding/safeguarding-tools/safeguarding-assessment-tool"}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
-          </Grid>
-        )}
+          )}
+          <Link
+            href={"/safeguarding/safeguarding-tools/safeguarding-assessment-tool"}
+            style={{ textDecoration: "none" }}
+          >
+            <Button type="button" variant="contained">
+              Back
+            </Button>
+          </Link>
+        </Grid>
+
       </Grid>
     </FormProvider>
   );

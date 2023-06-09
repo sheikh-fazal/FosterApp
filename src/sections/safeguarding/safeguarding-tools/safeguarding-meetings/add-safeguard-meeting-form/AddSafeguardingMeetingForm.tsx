@@ -1,11 +1,7 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
 import AddSafeguardingMeetingTable from './add-safeguard-meeting-form-table/AddSafeguardingMeetingTable';
-import { AddSafeguardingMeetingFormData, defaultValues, AddSafeguardingMeetingFormValidationSchema } from ".";
-import { enqueueSnackbar } from "notistack";
+import { AddSafeguardingMeetingFormData } from ".";
 import { Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { useAddSafeguardingMeetingForm } from "./useAddSafeguardingMeetingForm";
@@ -45,7 +41,7 @@ export default function AddSafeguardingMeetingForm() {
               href={"/safeguarding/safeguarding-tools/safeguarding-meetings"}
               style={{ textDecoration: "none" }}
             >
-              <Button type="button" variant="contained">
+              <Button type="button" variant="contained" sx={styles.submitButton}>
                 Back
               </Button>
             </Link>
@@ -57,3 +53,8 @@ export default function AddSafeguardingMeetingForm() {
   )
 }
 
+const styles = {
+  label: (theme: any) => ({ fontWeight: 600, mb: 0.2, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }),
+  title: (theme: any) => ({ fontSize: "16px", fontWeight: 700, margin: 0, color: theme.palette.primary.main }),
+  submitButton: { backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F" }, }
+}

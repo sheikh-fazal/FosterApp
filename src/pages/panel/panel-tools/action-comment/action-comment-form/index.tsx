@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home"; 
 import PanelActionsForm from "@root/sections/panel/panel-tools/panel-actions-comments/panel-actions-form/PanelActionsForm";
 
-// =============================================================================================================
+// ===================================================================================================
 
 const PAGE_TILE = "Add Panel Actions/Comments";
 
@@ -15,7 +15,10 @@ Agenda.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Panel",
+          href: "/dashboard",
+        },
+        {
+          name:'Panel',
           href: "/panel/panel-tools/action-comment",
         },
         {
