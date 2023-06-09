@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import SecondOpinin from "@root/sections/reports/carer-report/second-opinion/SecondOpinin";
 
 const PAGE_TITLE = "Reports";
 
@@ -38,7 +39,7 @@ SecondOpinionLayout.getLayout = function getLayout(page: any) {
 export default function SecondOpinionLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <SecondOpinin/>
     </Page>
   );
 }

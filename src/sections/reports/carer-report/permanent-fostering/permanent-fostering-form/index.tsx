@@ -8,25 +8,17 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SignaturePad from "@root/components/SignaturePad";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-export const ParentAndChildFormDefaultValues = {
+export const PermanentFosteringFormDefaultValues = {
   nameOfApplicants: "Jamie",
-  applicantsMotivation:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
   applicantsUndersanding:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  accommodation:
+  expectationLeftHome:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  availableProvide:
+  fosteringAllowances:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  applicantsAccept:
+  permanentFostering:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  protectionAwarence:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  workCloselySensitively:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  provideObjective:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
-  parentChildTraining:
+  futureLifePlans:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget auctor massa, eu egestas metus. Aenean imperdiet consequat tellus vel blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vel laoreet libero. Vivamus quis leo sem. Vestibulum elit justo, porta a pharetra nec, bibendum eget arcu. Cras lorem augue, auctor a mauris et, efficitur venenatis odio.",
   summary: "",
   socialWorker: "",
@@ -44,7 +36,7 @@ export const ParentAndChildFormDefaultValues = {
   updateMeetingRecord: null,
 };
 
-export const ParentAndChildFormData = [
+export const PermanentFosteringFormValues = [
   {
     gridLength: 6,
     componentProps: {
@@ -57,21 +49,8 @@ export const ParentAndChildFormData = [
   },
   {
     gridLength: 12,
-    title: `What is the applicant(s) motivation to do parent and child fostering? What do
-    they feel will be the rewards for them? *`,
-    componentProps: {
-      name: "applicantsMotivation",
-      multiline: true,
-      minRows: 3,
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
-  {
-    gridLength: 12,
-    title: `What is the applicant(s) understanding of what this kind of placement involves,
-    and how will this impact on all family members? *`,
+    title: `What is the applicant(s) understanding of the term “permanence” and what is
+    their motivation to offer a child a “forever home”?*`,
     componentProps: {
       name: "applicantsUndersanding",
       multiline: true,
@@ -83,10 +62,11 @@ export const ParentAndChildFormData = [
   },
   {
     gridLength: 12,
-    title: `Is the accommodation suitable for parent and child fostering, and how will the
-    applicant(s) manage another adult living in their home?*`,
+    title: `How do the applicant(s) feel about the child living with them into adulthood in
+    the same way that many birth children do? What is the expectation after they
+    have left home?*`,
     componentProps: {
-      name: "accommodation",
+      name: "expectationLeftHome",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -96,10 +76,11 @@ export const ParentAndChildFormData = [
   },
   {
     gridLength: 12,
-    title: `Could the applicant(s) be available to provide an appropriate level of
-    supervision to ensure the safety of the child at all times?*`,
+    title: `How would the applicant(s) be affected if fostering allowances ceased to be
+    available because of the young adult’s age? What thought has been given to
+    including the child in wills or contributing to wedding costs and the like?*`,
     componentProps: {
-      name: "availableProvide",
+      name: "fosteringAllowances",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -109,10 +90,10 @@ export const ParentAndChildFormData = [
   },
   {
     gridLength: 12,
-    title: `Could the applicant(s) accept “good enough” parenting, and will they be
-    comfortable allowing the parent to be the primary carer?*`,
+    title: `How will permanent fostering impact on, and be experienced by, individual
+    members of the family and extended family?*`,
     componentProps: {
-      name: "applicantsAccept",
+      name: "permanentFostering",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -122,10 +103,10 @@ export const ParentAndChildFormData = [
   },
   {
     gridLength: 12,
-    title: `Do the applicant(s) have good child protection awareness, including up to date
-    training, and the confidence to intervene where necessary?*`,
+    title: `What age, gender and personality of child would likely fit best with the
+    applicant(s) and their family? How will this fit with any future life plans?*`,
     componentProps: {
-      name: "protectionAwarence",
+      name: "futureLifePlans",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -133,44 +114,7 @@ export const ParentAndChildFormData = [
     component: RHFTextField,
     md: 6,
   },
-  {
-    gridLength: 12,
-    title: `Could the applicant(s) work closely and sensitively with birth parents in the context,
-    including providing support and sharing any concerns?*`,
-    componentProps: {
-      name: "workCloselySensitively",
-      multiline: true,
-      minRows: 3,
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
-  {
-    gridLength: 12,
-    title: `Do the applicant(s) have the ability to provide objective, evidance-based written records,
-     and give evidence in court about these if necessary?*`,
-    componentProps: {
-      name: "provideObjective",
-      multiline: true,
-      minRows: 3,
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
-  {
-    gridLength: 12,
-    title: `What specific parent and child training or preparation has been provided for the applicant(s)?*`,
-    componentProps: {
-      name: "parentChildTraining",
-      multiline: true,
-      minRows: 3,
-      sx: { mb: 4 },
-    },
-    component: RHFTextField,
-    md: 6,
-  },
+
   {
     gridLength: 12,
     title: `Summary*`,

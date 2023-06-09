@@ -3,11 +3,11 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import ParentAndChildForm from "@root/sections/reports/carer-report/parent-and-child/parent-and-child-form.tsx/ParentAndChildForm";
+import PermanentFosteringForm from "@root/sections/reports/carer-report/permanent-fostering/permanent-fostering-form/PermanentFosteringForm";
 
 const PAGE_TITLE = "Reports";
 
-ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
+PermanentFosteringLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -26,7 +26,7 @@ ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Parent And Child Reports",
+          name: "Permanent Fostering Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -37,12 +37,12 @@ ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function ParentAndChildFormLayout() {
+export default function PermanentFosteringLayout() {
   const router = useRouter();
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-     <ParentAndChildForm action={action} id={id}/>
+      <PermanentFosteringForm action={action} id={id}/>
     </Page>
   );
 }

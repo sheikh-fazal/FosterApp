@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import ParentAndChildForm from "@root/sections/reports/carer-report/parent-and-child/parent-and-child-form.tsx/ParentAndChildForm";
+import HomeIcon from "@mui/icons-material/Home";
+import SecondOpinionForm from "@root/sections/reports/carer-report/second-opinion/second-opinion-form/SecondOpinionForm";
 
 const PAGE_TITLE = "Reports";
 
-ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
+SecondOpinionLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -26,7 +26,7 @@ ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Parent And Child Reports",
+          name: "Second Opinion Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -37,12 +37,12 @@ ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function ParentAndChildFormLayout() {
+export default function SecondOpinionLayout() {
   const router = useRouter();
   const { action, id } = router.query;
   return (
-    <Page title={PAGE_TITLE}>
-     <ParentAndChildForm action={action} id={id}/>
+    <Page title={PAGE_TITLE} >
+     <SecondOpinionForm action={action} id={id}/>
     </Page>
   );
 }

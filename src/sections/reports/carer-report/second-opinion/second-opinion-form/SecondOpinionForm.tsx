@@ -1,19 +1,19 @@
 import { Box, Card, Grid, Typography } from "@mui/material";
 import React from "react";
-
 import { FormProvider } from "@root/components/hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-import { ParentAndChildFormData } from ".";
-import { useParentAndChildForm } from "./useParentAndChildForm";
+import { SecondOpinionFormValues } from ".";
+import { usePermanentFosteringForm } from "./useSecondOpinionForm";
 
-const ParentAndChildForm = ({ action }: any) => {
+const SecondOpinionForm = ({ action }: any) => {
+  console.log("action" , action)
   const disabled = action === "view" ? true : false;
-  const { methods } = useParentAndChildForm();
+  const { methods } = usePermanentFosteringForm();
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods}>
         <Grid container columnSpacing={4}>
-          {ParentAndChildFormData?.map((form: any, i: any) => (
+          {SecondOpinionFormValues?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.gridLength} key={i}>
                <Typography sx={(theme) => styles.title(theme, disabled)}>
                 {form.title}
@@ -56,7 +56,7 @@ const ParentAndChildForm = ({ action }: any) => {
   );
 };
 
-export default ParentAndChildForm;
+export default SecondOpinionForm;
 
 const styles = {
   title: (theme: any, disabled: any) => ({

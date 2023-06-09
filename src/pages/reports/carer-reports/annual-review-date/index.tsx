@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import AnnualReviewDate from "@root/sections/reports/carer-report/annual-review-date/AnnualReviewDate";
 
 const PAGE_TITLE = "Reports";
 
@@ -38,7 +39,7 @@ AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
 export default function AnnualReviewDateLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <AnnualReviewDate/>
     </Page>
   );
 }
