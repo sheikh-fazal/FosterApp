@@ -8,7 +8,8 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
                 url: "/foster-child/cla/list",
                 method: "GET",
                 params: search,
-            }),providesTags: ["cla_documentation_list"],
+            }),
+            providesTags: ["CLA_DOCUMENTATION_LIST"],
         })
     })
 })

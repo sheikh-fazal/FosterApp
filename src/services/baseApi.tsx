@@ -39,6 +39,7 @@ export const TAGS = [
   "POST_REFERENCE",
   "EDIT_REFERENCE",
   "POST_EMPLOYEE",
+  "CLA_DOCUMENTATION_LIST",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
