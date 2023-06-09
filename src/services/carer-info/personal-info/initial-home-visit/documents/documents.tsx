@@ -1,4 +1,4 @@
-import { baseAPI, TAGS } from "@root/services/baseApi";
+import { baseAPI} from "@root/services/baseApi";
 
 export const initialHomeDocumentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
@@ -15,10 +15,11 @@ export const initialHomeDocumentApi = baseAPI.injectEndpoints({
         `carer-Info/personal-info/initial-home-visit/documents/${params.id}`,
     }),
     deleteInitialHomeDocumentDataById: builder.mutation({
-      query: (params: any) => ({
-        url: `carer-Info/personal-info/initial-home-visit/documents/${params.id}`,
+      query: (apiParameter: any) => ({
+        url: `carer-Info/personal-info/initial-home-visit/documents/${apiParameter?.params?.id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["INITIAL_HOME_VISIT_DOCUMENTS"],
     }),
     postInitialHomeDocumentData: builder.mutation({
       query: (putDataParameter: any) => ({

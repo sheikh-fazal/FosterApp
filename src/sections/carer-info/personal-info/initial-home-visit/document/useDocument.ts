@@ -1,4 +1,5 @@
 import {
+  useDeleteInitialHomeDocumentDataByIdMutation,
   useGetInitialHomeDocumentDataQuery,
   usePostInitialHomeDocumentDataMutation,
 } from "@root/services/carer-info/personal-info/initial-home-visit/documents/documents";
@@ -15,6 +16,12 @@ export const useDocument = () => {
     postInitialHomeDocumentDataTrigger,
     postInitialHomeDocumentDataStatus,
   ] = usePostInitialHomeDocumentDataMutation();
+
+  const [
+    deleteInitialHomeDocumentDataByIdTrigger,
+    deleteInitialHomeDocumentDataByIdStatus,
+  ] = useDeleteInitialHomeDocumentDataByIdMutation();
+
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
@@ -54,6 +61,26 @@ export const useDocument = () => {
     }
   };
 
+  const onDeleteConfirm = async (data:any ) =>{ 
+    console.log(data.id)
+    const params = {
+      id:
+        data?.id,
+    };
+    const apiParameter = { params };
+    try {
+      const res: any = await deleteInitialHomeDocumentDataByIdTrigger(
+        apiParameter
+      ).unwrap();
+        enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  }
+
   return {
     setPage,
     setSearchValue,
@@ -64,5 +91,6 @@ export const useDocument = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
+    onDeleteConfirm
   };
 };

@@ -141,6 +141,7 @@ export default function InitialEnquiry() {
         isSuccess={true}
         column={["document", "documentType", "date", "personName", "password"]}
         modalData={documentUploadHandler}
+        onDelete={(data: any) => console.log("Deleting", data)}
         onPageChange={(page: any) => console.log("parent log", page)}
         currentPage={metaData?.page}
         totalPages={metaData?.pages}

@@ -1,6 +1,4 @@
-import { Box } from "@mui/material";
-import CustomTable from "@root/components/Table/CustomTable";
-import TableHeader from "@root/components/TableHeader";
+
 
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useDocuments } from "./useDocuments";
@@ -13,7 +11,6 @@ const Documents = () => {
     isLoading,
     isError,
     isSuccess,
-    user,
     isFetching,
     submitInitialHomeVisitDocument,
     query
