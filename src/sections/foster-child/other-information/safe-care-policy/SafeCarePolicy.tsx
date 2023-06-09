@@ -45,7 +45,7 @@ const SafeCarePolicy = () => {
         }}
       />
       <CustomTable
-        data={data?.data}
+        data={data}
         columns={columns}
         isLoading={isLoading}
         // showSerialNo
