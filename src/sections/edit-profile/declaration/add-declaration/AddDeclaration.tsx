@@ -84,6 +84,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
       }
     });
     return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch]);
   const onSubmit = async (data: any) => {
     // activateNextForm();
