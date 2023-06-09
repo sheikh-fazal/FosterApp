@@ -18,9 +18,9 @@ export const formSchema = Yup.object().shape({
 export const AddTrainingClockEngine = [
     {
         id: 1,
-        title: 'Parameters',
         componentProps: {
             name: "parameter",
+            label: 'Parameters',
             fullWidth: true,
             sx: { mb: 1 },
         },
@@ -29,9 +29,9 @@ export const AddTrainingClockEngine = [
     },
     {
         id: 2,
-        title: 'Settings',
         componentProps: {
             name: "settings",
+            label: 'Settings',
             fullWidth: true,
             select: true,
             sx: { mb: 1 },
@@ -45,9 +45,9 @@ export const AddTrainingClockEngine = [
     },
     {
         id: 3,
-        title: 'Description',
         componentProps: {
             name: "description",
+            label: 'Description',
             multiline: true,
             minRows: 3,
             sx: { mb: 2 },

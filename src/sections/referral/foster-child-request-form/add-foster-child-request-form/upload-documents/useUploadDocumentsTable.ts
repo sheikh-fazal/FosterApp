@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 export const useUploadDocumentsTableData = () => {
   const [IsDeleteModal, setIsDeleteModal] = useState(false);
   const [IsOpenDocuementModal, setIsOpenDocuementModal] = useState(false);
+  const [actionType, setActionType] = useState('add');
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+
   return {
     IsDeleteModal,
     setIsDeleteModal,
@@ -13,5 +15,7 @@ export const useUploadDocumentsTableData = () => {
     setIsOpenDocuementModal,
     tableHeaderRefTwo,
     router,
+    actionType,
+    setActionType
   };
 };

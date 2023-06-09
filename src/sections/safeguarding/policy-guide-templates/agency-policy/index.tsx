@@ -29,12 +29,9 @@ export const defaultValues = {
   lastModfifiedBy: "",
   // authorSignatureDate: "",
   // approverSignatureDate: "",
-  authorSignature: null,
-  approverSignature: null
+  authorSignature: "",
+  approverSignature: ""
 };
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-
-const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const FormSchema = Yup.object().shape({
   updatePhoto: Yup.mixed().required("Required"),
@@ -52,30 +49,30 @@ export const FormSchema = Yup.object().shape({
   approverSignatureDate: Yup.string().required("Field is required"),
   authorSignature: Yup.mixed()
     .nullable()
-    .required("Signature of Author is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature of Author is required"),
+  // .test(
+  //   "fileFormat",
+  //   "Unsupported Format",
+  //   (value: any) => value && FILE_FORMATS.includes(value.type)
+  // )
+  // .test(
+  //   "fileSize",
+  //   `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //   (value: any) => value && value.size <= MAX_FILE_SIZE
+  // ),
   approverSignature: Yup.mixed()
     .nullable()
-    .required("Signature of Approver is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+    .required("Signature of Approver is required"),
+  // .test(
+  //   "fileFormat",
+  //   "Unsupported Format",
+  //   (value: any) => value && FILE_FORMATS.includes(value.type)
+  // )
+  // .test(
+  //   "fileSize",
+  //   `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //   (value: any) => value && value.size <= MAX_FILE_SIZE
+  // ),
 });
 export const formData = [
   {
@@ -153,6 +150,7 @@ export const formData = [
       label: "Date of eSignature of Author",
       name: "authorSignatureDate",
       fullWidth: true,
+      sx:{mt:2.5}
     },
     component: RHFDatePicker,
   },
@@ -174,10 +172,12 @@ export const formData = [
   // },
   {
     gridLength: 6,
+    head: <br />,
     otherOptions: {
       label: "Date of eSignature of Approver",
       name: "approverSignatureDate",
       fullWidth: true,
+      sx:{mt:2.5}
     },
     component: RHFDatePicker,
   },

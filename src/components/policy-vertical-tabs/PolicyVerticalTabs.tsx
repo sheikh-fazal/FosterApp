@@ -52,6 +52,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
                       <Box sx={styles.tabLabel(item?.background)}>
                         <Box sx={styles.tabsIcon}>
                           <Image src={item.img} alt="" width={20} height={20} />
+                         
                         </Box>
                         <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
                           {item?.title.length > 46 ? `${item.title.slice(0, 46)}...` : item.title}
@@ -65,7 +66,7 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
           </Box>
         </Grid>
 
-        <Grid item md={8.5} xs={12}>
+        <Grid item md={8.5} xs={12} >
           {tabsDataArray?.map((item: any) => (
             <div
               role="tabpanel"
@@ -76,11 +77,11 @@ const PolicyVerticalTabs = ({ tabsDataArray, children, setActiveTab, handleAddTa
               {...other}
             >
               {!accordianChild ? (
-                <Card sx={{ px: 1, py: 2 }}>
+                <Box>
                   {arrayChildren?.map((child, index) => (
                     <Box key={index}>{value === index && child}</Box>
                   ))}
-                </Card>
+                </Box>
               ) : (
                 arrayChildren?.map((child, index) => <Box key={index}>{value === index && child}</Box>)
               )}
