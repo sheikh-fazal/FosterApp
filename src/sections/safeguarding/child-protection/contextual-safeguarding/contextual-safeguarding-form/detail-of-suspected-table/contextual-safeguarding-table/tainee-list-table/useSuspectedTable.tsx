@@ -4,12 +4,15 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import { defaultValues } from ".";
 import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 export const useSuspectedTable = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
+
+  const router = useRouter()
 
   const {
     handleSubmit,
@@ -25,6 +28,8 @@ export const useSuspectedTable = () => {
     setTableDate(JSON.stringify(data));
   };
 
+  const route = router.query.action;
+
   return {
     methods,
     handleSubmit,
@@ -35,5 +40,6 @@ export const useSuspectedTable = () => {
     isSubmitting,
     tableData,
     onClear,
+    route
   };
 };

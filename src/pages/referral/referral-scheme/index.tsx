@@ -20,7 +20,7 @@ ReferralScheme.getLayout = function getLayout(page: any) {
           href: "/referral",
         },
         {
-          name:"Referral Scheme"
+          name: "Referral Scheme"
         }
       ]}
       title={PAGE_TITLE}
@@ -31,10 +31,10 @@ ReferralScheme.getLayout = function getLayout(page: any) {
 };
 
 export default function ReferralScheme() {
-  // const theme = useTheme();
+  const theme = useTheme();
   return (
     <Page title={PAGE_TITLE}>
-      <ReferralSchemeTable/>
+      <ReferralSchemeTable />
     </Page>
   );
 }
@@ -43,4 +43,4 @@ export default function ReferralScheme() {
 
 
 
-<ReferralSchemeTable/>
+<ReferralSchemeTable />

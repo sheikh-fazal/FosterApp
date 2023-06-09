@@ -9,7 +9,7 @@ import { useSafeguardingTemplate } from "./useSafeguardingTemplate";
 import { formData } from ".";
 
 const SafeguardingTemplateForm = (props: any) => {
-  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, router } = useSafeguardingTemplate();
+  const { methods, handleSubmit, onSubmit, isSubmitting, router } = useSafeguardingTemplate();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -47,7 +47,6 @@ const SafeguardingTemplateForm = (props: any) => {
                 type="submit"
                 variant="contained"
                 loading={isSubmitting}
-                disabled={!isDirty}
               >
                 Submit
               </LoadingButton>

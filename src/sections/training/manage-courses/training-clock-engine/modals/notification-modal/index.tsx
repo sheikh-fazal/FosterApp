@@ -18,9 +18,9 @@ export const NotificationSettingsFormSchema = Yup.object().shape({
 export const NotificationSettings = [
     {
         id: 1,
-        title: 'Configuration Item',
         componentProps: {
             name: "configurationItem",
+            label: 'Configuration Item',
             fullWidth: true,
         },
         component: RHFTextField,
@@ -28,9 +28,9 @@ export const NotificationSettings = [
     },
     {
         id: 2,
-        title: 'Value',
         componentProps: {
             name: "value",
+            label: 'Value',
             fullWidth: true,
             select: true,
             // sx: { mb: 1 },
@@ -44,9 +44,9 @@ export const NotificationSettings = [
     },
     {
         id: 3,
-        title: 'Notification Type',
         componentProps: {
             name: "notificationType",
+            label: 'Notification Type',
             fullWidth: true,
             select: true,
            
@@ -71,9 +71,9 @@ export const NotificationSettings = [
     },
     {
         id: 4,
-        title: 'Description',
         componentProps: {
             name: "description",
+            label: 'Description',
             multiline: true,
             minRows: 3,
             sx: { mb: 2 },
