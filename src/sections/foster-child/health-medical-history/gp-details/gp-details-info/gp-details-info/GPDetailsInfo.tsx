@@ -6,7 +6,7 @@ import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const GPDetailsInfo = () => {
-  const { gpDetailsInfoFormData, methods, handleSubmit, submitGpDetailsInfoForm, getSingleGpDetailsInfoDataStatus, query } =
+  const { gpDetailsInfoFormData, methods, handleSubmit, submitGpDetailsInfoForm, getSingleGpDetailsInfoDataStatus, query, router } =
     useGPDetailsInfo();
     if (getSingleGpDetailsInfoDataStatus?.isLoading) return <SkeletonFormdata />;
   return (
@@ -43,6 +43,9 @@ const GPDetailsInfo = () => {
           <LoadingButton
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            onClick={()=> router.push(
+              `/foster-child/health-medical-history/gp-details/`
+            )}
             variant="contained">
             back
           </LoadingButton>
