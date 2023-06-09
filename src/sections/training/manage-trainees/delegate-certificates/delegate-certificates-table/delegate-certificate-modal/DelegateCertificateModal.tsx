@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
 
 const certificateData = [
     {
+        id: "1",
         name: "Clare O’Roberts",
         date: "10/09/2017 - 15/09/2017",
         address: "East ChinaTraining Ground",
@@ -148,7 +149,7 @@ const DelegateCertificateModal = (props: any) => {
 
                                     {certificateData.map((item: any) => {
                                         return (
-                                            <>
+                                            <Box key={item.id}>
                                                 < Text style={styles.presentTo}>Proudly Presented To</Text>
                                                 <Text style={styles.name}>{item.name}</Text>
                                                 <Text style={styles.course}>
@@ -160,7 +161,7 @@ const DelegateCertificateModal = (props: any) => {
                                                     Facilitator: {item.facilitator}
                                                 </Text>
                                                 <Text style={styles.facilitatorDate}>{item.certificateDate}</Text>
-                                            </>
+                                            </Box>
                                         )
                                     })}
                                 </View>
