@@ -16,8 +16,10 @@ import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
+import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 
-const ANON_FUNC = () => {};
+
+const ANON_FUNC = () => { };
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -126,6 +128,7 @@ export default function FormTable(props: any) {
   const [actionData, setActionData] = useState<any>(null);
   const [viewModal, setViewModal] = useState(false);
   const [shareModal, setShareModal] = useState(false);
+  const [certificateModal, setCertificateModal] = useState(false);
 
   /* Set up formatters for updating the display data */
   const formatters: any = {};
@@ -147,57 +150,77 @@ export default function FormTable(props: any) {
     };
   });
 
-  columns.push({
-    id: "actions",
-    cell: (info: any) => (
-      <Box
-        sx={{
-          display: "flex",
-          gap: "12px",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {view && (
-          <TableAction
-            type="view"
-            onClicked={(id: number) => onViewHandler(info.row.index)}
-          />
-        )}
-        {print && (
-          <TableAction
-            type="print"
-            onClicked={(id: number) => window.print()}
-          />
-        )}
-        {share && (
-          <TableAction
-            type="share"
-            onClicked={() => setShareModal(!shareModal)}
-          />
-        )}
+  columns.push(
+    {
+      id: "Manage Certificate",
+      cell: (info: any) => (
+        <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }} onClick={() => {
+          setCertificateModal(true)
+        }}>
+          Delegate Certificate
+        </Box >
 
-        {route === "view" ? (
-          ""
-        ) : (
-          <>
+
+
+      ),
+      header: () => <span>Manage Certificate</span>,
+      isSortable: false,
+
+    },
+
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box
+          sx={{
+            display: "flex",
+            gap: "12px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {view && (
             <TableAction
-              type="edit"
-              onClicked={(id: number) =>
-                onViewHandler(info.row.index, "Update")
-              }
+              type="view"
+              onClicked={(id: number) => onViewHandler(info.row.index)}
             />
+          )}
+          {print && (
             <TableAction
-              type="delete"
-              onClicked={(id: number) => onDeleted(info.row.index)}
+              type="print"
+              onClicked={(id: number) => window.print()}
             />
-          </>
-        )}
-      </Box>
-    ),
-    header: () => <span>actions</span>,
-    isSortable: false,
-  });
+          )}
+          {share && (
+            <TableAction
+              type="share"
+              onClicked={() => setShareModal(!shareModal)}
+            />
+          )}
+
+          {route === "view" ? (
+            ""
+          ) : (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={(id: number) =>
+                  onViewHandler(info.row.index, "Update")
+                }
+              />
+              <TableAction
+                type="delete"
+                onClicked={(id: number) => onDeleted(info.row.index)}
+              />
+            </>
+          )}
+        </Box>
+      ),
+
+      header: () => <span>actions</span>,
+      isSortable: false,
+
+    });
 
   const handleShare = () => {
     setShareModal(false);
@@ -259,6 +282,7 @@ export default function FormTable(props: any) {
 
   return (
     <div>
+      {certificateModal && (<DelegateCertificateModal open={certificateModal} setOpen={setCertificateModal} />)}
       {shareModal && (
         <ShareModal
           open={shareModal}

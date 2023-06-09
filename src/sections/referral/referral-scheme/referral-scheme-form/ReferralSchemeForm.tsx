@@ -14,7 +14,6 @@ export default function ReferralSchemeAddForm({ disabled, }: any) {
       <Grid container columnSpacing={4}>
         {ReferralSchemeForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <Typography sx={{ fontSize: "16px !important", fontWeight: "600 !important" }} variant="h6" gutterBottom>{item.title}</Typography>
 
             <item.component
               {...item.componentProps}
