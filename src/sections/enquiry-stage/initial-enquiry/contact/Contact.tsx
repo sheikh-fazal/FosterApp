@@ -46,6 +46,8 @@ export default function Contact(props: any) {
             </Grid>
           );
         })}
+        {!disabled && <FormNotificationExtension />}
+        <br />
         {!disabled && (
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
@@ -54,7 +56,6 @@ export default function Contact(props: any) {
           </Grid>
         )}
       </Grid>
-      {!disabled && <FormNotificationExtension />}
     </FormProvider>
   );
   if (isError) return <Error />;

@@ -1,9 +1,18 @@
-import { useGetReferencesInfoQuery } from "@root/services/update-profile/reference/referenceApi";
+import {
+  displayErrorMessage,
+  displaySuccessMessage,
+} from "@root/sections/edit-profile/util/Util";
+import {
+  useDeleteRefernceMutation,
+  useGetReferencesInfoQuery,
+} from "@root/services/update-profile/reference/referenceApi";
+import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 
 export const useRefereneceTable = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetReferencesInfoQuery({});
+  const [deleteRefernce] = useDeleteRefernceMutation();
   const [tableStatusInfo, setTableStatusInfo] = useState({
     updateViewModel: false,
     updateId: "",
@@ -26,18 +35,17 @@ export const useRefereneceTable = () => {
       isDisabled: Boolean(disabled),
     }));
   };
-  // const closeViewModel = () => {
-  //   setTableStatusInfo((pre) => ({ ...pre, viewModel: false }));
-  // };
-  // const openViewModel = (id: string) => {
-  //   const tableRows = data?.data ?? [];
-  //   const indexOf = tableRows.findIndex(({ id: Id }: any) => Id === id);
-  //   setTableStatusInfo((pre) => ({
-  //     ...pre,
-  //     viewModel: true,
-  //     refFormDataHolder: tableRows[indexOf],
-  //   }));
-  // };
+
+  const delReference = async (id: string) => {
+    try {
+      const data = await deleteRefernce({ id });
+      displaySuccessMessage(data, enqueueSnackbar);
+      return true;
+    } catch (error) {
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
+  };
 
   return {
     tableRows: data?.data,
@@ -48,5 +56,6 @@ export const useRefereneceTable = () => {
     tableStatusInfo,
     closeViewUpdateModel,
     openViewUpdateModel,
+    delReference,
   };
 };

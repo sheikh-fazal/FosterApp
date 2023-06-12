@@ -1,8 +1,8 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { FormValues, FormSchema } from ".";
+import { primaryCarerFormSchema } from ".";
 import { usePrimaryCarerForm } from "./usePrimaryCarerForm";
 
-const PrimaryCarerForm = (props: any) => {
+const PrimaryCarerForm = () => {
   const {
     submitPrimaryCarerForm,
     setPrimaryCarerDefaultValue,
@@ -13,7 +13,7 @@ const PrimaryCarerForm = (props: any) => {
   } = usePrimaryCarerForm();
   return (
     <FormGenerator
-      FormSchema={FormSchema}
+      FormSchema={primaryCarerFormSchema}
       defaultValues={setPrimaryCarerDefaultValue}
       fieldsInfo={primaryCarerFieldsInfo}
       submitClickHand={submitPrimaryCarerForm}

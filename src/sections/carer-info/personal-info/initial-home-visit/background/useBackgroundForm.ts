@@ -1,10 +1,13 @@
 import { usePostInitialHomeBackgroundDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/background/background";
 import {
-  useGetAllInitialHomeVisitDataQuery,
   useLazyGetAllInitialHomeVisitDataQuery,
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
-import { backgroundFormFieldsInfoFunction, backgroundFormValues, defaultValuesBackgroundForm } from ".";
+import {
+  backgroundFormFieldsInfoFunction,
+  backgroundFormValues,
+  defaultValuesBackgroundForm,
+} from ".";
 import { useRouter } from "next/router";
 import useAuth from "@root/hooks/useAuth";
 
@@ -42,13 +45,16 @@ export const useBackgroundForm = () => {
   const submitBackgroundForm = async (data: any) => {
     const putParams = {
       fosterCarerId:
-        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
     try {
       const res: any = await postInitialHomeBackgroundDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -60,6 +66,7 @@ export const useBackgroundForm = () => {
     setBackgroundFormDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
-    backgroundFormFieldsInfo
+    backgroundFormFieldsInfo,
+    user,
   };
 };

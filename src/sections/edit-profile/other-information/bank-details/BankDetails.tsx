@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import BankDetailsForm from "./bankDetailsForm/BankDetailsForm";
-const BankDetails = () => {
+import BankdetailsTable from "./bank-details-table/BankdetailsTable";
+const BankDetails: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
   const ModelOpen = () => {
@@ -29,12 +30,16 @@ const BankDetails = () => {
           <InfoIcon sx={{ color: theme.palette.primary.main }} />
         </Grid>
       </Grid>
-      <Grid item container>
+      <Grid item container sx={{ margin: "0.5em 0em" }}>
         <ButtonWithIcon text="Add Bank Details" onClick={ModelOpen} />
       </Grid>
+      <BankdetailsTable />
       <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
+        <Button variant="contained" onClick={activateNextForm}>
+          continue
+        </Button>
       </Grid>
+
       <Modal open={flags.addRefModel} onClose={ModelClose}>
         <Grid
           container

@@ -18,10 +18,7 @@ export default function BankAccountDetailsSection() {
       />
       <BankAccountDetailsTable />
       <BankAccountDetailsForm
-<<<<<<<< HEAD:src/sections/carer-info/other-info/bank-account-details/BankAccountDetailsSection.tsx
         content={{}}
-========
->>>>>>>> 7b76b21a (#other details bankDetailsForm UI done):src/sections/carer-info/other-info/bank-account-details/BankAccountDetails.tsx
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) =>

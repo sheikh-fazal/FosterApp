@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import CarInsuranceForm from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/CarInsuranceForm";
 import { useRouter } from "next/router";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/UploadDocuments";
+import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/upload-documents/UploadDocuments";
 
 // Constants
 const BREADCRUMBS = [
@@ -33,9 +33,15 @@ CarInsurance.getLayout = function getLayout(page: any) {
 };
 
 export default function CarInsurance() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
+
   return (
     <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
-      <CarInsuranceForm />
+      <CarInsuranceForm action={action} id={id} />
       <UploadDocuments />
     </HorizaontalTabs>
   );
