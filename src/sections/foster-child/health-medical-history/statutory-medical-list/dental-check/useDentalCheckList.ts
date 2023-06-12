@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 
 import { useRouter } from "next/router";
 import { dentalCheckListTableColumnsFunction } from ".";
+import { useGetAllstatutoryMedicalListDataQuery } from "@root/services/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
 
 export const useDentalCheckList = () => {
   const router = useRouter();
@@ -11,23 +12,19 @@ export const useDentalCheckList = () => {
 
   const dentalCheckListTableColumns = dentalCheckListTableColumnsFunction(router);
   const [searchValue, setSearchValue] = useState(undefined);
+  const params = {
+    search: searchValue,
+    statutoryMedicalType: "Dental",
+    // offset: page,
+    // limit: 10,
+  };
 
+  const dataParameter = { params };
+  const { data, isLoading, isSuccess, isError, isFetching } =
+    useGetAllstatutoryMedicalListDataQuery(dataParameter);
 
-  const data: any = {};
-
-  const [dataTable, setDataTable] = React.useState([
-    {
-      CAMHSDate: "Sijo Francis",
-      appointment: "£40.00",
-    },
-    {
-      CAMHSDate: "Sijo Francis",
-      appointment: "£40.00",
-    },
-  ]);
   return {
     dentalCheckListTableColumns,
     data,
-    dataTable,
   };
 };

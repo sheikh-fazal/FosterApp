@@ -4,8 +4,7 @@ import { Box } from "@mui/material";
 import { useDentalCheckList } from "./useDentalCheckList";
 
 const DentalCheckList = () => {
-  const { dentalCheckListTableColumns, data, dataTable } =
-  useDentalCheckList();
+  const { dentalCheckListTableColumns, data } = useDentalCheckList();
   return (
     <>
       <Box>
@@ -21,7 +20,7 @@ const DentalCheckList = () => {
         />
 
         <CustomTable
-          data={dataTable}
+          data={data?.data}
           columns={dentalCheckListTableColumns}
           isLoading={false}
           showSerialNo

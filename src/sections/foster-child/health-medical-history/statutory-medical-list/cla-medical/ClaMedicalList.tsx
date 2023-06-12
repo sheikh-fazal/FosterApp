@@ -4,8 +4,7 @@ import { Box } from "@mui/material";
 import { useClaMedicalList } from "./useClaMedicalList";
 
 const ClaMedicalList = () => {
-  const { claMedicalListTableColumns, data, dataTable } =
-  useClaMedicalList();
+  const { claMedicalListTableColumns, data } = useClaMedicalList();
   return (
     <>
       <Box>
@@ -21,7 +20,7 @@ const ClaMedicalList = () => {
         />
 
         <CustomTable
-          data={dataTable}
+          data={data?.data}
           columns={claMedicalListTableColumns}
           isLoading={false}
           showSerialNo

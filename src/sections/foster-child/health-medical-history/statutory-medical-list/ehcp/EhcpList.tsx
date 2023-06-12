@@ -4,8 +4,7 @@ import { Box } from "@mui/material";
 import { useEhcpList } from "./useEhcpList";
 
 const EhcpList = () => {
-  const { ehcpListTableColumns, data, dataTable } =
-    useEhcpList();
+  const { ehcpListTableColumns, data } = useEhcpList();
   return (
     <>
       <Box>
@@ -21,7 +20,7 @@ const EhcpList = () => {
         />
 
         <CustomTable
-          data={dataTable}
+          data={data?.data}
           columns={ehcpListTableColumns}
           isLoading={false}
           showSerialNo

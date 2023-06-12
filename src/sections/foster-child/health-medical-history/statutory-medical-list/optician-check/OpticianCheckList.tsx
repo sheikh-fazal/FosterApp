@@ -3,10 +3,8 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import { useOpticianCheckList } from "./useOpticianCheckList";
 
-
 const OpticianCheckList = () => {
-  const { opticianCheckListTableColumns, data, dataTable } =
-  useOpticianCheckList();
+  const { opticianCheckListTableColumns, data } = useOpticianCheckList();
   return (
     <>
       <Box>
@@ -22,7 +20,7 @@ const OpticianCheckList = () => {
         />
 
         <CustomTable
-          data={dataTable}
+          data={data?.data}
           columns={opticianCheckListTableColumns}
           isLoading={false}
           showSerialNo
