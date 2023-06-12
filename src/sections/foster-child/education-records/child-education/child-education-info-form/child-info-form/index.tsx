@@ -6,10 +6,14 @@ import {
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
+import { personalEducationPlan } from "@root/dropdown-data/personalEducationPlan";
+import { SCHOOLTYPE } from "@root/dropdown-data/schoolType";
+import { schoolYear } from "@root/dropdown-data/schoolYear";
 
 export const defaultValues = {
-  placement: "",
+  placement: true,
   details: "",
+  schoolType: "",
 };
 
 export const educationInfoFormData = [
@@ -19,44 +23,99 @@ export const educationInfoFormData = [
     otherOptions: {
       name: "placement",
       label: "Does this child have a Placement?",
-      fullWidth: true,
     },
     component: RHFCheckbox,
   },
   {
-    id: 2,
-    heading:
-      "Describe Any issue in relation to health and hygiene, and how they will be managed?",
-    otherOptions: {
-      variant: "body2",
-      color: (theme: any) => theme.palette.primary.main,
-      sx: { mb: 1 },
-    },
-    component: Typography,
-  },
-  {
     id: 3,
     gridLength: 12,
+    title:
+      "Describe Any issue in relation to health and hygiene, and how they will be managed?",
     otherOptions: {
       name: "details",
-      // label: "Address",
       multiline: true,
       minRows: 3,
-      fullWidth: true,
-      size: "small",
     },
     component: RHFTextField,
   },
   {
     id: 6,
+    title: "School Type :",
     component: RHFSelect,
-    md: 6,
+    gridLength: 6,
     otherOptions: {
-      name: "country",
-      label: "Country:",
+      name: "schoolType",
       select: true,
     },
-    options: COUNTRIESDROPDOWN,
+    options: SCHOOLTYPE,
+  },
+  {
+    id: 2,
+    title: "School Address",
+    otherOptions: {
+      variant: "body2",
+    },
+    component: Typography,
+  },
+  {
+    id: 1,
+    gridLength: 12,
+    otherOptions: {
+      name: "currentSchool",
+      label: "Is this child's Current School?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 1,
+    gridLength: 12,
+    otherOptions: {
+      name: "fosterPlacement",
+      label: "Is this School due to Foster Placement change?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 1,
+    gridLength: 12,
+    otherOptions: {
+      name: "educationalNeeds",
+      label: "Does the child have a statement of special educational needs?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 6,
+    title: "Personal Education Plan",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "personalEducation",
+      select: true,
+    },
+    options: personalEducationPlan,
+  },
+  {
+    id: 6,
+    title: "School Year",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "schoolYear",
+      select: true,
+    },
+    options: schoolYear,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "Class Studying",
+    otherOptions: {
+      name: "classStudying",
+      multiline: true,
+      minRows: 3,
+    },
+    component: RHFTextField,
   },
   // {
   //   gridLength: 6,
