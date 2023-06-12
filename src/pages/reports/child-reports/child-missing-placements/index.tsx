@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildMissingPlacements from "@root/sections/reports/child-reports/child-missing-placements/ChildMissingPlacements";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Missing Placements Report";
 
 ChildMissingPlacementLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ ChildMissingPlacementLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Missing Placements Report",
         },
       ]}
       title={PAGE_TITLE}

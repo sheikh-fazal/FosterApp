@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildImmunisationDetails from "@root/sections/reports/child-reports/child-immunisation-details/ChildImmunisationDetails";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Immunisation Details Report";
 
 ChildImmunisationDetailsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ ChildImmunisationDetailsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Immunisation Details Report",
         },
       ]}
       title={PAGE_TITLE}

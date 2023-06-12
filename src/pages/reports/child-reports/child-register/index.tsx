@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildRegister from "@root/sections/reports/child-reports/child-register/ChildRegister";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Register Report Fostered Child's Comments";
 
 ChildRegisterLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ ChildRegisterLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Register Report Fostered Child's Comments",
         },
       ]}
       title={PAGE_TITLE}

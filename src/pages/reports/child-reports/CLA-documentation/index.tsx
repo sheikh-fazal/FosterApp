@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ClaDocumentation from "@root/sections/reports/child-reports/CLA-documentation/ClaDocumentation";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "CLA Documentation Report";
 
 CLADocumentLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ CLADocumentLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "CLA Documentation Report",
         },
       ]}
       title={PAGE_TITLE}

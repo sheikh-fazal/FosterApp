@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChildLivingHouseholdForm from "@root/sections/reports/child-reports/child-living-household/child-living-household-form/ChildLivingHouseholdForm";
 import { useRouter } from "next/router";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Living in the household's comments";
 
 ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
   return (
@@ -23,10 +23,6 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Living in the household's comments",
         },
       ]}
       title={PAGE_TITLE}

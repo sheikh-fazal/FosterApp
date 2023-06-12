@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import YoungPersonLivingHousehold from "@root/sections/reports/child-reports/young-person-living-household/YoungPersonLivingHousehold";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Young Person Living in the Household's Comments";
 
 YoungPesonLivingHouseholdLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ YoungPesonLivingHouseholdLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Young Person Living in the Household's Comments",
         },
       ]}
       title={PAGE_TITLE}

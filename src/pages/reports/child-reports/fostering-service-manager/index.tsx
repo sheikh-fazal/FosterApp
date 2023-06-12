@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import FosteringServiceManager from "@root/sections/reports/child-reports/fostering-service-manager/FosteringServiceManager";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Fostering Service Manager Report";
 
 FosteringServiceManagerLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ FosteringServiceManagerLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Fostering Service Manager Report",
         },
       ]}
       title={PAGE_TITLE}

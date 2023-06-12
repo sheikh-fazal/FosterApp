@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildDaylogEvents from "@root/sections/reports/child-reports/child-daylog-events/ChildDaylogEvents";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Daylog Events Report";
 
 ChildDaylogEventsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ ChildDaylogEventsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Daylog Events Report",
         },
       ]}
       title={PAGE_TITLE}

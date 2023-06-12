@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import EducationKeyStage from "@root/sections/reports/child-reports/education-key-stage/EducationKeyStage";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Education Key Stage Report";
 
 EducationKeyStateLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ EducationKeyStateLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Education Key Stage Report",
         },
       ]}
       title={PAGE_TITLE}

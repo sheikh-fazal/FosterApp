@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildLivingHouseholdForm from "@root/sections/reports/child-reports/child-living-household/child-living-household-form/ChildLivingHouseholdForm";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Living in the household's comments";
 
 ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
   return (
@@ -15,17 +15,13 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
           icon: <HomeIcon />,
           name: "Dashboard",
           href: "/dashboard",
-        },
+        }, 
         {
           name: "Reports",
           href: "/reports",
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Living in the household's comments",
         },
       ]}
       title={PAGE_TITLE}
@@ -33,7 +29,7 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
       {page}
     </Layout>
   );
-};
+}; 
 // ----------------------------------------------------------------------
 
 export default function ChildLivingHouseholdLayout() {
