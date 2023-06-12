@@ -46,24 +46,24 @@ const Dashboard = () => {
             </LocalAuthorityTabs>
             <Box sx={{ mt: 2 }}>
                 <Grid container spacing={2}>
-                    <Grid item xl={7} lg={12}>
+                    <Grid item xl={6} lg={12}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Card sx={styles.cardStyles}>
                                     <HorizaontalTabs
-                                        tabsDataArray={["Pie Chart", "Bar Chart"]}
+                                        tabsDataArray={["Children Placement", "Year Wise Placement"]}
                                         variant="fullWidth"
                                         spacing={0}
                                     >
                                         <PieChart />
                                         <BarChart />
                                     </HorizaontalTabs>
-                                    <Box sx={styles.iconStyles}>
+                                    {/* <Box sx={styles.iconStyles}>
                                         <InfoIcon
                                             sx={{ width: "28px", height: "28px", color: "#0E918C" }}
                                             onClick={() => setShowStatistics(!showStatistics)}
                                         />
-                                    </Box>
+                                    </Box> */}
                                     {/* {showStatistics && (
                                         <Box sx={styles.statisticsContainer}>
                                             <Typography sx={styles.statisticsHeading}>Statistics</Typography>
@@ -101,14 +101,14 @@ const Dashboard = () => {
                             </Grid> */}
                         </Grid>
                     </Grid>
-                    <Grid item xl={5} lg={12} xs={12}>
+                    <Grid item xl={6} lg={12} xs={12}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <LocalAuthorityNotifications />
                             </Grid>
-                            {/* <Grid item xs={12}>
-                                <ReferralStats />
-                            </Grid> */}
+                            <Grid item xs={12}>
+                                <Typography>Local Authority</Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

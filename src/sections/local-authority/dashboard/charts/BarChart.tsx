@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { Box, Grid, Typography } from "@mui/material";
-import { chartTitles } from ".";
+import { barChartTitles } from ".";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
@@ -33,7 +33,7 @@ export default function BarChart() {
 
         plotOptions: {
             bar: {
-                columnWidth: "75%",
+                columnWidth: "40%",
                 distributed: true,
             },
         },
@@ -61,24 +61,24 @@ export default function BarChart() {
 
     return (
         <Grid sx={{ px: { lg: 0, sm: 2, xs: 1 } }} container spacing={2}>
-            <Grid item lg={6} md={6} xs={12}>
+            <Grid item lg={12} md={6} xs={12}>
                 <Box>
                     <ReactApexChart options={baroptions} series={barseries} type="bar" height={295} />
                 </Box>
             </Grid>
-            <Grid item lg={6} md={6} xs={12}>
+            <Grid item lg={12} md={6} xs={12}>
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "column",
+                        // flexDirection: "column",
                         gap: "4px",
                         marginTop: "20px",
                         marginRight: "50px",
                     }}
                 >
-                    <Grid container spacing={2}>
-                        {chartTitles?.map((item, index) => (
-                            <Grid key={index} item lg={6}>
+                    <Grid container spacing={2} sx={{ marginLeft: "23px" }}>
+                        {barChartTitles?.map((item, index) => (
+                            <Grid key={index} item lg={4}>
                                 <Box key={item?.color} sx={{ mt: 0.5 }}>
                                     <Typography>{item?.title}</Typography>
                                     <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>

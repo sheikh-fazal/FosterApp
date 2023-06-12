@@ -2,7 +2,7 @@ import React from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { Box, Grid, Typography } from "@mui/material";
-import { chartTitles } from ".";
+import { pieChartTitles } from ".";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
     ssr: false,
@@ -27,23 +27,23 @@ export default function PieChart() {
 
     return (
         <Grid sx={{ px: { lg: 0, sm: 2, xs: 1 } }} container spacing={2}>
-            <Grid item lg={6} md={6} xs={12}>
+            <Grid item lg={12} md={6} xs={12}>
                 <Box>
                     <ReactApexChart options={options} series={series} type="pie" height={300} />
                 </Box>
             </Grid>
-            <Grid item lg={6} md={6} xs={12}>
+            <Grid item lg={12} md={6} xs={12}>
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "column",
+                        // flexDirection: "column",
                         gap: "4px",
                         marginTop: "10px",
                     }}
                 >
-                    <Grid container spacing={2}>
-                        {chartTitles?.map((item, index) => (
-                            <Grid key={index} item lg={6}>
+                    <Grid container spacing={2} sx={{ marginLeft: "23px" }}>
+                        {pieChartTitles?.map((item, index) => (
+                            <Grid key={index} item lg={4}>
                                 <Box key={item?.color} sx={{ mt: 0.5 }}>
                                     <Typography>{item?.title}</Typography>
                                     <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
