@@ -1,5 +1,38 @@
+// export const selectValues = [{ value: "user", label: "User" }];
+export const viewReportsFilterData = [
+  {
+    gridlength: 6,
+    label: "Date From",
+    otherOptions: {
+      name: "dateFrom",
+      fullWidth: true,
+      size: "small",
+    },
+    requireDatePicker: true,
+  },
+  {
+    gridlength: 6,
+    label: "Date To",
+    otherOptions: {
+      name: "dateTo",
+      fullWidth: true,
+      size: "small",
+    },
+    requireDatePicker: true,
+  },
 
-export const selectValues = [{ value: "user", label: "User" }];
+  {
+    gridlength: 6,
+    label: "Role",
+    otherOptions: {
+      label: "Role",
+      name: "role",
+      fullWidth: true,
+      size: "small",
+    },
+    options: [{ value: "all", label: "all" }],
+  },
+];
 
 export const TableDemoData = [
   {
@@ -8,7 +41,7 @@ export const TableDemoData = [
     role: "User ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy:"John Doe"
+    modifiedBy: "John Doe",
   },
   {
     sNO: "2",
@@ -16,7 +49,7 @@ export const TableDemoData = [
     role: "User  ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy:"JamesWatt"
+    modifiedBy: "JamesWatt",
   },
   {
     sNO: "3",
@@ -24,6 +57,6 @@ export const TableDemoData = [
     role: "User ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy:"John Doe"
+    modifiedBy: "John Doe",
   },
 ];

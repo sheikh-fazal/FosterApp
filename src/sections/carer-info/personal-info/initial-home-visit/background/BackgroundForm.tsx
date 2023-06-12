@@ -1,8 +1,8 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { BackgroundFormSchema, backgroundFormValues } from ".";
+import { backgroundFormSchema} from ".";
 import { useBackgroundForm } from "./useBackgroundForm";
 
-const BackgroundForm = (props: any) => {
+const BackgroundForm = () => {
   const {
     submitBackgroundForm,
     setBackgroundFormDefaultValue,
@@ -13,7 +13,7 @@ const BackgroundForm = (props: any) => {
   } = useBackgroundForm();
   return (
     <FormGenerator
-      FormSchema={BackgroundFormSchema}
+      FormSchema={backgroundFormSchema}
       defaultValues={setBackgroundFormDefaultValue}
       fieldsInfo={backgroundFormFieldsInfo}
       submitClickHand={submitBackgroundForm}

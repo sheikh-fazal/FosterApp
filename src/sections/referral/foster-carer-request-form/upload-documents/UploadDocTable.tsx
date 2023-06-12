@@ -14,15 +14,17 @@ const UploadDocTable = (props: any) => {
     columns,
     setViewOpenModal,
     viewOpenModal,
-  } = useUploadDocTable();
+    theme,
+  } = useUploadDocTable(props);
 
   return (
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
         title="Uploaded Documents"
+        disabled={props.disabled}
         searchKey="search"
-        showAddBtn
+        showAddBtn={!props.disabled}
         onAdd={() => setOpenModal(!openModal)}
         onChanged={(data: any) => {
           console.log("Updated params: ", data);
@@ -39,6 +41,7 @@ const UploadDocTable = (props: any) => {
         currentPage={1}
         onPageChange={(data: any) => {}}
         onSortByChange={(data: any) => {}}
+        rootSX={{ my: theme.spacing(2) }}
       />
       <UploadDocumentModal
         disabled

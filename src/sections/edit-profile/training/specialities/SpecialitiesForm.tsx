@@ -35,9 +35,10 @@ const SpecialitiesForm: FC<any> = ({ activateNextForm }) => {
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       setIsLoading(true);
-      const { data, isError } = await getSpecialitiesInfo(null, true);
+      const { data, isError,error } = await getSpecialitiesInfo(null, true);
       setIsLoading(false);
-      if (isError) {
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       return {

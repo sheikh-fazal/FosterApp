@@ -25,9 +25,7 @@ FRD1.getLayout = function getLayout(page: any) {
           name: "IFA Reports",
           href: "/reports/ifa-reports/FR-D1",
         },
-        {
-          name: "FR-D1 FOSTERED CHILD’S COMMENTS"
-        }
+        { name: "FR-D1 Fostered Child's Comments" },
       ]}
       title={PAGE_TITLE}
     >

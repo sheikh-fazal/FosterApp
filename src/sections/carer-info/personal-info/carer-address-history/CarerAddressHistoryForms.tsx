@@ -5,11 +5,11 @@ import { LoadingButton } from "@mui/lab";
 // components
 import { FormProvider } from "@root/components/hook-form";
 //
-import { formData } from ".";
+import { formData, defaultValues } from ".";
 import { useCarerAddressHistoryForms } from "./useCarerAddressHistoryForms";
 
 export default function CarerAddressHistoryForm(props: any) {
-  const { formType } = props;
+  const { formType, historyData } = props;
   const {
     methods,
     handleSubmit,
@@ -18,7 +18,7 @@ export default function CarerAddressHistoryForm(props: any) {
     isDirty,
     theme,
     router,
-  } = useCarerAddressHistoryForms();
+  } = useCarerAddressHistoryForms(formType, historyData);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

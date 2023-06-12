@@ -5,17 +5,27 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const useAssessmentForm = () => {
+  const path = "/reports/ifa-reports/risk-assessment-form";
   const [filterValue, setFilterValue] = useState({
     dateFrom: "",
     dateTo: "",
     role: "",
   });
   const router = useRouter();
-  const HandlerSearch = () =>{
+  const HandlerSearch = () => {
     var objString = JSON.stringify(filterValue);
-    alert( objString )
+    alert(objString);
+  };
 
-  }
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      default:
+        break;
+    }
+  };
   const columns = [
     {
       id: "select",
@@ -81,13 +91,9 @@ export const useAssessmentForm = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {/* <ActionModal content={info} /> */}
           <TableAction
-            size="small"
             type="view"
-            onClicked={() => {
-              router.push("/reports/ifa-reports/risk-assessment-form/view-risk-assessment-form");
-            }}
+            onClicked={() => handleAction("view", info.row.original.id)}
           />
         </Box>
       ),
@@ -102,6 +108,6 @@ export const useAssessmentForm = () => {
     columns,
     setFilterValue,
     filterValue,
-    HandlerSearch
+    HandlerSearch,
   };
 };

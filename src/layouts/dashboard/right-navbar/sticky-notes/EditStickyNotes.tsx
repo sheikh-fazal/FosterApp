@@ -193,6 +193,9 @@ const style = {
       "&:hover": {
         borderBottom: "0px solid !important",
       },
+      "&.Mui-disabled": { // Add this block to style the disabled state
+        color: theme.palette.grey[900], // Set the desired color for the disabled state
+      },
     },
   }),
   datecolor: (theme: any) => ({

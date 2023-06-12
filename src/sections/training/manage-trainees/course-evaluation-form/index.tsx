@@ -5,8 +5,12 @@ export const initialValues = {
   courseNumber: "",
   instructor: "",
   fieldOfStudy: "",
+  question1: "",
 };
-export const formSchema = Yup.object().shape({});
+export const formSchema = Yup.object().shape({
+  courseNumber: Yup.string().required("Field is required"),
+  instructor: Yup.string().required("Field is required"),
+});
 
 let hideLabel = {
   "& .MuiFormControlLabel-label": {
@@ -49,13 +53,13 @@ export const courseEvaluation = [
   },
   {
     gridLength: 12,
-    gridSX: { display: "flex", alignItems: "center" },
+    gridSX: { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1 },
     title: "For your field of study, was this a required course or an elective?",
     fontWeight: 500,
     otherOptions: {
       name: "fieldOfStudy",
       options: ["Required Course", "Elective"],
-      sx: { mx: "50px !important" },
+      sx: { mx: { xl: "50px !important" } },
       fullWidth: true,
     },
     component: RHFRadioGroup,

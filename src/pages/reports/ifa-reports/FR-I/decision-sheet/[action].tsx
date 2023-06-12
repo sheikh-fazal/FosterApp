@@ -27,7 +27,7 @@ FRI.getLayout = function getLayout(page: any) {
           href: "/reports/ifa-reports/FR-I",
         },
         {
-          name:"FR-I DECISION SHEET",
+          name:"FR-I-Decision Sheet"
         },
       ]}
       title={PAGE_TITLE}

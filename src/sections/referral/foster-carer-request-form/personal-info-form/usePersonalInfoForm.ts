@@ -5,6 +5,7 @@ import {
   PersonalInfoFormValues,
   PersonalInfoFormValidationSchema,
 } from ".";
+import { useRouter } from "next/router";
 
 export const usePersonalInfoForm = () => {
   const methods: any = useForm({
@@ -17,10 +18,13 @@ export const usePersonalInfoForm = () => {
   const onSubmit = (data: any) => {
     console.log(data, "submitted data");
   };
+
+  const router = useRouter()
   return {
     PersonalInfoFormData,
     onSubmit,
     handleSubmit,
-    methods
+    methods,
+    router
   }
 }

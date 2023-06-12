@@ -15,7 +15,7 @@ SafeguardingAssessment.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Safeguarding Panel",
-          href: "safeguarding/safeguarding-assessment-tool",
+          href: "/safeguarding",
         },
         {
           name: "Safeguarding Assessments Tool",
@@ -31,7 +31,7 @@ SafeguardingAssessment.getLayout = function getLayout(page: any) {
 export default function SafeguardingAssessment() {
   return (
     <Page title={PAGE_TITLE}>
-     <SafeguardingAssessmentTool/>
+      <SafeguardingAssessmentTool />
     </Page>
   );
 }

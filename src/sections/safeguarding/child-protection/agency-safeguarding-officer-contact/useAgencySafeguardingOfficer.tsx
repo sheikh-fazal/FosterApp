@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { contactDirectoryTableData } from "./contact-directory-table";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
@@ -11,6 +11,7 @@ const AGENCYOFFICERSTABS: any = ["Foster Carers", "Agency Key Roles", "Safeguard
 // =============================================================================================================
 
 export const useAgencySafeguardingOfficer = () => {
+  const theme = useTheme();
   const tableHeaderRef = useRef();
   const [tabName, setTabName] = useState("");
   const [newTab, setNewTab] = useState(false);
@@ -56,5 +57,6 @@ export const useAgencySafeguardingOfficer = () => {
     setContactInfoModal,
     selectedAlphabet,
     contactDirectoryTabs,
+    theme,
   };
 };

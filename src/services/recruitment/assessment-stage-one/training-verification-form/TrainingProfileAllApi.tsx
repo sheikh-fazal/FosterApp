@@ -5,7 +5,7 @@ const TAGS: any = ["POST_DATA", "DELETE_PROFILE", "UPDATE_DATA", "GET_DATA"];
 export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getTrainingProfileAllData: builder.query({
-      query: ({params}: any) => ({
+      query: ({ params }: any) => ({
         url: "/training-profile/all",
         method: "GET",
         params,
@@ -40,14 +40,17 @@ export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
       invalidatesTags: TAGS,
     }),
     getTrainingProfileAllDocument: builder.query({
-      query: (trainingProfileId: any) =>
-        `/training-profile/document/all?trainingProfileId=${trainingProfileId}`,
+      query: ({ id, params }: any) => ({
+        url: `/training-profile/document/all?trainingProfileId=${id}`,
+        method: "GET",
+        params,
+      }),
     }),
     postTrainingProfileDocument: builder.mutation<null, void>({
-      query: ({ body, trainingProfileId }: any) => ({
+      query: ({ data, trainingProfileId }: any) => ({
         url: `/training-profile/document?trainingProfileId=${trainingProfileId}`,
         method: "POST",
-        body,
+        body:data,
       }),
     }),
     deleteTrainingProfileDocument: builder.mutation<null, void>({

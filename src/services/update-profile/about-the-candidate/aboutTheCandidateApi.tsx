@@ -1,9 +1,36 @@
+import {
+  generateLocalFormsStatuses,
+  tabsItems,
+} from "@root/sections/edit-profile/layout/static-data";
 import { baseAPI } from "@root/services/baseApi";
 
 const TAG = "UPDATE_PROFILE";
 
 export const aboutTheCandidateApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
+    getProfileStatus: builder.query({
+      query: () => ({
+        url: "user-profile/all-profile-status",
+        method: "GET",
+      }),
+      providesTags: [TAG],
+      transformResponse: (response: any) => {
+        const lastCompletedForm =
+          response?.data?.nextProperty || "personalInfo";
+        const genForms = generateLocalFormsStatuses(lastCompletedForm);
+        return {
+          forms: genForms,
+          activeFormName: lastCompletedForm,
+        };
+      },
+    }),
+    getProfileProgressInfo: builder.query({
+      query: () => ({
+        url: "user-profile/progress-bar",
+        method: "GET",
+      }),
+      providesTags: [TAG],
+    }),
     getPersonalInfo: builder.query({
       query: () => ({
         url: "user-profile/all-profile?infoToget=personalInfo",
@@ -80,6 +107,8 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
 });
 
 export const {
+  useGetProfileProgressInfoQuery,
+  useGetProfileStatusQuery,
   useLazyGetPersonalInfoQuery,
   useUpdatePersonalInfoMutation,
   useLazyGetAddressDetailsQuery,

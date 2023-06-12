@@ -25,7 +25,7 @@ FRG.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "FR-G REVIEWING OFFICER REPORT",
+          name: "FR-G Reviewing Officer Report",
         },
       ]}
       title={PAGE_TITLE}

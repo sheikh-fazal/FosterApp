@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -9,7 +9,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddRefForm from "./addRefForm/AddRefForm";
 import ReferenceTable from "./reference-table/ReferenceTable";
-const AddReference = () => {
+const AddReference: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
   const addRefModelOpen = () => {
@@ -39,7 +39,9 @@ const AddReference = () => {
       </Grid>
       <ReferenceTable />
       <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
+        <Button variant="contained" onClick={activateNextForm}>
+          continue
+        </Button>
       </Grid>
       <Modal open={flags.addRefModel} onClose={addRefModelClose}>
         <Grid

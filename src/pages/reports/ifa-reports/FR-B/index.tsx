@@ -24,7 +24,7 @@ FRB.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "FR-B FOSTER CARER REPORT"
+          name: "FR-B Foster Carer Report"
         }
       ]}
       title={PAGE_TITLE}

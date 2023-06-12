@@ -1,8 +1,9 @@
 export const viewReportsFilterData = [
     {
       gridlength: 6,
-      title: 'Position/Role',
+      label: 'Position/Role',
       otherOptions: {
+        label: 'Position/Role',
         name: 'positionRole',
         fullWidth: true,
         size: 'small',
@@ -13,8 +14,9 @@ export const viewReportsFilterData = [
     },
     {
       gridlength: 6,
-      title: 'Name',
+      label: 'Name',
       otherOptions: {
+        label: 'Name',
         name: 'name',
         fullWidth: true,
         size: 'small',
@@ -25,8 +27,9 @@ export const viewReportsFilterData = [
     },
     {
       gridlength: 6,
-      title: 'Foster Carer(s)',
+      label: 'Foster Carer(s)',
       otherOptions: {
+        label: 'Foster Carer(s)',
         name: 'fosterCarer',
         fullWidth: true,
         size: 'small',
@@ -37,8 +40,9 @@ export const viewReportsFilterData = [
     },
     {
       gridlength: 6,
-      title: 'Children',
+      label: 'Children',
       otherOptions: {
+        label: 'Children',
         name: 'children',
         fullWidth: true,
         size: 'small',
@@ -49,8 +53,9 @@ export const viewReportsFilterData = [
     },
     {
       gridlength: 6,
-      title: 'Select Search Date',
+      label: 'Select Search Date',
       otherOptions: {
+        label: 'Select Search Date',
         name: 'selectSearchDate',
         fullWidth: true,
         size: 'small',
@@ -61,8 +66,9 @@ export const viewReportsFilterData = [
     },
     {
       gridlength: 6,
-      title: 'Date Type',
+      label: 'Date Type',
       otherOptions: {
+        label: 'Date Type',
         name: 'dateType',
         fullWidth: true,
         size: 'small',

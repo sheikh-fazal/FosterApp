@@ -5,7 +5,7 @@ const TableSkeleton = (): JSX.Element => {
   const theme: any = useTheme();
 
   return (
-    <Box sx={{ mt: 1 }}>
+    <Box sx={{ mt: 1, width: "100%" }}>
       <Box
         sx={{
           display: "flex",

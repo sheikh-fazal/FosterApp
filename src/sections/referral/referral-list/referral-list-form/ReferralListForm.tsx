@@ -6,7 +6,8 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { useReferralListForm } from "./useReferralListForm";
 import { ReferralListFormData } from ".";
 
-const ReferralListForm = ({ disabled }: any) => {
+const ReferralListForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit } =
     useReferralListForm();
   return (
@@ -37,10 +38,7 @@ const ReferralListForm = ({ disabled }: any) => {
             )}
             {form?.uploadPhoto && (
               <>
-                    <Typography sx={(theme) => styles.title(theme, disabled)}>
-                   Upload Image
-                  </Typography>
-              <RHFUploadFile name={"updatePhoto"} {...methods} required />
+              <RHFUploadFile name={"updatePhoto"}  {...methods} required />
               </>
             )}
           </Grid>
