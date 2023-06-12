@@ -12,6 +12,7 @@ import { FormProvider } from "@root/components/hook-form";
 import { useRouter } from "next/router";
 import download from "@root/assets/img/download.png";
 import { useInterviewRecordAndAnalysis } from "./useInterviewRecordAndAnalysis";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 //mui icons
 
@@ -24,10 +25,18 @@ export default function InterviewRecordAndAnalysis({
 }: any) {
   let router: any = useRouter();
 
-  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useInterviewRecordAndAnalysis(disabled, data, role);
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    theme,
+    isLoading,
+  } = useInterviewRecordAndAnalysis(disabled, data, role);
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isLoading} />
       <Grid container spacing={4}>
         {formData1.map((form: any, i: any) => {
           return (

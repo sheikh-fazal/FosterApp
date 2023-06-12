@@ -4,13 +4,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
+import { usePatchTrainingProfileApiMutation } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 
 const useEditTraingingProfile = ({
   initialValueProps,
   onSubmitHandler,
   trainingProfileId,
 }: any) => {
+
   const router = useRouter();
+
+  const[postEditData]=usePatchTrainingProfileApiMutation()
 
   const tainingProfileSchema = Yup.object().shape({
     carerName: Yup.string().required("Required"),
@@ -53,18 +57,18 @@ const useEditTraingingProfile = ({
 
     console.log(updatedData, "updated data");
 
-    // try {
-    //   const res: any = await onSubmitHandler(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await postEditData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   enqueueSnackbar("Something Went Wrong!", { variant: "error" });
-    // }
+      router.push(
+        "/recruitment/assessment-stage-one/training-verification-form"
+      );
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
   };
 
   return { methods, handleSubmit, onSubmit, router, defaultValues };

@@ -2,6 +2,7 @@ import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
+import TemplatePolicies from '@root/sections/policies-and-guidelines/template-policies/TemplatePolicies';
 
 const PAGE_TITLE = "Templates";
 
@@ -29,7 +30,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     {PAGE_TITLE}
+     <TemplatePolicies />
     </Page>
   );
 }

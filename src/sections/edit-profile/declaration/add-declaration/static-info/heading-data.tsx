@@ -17,7 +17,7 @@ export const HeadingsWithDesInfo = [
     consideration before offering work to me.`,
     com: (
       <RHFSwitch
-        name="agreeToAboveDec2"
+        name="workTimeDirective"
         label="I agree to the above Declaration."
       />
     ),
@@ -33,7 +33,7 @@ export const HeadingsWithDesInfo = [
     affected in any other way whilst on an assignment that is not my fault or of our services.`,
     com: (
       <RHFSwitch
-        name="understandEntirly"
+        name="challengingBehaviour"
         label="I understand and agree to the above entirely."
       />
     ),
@@ -45,7 +45,7 @@ export const HeadingsWithDesInfo = [
     permises without permission of the client.`,
     com: (
       <RHFSwitch
-        name="confidentialAgre"
+        name="confidentialAgrement"
         label="I agree to the above Declaration."
       />
     ),
@@ -57,7 +57,7 @@ export const HeadingsWithDesInfo = [
     did not receive this form back after your qualifying period. Once enrolled, a percentage of your salary will be deducted for your
     pension contribution, it will be reflected on your payslips. Please visit NESTPENSION.ORG.UK for more information regarding
     pensions`,
-    com: <RHFSwitch name="penOpt" label="I agree to the above Declaration." />,
+    com: <RHFSwitch name="pension" label="I agree to the above Declaration." />,
   },
 ];
 

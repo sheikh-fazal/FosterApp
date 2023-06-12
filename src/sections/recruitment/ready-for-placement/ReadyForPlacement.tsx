@@ -53,6 +53,7 @@ export default function ReadyForPlacement() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
+                  color:'black'
                 }}
               />
               <InformationDialogbox
@@ -70,6 +71,7 @@ export default function ReadyForPlacement() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
+                  color:'black'
                 }}
               >
                 {ele?.text}

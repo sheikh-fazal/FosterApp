@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EHCPForm from './EHCPForm'
 import PEPForm from './PEPForm'
-import { useRouter } from 'next/router'
+import { FormControl, MenuItem, Select } from '@mui/material';
 
-export const CLADocumentationForm = () => {
-  const router = useRouter()
-  console.log(router?.query?.cla_document_type);
 
-  return (
-    <>
-      {router?.query?.cla_document_type === "EHCP" ? <EHCPForm /> : <PEPForm />}
-    </>
-  )
+export const ClaDocumentationForm = (props: any) => {
+
+    const { defaultFormType = "EHCP", defaultValues, disabled = false } = props;
+
+    const [selectForm, setSelectForm] = useState(defaultFormType);
+
+    const handleSelectChange = (event: any) => {
+        setSelectForm(event.target.value);
+    };
+
+
+    return (
+        <>
+                <FormControl disabled={disabled} sx={{ width: '300px', m: 2 }}>
+                    <Select
+                        value={selectForm}
+                        onChange={handleSelectChange}
+                    >
+                        <MenuItem value="EHCP">EHCP</MenuItem>
+                        <MenuItem value="PEP">PEP</MenuItem>
+                    </Select>
+                </FormControl>
+
+            {selectForm === 'EHCP' && (
+                <EHCPForm disabled={disabled} defaultValues={defaultValues} />
+            )}
+
+            {selectForm === 'PEP' && (
+                <PEPForm disabled={disabled} defaultValues={defaultValues} />
+            )}
+        </>
+    )
 }

@@ -1,7 +1,10 @@
-import Layout from '@root/layouts';
-import React from 'react'
+import React from "react";
+import Layout from "@root/layouts";
+import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import Page from '@root/components/Page';
+import CyberEssentials from "@root/sections/policies-and-guidelines/cyber-essentials/CyberEssentials";
+
+// ============================================================================================
 
 const PAGE_TITLE = "Cyber Essentials";
 
@@ -12,11 +15,11 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Policies and Guidelines",
+          name: "IFA",
           href: "/policies-and-guidelines",
         },
         {
-          name: "All",
+          name: "General Data Protection",
         },
       ]}
       title={PAGE_TITLE}
@@ -29,7 +32,7 @@ PolicyGuidelinesPage.getLayout = function getLayout(page: any) {
 export default function PolicyGuidelinesPage() {
   return (
     <Page title={PAGE_TITLE}>
-     {PAGE_TITLE}
+      <CyberEssentials />
     </Page>
   );
 }

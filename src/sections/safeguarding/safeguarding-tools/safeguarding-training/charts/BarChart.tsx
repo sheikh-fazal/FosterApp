@@ -1,7 +1,15 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
-import { Box, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  Radio,
+  RadioGroup,
+  Typography,
+} from "@mui/material";
 import { chartTitles } from ".";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
@@ -64,28 +72,20 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-      <Box>
-        <ReactApexChart
-          options={baroptions}
-          series={barseries}
-          type="bar"
-          width={200}
-          height={150}
-        />
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "4px",
-          marginTop: "20px",
-          marginRight: "50px",
-        }}
+    <Grid container>
+      <Grid
+        item
+        sm={6}
+        xs={12}
+        sx={{ display: "flex", justifyContent: { sm: "start", xs: "center" } }}
       >
+        <ReactApexChart options={baroptions} series={barseries} type="bar" height={150} />
+      </Grid>
+      <Grid item sm={6} xs={12} sx={{ mt: { sm: 0, xs: 2 } }}>
         <FormControl>
           <RadioGroup
             row
+            sx={{ display: "flex", gap: { sm: "15px", xs: "5px" } }}
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
             value={selectedChart}
@@ -96,7 +96,7 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
           </RadioGroup>
         </FormControl>
         {chartTitles?.map((item) => (
-          <Box key={item?.color} sx={{ mt: 0.5 }}>
+          <Box key={item?.color} sx={{ mt: 1 }}>
             <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
               <Box
                 sx={{
@@ -110,7 +110,7 @@ export default function BarChart({ selectedChart, setSelectedChart }: any) {
             </Box>
           </Box>
         ))}
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 }

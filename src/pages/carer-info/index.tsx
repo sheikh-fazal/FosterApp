@@ -28,6 +28,7 @@ const PAGE_TITLE = "Carer Info";
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
+    name: "Dashboard",
     href: "/",
   },
   {

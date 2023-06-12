@@ -11,6 +11,7 @@ import { RxCross2 } from "react-icons/rx";
 import * as Yup from "yup";
 import dayjs from "dayjs";
 import SkeletonStickyNotes from "@root/components/skeleton/SkeletonStickyNotes";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const FormSchema = Yup.object().shape({
   content: Yup.string(),
@@ -18,6 +19,8 @@ export const FormSchema = Yup.object().shape({
 
 function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   const [showlist, setShowlist] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [deleteItemId, setDeleteItemId] = useState("");
 
   const [getInitialContactData, { data, isLoading: dataLoding, isFetching }] =
     useLazyGetStickyNotesByDateQuery();
@@ -30,7 +33,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   };
   useEffect(() => {
     getdata(dayjs(date).format("YYYY-MM-DD"));
-  }, [date]);
+  });
 
   const [
     deleteNotes,
@@ -41,6 +44,20 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
     enqueueSnackbar("Notes Deleted Successfully", {
       variant: "success",
     });
+  }
+  const deleteNoteListItem = async () => {
+  const res: any = deleteNotes(deleteItemId).unwrap().then((res: any) => {
+    setOpenDelete(false)
+    enqueueSnackbar("Notes Deleted Successfully", {
+      variant: "success",
+    });
+    setDeleteItemId("");
+  })
+  .catch((error: any) => {
+    setOpenDelete(false)
+    const errMsg = error?.data?.message;
+    enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+  });
   }
 
   return (
@@ -63,20 +80,14 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
       </Box>
       <Box sx={{ height: 150, overflow: "auto" }}>
         {deleteIsloading ? (
-         
-            <SkeletonStickyNotes />
+          <SkeletonStickyNotes />
         ) : !isFetching ? (
           data && data?.length > 0 ? (
             data.map((item: any) => (
               <List key={item?.id}>
                 <ListItem sx={style.listStyle}>
                   <Typography
-                    sx={{
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      maxWidth: "200px",
-                      textOverflow: "ellipsis",
-                    }}
+                    sx={style.listContent}
                     onClick={() => {
                       setItem(item);
                       setEdit(true);
@@ -84,21 +95,28 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
                   >{`"${item?.content}"`}</Typography>
                   <RxCross2
                     onClick={() => {
-                      deleteNotes(item?.id);
+                      setDeleteItemId(item?.id);
+                      setOpenDelete(true);
                     }}
                   />
                 </ListItem>
               </List>
             ))
           ) : (
-            <Box sx={{ mt: 1 }}>No Notes on this date!</Box>
+            <Box sx={style.msgStyle}>No Notes on this date!</Box>
           )
         ) : (
-         
           <SkeletonStickyNotes />
-        
         )}
       </Box>
+      {openDelete && (
+        <DeleteModel
+          open={openDelete}
+          handleClose={() => setOpenDelete(false)}
+          
+          onDeleteClick={deleteNoteListItem}
+        />
+      )}
     </Box>
   );
 }
@@ -170,10 +188,20 @@ const style = {
   }),
   listStyle: (theme: any) => ({
     p: 0,
-    color: theme.palette.grey[900],
+    color: theme.palette.grey[600],
     cursor: "pointer",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
   }),
+  listContent:{
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    maxWidth: "200px",
+    textOverflow: "ellipsis",
+  },
+  msgStyle:(theme: any)=>({
+    mt:1,
+    color: theme.palette.grey[800],
+  })
 };

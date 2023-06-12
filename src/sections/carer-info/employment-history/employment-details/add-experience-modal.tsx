@@ -10,12 +10,15 @@ import AddIcon from "@mui/icons-material/Add";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { Fragment, useEffect, useRef, useState } from "react";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { AddFormSchema, EmploymentType,EXPERIENCE } from ".";
+import { AddFormSchema, EmploymentType, EXPERIENCE } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useAddExperiencesFrom } from "./useAddExperiencesFrom";
 
 function AddExperiencesModal({ open, setOpen }: any) {
+  const { submitAddExperiencesForm } = useAddExperiencesFrom();
+
   const theme: any = useTheme();
   const [collapsedIndexes, setCollapsedIndexes] = useState<any>([]);
   const toggleCollapse = (index: any) => {
@@ -25,9 +28,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
       setCollapsedIndexes([...collapsedIndexes, index]);
     }
   };
-  const methods: any = useForm({
-    resolver: yupResolver(AddFormSchema),
-  });
+  const methods: any = useForm();
 
   const { control, handleSubmit } = methods;
 
@@ -44,15 +45,17 @@ function AddExperiencesModal({ open, setOpen }: any) {
     } else {
       initialRenderRef.current = false;
     }
-  }, [open]);
+  }, [open,append]);
 
   const onSubmit = (data: any) => {
-    console.log(data);
+
+    submitAddExperiencesForm(data);
   };
 
   return (
     <Modal
       open={open}
+      
       onClose={() => setOpen(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -66,7 +69,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <RHFTextField
-                  name="companyname"
+                  name="companyName"
                   label="Company Name"
                   size="small"
                 />
@@ -75,7 +78,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                 <RHFTextField name="location" label="Location" size="small" />
               </Grid>
               <Grid item xs={6}>
-                <RHFUploadFile name="updatePhoto" {...methods} required />
+                <RHFUploadFile name="media" {...methods} required />
               </Grid>
               <Grid item xs={6}></Grid>
               {fields.map((field, index) => (
@@ -103,9 +106,9 @@ function AddExperiencesModal({ open, setOpen }: any) {
                       )}
                     </Box>
                   </Grid>
-                  {collapsedIndexes.includes(index)  ? null : (
+                  {collapsedIndexes.includes(index) ? null : (
                     <>
-                      <Grid item xs={6} onClick={() => toggleCollapse(index)}>
+                      <Grid item xs={6}>
                         <RHFTextField
                           name={`experiences.${index}.title`}
                           label="Title"
