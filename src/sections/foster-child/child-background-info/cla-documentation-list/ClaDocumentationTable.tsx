@@ -1,66 +1,42 @@
-import { Card } from "@mui/material";
-import CustomTable from "@root/components/Table/CustomTable";
-import TableHeader from "@root/components/TableHeader";
-import React, { useRef } from "react";
-import { useTableParams } from "@root/hooks/useTableParams";
+import React from "react";
 import { columns } from ".";
-import { useRouter } from "next/router";
-import { useClaDocumentationListQuery } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
+import { Card } from "@mui/material";
+import TableHeader from "@root/components/TableHeader";
+import CustomTable from "@root/components/Table/CustomTable";
+import { useDocumentationTable } from "./useDocumentationTable";
 
 export default function ClaDocumentationListTable() {
-  const navigate = useRouter();
-  const tableHeaderRef = useRef<any>();
-  const [search, setSearch] = React.useState("");
 
-  // const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-  //     useTableParams();
-  const { data, isError, isLoading, isSuccess, isFetching } =
-    useClaDocumentationListQuery({search: search});
-    
-//   const data = [
-//     {
-//       id: 1,
-//       Date: " 12/11/2021",
-//       Document: "Education, Health , Care Plan Document",
-//       DocumentType: "EHCP",
-//     },
-//     {
-//       id: 2,
-//       Date: " 12/11/2021",
-//       Document: "PEP Personal Educational Plan ",
-//       DocumentType: "PEP",
-//     },
-//   ];
+    const {router, data, isError, isLoading, isSuccess, isFetching} = useDocumentationTable();
+
+    console.log("data", data)
 
   return (
     <Card sx={{ p: 2 }}>
       <TableHeader
-        ref={tableHeaderRef}
         showAddBtn
         title="CLA Documentation"
         searchKey="search"
         onAdd={() => {
-          navigate.push(
+            router.push(
             "/foster-child/child-background-info/cla-documentation/add-cla-documentation"
           );
         }}
       />
       <CustomTable
-        data={data}
+        data={data?.data}
         columns={columns}
-        isSuccess={true}
-        isLoading={false}
-        isFetching={false}
+        isSuccess={isSuccess}
+        isLoading={isLoading}
+        isFetching={isFetching}
         currentPage={1}
-        isError={false}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
+        isError={isError}
         onPageChange={(data: any) => {
           console.log("Current page data: ", data);
         }}
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}
-        //   rootSX={{ my: theme.spacing(2) }}
       />
     </Card>
   );

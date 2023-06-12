@@ -9,7 +9,7 @@ export const useDocumentationTable = () => {
 
   const [search, setSearch] = React.useState("");
 
-  const { data } = useClaDocumentationListQuery({search: search});
+  const { data, isError, isLoading, isSuccess, isFetching } = useClaDocumentationListQuery<any>({search: search});
 
-  return {};
+  return { router, data, isError, isLoading, isSuccess, isFetching };
 };

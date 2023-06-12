@@ -5,6 +5,8 @@ import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
+import dayjs from "dayjs";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 export const columns = [
   {
@@ -14,22 +16,22 @@ export const columns = [
     header: "Sr. No",
   },
   {
-    accessorFn: (row: any) => row.Date,
-    id: "Date",
-    cell: (info: any) => info.getValue(),
+    accessorFn: (row: any) => row.createdAt,
+    id: "createdAt",
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: "Date",
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row?.Document,
-    id: "Document",
+    accessorFn: (row: any) => row?.document,
+    id: "document",
     cell: (info: any) => info.getValue(),
     header: "Document",
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row?.DocumentType,
-    id: "Document Type ",
+    accessorFn: (row: any) => row?.documentType,
+    id: "documentType",
     cell: (info: any) => info.getValue(),
     header: "Document Type",
     isSortable: true,
@@ -39,6 +41,13 @@ export const columns = [
     id: "actions",
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+        <TableAction
+          type="edit"
+          onClicked={() => router.push(`?${info.getValue()}`)}
+        />
+        <DeletePrompt
+        // onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+        />
         <TableAction
           type="view"
           onClicked={() =>
@@ -57,6 +66,17 @@ export const columns = [
     isSortable: false,
   },
 ];
+export const defaultValues = {
+  // PEP Form Default Values
+  name: "",
+  class: "",
+  planDoneBy: "",
+  assessmentDate: null,
+  from: null,
+  to: null,
+  overAllOutcome: "",
+};
+
 export const EHCPFormData = [
   {
     id: 1,
@@ -707,7 +727,7 @@ export const PEPFormData = [
   {
     id: 3,
     componentProps: {
-      name: "plan",
+      name: "planDoneBy",
       label: "Plan",
       sx: { mb: 4 },
     },
@@ -715,10 +735,10 @@ export const PEPFormData = [
     md: 6,
   },
   {
-    id: 4,
+    id: 5,
     componentProps: {
-      name: "pep",
-      label: "Pep Duration",
+      name: "assessmentDate",
+      label: "Assessment",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -728,8 +748,19 @@ export const PEPFormData = [
   {
     id: 5,
     componentProps: {
-      name: "assessment",
-      label: "Assessment",
+      name: "from",
+      label: "Pep Duration From",
+      sx: { mb: 4 },
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    md: 6,
+  },
+  {
+    id: 6,
+    componentProps: {
+      name: "to",
+      label: "Pep Duration to",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -742,9 +773,9 @@ export const PEPFormData = [
     md: 12,
   },
   {
-    id: 6,
+    id: 7,
     componentProps: {
-      name: "overallOutcome",
+      name: "overAllOutcome",
       label: "Overall Outcome",
       sx: { my: 3 },
       fullWidth: true,
@@ -905,20 +936,20 @@ export const StrategiesAndEvidence = [
   },
 ];
 
-export const defaultValues = {
-  // EHCP Form Default Values
-  date: "",
-  OnFile: "",
-  comments: "",
+// export const defaultValues = {
+//   // EHCP Form Default Values
+//   date: "",
+//   OnFile: "",
+//   comments: "",
 
-  // PEP Form Default Values
-  name: "",
-  class: "",
-  plan: "",
-  pep: "",
-  assessment: "",
-  overallOutcome: "",
-};
+//   // PEP Form Default Values
+//   name: "",
+//   class: "",
+//   plan: "",
+//   pep: "",
+//   assessment: "",
+//   overallOutcome: "",
+// };
 
 export const EHCPFormValidation = Yup.object().shape({
   date: Yup.string().trim().required("Date is Required"),
@@ -927,12 +958,13 @@ export const EHCPFormValidation = Yup.object().shape({
 });
 
 export const PEPFormValidation = Yup.object().shape({
-  name: Yup.string().trim().required("Name of Owner is Required"),
-  class: Yup.string().trim().required("class is Required"),
-  plan: Yup.string().trim().required("Plan Required"),
-  pep: Yup.date().required(),
-  assessment: Yup.date().required(),
-  overallOutcome: Yup.string().trim().required("overcall outcome Required"),
+  name: Yup.string().trim(),
+  class: Yup.string().trim(),
+  planDoneBy: Yup.string().trim(),
+  assessmentDate: Yup.date(),
+  from: Yup.date(),
+  to: Yup.date(),
+  overAllOutcome: Yup.string().trim(),
 });
 
 export { default as ClaDocumentationList } from "./ClaDocumentationTable";
