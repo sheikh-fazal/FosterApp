@@ -40,6 +40,7 @@ export const TAGS = [
   "EDIT_REFERENCE",
   "POST_EMPLOYEE",
   "GET_BASICINFORMATION",
+  "NEXT-OF-KIN",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

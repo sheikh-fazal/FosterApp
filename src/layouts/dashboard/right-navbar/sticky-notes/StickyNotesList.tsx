@@ -33,7 +33,7 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   };
   useEffect(() => {
     getdata(dayjs(date).format("YYYY-MM-DD"));
-  }, [date,getdata]);
+  });
 
   const [
     deleteNotes,
