@@ -1,104 +1,106 @@
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import SignaturePad from "@root/components/SignaturePad";
-
+import DaysHourPicker from "./customPicker";
+import * as Yup from 'yup';
 export const initialValues = {
   fosterCarerName1: 'john doe',
   fosterCarerName2: 'sarah doe',
-  fosterCarerDOB1: null,
-  fosterCarerDOB2: null,
+  fosterCarerDOB1: new Date(),
+  fosterCarerDOB2: new Date(),
   fosterCarerAddress: 'lorem ipsum dolor sit amet',
   referenceNumber: '1234er4xwq2',
-  supervisingSocialWorker: 'option',
+  supervisingSocialWorker: 'teri dactyl',
   under18Name1: 'carter',
   under18Name2: 'ali carter',
   under18Name3: 'judd trump',
-  under18DOB1: null,
-  under18DOB2: null,
-  under18DOB3: null,
-  under18Relationship1: 'son',
-  under18Relationship2: 'daughter',
-  under18Relationship3: 'son',
+  under18DOB1: new Date(),
+  under18DOB2: new Date(),
+  under18DOB3: new Date(),
+  under18Relationship1: 'daughter',
+  under18Relationship2: 'son',
+  under18Relationship3: 'daughter',
   adultName1: 'john doe',
   adultName2: 'john doe',
-  adultDob1: null,
-  adultDob2: null,
+  adultDob1: new Date(),
+  adultDob2: new Date(),
   RelationshipCarer1: 'father',
   RelationshipCarer2: 'mother',
   currentTermsOfApproval: 'some text here',
   skillsLevelOrBanding: 'some text here',
-  carerEthnicity1: 'asian',
+  carerEthnicity1: 'white and asian',
   carerReligion1: 'islam',
   carerLanguage1: 'urdu',
   carerEmploymentDetails1: 'days 100 and hours 20',
-  carerEthnicity2: 'asian',
+  carerEthnicity2: 'white and asian',
   carerReligion2: 'islam',
   carerLanguage2: 'urdu',
   carerEmploymentDetails2: 'days 100 and hours 20',
   childMinding: 'Yes',
   skillsLevelOrBandingArrangements: 'some text here',
   childPlacementName1: 'sarah doe',
-  childPlacementDob1: null,
-  childPlacementEthnicity1: 'asian',
-  childPlacementType1: 'john doe',
-  childPlacementDatePlaced1: null,
+  childPlacementDob1: new Date(),
+  childPlacementEthnicity1: 'white and asian',
+  childPlacementType1: 'placement type',
+  childPlacementDatePlaced1: new Date(),
   childPlacementAuthority1: 'supervising social worker',
   childPlacementName2: 'sarah doe',
-  childPlacementDob2: null,
-  childPlacementEthnicity2: 'asian',
-  childPlacementType2: 'john doe',
-  childPlacementDatePlaced2: null,
+  childPlacementDob2: new Date(),
+  childPlacementEthnicity2: 'white and asian',
+  childPlacementType2: 'placement type',
+  childPlacementDatePlaced2: new Date(),
   childPlacementAuthority2: 'supervising social worker',
   childPlacementName3: 'sarah doe',
-  childPlacementDob3: null,
-  childPlacementEthnicity3: 'asian',
-  childPlacementType3: 'john doe',
-  childPlacementDatePlaced3: null,
+  childPlacementDob3: new Date(),
+  childPlacementEthnicity3: 'white and asian',
+  childPlacementType3: 'placement type',
+  childPlacementDatePlaced3: new Date(),
   childPlacementAuthority3: 'supervising social worker',
   childPlacementEndedName1: 'john doe',
-  childPlacementEndedDob1: null,
-  childPlacementEndedEthnicity1: 'asian',
+  childPlacementEndedDob1: new Date(),
+  childPlacementEndedEthnicity1: 'white and asian',
   childPlacementEndedType1: 'john doe',
-  childPlacementEndedDatePlaced1: null,
-  childPlacementEndedDatePlacedEnded1: null,
+  childPlacementEndedDatePlaced1: new Date(),
+  childPlacementEndedDatePlacedEnded1: new Date(),
   childPlacementEndedAuthority1: 'supervising social worker',
   childPlacementEndedReasonPlacement1: "some reason",
 
   childPlacementEndedName2: 'john doe',
-  childPlacementEndedDob2: null,
-  childPlacementEndedEthnicity2: 'asian',
+  childPlacementEndedDob2: new Date(),
+  childPlacementEndedEthnicity2: 'white and asian',
   childPlacementEndedType2: 'john doe',
-  childPlacementEndedDatePlaced2: null,
-  childPlacementEndedDatePlacedEnded2: null,
+  childPlacementEndedDatePlaced2: new Date(),
+  childPlacementEndedDatePlacedEnded2: new Date(),
   childPlacementEndedAuthority2: 'supervising social worker',
   childPlacementEndedReasonPlacement2: "some reason",
 
   childPlacementEndedName3: 'john doe',
-  childPlacementEndedDob3: null,
-  childPlacementEndedEthnicity3: 'asian',
+  childPlacementEndedDob3: new Date(),
+  childPlacementEndedEthnicity3: 'white and asian',
   childPlacementEndedType3: 'john doe',
-  childPlacementEndedDatePlaced3: null,
-  childPlacementEndedDatePlacedEnded3: null,
+  childPlacementEndedDatePlaced3: new Date(),
+  childPlacementEndedDatePlacedEnded3: new Date(),
   childPlacementEndedAuthority3: 'supervising social worker',
   childPlacementEndedReasonPlacement3: "some reason",
   viewFRDForm: "Yes",
   whenUndertakingReview: 'some reason',
-  dateOfInitialApproval: null,
-  dateOfLastFosteringPanel: null,
-  dateOfLastReviewMeeting: null,
-  dateOfThisReviewMeeting: null,
-  dateOfLastReviewWasCompleted: null,
-  reasonForThisReview: 'other reason',
+  dateOfInitialApproval: new Date(),
+  dateOfLastFosteringPanel: new Date(),
+  dateOfLastReviewMeeting: new Date(),
+  dateOfThisReviewMeeting: new Date(),
+  dateOfLastReviewWasCompleted: new Date(),
+  reasonForThisReview: 'initial review',
 
   disclosureHouseholdingName1: 'john doe',
   disclosureHouseholdingName2: 'john doe',
   disclosureHouseholdingName3: 'john doe',
   disclosureHouseholdingName4: 'john doe',
 
-  disclosureHouseholdingDate1: null,
-  disclosureHouseholdingDate2: null,
-  disclosureHouseholdingDate3: null,
-  disclosureHouseholdingDate4: null,
+  disclosureHouseholdingDate1: new Date(),
+  disclosureHouseholdingDate2: new Date(),
+  disclosureHouseholdingDate3: new Date(),
+  disclosureHouseholdingDate4: new Date(),
 
   disclosureHouseholdingDetail: 'some description',
 
@@ -107,10 +109,10 @@ export const initialValues = {
   disclosureNonHouseholdingName3: "john doe",
   disclosureNonHouseholdingName4: "john doe",
 
-  disclosureNonHouseholdingDate1: null,
-  disclosureNonHouseholdingDate2: null,
-  disclosureNonHouseholdingDate3: null,
-  disclosureNonHouseholdingDate4: null,
+  disclosureNonHouseholdingDate1: new Date(),
+  disclosureNonHouseholdingDate2: new Date(),
+  disclosureNonHouseholdingDate3: new Date(),
+  disclosureNonHouseholdingDate4: new Date(),
   disclosureNonHouseholdingDetail: 'some description',
 
   localAuthorityHouseholdingName1: 'john doe',
@@ -118,18 +120,18 @@ export const initialValues = {
   localAuthorityHouseholdingName3: 'john doe',
   localAuthorityHouseholdingName4: 'john doe',
 
-  localAuthorityHouseholdingDate1: null,
-  localAuthorityHouseholdingDate2: null,
-  localAuthorityHouseholdingDate3: null,
-  localAuthorityHouseholdingDate4: null,
+  localAuthorityHouseholdingDate1: new Date(),
+  localAuthorityHouseholdingDate2: new Date(),
+  localAuthorityHouseholdingDate3: new Date(),
+  localAuthorityHouseholdingDate4: new Date(),
   localAuthorityHouseholdingDetail: 'some description',
 
-  fosterCarerLastMedicalCheck1: null,
+  fosterCarerLastMedicalCheck1: new Date(),
   fosterCarerMedicaladvisor1: 'some description',
-  fosterCarerQuestionnaire1: null,
-  fosterCarerLastMedicalCheck2: null,
+  fosterCarerQuestionnaire1: new Date(),
+  fosterCarerLastMedicalCheck2: new Date(),
   fosterCarerMedicaladvisor2: 'some description',
-  fosterCarerQuestionnaire2: null,
+  fosterCarerQuestionnaire2: new Date(),
 
   medicalCheckDetail: 'some description',
 
@@ -138,10 +140,10 @@ export const initialValues = {
   checkWithName3: 'hello world',
   checkWithName4: 'hello world',
 
-  dateofCheck1: null,
-  dateofCheck2: null,
-  dateofCheck3: null,
-  dateofCheck4: null,
+  dateofCheck1: new Date(),
+  dateofCheck2: new Date(),
+  dateofCheck3: new Date(),
+  dateofCheck4: new Date(),
 
   otherCheckOrReports: 'some description',
   issueArisingFromOtherCheck: 'some description',
@@ -151,7 +153,7 @@ export const initialValues = {
   planInCaseOfFire: 'some description',
   relationSatisfactory: 'some description',
   homeSafetyActionWithTargetCompletionDate: 'some description',
-  dateOfMostRecentPolicy: null,
+  dateOfMostRecentPolicy: new Date(),
   wasThisReviewedAfterLastestPlacement: 'Yes',
   anyActionRequiredCaringPolicy: 'Yes',
   outStandingActionWithTargetCompleted: 'some description',
@@ -163,23 +165,29 @@ export const initialValues = {
   smokerInFosteringHousehold: 'Yes',
   smokingAgreementBeenCompleted: 'Yes',
   concernDetails: 'some description',
-  dateOfFosterCareAgreement: null,
-  dateOfSupervisionAgreement: null,
-  toCarer1: null,
-  toCarer2: null,
+  dateOfFosterCareAgreement: new Date(),
+  dateOfSupervisionAgreement: new Date(),
+  toCarer1: new Date(),
+  toCarer2: new Date(),
   complySupervisingAgreement: 'Yes',
   workerOrPeriodsUnallocated: 'some description',
-  allegationReviewPeriodDate1: null,
-  allegationReviewPeriodDate2: null,
+  allegationReviewPeriodDate1: new Date(),
+  allegationReviewPeriodDate2: new Date(),
   allegationReviewPeriodDetail1: 'some description',
   allegationReviewPeriodDetail2: 'some description',
-  summaryOfOutcome1: 'some description',
-  summaryOfOutcome2: 'some description',
+  allegationSummaryOfOutcome1: 'some description',
+  allegationSummaryOfOutcome2: 'some description',
+  complaintsReviewPeriodDate1: new Date(),
+  complaintsReviewPeriodDate2: new Date(),
+  complaintsReviewPeriodDetail1: 'some description',
+  complaintsReviewPeriodDetail2: 'some description',
+  complaintsSummaryOfOutcome1: 'some description',
+  complaintsSummaryOfOutcome2: 'some description',
   TDSAchieved: 'Yes',
-  dateSignedOff: null,
-  completionDate: null,
+  dateSignedOff: new Date(),
+  completionDate: new Date(),
   saferCaringTraining: 'Yes',
-  outstandingActionsCompletionDate: null,
+  outstandingActionsCompletionDate: new Date(),
   personalDevelopmentPlan: 'Yes',
   fosteringHistoryCarers: 'some description',
   recommendationOfLastFosterhomeReview: 'some description',
@@ -205,8 +213,222 @@ export const initialValues = {
   IdentifyTheStrengthsAndLimitations: 'some description',
   currentTermsOfApprovalAppropriate: 'some description',
   recommendationRegarding: 'some description',
-  signature: null,
-  label: null
+  signature: new Date(),
+  label: new Date()
+};
+
+
+export const validationSchema = {
+  fosterCarerName1: Yup.string().required('Field is required'),
+  fosterCarerName2: Yup.string().required('Field is required'),
+  fosterCarerDOB1: Yup.string().required('Field is required'),
+  fosterCarerDOB2: Yup.string().required('Field is required'),
+  fosterCarerAddress: Yup.string().required('Field is required'),
+  referenceNumber: Yup.string().required('Field is required'),
+  supervisingSocialWorker: Yup.string().required('Field is required'),
+  under18Name1: Yup.string().required('Field is required'),
+  under18Name2: Yup.string().required('Field is required'),
+  under18Name3: Yup.string().required('Field is required'),
+  under18DOB1: Yup.string().required('Field is required'),
+  under18DOB2: Yup.string().required('Field is required'),
+  under18DOB3: Yup.string().required('Field is required'),
+  under18Relationship1: Yup.string().required('Field is required'),
+  under18Relationship2: Yup.string().required('Field is required'),
+  under18Relationship3: Yup.string().required('Field is required'),
+  adultName1: Yup.string().required('Field is required'),
+  adultName2: Yup.string().required('Field is required'),
+  adultDob1: Yup.string().required('Field is required'),
+  adultDob2: Yup.string().required('Field is required'),
+  RelationshipCarer1: Yup.string().required('Field is required'),
+  RelationshipCarer2: Yup.string().required('Field is required'),
+  currentTermsOfApproval: Yup.string().required('Field is required'),
+  skillsLevelOrBanding: Yup.string().required('Field is required'),
+  carerEthnicity1: Yup.string().required('Field is required'),
+  carerReligion1:Yup.string().required('Field is required'),
+  carerLanguage1: Yup.string().required('Field is required'),
+  carerEmploymentDetails1: Yup.string().required('Field is required'),
+  carerEthnicity2: Yup.string().required('Field is required'),
+  carerReligion2: Yup.string().required('Field is required'),
+  carerLanguage2: Yup.string().required('Field is required'),
+  carerEmploymentDetails2: Yup.string().required('Field is required'),
+  childMinding: Yup.string().required('Field is required'),
+  skillsLevelOrBandingArrangements: Yup.string().required('Field is required'),
+  childPlacementName1: Yup.string().required('Field is required'),
+  childPlacementDob1: Yup.string().required('Field is required'),
+  childPlacementEthnicity1: Yup.string().required('Field is required'),
+  childPlacementType1: Yup.string().required('Field is required'),
+  childPlacementDatePlaced1: Yup.string().required('Field is required'),
+  childPlacementAuthority1: Yup.string().required('Field is required'),
+  childPlacementName2: Yup.string().required('Field is required'),
+  childPlacementDob2: Yup.string().required('Field is required'),
+  childPlacementEthnicity2: Yup.string().required('Field is required'),
+  childPlacementType2: Yup.string().required('Field is required'),
+  childPlacementDatePlaced2: Yup.string().required('Field is required'),
+  childPlacementAuthority2: Yup.string().required('Field is required'),
+  childPlacementName3: Yup.string().required('Field is required'),
+  childPlacementDob3: Yup.string().required('Field is required'),
+  childPlacementEthnicity3: Yup.string().required('Field is required'),
+  childPlacementType3: Yup.string().required('Field is required'),
+  childPlacementDatePlaced3: Yup.string().required('Field is required'),
+  childPlacementAuthority3: Yup.string().required('Field is required'),
+  childPlacementEndedName1: Yup.string().required('Field is required'),
+  childPlacementEndedDob1: Yup.string().required('Field is required'),
+  childPlacementEndedEthnicity1: Yup.string().required('Field is required'),
+  childPlacementEndedType1: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlaced1: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlacedEnded1: Yup.string().required('Field is required'),
+  childPlacementEndedAuthority1: Yup.string().required('Field is required'),
+  childPlacementEndedReasonPlacement1: Yup.string().required('Field is required'),
+
+  childPlacementEndedName2: Yup.string().required('Field is required'),
+  childPlacementEndedDob2: Yup.string().required('Field is required'),
+  childPlacementEndedEthnicity2: Yup.string().required('Field is required'),
+  childPlacementEndedType2: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlaced2: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlacedEnded2: Yup.string().required('Field is required'),
+  childPlacementEndedAuthority2: Yup.string().required('Field is required'),
+  childPlacementEndedReasonPlacement2: Yup.string().required('Field is required'),
+
+  childPlacementEndedName3: Yup.string().required('Field is required'),
+  childPlacementEndedDob3: Yup.string().required('Field is required'),
+  childPlacementEndedEthnicity3: Yup.string().required('Field is required'),
+  childPlacementEndedType3: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlaced3: Yup.string().required('Field is required'),
+  childPlacementEndedDatePlacedEnded3: Yup.string().required('Field is required'),
+  childPlacementEndedAuthority3: Yup.string().required('Field is required'),
+  childPlacementEndedReasonPlacement3: Yup.string().required('Field is required'),
+  viewFRDForm: Yup.string().required('Field is required'),
+  whenUndertakingReview: Yup.string().required('Field is required'),
+  dateOfInitialApproval: Yup.string().required('Field is required'),
+  dateOfLastFosteringPanel: Yup.string().required('Field is required'),
+  dateOfLastReviewMeeting: Yup.string().required('Field is required'),
+  dateOfThisReviewMeeting: Yup.string().required('Field is required'),
+  dateOfLastReviewWasCompleted: Yup.string().required('Field is required'),
+  reasonForThisReview: Yup.string().required('Field is required'),
+
+  disclosureHouseholdingName1: Yup.string().required('Field is required'),
+  disclosureHouseholdingName2: Yup.string().required('Field is required'),
+  disclosureHouseholdingName3: Yup.string().required('Field is required'),
+  disclosureHouseholdingName4: Yup.string().required('Field is required'),
+
+  disclosureHouseholdingDate1: Yup.string().required('Field is required'),
+  disclosureHouseholdingDate2: Yup.string().required('Field is required'),
+  disclosureHouseholdingDate3: Yup.string().required('Field is required'),
+  disclosureHouseholdingDate4: Yup.string().required('Field is required'),
+
+  disclosureHouseholdingDetail: Yup.string().required('Field is required'),
+
+  disclosureNonHouseholdingName1: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingName2: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingName3: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingName4: Yup.string().required('Field is required'),
+
+  disclosureNonHouseholdingDate1: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingDate2: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingDate3: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingDate4: Yup.string().required('Field is required'),
+  disclosureNonHouseholdingDetail: Yup.string().required('Field is required'),
+
+  localAuthorityHouseholdingName1: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingName2: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingName3: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingName4: Yup.string().required('Field is required'),
+
+  localAuthorityHouseholdingDate1: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingDate2: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingDate3: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingDate4: Yup.string().required('Field is required'),
+  localAuthorityHouseholdingDetail: Yup.string().required('Field is required'),
+
+  fosterCarerLastMedicalCheck1: Yup.string().required('Field is required'),
+  fosterCarerMedicaladvisor1: Yup.string().required('Field is required'),
+  fosterCarerQuestionnaire1: Yup.string().required('Field is required'),
+  fosterCarerLastMedicalCheck2: Yup.string().required('Field is required'),
+  fosterCarerMedicaladvisor2: Yup.string().required('Field is required'),
+  fosterCarerQuestionnaire2: Yup.string().required('Field is required'),
+
+  medicalCheckDetail: Yup.string().required('Field is required'),
+
+  checkWithName1: Yup.string().required('Field is required'),
+  checkWithName2: Yup.string().required('Field is required'),
+  checkWithName3: Yup.string().required('Field is required'),
+  checkWithName4: Yup.string().required('Field is required'),
+
+  dateofCheck1: Yup.string().required('Field is required'),
+  dateofCheck2: Yup.string().required('Field is required'),
+  dateofCheck3: Yup.string().required('Field is required'),
+  dateofCheck4: Yup.string().required('Field is required'),
+
+  otherCheckOrReports: Yup.string().required('Field is required'),
+  issueArisingFromOtherCheck: Yup.string().required('Field is required'),
+  dateOfHealthAndSafetyCheck: Yup.string().required('Field is required'),
+  dateOfUnannouncedInspectionVisit: Yup.string().required('Field is required'),
+  anyActionRequiredUnannouncedVisit: Yup.string().required('Field is required'),
+  planInCaseOfFire: Yup.string().required('Field is required'),
+  relationSatisfactory: Yup.string().required('Field is required'),
+  homeSafetyActionWithTargetCompletionDate: Yup.string().required('Field is required'),
+  dateOfMostRecentPolicy: Yup.string().required('Field is required'),
+  wasThisReviewedAfterLastestPlacement: Yup.string().required('Field is required'),
+  anyActionRequiredCaringPolicy: Yup.string().required('Field is required'),
+  outStandingActionWithTargetCompleted: Yup.string().required('Field is required'),
+
+  petsInTheFosteringHousehold: Yup.string().required('Field is required'),
+  petJoinedInTheReviewPeriod: Yup.string().required('Field is required'),
+  assessmentCompletedOnAllPetsInHousehold: Yup.string().required('Field is required'),
+  assessmentCompletedOnAllPetsInHouseholdComment: Yup.string().required('Field is required'),
+  smokerInFosteringHousehold: Yup.string().required('Field is required'),
+  smokingAgreementBeenCompleted: Yup.string().required('Field is required'),
+  concernDetails: Yup.string().required('Field is required'),
+  dateOfFosterCareAgreement: Yup.string().required('Field is required'),
+  dateOfSupervisionAgreement: Yup.string().required('Field is required'),
+  toCarer1: Yup.string().required('Field is required'),
+  toCarer2: Yup.string().required('Field is required'),
+  complySupervisingAgreement: Yup.string().required('Field is required'),
+  workerOrPeriodsUnallocated: Yup.string().required('Field is required'),
+  allegationReviewPeriodDate1: Yup.string().required('Field is required'),
+  allegationReviewPeriodDate2: Yup.string().required('Field is required'),
+  allegationReviewPeriodDetail1: Yup.string().required('Field is required'),
+  allegationReviewPeriodDetail2: Yup.string().required('Field is required'),
+  allegationSummaryOfOutcome1: Yup.string().required('Field is required'),
+  allegationSummaryOfOutcome2: Yup.string().required('Field is required'),
+  complaintsReviewPeriodDate1: Yup.string().required('Field is required'),
+  complaintsReviewPeriodDate2: Yup.string().required('Field is required'),
+  complaintsReviewPeriodDetail1: Yup.string().required('Field is required'),
+  complaintsReviewPeriodDetail2: Yup.string().required('Field is required'),
+  complaintsSummaryOfOutcome1: Yup.string().required('Field is required'),
+  complaintsSummaryOfOutcome2: Yup.string().required('Field is required'),
+  TDSAchieved: Yup.string().required('Field is required'),
+  dateSignedOff: Yup.string().required('Field is required'),
+  completionDate: Yup.string().required('Field is required'),
+  saferCaringTraining: Yup.string().required('Field is required'),
+  outstandingActionsCompletionDate: Yup.string().required('Field is required'),
+  personalDevelopmentPlan: Yup.string().required('Field is required'),
+  fosteringHistoryCarers: Yup.string().required('Field is required'),
+  recommendationOfLastFosterhomeReview: Yup.string().required('Field is required'),
+  exampleToShowCarerListens: Yup.string().required('Field is required'),
+  exampleToShowCarerProvides: Yup.string().required('Field is required'),
+  exampleToShowCarerCompliesWithPolicies: Yup.string().required('Field is required'),
+  exampleToShowCarerWithSupervisingSocialWorker: Yup.string().required('Field is required'),
+  exampleToShowCarerWithProfessional: Yup.string().required('Field is required'),
+  exampleToShowCarerOfBirthFamilies: Yup.string().required('Field is required'),
+  exampleToShowCarerPromotesHealthyPhysicalCare: Yup.string().required('Field is required'),
+  exampleToShowCarerPromotesPositiveBehaviour: Yup.string().required('Field is required'),
+  exampleToShowCarerCommuicateWithChildren: Yup.string().required('Field is required'),
+  fosterCarerRecordKeeping: Yup.string().required('Field is required'),
+  exampleToShowFosterCarerSupportChildrenAndYoungPeople: Yup.string().required('Field is required'),
+  exampleToShowFosterCarerEncourageInPlay: Yup.string().required('Field is required'),
+  fosterCarerSpecialEducationalNeeds: Yup.string().required('Field is required'),
+  unplannedPlacementEndingsInReviewPeriod: Yup.string().required('Field is required'),
+  childrenAndYoungPeopleFeelingSafe: Yup.string().required('Field is required'),
+  fosterCarerManagesThePersonalImpact: Yup.string().required('Field is required'),
+  fosterCarerAskedToCompleteFRDForm: Yup.string().required('Field is required'),
+  fosterCarerDemonstratedCommitment1: Yup.string().required('Field is required'),
+  fosterCarerDemonstratedCommitment2: Yup.string().required('Field is required'),
+  IdentifyTheStrengthsAndLimitations: Yup.string().required('Field is required'),
+  currentTermsOfApprovalAppropriate: Yup.string().required('Field is required'),
+  recommendationRegarding: Yup.string().required('Field is required'),
+  signature: Yup.string().required('Field is required'),
+  label: Yup.string().required('Field is required')
 }
 
 export const FRAFormData = [
@@ -297,6 +519,7 @@ export const FRAFormData = [
   {
     title: 'Foster carer’s own children (under 18) in the household',
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 4,
@@ -390,6 +613,7 @@ export const FRAFormData = [
   {
     title: 'Other adults in the household',
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 4,
@@ -458,7 +682,7 @@ export const FRAFormData = [
     ]
   },
   {
-    title: 'Term of approval'
+    head: 'Term of approval'
   },
   {
     title: "Current terms of approval *",
@@ -539,9 +763,9 @@ export const FRAFormData = [
               name: 'carerEmploymentDetails1',
               fullWidth: true,
               select: true,
-              options: [{ value: 'urdu', label: 'urdu' }]
+              options: [{ value: 'days 100 and hours 20', label: 'days 100 and hours 20' }]
             },
-            component: RHFSelect
+            component: DaysHourPicker
           },
         ]
       },
@@ -581,9 +805,9 @@ export const FRAFormData = [
               name: 'carerEmploymentDetails2',
               fullWidth: true,
               select: true,
-              options: [{ value: 'urdu', label: 'urdu' }]
+              options: [{ value: 'days 100 and hours 20', label: 'days 100 and hours 20' }]
             },
-            component: RHFSelect
+            component: DaysHourPicker
           },
         ]
       },
@@ -597,7 +821,7 @@ export const FRAFormData = [
       options: ['Yes', 'No'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -613,6 +837,8 @@ export const FRAFormData = [
   {
     title: 'Children currently in placement',
     gridLength: 12,
+    addNew: true,
+    isColumn: true,
     formFields: [
       {
         gridLength: 3,
@@ -672,7 +898,7 @@ export const FRAFormData = [
               name: 'childPlacementType1',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -688,7 +914,7 @@ export const FRAFormData = [
               name: 'childPlacementAuthority1',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -727,7 +953,7 @@ export const FRAFormData = [
               name: 'childPlacementType2',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -743,7 +969,7 @@ export const FRAFormData = [
               name: 'childPlacementAuthority2',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -782,7 +1008,7 @@ export const FRAFormData = [
               name: 'childPlacementType3',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -798,7 +1024,7 @@ export const FRAFormData = [
               name: 'childPlacementAuthority3',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -809,6 +1035,8 @@ export const FRAFormData = [
   {
     title: 'Placements that ended since last review',
     gridLength: 12,
+    addNew: true,
+    isColumn: true,
     formFields: [
       {
         gridLength: 3,
@@ -874,7 +1102,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedType1',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -897,7 +1125,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedAuthority1',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -946,7 +1174,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedType2',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -969,7 +1197,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedAuthority2',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -1018,7 +1246,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedType3',
               fullWidth: true,
               select: true,
-              options: [{ value: 'placement doe', label: 'placement doe' }]
+              options: [{ value: 'placement type', label: 'placement type' }]
             },
             component: RHFSelect
           },
@@ -1041,7 +1269,7 @@ export const FRAFormData = [
               name: 'childPlacementEndedAuthority3',
               fullWidth: true,
               select: true,
-              options: [{ value: 'supervising social worker ', label: 'supervising social worker ' }]
+              options: [{ value: 'supervising social worker', label: 'supervising social worker' }]
             },
             component: RHFSelect
           },
@@ -1060,7 +1288,7 @@ export const FRAFormData = [
     ]
   },
   {
-    title: 'Children currently in placement',
+    head: 'Children currently in placement',
     gridLength: 12
   },
   {
@@ -1071,7 +1299,7 @@ export const FRAFormData = [
       options: ['Yes', 'No'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1162,19 +1390,16 @@ export const FRAFormData = [
             },
             component: RHFSelect
           },
-
         ]
       },
     ]
   },
   {
-    gridLength: 12,
     title: 'Disclosure and Barring checks (foster carers/adult household members)',
     notice: 'There is no legal requirement to update DBS checks after approval, but fostering services will have their own policies regarding the updating of these checks.',
-    subText: "Detail the policy requirements of your fostering service either here or in the box underneath"
-  },
-  {
+    subText: "Detail the policy requirements of your fostering service either here or in the box underneath",
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 6,
@@ -1258,16 +1483,11 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    gridLength: 12,
-    title: "Disclosure and Barring Service checks (non-household members)"
-  },
-  {
-    gridLength: 12,
+    title: "Disclosure and Barring Service checks (non-household members)",
     notice: 'There is no legal requirement to undertake DBS checks on non-household members but fostering services will have their own policies regarding this issue',
-    subText: "Detail the policy requirements of your fostering service either here or in the box underneath"
-  },
-  {
+    subText: "Detail the policy requirements of your fostering service either here or in the box underneath",
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 6,
@@ -1351,16 +1571,11 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    gridLength: 12,
-    title: "Local authority checks (foster carers/adult household members)"
-  },
-  {
-    gridLength: 12,
+    title: "Local authority checks (foster carers/adult household members)",
     notice: 'There is no legal requirement to update local authority checks after approval, but fostering services will have their own policies regarding the updating of these checks.',
-    subText: "Detail the policy requirements of your fostering service either here or in the box below"
-  },
-  {
+    subText: "Detail the policy requirements of your fostering service either here or in the box below",
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 6,
@@ -1444,15 +1659,9 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    gridLength: 12,
-    title: "Medical checks"
-  },
-  {
-    gridLength: 12,
+    title: "Medical checks",
     notice: 'There is no legal requirement to update medical checks after approval, or to use health questionnaires, but fostering services will have their own policies regarding this matter',
-    subText: "Detail the policy requirements of your fostering service either here or in the box below"
-  },
-  {
+    subText: "Detail the policy requirements of your fostering service either here or in the box below",
     gridLength: 12,
     formFields: [
       {
@@ -1545,16 +1754,12 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    gridLength: 12,
-    title: "Other checks or reports"
-  },
-  {
-    gridLength: 12,
+    title: "Other checks or reports",
     notice: 'Notice: Fostering services will have policies about what checks need to be completed at review stage and might include checks with health visitors, schools and others. Where appropriate, reports might be obtained using Form FR-F1 Detail the policy requirements of your fostering service either here or in the box below',
-    subText: "Detail the policy requirements of your fostering service either here or in the box below"
-  },
-  {
+    subText: "Detail the policy requirements of your fostering service either here or in the box below",
     gridLength: 12,
+    addNew: true,
+    isColumn: true,
     formFields: [
       {
         gridLength: 6,
@@ -1639,14 +1844,12 @@ export const FRAFormData = [
   },
   {
     gridLength: 12,
-    title: 'Comment on any issues arising from these other checks'
+    head: 'Comment on any issues arising from these other checks'
   },
   {
     title: "Briefly describe the foster home accommodation, including *",
     points: ['number of bedrooms;', 'where each person in the household sleeps;', 'any arrangements for room sharing;', 'a description of the child or young person’s room.'],
-    subTitle: 'Fostering Services NMS (10.1) state that the foster home must comfortably accommodate all who live there. NMS (10.2) requires the home to be adequately furnished and decorated, clean and hygienic. Avoidable hazards should be removed (NMS 10.3). NMS (10.6) notes that unless specifically agreed otherwise, children over the age of three should have their own bedroom [TSD 3.2(a)(b)].'
-  },
-  {
+    subTitle: 'Fostering Services NMS (10.1) state that the foster home must comfortably accommodate all who live there. NMS (10.2) requires the home to be adequately furnished and decorated, clean and hygienic. Avoidable hazards should be removed (NMS 10.3). NMS (10.6) notes that unless specifically agreed otherwise, children over the age of three should have their own bedroom [TSD 3.2(a)(b)].',
     gridLength: 12,
     otherOptions: {
       name: "issueArisingFromOtherCheck",
@@ -1657,13 +1860,11 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: "Foster home safety check/unannounced visits"
+    head: "Foster home safety check/unannounced visits"
   },
   {
-    title: 'NMS (10.5) states that the foster home must be inspected annually without appointment. Statutory guidance (paragraph 5.67) requires at least one unannounced visit a year by the supervising social worker. TSD 3.2(c) requires foster carers and those living in the household to know what to do in the event of fire.',
-    subText: 'Detail the policy requirements of your fostering service (including in relation to holiday homes or second homes if relevant) either here or in the box below.'
-  },
-  {
+    subtitle: 'NMS (10.5) states that the foster home must be inspected annually without appointment. Statutory guidance (paragraph 5.67) requires at least one unannounced visit a year by the supervising social worker. TSD 3.2(c) requires foster carers and those living in the household to know what to do in the event of fire.',
+    subText: 'Detail the policy requirements of your fostering service (including in relation to holiday homes or second homes if relevant) either here or in the box below.',
     gridLength: 12,
     title: "Date of health and safety check *",
     otherOptions: {
@@ -1691,9 +1892,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'anyActionRequiredUnannouncedVisit',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1701,9 +1901,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'planInCaseOfFire',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1711,9 +1910,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'relationSatisfactory',
       options: ['Yes', 'No', 'Not available'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1727,11 +1925,9 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: "Family safer caring plan"
+    head: "Family safer caring plan"
   },
-  {
-    title: 'There is no legal requirement for a written family safer caring policy, but TSD 6.2(d) requires foster carers to ‘develop and maintain safer caring guidelines for you and your household’.'
-  },
+  { subTitle: "There is no legal requirement for a written family safer caring policy, but TSD 6.2(d) requires foster carers to ‘develop and maintain safer caring guidelines for you and your household’." },
   {
     title: 'Date of most recent policy',
     gridLength: 6,
@@ -1747,9 +1943,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'wasThisReviewedAfterLastestPlacement',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1757,9 +1952,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'anyActionRequiredCaringPolicy',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1773,20 +1967,17 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Pets'
+    head: 'Pets'
   },
   {
-    title: 'There is no specific legal guidance about fostering and pets, but fostering services will likely have a policy that should be referred to. It is advised that where a new pet has joined the household in the review period, an assessment is made and attached.'
-  },
-  {
+    subTitle: 'There is no specific legal guidance about fostering and pets, but fostering services will likely have a policy that should be referred to. It is advised that where a new pet has joined the household in the review period, an assessment is made and attached.',
     gridLength: 12,
     title: 'Are there pets in the fostering household?',
     otherOptions: {
       name: 'petsInTheFosteringHousehold',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1794,9 +1985,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'petJoinedInTheReviewPeriod',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1804,9 +1994,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'assessmentCompletedOnAllPetsInHousehold',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1820,12 +2009,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: "Smoking"
+    head: "Smoking"
   },
   {
-    title: "There is no specific legal guidance about fostering and smoking, but fostering services should have a policy that should be referred to."
-  },
-  {
+    subTitle: "There is no specific legal guidance about fostering and smoking, but fostering services should have a policy that should be referred to.",
     gridLength: 12,
     title: 'Are there smokers in the fostering household?',
     otherOptions: {
@@ -1833,7 +2020,7 @@ export const FRAFormData = [
       options: ['Yes', 'No'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1843,7 +2030,7 @@ export const FRAFormData = [
       options: ['Yes', 'No'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1857,7 +2044,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: "Supervision arrangements"
+    head: "Supervision arrangements"
   },
   {
     gridLength: 6,
@@ -1878,7 +2065,7 @@ export const FRAFormData = [
     component: RHFDatePicker
   },
   {
-    title: 'Date of supervising social worker visits since the last foster home review'
+    head: 'Date of supervising social worker visits since the last foster home review'
   },
   {
     gridLength: 6,
@@ -1906,7 +2093,7 @@ export const FRAFormData = [
       options: ['Yes', 'No', 'Not available'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -1920,10 +2107,9 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Allegations in this review period'
-  },
-  {
+    title: "Allegations in this review period",
     gridLength: 12,
+    addNew: true,
     formFields: [
       {
         gridLength: 4,
@@ -1996,7 +2182,82 @@ export const FRAFormData = [
     ]
   },
   {
-    title: "Training, support and development standards"
+    title: 'Complaints in this review period',
+    gridLength: 12,
+    addNew: true,
+    formFields: [
+      {
+        gridLength: 4,
+        title: 'Date',
+        subFields: [
+          {
+            otherOptions: {
+              name: 'complaintsReviewPeriodDate1',
+              fullWidth: true,
+            },
+            component: RHFDatePicker
+          },
+          {
+            otherOptions: {
+              name: 'complaintsReviewPeriodDate2',
+              fullWidth: true,
+            },
+            component: RHFDatePicker
+          },
+        ]
+      },
+      {
+        gridLength: 4,
+        title: 'Complaints',
+        subFields: [
+          {
+            otherOptions: {
+              name: 'complaintsReviewPeriodDetail1',
+              fullWidth: true,
+              multiline: true,
+              minRows: 1
+            },
+            component: RHFTextField
+          },
+          {
+            otherOptions: {
+              name: 'complaintsReviewPeriodDetail2',
+              fullWidth: true,
+              multiline: true,
+              minRows: 1
+            },
+            component: RHFTextField
+          },
+        ]
+      },
+      {
+        gridLength: 4,
+        title: 'Summary of outcome',
+        subFields: [
+          {
+            otherOptions: {
+              name: 'summaryOfOutcome1',
+              fullWidth: true,
+              multiline: true,
+              minRows: 1
+            },
+            component: RHFTextField
+          },
+          {
+            otherOptions: {
+              name: 'summaryOfOutcome2',
+              fullWidth: true,
+              multiline: true,
+              minRows: 1
+            },
+            component: RHFTextField
+          }
+        ]
+      },
+    ]
+  },
+  {
+    head: "Training, support and development standards"
   },
   {
     gridLength: 12,
@@ -2004,12 +2265,11 @@ export const FRAFormData = [
     otherOptions: {
       name: 'TDSAchieved',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
-    gridLength: 12,
+    gridLength: 6,
     title: 'If yes, what date was this signed off?',
     otherOptions: {
       name: 'dateSignedOff',
@@ -2018,7 +2278,7 @@ export const FRAFormData = [
     component: RHFDatePicker
   },
   {
-    gridLength: 12,
+    gridLength: 6,
     title: 'If no, detail outstanding actions and a target completion date',
     otherOptions: {
       name: 'completionDate',
@@ -2027,7 +2287,7 @@ export const FRAFormData = [
     component: RHFDatePicker
   },
   {
-    title: "Safer caring training"
+    head: "Safer caring training"
   },
   {
     gridLength: 12,
@@ -2035,9 +2295,8 @@ export const FRAFormData = [
     otherOptions: {
       name: 'saferCaringTraining',
       options: ['Yes', 'No'],
-      sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
     gridLength: 12,
@@ -2056,15 +2315,13 @@ export const FRAFormData = [
       options: ['Yes', 'No'],
       sx: { gap: { lg: '70px', xs: '10px' } }
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
-    title: "HISTORICAL CONTEXT",
+    head: "HISTORICAL CONTEXT",
   },
   {
-    title: 'Fostering history'
-  },
-  {
+    subTitle: 'Fostering history',
     title: 'Briefly summarise the fostering history of these carers. Identify any themes or patterns that have emerged over the time that they have been fostering, Including allegations, concerns and complaints. Consider whether completing and attaching a chronology or placement record since approval might be helpful.',
     gridLength: 12,
     otherOptions: {
@@ -2076,7 +2333,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Changes since last foster home review'
+    head: 'Changes since last foster home review'
   },
   {
     title: 'Identify any changes in household composition, circumstances or significant events. This should include any changes in the carer’s employment, changes in the carer’s health, or new pets.',
@@ -2090,12 +2347,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 1 – PRINCIPLES AND VALUES'
+    head: 'TSD 1 – PRINCIPLES AND VALUES'
   },
   {
-    title: 'Individual needs of children'
-  },
-  {
+    subTitle: 'Individual needs of children',
     title: 'Describe and give examples to show how the carer listens to, and takes account of, the individual needs, wishes, feelings and preferences of children and young people.[1.3(b); 4.1(a)] *',
     gridLength: 12,
     otherOptions: {
@@ -2107,9 +2362,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Equality and diversity'
-  },
-  {
+    subTitle: 'Equality and diversity',
     title: 'Describe and give examples to show how the carer provides care which respects and values each child’s ethnic, religious, cultural and background; and helps young people to deal with discrimination and develop positive sexual identities. [1.2(a)(b)(c); 5.7(b)] *',
     gridLength: 12,
     otherOptions: {
@@ -2121,9 +2374,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Confidentiality'
-  },
-  {
+    subTitle: 'Confidentiality',
     title: 'Describe and give examples to show how the carer complies with service confidentiality policies, including an understanding of the limits of confidentiality [1.4(a)(b)(c)]. This should include maintaining appropriate confidentiality when communicating with the carer’s own family and friends. [4.3(c)] *',
     gridLength: 12,
     otherOptions: {
@@ -2135,12 +2386,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 2 – ROLE AS A FOSTER CARER'
+    head: 'TSD 2 – ROLE AS A FOSTER CARER'
   },
   {
-    title: 'Working with the supervising social worker'
-  },
-  {
+    subTitle: 'Working with the supervising social worker',
     title: 'Describe and give examples to show how the foster carer works with their supervising social worker, including evidence about use of supervision and support, being organised and reliable, and communicating effectively (including using different communications media). [2.1(c); 2.4(b); 2.5(a); 4.2(c); 4.4(b); 7.3(a)(c)] *',
     gridLength: 12,
     otherOptions: {
@@ -2152,9 +2401,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Working as part of a team'
-  },
-  {
+    subTitle: 'Working as part of a team',
     title: 'Describe and give examples to show how the foster carer works with other professionals, including the child’s social worker, undertaking the foster carer’s role and responsibilities, contributing to planning for children and young people, and communicating effectively. [2.4(a)(b)(c); 2.1(b); 4.4(a)] Describe how foster carers are negotiating and making use of delegated authority *',
     gridLength: 12,
     otherOptions: {
@@ -2166,9 +2413,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Working with birth family'
-  },
-  {
+    subTitle: 'Working with birth family',
     title: 'Describe and give examples to show how the foster carer understands the importance of birth families, and works with children and their families to support and promote contact where appropriate. [2.3(a)(b); 2.1(b); 4.3(a)(b); 5.6 (a)(b)] *',
     gridLength: 12,
     otherOptions: {
@@ -2180,12 +2425,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 3- HEALTHY CARE'
+    head: 'TSD 3- HEALTHY CARE'
   },
   {
-    title: 'Healthy physical and emotional care'
-  },
-  {
+    subTitle: 'Healthy physical and emotional care',
     title: 'Describe and give examples to show how the foster carer promotes the healthy physical care of children and young people, including giving advice and information about health and hygiene, including sexual health. [3.3(a)(b)(c); 5.7(a); 1.3(a)] Describe and give examples to show how the carer promotes the healthy emotional care of children and young people, taking into account any attachment difficulties, trauma, separation and loss. Describe how the carer supports children through significant milestones, life changes and challenges, and how they promote self-confidence, self-esteem, and independence skills. [3.3(a); 5.1(a); 5.6(c); 1.3(a); 5.3(a)(b)(c); 5.2] *',
     gridLength: 12,
     otherOptions: {
@@ -2197,9 +2440,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Managing behaviour'
-  },
-  {
+    subTitle: 'Managing behaviour',
     title: 'Describe and give examples to show how the carer promotes positive behaviour and manages challenging behaviour safely and appropriately, taking account of the needs of all household members. [3.4(a)(b)(c)] *',
     gridLength: 12,
     otherOptions: {
@@ -2211,12 +2452,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 4 – COMMUNICATING EFFECTIVELY'
+    head: 'TSD 4 – COMMUNICATING EFFECTIVELY'
   },
   {
-    title: 'Communicating with children'
-  },
-  {
+    subTitle: 'Communicating with children',
     title: 'Describe and give examples to show how the foster carer communicates with children according to their age and stage of development, using verbal and non-verbal means, and using different communications media. Describe how the encourages children to make their own decisions as appropriate. [4.1(a)(b)(c)(d); 4.2(a)(b)(c); 5.1(a)(b)(c)] *',
     gridLength: 12,
     otherOptions: {
@@ -2228,9 +2467,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Record keeping'
-  },
-  {
+    subTitle: 'Record keeping',
     title: 'Describe the foster carer’s record keeping, in relation to whether the records are accurate, relevant, clear and concise. Describe how records are kept securely, and how children and young people are involved in keeping records and memorabilia. This includes keeping life story books and memory boxes as appropriate. [4.5(a)(c)(d); 1.4(a)] *',
     gridLength: 12,
     otherOptions: {
@@ -2242,12 +2479,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 5 – UNDERSTANDING DEVELOPMENT'
+    head: 'TSD 5 – UNDERSTANDING DEVELOPMENT'
   },
   {
-    title: 'Education'
-  },
-  {
+    subTitle: 'Education',
     title: 'Describe and give examples to show how the foster carer supports children and young people in relation to education, training and employment, including advocating that their educational needs are met. [5.5(a)(b)(c)(d); 1.3(a)] *',
     gridLength: 12,
     otherOptions: {
@@ -2259,9 +2494,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Play and leisure'
-  },
-  {
+    subTitle: 'Play and leisure',
     title: 'Describe and give examples to show how the foster carer encourages children and young people to participate in play, and promotes hobbies, activities and social interests (in safe and organised environments). [5.4(a)(b); 1.3(a;); 2.5(b)] *',
     gridLength: 12,
     otherOptions: {
@@ -2273,9 +2506,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Disability'
-  },
-  {
+    subTitle: 'Disability',
     title: 'Where the foster carer has looked after a disabled child or child with special educational needs, describe and give examples to show how they have  applied a social model of disability, and adapted activities and experiences, and supported the child to achieve their full potential. [5.8(a)(b)(c)(d)] *',
     gridLength: 12,
     otherOptions: {
@@ -2287,9 +2518,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Unplanned endings'
-  },
-  {
+    subTitle: 'Unplanned endings',
     title: 'If there were any unplanned placement endings in the review period, please provide details of the circumstances and how the ending was managed.',
     gridLength: 12,
     otherOptions: {
@@ -2301,12 +2530,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 6 – KEEPING CHILDREN SAFE'
+    head: 'TSD 6 – KEEPING CHILDREN SAFE'
   },
   {
-    title: 'Keeping children safe'
-  },
-  {
+    subTitle: 'Keeping children safe',
     title: 'Describe and give examples to show how the foster carer keeps children and young people safe, and feeling safe. Describe how the foster carer helps   children and young people keep themselves safe, including communicating with them about risk and safety. [6.2(a)(b)(c); 1.3(a)(c); 3.5(a) *',
     gridLength: 12,
     otherOptions: {
@@ -2318,12 +2545,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'TSD 6 – KEEPING CHILDREN SAFE'
+    head: 'TSD 6 – KEEPING CHILDREN SAFE'
   },
   {
-    title: 'Impact of fostering and getting support'
-  },
-  {
+    subTitle: 'Impact of fostering and getting support',
     title: 'Describe and give examples to show how the foster carer manages the personal impact that fostering can have on individuals and families, and how they make use of support from their networks. Be aware of the particular issues for male, BME and LGBT+ carers. [7.1(a)(b)(c)] Include discussion of whether foster carers have made use of formal respite provision. *',
     gridLength: 12,
     otherOptions: {
@@ -2335,9 +2560,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Foster carer’s children'
-  },
-  {
+    subTitle: 'Foster carer’s children',
     title: 'The foster carer’s children should have been asked to complete Form FR-D. Describe how fostering impacts on these children, and other family members, and how their support and training needs are being met. Describe how their views are sought and taken into account. [7.1(a); 7.2(a)] *',
     gridLength: 12,
     otherOptions: {
@@ -2349,9 +2572,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Continuing professional development (CPD) – Carer 1'
-  },
-  {
+    subTitle: 'Continuing professional development (CPD) – Carer 1',
     title: 'Describe how the foster carer has demonstrated their commitment to continuing professional development in line with their personal development plan',
     gridLength: 12,
     otherOptions: {
@@ -2363,9 +2584,7 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Continuing professional development (CPD) – Carer 2'
-  },
-  {
+    subTitle: 'Continuing professional development (CPD) – Carer 2',
     title: 'Describe how the foster carer has demonstrated their commitment to continuing professional development in line with their personal development plan',
     gridLength: 12,
     otherOptions: {
@@ -2377,12 +2596,10 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'SUMMARY AND RECOMMENDATION'
+    head: 'SUMMARY AND RECOMMENDATION'
   },
   {
-    title: 'Summary'
-  },
-  {
+    subTitle: 'Summary',
     title: 'Identify the strengths and limitations of the carer. Highlight any differences in views and list any outstanding or proposed future work. *',
     gridLength: 12,
     otherOptions: {
@@ -2394,21 +2611,17 @@ export const FRAFormData = [
     component: RHFTextField
   },
   {
-    title: 'Proposed change to approval terms'
-  },
-  {
+    subTitle: 'Proposed change to approval terms',
     title: 'Are the carer’s current terms of approval appropriate?',
     gridLength: 12,
     otherOptions: {
       name: 'currentTermsOfApprovalAppropriate',
       options: ['Yes', 'No'],
     },
-    component: RHFRadioGroup
+    component: RHFRadioGroupWithLabel
   },
   {
-    title: 'Recommendation'
-  },
-  {
+    subTitle: 'Recommendation',
     title: 'Make a clear recommendation regarding continued suitability to foster, including any recommendation regarding the appropriate terms of approval',
     gridLength: 12,
     otherOptions: {

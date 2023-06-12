@@ -8,9 +8,10 @@ import TableHeader from '@root/components/TableHeader';
 import TableSubHeader from '../../table-sub-header/TableSubHeader';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableAction from '@root/components/TableAction';
+import DeleteModel from '@root/components/modal/DeleteModel';
 
 const FRASection = () => {
-  const { handleSearch, handleAction } = useFRA();
+  const { handleSearch, handleAction, deleteModal, handleDeleteModal } = useFRA();
 
   const columns = [
     {
@@ -94,11 +95,14 @@ const FRASection = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {['edit', 'delete', 'view', 'print'].map((action: string) =>
+          {["edit", "delete", "view", "print"].map((action: string) => (
             <span key={action} style={{ flexShrink: 0 }}>
-              <TableAction type={action} onClicked={() => handleAction(action, info.row.original.id)} />
+              <TableAction
+                type={action}
+                onClicked={() => handleAction(action, info.row.original.id)}
+              />
             </span>
-          )}
+          ))}
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -106,41 +110,49 @@ const FRASection = () => {
     },
   ];
   return (
-    <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
-      <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexWrap={'wrap'} gap={2}
-        sx={{ px: 2 }}
-      >
-        <Typography sx={styles.title}>View Report</Typography>
-        <Image src={automatedIcon} alt='icon' />
-      </Box>
-      <Card sx={{ p: 2, my: 2 }}>
-        <Grid container spacing={2}>
-          {viewReportsFilterData.map((data: any, i: number) => (
-            <Grid item key={i} md={data.gridlength} xs={12}>
-              <Typography sx={styles.title}>{data.title}</Typography>
-              <Select {...data.otherOptions}>
-                {data.options.map((item: any, j: number) =>
-                  <MenuItem key={j} value={item.value}>{item.label}</MenuItem>
-                )}
-              </Select>
+    <>
+      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
+        <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} flexWrap={'wrap'} gap={2}
+          sx={{ px: 2 }}
+        >
+          <Typography sx={styles.title}>View Report</Typography>
+          <Image src={automatedIcon} alt='icon' />
+        </Box>
+        <Card sx={{ p: 2, my: 2 }}>
+          <Grid container spacing={2}>
+            {viewReportsFilterData.map((data: any, i: number) => (
+              <Grid item key={i} md={data.gridlength} xs={12}>
+                <Typography sx={styles.title}>{data.title}</Typography>
+                <Select {...data.otherOptions}>
+                  {data.options.map((item: any, j: number) =>
+                    <MenuItem key={j} value={item.value}>{item.label}</MenuItem>
+                  )}
+                </Select>
+              </Grid>
+            ))}
+            <Grid item xs={12} display={'flex'} justifyContent={'flex-end'}>
+              <Button onClick={handleSearch} variant='contained'>Search</Button>
             </Grid>
-          ))}
-          <Grid item xs={12} display={'flex'} justifyContent={'flex-end'}>
-            <Button onClick={handleSearch} variant='contained'>Search</Button>
           </Grid>
-        </Grid>
+        </Card>
+        <TableHeader title={''} showAddBtn onAdd={() => handleAction('add')} />
+        <TableSubHeader data={tableSubHeader} />
+        <CustomTable
+          isError={false}
+          isLoading={false}
+          isFetching={false}
+          isSuccess={true}
+          data={tableMockData}
+          columns={columns}
+        />
       </Card>
-      <TableHeader title={''} showAddBtn onAdd={() => handleAction('add')} />
-      <TableSubHeader data={tableSubHeader} />
-      <CustomTable
-        isError={false}
-        isLoading={false}
-        isFetching={false}
-        isSuccess={true}
-        data={tableMockData}
-        columns={columns}
-      />
-    </Card>
+
+      {deleteModal && <DeleteModel
+        open={deleteModal}
+        handleClose={handleDeleteModal}
+        onDeleteClick={handleDeleteModal}
+      />}
+    </>
   )
 }
 
