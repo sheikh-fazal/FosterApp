@@ -1,7 +1,7 @@
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import ChildEducationInfoList from "@root/sections/foster-child/education-records/child-education-info/ChildEducationInfoList";
+import ChildEducationInfoList from "@root/sections/foster-child/education-records/child-education/ChildEducationInfoList";
 import Page from "@root/components/Page";
 
 const BREADCRUMBS = [
@@ -19,7 +19,7 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "Child Education Info";
 
 ////-----------------------------------------
-ChildEducationInfo.getLayout = function getLayout(page: any) {
+ChildEducationList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,7 +31,7 @@ ChildEducationInfo.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function ChildEducationInfo() {
+export default function ChildEducationList() {
   return (
     <Page title={PAGE_TITLE}>
       <ChildEducationInfoList />
