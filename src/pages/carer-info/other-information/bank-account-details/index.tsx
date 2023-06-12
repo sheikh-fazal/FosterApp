@@ -93,10 +93,11 @@ export default function BankAccountDetails() {
       gettingStatus={tableData}
       postingStatus={postingStatus}
       editingStatus={editingStatus}
+      deletingStatus={deletingStatus}
       editedData={editFormHandler}
-      // onDelete={deleteTableRowHandler}
+      onDelete={deleteTableRowHandler}
       searchedText={(text: any) => {}}
-      onDelete={() => {}}
+      // onDelete={() => {}}
     />
   );
 }

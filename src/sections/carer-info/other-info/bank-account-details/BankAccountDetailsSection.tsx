@@ -11,10 +11,10 @@ export default function BankAccountDetailsSection(props: any) {
     gettingStatus,
     postingStatus,
     editingStatus,
+    deletingStatus,
     editedData,
     onDelete,
   } = props;
-  console.log(props);
 
   const [openModal, setOpenModal] = useState(false);
   const changeHandler = (i: any) => {
@@ -34,6 +34,7 @@ export default function BankAccountDetailsSection(props: any) {
         editedData={editedData}
         gettingStatus={gettingStatus}
         editingStatus={editingStatus}
+        deletingStatus={deletingStatus}
       />
       <BankAccountDetailsForm
         content={{}}

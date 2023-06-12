@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import BankAccountDetailsForm from "./BankAccountDetailsForm";
@@ -14,10 +14,16 @@ export const BankAccountDetailsTable = (props: any) => {
     tableData,
     editedData,
     editingStatus,
+    deletingStatus,
     onDelete,
   } = props;
   const [openDeleteModal, setOpenDeleteModal] = useState<any>(false);
+  const [openFormModalWithData, setOpenFormModalWithData] =
+    useState<any>(false);
   // ----------------------------------------------------------------------
+  useEffect(() => {
+    deletingStatus?.isSuccess && setOpenDeleteModal(false);
+  }, []);
 
   const columns = [
     {
@@ -56,17 +62,10 @@ export const BankAccountDetailsTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <BankAccountDetailsForm
-            content={info}
-            btnType="edit"
-            status={editingStatus}
-            closeModal={() => {}}
-            formData={(data: any) =>
-              editedData({
-                id: info.row?.original?.id,
-                body: data,
-              })
-            }
+          <TableAction
+            type="edit"
+            onClicked={() => setOpenFormModalWithData(info)}
+            size="small"
           />
           <TableAction
             type="delete"
@@ -89,9 +88,25 @@ export const BankAccountDetailsTable = (props: any) => {
 
   return (
     <Grid container>
+      <BankAccountDetailsForm
+        openModal={openFormModalWithData}
+        content={openFormModalWithData}
+        status={editingStatus}
+        closeModal={() => {
+          setOpenFormModalWithData(false);
+        }}
+        formData={(data: any) =>
+          editedData({
+            id: openFormModalWithData.row?.original?.id,
+            body: data,
+          })
+        }
+      />
       <DeleteModel
         open={openDeleteModal}
-        onDeleteClick={onDelete(openDeleteModal?.id)}
+        onDeleteClick={() => {
+          onDelete(openDeleteModal?.id);
+        }}
         handleClose={() => {
           setOpenDeleteModal(false);
         }}
@@ -99,23 +114,10 @@ export const BankAccountDetailsTable = (props: any) => {
       <CustomTable
         data={tableData}
         columns={columns}
-        isLoading={
-          // false
-          gettingStatus?.isLoading
-        }
-        isFetching={
-          // false
-          gettingStatus?.isFetching
-        }
-        isError={
-          // false
-          gettingStatus?.isError
-        }
-        isSuccess={
-          // true
-          gettingStatus?.isSuccess
-        }
-        // showSerialNo
+        isLoading={gettingStatus?.isLoading}
+        isFetching={gettingStatus?.isFetching}
+        isError={gettingStatus?.isError}
+        isSuccess={gettingStatus?.isSuccess}
         // count={Math.ceil(data?.data?.meta?.total / limit)}
         currentPage={1}
         onPageChange={(data: any) => {

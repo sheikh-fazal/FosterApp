@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -38,9 +38,9 @@ export default function BankAccountDetailsForm(props: any) {
     formData,
     status,
   } = props;
-
+  console.log(status);
   const theme: any = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const selectedRow = content?.row?.original;
 
@@ -111,16 +111,9 @@ export default function BankAccountDetailsForm(props: any) {
 }
 
 const FormPiece = (props: any) => {
-  const {
-    disableForm,
-    children,
-    selectedRow,
-    formData,
-    isError: error,
-    isLoading,
-  } = props;
-  const theme: any = useTheme();
-  let isError: any = false;
+  const { disableForm, children, selectedRow, formData, isError, isLoading } =
+    props;
+
   //-------------------------------------------//
   const defaultValues = {
     accountNumber: selectedRow?.accountNumber || "",
@@ -147,8 +140,6 @@ const FormPiece = (props: any) => {
 
   const onSubmit = (data: any) => {
     formData(data);
-    isError = error;
-    console.log("test");
     // reset();
   };
   return (
