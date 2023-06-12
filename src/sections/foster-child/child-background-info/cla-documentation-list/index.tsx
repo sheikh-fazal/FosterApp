@@ -8,74 +8,6 @@ import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
 import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
-export const columns = [
-  {
-    accessorFn: (row: any) => row,
-    id: "srNo",
-    cell: (info: any) => Number(info?.row?.id) + 1,
-    header: "Sr. No",
-  },
-  {
-    accessorFn: (row: any) => row.createdAt,
-    id: "createdAt",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Date",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.document,
-    id: "document",
-    cell: (info: any) => info.getValue(),
-    header: "Document",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.documentType,
-    id: "documentType",
-    cell: (info: any) => info.getValue(),
-    header: "Document Type",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.id,
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="edit"
-          onClicked={() => router.push(`?${info.getValue()}`)}
-        />
-        <DeletePrompt
-        // onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-        />
-        <TableAction
-          type="view"
-          onClicked={() =>
-            router.push(
-              `/foster-child/child-background-info/cla-documentation/${info?.row?.original?.id}?action=view`
-            )
-          }
-        />
-        <TableAction
-          type="share"
-          onClicked={() => router.push(`?${info.getValue()}`)}
-        />
-      </Box>
-    ),
-    header: "Actions",
-    isSortable: false,
-  },
-];
-export const defaultValues = {
-  // PEP Form Default Values
-  name: "",
-  class: "",
-  planDoneBy: "",
-  assessmentDate: null,
-  from: null,
-  to: null,
-  overAllOutcome: "",
-};
 
 export const EHCPFormData = [
   {
@@ -936,20 +868,17 @@ export const StrategiesAndEvidence = [
   },
 ];
 
-// export const defaultValues = {
-//   // EHCP Form Default Values
-//   date: "",
-//   OnFile: "",
-//   comments: "",
-
-//   // PEP Form Default Values
-//   name: "",
-//   class: "",
-//   plan: "",
-//   pep: "",
-//   assessment: "",
-//   overallOutcome: "",
-// };
+export const defaultValuesForPep = {
+  // PEP Form Default Values
+  name: "",
+  class: "",
+  planDoneBy: "",
+  assessmentDate: null,
+  from: null,
+  to: null,
+  overAllOutcome: "",
+  document: "PEP personal Educational Plan",
+};
 
 export const EHCPFormValidation = Yup.object().shape({
   date: Yup.string().trim().required("Date is Required"),
@@ -958,13 +887,16 @@ export const EHCPFormValidation = Yup.object().shape({
 });
 
 export const PEPFormValidation = Yup.object().shape({
-  name: Yup.string().trim(),
-  class: Yup.string().trim(),
-  planDoneBy: Yup.string().trim(),
+  name: Yup.string().trim().required("Required"),
+  class: Yup.string().trim().required("Required"),
+  planDoneBy: Yup.string().trim().required("Required"),
   assessmentDate: Yup.date(),
   from: Yup.date(),
   to: Yup.date(),
-  overAllOutcome: Yup.string().trim(),
+  overAllOutcome: Yup.string().trim().required("Required"),
 });
 
 export { default as ClaDocumentationList } from "./ClaDocumentationTable";
+function listDeleteHandler(id: any) {
+  throw new Error("Function not implemented.");
+}

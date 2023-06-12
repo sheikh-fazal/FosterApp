@@ -10,7 +10,8 @@ import {
   PEPFormValidation,
   StrategiesAndEvidence,
   TargetsAndObjectivesData,
-  defaultValues,
+  defaultValuesForPep,
+
 } from "..";
 import { usePostClaDocumentationListMutation } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
 import { enqueueSnackbar } from "notistack";
@@ -23,17 +24,17 @@ export default function PEPForm(props: any) {
 
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),
-    defaultValues,
+    defaultValues: defaultValuesForPep,
   });
 
-  const { handleSubmit } = methods;
+  const {  handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
     console.log(data);
     try {
       const res: any = await postClaDocumentationList(data).unwrap();
       console.log(res);
-      // router.push(`/foster-child/child-background-info/cla-documentation`);
+      router.push(`/foster-child/child-background-info/cla-documentation`);
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
