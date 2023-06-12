@@ -8,16 +8,11 @@ import { useForm } from "react-hook-form";
 import { formSchema, defaultValues } from "./index";
 import {
   useDeleteStatutoryUploadDocumentsMutation,
-  useLazySingleStatutoryUploadDocumentsQuery,
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-export const useUploadDocuments = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
+export const useUploadDocumentsTable = () => {
   const [search, setSearch] = React.useState("");
-  //API For Getting Single Document Details
-  const [getSingleAllegetionDocument]: any =
-    useLazySingleStatutoryUploadDocumentsQuery();
   const router = useRouter();
   const { id, action }: any = router.query;
   const [open, setOpen] = React.useState(false);
@@ -34,7 +29,7 @@ export const useUploadDocuments = () => {
     isSuccess,
   }: any = useStatutoryUploadDocumentListQuery({ search: search });
   //API For Post Documents
-  const [postAllegationDetails]: any =
+  const [postReferenceOneDetails]: any =
     usePostStatutoryUploadDocumentsMutation();
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
@@ -58,16 +53,7 @@ export const useUploadDocuments = () => {
   const meta = data?.meta;
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: async () => {
-      const { data, isError } = await getSingleAllegetionDocument(id, true);
-      setIsLoading(false);
-      if (isError) {
-        enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
-      }
-      const responseData = { ...data.data };
-      return responseData;
-    },
+    defaultValues,
   });
   const {
     handleSubmit,
@@ -77,14 +63,14 @@ export const useUploadDocuments = () => {
   //Submit Function To Submit Form Data
   const handleSubmitForm = async (data: any) => {
     const formData = new FormData();
-    formData.append("formName", "EMPLOYMENT_REFERENCE_1");
+    formData.append("formName", "REFERENCE_1");
     formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);
     formData.append("documentPassword", data.documentPassword);
     formData.append("file", data.file);
     try {
-      await postAllegationDetails(formData).unwrap();
+      await postReferenceOneDetails(formData).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });
@@ -108,7 +94,6 @@ export const useUploadDocuments = () => {
     statutoryUploadDocuments,
     id,
     meta,
-    postAllegationDetails,
     theme,
     action,
     listDeleteHandler,

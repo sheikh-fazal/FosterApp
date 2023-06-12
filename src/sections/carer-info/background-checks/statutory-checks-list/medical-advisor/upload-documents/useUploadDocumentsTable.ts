@@ -29,7 +29,7 @@ export const useUploadDocumentsTable = () => {
     isSuccess,
   }: any = useStatutoryUploadDocumentListQuery({ search: search });
   //API For Post Documents
-  const [postAllegationDetails]: any =
+  const [postMedicalAdvisorDetails]: any =
     usePostStatutoryUploadDocumentsMutation();
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
@@ -70,7 +70,7 @@ export const useUploadDocumentsTable = () => {
     formData.append("documentPassword", data.documentPassword);
     formData.append("file", data.file);
     try {
-      await postAllegationDetails(formData).unwrap();
+      await postMedicalAdvisorDetails(formData).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });
@@ -94,7 +94,6 @@ export const useUploadDocumentsTable = () => {
     statutoryUploadDocuments,
     id,
     meta,
-    postAllegationDetails,
     theme,
     action,
     listDeleteHandler,
