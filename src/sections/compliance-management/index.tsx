@@ -21,12 +21,23 @@ export const ComplianceVerticalTabsData = [
         innerData: [
             {
                 id: '1',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                tabTitle:"Business ",
+                // tabsDocuments:[{
+                //     id:"1",
+                //     pdf:'sdsdsasd'
+                // }]
+            },
+            {
+                id: '2',
+                tabTitle:"Communications ",
+            },
+            {
+                id: '3',
+                tabTitle:"Registration & Compliance-Administration ",
+            },
+            {
+                id: '4',
+                tabTitle:"Finance ",
             }
         ]
     },
@@ -36,14 +47,14 @@ export const ComplianceVerticalTabsData = [
         img:DataProtectionIcon,
         innerData: [
             {
+                id: '1',
+                tabTitle:"Policies ",
+            },
+            {
                 id: '2',
-                no: '1',
-                title: 'Data Protection',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
-            }
+                tabTitle:"Forms ",
+            },
+          
         ]
     },
     {
@@ -52,13 +63,20 @@ export const ComplianceVerticalTabsData = [
         img:CovidIcon,
         innerData: [
             {
+                id: '1',
+                tabTitle:"Health and Safety COVID-19 ",
+            },
+            {
+                id: '2',
+                tabTitle:"Human Resources COVID-19",
+            },
+            {
                 id: '3',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                tabTitle:"Care Management COVID-19",
+            },
+            {
+                id: '4',
+                tabTitle:"Business Admin COVID-19 ",
             }
         ]
     },
@@ -68,13 +86,20 @@ export const ComplianceVerticalTabsData = [
         img:CareManagementIcon,
         innerData: [
             {
+                id: '1',
+                tabTitle:"Care Practice  ",
+            },
+            {
+                id: '2',
+                tabTitle:"Rights and Abuse  ",
+            },
+            {
+                id: '3',
+                tabTitle:"Risk Assessment and Personal Planning  ",
+            },
+            {
                 id: '4',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                tabTitle:"Clinical  governance ",
             }
         ]
     },
@@ -84,13 +109,24 @@ export const ComplianceVerticalTabsData = [
         img:CarePlanningtIcon,
         innerData: [
             {
+                id: '1',
+                tabTitle:"Risk Assessment and Personal Planning ",
+            },
+            {
+                id: '2',
+                tabTitle:"Service Commencement  ",
+            },
+            {
+                id: '3',
+                tabTitle:"Care Plans  ",
+            },
+            {
+                id: '4',
+                tabTitle:"Assessments ",
+            },
+            {
                 id: '5',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                tabTitle:"Supplementary Documents ",
             }
         ]
     },
@@ -100,13 +136,20 @@ export const ComplianceVerticalTabsData = [
         img:HealthIcon,
         innerData: [
             {
-                id: '6',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Risk Assessments  ",
+            },
+            {
+                id: '2',
+                tabTitle:"Health and  Safety ",
+            },
+            {
+                id: '3',
+                tabTitle:"Residential Services ",
+            },
+            {
+                id: '4',
+                tabTitle:"Building and Equipment ",
             }
         ]
     },
@@ -116,13 +159,24 @@ export const ComplianceVerticalTabsData = [
         img:HumanResourcesIcon,
         innerData: [
             {
-                id: '7',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Absence, Holidays and Sickness ",
+            },
+            {
+                id: '2',
+                tabTitle:"Contract of  Employment ",
+            },
+            {
+                id: '3',
+                tabTitle:"Equality & human Rights ",
+            },
+            {
+                id: '4',
+                tabTitle:"Well Being ",
+            },
+            {
+                id: '5',
+                tabTitle:"Miscellaneous",
             }
         ]
     },
@@ -132,14 +186,10 @@ export const ComplianceVerticalTabsData = [
         img:MedicationMangementIcon,
         innerData: [
             {
-                id: '8',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
-            }
+                id: '1',
+                tabTitle:"Medications Management ",
+            },
+            
         ]
     },
     {
@@ -148,13 +198,20 @@ export const ComplianceVerticalTabsData = [
         img:QualityAssuranceIcon,
         innerData: [
             {
-                id: '9',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Administration Quality  asssurance",
+            },
+            {
+                id: '2',
+                tabTitle:"Human Resources Quality assurance ",
+            },
+            {
+                id: '3',
+                tabTitle:"Management of Quality assurance ",
+            },
+            {
+                id: '4',
+                tabTitle:"Care Management ",
             }
         ]
     },
@@ -164,14 +221,18 @@ export const ComplianceVerticalTabsData = [
         img:SupportServicesIcon,
         innerData: [
             {
-                id: '10',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
-            }
+                id: '1',
+                tabTitle:"Hygiene ",
+            },
+            {
+                id: '2',
+                tabTitle:"Catering Services  ",
+            },
+            {
+                id: '3',
+                tabTitle:"Risk Assessment & Safety",
+            },
+            
         ]
     },
     {
@@ -180,14 +241,10 @@ export const ComplianceVerticalTabsData = [
         img:FundamentalStandardsIcon,
         innerData: [
             {
-                id: '11',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
-            }
+                id: '1',
+                tabTitle:"Policy ",
+            },
+           
         ]
     },
     {
@@ -196,13 +253,28 @@ export const ComplianceVerticalTabsData = [
         img:MockInspectionIcon,
         innerData: [
             {
-                id: '12',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Safe ",
+            },
+            {
+                id: '2',
+                tabTitle:"Mock Inspection Toolkit  ",
+            },
+            {
+                id: '3',
+                tabTitle:"Caring  ",
+            },
+            {
+                id: '4',
+                tabTitle:"Responsive ",
+            },
+            {
+                id: '5',
+                tabTitle:"Well Led  ",
+            },
+            {
+                id: '6',
+                tabTitle:"Effective ",
             }
         ]
     },
@@ -212,13 +284,24 @@ export const ComplianceVerticalTabsData = [
         img:StakeHoldersIcon,
         innerData: [
             {
-                id: '13',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Guidance Policy ",
+            },
+            {
+                id: '2',
+                tabTitle:"Service Users  ",
+            },
+            {
+                id: '3',
+                tabTitle:"Relatives and Representatives",
+            },
+            {
+                id: '4',
+                tabTitle:"Staff ",
+            },
+            {
+                id: '5',
+                tabTitle:"External Professionals",
             }
         ]
     },
@@ -228,13 +311,20 @@ export const ComplianceVerticalTabsData = [
         img:AddMoreIcon,
         innerData: [
             {
-                id: '14',
-                no: '1',
-                title: 'Parental Responsibility',
-                dateUploaded: '01/08/2020',
-                author: "John",
-                documentType: 'POLICY.PDF',
-                version: '1'
+                id: '1',
+                tabTitle:"Business ",
+            },
+            {
+                id: '2',
+                tabTitle:"Communications ",
+            },
+            {
+                id: '3',
+                tabTitle:"Registration & Compliance-Administration ",
+            },
+            {
+                id: '4',
+                tabTitle:"Finance ",
             }
         ]
     },
