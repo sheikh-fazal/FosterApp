@@ -9,16 +9,6 @@ import BarChart from "./charts/BarChart";
 import LocalAuthorityNotifications from "./local-authority-notifications/LocalAuthorityNotifications";
 import { TABSDATAARRY } from "./vertical-tabs";
 
-// import ReferralTabs from "./vertical-tabs/ReferralTabs";
-// import { TABSDATAARRY } from "./vertical-tabs";
-// import HorizaontalTabs from "@root/components/HorizaontalTabs";
-// import PieChart from "./charts/PieChart";
-// import BarChart from "./charts/BarChart";
-// import { chartTitles } from "./charts";
-// import ReferralWorkflow from "./referral-workflow/ReferralWorkflow";
-// import ReferralNotifications from "./referral-notifications/ReferralNotifications";
-// import ReferralStats from "./referral-stats/ReferralStats";
-
 const Dashboard = () => {
     const [showStatistics, setShowStatistics] = useState<boolean>(false);
     const theme = useTheme();
@@ -30,7 +20,7 @@ const Dashboard = () => {
                     <Fragment key={item?.index}>
                         <Grid container spacing={2} minHeight={"140px"} alignItems={"center"}>
                             {item?.innerDataArray?.map((innerItem, index) => (
-                                <Grid key={index} item xl={3} lg={4} md={6} xs={12}>
+                                <Grid key={index} item xl={3.9} lg={4} md={6} xs={12}>
                                     <NextLink href={innerItem?.link} style={styles?.nextLinkContainer}>
                                         <Card sx={styles.tabsItems(item?.background)} key={innerItem?.id}>
                                             <Typography sx={styles.innerTitle(theme.palette.mode)}>

@@ -19,7 +19,7 @@ ReferralList.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Local Authority",
-                    href: "/referral",
+                    href: "/local-authority",
                 },
                 {
                     name: "Children list under LA",

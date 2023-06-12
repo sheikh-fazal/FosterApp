@@ -19,7 +19,7 @@ ReferralList.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "LADO",
-                    href: "/referral",
+                    href: "/local-authority",
                 },
                 {
                     name: "Secure Data Exchange",
