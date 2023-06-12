@@ -6,6 +6,7 @@ export const useOrganisationalPoliciesTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } = usePolicyVerticalAddNew();
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
+  const [actionView, setActionView] = useState<any>()
   const [count, setCount] = useState(0);
   const route = useRouter();
 
@@ -22,11 +23,13 @@ export const useOrganisationalPoliciesTabs = () => {
     }
   };
 
-
   const handleAction = (action: any, id: any) => {
     switch (action) {
       case "delete":
         setIsDeleteOpenModal(true);
+        break;
+      case "view":
+        setIsUploadDocumentOpenModal(true);
         break;
       default:
         break;
@@ -46,6 +49,6 @@ export const useOrganisationalPoliciesTabs = () => {
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
-    route
+    route,
   };
 };

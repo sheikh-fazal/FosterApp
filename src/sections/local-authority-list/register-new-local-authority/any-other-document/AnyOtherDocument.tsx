@@ -1,12 +1,14 @@
-import { Box, Button, Checkbox, useTheme } from "@mui/material";
+import React from "react";
+import { Box, Checkbox } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import React, { useState } from "react";
+import { anyOtherDocumentData } from ".";
+import { useAnyOtherDocument } from "./useAnyOtherDocument";
+import AddOtherDocument from "./add-other-document/AddOtherDocument";
 
-const PolicyVerticalUploadDocument = (props: any) => {
-    const { data, handleSubmit, isUploadBackBtn, addUploadDocument, handleBackBtn, handleAction,  } = props;
-    const theme = useTheme();
+const AnyOtherDocument = () => {
+    const { theme, isAddModalOpen, setIsAddModalOpen, viewTableRow, setViewTableRow, actionType, setActionType, route } = useAnyOtherDocument();
 
     const columns = [
         {
@@ -15,13 +17,20 @@ const PolicyVerticalUploadDocument = (props: any) => {
                 console.log(table.getSelectedRowModel().flatRows);
                 return (
                     <Box>
-                        <Checkbox checked={table.getIsAllRowsSelected()} onChange={table.getToggleAllRowsSelectedHandler()} />
+                        <Checkbox
+                            checked={table.getIsAllRowsSelected()}
+                            onChange={table.getToggleAllRowsSelectedHandler()}
+                        />
                     </Box>
                 );
             },
             cell: ({ row, table }: any) => (
                 <Box>
-                    <Checkbox disabled={row?.original?.Assigned} checked={row?.original?.Assigned ? false : row.getIsSelected()} onChange={row.getToggleSelectedHandler()} />
+                    <Checkbox
+                        disabled={row?.original?.Assigned}
+                        checked={row?.original?.Assigned ? false : row.getIsSelected()}
+                        onChange={row.getToggleSelectedHandler()}
+                    />
                 </Box>
             ),
         },
@@ -30,63 +39,55 @@ const PolicyVerticalUploadDocument = (props: any) => {
             id: "Sr. No",
             cell: (info: any) => info.getValue(),
             header: () => <span>Sr. No</span>,
-            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentName,
-            id: "Title",
+            id: "Document Name",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Name</span>,
-            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentType,
             id: "Document Type",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Type</span>,
-            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentDate,
             id: "Document Date",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Date</span>,
-            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.personUploaded,
             id: "Person Uploaded",
             cell: (info: any) => info.getValue(),
             header: () => <span>Person Uploaded</span>,
-            isSortable: true,
-        },
-        {
-            accessorFn: (row: any) => row.password,
-            id: "Password",
-            cell: (info: any) => info.getValue(),
-            header: () => <span>Password</span>,
-            isSortable: true,
         },
         {
             id: "actions",
             cell: (info: any) => (
-                <Box display={"flex"} gap={0.5}>
-                    {["download", "delete", "view"].map((action) => (
-                        <span key={action} style={{ flexShrink: 0 }}>
-                            <TableAction type={action} onClicked={() => handleAction(action, info.row.original)} />
-                        </span>
-                    ))}
+                <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+                    <TableAction type="refresh" />
+                    <TableAction type="download" />
+                    {route.query.action !== 'local-authority-view' && <TableAction type="delete" />}
+                    <TableAction type="view" onClicked={() => { setIsAddModalOpen(true); setActionType('edit'); setViewTableRow(info?.row?.original) }} />
                 </Box>
             ),
             header: () => <span>actions</span>,
+            isSortable: false,
         },
     ];
 
     return (
         <>
-            <TableHeader title="Uploaded Documents" showAddBtn onAdd={addUploadDocument} />
+            <TableHeader
+                title={''}
+                showAddBtn={route.query.action !== 'local-authority-view' && true}
+                onAdd={() => { setIsAddModalOpen(true); setActionType('add') }}
+            />
             <CustomTable
-                data={data}
+                data={anyOtherDocumentData}
                 columns={columns}
                 isLoading={false}
                 isFetching={false}
@@ -101,18 +102,8 @@ const PolicyVerticalUploadDocument = (props: any) => {
                 }}
                 rootSX={{ my: theme.spacing(2) }}
             />
-            <Box>
-                <Button type="submit" variant="contained" sx={{ mr: 2 }} onClick={handleSubmit}>
-                    Submit
-                </Button>
-                {isUploadBackBtn && (
-                    <Button sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F" } }} type="button" variant="contained" onClick={handleBackBtn}>
-                        Back
-                    </Button>
-                )}
-            </Box>
+            <AddOtherDocument isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen} actionType={actionType} viewTableRow={viewTableRow} />
         </>
     );
-};
-
-export default PolicyVerticalUploadDocument;
+}
+export default AnyOtherDocument;

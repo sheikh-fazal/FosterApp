@@ -155,6 +155,7 @@ const styles = {
     background: `${background}`,
     borderRadius: 3,
     padding: "20px",
+    textAlign: "left"
   }),
 
   tabPanelContainer: {

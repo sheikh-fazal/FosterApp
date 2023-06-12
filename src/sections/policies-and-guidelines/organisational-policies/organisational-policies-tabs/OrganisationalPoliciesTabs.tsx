@@ -8,23 +8,21 @@ import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-v
 import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
 
 const OrganisationalPoliciesTabs = () => {
-    const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
-    console.log(route?.query?.name)
+  const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
 
   return (
     <>
       <CustomHorizaontalTab
         tabsArray={[
-          `${
-            route?.query?.action === "add" || route?.query?.action === "view"
-              ? route?.query?.name
-              : "Add New Policy"
+          `${route?.query?.action === "add" || route?.query?.action === "view"
+            ? route?.query?.name
+            : "Add New Policy"
           }`,
           "Upload document",
         ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
-        isDisabled={true}
+      // isDisabled={true}
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}
