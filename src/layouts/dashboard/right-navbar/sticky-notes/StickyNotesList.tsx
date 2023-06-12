@@ -3,7 +3,7 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import {
   useDeleteStickyNotesMutation,
-  useLazyGetStickyNotesByDateQuery,
+  useGetStickyNotesByDateQuery,
 } from "@root/services/stickyNotes";
 import { useEffect, useState } from "react";
 import { enqueueSnackbar } from "notistack";
@@ -22,43 +22,29 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
   const [openDelete, setOpenDelete] = useState(false);
   const [deleteItemId, setDeleteItemId] = useState("");
 
-  const [getInitialContactData, { data, isLoading: dataLoding, isFetching }] =
-    useLazyGetStickyNotesByDateQuery();
-
-  const getdata = async (date: any) => {
-    const paramsObj: any = {};
-    if (date) paramsObj["date"] = date;
-    const query: any = "by-date?" + new URLSearchParams(paramsObj).toString();
-    await getInitialContactData({ query }, true);
-  };
-  useEffect(() => {
-    getdata(dayjs(date).format("YYYY-MM-DD"));
+  const dateString = dayjs(date).format("YYYY-MM-DD");
+  const { data, isFetching } = useGetStickyNotesByDateQuery({
+    date: dateString,
   });
 
-  const [
-    deleteNotes,
-    { isSuccess: successMessage, isLoading: deleteIsloading },
-  ] = useDeleteStickyNotesMutation();
+  const [deleteNotes, { isLoading: deleteIsloading }] =
+    useDeleteStickyNotesMutation();
 
-  if (successMessage) {
-    enqueueSnackbar("Notes Deleted Successfully", {
-      variant: "success",
-    });
-  }
   const deleteNoteListItem = async () => {
-  const res: any = deleteNotes(deleteItemId).unwrap().then((res: any) => {
-    setOpenDelete(false)
-    enqueueSnackbar("Notes Deleted Successfully", {
-      variant: "success",
-    });
-    setDeleteItemId("");
-  })
-  .catch((error: any) => {
-    setOpenDelete(false)
-    const errMsg = error?.data?.message;
-    enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-  });
-  }
+    try {
+      const res: any = await deleteNotes(deleteItemId).unwrap();
+
+      setOpenDelete(false);
+      enqueueSnackbar("Notes Deleted Successfully", {
+        variant: "success",
+      });
+      setDeleteItemId("");
+    } catch (error: any) {
+      setOpenDelete(false);
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
 
   return (
     <Box>
@@ -113,7 +99,6 @@ function StickyNotesList({ date, setAddNotes, setEdit, setItem }: any) {
         <DeleteModel
           open={openDelete}
           handleClose={() => setOpenDelete(false)}
-          
           onDeleteClick={deleteNoteListItem}
         />
       )}
@@ -194,14 +179,14 @@ const style = {
     justifyContent: "space-between",
     alignItems: "center",
   }),
-  listContent:{
+  listContent: {
     whiteSpace: "nowrap",
     overflow: "hidden",
     maxWidth: "200px",
     textOverflow: "ellipsis",
   },
-  msgStyle:(theme: any)=>({
-    mt:1,
+  msgStyle: (theme: any) => ({
+    mt: 1,
     color: theme.palette.grey[800],
-  })
+  }),
 };

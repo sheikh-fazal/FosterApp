@@ -8,9 +8,8 @@ export const userAPI = baseAPI.injectEndpoints({
       providesTags: ["STICKY_NOTES"],
     }),
     getStickyNotesByDate: builder.query({
-      query: ({query}: any) => `sticky-notes/date/${query}`,
+      query: ({ date }: any) => `sticky-notes/date/by-date?date=${date}`,
       transformResponse: (response: any) => {
-        parseDatesToTimeStampByKey(response.data);
         return response.data;
       },
       providesTags: ["STICKY_NOTES"],
@@ -24,7 +23,7 @@ export const userAPI = baseAPI.injectEndpoints({
       invalidatesTags: ["STICKY_NOTES"],
     }),
     editStickyNotes: builder.mutation({
-      query: ({id,payload}) => ({             
+      query: ({ id, payload }) => ({
         url: `sticky-notes/${id}`,
         method: "PATCH",
         body: payload,
@@ -39,14 +38,13 @@ export const userAPI = baseAPI.injectEndpoints({
       invalidatesTags: ["STICKY_NOTES"],
     }),
   }),
-  
 });
 
 export const {
-    useStickyNotesMutation,
-    useGetStickyNotesQuery,
-    useLazyGetStickyNotesByDateQuery,
-    useEditStickyNotesMutation,
-    useDeleteStickyNotesMutation   
-
+  useStickyNotesMutation,
+  useGetStickyNotesQuery,
+  useGetStickyNotesByDateQuery,
+  useLazyGetStickyNotesByDateQuery,
+  useEditStickyNotesMutation,
+  useDeleteStickyNotesMutation,
 } = userAPI;
