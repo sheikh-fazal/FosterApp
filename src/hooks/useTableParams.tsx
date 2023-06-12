@@ -14,7 +14,6 @@ export function useTableParams(defaultParams = {}) {
       ...data,
     }));
   };
-  console.log("params ffrom hook: ", params);
 
   const pageChangeHandler = (pageNo: number) => {
     setParams((prev: any) => ({

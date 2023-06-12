@@ -1,11 +1,9 @@
 import React from "react";
-// components
-import Page from "@root/components/Page";
+
 // layout
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import { Card } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import SchoolDetailInfoForm from "@root/sections/foster-child/education-records/school-detail-info/SchoolDetailInfoForm";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";

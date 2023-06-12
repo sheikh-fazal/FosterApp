@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import React from "react";
 import { useTheme } from "@emotion/react";
-import { nameShortner } from "@root/sections/edit-profile/util/Util";
+import { nameShortnerWithExtension } from "@root/sections/edit-profile/util/Util";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -48,7 +48,7 @@ const SingleFileInfoHolder: React.FC<{
         />
       </Grid>
       <Grid item sx={{ textAlign: "center" }}>
-        {nameShortner(name)}
+        {nameShortnerWithExtension(name)}
       </Grid>
     </Grid>
   );

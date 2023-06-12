@@ -1,7 +1,7 @@
-import { useState, FC, Fragment, useEffect } from "react";
+import { useState, FC, Fragment, useEffect, useRef } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 // @mui
 import { Button, Grid, Typography } from "@mui/material";
 // utils
@@ -63,9 +63,11 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
     register,
     setValue,
     handleSubmit,
+    getValues,
     watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
+
   useEffect(() => {
     const subscription = watch(async (values: any) => {
       try {
@@ -76,13 +78,13 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
         // Api Needs to be fixed
         const jsonData = { ...values };
         const res = await updateDeclarationInfo(jsonData);
-        displaySuccessMessage(res, enqueueSnackbar);
+        // displaySuccessMessage(res, enqueueSnackbar);
       } catch (error) {
         displayErrorMessage(error, enqueueSnackbar);
       }
     });
     return () => subscription.unsubscribe();
-  }, [watch, setValue]);
+  }, [watch]);
   const onSubmit = async (data: any) => {
     // activateNextForm();
   };
@@ -147,6 +149,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
                 rows={4}
                 name="detail"
                 label="If Yes, please provide more details"
+                disabled
               />
             </Grid>
             {/* are you willing to  */}

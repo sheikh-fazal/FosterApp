@@ -5,6 +5,8 @@ import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWith
 import * as Yup from "yup";
 import router from "next/router";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 // utils
 
@@ -155,10 +157,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
   },
   {
@@ -191,58 +190,62 @@ export const formData = [
   },
 ];
 
-export const columns = [
-  {
-    accessorFn: (row: any) => row.city,
-    id: "city",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>City</span>,
-  },
-  {
-    accessorFn: (row: any) => row.address,
-    id: "address",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Address</span>,
-  },
-  {
-    accessorFn: (row: any) => row.currentAddress,
-    id: "currentAddress",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Current Adrress</span>,
-  },
-  {
-    accessorFn: (row: any) => row.status,
-    id: "status",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Status</span>,
-  },
-  {
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="edit"
-          onClicked={() =>
-            router.push(
-              `/carer-info/personal-info/carer-address-history/edit-address-history?id=${info?.row?.original?.id}`
-            )
-          }
-        />
-        <TableAction type="delete" onClicked={() => alert("delete")} />
-        <TableAction
-          type="view"
-          onClicked={() =>
-            router.push(
-              `/carer-info/personal-info/carer-address-history/view-address-history?id=${info?.row?.original?.id}`
-            )
-          }
-        />
-      </Box>
-    ),
-    header: () => <span>actions</span>,
-    isSortable: false,
-  },
-];
+export const columns = (listDeleteHandler: any) => {
+  return [
+    {
+      accessorFn: (row: any) => row.townCity,
+      id: "townCity",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>City</span>,
+    },
+    {
+      accessorFn: (row: any) => row.address,
+      id: "address",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Address</span>,
+    },
+    {
+      accessorFn: (row: any) => row.currentAddress,
+      id: "currentAddress",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Current Adrress</span>,
+    },
+    {
+      accessorFn: (row: any) => row.type,
+      id: "type",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Status</span>,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="edit"
+            onClicked={() =>
+              router.push(
+                `/carer-info/personal-info/carer-address-history/edit-address-history?id=${info?.row?.original?.id}`
+              )
+            }
+          />
+          <TableAction
+            type="view"
+            onClicked={() =>
+              router.push(
+                `/carer-info/personal-info/carer-address-history/view-address-history?id=${info?.row?.original?.id}`
+              )
+            }
+          />
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
+};
 
 export const CarerAddressHistoryTableData = [
   {

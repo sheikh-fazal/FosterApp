@@ -5,7 +5,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import * as Yup from "yup";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { FormHelperText, Typography } from "@mui/material";
-import {  } from "@root/dropdown-data/socialWorkerData";
+// import {  } from "@root/dropdown-data/socialWorkerData";
 import { SAFE_CARING_POLICY_TABLE_DATA } from "@root/dropdown-data/safeCaringPolicyList";
 import { useRouter } from "next/router";
 
@@ -26,8 +26,8 @@ export const AForm = [
       name: "dateUploaded",
       label: "Date Uploaded",
       fullWidth: true,
-      sx: { mb: 4,},
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_uploaded
+      sx: { mb: 4 },
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_uploaded,
     },
     component: RHFDatePicker,
     md: 6,
@@ -39,7 +39,7 @@ export const AForm = [
       label: "Upload Image",
       fullWidth: true,
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].uploaded_image
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].uploaded_image,
     },
     component: RHFUploadFile,
     md: 6,
@@ -49,10 +49,10 @@ export const AForm = [
     componentProps: {
       name: "description",
       label: "Description",
-      multiline:true,
+      multiline: true,
       minRows: 3,
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].discription
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].discription,
     },
     component: RHFTextField,
 
@@ -64,7 +64,7 @@ export const AForm = [
       name: "version",
       label: "Version",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].version
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].version,
     },
     component: RHFTextField,
     md: 6,
@@ -75,7 +75,7 @@ export const AForm = [
       name: "creatorRole",
       label: "Creator role",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].creatorRole
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].creatorRole,
     },
     component: RHFTextField,
     md: 6,
@@ -86,7 +86,7 @@ export const AForm = [
       name: "createdBy",
       label: "Created by",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].author
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].author,
     },
     component: RHFTextField,
     md: 6,
@@ -97,7 +97,7 @@ export const AForm = [
       name: "creationTime",
       label: "Creation time",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].creationTime
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].creationTime,
     },
     component: RHFTextField,
     md: 6,
@@ -108,7 +108,7 @@ export const AForm = [
       name: "approvedBy",
       label: "Approved by",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].approver
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].approver,
     },
     component: RHFTextField,
     md: 6,
@@ -119,7 +119,7 @@ export const AForm = [
       name: "approverRole",
       label: "Approver role",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].approverRole
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].approverRole,
     },
     component: RHFTextField,
     md: 6,
@@ -130,7 +130,7 @@ export const AForm = [
       name: "lastModifiedTime",
       label: "Last modified time",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].lastModifiedTime
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].lastModifiedTime,
     },
     component: RHFTextField,
     md: 6,
@@ -152,8 +152,8 @@ export const AForm = [
       name: "signDateAuthor",
       label: "Date of eSignatue of Author",
       fullWidth: true,
-      sx: { mt:2 ,mb: 10 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_author
+      sx: { mt: 2, mb: 10 },
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_author,
     },
     component: RHFDatePicker,
     md: 6,
@@ -173,8 +173,8 @@ export const AForm = [
       name: "signDateApprover",
       label: "Date of eSignatue of Approver",
       fullWidth: true,
-      sx: { mt:2 ,mb: 10 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_approver
+      sx: { mt: 2, mb: 10 },
+      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_approver,
     },
     component: RHFDatePicker,
     md: 6,
@@ -185,7 +185,7 @@ export const AForm = [
       name: "signatureApprover",
       label: "eSignature of Approver",
       color: (theme: any) => theme.palette.primary.main,
-      sx: { mt:2 ,mb: 10 },
+      sx: { mt: 2, mb: 10 },
     },
     component: SignaturePad,
     md: 6,
@@ -220,12 +220,24 @@ export const AFormValidationSchema = Yup.object().shape({
   creationTime: Yup.string().trim().required("Creation Time is Required"),
   approvedBy: Yup.string().trim().required("Approver Name is Required"),
   approverRole: Yup.string().trim().required("Approver Role is Required"),
-  lastModifiedTime: Yup.string().trim().required("Last Modified Time is Required"),
-  lastModifiedBy: Yup.string().trim().required("Last Modifier Name is Required"),
-  signDateAuthor: Yup.string().trim().required("Author's Signature Date is Required"),
-  signatureAuther: Yup.string().trim().required("Author's Signature is Required"),
-  signDateApprover: Yup.string().trim().required("Approver's Signature Date is Required"),
-  signatureApprover: Yup.string().trim().required("Approver's Signature is Required"),
+  lastModifiedTime: Yup.string()
+    .trim()
+    .required("Last Modified Time is Required"),
+  lastModifiedBy: Yup.string()
+    .trim()
+    .required("Last Modifier Name is Required"),
+  signDateAuthor: Yup.string()
+    .trim()
+    .required("Author's Signature Date is Required"),
+  signatureAuther: Yup.string()
+    .trim()
+    .required("Author's Signature is Required"),
+  signDateApprover: Yup.string()
+    .trim()
+    .required("Approver's Signature Date is Required"),
+  signatureApprover: Yup.string()
+    .trim()
+    .required("Approver's Signature is Required"),
   // version: Yup.string().trim(),
   // housingAndRoutines: Yup.string().trim(),
 });

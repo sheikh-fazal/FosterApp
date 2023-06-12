@@ -208,8 +208,8 @@ export const ContextualFormDataValues = {
   email: "",
   agency: "",
   dateofreferral: "",
-  Perpetrator: "",
-  referral: "",
+  Perpetrator: [],
+  referral: [],
 };
 
 export const ContextualFormValidationSchema = Yup.object().shape({
