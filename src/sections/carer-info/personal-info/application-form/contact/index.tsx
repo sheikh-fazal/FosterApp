@@ -1,4 +1,5 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import * as Yup from "yup";
 // utils
 
@@ -88,10 +89,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
   },
   {
@@ -102,10 +100,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
   },
   {

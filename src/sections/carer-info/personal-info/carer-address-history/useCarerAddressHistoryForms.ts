@@ -56,8 +56,8 @@ export const useCarerAddressHistoryForms = (
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });
-          router.push("/carer-info/personal-info/carer-address-history");
-          reset();
+          // router.push("/carer-info/personal-info/carer-address-history");
+          // reset();
         })
         .catch((error) => {
           const errMsg = error?.data?.message;

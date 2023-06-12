@@ -22,7 +22,7 @@ const ageOf16Years = dayjs().subtract(19, "year").format("DD/MMM/YYYY");
 
 export const defaultValues = {
   areaOffice: "",
-  media: null,
+  image: null,
   title: "",
   firstName: "",
   middleName: "",
@@ -93,7 +93,7 @@ export const FormSchema = Yup.object().shape({
   applicationFilledDate: Yup.date().required(
     "Applicant Filled Date is required"
   ),
-  media: Yup.lazy((value) => {
+  image: Yup.lazy((value) => {
     switch (typeof value) {
       case "string":
         return Yup.string().required("Image is required"); // schema for string
@@ -148,7 +148,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "media",
+      name: "image",
       fullWidth: true,
       size: "small",
     },
