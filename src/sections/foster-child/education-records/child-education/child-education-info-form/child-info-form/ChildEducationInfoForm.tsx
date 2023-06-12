@@ -33,14 +33,13 @@ const ChildEducationInfoForm = (props: any) => {
   // });
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <Grid container columnSpacing={4} rowSpacing={3}>
+      <Grid container columnSpacing={2}>
         {educationInfoFormData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
               <Typography
                 sx={{
-                  fontWeight: 600,
-                  mb: 0.3,
+                  mt: 2,
                   color:
                     theme.palette.mode === "light"
                       ? "#343A40"
@@ -49,36 +48,24 @@ const ChildEducationInfoForm = (props: any) => {
               >
                 {form.title}
               </Typography>
-              {form.component ? (
-                <form.component
-                  disabled={disabled}
-                  size="small"
-                  {...form.otherOptions}
-                >
-                  {form?.otherOptions?.select
-                    ? form.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
-                    : form?.heading}
-                </form.component>
-              ) : (
-                <Typography
-                  sx={{
-                    fontSize: "16px",
-                    fontWeight: 700,
-                    color: theme.palette.primary.main,
-                  }}
-                >
-                  {form.head}
-                </Typography>
-              )}
+              <form.component
+                disabled={disabled}
+                size="small"
+                {...form.otherOptions}
+              >
+                {form?.otherOptions?.select
+                  ? form.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : form?.heading}
+              </form.component>
             </Grid>
           );
         })}
 
-        <Grid item xs={12}>
+        <Grid item xs={12} mt={3}>
           {!disabled && (
             <Grid item xs={12}>
               <LoadingButton
@@ -91,7 +78,7 @@ const ChildEducationInfoForm = (props: any) => {
                 {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
               </LoadingButton>
               <Link
-                href={"/carer-info/personal-info/carer-family-support-network"}
+                href={"/foster-child/education-records/child-education"}
                 style={{ textDecoration: "none" }}
               >
                 <Button type="button" variant="contained">

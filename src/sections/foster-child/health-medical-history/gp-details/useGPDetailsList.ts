@@ -1,5 +1,4 @@
 import  { useRef, useState } from "react";
-
 import { useRouter } from "next/router";
 import { gpDetailsInfoTableColumnsFunction } from ".";
 import { useGetAllGpDetailsListDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsList";

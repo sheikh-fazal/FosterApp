@@ -6,11 +6,21 @@ import WorkFlowModal from "@root/components/modal/workFlowModal";
 // import { useReferralListTable } from "./useReferralListTable";
 import ShareModal from "@root/components/modal/shareModal";
 import { useChildEducationInfo } from "./useChildEducationInfo";
-import { TableData } from ".";
 import { Card } from "@mui/material";
 
 const ChildEducationInfoList = () => {
-  const { columns, theme, router } = useChildEducationInfo();
+  const {
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+    isFetching,
+    setSearchValue,
+    router,
+    columns,
+    setPage,
+    theme,
+  } = useChildEducationInfo();
 
   return (
     <Card sx={{ p: 2 }}>
@@ -22,11 +32,7 @@ const ChildEducationInfoList = () => {
         onAdd={() =>
           router.push({
             pathname:
-              "/foster-child/education-records/child-education/add-child-education",
-            query: {
-              action: "add",
-              id: "",
-            },
+              "/foster-child/education-records/child-education/child-education-info",
           })
         }
         // onChanged={(data: any) => {
@@ -34,14 +40,19 @@ const ChildEducationInfoList = () => {
         // }}
       />
       <CustomTable
-        data={TableData}
+        data={data?.data?.education_info}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
+        isLoading={isLoading}
+        showSerialNo
+        isFetching={isFetching}
+        isError={isError}
+        isPagination={true}
+        isSuccess={isSuccess}
+        currentPage={data?.data?.meta?.page ?? 1}
+        totalPages={data?.data?.meta?.pages ?? 2}
+        onPageChange={(data: any) => {
+          setPage((page: any) => data - 1);
+        }}
         onSortByChange={(data: any) => {}}
         rootSX={{ my: theme.spacing(2) }}
       />
