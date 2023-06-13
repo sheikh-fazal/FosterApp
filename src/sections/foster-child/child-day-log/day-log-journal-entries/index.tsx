@@ -1,4 +1,5 @@
 import { Box, Checkbox } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import router from "next/router";
@@ -82,13 +83,10 @@ export const columns = [
             )
           }
         />
-         <TableAction
-          type="delete"
-          // onClicked={() => openDeleteModel(info.getValue())}
-          size="small"
+        <DeletePrompt
+        // onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
         />
 
-        <DeleteModel onDeleteClick={() => { }} />
         <TableAction
           type="view"
           // onClicked={() => console.log(info.getValue())}
@@ -107,21 +105,19 @@ export const columns = [
 
 export const DayLogjournalentriesListTableData = [
   {
-    id:1,
-    document:"Doc Name",
+    id: 1,
+    document: "Doc Name",
     documentType: "PDF",
-    date:"19/05/2021",
-    personName:"Name Xame",
-    password:"123abc",
+    date: "19/05/2021",
+    personName: "Name Xame",
+    password: "123abc",
   },
   {
-    id:2,
-    document:"Doc Name",
+    id: 2,
+    document: "Doc Name",
     documentType: "PDF",
-    date:"19/05/2021",
-    personName:"Name Xame",
-    password:"123abc",
+    date: "19/05/2021",
+    personName: "Name Xame",
+    password: "123abc",
   },
-]
-
-
+];
