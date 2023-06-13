@@ -163,7 +163,7 @@ export const ENQUIRYSTAGEDATA = [
     text: "Intial Home Visit",
     informationText: "Initial Home Visit",
     viewForms: "View Form",
-    href: "#",
+    href: "/recruitment/enquiry-stage/initial-home-visit",
     status: "Passed",
   },
   {
