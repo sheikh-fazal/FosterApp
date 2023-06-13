@@ -71,7 +71,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
   useEffect(() => {
     const subscription = watch(async (values: any) => {
       try {
-        console.log("Initial");
+        // console.log("Initial",isDirty);
         // Api Needs to be fixed
         delete values?.workRight;
         delete values?.dba;
