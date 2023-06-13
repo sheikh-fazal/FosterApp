@@ -1,31 +1,28 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
-import {
-  useDeleteExPartnerMutation,
-  useGetExPartnerDetailsQuery,
-} from "@root/services/carer-info/personal-info/application-form/ExPartnersApi";
+import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import { useRouter } from "next/router";
+import React, { useRef } from "react";
 import { enqueueSnackbar } from "notistack";
-import { useRef, useState } from "react";
+import {
+  useDeleteReferenceDetailMutation,
+  useGetReferenceDetailsQuery,
+} from "@root/services/carer-info/personal-info/application-form/ReferenceApi";
 
-export const useExPartnersTable = (apllicationFormid: any, role: any) => {
-  let [viewData, setViewData] = useState(null);
-  let [exPartnerData, setExPartnerData] = useState(null);
+export const useReferenceTable = (apllicationFormid: any) => {
   const tableHeaderRef = useRef<any>();
+  const router = useRouter();
 
-  const changeView = (val: any) => {
-    setViewData(val);
-  };
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  const theme: any = useTheme();
-
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetExPartnerDetailsQuery({ id: apllicationFormid, params });
+    useGetReferenceDetailsQuery({ id: apllicationFormid, params });
   const meta = data?.data?.meta;
+  const theme: any = useTheme();
+  const [deleteReferenceDetail] = useDeleteReferenceDetailMutation();
 
-  const [deleteExPartner] = useDeleteExPartnerMutation();
   const listDeleteHandler = (id: any) => {
-    deleteExPartner(id)
+    deleteReferenceDetail({ id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Record Deleted Successfully", {
@@ -37,24 +34,19 @@ export const useExPartnersTable = (apllicationFormid: any, role: any) => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-
   return {
-    changeView,
-    viewData,
-    setViewData,
-    theme,
-    exPartnerData,
-    setExPartnerData,
     data,
     isLoading,
     isError,
     isFetching,
     isSuccess,
-    listDeleteHandler,
+    router,
+    theme,
     tableHeaderRef,
-    meta,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
+    meta,
+    listDeleteHandler,
   };
 };

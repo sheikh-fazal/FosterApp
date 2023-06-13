@@ -11,17 +11,24 @@ import {
   usePostEmployerDetailMutation,
   useUpdateEmployerDetailMutation,
 } from "@root/services/carer-info/personal-info/application-form/EmployersApi";
+import {
+  usePostFamilyDetailMutation,
+  useUpdateFamilyDetailMutation,
+} from "@root/services/carer-info/personal-info/application-form/FamilyApi";
 
-export const useEmployersViewForm = (props: any) => {
-  const { employerData, viewData, apllicationFormid, changeView } = props;
+export const useFamilyViewForm = (props: any) => {
+  const { familyData, viewData, apllicationFormid, changeView } = props;
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: viewData == "add" ? defaultValues : employerData,
+    defaultValues:
+      viewData == "add"
+        ? defaultValues
+        : { ...familyData, dob: new Date(familyData.dob) },
   });
-  let [postEmployerDetail, { isLoading }] = usePostEmployerDetailMutation();
-  let [updateEmployerDetail] = useUpdateEmployerDetailMutation();
+  let [postFamilyDetail, { isLoading }] = usePostFamilyDetailMutation();
+  let [updateFamilyDetail] = useUpdateFamilyDetailMutation();
   const {
     reset,
     control,
@@ -32,32 +39,18 @@ export const useEmployersViewForm = (props: any) => {
   } = methods;
 
   const ApiCall = async (data: any, Formtype: any) => {
-    let {
-      employerType,
-      companyName,
-      contactName,
-      disciplinaryCareer,
-      durationOfEmploymentAndPost,
-      noticePeriod,
-      phone,
-      email,
-      address,
-    } = data;
+    let { memberName, dob, relation, subject, isLivingAtHome } = data;
     let formData = {
-      employerType,
-      companyName,
-      contactName,
-      disciplinaryCareer,
-      durationOfEmploymentAndPost,
-      noticePeriod,
-      email,
-      phone,
-      address,
+      memberName,
+      dob,
+      relation,
+      subject,
+      isLivingAtHome,
     };
     if (Formtype == "add") {
       try {
-        const res: any = await postEmployerDetail({
-          apllicationFormid,
+        const res: any = await postFamilyDetail({
+          id: apllicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
@@ -75,7 +68,7 @@ export const useEmployersViewForm = (props: any) => {
     }
     if (Formtype == "edit") {
       try {
-        const res: any = await updateEmployerDetail({
+        const res: any = await updateFamilyDetail({
           id: data?.id,
           formData,
         }).unwrap();
