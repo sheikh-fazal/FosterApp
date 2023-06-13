@@ -14,6 +14,8 @@ export default function BankAccountDetailsSection(props: any) {
     deletingStatus,
     editedData,
     onDelete,
+    modalStatus,
+    onPageChange,
   } = props;
 
   const [openModal, setOpenModal] = useState(false);
@@ -35,6 +37,8 @@ export default function BankAccountDetailsSection(props: any) {
         gettingStatus={gettingStatus}
         editingStatus={editingStatus}
         deletingStatus={deletingStatus}
+        modalStatus={modalStatus}
+        onPageChange={onPageChange}
       />
       <BankAccountDetailsForm
         content={{}}
@@ -42,6 +46,7 @@ export default function BankAccountDetailsSection(props: any) {
         openModal={openModal}
         formData={(data: any) => formData(data)}
         status={postingStatus}
+        modalStatus={modalStatus}
       />
     </div>
   );

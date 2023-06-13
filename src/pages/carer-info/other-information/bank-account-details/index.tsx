@@ -1,6 +1,6 @@
 import Layout from "@root/layouts";
 import BankAccountDetailsSection from "@root/sections/carer-info/other-info/bank-account-details/BankAccountDetailsSection";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import {
   useDeleteBankDetailMutation,
@@ -40,8 +40,15 @@ BankAccountDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function BankAccountDetails() {
+  const [pageOffset, setPageOffset] = useState<any>(0);
+  const [searchedText, setSearchedText] = useState<any>(undefined);
+
   //using API hooks
-  const tableData = useGetBankDetailsQuery();
+  const tableData = useGetBankDetailsQuery({
+    search: searchedText?.search,
+    limit: 10,
+    offset: pageOffset * 10,
+  });
   const [postFormData, postingStatus] = usePostBankDetailsMutation();
 
   const [editFormData, editingStatus] = usePatchBankDetailsMutation();
@@ -88,7 +95,7 @@ export default function BankAccountDetails() {
   // FrontEnd
   return (
     <BankAccountDetailsSection
-      tableData={tableData?.data?.data?.carer_bank_detail}
+      tableData={tableData?.data?.data}
       formData={submitFormHandler}
       gettingStatus={tableData}
       postingStatus={postingStatus}
@@ -96,8 +103,15 @@ export default function BankAccountDetails() {
       deletingStatus={deletingStatus}
       editedData={editFormHandler}
       onDelete={deleteTableRowHandler}
-      searchedText={(text: any) => {}}
-      // onDelete={() => {}}
+      searchedText={setSearchedText}
+      // if modal closes ,reset the queries status
+      modalStatus={(state: any) => {
+        if (!state) {
+          postingStatus.reset();
+          editingStatus.reset();
+        }
+      }}
+      onPageChange={(page: any) => setPageOffset(page - 1)}
     />
   );
 }

@@ -37,18 +37,20 @@ export default function BankAccountDetailsForm(props: any) {
     closeModal,
     formData,
     status,
-  } = props;
-  console.log(status);
+    modalStatus,
+  }: any = props;
+
   const theme: any = useTheme();
   const [open, setOpen] = useState(false);
 
   const selectedRow = content?.row?.original;
 
   const handleOpen = () => {
+    modalStatus(true);
     setOpen(true);
-    console.log("View", content?.row?.original);
   };
   const handleClose = () => {
+    modalStatus(false);
     setOpen(false);
     !readOnly && closeModal(false);
   };
@@ -135,9 +137,7 @@ const FormPiece = (props: any) => {
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
-
   const { reset, handleSubmit } = methods;
-
   const onSubmit = (data: any) => {
     formData(data);
     // reset();

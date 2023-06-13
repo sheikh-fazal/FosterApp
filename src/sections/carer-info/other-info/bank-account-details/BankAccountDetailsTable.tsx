@@ -16,29 +16,34 @@ export const BankAccountDetailsTable = (props: any) => {
     editingStatus,
     deletingStatus,
     onDelete,
+    onPageChange,
+    modalStatus,
   } = props;
+  //modal states
   const [openDeleteModal, setOpenDeleteModal] = useState<any>(false);
   const [openFormModalWithData, setOpenFormModalWithData] =
     useState<any>(false);
+
   // ----------------------------------------------------------------------
   useEffect(() => {
+    // close modal upon successful deletion otherwise leave it open
     deletingStatus?.isSuccess && setOpenDeleteModal(false);
   }, []);
-
+  //-------------------------------------Table Column--------------------------------------
   const columns = [
     {
       accessorFn: (row: any) => row.accountNumber,
       id: "Account Number",
       cell: (info: any) => info.getValue(),
       header: () => <span>Account Number</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row.sortName,
       id: "Sort Name",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sort Name</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row.bankName,
@@ -85,13 +90,16 @@ export const BankAccountDetailsTable = (props: any) => {
       isSortable: false,
     },
   ];
+  //---------------------------------------------------------------------------------------
 
   return (
     <Grid container>
+      {/* edit form in a modal */}
       <BankAccountDetailsForm
         openModal={openFormModalWithData}
         content={openFormModalWithData}
         status={editingStatus}
+        modalStatus={modalStatus}
         closeModal={() => {
           setOpenFormModalWithData(false);
         }}
@@ -112,17 +120,15 @@ export const BankAccountDetailsTable = (props: any) => {
         }}
       />
       <CustomTable
-        data={tableData}
+        data={tableData?.carer_bank_detail}
         columns={columns}
         isLoading={gettingStatus?.isLoading}
         isFetching={gettingStatus?.isFetching}
         isError={gettingStatus?.isError}
         isSuccess={gettingStatus?.isSuccess}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
+        totalPages={tableData?.meta?.pages}
+        currentPage={tableData?.meta?.page}
+        onPageChange={onPageChange}
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}
