@@ -93,6 +93,13 @@ export const FormSchema = Yup.object().shape({
   applicationFilledDate: Yup.date().required(
     "Applicant Filled Date is required"
   ),
+  age: Yup.number()
+    .typeError("Age is required")
+    .required("Age is required")
+    .positive("Age must be a positive number")
+    .integer()
+    .moreThan(18, "Age must be greater than or equal to 18")
+    .lessThan(120, "Age must be less than or equal to 120"),
   image: Yup.lazy((value) => {
     switch (typeof value) {
       case "string":
@@ -199,7 +206,7 @@ export const formDataAreaPersonalInfo = [
   },
   {
     gridLength: 6,
-    componentProps: { value: 19, name: "age", label: "Age", fullWidth: true },
+    componentProps: { name: "age", label: "Age", fullWidth: true },
     component: RHFTextField,
   },
   {
