@@ -53,7 +53,7 @@ export const FormSchema = Yup.object().shape({
   county: Yup.string().required("Field is required"),
   country: Yup.string().required("Field is required"),
   postalCode: Yup.string().required("Field is required"),
-  dateMovedOut: Yup.date().required("Date of Interview is required"),
+  dateMovedOut: Yup.date().required("Field is required"),
   localAuthority: Yup.string().required("Field is required"),
 });
 export const formData = [

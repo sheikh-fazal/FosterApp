@@ -18,7 +18,7 @@ export const defaultValues = {
   contactName: "",
   noticePeriod: "",
   disciplinaryCareer: "",
-  suitableDateReferenceSent: new Date(),
+  suitableDate: new Date(),
   email: "",
 };
 
@@ -36,7 +36,7 @@ export const FormSchema = Yup.object().shape({
   contactName: Yup.string().required("Field is required"),
   noticePeriod: Yup.string().required("Field is required"),
   disciplinaryCareer: Yup.string().required("Field is required"),
-  suitableDateReferenceSent: Yup.date().required("Field is required"),
+  suitableDate: Yup.date().required("Field is required"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
 });
 export const formData = [
@@ -116,7 +116,7 @@ export const formData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "suitableDateReferenceSent",
+      name: "suitableDate",
       label: "Suitable Date for your Reference to be sent",
       fullWidth: true,
     },

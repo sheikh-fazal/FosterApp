@@ -8,6 +8,7 @@ export const basicInformationApi = baseAPI.injectEndpoints({
         method: "PUT",
         body: formData,
       }),
+      invalidatesTags: ["GET_BASICINFORMATION"],
     }),
   }),
 });

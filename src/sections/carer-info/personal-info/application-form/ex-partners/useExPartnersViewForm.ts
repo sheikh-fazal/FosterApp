@@ -50,7 +50,7 @@ export const useExPartnersViewForm = (props: any) => {
       email,
       phoneNumber,
       relationShipType,
-      childrenTogether: true,
+      childrenTogether,
     };
     if (Formtype == "add") {
       try {
