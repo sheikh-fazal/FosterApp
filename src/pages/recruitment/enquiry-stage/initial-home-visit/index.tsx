@@ -9,12 +9,12 @@ import InitialHomeVisitTab from "@root/sections/carer-info/personal-info/initial
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
+    name: "Enquiry Stage",
+    href: "/recruitment",
   },
   {
     name: "Initial Home Visit",
-    href: "/carer-info/personal-info/initial-home-visit",
+    href: "/recruitment/enquiry-stage/initial-home-visit",
   },
 ];
 
@@ -28,7 +28,8 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
       title={PAGE_TITLE}
-      variant="dashboard">
+      variant="dashboard"
+    >
       {page}
     </Layout>
   );
