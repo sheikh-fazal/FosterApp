@@ -19,7 +19,7 @@ const LeftNavbarCollapse = (props: any) => {
   const { index, expandedhander, expandcollapse, pathname, expanded, ...text } =
     props;
 
-  return (
+    return (
     <Box sx={{ px: 1 }}>
       <ListItemButton
         onClick={() => expandedhander(`open${index}`)}
@@ -28,9 +28,15 @@ const LeftNavbarCollapse = (props: any) => {
           px: 2.1,
           py: 1,
           borderRadius: "6px",
-          bgcolor: expanded === `open${index}` ? theme.palette.grey[900] : "",
+          bgcolor:
+            expanded === `open${index}` 
+              ? theme.palette.grey[900]
+              : "",
           "&:hover": {
-            bgcolor: expanded === `open${index}` ? theme.palette.grey[900] : "",
+            bgcolor:
+              expanded === `open${index}` 
+                ? theme.palette.grey[900]
+                : "",
           },
         }}
       >
@@ -64,6 +70,7 @@ const LeftNavbarCollapse = (props: any) => {
                   sx={{
                     pl: 7,
                     py: 1,
+                    mt: 1,
                     borderRadius: "6px",
                     color: theme.palette.grey[400],
                     backgroundColor:
