@@ -6,12 +6,23 @@ import { FormProvider } from "@root/components/hook-form";
 import { formData } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { usePlacementPreferenceForm } from "./usePlacementPreferenceForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function PlacementPreferenceForm(props: any) {
-  const { disabled, data } = props;
-  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    usePlacementPreferenceForm(data);
+  const { disabled, data, apllicationFormid } = props;
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    theme,
+    isLoading,
+  } = usePlacementPreferenceForm(data, apllicationFormid);
 
+  if (isLoading) {
+    return <SkeletonFormdata />;
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>

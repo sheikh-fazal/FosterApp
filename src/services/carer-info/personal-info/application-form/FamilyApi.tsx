@@ -6,21 +6,35 @@ export const familyApi = baseAPI.injectEndpoints({
       query: (params: any) => "/application-form/family-details",
     }),
     getFamilyDetails: builder.query({
-      query: (id: any) => `/application-form/${id}/family-list`,
+      query: ({ params, id }: any) => ({
+        url: `/application-form/${id}/family-list`,
+        method: "GET",
+        params,
+      }),
+      providesTags: ["POST_FAMILY"],
     }),
     postFamilyDetail: builder.mutation({
       query: ({ id, formData }: any) => ({
-        url: `/application-form/family-details`,
+        url: `/application-form/family-details/${id}`,
         method: "Post",
         body: formData,
       }),
+      invalidatesTags: ["POST_FAMILY"],
     }),
     updateFamilyDetail: builder.mutation({
       query: ({ id, formData }: any) => ({
-        url: `/application-form/family-details`,
-        method: "PATCH",
+        url: `/application-form/family-details/${id}`,
+        method: "PUT",
         body: formData,
       }),
+      invalidatesTags: ["POST_FAMILY"],
+    }),
+    deleteFamilyDetail: builder.mutation({
+      query: ({ id }: any) => ({
+        url: `/application-form/family-details/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["POST_FAMILY"],
     }),
   }),
 });
@@ -30,4 +44,5 @@ export const {
   useGetFamilyDetailsQuery,
   usePostFamilyDetailMutation,
   useUpdateFamilyDetailMutation,
+  useDeleteFamilyDetailMutation,
 } = familyApi;

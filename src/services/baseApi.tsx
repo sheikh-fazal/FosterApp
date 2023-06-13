@@ -39,7 +39,9 @@ export const TAGS = [
   "POST_REFERENCE",
   "EDIT_REFERENCE",
   "POST_EMPLOYEE",
+  "GET_BASICINFORMATION",
   "NEXT-OF-KIN",
+  "POST_CARER_ADDRESS",
   "CHILD_EDUCATION_INFO_LIST",
 ];
 // Create our baseQuery instance

@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import RecruitmentTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/add-taining-profile/training-profile/RecruitmentTrainingProfile";
 import {
+  useDeleteTrainingProfileDocumentMutation,
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
   usePostTrainingProfileApiMutation,
@@ -41,6 +42,7 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
 export default function AddTraingVerification() {
   const [postData] = usePostTrainingProfileApiMutation();
   const [updateData] = usePatchTrainingProfileApiMutation();
+  const [deleteUploadedDocument] = useDeleteTrainingProfileDocumentMutation();
   const [params, setParams] = useState("");
   const router = useRouter();
   const formData = new FormData();
@@ -77,7 +79,7 @@ export default function AddTraingVerification() {
     isLoading: uploadDocumentsIsLoading,
     isError: uploadDocumentsIsError,
     isFetching: uploadDocumentsIsFetching,
-    isSuccess
+    isSuccess,
   } = useGetTrainingProfileAllDocumentQuery({ id: profileId, params });
 
   console.log(uploadDocuments, "uploaded documents");
@@ -111,6 +113,21 @@ export default function AddTraingVerification() {
     }
   };
 
+  const deleteDocument = async (userId: any) => {
+    try {
+      let res = await deleteUploadedDocument({
+        trainingProfileId: profileId,
+        profileId: userId,
+      });
+
+      enqueueSnackbar(`Document Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
+
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={tabsArr}>
@@ -138,6 +155,10 @@ export default function AddTraingVerification() {
             "password",
           ]}
           isSuccess={isSuccess}
+          onDelete={(data: any) => {
+            console.log("uploaded document id", data.id);
+            deleteDocument(data.id);
+          }}
           modalData={(data: any) => uploadDocumentsHandler(data)}
           onPageChange={(page: any) => console.log(page)}
           currentPage={uploadDocuments?.data?.meta?.page}
