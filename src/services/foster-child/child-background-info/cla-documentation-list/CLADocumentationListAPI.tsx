@@ -21,7 +21,7 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
     }),
     deleteClaDocumentationList: builder.mutation({
       query: (id: any) => ({
-        url: `foster-child/child-background-info/cla-documentation/${id}`,
+        url: `foster-child/cla/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["CLA_DOCUMENTATION_LIST"],
