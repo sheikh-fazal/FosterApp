@@ -1,8 +1,6 @@
-import { Box } from "@mui/material";
-import TableAction from "@root/components/TableAction";
+
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
-import router from "next/router";
 import * as Yup from "yup";
 
 export const SchoolDeatilInfoFormData = [

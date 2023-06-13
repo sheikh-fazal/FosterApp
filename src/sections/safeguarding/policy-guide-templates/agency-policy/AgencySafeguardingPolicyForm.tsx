@@ -9,7 +9,7 @@ import { useAgencySafeguardingPolicy } from "./useAgencySafeguardingPolicy";
 import { formData } from ".";
 
 export default function CarerAddressHistoryForm(props: any) {
-  const { methods, handleSubmit, onSubmit, theme, isSubmitting, isDirty, router } = useAgencySafeguardingPolicy();
+  const { methods, handleSubmit, onSubmit, theme, isSubmitting, router } = useAgencySafeguardingPolicy();
 
 
   return (
@@ -28,7 +28,7 @@ export default function CarerAddressHistoryForm(props: any) {
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
-          <RHFUploadFile name="updatePhoto" {...methods} required />
+          <RHFUploadFile name="updatePhoto" {...methods} disabled={props.disabled} required />
         </Grid>
         {formData.map((form: any, i: any) => {
           return (
@@ -53,7 +53,7 @@ export default function CarerAddressHistoryForm(props: any) {
             }}
           >
             {!props?.disabled && (
-              <LoadingButton sx={{ marginRight: "1rem" }} type="submit" variant="contained" loading={isSubmitting} disabled={!isDirty}>
+              <LoadingButton sx={{ marginRight: "1rem" }} type="submit" variant="contained" loading={isSubmitting}>
                 Submit
               </LoadingButton>
             )}

@@ -5,7 +5,7 @@ import Page from '@root/components/Page';
 import { Box, Card } from '@mui/material';
 import AgencySafeguardingPolicyForm from '@root/sections/safeguarding/policy-guide-templates/agency-policy/AgencySafeguardingPolicyForm';
 
-const PAGE_TITLE = "Add Agency Safeguarding Policy";
+const PAGE_TITLE = "Update Agency Safeguarding Policy";
 
 AddSafeguardingPolicy.getLayout = function getLayout(page: any) {
   return (

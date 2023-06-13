@@ -82,7 +82,6 @@ const Form = (props: any) => {
     isFetching,
   } = props;
   const theme: any = useTheme();
-  console.log("i am here");
   const methods = useForm({
     resolver: yupResolver(formSchemaModel),
     defaultValues: defaultValuesdef,
@@ -122,7 +121,10 @@ const Form = (props: any) => {
                     Person Uploaded: ...
                   </Typography>
                   <CloseIcon
-                    onClick={() => setModel(false)}
+                    onClick={() => {
+                      setModel(false);
+                      reset();
+                    }}
                     sx={{ cursor: "pointer" }}
                   />
                 </Box>

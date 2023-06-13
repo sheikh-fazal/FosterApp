@@ -19,6 +19,7 @@ const UploadDocuments = (props: any) => {
     currentPage,
     totalPages,
     onPageChange,
+    onDelete,
   } = props;
   const [openModal, setOpenModal] = useState(false);
 
@@ -44,12 +45,13 @@ const UploadDocuments = (props: any) => {
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
+        onDelete={onDelete}
       />
       <UploadDocumentModal
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) => {
-          // console.log("oooooooooooooooooooooi data", data);
+          console.log("oooooooooooooooooooooi data", data);
           modalData(data);
         }}
       />

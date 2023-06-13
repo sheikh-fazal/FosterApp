@@ -8,10 +8,9 @@ export const AddSafeguardingMeetingFormData = [
   
   {
     id: 1,
-    title:'Signed off by',
     componentProps: {
       name: "signedOffBy",
-      // label: "Signed off by",
+      label: "Signed off by",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -20,10 +19,9 @@ export const AddSafeguardingMeetingFormData = [
   
   {
     id: 2,
-    title:"Name (in print)",
     componentProps: {
       name: "nameInPrint",
-      // label: "Name in print",
+      label: "Name in print",
       sx: { mb: 4},
     },
     component: RHFTextField,
@@ -32,10 +30,9 @@ export const AddSafeguardingMeetingFormData = [
  
   {
     id: 3,
-    title:"Position in organization",
     componentProps: {
       name: "positionInorganization",
-      // label: "Position in organization",
+      label: "Position in organization",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -54,10 +51,9 @@ export const AddSafeguardingMeetingFormData = [
 
   {
     id: 5,
-    title:"Date",
     componentProps: {
       name: "date",
-      // label: "Date",
+      label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -76,10 +72,9 @@ export const AddSafeguardingMeetingFormData = [
   },
   {
     id: 7,
-    title:"Date to review",
     componentProps: {
       name: "dateToReview",
-      // label: "Date to review",
+      label: "Date to review",
       sx: { mb: 4 },
       fullWidth: true,
     },

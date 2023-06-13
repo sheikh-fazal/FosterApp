@@ -1,6 +1,5 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import theme from '@root/theme';
 import { SafguardingMeetingFormTableColumns, useAddSafeguardingMeetingTable } from './useAddSafeguardingMeetingTable';
 import { SafguardingMeetingFormTableData } from '.';
 import { Grid} from '@mui/material';

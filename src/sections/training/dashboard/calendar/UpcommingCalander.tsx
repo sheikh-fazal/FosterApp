@@ -37,6 +37,7 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
   padding: "8px",
   border: "none",
   borderRadius: 10,
+  width: "100% !important",
 
   "& .react-calendar__tile--active": {
     background: `${theme.palette.primary.main} !important `,

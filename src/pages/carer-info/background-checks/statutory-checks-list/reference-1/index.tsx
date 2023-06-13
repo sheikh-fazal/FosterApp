@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/UploadDocuments";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/upload-documents/UploadDocumentsTable";
 import ReferenceOneForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/ReferenceOneForm";
 import { useRouter } from "next/router";
 
@@ -42,7 +42,7 @@ export default function Reference1() {
   return (
     <HorizaontalTabs tabsDataArray={["References 1", "Upload Documents"]}>
       <ReferenceOneForm action={action} id={id} />
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }

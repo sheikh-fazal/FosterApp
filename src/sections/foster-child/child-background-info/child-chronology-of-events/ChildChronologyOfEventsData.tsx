@@ -1,11 +1,3 @@
-import ComplaintsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/complaints-info";
-import HospitalisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info";
-import ImmunisationInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/immunisation-info";
-import IncidentsInfo from "@root/pages/foster-child/child-background-info/child-chronology-of-events/incidents-info";
-import VocationalCourseInfo from "@root/pages/foster-child/education-records/vocational-course-info";
-import TherapyInfo from "@root/pages/foster-child/health-medical-history/therapy-info";
-import RiskAssessment from "@root/pages/foster-child/other-information/risk-assessment";
-import AllegationsInfo from "./allegations-info";
 import DayLogTable from "./day-log/DayLogTable";
 import OOHReportsTable from "./ooh-reports/OOHReportsTable";
 import OfstedNotificationsTable from "./ofsted-notifications/OfstedNotificationsTable";
@@ -14,6 +6,13 @@ import AbsenceInfoTable from "./absence-info/AbsenceInfoTable";
 import ExclusiveInfoTable from "./exclusion-info/ExclusionInfoTable";
 import ExamGradeInfoTable from "./exam-grade-info/ExamGradeInfoTable";
 import VocationalCourseInfoTable from "./vocational-course-info/VocationalCourseInfoTable";
+import HospitalisationInfoTable from "./hospitalisation-info/HospitalisationInfoTable";
+import TherapyInfoTable from "./therapy-info/TherapyInfoTable";
+import RiskAssessmentTable from "./risk-assessment/RiskAssessmentTable";
+import ImmunisationInfoTable from "./immunisation-info/ImmunisationInfoTable";
+import AllegationsInfoTable from "./allegations-info/AllegationsInfoTable";
+import ComplaintsInfoTable from "./complaints-info/ComplaintsInfoTable";
+import IncidentsInfoTable from "./incidents-info/IncidentsInfoTable";
 
 export const childChronologyListData = [
   {
@@ -50,30 +49,30 @@ export const childChronologyListData = [
   },
   {
     title: "Hospitalisation Info",
-    component: <HospitalisationInfo />,
+    component: <HospitalisationInfoTable/>,
   },
   {
     title: "Therapy Info",
-    component: <TherapyInfo />,
+    component: <TherapyInfoTable />,
   },
   {
     title: "Risk Assessment",
-    component: <RiskAssessment />,
+    component: <RiskAssessmentTable />,
   },
   {
     title: "Immunisation Info",
-    component: <ImmunisationInfo />,
+    component: <ImmunisationInfoTable />,
   },
   {
     title: "Allegations Info",
-    component: <AllegationsInfo />,
+    component: <AllegationsInfoTable />,
   },
   {
     title: "Complaints Info",
-    component: <ComplaintsInfo />,
+    component: <ComplaintsInfoTable />,
   },
   {
     title: "Incidents Info",
-    component: <IncidentsInfo />,
+    component: <IncidentsInfoTable />,
   },
 ];

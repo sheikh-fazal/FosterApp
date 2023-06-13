@@ -1,4 +1,4 @@
-import { baseAPI, TAGS } from "@root/services/baseApi";
+import { baseAPI } from "@root/services/baseApi";
 
 export const primaryCarerApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({

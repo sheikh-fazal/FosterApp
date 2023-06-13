@@ -15,10 +15,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useAddExperiencesFrom } from "./useAddExperiencesFrom";
 import { enqueueSnackbar } from "notistack";
-import { useEditExperiencesMutation, } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
+import { useEditExperienceMutation, } from "@root/services/carer-info/employment-history/employnmentDetailsApi";
 
 function EditExperiencesModal({ open, setEditOpen,editData }: any) {
-  const [editExperiences, { isLoading }] = useEditExperiencesMutation();
+  const [editExperiences, { isLoading }] = useEditExperienceMutation();
   
   const theme: any = useTheme();
   const [collapsedIndexes, setCollapsedIndexes] = useState<any>([]);
@@ -53,8 +53,20 @@ function EditExperiencesModal({ open, setEditOpen,editData }: any) {
 
 
   const onSubmit =async (data: any) => {
+    const formData = new FormData();
+    // Append the properties of the main object excluding 'experiences'
+    for (const key in data) {
+      if (data.hasOwnProperty(key) && key !== "experiences") {
+        formData.append(key, data[key]);
+      }
+    }
+    // Append each experience as a separate entry
+    data.experiences.forEach((experience: any, index: any) => {
+      const fieldName = `experiences`;
+      formData.append(fieldName, JSON.stringify(experience));
+    });
     try {
-      const res: any = await editExperiences({ payload: { ...data }, editData }).unwrap();  
+      const res: any = await editExperiences({ payload:formData , id:editData.id }).unwrap();  
       if (res.data) {
         enqueueSnackbar("Experiences Updated Successfully", {
           variant: "success",
@@ -68,8 +80,7 @@ function EditExperiencesModal({ open, setEditOpen,editData }: any) {
 
   return (
     <Modal
-      open={open}
-      
+      open={open}      
       onClose={() => setEditOpen(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -215,7 +226,7 @@ function EditExperiencesModal({ open, setEditOpen,editData }: any) {
                     Cancel
                   </Button>
                   <Button sx={styles.btnSuccess} type="submit">
-                    Submit
+                    Update Experiense
                   </Button>
                 </Box>
               </Grid>
