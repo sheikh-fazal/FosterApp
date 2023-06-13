@@ -1,26 +1,16 @@
-import { Grid, Box, Tab, Tabs, Typography, useTheme,Button } from '@mui/material';
+import { Grid, Box, Tab, Tabs, Typography, useTheme, Button, styled } from '@mui/material';
 import React, { Children, ReactNode, SyntheticEvent, useState } from 'react'
 import Image from "next/image";
 import CustomHorizaontalTab from '@root/components/customTabs';
 
-
-// interface TabData {
-//     verticalTabLabel: string;
-//     horizontalTabs: string[];
-//   }
-
 interface VerticalTabsProps {
     tabsData: any;
 }
-
 interface TabPanelProps {
     children?: React.ReactNode;
     value: number;
     index: number;
 }
-// interface IVERTICALTABSPROPS {
-//     tabsData: TabData[];
-// }
 
 
 function TabPanel({ children, value, index }: TabPanelProps) {
@@ -40,41 +30,77 @@ function TabPanel({ children, value, index }: TabPanelProps) {
 
 
 const ComplianceVerticalTabs = ({ tabsData }: VerticalTabsProps) => {
-    const [value, setValue] = useState(0);
+    const [verticalTab, setVerticalTab] = useState(0);
     const [horizontalTabValue, setHorizontalTabValue] = useState(0);
-    const [currentTab, setCurrentTab] = useState(0);
+    const [SelectedTabColor, setSelectedTabColor] = useState('');
 
-
-    const handleTabChange = (index:number) => {
-        setValue(index);
-        
+    const handleTabChange = (index: number, color: string) => {
+        setVerticalTab(index);
+        setSelectedTabColor(color);
+        setHorizontalTabValue(0);
     };
 
-    const handleHorizontalTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleHorizontalTabChange = (event: React.SyntheticEvent, newValue: any) => {
         setHorizontalTabValue(newValue);
+       console.log('gaftga===>',newValue);
+    
     };
 
     const theme: any = useTheme();
+    const StyledButton = styled(Button)(({ isSelected }: { isSelected: boolean }) => ({
+        backgroundColor: isSelected ? SelectedTabColor : '#fff',
+        '&:hover': {
+            backgroundColor: isSelected ? SelectedTabColor : '#ff2D',
+            // color: isSelected ? '#fff !important' : '#465987',
+        },
+        marginBottom: "15px !important",
+        borderRadius: "10px",
+        color: isSelected ? SelectedTabColor : '#fff !important',
+        fill:isSelected ? SelectedTabColor : '#fff !important',
+        width: "120px !important",
+        height: "120px !important",
+        boxShadow: '2px 4px 7px rgba(14, 145, 140, 0.2)',
+        cursor: 'pointer',
+        
+    }));
+    const StyledImage = styled(Box)(({ theme }: { theme: any }) => ({
+        fill: '#fff',
+        color: '#fff',
+        transition: 'fill 0.3s, color 0.3s', // Add transition for smooth effect
+        '&:hover': {
+          fill: 'white !important', // Replace 'red' with the desired color
+          color: 'white !important',
+          backgroundColor:'white !important' // Replace 'red' with the desired color
+        },
+      }));
+
+
     return (
         <Grid container>
             <Grid lg={2.5} sx={{ height: "715px" }}>
                 <Box sx={styles.GridWrapper}>
                     <Box sx={{ maxHeight: "76vh", overflowY: "auto" }}>
                         <Grid container >
-                            {tabsData?.map((item: any,index:any) => (
+                            {tabsData?.map((item: any, index: any) => (
                                 <Grid lg={6} key={index}>
-                                        <Button  onClick={()=>handleTabChange(index)} style={{cursor:'pointer'}} >
-                                        <Box sx={styles.innerTabs(theme)}>
-                                            <Box sx={styles.tabLabel}>
-                                                <Box sx={styles.tabsIcon}>
-                                                    <Image src={item.img} alt=""  />
-                                                </Box>
-                                                <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
-                                                    {item?.title.length > 46 ? `${item.title.slice(0, 46)}...` : item.title}
-                                                </Typography>
+                                    <StyledButton
+                                        variant="contained"
+                                        onClick={() => handleTabChange(index, item.color)}
+                                        isSelected={verticalTab === index} 
+                                    >
+                                        {/*  sx={styles.innerTabs} */}
+                                        <Box sx={styles.tabLabel}>
+                                            <Box sx={styles.tabsIcon}>
+                                                {/* <StyledImage src={item.img} alt=""   /> */}
+                                                <Image src={item.img} alt=""/>
+                                               
                                             </Box>
-                                            </Box>
-                                            </Button>
+                                            <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
+                                                {item?.title.length > 46 ? `${item.title.slice(0, 46)}...` : item.title}
+                                            </Typography>
+
+                                        </Box>
+                                    </StyledButton>
                                 </Grid>
                             ))}
                         </Grid>
@@ -83,18 +109,24 @@ const ComplianceVerticalTabs = ({ tabsData }: VerticalTabsProps) => {
             </Grid>
             <Grid lg={9.5} sx={{ background: "fff", boxShadow: "2px 4px 7px rgba(14, 145, 140, 0.2)", borderRadius: '10px', height: "715px" }}>
                 <Box sx={{ flexGrow: 1 }}>
-                    {tabsData.map((tab:any, index:any) => (
-                        <TabPanel key={index} value={value} index={index}>
+                    {tabsData.map((tab: any, index: any) => (
+                        <TabPanel key={index} value={verticalTab} index={index}>
                             <Tabs
                                 value={horizontalTabValue}
                                 onChange={handleHorizontalTabChange}
                                 aria-label="Horizontal tabs example"
                             >
-                                {tab.innerData.map((innerData:any, subIndex:any) => (
-                                    <Tab key={subIndex} label={innerData.tabTitle} />
+                                {tab.innerData && tab.innerData.map((data: any, subIndex: any) => (
+                                    <Tab key={subIndex} label={data.tabTitle} />
                                 ))}
                             </Tabs>
-                            <Typography>{tab.innerData[horizontalTabValue]?.tabTitle}</Typography>
+                            {/* {tab.innerData && tab.innerData[horizontalTabValue]?.tabsDocuments} */}
+                            {tab.innerData && tab.innerData[horizontalTabValue]?.tabsDocuments?.map((item: any) => (
+                <Typography key={item.id} sx={{ color: '#000 !important' }}>
+                  {item.pdf}
+                </Typography>
+              ))}
+                            
                         </TabPanel>
                     ))}
                 </Box>
@@ -127,6 +159,7 @@ const styles = {
         borderRadius: 3,
         padding: "12px",
         gap: "15px",
+        
 
     },
 
@@ -139,12 +172,8 @@ const styles = {
         width: "120px !important",
         height: "120px !important",
         boxShadow: '2px 4px 7px rgba(14, 145, 140, 0.2)',
-        "&.Mui-selected": {
-            width: "100% !important",
-            border: "6px solid red !important",
-            height: "100%",
-            minHeight: "80px",
-        },
+       
+
     }),
     GridWrapper: {
         p: "3px",
@@ -156,7 +185,9 @@ const styles = {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        flexShrink: 0
+        flexShrink: 0,
+        fill:'#fff',
+        color:'#fff'
     },
     tabsTitle: {
         fontSize: "12px !important",
