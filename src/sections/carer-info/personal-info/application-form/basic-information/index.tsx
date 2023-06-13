@@ -5,9 +5,6 @@ import {
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
-import { FormHelperText, Hidden } from "@mui/material";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { useFormContext, Controller } from "react-hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";

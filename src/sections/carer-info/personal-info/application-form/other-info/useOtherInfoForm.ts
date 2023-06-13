@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 import { useUpdateOtherInfoMutation } from "@root/services/carer-info/personal-info/application-form/OtherInfoApi";

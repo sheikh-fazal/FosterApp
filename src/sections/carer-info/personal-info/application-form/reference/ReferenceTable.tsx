@@ -2,8 +2,6 @@ import React, { useRef, useState } from "react";
 import ReferenceViewForm from "./ReferenceViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { Box, useTheme } from "@mui/material";
-import TableAction from "@root/components/TableAction";
 import { columns } from ".";
 import { useReferenceTable } from "./useReferenceTable";
 

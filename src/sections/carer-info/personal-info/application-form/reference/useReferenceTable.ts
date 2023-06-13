@@ -1,6 +1,5 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
 import { enqueueSnackbar } from "notistack";

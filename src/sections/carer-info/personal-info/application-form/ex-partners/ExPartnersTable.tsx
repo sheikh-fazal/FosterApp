@@ -2,10 +2,8 @@ import React, { useRef, useState } from "react";
 import ExPartnersViewForm from "./ExPartnersViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useTheme } from "@mui/material";
 import { columns } from ".";
 
-import { enqueueSnackbar } from "notistack";
 import { useExPartnersTable } from "./useExPartnersTable";
 
 export default function ExPartnersView({ apllicationFormid, role }: any) {

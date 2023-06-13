@@ -1,7 +1,7 @@
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useFamilyTable } from "./useFamilyTable";
 import { columns } from ".";
 import FamilyViewForm from "./FamilyViewForm";
