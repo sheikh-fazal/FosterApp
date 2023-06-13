@@ -1,10 +1,8 @@
-
-
 import HomeIcon from "@mui/icons-material/Home";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-import ClaDocumentationListTable from "@root/sections/foster-child/child-background-info/cla-documentation-list/ClaDocumentationList";
+import ClaDocumentationListTable from "@root/sections/foster-child/child-background-info/cla-documentation-list/ClaDocumentationTable";
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +27,8 @@ ClaDocumentationList.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}>
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

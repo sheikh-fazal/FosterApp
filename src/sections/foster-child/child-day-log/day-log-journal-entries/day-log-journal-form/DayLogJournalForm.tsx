@@ -5,10 +5,8 @@ import Link from "next/link";
 import { DayLogJournalFormData, DayLogJournalFormValidation } from ".";
 import { useRouter } from "next/router";
 
-
 export default function DayLogJournalForm(props: any) {
-
-  const { query } = useRouter()
+  const { query } = useRouter();
 
   const { defaultValues, disabled } = props;
 
@@ -23,26 +21,32 @@ export default function DayLogJournalForm(props: any) {
               <item.component
                 {...item.componentProps}
                 disabled={query.action === "view"}
-                size={"small"}>
+                size={"small"}
+              >
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
-                    <option key={option?.value} value={option?.value}>
-                      {option?.label}
-                    </option>
-                  ))
+                      <option key={option?.value} value={option?.value}>
+                        {option?.label}
+                      </option>
+                    ))
                   : null}
                 {item?.heading}
               </item.component>
             </Grid>
           ))}
-          {
-
-            query.action !== "view" &&
-            <Grid item xs={12} >
-              <Button size="large" type="submit" variant="contained" disabled={query.action === "view"}>
+          {query.action !== "view" && (
+            <Grid item xs={12}>
+              <Button
+                size="large"
+                type="submit"
+                variant="contained"
+                disabled={query.action === "view"}
+              >
                 Submit
               </Button>
-              <Link href={"/foster-child/child-day-log/day-log-journal-entries"} >
+              <Link
+                href={"/foster-child/child-day-log/day-log-journal-entries"}
+              >
                 <Button
                   disabled={query.action === "view"}
                   type="button"
@@ -58,9 +62,9 @@ export default function DayLogJournalForm(props: any) {
                 </Button>
               </Link>
             </Grid>
-          }
+          )}
         </Grid>
       </FormProvider>
     </>
-  )
+  );
 }
