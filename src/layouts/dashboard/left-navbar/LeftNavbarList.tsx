@@ -14,6 +14,9 @@ import { useRouter } from "next/router";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
+import LeftNavbarCollapse from "./LeftNavbarCollapse";
+import LeftNavbarListItems from "./LeftNavbarListItems";
+
 
 const LeftNavbarList = (props: any) => {
   const router = useRouter();
@@ -47,116 +50,21 @@ const LeftNavbarList = (props: any) => {
           <div key={index}>
             {Array.isArray(text.sublist) ? (
               open && (
-                <Box sx={{ px: 1 }}>
-                  <ListItemButton
-                    onClick={() => expandedhander(`open${index}`)}
-                    sx={{
-                      color: theme.palette.grey[400],
-                      px: 2.1,
-                      py: 1,
-                      borderRadius: "6px",
-                    }}
-                  >
-                    <ListItemIcon>{text.img}</ListItemIcon>
-                    <ListItemText
-                      primary={text.text}
-                      disableTypography
-                      sx={{ fontSize: "14px" }}
-                    />
-                    {expanded === `open${index}` ? (
-                      <ExpandLess />
-                    ) : (
-                      <ExpandMore />
-                    )}
-                  </ListItemButton>
-                  <Collapse
-                    in={expanded === `open${index}` ? true : false}
-                    timeout="auto"
-                    unmountOnExit
-                    sx={{ color: theme.palette.grey[400] }}
-                  >
-                    <List component="div" disablePadding>
-                      {text.sublist?.map((item, index) => (
-                        <div key={index}>
-                          <Link
-                            style={{
-                              textDecoration: "none",
-                              width: "100%",
-                            }}
-                            href={item.sublistlink}
-                          >
-                            <ListItemButton
-                              sx={{
-                                pl: 7,
-                                py: 1,
-                                borderRadius: "6px",
-                                color: theme.palette.grey[400],
-                                backgroundColor:
-                                  pathname === item.sublistlink
-                                    ? theme.palette.grey[900]
-                                    : "",
-                              }}
-                            >
-                              <ListItemText
-                                disableTypography
-                                sx={{ fontSize: "14px" }}
-                                primary={item.list}
-                              />
-                            </ListItemButton>
-                          </Link>
-                        </div>
-                      ))}
-                    </List>
-                  </Collapse>
-                </Box>
+                <LeftNavbarCollapse
+                  index={index}
+                  expandedhander={expandedhander}
+                  expanded={expanded}
+                  pathname={pathname}
+                  {...text}
+                />
               )
             ) : (
-              <ListItem
-                sx={{
-                  padding: open ? "2px" : "5px",
-                  px: 1,
-                }}
-              >
-                <Link
-                  style={{
-                    textDecoration: "none",
-                    width: "100%",
-                  }}
-                  href={text.link}
-                >
-                  <ListItemButton
-                    sx={{
-                      padding: "6px 22px",
-                      justifyContent: open ? "initial" : "center",
-                      px: 2.1,
-                      py: 1,
-                      borderRadius: "6px",
-                      backgroundColor:
-                        pathname === text.link ? theme.palette.grey[900] : "",
-                    }}
-                  >
-                    <ListItemIcon
-                      sx={{
-                        minWidth: 0,
-                        mr: open ? 2 : "auto",
-                        justifyContent: "center",
-                        color: theme.palette.grey[400],
-                      }}
-                    >
-                      {text.img}
-                    </ListItemIcon>
-                    <ListItemText
-                      disableTypography
-                      primary={text.text}
-                      sx={{
-                        opacity: open ? 1 : 0,
-                        color: theme.palette.grey[400],
-                        fontSize: "14px",
-                      }}
-                    />
-                  </ListItemButton>
-                </Link>
-              </ListItem>
+              <LeftNavbarListItems
+                expandcollapse={expanded === `open${index}`}
+                pathname={pathname}
+                open={open}
+                {...text}
+              />
             )}
           </div>
         );
