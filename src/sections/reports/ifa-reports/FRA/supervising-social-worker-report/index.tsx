@@ -1753,13 +1753,13 @@ export const FRAFormData = [
     },
     component: RHFTextField
   },
+
   {
     title: "Other checks or reports",
-    notice: 'Notice: Fostering services will have policies about what checks need to be completed at review stage and might include checks with health visitors, schools and others. Where appropriate, reports might be obtained using Form FR-F1 Detail the policy requirements of your fostering service either here or in the box below',
+    notice: 'Fostering services will have policies about what checks need to be completed at review stage and might include checks with health visitors, schools and others. Where appropriate, reports might be obtained using Form FR-F1 Detail the policy requirements of your fostering service either here or in the box below',
     subText: "Detail the policy requirements of your fostering service either here or in the box below",
     gridLength: 12,
     addNew: true,
-    isColumn: true,
     formFields: [
       {
         gridLength: 6,

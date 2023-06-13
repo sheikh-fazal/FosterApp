@@ -26,7 +26,7 @@ const SupervisingSocialWorkerReport = ({ action, id }: any) => {
                   <Box display={'flex'} justifyContent={'space-between'}>
                     <Typography sx={styles.title}>{data.title}</Typography>
                     <IconButton size='small' onClick={() => data.isColumn ? handleAddNewColumn(data) : handleAddNew(data)}
-                      sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", } }}
+                      sx={styles.btnStyle}
                     >
                       <AddIcon sx={{ color: '#fff' }} />
                     </IconButton>
@@ -98,7 +98,7 @@ const SupervisingSocialWorkerReport = ({ action, id }: any) => {
           <Grid item xs={12} display={'flex'} gap={'10px'} sx={{ mt: 2 }}>
             {!disabled && <LoadingButton type='submit' variant="contained">Submit</LoadingButton>}
             <Button
-              sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}
+              sx={styles.btnStyle}
               type="button"
               variant="contained"
               onClick={handleBack}
@@ -166,5 +166,8 @@ const styles = {
     fontWeight: 600,
     fontSize: '16px',
     mb: 1
+  },
+  btnStyle: {
+    backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", },
   }
 }

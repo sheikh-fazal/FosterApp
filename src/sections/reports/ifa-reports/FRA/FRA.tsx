@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Card, Checkbox, Grid, MenuItem, Select, Typography } from '@mui/material';
+import { Box, Button, Card, Checkbox, FormControl, Grid, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import Image from 'next/image';
 import automatedIcon from '../../../../assets/svg/reports/automatedIcon.svg';
 import { tableSubHeader, viewReportsFilterData, tableMockData } from '.';
@@ -122,12 +122,16 @@ const FRASection = () => {
           <Grid container spacing={2}>
             {viewReportsFilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
-                <Typography sx={styles.title}>{data.title}</Typography>
+                <FormControl fullWidth size="small">
+                  <InputLabel id="demo-simple-select-label">{data.otherOptions.label}</InputLabel>
                 <Select {...data.otherOptions}>
-                  {data.options.map((item: any, j: number) =>
-                    <MenuItem key={j} value={item.value}>{item.label}</MenuItem>
-                  )}
+                  {data.options.map((item: any, j: number) => (
+                    <MenuItem key={j} value={item.value}>
+                      {item.label}
+                    </MenuItem>
+                  ))}
                 </Select>
+                </FormControl>
               </Grid>
             ))}
             <Grid item xs={12} display={'flex'} justifyContent={'flex-end'}>

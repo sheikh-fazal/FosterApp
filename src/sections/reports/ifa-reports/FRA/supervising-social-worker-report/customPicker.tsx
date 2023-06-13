@@ -6,7 +6,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Box, Typography } from '@mui/material';
 
-const DaysHourPicker = ({ other }: any) => {
+const DaysHourPicker = ({ ...other }: any) => {
   const [day, setDay] = useState(1);
   const [hour, setHour] = useState(1);
   return (
@@ -34,7 +34,7 @@ const DaysHourPicker = ({ other }: any) => {
 export default DaysHourPicker;
 
 
-const CustomTextField = ({ title, value, setValue, name, disabled }: any) => {
+const CustomTextField = ({ title, value, setValue, name, ...rest }: any) => {
   const handleIncrement = () => setValue(value + 1);
   const handleDecrement = () => setValue(value > 0 ? value - 1 : 0);
   return (
@@ -46,11 +46,10 @@ const CustomTextField = ({ title, value, setValue, name, disabled }: any) => {
         name={name}
         size={'small'}
         value={value}
-        disabled={disabled}
-        // onChange={(e:any)=>setValue(e.target.value)}
+        disabled={rest.disabled}
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end" sx={styles.endAdornment}>
+            <InputAdornment position="end" sx={styles.endAdornment} disablePointerEvents={rest.disabled}>
               <IconButton disableRipple onClick={handleIncrement} sx={styles.arrowBtn}>
                 <ArrowDropUpIcon />
               </IconButton>
