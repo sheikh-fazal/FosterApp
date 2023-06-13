@@ -32,8 +32,8 @@ export const useEmployersViewForm = (props: any) => {
   } = methods;
 
   const ApiCall = async (data: any, Formtype: any) => {
-    console.log(data);
     let {
+      employerType,
       companyName,
       contactName,
       disciplinaryCareer,
@@ -44,6 +44,7 @@ export const useEmployersViewForm = (props: any) => {
       address,
     } = data;
     let formData = {
+      employerType,
       companyName,
       contactName,
       disciplinaryCareer,

@@ -1,52 +1,41 @@
 import { Box } from "@mui/material";
 import dayjs from "dayjs";
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import * as Yup from "yup";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { RELATIONDROPDOWN } from "@root/dropdown-data/relation";
+import TableAction from "@root/components/TableAction";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 export const defaultValues = {
-  firstName: "",
-  middleName: "",
-  lastName: "",
-  address: "",
-  phoneNumber: "",
-  email: "",
+  memberName: "",
+  dob: new Date(),
+  relation: "",
+  subject: "",
+  isLivingAtHome: false,
 };
 
 export const FormSchema = Yup.object().shape({
-  firstName: Yup.string().required("First Name is required"),
-  middleName: Yup.string().required("Middle Name is required"),
-  lastName: Yup.string().required("Last Name is required"),
-  address: Yup.string()
-    .required("Address is required")
-    .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 10 characters"),
-  phoneNumber: Yup.string()
-    .required("Telephone is required")
-    .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
-  email: Yup.string().required("Email is required").email("Invalid Email"),
+  memberName: Yup.string().required("Name is required"),
+  dob: Yup.date().required("Date of Birth is required"),
+  relation: Yup.string().required("Relation is required"),
+  subject: Yup.string().required("Subject is required"),
 });
 export const formData = [
   {
     gridLength: 6,
-    otherOptions: { name: "firstName", label: "First Name", fullWidth: true },
-    component: RHFTextField,
-  },
-  {
-    gridLength: 6,
-    otherOptions: { name: "middleName", label: "Middle Name", fullWidth: true },
-    component: RHFTextField,
-  },
-  {
-    gridLength: 6,
-    otherOptions: { name: "lastName", label: "Last Name", fullWidth: true },
+    otherOptions: { name: "memberName", label: "Name", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "address",
-      label: "Address",
+      name: "subject",
+      label: "Subject",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -57,53 +46,104 @@ export const formData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "phoneNumber",
-      label: "Phone Number",
+      name: "dob",
+      label: "Date of Birth",
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    otherOptions: { name: "email", label: "Email", fullWidth: true },
-    component: RHFTextField,
-  },
-];
-export const columns = [
-  {
-    accessorFn: (row: any) => row.memberName,
-    id: "member_name",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Member Name</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.dob,
-    id: "dob",
-    cell: (info: any) => {
-      return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+    otherOptions: {
+      name: "relation",
+      label: "Relation",
+      fullWidth: true,
+      select: true,
     },
-    header: () => <span>Date of Birth</span>,
-    isSortable: true,
+    options: RELATIONDROPDOWN,
+    component: RHFSelect,
   },
   {
-    accessorFn: (row: any) => row.relation,
-    id: "relation",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Relation</span>,
-  },
-  {
-    accessorFn: (row: any) => row.subject,
-    id: "subject",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Subject</span>,
-  },
-  {
-    accessorFn: (row: any) => row.isLivingAtHome,
-    id: "isLivingAtHome",
-    cell: (info: any) => (info.getValue() ? "Yes" : "No"),
-    header: () => <span>Is Living at home</span>,
+    gridLength: 6,
+    otherOptions: {
+      name: "isLivingAtHome",
+      label: "Is Living At Home",
+    },
+    component: RHFCheckbox,
   },
 ];
+export const columns = (
+  changeView: any,
+  setFamilyData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
+  return [
+    {
+      accessorFn: (row: any) => row.memberName,
+      id: "member_name",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Member Name</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.dob,
+      id: "dob",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
+      },
+      header: () => <span>Date of Birth</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.relation,
+      id: "relation",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Relation</span>,
+    },
+    {
+      accessorFn: (row: any) => row.subject,
+      id: "subject",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Subject</span>,
+    },
+    {
+      accessorFn: (row: any) => row.isLivingAtHome,
+      id: "isLivingAtHome",
+      cell: (info: any) => (info.getValue() ? "Yes" : "No"),
+      header: () => <span>Is Living at home</span>,
+    },
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="view"
+            onClicked={() => {
+              setFamilyData(info?.row?.original);
+              changeView("view");
+            }}
+          />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setFamilyData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+              />
+            </>
+          )}
+        </Box>
+      ),
+      header: () => <span>actions</span>,
+      isSortable: false,
+    },
+  ];
+};
 
 export { default as FamilyTable } from "./FamilyTable";

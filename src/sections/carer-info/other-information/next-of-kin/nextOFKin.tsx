@@ -4,10 +4,24 @@ import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import dayjs from "dayjs";
 import React from "react";
-import { DummyData } from ".";
 import router from "next/router";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import useNextOfKinTable from "./useNextOfKinTable";
+import useNextOfKinForm from "./useNextOfKinForm";
 
+const activepath = "/carer-info/other-information/next-of-kin/action";
 const NextOFKin = () => {
+  const {
+    nextOfKinList,
+    nextOfKinListMeta,
+    nextOfKinIsloading,
+    nextOfKinIsSuccess,
+    nextOfKinIsFetching,
+    nextOfKinIsError,
+    setSearch,
+    pageChangeHandler,
+  } = useNextOfKinTable();
+  const { deleteHander } = useNextOfKinForm({});
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -17,21 +31,21 @@ const NextOFKin = () => {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.personName,
+      accessorFn: (row: any) => `${row.firstName} ${row.lastName ?? "-"}`,
       id: "personName",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Person Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.contactNo,
+      accessorFn: (row: any) => row.mobile,
       id: "contactNo",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Contact No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relationship,
+      accessorFn: (row: any) => row.nkRelation,
       id: "relationship",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Relationship</span>,
@@ -43,7 +57,7 @@ const NextOFKin = () => {
       cell: (info: any) => (
         <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>
       ),
-      header: () => <span>Relationship</span>,
+      header: () => <span>date</span>,
       isSortable: true,
     },
     {
@@ -51,14 +65,18 @@ const NextOFKin = () => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+            <DeletePrompt
+              onDeleteClick={() => {
+                deleteHander(info.row.original.id);
+              }}
+            />
             <TableAction
               size="small"
               type="edit"
               onClicked={() => {
                 router.push({
-                  pathname:
-                    "/carer-info/other-information/next-of-kin/action",
-                  query: { action: "edit", id: "" },
+                  pathname: activepath,
+                  query: { action: "edit", id: info.row.original.id },
                 });
               }}
             />
@@ -68,9 +86,8 @@ const NextOFKin = () => {
               type="view"
               onClicked={() => {
                 router.push({
-                  pathname:
-                    "/carer-info/other-information/next-of-kin/action",
-                  query: { action: "view", id:""  },
+                  pathname: activepath,
+                  query: { action: "view", id: info.row.original.id },
                 });
               }}
             />
@@ -85,28 +102,37 @@ const NextOFKin = () => {
     <Box>
       <Grid container>
         <Grid item xs={12}>
-          <Paper elevation={2}>
-            <Box sx={{ p: 2 }}>
+          <Paper elevation={2} sx={{ borderRadius: 2 }}>
+            <Box sx={{ p: 1 }}>
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
                   title="Next of Kin"
                   searchKey="search"
-                  onChanged={(e: any) => {}}
+                  showAddBtn
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
+                  onAdd={() => {
+                    router.push({
+                      pathname: activepath,
+                      query: { action: "add", id: "" },
+                    });
+                  }}
                 />
               </Box>
               <CustomTable
-                data={DummyData}
+                data={nextOfKinList}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={nextOfKinIsloading}
+                isFetching={nextOfKinIsFetching}
+                isError={nextOfKinIsError}
+                isSuccess={nextOfKinIsSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
+                totalPages={nextOfKinListMeta?.pages ?? 0}
+                currentPage={nextOfKinListMeta?.page ?? 1}
+                onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>

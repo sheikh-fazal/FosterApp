@@ -91,6 +91,7 @@ export default function ApplicationForm() {
         <BasicInformationForm
           role={role}
           disabled={role == "foster-carer" ? true : false}
+          id={data?.data?.id}
           data={{
             ...BasicdefaultValues,
             ...(data?.data?.basicInformation && {
@@ -128,11 +129,13 @@ export default function ApplicationForm() {
               haveApplied: data?.data?.otherInfo.haveApplied ? "Yes" : "No",
             }),
           }}
+          apllicationFormid={data?.data?.id}
           disabled={role == "foster-carer" ? true : false}
         />
         <ExPartners role={role} apllicationFormid={data?.data?.id} />
         <PlacementPreferenceForm
           role={role}
+          apllicationFormid={data?.data?.id}
           data={{
             ...placementPreferenceDefaultValues,
             ...(data?.data?.placementPreference && {

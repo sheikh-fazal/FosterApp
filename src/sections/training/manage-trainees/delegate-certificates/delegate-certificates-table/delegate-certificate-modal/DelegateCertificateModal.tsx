@@ -21,19 +21,18 @@ const styles = StyleSheet.create({
     position: "relative",
     width: "900px",
     height: "800px",
-    backgroundImage: `url${Certificatebg}`
+    backgroundImage: `url${Certificatebg}`,
   },
-  pageBackground:{
-    position: 'absolute',
-    minWidth: '100%',
-    minHeight: '100%',
-    height: '100%',
-    width: '100%',
+  pageBackground: {
+    position: "absolute",
+    minWidth: "100%",
+    minHeight: "100%",
+    height: "100%",
+    width: "100%",
     backgroundImage: `url(${Certificatebg})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
-    
   },
   section: {
     position: "absolute",
@@ -151,7 +150,7 @@ const DelegateCertificateModal = (props: any) => {
         <BlobProvider
           document={
             <Document>
-              <Page size="A4" style={styles.page} >
+              <Page size="A4" style={styles.page}>
                 {/* <Image
                   src={Certificatebg}
                   style={{ border: "2px solid red" }}
@@ -160,10 +159,10 @@ const DelegateCertificateModal = (props: any) => {
                   <Text style={styles.certificate}>Certificate</Text>
                   <Text style={styles.of}>Of</Text>
                   <Text style={styles.completion}>Completion</Text>
-                <Image src={'https://i.ibb.co/cLcCbxN/Certificate.jpg'} alt={"pdf-bgImg"}/>
+                  <Image src="https://i.ibb.co/cLcCbxN/Certificate.jpg" />
                   {/* *************************************************** below is imagees ******************************************************************* */}
 
-                  {/* <Text style={styles.of}>                                    
+                  {/* <Text style={styles.of}>
                                         <Image src={Of} />
                                     </Text>
                                     <Text style={styles.completion}>
