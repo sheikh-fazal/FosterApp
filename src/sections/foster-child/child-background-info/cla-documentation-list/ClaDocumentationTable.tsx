@@ -11,7 +11,7 @@ export default function ClaDocumentationListTable() {
 
     const {router, data, isError, isLoading, isSuccess, isFetching, listDeleteHandler } = useDocumentationTable();
 
-    console.log("data", data)
+    // console.log("data", data)
 
 const columns = [
       {
