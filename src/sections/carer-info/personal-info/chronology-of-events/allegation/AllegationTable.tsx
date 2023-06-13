@@ -47,7 +47,7 @@ const AllegationTable = () => {
         <Badge
           invisible={info.badge}
           color="secondary"
-          badgeContent="Draft"
+          // badgeContent="Draft"
           sx={styles.badge}
         >
           {info.getValue() ?? "-"}
@@ -71,8 +71,11 @@ const AllegationTable = () => {
               })
             }
           />
-          {/* Delete Modal */}
-         
+
+          {/* Calling Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
           <TableAction
             size="small"
             type="view"

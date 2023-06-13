@@ -29,7 +29,7 @@ export const useUploadDocuments = () => {
     isSuccess,
   }: any = useStatutoryUploadDocumentListQuery({ search: search });
   //API For Post Documents
-  const [postCarInsuranceDetails]: any =
+  const [postDbsCheckDetails]: any =
     usePostStatutoryUploadDocumentsMutation();
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
@@ -63,14 +63,14 @@ export const useUploadDocuments = () => {
   //Submit Function To Submit Form Data
   const handleSubmitForm = async (data: any) => {
     const formData = new FormData();
-    formData.append("formName", "CAR_INSURANCE");
+    formData.append("formName", "DBS_CHECK");
     formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);
     formData.append("documentPassword", data.documentPassword);
     formData.append("file", data.file);
     try {
-      await postCarInsuranceDetails(formData).unwrap();
+      await postDbsCheckDetails(formData).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });

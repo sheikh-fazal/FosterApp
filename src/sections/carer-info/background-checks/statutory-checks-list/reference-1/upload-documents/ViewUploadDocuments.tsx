@@ -8,13 +8,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import { enqueueSnackbar } from "notistack";
 import TableAction from "@root/components/TableAction";
 import { useLazySingleStatutoryUploadDocumentsQuery } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-import { useUploadDocuments } from "./useUploadDocuments";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
 function ViewDocumentsModal(props: any) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const { id } = props;
-
   return (
     <>
       <TableAction
@@ -39,14 +38,14 @@ function ViewDocumentsModal(props: any) {
 
 const UploadModel = (props: any) => {
   const { setIsLoading, open, setOpen, id } = props;
-  const { theme } = useUploadDocuments();
+  const { theme } = useUploadDocumentsTable();
   //API For Getting Single Document Details
-  const [getSingleCarInsuranceDocument]: any =
+  const [getReferenceOneDocument]: any =
     useLazySingleStatutoryUploadDocumentsQuery();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: async () => {
-      const { data, isError } = await getSingleCarInsuranceDocument(id, true);
+      const { data, isError } = await getReferenceOneDocument(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -155,10 +154,5 @@ const Styles = {
     boxShadow: 24,
     px: 2,
     py: 2,
-  }),
-  skeleton: (theme: any) => ({
-    bgcolor: theme.palette.mode === "light" ? theme.palette.grey[300] : "",
-    borderRadius: "4px",
-    height: 40,
   }),
 };
