@@ -1,11 +1,12 @@
-import { Card } from '@mui/material';
 import CustomTable from '@root/components/Table/CustomTable';
 import TableHeader from '@root/components/TableHeader';
-import React from 'react'
+import React, { useState } from 'react'
 import useViewChildrenList from './useViewChildrenList';
+import AddChildModal from './add-child-modal/AddChildModal';
 
 const ViewChildrenList = () => {
     const { TableData, tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns } = useViewChildrenList()
+    const [modalType, setModalType] = useState({ value: "", type: "" })
 
     return (
         <>
@@ -15,10 +16,10 @@ const ViewChildrenList = () => {
                 showAddBtn
                 showSelectFilters={true}
                 selectFilters={SELECT_FILTERS}
-                onAdd={() => router.push(`${router.pathname}/referral-scheme-add-form`)}
-                onChanged={(data: any) => {
-                    console.log("Updated params: ", data);
-                }}
+                onAdd={() => setModalType({ ...modalType, value: "", type: "add" })}
+            // onChanged={(data: any) => {
+            //     console.log("Updated params: ", data);
+            // }}
             />
             {/* table body start here */}
             <CustomTable
@@ -39,8 +40,14 @@ const ViewChildrenList = () => {
                 }}
                 rootSX={{ my: theme.spacing(2) }}
             />
+            <AddChildModal open={modalType.type} handleClose={() => { setModalType({ type: "", value: "" }); }} />
         </>
+
     )
 }
 
+
+
 export default ViewChildrenList
+
+

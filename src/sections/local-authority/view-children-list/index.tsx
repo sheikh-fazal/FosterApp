@@ -1,7 +1,8 @@
+import img1 from '../../../assets/svg/referral/referralListImg1.svg';
 export const TableData = [
     {
         Sr_No: "01",
-        Image: "foster carer",
+        Image: img1,
         Child_Id: "FC-101",
         Child_Name: "Sophia",
         Gender: "Female",

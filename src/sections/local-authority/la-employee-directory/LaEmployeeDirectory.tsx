@@ -14,7 +14,7 @@ const LaEmployeeDirectory = () => {
                 showAddBtn
                 showSelectFilters={true}
                 selectFilters={SELECT_FILTERS}
-                onAdd={() => router.push(`${router.pathname}/referral-scheme-add-form`)}
+                onAdd={() => router.push(`${router.pathname}/add-local-authority-employee`)}
                 onChanged={(data: any) => {
                     console.log("Updated params: ", data);
                 }}

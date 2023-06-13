@@ -5,6 +5,7 @@ import { TableData } from '.'
 import { SELECT_FILTERS } from '.'
 import TableAction from '@root/components/TableAction';
 import DeleteModel from '@root/components/modal/DeleteModel';
+import { EmployeeDirectoryModal } from './employee-directory-modal';
 
 
 // Styles
@@ -22,6 +23,7 @@ const styles = {
 export const useLaEmployeeDirectory = () => {
     const tableHeaderRefTwo = useRef<any>();
     const [IsDeleteModal, setIsDeleteModal] = useState(false)
+    const [modalType, setModalType] = useState({ value: "", type: "" })
     const router = useRouter()
     const theme: any = useTheme();
 
@@ -120,7 +122,11 @@ export const useLaEmployeeDirectory = () => {
                     <TableAction type="delete" onClicked={() => setIsDeleteModal(true)} />
                     <DeleteModel onDeleteClick={handleDelete} open={IsDeleteModal} handleClose={() => setIsDeleteModal(false)} />
                     <TableAction type="edit" onClicked={() => router.push(`${router.pathname}/referral-scheme-edit-form`)} />
+                    <TableAction type="add" onClicked={() => setModalType({ ...modalType, value: "", type: "add" })} />
                     {/* <TableAction type="view" onClicked={() => router.push(`${router.pathname}/referral-scheme-view-form`)} /> */}
+                    <EmployeeDirectoryModal open={modalType.type} handleClose={() => { setModalType({ type: "", value: "" }); }} />
+
+
                 </Box>
 
             ),

@@ -3,7 +3,8 @@ import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
 import React, { useRef } from 'react'
 import { SELECT_FILTERS, TableData } from '.';
-import Image from "next/image";
+// import Image from "next/image";
+import Image from 'next/image'
 // Styles
 const styles = {
     tableAction: {
@@ -56,8 +57,8 @@ const useViewChildrenList = () => {
             accessorFn: (row: any) => row.Image,
             id: "Image",
             cell: (info: any) => (
-                <span>
-                    <Image src={info.getValue()} width={40} height={40} alt="Picture" />
+                <span >
+                    <Image style={{ outline: "4px solid #FFFFFF", borderRadius: "30px" }} src={info.getValue()} width={40} height={40} alt="Picture" />
                 </span>
             ),
             header: () => <span>Image</span>,
