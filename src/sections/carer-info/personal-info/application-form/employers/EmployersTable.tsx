@@ -20,6 +20,10 @@ export default function Employers({ apllicationFormid, role }: any) {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    meta,
   } = useEmployerTable(apllicationFormid, role);
 
   return (
@@ -43,13 +47,11 @@ export default function Employers({ apllicationFormid, role }: any) {
               changeView("add");
             }}
             searchKey="search"
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
-            }}
+            onChanged={headerChangeHandler}
           />
           <CustomTable
             showSerialNo
-            data={data?.data}
+            data={data?.data?.application_form_employees}
             columns={columns(
               changeView,
               setEmployerData,
@@ -60,15 +62,10 @@ export default function Employers({ apllicationFormid, role }: any) {
             isFetching={isFetching}
             isError={isError}
             isSuccess={isSuccess}
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />
         </>
       )}

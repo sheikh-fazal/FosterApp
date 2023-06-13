@@ -28,9 +28,9 @@ export const ArrowDown = () => {
       <path
         d="M36.1477 32.3036L44.6771 40.8331L53.2065 32.3036"
         stroke="white"
-        stroke-width="3"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

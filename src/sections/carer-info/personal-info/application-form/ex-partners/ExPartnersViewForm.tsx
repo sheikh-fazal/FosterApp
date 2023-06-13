@@ -54,26 +54,40 @@ export default function ExPartnersViewForm(props: any) {
         })}
       </Grid>
       <Box sx={{ display: "flex", mb: "1rem", mt: "2rem" }}>
-        <LoadingButton
-          sx={{ marginRight: "1rem" }}
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-          disabled={!isDirty}
-        >
-          Submit
-        </LoadingButton>
-
-        <LoadingButton
-          onClick={() => {
-            changeView(null);
-          }}
-          type="button"
-          sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
-          variant="contained"
-        >
-          back
-        </LoadingButton>
+        {props.viewData == "view" ? (
+          <LoadingButton
+            onClick={() => {
+              props.changeView(null);
+            }}
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained"
+          >
+            back
+          </LoadingButton>
+        ) : (
+          <>
+            <LoadingButton
+              sx={{ marginRight: "1rem" }}
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+              disabled={!isDirty}
+            >
+              Submit
+            </LoadingButton>
+            <LoadingButton
+              onClick={() => {
+                props.changeView(null);
+              }}
+              type="button"
+              sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+              variant="contained"
+            >
+              back
+            </LoadingButton>
+          </>
+        )}
       </Box>
     </FormProvider>
   );

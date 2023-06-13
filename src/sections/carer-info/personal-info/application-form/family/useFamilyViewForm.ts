@@ -1,0 +1,100 @@
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import dayjs from "dayjs";
+import { fTimestamp } from "@root/utils/formatTime";
+import { useTheme } from "@mui/material";
+import { FormSchema, defaultValues, formData } from ".";
+
+import { enqueueSnackbar } from "notistack";
+import {
+  usePostEmployerDetailMutation,
+  useUpdateEmployerDetailMutation,
+} from "@root/services/carer-info/personal-info/application-form/EmployersApi";
+import {
+  usePostFamilyDetailMutation,
+  useUpdateFamilyDetailMutation,
+} from "@root/services/carer-info/personal-info/application-form/FamilyApi";
+
+export const useFamilyViewForm = (props: any) => {
+  const { familyData, viewData, apllicationFormid, changeView } = props;
+
+  const methods: any = useForm({
+    // mode: "onTouched",
+    resolver: yupResolver(FormSchema),
+    defaultValues:
+      viewData == "add"
+        ? defaultValues
+        : { ...familyData, dob: new Date(familyData.dob) },
+  });
+  let [postFamilyDetail, { isLoading }] = usePostFamilyDetailMutation();
+  let [updateFamilyDetail] = useUpdateFamilyDetailMutation();
+  const {
+    reset,
+    control,
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors, isSubmitting, isDirty },
+  } = methods;
+
+  const ApiCall = async (data: any, Formtype: any) => {
+    let { memberName, dob, relation, subject, isLivingAtHome } = data;
+    let formData = {
+      memberName,
+      dob,
+      relation,
+      subject,
+      isLivingAtHome,
+    };
+    if (Formtype == "add") {
+      try {
+        const res: any = await postFamilyDetail({
+          id: apllicationFormid,
+          formData,
+        }).unwrap();
+        if (res.data) {
+          changeView(null);
+          enqueueSnackbar("Record added Successfully", {
+            variant: "success",
+          });
+          reset();
+        }
+      } catch (error: any) {
+        enqueueSnackbar(error?.data?.message, {
+          variant: "error",
+        });
+      }
+    }
+    if (Formtype == "edit") {
+      try {
+        const res: any = await updateFamilyDetail({
+          id: data?.id,
+          formData,
+        }).unwrap();
+        if (res.data) {
+          changeView(null);
+          enqueueSnackbar("Record Updated Successfully", {
+            variant: "success",
+          });
+        }
+      } catch (error: any) {
+        enqueueSnackbar(error?.data?.message, {
+          variant: "error",
+        });
+      }
+    }
+  };
+
+  const onSubmit = async (data: any) => {
+    ApiCall(data, viewData);
+  };
+
+  return {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+  };
+};
