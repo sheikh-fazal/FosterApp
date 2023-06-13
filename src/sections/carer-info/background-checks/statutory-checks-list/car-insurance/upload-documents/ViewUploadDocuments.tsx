@@ -6,19 +6,43 @@ import { useForm } from "react-hook-form";
 import { STATUTORY_UPLOAD_DOCUMENTS, defaultValues, formSchema } from "./index";
 import CloseIcon from "@mui/icons-material/Close";
 import { enqueueSnackbar } from "notistack";
-import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import TableAction from "@root/components/TableAction";
-import { useUploadDocuments } from "./useUploadDocuments";
 import { useLazySingleStatutoryUploadDocumentsQuery } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
+import { useUploadDocuments } from "./useUploadDocuments";
 
 function ViewDocumentsModal(props: any) {
   const [isLoading, setIsLoading] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+  const { id } = props;
+
+  return (
+    <>
+      <TableAction
+        size="small"
+        type="view"
+        onClicked={() => {
+          setOpen(true);
+        }}
+      />
+      {open && (
+        <UploadModel
+          setIsLoading={setIsLoading}
+          open={open}
+          setOpen={setOpen}
+          id={id}
+          isLoading={isLoading}
+        />
+      )}
+    </>
+  );
+}
+
+const UploadModel = (props: any) => {
+  const { setIsLoading, open, setOpen, id } = props;
+  const { theme } = useUploadDocuments();
   //API For Getting Single Document Details
   const [getSingleCarInsuranceDocument]: any =
     useLazySingleStatutoryUploadDocumentsQuery();
-  const [open, setOpen] = React.useState(false);
-  const { id, person } = props;
-  const { theme } = useUploadDocuments();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: async () => {
@@ -34,97 +58,87 @@ function ViewDocumentsModal(props: any) {
   });
   const { handleSubmit, getValues } = methods;
   const onSubmit = (data: any) => {};
-  if (isLoading) return <SkeletonFormdata />;
   return (
-    <>
-      <TableAction
-        size="small"
-        type="view"
-        onClicked={() => {
-          setOpen(true);
-        }}
-      />
-      {open && (
-        <Modal
-          open={open}
-          onClose={() => setOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-          closeAfterTransition
-          slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 500,
-            },
-          }}
-        >
-          <Box sx={Styles.root}>
-            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-              <Box
-                sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}
-              >
-                <Typography
-                  variant="subtitle1"
-                  sx={{ color: theme.palette.grey[600] }}
-                >
-                  Person Uploaded: {getValues("personUploaded")}
-                </Typography>
-                <CloseIcon
-                  onClick={() => setOpen(false)}
-                  sx={{ cursor: "pointer", color: theme.palette.grey[600] }}
-                />
-              </Box>
-              <Grid container rowSpacing={4} columnSpacing={2}>
-                {STATUTORY_UPLOAD_DOCUMENTS.map((form: any) => (
-                  <Grid item xs={12} md={form?.gridLength} key={form.id}>
-                    <form.component
-                      {...form.componentProps}
-                      size="small"
-                      disabled={true}
-                    >
-                      {form.componentProps.select
-                        ? form.componentProps.options.map((option: any) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))
-                        : null}
-                    </form.component>
-                  </Grid>
-                ))}
-                <Grid xs={12} item>
-                  <RHFTextField
-                    label="Choose File"
-                    size="small"
-                    name="documentOriginalName"
-                    disabled={true}
-                    InputLabelProps={{
-                      shrink: true,
-                      disabled: true,
-                    }}
-                    {...methods}
-                  />
-                </Grid>
-              </Grid>
-              <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-                <Button
-                  sx={{
-                    bgcolor: theme.palette.orange.main,
-                    "&:hover": { bgcolor: theme.palette.orange.main },
-                  }}
-                  variant="contained"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </Button>
-              </Box>
-            </FormProvider>
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}
+    >
+      <Box sx={Styles.root}>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+            <Typography
+              variant="subtitle1"
+              sx={{ color: theme.palette.grey[600] }}
+            >
+              Person Uploaded: {getValues("personUploaded")}
+            </Typography>
+            <CloseIcon
+              onClick={() => setOpen(false)}
+              sx={{ cursor: "pointer", color: theme.palette.grey[600] }}
+            />
           </Box>
-        </Modal>
-      )}
-    </>
+          <Grid container rowSpacing={4} columnSpacing={2}>
+            {STATUTORY_UPLOAD_DOCUMENTS.map((form: any) => (
+              <Grid item xs={12} md={form?.gridLength} key={form.id}>
+                <form.component
+                  {...form.componentProps}
+                  size="small"
+                  disabled={true}
+                  InputLabelProps={{
+                    shrink: true,
+                    disabled: true,
+                  }}
+                >
+                  {form.componentProps.select
+                    ? form.componentProps.options.map((option: any) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
+                    : null}
+                </form.component>
+              </Grid>
+            ))}
+            <Grid xs={12} item>
+              <RHFTextField
+                label="Choose File"
+                size="small"
+                name="documentOriginalName"
+                disabled={true}
+                InputLabelProps={{
+                  shrink: true,
+                  disabled: true,
+                }}
+                {...methods}
+              />
+            </Grid>
+          </Grid>
+          <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
+            <Button
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+          </Box>
+        </FormProvider>
+      </Box>
+    </Modal>
   );
-}
+};
 
 export default ViewDocumentsModal;
 
@@ -141,5 +155,10 @@ const Styles = {
     boxShadow: 24,
     px: 2,
     py: 2,
+  }),
+  skeleton: (theme: any) => ({
+    bgcolor: theme.palette.mode === "light" ? theme.palette.grey[300] : "",
+    borderRadius: "4px",
+    height: 40,
   }),
 };

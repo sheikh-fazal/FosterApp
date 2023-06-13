@@ -2,9 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/UploadDocuments";
 import MedicalAdvisorForm from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/MedicalAdvisorForm";
 import { useRouter } from "next/router";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/upload-documents/UploadDocumentsTable";
 
 // Constants
 const BREADCRUMBS = [
@@ -42,7 +42,7 @@ export default function MedicalAdvisor() {
   return (
     <HorizaontalTabs tabsDataArray={["Medical Advisor", "Upload Documents"]}>
       <MedicalAdvisorForm action={action} id={id} />
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }

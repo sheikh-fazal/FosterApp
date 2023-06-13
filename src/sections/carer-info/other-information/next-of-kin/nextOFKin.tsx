@@ -23,13 +23,13 @@ const NextOFKin = () => {
   } = useNextOfKinTable();
   const { deleteHander } = useNextOfKinForm({});
   const columns = [
-    {
-      accessorFn: (row: any) => row?.id,
-      id: "id",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Sr.No</span>,
-      isSortable: false,
-    },
+    // {
+    //   accessorFn: (row: any) => row?.id,
+    //   id: "id",
+    //   cell: (info: any) => info.getValue() ?? "-",
+    //   header: () => <span>Sr.No</span>,
+    //   isSortable: false,
+    // },
     {
       accessorFn: (row: any) => `${row.firstName} ${row.lastName ?? "-"}`,
       id: "personName",
@@ -129,7 +129,7 @@ const NextOFKin = () => {
                 isError={nextOfKinIsError}
                 isSuccess={nextOfKinIsSuccess}
                 isPagination={true}
-                showSerialNo={false}
+                showSerialNo={true}
                 totalPages={nextOfKinListMeta?.pages ?? 0}
                 currentPage={nextOfKinListMeta?.page ?? 1}
                 onPageChange={pageChangeHandler}

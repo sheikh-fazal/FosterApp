@@ -4,7 +4,7 @@ import React from "react";
 
 const useNextOfKinTable = () => {
   const [search, setSearch] = React.useState("");
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { params, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
   const { data, isLoading, isSuccess, isFetching, isError } =
