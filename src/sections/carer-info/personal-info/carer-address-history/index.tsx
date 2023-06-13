@@ -7,6 +7,7 @@ import router from "next/router";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 
 // utils
 
@@ -50,7 +51,6 @@ export const FormSchema = Yup.object().shape({
   email: Yup.string()
     .required("Field is required")
     .email("Invalid Email Address"),
-  county: Yup.string().required("Field is required"),
   country: Yup.string().required("Field is required"),
   postalCode: Yup.string().required("Field is required"),
   dateMovedOut: Yup.date().required("Field is required"),
@@ -143,10 +143,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Male", label: "Male" },
-      { value: "Female", label: "Female" },
-    ],
+    options: COUNTYDROPDOWN,
     component: RHFSelect,
   },
   {

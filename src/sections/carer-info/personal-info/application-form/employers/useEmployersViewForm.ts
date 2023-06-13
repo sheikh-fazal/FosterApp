@@ -18,7 +18,13 @@ export const useEmployersViewForm = (props: any) => {
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: viewData == "add" ? defaultValues : employerData,
+    defaultValues:
+      viewData == "add"
+        ? defaultValues
+        : {
+            ...employerData,
+            suitableDate: new Date(employerData?.suitableDate),
+          },
   });
   let [postEmployerDetail, { isLoading }] = usePostEmployerDetailMutation();
   let [updateEmployerDetail] = useUpdateEmployerDetailMutation();
@@ -42,6 +48,7 @@ export const useEmployersViewForm = (props: any) => {
       phone,
       email,
       address,
+      suitableDate,
     } = data;
     let formData = {
       employerType,
@@ -53,6 +60,7 @@ export const useEmployersViewForm = (props: any) => {
       email,
       phone,
       address,
+      suitableDate,
     };
     if (Formtype == "add") {
       try {

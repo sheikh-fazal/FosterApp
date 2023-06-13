@@ -21,11 +21,10 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   relationShipType: Yup.string().required("Field is required"),
   firstName: Yup.string().required("Field is required"),
-  middleName: Yup.string().required("Field is required"),
   lastName: Yup.string().required("Field is required"),
   address: Yup.string()
     .required("Address is required")
-    .min(6, "Mininum 6 characters")
+    .min(4, "Mininum 4 characters")
     .max(20, "Maximum 10 characters"),
   phoneNumber: Yup.string()
     .required("Telephone is required")

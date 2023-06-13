@@ -18,7 +18,6 @@ export const defaultValues = {
 
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
-  middleName: Yup.string().required("Middle Name is required"),
   lastName: Yup.string().required("Last Name is required"),
   address: Yup.string()
     .required("Address is required")

@@ -15,7 +15,7 @@ export const exPartnersApi = baseAPI.injectEndpoints({
     }),
     postExPartnerDetail: builder.mutation({
       query: ({ apllicationFormid, formData }: any) => ({
-        url: `/application-form/ex-partner-detail/${apllicationFormid}`,
+        url: `/application-form/ex-partner-detail/add/${apllicationFormid}`,
         method: "Post",
         body: formData,
       }),
