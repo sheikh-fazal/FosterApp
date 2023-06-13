@@ -1,0 +1,42 @@
+export const data = [
+  {
+    srNo: "01",
+    name: "David",
+    auditType: "Annual Review",
+    assignee: "Natalia",
+    assigneeRole: "Auditor",
+    auditOutcome: "Not Audited",
+  },
+  {
+    srNo: "02",
+    name: "Natalia",
+    auditType: "Supervisory Home Visit",
+    assignee: "David",
+    assigneeRole: "IFA",
+    auditOutcome: "Not Audited",
+  },
+  {
+    srNo: "03",
+    name: "Gloria",
+    auditType: "Chile Progress Report",
+    assignee: "Liza",
+    assigneeRole: "Social Worker",
+    auditOutcome: "Not Audited",
+  },
+  {
+    srNo: "04",
+    name: "John",
+    auditType: "Monthly Progress Report",
+    assignee: "Gloria",
+    assigneeRole: "Auditor",
+    auditOutcome: "Not Audited",
+  },
+  {
+    srNo: "05",
+    name: "Liza",
+    auditType: "Risk Assessment",
+    assignee: "Graham",
+    assigneeRole: "IFA",
+    auditOutcome: "Not Audited",
+  },
+];

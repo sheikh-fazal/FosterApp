@@ -111,7 +111,7 @@ export const NAV_LINKS = [
   {
     text: "Audits",
     img: <ContentPasteSearchOutlinedIcon />,
-    link: "",
+    link: "/audits",
   },
   {
     text: "Children's Guide",
