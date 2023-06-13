@@ -1,82 +1,77 @@
 import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
-import React from "react";
-
+import React, { useEffect } from "react";
+const optionData = [
+  {
+    id: 1,
+    text: "Failed",
+    bgColor: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
+  },
+  {
+    id: 2,
+    text: "To be reviewed",
+    bgColor: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
+  },
+  {
+    id: 3,
+    text: "Passed",
+    bgColor: "linear-gradient(90deg, #2CB764 10.76%, #0E918C 133.7%)",
+  },
+  {
+    id: 4,
+    text: "Pending",
+    bgColor: "linear-gradient(108.65deg, #F6830F -23.21%, #DC3545 190.22%)",
+  },
+];
 export const useRecruitmentStatusDropdown = ({
   id,
   status,
-  point,
-  selectedObj,
+  apiData,
+  textForApi,
+  setEnquiryStageData,
   component,
-}: // patchData
-any) => {
-  const [enquiryStagePatchData] = usePatchEnquiryStageStatusMutation({});
-  const options = ["Failed", "To be reviewed", "Passed", "Pending"];
+  enquiryStageData,
+}: any) => {
+  const [enquiryStagePatchData,{ isLoading:isUpdating, isSuccess:hasUpdated }] = usePatchEnquiryStageStatusMutation({});
   const [open, setOpen] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  // console.log(patchData);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    optionData.findIndex((x) => x.text === status)
+  );
+  useEffect(() => {
+    setSelectedIndex(optionData.findIndex((x) => x.text === status));
+  }, [status]);
+  
 
   const anchorRef = React.useRef<HTMLDivElement>(null);
-  const optionsColor: any = {
-    Failed: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
-    "To be reviewed": "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
-    Passed: "linear-gradient(90deg, #2CB764 10.76%, #0E918C 133.7%)",
-    Pending: "linear-gradient(108.65deg, #F6830F -23.21%, #DC3545 190.22%)",
-  };
-  const optionData = [
-    {
-      id: 1,
-      text: "Failed",
-      bgColor: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
-    },
-    {
-      id: 2,
-      text: "To be reviewed",
-      bgColor: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
-    },
-    {
-      id: 3,
-      text: "Passed",
-      bgColor: "linear-gradient(90deg, #2CB764 10.76%, #0E918C 133.7%)",
-    },
-    {
-      id: 4,
-      text: "Pending",
-      bgColor: "linear-gradient(108.65deg, #F6830F -23.21%, #DC3545 190.22%)",
-    },
-  ];
 
   const handleMenuItemClick = (event: any, index: number) => {
-    // console.log( id, status, point, index);
-    // let x= options.forEach(({ele, ind}:any)=>console.log(ind === index)
-    // )
-    // console.log(x);
-    // console.log(selectedObj);
-
+    setSelectedIndex(index);
     const x = optionData.find((ele: any, ind: any) => ind === index);
-    // console.log(x);
     const patchObj = {
-      point: selectedObj?.textForApi,
+      point: textForApi,
       status: x?.text,
     };
-    // console.log(patchObj);
+    setEnquiryStageData(
+      enquiryStageData.map((item: any) => ({
+        ...item,
+        status: item.textForApi === textForApi ? x?.text : item.status,
+      }))
+    );
 
-    setSelectedIndex(index);
-    // switch (component) {
-    //   case "EnquiryStage":
-    //    return enquiryStagePatchData({
-    //       userId: "4f7512fb-2916-451b-8240-97f529ded73d",
-    //       // point: patchObj?.point,
-    //       // status: patchObj?.status,
-    //       body:patchObj
-    //     });
-    //   // case "assessmentStageOne":
-    //   // case "assessmentStageTwo":
-    //   // case "contractsAndDeclaratins":
-    //   // case "readyForPlacement":
+    switch (component) {
+      case "EnquiryStage":
+        return (
+          enquiryStagePatchData({
+            userId: id,
+            body: patchObj,
+          }) && setOpen(false) 
+        );
+      // case "assessmentStageOne":
+      // case "assessmentStageTwo":
+      // case "contractsAndDeclaratins":
+      // case "readyForPlacement":
 
-    //   // default: alert('error');
-    // }
-    setOpen(false);
+      // default: setOpen(false);
+    }
   };
 
   const handleClose = (event: Event) => {
@@ -90,7 +85,6 @@ any) => {
     setOpen(false);
   };
   return {
-    options,
     open,
     setOpen,
     selectedIndex,
@@ -99,6 +93,6 @@ any) => {
     handleMenuItemClick,
     handleClose,
     optionData,
-    optionsColor,
+    isUpdating
   };
 };

@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, CircularProgress, Grid, Skeleton } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -10,6 +10,7 @@ import { InformationDialogbox } from "../information-dialogbox/InformationDialog
 import { AssignedFormDialogbox } from "../assigned-form-dialogbox/AssignedFormDialogbox";
 import { useEnquiryStage } from "./useEnquiryStage";
 import Link from "next/link";
+import ArrowLeftSharpIcon from '@mui/icons-material/ArrowLeftSharp';
 import SocialWorkerFormDialogbox from "./social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 
 export default function EnquiryStage() {
@@ -21,26 +22,29 @@ export default function EnquiryStage() {
     setFormDialogId,
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
-    patchData,
     enquiryStageData,
-    enquiryStageDatas
-    // isLoading,
-    // isError,
-    // isFetching,
-    // isSuccess,
+    enquiryStageApiData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    isUpdating,
+    setEnquiryStageData,
   } = useEnquiryStage();
+  console.log(theme.palette.primary);
+  
 
   return (
     <div>
       <Grid container>
-        {enquiryStageData?.map((ele: any,ind:any) => (
+        {enquiryStageData?.map((ele: any, ind: any) => (
           <Grid
             key={ele?.id}
             container
             p={1}
             sx={{
               borderBottom: "1px solid black",
-              bgcolor: "white",
+              bgcolor: theme.palette.mode === 'light' ? 'white' : 'silver',
             }}
           >
             <Grid
@@ -80,7 +84,7 @@ export default function EnquiryStage() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color: "black",
+                  color: theme.palette.mode === "dark" ? "white" : "black" ,
                 }}
               >
                 {ele?.text}
@@ -93,8 +97,10 @@ export default function EnquiryStage() {
               item
               lg={1.5}
               xs={12}
+              // sx={{border:"1px solid black"}}
             >
-              <Image src={arrowIcon} alt={ele?.text} />
+              {/* <Image src={arrowIcon} sx={{border:"1px solid red",backgroundColor:'red'}} alt={ele?.text} /> */}
+              <ArrowLeftSharpIcon sx={{fontSize:35}}/>
             </Grid>
             <Grid
               container
@@ -140,14 +146,27 @@ export default function EnquiryStage() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown
-                point={enquiryStageDatas}
-                id={ele?.id}
-                status={ele?.status}
-                selectedObj={ele}
-                component={"EnquiryStage"}
-                patchData={patchData}
-              />
+              {isLoading && isFetching && (
+                <Skeleton variant="rounded" width={200} height={50} />
+              )}
+              {isSuccess && !isUpdating && (
+                <RecruitmentStatusDropdown
+                  apiData={enquiryStageApiData}
+                  id={"4f7512fb-2916-451b-8240-97f529ded73d"}
+                  status={ele?.status}
+                  textForApi={ele?.textForApi}
+                  component={"EnquiryStage"}
+                  setEnquiryStageData={setEnquiryStageData}
+                  enquiryStageData={enquiryStageData}
+                />
+              )}
+              {isError && (
+                <span
+                  style={{ fontWeight: "600", fontSize: "14px", color: "red" }}
+                >
+                  Server not Responding
+                </span>
+              )}
             </Grid>
             <Grid
               container
