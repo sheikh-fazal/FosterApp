@@ -3,17 +3,24 @@ import TableAction from "@root/components/TableAction";
 
 export const opticianCheckListTableColumnsFunction = (router?: any) => [
   {
-    accessorFn: (row: any) => row.CAMHSDate,
-    id: "CAMHSDate",
+    accessorFn: (row: any) => row.medicalDate,
+    id: "medicalDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>CAMHS Date</span>,
+    header: () => <span>Medical Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.appointment,
-    id: "appointment",
+    accessorFn: (row: any) => row.dueDate,
+    id: "dueDate",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Appointment</span>,
+    header: () => <span>Due Date</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.onFile,
+    id: "onFile",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>On File</span>,
     isSortable: true,
   },
   {

@@ -45,7 +45,7 @@ export const useDocument = () => {
     documentFormData.append("documentFile", data.chosenFile);
     const putParams = {
       fosterCarerId:
-        query?.fosterCarerId,
+        query?.fosterCarerId  || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
     const putDataParameter = { params: putParams, body: documentFormData };
     try {
