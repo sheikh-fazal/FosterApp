@@ -20,8 +20,10 @@ export const FRBFilterData = [
       name: 'supervisingSocialWorker',
       fullWidth: true,
       size: 'small',
+      default:"select"
     },
     options: [
+     
       { value: 'all', label: 'all' }
     ],
   },

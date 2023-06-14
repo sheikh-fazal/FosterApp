@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import RecordCriticalIncidents from "@root/sections/reports/carer-report/record-critical-incidents/RecordCriticalIncidents";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Carer Incidents Reports";
 
 RecordCriticalIncidentsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ RecordCriticalIncidentsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Foster Carer Record of Critical Incidents Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ RecordCriticalIncidentsLayout.getLayout = function getLayout(page: any) {
 export default function RecordCriticalIncidentsLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <RecordCriticalIncidents />
     </Page>
   );
 }

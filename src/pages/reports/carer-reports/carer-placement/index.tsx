@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import CarerPlacement from "@root/sections/reports/carer-report/carer-placement/CarerPlacemanet";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Carer placement Reports";
 
 CarerPlacementLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ CarerPlacementLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Carer placement Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ CarerPlacementLayout.getLayout = function getLayout(page: any) {
 export default function CarerPlacementLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <CarerPlacement />
     </Page>
   );
 }

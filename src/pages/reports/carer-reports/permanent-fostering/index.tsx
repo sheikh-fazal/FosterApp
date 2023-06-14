@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import PermanentFostering from "@root/sections/reports/carer-report/permanent-fostering/PermanentFostering";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Permanent Fostering Reports";
 
 PermanentFosteringLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,11 +22,8 @@ PermanentFosteringLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Permanent Fostering Reports",
-        },
+    
       ]}
       title={PAGE_TITLE}
     >
@@ -38,7 +36,7 @@ PermanentFosteringLayout.getLayout = function getLayout(page: any) {
 export default function PermanentFosteringLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <PermanentFostering/>
     </Page>
   );
 }

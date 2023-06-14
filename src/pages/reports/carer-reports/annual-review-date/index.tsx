@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import AnnualReviewDate from "@root/sections/reports/carer-report/annual-review-date/AnnualReviewDate";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Annual Review Date Reports";
 
 AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,11 +22,8 @@ AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Annual Review Date Reports",
-        },
+       
       ]}
       title={PAGE_TITLE}
     >
@@ -38,7 +36,7 @@ AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
 export default function AnnualReviewDateLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <AnnualReviewDate/>
     </Page>
   );
 }

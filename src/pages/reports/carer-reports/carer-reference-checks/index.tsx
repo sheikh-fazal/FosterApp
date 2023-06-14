@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import CarerReferenceChecks from "@root/sections/reports/carer-report/carer-reference-checks/CarerReferenceChecks";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Carer Reference Checks Reports";
 
 CarerReferenceCheckLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,11 +22,8 @@ CarerReferenceCheckLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Carer Reference Checks Reports",
-        },
+
       ]}
       title={PAGE_TITLE}
     >
@@ -38,7 +36,7 @@ CarerReferenceCheckLayout.getLayout = function getLayout(page: any) {
 export default function CarerReferenceCheckLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <CarerReferenceChecks/>
     </Page>
   );
 }

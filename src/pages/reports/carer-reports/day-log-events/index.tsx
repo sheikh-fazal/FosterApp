@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import DayLogEvent from "@root/sections/reports/carer-report/day-log-events/DayLogEvents";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Day Log Events Reports";
 
 DayLogEventsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ DayLogEventsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Day Log Events Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ DayLogEventsLayout.getLayout = function getLayout(page: any) {
 export default function DayLogEventsLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <DayLogEvent />
     </Page>
   );
 }
