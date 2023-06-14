@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Child Allegations Reports";
 
-childAllegationFormLayout.getLayout = function getLayout(page: any) {
+ChildAllegationFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -33,7 +33,7 @@ childAllegationFormLayout.getLayout = function getLayout(page: any) {
 };
 // ---------------------------------------------------------------------- 
 
-export default function childAllegationFormLayout() {
+export default function ChildAllegationFormLayout() {
     const router = useRouter();
     const { action, id } = router.query;
   return (

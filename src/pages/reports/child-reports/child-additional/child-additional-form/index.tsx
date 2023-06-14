@@ -6,7 +6,7 @@ import ChildAdditionalForm from "@root/sections/reports/child-reports/child-addi
 
 const PAGE_TITLE = "Child Additional Reports";
 
-childAdditionalFormLayout.getLayout = function getLayout(page: any) {
+ChildAdditionalFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -32,7 +32,7 @@ childAdditionalFormLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function childAdditionalFormLayout() {
+export default function ChildAdditionalFormLayout() {
   return (
     <Page title={PAGE_TITLE}>
      <ChildAdditionalForm />

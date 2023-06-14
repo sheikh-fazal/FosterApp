@@ -2,12 +2,12 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ChildComplaintForm from "@root/sections/reports/child-reports/child-complaints/child-complaint-form/ChildComplaintForm";
 import { useRouter } from "next/router";
+import ChildComplaintForm from "@root/sections/reports/child-reports/child-complaints/child-complaint-form/ChildComplaintForm";
 
 const PAGE_TITLE = "Child Complaints Reports";
 
-childComplaintForm.getLayout = function getLayout(page: any) {
+ChildComplaintFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -33,9 +33,9 @@ childComplaintForm.getLayout = function getLayout(page: any) {
 };
 // ---------------------------------------------------------------------- 
 
-export default function childComplaintForm() {
-    const router = useRouter();
-    const { action, id } = router.query;
+export default function ChildComplaintFormLayout() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
      <ChildComplaintForm action={action} id={id}/>

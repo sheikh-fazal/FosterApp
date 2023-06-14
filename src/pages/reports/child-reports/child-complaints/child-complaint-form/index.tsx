@@ -6,7 +6,7 @@ import ChildComplaintForm from "@root/sections/reports/child-reports/child-compl
 
 const PAGE_TITLE = "Child Complaints Reports";
 
-childComplaintForm.getLayout = function getLayout(page: any) {
+ChildComplaintFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -32,7 +32,7 @@ childComplaintForm.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function childComplaintForm() {
+export default function ChildComplaintFormLayout() {
   return (
     <Page title={PAGE_TITLE}>
      <ChildComplaintForm />

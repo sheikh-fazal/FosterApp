@@ -59,7 +59,7 @@ export const useYoungPersonLivingHousehold = () => {
       accessorFn: (row: any) => row.youngPersonsName,
       id: "youngPersonsName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Young Person's Name(DOB)</span>,
+      header: () => <span>Young Persons Name(DOB)</span>,
       isSortable: true,
     },
     {

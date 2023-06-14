@@ -20,7 +20,7 @@ const YoungPersonLivingHouseholdForm = ({ action, id }: any) => {
             color: "#898989",
           }}
         >
-          YOUNG PERSON LIVING IN THE HOUSEHOLD'S COMMENTS
+          YOUNG PERSON LIVING IN THE HOUSEHOLDS COMMENTS
         </Typography>
         <Typography
           sx={{

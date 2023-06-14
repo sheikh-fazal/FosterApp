@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Child Additional Reports";
 
-childAdditionalFormLayout.getLayout = function getLayout(page: any) {
+ChildAdditionalFormLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -33,7 +33,7 @@ childAdditionalFormLayout.getLayout = function getLayout(page: any) {
 };
 // ---------------------------------------------------------------------- 
 
-export default function childAdditionalFormLayout() {
+export default function ChildAdditionalFormLayout() {
     const router = useRouter();
     const { action, id } = router.query;
   return (
