@@ -27,11 +27,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -45,11 +47,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -63,11 +67,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -81,15 +87,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -107,15 +116,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -125,15 +137,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -152,15 +167,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -170,15 +188,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -188,15 +209,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -206,15 +230,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -232,15 +259,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -250,15 +280,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -268,15 +301,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -286,15 +322,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -312,15 +351,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -330,15 +372,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -348,15 +393,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -366,15 +414,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -384,15 +435,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -410,15 +464,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
 
@@ -429,15 +486,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -447,15 +507,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -465,15 +528,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -491,15 +557,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -509,15 +578,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -527,15 +599,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -545,15 +620,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -563,15 +641,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -589,15 +670,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -616,15 +700,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -634,15 +721,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -652,15 +742,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -670,15 +763,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -696,15 +792,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -714,15 +813,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -732,15 +834,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -759,15 +864,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -786,15 +894,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
+                         title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -808,11 +919,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -826,11 +939,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -844,11 +959,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -862,11 +979,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -880,11 +999,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -906,11 +1027,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -924,11 +1047,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -942,11 +1067,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -960,11 +1087,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -978,11 +1107,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        pdf: 'ABO7 - Computer, Email and Internet Usage Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
+                        title:"ABO3 - Business Expenses Policy and Procedure",
+                    //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
