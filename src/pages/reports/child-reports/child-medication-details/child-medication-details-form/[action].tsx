@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import ChildIncidentsForm from "@root/sections/reports/child-reports/child-incidents/child-incidents-form/ChildIncidentsForm";
+import ChildMedicationDetailsForm from "@root/sections/reports/child-reports/child-medication-details/child-medication-details-form/ChildMedicationDetailsForm";
 
 const PAGE_TITLE = "Child Medication Details Report";
 
@@ -38,7 +38,7 @@ export default function ChildMedicationDetailForm() {
     const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-     <ChildIncidentsForm action={action} id={id}/>
+     <ChildMedicationDetailsForm action={action} id={id}/>
     </Page>
   );
 }

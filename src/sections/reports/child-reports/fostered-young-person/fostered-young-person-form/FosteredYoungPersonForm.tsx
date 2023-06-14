@@ -1,6 +1,10 @@
-import { Box, Card, Typography } from "@mui/material";
+import { Box, Button, Card, Grid, Typography } from "@mui/material";
+import { FormProvider } from "@root/components/hook-form";
+import React from "react";
+import { LoadingButton } from "@mui/lab";
 import { useFosteredYoungPersonForm } from "./useFosteredYoungPersonForm";
 import { FRF1FormData } from ".";
+
 
 const FosteredYoungPersonForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
@@ -27,17 +31,10 @@ const FosteredYoungPersonForm = ({ action, id }: any) => {
             color: "#898989",
           }}
         >
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
+          Fill this form with relevent information.
         </Typography>
-        <h1>No flow</h1>
       </Box>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRF1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
@@ -80,7 +77,7 @@ const FosteredYoungPersonForm = ({ action, id }: any) => {
             </Box>
           </Grid>
         </Grid>
-      </FormProvider> */}
+      </FormProvider>
     </Card>
   );
 };
