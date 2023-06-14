@@ -20,9 +20,8 @@ import {
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 
-const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
+const SectionAForm: FC<any> = ({ disabled = false }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const [getProfileInfoQuery] = useLazyGetPersonalInfoQuery();
@@ -38,8 +37,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
         return defaultValues;
       }
       return {
-        ...data,
-        dob: new Date(),
+        ...defaultValues,
       };
     },
   });
@@ -54,17 +52,17 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   } = methods;
 
   const onSubmit = async (data: any) => {
+    console.log({ data });
     // reset({ keepIsSubmitted: true });
-    const jsonData = {
-      ...data,
-    };
-    try {
-      const data = await updatePersonalInfo(jsonData);
-      displaySuccessMessage(data, enqueueSnackbar);
-      activateNextForm();
-    } catch (error: any) {
-      displayErrorMessage(error, enqueueSnackbar);
-    }
+    // const jsonData = {
+    //   ...data,
+    // };
+    // try {
+    //   const data = await updatePersonalInfo(jsonData);
+    //   displaySuccessMessage(data, enqueueSnackbar);
+    // } catch (error: any) {
+    //   displayErrorMessage(error, enqueueSnackbar);
+    // }
   };
   if (isLoading) return <FormSkeleton />;
   return (
@@ -78,7 +76,7 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
                 variant="formTopHeading"
                 sx={{ color: theme.palette.primary.main }}
               >
-                PERSONAL INFO
+                Carer Name : Not Placed
               </Typography>
             </Grid>
             <Grid item sm={12} container>
@@ -138,4 +136,4 @@ const PersonalDetailsForm: FC<any> = ({ activateNextForm }) => {
   );
 };
 
-export default PersonalDetailsForm;
+export default SectionAForm;
