@@ -3,12 +3,12 @@ import TableAction from "@root/components/TableAction";
 import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 export const getColumns = (parms: any) => {
-  //   const { openViewUpdateModel } = parms;
+  const { router } = parms;
   return [
     {
       accessorFn: (row: any) => row.a,
       id: "Sr. Noaaa",
-      cell: (info: any) => "A",
+      cell: (info: any) => info.getValue().toUpperCase(),
       header: "Sr. Noaaa",
       isSortable: false,
     },
@@ -49,14 +49,15 @@ export const getColumns = (parms: any) => {
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
           <TableAction
             size="small"
-            type="view"
-            // onClicked={() => openViewUpdateModel(info.row.original.id, true)}
-          />
-          <TableAction
-            size="small"
             type="edit"
-            // onClicked={() => openViewUpdateModel(info.row.original.id)}
+            onClick={() =>
+              router.push(
+                `/foster-child/other-information/safe-care-policy-list/safe-care-policy`
+              )
+            }
           />
+          <TableAction size="small" type="view" />
+          <TableAction size="small" type="delete" />
         </Box>
       ),
       header: "Action",
