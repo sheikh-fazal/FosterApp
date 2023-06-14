@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import DiaryRecordings from "@root/sections/reports/carer-report/diary-recordings/DiaryRecordings";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Diary Recordings Carer Reports";
 
 DiaryRecordingsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,10 +22,6 @@ DiaryRecordingsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Diary Recordings Carer",
         },
       ]}
       title={PAGE_TITLE}
@@ -39,7 +35,7 @@ DiaryRecordingsLayout.getLayout = function getLayout(page: any) {
 export default function DiaryRecordingsLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     <DiaryRecordings/>
+      <DiaryRecordings />
     </Page>
   );
 }

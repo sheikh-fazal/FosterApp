@@ -10,7 +10,7 @@ import { useParentAndChild } from "./useParentAndChild";
   return (
     <Card sx={{ py: 2, px: 1 }}>
       <TableHeader
-        title="DIARY RECORDING BY CARER REPORTS"
+        title="PARENT AND CHILD REPORTS"
         searchKey="search"
         onChanged={(data: any) => {
           console.log("Updated params: ", data);

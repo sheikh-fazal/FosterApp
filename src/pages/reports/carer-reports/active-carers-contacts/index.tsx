@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ActiveCarersContacts from "@root/sections/reports/carer-report/active-carers-contacts/ActiveCarersContacts";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Active Carers Contacts Reports";
 
 ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,11 +22,8 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Active Carers Contacts Reports",
-        },
+      
       ]}
       title={PAGE_TITLE}
     >

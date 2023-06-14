@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ParentAndChild from "@root/sections/reports/carer-report/parent-and-child/ParentAndChild";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Parent And Child Reports";
 
 ParentAndChildLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,11 +22,9 @@ ParentAndChildLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
+     
         },
-        {
-          name: "Parent And Child Reports",
-        },
+       
       ]}
       title={PAGE_TITLE}
     >

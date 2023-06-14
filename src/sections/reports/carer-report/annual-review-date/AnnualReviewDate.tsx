@@ -11,7 +11,7 @@ import CustomTable from "@root/components/Table/CustomTable";
   return (
     <Card sx={{ py: 2, px: 1 }}>
       <TableHeader
-        title="ANNUAl REVIEW REPORTS"
+        title="ANNUAL REVIEW REPORTS"
         searchKey="search"
         onChanged={(data: any) => {
           console.log("Updated params: ", data);

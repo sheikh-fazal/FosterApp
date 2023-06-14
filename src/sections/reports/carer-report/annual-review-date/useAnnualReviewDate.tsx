@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import { useRouter } from "next/router";
 
 export const useAnnualReviewDate = () => {
-  const path = "/carer-reports/annual-review-date/annual-review-date-form";
+  const path = "/reports/carer-reports/annual-review-date/annual-review-date-form";
   const router = useRouter();
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
@@ -53,7 +53,7 @@ export const useAnnualReviewDate = () => {
       accessorFn: (row: any) => row.carerCode,
       id: "carerCode",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Carer Name</span>,
+      header: () => <span>Carer code</span>,
       isSortable: true,
     },
     {
@@ -75,13 +75,6 @@ export const useAnnualReviewDate = () => {
       id: "previousReviewDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Previous to Last Review Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.lastReviewDate,
-      id: "lastReviewDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Last Review Date</span>,
       isSortable: true,
     },
     {

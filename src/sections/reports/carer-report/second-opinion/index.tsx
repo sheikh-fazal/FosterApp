@@ -5,8 +5,11 @@ export const TableDemoData = [
     prospectiveFosterCarer: "Jamie",
     personCompletingReport: "John Doe ",
     statusPosition: "12/10/2021",
-    secondOpinionVisit: "RoseMarry",
+    secondOpinionVisit: "04/11/2021",
     createdDate: "26/12/2021",
+    createdBy:"RoseMarry",
+    modifiedDate:"26/12/2021",
+    modifiedBy:"John Doe"
   },
   {
     id: 2,
@@ -14,8 +17,11 @@ export const TableDemoData = [
     prospectiveFosterCarer: "Timmy Toppee",
     personCompletingReport: "Harriet Upp ",
     statusPosition: "12/10/2021",
-    secondOpinionVisit: "RoseMarry",
+    secondOpinionVisit: "04/11/2021",
     createdDate: "26/12/2021",
+    createdBy:"RoseMarry",
+    modifiedDate:"26/12/2021",
+    modifiedBy:"John Doe"
   },
   {
     id: 3,
@@ -23,7 +29,10 @@ export const TableDemoData = [
     prospectiveFosterCarer: "Timmy Toppee",
     personCompletingReport: "Harriet Upp ",
     statusPosition: "12/10/2021",
-    secondOpinionVisit: "JamesWatt",
+    secondOpinionVisit: "04/11/2021",
     createdDate: "26/12/2021",
+    createdBy:"RoseMarry",
+    modifiedDate:"26/12/2021",
+    modifiedBy:"John Doe"
   },
 ];

@@ -7,6 +7,7 @@ export const TableDemoData = [
     createdDate: "12/10/2021",
     createdBy: "RoseMarry",
     modifiedDate: "26/12/2021",
+    modifiedBy: "John Doe",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const TableDemoData = [
     createdDate: "12/10/2021",
     createdBy: "RoseMarry",
     modifiedDate: "26/12/2021",
+    modifiedBy: "John Doe",
   },
   {
     id: 3,
@@ -25,5 +27,6 @@ export const TableDemoData = [
     createdDate: "12/10/2021",
     createdBy: "JamesWatt",
     modifiedDate: "26/12/2021",
+    modifiedBy: "John Doe",
   },
 ];

@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import DiaryRecordingsForm from "@root/sections/reports/carer-report/diary-recordings/diary-recordings-form/DiaryRecordingsForm";
 import { useRouter } from "next/router";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "View Diary Recordings Carer";
 
 DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,12 +22,9 @@ DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Diary Recordings Carer",
-        },
+          name:"Diary Recordings Reports List"
+        }
+      
       ]}
       title={PAGE_TITLE}
     >

@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import SecondOpinin from "@root/sections/reports/carer-report/second-opinion/SecondOpinin";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Second Opinion Reports";
 
 SecondOpinionLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,11 +22,8 @@ SecondOpinionLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Second Opinion Reports",
-        },
+     
       ]}
       title={PAGE_TITLE}
     >

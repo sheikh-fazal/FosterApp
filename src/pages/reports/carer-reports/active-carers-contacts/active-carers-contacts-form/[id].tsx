@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import ActiveCarersContactForm from "@root/sections/reports/carer-report/active-carers-contacts/active-carers-contacts-form/ActiveCarersContactsForm";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "View Active Carers Contacts Reports";
 
 ActiveCarersContactFormLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,12 +22,9 @@ ActiveCarersContactFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Carer Reports",
-          href: "/reports",
+          name: "Active Carers Contacts Reports List",
         },
-        {
-          name: "Active Carers Contacts Reports",
-        },
+   
       ]}
       title={PAGE_TITLE}
     >

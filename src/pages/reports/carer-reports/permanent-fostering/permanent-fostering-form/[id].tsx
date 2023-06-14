@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import PermanentFosteringForm from "@root/sections/reports/carer-report/permanent-fostering/permanent-fostering-form/PermanentFosteringForm";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "View Permanent Fostering Reports";
 
 PermanentFosteringLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,12 +22,10 @@ PermanentFosteringLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Carer Reports",
-          href: "/reports",
+          name: "Permanent Fostering Reports List",
+       
         },
-        {
-          name: "Permanent Fostering Reports",
-        },
+      
       ]}
       title={PAGE_TITLE}
     >

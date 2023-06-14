@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import ParentAndChildForm from "@root/sections/reports/carer-report/parent-and-child/parent-and-child-form.tsx/ParentAndChildForm";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = " View Parent And Child Reports";
 
 ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,12 +22,10 @@ ParentAndChildFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Carer Reports",
-          href: "/reports",
+          name: "Parent And Child Reports List",
+       
         },
-        {
-          name: "Parent And Child Reports",
-        },
+      
       ]}
       title={PAGE_TITLE}
     >

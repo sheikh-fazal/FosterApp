@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import HomeIcon from "@mui/icons-material/Home";
 import SecondOpinionForm from "@root/sections/reports/carer-report/second-opinion/second-opinion-form/SecondOpinionForm";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "View Second Opinion Reports";
 
 SecondOpinionLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,11 +22,7 @@ SecondOpinionLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Carer Reports",
-          href: "/reports",
-        },
-        {
-          name: "Second Opinion Reports",
+          name: "Second Opinion Reports List",
         },
       ]}
       title={PAGE_TITLE}

@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import AnnualReviewDate from "@root/sections/reports/carer-report/annual-review-date/AnnualReviewDate";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Annual Review Date Reports";
 
 AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,11 +22,8 @@ AnnualReviewDateLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Annual Review Date Reports",
-        },
+       
       ]}
       title={PAGE_TITLE}
     >

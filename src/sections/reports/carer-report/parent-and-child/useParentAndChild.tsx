@@ -85,6 +85,13 @@ export const useParentAndChild = () => {
       isSortable: true,
     },
     {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
+      isSortable: true,
+    },
+    {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
