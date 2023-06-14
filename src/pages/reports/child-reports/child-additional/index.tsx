@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import ChildAdditional from "@root/sections/reports/child-reports/child-additional/ChildAdditional";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Additional Reports";
 
 childAdditionalLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ childAdditionalLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Additional Reports",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ childAdditionalLayout.getLayout = function getLayout(page: any) {
 export default function childAdditionalLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <ChildAdditional />
     </Page>
   );
 }

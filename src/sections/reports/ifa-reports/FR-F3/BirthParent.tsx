@@ -138,7 +138,7 @@ const BirthParent = () => {
           <Image src={automatedIcon} alt="icon" />
         </Box>
         <Card sx={{ p: 2, my: 2 }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             {viewReportsFilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
                 <FormControl fullWidth size="small">

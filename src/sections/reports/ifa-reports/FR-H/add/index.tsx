@@ -35,8 +35,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       select: true,
@@ -50,8 +50,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Date of review meeting",
     otherOptions: {
+      label: "Date of review meeting",
       name: "dateOfReviewMeeting",
       fullWidth: true,
     },
@@ -59,8 +59,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Recommendation",
     otherOptions: {
+      label: "Recommendation",
       name: "recommendation",
       fullWidth: true,
     },
@@ -68,8 +68,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Reason",
     otherOptions: {
+      label: "Reason",
       name: "reason",
       fullWidth: true,
       minRows: 3,
@@ -79,8 +79,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Comments",
     otherOptions: {
+      label: "Comments",
       name: "comments",
       fullWidth: true,
       minRows: 3,
@@ -90,8 +90,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of fostering service manager",
     otherOptions: {
+      label: "Name of fostering service manager",
       name: "nameOfFosteringServiceManager",
       fullWidth: true,
     },
@@ -100,16 +100,16 @@ export const FRD1FormData = [
 
   {
     gridLength: 6,
-    title: "Signed By fostering manager",
     otherOptions: {
+      label: "Signed By fostering manager",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       fullWidth: true,
     },

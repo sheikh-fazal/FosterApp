@@ -34,8 +34,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: "Name",
     otherOptions: {
+      label: "Name",
       name: "name",
       fullWidth: true,
       select: true,
@@ -49,8 +49,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of foster carer",
     otherOptions: {
+      label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
     },
@@ -58,9 +58,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "What are the positive things about living in this fostering household?",
     otherOptions: {
+      label:
+      "What are the positive things about living in this fostering household?",
       name: "whatPositiveThings",
       fullWidth: true,
       minRows: 3,
@@ -70,8 +70,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "How has the foster carer helped you?",
     otherOptions: {
+      label: "How has the foster carer helped you?",
       name: "howFosterCarerHelpedYou",
       fullWidth: true,
       minRows: 3,
@@ -81,8 +81,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title: "Would you like your social worker to do anything different?",
     otherOptions: {
+      label: "Would you like your social worker to do anything different?",
       name: "whatSocialWorkershouldDo",
       fullWidth: true,
       minRows: 3,
@@ -103,9 +103,9 @@ export const FRD1FormData = [
   },
   {
     gridLength: 12,
-    title:
-      "Is there anything else you would like to say about living in this fostering household?",
     otherOptions: {
+      label:
+      "Is there anything else you would like to say about living in this fostering household?",
       name: "anythingElseYouWantToSay",
       fullWidth: true,
       minRows: 3,
@@ -115,16 +115,16 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Signature",
     otherOptions: {
+      label: "Signature",
       name: "signature",
     },
     component: SignaturePad,
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       fullWidth: true,
     },

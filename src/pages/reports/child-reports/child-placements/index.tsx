@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import ChildPlacement from "@root/sections/reports/child-reports/child-placements/ChildPlacements";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Child Placements Reports";
 
 ChildPlacements.getLayout = function getLayout(page: any) {
   return (
@@ -21,16 +22,12 @@ ChildPlacements.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Child Placements Reports",
         },
       ]}
       title={PAGE_TITLE}
     >
       {page}
-    </Layout>
+    </Layout> 
   );
 };
 // ----------------------------------------------------------------------
@@ -38,7 +35,7 @@ ChildPlacements.getLayout = function getLayout(page: any) {
 export default function ChildPlacements() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <ChildPlacement />
     </Page>
   );
 }

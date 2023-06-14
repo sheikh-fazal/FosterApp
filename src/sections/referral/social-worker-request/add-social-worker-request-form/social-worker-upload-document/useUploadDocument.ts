@@ -37,6 +37,6 @@ export const useUploadDocument = () => {
     uploadModalDisabledFunc,
     theme,
     data,
-    setData
+    setData,
   };
 };

@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import ReviewingOfficer from "@root/sections/reports/child-reports/reviewing-officer/ReviewingOfficer";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Reviewing Officer Report";
 
 ReviewingOfficerLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ ReviewingOfficerLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Reviewing Officer Report",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ ReviewingOfficerLayout.getLayout = function getLayout(page: any) {
 export default function ReviewingOfficerLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <ReviewingOfficer />
     </Page>
   );
 }

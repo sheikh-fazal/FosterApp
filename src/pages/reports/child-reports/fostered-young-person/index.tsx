@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import FosteredYoungPerson from "@root/sections/reports/child-reports/fostered-young-person/FosteredYoungPerson";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Fostered Young Person's Comments";
 
 FosterYoungPersonLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,10 +22,6 @@ FosterYoungPersonLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Child Reports",
-          href: "/reports",
-        },
-        {
-          name: "Fostered Young Person's Comments",
         },
       ]}
       title={PAGE_TITLE}
@@ -38,7 +35,7 @@ FosterYoungPersonLayout.getLayout = function getLayout(page: any) {
 export default function FosterYoungPersonLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+     <FosteredYoungPerson />
     </Page>
   );
 }

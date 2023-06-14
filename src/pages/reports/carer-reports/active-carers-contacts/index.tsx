@@ -2,8 +2,9 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import ActiveCarersContacts from "@root/sections/reports/carer-report/active-carers-contacts/ActiveCarersContacts";
 
-const PAGE_TITLE = "Reports";
+const PAGE_TITLE = "Active Carers Contacts Reports";
 
 ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
   return (
@@ -21,11 +22,8 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "Carer Reports",
-          href: "/reports",
         },
-        {
-          name: "Active Carers Contacts Reports",
-        },
+      
       ]}
       title={PAGE_TITLE}
     >
@@ -38,7 +36,7 @@ ActiveCarersContactsLayout.getLayout = function getLayout(page: any) {
 export default function ActiveCarersContactsLayout() {
   return (
     <Page title={PAGE_TITLE}>
-     
+      <ActiveCarersContacts/>
     </Page>
   );
 }

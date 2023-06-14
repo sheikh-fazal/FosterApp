@@ -36,8 +36,8 @@ export const formSchema = Yup.object().shape({
 export const FRF1FormData = [
   {
     gridLength: 6,
-    title: 'Name',
     otherOptions: {
+      label: 'Name',
       name: 'name',
       fullWidth: true,
       select: true,
@@ -51,8 +51,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Position',
     otherOptions: {
+      label: 'Position',
       name: 'position',
       fullWidth: true,
       select: true,
@@ -66,8 +66,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: "Name of child/children",
     otherOptions: {
+      label: "Name of child/children",
       name: 'nameOfChild',
       fullWidth: true,
     },
@@ -75,8 +75,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Name of foster carer',
     otherOptions: {
+      label: 'Name of foster carer',
       name: 'nameOfFosterCarer',
       fullWidth: true,
       select: true,
@@ -91,8 +91,8 @@ export const FRF1FormData = [
 
   {
     gridLength: 12,
-    title: 'Briefly describe your role with the child/children and foster carer, including the nature and frequency of contact.',
     otherOptions: {
+      label: 'Briefly describe your role with the child/children and foster carer, including the nature and frequency of contact.',
       name: 'roleWithChildAndFosterCarer',
       fullWidth: true,
       minRows: 3,
@@ -102,8 +102,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 12,
-    title: 'How has the foster carer met the health/education/other needs of the child/children in placement?',
     otherOptions: {
+      label: 'How has the foster carer met the health/education/other needs of the child/children in placement?',
       name: 'fosterCarersHelped',
       fullWidth: true,
       minRows: 3,
@@ -113,8 +113,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 12,
-    title: 'Please comment on the strengths of the foster carer',
     otherOptions: {
+      label: 'Please comment on the strengths of the foster carer',
       name: 'strengthsOFTheFosterCarer',
       fullWidth: true,
       minRows: 3,
@@ -124,8 +124,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 12,
-    title: 'Please comment on any limitations of the foster carer on their household. Do you believe that there are areas where the carer could benefit from additional advice or training?',
     otherOptions: {
+      label: 'Please comment on any limitations of the foster carer on their household. Do you believe that there are areas where the carer could benefit from additional advice or training?',
       name: 'forsterCarerLimitations',
       fullWidth: true,
       minRows: 3,
@@ -135,8 +135,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 12,
-    title: 'How well has the foster carer communicated with you/your organization?',
     otherOptions: {
+      label: 'How well has the foster carer communicated with you/your organization?',
       name: 'fosterCarersCommunication',
       fullWidth: true,
       minRows: 3,
@@ -146,8 +146,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 12,
-    title: 'Is there anything else you would like to say?',
     otherOptions: {
+      label: 'Is there anything else you would like to say?',
       name: 'anythingElse',
       fullWidth: true,
       minRows: 3,
@@ -157,16 +157,16 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Signature',
     otherOptions: {
+      label: 'Signature',
       name: 'signature',
     },
     component: SignaturePad
   },
   {
     gridLength: 6,
-    title: 'Date',
     otherOptions: {
+      label: 'Date',
       name: 'date',
       fullWidth: true,
     },
