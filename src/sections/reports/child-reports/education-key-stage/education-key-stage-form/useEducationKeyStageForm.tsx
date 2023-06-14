@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useEducationKeyStageForm = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-F1');
+  const handleBack = () => router.push('/reports/child-reports/education-key-stage');
 
 
   const methods: any = useForm({

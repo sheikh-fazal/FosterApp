@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useChildDaylogEventForm = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-F1');
+  const handleBack = () => router.push('/reports/child-reports/child-daylog-events');
 
 
   const methods: any = useForm({
