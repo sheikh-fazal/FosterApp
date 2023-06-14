@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import { useEhcpList } from "./useEhcpList";
 
 const EhcpList = () => {
-  const { ehcpListTableColumns, data } = useEhcpList();
+  const { ehcpListTableColumns, data, router } = useEhcpList();
   return (
     <>
       <Box>
@@ -12,11 +12,11 @@ const EhcpList = () => {
           title="Child Therapy Info"
           searchKey="search"
           showAddBtn={true}
-          // onAdd={() => setOpenModal(true)}
-          //   onChanged={(data: any) => {
-          //     setSearchValue(data.search);
-          //     console.log("Updated params: ", data);
-          //   }}
+          onAdd={() =>
+            router.push(
+              `/foster-child/health-medical-history/statutory-medical-list/ehcp-info`
+            )
+          }
         />
 
         <CustomTable

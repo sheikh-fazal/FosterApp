@@ -1,71 +1,44 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
 export const claMedicalInfoFormValues = {
-  physicianName: "",
-  physicianType: "",
-  address: "",
-  town: "",
-  telephone: "",
-  phoneNo:"",
-  email:"",
-  county:"",
-  country:"",
-  postalCode:""
+  medicalDate: "",
+  dueDate: "",
+  onFile: "",
+  result: "",
+  comments: "",
 };
 
-
-export const defaultValueClaMedicalInfoForm = (data: any = claMedicalInfoFormValues) => {
+export const defaultValueClaMedicalInfoForm = (
+  data: any = claMedicalInfoFormValues
+) => {
   return {
-    physicianName: data?.physicianName,
-    physicianType: data?.physicianType,
-    address: data?.address,
-    town: data?.town,
-    telephone: data?.telephone,
-    phoneNo:data?.phoneNo,
-    email:data?.email,
-    county:data?.county,
-    country:data?.country,
-    postalCode:data?.postalCode
+    medicalDate: data?.medicalDate,
+    dueDate: data?.dueDate,
+    onFile: data?.onFile,
+    result: data?.result,
+    comments: data?.comments,
   };
 };
 
 export const claMedicalInfoFormSchema = Yup.object().shape({
-  physicianName: Yup.string()
-    .required("Physician name is required")
+  medicalDate: Yup.date()
+    .typeError("Medical Date is required")
+    .required("Medical Date is required"),
+  dueDate: Yup.date()
+    .typeError("Due Date  is required")
+    .required("Due Date  is required"),
+  onFile: Yup.string()
+    .required("on File is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    physicianType: Yup.string()
-    .required("Physician type is required")
+  result: Yup.string()
+    .required("Result is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    address: Yup.string()
-    .required("Address is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    town: Yup.string()
-    .required("Town is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    telephone: Yup.string()
-    .required("Telephone is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    phoneNo: Yup.string()
-    .required("Mobile phone is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    email: Yup.string().required("Email is required").email("Invalid Email"),
-    county: Yup.string()
-    .required("County is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    country: Yup.string()
-    .required("Country is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    postalCode: Yup.string()
-    .required("Postal code is required")
+  comments: Yup.string()
+    .required("Comments is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
@@ -74,127 +47,72 @@ export const claMedicalInfoFormDataFunction = (isFieldDisable = false) => [
   {
     id: 1,
     componentProps: {
+      name: "medicalDate",
+      label: "Medical Date",
       fullWidth: true,
-      name: "physicianName",
-      label: "Physician Name",
       disabled: isFieldDisable,
     },
     gridLength: 6,
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
-    id: 4,
+    id: 2,
+    componentProps: {
+      name: "dueDate",
+      label: "Due Date",
+      fullWidth: true,
+      disabled: isFieldDisable,
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 3,
     component: RHFSelect,
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "physicianType",
-      label: "Physician Type",
+      name: "onFile",
+      label: "On File",
       select: true,
-      options: [{
-        id:1,
-        label:'Eye',
-        text:'Eye'
-      },
-      {
-        id:2,
-        label:'Physician',
-        text:'Physician'
-      }],
+      options: [
+        {
+          id: 1,
+          label: "Eye",
+          text: "Eye",
+        },
+        {
+          id: 2,
+          label: "Physician",
+          text: "Physician",
+        },
+      ],
     },
   },
-  {
-    id: 3,
-    componentProps: {
-      fullWidth: true,
-      name: "address",
-      label: "Address",
-      multiline: true,
-      minRows: 3,
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
-    component: RHFTextField,
-  },  
-
   {
     id: 4,
     componentProps: {
       fullWidth: true,
-      name: "town",
-      label: "Town/City",
+      name: "result",
+      label: "Result",
+
       disabled: isFieldDisable,
     },
     gridLength: 6,
     component: RHFTextField,
   },
+
   {
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "telephone",
-      label: "Telephone",
+      name: "comments",
+      label: "Comments",
+      multiline: true,
+      minRows: 3,
       disabled: isFieldDisable,
     },
-    gridLength: 6,
-    component: RHFTextField,
-  },
-  {
-    id: 6,
-    componentProps: {
-      fullWidth: true,
-      name: "phoneNo",
-      label: "Mobile Phone",
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
-    component: RHFTextField,
-  },
-  {
-    id: 7,
-    componentProps: {
-      fullWidth: true,
-      name: "email",
-      label: "Email",
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
-    component: RHFTextField,
-  },
-  {
-    id: 8,
-    componentProps: {
-      fullWidth: true,
-      name: "county",
-      label: "County",
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
-    component: RHFTextField,
-  },
-  {
-    id: 9,
-    componentProps: {
-      fullWidth: true,
-      name: "country",
-      label: "Country",
-      // select: true,
-      // options: COUNTRIESDROPDOWN,
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
-    // component: RHFSelect,
-    component: RHFTextField,
-  },
-  {
-    id: 10,
-    componentProps: {
-      fullWidth: true,
-      name: "postalCode",
-      label: "Postal Code",
-      disabled: isFieldDisable,
-    },
-    gridLength: 6,
+    gridLength: 12,
     component: RHFTextField,
   },
 ];

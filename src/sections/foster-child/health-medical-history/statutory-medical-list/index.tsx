@@ -6,18 +6,22 @@ import OpticianCheckList from "./optician-check/OpticianCheckList";
 //Accordian Data
 export const statutoryMedicalListAccordionData = [
   {
+    id: 1,
     title: "EHCP",
     component: <EhcpList />,
   },
   {
+    id: 2,
     title: "CLA Medical",
     component: <ClaMedicalList />,
   },
   {
+    id: 3,
     title: "Dental Check",
     component: <DentalCheckList />,
   },
   {
+    id: 4,
     title: "Optician Check",
     component: <OpticianCheckList />,
   },
