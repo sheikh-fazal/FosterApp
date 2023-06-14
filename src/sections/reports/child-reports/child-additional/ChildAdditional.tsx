@@ -14,7 +14,7 @@ const ChildAdditional = () => {
 
   return (
     <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
+      <Card sx={{ py: 2, px: 1 }}>
         <TableHeader title={"CHILD ADDITIONAL REPORTS"} showAddBtn onAdd={() => handleAction("add")} />
         <CustomTable
           isError={false}
@@ -40,13 +40,5 @@ const styles = {
   title: {
     fontWeight: 600,
     fontSize: "16px",
-  },
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
+  }, 
 };
