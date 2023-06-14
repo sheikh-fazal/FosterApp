@@ -24,5 +24,6 @@ export const useEhcpList = () => {
   return {
     ehcpListTableColumns,
     data,
+    router
   };
 };

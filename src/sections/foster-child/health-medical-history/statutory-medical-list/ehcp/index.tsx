@@ -3,21 +3,21 @@ import TableAction from "@root/components/TableAction";
 
 export const ehcpListTableColumnsFunction = (router?: any) => [
   {
-    accessorFn: (row: any) => row.medicalDate,
+    accessorFn: (row: any) => row?.medicalDate,
     id: "medicalDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Medical Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.dueDate,
+    accessorFn: (row: any) => row?.dueDate,
     id: "dueDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Due Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.onFile,
+    accessorFn: (row: any) => row?.onFile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
