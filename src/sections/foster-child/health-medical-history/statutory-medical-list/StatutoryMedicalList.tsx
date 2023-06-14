@@ -59,7 +59,7 @@ const StatutoryMedicalList = () => {
         >
           {carerNameData.map((item: any) => (
             <MenuItem
-              key={item.id}
+              key={item.value}
               onClick={() => carerNameMenuItemClick(item)}
               sx={{
                 borderRadius: "4px",
@@ -74,7 +74,7 @@ const StatutoryMedicalList = () => {
       {/* Global Accordian Component */}
       <Grid container>
         {statutoryMedicalListAccordionData.map((item: any) => (
-          <Grid item xs={12} key={item.title}>
+          <Grid item xs={12} key={item.id}>
             <AccordianList title={item.title} component={item.component} />
           </Grid>
         ))}

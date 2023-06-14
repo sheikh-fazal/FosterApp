@@ -4,7 +4,7 @@ import { localFormNames } from "../layout/static-data";
 const PersonalDetailsForm = lazy(
   () =>
     import(
-      "../about-candidate/personal-details/personalDetailsForm/PersonalDetailsForm"
+      "../about-candidate/personal-details/personalDetailsForm/PersonalDetailForm"
     )
 );
 const AddressDetailsForm = lazy(
