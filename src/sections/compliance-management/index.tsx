@@ -12,7 +12,7 @@ import FundamentalStandardsIcon from '../../assets/svg/compliance-management/fun
 import MockInspectionIcon from '../../assets/svg/compliance-management/mockInspectionIcon.svg'
 import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg'
 import AddMoreIcon from '../../assets/svg/compliance-management/addIcon.svg'
-import Admin from '@root/assets/svg/compliance-management/admin'
+// import Admin from '@root/assets/svg/compliance-management/admin'
 
 export const ComplianceVerticalTabsData = [
     {

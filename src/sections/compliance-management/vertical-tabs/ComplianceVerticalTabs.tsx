@@ -1,4 +1,4 @@
-import { Grid, Box, Tab, Tabs, Typography, useTheme, Button, styled } from '@mui/material';
+import { Grid, Box, Tab, Tabs, Typography, useTheme, Button, styled,ButtonProps  } from '@mui/material';
 import React, { Children, ReactNode, SyntheticEvent, useState } from 'react'
 import Image from "next/image";
 import CustomHorizaontalTab from '@root/components/customTabs';
@@ -11,7 +11,12 @@ interface TabPanelProps {
     value: number;
     index: number;
 }
-
+interface CustomButtonProps extends ButtonProps {
+    hoverBackgroundColor: string;
+    hoverColor: string;
+    isSelected:boolean,
+    selectedTabColor: string;
+  }
 
 function TabPanel({ children, value, index }: TabPanelProps) {
     return (
@@ -47,33 +52,22 @@ const ComplianceVerticalTabs = ({ tabsData }: VerticalTabsProps) => {
     };
 
     const theme: any = useTheme();
-    const StyledButton = styled(Button)(({ isSelected }: { isSelected: boolean }) => ({
-        backgroundColor: isSelected ? SelectedTabColor : '#fff',
+   
+    const StyledLeftTab = styled(({ hoverBackgroundColor, hoverColor, isSelected, selectedTabColor, ...rest }: CustomButtonProps) => (
+        <Button {...rest} />
+      ))(({ hoverBackgroundColor, hoverColor, isSelected, selectedTabColor }) => ({
         '&:hover': {
-            backgroundColor: isSelected ? SelectedTabColor : '#ff2D',
-            // color: isSelected ? '#fff !important' : '#465987',
+          backgroundColor: hoverBackgroundColor,
+          color: hoverColor,
         },
+        backgroundColor: isSelected ? selectedTabColor : '#fff',
         marginBottom: "15px !important",
         borderRadius: "10px",
-        color: isSelected ? SelectedTabColor : '#fff !important',
-        fill:isSelected ? SelectedTabColor : '#fff !important',
         width: "120px !important",
         height: "120px !important",
         boxShadow: '2px 4px 7px rgba(14, 145, 140, 0.2)',
         cursor: 'pointer',
-        
-    }));
-    const StyledImage = styled(Box)(({ theme }: { theme: any }) => ({
-        fill: '#fff',
-        color: '#fff',
-        transition: 'fill 0.3s, color 0.3s', // Add transition for smooth effect
-        '&:hover': {
-          fill: 'white !important', // Replace 'red' with the desired color
-          color: 'white !important',
-          backgroundColor:'white !important' // Replace 'red' with the desired color
-        },
       }));
-
 
     return (
         <Grid container>
@@ -83,16 +77,21 @@ const ComplianceVerticalTabs = ({ tabsData }: VerticalTabsProps) => {
                         <Grid container >
                             {tabsData?.map((item: any, index: any) => (
                                 <Grid lg={6} key={index}>
-                                    <StyledButton
-                                        variant="contained"
-                                        onClick={() => handleTabChange(index, item.color)}
-                                        isSelected={verticalTab === index} 
+                                   
+                                    <StyledLeftTab
+                                       key={index}
+                                       variant="contained"
+                                       onClick={() => handleTabChange(index, item.color)}
+                                       isSelected={verticalTab === index}
+                                       hoverBackgroundColor={item.color}
+                                       hoverColor={item.color}
+                                       selectedTabColor={SelectedTabColor}
                                     >
                                         {/*  sx={styles.innerTabs} */}
                                         <Box sx={styles.tabLabel}>
                                             <Box sx={styles.tabsIcon}>
-                                                {/* <StyledImage src={item.img} alt=""   /> */}
-                                                <Image src={item.img} alt=""/>
+                                                
+                                                <Image src={item.img} alt="" width={52} height={52} />
                                                
                                             </Box>
                                             <Typography variant="h5" component="h5" sx={styles.tabsTitle}>
@@ -100,7 +99,8 @@ const ComplianceVerticalTabs = ({ tabsData }: VerticalTabsProps) => {
                                             </Typography>
 
                                         </Box>
-                                    </StyledButton>
+                                    </StyledLeftTab>
+                                    
                                 </Grid>
                             ))}
                         </Grid>
@@ -165,10 +165,10 @@ const styles = {
 
     innerTabs: (theme: any) => ({
         // background: theme.palette.primary.main,
-        background: '#fff',
+        // background: '#fff',
         mb: "15px",
         borderRadius: "10px",
-        color: '#465987',
+        // color: '#465987',
         width: "120px !important",
         height: "120px !important",
         boxShadow: '2px 4px 7px rgba(14, 145, 140, 0.2)',
