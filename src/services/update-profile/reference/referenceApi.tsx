@@ -20,16 +20,15 @@ export const referenceApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     updateReference: builder.mutation<null, any>({
-      query: ({ body, id }: any) => ({
+      query: ({ id }: any) => ({
         url: `user-profile/update-reference/${id}`,
         method: "PATCH",
-        body,
       }),
       invalidatesTags: [TAG],
     }),
-    deleteRefernce: builder.mutation<null, void>({
-      query: (body) => ({
-        url: "user-profile/delete-reference/63a32044f4df02ffb06b7e16",
+    deleteRefernce: builder.mutation<null, any>({
+      query: ({ body, id }: any) => ({
+        url: `user-profile/delete-reference/${id}`,
         method: "DELETE",
         body,
       }),

@@ -28,7 +28,7 @@ const FormField: FC<any> = (props) => {
     case "upload":
       return <RHFUploadFile {...prop} />;
     case "checkbox":
-      return <RHFCheckbox name={prop.name} label={prop.label}/>;
+      return <RHFCheckbox name={prop.name} label={prop.label} />;
     case "select":
       return (
         <RHFSelect {...prop}>

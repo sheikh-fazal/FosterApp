@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -6,13 +6,17 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TableAction from "@root/components/TableAction";
-import { Grid, TextField, useTheme } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { FormProvider, RHFTextField } from "@root/components/hook-form";
+import {
+  FormProvider,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import dayjs from "dayjs";
 
 const style = {
@@ -28,26 +32,30 @@ const style = {
 };
 
 export default function UploadDocumentModal(props: any) {
-  const theme: any = useTheme();
-  const { content, readOnly, btnType, openModal, closeModal, formData } = props;
-  const selectedRow = content?.row?.original;
-  console.log(content);
+  const [open, setOpen] = useState(false);
 
-  const onSubmit = (data: any) => {
-    console.log(data, "submitted data");
-    handleClose();
-    // reset();
-  };
-  const [open, setOpen] = React.useState(false);
+  const theme: any = useTheme();
+
+  const {
+    content,
+    readOnly,
+    btnType,
+    openModal,
+    closeModal,
+    formData,
+    column,
+  } = props;
+  const selectedRow = content?.row?.original;
+  console.log(selectedRow);
+
   const handleOpen = () => {
     setOpen(true);
     console.log("View", content?.row?.original);
   };
   const handleClose = () => {
     setOpen(false);
-    !readOnly && closeModal(false);
+    closeModal && closeModal(false);
   };
-  console.log(theme.palette.orange);
 
   return (
     <div>
@@ -75,12 +83,13 @@ export default function UploadDocumentModal(props: any) {
               component="p"
               mb={3}
             >
-              Person Uploaded :{selectedRow?.personUploaded}
+              Person Uploaded :{selectedRow?.[column[3]]}
             </Typography>
             <DocumentModalForm
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
+              column={column}
             >
               <Button
                 size="small"
@@ -103,16 +112,16 @@ export default function UploadDocumentModal(props: any) {
 }
 
 const DocumentModalForm = (props: any) => {
-  const { disableForm, children, selectedRow, formData } = props;
+  const { disableForm, children, selectedRow, formData, column } = props;
   const theme: any = useTheme();
   //-------------------------------------------//
   const defaultValues = {
-    documentType: selectedRow?.documentType,
+    documentType: selectedRow?.[column[1]],
     documentDate: new Date(
-      dayjs(selectedRow?.documentDate).format("MM/DD/YYYY")
+      dayjs(selectedRow?.[column[2]]).format("MM/DD/YYYY")
     ),
-    password: selectedRow?.password,
-    chosenFile: { name: selectedRow?.document },
+    password: selectedRow?.[column[4]],
+    chosenFile: { name: selectedRow?.[column[0]] },
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
@@ -144,7 +153,16 @@ const DocumentModalForm = (props: any) => {
                 {...form.componentProps}
                 size="small"
                 disabled={disableForm}
-              />
+              >
+                {" "}
+                {form.componentProps.select
+                  ? form.componentProps.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </form.component>
             </Grid>
           );
         })}
@@ -186,13 +204,18 @@ const DocumentModalForm = (props: any) => {
 export const formDataArray = [
   {
     id: 1,
+    gridLength: 12,
     componentProps: {
       name: "documentType",
       label: "Document Type",
       fullWidth: true,
+      select: true,
+      options: [
+        { value: "word", label: "Word" },
+        { value: "pdf", label: "PDF" },
+      ],
     },
-    gridLength: 12,
-    component: RHFTextField,
+    component: RHFSelect,
   },
   {
     id: 2,

@@ -2,7 +2,7 @@ import React, { FC, useRef } from "react";
 import { useTheme } from "@emotion/react";
 import { Grid, IconButton, Typography } from "@mui/material";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { nameShortner } from "../util/Util";
+import { nameShortnerWithExtension } from "../util/Util";
 import { SINGLEFILEINTERFACE } from "./SINGLEFILEINTERFACE";
 
 const SingleFileUploader: FC<SINGLEFILEINTERFACE> = ({
@@ -101,7 +101,7 @@ const SingleFileUploader: FC<SINGLEFILEINTERFACE> = ({
             </Grid>
             <Grid item>
               <Typography variant="h5">
-                {nameShortner(
+                {nameShortnerWithExtension(
                   file?.name ? file?.name : "availableFilename.pdf"
                 )}
               </Typography>

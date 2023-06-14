@@ -16,6 +16,7 @@ const EditProfileLayout = () => {
     tabsItems,
     diffInfoHandler,
     activateNextForm,
+    MoveTo,
   } = useLayoutInfo();
   const theme: any = useTheme();
 
@@ -42,6 +43,7 @@ const EditProfileLayout = () => {
           <RenderForm
             name={diffInfoHandler.activeFormName}
             activateNextForm={activateNextForm}
+            MoveTo={MoveTo}
           />
         </Card>
       </Grid>

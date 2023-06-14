@@ -4,12 +4,14 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import { defaultValues } from ".";
 import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 export const useChildrenTable = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
+  const router = useRouter()
 
   const {
     handleSubmit,
@@ -25,6 +27,8 @@ export const useChildrenTable = () => {
     setTableDate(JSON.stringify(data));
   };
 
+  const route = router.query.action;
+
   return {
     methods,
     handleSubmit,
@@ -35,5 +39,6 @@ export const useChildrenTable = () => {
     isSubmitting,
     tableData,
     onClear,
+    route,
   };
 };

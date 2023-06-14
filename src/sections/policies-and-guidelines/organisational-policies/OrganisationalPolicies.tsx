@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import PolicyVerticalTable from '@root/components/PolicyVerticalTabs/PolicyVerticalTable'
-import { OrganisationalPoliciesData } from '.';
-import PolicyVerticalUploadDocument from '@root/components/PolicyVerticalTabs/PolicyVerticalForm/PolicyVerticalUploadDocument';
+import React from "react";
+import { OrganisationalPoliciesData } from ".";
+import PolicyVerticalTable from "@root/components/policy-vertical-tabs/PolicyVerticalTable";
 
 const OrganisationalPolicies = () => {
-    return (
-        <>
-            <PolicyVerticalTable data={OrganisationalPoliciesData} addNewTabNavigation={'/policies-and-guidelines/organisational-policies/add'}  />
-        </>
-    )
-}
+  return (
+    <PolicyVerticalTable
+      data={OrganisationalPoliciesData}
+      addNewTabNavigation={
+        "/policies-and-guidelines/organisational-policies/organisational-policies-form"
+      }
+      addNewFormNavigation={
+        "/policies-and-guidelines/organisational-policies/organisational-policies-form"
+      }
+    />
+  );
+};
 
-export default OrganisationalPolicies
+export default OrganisationalPolicies;

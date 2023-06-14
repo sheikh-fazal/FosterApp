@@ -1,12 +1,13 @@
-import OrganisationalPoliciesIcon from '../../../assets/svg/policy-guidelines/Organisational-Policies.svg'
-import AgencyGuidelinesIcon from '../../../assets/svg/policy-guidelines/Agency-Guidlines.svg'
-import GovtLegislationsIcon from '../../../assets/svg/policy-guidelines/Gov-Legislations.svg'
-import HandbooksIcon from '../../../assets/svg/policy-guidelines/Handbooks.svg'
-import TemplatesIcon from '../../../assets/svg/policy-guidelines/Templates.svg'
-import CheckListsIcon from '../../../assets/svg/policy-guidelines/CheckLists.svg'
-import CyberEssentialsIcon from '../../../assets/svg/policy-guidelines/Cyber-Essentials.svg'
-import OtherPoliciesIcon from '../../../assets/svg/policy-guidelines/Other-Policies.svg'
+import OrganisationalPoliciesIcon from '../../../assets/svg/policy-guidelines/organisational-policies-icon'
+import AgencyGuidelinesIcon from '../../../assets/svg/policy-guidelines/agency-guidlines-icon'
+import GovtLegislationsIcon from '../../../assets/svg/policy-guidelines/govt-legislations-icon'
+import HandbooksIcon from '../../../assets/svg/policy-guidelines/handbooks-icon'
+import TemplatesIcon from '../../../assets/svg/policy-guidelines/templates-icon'
+import CheckListsIcon from '../../../assets/svg/policy-guidelines/checkLists-icon'
+import CyberEssentialsIcon from '../../../assets/svg/policy-guidelines/cyber-essentials-icon'
+import OtherPoliciesIcon from '../../../assets/svg/policy-guidelines/other-policies-icon'
 
+// Expandable cards icons
 import RecentlyAccessedActivitiesIcon from '../../../assets/svg/policy-guidelines/Recently-Accessed-Policy.svg'
 import PolicyInDraftIcon from '../../../assets/svg/policy-guidelines/Policy-in-Draft.svg'
 import ReminderAndNotificationsIcon from '../../../assets/svg/policy-guidelines/Reminder-and-Notifications.svg'
@@ -15,49 +16,49 @@ export const policyGuidelineCardsData = [
     {
         id: "1",
         title: "Organisational Policies",
-        icon: OrganisationalPoliciesIcon,
+        icon: <OrganisationalPoliciesIcon />,
         link: '/policies-and-guidelines/organisational-policies'
     },
     {
         id: "2",
         title: "Agency Guidelines",
-        icon: AgencyGuidelinesIcon,
+        icon: <AgencyGuidelinesIcon />,
         link: 'policies-and-guidelines/agency-guidelines'
     },
     {
         id: "3",
         title: "Govt. Legislations and Regulations",
-        icon: GovtLegislationsIcon,
+        icon: <GovtLegislationsIcon />,
         link: 'policies-and-guidelines/govt-legislations'
     },
     {
         id: "4",
         title: "Handbooks",
-        icon: HandbooksIcon,
+        icon: <HandbooksIcon />,
         link: 'policies-and-guidelines/handbooks'
     },
     {
         id: "5",
         title: "Templates",
-        icon: TemplatesIcon,
+        icon: <TemplatesIcon />,
         link: 'policies-and-guidelines/templates'
     },
     {
         id: "6",
         title: "CheckLists",
-        icon: CheckListsIcon,
+        icon: <CheckListsIcon />,
         link: 'policies-and-guidelines/checklists'
     },
     {
         id: "7",
         title: "Cyber Essentials",
-        icon: CyberEssentialsIcon,
+        icon: <CyberEssentialsIcon />,
         link: 'policies-and-guidelines/cyber-essentials'
     },
     {
         id: "8",
         title: "Other Policies",
-        icon: OtherPoliciesIcon,
+        icon: <OtherPoliciesIcon />,
         link: 'policies-and-guidelines/other-policies'
     },
 ]
@@ -151,28 +152,28 @@ export const ExpandableCardsData = [
         img: ReminderAndNotificationsIcon,
         subData: [
             {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
+                title: 'Upload Handbook',
+                href: '/policies-and-guidelines/handbooks/handbooks-form',
+            },
+            {
+                title: 'Policy not Approved',
+                href: '/policies-and-guidelines'
+            },
+            {
+                title: 'Add Educational Policies',
+                href: '/policies-and-guidelines',
+            },
+            {
+                title: 'Complete Adding New Policy',
+                href: '/policies-and-guidelines'
+            },
+            {
+                title: 'eSignature of Approver Required',
+                href: '/policies-and-guidelines',
             },
             {
                 title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
-            },
-            {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
-            },
-            {
-                title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
-            },
-            {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
-            },
-            {
-                title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
+                href: '/policies-and-guidelines'
             },
         ]
     },
