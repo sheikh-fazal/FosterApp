@@ -36,6 +36,10 @@ export function DocumentTable({ changeView }: any) {
         <TableHeader
           ref={tableHeaderRef}
           title="Uploaded Documents"
+          showAddBtn={true}
+          onAdd={() => {
+            isOpenModal();
+          }}
           searchKey="search"
           onChanged={(data: any) => {
             console.log("Updated params: ", data);

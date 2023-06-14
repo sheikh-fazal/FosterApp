@@ -4,7 +4,9 @@ export const basicInformationApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     updateBasicInformation: builder.mutation({
       query: ({ id, formData }: any) => ({
-        url: `/application-form/basic-information?applicationFormId=${id}`,
+        url: id
+          ? `/application-form/basic-information?applicationFormId=${id}`
+          : `/application-form/basic-information`,
         method: "PUT",
         body: formData,
       }),

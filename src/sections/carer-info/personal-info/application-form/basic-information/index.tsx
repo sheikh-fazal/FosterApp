@@ -50,19 +50,8 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 export const FormSchema = Yup.object().shape({
   areaOffice: Yup.string().required("Area Office name is required"),
   title: Yup.string().required("Title is required"),
-  firstName: Yup.string()
-    .required("First Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
-  lastName: Yup.string()
-
-    .required("Last Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
 
   dateOfBirth: Yup.date().required("Date of Birth is required"),
 
@@ -76,7 +65,7 @@ export const FormSchema = Yup.object().shape({
   mobileNo: Yup.string()
     .required("Mobile  is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   languageSpoken: Yup.string().trim().required("Languages Spoken is required"),
   relationShipType: Yup.string()

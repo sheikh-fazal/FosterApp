@@ -9,10 +9,6 @@ import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 
-// utils
-
-// ----------------------------------------------------------------------
-
 export const defaultValues = {
   type: "Pre Approved",
   datedMoved: "",
@@ -39,15 +35,15 @@ export const FormSchema = Yup.object().shape({
   telephone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   officePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   mobilePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   email: Yup.string()
     .required("Field is required")
     .email("Invalid Email Address"),
@@ -244,20 +240,4 @@ export const columns = (listDeleteHandler: any) => {
   ];
 };
 
-export const CarerAddressHistoryTableData = [
-  {
-    srNo: "1",
-    city: "Doc Name",
-    address: "Document Type",
-    currentAddress: "19/05/2021",
-    status: "Name Xame",
-  },
-  {
-    srNo: "2",
-    city: "Doc Name",
-    address: "Document Type",
-    currentAddress: "19/05/2021",
-    status: "Name Xame",
-  },
-];
 export { default as CarerAddressHistory } from "./CarerAddressHistoryForms";

@@ -40,7 +40,6 @@ export const useBasicInformationForm = (data: any, id: any) => {
   const [updateBasicInformation, { isLoading }] =
     useUpdateBasicInformationMutation();
   const onSubmit = async (data: any) => {
-    console.log(data);
     var form_data = new FormData();
     for (var key in data) {
       form_data.append(key, data[key]);

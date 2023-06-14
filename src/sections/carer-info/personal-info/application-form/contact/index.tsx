@@ -29,16 +29,8 @@ export const FormSchema = Yup.object().shape({
     .required("Telephone is required")
     .min(4, "Mininum 4 characters")
     .max(25, "Maximum 25 characters"),
-  county: Yup.string()
-    .trim()
-    .required("County is required")
-    .min(2, "Mininum 2 characters")
-    .max(30, "Maximum 30 characters"),
-  country: Yup.string()
-    .trim()
-    .required("Country is required")
-    .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+  county: Yup.string().trim().required("County is required"),
+  country: Yup.string().trim().required("Country is required"),
   postalCode: Yup.string()
     .required("Postal Code is required")
     .min(2, "Mininum 2 characters")

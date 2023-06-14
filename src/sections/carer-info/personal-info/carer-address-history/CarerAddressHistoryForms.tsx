@@ -1,10 +1,6 @@
-// @mui
 import { Grid, Box, Button, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
 import { FormProvider } from "@root/components/hook-form";
-//
 import { formData, defaultValues } from ".";
 import { useCarerAddressHistoryForms } from "./useCarerAddressHistoryForms";
 

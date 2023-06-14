@@ -22,14 +22,8 @@ export const FormSchema = Yup.object().shape({
   relationShipType: Yup.string().required("Field is required"),
   firstName: Yup.string().required("Field is required"),
   lastName: Yup.string().required("Field is required"),
-  address: Yup.string()
-    .required("Address is required")
-    .min(4, "Mininum 4 characters")
-    .max(20, "Maximum 10 characters"),
-  phoneNumber: Yup.string()
-    .required("Telephone is required")
-    .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+  address: Yup.string().required("Address is required"),
+  phoneNumber: Yup.string().required("Telephone is required"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   childrenTogether: Yup.string().required("Field is required"),
 });
