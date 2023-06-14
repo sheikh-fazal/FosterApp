@@ -1,28 +1,13 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import { Box, Grid, Paper } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { EHCPFormValidation, EHCPFormData } from "..";
-import { useRouter } from "next/router";
+import { EHCPFormData } from "..";
+import { useEhcpForm } from "./useEhcpForm";
 
 export default function EHCPForm(props: any) {
-  
-  const { query } = useRouter();
 
-  const { defaultValues, disabled } = props;
-
-  const methods: any = useForm({
-    resolver: yupResolver(EHCPFormValidation),
-    defaultValues,
-  });
-
-  const { handleSubmit } = methods;
-
-  const onSubmit = async (data: any) => {
-    console.log(data);
-  };
+const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } = useEhcpForm(props);
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -47,16 +32,22 @@ export default function EHCPForm(props: any) {
             </Grid>
           ))}
         </Grid>
-        {query.action !== "view" && (
+        {router.query.action !== "view" && (
           <Box sx={{ display: "flex", mb: "1rem" }}>
             <LoadingButton
               sx={{ marginRight: "1rem" }}
               type="submit"
               variant="contained"
+              loading={isSubmitting}
             >
               Submit
             </LoadingButton>
             <LoadingButton
+              onClick={() => {
+                router.push(
+                  "/foster-child/child-background-info/cla-documentation"
+                );
+              }}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
               variant="contained"

@@ -1,12 +1,8 @@
 import * as Yup from "yup";
-import router from "next/router";
-import { Box, Typography } from "@mui/material";
-import TableAction from "@root/components/TableAction";
+import { Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
-import dayjs from "dayjs";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 
 export const EHCPFormData = [
@@ -23,7 +19,7 @@ export const EHCPFormData = [
   {
     id: 2,
     componentProps: {
-      name: "date",
+      name: "date1",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -34,7 +30,7 @@ export const EHCPFormData = [
   {
     id: 3,
     componentProps: {
-      name: "OnFile",
+      name: "onfile1",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -49,7 +45,7 @@ export const EHCPFormData = [
   {
     id: 4,
     componentProps: {
-      name: "comments",
+      name: "comments1",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -71,7 +67,7 @@ export const EHCPFormData = [
   {
     id: 6,
     componentProps: {
-      name: "date",
+      name: "date2",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -82,7 +78,7 @@ export const EHCPFormData = [
   {
     id: 7,
     componentProps: {
-      name: "OnFile",
+      name: "onfile2",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -97,7 +93,7 @@ export const EHCPFormData = [
   {
     id: 8,
     componentProps: {
-      name: "comments",
+      name: "comments2",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -119,7 +115,7 @@ export const EHCPFormData = [
   {
     id: 10,
     componentProps: {
-      name: "date",
+      name: "date3",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -130,7 +126,7 @@ export const EHCPFormData = [
   {
     id: 11,
     componentProps: {
-      name: "OnFile",
+      name: "onfile3",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -145,7 +141,7 @@ export const EHCPFormData = [
   {
     id: 12,
     componentProps: {
-      name: "comments",
+      name: "comments3",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -167,7 +163,7 @@ export const EHCPFormData = [
   {
     id: 14,
     componentProps: {
-      name: "date",
+      name: "date4",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -178,7 +174,7 @@ export const EHCPFormData = [
   {
     id: 15,
     componentProps: {
-      name: "OnFile",
+      name: "onfile4",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -193,7 +189,7 @@ export const EHCPFormData = [
   {
     id: 16,
     componentProps: {
-      name: "comments",
+      name: "comments4",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -215,7 +211,7 @@ export const EHCPFormData = [
   {
     id: 18,
     componentProps: {
-      name: "date",
+      name: "date5",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -226,7 +222,7 @@ export const EHCPFormData = [
   {
     id: 19,
     componentProps: {
-      name: "OnFile",
+      name: "onfile5",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -241,7 +237,7 @@ export const EHCPFormData = [
   {
     id: 20,
     componentProps: {
-      name: "comments",
+      name: "comments5",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -263,7 +259,7 @@ export const EHCPFormData = [
   {
     id: 22,
     componentProps: {
-      name: "date",
+      name: "date6",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -274,7 +270,7 @@ export const EHCPFormData = [
   {
     id: 23,
     componentProps: {
-      name: "OnFile",
+      name: "onfile6",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -289,7 +285,7 @@ export const EHCPFormData = [
   {
     id: 24,
     componentProps: {
-      name: "comments",
+      name: "comments6",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -311,7 +307,7 @@ export const EHCPFormData = [
   {
     id: 26,
     componentProps: {
-      name: "date",
+      name: "date7",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -322,7 +318,7 @@ export const EHCPFormData = [
   {
     id: 27,
     componentProps: {
-      name: "OnFile",
+      name: "onfile7",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -337,7 +333,7 @@ export const EHCPFormData = [
   {
     id: 28,
     componentProps: {
-      name: "comments",
+      name: "comments7",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -359,7 +355,7 @@ export const EHCPFormData = [
   {
     id: 30,
     componentProps: {
-      name: "date",
+      name: "date8",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -370,7 +366,7 @@ export const EHCPFormData = [
   {
     id: 31,
     componentProps: {
-      name: "OnFile",
+      name: "onfile8",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -385,7 +381,7 @@ export const EHCPFormData = [
   {
     id: 32,
     componentProps: {
-      name: "comments",
+      name: "comments8",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -407,7 +403,7 @@ export const EHCPFormData = [
   {
     id: 34,
     componentProps: {
-      name: "date",
+      name: "date9",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -418,7 +414,7 @@ export const EHCPFormData = [
   {
     id: 35,
     componentProps: {
-      name: "OnFile",
+      name: "onfile9",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -433,7 +429,7 @@ export const EHCPFormData = [
   {
     id: 36,
     componentProps: {
-      name: "comments",
+      name: "comments9",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -455,7 +451,7 @@ export const EHCPFormData = [
   {
     id: 38,
     componentProps: {
-      name: "date",
+      name: "date10",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -466,7 +462,7 @@ export const EHCPFormData = [
   {
     id: 39,
     componentProps: {
-      name: "OnFile",
+      name: "onfile10",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -481,7 +477,7 @@ export const EHCPFormData = [
   {
     id: 40,
     componentProps: {
-      name: "comments",
+      name: "comments10",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -503,7 +499,7 @@ export const EHCPFormData = [
   {
     id: 42,
     componentProps: {
-      name: "date",
+      name: "date11",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -514,7 +510,7 @@ export const EHCPFormData = [
   {
     id: 43,
     componentProps: {
-      name: "OnFile",
+      name: "onfile11",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -529,7 +525,7 @@ export const EHCPFormData = [
   {
     id: 44,
     componentProps: {
-      name: "comments",
+      name: "comments11",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -551,7 +547,7 @@ export const EHCPFormData = [
   {
     id: 46,
     componentProps: {
-      name: "date",
+      name: "date12",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -562,7 +558,7 @@ export const EHCPFormData = [
   {
     id: 47,
     componentProps: {
-      name: "OnFile",
+      name: "onfile12",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -577,7 +573,7 @@ export const EHCPFormData = [
   {
     id: 48,
     componentProps: {
-      name: "comments",
+      name: "comments12",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -599,7 +595,7 @@ export const EHCPFormData = [
   {
     id: 50,
     componentProps: {
-      name: "date",
+      name: "date13",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -610,7 +606,7 @@ export const EHCPFormData = [
   {
     id: 51,
     componentProps: {
-      name: "OnFile",
+      name: "onfile13",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -625,7 +621,7 @@ export const EHCPFormData = [
   {
     id: 52,
     componentProps: {
-      name: "comments",
+      name: "comments13",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -868,8 +864,9 @@ export const StrategiesAndEvidence = [
   },
 ];
 
+// Default Values
+// PEP Form Default Values
 export const defaultValuesForPep = {
-  // PEP Form Default Values
   name: "",
   class: "",
   planDoneBy: "",
@@ -879,13 +876,93 @@ export const defaultValuesForPep = {
   overAllOutcome: "",
   document: "PEP personal Educational Plan",
 };
+// EHCP Form Default Values
+export const defaultValuesForEhcp = {
+  date1: null,
+  onfile1: "",
+  comments1: "",
+  date2: null,
+  onfile2: "",
+  comments2: "",
+  date3: null,
+  onfile3: "",
+  comments3: "",
+  date4: null,
+  onfile4: "",
+  comments4: "",
+  date5: null,
+  onfile5: "",
+  comments5: "",
+  date6: null,
+  onfile6: "",
+  comments6: "",
+  date7: null,
+  onfile7: "",
+  comments7: "",
+  date8: null,
+  onfile8: "",
+  comments8: "",
+  date9: null,
+  onfile9: "",
+  comments9: "",
+  date10: null,
+  onfile10: "",
+  comments10: "",
+  date11: null,
+  onfile11: "",
+  comments11: "",
+  date12: null,
+  onfile12: "",
+  comments12: "",
+  date13: null,
+  onfile13: "",
+  comments13: "",
+};
 
+// EHCP Validations
 export const EHCPFormValidation = Yup.object().shape({
-  date: Yup.string().trim().required("Date is Required"),
-  OnFile: Yup.string().trim().required("Selection is Required"),
-  comments: Yup.string().trim().required("Comments is Required"),
+  date1: Yup.date(),
+  onfile1: Yup.string().trim().required("Selection is Required"),
+  comments1: Yup.string().trim().required("Selection is Required"),
+  date2: Yup.date(),
+  onfile2: Yup.string().trim().required("Selection is Required"),
+  comments2: Yup.string().trim().required("Selection is Required"),
+  date3: Yup.date(),
+  onfile3: Yup.string().trim().required("Selection is Required"),
+  comments3: Yup.string().trim().required("Selection is Required"),
+  date4: Yup.date(),
+  onfile4: Yup.string().trim().required("Selection is Required"),
+  comments4: Yup.string().trim().required("Selection is Required"),
+  date5: Yup.date(),
+  onfile5: Yup.string().trim().required("Selection is Required"),
+  comments5: Yup.string().trim().required("Selection is Required"),
+  date6: Yup.date(),
+  onfile6: Yup.string().trim().required("Selection is Required"),
+  comments6: Yup.string().trim().required("Selection is Required"),
+  date7: Yup.date(),
+  onfile7: Yup.string().trim().required("Selection is Required"),
+  comments7: Yup.string().trim().required("Selection is Required"),
+  date8: Yup.date(),
+  onfile8: Yup.string().trim().required("Selection is Required"),
+  comments8: Yup.string().trim().required("Selection is Required"),
+  date9: Yup.date(),
+  onfile9: Yup.string().trim().required("Selection is Required"),
+  comments9: Yup.string().trim().required("Selection is Required"),
+  date10: Yup.date(),
+  onfile10: Yup.string().trim().required("Selection is Required"),
+  comments10: Yup.string().trim().required("Selection is Required"),
+  date11: Yup.date(),
+  onfile11: Yup.string().trim().required("Selection is Required"),
+  comments11: Yup.string().trim().required("Selection is Required"),
+  date12: Yup.date(),
+  onfile12: Yup.string().trim().required("Selection is Required"),
+  comments12: Yup.string().trim().required("Selection is Required"),
+  date13: Yup.date(),
+  onfile13: Yup.string().trim().required("Selection is Required"),
+  comments13: Yup.string().trim().required("Selection is Required"),
 });
 
+// PEP Validations
 export const PEPFormValidation = Yup.object().shape({
   name: Yup.string().trim().required("Required"),
   class: Yup.string().trim().required("Required"),
@@ -897,6 +974,3 @@ export const PEPFormValidation = Yup.object().shape({
 });
 
 export { default as ClaDocumentationList } from "./ClaDocumentationTable";
-function listDeleteHandler(id: any) {
-  throw new Error("Function not implemented.");
-}

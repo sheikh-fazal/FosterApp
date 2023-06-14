@@ -10,10 +10,21 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
       }),
       providesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
-    
-    postClaDocumentationList: builder.mutation({
+    getClaDocumentationById: builder.query({
+      query: (id: any) => `/foster-child/cla/${id}`,
+      providesTags: ["CLA_DOCUMENTATION_LIST"],
+    }),
+    postPepClaDocumentationList: builder.mutation({
       query: (putDataParameter: any) => ({
         url: "/foster-child/cla-pep",
+        method: "POST",
+        body: putDataParameter,
+      }),
+      invalidatesTags: ["CLA_DOCUMENTATION_LIST"],
+    }),
+    postEhcpClaDocumentationList: builder.mutation({
+      query: (putDataParameter: any) => ({
+        url: "/foster-child/cla-ehcp",
         method: "POST",
         body: putDataParameter,
       }),
@@ -31,6 +42,8 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
 
 export const {
   useClaDocumentationListQuery,
-  usePostClaDocumentationListMutation,
+  useGetClaDocumentationByIdQuery,
+  usePostPepClaDocumentationListMutation,
+  usePostEhcpClaDocumentationListMutation,
   useDeleteClaDocumentationListMutation,
 } = claDocumentationApi;

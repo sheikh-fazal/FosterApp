@@ -1,50 +1,19 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
 import { Box, Grid, Paper } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
 import {
   PEPFormData,
-  PEPFormValidation,
   StrategiesAndEvidence,
   TargetsAndObjectivesData,
-  defaultValuesForPep,
 } from "..";
-import { usePostClaDocumentationListMutation } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
-import { enqueueSnackbar } from "notistack";
+import { usePepFom } from "./usePepFom";
 
 export default function PEPForm(props: any) {
-  const router = useRouter();
-  const [postClaDocumentationList] = usePostClaDocumentationListMutation();
 
-  const { disabled } = props;
-
-  const methods: any = useForm({
-    resolver: yupResolver(PEPFormValidation),
-    defaultValues: defaultValuesForPep,
-  });
-
-  const {
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
-
-  const onSubmit = async (data: any) => {
-    console.log(data);
-    try {
-      const res: any = await postClaDocumentationList(data).unwrap();
-      console.log(res);
-      router.push(`/foster-child/child-background-info/cla-documentation`);
-      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
-        variant: "success",
-      });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    }
-  };
+    // Pep Form Custom Hook
+    const { methods,handleSubmit, onSubmit, disabled, router, isSubmitting } = usePepFom(props);
+ 
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -76,18 +45,18 @@ export default function PEPForm(props: any) {
               sx={{ marginRight: "1rem" }}
               type="submit"
               variant="contained"
-              disabled={disabled}
-              loading={isSubmitting}
-            >
+              loading={isSubmitting}>
               Submit
             </LoadingButton>
             <LoadingButton
-              onClick={() => { router.push("/foster-child/child-background-info/cla-documentation");}}
+              onClick={() => {
+                router.push(
+                  "/foster-child/child-background-info/cla-documentation"
+                );
+              }}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
-              variant="contained"
-              disabled={disabled}
-            >
+              variant="contained">
               back
             </LoadingButton>
           </Box>
