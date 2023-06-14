@@ -118,8 +118,8 @@ export const DaylogEventsFormData = [
   },  
   {
     gridLength: 12,
+    title: `Day Log / Journal Entry`,
     componentProps: {
-      label: `Day Log / Journal Entry`,
       name: "dayLog",
       sx: { mb: 4,},
     },
