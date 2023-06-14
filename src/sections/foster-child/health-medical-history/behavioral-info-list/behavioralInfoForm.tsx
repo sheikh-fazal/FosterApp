@@ -69,7 +69,7 @@ function BehavioralInfoForm(props: any) {
                             size="small"
                             {...form.otherOptions}
                             disabled={action === "view" ? true : false}
-                            InputLabelProps={{
+                            inputlabelprops={{
                               shrink: action === "view" ? true : undefined,
                               disabled: action === "view" ? true : undefined,
                             }}

@@ -108,9 +108,9 @@ const Rightnavbar = (props: any) => {
                   <path
                     d="M17.2298 9.11548L12.1156 13.9986L16.9987 19.1128"
                     stroke="white"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </SvgRapper>
               ) : (

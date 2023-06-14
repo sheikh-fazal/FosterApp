@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { useTheme } from "@emotion/react";
 import List from "@mui/material/List";
 import { NAV_LINKS } from "./LeftNavBarData";
@@ -17,7 +17,6 @@ import Link from "next/link";
 import LeftNavbarCollapse from "./LeftNavbarCollapse";
 import LeftNavbarListItems from "./LeftNavbarListItems";
 
-
 const LeftNavbarList = (props: any) => {
   const router = useRouter();
   const theme: any = useTheme();
@@ -27,6 +26,20 @@ const LeftNavbarList = (props: any) => {
   const expandedhander = (value: string) => {
     expanded ? setExpanded(undefined) : setExpanded(value);
   };
+  useLayoutEffect(() => {
+    for (const data of NAV_LINKS) {
+      const filter: any = data?.sublist?.filter((data) => {
+        return data.sublistlink === pathname;
+      });
+
+      if (filter?.length > 0) {
+        setExpanded(`open${data.id}`);
+      }
+      if (filter?.length === 0) {
+        setExpanded(undefined);
+      }
+    }
+  }, [pathname]);
   return (
     <List
       sx={{
@@ -45,13 +58,13 @@ const LeftNavbarList = (props: any) => {
         },
       }}
     >
-      {NAV_LINKS.map((text, index) => {
+      {NAV_LINKS.map((text) => {
         return (
-          <div key={index}>
+          <div key={text.id}>
             {Array.isArray(text.sublist) ? (
               open && (
                 <LeftNavbarCollapse
-                  index={index}
+                  index={text.id}
                   expandedhander={expandedhander}
                   expanded={expanded}
                   pathname={pathname}
@@ -60,7 +73,7 @@ const LeftNavbarList = (props: any) => {
               )
             ) : (
               <LeftNavbarListItems
-                expandcollapse={expanded === `open${index}`}
+                expandcollapse={expanded === `open${text.id}`}
                 pathname={pathname}
                 open={open}
                 {...text}
