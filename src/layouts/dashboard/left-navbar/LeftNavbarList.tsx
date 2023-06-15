@@ -6,7 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { useTheme } from "@emotion/react";
 import List from "@mui/material/List";
 import { NAV_LINKS } from "./LeftNavBarData";
@@ -26,7 +26,7 @@ const LeftNavbarList = (props: any) => {
   const expandedhander = (value: string) => {
     expanded ? setExpanded(undefined) : setExpanded(value);
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     for (const data of NAV_LINKS) {
       const filter: any = data?.sublist?.filter((data) => {
         return data.sublistlink === pathname;

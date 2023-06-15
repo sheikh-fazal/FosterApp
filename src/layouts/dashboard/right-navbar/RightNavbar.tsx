@@ -192,8 +192,8 @@ const Rightnavbar = (props: any) => {
             <Grid container>
               <Grid xs={12} item>
                 <NewCalender
-                onChange={setDate}
-                 value={date}
+                  onChange={setDate}
+                  value={date}
                   iconsStyles={{
                     fontSize: "25px",
                     color: theme.palette.primary.main,
@@ -201,7 +201,7 @@ const Rightnavbar = (props: any) => {
                 />
 
                 <Box>
-                  <StickyNotes date={date}/>
+                  <StickyNotes date={date} />
                 </Box>
                 <Box
                   sx={{
@@ -338,7 +338,7 @@ const openedMixintwo = (theme: Theme): CSSObject => ({
 });
 
 const closedMixintwo = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
+  transition: theme.transitions.create("transform", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),
