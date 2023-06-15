@@ -3,9 +3,6 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   firstName: "",

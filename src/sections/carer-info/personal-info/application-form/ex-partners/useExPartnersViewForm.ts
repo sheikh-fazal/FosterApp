@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormSchema, defaultValues, formData } from ".";
-
 import { enqueueSnackbar } from "notistack";
 import {
   usePostExPartnerDetailMutation,

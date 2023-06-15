@@ -3,7 +3,6 @@ import ExPartnersViewForm from "./ExPartnersViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
-
 import { useExPartnersTable } from "./useExPartnersTable";
 
 export default function ExPartnersView({ apllicationFormid, role }: any) {

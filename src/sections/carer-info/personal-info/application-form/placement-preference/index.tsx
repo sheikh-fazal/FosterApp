@@ -6,9 +6,6 @@ import { NATIONALITYDROPDOWN } from "@root/dropdown-data/nationality";
 import { PLACEMENTTYPE } from "@root/dropdown-data/placementType";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   ageRange: "",

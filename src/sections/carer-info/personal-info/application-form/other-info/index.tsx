@@ -2,10 +2,6 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
 
-// utils
-
-// ----------------------------------------------------------------------
-
 export const defaultValues = {
   actualAuthorityLiveIn: "",
   authorityOrAgency: "",

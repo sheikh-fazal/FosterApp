@@ -1,11 +1,5 @@
-// form
-
-// @mui
 import { Grid, Typography } from "@mui/material";
-// utils
-// components
 import { FormProvider } from "@root/components/hook-form";
-//
 import { formData, formDataPersonalDetails, formDataContactDetails } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useOtherInfoForm } from "./useOtherInfoForm";

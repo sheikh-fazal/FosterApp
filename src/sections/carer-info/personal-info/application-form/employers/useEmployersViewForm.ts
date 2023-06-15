@@ -85,7 +85,6 @@ export const useEmployersViewForm = (props: any) => {
           formData,
         }).unwrap();
         if (res.data) {
-          changeView(null);
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });

@@ -2,9 +2,6 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   address: "",
