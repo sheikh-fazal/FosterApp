@@ -43,13 +43,12 @@ export const useEnquiryStage:any = () => {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     enquiryStageData,
-    enquiryStageApiData,
     isLoading,
     isError,
     isFetching,
     isSuccess,
-    isUpdating:false,
-    hasUpdated:false,
+    // isUpdating:false,
+    // hasUpdated:false,
     setEnquiryStageData,
   };
 };

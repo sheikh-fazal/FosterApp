@@ -1,9 +1,8 @@
-import { Button, Grid, useTheme } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { ASSESSMENTSTAGEONEDATA } from "./index";
 import Image from "@root/components/Image";
 import { RecruitmentStatusDropdown } from "../recruitment-status-dropdown/recruitment-status-dropdown";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
@@ -18,12 +17,14 @@ export default function AssessmentStageOne() {
     formDialogId,
     setFormDialogId,
     setOpenIdForInfo,
+    assessmentStageOneData,
+    setAssessmentStageOneData,
   } = useAssessmentStageOne();
 
   return (
     <div>
       <Grid container>
-        {ASSESSMENTSTAGEONEDATA?.map((ele: any) => (
+        {assessmentStageOneData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
@@ -52,7 +53,7 @@ export default function AssessmentStageOne() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color:'black'
+                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -70,7 +71,7 @@ export default function AssessmentStageOne() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color:'black'
+                  color: "black",
                 }}
               >
                 {ele?.text}
@@ -116,7 +117,14 @@ export default function AssessmentStageOne() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown id={ele?.id} status={ele?.status} />
+              <RecruitmentStatusDropdown
+                id={ele?.id}
+                status={ele?.status}
+                textForApi={ele?.textForApi}
+                mockData={assessmentStageOneData}
+                setMockData={setAssessmentStageOneData}
+                component={"AssessmentStage1"}
+              />
             </Grid>
             <Grid
               container

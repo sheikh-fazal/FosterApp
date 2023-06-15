@@ -17,11 +17,10 @@ export const RecruitmentStatusDropdown = (props: any) => {
   const {
     id,
     status,
-    apiData,
     textForApi,
     component,
-    setEnquiryStageData,
-    enquiryStageData,
+    setMockData,
+    mockData,
   } = props;
 
   const {
@@ -36,11 +35,10 @@ export const RecruitmentStatusDropdown = (props: any) => {
   } = useRecruitmentStatusDropdown({
     id,
     status,
-    apiData,
     textForApi,
     component,
-    setEnquiryStageData,
-    enquiryStageData,
+    setMockData,
+    mockData,
   });
   return (
     <>

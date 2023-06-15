@@ -2,8 +2,6 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-
-import { ASSESSMENTSTAGETWODATA } from "./index";
 import Image from "@root/components/Image";
 import { RecruitmentStatusDropdown } from "../recruitment-status-dropdown/recruitment-status-dropdown";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
@@ -18,11 +16,13 @@ export default function AssessmentStageTwo() {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
+    assessmentStageTwoData,
+    setAssessmentStageTwoData,
   } = useAssessmentStageTwo();
   return (
     <div>
       <Grid container>
-        {ASSESSMENTSTAGETWODATA?.map((ele: any) => (
+        {assessmentStageTwoData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
@@ -51,7 +51,7 @@ export default function AssessmentStageTwo() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color:'black'
+                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -69,7 +69,7 @@ export default function AssessmentStageTwo() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color:'black'
+                  color: "black",
                 }}
               >
                 {ele?.text}
@@ -115,7 +115,14 @@ export default function AssessmentStageTwo() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown id={ele?.id} status={ele?.status} />
+              <RecruitmentStatusDropdown
+                id={ele?.id}
+                status={ele?.status}
+                mockData={assessmentStageTwoData}
+                setMockData={setAssessmentStageTwoData}
+                textForApi={ele?.textForApi}
+                component={"AssessmentStage2"}
+              />
             </Grid>
             <Grid
               container
