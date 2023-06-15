@@ -35,7 +35,6 @@ import FormSkeleton from "../../render-form/FormSkeleton";
 
 const AddDeclaration: FC<any> = ({ MoveTo }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const [getDeclarationInfo] = useLazyGetDeclarationInfoQuery();
@@ -69,16 +68,19 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
   } = methods;
 
   useEffect(() => {
+    let counter = 0;
     const subscription = watch(async (values: any) => {
       try {
-        // console.log("Initial", isDirty);
-        // Api Needs to be fixed
+        counter += 1;
+        // checking if the user is opening the form first time
+        // may be in production that condtion will not work
+        if (counter <= 2) return;
         delete values?.workRight;
         delete values?.dba;
         // Api Needs to be fixed
         const jsonData = { ...values };
         const res = await updateDeclarationInfo(jsonData);
-        // displaySuccessMessage(res, enqueueSnackbar);
+        displaySuccessMessage(res, enqueueSnackbar);
       } catch (error) {
         displayErrorMessage(error, enqueueSnackbar);
       }
