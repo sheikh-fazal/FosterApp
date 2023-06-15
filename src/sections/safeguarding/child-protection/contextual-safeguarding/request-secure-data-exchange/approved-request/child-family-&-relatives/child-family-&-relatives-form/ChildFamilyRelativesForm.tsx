@@ -35,6 +35,19 @@ const ChildFamilyRelativesForm = () => {
           ))}
 
           <Grid item xs={12}>
+          <Button
+              sx={{
+                backgroundColor: "#F6830F",
+                "&:hover": {
+                  backgroundColor: "#F6830F",
+                },
+                mr: 2,
+              }}
+              type="submit"
+              variant="contained"
+            >
+              Back
+            </Button>
             <Button
               sx={{
                 backgroundColor: "#23183D",

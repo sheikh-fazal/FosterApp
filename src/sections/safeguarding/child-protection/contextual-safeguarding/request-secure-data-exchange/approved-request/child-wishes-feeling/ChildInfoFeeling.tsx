@@ -42,9 +42,6 @@ const ChildInfoFeeling = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ padding: "0.8rem" }}>
-        <Box sx={{ paddingBottom: "2rem", fontWeight: 600, fontSize: "18px" }}>
-          Personal Info
-        </Box>
         <Grid container columnSpacing={4}>
           {wishesData?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
@@ -78,6 +75,19 @@ const ChildInfoFeeling = () => {
           ))}
 
           <Grid item xs={12}>
+          <Button
+              sx={{
+                backgroundColor: "#F6830F",
+                "&:hover": {
+                  backgroundColor: "#F6830F",
+                },
+                mr: 2,
+              }}
+              type="submit"
+              variant="contained"
+            >
+              Back
+            </Button>
             <Button
               sx={{
                 backgroundColor: "#23183D",

@@ -2,6 +2,11 @@ import * as Yup from "yup";
 import { Box, Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
+import { LANGUAGESDROPDOWNDATA } from "@root/dropdown-data/languages";
+import { NATIONALITYDROPDOWN } from "@root/dropdown-data/nationality";
+import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const personalInfo = [
   {
@@ -59,9 +64,10 @@ export const personalInfo = [
     componentProps: {
       name: "dob",
       label: "Date of Birth",
+      fullWidth: true,
       sx: { mb: 4 },
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
     md: 6,
   },
   {
@@ -82,10 +88,7 @@ export const personalInfo = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "male", label: "male" },
-      { value: "female", label: "female" },
-    ],
+    options: GENDERDROPDOWNDATA,
     component: RHFSelect,
     md: 6,
   },
@@ -98,10 +101,7 @@ export const personalInfo = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "male", label: "male" },
-      { value: "female", label: "female" },
-    ],
+    options: ETHNICITYDROPDOWN,
     component: RHFSelect,
     md: 6,
   },
@@ -146,10 +146,7 @@ export const personalInfo = [
       select: true,
       sx: { mb: 4 },
     },
-    options: [
-      { value: "male", label: "male" },
-      { value: "female", label: "female" },
-    ],
+    options:NATIONALITYDROPDOWN,
     component: RHFSelect,
     md: 6,
   },
@@ -162,11 +159,69 @@ export const personalInfo = [
       select: true,
       sx: { mb: 4 },
     },
+    options: LANGUAGESDROPDOWNDATA,
+    component: RHFSelect,
+    md: 6,
+  },
+  {
+    componentProps: {
+      name: "religion",
+      label: "Religion",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    componentProps: {
+      name: "legalStatus",
+      label: "Legal Status",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    componentProps: {
+      name: "ImmigrationStatus",
+      label: "Immigration Status",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    componentProps: {
+      name: "behaviour",
+      label: "Behaviour",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    gridLength: 6,
+    componentProps: {
+      name: "Education",
+      label: "Is the Child Currently in Education",
+      fullWidth: true,
+      select: true,
+      sx: { mb: 4 },
+    },
     options: [
       { value: "male", label: "male" },
       { value: "female", label: "female" },
     ],
     component: RHFSelect,
+    md: 6,
+  },
+  {
+    componentProps: {
+      name: "Sibling",
+      label: "Are there any other Sibling ?",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
     md: 6,
   },
   {

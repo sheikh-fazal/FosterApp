@@ -1,5 +1,13 @@
-import HdrAutoIcon from "@mui/icons-material/HdrAuto";
 import { Box } from "@mui/material";
+
+import HdrAutoIcon from "@mui/icons-material/HdrAuto";
+
+import Cicon from "../../../../../../../assets/img/local authority/Cicon.png";
+import Oicon from "../../../../../../../assets/img/local authority/Oicon.png";
+import Licon from "../../../../../../../assets/img/local authority/Licon.png";
+import Ficon from "../../../../../../../assets/img/local authority/Ficon.png";
+import Aicon from "../../../../../../../assets/img/local authority/Aicon.png";
+
 import PersonalInfo from "../personal-info/PersonalInfo";
 import ChildInfoFeeling from "../child-wishes-feeling/ChildInfoFeeling";
 import SupportingEvidence from "../supporting-evidence/SupportingEvidence";
@@ -17,13 +25,23 @@ import StatusOfChild from "../status-of-child/StatusOfChild";
 import ChildFamilyRelatives from "../child-family-&-relatives/ChildFamilyRelatives";
 import AdditionalDocuments from "../additional-documents/AdditionalDocuments";
 import AgencyInfo from "../agency-info/AgencyInfo";
+import Image from "next/image";
+import SocialHistoryOfBirthFather from "../social-History-of-Birth-Father/SocialHistoryOfBirthFather";
 
 export const TABSDATAARRY = [
   {
     index: 0,
     Label: (
-      <Box sx={{ display: "flex", alignItems: "center", gap: "3px", mt: "5px", mb: "3px", }}>
-        <HdrAutoIcon />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Aicon} alt="Aicon" />
         <span style={{ fontSize: "14px", fontWeight: "600" }}>
           About The Child
         </span>
@@ -45,10 +63,18 @@ export const TABSDATAARRY = [
   {
     index: 3,
     Label: (
-      <Box sx={{ display: "flex", alignItems: "center", gap: "3px", mt: "5px", mb: "3px", }}>
-        <HdrAutoIcon />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Cicon} alt="Cicon" />
         <span style={{ fontSize: "14px", fontWeight: "600" }}>
-        Child’s Birth Mother
+          Child’s Birth Mother
         </span>
       </Box>
     ),
@@ -83,7 +109,22 @@ export const TABSDATAARRY = [
   },
   {
     index: 9,
-    Label: "Child’s Birth Father",
+    Label: (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Cicon} alt="Cicon" />
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Child’s Birth Father
+        </span>
+      </Box>
+    ),
     title: "Child’s Birth Father",
     component: <ChildBithFather />,
   },
@@ -99,8 +140,8 @@ export const TABSDATAARRY = [
   },
   {
     index: 12,
-    title: "Social History of Birth Mother",
-    component: "Social History of Birth Mother",
+    title: "Social History of Birth Father",
+    component: <SocialHistoryOfBirthFather/>,
   },
   {
     index: 13,
@@ -109,49 +150,86 @@ export const TABSDATAARRY = [
   },
   {
     index: 14,
-    Label: "Legal Status of Child",
+    Label: (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Licon} alt="Licon" />
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Legal Status of Child
+        </span>
+      </Box>
+    ),
     title: "Status of Child",
     component: <StatusOfChild />,
   },
   {
     index: 15,
-    Label: "Family Composition",
+    Label: (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Ficon} alt="Ficon" />
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Family Composition
+        </span>
+      </Box>
+    ),
     title: "Child Family & Relatives",
     component: <ChildFamilyRelatives />,
   },
   {
     index: 16,
-    Label: "Other Documents",
+    Label: (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Oicon} alt="Oicon" />
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Other Documents
+        </span>
+      </Box>
+    ),
     title: "Additional Documents",
     component: <AdditionalDocuments />,
   },
   {
     index: 17,
-    Label: "Other Documents",
-    title: "Agency Detail",
+    Label: (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          gap: "3px",
+          mt: "5px",
+          mb: "3px",
+        }}
+      >
+        <Image src={Aicon} alt="Aicon" />
+        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+          Agency Detail
+        </span>
+      </Box>
+    ),
+    title: "Agency Information",
     component: <AgencyInfo />,
   },
 ];
-
-// export const TABSDATAARRY = [
-//   {
-//     label: "About The Child",
-//     tabsArray: [
-//       {
-//         index: 0,
-//         title: "Personal Info",
-//         component: <PersonalInfo />,
-//       },
-//       {
-//         index: 1,
-//         title: "Child Wishes & feeling",
-//         component: <ChildInfoFeeling />,
-//       },
-//       {
-//         index: 2,
-//         title: "Supporting Evidence ",
-//         component: <SupportingEvidence />,
-//       },
-//     ],
-//   },
-// ];

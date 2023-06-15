@@ -2,6 +2,7 @@ import React, { ReactNode, SyntheticEvent, useState, Children } from "react";
 import { Box, Card, Grid, Tab, Tabs, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useTheme } from "@mui/material";
+import { useChildInfoTabs } from "./useChildInfoTabs";
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
@@ -13,13 +14,9 @@ export default function ChildInfoTabs({
   children,
   ...other
 }: IVERTICALTABSPROPS) {
-  const [value, setValue] = useState(0);
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  const { value, setValue, handleChange } = useChildInfoTabs();
 
   const theme = useTheme();
-  console.log("children", children);
   const arrayChildren = Children.toArray(children);
   return (
     <Grid container spacing={2} sx={styles.container}>
@@ -56,7 +53,7 @@ export default function ChildInfoTabs({
                 wrapped
                 key={item?.title}
                 label={
-                  <Box>
+                  <>
                     <Box
                       sx={{
                         color: "black",
@@ -78,7 +75,7 @@ export default function ChildInfoTabs({
                     >
                       <ArrowRightIcon /> <span>{item?.title}</span>
                     </Box>
-                  </Box>
+                  </>
                 }
               />
             ))}
@@ -137,7 +134,7 @@ const styles = {
     overflow: "auto",
     borderRadius: "10px",
     boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)",
-    padding: "20px",
+    padding: "40px",
   },
 
   title: {

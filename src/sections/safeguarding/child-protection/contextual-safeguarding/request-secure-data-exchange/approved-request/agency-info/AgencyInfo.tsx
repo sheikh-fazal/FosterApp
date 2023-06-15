@@ -31,6 +31,19 @@ const AgencyInfo = () => {
           <Grid item xs={12}>
             <Button
               sx={{
+                backgroundColor: "#F6830F",
+                "&:hover": {
+                  backgroundColor: "#F6830F",
+                },
+                mr: 2,
+              }}
+              type="submit"
+              variant="contained"
+            >
+              Back
+            </Button>
+            <Button
+              sx={{
                 backgroundColor: "#23183D",
                 "&:hover": {
                   backgroundColor: "#23183D",
@@ -44,8 +57,8 @@ const AgencyInfo = () => {
             </Button>
 
             <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
+              <Button type="submit" variant="contained">
+                Submit
               </Button>
             </Link>
           </Grid>

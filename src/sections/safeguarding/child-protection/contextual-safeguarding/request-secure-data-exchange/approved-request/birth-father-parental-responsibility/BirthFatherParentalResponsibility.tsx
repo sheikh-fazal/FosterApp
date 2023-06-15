@@ -16,9 +16,6 @@ const BirthFatherParentalResponsibility = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ padding: "0.8rem" }}>
-        <Box sx={{ paddingBottom: "2rem", fontWeight: 600, fontSize: "18px" }}>
-          Personal Info
-        </Box>
         <Grid container columnSpacing={4}>
           {BirthFatherParental?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>

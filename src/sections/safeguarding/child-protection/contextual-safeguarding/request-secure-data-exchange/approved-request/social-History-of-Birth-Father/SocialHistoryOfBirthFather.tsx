@@ -1,11 +1,11 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import dayjs from "dayjs";
-import { useSocialHistoryBirthMother } from "./useSocialHistoryBirthMother";
+import { useSocialHistoryOfBirthFather } from "./useSocialHistoryOfBirthFather";
 
-const SocialHistoryBirthMother = () => {
+const SocialHistoryOfBirthFather = () => {
   const { methods, handleSubmit, onSubmit, route } =
-    useSocialHistoryBirthMother();
+    useSocialHistoryOfBirthFather();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -43,4 +43,4 @@ const SocialHistoryBirthMother = () => {
   );
 };
 
-export default SocialHistoryBirthMother;
+export default SocialHistoryOfBirthFather;
