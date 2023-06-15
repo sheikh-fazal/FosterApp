@@ -21,7 +21,7 @@ export const cardsData = [
     id: 3,
     icon: icon3,
     title: "Completed Audits",
-    link: "",
+    link: "/audits/completed-audits",
     bgColor: "#DC3545",
   },
 ];

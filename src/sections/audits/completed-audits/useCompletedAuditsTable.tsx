@@ -5,7 +5,7 @@ import ActionIcon from "../../../assets/img/audits/report-icon.png";
 
 // =================================================================
 
-export const useAssignedAuditsTable = () => {
+export const useCompletedAuditsTable = () => {
   const router = useRouter();
   const theme: any = useTheme();
 
@@ -22,6 +22,13 @@ export const useAssignedAuditsTable = () => {
       id: "name",
       cell: (info: any) => info.getValue(),
       header: () => <>Name</>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.role,
+      id: "role",
+      cell: (info: any) => info.getValue(),
+      header: () => <>Role</>,
       isSortable: true,
     },
     {
@@ -55,7 +62,7 @@ export const useAssignedAuditsTable = () => {
     {
       id: "reports",
       cell: (info: any) => (
-        <IconButton onClick={() => router.push("/audits/assigned-audits/review-form")}>
+        <IconButton>
           <Image src={ActionIcon} alt="icon" />
         </IconButton>
       ),
