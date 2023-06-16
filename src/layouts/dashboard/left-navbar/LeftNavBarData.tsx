@@ -121,7 +121,7 @@ export const NAV_LINKS = [
   {
     text: "Advocacy",
     img: <GavelOutlinedIcon />,
-    link: "",
+    link: "/advocacy",
   },
   {
     text: "Compliance Management",
