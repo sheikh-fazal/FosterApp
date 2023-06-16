@@ -11,6 +11,7 @@ export const ClaDocumentationForm = (props: any) => {
 
   const [selectForm, setSelectForm] = useState(defaultFormType);
 
+
   const handleSelectChange = (event: any) => {
     setSelectForm(event.target.value);
   };

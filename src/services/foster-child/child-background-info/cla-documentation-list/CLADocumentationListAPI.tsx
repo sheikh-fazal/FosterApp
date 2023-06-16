@@ -1,4 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const claDocumentationApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
@@ -8,10 +9,6 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
         method: "GET",
         params: search,
       }),
-      providesTags: ["CLA_DOCUMENTATION_LIST"],
-    }),
-    getClaDocumentationById: builder.query({
-      query: (id: any) => `/foster-child/cla/${id}`,
       providesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
     postPepClaDocumentationList: builder.mutation({
@@ -30,6 +27,18 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
+    getClaDocumentationById: builder.query({
+      query: (id: any) => `/foster-child/cla/${id}`,
+      transformResponse: (response: any) => {
+        parseDatesToTimeStampByKey(response.data);
+        return response;
+      },
+      providesTags: ["CLA_DOCUMENTATION_LIST"],
+    }),
+    // getClaDocumentationById: builder.query({
+    //   query: (id: any) => `/foster-child/cla/${id}`,
+    //   providesTags: ["CLA_DOCUMENTATION_LIST"],
+    // }),
     deleteClaDocumentationList: builder.mutation({
       query: (id: any) => ({
         url: `foster-child/cla/${id}`,

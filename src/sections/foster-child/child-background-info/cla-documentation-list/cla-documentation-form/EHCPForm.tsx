@@ -6,15 +6,15 @@ import { EHCPFormData } from "..";
 import { useEhcpForm } from "./useEhcpForm";
 
 export default function EHCPForm(props: any) {
-
-const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } = useEhcpForm(props);
+  const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
+    useEhcpForm(props);
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
-          {EHCPFormData?.map((item: any) => (
-            <Grid item xs={12} md={item?.md} key={item?.id}>
+          {EHCPFormData?.map((item: any, index: any) => (
+            <Grid item xs={12} md={item?.md} key={index}>
               <item.component
                 {...item.componentProps}
                 disabled={disabled}

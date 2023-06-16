@@ -55,7 +55,11 @@ export default function ClaDocumentationListTable() {
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
             type="edit"
-            onClicked={() => router.push(`?${info.getValue()}`)}
+            onClicked={() =>
+              router.push(
+                `/foster-child/child-background-info/cla-documentation/${info.getValue()}/edit`
+              )
+            }
           />
           <DeletePrompt
             onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
@@ -64,7 +68,7 @@ export default function ClaDocumentationListTable() {
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/child-background-info/cla-documentation/${info?.row?.original?.id}?action=view`
+                `/foster-child/child-background-info/cla-documentation/${info.getValue()}`
               )
             }
           />

@@ -10,17 +10,16 @@ import {
 import { usePepFom } from "./usePepFom";
 
 export default function PEPForm(props: any) {
-
-    // Pep Form Custom Hook
-    const { methods,handleSubmit, onSubmit, disabled, router, isSubmitting } = usePepFom(props);
- 
+  // Pep Form Custom Hook
+  const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
+    usePepFom(props);
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
-          {PEPFormData?.map((item: any) => (
-            <Grid item xs={12} md={item?.md} key={item?.id}>
+          {PEPFormData?.map((item: any, index) => (
+            <Grid item xs={12} md={item?.md} key={index}>
               <item.component
                 {...item.componentProps}
                 disabled={disabled}
@@ -45,7 +44,8 @@ export default function PEPForm(props: any) {
               sx={{ marginRight: "1rem" }}
               type="submit"
               variant="contained"
-              loading={isSubmitting}>
+              loading={isSubmitting}
+            >
               Submit
             </LoadingButton>
             <LoadingButton
@@ -56,7 +56,8 @@ export default function PEPForm(props: any) {
               }}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
-              variant="contained">
+              variant="contained"
+            >
               back
             </LoadingButton>
           </Box>
@@ -70,14 +71,13 @@ export function TargetsAndObjectives() {
   return (
     <Grid container columnSpacing={4}>
       <Grid item xs={12} md={6}>
-        {TargetsAndObjectivesData?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id}>
+        {TargetsAndObjectivesData?.map((item: any, index) => (
+          <Grid item xs={12} md={item?.md} key={index}>
             <item.component {...item.componentProps} size={"small"}>
               {item?.heading}
               <Box
-                sx={{ display: "flex", alignItems: "top", flexWrap: "nowrap" }}
-              >
-                <h4> {item?.paraTitle}</h4>
+                sx={{ display: "flex", alignItems: "top", flexWrap: "nowrap" }}>
+                <span> {item?.paraTitle}</span>
                 <Box sx={{ mb: 2 }}>{item?.para}</Box>
               </Box>
             </item.component>
@@ -85,8 +85,8 @@ export function TargetsAndObjectives() {
         ))}
       </Grid>
       <Grid item xs={12} md={6}>
-        {StrategiesAndEvidence?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id}>
+        {StrategiesAndEvidence?.map((item: any, index) => (
+          <Grid item xs={12} md={item?.md} key={index}>
             <item.component {...item.componentProps} size={"small"}>
               {item?.heading}
               <li>{item?.para}</li>
