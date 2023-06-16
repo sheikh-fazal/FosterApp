@@ -8,16 +8,11 @@ import { useForm } from "react-hook-form";
 import { formSchema, defaultValues } from "./index";
 import {
   useDeleteStatutoryUploadDocumentsMutation,
-  useLazySingleStatutoryUploadDocumentsQuery,
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 export const useUploadDocuments = () => {
-  const [isLoading, setIsLoading] = React.useState(true);
   const [search, setSearch] = React.useState("");
-  //API For Getting Single Document Details
-  const [getSingleAllegetionDocument]: any =
-    useLazySingleStatutoryUploadDocumentsQuery();
   const router = useRouter();
   const { id, action }: any = router.query;
   const [open, setOpen] = React.useState(false);
@@ -34,7 +29,7 @@ export const useUploadDocuments = () => {
     isSuccess,
   }: any = useStatutoryUploadDocumentListQuery({ search: search });
   //API For Post Documents
-  const [postAllegationDetails]: any =
+  const [postCarInsuranceDetails]: any =
     usePostStatutoryUploadDocumentsMutation();
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
@@ -58,16 +53,7 @@ export const useUploadDocuments = () => {
   const meta = data?.meta;
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: async () => {
-      const { data, isError } = await getSingleAllegetionDocument(id, true);
-      setIsLoading(false);
-      if (isError) {
-        enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
-      }
-      const responseData = { ...data.data };
-      return responseData;
-    },
+    defaultValues,
   });
   const {
     handleSubmit,
@@ -76,7 +62,6 @@ export const useUploadDocuments = () => {
   } = methods;
   //Submit Function To Submit Form Data
   const handleSubmitForm = async (data: any) => {
-    console.log("data", data);
     const formData = new FormData();
     formData.append("formName", "CAR_INSURANCE");
     formData.append("recordId", id);
@@ -85,7 +70,7 @@ export const useUploadDocuments = () => {
     formData.append("documentPassword", data.documentPassword);
     formData.append("file", data.file);
     try {
-      await postAllegationDetails(formData).unwrap();
+      await postCarInsuranceDetails(formData).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });
@@ -109,7 +94,6 @@ export const useUploadDocuments = () => {
     statutoryUploadDocuments,
     id,
     meta,
-    postAllegationDetails,
     theme,
     action,
     listDeleteHandler,

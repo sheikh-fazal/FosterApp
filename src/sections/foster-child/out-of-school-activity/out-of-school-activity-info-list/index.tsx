@@ -1,7 +1,6 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-
 export const columnsOutSchoolActivityTable = (
   handleDelete: any,
   router: any,

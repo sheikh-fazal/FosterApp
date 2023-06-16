@@ -253,4 +253,5 @@ export const FormSchema = Yup.object().shape({
   nkAddress: Yup.string().required("required"),
   nkTelephone: Yup.string().required("required"),
   date: Yup.date().required("required"),
+  signature: Yup.mixed().nullable().required("Signature is required"),
 });

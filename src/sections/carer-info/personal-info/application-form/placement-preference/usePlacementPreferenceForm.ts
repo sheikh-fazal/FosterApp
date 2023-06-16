@@ -2,8 +2,13 @@ import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
+import { useUpdatePlacementPreferenceMutation } from "@root/services/carer-info/personal-info/application-form/PlacementPreferenceApi";
 
-export const usePlacementPreferenceForm = (data: any) => {
+export const usePlacementPreferenceForm = (
+  data: any,
+  apllicationFormid: any
+) => {
   const theme: any = useTheme();
 
   const methods: any = useForm({
@@ -20,19 +25,22 @@ export const usePlacementPreferenceForm = (data: any) => {
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
+  let [updatePlacementPreference, { isLoading }] =
+    useUpdatePlacementPreferenceMutation();
 
   const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-        },
-        null,
-        2
-      )
-    );
-    reset();
+    try {
+      const res: any = await updatePlacementPreference({
+        formData: data,
+        id: apllicationFormid,
+      }).unwrap();
+      if (res.data) {
+        enqueueSnackbar("Record Updated Successfully", { variant: "success" });
+      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   return {
@@ -42,5 +50,6 @@ export const usePlacementPreferenceForm = (data: any) => {
     isSubmitting,
     isDirty,
     theme,
+    isLoading,
   };
 };

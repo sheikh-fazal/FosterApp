@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Grid, Button } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
@@ -52,7 +51,6 @@ const MedicalAdvisorForm = (props: any) => {
               </Grid>
             );
           })}
-
           <Grid
             xs={12}
             sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}

@@ -234,7 +234,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 1,
         title: "Safe Care Policy",
-        link: "/foster-child/other-information/safe-care-policy",
+        link: "/foster-child/other-information/safe-care-policy-list",
       },
       {
         id: 2,
