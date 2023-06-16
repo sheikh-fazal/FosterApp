@@ -21,7 +21,7 @@ export const advocacyDashboardCardsData = [
     id: 3,
     icon: AdvocateDirectoryImg,
     text: "Advocate Directory",
-    link: "/advocacy/carer-advocacy",
+    link: "/advocacy/advocate-directory",
     bgColor: "#EB9411"
   },
 ]

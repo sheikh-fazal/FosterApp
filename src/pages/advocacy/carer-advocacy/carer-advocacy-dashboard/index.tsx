@@ -2,10 +2,10 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import CarerAdvocacy from "@root/sections/advocacy/carer-advocacy/CarerAdvocacy";
+import CarerAdvocacyDashboard from "@root/sections/advocacy/carer-advocacy/carer-advocacy-dashboard/CarerAdvocacyDashboard";
 
-// ===================================================================
-const PAGE_TILE = "Carer List";
+// ====================================================================
+const PAGE_TILE = "Carer Advocacy";
 
 Panel.getLayout = function getLayout(page: any) {
   return (
@@ -17,11 +17,11 @@ Panel.getLayout = function getLayout(page: any) {
           href: "/",
         },
         {
-          name: "Dashboard",
+          name: "Advocacy Dashboard",
           href: "/",
         },
         {
-          name: "Advocacy",
+          name: "Carer List",
         },
       ]}
       title={PAGE_TILE}
@@ -34,7 +34,7 @@ Panel.getLayout = function getLayout(page: any) {
 export default function Panel() {
   return (
     <Page title={PAGE_TILE}>
-      <CarerAdvocacy />
+      <CarerAdvocacyDashboard />
     </Page>
   );
 }
