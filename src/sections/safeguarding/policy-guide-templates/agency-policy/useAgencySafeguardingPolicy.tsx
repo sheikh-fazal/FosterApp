@@ -110,7 +110,7 @@ export const useAgencySafeguardingPolicy = () => {
     const {
         reset,
         handleSubmit,
-        formState: { isSubmitting, isDirty },
+        formState: { isSubmitting },
     } = methods;
 
     const onSubmit = async (data: any) => {
@@ -134,7 +134,7 @@ export const useAgencySafeguardingPolicy = () => {
         isDeleteModalOpen,
         tableHeaderRefTwo,
         handleClose,
-        isSubmitting, isDirty, methods, handleSubmit, onSubmit,
+        isSubmitting, methods, handleSubmit, onSubmit,
 
     };
 };

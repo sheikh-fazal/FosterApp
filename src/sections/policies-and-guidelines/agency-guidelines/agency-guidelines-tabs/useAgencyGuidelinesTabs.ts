@@ -6,8 +6,11 @@ export const useAgencyGuidelinesTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } = usePolicyVerticalAddNew();
   const [isUploadDocumentOpenModal, setIsUploadDocumentOpenModal] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
+  const [actionView, setActionView] = useState<any>()
   const [count, setCount] = useState(0);
   const route = useRouter();
+
+  console.log("actionView",actionView)
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -22,16 +25,6 @@ export const useAgencyGuidelinesTabs = () => {
     }
   };
 
-  const handleAction = (action: any, id: any) => {
-    switch (action) {
-      case "delete":
-        setIsDeleteOpenModal(true);
-        break;
-      default:
-        break;
-    }
-    console.log(id);
-  };
   return {
     currentTab,
     setCurrentTab,
@@ -41,10 +34,10 @@ export const useAgencyGuidelinesTabs = () => {
     setCount,
     handleSubmit,
     handleUploadedSubmit,
-    handleAction,
     setIsUploadDocumentOpenModal,
     setIsDeleteOpenModal,
     count,
-    route
+    route,
+    actionView
   };
 };

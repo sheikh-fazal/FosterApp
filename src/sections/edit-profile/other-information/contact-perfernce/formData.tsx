@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  phone: true,
+  phone: false,
   whatsapp: false,
   sms: false,
   email: false,

@@ -16,11 +16,18 @@ export const usePolicyVerticalAddNew = () => {
     defaultValues: PolicyVerticalAddNewDefaultValues,
   });
 
+
   const { handleSubmit, reset } = methods;
 
   useEffect(() => (
     handleInputFields(currentPage.pathname === '/policies-and-guidelines/checklists/add')
   ), [currentPage.pathname]);
+
+  const selectedArray = [
+    { value: "Home Safety Checklist", label: "Home Safety Checklist" },
+    { value: "Foster Carer Checklist", label: "Foster Carer Checklist" },
+    { value: "General Data Protection Checklist", label: "General Data Protection Checklist" },
+  ]
 
   return {
     methods,
@@ -33,5 +40,6 @@ export const usePolicyVerticalAddNew = () => {
     reset,
     currentPage,
     route,
+    selectedArray
   };
 };

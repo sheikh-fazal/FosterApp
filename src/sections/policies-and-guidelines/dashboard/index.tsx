@@ -152,28 +152,28 @@ export const ExpandableCardsData = [
         img: ReminderAndNotificationsIcon,
         subData: [
             {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
+                title: 'Upload Handbook',
+                href: '/policies-and-guidelines/handbooks/handbooks-form',
+            },
+            {
+                title: 'Policy not Approved',
+                href: '/policies-and-guidelines'
+            },
+            {
+                title: 'Add Educational Policies',
+                href: '/policies-and-guidelines',
+            },
+            {
+                title: 'Complete Adding New Policy',
+                href: '/policies-and-guidelines'
+            },
+            {
+                title: 'eSignature of Approver Required',
+                href: '/policies-and-guidelines',
             },
             {
                 title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
-            },
-            {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
-            },
-            {
-                title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
-            },
-            {
-                title: 'Cyber Essentials',
-                href: '/policies-and-guidelines/cyber-essentials',
-            },
-            {
-                title: 'CheckLists',
-                href: '/policies-and-guidelines/checklists'
+                href: '/policies-and-guidelines'
             },
         ]
     },

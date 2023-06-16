@@ -22,7 +22,7 @@ export const getColumns = (parms: any) => {
     {
       accessorFn: (row: any) => row.experience,
       id: "exp",
-      cell: (info: any) => shortName(info.getValue()),
+      cell: (info: any) => shortName(info.getValue(), 20),
       header: "Experience",
       isSortable: false,
     },

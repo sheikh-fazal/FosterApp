@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
@@ -14,7 +15,7 @@ export const defaultValues = {
   address: "",
   phoneNumber: "",
   email: "",
-  childrenTogether: false,
+  childrenTogether: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -29,7 +30,7 @@ export const FormSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .required("Telephone is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   childrenTogether: Yup.string().required("Field is required"),
 });
@@ -100,7 +101,12 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setExPartnerData: any) => {
+export const columns = (
+  changeView: any,
+  setExPartnerData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
   return [
     {
       accessorFn: (row: any) => `${row.firstName} ${row.lastName}`,
@@ -133,6 +139,20 @@ export const columns = (changeView: any, setExPartnerData: any) => {
               changeView("view");
             }}
           />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setExPartnerData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,

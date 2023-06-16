@@ -52,6 +52,7 @@ export default function AssessmentStageOne() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
+                  color:'black'
                 }}
               />
               <InformationDialogbox
@@ -69,6 +70,7 @@ export default function AssessmentStageOne() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
+                  color:'black'
                 }}
               >
                 {ele?.text}

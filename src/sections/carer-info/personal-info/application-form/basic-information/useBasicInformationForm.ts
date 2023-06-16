@@ -5,8 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
+import { useUpdateBasicInformationMutation } from "@root/services/carer-info/personal-info/application-form/BasicInformationApi";
 
-export const useBasicInformationForm = (data: any) => {
+export const useBasicInformationForm = (data: any, id: any) => {
   const theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
@@ -23,31 +25,27 @@ export const useBasicInformationForm = (data: any) => {
     watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-
-  useEffect(() => {
-    const subscription = watch((values: any) => {
-      const newAge = dayjs().diff(dayjs(values["dob"]), "y");
-      values.age !== newAge &&
-        setValue("age", dayjs().diff(dayjs(values["dob"]), "y"));
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, setValue]);
-
+  const [updateBasicInformation, { isLoading }] =
+    useUpdateBasicInformationMutation();
   const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log("data", data);
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-          startDate: data.startDate && fTimestamp(data.startDate),
-          endDate: data.endDate && fTimestamp(data.endDate),
-        },
-        null,
-        2
-      )
-    );
-    reset();
+    console.log(data);
+    var form_data = new FormData();
+    for (var key in data) {
+      form_data.append(key, data[key]);
+    }
+
+    try {
+      const res: any = await updateBasicInformation({
+        formData: form_data,
+        id: id,
+      }).unwrap();
+      if (res.data) {
+        enqueueSnackbar("Record Updated Successfully", { variant: "success" });
+      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   return {

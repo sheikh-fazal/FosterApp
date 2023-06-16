@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import EditProfileHeader from "../../edit-profile-header/EditProfileHeader";
-import PersonalDetailsForm from "./personalDetailsForm/PersonalDetailsForm";
+import PersonalDetailsForm from "./personalDetailsForm/PersonalDetailForm";
 
 const PersonalDetails = () => {
   return (

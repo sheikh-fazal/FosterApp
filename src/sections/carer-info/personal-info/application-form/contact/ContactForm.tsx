@@ -8,13 +8,23 @@ import { FormProvider } from "@root/components/hook-form";
 import { formData } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useContactForm } from "./useContactForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function ContactForm(props: any) {
   const { disabled, data, apllicationFormid } = props;
 
-  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useContactForm(data, apllicationFormid);
-
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    theme,
+    isLoading,
+  } = useContactForm(data, apllicationFormid);
+  if (isLoading) {
+    return <SkeletonFormdata />;
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
