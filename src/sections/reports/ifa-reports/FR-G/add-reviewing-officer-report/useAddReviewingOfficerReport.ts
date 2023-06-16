@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddReviewingOfficerReport = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-G');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-G-reviewing-officer-report');
 
 
   const methods: any = useForm({

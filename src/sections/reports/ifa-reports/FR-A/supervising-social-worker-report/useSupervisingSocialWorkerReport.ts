@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const useSupervisingSocialWorkerReport = () => {
-  const path = '/reports/ifa-reports/FR-A';
+  const path = '/reports/ifa-reports/FR-A-supervising-social-worker-report';
   const router = useRouter();
 
   const [modalData, setModalData] = useState<any>({ open: false, data: {} });

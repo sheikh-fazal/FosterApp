@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddChildArrangement = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-D1');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-F4-parent-in-parent-and-child-arrangement');
 
 
   const methods: any = useForm({
