@@ -108,78 +108,122 @@ export const REPORTTABSDATAARRY = [
   },
   {
     index: 1,
+
     title: "Carer Reports",
+
     background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%);",
+
     innerDataArray: [
       {
         id: 1,
+
         title: "DIARY RECORDINGS BY CARER",
-        link: "/reports/carer-reports/diary-recordings",
+
+        link: "/reports/carer-reports/diary-recordings-carer",
       },
+
       {
         id: 2,
+
         title: "ACTIVE CARERS CONTACTS REPORTS",
-        link: "/reports/carer-reports/active-carers-contacts",
+
+        link: "/reports/carer-reports/active-carers-contacts-reports",
       },
+
       {
         id: 3,
+
         title: "PARENT AND CHILD REPORTS",
-        link: "/reports/carer-reports/parent-and-child",
+
+        link: "/reports/carer-reports/parent-and-child-reports",
       },
+
       {
         id: 4,
+
         title: "PERMANENT FOSTERING REPORTS",
-        link: "/reports/carer-reports/permanent-fostering",
+
+        link: "/reports/carer-reports/permanent-fostering-reports",
       },
+
       {
         id: 5,
+
         title: "SECOND OPINION REPORTS",
-        link: "/reports/carer-reports/second-opinion",
+
+        link: "/reports/carer-reports/second-opinion-reports",
       },
+
       {
         id: 6,
+
         title: "ANNUAL REVIEW DATE REPORTS",
-        link: "/reports/carer-reports/annual-review-date",
+
+        link: "/reports/carer-reports/annual-review-date-reports",
       },
+
       {
         id: 7,
+
         title: "FOSTER CARER RECORD OF CRITICAL INCIDENTS REPORTS",
-        link: "/reports/carer-reports/record-critical-incidents",
+
+        link: "/reports/carer-reports/foster-carer-record-critical-incidents",
       },
+
       {
         id: 8,
+
         title: "CARER PLACEMENT REPORTS",
-        link: "/reports/carer-reports/carer-placement",
+
+        link: "/reports/carer-reports/carer-placement-reports",
       },
+
       {
         id: 9,
+
         title: "CARER IMMUNISATION DETAIL REPORTS",
-        link: "/reports/carer-reports/carer-immunisation-detail",
+
+        link: "/reports/carer-reports/carer-immunisation-detail-reports",
       },
+
       {
         id: 10,
+
         title: "CARER REFERENCE CHECKS REPORTS",
-        link: "/reports/carer-reports/carer-reference-checks",
+
+        link: "/reports/carer-reports/carer-reference-checks-reports",
       },
+
       {
         id: 11,
+
         title: "CARER REGISTER REPORTS",
-        link: "/reports/carer-reports/carer-register",
+
+        link: "/reports/carer-reports/carer-register-reports",
       },
+
       {
         id: 12,
+
         title: "CARER TRAINING REPORTS",
-        link: "/reports/carer-reports/carer-training",
+
+        link: "/reports/carer-reports/carer-training-reports",
       },
+
       {
         id: 13,
+
         title: "CARER VACANCY REPORTS",
-        link: "/reports/carer-reports/carer-vacancy",
+
+        link: "/reports/carer-reports/carer-vacancy-reports",
       },
+
       {
         id: 14,
+
         title: "DAY LOG EVENTS REPORTS",
-        link: "/reports/carer-reports/day-log-events",
+
+        link: "/reports/carer-reports/day-log-events-reports",
       },
     ],
   },
