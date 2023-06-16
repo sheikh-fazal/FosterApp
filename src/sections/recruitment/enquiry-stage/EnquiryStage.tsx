@@ -141,7 +141,7 @@ export default function EnquiryStage() {
               {isLoading && isFetching && (
                 <Skeleton variant="rounded" width={200} height={50} />
               )}
-              {isSuccess && (
+              {isSuccess && !isUpdating && (
                 <RecruitmentStatusDropdown
                   id={"4f7512fb-2916-451b-8240-97f529ded73d"}
                   status={ele?.status}

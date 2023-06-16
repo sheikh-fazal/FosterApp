@@ -47,7 +47,7 @@ export const useEnquiryStage:any = () => {
     isError,
     isFetching,
     isSuccess,
-    // isUpdating:false,
+    isUpdating:false,
     // hasUpdated:false,
     setEnquiryStageData,
   };
