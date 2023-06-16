@@ -31,7 +31,7 @@ export const FormSchema = Yup.object().shape({
   noticePeriod: Yup.string().required("Field is required"),
   disciplinaryCareer: Yup.string().required("Field is required"),
   suitableDate: Yup.date().required("Field is required"),
-  email: Yup.string().required("Email is required").email("Invalid Email"),
+  email: Yup.string().required("Field is required").email("Invalid Email"),
 });
 export const formData = [
   {
@@ -60,7 +60,7 @@ export const formData = [
     component: RHFTextField,
   },
   {
-    gridLength: 6,
+    gridLength: 12,
     otherOptions: {
       name: "durationOfEmploymentAndPost",
       label: "Duration of Employment and Post",
@@ -72,7 +72,7 @@ export const formData = [
     component: RHFTextField,
   },
   {
-    gridLength: 12,
+    gridLength: 6,
     otherOptions: {
       name: "phone",
       label: "Phone",
@@ -149,6 +149,7 @@ export const columns = (
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",

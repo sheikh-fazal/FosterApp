@@ -55,7 +55,6 @@ export const useCarerAddressHistoryForms = (
             variant: "success",
           });
           // router.push("/carer-info/personal-info/carer-address-history");
-          // reset();
         })
         .catch((error) => {
           const errMsg = error?.data?.message;

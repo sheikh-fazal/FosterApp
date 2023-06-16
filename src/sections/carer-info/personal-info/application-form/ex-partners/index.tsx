@@ -19,9 +19,9 @@ export const FormSchema = Yup.object().shape({
   relationShipType: Yup.string().required("Field is required"),
   firstName: Yup.string().required("Field is required"),
   lastName: Yup.string().required("Field is required"),
-  address: Yup.string().required("Address is required"),
-  phoneNumber: Yup.string().required("Telephone is required"),
-  email: Yup.string().required("Email is required").email("Invalid Email"),
+  address: Yup.string().required("Field is required"),
+  phoneNumber: Yup.string().required("Field is required"),
+  email: Yup.string().required("Field is required").email("Invalid Email"),
   childrenTogether: Yup.string().required("Field is required"),
 });
 export const formData = [
@@ -117,6 +117,7 @@ export const columns = (
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",

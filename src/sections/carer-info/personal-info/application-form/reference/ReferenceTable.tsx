@@ -43,7 +43,7 @@ export default function Reference({ apllicationFormid, role }: any) {
           <TableHeader
             disabled={isLoading}
             ref={tableHeaderRef}
-            title="Existing Ex-References(s) Details"
+            title="Existing Reference(s) Details"
             showAddBtn={role == "foster-carer" ? false : true}
             onAdd={() => {
               changeView("add");

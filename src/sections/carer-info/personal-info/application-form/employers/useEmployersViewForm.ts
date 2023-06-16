@@ -73,9 +73,8 @@ export const useEmployersViewForm = (props: any) => {
           reset();
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
     if (Formtype == "edit") {

@@ -41,7 +41,7 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
         <>
           <TableHeader
             ref={tableHeaderRef}
-            title="Existing Ex-Partners(s) Details"
+            title="Existing Ex-Partner(s) Details"
             showAddBtn={role == "foster-carer" ? false : true}
             onAdd={() => {
               changeView("add");

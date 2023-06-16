@@ -34,8 +34,10 @@ export const useContactForm = (data: any, apllicationFormid: any) => {
         });
         enqueueSnackbar("Record Updated Successfully", { variant: "success" });
       }
-    } catch (error) {}
-    // console.log("data", formData);
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   return {

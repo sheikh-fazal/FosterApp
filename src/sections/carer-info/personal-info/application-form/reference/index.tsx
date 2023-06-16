@@ -96,6 +96,7 @@ export const columns = (
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",

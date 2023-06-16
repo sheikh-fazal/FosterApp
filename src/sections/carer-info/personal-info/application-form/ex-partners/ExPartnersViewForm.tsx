@@ -49,7 +49,7 @@ export default function ExPartnersViewForm(props: any) {
         {props.viewData == "view" ? (
           <LoadingButton
             onClick={() => {
-              props.changeView(null);
+              changeView(null);
             }}
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
@@ -70,7 +70,7 @@ export default function ExPartnersViewForm(props: any) {
             </LoadingButton>
             <LoadingButton
               onClick={() => {
-                props.changeView(null);
+                changeView(null);
               }}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
