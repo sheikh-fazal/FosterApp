@@ -6,7 +6,11 @@ export const employerApi = baseAPI.injectEndpoints({
       query: (params: any) => "/application-form/employer-detail",
     }),
     getEmployerDetails: builder.query({
-      query: (id: any) => `/application-form/employer-details/${id}`,
+      query: ({ params, id }: any) => ({
+        url: `/application-form/employer-details/${id}`,
+        method: "GET",
+        params,
+      }),
       providesTags: ["POST_EMPLOYEE", "EDIT_EMPLOYEE"],
     }),
     postEmployerDetail: builder.mutation({

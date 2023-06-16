@@ -31,14 +31,14 @@ export const useReferenceViewForm = (props: any) => {
   } = methods;
 
   const ApiCall = async (data: any, Formtype: any) => {
-    let { firstName, lastName, email, address, middleName, phoneNumber } = data;
+    let { firstName, lastName, email, address, middleName, phoneNum } = data;
     let formData = {
       firstName,
       middleName,
       lastName,
       address,
       email,
-      phoneNumber,
+      phoneNum,
     };
     if (Formtype == "add") {
       try {

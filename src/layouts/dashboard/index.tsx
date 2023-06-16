@@ -26,7 +26,7 @@ export default function DashboardLayout({ children, ...other }: any) {
     <Box sx={{ width: "100%" }}>
       <Box sx={styles.mainBoxStyles}>
         {/* leftnavabr */}
-        <LeftNavbar open={open} />
+        <LeftNavbar handleDrawer={handleDrawer} open={open} />
         {/* topnavbar */}
 
         <Box

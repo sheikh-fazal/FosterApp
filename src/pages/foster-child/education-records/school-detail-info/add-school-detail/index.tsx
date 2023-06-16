@@ -37,6 +37,8 @@ AddSchoolDetail.getLayout = function getLayout(page: any) {
   );
 };
 export default function AddSchoolDetail() {
+
+
   return (
     <HorizaontalTabs tabsDataArray={["School Detail Info", "Upload Document"]}>
       <SchoolDetailInfoForm />

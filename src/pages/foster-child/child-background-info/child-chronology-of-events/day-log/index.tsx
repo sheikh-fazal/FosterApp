@@ -35,10 +35,10 @@ export default function DayLog() {
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
         tableData={data?.data?.foster_child_document}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
         column={["formName", "documentType", "documentDate", "personUploaded", "documentPassword"]}
         modalData={() => {}}
         onPageChange={(page: any) => console.log("parent log", page)}

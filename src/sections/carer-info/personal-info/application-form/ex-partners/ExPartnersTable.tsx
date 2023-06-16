@@ -23,6 +23,10 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
   } = useExPartnersTable(apllicationFormid, role);
 
   return (
@@ -46,13 +50,11 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
               changeView("add");
             }}
             searchKey="search"
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
-            }}
+            onChanged={headerChangeHandler}
           />
           <CustomTable
             showSerialNo
-            data={data?.data}
+            data={data?.data?.application_form_expartners}
             columns={columns(
               changeView,
               setExPartnerData,
@@ -63,15 +65,10 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
             isFetching={isFetching}
             isError={isError}
             isSuccess={isSuccess}
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />{" "}
         </>
       )}

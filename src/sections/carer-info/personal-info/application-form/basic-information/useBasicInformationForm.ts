@@ -31,11 +31,8 @@ export const useBasicInformationForm = (data: any, id: any) => {
     console.log(data);
     var form_data = new FormData();
     for (var key in data) {
-      if (key !== "media") {
-        form_data.append(key, data[key]);
-      }
+      form_data.append(key, data[key]);
     }
-    form_data.append("image", data?.media);
 
     try {
       const res: any = await updateBasicInformation({
