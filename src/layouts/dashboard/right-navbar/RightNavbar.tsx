@@ -338,7 +338,7 @@ const openedMixintwo = (theme: Theme): CSSObject => ({
 });
 
 const closedMixintwo = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("transform", {
+  transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
   }),

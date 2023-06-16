@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { FosterCarerListTable } from "@root/sections/foster-carer";
 import FosterChildListTable from "@root/sections/foster-child-list/FosterChildListTable";
+import FosterChildTasks from "@root/sections/foster-child-list/FosterChildTasks";
 
 // Constants
 const BREADCRUMBS = [
@@ -42,6 +43,9 @@ export default function FosterChildLists() {
   return (
     <Box>
       <FosterChildListTable />
+      <Box sx={{ mt: 2 }}>
+        <FosterChildTasks />
+      </Box>
     </Box>
   );
 }

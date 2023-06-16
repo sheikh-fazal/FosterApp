@@ -61,7 +61,7 @@ export const NAV_LINKS = [
     id: 6,
     text: "Foster Child",
     img: <Diversity3OutlinedIcon />,
-    link: "",
+    link: "/foster-child-lists",
   },
   {
     id: 7,

@@ -39,7 +39,7 @@ function BehavioralInfoForm(props: any) {
   };
 
   const theme: any = useTheme();
-  console.log(errors);
+
   return (
     <Paper elevation={2} sx={{ borderRadius: 2 }}>
       <Box sx={{ px: 1, py: 2 }}>

@@ -1,14 +1,12 @@
 import { Box, Grid, Paper, Button } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
-import router from "next/router";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
 import Image from "next/image";
+import router from "next/router";
 
-const activepath = "";
+const activepath = "/foster-child";
 const FosterChildListTable = () => {
   const columns = [
     // {
@@ -29,9 +27,9 @@ const FosterChildListTable = () => {
           gap={1}
         >
           <Image
-            src={info.row.original.userProfile}
-            height={33}
-            width={33}
+            src={info.row.original.img}
+            height={40}
+            width={40}
             alt="icon"
           />
         </Box>
@@ -79,7 +77,16 @@ const FosterChildListTable = () => {
       id: "details",
       cell: (info: any) => (
         <Box>
-          <Button variant="contained" color="primary">
+          <Button
+            onClick={() => {
+              router.push({
+                pathname: activepath,
+                query: { fosterChildId: "63e5eefe677b0d581e40682a" },
+              });
+            }}
+            variant="contained"
+            color="primary"
+          >
             view Details
           </Button>
         </Box>

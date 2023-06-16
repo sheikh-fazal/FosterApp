@@ -10,3 +10,12 @@ export const dummy = [
     areaOffice: "xyz",
   },
 ];
+export const dummyFosterChid = [
+  {
+    fosterChild: userProfile,
+    taskName: "Task 1",
+    priority: true,
+    childName: "Emily",
+    date: "Jan 12, 2019",
+  },
+];

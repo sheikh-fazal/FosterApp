@@ -6,11 +6,23 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { DummyData } from ".";
+import useBehavioralInfoTable from "./useBehavioralInfoTable";
 
 const activepath =
   "/foster-child/health-medical-history/behavioural-info/actions";
 
-function BehavioralInfoTable() {
+function BehavioralInfoTable(props: any) {
+  const { fosterChildId } = props;
+  const {
+    BehaviorInfoList,
+    BehaviorInfoListisLoading,
+    BehaviorInfoListisSuccess,
+    BehaviorInfoListisError,
+    BehaviorInfoListisFetching,
+  } = useBehavioralInfoTable({ fosterChildId: fosterChildId });
+
+  console.log(BehaviorInfoList, "BehaviorInfoList");
+
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,7 +32,7 @@ function BehavioralInfoTable() {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.overallBehavious,
+      accessorFn: (row: any) => row.overallBehaviour,
       id: "overallBehavious",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Overall Behavious (in Scale 1 to 10)</span>,
@@ -83,18 +95,18 @@ function BehavioralInfoTable() {
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={DummyData ?? []}
+                data={BehaviorInfoList?.data ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={BehaviorInfoListisLoading}
+                isFetching={BehaviorInfoListisFetching}
+                isError={BehaviorInfoListisError}
+                isSuccess={BehaviorInfoListisSuccess}
                 isPagination={true}
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}
