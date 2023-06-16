@@ -6,7 +6,7 @@ import { useContactForm } from "./useContactForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function ContactForm(props: any) {
-  const { disabled, data, apllicationFormid } = props;
+  const { disabled, data, applicationFormid } = props;
 
   const {
     methods,
@@ -16,7 +16,7 @@ export default function ContactForm(props: any) {
     isDirty,
     theme,
     isLoading,
-  } = useContactForm(data, apllicationFormid);
+  } = useContactForm(data, applicationFormid);
   if (isLoading) {
     return <SkeletonFormdata />;
   }

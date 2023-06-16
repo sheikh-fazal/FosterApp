@@ -4,7 +4,6 @@ import { formDataAreaoffice, formDataAreaPersonalInfo } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useBasicInformationForm } from "./useBasicInformationForm";
 
-
 export default function BasicInformationForm(props: any) {
   const { disabled, data, id } = props;
   const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =

@@ -41,7 +41,6 @@ export const formData = [
       label: "Type?",
       name: "employerType",
       options: ["Current", "Previous"],
-      fullWidth: true,
     },
     component: RHFRadioGroupWithLabel,
   },

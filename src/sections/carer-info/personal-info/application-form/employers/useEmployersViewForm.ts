@@ -10,7 +10,7 @@ import {
 } from "@root/services/carer-info/personal-info/application-form/EmployersApi";
 
 export const useEmployersViewForm = (props: any) => {
-  const { employerData, viewData, apllicationFormid, changeView } = props;
+  const { employerData, viewData, applicationFormid, changeView } = props;
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -62,7 +62,7 @@ export const useEmployersViewForm = (props: any) => {
     if (Formtype == "add") {
       try {
         const res: any = await postEmployerDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {

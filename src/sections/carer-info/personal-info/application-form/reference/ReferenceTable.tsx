@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
 import { useReferenceTable } from "./useReferenceTable";
 
-export default function Reference({ apllicationFormid, role }: any) {
+export default function Reference({ applicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
   let [refData, setRefData] = useState(null);
   const changeView = (val: any) => {
@@ -25,7 +25,7 @@ export default function Reference({ apllicationFormid, role }: any) {
     sortChangeHandler,
     meta,
     listDeleteHandler,
-  } = useReferenceTable(apllicationFormid);
+  } = useReferenceTable(applicationFormid);
 
   return (
     <>
@@ -36,7 +36,7 @@ export default function Reference({ apllicationFormid, role }: any) {
           refData={refData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>

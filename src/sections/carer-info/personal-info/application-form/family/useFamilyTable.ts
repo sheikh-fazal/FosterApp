@@ -8,14 +8,14 @@ import {
 } from "@root/services/carer-info/personal-info/application-form/FamilyApi";
 import { enqueueSnackbar } from "notistack";
 
-export const useFamilyTable = (apllicationFormid: any) => {
+export const useFamilyTable = (applicationFormid: any) => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetFamilyDetailsQuery({ params, id: apllicationFormid });
+    useGetFamilyDetailsQuery({ params, id: applicationFormid });
   const meta = data?.data?.meta;
   const theme: any = useTheme();
   const [deleteFamilyDetail] = useDeleteFamilyDetailMutation();

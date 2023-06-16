@@ -9,8 +9,8 @@ import {
 import { enqueueSnackbar } from "notistack";
 
 export const useReferenceViewForm = (props: any) => {
-  const { refData, viewData, apllicationFormid, changeView } = props;
-
+  const { refData, viewData, applicationFormid, changeView } = props;
+  console.log("aaa", applicationFormid);
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -40,7 +40,7 @@ export const useReferenceViewForm = (props: any) => {
     if (Formtype == "add") {
       try {
         const res: any = await postReferenceDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
@@ -63,7 +63,6 @@ export const useReferenceViewForm = (props: any) => {
           formData,
         }).unwrap();
         if (res.data) {
-          changeView(null);
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });

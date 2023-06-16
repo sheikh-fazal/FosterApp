@@ -44,6 +44,10 @@ export const TAGS = [
   "NEXT-OF-KIN",
   "POST_CARER_ADDRESS",
   "CHILD_EDUCATION_INFO_LIST",
+  "POST_FAMILY",
+  "EDIT_EMPLOYEE",
+  "POST_EXPARTNER",
+  "EDIT_EXPARTNER",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

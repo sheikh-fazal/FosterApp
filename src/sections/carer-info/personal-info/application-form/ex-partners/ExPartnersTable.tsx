@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
 import { useExPartnersTable } from "./useExPartnersTable";
 
-export default function ExPartnersView({ apllicationFormid, role }: any) {
+export default function ExPartnersView({ applicationFormid, role }: any) {
   let {
     changeView,
     viewData,
@@ -24,7 +24,7 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-  } = useExPartnersTable(apllicationFormid, role);
+  } = useExPartnersTable(applicationFormid, role);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
           exPartnerData={exPartnerData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>

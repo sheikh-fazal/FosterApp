@@ -9,7 +9,7 @@ import {
 } from "@root/services/carer-info/personal-info/application-form/ExPartnersApi";
 
 export const useExPartnersViewForm = (props: any) => {
-  const { exPartnerData, viewData, apllicationFormid, changeView } = props;
+  const { exPartnerData, viewData, applicationFormid, changeView } = props;
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -51,7 +51,7 @@ export const useExPartnersViewForm = (props: any) => {
     if (Formtype == "add") {
       try {
         const res: any = await postExPartnerDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
