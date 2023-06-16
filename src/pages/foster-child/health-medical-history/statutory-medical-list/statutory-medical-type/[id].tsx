@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import DentalCheckInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/dental-check/dental-check-info/dental-check-info-tabs/DentalCheckInfoTabs";
+import StatutoryMedicalTypeInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/statutory-medical-type-info/statutory-medical-type-info-tabs/StatutoryMedicalTypeInfoTabs";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -22,7 +22,7 @@ const PAGE_TITLE = "Edit GP Details Info List";
 
 // ----------------------------------------------------------------------
 
-DentalCheckInfo.getLayout = function getLayout(page: any) {
+ClaMedicalInfo.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -37,10 +37,10 @@ DentalCheckInfo.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function DentalCheckInfo() {
+export default function ClaMedicalInfo() {
   return (
     <Page title={PAGE_TITLE}>
-      <DentalCheckInfoTabs />
+      <StatutoryMedicalTypeInfoTabs />
     </Page>
   );
 }

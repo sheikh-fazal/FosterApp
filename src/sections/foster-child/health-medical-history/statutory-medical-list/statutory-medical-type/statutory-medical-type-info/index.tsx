@@ -1,49 +1,48 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import dayjs from "dayjs";
 import * as Yup from "yup";
 
-export const claMedicalInfoFormValues = {
-  medicalDate: "",
-  dueDate: "",
-  onFile: "",
+const todayDate = dayjs().format("MM/DD/YYYY");
+
+export const ehcpInfoFormValues = {
+  medicalDate: todayDate,
+  dueDate: todayDate,
+  onfile: "",
   result: "",
   comments: "",
 };
 
-export const defaultValueClaMedicalInfoForm = (
-  data: any = claMedicalInfoFormValues
-) => {
+export const defaultValueEhcpInfoForm = (data: any = ehcpInfoFormValues) => {
   return {
-    medicalDate: data?.medicalDate,
-    dueDate: data?.dueDate,
-    onFile: data?.onFile,
+    medicalDate: new Date(data?.medicalDate),
+    dueDate: new Date(data?.dueDate),
+    onfile: data?.onfile,
     result: data?.result,
     comments: data?.comments,
   };
 };
 
-export const claMedicalInfoFormSchema = Yup.object().shape({
+export const ehcpInfoFormSchema: any = Yup.object().shape({
   medicalDate: Yup.date()
     .typeError("Medical Date is required")
     .required("Medical Date is required"),
   dueDate: Yup.date()
     .typeError("Due Date  is required")
     .required("Due Date  is required"),
-  onFile: Yup.string()
-    .required("on File is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-  result: Yup.string()
+  onfile: Yup.string()
+    .required("on File is required"),
+  result: Yup.string().trim()
     .required("Result is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-  comments: Yup.string()
+  comments: Yup.string().trim()
     .required("Comments is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 
-export const claMedicalInfoFormDataFunction = (isFieldDisable = false) => [
+export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [
   {
     id: 1,
     componentProps: {
@@ -72,7 +71,7 @@ export const claMedicalInfoFormDataFunction = (isFieldDisable = false) => [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "onFile",
+      name: "onfile",
       label: "On File",
       select: true,
       options: [

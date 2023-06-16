@@ -1,27 +1,31 @@
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
-import { useOpticianCheckList } from "./useOpticianCheckList";
+import { useStatutoryMedicalTypeList } from "./useStatutoryMedicalTypeList";
 
-const OpticianCheckList = () => {
-  const { opticianCheckListTableColumns, data } = useOpticianCheckList();
+const StatutoryMedicalTypeList = (props: any) => {
+  console.log(props);
+  const { statutoryMedicalListXTableColumns, data, router, setHeaderHeading } =
+    useStatutoryMedicalTypeList(props);
   return (
     <>
       <Box>
         <TableHeader
-          title="Child Therapy Info"
+          title={setHeaderHeading(props.type)}
           searchKey="search"
           showAddBtn={true}
-          // onAdd={() => setOpenModal(true)}
-          //   onChanged={(data: any) => {
-          //     setSearchValue(data.search);
-          //     console.log("Updated params: ", data);
-          //   }}
+          onAdd={() =>
+            router.push(
+              `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?type=${
+                props.type
+              }`
+            )
+          }
         />
 
         <CustomTable
           data={data?.data}
-          columns={opticianCheckListTableColumns}
+          columns={statutoryMedicalListXTableColumns}
           isLoading={false}
           showSerialNo
           isFetching={false}
@@ -42,4 +46,4 @@ const OpticianCheckList = () => {
   );
 };
 
-export default OpticianCheckList;
+export default StatutoryMedicalTypeList;

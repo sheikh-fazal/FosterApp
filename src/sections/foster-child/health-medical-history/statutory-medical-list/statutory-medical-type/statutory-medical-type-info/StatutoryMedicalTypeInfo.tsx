@@ -3,23 +3,25 @@ import { Box, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-import { useEhcpInfo } from "./useEhcpInfo";
+import { useStatutoryMedicalTypeInfo } from "./useStatutoryMedicalTypeInfo";
 
-const EhcpInfo = () => {
+const StatutoryMedicalTypeInfo = () => {
   const {
     ehcpInfoFormData,
     methods,
     handleSubmit,
-    submitGpDetailsInfoForm,
-    getSingleGpDetailsInfoDataStatus,
+    submitStatutoryMedicalTypeDataForm,
+    getSingleStatutoryMedicalTypeDataStatus,
+    postStatutoryMedicalTypeDataStatus,
+    patchStatutoryMedicalTypeDataStatus,
     query,
     router,
-  } = useEhcpInfo();
-  // if (getSingleGpDetailsInfoDataStatus?.isLoading) return <SkeletonFormdata />;
+  } = useStatutoryMedicalTypeInfo();
+  if (getSingleStatutoryMedicalTypeDataStatus?.isLoading) return <SkeletonFormdata />;
   return (
     <FormProvider
       methods={methods}
-      onSubmit={handleSubmit(submitGpDetailsInfoForm)}
+      onSubmit={handleSubmit(submitStatutoryMedicalTypeDataForm)}
     >
       <Grid container spacing={5}>
         {ehcpInfoFormData.map((form: any, index: number) => {
@@ -44,6 +46,7 @@ const EhcpInfo = () => {
             sx={{ marginRight: "1rem" }}
             type="submit"
             variant="contained"
+            disabled={patchStatutoryMedicalTypeDataStatus?.isLoading || postStatutoryMedicalTypeDataStatus?.isLoading}
           >
             Submit
           </LoadingButton>
@@ -51,9 +54,10 @@ const EhcpInfo = () => {
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             onClick={() =>
-              router.push(`/foster-child/health-medical-history/gp-details/`)
+              router.push(`/foster-child/health-medical-history/statutory-medical-list`)
             }
             variant="contained"
+            disabled={patchStatutoryMedicalTypeDataStatus?.isLoading || postStatutoryMedicalTypeDataStatus?.isLoading}
           >
             back
           </LoadingButton>
@@ -63,4 +67,4 @@ const EhcpInfo = () => {
   );
 };
 
-export default EhcpInfo;
+export default StatutoryMedicalTypeInfo;

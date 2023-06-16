@@ -1,23 +1,26 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const claMedicalListTableColumnsFunction = (router?: any) => [
+export const statutoryMedicalListXTableColumnsFunction = (
+  router?: any,
+  type?: any
+) => [
   {
-    accessorFn: (row: any) => row.medicalDate,
+    accessorFn: (row: any) => row?.medicalDate,
     id: "medicalDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Medical Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.dueDate,
+    accessorFn: (row: any) => row?.dueDate,
     id: "dueDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Due Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.onFile,
+    accessorFn: (row: any) => row?.onFile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
@@ -38,7 +41,9 @@ export const claMedicalListTableColumnsFunction = (router?: any) => [
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/cla-medical-info/${info?.row?.id}?action=edit`
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/${
+                  info.getValue()
+                }?type=${type}&action=edit`
               )
             }
           />
@@ -46,7 +51,9 @@ export const claMedicalListTableColumnsFunction = (router?: any) => [
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/cla-medical-info/${info?.row?.id}?action=view`
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/${
+                  info.getValue()
+                }?type=${type}&action=view`
               )
             }
           />
