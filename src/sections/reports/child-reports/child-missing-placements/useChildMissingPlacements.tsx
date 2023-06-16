@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useChildMissingPlacements = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = "/reports/child-reports/child-missing-placements/child-missing-placements-form";
+  const path = "/reports/child-reports/child-missing-placements/form";
   const handleSearch = () => {};
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

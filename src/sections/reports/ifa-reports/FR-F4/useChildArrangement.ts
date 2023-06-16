@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useChildArrangement = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-F4/arrangement';
+  const path = '/reports/ifa-reports/FR-F4-parent-in-parent-and-child-arrangement/form';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

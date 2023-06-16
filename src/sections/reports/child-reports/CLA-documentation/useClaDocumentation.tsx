@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useClaDocumentation = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = "/reports/child-reports/CLA-documentation/CLA-documentation-form";
+  const path = "/reports/child-reports/CLA-documentation/form";
   const handleSearch = () => {};
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

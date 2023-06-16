@@ -64,8 +64,8 @@ export const formSchema = Yup.object().shape({
 export const formData = [
   {
     gridLength: 6,
-    title: "Foster carer(s)",
     otherOptions: {
+      label: "Foster carer(s)",
       name: 'fosterCarer',
       fullWidth: true,
     },
@@ -73,8 +73,8 @@ export const formData = [
   },
   {
     gridLength: 6,
-    title: "Supervising social worker",
     otherOptions: {
+      label: "Supervising social worker",
       name: 'supervisingSocialWorker',
       fullWidth: true,
     },
@@ -342,10 +342,11 @@ export const formData = [
   },
   {
     gridLength: 6,
-    title: 'Date',
     otherOptions: {
+      label: 'Date',
       fullWidth: true,
       name: "date1",
+      sx:{mt:2}
     },
     component: RHFDatePicker
   },
@@ -359,10 +360,11 @@ export const formData = [
   },
   {
     gridLength: 6,
-    title: 'Date',
     otherOptions: {
+      label: 'Date',
       fullWidth: true,
       name: "date2",
+      sx:{mt:2}
     },
     component: RHFDatePicker
   }

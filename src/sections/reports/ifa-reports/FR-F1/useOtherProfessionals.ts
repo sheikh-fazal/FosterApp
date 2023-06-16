@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useOtherProfessionals = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = "/reports/ifa-reports/FR-F1/other-professional";
+  const path = "/reports/ifa-reports/FR-F1-other-professional/form";
   const handleSearch = () => {};
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

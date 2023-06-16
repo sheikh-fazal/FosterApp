@@ -32,8 +32,8 @@ export const formSchema = Yup.object().shape({
 export const FRD1FormData = [
   {
     gridLength: 6,
-    title: 'Foster Carer(s)',
     otherOptions: {
+      label: 'Foster Carer(s)',
       name: 'fosterCarer',
       fullWidth: true,
       select: true,
@@ -47,8 +47,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Supervising Social Worker',
     otherOptions: {
+      label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
       select: true,
@@ -62,8 +62,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: "Young Person's Name",
     otherOptions: {
+      label: "Young Person's Name",
       name: 'fosterChildName',
       fullWidth: true,
     },
@@ -71,8 +71,8 @@ export const FRD1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Fostered Child’s DOB-Age',
     otherOptions: {
+      label: 'Fostered Child’s DOB-Age',
       name: 'childDOB',
       fullWidth: true,
     },

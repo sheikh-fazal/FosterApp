@@ -43,8 +43,8 @@ export const formSchema = Yup.object().shape({
 export const FRC1FormData = [
   {
     gridLength: 6,
-    title: 'Foster Carer(s)',
     otherOptions: {
+      label: 'Foster Carer(s)',
       name: 'fosterCarer',
       fullWidth: true,
       select: true,
@@ -58,8 +58,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Supervising Social Worker',
     otherOptions: {
+      label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
       select: true,
@@ -73,8 +73,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Child Name',
     otherOptions: {
+      label: 'Child Name',
       name: 'childName',
       fullWidth: true,
     },
@@ -82,8 +82,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Child’s DOB',
     otherOptions: {
+      label: 'Child’s DOB',
       name: 'childDOB1',
       fullWidth: true,
     },
@@ -91,8 +91,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Child’s DOB',
     otherOptions: {
+      label: 'Child’s DOB',
       name: 'childDOB2',
       fullWidth: true,
     },
@@ -100,8 +100,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Supervising Social Worker',
     otherOptions: {
+      label: 'Supervising Social Worker',
       name: 'supervisingSocialWorkerName',
       fullWidth: true,
     },
@@ -185,8 +185,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Name',
     otherOptions: {
+      label: 'Name',
       name: 'name',
       fullWidth: true,
     },
@@ -194,8 +194,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Position',
     otherOptions: {
+      label: 'Position',
       name: 'position',
       fullWidth: true,
     },
@@ -203,8 +203,8 @@ export const FRC1FormData = [
   },
   {
     gridLength: 6,
-    title: 'Date',
     otherOptions: {
+      label: 'Date',
       name: 'date',
       fullWidth: true,
     },

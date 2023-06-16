@@ -7,72 +7,72 @@ export const REPORTTABSDATAARRY = [
       {
         id: 1,
         title: "FR-A-FORM FR 2019 - SUPERVISING SOCIAL WORKER REPORT",
-        link: "/reports/ifa-reports/FR-A",
+        link: "/reports/ifa-reports/FR-A-supervising-social-worker-report",
       },
       {
         id: 2,
         title: "FR-B-FORM FR 2019 - FOSTER CARER REPORT",
-        link: "/reports/ifa-reports/FR-B",
+        link: "/reports/ifa-reports/FR-B-foster-carer-report",
       },
       {
         id: 3,
         title: "FR-C1 CHILD LIVING IN THE HOUSEHOLD’S COMMENTS",
-        link: "/reports/ifa-reports/FR-C1",
+        link: "/reports/ifa-reports/FR-C1-child-living-in-household-comments",
       },
       {
         id: 4,
         title: "FR-C2 YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS",
-        link: "/reports/ifa-reports/FR-C2",
+        link: "/reports/ifa-reports/FR-C2-young-person-living-in-household-comments",
       },
       {
         id: 5,
         title: "FR-D1 FOSTERED CHILD’S COMMENTS",
-        link: "/reports/ifa-reports/FR-D1",
+        link: "/reports/ifa-reports/FR-D1-fostered-childs-comments",
       },
       {
         id: 6,
         title: "FR-D2 FOSTERED YOUNG PERSON’S COMMENTS",
-        link: "/reports/ifa-reports/FR-D2",
+        link: "/reports/ifa-reports/FR-D2-fostered-young-person-comments",
       },
       {
         id: 7,
         title: "FR-E CHILD’S SOCIAL WORKER REPORT",
-        link: "/reports/ifa-reports/FR-E",
+        link: "/reports/ifa-reports/FR-E-childs-social-worker-report",
       },
       {
         id: 8,
         title: "FR-F1: OTHER PROFESSIONALS",
-        link: "/reports/ifa-reports/FR-F1",
+        link: "/reports/ifa-reports/FR-F1-other-professional",
       },
       {
         id: 9,
         title: "FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER",
-        link: "/reports/ifa-reports/FR-F2",
+        link: "/reports/ifa-reports/FR-F2-adult-household-member",
       },
       {
         id: 10,
         title: "FR-F3: BIRTH PARENT/BIRTH FAMILY MEMBER",
-        link: "/reports/ifa-reports/FR-F3",
+        link: "/reports/ifa-reports/FR-F3-birth-parent",
       },
       {
         id: 11,
         title: "FR-F4: PARENT IN PARENT AND CHILD ARRANGEMENT",
-        link: "/reports/ifa-reports/FR-F4",
+        link: "/reports/ifa-reports/FR-F4-parent-in-parent-and-child-arrangement",
       },
       {
         id: 12,
         title: "FR-G REVIEWING OFFICER REPORT",
-        link: "/reports/ifa-reports/FR-G",
+        link: "/reports/ifa-reports/FR-G-reviewing-officer-report",
       },
       {
         id: 13,
         title: "FR-H FOSTERING SERVICE MANAGER REPORT",
-        link: "/reports/ifa-reports/FR-H",
+        link: "/reports/ifa-reports/FR-H-fostering-service-manager-report",
       },
       {
         id: 14,
         title: "FR-I-DECISION SHEET",
-        link: "/reports/ifa-reports/FR-I",
+        link: "/reports/ifa-reports/FR-I-decision-sheet",
       },
       {
         id: 15,
@@ -92,7 +92,7 @@ export const REPORTTABSDATAARRY = [
       {
         id: 18,
         title: "RISK ASSESSMENT FORM",
-        link: "/reports/ifa-reports/risk-assessment-form",
+        link: "/reports/ifa-reports/risk-assessment",
       },
       {
         id: 19,
@@ -108,78 +108,122 @@ export const REPORTTABSDATAARRY = [
   },
   {
     index: 1,
+
     title: "Carer Reports",
+
     background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%);",
+
     innerDataArray: [
       {
         id: 1,
+
         title: "DIARY RECORDINGS BY CARER",
-        link: "/reports/carer-reports/diary-recordings",
+
+        link: "/reports/carer-reports/diary-recordings-carer",
       },
+
       {
         id: 2,
+
         title: "ACTIVE CARERS CONTACTS REPORTS",
-        link: "/reports/carer-reports/active-carers-contacts",
+
+        link: "/reports/carer-reports/active-carers-contacts-reports",
       },
+
       {
         id: 3,
+
         title: "PARENT AND CHILD REPORTS",
-        link: "/reports/carer-reports/parent-and-child",
+
+        link: "/reports/carer-reports/parent-and-child-reports",
       },
+
       {
         id: 4,
+
         title: "PERMANENT FOSTERING REPORTS",
-        link: "/reports/carer-reports/permanent-fostering",
+
+        link: "/reports/carer-reports/permanent-fostering-reports",
       },
+
       {
         id: 5,
+
         title: "SECOND OPINION REPORTS",
-        link: "/reports/carer-reports/second-opinion",
+
+        link: "/reports/carer-reports/second-opinion-reports",
       },
+
       {
         id: 6,
+
         title: "ANNUAL REVIEW DATE REPORTS",
-        link: "/reports/carer-reports/annual-review-date",
+
+        link: "/reports/carer-reports/annual-review-date-reports",
       },
+
       {
         id: 7,
+
         title: "FOSTER CARER RECORD OF CRITICAL INCIDENTS REPORTS",
-        link: "/reports/carer-reports/record-critical-incidents",
+
+        link: "/reports/carer-reports/foster-carer-record-critical-incidents",
       },
+
       {
         id: 8,
+
         title: "CARER PLACEMENT REPORTS",
-        link: "/reports/carer-reports/carer-placement",
+
+        link: "/reports/carer-reports/carer-placement-reports",
       },
+
       {
         id: 9,
+
         title: "CARER IMMUNISATION DETAIL REPORTS",
-        link: "/reports/carer-reports/carer-immunisation-detail",
+
+        link: "/reports/carer-reports/carer-immunisation-detail-reports",
       },
+
       {
         id: 10,
+
         title: "CARER REFERENCE CHECKS REPORTS",
-        link: "/reports/carer-reports/carer-reference-checks",
+
+        link: "/reports/carer-reports/carer-reference-checks-reports",
       },
+
       {
         id: 11,
+
         title: "CARER REGISTER REPORTS",
-        link: "/reports/carer-reports/carer-register",
+
+        link: "/reports/carer-reports/carer-register-reports",
       },
+
       {
         id: 12,
+
         title: "CARER TRAINING REPORTS",
-        link: "/reports/carer-reports/carer-training",
+
+        link: "/reports/carer-reports/carer-training-reports",
       },
+
       {
         id: 13,
+
         title: "CARER VACANCY REPORTS",
-        link: "/reports/carer-reports/carer-vacancy",
+
+        link: "/reports/carer-reports/carer-vacancy-reports",
       },
+
       {
         id: 14,
+
         title: "DAY LOG EVENTS REPORTS",
-        link: "/reports/carer-reports/day-log-events",
+
+        link: "/reports/carer-reports/day-log-events-reports",
       },
     ],
   },

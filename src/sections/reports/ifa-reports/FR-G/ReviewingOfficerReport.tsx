@@ -103,57 +103,49 @@ const ReviewingOfficerReport = () => {
     },
   ];
   return (
-    <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"flex-end"}
-          sx={{ px: 2 }}
-        >
-          <Image src={automatedIcon} alt="icon" />
-        </Box>
-        <Card sx={{ p: 2, my: 2 }}>
-          <Grid container spacing={4}>
-            {viewReportsFilterData.map((data: any, i: number) => (
-              <Grid item key={i} md={data.gridlength} xs={12}>
-                <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">
-                    {data.label}
-                  </InputLabel>
-                  <Select {...data.otherOptions}>
-                    {data.options.map((item: any, j: number) => (
-                      <MenuItem key={j} value={item.value}>
-                        {item.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            ))}
-            <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
-              <Button onClick={handleSearch} variant="contained">
-                Search
-              </Button>
+    <> 
+      <Card sx={{ p: 2, my: 2 }}>
+        <Grid container spacing={4}>
+          {viewReportsFilterData.map((data: any, i: number) => (
+            <Grid item key={i} md={data.gridlength} xs={12}>
+              <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">
+                  {data.label}
+                </InputLabel>
+                <Select {...data.otherOptions}>
+                  {data.options.map((item: any, j: number) => (
+                    <MenuItem key={j} value={item.value}>
+                      {item.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
+          ))}
+          <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
+            <Button onClick={handleSearch} variant="contained">
+              Search
+            </Button>
           </Grid>
-        </Card>
-        <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
-        <TableSubHeader data={tableSubHeader} />
-        <CustomTable
-          isError={false}
-          isLoading={false}
-          isFetching={false}
-          isSuccess={true}
-          data={tableMockData}
-          columns={columns}
-        />
+        </Grid>
       </Card>
-      <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
+      <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
+      <TableSubHeader data={tableSubHeader} />
+      <CustomTable
+        isError={false}
+        isLoading={false}
+        isFetching={false}
+        isSuccess={true}
+        data={tableMockData}
+        columns={columns}
+      /> 
+      {openDelete && (
+        <DeleteModel
+          open={openDelete}
+          handleClose={handleCloseDeleteModal}
+          onDeleteClick={handleCloseDeleteModal}
+        />
+      )}
     </>
   );
 };

@@ -10,8 +10,7 @@ import {
   Grid,
   InputLabel,
   MenuItem,
-  Select,
-  Typography,
+  Select, 
 } from "@mui/material";
 import Image from "next/image";
 import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
@@ -23,7 +22,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { FRD1FilterData, tableMockData, tableSubHeader } from ".";
 
-const FRD1 = ({ action, id }: any) => {
+const FRD1 = () => {
   const { handleSearch, handleAction, handleDeleteModal, deleteModal } =
     useFRD1();
 
@@ -55,7 +54,7 @@ const FRD1 = ({ action, id }: any) => {
       accessorFn: (row: any) => row.personName,
       id: "personName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Young Person's Name (DOB)</span>,
+      header: () => <span>{`Young Person's Name (DOB)`}</span>,
       isSortable: true,
     },
     {
@@ -69,7 +68,7 @@ const FRD1 = ({ action, id }: any) => {
       accessorFn: (row: any) => row.fosterCarer,
       id: "fosterCarer",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Foster Carer(s)</span>,
+      header: () => <span>{`Foster Carer(s)`}</span>,
       isSortable: true,
     },
     {

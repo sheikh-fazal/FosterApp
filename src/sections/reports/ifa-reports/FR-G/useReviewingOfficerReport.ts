@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useReviewingOfficerReport = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-G/child-report';
+  const path = '/reports/ifa-reports/FR-G-reviewing-officer-report/form';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

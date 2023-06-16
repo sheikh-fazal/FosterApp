@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useChildDaylogEvents = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = "/reports/child-reports/child-daylog-events/child-daylog-events-form";
+  const path = "/reports/child-reports/child-daylog-events/form";
   const handleSearch = () => {};
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

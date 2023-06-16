@@ -7,13 +7,13 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildIncidents = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildIncidents();
 
 
   return (
     <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
+      <Card sx={{ py: 2, px: 1 }}>
         <TableHeader title={"CHILD INCIDENTS REPORT - CRITICAL INCIDENT REPORT"} showAddBtn onAdd={() => handleAction("add")} />
         <CustomTable
           isError={false}
@@ -34,18 +34,3 @@ const ChildIncidents = () => {
 };
 
 export default ChildIncidents;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  },
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
-};

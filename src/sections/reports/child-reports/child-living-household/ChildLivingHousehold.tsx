@@ -7,13 +7,13 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildLivingHousehold = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildLivingHousehold();
 
 
   return (
     <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
+      <Card sx={{ py: 2, px: 1 }}>
         <TableHeader title={"CHILD LIVING IN THE HOUSEHOLD'S COMMENTS"} showAddBtn onAdd={() => handleAction("add")} />
         <CustomTable
           isError={false}
@@ -34,18 +34,4 @@ const ChildLivingHousehold = () => {
 };
 
 export default ChildLivingHousehold;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  },
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
-};
+ 

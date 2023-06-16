@@ -7,13 +7,13 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildPlacements = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildPlacements();
 
 
   return (
     <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
+      <Card sx={{ py: 2, px: 1 }}>
         <TableHeader title={"CHILD PLACEMENTS REPORT"} showAddBtn onAdd={() => handleAction("add")} />
         <CustomTable
           isError={false}
@@ -34,18 +34,3 @@ const ChildPlacements = () => {
 };
 
 export default ChildPlacements;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  },
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
-};

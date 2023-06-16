@@ -5,7 +5,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const useCarerFeedback = () => {
-  const path = "/reports/ifa-reports/carer-feedback";
+  const path = "/reports/ifa-reports/carer-feedback/form";
   const [filterValue, setFilterValue] = useState({
     empolyeeName: "",
     position: "",

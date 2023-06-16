@@ -17,7 +17,7 @@ export const useUserLogHistoryReport = () => {
   const columns = [
     {
       id: "select",
-      header: ({ table, row }: any) => {
+      header: ({ table}: any) => {
         console.log(table);
         return (
           <Box>
@@ -29,7 +29,7 @@ export const useUserLogHistoryReport = () => {
           </Box>
         );
       },
-      cell: ({ row, table }: any) => (
+      cell: ({ row}: any) => (
         <Box>
           <Checkbox
             disabled={row?.original?.Assigned}
@@ -72,13 +72,6 @@ export const useUserLogHistoryReport = () => {
       id: "activity",
       cell: (info: any) => info.getValue(),
       header: "Activity",
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.modifiedBy,
-      id: "modifiedBy",
-      cell: (info: any) => info.getValue(),
-      header: "Modified By",
       isSortable: true,
     },
   ];
