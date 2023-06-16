@@ -5,6 +5,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
 import {
+  useDeleteTrainingProfileDocumentMutation,
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
@@ -40,6 +41,7 @@ AddTraingVerification.getLayout = function getLayout(page: any) {
 
 export default function AddTraingVerification() {
   const [params, setParams] = useState("");
+
   const formData = new FormData();
 
   const router = useRouter();
@@ -47,6 +49,8 @@ export default function AddTraingVerification() {
 
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
+
+  const [deleteUploadedDocument] = useDeleteTrainingProfileDocumentMutation();
 
   const {
     data: uploadDocuments,
@@ -86,6 +90,20 @@ export default function AddTraingVerification() {
     }
   };
 
+  const deleteDocument = async (userId: any) => {
+    try {
+      let res = await deleteUploadedDocument({
+        trainingProfileId: id,
+        profileId: userId,
+      });
+
+      enqueueSnackbar(`Document Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
 
   return (
     <Page title={PAGE_TITLE}>
@@ -138,6 +156,10 @@ export default function AddTraingVerification() {
                 "password",
               ]}
               isSuccess={isSuccess}
+              onDelete={(data: any) => {
+                console.log("uploaded document id", data.id);
+                deleteDocument(data.id);
+              }}
               modalData={(data: any) => uploadDocumentsHandler(data)}
               onPageChange={(page: any) => console.log(page)}
               currentPage={uploadDocuments?.data?.meta?.page}

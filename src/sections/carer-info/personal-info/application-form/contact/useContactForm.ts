@@ -29,7 +29,6 @@ export const useContactForm = (data: any, apllicationFormid: any) => {
         id: apllicationFormid,
         formData,
       }).unwrap();
-      console.log("sadasd", res?.data);
       if (res.data) {
         reset({
           ...res?.data?.contact,
@@ -47,5 +46,6 @@ export const useContactForm = (data: any, apllicationFormid: any) => {
     isSubmitting,
     isDirty,
     theme,
+    isLoading,
   };
 };

@@ -41,7 +41,7 @@ export default function Complaints() {
     <>
       <HorizaontalTabs tabsDataArray={["Complaints", "Uploaded Documents"]}>
         <ComplaintsForm action={action} id={id} />
-        {/* <UploadedDocumentsTable action={action} /> */}
+        <UploadedDocumentsTable />
       </HorizaontalTabs>
     </>
   );

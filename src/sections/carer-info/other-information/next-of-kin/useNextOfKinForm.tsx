@@ -25,7 +25,7 @@ const useNextOfKinForm = (props: any) => {
     let formData = new FormData();
     for (var key in data) {
       if (data[key] === data["date"]) {
-        formData.append(key, dayjs(data[key]).format("YYYY-MM-DD"));
+        formData.append(key, new Date(data[key]).toISOString());
       } else {
         formData.append(key, data[key]);
       }
@@ -49,7 +49,7 @@ const useNextOfKinForm = (props: any) => {
     } else if (action === "edit") {
       const payload = {
         id,
-      formData,
+        formData,
       };
       nextofkinPatch(payload)
         .unwrap()

@@ -5,62 +5,10 @@ import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
+import dayjs from "dayjs";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
-export const columns = [
-  {
-    accessorFn: (row: any) => row,
-    id: "srNo",
-    cell: (info: any) => Number(info?.row?.id) + 1,
-    header: "Sr. No",
-  },
-  {
-    accessorFn: (row: any) => row.Date,
-    id: "Date",
-    cell: (info: any) => info.getValue(),
-    header: "Date",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.Document,
-    id: "Document",
-    cell: (info: any) => info.getValue(),
-    header: "Document",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.DocumentType,
-    id: "Document Type ",
-    cell: (info: any) => info.getValue(),
-    header: "Document Type",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.id,
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="view"
-          onClicked={() =>
-            router.push(
-              `/foster-child/child-background-info/cla-documentation/${info?.row?.original?.id}?action=view`
-            )
-          }
-        />
-        <TableAction
-          type="share"
-          onClicked={() =>
-            router.push(
-              `?${info.getValue()}`
-            )
-          }
-        />
-      </Box>
-    ),
-    header: "Actions",
-    isSortable: false,
-  },
-];
+
 export const EHCPFormData = [
   {
     id: 1,
@@ -89,7 +37,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -137,7 +85,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -185,7 +133,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -233,7 +181,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -281,7 +229,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -329,7 +277,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -377,7 +325,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -425,7 +373,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -473,7 +421,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -521,7 +469,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -569,7 +517,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -617,7 +565,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -665,7 +613,7 @@ export const EHCPFormData = [
       name: "OnFile",
       label: "On File",
       sx: { mb: 4 },
-      select: true
+      select: true,
     },
     options: [
       { value: "Yes", label: "Yes" },
@@ -711,7 +659,7 @@ export const PEPFormData = [
   {
     id: 3,
     componentProps: {
-      name: "plan",
+      name: "planDoneBy",
       label: "Plan",
       sx: { mb: 4 },
     },
@@ -719,10 +667,10 @@ export const PEPFormData = [
     md: 6,
   },
   {
-    id: 4,
+    id: 5,
     componentProps: {
-      name: "pep",
-      label: "Pep Duration",
+      name: "assessmentDate",
+      label: "Assessment",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -732,8 +680,19 @@ export const PEPFormData = [
   {
     id: 5,
     componentProps: {
-      name: "assessment",
-      label: "Assessment",
+      name: "from",
+      label: "Pep Duration From",
+      sx: { mb: 4 },
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    md: 6,
+  },
+  {
+    id: 6,
+    componentProps: {
+      name: "to",
+      label: "Pep Duration to",
       sx: { mb: 4 },
       fullWidth: true,
     },
@@ -746,9 +705,9 @@ export const PEPFormData = [
     md: 12,
   },
   {
-    id: 6,
+    id: 7,
     componentProps: {
-      name: "overallOutcome",
+      name: "overAllOutcome",
       label: "Overall Outcome",
       sx: { my: 3 },
       fullWidth: true,
@@ -772,7 +731,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 2,
-    paraTitle: 'T1 ',
+    paraTitle: "T1 ",
     para: " -Child will consolidate all sounds and be able to apply these as initial medial and final sounds in vc cv and cvc words.The focus this term will be medial vowel e.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -781,7 +740,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 3,
-    paraTitle: 'T2 ',
+    paraTitle: "T2 ",
     para: "- Child will Improve auditory memory skills by means of sequencing and predication.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -790,7 +749,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 4,
-    paraTitle: 'T3 ',
+    paraTitle: "T3 ",
     para: "- Child will know and recognize the first 40 keywords and be able to use them orally in context and in written form relation to T1.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -799,7 +758,7 @@ export const TargetsAndObjectivesData = [
   },
   {
     id: 5,
-    paraTitle: 'T4 ',
+    paraTitle: "T4 ",
     para: "- Child will consolidate number and continue to develop those skills by adding and subtraction whith 20. Child will be able to recognize numbers up to 20 in both written and numerical form.",
     color: (theme: any) => theme.palette.primary.main,
     sx: { mb: 2 },
@@ -909,21 +868,17 @@ export const StrategiesAndEvidence = [
   },
 ];
 
-export const defaultValues = {
-  // EHCP Form Default Values
-  date: "",
-  OnFile: "",
-  comments: "",
-
+export const defaultValuesForPep = {
   // PEP Form Default Values
   name: "",
   class: "",
-  plan: "",
-  pep: "",
-  assessment: "",
-  overallOutcome: "",
+  planDoneBy: "",
+  assessmentDate: null,
+  from: null,
+  to: null,
+  overAllOutcome: "",
+  document: "PEP personal Educational Plan",
 };
-
 
 export const EHCPFormValidation = Yup.object().shape({
   date: Yup.string().trim().required("Date is Required"),
@@ -932,12 +887,16 @@ export const EHCPFormValidation = Yup.object().shape({
 });
 
 export const PEPFormValidation = Yup.object().shape({
-  name: Yup.string().trim().required("Name of Owner is Required"),
-  class: Yup.string().trim().required("class is Required"),
-  plan: Yup.string().trim().required("Plan Required"),
-  pep: Yup.date().required(),
-  assessment: Yup.date().required(),
-  overallOutcome: Yup.string().trim().required("overcall outcome Required"),
+  name: Yup.string().trim().required("Required"),
+  class: Yup.string().trim().required("Required"),
+  planDoneBy: Yup.string().trim().required("Required"),
+  assessmentDate: Yup.date(),
+  from: Yup.date(),
+  to: Yup.date(),
+  overAllOutcome: Yup.string().trim().required("Required"),
 });
 
-export { default as ClaDocumentationList } from "./ClaDocumentationList"
+export { default as ClaDocumentationList } from "./ClaDocumentationTable";
+function listDeleteHandler(id: any) {
+  throw new Error("Function not implemented.");
+}
