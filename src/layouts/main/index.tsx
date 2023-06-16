@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { Box, Link, Container, Typography, Stack } from "@mui/material";
 // components
 import Logo from "../../components/Logo";
+import Footer from "@root/sections/main-layout/footer/Footer";
+import TopNavbar from "@root/sections/main-layout/top-navbar/TopNavbar";
 
 // ----------------------------------------------------------------------
 
@@ -14,10 +16,10 @@ export default function MainLayout({ children }: any) {
 
   return (
     <Stack sx={{ minHeight: 1 }}>
-      <header>Header</header>
-
+      {/* <header>Header</header> */}
+      <TopNavbar />
       {children}
-
+      <Footer />
       <Box sx={{ flexGrow: 1 }} />
 
       {/* {!isHome ? (
