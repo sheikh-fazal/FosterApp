@@ -10,6 +10,7 @@ export const usePepFom = (props: any) => {
   const { disabled, defaultValues } = props;
   console.log("Form default values: ", defaultValuesForPep);
   console.log("API default values: ", defaultValues);
+  console.log("Id", router?.query);
 
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),

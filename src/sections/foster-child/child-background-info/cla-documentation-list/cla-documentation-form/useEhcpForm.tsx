@@ -3,6 +3,7 @@ import { usePostEhcpClaDocumentationListMutation } from "@root/services/foster-c
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
+import { EHCPFormValidation } from "..";
 // import { EHCPFormValidation, defaultValuesForEhcp } from "..";
 
 export const useEhcpForm = (props: any) => {
@@ -10,7 +11,7 @@ export const useEhcpForm = (props: any) => {
   const { disabled, defaultValues } = props;
 
   const methods: any = useForm({
-    // resolver: yupResolver(EHCPFormValidation),
+    resolver: yupResolver(EHCPFormValidation),
     defaultValues,
   });
 
@@ -23,7 +24,7 @@ export const useEhcpForm = (props: any) => {
     usePostEhcpClaDocumentationListMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data, 'EHCP FOrm');
+    console.log(data, "EHCP FOrm");
     try {
       const res: any = await postEhcpClaDocumentationList(data).unwrap();
       console.log(res);

@@ -255,44 +255,44 @@ export const EHCPFormData = [
     },
     component: Typography,
   },
-  // {
-  //   id: 22,
-  //   componentProps: {
-  //     name: "date",
-  //     label: "Date",
-  //     sx: { mb: 4 },
-  //     fullWidth: true,
-  //   },
-  //   component: RHFDatePicker,
-  //   md: 6,
-  // },
-  // {
-  //   id: 23,
-  //   componentProps: {
-  //     name: "onfile",
-  //     label: "On File",
-  //     sx: { mb: 4 },
-  //     select: true,
-  //   },
-  //   options: [
-  //     { value: "Yes", label: "Yes" },
-  //     { value: "No", label: "No" },
-  //   ],
-  //   component: RHFSelect,
-  //   md: 6,
-  // },
-  // {
-  //   id: 24,
-  //   componentProps: {
-  //     name: "comments",
-  //     label: "Comments",
-  //     sx: { mb: 4 },
-  //     multiline: true,
-  //     rows: 3,
-  //   },
-  //   component: RHFTextField,
-  //   md: 12,
-  // },
+  {
+    id: 22,
+    componentProps: {
+      name: "date",
+      label: "Date",
+      sx: { mb: 4 },
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    md: 6,
+  },
+  {
+    id: 23,
+    componentProps: {
+      name: "onfile",
+      label: "On File",
+      sx: { mb: 4 },
+      select: true,
+    },
+    options: [
+      { value: "Yes", label: "Yes" },
+      { value: "No", label: "No" },
+    ],
+    component: RHFSelect,
+    md: 6,
+  },
+  {
+    id: 24,
+    componentProps: {
+      name: "comments",
+      label: "Comments",
+      sx: { mb: 4 },
+      multiline: true,
+      rows: 3,
+    },
+    component: RHFTextField,
+    md: 12,
+  },
   {
     id: 25,
     heading: "CLA Review Date",
@@ -888,6 +888,8 @@ export const defaultValuesForEhcp = {
 
   delegatedAuthority: { date: null, onfile: "", comments: "" },
 
+  claMedicalDate: { date: null, onfile: "", comments: "" },
+
   claReviewDate: { date: null, onfile: "", comments: "" },
 
   carePlanPt1: { date: null, onfile: "", comments: "" },
@@ -902,53 +904,78 @@ export const defaultValuesForEhcp = {
 
   garbPack: { date: null, onfile: "", comments: "" },
 
-  // test13: { date: null, onfile: "", comments: "" },
-
   document: "Educaton, Health, Care Plan Document"
 };
 
 // EHCP Validations
-// export const EHCPFormValidation = Yup.object().shape({
-//   date1: Yup.date(),
-//   onfile1: Yup.string().trim().required("Selection is Required"),
-//   comments1: Yup.string().trim().required("Selection is Required"),
-//   date2: Yup.date(),
-//   onfile2: Yup.string().trim().required("Selection is Required"),
-//   comments2: Yup.string().trim().required("Selection is Required"),
-//   date3: Yup.date(),
-//   onfile3: Yup.string().trim().required("Selection is Required"),
-//   comments3: Yup.string().trim().required("Selection is Required"),
-//   date4: Yup.date(),
-//   onfile4: Yup.string().trim().required("Selection is Required"),
-//   comments4: Yup.string().trim().required("Selection is Required"),
-//   date5: Yup.date(),
-//   onfile5: Yup.string().trim().required("Selection is Required"),
-//   comments5: Yup.string().trim().required("Selection is Required"),
-//   date6: Yup.date(),
-//   onfile6: Yup.string().trim().required("Selection is Required"),
-//   comments6: Yup.string().trim().required("Selection is Required"),
-//   date7: Yup.date(),
-//   onfile7: Yup.string().trim().required("Selection is Required"),
-//   comments7: Yup.string().trim().required("Selection is Required"),
-//   date8: Yup.date(),
-//   onfile8: Yup.string().trim().required("Selection is Required"),
-//   comments8: Yup.string().trim().required("Selection is Required"),
-//   date9: Yup.date(),
-//   onfile9: Yup.string().trim().required("Selection is Required"),
-//   comments9: Yup.string().trim().required("Selection is Required"),
-//   date10: Yup.date(),
-//   onfile10: Yup.string().trim().required("Selection is Required"),
-//   comments10: Yup.string().trim().required("Selection is Required"),
-//   date11: Yup.date(),
-//   onfile11: Yup.string().trim().required("Selection is Required"),
-//   comments11: Yup.string().trim().required("Selection is Required"),
-//   date12: Yup.date(),
-//   onfile12: Yup.string().trim().required("Selection is Required"),
-//   comments12: Yup.string().trim().required("Selection is Required"),
-//   date13: Yup.date(),
-//   onfile13: Yup.string().trim().required("Selection is Required"),
-//   comments13: Yup.string().trim().required("Selection is Required"),
-// });
+export const EHCPFormValidation = Yup.object().shape({
+  fosterPlacement: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  placementInfoRecord: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  localAuthorityPlacementPlan: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  localAuthorityRiskAssesssment: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  delegatedAuthority: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  claMedicalDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  claReviewDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  carePlanPt1: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  carePlanPt2: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  perDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  ehcpDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  pathwayPlan: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  garbPack: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  document: Yup.string().trim().required("Required"),
+});
 
 // PEP Validations
 export const PEPFormValidation = Yup.object().shape({
