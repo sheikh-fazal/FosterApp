@@ -5,7 +5,7 @@ import TableAction from "@root/components/TableAction";
 import Image from "next/image";
 
 export const useUnannouncedHomeVisit = () => {
-  const path = "/reports/ifa-reports/unannounced-home-visit";
+  const path = "/reports/ifa-reports/unannounced-home-visit/form";
   const router = useRouter();
 
   const handleAction = (action?: string, id?: any) => {
@@ -18,30 +18,6 @@ export const useUnannouncedHomeVisit = () => {
     }
   };
   const columns = [
-    {
-      id: "select",
-      header: ({ table, row }: any) => {
-        console.log(table);
-        return (
-          <Box>
-            <Checkbox
-              indeterminate={table.getIsSomeRowsSelected()}
-              checked={table.getIsAllRowsSelected()}
-              onChange={table.getToggleAllRowsSelectedHandler()}
-            />
-          </Box>
-        );
-      },
-      cell: ({ row, table }: any) => (
-        <Box>
-          <Checkbox
-            disabled={row?.original?.Assigned}
-            checked={row?.original?.Assigned ? false : row.getIsSelected()}
-            onChange={row.getToggleSelectedHandler()}
-          />
-        </Box>
-      ),
-    },
     {
       accessorFn: (row: any) => row.sNO,
       id: "S.NO",
@@ -90,11 +66,11 @@ export const useUnannouncedHomeVisit = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="view"
-          onClicked={() => handleAction("view", info.row.original.id)}
-        />
-      </Box>
+          <TableAction
+            type="view"
+            onClicked={() => handleAction("view", info.row.original.id)}
+          />
+        </Box>
       ),
       header: "Action",
       isSortable: false,

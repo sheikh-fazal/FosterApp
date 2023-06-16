@@ -8,7 +8,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildAdditional = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildAdditional();
 
 
@@ -35,10 +35,4 @@ const ChildAdditional = () => {
 };
 
 export default ChildAdditional;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};
+ 

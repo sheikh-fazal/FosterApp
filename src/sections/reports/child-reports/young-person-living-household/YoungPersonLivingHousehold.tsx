@@ -8,7 +8,6 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 
 const YoungPersonLivingHousehold = () => {
   const {
-    handleSearch,
     handleAction,
     openDelete,
     handleCloseDeleteModal,
@@ -42,10 +41,3 @@ const YoungPersonLivingHousehold = () => {
 };
 
 export default YoungPersonLivingHousehold;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  },
-};

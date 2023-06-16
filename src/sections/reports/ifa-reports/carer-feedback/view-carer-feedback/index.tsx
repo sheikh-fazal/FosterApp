@@ -180,8 +180,8 @@ export const CarerFeedbackFormData = [
 
   {
     gridLength: 12,
-    title: `Comments`,
     componentProps: {
+      label: `Comments`,
       name: "comments",
       multiline: true,
       minRows: 3,

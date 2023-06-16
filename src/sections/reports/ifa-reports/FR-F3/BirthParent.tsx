@@ -28,13 +28,13 @@ const BirthParent = () => {
   const columns = [
     {
       id: "select",
-      header: ({ table, row }: any) => (
+      header: ({ table }: any) => (
         <Checkbox
           checked={table.getIsAllRowsSelected()}
           onChange={table.getToggleAllRowsSelectedHandler()}
         />
       ),
-      cell: ({ row, table }: any) => (
+      cell: ({ row }: any) => (
         <Checkbox
           disabled={row?.original?.Assigned}
           checked={row?.original?.Assigned ? false : row.getIsSelected()}
@@ -142,14 +142,16 @@ const BirthParent = () => {
             {viewReportsFilterData.map((data: any, i: number) => (
               <Grid item key={i} md={data.gridlength} xs={12}>
                 <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">{data.label}</InputLabel>
-                <Select {...data.otherOptions}>
-                  {data.options.map((item: any, j: number) => (
-                    <MenuItem key={j} value={item.value}>
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </Select>
+                  <InputLabel id="demo-simple-select-label">
+                    {data.label}
+                  </InputLabel>
+                  <Select {...data.otherOptions}>
+                    {data.options.map((item: any, j: number) => (
+                      <MenuItem key={j} value={item.value}>
+                        {item.label}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 </FormControl>
               </Grid>
             ))}
@@ -160,7 +162,7 @@ const BirthParent = () => {
             </Grid>
           </Grid>
         </Card>
-        <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
+        <TableHeader title="" showAddBtn onAdd={() => handleAction("add")} />
         <TableSubHeader data={tableSubHeader} />
         <CustomTable
           isError={false}

@@ -7,7 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildIncidents = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildIncidents();
 
 
@@ -34,10 +34,3 @@ const ChildIncidents = () => {
 };
 
 export default ChildIncidents;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};

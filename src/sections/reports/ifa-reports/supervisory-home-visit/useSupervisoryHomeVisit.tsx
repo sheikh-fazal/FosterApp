@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { TableDemoData } from ".";
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import Image from "next/image";
 import { useState } from "react";
 
 export const useSupervisoryHomeVisit = () => {
-  const path = "/reports/ifa-reports/supervisory-home-visit";
+  const path = "/reports/ifa-reports/supervisory-home-visit/form";
   const router = useRouter();
   const [currentTab, setCurrentTab] = useState(0);
   const handleTabChange = (value: any) => setCurrentTab(value);
@@ -23,30 +23,6 @@ export const useSupervisoryHomeVisit = () => {
     }
   };
   const columns = [
-    {
-      id: "select",
-      header: ({ table, row }: any) => {
-        console.log(table);
-        return (
-          <Box>
-            <Checkbox
-              indeterminate={table.getIsSomeRowsSelected()}
-              checked={table.getIsAllRowsSelected()}
-              onChange={table.getToggleAllRowsSelectedHandler()}
-            />
-          </Box>
-        );
-      },
-      cell: ({ row, table }: any) => (
-        <Box>
-          <Checkbox
-            disabled={row?.original?.Assigned}
-            checked={row?.original?.Assigned ? false : row.getIsSelected()}
-            onChange={row.getToggleSelectedHandler()}
-          />
-        </Box>
-      ),
-    },
     {
       accessorFn: (row: any) => row.sNO,
       id: "S.NO",
@@ -116,11 +92,11 @@ export const useSupervisoryHomeVisit = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="view"
-          onClicked={() => handleAction("view", info.row.original.id)}
-        />
-      </Box>
+          <TableAction
+            type="view"
+            onClicked={() => handleAction("view", info.row.original.id)}
+          />
+        </Box>
       ),
       header: "Action",
       isSortable: false,
@@ -134,6 +110,6 @@ export const useSupervisoryHomeVisit = () => {
     handleNextTab,
     handlePreviousTab,
     currentTab,
-    handleTabChange
+    handleTabChange,
   };
 };

@@ -1,4 +1,4 @@
-import TableDropdown from "@root/pages/safeguarding/collapsible-table/table-dropdown"
+import TableDropdown from "@root/components/Table/collapsible-table/table-dropdown"
 
 export const columns = [
     { id: '1', title: 'Foster Child Name', render: (data: any) => <span>{data.fosterChildName}</span> },

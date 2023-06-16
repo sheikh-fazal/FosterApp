@@ -7,7 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const FosteringServiceManager = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useFosteringServiceManager();
 
 
@@ -34,10 +34,3 @@ const FosteringServiceManager = () => {
 };
 
 export default FosteringServiceManager;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};

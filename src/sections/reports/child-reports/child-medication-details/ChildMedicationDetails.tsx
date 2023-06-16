@@ -7,7 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildMedicationDetails = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildMedicationDetails();
 
 
@@ -34,10 +34,3 @@ const ChildMedicationDetails = () => {
 };
 
 export default ChildMedicationDetails;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};

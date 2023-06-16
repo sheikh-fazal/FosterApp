@@ -8,7 +8,6 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ClaDocumentation = () => {
   const {
-    handleSearch,
     handleAction,
     openDelete,
     handleCloseDeleteModal,
@@ -18,11 +17,11 @@ const ClaDocumentation = () => {
   return (
     <>
       <Card sx={{ py: 2, px: 1 }}>
-        {/* <TableHeader title={"CLA DOCUMENTATION REPORT"} showAddBtn onAdd={() => handleAction("add")} /> */}
         <TableHeader
           title="CLA DOCUMENTATION REPORT"
           searchKey="search"
           showAddBtn
+          onAdd={() => handleAction("add")}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}
@@ -46,10 +45,3 @@ const ClaDocumentation = () => {
 };
 
 export default ClaDocumentation;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};

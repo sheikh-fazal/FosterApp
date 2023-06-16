@@ -27,8 +27,7 @@ export default function RHFRadioGroup({
         <div>
           <RadioGroup {...field} row {...other}>
             {options.map((option: any, index: number) => (
-              <FormControlLabel
-                disabled={other?.disabled}
+              <FormControlLabel 
                 key={option}
                 value={option}
                 control={<Radio />}

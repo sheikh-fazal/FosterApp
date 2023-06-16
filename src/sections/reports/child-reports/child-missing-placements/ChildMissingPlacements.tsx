@@ -7,7 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildMissingPlacements = () => {
-  const { handleSearch, handleAction, openDelete, handleCloseDeleteModal, columns } =
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
   useChildMissingPlacements();
 
 
@@ -34,10 +34,3 @@ const ChildMissingPlacements = () => {
 };
 
 export default ChildMissingPlacements;
-
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  }, 
-};

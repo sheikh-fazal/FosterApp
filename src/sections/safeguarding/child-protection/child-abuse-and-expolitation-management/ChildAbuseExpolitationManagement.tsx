@@ -1,7 +1,7 @@
 import { Button, Card, Dialog, DialogContent, Grid, Typography } from '@mui/material'
 import TableHeader from '@root/components/TableHeader'
 import DeleteModel from '@root/components/modal/DeleteModel'
-import CollapsibleTable from '@root/pages/safeguarding/collapsible-table'
+import CollapsibleTable from '@root/components/Table/collapsible-table'
 import React, { useRef } from 'react'
 import { useChildAbuseExpolitationManagement } from './useChildAbuseExpolitationManagement'
 import { rowsData } from '.'

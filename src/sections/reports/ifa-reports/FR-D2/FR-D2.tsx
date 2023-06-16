@@ -8,8 +8,7 @@ import {
   Grid,
   InputLabel,
   MenuItem,
-  Select,
-  Typography,
+  Select, 
 } from "@mui/material";
 import Image from "next/image";
 import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";

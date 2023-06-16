@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useBirthParent = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-F3/birth';
+  const path = '/reports/ifa-reports/FR-F3-birth-parent/form';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {

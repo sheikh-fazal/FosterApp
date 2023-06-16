@@ -1,4 +1,3 @@
-// export const selectValues = [{ value: "user", label: "User" }];
 export const viewReportsFilterData = [
   {
     gridlength: 6,
@@ -41,7 +40,6 @@ export const TableDemoData = [
     role: "User ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy: "John Doe",
   },
   {
     sNO: "2",
@@ -49,7 +47,6 @@ export const TableDemoData = [
     role: "User  ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy: "JamesWatt",
   },
   {
     sNO: "3",
@@ -57,6 +54,5 @@ export const TableDemoData = [
     role: "User ",
     loginTime: "12.30 AM",
     activity: "26/12/2021",
-    modifiedBy: "John Doe",
   },
 ];

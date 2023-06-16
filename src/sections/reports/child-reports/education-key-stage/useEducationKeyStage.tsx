@@ -6,7 +6,7 @@ import { useState } from "react";
 export const useEducationKeyStage = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = "/reports/child-reports/education-key-stage/education-key-stage-form";
+  const path = "/reports/child-reports/education-key-stage/form";
   const handleSearch = () => {};
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
