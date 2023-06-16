@@ -82,6 +82,7 @@ export const BankAccountDetailsTable = (props: any) => {
             content={info}
             readOnly
             btnType="view"
+            modalStatus={() => {}}
             closeModal={() => {}}
           />
         </Box>

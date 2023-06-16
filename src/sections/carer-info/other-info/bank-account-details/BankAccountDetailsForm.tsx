@@ -126,7 +126,9 @@ const FormPiece = (props: any) => {
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
-    accountNumber: Yup.string().required("Required"), //1
+    accountNumber: Yup.string()
+      .matches(/^UK0d{8}$/, "Please match UK0XXXXXXXX")
+      .required("Required"), //1
     sortName: Yup.string().required("Required"), //2
     bankName: Yup.string().required("Required"), //3
     accountName: Yup.string().required("Required"), //4
@@ -241,19 +243,19 @@ export const formDataArray = [
       select: true,
       options: [
         {
-          value: "Platinum",
+          value: "PLATINUM",
           label: "Platinum",
         },
         {
-          value: "Gold",
+          value: "GOLD",
           label: "Gold",
         },
         {
-          value: "Plus",
-          label: "Plus",
+          value: "SECONDARY",
+          label: "Secondary",
         },
         {
-          value: "Primary",
+          value: "PRIMARY",
           label: "Primary",
         },
       ],
