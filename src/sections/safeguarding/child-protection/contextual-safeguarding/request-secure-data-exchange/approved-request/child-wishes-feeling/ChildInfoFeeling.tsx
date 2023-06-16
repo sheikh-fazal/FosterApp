@@ -6,7 +6,7 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import Link from "next/link";
 import ErrorIcon from "@mui/icons-material/Error";
 
-const ChildInfoFeeling = ({handleNextTab,handleBackTab}:any) => {
+const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
   const {
     methods,
     onSubmit,
@@ -21,7 +21,7 @@ const ChildInfoFeeling = ({handleNextTab,handleBackTab}:any) => {
     <Tooltip
       {...props}
       title={props.title}
-      placement="bottom"
+      placement="bottom-start"
       arrow
       componentsProps={{
         tooltip: {
@@ -75,8 +75,8 @@ const ChildInfoFeeling = ({handleNextTab,handleBackTab}:any) => {
           ))}
 
           <Grid item xs={12}>
-          <Button
-          onClick={handleBackTab}
+            <Button
+              onClick={handleBackTab}
               sx={{
                 backgroundColor: "#F6830F",
                 "&:hover": {
@@ -104,9 +104,9 @@ const ChildInfoFeeling = ({handleNextTab,handleBackTab}:any) => {
             </Button>
 
             {/* <Link href={""} style={{ textDecoration: "none" }}> */}
-              <Button type="button" variant="contained" onClick={handleNextTab}>
-                Next
-              </Button>
+            <Button type="button" variant="contained" onClick={handleNextTab}>
+              Next
+            </Button>
             {/* </Link> */}
           </Grid>
         </Grid>
