@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useFosterChildComments = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-D1');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-D1-fostered-childs-comments');
 
 
   const methods: any = useForm({
