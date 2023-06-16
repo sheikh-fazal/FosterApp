@@ -3,11 +3,11 @@ import { Box } from "@mui/material";
 
 import HdrAutoIcon from "@mui/icons-material/HdrAuto";
 
-import Cicon from "../../../../../../../assets/img/local authority/Cicon.png";
-import Oicon from "../../../../../../../assets/img/local authority/Oicon.png";
-import Licon from "../../../../../../../assets/img/local authority/Licon.png";
-import Ficon from "../../../../../../../assets/img/local authority/Ficon.png";
-import Aicon from "../../../../../../../assets/img/local authority/Aicon.png";
+import Cicon from "../../../../../assets/img/local authority/Cicon.png";
+import Oicon from "../../../../../assets/img/local authority/Oicon.png";
+import Licon from "../../../../../assets/img/local authority/Licon.png";
+import Ficon from "../../../../../assets/img/local authority/Ficon.png";
+import Aicon from "../../../../../assets/img/local authority/Aicon.png";
 
 import PersonalInfo from "../personal-info/PersonalInfo";
 import ChildInfoFeeling from "../child-wishes-feeling/ChildInfoFeeling";

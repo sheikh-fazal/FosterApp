@@ -74,7 +74,7 @@ export const useApprovedRequestTable = () => {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/safeguarding/child-protection/contextual-safeguarding/request-secure-data-exchange/child-info",
+                  "/local-authority/local-authority-tab/request-for-secure-data-exchange/child-Info",
                 query: { action: "edit", id: "" },
               })
             }

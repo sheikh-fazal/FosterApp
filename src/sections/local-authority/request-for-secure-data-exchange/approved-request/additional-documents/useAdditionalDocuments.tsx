@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { useRouter } from "next/router";
-import PDF from "../../../../../../../assets/img/local authority/pdficon.png";
+import PDF from "../../../../../assets/img/local authority/pdficon.png";
 import Image from "next/image";
 import { TableData } from ".";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
-export const useSupportingEvidence = () => {
+export const useAdditionalDocuments = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const theme = useTheme();
@@ -22,6 +22,7 @@ export const useSupportingEvidence = () => {
     {
       id: "select",
       header: ({ table, row }: any) => {
+        console.log(table.getSelectedRowModel().flatRows);
         return (
           <Box>
             <Checkbox
