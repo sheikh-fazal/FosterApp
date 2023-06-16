@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 export const useAdvocacyHistory = () => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
     const [actionType, setActionType] = useState('add');
-
+    const [shareModal, setShareModal] = useState<boolean>(false);
+    const handleShareModal = () => setShareModal(!shareModal);
     const router = useRouter();
     const theme = useTheme();
     let tableHeaderRefThree = useRef<any>();
@@ -83,11 +84,11 @@ export const useAdvocacyHistory = () => {
                     />
                     <TableAction
                         type="headerShare"
-                        onClicked={() => { }}
+                        onClicked={handleShareModal}
                     />
                     <TableAction
                         type="print"
-                        onClicked={() => { }}
+                        onClicked={() => window.print() }
                     />
                 </Box>
             ),
@@ -105,6 +106,8 @@ export const useAdvocacyHistory = () => {
         setIsUploadModalOpen,
         actionType,
         setActionType,
+        shareModal,
+        handleShareModal,
         methods
     }
 }

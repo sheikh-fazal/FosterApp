@@ -11,7 +11,8 @@ export const useChildAdvocacyForm = () => {
     let [expand, setExpand] = useState(false);
     const [showChildStatistics, setShowChildStatistics] = useState<boolean>();
     const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
-
+    const [shareModal, setShareModal] = useState<boolean>(false);
+    const handleShareModal = () => setShareModal(!shareModal);
     const router = useRouter();
     const theme = useTheme();
     let tableHeaderRefThree = useRef<any>();
@@ -97,11 +98,11 @@ export const useChildAdvocacyForm = () => {
                     />
                     <TableAction
                         type="headerShare"
-                        onClicked={() => router.push("")}
+                        onClicked={handleShareModal}
                     />
                     <TableAction
                         type="print"
-                        onClicked={() => router.push("")}
+                        onClicked={()=>window.print()}
                     />
                 </Box>
             ),
@@ -109,7 +110,7 @@ export const useChildAdvocacyForm = () => {
             isSortable: false,
         },
     ];
-    
+
     const meetingRecordingColumns = [
         {
             id: "select",
@@ -195,6 +196,8 @@ export const useChildAdvocacyForm = () => {
         onSubmit,
         meetingRecordingColumns,
         isUploadModalOpen,
-        setIsUploadModalOpen
+        setIsUploadModalOpen,
+        handleShareModal,
+        shareModal
     }
 }

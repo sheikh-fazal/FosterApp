@@ -9,7 +9,8 @@ import { advocacyFormDefaultValues, advocacyFormSchema } from ".";
 export const useSomeoneElseAdvocacyForm = () => {
     const [isUploadModalOpen, setIsUploadModalOpen] = useState<boolean>(false);
     const [actionType, setActionType] = useState('add');
-
+    const [shareModal, setShareModal] = useState<boolean>(false);
+    const handleShareModal = () => setShareModal(!shareModal);
     const [advocacyRequirment, setAdvocacyRequirment] = useState('');
     const handleAdvocacy = ({ target }: any) => setAdvocacyRequirment(target.value);
     const router = useRouter();
@@ -92,11 +93,11 @@ export const useSomeoneElseAdvocacyForm = () => {
                     />
                     <TableAction
                         type="headerShare"
-                        onClicked={() => { }}
+                        onClicked={handleShareModal}
                     />
                     <TableAction
                         type="print"
-                        onClicked={() => { }}
+                        onClicked={() => window.print()}
                     />
                 </Box>
             ),
@@ -119,5 +120,7 @@ export const useSomeoneElseAdvocacyForm = () => {
         advocacyRequirment,
         onSubmit,
         handleSubmit,
+        handleShareModal,
+        shareModal
     }
 }
