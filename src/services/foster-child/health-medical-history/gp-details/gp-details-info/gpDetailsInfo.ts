@@ -3,47 +3,46 @@ import { baseAPI } from "@root/services/baseApi";
 export const gpDetailsInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllGpDetailsInfoData: builder.query({
-      query: (dataParameter: any) => ({
+      query: (apiDataParameter: any) => ({
         url: "foster-child/gp-info",
         method: "GET",
-        params: dataParameter.params,
+        params: apiDataParameter.params,
       }),
-    //   providesTags: ["INITIAL_HOME_VISIT"],
+      //   providesTags: ["INITIAL_HOME_VISIT"],
     }),
     getSingleGpDetailsInfoData: builder.query({
-        query: (dataParameter: any) => ({
-          url: `foster-child/gp-info/${dataParameter?.pathParams?.id}`,
-          method: "GET",
-          params: dataParameter?.params,
-        }),
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
+        method: "GET",
+        params: apiDataParameter?.params,
+      }),
       //   providesTags: ["INITIAL_HOME_VISIT"],
-      }),
+    }),
     postGpDetailsInfoData: builder.mutation({
-        query: (dataParameter: any) => ({
-          url: "foster-child/gp-info",
-          method: "POST",
-          params: dataParameter.params,
-          body:dataParameter.body
-        }),
-        invalidatesTags: ["GP_DETAILS_INFO"],
+      query: (apiDataParameter: any) => ({
+        url: "foster-child/gp-info",
+        method: "POST",
+        params: apiDataParameter.params,
+        body: apiDataParameter.body,
       }),
-      patchGpDetailsInfoData: builder.mutation({
-        query: (dataParameter: any) => ({
-          url: `foster-child/gp-info/${dataParameter?.pathParams?.id}`,
-          method: "PATCH",
-          params: dataParameter?.params,
-          body:dataParameter?.body
-        }),
-        invalidatesTags: ["GP_DETAILS_INFO"],
+      invalidatesTags: ["GP_DETAILS_INFO"],
+    }),
+    patchGpDetailsInfoData: builder.mutation({
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
+        method: "PATCH",
+        params: apiDataParameter?.params,
+        body: apiDataParameter?.body,
       }),
+      invalidatesTags: ["GP_DETAILS_INFO"],
+    }),
   }),
 });
 
-
 export const {
-   useGetAllGpDetailsInfoDataQuery,
-   useLazyGetSingleGpDetailsInfoDataQuery,
-   useGetSingleGpDetailsInfoDataQuery,
-   usePatchGpDetailsInfoDataMutation,
-   usePostGpDetailsInfoDataMutation
-  } = gpDetailsInfoApi;
+  useGetAllGpDetailsInfoDataQuery,
+  useLazyGetSingleGpDetailsInfoDataQuery,
+  useGetSingleGpDetailsInfoDataQuery,
+  usePatchGpDetailsInfoDataMutation,
+  usePostGpDetailsInfoDataMutation,
+} = gpDetailsInfoApi;

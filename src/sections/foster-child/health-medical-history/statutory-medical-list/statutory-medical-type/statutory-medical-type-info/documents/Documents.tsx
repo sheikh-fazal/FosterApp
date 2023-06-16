@@ -12,7 +12,7 @@ const Documents = () => {
     isError,
     isSuccess,
     isFetching,
-    submitInitialHomeVisitDocument,
+    submitStatutoryMedicalListInfoDocumentData,
     query
   } = useDocuments();
 
@@ -32,8 +32,7 @@ const Documents = () => {
       isError={isError}
       isSuccess={isSuccess}
       modalData={(data: any) => {
-        console.log("data all the way here", data);
-        submitInitialHomeVisitDocument(data);
+        submitStatutoryMedicalListInfoDocumentData(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);

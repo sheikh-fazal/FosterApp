@@ -41,9 +41,9 @@ export const statutoryMedicalListXTableColumnsFunction = (
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/${
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${
                   info.getValue()
-                }?type=${type}&action=edit`
+                }&type=${type}&action=edit`
               )
             }
           />
@@ -51,9 +51,9 @@ export const statutoryMedicalListXTableColumnsFunction = (
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/${
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${
                   info.getValue()
-                }?type=${type}&action=view`
+                }&type=${type}&action=view`
               )
             }
           />

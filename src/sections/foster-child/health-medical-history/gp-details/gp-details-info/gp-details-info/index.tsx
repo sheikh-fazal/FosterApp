@@ -30,41 +30,39 @@ export const defaultValueGpDetailsInfoForm = (data: any = gpDetailsInfoFormValue
   };
 };
 
-export const gpDetailsInfoFormSchema = Yup.object().shape({
-  physicianName: Yup.string()
+export const gpDetailsInfoFormSchema:any = Yup.object().shape({
+  physicianName: Yup.string().trim()
     .required("Physician name is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
     physicianType: Yup.string()
-    .required("Physician type is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    address: Yup.string()
+    .required("Physician type is required"),
+    address: Yup.string().trim()
     .required("Address is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    town: Yup.string()
+    town: Yup.string().trim()
     .required("Town is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    telephone: Yup.string()
+    telephone: Yup.string().trim()
     .required("Telephone is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    phoneNo: Yup.string()
+    phoneNo: Yup.string().trim()
     .required("Mobile phone is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    email: Yup.string().required("Email is required").email("Invalid Email"),
-    county: Yup.string()
+    email: Yup.string().trim().required("Email is required").email("Invalid Email"),
+    county: Yup.string().trim()
     .required("County is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    country: Yup.string()
+    country: Yup.string().trim()
     .required("Country is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    postalCode: Yup.string()
+    postalCode: Yup.string().trim()
     .required("Postal code is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),

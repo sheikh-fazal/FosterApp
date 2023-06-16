@@ -2,16 +2,16 @@ import { useRef, useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useGetGpDetailsInfoDocumentDataQuery, usePostGpDetailsInfoDocumentDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
+import { useGetStatutoryMedicalListInfoDocumentDataQuery, usePostStatutoryMedicalListInfoDocumentDataMutation } from "@root/services/foster-child/health-medical-history/statutory-medical-list/documents";
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
   // ----------------------------------------------------------------------
   const [
-    postGpDetailsInfoDocumentDataTrigger,
-    postGpDetailsInfoDocumentDataStatus,
-  ] = usePostGpDetailsInfoDocumentDataMutation();
+    postStatutoryMedicalListInfoDocumentDataTrigger,
+    postStatutoryMedicalListInfoDocumentDataStatus,
+  ] = usePostStatutoryMedicalListInfoDocumentDataMutation();
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
@@ -20,13 +20,13 @@ export const useDocuments = () => {
     search: searchValue,
   };
 const pathParams = {
-  gpInfoId:query?.gpInfoId
+  id:query?.id
 }
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-  useGetGpDetailsInfoDocumentDataQuery(dataParameter);
+  useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter);
 
-  const submitInitialHomeVisitDocument = async (data: any) => {
+  const submitStatutoryMedicalListInfoDocumentData = async (data: any) => {
     const documentFormData = new FormData();
 
     // documentFormData.append("documentType", data.documentType);
@@ -35,12 +35,12 @@ const pathParams = {
     documentFormData.append("file", data.chosenFile);
 
     const pathParams = {
-      gpInfoId:query?.gpInfoId
+      id:query?.id
     }
-      const putApiParameter = { params, pathParams , body: documentFormData };
+      const apiDataParameter = { params, pathParams , body: documentFormData };
     try {
-      const res: any = await postGpDetailsInfoDocumentDataTrigger(
-        putApiParameter
+      const res: any = await postStatutoryMedicalListInfoDocumentDataTrigger(
+        apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -60,7 +60,7 @@ const pathParams = {
     isSuccess,
     user,
     isFetching,
-    submitInitialHomeVisitDocument,
+    submitStatutoryMedicalListInfoDocumentData,
     query
   };
 };

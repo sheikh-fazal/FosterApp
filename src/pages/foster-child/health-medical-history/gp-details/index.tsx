@@ -9,26 +9,25 @@ import GPDetailsList from "@root/sections/foster-child/health-medical-history/gp
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "/ Child Info",
+    name: "Health",
     href: "/foster-child",
   },
   {
-    name: "Therapy Info List",
-    href: "/foster-child/health-medical-history/therapy-info",
+    name: "All",
+    href: "",
   },
 ];
 
-const PAGE_TITLE = "Therapy Info";
+const PAGE_TITLE = "GP Details Info List";
 
 // ----------------------------------------------------------------------
 
-InitialHomeVisit.getLayout = function getLayout(page: any) {
+GPDetails.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
       title={PAGE_TITLE}
-      variant="dashboard"
     >
       {page}
     </Layout>
@@ -37,7 +36,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function InitialHomeVisit() {
+export default function GPDetails() {
   return (
     <Page title={PAGE_TITLE}>
       <GPDetailsList />

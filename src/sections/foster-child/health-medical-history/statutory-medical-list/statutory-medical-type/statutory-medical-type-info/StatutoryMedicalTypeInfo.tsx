@@ -17,7 +17,8 @@ const StatutoryMedicalTypeInfo = () => {
     query,
     router,
   } = useStatutoryMedicalTypeInfo();
-  if (getSingleStatutoryMedicalTypeDataStatus?.isLoading) return <SkeletonFormdata />;
+  if (getSingleStatutoryMedicalTypeDataStatus?.isLoading)
+    return <SkeletonFormdata />;
   return (
     <FormProvider
       methods={methods}
@@ -46,7 +47,10 @@ const StatutoryMedicalTypeInfo = () => {
             sx={{ marginRight: "1rem" }}
             type="submit"
             variant="contained"
-            disabled={patchStatutoryMedicalTypeDataStatus?.isLoading || postStatutoryMedicalTypeDataStatus?.isLoading}
+            disabled={
+              patchStatutoryMedicalTypeDataStatus?.isLoading ||
+              postStatutoryMedicalTypeDataStatus?.isLoading
+            }
           >
             Submit
           </LoadingButton>
@@ -54,10 +58,15 @@ const StatutoryMedicalTypeInfo = () => {
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             onClick={() =>
-              router.push(`/foster-child/health-medical-history/statutory-medical-list`)
+              router.push(
+                `/foster-child/health-medical-history/statutory-medical-list`
+              )
             }
             variant="contained"
-            disabled={patchStatutoryMedicalTypeDataStatus?.isLoading || postStatutoryMedicalTypeDataStatus?.isLoading}
+            disabled={
+              patchStatutoryMedicalTypeDataStatus?.isLoading ||
+              postStatutoryMedicalTypeDataStatus?.isLoading
+            }
           >
             back
           </LoadingButton>
