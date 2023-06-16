@@ -40,7 +40,7 @@ export default function BarChart() {
         dataLabels: {
             enabled: false,
         },
-        labels: ["Onhold", "Blacklisted", "Placed", "Approved", "Rejected", "Requested"],
+        labels: ["Bexley Council", "Greenwich Council", "Newham Council", "Manchester Council", "Birmingham Council", "BlackPool Council"],
 
         legend: {
             show: false,

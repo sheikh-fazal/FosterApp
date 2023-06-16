@@ -11,7 +11,7 @@ const dynamicTitle = (pageTitle: any) => {
     console.log("pageTitle", pageTitle);
 };
 
-ReferralList.getLayout = function getLayout(page: any) {
+ChildrenList.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -32,7 +32,7 @@ ReferralList.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function ReferralList() {
+export default function ChildrenList() {
     return (
         <Page title={PAGE_TILE}>
             <Card sx={{ p: 2 }}>

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";

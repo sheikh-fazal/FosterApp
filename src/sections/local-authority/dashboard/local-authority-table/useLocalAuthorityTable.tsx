@@ -1,13 +1,8 @@
-import React, { useRef, useState } from 'react'
-import { useRouter } from 'next/router';
-import { Box, Checkbox, useTheme } from '@mui/material'
-import { TableData } from '.'
-import { SELECT_FILTERS } from '.'
+import { Box, Checkbox, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
-import DeleteModel from '@root/components/modal/DeleteModel';
-import { EmployeeDirectoryModal } from './employee-directory-modal';
-
-
+import { useRouter } from 'next/router';
+import React, { useRef } from 'react'
+import { TableData } from '.';
 // Styles
 const styles = {
     tableAction: {
@@ -19,10 +14,8 @@ const styles = {
     }
 }
 
-export const useLaEmployeeDirectory = () => {
+export const useLocalAuthorityTable = () => {
     const tableHeaderRefTwo = useRef<any>();
-    const [IsDeleteModal, setIsDeleteModal] = useState(false)
-    const [modalType, setModalType] = useState({ value: "", type: "" })
     const router = useRouter()
     const theme: any = useTheme();
 
@@ -52,38 +45,24 @@ export const useLaEmployeeDirectory = () => {
             ),
         },
         {
-            accessorFn: (row: any) => row.Sr_No,
-            id: "Sr_No",
+            accessorFn: (row: any) => row.LA_No,
+            id: "LA_No",
             cell: (info: any) => info.getValue(),
-            header: () => <span>S.NO</span>,
+            header: () => <span>LA No</span>,
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Employee_Name,
-            id: "Employee_Name",
-            cell: (info: any) => info.getValue(),
-            header: () => <span>Employee Name</span>,
-            isSortable: true,
-        },
-        {
-            accessorFn: (row: any) => row.La_Name,
-            id: "La_Name",
+            accessorFn: (row: any) => row.LA_Name,
+            id: "LA_Name",
             cell: (info: any) => info.getValue(),
             header: () => <span>LA Name</span>,
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Designation,
-            id: "Designation",
+            accessorFn: (row: any) => row.Primary_Contact,
+            id: "Primary_Contact",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Designation</span>,
-            isSortable: true,
-        },
-        {
-            accessorFn: (row: any) => row.Reporting_Manager,
-            id: "Reporting_Manager",
-            cell: (info: any) => info.getValue(),
-            header: () => <span>Reporting Manager</span>,
+            header: () => <span>Primary Contact</span>,
             isSortable: true,
         },
         {
@@ -108,23 +87,10 @@ export const useLaEmployeeDirectory = () => {
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.La_Children,
-            id: "La_Children",
-            cell: (info: any) => info.getValue(),
-            header: () => <span>LA Children</span>,
-            isSortable: true,
-        },
-        {
             id: "actions",
             cell: (info: any) => (
                 <Box sx={styles.tableAction}>
-                    <TableAction type="delete" onClicked={() => setIsDeleteModal(true)} />
-                    <DeleteModel onDeleteClick={handleDelete} open={IsDeleteModal} handleClose={() => setIsDeleteModal(false)} />
-                    <TableAction type="edit" onClicked={() => router.push(`${router.pathname}/edit-local-authority-employee`)} />
-                    <TableAction type="add" onClicked={() => setModalType({ ...modalType, value: "", type: "add" })} />
-                    <EmployeeDirectoryModal open={modalType.type} handleClose={() => { setModalType({ type: "", value: "" }); }} />
-
-
+                    <TableAction type="view" onClicked={() => router.push(`${router.pathname}/view-children-list-form`)} />
                 </Box>
 
             ),
@@ -133,13 +99,7 @@ export const useLaEmployeeDirectory = () => {
         },
     ];
 
-    const handleDelete = () => {
-        alert("deleted successfully")
-        setIsDeleteModal(!IsDeleteModal)
-    }
-
-
     return {
-        TableData, tableHeaderRefTwo, IsDeleteModal, setIsDeleteModal, router, theme, SELECT_FILTERS, columns
+        TableData, tableHeaderRefTwo, router, theme, columns
     }
 }

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
@@ -11,7 +10,7 @@ const dynamicTitle = (pageTitle: any) => {
     console.log("pageTitle", pageTitle);
 };
 
-ReferralList.getLayout = function getLayout(page: any) {
+SecureDataExchange.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -32,7 +31,7 @@ ReferralList.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function ReferralList() {
+export default function SecureDataExchange() {
     return (
         <Page title={PAGE_TILE}>
             <Card sx={{ p: 2 }}>

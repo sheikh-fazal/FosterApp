@@ -1,16 +1,15 @@
 import React, { Fragment, useState } from "react";
 import NextLink from "next/link";
 import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
 import LocalAuthorityTabs from "./vertical-tabs/LocalAuthorityTabs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import PieChart from "./charts/PieChart";
 import BarChart from "./charts/BarChart";
 import LocalAuthorityNotifications from "./local-authority-notifications/LocalAuthorityNotifications";
 import { TABSDATAARRY } from "./vertical-tabs";
+import LocalAuthorityTable from "./local-authority-table/LocalAuthorityTable";
 
 const Dashboard = () => {
-    const [showStatistics, setShowStatistics] = useState<boolean>(false);
     const theme = useTheme();
 
     return (
@@ -48,47 +47,8 @@ const Dashboard = () => {
                                         <PieChart />
                                         <BarChart />
                                     </HorizaontalTabs>
-                                    {/* <Box sx={styles.iconStyles}>
-                                        <InfoIcon
-                                            sx={{ width: "28px", height: "28px", color: "#0E918C" }}
-                                            onClick={() => setShowStatistics(!showStatistics)}
-                                        />
-                                    </Box> */}
-                                    {/* {showStatistics && (
-                                        <Box sx={styles.statisticsContainer}>
-                                            <Typography sx={styles.statisticsHeading}>Statistics</Typography>
-                                            <Box sx={{ pb: "10px", pt: "6px", ml: "16px" }}>
-                                                {chartTitles?.map((item, index) => (
-                                                    <Box key={index} sx={{ mt: 1 }}>
-                                                        <Box
-                                                            sx={{
-                                                                display: "flex",
-                                                                gap: "6px",
-                                                                alignItems: "center",
-                                                            }}
-                                                        >
-                                                            <Box
-                                                                sx={{
-                                                                    width: "18px",
-                                                                    height: "16px",
-                                                                    background: item?.color,
-                                                                    borderRadius: "4px",
-                                                                }}
-                                                            ></Box>
-                                                            <Typography fontSize={10} fontWeight={500}>
-                                                                {`${item?.title}: ${item?.percentage}%`}
-                                                            </Typography>
-                                                        </Box>
-                                                    </Box>
-                                                ))}
-                                            </Box>
-                                        </Box>
-                                    )} */}
                                 </Card>
                             </Grid>
-                            {/* <Grid item xs={12}>
-                                <ReferralWorkflow />
-                            </Grid> */}
                         </Grid>
                     </Grid>
                     <Grid item xl={6} lg={12} xs={12}>
@@ -97,7 +57,7 @@ const Dashboard = () => {
                                 <LocalAuthorityNotifications />
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography>Local Authority</Typography>
+                                <LocalAuthorityTable />
                             </Grid>
                         </Grid>
                     </Grid>

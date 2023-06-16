@@ -2,15 +2,15 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { Card, useTheme } from "@mui/material";
-import LaEmployeeDirectory from "@root/sections/local-authority/la-employee-directory/LaEmployeeDirectory";
+import { AddLocalAuthorityEmployee } from "@root/sections/local-authority/la-employee-directory/add-local-authority-employee";
 
-const PAGE_TILE = "Local Authority";
+const PAGE_TILE = "Edit Local Authority Employee";
 
 const dynamicTitle = (pageTitle: any) => {
     console.log("pageTitle", pageTitle);
 };
 
-LaEmployee.getLayout = function getLayout(page: any) {
+EditLocalAuthorityEmployee.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -18,7 +18,7 @@ LaEmployee.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Local Authority",
-                    href: "/local-authority",
+                    href: "/local-authority/la-employee",
                 },
                 {
                     name: "LA Employee Directory",
@@ -31,11 +31,11 @@ LaEmployee.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function LaEmployee() {
+export default function EditLocalAuthorityEmployee() {
     return (
         <Page title={PAGE_TILE}>
             <Card sx={{ p: 2 }}>
-                <LaEmployeeDirectory />
+                <AddLocalAuthorityEmployee />
             </Card>
         </Page>
     );

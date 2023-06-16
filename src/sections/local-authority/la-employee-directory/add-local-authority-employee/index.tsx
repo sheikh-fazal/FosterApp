@@ -80,7 +80,7 @@ export const AddLocalAuthorityForm = [
             sx: styles.marginBottom,
         },
         component: RHFTextField,
-        md: 7,
+        md: 6,
     },
 
     {

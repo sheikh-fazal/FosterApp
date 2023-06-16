@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,15 +5,14 @@ import Dashboard from "@root/sections/local-authority/dashboard/Dashboard";
 
 const PAGE_TILE = "Local Authority Dashboard";
 
-Referral.getLayout = function getLayout(page: any) {
+LocalAuthority.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
             breadcrumbs={[
                 {
                     icon: <HomeIcon />,
-                    // name: "Dashboard",
-                    href: "/dashboard",
+                    // href: "/dashboard",
                 },
                 {
                     name: "Local Authority",
@@ -27,10 +25,9 @@ Referral.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function Referral() {
+export default function LocalAuthority() {
     return (
         <Page title={PAGE_TILE}>
-            {/* <Dashboard /> */}
             <Dashboard />
         </Page>
     );

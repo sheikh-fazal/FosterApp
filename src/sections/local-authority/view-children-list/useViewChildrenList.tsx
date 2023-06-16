@@ -3,7 +3,6 @@ import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
 import React, { useRef } from 'react'
 import { SELECT_FILTERS, TableData } from '.';
-// import Image from "next/image";
 import Image from 'next/image'
 // Styles
 const styles = {
@@ -103,7 +102,7 @@ const useViewChildrenList = () => {
             id: "actions",
             cell: (info: any) => (
                 <Box sx={styles.tableAction}>
-                    <TableAction type="view" onClicked={() => router.push(`${router.pathname}/referral-scheme-view-form`)} />
+                    <TableAction type="view" onClicked={() => router.push(`${router.pathname}/view-children-list-form`)} />
                 </Box>
 
             ),

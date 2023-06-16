@@ -18,7 +18,7 @@ export default function PieChart() {
             width: 1,
         },
         dataLabels: { enabled: false },
-        labels: ["Onhold", "Blacklisted", "Placed", "Approved", "Rejected", "Requested"],
+        labels: ["Bexley Council", "Greenwich Council", "Newham Council", "Manchester Council", "Birmingham Council", "BlackPool Council"],
         colors: ["#E07601", "#849399", "#4A797E", "#5BA316", "#C84C0F", "#FFB600"],
         legend: {
             show: false,
