@@ -6,7 +6,7 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import Link from "next/link";
 import ErrorIcon from "@mui/icons-material/Error";
 
-const ChildInfoFeeling = () => {
+const ChildInfoFeeling = ({handleNextTab,handleBackTab}:any) => {
   const {
     methods,
     onSubmit,
@@ -76,6 +76,7 @@ const ChildInfoFeeling = () => {
 
           <Grid item xs={12}>
           <Button
+          onClick={handleBackTab}
               sx={{
                 backgroundColor: "#F6830F",
                 "&:hover": {
@@ -102,11 +103,11 @@ const ChildInfoFeeling = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
+            {/* <Link href={""} style={{ textDecoration: "none" }}> */}
+              <Button type="button" variant="contained" onClick={handleNextTab}>
                 Next
               </Button>
-            </Link>
+            {/* </Link> */}
           </Grid>
         </Grid>
       </Box>

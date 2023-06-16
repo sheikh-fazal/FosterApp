@@ -4,7 +4,10 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useChildBithFather } from './useChildBithFather';
 
-const ChildBithFather = () => {
+const ChildBithFather = ({
+  handleNextTab,
+  handleBackTab,
+}: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, childBirthFather } =
   useChildBithFather();
   return (
@@ -39,6 +42,7 @@ const ChildBithFather = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -56,11 +60,11 @@ const ChildBithFather = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
+           
+              <Button type="button" variant="contained" onClick={handleNextTab}>
                 Next
               </Button>
-            </Link>
+           
           </Grid>
         </Grid>
       </Box>

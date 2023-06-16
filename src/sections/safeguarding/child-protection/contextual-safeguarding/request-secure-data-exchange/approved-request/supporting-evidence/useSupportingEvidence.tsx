@@ -22,7 +22,6 @@ export const useSupportingEvidence = () => {
     {
       id: "select",
       header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
         return (
           <Box>
             <Checkbox

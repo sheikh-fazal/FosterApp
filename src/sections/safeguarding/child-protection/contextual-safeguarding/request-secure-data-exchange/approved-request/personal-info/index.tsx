@@ -146,7 +146,7 @@ export const personalInfo = [
       select: true,
       sx: { mb: 4 },
     },
-    options:NATIONALITYDROPDOWN,
+    options: NATIONALITYDROPDOWN,
     component: RHFSelect,
     md: 6,
   },
@@ -202,7 +202,7 @@ export const personalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "Education",
+      name: "education",
       label: "Is the Child Currently in Education",
       fullWidth: true,
       select: true,
@@ -238,8 +238,28 @@ export const personalInfo = [
   },
 ];
 
-export const personalInfoDataValues = {};
+export const personalInfoDataValues = {
+  childOrParent: "",
+  areaOffice: "",
+  firstName: "",
+  lastName: "",
+  dob: "",
+  age: "",
+  gender: "",
+  ethnicity: "",
+  ofsteadEthnicity: "",
+  specialNeeds: "",
+  nationality: "",
+  language: "",
+  religion: "",
+  legalStatus: "",
+  ImmigrationStatus: "",
+  behaviour: "",
+  education: "",
+  Sibling: "",
+  address: "",
+};
 
 export const personalInfoValidationSchema = Yup.object().shape({
-  // yourrequest: Yup.string().trim().required("Field is Required"),
+  // firstName: Yup.string().trim().required("Field is Required"),
 });

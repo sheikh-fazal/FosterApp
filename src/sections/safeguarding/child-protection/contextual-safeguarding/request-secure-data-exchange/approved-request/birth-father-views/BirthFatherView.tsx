@@ -4,7 +4,7 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useBirthFatherView } from "./useBirthFatherView";
 
-const BirthFatherView = () => {
+const BirthFatherView = ({ handleNextTab, handleBackTab }: any) => {
   const {
     methods,
     onSubmit,
@@ -45,6 +45,7 @@ const BirthFatherView = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -62,11 +63,11 @@ const BirthFatherView = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
+           
+              <Button onClick={handleNextTab} type="button" variant="contained">
                 Next
               </Button>
-            </Link>
+        
           </Grid>
         </Grid>
       </Box>

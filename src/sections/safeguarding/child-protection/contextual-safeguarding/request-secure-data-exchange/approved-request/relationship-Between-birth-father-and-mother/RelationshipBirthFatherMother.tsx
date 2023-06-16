@@ -4,7 +4,10 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useRelationshipBirthFatherMother } from "./useRelationshipBirthFatherMother";
 
-const RelationshipBirthFatherMother = () => {
+const RelationshipBirthFatherMother = ({
+  handleNextTab,
+  handleBackTab,
+}: any) => {
   const {
     methods,
     onSubmit,
@@ -45,6 +48,7 @@ const RelationshipBirthFatherMother = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -62,11 +66,9 @@ const RelationshipBirthFatherMother = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
-              </Button>
-            </Link>
+            <Button onClick={handleNextTab} type="button" variant="contained">
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>

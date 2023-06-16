@@ -4,7 +4,10 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useWithoutParentalResponsibility } from "./useWithoutParentalResponsibility";
 
-const WithoutParentalResponsibility = () => {
+const WithoutParentalResponsibility = ({
+  handleNextTab,
+  handleBackTab,
+}: any) => {
   const {
     methods,
     onSubmit,
@@ -45,6 +48,7 @@ const WithoutParentalResponsibility = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -62,11 +66,9 @@ const WithoutParentalResponsibility = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
-              </Button>
-            </Link>
+            <Button onClick={handleNextTab} type="button" variant="contained">
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>

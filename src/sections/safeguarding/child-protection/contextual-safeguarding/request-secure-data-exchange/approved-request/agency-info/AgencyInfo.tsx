@@ -1,10 +1,9 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useAgencyInfo } from "./useAgencyInfo";
 
-const AgencyInfo = () => {
+const AgencyInfo = ({ handleNextTab, handleBackTab }: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, agencyInfoData } =
     useAgencyInfo();
   return (
@@ -39,6 +38,7 @@ const AgencyInfo = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -56,11 +56,9 @@ const AgencyInfo = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="submit" variant="contained">
-                Submit
-              </Button>
-            </Link>
+            <Button type="submit" variant="contained">
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </Box>

@@ -153,6 +153,15 @@ export const wishesData = [
   },
 ];
 
-export const wishesDataDataValues = {};
+export const wishesDataDataValues = {
+  ChildsName: "",
+  dateCompleted: "",
+  address: "",
+  adoptive: "",
+  mosque: "",
+  more: "",
+  people: "",
+  peopleIWantToStay: "",
+};
 
 export const wishesDataValidationSchema = Yup.object().shape({});

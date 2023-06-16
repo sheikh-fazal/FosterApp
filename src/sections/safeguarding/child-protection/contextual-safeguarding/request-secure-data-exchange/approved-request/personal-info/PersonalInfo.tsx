@@ -1,17 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { usePersonalInfo } from "./usePersonalInfo";
+import { useChildInfoTabs } from "../child-info-tabs/useChildInfoTabs";
 
-const PersonalInfo = () => {
-  const { methods, onSubmit, handleSubmit, reset, setValue, personalInfo , theme} =
+const PersonalInfo = (props: any) => {
+  const { methods, onSubmit, handleSubmit, reset, personalInfo, theme } =
     usePersonalInfo();
+
+  // const { handleNextTab } = useChildInfoTabs();
+
+  const { handleNextTab } = props;
+
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ padding: "0.8rem" }}>
-        <Box sx={{ paddingBottom: "2rem", fontWeight: 600, fontSize: "18px" , color: theme.palette.primary.main}}>
+        <Box
+          sx={{
+            paddingBottom: "2rem",
+            fontWeight: 600,
+            fontSize: "18px",
+            color: theme.palette.primary.main,
+          }}
+        >
           Personal Info
         </Box>
         <Grid container columnSpacing={4}>
@@ -30,7 +43,7 @@ const PersonalInfo = () => {
                 </form.component>
               )}
               {form?.uploadPhoto && (
-                <Box sx={{mb: 4}}>
+                <Box sx={{ mb: 4 }}>
                   <RHFUploadFile name={"updatePhoto"} {...methods} required />
                 </Box>
               )}
@@ -52,11 +65,9 @@ const PersonalInfo = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
-              </Button>
-            </Link>
+            <Button onClick={handleNextTab} type="button" variant="contained">
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>

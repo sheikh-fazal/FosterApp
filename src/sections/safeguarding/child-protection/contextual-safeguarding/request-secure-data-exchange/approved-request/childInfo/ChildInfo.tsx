@@ -2,15 +2,18 @@ import { Box, Card, Grid, Typography } from "@mui/material";
 import React, { Fragment, useState } from "react";
 import NextLink from "next/link";
 import ChildInfoTabs from "../child-info-tabs/ChildInfoTabs";
-import { TABSDATAARRY } from "../child-info-tabs/index";
 import { useTheme } from "@mui/material";
 import ChildFamilyRelativesForm from "../child-family-&-relatives/child-family-&-relatives-form/ChildFamilyRelativesForm";
+import { useChildInfoTabs } from "../child-info-tabs/useChildInfoTabs";
+// import { TABSDATAARRY } from "../child-info-tabs";
 
 const ChildInfo = () => {
+  // const { TABSDATAARRY } = useChildInfoTabs();
+  const {currentTab,handleTabChange,TABSDATAARRY} = useChildInfoTabs()
   const theme = useTheme();
   return (
     <Box>
-      <ChildInfoTabs tabsDataArray={TABSDATAARRY}>
+      <ChildInfoTabs tabsDataArray={TABSDATAARRY} currentTab={currentTab} handleTabChange={handleTabChange}>
         {TABSDATAARRY?.map((item) => (
           <Fragment key={item.index}>
             <Grid container spacing={2} minHeight={"230px"}>

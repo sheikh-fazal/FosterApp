@@ -1,4 +1,10 @@
-import React, { ReactNode, SyntheticEvent, useState, Children } from "react";
+import React, {
+  ReactNode,
+  SyntheticEvent,
+  useState,
+  Children,
+  useEffect,
+} from "react";
 import { Box, Card, Grid, Tab, Tabs, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useTheme } from "@mui/material";
@@ -7,16 +13,23 @@ import { useChildInfoTabs } from "./useChildInfoTabs";
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
   children: ReactNode;
+  currentTab:number;
+  handleTabChange:any
 }
 
 export default function ChildInfoTabs({
   tabsDataArray,
   children,
+  currentTab,
+  handleTabChange,
   ...other
 }: IVERTICALTABSPROPS) {
-  const { value, setValue, handleChange } = useChildInfoTabs();
+  // const { value, setValue, handleChange } = useChildInfoTabs();
 
   const theme = useTheme();
+  // useEffect(() => {
+  //   console.log("Changed", value);
+  // }, [value]);
   const arrayChildren = Children.toArray(children);
   return (
     <Grid container spacing={2} sx={styles.container}>
@@ -31,8 +44,8 @@ export default function ChildInfoTabs({
             variant="scrollable"
             sx={styles.tabRoot}
             TabIndicatorProps={styles.tabIndicator}
-            value={value}
-            onChange={handleChange}
+            value={currentTab}
+            onChange={handleTabChange}
           >
             {tabsDataArray?.map((item: any) => (
               <Tab
@@ -87,14 +100,14 @@ export default function ChildInfoTabs({
           <div
             role="tabpanel"
             key={item?.title}
-            hidden={value !== item?.index}
+            hidden={currentTab !== item?.index}
             id={`vertical-tabpanel-${item?.index}`}
             aria-labelledby={`vertical-tab-${item?.index}`}
             {...other}
           >
             <Card sx={styles.tabPanelContainer}>
               {arrayChildren?.map((child: any, index: any) => (
-                <Box key={index}>{value === index && child}</Box>
+                <Box key={index}>{currentTab === index && child}</Box>
               ))}
             </Card>
           </div>

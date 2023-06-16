@@ -4,7 +4,7 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useBirthFatherPartner } from "./useBirthFatherPartner";
 
-const BirthFatherPartner = () => {
+const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
   const {
     methods,
     onSubmit,
@@ -45,6 +45,7 @@ const BirthFatherPartner = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={handleBackTab}
             >
               Back
             </Button>
@@ -62,11 +63,9 @@ const BirthFatherPartner = () => {
               Save
             </Button>
 
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
-              </Button>
-            </Link>
+            <Button onClick={handleNextTab} type="button" variant="contained">
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>
