@@ -11,7 +11,7 @@ export const carInsuranceData = [
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "enhancedDbs",
+      name: "isEnhancedDbs",
       label: "Is Enhanced DBS",
     },
     component: RHFCheckbox,
@@ -20,7 +20,7 @@ export const carInsuranceData = [
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "inProgress",
+      name: "inProcess",
       label: "In Progress",
     },
     component: RHFCheckbox,
@@ -29,48 +29,60 @@ export const carInsuranceData = [
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "sentCarerDate",
-      label: "Sent To Carer Date:",
+      name: "sentToCarerDate",
+      label: "Sent To Carer Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "receivedCarerDate",
-      label: "Received From Carer Date:",
+      name: "receivedFromCarerDate",
+      label: "Received From Carer Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "sentDbsDate",
-      label: "Sent To DBS Date:",
+      name: "sentToDbsDate",
+      label: "Sent To DBS Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "recieveDbsDate",
+      name: "receivedFromDbsDate",
       label: "Received From DBS Check",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 7,
     gridLength: 6,
     otherOptions: {
       name: "disclosureNumber",
-      label: "Disclosure Number:",
+      label: "Disclosure Number",
       multiline: false,
       fullWidth: true,
     },
@@ -81,27 +93,33 @@ export const carInsuranceData = [
     gridLength: 6,
     otherOptions: {
       name: "disclosureDate",
-      label: "Disclose Date:",
+      label: "Disclose Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "renewDbsDate",
-      label: "Renew From DBS Date:",
+      name: "renewFromDbsDate",
+      label: "Renew From DBS Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 10,
     gridLength: 6,
     otherOptions: {
       name: "result",
-      label: "Result:",
+      label: "Result",
       fullWidth: true,
       select: true,
     },
@@ -116,8 +134,8 @@ export const carInsuranceData = [
     gridLength: 6,
     Options: [true, false],
     otherOptions: {
-      name: "updateService",
-      label: "Subscribe To Update Service:",
+      name: "subscribeToUpdateService",
+      label: "Subscribe To Update Servic",
     },
     component: "RadioGroup",
   },
@@ -126,7 +144,7 @@ export const carInsuranceData = [
     gridLength: 12,
     otherOptions: {
       name: "comments",
-      label: "comments::",
+      label: "comments",
       multiline: true,
       rows: 3,
       fullWidth: true,
@@ -134,31 +152,39 @@ export const carInsuranceData = [
     component: RHFTextField,
   },
 ];
+
+export const formatters: any = {};
+
+for (const formControl of carInsuranceData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
 export const defaultValues = {
-  enhancedDbs: "",
-  inProgress: "",
-  sentCarerDate: new Date(),
-  receivedCarerDate: new Date(),
-  sentDbsDate: new Date(),
-  recieveDbsDate: new Date(),
+  isEnhancedDbs: null,
+  inProcess: null,
+  sentToCarerDate: new Date(),
+  receivedFromCarerDate: new Date(),
+  sentToDbsDate: new Date(),
+  receivedFromDbsDate: new Date(),
   disclosureNumber: "",
   disclosureDate: new Date(),
-  renewDbsDate: new Date(),
+  renewFromDbsDate: new Date(),
   result: "",
-  updateService: false,
+  subscribeToUpdateService: null,
   comments: "",
 };
-export const FormSchema = Yup.object().shape({
-  enhancedDbs: Yup.string().required("required"),
-  inProgress: Yup.string().required("required"),
-  sentCarerDate: Yup.date().required("required"),
-  receivedCarerDate: Yup.date().required("required"),
-  sentDbsDate: Yup.date().required("required"),
-  recieveDbsDate: Yup.date().required("required"),
-  disclosureNumber: Yup.string().required("required"),
-  disclosureDate: Yup.date().required("required"),
-  renewDbsDate: Yup.date().required("required"),
-  result: Yup.string().required("required"),
-  updateService: Yup.boolean().required("required"),
-  comments: Yup.string().required("required"),
+export const formSchema = Yup.object().shape({
+  isEnhancedDbs: Yup.boolean(),
+  inProcess: Yup.boolean(),
+  sentToCarerDate: Yup.date().required("Required"),
+  receivedFromCarerDate: Yup.date().required("Required"),
+  sentToDbsDate: Yup.date().required("Required"),
+  receivedFromDbsDate: Yup.date().required("Required"),
+  disclosureNumber: Yup.string().required("Required"),
+  disclosureDate: Yup.date().required("Required"),
+  renewFromDbsDate: Yup.date().required("Required"),
+  result: Yup.string().required("Required"),
+  subscribeToUpdateService: Yup.boolean().required("Required"),
+  comments: Yup.string().required("Required"),
 });

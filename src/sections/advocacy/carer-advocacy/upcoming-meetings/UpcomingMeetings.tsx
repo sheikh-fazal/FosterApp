@@ -28,7 +28,7 @@ export default function UpcomingMeetings() {
           component="h6"
           sx={{ color: "#23183D", fontSize: "14px !important", cursor: "pointer", py: 1.5, px: 1.5 }}
           onClick={() => {
-            router.push("/carer-advocacy/upload-meeting");
+            router.push("/advocacy/carer-advocacy/upload-meeting");
           }}
         >
           view all

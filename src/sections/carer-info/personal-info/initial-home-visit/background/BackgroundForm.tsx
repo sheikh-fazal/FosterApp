@@ -1,23 +1,25 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { BackgroundFormSchema, backgroundFormValues } from ".";
+import { backgroundFormSchema} from ".";
 import { useBackgroundForm } from "./useBackgroundForm";
 
-const BackgroundForm = (props: any) => {
+const BackgroundForm = () => {
   const {
     submitBackgroundForm,
     setBackgroundFormDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
     backgroundFormFieldsInfo,
+    user,
   } = useBackgroundForm();
   return (
     <FormGenerator
-      FormSchema={BackgroundFormSchema}
+      FormSchema={backgroundFormSchema}
       defaultValues={setBackgroundFormDefaultValue}
       fieldsInfo={backgroundFormFieldsInfo}
       submitClickHand={submitBackgroundForm}
       isFormSubmitting={postInitialHomeBackgroundDataStatus.isLoading}
       isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
+      defaultRole={user?.defaultRole}
     />
   );
 };

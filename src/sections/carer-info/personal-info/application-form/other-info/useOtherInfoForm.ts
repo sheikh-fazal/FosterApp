@@ -3,8 +3,10 @@ import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
+import { enqueueSnackbar } from "notistack";
+import { useUpdateOtherInfoMutation } from "@root/services/carer-info/personal-info/application-form/OtherInfoApi";
 
-export const useOtherInfoForm = (data: any) => {
+export const useOtherInfoForm = (data: any, apllicationFormid: any) => {
   const theme: any = useTheme();
 
   const methods: any = useForm({
@@ -21,21 +23,24 @@ export const useOtherInfoForm = (data: any) => {
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-
+  let [updateOtherInfo, { isLoading }] = useUpdateOtherInfoMutation();
   const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    alert(
-      JSON.stringify(
-        {
+    try {
+      const res: any = await updateOtherInfo({
+        formData: {
           ...data,
-          startDate: data.startDate && fTimestamp(data.startDate),
-          endDate: data.endDate && fTimestamp(data.endDate),
+          authorityOrAgency: data.authorityOrAgency == "Yes" ? true : false,
+          haveApplied: data.haveApplied == "Yes" ? true : false,
         },
-        null,
-        2
-      )
-    );
-    reset();
+        id: apllicationFormid,
+      }).unwrap();
+      if (res.data) {
+        enqueueSnackbar("Record Updated Successfully", { variant: "success" });
+      }
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
   return {
     methods,
@@ -44,5 +49,6 @@ export const useOtherInfoForm = (data: any) => {
     isSubmitting,
     isDirty,
     theme,
+    isLoading,
   };
 };

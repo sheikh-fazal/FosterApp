@@ -22,20 +22,14 @@ const FormGenerator: FC<any> = ({
   defaultRole,
 }) => {
   const theme: any = useTheme();
-  console.log({ defaultRole });
   const methods: any = useForm({
     // mode: "onTouched",
     ...(!!FormSchema && { resolver: yupResolver(FormSchema) }),
     defaultValues,
   });
-
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {
@@ -99,12 +93,8 @@ const FormGenerator: FC<any> = ({
           );
         })}
         <Grid item xs={12}>
-          {/* <Button size="large" type="submit" variant="contained">
-            Submit
-          </Button> */}
           {defaultRole !== "FOSTER_CARER" && (
             <LoadingButton
-              // fullWidth
               color="primary"
               size="large"
               type="submit"
@@ -116,26 +106,6 @@ const FormGenerator: FC<any> = ({
             </LoadingButton>
           )}
         </Grid>
-        {/* <Grid xs={12}>
-          <Box
-            my={4}
-            mr={2}
-            sx={{ display: "flex", justifyContent: "flex-end" }}
-          >
-            {!disabled && (
-              <LoadingButton
-                color="info"
-                size="large"
-                type="submit"
-                variant="contained"
-                loading={isSubmitting}
-                disabled={!isDirty}
-              >
-                Submit
-              </LoadingButton>
-            )}
-          </Box>
-        </Grid> */}
       </Grid>
     </FormProvider>
   );

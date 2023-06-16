@@ -1,4 +1,5 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import * as Yup from "yup";
 // utils
 
@@ -25,17 +26,17 @@ export const FormSchema = Yup.object().shape({
     .max(30, "Maximum 30 characters"),
   town: Yup.string()
     .required("City is required")
-    .min(6, "Mininum 6 characters")
-    .max(10, "Maximum 10 characters"),
+    .min(10, "Mininum 10 characters")
+    .max(20, "Maximum 20 characters"),
   telephone: Yup.string()
     .required("Telephone is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   county: Yup.string()
     .trim()
     .required("County is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(30, "Maximum 30 characters"),
   country: Yup.string()
     .trim()
     .required("Country is required")
@@ -43,8 +44,8 @@ export const FormSchema = Yup.object().shape({
     .max(15, "Maximum 15 characters"),
   postalCode: Yup.string()
     .required("Postal Code is required")
-    .min(2, "Mininum 4 characters")
-    .max(8, "Maximum 8 characters"),
+    .min(10, "Mininum 10 characters")
+    .max(20, "Maximum 20 characters"),
 });
 export const formData = [
   {
@@ -88,10 +89,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
   },
   {
@@ -102,10 +100,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Pakistan", label: "Pakistan" },
-      { value: "India", label: "India" },
-    ],
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
   },
   {

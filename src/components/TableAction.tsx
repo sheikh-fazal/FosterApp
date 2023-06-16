@@ -54,20 +54,15 @@ const styles = {
         backgroundColor = theme.palette.success.dark;
         break;
       case "refresh":
-        backgroundColor = "#23183D";
+        backgroundColor = theme.palette.grey[600];
         break;
       // share icon
       case "share":
-        backgroundColor = "#23183D";
+        backgroundColor = theme.palette.grey[600];
         break;
       case "diagram":
         backgroundColor = theme.palette.orange.main;
         break;
-      // share icon
-      case "share":
-        backgroundColor = "#23183D";
-        break;
-
       //  print icon
       case "print":
         backgroundColor = theme.palette.orange.main;
@@ -75,7 +70,7 @@ const styles = {
 
       // header share icon
       case "headerShare":
-        backgroundColor = "#23183D";
+        backgroundColor = theme.palette.grey[600];
         break;
 
       case "recording":

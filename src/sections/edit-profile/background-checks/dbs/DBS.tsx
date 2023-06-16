@@ -28,7 +28,7 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
 import { enqueueSnackbar } from "notistack";
 
-const DBS: FC<any> = () => {
+const DBS: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [availableFiles, setAvailableFiles] = useState<any>(null);
@@ -43,11 +43,11 @@ const DBS: FC<any> = () => {
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError } = await getDbsInfo(null, true);
+      const { data, isError, error } = await getDbsInfo(null, true);
       setAvailableFiles(data?.data?.certificate);
       setIsLoading(false);
-      if (isError) {
-        setIsLoading(false);
+      if (isError || !data?.data) {
+        data?.data && displayErrorMessage(error, enqueueSnackbar);
         return defaultValues;
       }
       const { validDBS, certificateName, issueDate, online, updateService } =
@@ -82,7 +82,7 @@ const DBS: FC<any> = () => {
     try {
       const data = await updateDbsInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      // activateNextForm();
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }

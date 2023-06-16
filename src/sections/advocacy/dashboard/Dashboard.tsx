@@ -83,7 +83,7 @@ const Dashboard = () => {
                         <Grid item xs={12}>
                             <Card sx={styles.cardStyles}>
                                 <HorizaontalTabs
-                                    tabsDataArray={["Total Advocacy by Carer - Pie Chart", "Total Advocacy by Carer - Bar Chart"]}
+                                    tabsDataArray={["Total Advocacy by Child - Pie Chart", "Total Advocacy by Child - Bar Chart"]}
                                     variant="fullWidth"
                                     spacing={0}
                                 >

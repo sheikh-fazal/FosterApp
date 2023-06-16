@@ -15,7 +15,7 @@ export default function SafeguardingAssessmentForm({ disabled, }: any) {
       <Grid container columnSpacing={4}>
         {SafeguardingAssessmentAddForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <Typography sx={{ fontSize: "16px !important", fontWeight: "600 !important" }} variant="h6" gutterBottom>{item.title}</Typography>
+            <Typography sx={{ fontSize: "16px !important", fontWeight: "400 !important" }} variant="h6" gutterBottom>{item.title}</Typography>
 
 
             <item.component

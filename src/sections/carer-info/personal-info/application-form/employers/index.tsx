@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
@@ -31,7 +32,7 @@ export const FormSchema = Yup.object().shape({
   phone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   contactName: Yup.string().required("Field is required"),
   noticePeriod: Yup.string().required("Field is required"),
   disciplinaryCareer: Yup.string().required("Field is required"),
@@ -128,7 +129,12 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setEmployerData: any) => {
+export const columns = (
+  changeView: any,
+  setEmployerData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
   return [
     {
       accessorFn: (row: any) => row.contactName,
@@ -161,6 +167,20 @@ export const columns = (changeView: any, setEmployerData: any) => {
               changeView("view");
             }}
           />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setEmployerData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,

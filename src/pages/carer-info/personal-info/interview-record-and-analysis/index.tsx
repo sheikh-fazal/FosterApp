@@ -19,6 +19,7 @@ import { Box, Card } from "@mui/material";
 import { useGetInterviewRecordAnalysisQuery } from "@root/services/carer-info/personal-info/interview-record-analysis/InterviewRecordAnalysis";
 
 import IsFetching from "@root/components/loaders/IsFetching";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const BREADCRUMBS = [
   {
@@ -54,21 +55,21 @@ InterviewRecordAndAnalysis.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InterviewRecordAndAnalysis() {
-  let role = "foster-carer";
+  let role = "ifa";
   const {
     data: fetchData,
     isLoading,
     isError,
   }: any = useGetInterviewRecordAnalysisQuery();
 
-  // if (isError) {
-  //   return <Error />;
-  // }
+  if (role == "foster-carer" && isError) {
+    return <Error />;
+  }
 
   return (
     <Page title={PAGE_TITLE}>
       {isLoading ? (
-        <IsFetching isFetching={isLoading} />
+        <SkeletonFormdata />
       ) : (
         <Card sx={{ p: 4 }}>
           <InterviewRecordAndAnalysisComponent
@@ -78,6 +79,9 @@ export default function InterviewRecordAndAnalysis() {
                 ...fetchData?.data,
                 interviewDate: new Date(fetchData?.data.interviewDate),
                 signatureDate: new Date(fetchData?.data.signatureDate),
+                accessorSignatureDate: new Date(
+                  fetchData?.data.accessorSignatureDate
+                ),
               }),
             }}
             disabled={role == "foster-carer" ? true : false}

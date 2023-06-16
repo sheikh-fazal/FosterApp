@@ -24,12 +24,12 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string()
     .required("First Name is required")
-    .min(6, "Mininum 6 characters")
-    .max(10, "Maximum 15 characters"),
+    .min(3, "Mininum 3 characters")
+    .max(20, "Maximum 20 characters"),
   lastName: Yup.string()
     .required("Last Name is required")
-    .min(6, "Mininum 6 characters")
-    .max(10, "Maximum 15 characters"),
+    .min(3, "Mininum 3 characters")
+    .max(20, "Maximum 20 characters"),
   actualAuthorityLiveIn: Yup.string()
     .trim()
     .required("Actual Authority is required"),
@@ -41,7 +41,7 @@ export const FormSchema = Yup.object().shape({
   telephone: Yup.string()
     .required("Telephone is required")
     .min(4, "Mininum 6 characters")
-    .max(15, "Maximum 15 characters"),
+    .max(25, "Maximum 25 characters"),
   relyOnSupport: Yup.string()
     .required("Field is Required")
     .min(4, "Mininum 6 characters")
