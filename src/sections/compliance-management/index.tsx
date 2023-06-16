@@ -27,13 +27,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -47,13 +47,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -67,13 +67,13 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
@@ -87,18 +87,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -116,18 +116,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -137,18 +137,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -167,18 +167,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -188,18 +188,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -209,18 +209,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -230,18 +230,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -259,18 +259,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -280,18 +280,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -301,18 +301,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -322,18 +322,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -351,18 +351,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -372,18 +372,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -393,18 +393,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -414,18 +414,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -435,18 +435,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -464,18 +464,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
 
@@ -486,18 +486,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -507,18 +507,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -528,18 +528,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -557,18 +557,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -578,18 +578,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -599,18 +599,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -620,18 +620,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -641,18 +641,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -670,18 +670,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -700,18 +700,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -721,18 +721,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -742,18 +742,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -763,18 +763,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -792,18 +792,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -813,18 +813,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -834,18 +834,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -864,18 +864,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -894,18 +894,18 @@ export const ComplianceVerticalTabsData = [
                 tabsDocuments: [
                     {
                         id: "1",
-                         title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -919,13 +919,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -939,13 +939,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -959,13 +959,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -979,13 +979,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -999,13 +999,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
@@ -1027,13 +1027,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -1047,13 +1047,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -1067,13 +1067,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -1087,13 +1087,13 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             },
@@ -1107,22 +1107,17 @@ export const ComplianceVerticalTabsData = [
                     },
                     {
                         id: "2",
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     },
                     {
                         id: '3',
-                        title:"ABO3 - Business Expenses Policy and Procedure",
-                    //    pdf: require('../../assets/pdf-sample.pdf'),
+                        title: "ABO3 - Business Expenses Policy and Procedure",
+                        //    pdf: require('../../assets/pdf-sample.pdf'),
                     }
                 ]
             }
         ]
     },
-    {
-        index: 13,
-        title: "Add More",
-        img: AddMoreIcon,
-        color: '#F6830F',
-    },
+
 ]
