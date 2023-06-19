@@ -178,6 +178,9 @@ export const FormSchema = Yup.object().shape({
   selfInflectedInjuries: Yup.boolean().required("required"),
   habitOfSmokingDrugs: Yup.boolean().required("required"),
   isDiagnosedWithADHD: Yup.boolean().required("required"),
-  overallBehaviour: Yup.number().required("required"),
+  overallBehaviour: Yup.number()
+    .required("required")
+    .positive("must be positive")
+    .lessThan(11, "Overall Behaviour must not be less than 10"),
   summary: Yup.string().required("required"),
 });

@@ -20,7 +20,7 @@ const BehaviorInfoList = baseAPI.injectEndpoints({
     }),
     behaviorInfoPatch: builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/behavioural-info/${payload.behaviouralInfoId}`,
+        url: `/foster-child/behavioural-info/${payload.params.behaviouralInfoId}`,
         method: "PATCH",
         params: payload.params,
         body: payload.formdata,
@@ -52,5 +52,5 @@ export const {
   useBehaviorInfoPostAddMutation,
   useLazyBehaviorInfoGetBYbehaviouralInfoIdQuery,
   useBehaviorInfoDeleteBYbehaviouralInfoIdMutation,
-  useBehaviorInfoPatchMutation
+  useBehaviorInfoPatchMutation,
 } = BehaviorInfoList;
