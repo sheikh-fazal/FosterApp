@@ -12,7 +12,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childWasPhsicallyAbused",
+      name: "wasPhysicallyAbused",
       label: "Child was phsically Abused",
     },
     component: RHFCheckbox,
@@ -20,7 +20,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childWasSexuallyAbused",
+      name: "wasSexuallyAbused",
       label: "Child was Sexually Abused",
     },
     component: RHFCheckbox,
@@ -28,7 +28,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childIsDiagnosedHyperactive",
+      name: "isDiagnosedHyperactive",
       label: "Child is Diagnosed Hyperactive",
     },
     component: RHFCheckbox,
@@ -36,7 +36,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childWetsTheBed",
+      name: "wetsTheBed",
       label: "Child wets the Bed",
     },
     component: RHFCheckbox,
@@ -44,7 +44,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "ChildHasViolentTendencies",
+      name: "hasViolentTendencies",
       label: "Child has violent tendencies",
     },
     component: RHFCheckbox,
@@ -52,7 +52,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childIsSeverelyWithdrawn",
+      name: "isSeverelyWithDrawn",
       label: "Child is Severely Withdrawn",
     },
     component: RHFCheckbox,
@@ -60,7 +60,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childIsDiagnosedWithAIDS",
+      name: "isDiagnosedWithAIDS",
       label: "Child is Diagnosed with AIDS",
     },
     component: RHFCheckbox,
@@ -68,7 +68,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "exhibitsInappropriateSexualBehaviour",
+      name: "exibitsInAppropriateSexualBehaviour",
       label: "Exhibits inappropriate Sexual Behaviour",
     },
     component: RHFCheckbox,
@@ -76,7 +76,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "exhibitsCrueltyToAnimals",
+      name: "exibitsCrueltyToAnimals",
       label: "Exhibits cruelty to Animals",
     },
     component: RHFCheckbox,
@@ -92,7 +92,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "habitsOfStealingLying",
+      name: "habitOfStealingLying",
       label: "Habits of Stealing / Lying",
     },
     component: RHFCheckbox,
@@ -100,7 +100,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "habitsOfSmokingDrugs",
+      name: "habitOfSmokingDrugs",
       label: "Habits of Smoking / Drugs",
     },
     component: RHFCheckbox,
@@ -108,7 +108,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "habitsofConsumingAlcohol",
+      name: "habitOfConsumingAlcohol",
       label: "Habits of Consuming Alcohol",
     },
     component: RHFCheckbox,
@@ -116,7 +116,7 @@ export const BehaviouralInfoFromData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "childIsDiagnosedADHD",
+      name: "isDiagnosedWithADHD",
       label: "Child is Diagnosed ADHD",
     },
     component: RHFCheckbox,
@@ -146,38 +146,38 @@ export const BehaviouralInfoFromData = [
   },
 ];
 export const BehaviouralInfoDefultValue = {
-  childWasPhsicallyAbused: false,
-  childWasSexuallyAbused: false,
-  childIsDiagnosedHyperactive: false,
-  childWetsTheBed: false,
-  ChildHasViolentTendencies: false,
-  childIsSeverelyWithdrawn: false,
-  childIsDiagnosedWithAIDS: false,
-  exhibitsInappropriateSexualBehaviour: false,
-  exhibitsCrueltyToAnimals: false,
+  wasPhysicallyAbused: true,
+  isDiagnosedHyperactive: false,
+  hasViolentTendencies: false,
+  isDiagnosedWithAIDS: false,
+  exibitsCrueltyToAnimals: false,
+  habitOfStealingLying: false,
+  habitOfConsumingAlcohol: false,
+  wasSexuallyAbused: false,
+  wetsTheBed: false,
+  isSeverelyWithDrawn: false,
+  exibitsInAppropriateSexualBehaviour: false,
   selfInflectedInjuries: false,
-  habitsOfStealingLying: false,
-  habitsOfSmokingDrugs: false,
-  habitsofConsumingAlcohol: false,
-  childIsDiagnosedADHD: false,
-  overallBehaviour: undefined,
+  habitOfSmokingDrugs: false,
+  isDiagnosedWithADHD: false,
+  overallBehaviour: null,
   summary: "",
 };
 export const FormSchema = Yup.object().shape({
-  childWasPhsicallyAbused: Yup.boolean().required("required"),
-  childWasSexuallyAbused: Yup.boolean().required("required"),
-  childIsDiagnosedHyperactive: Yup.boolean().required("required"),
-  childWetsTheBed: Yup.boolean().required("required"),
-  ChildHasViolentTendencies: Yup.boolean().required("required"),
-  childIsSeverelyWithdrawn: Yup.boolean().required("required"),
-  childIsDiagnosedWithAIDS: Yup.boolean().required("required"),
-  exhibitsInappropriateSexualBehaviour: Yup.boolean().required("required"),
-  exhibitsCrueltyToAnimals: Yup.boolean().required("required"),
+  wasPhysicallyAbused: Yup.boolean().required("required"),
+  isDiagnosedHyperactive: Yup.boolean().required("required"),
+  hasViolentTendencies: Yup.boolean().required("required"),
+  isDiagnosedWithAIDS: Yup.boolean().required("required"),
+  exibitsCrueltyToAnimals: Yup.boolean().required("required"),
+  habitOfStealingLying: Yup.boolean().required("required"),
+  habitOfConsumingAlcohol: Yup.boolean().required("required"),
+  wasSexuallyAbused: Yup.boolean().required("required"),
+  wetsTheBed: Yup.boolean().required("required"),
+  isSeverelyWithDrawn: Yup.boolean().required("required"),
+  exibitsInAppropriateSexualBehaviour: Yup.boolean().required("required"),
   selfInflectedInjuries: Yup.boolean().required("required"),
-  habitsOfStealingLying: Yup.boolean().required("required"),
-  habitsOfSmokingDrugs: Yup.boolean().required("required"),
-  habitsofConsumingAlcohol: Yup.boolean().required("required"),
-  childIsDiagnosedADHD: Yup.boolean().required("required"),
+  habitOfSmokingDrugs: Yup.boolean().required("required"),
+  isDiagnosedWithADHD: Yup.boolean().required("required"),
   overallBehaviour: Yup.number().required("required"),
   summary: Yup.string().required("required"),
 });

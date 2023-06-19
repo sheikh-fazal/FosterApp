@@ -5,11 +5,12 @@ const useBehavioralInfoTable = (props: any) => {
   const { fosterChildId } = props;
   const {
     data: BehaviorInfoList,
-    isLoading:BehaviorInfoListisLoading,
-    isSuccess:BehaviorInfoListisSuccess,
-    isError:BehaviorInfoListisError,
-    isFetching:BehaviorInfoListisFetching,
+    isLoading: BehaviorInfoListisLoading,
+    isSuccess: BehaviorInfoListisSuccess,
+    isError: BehaviorInfoListisError,
+    isFetching: BehaviorInfoListisFetching,
   } = useBehaviorInfoListQuery({ fosterChildId: fosterChildId });
+
   return {
     BehaviorInfoList,
     BehaviorInfoListisLoading,

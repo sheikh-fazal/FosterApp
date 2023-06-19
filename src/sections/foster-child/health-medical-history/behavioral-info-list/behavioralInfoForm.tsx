@@ -17,13 +17,22 @@ import {
   BehaviouralInfoFromData,
   FormSchema,
 } from ".";
+import useBehavioralInfoForm from "./useBehavioralInfoForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 function BehavioralInfoForm(props: any) {
-  const { action, id } = props;
+  const { action, behaviouralInfoId, fosterChildId } = props;
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useBehavioralInfoForm({
+      action: action,
+      behaviouralInfoId: behaviouralInfoId,
+      fosterChildId: fosterChildId,
+    });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: BehaviouralInfoDefultValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -34,21 +43,16 @@ function BehavioralInfoForm(props: any) {
     reset,
     formState: { errors },
   } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
 
   const theme: any = useTheme();
-
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Paper elevation={2} sx={{ borderRadius: 2 }}>
       <Box sx={{ px: 1, py: 2 }}>
         <Grid container>
           <Grid item xs={12}>
-            <FormProvider
-              methods={methods}
-              onSubmit={handleSubmit(submitHander)}
-            >
+            <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
+              <IsFetching isFetching={isFatching} />
               <Grid container>
                 {BehaviouralInfoFromData.map((form: any, index) => {
                   return (
@@ -110,9 +114,13 @@ function BehavioralInfoForm(props: any) {
                     }}
                     variant="contained"
                     onClick={() =>
-                      router.push(
-                        "/foster-child/health-medical-history/behavioural-info/"
-                      )
+                      router.push({
+                        pathname:
+                          "/foster-child/health-medical-history/behavioural-info/",
+                        query: {
+                          fosterChildId: fosterChildId,
+                        },
+                      })
                     }
                   >
                     back

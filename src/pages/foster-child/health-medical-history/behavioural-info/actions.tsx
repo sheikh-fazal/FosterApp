@@ -12,7 +12,7 @@ BehaviouralInfo.getLayout = function getLayout(page: any) {
 
 export default function BehaviouralInfo() {
   const Router: any = useRouter();
-  const { action, id, fosterChildId } = Router.query;
+  const { action, behaviouralInfoId, fosterChildId } = Router.query;
   const PAGE_TITLE = `${
     action.charAt(0).toUpperCase() + action.slice(1)
   } Behavioural Info`;
@@ -24,7 +24,10 @@ export default function BehaviouralInfo() {
     },
     {
       name: "child Info",
-      href: "",
+      href: {
+        pathname: "/foster-child",
+        query: { fosterChildId: fosterChildId },
+      },
     },
     {
       name: "Behavioural Info list",
@@ -41,7 +44,7 @@ export default function BehaviouralInfo() {
       <BehavioralInfoForm
         action={action}
         fosterChildId={fosterChildId}
-        behaviouralInfoId={id}
+        behaviouralInfoId={behaviouralInfoId}
       />
     </Box>
   );

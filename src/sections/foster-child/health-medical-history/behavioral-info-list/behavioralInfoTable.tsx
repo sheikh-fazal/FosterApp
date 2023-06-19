@@ -7,6 +7,7 @@ import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { DummyData } from ".";
 import useBehavioralInfoTable from "./useBehavioralInfoTable";
+import useBehavioralInfoForm from "./useBehavioralInfoForm";
 
 const activepath =
   "/foster-child/health-medical-history/behavioural-info/actions";
@@ -21,7 +22,7 @@ function BehavioralInfoTable(props: any) {
     BehaviorInfoListisFetching,
   } = useBehavioralInfoTable({ fosterChildId: fosterChildId });
 
-  console.log(BehaviorInfoList, "BehaviorInfoList");
+  const { deleteHander } = useBehavioralInfoForm({});
 
   const columns = [
     // {
@@ -51,14 +52,22 @@ function BehavioralInfoTable(props: any) {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => {
+                deleteHander(info.row.original.id);
+              }}
+            />
             <TableAction
               size="small"
               type="edit"
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    behaviouralInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -68,7 +77,11 @@ function BehavioralInfoTable(props: any) {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    behaviouralInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
