@@ -1,35 +1,35 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const gpDetailsInfoApi = baseAPI.injectEndpoints({
+export const healthDetailsInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getAllGpDetailsInfoData: builder.query({
+    getAllTherapyDetailsInfoData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: "foster-child/gp-info",
+        url: "foster-child/therapy-info",
         method: "GET",
         params: apiDataParameter.params,
       }),
       //   providesTags: ["INITIAL_HOME_VISIT"],
     }),
-    getSingleGpDetailsInfoData: builder.query({
+    getSingleTherapyDetailsInfoData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
+        url: `foster-child/therapy-info/${apiDataParameter?.pathParams?.id}`,
         method: "GET",
         params: apiDataParameter?.params,
       }),
       //   providesTags: ["INITIAL_HOME_VISIT"],
     }),
-    postGpDetailsInfoData: builder.mutation({
+    postTherapyDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: "foster-child/gp-info",
+        url: "foster-child/therapy-info",
         method: "POST",
         params: apiDataParameter.params,
         body: apiDataParameter.body,
       }),
       // invalidatesTags: ["GP_DETAILS_INFO"],
     }),
-    patchGpDetailsInfoData: builder.mutation({
+    patchTherapyDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
+        url: `foster-child/therapy-info/${apiDataParameter?.pathParams?.id}`,
         method: "PATCH",
         params: apiDataParameter?.params,
         body: apiDataParameter?.body,
@@ -40,9 +40,9 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetAllGpDetailsInfoDataQuery,
-  useLazyGetSingleGpDetailsInfoDataQuery,
-  useGetSingleGpDetailsInfoDataQuery,
-  usePatchGpDetailsInfoDataMutation,
-  usePostGpDetailsInfoDataMutation,
-} = gpDetailsInfoApi;
+  useGetAllTherapyDetailsInfoDataQuery,
+  useLazyGetSingleTherapyDetailsInfoDataQuery,
+  useGetSingleTherapyDetailsInfoDataQuery,
+  usePatchTherapyDetailsInfoDataMutation,
+  usePostTherapyDetailsInfoDataMutation,
+} = healthDetailsInfoApi;

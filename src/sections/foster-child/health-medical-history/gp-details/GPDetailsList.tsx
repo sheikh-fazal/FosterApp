@@ -4,8 +4,17 @@ import { Box } from "@mui/material";
 import { useGPDetailsList } from "./useGPDetailsList";
 
 const GPDetailsList = () => {
-  const { gpDetailsInfoTableColumns, data, isLoading , isSuccess, isError , isFetching , setSearchValue , router, setPage} =
-  useGPDetailsList();
+  const {
+    gpDetailsInfoTableColumns,
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+    isFetching,
+    setSearchValue,
+    router,
+    setPage,
+  } = useGPDetailsList();
   return (
     <>
       <Box>
@@ -13,10 +22,17 @@ const GPDetailsList = () => {
           title="Child GP Details"
           searchKey="search"
           showAddBtn={true}
-          onAdd={() => router.push('/foster-child/health-medical-history/gp-details/gp-details-info')}
-            onChanged={(data: any) => {
-              setSearchValue(data?.search);
-            }}
+          onAdd={() =>
+            router.push(
+              "/foster-child/health-medical-history/gp-details/gp-details-info"
+            )
+          }
+          onChanged={(data: any) => {
+            setSearchValue(data?.search);
+          }}
+          searchParam={(data: any) => {
+            setSearchValue(data.search);
+          }}
         />
 
         <CustomTable
@@ -30,9 +46,9 @@ const GPDetailsList = () => {
           isSuccess={isSuccess}
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
-            onPageChange={(data: any) => {
-              setPage((page) => data - 1);
-            }}
+          onPageChange={(pageNo: any) => {
+            setPage((page) => (pageNo - 1) * 10);
+          }}
           onSortByChange={(data: any) => {
             console.log("Sort by: ", data);
           }}

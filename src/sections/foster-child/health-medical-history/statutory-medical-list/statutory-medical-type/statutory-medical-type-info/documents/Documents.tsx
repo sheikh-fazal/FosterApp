@@ -1,5 +1,3 @@
-
-
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useDocuments } from "./useDocuments";
 
@@ -13,7 +11,7 @@ const Documents = () => {
     isSuccess,
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,
-    query
+    query,
   } = useDocuments();
 
   return (
@@ -40,8 +38,8 @@ const Documents = () => {
       }}
       currentPage={data?.meta?.page}
       totalPages={data?.meta?.pages}
-      onPageChange={(data: any) => {
-        setPage((page) => data - 1);
+      onPageChange={(pageNo: any) => {
+        setPage((page) => (pageNo - 1) * 10);
       }}
     />
   );

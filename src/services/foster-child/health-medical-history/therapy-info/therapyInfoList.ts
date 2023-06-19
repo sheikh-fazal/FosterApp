@@ -1,8 +1,8 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const gpDetailsListApi = baseAPI.injectEndpoints({
+export const therapyDetailsListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getAllGpDetailsListData: builder.query({
+    getAlltherapyDetailsListData: builder.query({
       query: (apiDataParameter: any) => ({
         url: "foster-child/therapy-info/all",
         method: "GET",
@@ -14,6 +14,6 @@ export const gpDetailsListApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetAllGpDetailsListDataQuery,
-  useLazyGetAllGpDetailsListDataQuery,
-} = gpDetailsListApi;
+  useGetAlltherapyDetailsListDataQuery,
+  useLazyGetAlltherapyDetailsListDataQuery,
+} = therapyDetailsListApi;

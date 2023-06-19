@@ -10,10 +10,6 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
       }),
       providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
-    getGpDetailsInfoDocumentDataById: builder.query({
-      query: (params: any) =>
-        `carer-Info/personal-info/initial-home-visit/documents/${params.id}`,
-    }),
     deleteGpDetailsInfoDocumentDataById: builder.mutation({
       query: (params: any) => ({
         url: `foster-child/gp-info/docs/${params.id}`,
@@ -44,7 +40,6 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
 
 export const {
   useDeleteGpDetailsInfoDocumentDataByIdMutation,
-  useGetGpDetailsInfoDocumentDataByIdQuery,
   useGetGpDetailsInfoDocumentDataQuery,
   usePostGpDetailsInfoDocumentDataMutation,
   usePatchGpDetailsInfoDocumentDataMutation,

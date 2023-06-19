@@ -38,8 +38,8 @@ const Documents = () => {
       }}
       currentPage={data?.data?.meta?.page}
       totalPages={data?.data?.meta?.pages}
-      onPageChange={(data: any) => {
-        setPage((page) => data - 1);
+      onPageChange={(pageNo: any) => {
+        setPage((page) => (pageNo - 1) * 10);
       }}
     />
   );
