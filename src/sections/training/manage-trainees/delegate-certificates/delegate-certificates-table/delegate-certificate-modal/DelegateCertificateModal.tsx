@@ -6,12 +6,9 @@ import {
   Text,
   View,
   StyleSheet,
-  // Image,
+  Image,
 } from "@react-pdf/renderer"; 
-import Dialog from "@mui/material/Dialog";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import Image from "next/image";
+import Dialog from "@mui/material/Dialog";   
 
 const styles = StyleSheet.create({
   page: {
@@ -125,14 +122,8 @@ const certificateData = [
   },
 ];
 const DelegateCertificateModal = (props: any) => {
-  const { open, setOpen } = props;
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+  const { open, setOpen } = props; 
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -150,15 +141,11 @@ const DelegateCertificateModal = (props: any) => {
         <BlobProvider
           document={
             <Document>
-              <Page size="A4" style={styles.page}>
-                {/* <Image
-                  src={Certificatebg}
-                  style={{ border: "2px solid red" }}
-                /> */}
+              <Page size="A4" style={styles.page}> 
                 <Image 
                   src="https://i.ibb.co/cLcCbxN/Certificate.jpg"
                   style={styles.image}
-                  alt="bg-img"
+                  // alt="bg-img"
                 />
                 <View style={styles.section}>
                   <Text style={styles.certificate}>CERTIFICATE</Text>
@@ -166,14 +153,6 @@ const DelegateCertificateModal = (props: any) => {
                   <div style={styles.completion}>
                     <Text>COMPLETION</Text>
                   </div>
-                  {/* *************************************************** below is imagees ******************************************************************* */}
-
-                  {/* <Text style={styles.of}>
-                                        <Image src={Of} />
-                                    </Text>
-                                    <Text style={styles.completion}>
-                                    </Text> */}
-
                   {certificateData.map((item: any) => {
                     return (
                       <div key={item.id}>
@@ -196,8 +175,6 @@ const DelegateCertificateModal = (props: any) => {
                     );
                   })}
                 </View>
-                {/* *********************************************************************************below is backgroubd image ************************************** */}
-                {/* <Image src={Certificatebg} style={styles.image} /> */}
               </Page>
             </Document>
           }
