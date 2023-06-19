@@ -2,7 +2,7 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import { Card, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { CarerDetailsHeader } from "@root/sections/foster-child/child-background-info/carer-details/carer-details-header";
 import { CarerDetailsForm } from "@root/sections/foster-child/child-background-info/carer-details";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
@@ -16,12 +16,8 @@ const PAGE_TITLE = "Carer Details";
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: " ",
-    href: "/",
-  },
-  {
     name: "Child Info",
-    href: "/foster-child",
+    href: "/",
   },
   {
     name: PAGE_TITLE,
