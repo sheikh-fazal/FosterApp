@@ -1,14 +1,17 @@
-
-import React, { useState } from 'react'
+import React, { useRef, useState } from "react";
+import TableAction from "@root/components/TableAction";
+import { useTableParams } from "@root/hooks/useTableParams";
 import { defaultValues } from ".";
-import { useForm } from 'react-hook-form';
+import { Box } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
-export const useDelegateCertificatesTable = () => {
+export const useSocialHistoryOfBirthFather = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
-
+  const router = useRouter()
 
   const {
     handleSubmit,
@@ -24,6 +27,8 @@ export const useDelegateCertificatesTable = () => {
     setTableDate(JSON.stringify(data));
   };
 
+  const route = router.query.action;
+
   return {
     methods,
     handleSubmit,
@@ -34,5 +39,6 @@ export const useDelegateCertificatesTable = () => {
     isSubmitting,
     tableData,
     onClear,
-  }
-}
+    route,
+  };
+};
