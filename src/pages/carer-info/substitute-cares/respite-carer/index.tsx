@@ -6,6 +6,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
+import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -39,6 +40,10 @@ RespiteCarer.getLayout = function getLayout(page: any) {
 
 export default function RespiteCarer() {
   const router = useRouter();
+  const title = "Respite Carer List";
+  const FORMROUTE =
+    "/carer-info/substitute-cares/respite-carer/respite-carer-details";
+
   const columns = [
     {
       accessorFn: (row: any) => row["name"],
@@ -77,7 +82,13 @@ export default function RespiteCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              console.log(info);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
@@ -97,43 +108,45 @@ export default function RespiteCarer() {
       isSortable: false,
     },
   ];
+  const tableData = [
+    {
+      name: "test Name",
+      phone: "090078601",
+      level: "Level 1",
+      status: "Living",
+      familyDetails: "18 siblings",
+    },
+  ];
+  const status = {
+    isLoading: false,
+    isFetching: false,
+    isError: false,
+    isSuccess: true,
+  };
+  const meta = {
+    page: "1",
+    pages: "1",
+  };
 
-  const viewDetailsHandler = (rowData: any) => {};
+  const viewDetailsHandler = (item: any) => {
+    console.log(item);
+  };
+  const searchTextHandler = (item: any) => {
+    console.log(item);
+  };
+  const pageChangeHandler = (item: any) => {
+    console.log(item);
+  };
   return (
-    <>
-      <TableHeader
-        title="Respite Carer List"
-        onChanged={(text: any) => {}}
-        showAddBtn={true}
-        onAdd={() =>
-          router.push(
-            "/carer-info/substitute-cares/respite-carer/respite-carer-details"
-          )
-        }
-      />
-      <CustomTable
-        data={[
-          {
-            name: "test Name",
-            phone: "090078601",
-            level: "Level 1",
-            status: "Living",
-            familyDetails: "18 siblings",
-          },
-        ]}
-        columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        showSerialNo
-        currentPage={1}
-        totalPages={1}
-        onPageChange={() => {}}
-        // onSortByChange={(data: any) => {
-        //   console.log("Sort by: ", data);
-        // }}
-      />
-    </>
+    <SubstituteCarerTable
+      columns={columns}
+      tableData={tableData}
+      meta={meta}
+      title={title}
+      searchedText={searchTextHandler}
+      apiStatus={status}
+      onPageChange={pageChangeHandler}
+      route={FORMROUTE}
+    />
   );
 }
