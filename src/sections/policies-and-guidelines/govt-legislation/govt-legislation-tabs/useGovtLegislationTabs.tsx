@@ -5,12 +5,13 @@ import { useState } from "react";
 export const useGovtLegislationTabs = () => {
   const { currentTab, setCurrentTab, handleNextTab, handlePreviousTab, reset } =
     usePolicyVerticalAddNew();
-  const [isAddUrlModalOpen, setIsAddUrlModalOpen] = useState(true);
+  const [isAddUrlModalOpen, setIsAddUrlModalOpen] = useState(false);
   const [isDeleteOpenModal, setIsDeleteOpenModal] = useState(false);
   const route = useRouter();
 
   const handleSubmit = (data: any) => {
     handleNextTab();
+    setIsAddUrlModalOpen(true);
     reset();
   };
 
