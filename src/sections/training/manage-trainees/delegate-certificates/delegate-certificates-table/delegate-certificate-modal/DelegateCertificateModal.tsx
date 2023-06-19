@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React from "react";
 import {
   BlobProvider,
@@ -7,32 +6,25 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
-} from "@react-pdf/renderer";
-import Certificatebg from "../../../../../../assets/img/delegateCertifactebg.jpg";
-import Of from "../../../../../../assets/img/Of.png";
-import Completion from "../../../../../../assets/img/Completion.png";
+  // Image,
+} from "@react-pdf/renderer"; 
 import Dialog from "@mui/material/Dialog";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import Image from "next/image";
 
 const styles = StyleSheet.create({
   page: {
     position: "relative",
     maxWidth: "900px",
-    maxHeight: "800px",
-    // backgroundImage: `url${`https://i.ibb.co/cLcCbxN/Certificate.jpg`}`,
+    maxHeight: "800px", 
   },
   pageBackground: {
     position: "absolute",
     minWidth: "100%",
     minHeight: "100%",
     height: "100%",
-    width: "100%",
-    // backgroundImage: `url(https://i.ibb.co/cLcCbxN/Certificate.jpg)` ,
-    // backgroundRepeat: "no-repeat",
-    // backgroundPosition: "center",
-    // backgroundAttachment: "fixed",
+    width: "100%", 
   },
   section: {
     position: "absolute",
@@ -59,8 +51,7 @@ const styles = StyleSheet.create({
   of: {
     fontSize: 40,
     fontWeight: 400,
-    marginBottom: "24px",
-    // fontFamily:'Petit Formal Script'
+    marginBottom: "24px", 
   },
   completion: {
     fontSize: "15.85px",
@@ -69,9 +60,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D89330",
     clipPath: "polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%)",
     padding: "2px 30px",
-    marginBottom: "20px",
-    // width: "290px",
-    // height: "23px",
+    marginBottom: "20px", 
   },
   presentTo: {
     fontSize: "20px",
@@ -166,10 +155,10 @@ const DelegateCertificateModal = (props: any) => {
                   src={Certificatebg}
                   style={{ border: "2px solid red" }}
                 /> */}
-                <Image
+                <Image 
                   src="https://i.ibb.co/cLcCbxN/Certificate.jpg"
-                  alt={"bg-img"}
                   style={styles.image}
+                  alt="bg-img"
                 />
                 <View style={styles.section}>
                   <Text style={styles.certificate}>CERTIFICATE</Text>
