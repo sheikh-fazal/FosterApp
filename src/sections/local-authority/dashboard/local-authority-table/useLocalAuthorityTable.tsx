@@ -16,7 +16,8 @@ const styles = {
 
 export const useLocalAuthorityTable = () => {
     const tableHeaderRefTwo = useRef<any>();
-    const router = useRouter()
+    const router = useRouter();
+    const pathname = `/local-authority/local-authority-tab/view-all-local-authority/register-local-authority`
     const theme: any = useTheme();
 
     // table column start here
@@ -90,7 +91,7 @@ export const useLocalAuthorityTable = () => {
             id: "actions",
             cell: (info: any) => (
                 <Box sx={styles.tableAction}>
-                    <TableAction type="view" onClicked={() => router.push(`${router.pathname}/view-children-list-form`)} />
+                    <TableAction type="view" onClicked={() => router.push({ pathname: pathname, query: { action: 'view-local-authority' } })} />
                 </Box>
 
             ),
@@ -100,6 +101,6 @@ export const useLocalAuthorityTable = () => {
     ];
 
     return {
-        TableData, tableHeaderRefTwo, router, theme, columns
+        TableData, tableHeaderRefTwo, router, theme, columns, pathname
     }
 }

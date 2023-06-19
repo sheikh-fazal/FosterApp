@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 import NextLink from "next/link";
 import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
-import LocalAuthorityTabs from "./vertical-tabs/LocalAuthorityTabs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import LocalAuthorityTabs from "./vertical-tabs/LocalAuthorityTabs";
+import { TABSDATAARRY } from "./vertical-tabs";
+import LocalAuthorityNotifications from "./local-authority-notifications/LocalAuthorityNotifications";
+import LocalAuthorityTable from "./local-authority-table/LocalAuthorityTable";
 import PieChart from "./charts/PieChart";
 import BarChart from "./charts/BarChart";
-import LocalAuthorityNotifications from "./local-authority-notifications/LocalAuthorityNotifications";
-import { TABSDATAARRY } from "./vertical-tabs";
-import LocalAuthorityTable from "./local-authority-table/LocalAuthorityTable";
 
 const Dashboard = () => {
     const theme = useTheme();
@@ -52,7 +52,7 @@ const Dashboard = () => {
                         </Grid>
                     </Grid>
                     <Grid item xl={6} lg={12} xs={12}>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <LocalAuthorityNotifications />
                             </Grid>
