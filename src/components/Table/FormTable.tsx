@@ -16,8 +16,8 @@ import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
+import { useRouter } from "next/router";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
-
 
 const ANON_FUNC = () => { };
 
@@ -121,7 +121,6 @@ export default function FormTable(props: any) {
     share,
     certificate,
     tableKey,
-    route = "view",
     columns: tableColumns,
   } = props;
   const { setValue, getValues } = useFormContext();
@@ -161,7 +160,7 @@ export default function FormTable(props: any) {
             (
 
               <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500", }} onClick={() => setCertificateModal(true)}>
-                delegate certifacte
+                Delegate certifacte
               </Box>
             )
           }
@@ -200,7 +199,7 @@ export default function FormTable(props: any) {
             />
           )}
 
-          {route === "view" ? (
+          {showView === "view" ? (
             ""
           ) : (
             <>
@@ -221,8 +220,8 @@ export default function FormTable(props: any) {
 
       header: () => <span>actions</span>,
       isSortable: false,
-
-    });
+    }
+  );
 
   const handleShare = () => {
     setShareModal(false);
@@ -282,9 +281,18 @@ export default function FormTable(props: any) {
     setActionData(null);
   }
 
+  const router = useRouter();
+
+  const showView = router.query.action;
+
   return (
     <div>
-      {certificateModal && (<DelegateCertificateModal open={certificateModal} setOpen={setCertificateModal} />)}
+      {certificateModal && (
+        <DelegateCertificateModal
+          open={certificateModal}
+          setOpen={setCertificateModal}
+        />
+      )}
       {shareModal && (
         <ShareModal
           open={shareModal}
@@ -321,7 +329,7 @@ export default function FormTable(props: any) {
         isPagination={false}
         isSuccess={true}
       />
-      {route === "view" ? (
+      {showView === "view" ? (
         ""
       ) : (
         <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
