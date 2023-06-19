@@ -7,7 +7,7 @@ export const useCarerVacancyForm = () => {
     defaultValues: CarerVacancyFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/carer-vacancy-reports');
+  const handleBack = () => router.push('/reports/carer-reports/carer-vacancy');
   const {
     reset,
     control,

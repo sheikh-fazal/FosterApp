@@ -7,7 +7,7 @@ export const usePermanentFosteringForm = () => {
     defaultValues: PermanentFosteringFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/permanent-fostering-reports');
+  const handleBack = () => router.push('/reports/carer-reports/permanent-fostering');
   const {
     reset,
     control,

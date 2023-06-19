@@ -7,7 +7,7 @@ export const useCarerReferenceChecksForm = () => {
     defaultValues: CarerReferenceCheckDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/carer-reference-checks-reports');
+  const handleBack = () => router.push('/reports/carer-reports/carer-reference-checks');
   const {
     reset,
     control,

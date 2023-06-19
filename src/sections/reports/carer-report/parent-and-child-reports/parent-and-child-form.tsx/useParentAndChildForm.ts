@@ -7,7 +7,7 @@ export const useParentAndChildForm = () => {
     defaultValues: ParentAndChildFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/parent-and-child-reports');
+  const handleBack = () => router.push('/reports/carer-reports/parent-and-child');
   const {
     reset,
     control,

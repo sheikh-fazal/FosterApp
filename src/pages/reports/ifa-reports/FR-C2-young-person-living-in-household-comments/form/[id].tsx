@@ -23,7 +23,7 @@ FRC2.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-C2",
+          href: "/reports/ifa-reports/FR-C2-young-person-living-in-household-comments",
         },
         {
           name: "FR-C2 Young Person Living In The Household's Comments"

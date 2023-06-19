@@ -7,7 +7,7 @@ export const useCarerImmunisationDetailForm = () => {
     defaultValues: CarerImmunisationDetailDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/carer-immunisation-detail-reports');
+  const handleBack = () => router.push('/reports/carer-reports/carer-immunisation-detail');
   const {
     reset,
     control,

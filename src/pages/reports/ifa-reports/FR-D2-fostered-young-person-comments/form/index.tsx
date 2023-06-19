@@ -22,7 +22,7 @@ FRD2.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-C2",
+          href: "/reports/ifa-reports/FR-D2-fostered-young-person-comments",
         },
         {
           name: "FR-D2 Fostered Young Person's Comments",

@@ -23,7 +23,7 @@ FRF1.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-F1",
+          href: "/reports/ifa-reports/FR-F1-other-professional",
         },
         {
           name:"FR-F1: Other Professionals"

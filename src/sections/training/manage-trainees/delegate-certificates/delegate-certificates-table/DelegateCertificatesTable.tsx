@@ -10,7 +10,7 @@ const DelegateCertificatesTable = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear } = useDelegateCertificatesTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <FormTable print share view
+      <FormTable print share view delegateCertificate
         tableKey="exampleTable"
         columns={[
           {
