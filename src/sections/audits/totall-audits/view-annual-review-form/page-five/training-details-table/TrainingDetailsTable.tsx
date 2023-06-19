@@ -1,36 +1,35 @@
 import React from "react";
-import { data } from ".";
+// import { data } from ".";
 import { Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useUploadedDocumentTable } from "./useUploadedDocumentTable";
-import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
+import { useTrainingDetailsTable } from "./useTrainingDetailsTable";
 
 // ========================================================================
 
-const UploadedDocumentTable = () => {
-  const { theme, columns, isUploadModal, handleModalSubmit, handleModal } =
-    useUploadedDocumentTable();
+const TrainingDetailsTable = () => {
+  const { theme, columns } = useTrainingDetailsTable();
 
   return (
     <>
       <Card sx={styles.card}>
         <TableHeader
-          title="Uploaded Documents"
+          title="TRAINING DETAILS"
           rootSX={{ overflowX: "scroll", mt: 0 }}
-          searchKey="search"
+          hideSearch={true}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}
         />
         <CustomTable
-          data={data}
+          data={[]}
           columns={columns}
           isLoading={false}
           isFetching={false}
           isError={false}
           isSuccess={true}
           currentPage={1}
+          isPagination={false}
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
@@ -40,16 +39,10 @@ const UploadedDocumentTable = () => {
           rootSX={{ my: theme.spacing(2), mt: 0 }}
         />
       </Card>
-      <UploadDocumentModal
-        open={isUploadModal}
-        handleClose={handleModal}
-        disabled={true}
-        onSubmit={handleModalSubmit}
-      />
     </>
   );
 };
-export default UploadedDocumentTable;
+export default TrainingDetailsTable;
 
 // =============================================
 const styles = {

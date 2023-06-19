@@ -62,7 +62,7 @@ export const useCompletedAuditsTable = () => {
     {
       id: "reports",
       cell: (info: any) => (
-        <IconButton>
+        <IconButton onClick={() => router.push("/audits/completed-audits/review-form")}>
           <Image src={ActionIcon} alt="icon" />
         </IconButton>
       ),

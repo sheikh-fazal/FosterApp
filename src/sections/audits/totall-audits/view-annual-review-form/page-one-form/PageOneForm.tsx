@@ -3,6 +3,7 @@ import React from "react";
 import { pageOneFormData } from ".";
 import { FormProvider } from "@root/components/hook-form";
 import { usePageOneForm } from "./usePageOneForm";
+import FamilyDetailsTable from "./family-details-table/FamilyDetailsTable";
 
 const PageOneForm = () => {
   const { methods, handleSubmit, onSubmit } = usePageOneForm();
@@ -39,6 +40,10 @@ const PageOneForm = () => {
           ))}
         </Grid>
       </FormProvider>
+      <Typography sx={{ ...styles.heading, mt: 4 }}>
+        Household Compostions/Household Members:
+      </Typography>
+      <FamilyDetailsTable />
     </Box>
   );
 };

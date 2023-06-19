@@ -3,12 +3,19 @@ import { useRouter } from "next/router";
 import { Box, IconButton, useTheme } from "@mui/material";
 import ActionIcon from "../../../../../assets/img/audits/action-icon.png";
 import TableAction from "@root/components/TableAction";
+import { useState } from "react";
 
 // =================================================================
 
 export const useUploadedDocumentTable = () => {
+  const [isUploadModal, setIsUploadModal] = useState(false);
   const router = useRouter();
   const theme: any = useTheme();
+
+  const handleModal = () => setIsUploadModal(!isUploadModal);
+  const handleModalSubmit = (data: any) => {
+    console.log(data);
+  };
 
   const columns = [
     {
@@ -67,16 +74,7 @@ export const useUploadedDocumentTable = () => {
               })
             }
           />
-          <TableAction
-            size="small"
-            type="view"
-            onClicked={() =>
-              router.push({
-                pathname: "",
-                query: { action: "view", id: "" },
-              })
-            }
-          />
+          <TableAction size="small" type="view" onClicked={handleModal} />
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -84,5 +82,5 @@ export const useUploadedDocumentTable = () => {
     },
   ];
 
-  return { theme, router, columns };
+  return { theme, router, columns, handleModal, handleModalSubmit, isUploadModal };
 };

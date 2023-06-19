@@ -1,4 +1,4 @@
-import { Box, Card } from "@mui/material";
+import { Card } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import React from "react";
 import PageOneForm from "./page-one-form/PageOneForm";
@@ -7,6 +7,7 @@ import PageTwoForm from "./page-two-form/PageTwoForm";
 import PageThreeForm from "./page-three-form/PageThreeForm";
 import PageFourForm from "./page-four-form/PageFourForm";
 import PlacementReviewForm from "./placement-review-form/PlacementReviewForm";
+import PageFiveTables from "./page-five/PageFiveTables";
 
 const ViewAnnualReviewForm = () => {
   const tabsArray: string[] = [
@@ -26,7 +27,7 @@ const ViewAnnualReviewForm = () => {
         <PageTwoForm />
         <PageThreeForm />
         <PageFourForm />
-        <h6>Page 5</h6>
+        <PageFiveTables />
         <PlacementReviewForm />
         <UploadedDocumentTable />
       </HorizaontalTabs>

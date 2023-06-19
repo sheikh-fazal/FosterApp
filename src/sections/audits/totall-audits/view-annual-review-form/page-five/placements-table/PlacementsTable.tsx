@@ -1,24 +1,22 @@
 import React from "react";
-import { data } from ".";
+// import { data } from ".";
 import { Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useUploadedDocumentTable } from "./useUploadedDocumentTable";
-import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
+import { usePlacementsTable } from "./usePlacementsTable";
 
 // ========================================================================
 
-const UploadedDocumentTable = () => {
-  const { theme, columns, isUploadModal, handleModalSubmit, handleModal } =
-    useUploadedDocumentTable();
+const PlacementsTable = ({ data, title }: any) => {
+  const { theme, columns } = usePlacementsTable();
 
   return (
     <>
       <Card sx={styles.card}>
         <TableHeader
-          title="Uploaded Documents"
+          title={title}
           rootSX={{ overflowX: "scroll", mt: 0 }}
-          searchKey="search"
+          hideSearch={true}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}
@@ -31,6 +29,7 @@ const UploadedDocumentTable = () => {
           isError={false}
           isSuccess={true}
           currentPage={1}
+          isPagination={false}
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
@@ -40,16 +39,10 @@ const UploadedDocumentTable = () => {
           rootSX={{ my: theme.spacing(2), mt: 0 }}
         />
       </Card>
-      <UploadDocumentModal
-        open={isUploadModal}
-        handleClose={handleModal}
-        disabled={true}
-        onSubmit={handleModalSubmit}
-      />
     </>
   );
 };
-export default UploadedDocumentTable;
+export default PlacementsTable;
 
 // =============================================
 const styles = {
