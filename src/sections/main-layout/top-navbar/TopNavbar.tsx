@@ -50,7 +50,7 @@ export default function TopNavbar() {
             </ListItemButton>
           </ListItem>
         ))}
-        <Link href="" style={styles.mobContactButton}>
+        <Link href="#" style={styles.mobContactButton}>
           <Typography variant="subtitle2" sx={styles.contactButton}>
             Contact Us
           </Typography>

@@ -24,7 +24,7 @@ export const useCarInsuranceForm = (action: any, id: any) => {
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
-    if (action === "view" || action === "edit") {
+    if (action === "view" || action === "edit") {   
       const { data, isError } = await getCarInsuranceList(id, true);
       setIsLoading(false);
       if (isError) {

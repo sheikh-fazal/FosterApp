@@ -222,37 +222,3 @@ export const placementReferenceData = [
     component: RHFSwitch,
   },
 ];
-export { default as ViewDocument } from "./ViewDocument";
-
-export const menuItems = [
-  {
-    id: 1,
-    label: "Generated Login",
-    bgColor: "#F6830F",
-  },
-  {
-    id: 2,
-    label: "Revoke Access",
-    bgColor: "#1A202E",
-  },
-  {
-    id: 3,
-    label: "Grant Access",
-    bgColor: "#0E918C",
-  },
-  {
-    id: 4,
-    label: "Disable Login",
-    bgColor: "#C82333",
-  },
-  {
-    id: 5,
-    label: "De-Activate Login",
-    bgColor: "#898989",
-  },
-  {
-    id: 6,
-    label: "Grant Full Permission",
-    bgColor: "#198754",
-  },
-];
