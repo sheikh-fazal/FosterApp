@@ -16,10 +16,7 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
   lastName: Yup.string().required("Last Name is required"),
-  address: Yup.string()
-    .required("Address is required")
-    .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 20 characters"),
+  address: Yup.string().required("Address is required"),
   phoneNum: Yup.string()
     .required("Phone Number is required")
     .min(4, "Mininum 4 characters")

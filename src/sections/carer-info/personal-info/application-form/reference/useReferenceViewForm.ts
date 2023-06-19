@@ -10,14 +10,15 @@ import { enqueueSnackbar } from "notistack";
 
 export const useReferenceViewForm = (props: any) => {
   const { refData, viewData, applicationFormid, changeView } = props;
-  console.log("aaa", applicationFormid);
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: viewData == "add" ? defaultValues : refData,
   });
-  let [postReferenceDetail, { isLoading }] = usePostReferenceDetailMutation();
-  let [updateReference] = useUpdateReferenceMutation();
+  let [postReferenceDetail, { isLoading: postLoading }] =
+    usePostReferenceDetailMutation();
+  let [updateReference, { isLoading: editLoading }] =
+    useUpdateReferenceMutation();
   const {
     reset,
     control,
@@ -85,5 +86,7 @@ export const useReferenceViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

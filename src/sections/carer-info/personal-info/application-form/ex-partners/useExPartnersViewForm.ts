@@ -16,8 +16,10 @@ export const useExPartnersViewForm = (props: any) => {
     resolver: yupResolver(FormSchema),
     defaultValues: viewData == "add" ? defaultValues : exPartnerData,
   });
-  let [postExPartnerDetail, { isLoading }] = usePostExPartnerDetailMutation();
-  let [updateExPartnerDetail] = useUpdateExPartnerDetailMutation();
+  let [postExPartnerDetail, { isLoading: postLoading }] =
+    usePostExPartnerDetailMutation();
+  let [updateExPartnerDetail, { isLoading: editLoading }] =
+    useUpdateExPartnerDetailMutation();
   const {
     reset,
     control,
@@ -96,5 +98,7 @@ export const useExPartnersViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

@@ -3,13 +3,24 @@ import { LoadingButton } from "@mui/lab";
 import { FormProvider } from "@root/components/hook-form";
 import { formData } from ".";
 import { useReferenceViewForm } from "./useReferenceViewForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function ReferenceViewForm(props: any) {
   const { changeView } = props;
 
-  let { methods, handleSubmit, onSubmit, isSubmitting, isDirty } =
-    useReferenceViewForm(props);
+  let {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    postLoading,
+    editLoading,
+  } = useReferenceViewForm(props);
 
+  if (postLoading || editLoading) {
+    return <SkeletonFormdata />;
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>

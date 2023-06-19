@@ -4,12 +4,24 @@ import { LoadingButton } from "@mui/lab";
 import { FormProvider } from "@root/components/hook-form";
 import { FormSchema, defaultValues, formData } from ".";
 import { useExPartnersViewForm } from "./useExPartnersViewForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function ExPartnersViewForm(props: any) {
   const { changeView } = props;
 
-  let { methods, handleSubmit, onSubmit, isSubmitting, isDirty } =
-    useExPartnersViewForm(props);
+  let {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    postLoading,
+    editLoading,
+  } = useExPartnersViewForm(props);
+
+  if (postLoading || editLoading) {
+    return <SkeletonFormdata />;
+  }
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

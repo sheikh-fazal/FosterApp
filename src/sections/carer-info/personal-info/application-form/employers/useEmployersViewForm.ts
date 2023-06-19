@@ -23,8 +23,10 @@ export const useEmployersViewForm = (props: any) => {
             suitableDate: new Date(employerData?.suitableDate),
           },
   });
-  let [postEmployerDetail, { isLoading }] = usePostEmployerDetailMutation();
-  let [updateEmployerDetail] = useUpdateEmployerDetailMutation();
+  let [postEmployerDetail, { isLoading: postLoading }] =
+    usePostEmployerDetailMutation();
+  let [updateEmployerDetail, { isLoading: editLoading }] =
+    useUpdateEmployerDetailMutation();
   const {
     reset,
     control,
@@ -106,5 +108,7 @@ export const useEmployersViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

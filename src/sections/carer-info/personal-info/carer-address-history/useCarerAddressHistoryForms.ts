@@ -29,7 +29,8 @@ export const useCarerAddressHistoryForms = (
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  let [postAddressHistory, { isLoading }] = usePostAddressHistoryMutation();
+  let [postAddressHistory, { isLoading: isLoadingPost }] =
+    usePostAddressHistoryMutation();
   let [updateAddressHistory, { isLoading: isLoadingEdit }] =
     useUpdateAddressHistoryMutation();
 
@@ -71,5 +72,7 @@ export const useCarerAddressHistoryForms = (
     isDirty,
     theme,
     router,
+    isLoadingEdit,
+    isLoadingPost,
   };
 };
