@@ -74,7 +74,7 @@ export const useViewAllAdvocacy = () => {
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction type="view"  onClicked={() =>
-              router.push({ pathname: `/advocacy/carer-advocacy/carer-advocacy-dashboard/view-all-advocacy/view-form/${info.row.original.id}`, query: { action: "view" } })
+              router.push({ pathname: `/advocacy/carer/dashboard/view-all-advocacy/form/${info.row.original.id}`, query: { action: "view" } })
             } 
             />
         </Box>
