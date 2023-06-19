@@ -258,7 +258,7 @@ export const EHCPFormData = [
   {
     id: 22,
     componentProps: {
-      name: "date",
+      name: "claMedicalDate.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -269,7 +269,7 @@ export const EHCPFormData = [
   {
     id: 23,
     componentProps: {
-      name: "onfile",
+      name: "claMedicalDate.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -284,7 +284,7 @@ export const EHCPFormData = [
   {
     id: 24,
     componentProps: {
-      name: "comments",
+      name: "claMedicalDate.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -610,7 +610,7 @@ export const EHCPFormData = [
       sx: { mb: 4 },
       select: true,
     },
-    options: [
+    options: [ 
       { value: "Yes", label: "Yes" },
       { value: "No", label: "No" },
     ],
@@ -675,7 +675,7 @@ export const PEPFormData = [
   {
     id: 5,
     componentProps: {
-      name: "from",
+      name: "pepDuration.from",
       label: "Pep Duration From",
       sx: { mb: 4 },
       fullWidth: true,
@@ -686,7 +686,7 @@ export const PEPFormData = [
   {
     id: 6,
     componentProps: {
-      name: "to",
+      name: "pepDuration.to",
       label: "Pep Duration to",
       sx: { mb: 4 },
       fullWidth: true,
@@ -871,10 +871,11 @@ export const defaultValuesForPep = {
   class: "",
   planDoneBy: "",
   assessmentDate: null,
-  from: null,
-  to: null,
+  pepDuration: {
+    from: null,
+    to: null,
+  },
   overAllOutcome: "",
-  document: "PEP personal Educational Plan",
 };
 // EHCP Form Default Values
 export const defaultValuesForEhcp = {
@@ -904,7 +905,6 @@ export const defaultValuesForEhcp = {
 
   garbPack: { date: null, onfile: "", comments: "" },
 
-  document: "Educaton, Health, Care Plan Document"
 };
 
 // EHCP Validations
@@ -974,7 +974,6 @@ export const EHCPFormValidation = Yup.object().shape({
     onfile: Yup.string().trim().required("Required"),
     comments: Yup.string().trim().required("Required"),
   }),
-  document: Yup.string().trim().required("Required"),
 });
 
 // PEP Validations
@@ -983,8 +982,10 @@ export const PEPFormValidation = Yup.object().shape({
   class: Yup.string().trim().required("Required"),
   planDoneBy: Yup.string().trim().required("Required"),
   assessmentDate: Yup.date(),
-  from: Yup.date(),
-  to: Yup.date(),
+  pepDuration: Yup.object().shape({
+    from: Yup.date().required("Required"),
+    to: Yup.date().required("Required"),
+  }),
   overAllOutcome: Yup.string().trim().required("Required"),
 });
 

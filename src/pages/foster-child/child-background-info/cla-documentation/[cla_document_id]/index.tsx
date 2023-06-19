@@ -22,7 +22,7 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "View CLA Documentation";
 // ----------------------------------------------------------------------
 
-EditClaDocumentationList.getLayout = function getLayout(page: any) {
+ViewClaDocumentationList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -34,17 +34,16 @@ EditClaDocumentationList.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function EditClaDocumentationList() {
+export default function ViewClaDocumentationList() {
   const { query } = useRouter();
-  const documentId = query["cla-document-id"];
+  console.log(query);
+
+  const documentId = query["cla_document_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetClaDocumentationByIdQuery(documentId);
-  console.log(data, "When Edit");
 
-  // cla-document-id
-  // Call api with above ID
-  // get data from the response
-  // pass the values of the document as "defaultvalues"
+  console.log("Is loading: ", isLoading);
+  
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
@@ -55,7 +54,15 @@ export default function EditClaDocumentationList() {
         {isSuccess && (
           <ClaDocumentationForm
             defaultFormType={data.data.documentType}
-            defaultValues={data.data}
+            defaultValues={{
+              ...data?.data,
+              assessmentDate: new Date(data?.data?.assessmentDate),
+              pepDuration: {
+                to: new Date(data?.data?.pepDuration?.to),
+                from: new Date(data?.data?.pepDuration?.from),
+              },
+            }}
+            disabled
           />
         )}
       </Paper>

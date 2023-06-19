@@ -22,7 +22,7 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "View CLA Documentation";
 // ----------------------------------------------------------------------
 
-ViewClaDocumentationList.getLayout = function getLayout(page: any) {
+EditClaDocumentationList.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -34,15 +34,12 @@ ViewClaDocumentationList.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function ViewClaDocumentationList() {
+export default function EditClaDocumentationList() {
   const { query } = useRouter();
-  console.log(query);
-  
-  const documentId = query["cla-document-id"];
+  const documentId = query["cla_document_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetClaDocumentationByIdQuery(documentId);
-
-  console.log("Is loading: ", isLoading);
+  console.log(data, "When Edit");
 
   // cla-document-id
   // Call api with above ID
@@ -58,8 +55,14 @@ export default function ViewClaDocumentationList() {
         {isSuccess && (
           <ClaDocumentationForm
             defaultFormType={data.data.documentType}
-            defaultValues={data.data}
-            disabled
+            defaultValues={{
+              ...data?.data,
+              assessmentDate: new Date(data?.data?.assessmentDate),
+              pepDuration: {
+                to: new Date(data?.data?.pepDuration?.to),
+                from: new Date(data?.data?.pepDuration?.from),
+              },
+            }}
           />
         )}
       </Paper>
