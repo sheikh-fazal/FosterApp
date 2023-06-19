@@ -1,6 +1,6 @@
 import { Grid, Box, Button, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import PhoneIcon from "../../../../assets/svg/local-authority/phone-icon.svg";
+import PhoneIcon from "../../../../../assets/svg/local-authority/phone-icon.svg";
 import { FormProvider } from "@root/components/hook-form";
 import { useLaBankDetails } from "./useLaBankDetails";
 import { laBackDetailsFormData } from ".";

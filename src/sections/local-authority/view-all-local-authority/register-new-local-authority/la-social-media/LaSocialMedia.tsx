@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import AddIcon from "../../../../assets/svg/local-authority/add-icon.svg"
+import AddIcon from "../../../../../assets/svg/local-authority/add-icon.svg"
 import { Box, Grid } from '@mui/material'
 import { laSocialMediaData } from '.'
 import Link from 'next/link';

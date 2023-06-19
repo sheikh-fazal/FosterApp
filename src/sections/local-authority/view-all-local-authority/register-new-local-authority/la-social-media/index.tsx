@@ -1,6 +1,6 @@
-import WebsiteImg from "../.././../../assets/svg/local-authority/website-icon.svg";
-import InstagramImg from "../.././../../assets/svg/local-authority/instagram-icon.svg";
-import FacebookImg from "../.././../../assets/svg/local-authority/facebook-icon.svg";
+import WebsiteImg from "../.././../../../assets/svg/local-authority/website-icon.svg";
+import InstagramImg from "../.././../../../assets/svg/local-authority/instagram-icon.svg";
+import FacebookImg from "../.././../../../assets/svg/local-authority/facebook-icon.svg";
 
 export const laSocialMediaData = [
     {

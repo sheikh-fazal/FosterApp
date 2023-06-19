@@ -1,16 +1,5 @@
-// export const registerLocalAuthorityTabs = [
-//     'LA Basic Information', 
-//     'Add Local Authority Employee',
-//     'Request Single Child Data Exchange',
-//     'Request Bulk Secure Children Data Exchange',
-//     'LA Bank Details',
-//     'Local Authority Policies & Agreement',
-//     'Any Other Document',
-//     'Meeting & Recording',
-//     'LA Social Media'
-// ]
 
-import SingleChildDataExchange from "./add-la-employee/AddLaEmployee";
+import SingleChildDataExchange from "./single-child-data-exchange/SingleChildDataExchange";
 import AddLaEmployee from "./add-la-employee/AddLaEmployee";
 import AnyOtherDocument from "./any-other-document/AnyOtherDocument";
 import LaBankDetails from "./la-bank-details/LaBankDetails";
