@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
+import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -38,6 +39,12 @@ SwapCarer.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function SwapCarer() {
+  const { data } = useGetSelectedSubstituteCarerQuery({
+    limit: "10",
+    offset: "0",
+    type: "SC",
+  });
+
   const router = useRouter();
   const title = "Swap Carer List";
   const FORMROUTE =

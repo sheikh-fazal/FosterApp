@@ -1,12 +1,11 @@
 import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
-import TableHeader from "@root/components/TableHeader";
-import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
+import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -39,6 +38,12 @@ RespiteCarer.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function RespiteCarer() {
+  const { data } = useGetSelectedSubstituteCarerQuery({
+    limit: "10",
+    offset: "0",
+    type: "RC",
+  });
+
   const router = useRouter();
   const title = "Respite Carer List";
   const FORMROUTE =

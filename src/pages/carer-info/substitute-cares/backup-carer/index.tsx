@@ -7,6 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
+import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -39,6 +40,12 @@ BackupCarer.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function BackupCarer() {
+  const { data } = useGetSelectedSubstituteCarerQuery({
+    limit: "10",
+    offset: "0",
+    type: "BC",
+  });
+
   const router = useRouter();
   const title = "Backup Carer List";
   const FORMROUTE =
@@ -129,6 +136,7 @@ export default function BackupCarer() {
   const pageChangeHandler = (item: any) => {
     console.log(item);
   };
+  console.log(data);
   return (
     <SubstituteCarerTable
       columns={columns}
