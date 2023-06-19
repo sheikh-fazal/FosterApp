@@ -6,7 +6,8 @@ export const useAnyOtherDocument = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [actionType, setActionType] = useState<string>("add");
   const [viewTableRow, setViewTableRow] = useState({});
-  const route = useRouter()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const route = useRouter();
   const theme = useTheme();
   return {
     theme,
@@ -16,6 +17,8 @@ export const useAnyOtherDocument = () => {
     setActionType,
     viewTableRow,
     setViewTableRow,
-    route
+    route,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen
   };
 };

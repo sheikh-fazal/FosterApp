@@ -39,36 +39,42 @@ const LaPoliciesAgreement = () => {
             id: "Sr. No",
             cell: (info: any) => info.getValue(),
             header: () => <span>Sr. No</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.title,
             id: "Title",
             cell: (info: any) => info.getValue(),
             header: () => <span>Title</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.dateUploaded,
             id: "Date Uploaded",
             cell: (info: any) => info.getValue(),
             header: () => <span>Date Uploaded</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.author,
             id: "Author",
             cell: (info: any) => info.getValue(),
             header: () => <span>Author</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentType,
             id: "Document Type",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Type</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.versions,
             id: "Versions",
             cell: (info: any) => info.getValue(),
             header: () => <span>Versions</span>,
+            isSortable: true,
         },
         {
             id: "actions",
@@ -88,7 +94,7 @@ const LaPoliciesAgreement = () => {
         <>
             <TableHeader
                 title={''}
-                showAddBtn={route.query.action !== 'local-authority-view' && true}
+                showAddBtn={route.query.action !== 'view-local-authority' && true}
                 onAdd={() => { setIsAddModalOpen(true); setActionType('add') }}
             />
             <CustomTable

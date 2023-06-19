@@ -11,22 +11,22 @@ import LaPoliciesAgreement from './la-policies-agreement/LaPoliciesAgreement';
 import AnyOtherDocument from './any-other-document/AnyOtherDocument';
 import MeetingRecording from './meeting-recording/MeetingRecording';
 import LaSocialMedia from './la-social-media/LaSocialMedia';
+import { useRegisterNewLocalAuthority } from './useRegisterNewLocalAuthority';
 
 const RegisterNewLocalAuthority = () => {
+    const { handleNextTab, handlePreviousTab, currentTab, setCurrentTab } = useRegisterNewLocalAuthority()
     return (
-        <Box >
-            <VericalTabs tabsDataArray={registerLocalAuthorityTabs} >
-                <LaBasicInformation />
-                <AddLaEmployee />
-                <SingleChildDataExchange />
-                <SecureChildrenDataExchange />
-                <LaBankDetails />
-                <LaPoliciesAgreement />
-                <AnyOtherDocument />
-                <MeetingRecording />
-                <LaSocialMedia />
-            </VericalTabs>
-        </Box>
+        <VericalTabs tabsDataArray={registerLocalAuthorityTabs} >
+            <LaBasicInformation handleNextTab={handleNextTab} />
+            <AddLaEmployee />
+            <SingleChildDataExchange />
+            <SecureChildrenDataExchange />
+            <LaBankDetails />
+            <LaPoliciesAgreement />
+            <AnyOtherDocument />
+            <MeetingRecording />
+            <LaSocialMedia />
+        </VericalTabs>
     )
 }
 

@@ -14,7 +14,7 @@ const SecureChildrenDataExchange = () => {
                     return (
                         <Grid item xs={12} md={form?.gridLength} key={i}>
                             <Typography sx={styles.label(theme)}>{form.title}</Typography>
-                            <form.component disabled={router.query.action === 'local-authority-view' && true} size="small" {...form.otherOptions} >
+                            <form.component disabled={router.query.action === 'view-local-authority' && true} size="small" {...form.otherOptions} >
                                 {form.otherOptions.select
                                     ? form.options.map((option: any) => (
                                         <option key={option.value} value={option.value}>
@@ -39,7 +39,7 @@ const SecureChildrenDataExchange = () => {
                         >
                             Back
                         </Button>
-                        {router.query.action !== 'local-authority-view' &&
+                        {router.query.action !== 'view-local-authority' &&
                             <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
                                 Submit
                             </LoadingButton>

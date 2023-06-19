@@ -39,31 +39,35 @@ const MeetingRecording = () => {
             id: "Sr. No",
             cell: (info: any) => info.getValue(),
             header: () => <span>Sr. No</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.meetingAgenda,
             id: "Meeting Agenda",
             cell: (info: any) => info.getValue(),
             header: () => <span>Meeting Agenda</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.uploadedDate,
             id: "Uploaded Date",
             cell: (info: any) => info.getValue(),
             header: () => <span>Uploaded Date</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.meetingFile,
             id: "Meeting File",
             cell: (info: any) => info.getValue(),
             header: () => <span>Meeting File</span>,
+            isSortable: true,
         },
         {
             id: "actions",
             cell: (info: any) => (
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction type="view" onClicked={() => { setIsAddModalOpen(true); setActionType('view') }} />
-                    {route.query.action !== 'local-authority-view' && <TableAction type="edit" onClicked={() => { setIsAddModalOpen(true); setActionType('edit') }} />}
+                    {route.query.action !== 'view-local-authority' && <TableAction type="edit" onClicked={() => { setIsAddModalOpen(true); setActionType('edit') }} />}
                 </Box>
             ),
             header: () => <span>actions</span>,
@@ -76,7 +80,7 @@ const MeetingRecording = () => {
         <>
             <TableHeader
                 title={''}
-                showAddBtn={route.query.action !== 'local-authority-view' && true}
+                showAddBtn={route.query.action !== 'view-local-authority' && true}
                 onAdd={() => { setIsAddModalOpen(true); setActionType('add') }}
             />
             <CustomTable

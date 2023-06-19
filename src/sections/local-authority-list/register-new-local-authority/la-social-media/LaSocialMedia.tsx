@@ -18,7 +18,7 @@ const LaSocialMedia = () => {
                             <Link href={item.link} target="_blank"><Image src={item.icon} alt="" style={{ width: "126px", height: "126px" }} /></Link>
                         </Grid>
                     ))}
-                    {route.query.action !== 'local-authority-view' &&
+                    {route.query.action !== 'view-local-authority' &&
                         <Grid item lg={2} md={3} sm={6}>
                             <Image src={AddIcon} alt="" style={{ cursor: "pointer", width: "126px", height: "126px" }} onClick={() => setIsAddSocialMediaIcon(true)} />
                         </Grid>

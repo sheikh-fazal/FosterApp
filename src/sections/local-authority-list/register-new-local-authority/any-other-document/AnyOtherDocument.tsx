@@ -6,9 +6,10 @@ import TableHeader from "@root/components/TableHeader";
 import { anyOtherDocumentData } from ".";
 import { useAnyOtherDocument } from "./useAnyOtherDocument";
 import AddOtherDocument from "./add-other-document/AddOtherDocument";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 const AnyOtherDocument = () => {
-    const { theme, isAddModalOpen, setIsAddModalOpen, viewTableRow, setViewTableRow, actionType, setActionType, route } = useAnyOtherDocument();
+    const { theme, isAddModalOpen, setIsAddModalOpen, viewTableRow, setViewTableRow, actionType, setActionType, isDeleteModalOpen, setIsDeleteModalOpen, route } = useAnyOtherDocument();
 
     const columns = [
         {
@@ -39,30 +40,35 @@ const AnyOtherDocument = () => {
             id: "Sr. No",
             cell: (info: any) => info.getValue(),
             header: () => <span>Sr. No</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentName,
             id: "Document Name",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Name</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentType,
             id: "Document Type",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Type</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.documentDate,
             id: "Document Date",
             cell: (info: any) => info.getValue(),
             header: () => <span>Document Date</span>,
+            isSortable: true,
         },
         {
             accessorFn: (row: any) => row.personUploaded,
             id: "Person Uploaded",
             cell: (info: any) => info.getValue(),
             header: () => <span>Person Uploaded</span>,
+            isSortable: true,
         },
         {
             id: "actions",
@@ -70,7 +76,7 @@ const AnyOtherDocument = () => {
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction type="refresh" />
                     <TableAction type="download" />
-                    {route.query.action !== 'local-authority-view' && <TableAction type="delete" />}
+                    {route.query.action !== 'view-local-authority' && <TableAction type="delete" onClicked={() => setIsDeleteModalOpen(true)} />}
                     <TableAction type="view" onClicked={() => { setIsAddModalOpen(true); setActionType('edit'); setViewTableRow(info?.row?.original) }} />
                 </Box>
             ),
@@ -83,7 +89,7 @@ const AnyOtherDocument = () => {
         <>
             <TableHeader
                 title={''}
-                showAddBtn={route.query.action !== 'local-authority-view' && true}
+                showAddBtn={route.query.action !== 'view-local-authority' && true}
                 onAdd={() => { setIsAddModalOpen(true); setActionType('add') }}
             />
             <CustomTable
@@ -103,6 +109,7 @@ const AnyOtherDocument = () => {
                 rootSX={{ my: theme.spacing(2) }}
             />
             <AddOtherDocument isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen} actionType={actionType} viewTableRow={viewTableRow} />
+            <DeleteModel open={isDeleteModalOpen} handleClose={() => setIsDeleteModalOpen(false)} />
         </>
     );
 }

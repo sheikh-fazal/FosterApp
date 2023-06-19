@@ -6,8 +6,8 @@ import { useLaBasicInformation } from "./useLaBasicInformation";
 import { laBasicInformationFormData } from ".";
 import Image from "next/image";
 
-const LaBasicInformation = () => {
-  const { theme, handleSubmit, onSubmit, methods, isSubmitting, router } = useLaBasicInformation()
+const LaBasicInformation = ({ handleNextTab }: any) => {
+  const { theme, handleSubmit, onSubmit, methods, isSubmitting, router } = useLaBasicInformation({ handleNextTab: handleNextTab })
 
   return (
     <Box >
@@ -18,7 +18,7 @@ const LaBasicInformation = () => {
               <Grid item xs={12} md={form?.gridLength} key={i} >
                 <Typography sx={styles.label(theme)}>{form.title}</Typography>
                 {form.component ? (
-                  <form.component disabled={router.query.action === 'local-authority-view' && true} size="small" {...form.otherOptions} >
+                  <form.component disabled={router.query.action === 'view-local-authority' && true} size="small" {...form.otherOptions} >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -45,12 +45,11 @@ const LaBasicInformation = () => {
               >
                 Back
               </Button>
-              {router.query.action !== 'local-authority-view' &&
-                <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
+              {router.query.action !== 'view-local-authority' &&
+                <LoadingButton type="submit" variant="contained" loading={isSubmitting} >
                   Next
                 </LoadingButton>
               }
-
             </Box>
           </Grid>
         </Grid>

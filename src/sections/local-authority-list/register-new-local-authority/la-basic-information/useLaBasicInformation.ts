@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { laBasicInformationSchema, defaultValues } from ".";
 
-export const useLaBasicInformation = () => {
+export const useLaBasicInformation = ({ handleNextTab }: any) => {
     let theme = useTheme();
     const router = useRouter();
   
@@ -20,8 +20,7 @@ export const useLaBasicInformation = () => {
     } = methods;
   
     const onSubmit = async (data: any) => {
-      console.log("data", data);
-      reset();
+      handleNextTab()
     };
   return {
     router,
