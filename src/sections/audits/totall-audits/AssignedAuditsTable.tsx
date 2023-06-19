@@ -24,6 +24,7 @@ const AssignedAuditTable = () => {
         <CustomTable
           data={data}
           columns={columns}
+          showSerialNo={true}
           isLoading={false}
           isFetching={false}
           isError={false}

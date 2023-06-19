@@ -1,6 +1,5 @@
 export const data = [
   {
-    srNo: "01",
     documentName: "Form Name",
     documentType: "PDF",
     documentDate: "19/05/2023",
@@ -8,7 +7,6 @@ export const data = [
     password: "abc@1234",
   },
   {
-    srNo: "02",
     documentName: "Form Name",
     documentType: "XLS",
     documentDate: "12/02/2023",
@@ -16,7 +14,6 @@ export const data = [
     password: "xyz@1234",
   },
   {
-    srNo: "03",
     documentName: "Form Name",
     documentType: "PDF",
     documentDate: "07/02/2023",

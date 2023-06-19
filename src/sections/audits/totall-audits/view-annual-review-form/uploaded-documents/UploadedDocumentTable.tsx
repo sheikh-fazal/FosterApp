@@ -25,6 +25,7 @@ const UploadedDocumentTable = () => {
         />
         <CustomTable
           data={data}
+          showSerialNo={true}
           columns={columns}
           isLoading={false}
           isFetching={false}

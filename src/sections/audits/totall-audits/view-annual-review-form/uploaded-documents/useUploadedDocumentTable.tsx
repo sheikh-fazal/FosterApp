@@ -19,13 +19,6 @@ export const useUploadedDocumentTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <>Sr.No</>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.documentName,
       id: "documentName",
       cell: (info: any) => info.getValue(),

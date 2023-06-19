@@ -11,13 +11,6 @@ export const useAssignedAuditsTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <>Sr.No</>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.name,
       id: "name",
       cell: (info: any) => info.getValue(),

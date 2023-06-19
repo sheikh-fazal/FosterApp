@@ -1,6 +1,5 @@
 export const data = [
   {
-    srNo: "01",
     name: "David",
     auditType: "Annual Review",
     assignee: "Natalia",
@@ -8,7 +7,6 @@ export const data = [
     auditOutcome: "Not Audited",
   },
   {
-    srNo: "02",
     name: "Natalia",
     auditType: "Supervisory Home Visit",
     assignee: "David",
@@ -16,7 +14,6 @@ export const data = [
     auditOutcome: "Not Audited",
   },
   {
-    srNo: "03",
     name: "Gloria",
     auditType: "Chile Progress Report",
     assignee: "Liza",
@@ -24,7 +21,6 @@ export const data = [
     auditOutcome: "Not Audited",
   },
   {
-    srNo: "04",
     name: "John",
     auditType: "Monthly Progress Report",
     assignee: "Gloria",
@@ -32,7 +28,6 @@ export const data = [
     auditOutcome: "Not Audited",
   },
   {
-    srNo: "05",
     name: "Liza",
     auditType: "Risk Assessment",
     assignee: "Graham",
