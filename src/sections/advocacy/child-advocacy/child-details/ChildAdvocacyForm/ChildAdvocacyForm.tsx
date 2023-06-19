@@ -20,7 +20,7 @@ const ChildAdvocacyForm = () => {
                             searchKey="search"
                             showSelectFilters
                             showAddBtn
-                            onAdd={() => router.push({ pathname: '/advocacy/child-advocacy/child-details/child-advocacy-form/child-form', query: { action: "add-child-advocacy" } })}
+                            onAdd={() => router.push({ pathname: '/advocacy/child-advocacy/details/advocacy-form/form', query: { action: "add-child-advocacy" } })}
                             onChanged={(data: any) => {
                                 console.log("Updated params: ", data);
                             }}

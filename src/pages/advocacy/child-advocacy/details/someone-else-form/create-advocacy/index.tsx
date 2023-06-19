@@ -13,7 +13,7 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Forms Listing",
-                    href: "/advocacy/child-advocacy/child-details/someone-else-advocacy-form",
+                    href: "/advocacy/child-advocacy/details/someone-else-form",
                 },
                 {
                     name: "Advocacy Type",

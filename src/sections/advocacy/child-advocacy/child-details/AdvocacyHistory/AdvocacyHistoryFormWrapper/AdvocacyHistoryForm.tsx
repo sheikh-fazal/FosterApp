@@ -36,7 +36,7 @@ const AdvocacyHistoryForm = () => {
                     <Button
                         type="button"
                         variant="contained"
-                        onClick={() => router.push('/advocacy/child-advocacy/child-details/advocacy-history')}
+                        onClick={() => router.push('/advocacy/child-advocacy/details/history')}
                         sx={{
                             backgroundColor: "#F6830F",
                             "&:hover": { backgroundColor: "#F6830F" },

@@ -13,7 +13,7 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Child Advocacy",
-                    href: "/advocacy/child-advocacy/child-details",
+                    href: "/advocacy/child-advocacy/details",
                 },
                 {
                     name: "All",
