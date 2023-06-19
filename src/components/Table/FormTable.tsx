@@ -119,6 +119,7 @@ export default function FormTable(props: any) {
     view,
     print,
     share,
+    certificate,
     tableKey,
     route = "view",
     columns: tableColumns,
@@ -150,24 +151,25 @@ export default function FormTable(props: any) {
     };
   });
 
+
   columns.push(
     {
-      id: "Manage Certificate",
+      id: "certificate",
       cell: (info: any) => (
-        <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }} onClick={() => {
-          setCertificateModal(true)
-        }}>
-          Delegate Certificate
-        </Box >
+        <Box>
+          {certificate &&
+            (
 
-
-
+              <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500", }} onClick={() => setCertificateModal(true)}>
+                delegate certifacte
+              </Box>
+            )
+          }
+        </Box>
       ),
-      header: () => <span>Manage Certificate</span>,
+      header: () => (certificate && <span>Manage Certificate</span>),
       isSortable: false,
-
     },
-
     {
       id: "actions",
       cell: (info: any) => (
