@@ -4,7 +4,7 @@ import { Box, Button, Grid } from "@mui/material";
 import Link from "next/link";
 import { useChildFamilyRelativesForm } from "./useChildFamilyRelativesForm";
 
-const ChildFamilyRelativesForm = () => {
+const ChildFamilyRelativesForm = ({ setOpenForm }: any) => {
   const {
     methods,
     onSubmit,
@@ -35,7 +35,7 @@ const ChildFamilyRelativesForm = () => {
           ))}
 
           <Grid item xs={12}>
-          <Button
+            <Button
               sx={{
                 backgroundColor: "#F6830F",
                 "&:hover": {
@@ -45,6 +45,7 @@ const ChildFamilyRelativesForm = () => {
               }}
               type="submit"
               variant="contained"
+              onClick={() => setOpenForm(false)}
             >
               Back
             </Button>

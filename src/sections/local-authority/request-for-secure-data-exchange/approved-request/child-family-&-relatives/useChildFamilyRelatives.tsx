@@ -13,8 +13,8 @@ export const useChildFamilyRelatives = () => {
   const theme = useTheme();
   const [cancelDelete, setCancelDelete] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [openForm, setOpenForm] = useState(false)
- 
+  const [openForm, setOpenForm] = useState(false);
+
   const handleDelete = () => {
     setCancelDelete(!cancelDelete);
   };
@@ -59,16 +59,15 @@ export const useChildFamilyRelatives = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction size="small" type="view" onClicked={() => {}} />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() => setOpenForm(true)}
+          />
           <TableAction
             size="small"
             type="edit"
-            onClicked={() =>
-              router.push({
-                pathname: "",
-                query: { action: "edit", id: "" },
-              })
-            }
+            onClicked={() => setOpenForm(true)}
           />
           <TableAction size="small" type="delete" onClicked={handleDelete} />
           <DeleteModel
@@ -91,6 +90,6 @@ export const useChildFamilyRelatives = () => {
     openModal,
     setOpenModal,
     openForm,
-    setOpenForm
+    setOpenForm,
   };
 };

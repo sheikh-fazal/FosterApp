@@ -5,6 +5,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { TableData } from ".";
+import SecureDataExchangeModal from "./secure-data-exchange-modal/SecureDataExchangeModal";
 
 export const usePendingRequest = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -12,6 +13,8 @@ export const usePendingRequest = () => {
   const theme = useTheme();
   const [cancelDelete, setCancelDelete] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const handleDelete = () => {
     alert("deleted successfully");
@@ -72,25 +75,25 @@ export const usePendingRequest = () => {
           <TableAction
             size="small"
             type="view"
-            onClicked={() =>
-              router.push({
-                pathname:
-                  "/safeguarding/child-protection/contextual-safeguarding/view-contextual-safeguarging",
-                query: { action: "view", id: "" },
-              })
-            }
+            onClicked={() => setViewModal(true)}
           />
+          <SecureDataExchangeModal
+            disabled
+            open={viewModal}
+            handleClose={() => setViewModal(false)}
+          />
+
           <TableAction
             size="small"
             type="edit"
-            onClicked={() =>
-              router.push({
-                pathname:
-                  "/safeguarding/child-protection/contextual-safeguarding/edit-contextual-safeguarging",
-                query: { action: "edit", id: "" },
-              })
-            }
+            onClicked={() => setEditModal(true)}
           />
+
+            <SecureDataExchangeModal
+            open={editModal}
+            handleClose={() => setEditModal(false)}
+          />
+
           <TableAction
             size="small"
             type="delete"
@@ -116,6 +119,6 @@ export const usePendingRequest = () => {
     columns,
     theme,
     openModal,
-    setOpenModal
+    setOpenModal,
   };
 };

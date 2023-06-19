@@ -45,7 +45,7 @@ const ChildFamilyRelatives = () => {
           />
         </Box>
       ) : (
-        <ChildFamilyRelativesForm />
+        <ChildFamilyRelativesForm setOpenForm={setOpenForm}/>
       )}
     </>
   );
