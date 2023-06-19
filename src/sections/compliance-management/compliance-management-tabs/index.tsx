@@ -1,4 +1,4 @@
-import { ButtonProps, styled, Button, Box, Typography } from "@mui/material";
+import { ButtonProps, styled, Button, Box, Typography,useTheme } from "@mui/material";
 import Image from "next/image";
 
 
@@ -69,14 +69,15 @@ export const StyledTypography = styled(Typography)(({ color }: any) => ({
   }
 }));
 export const styles = {
+  
   tabRoot: (theme: any) => ({
     borderBottom: 1,
-    borderColor: theme.palette.primary.lighter,
+    borderColor: theme.palette.primary.lighter, 
     width:'auto'
   }),
 
   tabIndicator: (theme: any) => ({
-    sx: { background: theme.palette.primary.main },
+    // sx: { background: theme.palette.primary.main },
   }),
 
 

@@ -2,7 +2,7 @@ import AdministrationIcon from '../../assets/svg/compliance-management/administr
 import DataProtectionIcon from '../../assets/svg/compliance-management/dataProtectionIcon.svg'
 import CovidIcon from '../../assets/svg/compliance-management/covidIcon.svg'
 import CareManagementIcon from '../../assets/svg/compliance-management/careManagementIcon.svg'
-import CarePlanningtIcon from '../../assets/svg/compliance-management/carePlainningIcon.svg'
+import CarePlanningIcon from '../../assets/svg/compliance-management/carePlainningIcon.svg'
 import HealthIcon from '../../assets/svg/compliance-management/healthIcon.svg'
 import HumanResourcesIcon from '../../assets/svg/compliance-management/humanResourceIcon.svg'
 import MedicationMangementIcon from '../../assets/svg/compliance-management/medicationIcon.svg'
@@ -11,1113 +11,347 @@ import SupportServicesIcon from '../../assets/svg/compliance-management/supportS
 import FundamentalStandardsIcon from '../../assets/svg/compliance-management/fundamentalServicesIcon.svg'
 import MockInspectionIcon from '../../assets/svg/compliance-management/mockInspectionIcon.svg'
 import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg'
-import AddMoreIcon from '../../assets/svg/compliance-management/addIcon.svg'
-// import Admin from '@root/assets/svg/compliance-management/admin'
+import { Box, Typography } from '@mui/material'
+import Image from 'next/image'
 
-export const ComplianceVerticalTabsData = [
+const PDF = ({ data }: any) => {
+    return (
+        <>{data?.map((obj: any, i: number) => (
+            <Box key={i}>
+                <Image src={''} alt='icon' />
+                <Typography>{obj?.title}</Typography>
+            </Box>
+        ))}</>
+    )
+}
+
+export const TABSDATAARRYComp = [
     {
         index: 0,
         title: "Administration",
-        img: AdministrationIcon,
+        icon: AdministrationIcon,
         color: '#0E918C',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Business Operations",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
-                    }
-                ]
+                id: 1,
+                title: "Business Operations",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Communications ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
-                    }
-                ]
+                id: 2,
+                title: "Communications",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Registration & Compliance-Administration ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        pdf: 'AB08 - Financial Administration Policy and Procedure'
-                    }
-                ]
+                id: 3,
+                title: "Registration & Compliance-Administration",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '4',
-                tabTitle: "Finance ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+                id: 4,
+                title: "Finance ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+
+        ],
     },
     {
         index: 1,
         title: "Data Protection",
-        img: DataProtectionIcon,
+        icon: DataProtectionIcon,
         color: '#465987',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Policies ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Policies",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Forms ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Forms",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
 
-        ]
+        ],
     },
     {
         index: 2,
         title: "Covid-19 Hub",
-        img: CovidIcon,
+        icon: CovidIcon,
         color: '#FF9900',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Health and Safety COVID-19 ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Health and Safety COVID-19",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Human Resources COVID-19",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Human Resources COVID-19",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Care Management COVID-19",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Care Management COVID-19",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '4',
-                tabTitle: "Business Admin COVID-19 ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+                id: 2,
+                title: "Business Admin COVID-19",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+        ],
     },
     {
         index: 3,
         title: "Care Management",
-        img: CareManagementIcon,
+        icon: CareManagementIcon,
         color: '#10B0C6',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Care Practice  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Rights and Abuse",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Rights and Abuse  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Risk Assessment and Personal Planning",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Risk Assessment and Personal Planning  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Clinical  governance",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: '4',
-                tabTitle: "Clinical  governance ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+
+        ],
     },
     {
         index: 4,
         title: "Care Planning",
-        img: CarePlanningtIcon,
+        icon: CarePlanningIcon,
         color: '#F63D31',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Risk Assessment and Personal Planning ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Risk Assessment and Personal Planning",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Service Commencement  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Service Commencement",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Care Plans  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Care Plans",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '4',
-                tabTitle: "Assessments ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 4,
+                title: "Assessments",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '5',
-                tabTitle: "Supplementary Documents ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+                id: 5,
+                title: "Supplementary Documents",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+        ],
     },
     {
         index: 5,
         title: "Health & Saftey",
-        img: HealthIcon,
+        icon: HealthIcon,
         color: '#0E918C',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Risk Assessments  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-
+                id: 1,
+                title: "Risk Assessments",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
             },
             {
-                id: '2',
-                tabTitle: "Health and  Safety ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Health and  Safety ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
             },
             {
-                id: '3',
-                tabTitle: "Residential Services ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Residential Services ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
             },
             {
-                id: '4',
-                tabTitle: "Building and Equipment ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+                id: 4,
+                title: "Building and Equipmen ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
+            },
+        ],
     },
     {
         index: 6,
         title: "Human Resources",
-        img: HumanResourcesIcon,
+        icon: HumanResourcesIcon,
         color: '#10B0C6',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Absence, Holidays and Sickness ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Absence, Holidays and Sickness ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Contract of  Employment ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Equality & human Rights ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: '4',
-                tabTitle: "Well Being ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            },
-            {
-                id: '5',
-                tabTitle: "Miscellaneous",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+        ],
     },
     {
         index: 7,
         title: "Medications Management",
-        img: MedicationMangementIcon,
+        icon: MedicationMangementIcon,
         color: '#23183D',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Medications Management ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-
-        ]
+            {
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+        ],
     },
     {
         index: 8,
         title: "Quality Assurance",
-        img: QualityAssuranceIcon,
+        icon: QualityAssuranceIcon,
         color: '#20BE60',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Administration Quality  asssurance",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Human Resources Quality assurance ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Management of Quality assurance ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: '4',
-                tabTitle: "Care Management ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+        ],
     },
     {
         index: 9,
         title: "Support Services",
-        img: SupportServicesIcon,
+        icon: SupportServicesIcon,
         color: '#F63D31',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Hygiene ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Catering Services  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Risk Assessment & Safety",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-
-        ]
+        ],
     },
     {
         index: 10,
         title: "Fundamental Standards",
-        img: FundamentalStandardsIcon,
+        icon: FundamentalStandardsIcon,
         color: '#23183D',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Policy ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-
-        ]
+            {
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+        ],
     },
     {
         index: 11,
         title: "Mock Inspection Toolkit",
-        img: MockInspectionIcon,
+        icon: MockInspectionIcon,
         color: '#FE7E6D',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Safe ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Mock Inspection Toolkit  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Caring  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: '4',
-                tabTitle: "Responsive ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            },
-            {
-                id: '5',
-                tabTitle: "Well Led  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            },
-            {
-                id: '6',
-                tabTitle: "Effective ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+        ],
     },
     {
         index: 12,
         title: "Stakeholder Surveys",
-        img: StakeHoldersIcon,
+        icon: StakeHoldersIcon,
         color: '#544179',
-        innerData: [
+        innerDataArray: [
             {
-                id: '1',
-                tabTitle: "Guidance Policy ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 1,
+                title: "Backup carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '2',
-                tabTitle: "Service Users  ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 2,
+                title: "Swap Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
-                id: '3',
-                tabTitle: "Relatives and Representatives",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
+                id: 3,
+                title: "Respite Carer",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: '4',
-                tabTitle: "Staff ",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            },
-            {
-                id: '5',
-                tabTitle: "External Professionals",
-                tabsDocuments: [
-                    {
-                        id: "1",
-                        pdf: 'ABO3 - Business Expenses Policy and Procedure'
-                    },
-                    {
-                        id: "2",
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    },
-                    {
-                        id: '3',
-                        title: "ABO3 - Business Expenses Policy and Procedure",
-                        //    pdf: require('../../assets/pdf-sample.pdf'),
-                    }
-                ]
-            }
-        ]
+        ],
     },
-
-]
+    {
+        index: 12,
+        title: "Add More",
+        icon: StakeHoldersIcon,
+        color: '#544179',
+    }
+];

@@ -1,18 +1,39 @@
 import { Box, useTheme } from '@mui/material';
 import React, { useState } from 'react'
-import { TabPanelProps } from '.';
-import { ComplianceVerticalTabsData } from '..';
+import { ComplianceVerticalTabsData } from '.';
+import { TabPanelProps } from './compliance-management-tabs';
 
-const useComplianceManagementTabs = () => {
+
+const useComplianceManagement = () => {
     const [verticalTab, setVerticalTab] = useState(0);
     const [horizontalTabValue, setHorizontalTabValue] = useState(0);
     const [IsOpenPdfModal, setIsOpenPdfModal] = useState(false);
     const [SelectedTabColor, setSelectedTabColor] = useState('');
     const [IsOpenAddCategory, setIsOpenAddCategory] = useState({value:'',type:''});
     const [tabsArray,setTabsArray] = useState(ComplianceVerticalTabsData)
+
+
     const handleAddCategory = (data:any)=>{
-        setTabsArray()
-    }
+        if (data && data.title && data.img) {
+            const newTab = {
+              index: tabsArray.length,
+              title: data.title, 
+              img: data.img, 
+              color: '', 
+              innerData: [], 
+            };
+           console.log('update data===>>>>>',newTab);
+        
+            const newTabsArray = [...tabsArray, newTab]; 
+            setTabsArray(newTabsArray);
+            console.log('update datassssssss===>>>>>',newTabsArray);
+            const newIndex = newTabsArray.length - 1;
+            setHorizontalTabValue(newIndex);
+          }
+      };
+    
+
+    
     const TabPanel = ({ children, value, index }: TabPanelProps) => {
         return (
             <div
@@ -43,4 +64,4 @@ const useComplianceManagementTabs = () => {
     }
 }
 
-export default useComplianceManagementTabs
+export default useComplianceManagement
