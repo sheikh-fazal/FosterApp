@@ -10,6 +10,7 @@ import TableAction from "@root/components/TableAction";
 export default function ClaDocumentationListTable() {
   const {
     router,
+    setSearch,
     data,
     isError,
     isLoading,
@@ -89,6 +90,9 @@ export default function ClaDocumentationListTable() {
         showAddBtn
         title="CLA Documentation"
         searchKey="search"
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
         onAdd={() => {
           router.push(
             "/foster-child/child-background-info/cla-documentation/add-cla-documentation"

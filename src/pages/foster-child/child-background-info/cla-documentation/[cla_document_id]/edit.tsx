@@ -41,16 +41,9 @@ export default function EditClaDocumentationList() {
     useGetClaDocumentationByIdQuery(documentId);
   console.log(data, "When Edit");
 
-  // cla-document-id
-  // Call api with above ID
-  // get data from the response
-  // pass the values of the document as "defaultvalues"
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        {/* SHow form skeleton if loadin */}
-
-        {/* show form is not loading */}
         {isLoading && <p>Loading...</p>}
         {isSuccess && (
           <ClaDocumentationForm
