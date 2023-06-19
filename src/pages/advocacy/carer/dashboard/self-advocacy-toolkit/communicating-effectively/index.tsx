@@ -13,11 +13,8 @@ Panel.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          href: "/",
-        },
-        {
           name: "Carer Advocacy",
-          href: "/",
+          href: "/advocacy/carer/dashboard/self-advocacy-toolkit",
         },
         {
           name: "Carer’s Self Advocacy Toolkit",

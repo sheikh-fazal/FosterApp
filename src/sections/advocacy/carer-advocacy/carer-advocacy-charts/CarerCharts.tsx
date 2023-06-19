@@ -34,8 +34,8 @@ const CarerCharts = () => {
                 >
                   <Box
                     sx={{
-                      width: "18px",
-                      height: "16px",
+                      width: "14px",
+                      height: "14px",
                       background: item?.color,
                       borderRadius: "4px",
                       flexShrink: 0,

@@ -14,14 +14,11 @@ Panel.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          href: "/",
+          name: "Carer Advocacy",
+          href: "/advocacy/carer/dashboard/view-all-advocacy",
         },
         {
-          name: "Advocacy Dashboard",
-          href: "/",
-        },
-        {
-          name: "Raise a new advocacy",
+          name: "View All Advocacy List",
         },
       ]}
       title={PAGE_TILE}
