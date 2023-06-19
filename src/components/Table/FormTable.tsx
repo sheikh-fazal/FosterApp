@@ -19,7 +19,7 @@ import ShareModal from "../modal/shareModal";
 import { useRouter } from "next/router";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 
-const ANON_FUNC = () => {};
+const ANON_FUNC = () => { };
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -119,6 +119,7 @@ export default function FormTable(props: any) {
     view,
     print,
     share,
+    certificate,
     tableKey,
     columns: tableColumns,
   } = props;
@@ -149,23 +150,25 @@ export default function FormTable(props: any) {
     };
   });
 
+
   columns.push(
     {
-      id: "Manage Certificate",
+      id: "certificate",
       cell: (info: any) => (
-        <Box
-          sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
-          onClick={() => {
-            setCertificateModal(true);
-          }}
-        >
-          Delegate Certificate
+        <Box>
+          {certificate &&
+            (
+
+              <Box sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500", }} onClick={() => setCertificateModal(true)}>
+                Delegate certifacte
+              </Box>
+            )
+          }
         </Box>
       ),
-      header: () => <span>Manage Certificate</span>,
+      header: () => (certificate && <span>Manage Certificate</span>),
       isSortable: false,
     },
-
     {
       id: "actions",
       cell: (info: any) => (
