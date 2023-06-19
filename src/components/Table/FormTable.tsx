@@ -120,8 +120,7 @@ export default function FormTable(props: any) {
     share,
     tableKey,
     route = "view",
-    columns: tableColumns,
-    delegateCertificate,
+    columns: tableColumns, 
   } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
@@ -148,8 +147,7 @@ export default function FormTable(props: any) {
       cell: (info: any) => info.getValue(),
       header: () => <span>{label}</span>,
     };
-  });
-  if (delegateCertificate) {
+  }); 
     columns.push(
       {
         id: "Manage Certificate",
@@ -219,8 +217,7 @@ export default function FormTable(props: any) {
         header: () => <span>actions</span>,
         isSortable: false,
       }
-    );
-  }
+    ); 
   const handleShare = () => {
     setShareModal(false);
   };
