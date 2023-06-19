@@ -16,9 +16,10 @@ export default function MainLayout({ children }: any) {
 
   return (
     <Stack sx={{ minHeight: 1 }}>
-      {/* <header>Header</header> */}
+      {/* Sales Site Navbar */}
       <TopNavbar />
       {children}
+      {/* Sales Site Footer */}
       <Footer />
       <Box sx={{ flexGrow: 1 }} />
 

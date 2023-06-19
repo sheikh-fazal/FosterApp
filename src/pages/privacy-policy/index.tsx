@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
 import Layout from "@root/layouts";
-import HeroSection from "@root/sections/privacy-policy/HeroSection";
-import PrivacyPolicySection from "@root/sections/privacy-policy/PrivacyPolicySection";
+import HeroSection from "@root/sections/privacy-and-policy/HeroSection";
+import PrivacyAndPolicy from "@root/sections/privacy-and-policy/PrivacyAndPolicy";
 import React from "react";
 
 const PAGE_TITLE = "Privacy Policy";
@@ -15,10 +14,10 @@ PrivacyPolicy.getLayout = function getLayout(page: any) {
 export default function PrivacyPolicy() {
   return (
     <>
+      {/* Privacy Page Hero Section */}
       <HeroSection />
-      <Box sx={{ mt: 10 }}>
-        <PrivacyPolicySection />
-      </Box>
+      {/* Main Privacy Page */}
+      <PrivacyAndPolicy />
     </>
   );
 }

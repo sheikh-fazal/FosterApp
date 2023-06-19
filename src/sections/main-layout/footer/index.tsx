@@ -12,22 +12,22 @@ export const addressItems = [
   {
     id: 1,
     title: `Suite 6 Office I-K, 6-9 The Square, Stock Park,\n Uxbridge, UB11 1FW.`,
-    icon: <LocationOnOutlinedIcon fontSize="small" />,
+    icon: <LocationOnOutlinedIcon sx={{ fontSize: "22px" }} />,
   },
   {
     id: 2,
     title: `(+44) - 750028 - 7504`,
-    icon: <PhoneInTalkOutlinedIcon fontSize="small" />,
+    icon: <PhoneInTalkOutlinedIcon sx={{ fontSize: "22px" }} />,
   },
   {
     id: 3,
     title: `contact-us@fosterapp.co.uk`,
-    icon: <EmailOutlinedIcon fontSize="small" />,
+    icon: <EmailOutlinedIcon sx={{ fontSize: "22px" }} />,
   },
   {
     id: 4,
     title: `Monday - Sunday: 08:00 am - 08:00 pm`,
-    icon: <AccessTimeOutlinedIcon fontSize="small" />,
+    icon: <AccessTimeOutlinedIcon sx={{ fontSize: "22px" }} />,
   },
 ];
 

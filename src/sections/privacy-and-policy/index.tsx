@@ -2,17 +2,17 @@ export const listItems = [
   {
     id: 1,
     title: "Introduction",
-    link: "",
+    link: "/privacy-policy#introduction",
   },
   {
     id: 2,
     title: "Who We Are",
-    link: "",
+    link: "/privacy-policy#who-we-are",
   },
   {
     id: 3,
-    title: "About You",
-    link: "",
+    title: "About us",
+    link: "/privacy-policy#about-us",
   },
   {
     id: 4,
