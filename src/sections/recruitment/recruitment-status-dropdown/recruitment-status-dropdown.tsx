@@ -1,6 +1,7 @@
 import {
   Button,
   ButtonGroup,
+  CircularProgress,
   ClickAwayListener,
   Grid,
   Grow,
@@ -12,104 +13,117 @@ import {
 import React from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { useRecruitmentStatusDropdown } from "./useRecruitmentStatusDropdown";
-export const RecruitmentStatusDropdown = ({ id, status }: any) => {
+export const RecruitmentStatusDropdown = (props: any) => {
   const {
-    options,
+    id,
+    status,
+    apiData,
+    textForApi,
+    component,
+    setEnquiryStageData,
+    enquiryStageData,
+  } = props;
+
+  const {
     open,
     setOpen,
     anchorRef,
     handleMenuItemClick,
     handleClose,
-    optionsColor,
-  } = useRecruitmentStatusDropdown();
+    selectedIndex,
+    optionData,
+    isUpdating,
+  } = useRecruitmentStatusDropdown({
+    id,
+    status,
+    apiData,
+    textForApi,
+    component,
+    setEnquiryStageData,
+    enquiryStageData,
+  });
   return (
     <>
-      <Grid
-        item
-        xs={2.3}
-        container
-        justifyContent={"center"}
-        alignItems={"center"}
-      >
-        <ButtonGroup variant="contained" ref={anchorRef}>
-          <Button
-            sx={{
-              background: optionsColor[status],
-              width: 150,
-              fontSize: 14,
-              fontWeight: 600,
-            }}
-            onClick={() => setOpen((prevOpen) => !prevOpen)}
-          >
-            {status}
-          </Button>
-          <Button
-            size="small"
-            aria-controls={open ? "split-button-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-label="select merge strategy"
-            aria-haspopup="menu"
-            onClick={() => setOpen((prevOpen) => !prevOpen)}
-            sx={{ background: optionsColor[status] }}
-          >
-            <ArrowDropDownIcon />
-          </Button>
-        </ButtonGroup>
-        <Popper
-          sx={{
-            zIndex: 1,
-          }}
-          open={open}
-          anchorEl={anchorRef.current}
-          role={undefined}
-          transition
-          disablePortal
+      {isUpdating && <CircularProgress sx={{ animationDuration: "400ms" }} />}
+      {!isUpdating && (
+        <Grid
+          item
+          xs={2.3}
+          container
+          justifyContent={"center"}
+          alignItems={"center"}
         >
-          {({ TransitionProps, placement }) => (
-            <Grow
-              {...TransitionProps}
-              style={{
-                transformOrigin:
-                  placement === "bottom" ? "center top" : "center bottom",
+          <ButtonGroup variant="contained" ref={anchorRef}>
+            <Button
+              sx={{
+                background: optionData[selectedIndex]?.bgColor,
+                width: 200,
+                border: 0,
+                fontSize: 14,
+                fontWeight: 600,
+                display: "flex",
+                justifyContent: "space-between",
               }}
+              onClick={() => setOpen((prevOpen) => !prevOpen)}
             >
-              <Paper>
-                <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList
-                    sx={{
-                      boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-                    }}
-                    id="split-button-menu"
-                    autoFocusItem
-                  >
-                    {options.map((option: any, index: any) => (
-                      <MenuItem
-                        sx={menuStyle(option, optionsColor)}
-                        key={index}
-                        selected={option === status}
-                        onClick={(event) => handleMenuItemClick(event, index)}
-                      >
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </MenuList>
-                </ClickAwayListener>
-              </Paper>
-            </Grow>
-          )}
-        </Popper>
-      </Grid>
+              {status}
+              <ArrowDropDownIcon />
+            </Button>
+          </ButtonGroup>
+          <Popper
+            sx={{
+              zIndex: 1,
+            }}
+            open={open}
+            anchorEl={anchorRef.current}
+            role={undefined}
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === "bottom" ? "center top" : "center bottom",
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList
+                      sx={{
+                        boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
+                      }}
+                      id="split-button-menu"
+                      autoFocusItem
+                    >
+                      {optionData.map((option: any, index: any) => (
+                        <MenuItem
+                          // sx={menuStyle(selectedIndex, optionsColor)}
+                          sx={{
+                            background: option.bgColor,
+                            color: "white",
+                            width: 190,
+                            fontSize: 14,
+                            margin: 0.8,
+                            fontWeight: 600,
+                            borderRadius: 1,
+                          }}
+                          key={option?.id}
+                          // selected={index === selectedIndex}
+                          onClick={(event) => handleMenuItemClick(event, index)}
+                        >
+                          {option?.text}
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </Grid>
+      )}
     </>
   );
-};
-const menuStyle = (option: any, optionsColor: any) => {
-  return {
-    background: optionsColor[option],
-    color: "white",
-    width: 190,
-    fontSize: 14,
-    margin: 0.8,
-    fontWeight: 600,
-    borderRadius: 1,
-  };
 };

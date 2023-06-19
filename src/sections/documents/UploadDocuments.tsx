@@ -14,10 +14,17 @@ const UploadDocuments = (props: any) => {
     isError,
     isSuccess,
     modalData,
+    column,
+    searchParam,
+    currentPage,
+    totalPages,
+    onPageChange,
+    onDelete,
   } = props;
   const [openModal, setOpenModal] = useState(false);
+
   const changeHandler = (i: any) => {
-    console.log(i);
+    searchParam(i);
   };
   return (
     <div>
@@ -34,12 +41,17 @@ const UploadDocuments = (props: any) => {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
+        column={column}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={onPageChange}
+        onDelete={onDelete}
       />
       <UploadDocumentModal
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) => {
-          // console.log("oooooooooooooooooooooi data", data);
+          console.log("oooooooooooooooooooooi data", data);
           modalData(data);
         }}
       />

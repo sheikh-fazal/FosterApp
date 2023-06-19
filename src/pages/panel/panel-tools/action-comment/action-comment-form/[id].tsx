@@ -19,8 +19,7 @@ const getPageTitle = (action: string | string[] | undefined) => {
   return "";
 };
 
-const getLayout = (page: any) => {
-  const { query } = useRouter();
+const getLayout = (page: any) => { 
 
   return (
     <Layout
@@ -32,10 +31,10 @@ const getLayout = (page: any) => {
           href: "/panel/panel-tools/action-comment",
         },
         {
-          name: getPageTitle(query.action),
+          name: "Panle Actions/Comments",
         },
       ]}
-      title={getPageTitle(query.action)}
+      title={`Edit Panel Actions/Comments`}
     >
       {page}
     </Layout>

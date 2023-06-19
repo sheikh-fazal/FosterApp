@@ -9,6 +9,7 @@ export const useOrganisationalPoliciesTabs = () => {
   const [actionView, setActionView] = useState<any>()
   const [count, setCount] = useState(0);
   const route = useRouter();
+  console.log(actionView)
 
   const handleSubmit = (data: any) => {
     handleNextTab();
@@ -30,6 +31,7 @@ export const useOrganisationalPoliciesTabs = () => {
         break;
       case "view":
         setIsUploadDocumentOpenModal(true);
+        setActionView(action)
         break;
       default:
         break;
@@ -50,5 +52,6 @@ export const useOrganisationalPoliciesTabs = () => {
     setIsDeleteOpenModal,
     count,
     route,
+    actionView
   };
 };

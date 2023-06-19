@@ -4,7 +4,7 @@ import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-import { householdConditionB_Data, FormSchema, defaultValues } from ".";
+import { safetyFactorsIndoorsA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
 
 export const SafetyFactorsIndoorsA = (props: any) => {
@@ -35,7 +35,7 @@ export const SafetyFactorsIndoorsA = (props: any) => {
           <Typography variant="h6">Summary And Recommendation</Typography>
         </Grid> */}
 
-            {householdConditionB_Data?.map((form: any) => {
+            {safetyFactorsIndoorsA_Data?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                   <>

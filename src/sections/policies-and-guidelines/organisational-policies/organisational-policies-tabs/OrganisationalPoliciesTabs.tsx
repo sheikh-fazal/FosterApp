@@ -8,7 +8,23 @@ import PolicyVerticalAddNew from "@root/components/policy-vertical-tabs/policy-v
 import PolicyVerticalUploadDocument from "@root/components/policy-vertical-tabs/policy-vertical-form/PolicyVerticalUploadDocument";
 
 const OrganisationalPoliciesTabs = () => {
-  const { currentTab, setCurrentTab, handlePreviousTab, isUploadDocumentOpenModal, isDeleteOpenModal, setCount, handleSubmit, handleUploadedSubmit, handleAction, setIsUploadDocumentOpenModal, setIsDeleteOpenModal, count, route } = useOrganisationalPoliciesTabs();
+  const {
+    currentTab,
+    setCurrentTab,
+    handlePreviousTab,
+    isUploadDocumentOpenModal,
+    isDeleteOpenModal,
+    setCount,
+    handleSubmit,
+    handleUploadedSubmit,
+    handleAction,
+    setIsUploadDocumentOpenModal,
+    setIsDeleteOpenModal,
+    count,
+    route,
+    actionView,
+  } = useOrganisationalPoliciesTabs();
+  console.log(route?.query?.name);
 
   return (
     <>
@@ -22,7 +38,7 @@ const OrganisationalPoliciesTabs = () => {
         ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
-      // isDisabled={true}
+        // isDisabled={true}
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}
@@ -42,14 +58,18 @@ const OrganisationalPoliciesTabs = () => {
       <UploadDocumentModal
         open={isUploadDocumentOpenModal}
         handleClose={() => setIsUploadDocumentOpenModal(false)}
-        isHideSubmitButton={true}
+        isHideSubmitButton={actionView !== "view" ? true : false}
+        disabled={actionView === "view" ? true : false}
         onSubmit={() => {
           setIsUploadDocumentOpenModal(false);
           setCount(1);
         }}
       />
 
-      <DeleteModel open={isDeleteOpenModal} handleClose={() => setIsDeleteOpenModal(false)} />
+      <DeleteModel
+        open={isDeleteOpenModal}
+        handleClose={() => setIsDeleteOpenModal(false)}
+      />
     </>
   );
 };

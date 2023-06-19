@@ -4,25 +4,14 @@ import Document from "../document/Document";
 import InterestForm from "../interest/InterestForm";
 import PrimaryCarerForm from "../primary-carer/PrimaryCarerForm";
 import AssesmentForm from "../assesment/AssesmentForm";
+import { INITIALHOMEVISITTABSDATA } from ".";
 
-const INITIALENQUIRYDATA = [
-  "Primary Carer",
-  "Interest",
-  "Background",
-  "Assesment",
-  "Documents",
-];
+
 
 const InitialHomeVisitTab = () => {
-  // const {
-  //   submitAssesmentForm,
-  //   submitBackgroundForm,
-  //   submitInterestForm,
-  //   submitPrimaryCarerForm,
-  // } = useInitialHomeVisitTab();
 
   return (
-    <HorizaontalTabs tabsDataArray={INITIALENQUIRYDATA}>
+    <HorizaontalTabs tabsDataArray={INITIALHOMEVISITTABSDATA}>
       <PrimaryCarerForm />
       <InterestForm />
       <BackgroundForm />

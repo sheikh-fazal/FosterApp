@@ -3,7 +3,6 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { enqueueSnackbar } from "notistack";
 
 const useTraingingProfile = (onSubmitHandler: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");

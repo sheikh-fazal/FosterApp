@@ -2,8 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/UploadDocuments";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/upload-documents/UploadDocumentsTable";
 import ReferenceOneForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-1/ReferenceOneForm";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -32,10 +33,16 @@ Reference1.getLayout = function getLayout(page: any) {
 };
 
 export default function Reference1() {
+  const router = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/background-checks/statutory-checks-list");
+  }
+
   return (
     <HorizaontalTabs tabsDataArray={["References 1", "Upload Documents"]}>
-      <ReferenceOneForm />
-      <UploadDocuments />
+      <ReferenceOneForm action={action} id={id} />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }

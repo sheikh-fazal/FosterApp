@@ -1,10 +1,13 @@
 import {
-  useGetAllInitialHomeVisitDataQuery,
   useLazyGetAllInitialHomeVisitDataQuery,
 } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostInitialHomeInterestDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/interest/interest";
 import { enqueueSnackbar } from "notistack";
-import { defaultValueInterestForm, interestFormFieldsInfoFunction, interestFormValues } from ".";
+import {
+  defaultValueInterestForm,
+  interestFormFieldsInfoFunction,
+  interestFormValues,
+} from ".";
 import { useRouter } from "next/router";
 import useAuth from "@root/hooks/useAuth";
 
@@ -32,11 +35,9 @@ export const useInterestForm = () => {
     const { data, isError } = await getAllInitialHomeVisitDataTrigger(
       dataParameter
     );
-    console.log(getAllInitialHomeVisitDataStatus);
     if (isError) {
       return interestFormValues;
     }
-    console.log(data);
     return defaultValueInterestForm(
       !!Object.keys(data)?.length ? data : undefined
     );
@@ -44,14 +45,16 @@ export const useInterestForm = () => {
   const submitInterestForm = async (data: any) => {
     const putParams = {
       fosterCarerId:
-        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
-    console.log({ data });
     try {
       const res: any = await postInitialHomeInterestDataTrigger(
         putDataParameter
       ).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -62,6 +65,7 @@ export const useInterestForm = () => {
     setInterestDefaultValue,
     getAllInitialHomeVisitDataStatus,
     postInitialHomeInterestDataStatus,
-    interestFormFieldsInfo
+    interestFormFieldsInfo,
+    user,
   };
 };

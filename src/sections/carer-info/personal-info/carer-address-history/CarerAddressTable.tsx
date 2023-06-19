@@ -9,10 +9,17 @@ export function CarerAddressHistoryTable() {
   const {
     router,
     tableHeaderRef,
+    isLoading,
     headerChangeHandler,
+    addressHistoryList,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
     pageChangeHandler,
     sortChangeHandler,
     theme,
+    listDeleteHandler,
   } = useCarerAddressTable();
 
   return (
@@ -28,26 +35,20 @@ export function CarerAddressHistoryTable() {
               "/carer-info/personal-info/carer-address-history/add-address-history"
             );
           }}
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
+          onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={CarerAddressHistoryTableData}
-          columns={columns}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          // count={Math.ceil(data?.data?.meta?.total / limit)}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          rootSX={{ my: theme.spacing(2) }}
+          data={addressHistoryList}
+          columns={columns(listDeleteHandler)}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          currentPage={meta?.page}
+          totalPages={meta?.pages}
+          showSerialNo
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
         />
       </Grid>
     </Grid>

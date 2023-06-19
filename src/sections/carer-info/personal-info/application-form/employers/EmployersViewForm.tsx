@@ -11,39 +11,13 @@ import { fTimestamp } from "@root/utils/formatTime";
 import { FormProvider } from "@root/components/hook-form";
 //
 import { FormSchema, defaultValues, formData } from ".";
+import { useEmployersViewForm } from "./useEmployersViewForm";
 
 export default function EmployersViewForm(props: any) {
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues: props?.employerData,
-  });
+  const { changeView } = props;
 
-  const {
-    reset,
-    control,
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
-
-  const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log("data", data);
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-          startDate: data.startDate && fTimestamp(data.startDate),
-          endDate: data.endDate && fTimestamp(data.endDate),
-        },
-        null,
-        2
-      )
-    );
-    reset();
-  };
+  let { methods, handleSubmit, onSubmit, isSubmitting, isDirty } =
+    useEmployersViewForm(props);
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -76,18 +50,43 @@ export default function EmployersViewForm(props: any) {
             </Grid>
           );
         })}
-        <Grid item xs={12}>
-          <Button
+      </Grid>
+      <Box sx={{ display: "flex", mb: "1rem", mt: "2rem" }}>
+        {props.viewData == "view" ? (
+          <LoadingButton
             onClick={() => {
               props.changeView(null);
             }}
             type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             variant="contained"
           >
-            Back
-          </Button>
-        </Grid>
-      </Grid>
+            back
+          </LoadingButton>
+        ) : (
+          <>
+            <LoadingButton
+              sx={{ marginRight: "1rem" }}
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+              disabled={!isDirty}
+            >
+              Submit
+            </LoadingButton>
+            <LoadingButton
+              onClick={() => {
+                props.changeView(null);
+              }}
+              type="button"
+              sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+              variant="contained"
+            >
+              back
+            </LoadingButton>
+          </>
+        )}
+      </Box>
     </FormProvider>
   );
 }
