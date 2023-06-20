@@ -25,7 +25,7 @@ const PDF = ({ data }: any) => {
     )
 }
 
-export const TABSDATAARRYComp = [
+export const ComplianceTabsData = [
     {
         index: 0,
         title: "Administration",
@@ -200,12 +200,22 @@ export const TABSDATAARRYComp = [
             },
             {
                 id: 2,
-                title: "Swap Carer",
+                title: "Contract of  Employment",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 3,
-                title: "Respite Carer",
+                title: "Equality & human Rights",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 4,
+                title: "Well Being",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 5,
+                title: "Miscellaneous",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
         ],
@@ -218,19 +228,10 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Medications Management",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: 2,
-                title: "Swap Carer",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
-            },
-            {
-                id: 3,
-                title: "Respite Carer",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
-            },
+           
         ],
     },
     {
@@ -241,19 +242,25 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Administration Quality  asssurance",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 2,
-                title: "Swap Carer",
+                title: "Human Resources Quality assurance",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 3,
-                title: "Respite Carer",
+                title: "Management of Quality assurance ",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
+            {
+                id: 4,
+                title: "Care Management  ",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+           
         ],
     },
     {
@@ -264,17 +271,17 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Hygiene",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 2,
-                title: "Swap Carer",
+                title: "Catering Services",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 3,
-                title: "Respite Carer",
+                title: "Risk Assessment & Safety",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
         ],
@@ -287,19 +294,10 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Policy",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
-            {
-                id: 2,
-                title: "Swap Carer",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
-            },
-            {
-                id: 3,
-                title: "Respite Carer",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
-            },
+            
         ],
     },
     {
@@ -310,17 +308,32 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Safe",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 2,
-                title: "Swap Carer",
+                title: "Mock Inspection Toolkit",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 3,
-                title: "Respite Carer",
+                title: "Caring",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 4,
+                title: "Responsive",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 5,
+                title: "Well Led",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 6,
+                title: "Effective",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
         ],
@@ -333,17 +346,27 @@ export const TABSDATAARRYComp = [
         innerDataArray: [
             {
                 id: 1,
-                title: "Backup carer",
+                title: "Guidance Policy",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 2,
-                title: "Swap Carer",
+                title: "Service Users",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
             {
                 id: 3,
-                title: "Respite Carer",
+                title: "Relatives and Representatives",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 4,
+                title: "Staff",
+                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+            },
+            {
+                id: 5,
+                title: "External Professionals",
                 component: <PDF data={[{ title: 'this is pdf 1' }]} />
             },
         ],

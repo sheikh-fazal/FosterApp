@@ -4,7 +4,7 @@ import VericalTabs from '@root/components/VericalTabs'
 import { Box, IconButton, ListItem, Typography, useTheme } from '@mui/material';
 import ComplianceVericalTabs from './ComplianceVericalTabs';
 import Image from 'next/image';
-import { TABSDATAARRYComp } from '.';
+import { ComplianceTabsData } from '.';
 
 
 
@@ -13,8 +13,8 @@ const ComplinceNew = () => {
     const array = [{ title: 'this is title', icon: '' }];
     const theme: any = useTheme();
     return (
-        <ComplianceVericalTabs tabsDataArray={TABSDATAARRYComp}>
-            {TABSDATAARRYComp?.map((item) => (
+        <ComplianceVericalTabs tabsDataArray={ComplianceTabsData}>
+            {ComplianceTabsData?.map((item) => (
                 <Fragment key={item?.index}>
                     {item?.innerDataArray?.map((innerItem) => (
                         <Box key={innerItem?.id} />

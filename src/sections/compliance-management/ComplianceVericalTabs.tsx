@@ -3,6 +3,8 @@ import { Children, ReactNode, useState, SyntheticEvent } from "react";
 import { Tabs, Tab, Typography, useTheme, Grid, Box, Card, styled } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Image from "next/image";
+import AddCategoryModal from "./Modals/add-modal/AddModal";
+import PdfViewModal from "./Modals/pdf-modal/PdfModal";
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
@@ -12,6 +14,8 @@ interface IVERTICALTABSPROPS {
 export default function ComplianceVericalTabs({ tabsDataArray, children, ...other }: IVERTICALTABSPROPS) {
   const [value, setValue] = useState(0);
   const [openModal,setOpenModal] = useState(false);
+  const [IsOpenAddCategory, setIsOpenAddCategory] = useState({value:'',type:''});
+  const [IsOpenPdfModal, setIsOpenPdfModal] = useState(false);
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -20,7 +24,7 @@ export default function ComplianceVericalTabs({ tabsDataArray, children, ...othe
 
   return (
     <Grid container spacing={2} sx={styles.container}>
-      <Grid item xs={12} lg={3}>
+      <Grid item xs={12} lg={3} >
         <Tabs
           selectionFollowsFocus
           orientation="vertical"
@@ -36,12 +40,24 @@ export default function ComplianceVericalTabs({ tabsDataArray, children, ...othe
               sx={styles.tabIndicatorBtn(item?.color)}
               label={
                 item?.title === 'Add More' ?
-                  <TitleWithIcon title={item?.title} icon={item?.icon} color={item?.color} onClick={handleModalOpen} />
+                  <TitleWithIcon title={item?.title} icon={item?.icon} color={item?.color}   onClick={() =>{
+                    setIsOpenAddCategory({
+                      ...setIsOpenAddCategory,
+                      value: "",
+                      type: "verticalTab",
+                    });
+                  
+                  } }/>
                   :
-                  <StyledLeftTab color={item?.color}>
+                 
+                  <StyledLeftTab   hoverBackgroundColor={item.color}
+                   hoverColor={item.color}>
+                    <Box  sx={styles.tabLabel} >
                     <Image src={item?.icon} alt='icon' />
+                    </Box>
                     <Typography>{item?.title}</Typography>
                   </StyledLeftTab>
+                 
               }
             />
           ))}
@@ -63,9 +79,19 @@ export default function ComplianceVericalTabs({ tabsDataArray, children, ...othe
           </div>
         ))}
       </Grid>
+      <AddCategoryModal
+        open={IsOpenAddCategory.type}
+        // onSubmit={(data: any) => handleAddCategory(data)}
+        handleClose={() => setIsOpenAddCategory({ value: "", type: "" })}
+      />
+        <PdfViewModal
+        open={IsOpenPdfModal}
+        handleClose={() => setIsOpenPdfModal(false)}
+      /> 
     </Grid>
   );
 }
+
 
 const TitleWithIcon = ({ title, icon, color, ...rest }: any) => {
   return (
@@ -82,24 +108,37 @@ const TitleWithIcon = ({ title, icon, color, ...rest }: any) => {
 }
 
 
-export const StyledLeftTab: any = styled(({ title, icon, color, ...rest }: any) => (
+export const StyledLeftTab: any = styled(({ hoverBackgroundColor, hoverColor, title, icon, color, ...rest }: any) => (
   <Box {...rest} />
-))(({ color, }) => ({
+))(({ color, hoverBackgroundColor, hoverColor, }) => ({
   ':hover': {
-    // backgroundColor: color,
+    backgroundColor: hoverBackgroundColor,
+    color: "#fff !important",
     '& img': {
-      filter: ' brightness(0) invert(1);', // Set the background color of the image to white on hover
-      // color: '#fff'
-
+      '& :hover':{
+        filter: ' brightness(0) invert(1);', 
+        path:{fill:'#fff'}
+      },
+    
+      filter: ' brightness(0) invert(1);', 
+      path:{fill:'#fff'}
     },
-  }
+   
+  },
+  marginBottom: "15px !important",
+  borderRadius: "10px",
+  width: "150px !important",
+  height: "130px !important",
+  boxShadow: '2px 4px 7px rgba(14, 145, 140, 0.2)',
+  cursor: 'pointer',
+  
 }));
 
 // ----------------------------------------------------------------------
 // Styles
 const styles = {
   container: {
-    display: { xs: "block", md: "flex" },
+    // display: { xs: "block", md: "flex" },
   },
 
   tabRoot: {
@@ -113,11 +152,39 @@ const styles = {
       flexWrap: 'wrap',
     },
     " & .MuiButtonBase-root-MuiTab-root": {
-      width: '45% !important',
+    width:{
+      md: '45% !important',
+      xs: '100% !important',
+    }
+      
     }
   },
-  tabIndicatorBtn: (background: string) => ({ background: '#fff', mb: 2, flexBasis: '45% !important', margin: '7px 15px !important', '& :hover': { background, color: '#fff' }, overflow: 'hidden', borderRadius: '4px' }),
+  tabIndicatorBtn: (background: string) => ({  flexBasis: '45% !important', margin: '7px 15px !important', '& :hover':{color:'#fff'}}),
   tabIndicator: {
     sx: { display: "none" },
+  },
+  tabsIcon: {
+    width: "52px",
+    height: "52px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  },
+  tabsTitle: {
+    fontSize: "12px !important",
+    lineHeight: "14.4px !important",
+    fontWeight: 600,
+    letterSpacing: '0.005em',
+    textAlign: 'center !important'
+  },
+  tabLabel: {
+    display: "flex",
+    flexDirection: 'column',
+    alignItems: "center",
+    justifyContent: 'center',
+    borderRadius: 3,
+    padding: "12px",
+    gap: "15px",
   },
 }
