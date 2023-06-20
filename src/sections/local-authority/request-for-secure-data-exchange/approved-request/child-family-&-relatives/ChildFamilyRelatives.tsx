@@ -6,19 +6,14 @@ import CustomTable from "@root/components/Table/CustomTable";
 import ChildFamilyRelativesForm from "./child-family-&-relatives-form/ChildFamilyRelativesForm";
 
 const ChildFamilyRelatives = () => {
-  const {
-    TableData,
-    columns,
-    theme,
-    openForm,
-    setOpenForm,
-  } = useChildFamilyRelatives();
+  const { TableData, columns, theme, openForm, setOpenForm } =
+    useChildFamilyRelatives();
   return (
     <>
       {!openForm ? (
         <Box sx={{ width: "100%", padding: "10px" }}>
           <TableHeader
-            title="Secure Data Exhange Requests"
+            title="Child Family / Persons Involved"
             searchKey="search"
             showAddBtn
             onAdd={() => setOpenForm(true)}
@@ -43,7 +38,7 @@ const ChildFamilyRelatives = () => {
           />
         </Box>
       ) : (
-        <ChildFamilyRelativesForm setOpenForm={setOpenForm}/>
+        <ChildFamilyRelativesForm setOpenForm={setOpenForm} />
       )}
     </>
   );

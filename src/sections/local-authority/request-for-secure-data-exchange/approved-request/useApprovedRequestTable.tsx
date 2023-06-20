@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useTheme } from "@emotion/react";
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import { TableData } from ".";
+import { TableData, SELECT_FILTERS } from ".";
 
 export const useApprovedRequestTable = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -91,5 +91,6 @@ export const useApprovedRequestTable = () => {
     TableData,
     columns,
     theme,
+    SELECT_FILTERS
   };
 };
