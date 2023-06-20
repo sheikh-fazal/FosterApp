@@ -38,6 +38,7 @@ const AddMeetingRecording = (props: any) => {
                         <Grid item xs={12} md={12} sx={{ mt: "39px" }}>
                             <Typography sx={styles.title}>Attach Video/Audio File</Typography>
                             <RHFUploadFile name="attachFile" required={true} disabled={actionType === 'view' ? true : false} {...methods} />
+                            <Typography fontSize={14} fontWeight={400}>Maximum File Size is 1GB</Typography>
                         </Grid>
                         <Grid item xs={12} sx={{ mt: "40px" }}>
                             <Box sx={{ display: "flex", gap: "1rem" }}>

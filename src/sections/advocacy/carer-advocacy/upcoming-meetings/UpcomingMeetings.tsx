@@ -28,7 +28,7 @@ const { theme,notifications,handleExpand,expand} = useUpcomingMeeting();
       </Box>
       <ul style={styles?.listContainer}>
         {notifications.map((data: any, index: number) => (
-          <li style={{ display: "flex", alignItems: "baseline", margin: "5px 0px" }}>
+          <li key={index} style={{ display: "flex", alignItems: "baseline", margin: "5px 0px" }}>
             <ListItemAvatar sx={styles?.listItemAvatar("#0E918C")} />
             <Typography sx={{ fontSize: "16px", fontWeight: 500, paddingBottom: "10px" }} component="p">
               {data?.title}
