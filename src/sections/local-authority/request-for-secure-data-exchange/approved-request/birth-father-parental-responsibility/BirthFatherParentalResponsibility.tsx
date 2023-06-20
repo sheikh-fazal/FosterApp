@@ -3,7 +3,10 @@ import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
 import { useBirthFatherParentalResponsibility } from "./useBirthFatherParentalResponsibility";
 
-const BirthFatherParentalResponsibility = ({ handleNextTab, handleBackTab }: any) => {
+const BirthFatherParentalResponsibility = ({
+  handleNextTab,
+  handleBackTab,
+}: any) => {
   const {
     methods,
     onSubmit,
@@ -40,7 +43,7 @@ const BirthFatherParentalResponsibility = ({ handleNextTab, handleBackTab }: any
                 "&:hover": {
                   backgroundColor: "#F6830F",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -54,20 +57,22 @@ const BirthFatherParentalResponsibility = ({ handleNextTab, handleBackTab }: any
                 "&:hover": {
                   backgroundColor: "#23183D",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
-              
             >
               Save
             </Button>
 
-            
-              <Button onClick={handleNextTab} type="button" variant="contained">
-                Next
-              </Button>
-           
+            <Button
+              sx={{ m: 1 }}
+              onClick={handleNextTab}
+              type="button"
+              variant="contained"
+            >
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>

@@ -43,7 +43,7 @@ const WithoutParentalResponsibility = ({
                 "&:hover": {
                   backgroundColor: "#F6830F",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -57,7 +57,7 @@ const WithoutParentalResponsibility = ({
                 "&:hover": {
                   backgroundColor: "#23183D",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -65,7 +65,7 @@ const WithoutParentalResponsibility = ({
               Save
             </Button>
 
-            <Button onClick={handleNextTab} type="button" variant="contained">
+            <Button sx={{m:1}} onClick={handleNextTab} type="button" variant="contained">
               Next
             </Button>
           </Grid>
