@@ -94,7 +94,7 @@ export const useChildAdvocacyForm = () => {
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction
                         type="view"
-                        onClicked={() => router.push({ pathname: '/advocacy/child-advocacy/child-details/child-advocacy-form/child-form', query: { id: info.row.original.id, action: "view-child-advocacy" } })}
+                        onClicked={() => router.push({ pathname: '/advocacy/child-advocacy/details/advocacy-form/form', query: { id: info.row.original.id, action: "view-child-advocacy" } })}
                     />
                     <TableAction
                         type="headerShare"
@@ -169,7 +169,7 @@ export const useChildAdvocacyForm = () => {
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction
                         type="view"
-                        onClicked={() => router.push({ pathname: '/advocacy/child-advocacy/child-details/child-advocacy-form/child-form', query: { id: info.row.original.id, action: "view-child-advocacy" } })}
+                        onClicked={() => router.push({ pathname: '/advocacy/child-advocacy/details/advocacy-form/form', query: { id: info.row.original.id, action: "view-child-advocacy" } })}
                     />
                     <TableAction
                         type="edit"

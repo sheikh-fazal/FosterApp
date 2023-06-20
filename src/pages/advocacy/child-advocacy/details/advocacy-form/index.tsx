@@ -1,9 +1,9 @@
 import Layout from '@root/layouts';
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-import AdvocacyMeetings from '@root/sections/advocacy/child-advocacy/child-details/AdvocacyMeetings/AdvocacyMeetings';
+import ChildAdvocacyForm from '@root/sections/advocacy/child-advocacy/child-details/ChildAdvocacyForm/ChildAdvocacyForm';
 
-const PAGE_TITLE = "Advocacy Meetings";
+const PAGE_TITLE = "Advocacy Form to be Filled By Child List";
 
 AdvocacyPage.getLayout = function getLayout(page: any) {
     return (
@@ -13,7 +13,7 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Child Advocacy",
-                    href: "/advocacy/child-advocacy/child-details",
+                    href: "/advocacy/child-advocacy/details",
                 },
                 {
                     name: "All",
@@ -29,7 +29,7 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
 export default function AdvocacyPage() {
     return (
         <Page title={PAGE_TITLE}>
-            <AdvocacyMeetings />
+            <ChildAdvocacyForm />
         </Page>
     );
 }

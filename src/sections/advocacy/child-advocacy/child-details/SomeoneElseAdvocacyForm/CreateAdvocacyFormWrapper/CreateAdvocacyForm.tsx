@@ -40,8 +40,8 @@ const CreateAdvocacyForm = () => {
                         variant="contained"
                         onClick={() => {
                             router.query.action === "view" ?
-                                router.push('/advocacy/child-advocacy/child-details/someone-else-advocacy-form') :
-                                router.push('/advocacy/child-advocacy/child-details/someone-else-advocacy-form/create-advocacy')
+                                router.push('/advocacy/child-advocacy/details/someone-else-form') :
+                                router.push('/advocacy/child-advocacy/details/someone-else-form/create-advocacy')
                         }}
                         sx={{
                             backgroundColor: "#F6830F",

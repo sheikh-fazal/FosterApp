@@ -86,7 +86,7 @@ export const useChildAdvocacy = () => {
         },
         {
             id: "actions",
-            cell: (info: any) => (<Button type="button" variant="contained" onClick={() => router.push({ pathname: "/advocacy/child-advocacy/child-details", query: { id: info.row.original.id } })}>View Details</Button>
+            cell: (info: any) => (<Button type="button" variant="contained" onClick={() => router.push({ pathname: "/advocacy/child-advocacy/details", query: { id: info.row.original.id } })}>View Details</Button>
             ),
             header: () => <span>Details</span>,
             isSortable: false,

@@ -89,7 +89,7 @@ export const useSomeoneElseAdvocacyForm = () => {
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction
                         type="view"
-                        onClicked={() => { router.push('/advocacy/child-advocacy/child-details/someone-else-advocacy-form/create-advocacy/create-advocacy-form?action=view&time=10pm') }}
+                        onClicked={() => { router.push('/advocacy/child-advocacy/details/someone-else-form/create-advocacy/form?action=view&time=10pm') }}
                     />
                     <TableAction
                         type="headerShare"
