@@ -1,0 +1,116 @@
+import React,{ useRef,useState}  from 'react'
+import { Box, Checkbox, useTheme } from '@mui/material';
+import TableAction from '@root/components/TableAction';
+import { SelectFilter } from '.';
+
+const useDeRegAssessmentStageOneTable = () => {
+    const [IsOpenAddAssessment, setOpenAddAssessment] = useState({value:'',type:''});
+    const tableHeaderRef = useRef();
+    const theme: any = useTheme();
+    SelectFilter
+    const DeRegAssessmentStageOneColumn = [
+        {
+            id: "select",
+            header: ({ table, row }: any) => {
+              console.log(table.getSelectedRowModel().flatRows);
+              return (
+                <Box>
+                  <Checkbox
+                    checked={table.getIsAllRowsSelected()}
+                    onChange={table.getToggleAllRowsSelectedHandler()}
+                  />
+                </Box>
+              );
+            },
+            cell: ({ row, table }: any) => (
+              <Box>
+                <Checkbox
+                  disabled={row?.original?.Assigned}
+                  checked={row?.original?.Assigned ? false : row.getIsSelected()}
+                  onChange={row.getToggleSelectedHandler()}
+                />
+              </Box>
+            ),
+          },
+        {
+            accessorFn: (row: any) => row.srNo,
+            id: "srNo",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Sr.No</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.consultation,
+            id: "consultation",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Consultation Date/Time</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.sWName,
+            id: "sWName",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>SW Name</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.meetingAtendees,
+            id: "meetingAtendees",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Meeting Attendees</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.meetingOutcomes,
+            id: "meetingOutcomes",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Meeting Outcomes</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.meetingActions,
+            id: "meetingActions",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Meeting Actions</span>,
+
+        },
+        {
+            accessorFn: (row: any) => row.nextConsultationplan,
+            id: "nextConsultationplan",
+            cell: (info: any) => info.getValue(),
+            header: () => <span>Next Consultation plan</span>,
+
+        },
+        
+        {
+            id: "actions",
+            cell: (info: any) => (
+                <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+
+                    <TableAction
+                        type="edit"
+                        onClicked={() => { ; (info.row.id) }}
+                        size="small"
+                    />
+                    <TableAction
+                        type="view"
+                        onClicked={() => (true)}
+                        size="small"
+                    />
+                </Box>
+            ),
+            header: "Actions",
+            isSortable: false,
+        },
+
+    ];
+
+  return {
+    DeRegAssessmentStageOneColumn,
+    tableHeaderRef,theme,SelectFilter,
+    IsOpenAddAssessment, setOpenAddAssessment
+
+  }
+}
+
+export default useDeRegAssessmentStageOneTable
