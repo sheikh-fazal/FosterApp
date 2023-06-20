@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";

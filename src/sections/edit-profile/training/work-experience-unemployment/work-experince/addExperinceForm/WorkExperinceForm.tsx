@@ -24,7 +24,6 @@ import {
 import { enqueueSnackbar } from "notistack";
 
 const WorkExperinceForm: FC<any> = ({ closeModel }) => {
-  const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [addWorkExperience] = useAddWorkExperienceMutation();
   const methods: any = useForm({
@@ -34,12 +33,8 @@ const WorkExperinceForm: FC<any> = ({ closeModel }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {
