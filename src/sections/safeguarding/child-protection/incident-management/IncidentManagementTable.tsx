@@ -17,9 +17,10 @@ const IncidentManagementTable = () => {
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push(
-            "/safeguarding/child-protection/incident-management/add-incident-management"
-          );
+          router.push({
+            pathname:`/safeguarding/child-protection/incident-management/incident-management-form`,
+            query:{action:"add"}
+        });
         }}
         onChanged={(data: any) => {
           console.log("Updated params: ", data);

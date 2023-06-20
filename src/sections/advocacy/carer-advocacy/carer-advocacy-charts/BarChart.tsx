@@ -74,25 +74,24 @@ export default function BarChart() {
             display: "flex",
             flexDirection: "column",
             gap: "4px",
-            marginTop: "20px",
-            marginRight: "50px",
+            marginTop: "60px",
           }}
         >
           <Grid container spacing={2}>
             {chartTitles?.map((item, index) => (
-              <Grid key={index} item lg={6}>
+              <Grid key={index} item md={4} xs={4}>
                 <Box key={item?.color} sx={{ mt: 0.5 }}>
-                  <Typography sx={{ fontSize: "0.8rem" }}>{item?.title}</Typography>
+                  <Typography sx={{ fontSize: "0.6rem" }}>{item?.title}</Typography>
                   <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
                     <Box
                       sx={{
-                        width: "31px",
-                        height: "28px",
+                        width: "20px",
+                        height: "20px",
                         background: item?.color,
                         borderRadius: "4px",
                       }}
                     ></Box>
-                    <Typography variant="subtitle2">{`${item?.percentage}%`}</Typography>
+                    <Typography fontSize={10} fontWeight={600} variant="subtitle2">{`${item?.percentage}%`}</Typography>
                   </Box>
                 </Box>
               </Grid>

@@ -7,7 +7,7 @@ export const advocacyDashboardCardsData = [
     id: 1,
     icon: CarerAdvocacyImg,
     text: "Carer Advocacy",
-    link: "/advocacy/carer-advocacy",
+    link: "/advocacy/carer",
     bgColor: "#F63D31"
   },
   {
