@@ -45,6 +45,11 @@ export const TAGS = [
   "POST_CARER_ADDRESS",
   "CHILD_EDUCATION_INFO_LIST",
   "FAMILY_PERSON_LIST",
+  "POST_FAMILY",
+  "EDIT_EMPLOYEE",
+  "POST_EXPARTNER",
+  "EDIT_EXPARTNER",
+  "behaviorInfoList",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

@@ -1,21 +1,8 @@
-// form
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, useWatch } from "react-hook-form";
-// @mui
 import { Box, Button, Card, Grid, Typography, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
 import { FormSchema, defaultValues, formData1, formData2 } from ".";
-import { fTimestamp } from "@root/utils/formatTime";
 import { FormProvider } from "@root/components/hook-form";
-import { useRouter } from "next/router";
-import download from "@root/assets/img/download.png";
 import { useSignOffApprovalForm } from "./useSignOffApprovalForm";
-
-//mui icons
-
-// ----------------------------------------------------------------------
 
 export default function SignOffApproval({
   disabled: globallyDisabled,
@@ -66,7 +53,6 @@ export default function SignOffApproval({
                 <form.component
                   disabled={globallyDisabled}
                   size="small"
-                  getSign={download}
                   {...form.otherOptions}
                 >
                   {form.otherOptions?.select

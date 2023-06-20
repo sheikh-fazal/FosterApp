@@ -2,13 +2,10 @@ import React, { useRef, useState } from "react";
 import ExPartnersViewForm from "./ExPartnersViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useTheme } from "@mui/material";
 import { columns } from ".";
-
-import { enqueueSnackbar } from "notistack";
 import { useExPartnersTable } from "./useExPartnersTable";
 
-export default function ExPartnersView({ apllicationFormid, role }: any) {
+export default function ExPartnersView({ applicationFormid, role }: any) {
   let {
     changeView,
     viewData,
@@ -27,7 +24,7 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-  } = useExPartnersTable(apllicationFormid, role);
+  } = useExPartnersTable(applicationFormid, role);
 
   return (
     <>
@@ -38,13 +35,13 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
           exPartnerData={exPartnerData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>
           <TableHeader
             ref={tableHeaderRef}
-            title="Existing Ex-Partners(s) Details"
+            title="Existing Ex-Partner(s) Details"
             showAddBtn={role == "foster-carer" ? false : true}
             onAdd={() => {
               changeView("add");
