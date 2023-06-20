@@ -9,7 +9,6 @@ export const useSignOffApprovalForm = (globallyDisabled: any, data: any) => {
   const theme: any = useTheme();
   let router: any = useRouter();
   const methods: any = useForm({
-    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: globallyDisabled ? data : defaultValues,
   });

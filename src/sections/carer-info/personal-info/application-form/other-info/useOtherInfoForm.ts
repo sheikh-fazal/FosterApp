@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 import { useUpdateOtherInfoMutation } from "@root/services/carer-info/personal-info/application-form/OtherInfoApi";
 
-export const useOtherInfoForm = (data: any, apllicationFormid: any) => {
+export const useOtherInfoForm = (data: any, applicationFormid: any) => {
   const theme: any = useTheme();
 
   const methods: any = useForm({
@@ -32,7 +31,7 @@ export const useOtherInfoForm = (data: any, apllicationFormid: any) => {
           authorityOrAgency: data.authorityOrAgency == "Yes" ? true : false,
           haveApplied: data.haveApplied == "Yes" ? true : false,
         },
-        id: apllicationFormid,
+        id: applicationFormid,
       }).unwrap();
       if (res.data) {
         enqueueSnackbar("Record Updated Successfully", { variant: "success" });

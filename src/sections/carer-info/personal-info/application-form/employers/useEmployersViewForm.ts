@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import dayjs from "dayjs";
-import { fTimestamp } from "@root/utils/formatTime";
-import { useTheme } from "@mui/material";
 import { FormSchema, defaultValues, formData } from ".";
 
 import { enqueueSnackbar } from "notistack";
@@ -13,15 +10,23 @@ import {
 } from "@root/services/carer-info/personal-info/application-form/EmployersApi";
 
 export const useEmployersViewForm = (props: any) => {
-  const { employerData, viewData, apllicationFormid, changeView } = props;
+  const { employerData, viewData, applicationFormid, changeView } = props;
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: viewData == "add" ? defaultValues : employerData,
+    defaultValues:
+      viewData == "add"
+        ? defaultValues
+        : {
+            ...employerData,
+            suitableDate: new Date(employerData?.suitableDate),
+          },
   });
-  let [postEmployerDetail, { isLoading }] = usePostEmployerDetailMutation();
-  let [updateEmployerDetail] = useUpdateEmployerDetailMutation();
+  let [postEmployerDetail, { isLoading: postLoading }] =
+    usePostEmployerDetailMutation();
+  let [updateEmployerDetail, { isLoading: editLoading }] =
+    useUpdateEmployerDetailMutation();
   const {
     reset,
     control,
@@ -42,6 +47,7 @@ export const useEmployersViewForm = (props: any) => {
       phone,
       email,
       address,
+      suitableDate,
     } = data;
     let formData = {
       employerType,
@@ -53,11 +59,12 @@ export const useEmployersViewForm = (props: any) => {
       email,
       phone,
       address,
+      suitableDate,
     };
     if (Formtype == "add") {
       try {
         const res: any = await postEmployerDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
@@ -68,9 +75,8 @@ export const useEmployersViewForm = (props: any) => {
           reset();
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
     if (Formtype == "edit") {
@@ -80,7 +86,6 @@ export const useEmployersViewForm = (props: any) => {
           formData,
         }).unwrap();
         if (res.data) {
-          changeView(null);
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });
@@ -103,5 +108,7 @@ export const useEmployersViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

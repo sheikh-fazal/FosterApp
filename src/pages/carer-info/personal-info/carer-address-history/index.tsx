@@ -1,12 +1,9 @@
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import React from "react";
-//  icons
 import HomeIcon from "@mui/icons-material/Home";
 import { Card } from "@mui/material";
 import { CarerAddressHistoryTable } from "@root/sections/carer-info/personal-info/carer-address-history/CarerAddressTable";
-
-// ----------------------------------------------------------------------
 
 const BREADCRUMBS = [
   {
@@ -33,8 +30,6 @@ AddressHistory.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-
-// ----------------------------------------------------------------------
 
 export default function AddressHistory() {
   return (
