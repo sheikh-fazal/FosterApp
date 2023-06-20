@@ -48,6 +48,7 @@ export const TAGS = [
   "EDIT_EMPLOYEE",
   "POST_EXPARTNER",
   "EDIT_EXPARTNER",
+  "behaviorInfoList",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

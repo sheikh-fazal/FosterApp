@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { All_SPEAKERS_DATA } from '@root/dropdown-data/allSpeakersTableData';
+import { All_SPEAKERS_DATA } from '.';
 export const useConfirmedSpeakers = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const [data, setData] = useState(All_SPEAKERS_DATA)
