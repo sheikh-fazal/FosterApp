@@ -11,7 +11,6 @@ import {
   StrategiesAndEvidence,
   TargetsAndObjectivesData,
   defaultValuesForPep,
-
 } from "..";
 import { usePostClaDocumentationListMutation } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
 import { enqueueSnackbar } from "notistack";
@@ -27,7 +26,10 @@ export default function PEPForm(props: any) {
     defaultValues: defaultValuesForPep,
   });
 
-  const {  handleSubmit } = methods;
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitting, isDirty },
+  } = methods;
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -75,10 +77,12 @@ export default function PEPForm(props: any) {
               type="submit"
               variant="contained"
               disabled={disabled}
+              loading={isSubmitting}
             >
               Submit
             </LoadingButton>
             <LoadingButton
+              onClick={() => { router.push("/foster-child/child-background-info/cla-documentation");}}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
               variant="contained"

@@ -15,7 +15,7 @@ export const referenceApi = baseAPI.injectEndpoints({
     }),
     postReferenceDetail: builder.mutation({
       query: (params: any) => ({
-        url: `/application-form/reference-detail/${params.apllicationFormid}`,
+        url: `/application-form/reference-detail/${params.id}`,
         method: "Post",
         body: params.formData,
       }),

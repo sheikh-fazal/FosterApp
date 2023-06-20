@@ -32,7 +32,7 @@ export default function IncidentManagement() {
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <IncidentManagementTable />
+        <IncidentManagementTable  />
       </Card>
     </Page>
   );

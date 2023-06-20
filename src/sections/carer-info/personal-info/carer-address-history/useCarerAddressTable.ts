@@ -16,8 +16,6 @@ export const useCarerAddressTable = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  // ----------------------------------------------------------------------
-
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetAllHistoryQuery({ params });
   const addressHistoryList = data?.data?.carer_address_history;
