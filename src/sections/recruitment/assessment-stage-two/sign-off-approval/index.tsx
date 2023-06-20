@@ -31,10 +31,6 @@ export const defaultValues = {
   signature: null,
 };
 
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-
-const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
 export const FormSchema = Yup.object().shape({
   applicantName: Yup.string().required("Field is required"),
   date: Yup.date().required("Field is required"),
@@ -52,19 +48,7 @@ export const FormSchema = Yup.object().shape({
   reasonsDecision: Yup.string().required("Field is required"),
   decision: Yup.string().required("Field is required"),
   signatureDate: Yup.date().required("Field is required"),
-  signature: Yup.mixed()
-    .nullable()
-    .required("Signature  is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+  signature: Yup.mixed().nullable().required("Signature  is required"),
 });
 
 export const formData1 = [
@@ -132,7 +116,7 @@ export const formData2 = [
       name: "keyConsiderations",
       label: "Key considerations/arguments in this case:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -156,7 +140,7 @@ export const formData2 = [
       name: "noProvideDetails",
       label: "if no,provide details:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -167,7 +151,7 @@ export const formData2 = [
       name: "pannelRecommendation",
       label: "Recommendation of pannel:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -178,7 +162,7 @@ export const formData2 = [
       name: "reasonsRecommendation",
       label: "Reasons given for this recommendation:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -201,7 +185,7 @@ export const formData2 = [
       name: "decision",
       label: "Decision:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -212,7 +196,7 @@ export const formData2 = [
       name: "reasonsDecision",
       label: "Reasonsfro decision:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,
@@ -223,7 +207,7 @@ export const formData2 = [
       name: "adviceFosteringService",
       label: "Advice to Fostering Service:",
       multiline: true,
-      minRows: 3,
+      minRows: 4,
       fullWidth: true,
     },
     component: RHFTextField,

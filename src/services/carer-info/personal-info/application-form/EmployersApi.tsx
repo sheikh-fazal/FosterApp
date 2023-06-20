@@ -14,8 +14,8 @@ export const employerApi = baseAPI.injectEndpoints({
       providesTags: ["POST_EMPLOYEE", "EDIT_EMPLOYEE"],
     }),
     postEmployerDetail: builder.mutation({
-      query: ({ apllicationFormid, formData }: any) => ({
-        url: `/application-form/employer-detail/${apllicationFormid}`,
+      query: ({ id, formData }: any) => ({
+        url: `/application-form/employer-detail/${id}`,
         method: "Post",
         body: formData,
       }),

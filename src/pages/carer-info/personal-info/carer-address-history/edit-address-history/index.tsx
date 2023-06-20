@@ -1,7 +1,6 @@
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import React from "react";
-//  icons
 import HomeIcon from "@mui/icons-material/Home";
 import CarerAddressHistoryForm from "@root/sections/carer-info/personal-info/carer-address-history/CarerAddressHistoryForms";
 import { Card } from "@mui/material";
@@ -10,8 +9,6 @@ import { useGetHistoryQuery } from "@root/services/carer-info/personal-info/care
 import { defaultValues } from "@root/sections/carer-info/personal-info/carer-address-history";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-// ----------------------------------------------------------------------
-
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
@@ -19,7 +16,7 @@ const BREADCRUMBS = [
     href: "/carer-info",
   },
   {
-    name: "Edit Carer Adrress",
+    name: "Carer Adrress",
     href: "",
   },
 ];
@@ -37,8 +34,6 @@ EditAddressHistory.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-
-// ----------------------------------------------------------------------
 
 export default function EditAddressHistory() {
   const router = useRouter();

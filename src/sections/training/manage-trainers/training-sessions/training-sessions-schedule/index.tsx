@@ -17,4 +17,3 @@ export const scheduleData = [
   },
 ];
 
-export { default as TrainingSessionsSchedule } from "./TrainingSessionsSchedule";

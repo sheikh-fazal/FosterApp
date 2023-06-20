@@ -4,12 +4,15 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter, Router } from "next/router";
 import BehavioralInfoForm from "@root/sections/foster-child/health-medical-history/behavioral-info-list/behavioralInfoForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-BehaviouralInfo.getLayout = function GetLayout(page: any) {
+BehaviouralInfo.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
+
+export default function BehaviouralInfo() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
-  // Constants
-
+  const { action, behaviouralInfoId, fosterChildId } = Router.query;
   const PAGE_TITLE = `${
     action.charAt(0).toUpperCase() + action.slice(1)
   } Behavioural Info`;
@@ -21,7 +24,10 @@ BehaviouralInfo.getLayout = function GetLayout(page: any) {
     },
     {
       name: "child Info",
-      href: "/foster-child",
+      href: {
+        pathname: "/foster-child",
+        query: { fosterChildId: fosterChildId },
+      },
     },
     {
       name: "Behavioural Info list",
@@ -29,24 +35,17 @@ BehaviouralInfo.getLayout = function GetLayout(page: any) {
     },
   ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function BehaviouralInfo() {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  return (
     <Box>
-      <BehavioralInfoForm action={action} id={id} />
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <BehavioralInfoForm
+        action={action}
+        fosterChildId={fosterChildId}
+        behaviouralInfoId={behaviouralInfoId}
+      />
     </Box>
   );
 }

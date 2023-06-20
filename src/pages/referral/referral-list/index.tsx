@@ -18,11 +18,13 @@ ReferralList.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Referral",
-          href: "/referral",
+          name: "Dashboard",
+          href: "/dashboard",
+        
         },
         {
-          name: "",
+          name: "Referral",
+          href: "/referral",
         },
       ]}
       title={PAGE_TILE}

@@ -1,6 +1,5 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
 import { columns } from ".";
 import React, { useRef } from "react";
 import TableHeader from "@root/components/TableHeader";
@@ -36,6 +35,10 @@ export function DocumentTable({ changeView }: any) {
         <TableHeader
           ref={tableHeaderRef}
           title="Uploaded Documents"
+          showAddBtn={true}
+          onAdd={() => {
+            isOpenModal();
+          }}
           searchKey="search"
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
