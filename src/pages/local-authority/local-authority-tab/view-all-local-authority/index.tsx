@@ -33,9 +33,7 @@ ViewAllAuthority.getLayout = function getLayout(page: any) {
 export default function ViewAllAuthority() {
     return (
         <Page title={PAGE_TILE}>
-            <Card sx={{ p: 2 }}>
-                <ViewAllLocalAuthority />
-            </Card>
+            <ViewAllLocalAuthority />
         </Page>
     );
 }
