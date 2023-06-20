@@ -3,7 +3,8 @@ import TableAction from "@root/components/TableAction";
 
 export const statutoryMedicalListXTableColumnsFunction = (
   router?: any,
-  type?: any
+  type?: any,
+  prepareRecordForDelete?: any
 ) => [
   {
     accessorFn: (row: any) => row?.medicalDate,
@@ -30,20 +31,17 @@ export const statutoryMedicalListXTableColumnsFunction = (
     accessorFn: (row: any) => row?.id,
     id: "actions",
     cell: (info: any) => {
-      console.log(info);
       return (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
             type="delete"
-            // onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
+            onClicked={() => prepareRecordForDelete?.(info.getValue())}
           />
           <TableAction
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${
-                  info.getValue()
-                }&type=${type}&action=edit`
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=edit`
               )
             }
           />
@@ -51,9 +49,7 @@ export const statutoryMedicalListXTableColumnsFunction = (
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${
-                  info.getValue()
-                }&type=${type}&action=view`
+                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=view`
               )
             }
           />
