@@ -49,8 +49,8 @@ const ChildAdvocacy = () => {
                 <Card sx={{ p: 1.5 }}>
                     <Typography color="#0E918C" fontWeight="600" fontSize="18px">Upcoming Meetings</Typography>
                     <Box sx={{ maxHeight: expand ? '240px' : "250px", overflowY: "scroll" }} >
-                        {dataArray.map((card: any) => (
-                            <Box display='flex' gap='15px' alignItems='center' mt="22px">
+                        {dataArray.map((card: any,index:number) => (
+                            <Box display='flex' gap='15px' key={index} alignItems='center' mt="22px">
                                 <Box sx={styles.listBatch}></Box>
                                 {<Typography color={theme.palette.mode} fontWeight="500">{card.title}</Typography>}
                             </Box>
