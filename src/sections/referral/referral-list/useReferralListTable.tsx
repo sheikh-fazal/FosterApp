@@ -139,7 +139,11 @@ export const useReferralListTable = () => {
             }}
             size="small"
           />
-
+          <TableAction
+            type="share"
+            onClicked={() => setIsShareModal(true)}
+            size="small"
+          />
           <TableAction
             type="view"
             onClicked={() => {

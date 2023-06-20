@@ -20,8 +20,7 @@ const PolicyVerticalUploadDocument = (props: any) => {
   const columns = [
     {
       id: "select",
-      header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
+      header: ({ table, row }: any) => { 
         return (
           <Box>
             <Checkbox
