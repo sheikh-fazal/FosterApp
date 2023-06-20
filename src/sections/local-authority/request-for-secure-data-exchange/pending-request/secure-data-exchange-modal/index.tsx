@@ -1,6 +1,5 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import * as Yup from "yup";
 
 export const initialValues = {

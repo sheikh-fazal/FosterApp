@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useWithoutParentalResponsibility } from "./useWithoutParentalResponsibility";
 
 const WithoutParentalResponsibility = ({

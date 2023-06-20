@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { LoadingButton } from "@mui/lab";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

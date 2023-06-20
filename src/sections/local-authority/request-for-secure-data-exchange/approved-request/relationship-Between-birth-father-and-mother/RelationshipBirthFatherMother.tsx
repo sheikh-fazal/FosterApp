@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useRelationshipBirthFatherMother } from "./useRelationshipBirthFatherMother";
 
 const RelationshipBirthFatherMother = ({
@@ -12,8 +11,6 @@ const RelationshipBirthFatherMother = ({
     methods,
     onSubmit,
     handleSubmit,
-    reset,
-    setValue,
     relationshiMotherFatherData,
   } = useRelationshipBirthFatherMother();
   return (

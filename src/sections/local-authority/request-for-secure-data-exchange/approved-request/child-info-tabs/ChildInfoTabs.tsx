@@ -1,14 +1,10 @@
 import React, {
   ReactNode,
-  SyntheticEvent,
-  useState,
   Children,
-  useEffect,
 } from "react";
 import { Box, Card, Grid, Tab, Tabs, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useTheme } from "@mui/material";
-import { useChildInfoTabs } from "./useChildInfoTabs";
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;

@@ -7,8 +7,6 @@ import ChildFamilyRelativesForm from "./child-family-&-relatives-form/ChildFamil
 
 const ChildFamilyRelatives = () => {
   const {
-    tableHeaderRefTwo,
-    router,
     TableData,
     columns,
     theme,

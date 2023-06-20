@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useBirthFatherPartner } from "./useBirthFatherPartner";
 
 const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
@@ -9,8 +8,6 @@ const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
     methods,
     onSubmit,
     handleSubmit,
-    reset,
-    setValue,
     BirthFatherPartnerData,
   } = useBirthFatherPartner();
   return (

@@ -4,7 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import { useSupportingEvidence } from "./useSupportingEvidence";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
-import DeleteModel from "@root/components/modal/DeleteModel";
+
 
 const SupportingEvidence = () => {
   const {
