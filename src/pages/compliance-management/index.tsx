@@ -2,35 +2,36 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import Reports from "@root/sections/reports/Reports";
+import ComplianceManagement from "@root/sections/compliance-management/ComplianceManagement";
 
-const PAGE_TITLE = "Reports";
 
-ReportsLayout.getLayout = function getLayout(page: any) {
+const PAGE_TILE = "Compliance Management";
+
+Compliance.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
+          name: "System Admin",
           href: "/dashboard",
         },
         {
-          name: "Reports",
+          name: "Compliance Management List",
         },
       ]}
-      title={PAGE_TITLE}
+      title={PAGE_TILE}
     >
       {page}
     </Layout>
   );
 };
-// ----------------------------------------------------------------------
-export default function ReportsLayout() {
+
+export default function Compliance() {
   return (
-    <Page title={PAGE_TITLE}>
-      <Reports />
+    <Page title={PAGE_TILE}>
+      <ComplianceManagement />
     </Page>
   );
 }
