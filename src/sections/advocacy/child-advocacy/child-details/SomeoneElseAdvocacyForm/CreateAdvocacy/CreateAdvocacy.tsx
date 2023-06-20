@@ -21,7 +21,7 @@ const CreateAdvocacy = () => {
           <Button
             type="button"
             variant="contained"
-            onClick={() => router.push('/advocacy/child-advocacy/child-details/someone-else-advocacy-form')}
+            onClick={() => router.push('/advocacy/child-advocacy/details/someone-else-form')}
             sx={{
               backgroundColor: "#F6830F",
               "&:hover": { backgroundColor: "#F6830F" },
@@ -34,7 +34,7 @@ const CreateAdvocacy = () => {
             type="submit"
             variant="contained"
             sx={{ ml: 2 }}
-            onClick={() => router.push(`/advocacy/child-advocacy/child-details/someone-else-advocacy-form/create-advocacy/create-advocacy-form?advocacyType=${advocacyRequirment}`)}
+            onClick={() => router.push(`/advocacy/child-advocacy/details/someone-else-form/create-advocacy/form?advocacyType=${advocacyRequirment}`)}
           >
             Next
           </Button>

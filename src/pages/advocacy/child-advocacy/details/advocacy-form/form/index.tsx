@@ -1,9 +1,9 @@
 import Layout from '@root/layouts';
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-import CreateAdvocacyFormWrapper from '@root/sections/advocacy/child-advocacy/child-details/SomeoneElseAdvocacyForm/CreateAdvocacyFormWrapper/CreateAdvocacyFormWrapper';
+import ChildFormWrapper from '@root/sections/advocacy/child-advocacy/child-details/ChildAdvocacyForm/ChildFormWrapper/ChildFormWrapper';
 
-const PAGE_TITLE = "Create Advocacy Form";
+const PAGE_TITLE = "Advocacy Form to be Filled By Child List";
 
 AdvocacyPage.getLayout = function getLayout(page: any) {
     return (
@@ -11,12 +11,12 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
             showTitleWithBreadcrumbs
             breadcrumbs={[
                 {
-                    icon: <HomeIcon />,
-                    name: "Create Advocacy",
-                    href: "/advocacy/child-advocacy/child-details/someone-else-advocacy-form/create-advocacy",
+                    icon: <HomeIcon />, 
+                    name: "Advocacy Form to be Filled By Child List",
+                    href: "/advocacy/child-advocacy/details/advocacy-form",
                 },
                 {
-                    name: "All",
+                    name: "Form",
                 },
             ]}
             title={PAGE_TITLE}
@@ -29,7 +29,7 @@ AdvocacyPage.getLayout = function getLayout(page: any) {
 export default function AdvocacyPage() {
     return (
         <Page title={PAGE_TITLE}>
-            <CreateAdvocacyFormWrapper />
+            <ChildFormWrapper/>
         </Page>
     );
 }

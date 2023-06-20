@@ -20,7 +20,7 @@ const SomeoneElseAdvocacyForm = () => {
                             searchKey="search"
                             showSelectFilters
                             showAddBtn
-                            onAdd={() => router.push('/advocacy/child-advocacy/child-details/someone-else-advocacy-form/create-advocacy')}
+                            onAdd={() => router.push('/advocacy/child-advocacy/details/someone-else-form/create-advocacy')}
                             onChanged={(data: any) => {
                                 console.log("Updated params: ", data);
                             }}

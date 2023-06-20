@@ -80,7 +80,7 @@ export const useAdvocacyHistory = () => {
                 <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
                     <TableAction
                         type="view"
-                        onClicked={() => {router.push('/advocacy/child-advocacy/child-details/advocacy-history/advocacy-history-form') }}
+                        onClicked={() => {router.push('/advocacy/child-advocacy/details/history/form') }}
                     />
                     <TableAction
                         type="headerShare"

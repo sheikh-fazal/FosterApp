@@ -55,10 +55,10 @@ export const upcomingMeetingsData = [
 ]
 
 export const childDetailsCardsData = [
-    { title: "Advocacy Form to be Filled by the Child", link: "/advocacy/child-advocacy/child-details/child-advocacy-form", bgColor: "#F63D31" },
-    { title: "Advocacy Form raised by the Child via Voice Memo", link: "/advocacy/child-advocacy/child-details/voice-memo-advocacy-form", bgColor: "#EC9E29" },
-    { title: "Advocacy Form Filled by Someone Else", link: "/advocacy/child-advocacy/child-details/someone-else-advocacy-form", bgColor: "#10B0C6" },
-    { title: "View Advocacy History", link: "/advocacy/child-advocacy/child-details/advocacy-history", bgColor: "#20BE60" },
-    { title: "Advocacy Meetings", link: "/advocacy/child-advocacy/child-details/advocacy-meetings", bgColor: "#23183D" },
+    { title: "Advocacy Form to be Filled by the Child", link: "/advocacy/child-advocacy/details/advocacy-form", bgColor: "#F63D31" },
+    { title: "Advocacy Form raised by the Child via Voice Memo", link: "/advocacy/child-advocacy/details/voice-memo-form", bgColor: "#EC9E29" },
+    { title: "Advocacy Form Filled by Someone Else", link: "/advocacy/child-advocacy/details/someone-else-form", bgColor: "#10B0C6" },
+    { title: "View Advocacy History", link: "/advocacy/child-advocacy/details/history", bgColor: "#20BE60" },
+    { title: "Advocacy Meetings", link: "/advocacy/child-advocacy/details/meetings", bgColor: "#23183D" },
 ]
 

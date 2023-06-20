@@ -32,7 +32,7 @@ const ChildForm = () => {
           <Button
             type="button"
             variant="contained"
-            onClick={() => router.push('/advocacy/child-advocacy/child-details/child-advocacy-form')}
+            onClick={() => router.push('/advocacy/child-advocacy/details/advocacy-form')}
             sx={{
               backgroundColor: "#F6830F",
               "&:hover": { backgroundColor: "#F6830F" },
