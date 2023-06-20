@@ -12,13 +12,17 @@ const PlacementReviewForm = () => {
     <Box sx={{ padding: "5px 30px" }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
-          {formFields.map((field, i) => (
+          {formFields.map((field: any, i: number) => (
             <Grid item md={field.gridLength} xs={12} key={i}>
               <Typography sx={styles.heading}>{field.title}</Typography>
               {field.component ? (
-                <field.component size={"small"} fullWidth {...field.otherOptions}>
+                <field.component
+                  size={"small"}
+                  fullWidth
+                  {...field.otherOptions}
+                >
                   {field.otherOptions?.select
-                    ? field.otherOptions?.options.map((option) => (
+                    ? field.otherOptions?.options.map((option:any) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
                         </option>
@@ -26,7 +30,9 @@ const PlacementReviewForm = () => {
                     : null}
                 </field.component>
               ) : (
-                <Typography sx={styles.heading}>{field.heading}</Typography>
+                <Typography sx={field?.sx ? field?.sx : styles.heading}>
+                  {field.heading}
+                </Typography>
               )}
               {field.requireFileUpload && (
                 <RHFUploadFile name={field.otherOptions.name} {...methods} />

@@ -19,6 +19,10 @@ export const formFields = [
       "What are the needs of this Child/Young Person? How has the Carer met these needs over the course of the placements",
   },
   {
+    gridLength: 12,
+    heading: "Identity Religion",
+  },
+  {
     title: "(If a trans-racial placement, how is the child’s needs being met)",
     gridLength: 12,
     otherOptions: {
@@ -81,6 +85,7 @@ export const formFields = [
   {
     gridLength: 12,
     heading: "Audit Data",
+    sx: { color: "#69BBB7", fontSize: "16px", fontWeight: "600" },
   },
   {
     title: "Audit Date",
