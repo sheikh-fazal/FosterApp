@@ -1,4 +1,4 @@
-import TableDropdown from "@root/pages/safeguarding/collapsible-table/table-dropdown"
+import TableDropdown from "@root/components/Table/collapsible-table/table-dropdown"
 import { useRouter } from "next/router";
 import { useState } from "react";
 

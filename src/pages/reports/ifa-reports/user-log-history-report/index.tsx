@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import UserLogHistoryReport from "@root/sections/reports/ifa-reports/user-log-history-report/UserLogHistoryReport";
 
 const PAGE_TITLE = "Reports";
 
@@ -16,6 +17,14 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
+          name: "Reports",
+          href: "/reports",
+        },
+        {
+          name: "IFA Reports",
+          href: "/reports",
+        },
+        {
           name: "User Log History Report",
         },
       ]}
@@ -28,5 +37,9 @@ UnannouncedHomeVisitLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function UnannouncedHomeVisitLayout() {
-  return <Page title={PAGE_TITLE}></Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <UserLogHistoryReport />
+    </Page>
+  );
 }
