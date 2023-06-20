@@ -75,7 +75,7 @@ export default function BankAccountDetails() {
         variant: "success",
       });
     } catch (error: any) {
-      const errMsg = error?.data?.message;
+      const errMsg = error?.data?.errors?.[0] || error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     }
   };

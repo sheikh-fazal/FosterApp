@@ -1,7 +1,5 @@
 import { Box } from "@mui/material";
-import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
-import TableHeader from "@root/components/TableHeader";
 import Layout from "@root/layouts";
 import { useRouter } from "next/router";
 import React from "react";

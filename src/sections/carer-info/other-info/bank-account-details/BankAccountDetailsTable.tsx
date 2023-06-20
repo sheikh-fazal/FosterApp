@@ -115,6 +115,7 @@ export const BankAccountDetailsTable = (props: any) => {
         open={openDeleteModal}
         onDeleteClick={() => {
           onDelete(openDeleteModal?.id);
+          setOpenDeleteModal(false);
         }}
         handleClose={() => {
           setOpenDeleteModal(false);

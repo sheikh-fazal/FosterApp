@@ -127,7 +127,7 @@ const FormPiece = (props: any) => {
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
     accountNumber: Yup.string()
-      .matches(/^UK0d{8}$/, "Please match UK0XXXXXXXX")
+      .matches(/^UK0[0-9]{8}$/, "Please match UK0XXXXXXXX")
       .required("Required"), //1
     sortName: Yup.string().required("Required"), //2
     bankName: Yup.string().required("Required"), //3
@@ -242,14 +242,6 @@ export const formDataArray = [
     componentProps: {
       select: true,
       options: [
-        {
-          value: "PLATINUM",
-          label: "Platinum",
-        },
-        {
-          value: "GOLD",
-          label: "Gold",
-        },
         {
           value: "SECONDARY",
           label: "Secondary",
