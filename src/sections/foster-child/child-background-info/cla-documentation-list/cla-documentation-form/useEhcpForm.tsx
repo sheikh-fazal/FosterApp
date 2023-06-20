@@ -6,14 +6,14 @@ import {
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useForm } from "react-hook-form";
-// import { EHCPFormValidation } from "..";
+import { EHCPFormValidation } from "..";
 
 export const useEhcpForm = (props: any) => {
   const router = useRouter();
   const { disabled, defaultValues } = props;
 
   const methods: any = useForm({
-    // resolver: yupResolver(EHCPFormValidation),
+    resolver: yupResolver(EHCPFormValidation),
     defaultValues,
   });
 

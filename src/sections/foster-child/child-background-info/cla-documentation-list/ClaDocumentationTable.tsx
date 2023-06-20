@@ -19,7 +19,7 @@ export default function ClaDocumentationListTable() {
     listDeleteHandler,
   } = useDocumentationTable();
 
-  // console.log("data", data)
+  console.log("data", data)
 
   const columns = [
     {
@@ -105,8 +105,8 @@ export default function ClaDocumentationListTable() {
         isSuccess={isSuccess}
         isLoading={isLoading}
         isFetching={isFetching}
-        currentPage={1}
         isError={isError}
+        currentPage={1}
         onPageChange={(data: any) => {
           console.log("Current page data: ", data);
         }}
