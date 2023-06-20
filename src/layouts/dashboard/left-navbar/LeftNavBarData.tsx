@@ -126,7 +126,7 @@ export const NAV_LINKS = [
   {
     text: "Compliance Management",
     img: <HandshakeOutlinedIcon />,
-    link: "",
+    link: "/compliance-management",
   },
   {
     text: "Reports",
