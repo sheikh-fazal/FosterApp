@@ -106,7 +106,8 @@ export default function ClaDocumentationListTable() {
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
-        currentPage={1}
+        currentPage={data?.data?.meta?.page ?? 1}
+        totalPages={data?.data?.meta?.pages ?? 2}
         onPageChange={(data: any) => {
           console.log("Current page data: ", data);
         }}

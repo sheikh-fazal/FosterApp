@@ -1,11 +1,10 @@
 import React from "react";
 import router from "next/router";
-import { Box, Card, Checkbox } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useFamilyPersonListTable } from "../useFamilyPersonListTable";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 export default function FamilyPersonListTable() {
@@ -20,29 +19,6 @@ export default function FamilyPersonListTable() {
   } = useFamilyPersonListTable();
 
   const columns = [
-    // {
-    //   id: "select",
-    //   header: ({ table, row }: any) => {
-    //     console.log(table.getSelectedRowModel().flatRows);
-    //     return (
-    //       <Box>
-    //         <Checkbox
-    //           checked={table.getIsAllRowsSelected()}
-    //           onChange={table.getToggleAllRowsSelectedHandler()}
-    //         />
-    //       </Box>
-    //     );
-    //   },
-    //   cell: ({ row, table }: any) => (
-    //     <Box>
-    //       <Checkbox
-    //         disabled={row?.original?.Assigned}
-    //         checked={row?.original?.Assigned ? false : row.getIsSelected()}
-    //         onChange={row.getToggleSelectedHandler()}
-    //       />
-    //     </Box>
-    //   ),
-    // },
     {
       accessorFn: (row: any) => row?.name,
       id: "name",
