@@ -2,8 +2,6 @@ import { useRef, useState } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { useRouter } from "next/router";
-import PDF from "../../../../../../../assets/img/local authority/pdficon.png";
-import Image from "next/image";
 import { TableData } from ".";
 import DeleteModel from "@root/components/modal/DeleteModel";
 

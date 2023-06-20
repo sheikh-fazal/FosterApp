@@ -1,14 +1,10 @@
 import React, {
   ReactNode,
-  SyntheticEvent,
-  useState,
   Children,
-  useEffect,
 } from "react";
 import { Box, Card, Grid, Tab, Tabs, Typography } from "@mui/material";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { useTheme } from "@mui/material";
-import { useChildInfoTabs } from "./useChildInfoTabs";
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
@@ -33,7 +29,7 @@ export default function ChildInfoTabs({
   const arrayChildren = Children.toArray(children);
   return (
     <Grid container spacing={2} sx={styles.container}>
-      <Grid item xs={12} lg={3}>
+      <Grid item xs={12}  lg={3} >
         <Card sx={{ padding: "10px" }}>
           <Box style={{ color: theme.palette.primary.main }} sx={styles.title}>
             Child Information
@@ -95,7 +91,7 @@ export default function ChildInfoTabs({
           </Tabs>
         </Card>
       </Grid>
-      <Grid item xs={12} lg={9}>
+      <Grid item xs={12} lg={9} >
         {tabsDataArray?.map((item: any) => (
           <div
             role="tabpanel"

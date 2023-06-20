@@ -18,7 +18,7 @@ const AdditionalDocuments = () => {
   return (
     <Box sx={{ width: "100%", padding: "10px" }}>
     <TableHeader
-      title="Secure Data Exhange Requests"
+      title="Additional documents of the child"
       searchKey="search"
       showAddBtn
       onAdd={() => setOpenModal(true)}
