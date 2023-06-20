@@ -66,6 +66,7 @@ const Form = (props: any) => {
     type: "",
     documentDate: new Date(),
     password: "",
+    password1: "",
   };
 
   const methods = useForm({

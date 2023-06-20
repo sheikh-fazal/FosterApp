@@ -6,6 +6,7 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import CarerAddressHistoryForm from "@root/sections/carer-info/personal-info/carer-address-history/CarerAddressHistoryForms";
 import { Card } from "@mui/material";
+import { defaultValues } from "@root/sections/carer-info/personal-info/carer-address-history";
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +42,10 @@ export default function AddAddressHistory() {
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <CarerAddressHistoryForm formType={"add"} />
+        <CarerAddressHistoryForm
+          historyData={{ ...defaultValues }}
+          formType={"add"}
+        />
       </Card>
     </Page>
   );

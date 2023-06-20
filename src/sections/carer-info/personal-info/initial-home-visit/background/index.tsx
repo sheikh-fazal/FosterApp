@@ -20,30 +20,30 @@ export const defaultValuesBackgroundForm = (data = backgroundFormValues) => {
   };
 };
 
-export const BackgroundFormSchema = Yup.object().shape({
+export const backgroundFormSchema = Yup.object().shape({
   knowledgeOfSexualHarmful: Yup.string()
     .required("Knowledge of sexual harmful is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   availability: Yup.string()
     .required("Availability is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   supportNetwork: Yup.string()
     .required("Support network is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   interestAndHobby: Yup.string()
     .required("Interest and hobby is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   health: Yup.string()
     .required("Health is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   conviction: Yup.string()
     .required("Conviction knowledge is required")
-    .min(6, "Mininum 6 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
 });
 

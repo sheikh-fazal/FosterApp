@@ -2,19 +2,19 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import InitialHomeVisitTab from "@root/sections/recruitment/enquiry-stage/initial-home-visit/initial-home-visit-tab/InitialHomeVisitTab";
+import InitialHomeVisitTab from "@root/sections/carer-info/personal-info/initial-home-visit/initial-home-visit-tab/InitialHomeVisitTab";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
+    name: "Enquiry Stage",
+    href: "/recruitment",
   },
   {
     name: "Initial Home Visit",
-    href: "/carer-info/personal-info/initial-home-visit",
+    href: "/recruitment/enquiry-stage/initial-home-visit",
   },
 ];
 
@@ -28,7 +28,8 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
       title={PAGE_TITLE}
-      variant="dashboard">
+      variant="dashboard"
+    >
       {page}
     </Layout>
   );

@@ -1,30 +1,30 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  cname: "Orcalo Holdings",
-  cnum: "XYZ",
-  payTextCode: "ZOTI4AX",
-  nationalInsNum: "4J5KI",
+  companyName: "Orcalo Holdings",
+  companyNo: "XYZ",
+  taxCode: "ZOTI4AX",
+  incuranceNo: "4J5KI",
 };
 
 export const FormSchema = Yup.object().shape({
-  cname: Yup.string(),
-  cnum: Yup.string(),
-  payTextCode: Yup.string(),
-  nationalInsNum: Yup.string(),
+  companyName: Yup.string(),
+  companyNo: Yup.string(),
+  taxCode: Yup.string(),
+  incuranceNo: Yup.string(),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "cname",
+      name: "companyName",
       label: "Company Name*",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "cnum",
+      name: "companyNo",
       label: "Company No*",
       fieldHeader: null,
     },
@@ -32,13 +32,13 @@ export const fieldsInfo = [
   [
     {
       type: "TEXT",
-      name: "payTextCode",
+      name: "taxCode",
       label: "Pay Tax Code*",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "nationalInsNum",
+      name: "incuranceNo",
       label: "National Insurance No.*",
       fieldHeader: null,
     },
