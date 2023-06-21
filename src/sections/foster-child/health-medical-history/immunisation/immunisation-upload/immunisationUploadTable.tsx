@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
-import { uploadDummyData } from ".";
+import { uploadDummyData } from "..";
 import ModelUploadDoc from "@root/components/modal/modelUploadDoc";
 const ImmunisationUploadTable = () => {
   const [modelOpen, setModelOpen] = React.useState(false);

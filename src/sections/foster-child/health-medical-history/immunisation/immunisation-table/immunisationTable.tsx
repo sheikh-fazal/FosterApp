@@ -5,7 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
+import { dummy } from "..";
 
 const activepath = "/foster-child/health-medical-history/immunisation/actions";
 const ImmunisationTable = () => {

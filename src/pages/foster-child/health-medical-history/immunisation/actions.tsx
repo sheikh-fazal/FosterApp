@@ -2,15 +2,15 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import { useRouter, Router } from "next/router";
+import { useRouter } from "next/router";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import ImmunisationFrom from "@root/sections/foster-child/health-medical-history/immunisation/immunisationFrom";
-import ImmunisationUploadTable from "@root/sections/foster-child/health-medical-history/immunisation/immunisationUploadTable";
+import ImmunisationFrom from "@root/sections/foster-child/health-medical-history/immunisation/immunisation-form/immunisationFrom";
+import ImmunisationUploadTable from "@root/sections/foster-child/health-medical-history/immunisation/immunisation-upload/immunisationUploadTable";
 
 Hospitalisation.getLayout = function GetLayout(page: any) {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  // Constants
+  const router: any = useRouter();
+  const { action, id } = router.query;
+  console.log(action);
 
   const PAGE_TITLE = "Immunisation";
   const BREADCRUMBS = [

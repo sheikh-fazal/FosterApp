@@ -8,45 +8,22 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import { useForm } from "react-hook-form";
 import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
-import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  FormSchema,
-  immunisationInfoFormValue,
-  immunisationInfoListValue,
-} from ".";
+import { immunisationInfoFormValue } from "..";
+import { useImmunisationForm } from "./useImmunisationForm";
 
 const backPath = "/foster-child/health-medical-history/immunisation";
+
 const ImmunisationFrom = (props: any) => {
   const { action, id } = props;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues: immunisationInfoListValue,
-  });
-  const {
-    trigger,
-    setValue,
-    handleSubmit,
-    getValues,
-    watch,
-    reset,
-    formState: { errors },
-  } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const theme: any = useTheme();
-  console.log(errors);
+  const { methods, onSubmit, handleSubmit, theme } = useImmunisationForm();
+
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container>
               {immunisationInfoFormValue.map((form: any, index) => {
                 return (

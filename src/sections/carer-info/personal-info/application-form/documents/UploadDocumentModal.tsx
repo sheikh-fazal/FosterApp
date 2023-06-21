@@ -1,28 +1,24 @@
 import { Box, Grid, Button, Modal, Backdrop, Typography } from "@mui/material";
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
 import { UploadDocFormData, defaultValues, formSchema } from "./index";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import CloseIcon from "@mui/icons-material/Close";
-import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
+import { useUploadDocumentsModal } from "./useUploadDocumentsModal";
 
 function UploadDocumentsModel(props: any) {
-  const { open, isOpenModal, action } = props;
-  const { postAllegationDetails, router, theme, onSubmit } =
-    useUploadDocumentsTable();
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues,
+  const { open, setOpen, view, changeView } = props;
+  const { onSubmit, theme, methods, handleSubmit } = useUploadDocumentsModal({
+    view,
   });
-  const { handleSubmit } = methods;
 
   return (
     <>
       <Modal
         open={open}
-        onClose={() => isOpenModal()}
+        onClose={() => {
+          setOpen(false);
+          changeView("");
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
         closeAfterTransition
@@ -39,7 +35,10 @@ function UploadDocumentsModel(props: any) {
               Person Uploaded: Name Xname
             </Typography>
             <CloseIcon
-              onClick={() => isOpenModal()}
+              onClick={() => {
+                setOpen(false);
+                changeView("");
+              }}
               sx={{ cursor: "pointer" }}
             />
           </Box>
@@ -50,7 +49,7 @@ function UploadDocumentsModel(props: any) {
                   <form.component
                     {...form.componentProps}
                     size="small"
-                    disabled={action === "view" ? true : false}
+                    disabled={view === "view" ? true : false}
                   >
                     {form.componentProps.select
                       ? form.componentProps.options.map((option: any) => (
@@ -62,28 +61,36 @@ function UploadDocumentsModel(props: any) {
                   </form.component>
                 </Grid>
               ))}
-              <Grid xs={12} item>
+              {/* <Grid xs={12} item>
                 <RHFUploadFile name="file" {...methods} />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
-              <Button
-                type="submit"
-                sx={{
-                  bgcolor: theme.palette.primary.main,
-                  "&:hover": { bgcolor: theme.palette.orange.main },
-                }}
-                variant="contained"
-              >
-                Upload
-              </Button>
+              {view == "view" ? (
+                ""
+              ) : (
+                <Button
+                  type="submit"
+                  sx={{
+                    bgcolor: theme.palette.primary.main,
+                    "&:hover": { bgcolor: theme.palette.orange.main },
+                  }}
+                  variant="contained"
+                >
+                  Upload
+                </Button>
+              )}
+
               <Button
                 sx={{
                   bgcolor: theme.palette.orange.main,
                   "&:hover": { bgcolor: theme.palette.orange.main },
                 }}
                 variant="contained"
-                onClick={() => isOpenModal()}
+                onClick={() => {
+                  setOpen(false);
+                  changeView("");
+                }}
               >
                 Clear
               </Button>

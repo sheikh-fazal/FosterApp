@@ -1,30 +1,3 @@
-export const UPLOAD_DOCUMENTS = [
-  {
-    srNo: 1,
-    documentName: "Form Name",
-    documentType: "PDF",
-    documentDate: "19/05/2023",
-    personUploaded: "Name Xame",
-    password: "123abc",
-  },
-  {
-    srNo: 2,
-    documentName: "Form Name",
-    documentType: "PDF",
-    documentDate: "19/05/2023",
-    personUploaded: "Name Xame",
-    password: "123abc",
-  },
-  {
-    srNo: 3,
-    documentName: "Form Name",
-    documentType: "PDF",
-    documentDate: "19/05/2023",
-    personUploaded: "Name Xame",
-    password: "123abc",
-  },
-];
-
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
@@ -33,6 +6,7 @@ import { Box } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { RHFUploadFile } from "../basic-information/RHFUploadFile";
 
 export const UploadDocFormData = [
   {
@@ -78,18 +52,30 @@ export const UploadDocFormData = [
     },
     component: RHFTextField,
   },
+  {
+    gridLength: 12,
+    componentProps: {
+      name: "file",
+      fullWidth: true,
+      size: "small",
+      label: "Upload Document",
+    },
+    component: RHFUploadFile,
+  },
 ];
 export const defaultValues = {
   type: "",
   documentDate: new Date(),
   password: "",
+  file: null,
 };
 export const formSchema = Yup.object().shape({
   type: Yup.string().required("required"),
   documentDate: Yup.date().required("required"),
   password: Yup.string().required("required"),
+  file: Yup.mixed().nullable().required("Document is required"),
 });
-export const columns = (isOpenModal: any) => {
+export const columns = (changeView: any, setOpen: any) => {
   return [
     {
       accessorFn: (row: any) => row.documentName ?? "-",
@@ -143,7 +129,10 @@ export const columns = (isOpenModal: any) => {
           <TableAction
             size="small"
             type="view"
-            onClicked={() => isOpenModal()}
+            onClicked={() => {
+              setOpen(true);
+              changeView("view");
+            }}
           />
           {/* Delete Modal */}
           <DeleteModel onDeleteClick={() => console.log(info.srNo)} />

@@ -6,28 +6,27 @@ import TableHeader from "@root/components/TableHeader";
 import UploadDocumentsModel from "./UploadDocumentModal";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
-export function DocumentTable({ changeView }: any) {
-  const { postAllegationDetails, router, theme, onSubmit } =
+const data = [
+  {
+    documentName: "Doc Name",
+    documentType: "Pdf",
+    documentDate: "19/05/2021",
+    personUploaded: "Name Xame",
+    password: "123bc",
+  },
+  {
+    documentName: "Doc Name",
+    documentType: "Document Type",
+    documentDate: "19-05-2021",
+    personUploaded: "Name Xame",
+    password: "123bc",
+  },
+];
+
+export function DocumentTable(props: any) {
+  const { role } = props;
+  const { theme, tableHeaderRef, changeView, open, setOpen, view } =
     useUploadDocumentsTable();
-  const tableHeaderRef = useRef<any>();
-  const [open, setOpen] = React.useState(false);
-  const isOpenModal = () => setOpen(!open);
-  const [data, setData] = React.useState([
-    {
-      documentName: "Doc Name",
-      documentType: "Pdf",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123bc",
-    },
-    {
-      documentName: "Doc Name",
-      documentType: "Document Type",
-      documentDate: "19-05-2021",
-      personUploaded: "Name Xame",
-      password: "123bc",
-    },
-  ]);
 
   return (
     <Grid container>
@@ -37,7 +36,8 @@ export function DocumentTable({ changeView }: any) {
           title="Uploaded Documents"
           showAddBtn={true}
           onAdd={() => {
-            isOpenModal();
+            setOpen(true);
+            changeView("add");
           }}
           searchKey="search"
           onChanged={(data: any) => {
@@ -46,7 +46,7 @@ export function DocumentTable({ changeView }: any) {
         />
         <CustomTable
           data={data}
-          columns={columns(isOpenModal)}
+          columns={columns(changeView, setOpen)}
           isLoading={false}
           isFetching={false}
           isError={false}
@@ -62,7 +62,14 @@ export function DocumentTable({ changeView }: any) {
           }}
           rootSX={{ my: theme.spacing(2) }}
         />
-        {open && <UploadDocumentsModel open={open} isOpenModal={isOpenModal} />}
+        {open && (
+          <UploadDocumentsModel
+            view={view}
+            open={open}
+            setOpen={setOpen}
+            changeView={changeView}
+          />
+        )}
       </Grid>
     </Grid>
   );

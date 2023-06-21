@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import ImmunisationTable from "@root/sections/foster-child/health-medical-history/immunisation/immunisationTable";
+import ImmunisationTable from "@root/sections/foster-child/health-medical-history/immunisation/immunisation-table/immunisationTable";
 
 // Constants
 const BREADCRUMBS = [
