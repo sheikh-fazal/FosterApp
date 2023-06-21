@@ -30,7 +30,7 @@ const ComplaintsInfoTable = () => {
       header: "Date of Complaint",
       isSortable: true,
     },
-   
+
     {
       accessorFn: (row: any) => row?.status,
       id: "status",
@@ -48,7 +48,8 @@ const ComplaintsInfoTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -60,7 +61,8 @@ const ComplaintsInfoTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -81,7 +83,8 @@ const ComplaintsInfoTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -90,7 +93,7 @@ const ComplaintsInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_complaint_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

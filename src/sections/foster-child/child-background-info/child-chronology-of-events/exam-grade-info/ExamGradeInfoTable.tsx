@@ -35,8 +35,8 @@ const ExamGradeInfoTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.examSubject,
-      id: "examSubject",
+      accessorFn: (row: any) => row?.subject,
+      id: "subject",
       cell: (info: any) => info.getValue(),
       header: "Subject",
       isSortable: true,
@@ -96,7 +96,7 @@ const ExamGradeInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_exam_grade}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

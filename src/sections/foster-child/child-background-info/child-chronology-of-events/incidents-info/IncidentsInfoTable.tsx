@@ -21,7 +21,6 @@ const IncidentsInfoTable = () => {
     isLoading,
   } = useIncidentsInfoTable();
   const columns = [
-  
     {
       accessorFn: (row: any) => row?.natureOfIncident,
       id: "natureOfIncident",
@@ -45,7 +44,7 @@ const IncidentsInfoTable = () => {
       header: "Status",
       isSortable: true,
     },
-   
+
     {
       accessorFn: (row: any) => row?.id,
       id: "actions",
@@ -56,7 +55,8 @@ const IncidentsInfoTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -68,7 +68,8 @@ const IncidentsInfoTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -89,7 +90,8 @@ const IncidentsInfoTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -98,7 +100,7 @@ const IncidentsInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_incident_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

@@ -96,7 +96,7 @@ const VocationalCourseInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_vocational_course_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

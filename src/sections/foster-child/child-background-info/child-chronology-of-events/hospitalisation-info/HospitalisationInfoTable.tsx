@@ -102,7 +102,7 @@ const HospitalisationInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_hospitalisation_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

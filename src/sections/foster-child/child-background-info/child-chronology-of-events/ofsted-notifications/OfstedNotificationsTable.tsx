@@ -93,7 +93,7 @@ const OfstedNotificationsTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_ofsted_notification}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

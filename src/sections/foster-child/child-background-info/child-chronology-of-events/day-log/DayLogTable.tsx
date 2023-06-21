@@ -31,8 +31,8 @@ const DayLogTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.type,
-      id: "type",
+      accessorFn: (row: any) => row?.entryType,
+      id: "entryType",
       cell: (info: any) => info.getValue(),
       header: "Type",
       isSortable: true,
@@ -103,7 +103,7 @@ const DayLogTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_day_log}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

@@ -98,7 +98,7 @@ const OOHReportsTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_ooh_report}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

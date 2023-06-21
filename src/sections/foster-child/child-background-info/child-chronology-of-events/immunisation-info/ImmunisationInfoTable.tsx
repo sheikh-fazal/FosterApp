@@ -37,7 +37,7 @@ const ImmunisationInfoTable = () => {
       header: "Immunisation Type",
       isSortable: true,
     },
-   
+
     {
       accessorFn: (row: any) => row?.id,
       id: "actions",
@@ -48,7 +48,8 @@ const ImmunisationInfoTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -60,7 +61,8 @@ const ImmunisationInfoTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -81,7 +83,8 @@ const ImmunisationInfoTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -90,7 +93,7 @@ const ImmunisationInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_immunisation_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}
