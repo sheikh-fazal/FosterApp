@@ -1,5 +1,4 @@
 import { useTheme } from "@mui/material";
-import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 import { ENQUIRYSTAGEDATA } from "./index";
 import { useGetEnquiryStageStatusQuery } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 
@@ -47,8 +46,6 @@ export const useEnquiryStage:any = () => {
     isError,
     isFetching,
     isSuccess,
-    isUpdating:false,
-    // hasUpdated:false,
     setEnquiryStageData,
   };
 };

@@ -1,9 +1,7 @@
-
 import regularAssessmentImg from "../../../assets/img/recruitment/regularAssessmentMeeting.png";
 import statustoryChecksImg from "../../../assets/img/recruitment/statustoryCheckes.png";
 import trainingVerificationImg from "../../../assets/img/recruitment/trainingVerification.png";
 import stageOneApproval from "../../../assets/img/recruitment/stageOneApproval.png";
-
 
 export const ASSESSMENTSTAGEONEDATA = [
   {
@@ -27,12 +25,11 @@ export const ASSESSMENTSTAGEONEDATA = [
       },
     ],
     imgIcon: regularAssessmentImg,
-    textForApi:'regularAssessmentMeeting',
+    textForApi: "regularAssessmentMeeting",
     text: "Regular Assessment meeting",
     informationText: "Regular Assessment meetings with the applicant",
-    viewForms:'View Form',
-    href:'/recruitment/assessment-stage-one/regular-assessment-meeting',
-    status: "Passed",
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-one/regular-assessment-meeting",
   },
   {
     id: 2,
@@ -71,12 +68,11 @@ export const ASSESSMENTSTAGEONEDATA = [
       },
     ],
     imgIcon: statustoryChecksImg,
-    textForApi:"statutoryChecksVerification",
+    textForApi: "statutoryChecksVerification",
     text: "Statutory Checks Verification",
     informationText: "Statutory Checks Verification",
-    viewForms:'View Form',
-    href:'#',
-    status: "Passed",
+    viewForms: "View Form",
+    href: "#",
   },
   {
     id: 3,
@@ -115,12 +111,11 @@ export const ASSESSMENTSTAGEONEDATA = [
       },
     ],
     imgIcon: trainingVerificationImg,
-    textForApi:"trainingVerification",
+    textForApi: "trainingVerification",
     text: "Training Verification",
     informationText: "Digital Application Pack/ info Pack",
-    viewForms:'View Form',
-    href:'/recruitment/assessment-stage-one/training-verification-form',
-    status: "Passed",
+    viewForms: "View Form",
+    href: "/recruitment/assessment-stage-one/training-verification-form",
   },
   {
     id: 4,
@@ -162,11 +157,10 @@ export const ASSESSMENTSTAGEONEDATA = [
       },
     ],
     imgIcon: stageOneApproval,
-    textForApi:"stage1Approval",
+    textForApi: "stageOneApproval",
     text: "Stage 1 Approval",
     informationText: "Initial Home Visit",
-    viewForms:'View Form',
-    href:'#',
-    status: "Passed",
+    viewForms: "View Form",
+    href: "#",
   },
 ];

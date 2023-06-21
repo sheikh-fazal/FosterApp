@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -20,6 +20,10 @@ export default function ReadyForPlacement() {
     setFormDialogId,
     readyForPlacementData,
     setReadyForPlacementData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
   } = useReadyForPlacement();
 
   return (
@@ -118,14 +122,36 @@ export default function ReadyForPlacement() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown
-                id={ele?.id}
-                status={ele?.status}
-                textForApi={ele?.textForApi}
-                mockData={readyForPlacementData}
-                setMockData={setReadyForPlacementData}
-                component={"ReadyForPlacement"}
-              />
+              {isLoading && isFetching && (
+                <Skeleton variant="rounded" width={200} height={50} />
+              )}
+              {isSuccess && (
+                <RecruitmentStatusDropdown
+                  id={"4f7512fb-2916-451b-8240-97f529ded73d"}
+                  status={ele?.status}
+                  textForApi={ele?.textForApi}
+                  component={"ReadyForPlacement"}
+                  setMockData={setReadyForPlacementData}
+                  mockData={readyForPlacementData}
+                />
+              )}
+              {isError && (
+                <Skeleton
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    color: "red",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  variant="rounded"
+                  width={200}
+                  height={50}
+                >
+                  Server not Responding
+                </Skeleton>
+              )}
             </Grid>
             <Grid
               container

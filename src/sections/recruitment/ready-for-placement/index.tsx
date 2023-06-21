@@ -20,7 +20,6 @@ export const READYFORPLACEMENT = [
     informationText: "Agency Policy",
     viewForms: `Applicant Approved`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 2,
@@ -44,7 +43,6 @@ export const READYFORPLACEMENT = [
     informationText: "Receipts Policy",
     viewForms: `View Document`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 3,
@@ -63,12 +61,11 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: safeguardMeasuresImg,
-    textForApi:"safeGuardingMeasures",
+    textForApi:"safegaurdingMeasureBCP",
     text: "Safeguarding Measures (Before Child Placement)",
     informationText: "Safeguarding Measures",
     viewForms: `View Document`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 4,
@@ -122,7 +119,6 @@ export const READYFORPLACEMENT = [
     informationText: "Mandatory Training",
     viewForms: `View Policy`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 5,
@@ -137,7 +133,6 @@ export const READYFORPLACEMENT = [
     informationText: "Risk Assessments",
     viewForms: `View Document`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 6,
@@ -169,7 +164,6 @@ export const READYFORPLACEMENT = [
     informationText: "Placement Preference",
     viewForms: `View Document`,
     href: "#",
-    status: "Passed",
   },
   {
     id: 7,
@@ -184,6 +178,5 @@ export const READYFORPLACEMENT = [
     informationText: "Moved to Status “Awaiting Placement”   ",
     viewForms: `Approved`,
     href: "#",
-    status: "To be reviewed",
   },
 ];

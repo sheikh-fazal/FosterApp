@@ -1,6 +1,7 @@
 import { useTheme } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { READYFORPLACEMENT } from ".";
+import { useGetReadyForPlacementStatusQuery } from "@root/services/recruitment/ready-for-placement/readyForPlacementApi";
 
 export const useReadyForPlacement = () => {
   const theme: any = useTheme();
@@ -8,6 +9,19 @@ export const useReadyForPlacement = () => {
   const [readyForPlacementData, setReadyForPlacementData] =
     React.useState<any>(READYFORPLACEMENT);
   const [formDialogId, setFormDialogId] = React.useState<any>();
+  const id = "4f7512fb-2916-451b-8240-97f529ded73d";
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetReadyForPlacementStatusQuery(id);
+  const readyForPlacementApiData = data?.data;
+
+  useEffect(() => {
+    setReadyForPlacementData(
+      READYFORPLACEMENT.map((item) => ({
+        ...item,
+        status: readyForPlacementApiData?.[item.textForApi],
+      }))
+    );
+  }, [data]);
   return {
     theme,
     openIdForInfo,
@@ -16,5 +30,9 @@ export const useReadyForPlacement = () => {
     setFormDialogId,
     readyForPlacementData,
     setReadyForPlacementData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
   };
 };

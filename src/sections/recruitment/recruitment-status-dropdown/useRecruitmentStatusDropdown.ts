@@ -1,6 +1,9 @@
 import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 import React, { useEffect } from "react";
 import { optionData } from ".";
+import { usePatchStageOneStatusMutation } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
+import { usePatchStageTwoStatusMutation } from "@root/services/recruitment/assessment-stage-two/assessmentStageTwoApi";
+import { usePatchReadyForPlacementStatusMutation } from "@root/services/recruitment/ready-for-placement/readyForPlacementApi";
 
 export const useRecruitmentStatusDropdown = ({
   id,
@@ -10,14 +13,22 @@ export const useRecruitmentStatusDropdown = ({
   component,
   mockData,
 }: any) => {
-  
+  const [enquiryStagePatchData, { isLoading: isUpdatingEnquiryStage }] =
+    usePatchEnquiryStageStatusMutation({});
   const [
-    enquiryStagePatchData,
-    {
-      isLoading: isUpdating,
-      // isSuccess: hasUpdated
-    },
-  ] = usePatchEnquiryStageStatusMutation({});
+    assessmentStageOnePatchData,
+    { isLoading: isUpdatingAssessmentStageOne },
+  ] = usePatchStageOneStatusMutation({});
+
+  const [
+    assessmentStageTwoPatchData,
+    { isLoading: isUpdatingAssessmentStageTwo },
+  ] = usePatchStageTwoStatusMutation({});
+
+  const [
+    readyForPlacementPatchData,
+    { isLoading: isUpdatingReadyForPlacement },
+  ] = usePatchReadyForPlacementStatusMutation({});
 
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(
@@ -51,13 +62,25 @@ export const useRecruitmentStatusDropdown = ({
             body: patchObj,
           }) && setOpen(false)
         );
-      // when API is ready then this will be change by me(fazal)
       case "AssessmentStage1":
-        setOpen(false);
+        return (
+          assessmentStageOnePatchData({
+            userId: id,
+            body: patchObj,
+          }) && setOpen(false)
+        );
       case "AssessmentStage2":
-        setOpen(false);
+        return (
+          assessmentStageTwoPatchData({
+            userId: id,
+            body: patchObj,
+          }) && setOpen(false)
+        );
       case "ReadyForPlacement":
-        setOpen(false);
+        readyForPlacementPatchData({
+          userId: id,
+          body: patchObj,
+        }) && setOpen(false);
 
       // default: setOpen(false);
     }
@@ -82,6 +105,9 @@ export const useRecruitmentStatusDropdown = ({
     handleMenuItemClick,
     handleClose,
     optionData,
-    isUpdating,
+    isUpdatingEnquiryStage,
+    isUpdatingAssessmentStageOne,
+    isUpdatingAssessmentStageTwo,
+    isUpdatingReadyForPlacement,
   };
 };

@@ -17,9 +17,9 @@ export const useAssessmentStageOne = () => {
 
   useEffect(() => {
     setAssessmentStageOneData(
-      assessmentStageOneData?.map((item: any) => ({
+      ASSESSMENTSTAGEONEDATA?.map((item: any) => ({
         ...item,
-        status: assessmentStageOneData?.[item?.textForApi],
+        status: assessmentStageOneApiData?.[item?.textForApi],
       }))
     );
   }, [data]);
@@ -38,6 +38,5 @@ export const useAssessmentStageOne = () => {
     isError,
     isFetching,
     isSuccess,
-    assessmentStageOneApiData,
   };
 };
