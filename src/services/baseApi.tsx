@@ -45,6 +45,8 @@ export const TAGS = [
   "POST_CARER_ADDRESS",
   "CHILD_EDUCATION_INFO_LIST",
   "behaviorInfoList",
+  "hospital-info-list",
+  "hospital-info-list-document"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

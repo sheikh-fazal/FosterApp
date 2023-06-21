@@ -10,7 +10,8 @@ import Link from "next/link";
 import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
 import { uploadDummyData } from ".";
 
-function HospitalInfoUpload() {
+function HospitalInfoUpload(props: any) {
+  const { fosterChildId, hospitalinfoId } = props;
   const [modelOpen, setModelOpen] = React.useState(false);
 
   const columns = [
