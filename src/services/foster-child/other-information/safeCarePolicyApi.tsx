@@ -1,4 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
+import { mockSafeCarePolicyList } from "./mock-res";
 
 const TAG = "UPDATE_PROFILE";
 
@@ -12,13 +13,7 @@ export const safeCarePolicyApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
       transformResponse: (res) => {
-        return [
-          { a: "a1", b: "b", c: "c", d: "d", e: "e", f: "f" },
-          { a: "a2", b: "b", c: "c", d: "d", e: "e", f: "f" },
-          { a: "a3", b: "b", c: "c", d: "d", e: "e", f: "f" },
-          { a: "a4", b: "b", c: "c", d: "d", e: "e", f: "f" },
-          { a: "a5", b: "b", c: "c", d: "d", e: "e", f: "f" },
-        ].sort((a, b) => 0.5 - Math.random());
+        return [...mockSafeCarePolicyList].sort((a, b) => 0.5 - Math.random());
       },
     }),
     addReference: builder.mutation<null, void>({

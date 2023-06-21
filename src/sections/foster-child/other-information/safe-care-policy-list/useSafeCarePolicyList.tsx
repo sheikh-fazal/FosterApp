@@ -6,14 +6,15 @@ import { useSafeCarePolicyListQuery } from "@root/services/foster-child/other-in
 export const useSafeCarePolicyList = () => {
   const router = useRouter();
   const { query } = useRouter();
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [searchValue, setSearchValue] = useState(undefined);
 
   const params = {
     search: searchValue,
-    // offset: page,
-    // limit: 10,
+    offset: page,
+    limit: 10,
   };
+  console.log({ query });
   const tableHeaderRef = useRef<any>();
 
   const columns = getColumns({ router });
@@ -21,7 +22,6 @@ export const useSafeCarePolicyList = () => {
   const dataParameter = { params };
   const { data, isLoading, isSuccess, isError, isFetching } =
     useSafeCarePolicyListQuery(dataParameter);
-  // console.log({ data });
   return {
     tableHeaderRef,
     columns,
@@ -31,5 +31,7 @@ export const useSafeCarePolicyList = () => {
     isError,
     isFetching,
     setSearchValue,
+    setPage,
+    page,
   };
 };
