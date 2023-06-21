@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 // @mui
 import {
+  Box,
   InputAdornment,
   MenuItem,
   Stack,
@@ -12,6 +13,9 @@ import {
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 import TableAction from "./TableAction";
+
+import NotificationSetting from '../assets/svg/deregistration/notificationSetting.svg';
+import Image from "next/image";
 
 // ----------------------------------------------------------------------
 // Variables
@@ -44,14 +48,15 @@ const TableHeader = forwardRef(function TableHeader(
     // print btn
     showPrintBtn = false,
     showDiagramBtn = false,
+    notificationSettingBtn = false,
     debounceTimeout = 500,
     disabled = false,
-    onDelete = () => {},
-    onAdd = () => {},
-    onShare = () => {},
-    onPrint = () => {},
-    onChanged = () => {},
-    onDiagramBtn = () => {},
+    onDelete = () => { },
+    onAdd = () => { },
+    onShare = () => { },
+    onPrint = () => { },
+    onChanged = () => { },
+    onDiagramBtn = () => { },
   }: any,
   ref
 ) {
@@ -184,6 +189,14 @@ const TableHeader = forwardRef(function TableHeader(
       {showDiagramBtn && (
         <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
       )}
+
+      {/* NotificationSetting Button */}
+      {notificationSettingBtn && (
+        <Box onClick={onAdd} sx={{ cursor: "pointer", padding: "8px" }} >
+          <Image src={NotificationSetting} alt="NotificationSetting" height={25} width={25} />
+        </Box>
+
+      )}
     </Stack>
   );
 });
@@ -199,7 +212,7 @@ const styles = {
   rootBoxStyles: (theme: any) => ({
     flexDirection: { xs: "column", sm: "row" },
     flexWrap: "wrap",
-    mb:2,
+    mb: 2,
     backgroundColor: alpha(theme.palette.primary.main, 0.8),
     padding: theme.spacing(1, 1.8),
     alignItems: "center",

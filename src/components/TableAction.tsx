@@ -17,7 +17,7 @@ import { FaShareSquare } from "react-icons/fa";
 
 const TableAction = ({
   type = "edit",
-  onClicked = () => {},
+  onClicked = () => { },
   ...other
 }: any) => {
   return (
@@ -72,6 +72,7 @@ const styles = {
       case "headerShare":
         backgroundColor = theme.palette.grey[600];
         break;
+
     }
     return {
       backgroundColor,

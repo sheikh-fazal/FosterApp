@@ -1,25 +1,29 @@
-import { Box, Checkbox, useTheme } from '@mui/material';
-import TableAction from '@root/components/TableAction';
+import { Box, Checkbox, MenuItem, Select, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useRef } from 'react'
-import { SELECT_FILTERS, TableData } from '.';
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
-// Styles
-const styles = {
-    tableAction: {
-        display: "flex", gap: "5px", justifyContent: "center"
-    },
-    assessmentform: {
-        marginLeft: "40px",
-        cursor: "pointer"
-    }
-}
-
+import { SELECT_FILTERS, TableData, menuItems } from '.';
+import { SelectChangeEvent } from '@mui/material/Select';
 
 export const useDeregistrationManagementTable = () => {
     const tableHeaderRefTwo = useRef<any>();
+    const [deregStatusBg, setDeregStatusBg] = useState(menuItems[0].background);
+    const [deregStatusValue, setDeregStatusValue] = React.useState(menuItems[0].value);
     const router = useRouter()
     const theme: any = useTheme();
+
+
+    let [expand, setExpand] = useState(false);
+    const [tableData, SetTableData] = useState(TableData.slice(0, 2));
+    const handleExpand = () => {
+        setExpand(!expand);
+        !expand ? SetTableData(TableData) : SetTableData(TableData.slice(0, 2));
+    };
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setDeregStatusValue(event.target.value);
+    };
+    console.log("handleChange", deregStatusValue)
 
     // table column start here
     const columns = [
@@ -50,7 +54,7 @@ export const useDeregistrationManagementTable = () => {
             accessorFn: (row: any) => row.Sr_No,
             id: "Sr_No",
             cell: (info: any) => info.getValue(),
-            header: () => <span>S.NO</span>,
+            header: () => <span>Sr.NO</span>,
             isSortable: true,
         },
         {
@@ -65,17 +69,17 @@ export const useDeregistrationManagementTable = () => {
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Child_Id,
-            id: "Child_Id",
+            accessorFn: (row: any) => row.Carer_Code,
+            id: "Carer_Code",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Child ID</span>,
+            header: () => <span>Carer code</span>,
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Child_Name,
-            id: "Child_Name",
+            accessorFn: (row: any) => row.Carer_Name,
+            id: "Carer_Name",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Child Name</span>,
+            header: () => <span>Carer Name</span>,
             isSortable: true,
         },
         {
@@ -86,33 +90,70 @@ export const useDeregistrationManagementTable = () => {
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Local_Authority,
-            id: "Local_Authority",
+            accessorFn: (row: any) => row.Area_Locality,
+            id: "Area_Locality",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Local Authority</span>,
+            header: () => <span>Area/Locality</span>,
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.La_Social_Worker,
-            id: "La_Social_Worker",
+            accessorFn: (row: any) => row.Area_Office,
+            id: "Area_Office",
             cell: (info: any) => info.getValue(),
-            header: () => <span>LA Social Worker</span>,
+            header: () => <span>Area Office</span>,
             isSortable: true,
         },
         {
-            id: "actions",
-            cell: (info: any) => (
-                <Box sx={styles.tableAction}>
-                    <TableAction type="view" onClicked={() => router.push(`${router.pathname}/view-children-list-form`)} />
-                </Box>
+            accessorFn: (row: any, index: number) => row.Dereg_Status,
+            id: "Dereg_Status",
+            cell: (info: any) =>
+                <Select
+                    value={deregStatusValue}
+                    onChange={handleChange}
+                    sx={{
+                        height: '30px', // Set the desired height
+                        width: '270px', // Set the desired width
+                        background: deregStatusBg,
+                        color: "#fff",
+                        '&:before': {
+                            borderColor: 'white',
+                        },
+                        '&:after': {
+                            borderColor: 'white',
+                        },
+                    }}
+                >
+                    {menuItems.map((item) => (
+                        <MenuItem
 
-            ),
-            header: () => <span>actions</span>,
-            isSortable: false,
+                            key={item.value}
+                            value={item.value}
+                            sx={{
+                                background: item.background,
+                                color: item.color,
+                                m: 1,
+                                '&:hover': {
+                                    background: item.background,
+                                },
+                                '&.Mui-selected': {
+                                    background: item.background,
+                                },
+                            }}
+                            onClick={() => setDeregStatusBg(item.background)}
+                        >
+                            {item.label}
+                        </MenuItem>
+                    ))}
+                </Select>,
+
+
+
+            header: () => <span>Dereg Status</span>,
+            isSortable: true,
         },
     ];
 
     return {
-        TableData, tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns
+        tableData, tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns, handleExpand, expand
     }
 }
