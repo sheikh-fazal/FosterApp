@@ -7,7 +7,7 @@ export const useCategoryModal = () => {
 
     const [openModal, setOpenModal] = useState(false);
     const [pdfUpload, setPdfUpload] = useState(false);
-    const [pdfArray, setPdfArray] = useState<any[]>([])
+    const [pdfArray, setPdfArray] = useState<any[]>([]);
 
     const methods: any = useForm({
         resolver: yupResolver(formSchema),
@@ -22,7 +22,7 @@ export const useCategoryModal = () => {
 
     const handleUploadPdf = (event: any) => {
         setPdfArray([...pdfArray, event?.target.files[0].name]);
-        setPdfUpload(!pdfUpload);
+        setPdfUpload(true);
     }
 
     const onSubmit = (data: any) => { };

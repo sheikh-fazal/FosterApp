@@ -11,25 +11,10 @@ import SupportServicesIcon from '../../assets/svg/compliance-management/supportS
 import FundamentalStandardsIcon from '../../assets/svg/compliance-management/fundamentalServicesIcon.svg'
 import MockInspectionIcon from '../../assets/svg/compliance-management/mockInspectionIcon.svg'
 import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg'
-import AddIcon from '../../assets/svg/compliance-management/addIcon.svg';
-import PdfIcon from '../../assets/svg/compliance-management/pdfIcon.svg';
-import { Box, Typography } from '@mui/material'
-import Image from 'next/image';
 
-const PDF = ({ data }: any) => {
-    return (
-        <>{data?.map((obj: any, i: number) => (
-            <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', my: 1 }}>
-                <Image src={PdfIcon} alt='icon' height={30} width={30} />
-                <Typography>{obj?.title}</Typography>
-            </Box>
-        ))}</>
-    )
-}
-
-const pdfData = [1, 2, 3, 4, 5].map((value) => {
-    return { title: 'this is pdf ' + value }
-})
+const pdfData = Array.from({ length: 10 }, (_ , index) => ({
+    title: 'this is pdf ' + (index + 1),
+}));
 
 export const ComplianceTabsData = [
     {
@@ -41,22 +26,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Business Operations",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Communications",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Registration & Compliance-Administration",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Finance ",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -70,12 +55,12 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Policies",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Forms",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -89,22 +74,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Health and Safety COVID-19",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Human Resources COVID-19",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Care Management COVID-19",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Business Admin COVID-19",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
@@ -117,17 +102,17 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Rights and Abuse",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 1,
                 title: "Risk Assessment and Personal Planning",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 1,
                 title: "Clinical  governance",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -141,27 +126,27 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Risk Assessment and Personal Planning",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Service Commencement",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Care Plans",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Assessments",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Supplementary Documents",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
@@ -174,22 +159,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Risk Assessments",
-                component: <PDF data={pdfData} />,
+                data: pdfData,
             },
             {
                 id: 2,
                 title: "Health and  Safety ",
-                component: <PDF data={pdfData} />,
+                data: pdfData,
             },
             {
                 id: 3,
                 title: "Residential Services ",
-                component: <PDF data={pdfData} />,
+                data: pdfData,
             },
             {
                 id: 4,
                 title: "Building and Equipmen ",
-                component: <PDF data={pdfData} />,
+                data: pdfData,
             },
         ],
     },
@@ -202,27 +187,27 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Absence, Holidays and Sickness ",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Contract of  Employment",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Equality & human Rights",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Well Being",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Miscellaneous",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
@@ -235,7 +220,7 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Medications Management",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -249,22 +234,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Administration Quality  asssurance",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Human Resources Quality assurance",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Management of Quality assurance ",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Care Management  ",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -278,17 +263,17 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Hygiene",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Catering Services",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Risk Assessment & Safety",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
@@ -301,7 +286,7 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Policy",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
 
         ],
@@ -315,32 +300,32 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Safe",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Mock Inspection Toolkit",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Caring",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Responsive",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Well Led",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 6,
                 title: "Effective",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
@@ -353,34 +338,28 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Guidance Policy",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Service Users",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Relatives and Representatives",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Staff",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "External Professionals",
-                component: <PDF data={pdfData} />
+                data: pdfData
             },
         ],
     },
-    {
-        index: 13,
-        title: "Add More",
-        icon: AddIcon,
-        color: '#F6830F',
-    }
 ];

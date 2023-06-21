@@ -5,10 +5,12 @@ import * as Yup from 'yup';
 export const initialValues = {
   categoryName: '',
   subCategoryName: '',
+  uploadIcon: '',
 }
 export const formSchema = Yup.object().shape({
   categoryName: Yup.string().required('Field is required'),
   subCategoryName: Yup.string().required('Field is required'),
+  uploadIcon: Yup.string().required('Field is required'),
 })
 
 

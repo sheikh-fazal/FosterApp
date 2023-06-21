@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Grid, Typography } from '@mui/material';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal';
 import { useChildrenGuides } from './useChildrenGuides';
 import { ChildrenGuidesArray } from '.';
-import { MyDocument } from './modal/PdfModal';
+import {MyDocument} from './modal/PdfModal';
 
 const ChildrenGuides = () => {
   const { addModal, handleModal } = useChildrenGuides();
@@ -13,7 +13,7 @@ const ChildrenGuides = () => {
     <>
       <Grid container spacing={2}>
         {ChildrenGuidesArray.map((obj, i) => (
-          <Grid item lg={3} md={4} sm={6} xs={12} key={i}>
+          <Grid item xl={3} lg={4} md={6} xs={12} key={i}>
             <Box sx={styles.box}>
               <Box sx={styles.pdfSection}>
                 <MyDocument file={obj.file} />
@@ -25,7 +25,7 @@ const ChildrenGuides = () => {
             </Box>
           </Grid>
         ))}
-        <Grid item lg={3} md={4} sm={6} xs={12}>
+        <Grid item xl={3} lg={4} md={6} xs={12}>
           <Box sx={styles.addNew} onClick={handleModal}>
             <AddCircleIcon sx={styles.addNewIcon} />
             <Typography sx={styles.addNewTitle}>Add New</Typography>
@@ -57,7 +57,7 @@ const styles = {
   pdfSection: {
     height: '175px',
     overflow: 'auto',
-    padding: '12px 40px',
+    padding: '12px 15px',
     background: '#CACACA',
     borderRadius: '10px 10px 0px 0px'
   },

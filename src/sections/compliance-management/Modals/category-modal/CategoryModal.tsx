@@ -5,21 +5,22 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useCategoryModal } from "./useCategoryModal";
 import { FormProvider } from '@root/components/hook-form';
 import { complianceMangementModalData } from ".";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const CategoryModal = ({ open, onClose }: any) => {
+const CategoryModal = ({ open, onClose, categoryName, requireIcon }: any) => {
   const { methods, handleSubmit, onSubmit, pdfUpload, pdfArray, handleUploadPdf } = useCategoryModal();
   return (
     <Dialog open={open} onClose={onClose} fullWidth>
-      <Typography sx={styles.title}>Add New Category</Typography>
+      <Typography sx={styles.title}>Add New {categoryName ? 'Sub' : ''} Category</Typography>
       <DialogContent>
 
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           {complianceMangementModalData.map((data, i) => (
             <>
               {data.componentProps.name !== 'subCategoryName' ?
-                <data.component size={'small'} fullWidth {...data.componentProps} />
+                <data.component size={'small'} value={categoryName} disabled={!!categoryName} fullWidth {...data.componentProps} />
                 :
-                <Box display={'flex'} alignItems={'center'} gap={'10px'} margin={'20px 0px'}>
+                <Box display={'flex'} gap={'10px'} margin={'10px 0px'}>
                   <data.component size={'small'} fullWidth {...data.componentProps} />
                   <Button
                     sx={{ ...styles.btnStyle, ...styles.btnCircle }}
@@ -39,6 +40,7 @@ const CategoryModal = ({ open, onClose }: any) => {
               <CloseIcon sx={{ fontSize: "12px", cursor: 'pointer' }} />
             </Box>)}
           </Box>}
+          {requireIcon && <RHFUploadFile name={'uploadIcon'} {...methods} />}
           <Box display={'flex'} gap={'10px'} marginTop={'20px'}>
             <Button type="submit" variant="contained" sx={styles.btnStyle}>Add</Button>
             <Button variant="contained" onClick={onClose}>Cancel</Button>
@@ -62,11 +64,12 @@ const styles = {
     border: '1px solid #CACACA',
     borderRadius: '4px',
     padding: '15px 10px',
-    maxWidth: '457px',
+    maxWidth: '465px',
     display: 'flex',
     gap: '5px',
     flexWrap: 'wrap',
-    margin: '5px 0px',
+    mt: '5px',
+    mb:2
 
   },
   pdfTitle: {
@@ -78,9 +81,9 @@ const styles = {
     color: '#000000',
     display: 'flex',
     alignItems: 'center',
-    gap: '10px'
+    gap: '10px',
   },
   btnCircle: {
-    minWidth: '30px', margin: '0px 15px', height: "30px", width: '30px', borderRadius: '50px'
+    minWidth: '30px', mx: '15px', mt: 0.5, height: "30px", width: '30px', borderRadius: '50px'
   }
 }

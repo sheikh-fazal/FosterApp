@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useComplianceManagement } from "./useComplianceMangement";
 import CategoryModal from "./Modals/category-modal/CategoryModal";
 import AddIcon from '../../assets/svg/compliance-management/addIcon.svg';
+import PdfViewModal from "./Modals/pdf-modal/PdfModal";
+import PdfIcon from '../../assets/svg/compliance-management/pdfIcon.svg';
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
@@ -12,7 +14,17 @@ interface IVERTICALTABSPROPS {
 
 export default function ComplianceTabs({ tabsDataArray, ...other }: IVERTICALTABSPROPS) {
 
-  const { handleChange, currentTab, categoryModal, handleCategoryModal } = useComplianceManagement()
+  const {
+    currentTab,
+    categoryModal,
+    categoryData,
+    pdfModal,
+    categoryIcon,
+    handleChange,
+    handleCategoryModal,
+    handleSubCategory,
+    handlePdf,
+  } = useComplianceManagement();
 
   return (
     <>
@@ -32,25 +44,25 @@ export default function ComplianceTabs({ tabsDataArray, ...other }: IVERTICALTAB
                 key={item?.index}
                 sx={{ overflow: 'hidden' }}
                 label={
-                  item?.title === 'Add More' ?
-                    <TitleWithIcon
-                      title={item?.title}
-                      icon={item?.icon}
-                      color={item?.color}
-                      onClick={handleCategoryModal}
-                    />
-                    :
-                    <TitleWithIcon
-                      currentTab={currentTab}
-                      currentIndex={item?.index}
-                      title={item?.title}
-                      icon={item?.icon}
-                      color={item?.color}
-                    />
+                  <TitleWithIcon
+                    currentTab={currentTab}
+                    currentIndex={item?.index}
+                    title={item?.title}
+                    icon={item?.icon}
+                    color={item?.color}
+                  />
                 }
               />
             ))}
           </Tabs>
+          <Box sx={{ mt: 1, cursor: 'pointer' }}>
+            <TitleWithIcon
+              title={'Add More'}
+              icon={AddIcon}
+              color={'#F6830F'}
+              onClick={handleCategoryModal}
+            />
+          </Box>
         </Grid>
         <Grid item xl={9} lg={8} xs={12}>
           {tabsDataArray?.map((item: any) => (
@@ -62,17 +74,35 @@ export default function ComplianceTabs({ tabsDataArray, ...other }: IVERTICALTAB
               aria-labelledby={`vertical-tab-${item?.index}`}
               {...other}
             >
-              {item?.innerDataArray && <Box position={'relative'}>
-                <Image src={AddIcon} style={{ position: 'absolute', top: 13, right: 15, zIndex: 10, cursor: 'pointer' }} alt="icon" />
-                <HorizaontalTabs tabsDataArray={item?.innerDataArray?.map((obj: any) => obj.title)}>
-                  {item?.innerDataArray?.map((data: any) => data.component)}
+              <Box sx={styles.horizontalTab}>
+                <Image
+                  src={AddIcon}
+                  style={styles.addNewIcon}
+                  alt="icon"
+                  onClick={() => handleSubCategory(item)}
+                />
+                <HorizaontalTabs
+                  tabsDataArray={item?.innerDataArray?.map((obj: any) => obj.title)}
+                >
+                  {item?.innerDataArray?.map((innerData: any) => <PDF data={innerData.data} onClick={handlePdf} />)}
                 </HorizaontalTabs>
-              </Box>}
+              </Box>
             </div>
           ))}
         </Grid>
       </Grid>
-      {categoryModal && <CategoryModal open={categoryModal} onClose={handleCategoryModal} />}
+      {categoryModal &&
+        <CategoryModal
+          requireIcon={categoryIcon}
+          open={categoryModal}
+          onClose={handleCategoryModal}
+          categoryName={categoryData?.title}
+        />}
+      {pdfModal &&
+        <PdfViewModal
+          open={pdfModal}
+          onClose={handlePdf}
+        />}
     </>
   )
 }
@@ -86,12 +116,25 @@ const TitleWithIcon = ({ title, icon, color, currentTab, currentIndex, ...rest }
   )
 };
 
-const styles = {
+const PDF = ({ data, onClick }: any) => {
+  return (
+    <>{data?.map((obj: any, i: number) => (
+      <Box key={i} sx={styles.pdf}>
+        <Image src={PdfIcon} alt='icon' height={30} width={30} />
+        <Typography onClick={() => onClick(obj)}>{obj?.title}</Typography>
+      </Box>
+    ))}</>
+  )
+}
+
+const styles: any = {
   container: {
     display: { xs: "block", md: "flex" },
   },
   tabRoot: {
     flexWrap: 'wrap',
+    height: '600px',
+    overflow: 'auto',
     "& .MuiTab-root": {
       marginRight: "0px !important",
       maxWidth: "unset !important",
@@ -169,4 +212,15 @@ const styles = {
       },
     }
   }),
+  addNewIcon: { position: 'absolute', top: 13, right: 10, zIndex: 10, cursor: 'pointer' },
+  horizontalTab: {
+    height: '730px', position: 'relative', overflow: 'auto', '& .MuiPaper-root': {
+      height: '100%',
+      '& .MuiBox-root': {
+        maxHeight: '95%',
+        overflow: 'auto',
+      }
+    }
+  },
+  pdf: { display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', my: 1, }
 }
