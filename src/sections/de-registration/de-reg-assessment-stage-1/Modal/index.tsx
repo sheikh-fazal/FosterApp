@@ -7,11 +7,10 @@ import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 export const RegAssessmentModalData = [
     {
         id: 1,
-        // gridLength: 6,
         componentProps: {
-            name: "consultationdate ",
+            name: "consultationdate",
             label: "Consultation date",
-            fullWidth: true, sx: { mb: 1 },
+            fullWidth: true, 
         },
         component: RHFDatePicker,
         md: 6,
@@ -19,9 +18,9 @@ export const RegAssessmentModalData = [
     {
         id: 2,
         componentProps: {
-            name: "consultationdTime ",
+            name: "consultationTime",
             label: "Consultation Time",
-            fullWidth: true, sx: { mb: 1 },
+            fullWidth: true, 
         },
         component: RHFTimePicker,
         md: 6,
@@ -33,7 +32,6 @@ export const RegAssessmentModalData = [
             label: "SW Name",
             fullWidth: true,
             size: "small",
-            sx: { mb: 1 },
         },
         component: RHFTextField,
         md: 12,
@@ -45,7 +43,6 @@ export const RegAssessmentModalData = [
             label: 'Meeting Attendees',
             multiline: true,
             minRows: 3,
-            sx: { mb: 1 },
         },
         component: RHFTextField,
         md: 12,
@@ -57,7 +54,6 @@ export const RegAssessmentModalData = [
             label: 'Meeting outcomes',
             multiline: true,
             minRows: 3,
-            sx: { mb: 1 },
         },
         component: RHFTextField,
         md: 12,
@@ -69,7 +65,6 @@ export const RegAssessmentModalData = [
             label: 'Meeting Action',
             multiline: true,
             minRows: 3,
-            sx: { mb: `` },
         },
         component: RHFTextField,
         md: 12,
@@ -77,9 +72,9 @@ export const RegAssessmentModalData = [
     {
         id: 7,
         componentProps: {
-            name: "nextConsultationDate  ",
-            label: "Next Consultation date ",
-            fullWidth: true, sx: { mb: `` },
+            name: "nextConsultationDate",
+            label: "Next Consultation date",
+            fullWidth: true, 
         },
         component: RHFDatePicker,
         md: 6,
@@ -87,9 +82,9 @@ export const RegAssessmentModalData = [
     {
         id: 8,
         componentProps: {
-            name: "nextConsultationTime  ",
-            label: "Next Consultation Time ",
-            fullWidth: true, sx: { mb: `` },
+            name: "nextConsultationTime",
+            label: "Next Consultation Time",
+            fullWidth: true,
         },
         component: RHFTimePicker,
         md: 6,
@@ -106,7 +101,7 @@ export const RegAssessmentModalData = [
 
 export const RegAssessmentModalValues = {
     consultationdate: "",
-    consultationdTime: "",
+    consultationTime: "",
     sWName: "",
     meetingAttendees: "",
     meetingOutcomes: "",
@@ -120,7 +115,7 @@ export const RegAssessmentModalValues = {
 
 export const RegAssessmentModalValidationSchema = Yup.object().shape({
     consultationdate: Yup.string().trim().required("Field is Required"),
-    consultationdTime: Yup.string().trim().required("Field is Required"),
+    consultationTime: Yup.string().trim().required("Field is Required"),
     sWName: Yup.string().trim().required("Field is Required"),
     meetingAttendees: Yup.string().trim().required("Field is Required"),
     meetingOutcomes: Yup.string().trim().required("Field is Required"),

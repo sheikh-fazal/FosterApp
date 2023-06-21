@@ -1,10 +1,37 @@
 import React,{ useRef,useState}  from 'react'
 import { Box, Checkbox, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
-import { SelectFilter } from '.';
+import { DeRegAssessmentTableMockData, SelectFilter } from '.';
 
 const useDeRegAssessmentStageOneTable = () => {
-    const [IsOpenAddAssessment, setOpenAddAssessment] = useState({value:'',type:''});
+    const [DeRegAssessmentTableData,setDeRegAssessmentTableData] = useState(DeRegAssessmentTableMockData);
+    const [isOpenAddAssessment, setOpenAddAssessment] = useState(false);
+    const [actionType, setActionType] = useState('Add');
+    const [editData, setEditData] = useState<any>(null);
+
+    const onHandleAddAssessment = (data: any) => {
+      setDeRegAssessmentTableData([...DeRegAssessmentTableData,data]);
+      console.log("UpdataArrayData====>>",setDeRegAssessmentTableData);
+      
+    };
+    const onHandleEditAssessment = (row: any) => {
+      setOpenAddAssessment(true);
+      setActionType('Edit');
+      const data = DeRegAssessmentTableData.find((item) => item.id === row.id);
+      if (data) {
+        const editData = {
+          consultation: data.consultation,
+          sWName: data.sWName,
+          meetingAtendees: data.meetingAtendees,
+          meetingOutcomes: data.meetingOutcomes,
+          meetingActions: data.meetingActions,
+          nextConsultationplan: data.nextConsultationplan,
+        };
+        setEditData(editData);
+        console.log('editData====>>>', editData);
+      }
+    };
+    
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
     SelectFilter
@@ -89,12 +116,12 @@ const useDeRegAssessmentStageOneTable = () => {
 
                     <TableAction
                         type="edit"
-                        onClicked={() => { ; (info.row.id) }}
+                        onClicked={() => onHandleEditAssessment(info?.row?.original) }
                         size="small"
                     />
                     <TableAction
                         type="view"
-                        onClicked={() => (true)}
+                        onClicked={() => {setOpenAddAssessment(true);setActionType("View") ; (info.row.id) }}
                         size="small"
                     />
                 </Box>
@@ -108,7 +135,9 @@ const useDeRegAssessmentStageOneTable = () => {
   return {
     DeRegAssessmentStageOneColumn,
     tableHeaderRef,theme,SelectFilter,
-    IsOpenAddAssessment, setOpenAddAssessment
+    isOpenAddAssessment, setOpenAddAssessment,
+    actionType, setActionType,editData,
+    DeRegAssessmentTableData,setDeRegAssessmentTableData,onHandleAddAssessment,onHandleEditAssessment
 
   }
 }

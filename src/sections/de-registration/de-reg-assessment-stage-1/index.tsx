@@ -1,4 +1,4 @@
-export const TrainingClockEngineTableData=[
+export const DeRegAssessmentTableMockData=[
     {
         id:1,
         srNo:"1",
