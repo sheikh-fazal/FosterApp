@@ -14,6 +14,7 @@ import {
   TableWithPagenation,
   TableWithActionBtns,
   TableWithNoData,
+  EditableTable,
 } from "@root/sections/overview/table/TableBodies";
 
 // ----------------------------------------------------------------------
@@ -42,6 +43,7 @@ export default function Tables() {
           <TableWithfatching />
           <TableWithPagenation />
           <TableWithNoData />
+          <EditableTable />
         </ComponentsBox>
       </Grid>
     </Page>

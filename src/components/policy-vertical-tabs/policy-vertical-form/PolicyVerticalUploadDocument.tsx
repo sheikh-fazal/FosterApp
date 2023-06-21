@@ -2,6 +2,7 @@ import { Box, Button, Checkbox, useTheme } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const PolicyVerticalUploadDocument = (props: any) => {
@@ -13,9 +14,10 @@ const PolicyVerticalUploadDocument = (props: any) => {
     handleBackBtn,
     handleDelete,
     handleView,
-    actionType
   } = props;
   const theme = useTheme();
+  const route = useRouter();
+  console.log(route.query.action);
 
   const columns = [
     {
@@ -87,7 +89,9 @@ const PolicyVerticalUploadDocument = (props: any) => {
       cell: (info: any) => (
         <Box display={"flex"} gap={0.5}>
           <TableAction type={"download"} />
-          <TableAction type={"delete"} onClicked={handleDelete} />
+          {route.query.action !== "view" && (
+            <TableAction type={"delete"} onClicked={handleDelete} />
+          )}
           <TableAction
             type={"view"}
             onClicked={() => {
@@ -104,7 +108,7 @@ const PolicyVerticalUploadDocument = (props: any) => {
     <>
       <TableHeader
         title="Uploaded Documents"
-        showAddBtn
+        showAddBtn={route.query.action !== "view" ? true : false}
         onAdd={addUploadDocument}
       />
       <CustomTable
@@ -124,14 +128,16 @@ const PolicyVerticalUploadDocument = (props: any) => {
         rootSX={{ my: theme.spacing(2) }}
       />
       <Box>
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mr: 2 }}
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+        {route.query.action !== "view" && (
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ mr: 2 }}
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        )}
         {isUploadBackBtn && (
           <Button
             sx={{

@@ -8,4 +8,3 @@ export const budgetData = [
       title: "Over budget items",
     }
   ];
-export {default as TrainingSessionsBudget} from './TrainingSessionsBudget'

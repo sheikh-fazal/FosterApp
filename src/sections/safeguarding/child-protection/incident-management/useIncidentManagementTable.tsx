@@ -6,9 +6,32 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const useIncidentManagementTable = () => {
-  const [cancelDelete, setCancelDelete] = useState(false);
+  const path = "/safeguarding/child-protection/incident-management/incident-management-form";
+  const [DeleteModal, setDeleteModal] = useState(false);
+  const handleDeleteModal = () => setDeleteModal(!DeleteModal);
   const router = useRouter();
   const [data, setData] = useState(TableDemoData);
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "add":
+        router.push({ pathname: path });
+        break;
+      case "edit":
+        router.push({ pathname: `${path}/${id}`, query: { action: "edit" } });
+        break;
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      case "delete":
+        handleDeleteModal();
+        break;
+      case "print":
+        window.print();
+        break;
+      default:
+        break;
+    }
+  };
   const columns = [
     {
       id: "select",
@@ -75,34 +98,21 @@ export const useIncidentManagementTable = () => {
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           {/* <ActionModal content={info} /> */}
-          <TableAction
-            type="view"
-            onClicked={() => {
-              router.push(
-                "/safeguarding/child-protection/incident-management/view-incident-management"
-              );
-            }}
-            size="small"
-          />
-          <TableAction
-            type="edit"
-            onClicked={() => {
-              router.push(
-                "/safeguarding/child-protection/incident-management/edit-incident-management"
-              );
-            }}
-            size="small"
-          />
-          <TableAction
-            size="small"
-            type="delete"
-            onClicked={() => setCancelDelete(!cancelDelete)}
-          />
 
+          <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+            {["edit", "delete", "view", "print"].map((action: string) => (
+              <span key={action} style={{ flexShrink: 0 }}>
+                <TableAction
+                  type={action}
+                  onClicked={() => handleAction(action, info.row.original.id)}
+                />
+              </span>
+            ))}
+          </Box>
           <DeleteModel
-            open={cancelDelete}
-            onDeleteClick={handleDelete}
-            handleClose={() => setCancelDelete(!cancelDelete)}
+            open={DeleteModal}
+            handleClose={handleDeleteModal}
+            onDeleteClick={handleDeleteModal}
           />
         </Box>
       ),
@@ -112,12 +122,12 @@ export const useIncidentManagementTable = () => {
   ];
   const handleDelete = () => {
     alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
+    setDeleteModal(!DeleteModal);
   };
   return {
     data,
     router,
     handleDelete,
-    columns
+    columns,
   };
-}
+};

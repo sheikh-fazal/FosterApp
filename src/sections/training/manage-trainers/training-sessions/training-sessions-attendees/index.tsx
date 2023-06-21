@@ -16,4 +16,3 @@ export const attendeesData = [
       title: "Unconfirmed attendees",
     },
   ];
-  export {default as TrainingSessionsAttendees} from './TrainingSessionsAttendees'
