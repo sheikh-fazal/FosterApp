@@ -30,10 +30,12 @@ const GPDetailsInfo = () => {
               <form.component {...form.componentProps} size="small">
                 {form.componentProps.select
                   ? form.componentProps.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
+                      <option key={option.id} value={option.value}>
                         {option.label}
                       </option>
                     ))
+                  : form?.heading
+                  ? form?.heading
                   : null}
               </form.component>
             </Grid>

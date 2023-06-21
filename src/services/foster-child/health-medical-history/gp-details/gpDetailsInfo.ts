@@ -2,13 +2,13 @@ import { baseAPI } from "@root/services/baseApi";
 
 export const gpDetailsInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getAllGpDetailsInfoData: builder.query({
+    getAllGpDetailsListData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: "foster-child/gp-info",
+        url: "foster-child/gp-info/all",
         method: "GET",
         params: apiDataParameter.params,
       }),
-      //   providesTags: ["INITIAL_HOME_VISIT"],
+      providesTags: ["GP_DETAILS_INFO"],
     }),
     getSingleGpDetailsInfoData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -16,7 +16,6 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
         method: "GET",
         params: apiDataParameter?.params,
       }),
-      //   providesTags: ["INITIAL_HOME_VISIT"],
     }),
     postGpDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
@@ -40,7 +39,8 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetAllGpDetailsInfoDataQuery,
+  useGetAllGpDetailsListDataQuery,
+  useLazyGetAllGpDetailsListDataQuery,
   useLazyGetSingleGpDetailsInfoDataQuery,
   useGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,

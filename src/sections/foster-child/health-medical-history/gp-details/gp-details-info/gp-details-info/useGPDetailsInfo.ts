@@ -10,7 +10,7 @@ import {
   useLazyGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
   usePostGpDetailsInfoDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/gpDetailsInfo";
+} from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -18,6 +18,7 @@ export const useGPDetailsInfo = () => {
   const { query } = useRouter();
   const router = useRouter();
   const theme: any = useTheme();
+
   const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(
     query?.action === "view"
   );
@@ -32,7 +33,7 @@ export const useGPDetailsInfo = () => {
     useLazyGetSingleGpDetailsInfoDataQuery();
   // get api params
   const pathParams = {
-    id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    id: query?.gpInfoId,
   };
 
   const apiDataParameter = { pathParams };
@@ -78,7 +79,7 @@ export const useGPDetailsInfo = () => {
 
   const patchGpDetailsInfoForm = async (data: any) => {
     const pathParams = {
-      id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      id: query?.gpInfoId,
     };
     const apiDataParameter = { body: data, pathParams };
     try {

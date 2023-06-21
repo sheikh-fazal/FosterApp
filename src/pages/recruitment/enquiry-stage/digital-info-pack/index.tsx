@@ -13,12 +13,15 @@ import DigitalInfoPack from "@root/sections/recruitment/enquiry-stage/digital-in
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
+    name: "Enquiry Stage",
+    href: "/recruitment",
+  },
+  {
+    name: "Digital Info Pack",
     href: "",
   },
 ];
-
-const PAGE_TITLE = "Carer Info";
+const PAGE_TITLE = "Recruitment";
 
 // ----------------------------------------------------------------------
 
@@ -27,7 +30,8 @@ CarerInfo.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}>
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

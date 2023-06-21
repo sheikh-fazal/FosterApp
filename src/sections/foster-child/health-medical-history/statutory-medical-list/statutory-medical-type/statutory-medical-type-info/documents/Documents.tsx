@@ -12,7 +12,8 @@ const Documents = () => {
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,
     query,
-  } = useDocuments();
+    onDeleteConfirm,
+  }: any = useDocuments();
 
   return (
     <UploadDocuments
@@ -39,8 +40,9 @@ const Documents = () => {
       currentPage={data?.meta?.page}
       totalPages={data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((page) => (pageNo - 1) * 10);
+        setPage((pageNo - 1) * 10);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

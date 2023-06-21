@@ -14,7 +14,7 @@ const GPDetailsList = () => {
     setSearchValue,
     router,
     setPage,
-  } = useGPDetailsList();
+  }: any = useGPDetailsList();
   return (
     <>
       <Box>
@@ -47,10 +47,7 @@ const GPDetailsList = () => {
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onPageChange={(pageNo: any) => {
-            setPage((page) => (pageNo - 1) * 10);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
+            setPage((pageNo - 1) * 10);
           }}
         />
       </Box>

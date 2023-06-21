@@ -3,9 +3,10 @@ import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import {
+  useDeleteGpDetailsInfoDocumentDataByIdMutation,
   useGetGpDetailsInfoDocumentDataQuery,
   usePostGpDetailsInfoDocumentDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
+} from "@root/services/foster-child/health-medical-history/gp-details/documents";
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
@@ -15,6 +16,11 @@ export const useDocuments = () => {
     postGpDetailsInfoDocumentDataTrigger,
     postGpDetailsInfoDocumentDataStatus,
   ] = usePostGpDetailsInfoDocumentDataMutation();
+  const [
+    deleteGpDetailsInfoDocumentDataByIdTrigger,
+    deleteGpDetailsInfoDocumentDataByIdStatus,
+  ] = useDeleteGpDetailsInfoDocumentDataByIdMutation();
+
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
@@ -53,6 +59,25 @@ export const useDocuments = () => {
     }
   };
 
+  const onDeleteConfirm = async (data: any) => {
+    console.log(data.id);
+    const pathParams = {
+      id: data?.id,
+    };
+    const apiDataParameter = { pathParams };
+    try {
+      const res: any = await deleteGpDetailsInfoDocumentDataByIdTrigger(
+        apiDataParameter
+      ).unwrap();
+      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+
   return {
     setPage,
     setSearchValue,
@@ -65,5 +90,6 @@ export const useDocuments = () => {
     submitGpDetailsInfoDocumentData,
     query,
     postGpDetailsInfoDocumentDataStatus,
+    onDeleteConfirm,
   };
 };

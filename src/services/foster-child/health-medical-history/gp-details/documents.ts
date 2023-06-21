@@ -11,8 +11,8 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
       providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
     deleteGpDetailsInfoDocumentDataById: builder.mutation({
-      query: (params: any) => ({
-        url: `foster-child/gp-info/docs/${params.id}`,
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/gp-info/docs/${apiDataParameter.pathParams.id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],

@@ -13,6 +13,7 @@ const Documents = () => {
     submitGpDetailsInfoDocumentData,
     postGpDetailsInfoDocumentDataStatus,
     query,
+    onDeleteConfirm,
   } = useDocuments();
 
   return (
@@ -39,8 +40,9 @@ const Documents = () => {
       currentPage={data?.data?.meta?.page}
       totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((page) => (pageNo - 1) * 10);
+        setPage((pageNo - 1) * 10);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

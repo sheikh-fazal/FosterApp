@@ -49,6 +49,6 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
       );
     },
     header: () => <span>Action</span>,
-    isSortable: false,
+    // isSortable: false,
   },
 ];
