@@ -3,10 +3,10 @@ import { baseAPI } from "@root/services/baseApi";
 export const gpDetailsListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllGpDetailsListData: builder.query({
-      query: (dataParameter: any) => ({
+      query: (apiDataParameter: any) => ({
         url: "foster-child/gp-info/all",
         method: "GET",
-        params: dataParameter.params,
+        params: apiDataParameter.params,
       }),
       providesTags: ["GP_DETAILS_INFO"],
     }),

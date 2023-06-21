@@ -1,30 +1,31 @@
 import { Box, Grid } from "@mui/material";
+
 import { FormProvider } from "@root/components/hook-form";
-import { useGPDetailsInfo } from "./useGPDetailsInfo";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { useStatutoryMedicalTypeInfo } from "./useStatutoryMedicalTypeInfo";
 
-const GPDetailsInfo = () => {
+const StatutoryMedicalTypeInfo = () => {
   const {
-    gpDetailsInfoFormData,
+    ehcpInfoFormData,
     methods,
     handleSubmit,
-    submitGpDetailsInfoForm,
-    getSingleGpDetailsInfoDataStatus,
+    submitStatutoryMedicalTypeDataForm,
+    getSingleStatutoryMedicalTypeDataStatus,
+    postStatutoryMedicalTypeDataStatus,
+    patchStatutoryMedicalTypeDataStatus,
     query,
     router,
-    postGpDetailsInfoDataStatus,
-    patchGpDetailsInfoDataStatus,
-    theme,
-  } = useGPDetailsInfo();
-  if (getSingleGpDetailsInfoDataStatus?.isLoading) return <SkeletonFormdata />;
+  } = useStatutoryMedicalTypeInfo();
+  if (getSingleStatutoryMedicalTypeDataStatus?.isLoading)
+    return <SkeletonFormdata />;
   return (
     <FormProvider
       methods={methods}
-      onSubmit={handleSubmit(submitGpDetailsInfoForm)}
+      onSubmit={handleSubmit(submitStatutoryMedicalTypeDataForm)}
     >
       <Grid container spacing={5}>
-        {gpDetailsInfoFormData.map((form: any, index: number) => {
+        {ehcpInfoFormData.map((form: any, index: number) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form.id + index}>
               <form.component {...form.componentProps} size="small">
@@ -47,26 +48,24 @@ const GPDetailsInfo = () => {
             type="submit"
             variant="contained"
             disabled={
-              patchGpDetailsInfoDataStatus?.isLoading ||
-              postGpDetailsInfoDataStatus?.isLoading
+              patchStatutoryMedicalTypeDataStatus?.isLoading ||
+              postStatutoryMedicalTypeDataStatus?.isLoading
             }
           >
             Submit
           </LoadingButton>
           <LoadingButton
             type="button"
-            sx={{
-              marginRight: "1rem",
-              bgcolor: theme.palette.orange.main,
-              "&:hover": { bgcolor: theme.palette.orange.dark },
-            }}
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             onClick={() =>
-              router.push(`/foster-child/health-medical-history/gp-details`)
+              router.push(
+                `/foster-child/health-medical-history/statutory-medical-list`
+              )
             }
             variant="contained"
             disabled={
-              patchGpDetailsInfoDataStatus?.isLoading ||
-              postGpDetailsInfoDataStatus?.isLoading
+              patchStatutoryMedicalTypeDataStatus?.isLoading ||
+              postStatutoryMedicalTypeDataStatus?.isLoading
             }
           >
             back
@@ -77,4 +76,4 @@ const GPDetailsInfo = () => {
   );
 };
 
-export default GPDetailsInfo;
+export default StatutoryMedicalTypeInfo;

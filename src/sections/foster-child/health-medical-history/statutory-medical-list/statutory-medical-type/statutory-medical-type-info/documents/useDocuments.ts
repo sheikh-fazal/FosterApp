@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import {
-  useGetGpDetailsInfoDocumentDataQuery,
-  usePostGpDetailsInfoDocumentDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
+import { useGetStatutoryMedicalListInfoDocumentDataQuery, usePostStatutoryMedicalListInfoDocumentDataMutation } from "@root/services/foster-child/health-medical-history/statutory-medical-list/documents";
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
   // ----------------------------------------------------------------------
   const [
-    postGpDetailsInfoDocumentDataTrigger,
-    postGpDetailsInfoDocumentDataStatus,
-  ] = usePostGpDetailsInfoDocumentDataMutation();
+    postStatutoryMedicalListInfoDocumentDataTrigger,
+    postStatutoryMedicalListInfoDocumentDataStatus,
+  ] = usePostStatutoryMedicalListInfoDocumentDataMutation();
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
@@ -22,26 +19,27 @@ export const useDocuments = () => {
     limit: 10,
     search: searchValue,
   };
-  const pathParams = {
-    gpInfoId: query?.gpInfoId,
-  };
-  const apiDataParameter = { params, pathParams };
+const pathParams = {
+  id:query?.id
+}
+  const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetGpDetailsInfoDocumentDataQuery(apiDataParameter);
+  useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter);
 
-  const submitGpDetailsInfoDocumentData = async (data: any) => {
+  const submitStatutoryMedicalListInfoDocumentData = async (data: any) => {
     const documentFormData = new FormData();
 
+    // documentFormData.append("documentType", data.documentType);
     documentFormData.append("documentDate", data.documentDate);
     documentFormData.append("password", data.password);
     documentFormData.append("file", data.chosenFile);
 
     const pathParams = {
-      gpInfoId: query?.gpInfoId,
-    };
-    const apiDataParameter = { params, pathParams, body: documentFormData };
+      id:query?.id
+    }
+      const apiDataParameter = { params, pathParams , body: documentFormData };
     try {
-      const res: any = await postGpDetailsInfoDocumentDataTrigger(
+      const res: any = await postStatutoryMedicalListInfoDocumentDataTrigger(
         apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
@@ -62,8 +60,7 @@ export const useDocuments = () => {
     isSuccess,
     user,
     isFetching,
-    submitGpDetailsInfoDocumentData,
-    query,
-    postGpDetailsInfoDocumentDataStatus,
+    submitStatutoryMedicalListInfoDocumentData,
+    query
   };
 };

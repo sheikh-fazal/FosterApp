@@ -10,15 +10,14 @@ const Documents = () => {
     isError,
     isSuccess,
     isFetching,
-    submitGpDetailsInfoDocumentData,
-    postGpDetailsInfoDocumentDataStatus,
+    submitStatutoryMedicalListInfoDocumentData,
     query,
   } = useDocuments();
 
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data?.gp_info_docs}
+      tableData={data?.data}
       isLoading={isLoading}
       column={[
         "documentName",
@@ -31,13 +30,14 @@ const Documents = () => {
       isError={isError}
       isSuccess={isSuccess}
       modalData={(data: any) => {
-        submitGpDetailsInfoDocumentData(data);
+        submitStatutoryMedicalListInfoDocumentData(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
+        console.log("Updated params: ", data);
       }}
-      currentPage={data?.data?.meta?.page}
-      totalPages={data?.data?.meta?.pages}
+      currentPage={data?.meta?.page}
+      totalPages={data?.meta?.pages}
       onPageChange={(pageNo: any) => {
         setPage((page) => (pageNo - 1) * 10);
       }}

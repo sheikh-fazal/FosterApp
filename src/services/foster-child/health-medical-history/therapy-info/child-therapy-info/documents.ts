@@ -8,14 +8,14 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
         method: "GET",
         params: apiDataParameter?.params,
       }),
-      providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      // providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
     deleteGpDetailsInfoDocumentDataById: builder.mutation({
       query: (params: any) => ({
         url: `foster-child/gp-info/docs/${params.id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      // invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
     postGpDetailsInfoDocumentData: builder.mutation({
       query: (apiDataParameter: any) => ({
@@ -24,7 +24,7 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
         body: apiDataParameter?.body,
         // params: apiDataParameter?.params,
       }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      // invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
     patchGpDetailsInfoDocumentData: builder.mutation({
       query: (apiDataParameter: any) => ({
@@ -33,7 +33,7 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
         body: apiDataParameter?.body,
         params: apiDataParameter?.params,
       }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      // invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
   }),
 });

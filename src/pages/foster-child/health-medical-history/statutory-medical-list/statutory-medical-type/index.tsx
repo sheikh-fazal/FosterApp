@@ -2,32 +2,33 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import GPDetailsList from "@root/sections/foster-child/health-medical-history/gp-details/GPDetailsList";
+import StatutoryMedicalTypeInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/statutory-medical-type-info/statutory-medical-type-info-tabs/StatutoryMedicalTypeInfoTabs";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Health",
-    href: "/foster-child",
+    name: "/Health",
+    href: "/foster-child/health-medical-history/therapy-info",
   },
   {
-    name: "All",
-    href: "",
+    name: "GP Details Info List",
+    href: "#",
   },
 ];
 
-const PAGE_TITLE = "GP Details Info List";
+const PAGE_TITLE = "Edit GP Details Info List";
 
 // ----------------------------------------------------------------------
 
-GPDetails.getLayout = function getLayout(page: any) {
+ClaMedicalInfo.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
       title={PAGE_TITLE}
+      variant="dashboard"
     >
       {page}
     </Layout>
@@ -36,10 +37,10 @@ GPDetails.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function GPDetails() {
+export default function ClaMedicalInfo() {
   return (
     <Page title={PAGE_TITLE}>
-      <GPDetailsList />
+      <StatutoryMedicalTypeInfoTabs />
     </Page>
   );
 }
