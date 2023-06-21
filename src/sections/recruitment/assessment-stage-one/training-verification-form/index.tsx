@@ -79,8 +79,6 @@ export const columnsTrainingVerification = (
           onClicked={() => openDeleteModel(info.getValue())}
           size="small"
         />
-        
-
         <TableAction
           type="view"
           onClicked={() =>

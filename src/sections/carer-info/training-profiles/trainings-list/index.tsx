@@ -69,7 +69,9 @@ export const columnsTrainingProfilesList = (
         <TableAction
           type="edit"
           onClicked={() => {
-            router.push(`/carer-info/training-profiles/edit-trainings-profile`);
+            router.push(
+              `/carer-info/training-profiles/edit-trainings-profile?${info.getValue()}`
+            );
           }}
         />
         <TableAction
@@ -81,7 +83,9 @@ export const columnsTrainingProfilesList = (
         <TableAction
           type="view"
           onClicked={() => {
-            router.push(`/carer-info/training-profiles/view-trainings-profile`);
+            router.push(
+              `/carer-info/training-profiles/view-trainings-profile?${info.getValue()}`
+            );
           }}
         />
       </Box>

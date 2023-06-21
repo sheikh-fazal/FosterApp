@@ -53,18 +53,16 @@ const useEditTraingingsProfile = ({
 
     console.log(updatedData, "updated data");
 
-    // try {
-    //   const res: any = await onSubmitHandler(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await onSubmitHandler(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   enqueueSnackbar("Something Went Wrong!", { variant: "error" });
-    // }
+      router.push("/carer-info/training-profiles/trainings-list");
+    } catch (error) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
   };
 
   return { methods, handleSubmit, onSubmit, router, defaultValues };

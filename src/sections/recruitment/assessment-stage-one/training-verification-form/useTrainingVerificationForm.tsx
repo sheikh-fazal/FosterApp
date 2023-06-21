@@ -20,8 +20,6 @@ const useTrainingVerificationForm = () => {
   const router = useRouter();
 
   const deleteTrainingProfile = async () => {
-    console.log(trainingProfileId);
-
     const res: any = deleteProfile(trainingProfileId)
       .unwrap()
       .then((res: any) => {

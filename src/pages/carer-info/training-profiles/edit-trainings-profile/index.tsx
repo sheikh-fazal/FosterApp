@@ -2,18 +2,17 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
-  usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
+import EditTrainingsProfile from "@root/sections/carer-info/training-profiles/edit-trainings-profile/EditTrainingProfile";
 
 const PAGE_TITLE = "Training Profile";
 
@@ -57,7 +56,7 @@ export default function AddTraingVerification() {
 
   console.log(uploadDocuments, "uploaded documents");
 
-  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
+  const [postTrainingProfileData] = usePatchTrainingProfileApiMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
     formData.append("documentType", postData.documentType);
@@ -70,20 +69,20 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    // try {
-    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await postTrainingProfileData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   console.log(error);
+      router.push(
+        "/carer-info/training-profiles/trainings-list"
+      );
+    } catch (error) {
+      console.log(error);
 
-    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    // }
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
   };
 
   return (
@@ -93,7 +92,7 @@ export default function AddTraingVerification() {
           <IsFetching isFetching={isLoading} />
         ) : (
           <>
-            <EditTrainingProfile
+            <EditTrainingsProfile
               initialValueProps={{
                 carerName: data?.data?.carerName,
                 courseAttended: data?.data?.courseAttended,
