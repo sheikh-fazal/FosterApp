@@ -52,21 +52,23 @@ export default function AddTraingVerification() {
   console.log(profileId);
 
   const updateTabs = async (data: any) => {
-    // try {
-    //   let res: any = null;
-    //   if (formState === "add") res = await postData(data).unwrap();
-    //   else
-    //     res = await updateData({ trainingProfileId: profileId, data }).unwrap();
-    //   if (res?.error) return;
-    //   setFormState("update");
-    //   setProfileId(res.data.id);
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
-    //   setTabsArr(["Training Profile", "Upload Documents"]);
-    // } catch (error: any) {
-    //   enqueueSnackbar("Something Went Wrong!", { variant: "error" });
-    // }
+    try {
+      let res: any = null;
+      if (formState === "add") res = await postData(data).unwrap();
+      else
+        res = await updateData({ trainingProfileId: profileId, data }).unwrap();
+      if (res?.error) return;
+      setFormState("update");
+      setProfileId(res.data.id);
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+      setTabsArr(["Training Profile", "Upload Documents"]);
+
+      router.push('/carer-info/training-profiles/trainings-list')
+    } catch (error: any) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
   };
 
   const {
@@ -92,20 +94,20 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    // try {
-    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await postTrainingProfileData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   console.log(error);
+      router.push(
+        "/recruitment/assessment-stage-one/training-verification-form"
+      );
+    } catch (error) {
+      console.log(error);
 
-    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    // }
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
   };
 
   return (
