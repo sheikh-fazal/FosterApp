@@ -126,7 +126,7 @@ export const NAV_LINKS = [
     id: 15,
     text: "Audits",
     img: <ContentPasteSearchOutlinedIcon />,
-    link: "",
+    link: "/audits",
   },
   {
     id: 16,
