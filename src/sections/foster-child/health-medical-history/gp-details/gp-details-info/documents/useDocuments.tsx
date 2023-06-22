@@ -1,8 +1,11 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useGetGpDetailsInfoDocumentDataQuery, usePostGpDetailsInfoDocumentDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
+import {
+  useGetGpDetailsInfoDocumentDataQuery,
+  usePostGpDetailsInfoDocumentDataMutation,
+} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
@@ -19,28 +22,27 @@ export const useDocuments = () => {
     limit: 10,
     search: searchValue,
   };
-const pathParams = {
-  gpInfoId:query?.gpInfoId
-}
-  const dataParameter = { params, pathParams };
+  const pathParams = {
+    gpInfoId: query?.gpInfoId,
+  };
+  const apiDataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-  useGetGpDetailsInfoDocumentDataQuery(dataParameter);
+    useGetGpDetailsInfoDocumentDataQuery(apiDataParameter);
 
-  const submitInitialHomeVisitDocument = async (data: any) => {
+  const submitGpDetailsInfoDocumentData = async (data: any) => {
     const documentFormData = new FormData();
 
-    // documentFormData.append("documentType", data.documentType);
     documentFormData.append("documentDate", data.documentDate);
     documentFormData.append("password", data.password);
     documentFormData.append("file", data.chosenFile);
 
     const pathParams = {
-      gpInfoId:query?.gpInfoId
-    }
-      const putApiParameter = { params, pathParams , body: documentFormData };
+      gpInfoId: query?.gpInfoId,
+    };
+    const apiDataParameter = { params, pathParams, body: documentFormData };
     try {
       const res: any = await postGpDetailsInfoDocumentDataTrigger(
-        putApiParameter
+        apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -60,7 +62,8 @@ const pathParams = {
     isSuccess,
     user,
     isFetching,
-    submitInitialHomeVisitDocument,
-    query
+    submitGpDetailsInfoDocumentData,
+    query,
+    postGpDetailsInfoDocumentDataStatus,
   };
 };

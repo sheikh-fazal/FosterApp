@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { useTheme } from "@emotion/react";
-import { Button, Grid, Modal } from "@mui/material";
+import { Grid, Modal } from "@mui/material";
 import ButtonWithIcon from "@root/sections/edit-profile/locals/ButtonWithIcon";
 import WorkExperinceForm from "./addUnemployementPeriodForm/UnemployementPeriodForm";
 import UnemploymentTable from "./unemployment-table/UnemploymentTable";
 const Unemployement = () => {
-  const theme: any = useTheme();
   const [flags, setFlags] = useState({ workExperienceModel: false });
   const workExperienceModelOpen = () => {
     setFlags((pre) => ({ ...pre, workExperienceModel: true }));
