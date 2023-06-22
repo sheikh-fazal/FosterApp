@@ -138,7 +138,7 @@ export const NAV_LINKS = [
     id: 17,
     text: "Advocacy",
     img: <GavelOutlinedIcon />,
-    link: "",
+    link: "/advocacy",
   },
   {
     id: 18,
