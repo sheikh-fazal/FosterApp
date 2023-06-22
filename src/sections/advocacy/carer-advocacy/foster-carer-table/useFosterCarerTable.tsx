@@ -87,7 +87,6 @@ export const useFosterCarerTable = () => {
         <Box>
           <Button
             variant="contained"
-            sx={{ backgroundColor: "#0E918C" }}
             onClick={() => router.push({ pathname: "/advocacy/carer/dashboard", query: { id: info.row.original.id } })}
           >
             View Details
