@@ -25,8 +25,17 @@ const data = [
 
 export function DocumentTable(props: any) {
   const { role } = props;
-  const { theme, tableHeaderRef, changeView, open, setOpen, view } =
-    useUploadDocumentsTable();
+  const {
+    theme,
+    tableHeaderRef,
+    changeView,
+    open,
+    setOpen,
+    view,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+  } = useUploadDocumentsTable();
 
   return (
     <Grid container>
@@ -52,15 +61,8 @@ export function DocumentTable(props: any) {
           isError={false}
           isSuccess={true}
           showSerialNo
-          // count={Math.ceil(data?.data?.meta?.total / limit)}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          rootSX={{ my: theme.spacing(2) }}
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
         />
         {open && (
           <UploadDocumentsModel

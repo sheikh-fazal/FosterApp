@@ -10,7 +10,6 @@ import ImmunisationUploadTable from "@root/sections/foster-child/health-medical-
 Hospitalisation.getLayout = function GetLayout(page: any) {
   const router: any = useRouter();
   const { action, id } = router.query;
-  console.log(action);
 
   const PAGE_TITLE = "Immunisation";
   const BREADCRUMBS = [

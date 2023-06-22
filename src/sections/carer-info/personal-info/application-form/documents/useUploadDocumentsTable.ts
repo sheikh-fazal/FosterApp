@@ -19,5 +19,15 @@ export const useUploadDocumentsTable = () => {
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  return { theme, tableHeaderRef, view, open, setOpen, changeView };
+  return {
+    theme,
+    tableHeaderRef,
+    view,
+    open,
+    setOpen,
+    changeView,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+  };
 };

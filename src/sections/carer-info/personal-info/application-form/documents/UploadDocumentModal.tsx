@@ -61,9 +61,6 @@ function UploadDocumentsModel(props: any) {
                   </form.component>
                 </Grid>
               ))}
-              {/* <Grid xs={12} item>
-                <RHFUploadFile name="file" {...methods} />
-              </Grid> */}
             </Grid>
             <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
               {view == "view" ? (

@@ -10,13 +10,6 @@ import { dummy } from "..";
 const activepath = "/foster-child/health-medical-history/immunisation/actions";
 const ImmunisationTable = () => {
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
     {
       accessorFn: (row: any) => row.dateOfImmunisation,
       id: "dateOfImmunisation",

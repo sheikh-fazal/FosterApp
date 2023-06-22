@@ -14,13 +14,6 @@ const ImmunisationUploadTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.documentName,
       id: "documentName",
       cell: (info: any) => info.getValue(),
@@ -112,7 +105,7 @@ const ImmunisationUploadTable = () => {
         isError={false}
         isSuccess={true}
         isPagination={true}
-        showSerialNo={false}
+        showSerialNo
         // totalPages={incidentlist?.data?.meta?.pages ?? 0}
         // currentPage={incidentlist?.data?.meta?.page ?? 1}
         // onPageChange={pageChangeHandler}
