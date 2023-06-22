@@ -7,7 +7,7 @@ export const usePermanentFosteringForm = () => {
     defaultValues: SecondOpinionFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/second-opinion-reports');
+  const handleBack = () => router.push('/reports/carer-reports/second-opinion');
   const {
     reset,
     control,

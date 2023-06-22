@@ -7,7 +7,7 @@ export const useCarerTrainingForm = () => {
     defaultValues: CarerTrainingFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/carer-training-reports');
+  const handleBack = () => router.push('/reports/carer-reports/carer-training');
   const {
     reset,
     control,

@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const useParentAndChild = () => {
-  const path = "/reports/carer-reports/parent-and-child-reports/form";
+  const path = "/reports/carer-reports/parent-and-child/form";
   const [openDelete, setOpenDelete] = useState(false);
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const router = useRouter();

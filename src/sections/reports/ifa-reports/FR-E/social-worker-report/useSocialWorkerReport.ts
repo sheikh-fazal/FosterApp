@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useSocialWorkerReport = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-E');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-E-childs-social-worker');
 
 
   const methods: any = useForm({

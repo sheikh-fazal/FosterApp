@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export const useCarerReferenceChecks = () => {
   const path =
-    "/reports/carer-reports/carer-reference-checks-reports/form";
+    "/reports/carer-reports/carer-reference-checks/form";
   const [openDelete, setOpenDelete] = useState(false);
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const router = useRouter();

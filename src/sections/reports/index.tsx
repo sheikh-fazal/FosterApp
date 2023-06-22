@@ -7,12 +7,12 @@ export const REPORTTABSDATAARRY = [
       {
         id: 1,
         title: "FR-A-FORM FR 2019 - SUPERVISING SOCIAL WORKER REPORT",
-        link: "/reports/ifa-reports/FR-A-supervising-social-worker-report",
+        link: "/reports/ifa-reports/FR-A-supervising-social-worker",
       },
       {
         id: 2,
         title: "FR-B-FORM FR 2019 - FOSTER CARER REPORT",
-        link: "/reports/ifa-reports/FR-B-foster-carer-report",
+        link: "/reports/ifa-reports/FR-B-foster-carer",
       },
       {
         id: 3,
@@ -37,7 +37,7 @@ export const REPORTTABSDATAARRY = [
       {
         id: 7,
         title: "FR-E CHILD’S SOCIAL WORKER REPORT",
-        link: "/reports/ifa-reports/FR-E-childs-social-worker-report",
+        link: "/reports/ifa-reports/FR-E-childs-social-worker",
       },
       {
         id: 8,
@@ -62,12 +62,12 @@ export const REPORTTABSDATAARRY = [
       {
         id: 12,
         title: "FR-G REVIEWING OFFICER REPORT",
-        link: "/reports/ifa-reports/FR-G-reviewing-officer-report",
+        link: "/reports/ifa-reports/FR-G-reviewing-officer",
       },
       {
         id: 13,
         title: "FR-H FOSTERING SERVICE MANAGER REPORT",
-        link: "/reports/ifa-reports/FR-H-fostering-service-manager-report",
+        link: "/reports/ifa-reports/FR-H-fostering-service-manager",
       },
       {
         id: 14,
@@ -97,12 +97,12 @@ export const REPORTTABSDATAARRY = [
       {
         id: 19,
         title: "TRAINING REPORT",
-        link: "/reports/ifa-reports/training-report",
+        link: "/reports/ifa-reports/training",
       },
       {
         id: 20,
         title: "USER LOG HISTORY REPORT",
-        link: "/reports/ifa-reports/user-log-history-report",
+        link: "/reports/ifa-reports/user-log-history",
       },
     ],
   },
@@ -127,7 +127,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "ACTIVE CARERS CONTACTS REPORTS",
 
-        link: "/reports/carer-reports/active-carers-contacts-reports",
+        link: "/reports/carer-reports/active-carers-contacts",
       },
 
       {
@@ -135,7 +135,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "PARENT AND CHILD REPORTS",
 
-        link: "/reports/carer-reports/parent-and-child-reports",
+        link: "/reports/carer-reports/parent-and-child",
       },
 
       {
@@ -143,7 +143,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "PERMANENT FOSTERING REPORTS",
 
-        link: "/reports/carer-reports/permanent-fostering-reports",
+        link: "/reports/carer-reports/permanent-fostering",
       },
 
       {
@@ -151,7 +151,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "SECOND OPINION REPORTS",
 
-        link: "/reports/carer-reports/second-opinion-reports",
+        link: "/reports/carer-reports/second-opinion",
       },
 
       {
@@ -159,7 +159,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "ANNUAL REVIEW DATE REPORTS",
 
-        link: "/reports/carer-reports/annual-review-date-reports",
+        link: "/reports/carer-reports/annual-review-date",
       },
 
       {
@@ -175,7 +175,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER PLACEMENT REPORTS",
 
-        link: "/reports/carer-reports/carer-placement-reports",
+        link: "/reports/carer-reports/carer-placement",
       },
 
       {
@@ -183,7 +183,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER IMMUNISATION DETAIL REPORTS",
 
-        link: "/reports/carer-reports/carer-immunisation-detail-reports",
+        link: "/reports/carer-reports/carer-immunisation-detail",
       },
 
       {
@@ -191,7 +191,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER REFERENCE CHECKS REPORTS",
 
-        link: "/reports/carer-reports/carer-reference-checks-reports",
+        link: "/reports/carer-reports/carer-reference-checks",
       },
 
       {
@@ -199,7 +199,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER REGISTER REPORTS",
 
-        link: "/reports/carer-reports/carer-register-reports",
+        link: "/reports/carer-reports/carer-register",
       },
 
       {
@@ -207,7 +207,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER TRAINING REPORTS",
 
-        link: "/reports/carer-reports/carer-training-reports",
+        link: "/reports/carer-reports/carer-training",
       },
 
       {
@@ -215,7 +215,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "CARER VACANCY REPORTS",
 
-        link: "/reports/carer-reports/carer-vacancy-reports",
+        link: "/reports/carer-reports/carer-vacancy",
       },
 
       {
@@ -223,7 +223,7 @@ export const REPORTTABSDATAARRY = [
 
         title: "DAY LOG EVENTS REPORTS",
 
-        link: "/reports/carer-reports/day-log-events-reports",
+        link: "/reports/carer-reports/day-log-events",
       },
     ],
   },

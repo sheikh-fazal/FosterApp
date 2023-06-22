@@ -32,6 +32,7 @@ import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 export const UploadDocFormData = [
   {
@@ -135,6 +136,9 @@ export const columns = (isOpenModal: any) => {
             size="small"
             type="download"
             onClicked={() => alert("Download")}
+          />
+          <DeletePrompt
+            onDeleteClick={() => console.log(info?.row?.original?.id)}
           />
           <TableAction
             size="small"

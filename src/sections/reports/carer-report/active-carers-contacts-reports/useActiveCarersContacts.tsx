@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 export const useActiveCarersContacts = () => {
-  const path = "/reports/carer-reports/active-carers-contacts-reports/form";
+  const path = "/reports/carer-reports/active-carers-contacts/form";
   const [openDelete, setOpenDelete] = useState(false);
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const router = useRouter();
@@ -58,6 +58,13 @@ export const useActiveCarersContacts = () => {
       id: "S.NO",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sr.No</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.carerName,
+      id: "carerName",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Carer Name</span>,
       isSortable: true,
     },
     {

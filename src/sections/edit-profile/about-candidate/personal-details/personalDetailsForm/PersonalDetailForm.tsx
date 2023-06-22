@@ -45,12 +45,8 @@ const PersonalDetailForm: FC<any> = ({ activateNextForm }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {
@@ -105,15 +101,6 @@ const PersonalDetailForm: FC<any> = ({ activateNextForm }) => {
                   </Fragment>
                 );
               })}
-              {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">

@@ -7,7 +7,7 @@ export const useAnnualReviewDataForm = () => {
     defaultValues: AnnualReviewDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/annual-review-date-reports');
+  const handleBack = () => router.push('/reports/carer-reports/annual-review-date');
   const {
     reset,
     control,

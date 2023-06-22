@@ -22,7 +22,7 @@ FRD1.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-I",
+          href: "/reports/ifa-reports/FR-I-decision-sheet",
         },
         {
           name:"FR-I-Decision Sheet"

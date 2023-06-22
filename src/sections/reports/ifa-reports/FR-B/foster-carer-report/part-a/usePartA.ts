@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const usePartA = (handleNextTab?: any) => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-B')
+  const handleBack = () => router.push('/reports/ifa-reports/FR-B-foster-carer')
 
 
   const methods: any = useForm({

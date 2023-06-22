@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export const useFRE = () => {
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-E-childs-social-worker-report/form';
+  const path = '/reports/ifa-reports/FR-E-childs-social-worker/form';
   const [deleteModal, setDeleteModal] = useState(false);
 
   const handleDeleteModal = () => setDeleteModal(!deleteModal);

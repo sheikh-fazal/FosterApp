@@ -23,7 +23,7 @@ RiskAssessment.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/risk-assessment-form",
+          href: "/reports/ifa-reports/risk-assessment",
         },
         {
           name: "Risk Assessment Form",

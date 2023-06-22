@@ -7,7 +7,7 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useExPartnersTable = (apllicationFormid: any, role: any) => {
+export const useExPartnersTable = (applicationFormid: any, role: any) => {
   let [viewData, setViewData] = useState(null);
   let [exPartnerData, setExPartnerData] = useState(null);
   const tableHeaderRef = useRef<any>();
@@ -20,7 +20,7 @@ export const useExPartnersTable = (apllicationFormid: any, role: any) => {
   const theme: any = useTheme();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetExPartnerDetailsQuery({ id: apllicationFormid, params });
+    useGetExPartnerDetailsQuery({ id: applicationFormid, params });
   const meta = data?.data?.meta;
 
   const [deleteExPartner] = useDeleteExPartnerMutation();

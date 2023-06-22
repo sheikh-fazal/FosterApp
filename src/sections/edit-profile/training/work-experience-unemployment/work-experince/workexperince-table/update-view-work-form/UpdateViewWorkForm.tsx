@@ -1,4 +1,4 @@
-import { useState, FC, Fragment } from "react";
+import { FC, Fragment } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -11,24 +11,18 @@ import { FormProvider } from "@root/components/hook-form";
 // import { FormSchema, defaultValues } from ".";
 //mui icons
 import CloseIcon from "@mui/icons-material/Close";
-import { FormSchema, fieldsInfo, defaultValues } from "./formData";
-import { useTheme } from "@emotion/react";
+import { FormSchema, fieldsInfo } from "./formData";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import IsFetching from "@root/components/loaders/IsFetching";
-import {
-  useAddWorkExperienceMutation,
-  useUpdateWorkExperienceMutation,
-} from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
+import { useUpdateWorkExperienceMutation } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
 import { enqueueSnackbar } from "notistack";
-import dayjs from "dayjs";
 
 const UpdateViewWorkForm: FC<any> = ({ close, defValues, disabled }) => {
-  const theme: any = useTheme();
   // const [disabled, setDisabled] = useState(false);
   const {
     id,
@@ -40,7 +34,6 @@ const UpdateViewWorkForm: FC<any> = ({ close, defValues, disabled }) => {
     endDate,
     currentlyWorking,
   } = defValues;
-  console.log({ startDate, endDate });
   const [updateWorkExperience] = useUpdateWorkExperienceMutation();
   const methods: any = useForm({
     // mode: "onTouched",
@@ -57,12 +50,8 @@ const UpdateViewWorkForm: FC<any> = ({ close, defValues, disabled }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {
