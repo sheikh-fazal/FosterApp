@@ -51,9 +51,6 @@ const StatutoryMedicalTypeList = (props: any) => {
           onPageChange={(pageNo: any) => {
             setPage((pageNo - 1) * 10);
           }}
-          // onSortByChange={(data: any) => {
-          //   console.log("Sort by: ", data);
-          // }}
         />
       </Box>
       {isRecordSetForDelete && (
@@ -61,7 +58,6 @@ const StatutoryMedicalTypeList = (props: any) => {
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}
           onDeleteClick={(data: any, f: any) => {
-            console.log(f);
             onDeleteConfirm?.(data);
           }}
         />

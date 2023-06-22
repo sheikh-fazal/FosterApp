@@ -60,7 +60,6 @@ export const useDocuments = () => {
   };
 
   const onDeleteConfirm = async (data: any) => {
-    console.log(data.id);
     const pathParams = {
       id: data?.id,
     };

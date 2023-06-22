@@ -1,4 +1,4 @@
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const statutoryMedicalListXTableColumnsFunction = (

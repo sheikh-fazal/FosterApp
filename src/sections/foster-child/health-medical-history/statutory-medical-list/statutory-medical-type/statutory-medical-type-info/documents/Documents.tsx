@@ -35,7 +35,6 @@ const Documents = () => {
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
-        console.log("Updated params: ", data);
       }}
       currentPage={data?.meta?.page}
       totalPages={data?.meta?.pages}

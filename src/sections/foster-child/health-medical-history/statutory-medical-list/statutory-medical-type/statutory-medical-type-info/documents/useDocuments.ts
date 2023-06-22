@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -60,7 +60,6 @@ export const useDocuments = () => {
   };
 
   const onDeleteConfirm = async (data: any) => {
-    console.log(data.id);
     const pathParams = {
       id: data?.id,
     };
