@@ -1,36 +1,11 @@
-// next-i18
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-// guards
-import GuestGuard from "@root/guards/GuestGuard";
-// components
-import Page from "../../components/Page";
-import LoginForm from "@root/sections/auth/login/LoginForm";
-import Layout from "@root/layouts";
-
-// ----------------------------------------------------------------------
-
-Login.getLayout = function getLayout(page: any) {
-  return (
-    <Layout variant="auth" title="Login">
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
+import TherapyInfoList from "@root/sections/foster-child/health-medical-history/therapy-info/TherapyInfoList";
+import ChildTherapyInfo from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/ChildTherapyInfo";
 
 export default function Login() {
   return (
-    <GuestGuard>
-      <Page title="Login">
-        <LoginForm />
-      </Page>
-    </GuestGuard>
+    <>
+      {/* <TherapyInfoList /> */}
+      <ChildTherapyInfo />
+    </>
   );
 }
-
-export const getStaticProps = async ({ locale }: { locale: string }) => ({
-  props: {
-    ...(await serverSideTranslations(locale ?? "en", ["common", "login"])),
-  },
-});

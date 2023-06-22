@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { useTherapyInfoList } from "./useTherapyInfoList";
+import { useSafeCarePolicyList } from "./useSafeCarePolicyList";
 import { Box } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
-const TherapyInfoList = () => {
+const UploadDocuments = () => {
   // const [tabelData, setTabelData] = useState([
   //   {
   //     a: "a",
@@ -34,12 +34,12 @@ const TherapyInfoList = () => {
     setSearchValue,
     setPage,
     page,
-  } = useTherapyInfoList();
+  } = useSafeCarePolicyList();
   return (
     <Box>
       <TableHeader
         ref={tableHeaderRef}
-        title="Child Therapy Info "
+        title="Uploaded Documents"
         searchKey="search"
         showAddBtn={true}
         onAdd={() => console.log("Test")}
@@ -71,4 +71,4 @@ const TherapyInfoList = () => {
   );
 };
 
-export default TherapyInfoList;
+export default UploadDocuments;

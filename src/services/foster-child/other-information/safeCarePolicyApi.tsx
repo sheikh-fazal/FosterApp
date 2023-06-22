@@ -7,7 +7,7 @@ export const safeCarePolicyApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     safeCarePolicyList: builder.query({
       query: (dataParameter) => ({
-        url: "foster-child/gp-info/all",
+        url: "https://jsonplaceholder.typicode.com/todos/1",
         method: "GET",
         params: dataParameter.params,
       }),
