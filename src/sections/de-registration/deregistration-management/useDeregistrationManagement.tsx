@@ -5,7 +5,8 @@ import Image from 'next/image'
 import { SELECT_FILTERS, menuItems } from '.';
 import { SelectChangeEvent } from '@mui/material/Select';
 
-export const useDeregistrationManagementTable = () => {
+
+export const useDeregistrationManagement = () => {
     const tableHeaderRefTwo = useRef<any>();
     const [deregStatusBg, setDeregStatusBg] = useState(menuItems[0].background);
     const [deregStatusValue, setDeregStatusValue] = React.useState(menuItems[0].value);

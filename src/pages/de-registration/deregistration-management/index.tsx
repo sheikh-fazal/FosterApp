@@ -5,7 +5,7 @@ import Dashboard from "@root/sections/de-registration/dashboard/Dashboard";
 
 const PAGE_TILE = "De-Registration";
 
-DeregistrationDashboard.getLayout = function getLayout(page: any) {
+DeregistrationManagement.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -25,7 +25,7 @@ DeregistrationDashboard.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function DeregistrationDashboard() {
+export default function DeregistrationManagement() {
     return (
         <Page title={PAGE_TILE}>
             <Dashboard />

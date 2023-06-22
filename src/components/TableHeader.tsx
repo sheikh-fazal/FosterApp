@@ -13,8 +13,6 @@ import {
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 import TableAction from "./TableAction";
-
-import NotificationSetting from '../assets/svg/deregistration/notificationSetting.svg';
 import Image from "next/image";
 
 // ----------------------------------------------------------------------
@@ -48,7 +46,6 @@ const TableHeader = forwardRef(function TableHeader(
     // print btn
     showPrintBtn = false,
     showDiagramBtn = false,
-    notificationSettingBtn = false,
     debounceTimeout = 500,
     disabled = false,
     onDelete = () => { },
@@ -190,13 +187,6 @@ const TableHeader = forwardRef(function TableHeader(
         <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
       )}
 
-      {/* NotificationSetting Button */}
-      {notificationSettingBtn && (
-        <Box onClick={onAdd} sx={{ cursor: "pointer", padding: "8px" }} >
-          <Image src={NotificationSetting} alt="NotificationSetting" height={25} width={25} />
-        </Box>
-
-      )}
     </Stack>
   );
 });

@@ -1,10 +1,11 @@
 import CustomTable from '@root/components/Table/CustomTable'
 import TableHeader from '@root/components/TableHeader'
-import { useDeregistrationManagementTable } from './useDeregistrationManagementTable'
 import { TableData } from '.'
+import { useDeregistrationManagement } from './useDeregistrationManagement'
 
-const DeregistrationManagementTable = () => {
-    const { tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns, } = useDeregistrationManagementTable()
+
+const DeregistrationManagement = () => {
+    const { tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns, } = useDeregistrationManagement()
 
     return (
         <>
@@ -41,4 +42,4 @@ const DeregistrationManagementTable = () => {
     )
 }
 
-export default DeregistrationManagementTable
+export default DeregistrationManagement
