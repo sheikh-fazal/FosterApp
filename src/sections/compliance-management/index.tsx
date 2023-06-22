@@ -11,19 +11,10 @@ import SupportServicesIcon from '../../assets/svg/compliance-management/supportS
 import FundamentalStandardsIcon from '../../assets/svg/compliance-management/fundamentalServicesIcon.svg'
 import MockInspectionIcon from '../../assets/svg/compliance-management/mockInspectionIcon.svg'
 import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg'
-import { Box, Typography } from '@mui/material'
-import Image from 'next/image'
 
-const PDF = ({ data }: any) => {
-    return (
-        <>{data?.map((obj: any, i: number) => (
-            <Box key={i}>
-                <Image src={''} alt='icon' />
-                <Typography>{obj?.title}</Typography>
-            </Box>
-        ))}</>
-    )
-}
+const pdfData = Array.from({ length: 10 }, (_ , index) => ({
+    title: 'this is pdf ' + (index + 1),
+}));
 
 export const ComplianceTabsData = [
     {
@@ -35,22 +26,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Business Operations",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Communications",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Registration & Compliance-Administration",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Finance ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
 
         ],
@@ -64,12 +55,12 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Policies",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Forms",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
 
         ],
@@ -83,22 +74,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Health and Safety COVID-19",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Human Resources COVID-19",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Care Management COVID-19",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Business Admin COVID-19",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
@@ -111,17 +102,17 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Rights and Abuse",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 1,
                 title: "Risk Assessment and Personal Planning",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 1,
                 title: "Clinical  governance",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
 
         ],
@@ -135,27 +126,27 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Risk Assessment and Personal Planning",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Service Commencement",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Care Plans",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Assessments",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Supplementary Documents",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
@@ -168,22 +159,22 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Risk Assessments",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
+                data: pdfData,
             },
             {
                 id: 2,
                 title: "Health and  Safety ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
+                data: pdfData,
             },
             {
                 id: 3,
                 title: "Residential Services ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
+                data: pdfData,
             },
             {
                 id: 4,
                 title: "Building and Equipmen ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />,
+                data: pdfData,
             },
         ],
     },
@@ -196,27 +187,27 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Absence, Holidays and Sickness ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Contract of  Employment",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Equality & human Rights",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Well Being",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Miscellaneous",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
@@ -229,9 +220,9 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Medications Management",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
-           
+
         ],
     },
     {
@@ -243,24 +234,24 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Administration Quality  asssurance",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Human Resources Quality assurance",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Management of Quality assurance ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Care Management  ",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
-           
+
         ],
     },
     {
@@ -272,17 +263,17 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Hygiene",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Catering Services",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Risk Assessment & Safety",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
@@ -295,9 +286,9 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Policy",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
-            
+
         ],
     },
     {
@@ -309,32 +300,32 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Safe",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Mock Inspection Toolkit",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Caring",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Responsive",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "Well Led",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 6,
                 title: "Effective",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
@@ -347,34 +338,28 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Guidance Policy",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 2,
                 title: "Service Users",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 3,
                 title: "Relatives and Representatives",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 4,
                 title: "Staff",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
             {
                 id: 5,
                 title: "External Professionals",
-                component: <PDF data={[{ title: 'this is pdf 1' }]} />
+                data: pdfData
             },
         ],
     },
-    {
-        index: 12,
-        title: "Add More",
-        icon: StakeHoldersIcon,
-        color: '#544179',
-    }
 ];

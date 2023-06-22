@@ -116,7 +116,7 @@ export const NAV_LINKS = [
   {
     text: "Children's Guide",
     img: <ClassOutlinedIcon />,
-    link: "",
+    link: "/children-guides",
   },
   {
     text: "Advocacy",

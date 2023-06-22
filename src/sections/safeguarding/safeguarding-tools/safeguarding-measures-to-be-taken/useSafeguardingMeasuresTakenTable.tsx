@@ -1,4 +1,4 @@
-import TableDropdown from "@root/pages/safeguarding/collapsible-table/table-dropdown";
+import TableDropdown from "@root/components/Table/collapsible-table/table-dropdown";
 import React, { useRef, useState } from "react";
 export const SafeguardingMeasureColumns = [
   { id: '1', title: 'Foster Carer Name', render: (data: any) => <span>{data.fosterCarerName}</span> },
