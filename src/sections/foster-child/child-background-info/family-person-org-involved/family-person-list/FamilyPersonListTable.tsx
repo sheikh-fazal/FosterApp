@@ -42,13 +42,17 @@ export default function FamilyPersonListTable() {
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/child-background-info/family-person-org-involved/family-form-list`
+                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/edit`
               )
             }
           />
           <TableAction
             type="view"
-            onClicked={() => console.log(info.getValue())}
+            onClicked={() =>
+              router.push(
+                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}`
+              )
+            }
           />
           <DeletePrompt
             onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
@@ -66,12 +70,13 @@ export default function FamilyPersonListTable() {
         <TableHeader
           showAddBtn
           title="Child Family / Persons & Org. Involved"
+          searchKey="search"
           onChanged={(event: any) => {
             setSearch(event.search);
           }}
           onAdd={() => {
             router.push(
-              `/foster-child/child-background-info/family-person-org-involved/family-form-list`
+              `/foster-child/child-background-info/family-person-org-involved/add-family-form-list`
             );
           }}
         />
