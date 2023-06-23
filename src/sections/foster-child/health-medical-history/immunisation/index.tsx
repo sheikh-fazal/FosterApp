@@ -1,5 +1,11 @@
+import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import dayjs from "dayjs";
+import router from "next/router";
+
 import * as Yup from "yup";
 export const dummy = [
   {
@@ -14,7 +20,7 @@ export const immunisationInfoFormValue = [
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "dateOfImmunisation",
+      name: "date",
       label: "Date Of Immunisation",
       multiline: false,
       //   minRows: 3,
@@ -26,7 +32,7 @@ export const immunisationInfoFormValue = [
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "immunisationtype",
+      name: "type",
       label: "immunisation Type",
       multiline: true,
       minRows: 3,
@@ -48,14 +54,14 @@ export const immunisationInfoFormValue = [
   },
 ];
 export const immunisationInfoListValue = {
-  dateOfImmunisation: "",
-  immunisationtype: "",
-  dueDate: "",
+  date: new Date(),
+  type: "",
+  dueDate: new Date(),
 };
 
 export const FormSchema = Yup.object().shape({
-  dateOfImmunisation: Yup.date().required("required"),
-  immunisationtype: Yup.string().required("required"),
+  date: Yup.date().required("required"),
+  type: Yup.string().required("required"),
   dueDate: Yup.date().required("required"),
 });
 //upload document
@@ -179,3 +185,56 @@ export const UploadDocFormData = [
     component: RHFTextField,
   },
 ];
+export const immunisationColumns = ({ activepath, listDeleteHandler }: any) => {
+  return [
+    {
+      accessorFn: (row: any) => row.date,
+      id: "date",
+      cell: (info: any) => (
+        <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>
+      ),
+      header: () => <span>Date Of Immunisation</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.type,
+      id: "type",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: () => <span>Immunisation type</span>,
+      isSortable: true,
+    },
+
+    {
+      id: "actions",
+      cell: (info: any) => {
+        return (
+          <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+            <DeletePrompt
+              onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+            />
+            <TableAction
+              size="small"
+              type="edit"
+              onClicked={() => {
+                router.push(
+                  `${activepath}/edit-immunisation/${info?.row?.original?.id}`
+                );
+              }}
+            />
+            <TableAction
+              size="small"
+              type="view"
+              onClicked={() => {
+                router.push(
+                  `${activepath}/view-immunisation/${info?.row?.original?.id}`
+                );
+              }}
+            />
+          </Box>
+        );
+      },
+      header: () => <span>Actions</span>,
+      isSortable: false,
+    },
+  ];
+};

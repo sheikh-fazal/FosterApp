@@ -16,9 +16,12 @@ import { useImmunisationForm } from "./useImmunisationForm";
 const backPath = "/foster-child/health-medical-history/immunisation";
 
 const ImmunisationFrom = (props: any) => {
-  const { action, id } = props;
-  const { methods, onSubmit, handleSubmit, theme } = useImmunisationForm();
-
+  const { action, id, immunisationData } = props;
+  const { methods, onSubmit, handleSubmit, theme } = useImmunisationForm({
+    action,
+    id,
+    immunisationData,
+  });
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
@@ -84,7 +87,7 @@ const ImmunisationFrom = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`${backPath}`)}
+                  onClick={() => router.back()}
                 >
                   back
                 </Button>

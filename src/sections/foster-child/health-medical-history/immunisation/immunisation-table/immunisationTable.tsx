@@ -5,60 +5,26 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from "..";
+import { dummy, immunisationColumns } from "..";
+import { useImmunisationTable } from "./useImmunisationTable";
 
-const activepath = "/foster-child/health-medical-history/immunisation/actions";
-const ImmunisationTable = () => {
-  const columns = [
-    {
-      accessorFn: (row: any) => row.dateOfImmunisation,
-      id: "dateOfImmunisation",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Date Of Immunisation</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.immunisationtype,
-      id: "immunisationtype",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Immunisation type</span>,
-      isSortable: true,
-    },
+const activepath = "/foster-child/health-medical-history/immunisation";
 
-    {
-      id: "actions",
-      cell: (info: any) => {
-        return (
-          <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+const ImmunisationTable = (props: any) => {
+  let { fosterChildId } = props;
 
-            <TableAction
-              size="small"
-              type="edit"
-              onClicked={() => {
-                router.push({
-                  pathname: activepath,
-                  query: { action: "edit", id: "" },
-                });
-              }}
-            />
-            <TableAction
-              size="small"
-              type="view"
-              onClicked={() => {
-                router.push({
-                  pathname: activepath,
-                  query: { action: "view", id: "" },
-                });
-              }}
-            />
-          </Box>
-        );
-      },
-      header: () => <span>Actions</span>,
-      isSortable: false,
-    },
-  ];
+  let {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    headerChangeHandler,
+    listDeleteHandler,
+  } = useImmunisationTable(fosterChildId);
   return (
     <Box>
       <Grid container>
@@ -71,28 +37,29 @@ const ImmunisationTable = () => {
                   title="Child Immunisation Info"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={headerChangeHandler}
                   onAdd={() => {
-                    router.push({
-                      pathname: activepath,
-                      query: { action: "add", id: "" },
-                    });
+                    router.push(
+                      `${activepath}/add-immunisation/${fosterChildId}`
+                    );
                   }}
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
-                columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
-                isPagination={true}
-                showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                data={data?.data?.child_immunisation_info}
+                columns={immunisationColumns({
+                  activepath,
+                  listDeleteHandler,
+                })}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isError={isError}
+                isSuccess={isSuccess}
+                currentPage={meta?.page}
+                totalPages={meta?.pages}
+                showSerialNo
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
             </Box>
           </Paper>
