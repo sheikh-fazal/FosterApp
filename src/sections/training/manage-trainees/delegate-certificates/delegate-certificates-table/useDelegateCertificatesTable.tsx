@@ -1,5 +1,5 @@
 
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import { defaultValues } from ".";
 import { useForm } from 'react-hook-form';
 
@@ -8,6 +8,7 @@ export const useDelegateCertificatesTable = () => {
   const methods: any = useForm({
     defaultValues,
   });
+
 
   const {
     handleSubmit,
@@ -22,7 +23,7 @@ export const useDelegateCertificatesTable = () => {
   const onSubmit = async (data: any) => {
     setTableDate(JSON.stringify(data));
   };
-      
+
   return {
     methods,
     handleSubmit,

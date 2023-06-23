@@ -42,10 +42,11 @@ import ThemeColorPresets from "@root/components/ThemeColorPresets";
 import ThemeLocalization from "@root/components/ThemeLocalization";
 import RtlLayout from "@root/components/RtlLayout";
 import ProgressBar from "@root/components/ProgressBar";
+import { NextRouter, useRouter } from "next/router";
 
 function MyApp(props: any) {
   const { Component, pageProps, settings } = props;
-
+  const router = useRouter();
   const getLayout = Component.getLayout ?? ((page: any) => page);
 
   return (
@@ -65,7 +66,7 @@ function MyApp(props: any) {
                       <ThemeLocalization>
                         <RtlLayout>
                           <ProgressBar />
-                          {getLayout(<Component {...pageProps} />)}
+                          {getLayout(<Component {...pageProps} />, router)}
                         </RtlLayout>
                       </ThemeLocalization>
                     </ThemeColorPresets>
