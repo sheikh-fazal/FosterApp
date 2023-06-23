@@ -25,7 +25,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Assessment / interview",
     informationText: "Fostering Panel Assessment / interview",
     viewForms: ["View Form"],
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/deregister-foster-carer/fostering-panel-assessment",
     status: "Failed"
   },
   {
