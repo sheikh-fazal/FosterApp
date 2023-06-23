@@ -5,8 +5,8 @@ import Image from "next/image";
 import { useComplianceManagement } from "./useComplianceMangement";
 import CategoryModal from "./Modals/category-modal/CategoryModal";
 import AddIcon from '../../assets/svg/compliance-management/addIcon.svg';
-import PdfViewModal from "./Modals/pdf-modal/PdfModal";
 import PdfIcon from '../../assets/svg/compliance-management/pdfIcon.svg';
+import PdfViewModal from "@root/components/modal/PdfViewModal/PdfViewModal";
 
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
@@ -24,6 +24,7 @@ export default function ComplianceTabs({ tabsDataArray, ...other }: IVERTICALTAB
     handleCategoryModal,
     handleSubCategory,
     handlePdf,
+    file,
   } = useComplianceManagement();
 
   return (
@@ -100,6 +101,7 @@ export default function ComplianceTabs({ tabsDataArray, ...other }: IVERTICALTAB
         />}
       {pdfModal &&
         <PdfViewModal
+          fileUrl={file}
           open={pdfModal}
           onClose={handlePdf}
         />}
@@ -121,7 +123,7 @@ const PDF = ({ data, onClick }: any) => {
     <>{data?.map((obj: any, i: number) => (
       <Box key={i} sx={styles.pdf}>
         <Image src={PdfIcon} alt='icon' height={30} width={30} />
-        <Typography onClick={() => onClick(obj)}>{obj?.title}</Typography>
+        <Typography onClick={() => onClick(obj.file)}>{obj?.title}</Typography>
       </Box>
     ))}</>
   )

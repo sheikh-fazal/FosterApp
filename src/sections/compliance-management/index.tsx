@@ -10,10 +10,13 @@ import QualityAssuranceIcon from '../../assets/svg/compliance-management/quality
 import SupportServicesIcon from '../../assets/svg/compliance-management/supportServicesIcon.svg'
 import FundamentalStandardsIcon from '../../assets/svg/compliance-management/fundamentalServicesIcon.svg'
 import MockInspectionIcon from '../../assets/svg/compliance-management/mockInspectionIcon.svg'
-import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg'
+import StakeHoldersIcon from '../../assets/svg/compliance-management/stakeholderIcon.svg';
 
-const pdfData = Array.from({ length: 10 }, (_ , index) => ({
+import pdfFile from '../../components/modal/PdfViewModal/dummy.pdf';
+
+const pdfData = Array.from({ length: 10 }, (_, index) => ({
     title: 'this is pdf ' + (index + 1),
+    file: pdfFile
 }));
 
 export const ComplianceTabsData = [
@@ -26,7 +29,7 @@ export const ComplianceTabsData = [
             {
                 id: 1,
                 title: "Business Operations",
-                data: pdfData
+                data: pdfData,
             },
             {
                 id: 2,

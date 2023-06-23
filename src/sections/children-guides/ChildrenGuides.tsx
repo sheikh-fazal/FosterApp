@@ -5,10 +5,10 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import UploadDocumentModal from '@root/components/modal/UploadDocumentModal/UploadDocumentModal';
 import { useChildrenGuides } from './useChildrenGuides';
 import { ChildrenGuidesArray } from '.';
-import {MyDocument} from './modal/PdfModal';
+import PdfViewModal, { PdfViewFile } from '@root/components/modal/PdfViewModal/PdfViewModal';
 
 const ChildrenGuides = () => {
-  const { addModal, handleModal } = useChildrenGuides();
+  const { addModal, handleModal, handleClosePdfModal, handleOpenPdfModal, pdfFile, pdfModal } = useChildrenGuides();
   return (
     <>
       <Grid container spacing={2}>
@@ -16,10 +16,10 @@ const ChildrenGuides = () => {
           <Grid item xl={3} lg={4} md={6} xs={12} key={i}>
             <Box sx={styles.box}>
               <Box sx={styles.pdfSection}>
-                <MyDocument file={obj.file} />
+                <PdfViewFile fileUrl={obj.file} />
               </Box>
               <Box sx={styles.download}>
-                <Typography sx={styles.title}>{obj.title}</Typography>
+                <Typography sx={styles.title} onClick={() => handleOpenPdfModal(obj.file)}>{obj.title}</Typography>
                 <DownloadForOfflineIcon sx={styles.downloadIcon} />
               </Box>
             </Box>
@@ -40,6 +40,7 @@ const ChildrenGuides = () => {
         onSubmit={(data: any) => { }}
         isHideSubmitButton
       />}
+      {pdfFile && <PdfViewModal fileUrl={pdfFile} open={pdfModal} onClose={handleClosePdfModal} />}
     </>
   )
 }
@@ -72,7 +73,8 @@ const styles = {
   title: {
     color: '#000000',
     fontWeight: 600,
-    fontSize: '16px'
+    fontSize: '16px',
+    cursor: 'pointer'
   },
   downloadIcon: { fontSize: '24px', color: "#198754", cursor: "pointer" },
   addNew: {

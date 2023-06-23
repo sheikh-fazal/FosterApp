@@ -6,8 +6,9 @@ export const useComplianceManagement = () => {
     const [categoryData, setCategoryData] = useState<any>();
     const [pdfModal, setPdfModal] = useState(false);
     const [categoryIcon, setCategoryIcon] = useState(false);
+    const [file, setFile] = useState(null)
 
-    const handlePdf = (data: any) => setPdfModal(!pdfModal);
+    const handlePdf = (file: any) => { setPdfModal(!pdfModal); setFile(file) };
 
     const handleCategoryModal = () => {
         setCategoryModal(!categoryModal);
@@ -34,7 +35,8 @@ export const useComplianceManagement = () => {
         categoryData,
         pdfModal,
         handlePdf,
-        categoryIcon
+        categoryIcon,
+        file
     }
 }
 
