@@ -24,7 +24,7 @@ const Dashboard = () => {
             <Box sx={{ mt: 2 }}>
 
                 <Grid container spacing={2}>
-                    <Grid item xl={7} lg={12} xs={12}>
+                    <Grid item xl={6.5} lg={12} xs={12}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Card sx={styles.cardStyles}>
@@ -40,7 +40,7 @@ const Dashboard = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xl={5} lg={12} xs={12}>
+                    <Grid item xl={5.5} lg={12} xs={12}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 {/* <LocalAuthorityNotifications /> */}

@@ -16,7 +16,8 @@ const RemindersAndNotifications = () => {
         // justifyContent: "center",
         alignItems: "center",
         borderRadius: "11px",
-        flexWrap: "wrap"
+        // flexWrap: "wrap",
+        justifyContent: "space-between"
     }));
     return (
         <>
@@ -26,16 +27,16 @@ const RemindersAndNotifications = () => {
                 {remaindersAndNotificationsData.map((item: any) => (
                     <Grid item xs={12} md={6} lg={6} xl={6} key={item.id}>
                         <StyledCard background={item?.background} border={item?.border}>
-                            <Box sx={{ display: "flex", justifyContent: "space-between", }}>
-                                <Box sx={{ mr: "8px" }}>
-                                    <Image src={item?.img} alt={''} />
-                                </Box>
-                                <Box>
-                                    <Typography style={{ color: `${item?.titleColor}` }}>{item?.title}</Typography>
-                                    <Typography style={{ color: `${item?.discriptionColor}` }}>{item?.discription}</Typography>
-                                    <Link href={''} style={{ color: `${item?.linkColor}` }}>{item?.link}</Link>
-                                </Box>
+                            {/* <Box sx={{ display: "flex", justifyContent: "space-between", }}> */}
+                            <Box sx={{ mr: "8px" }}>
+                                <Image src={item?.img} alt={''} />
                             </Box>
+                            <Box>
+                                <Typography style={{ color: `${item?.titleColor}` }}>{item?.title}</Typography>
+                                <Typography style={{ color: `${item?.discriptionColor}` }}>{item?.discription}</Typography>
+                                <Link href={''} style={{ color: `${item?.linkColor}` }}>{item?.link}</Link>
+                            </Box>
+                            {/* </Box> */}
 
                         </StyledCard>
 
