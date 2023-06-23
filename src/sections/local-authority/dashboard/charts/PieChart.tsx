@@ -44,7 +44,7 @@ export default function PieChart() {
                     <Grid container spacing={2} sx={{ marginLeft: "23px" }}>
                         {pieChartTitles?.map((item, index) => (
                             <Grid key={index} item lg={4}>
-                                <Box key={item?.color} sx={{ mt: 0.5 }}>
+                                <Box key={item?.color} sx={{ mt: 0.5, mb: "37px" }}>
                                     <Typography>{item?.title}</Typography>
                                     <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
                                         <Box

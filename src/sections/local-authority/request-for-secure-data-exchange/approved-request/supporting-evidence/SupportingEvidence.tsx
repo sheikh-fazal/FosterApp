@@ -4,7 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import { useSupportingEvidence } from "./useSupportingEvidence";
 import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
-import DeleteModel from "@root/components/modal/DeleteModel";
+
 
 const SupportingEvidence = () => {
   const {
@@ -18,7 +18,7 @@ const SupportingEvidence = () => {
   return (
     <Box sx={{ width: "100%", padding: "10px" }}>
       <TableHeader
-        title="Secure Data Exhange Requests"
+        title="Additional documents of the child"
         searchKey="search"
         showAddBtn
         onAdd={() => setOpenModal(true)}

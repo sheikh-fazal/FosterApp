@@ -1,18 +1,18 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import * as Yup from 'yup';
 
 export const initialValues = {
   docType: '',
-  docDate: '',
-  updatePhoto: ''
+  docDate: null,
+  updatePhoto: null
 }
-export const addOtherDocumentFormSchema = Yup.object().shape({
+export const addOtherDocumentFormSchema:any = Yup.object().shape({
   docType: Yup.string().required('Field is required'),
   docDate: Yup.date().required('Field is required'),
-  updatePhoto: Yup.string().required('Field is required')
+  updatePhoto: Yup.mixed().required('Field is required')
 })
+
 export const addOtherDocumentData = [
   {
     gridLength: 12,

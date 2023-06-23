@@ -36,7 +36,7 @@ const AddOtherDocument = (props: any) => {
             </Grid>
             <Grid item xs={12} md={12} sx={{ mt: "39px" }}>
               <Typography sx={styles.title}>Choose Files</Typography>
-              <RHFUploadFile name="updatePhoto" disabled={actionType === 'edit' && true}  {...methods} required />
+              <RHFUploadFile name="updatePhoto" {...methods} disabled={actionType === 'view' ? true : false} required={true} />
             </Grid>
             <Grid item xs={12} sx={{ mt: "40px" }}>
               <Box sx={{ display: "flex", gap: "1rem" }}>

@@ -1,10 +1,9 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { useTheme } from "@emotion/react";
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import { TableData } from ".";
+import { TableData, SELECT_FILTERS } from ".";
 
 export const useApprovedRequestTable = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -92,5 +91,6 @@ export const useApprovedRequestTable = () => {
     TableData,
     columns,
     theme,
+    SELECT_FILTERS
   };
 };

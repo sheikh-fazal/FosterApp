@@ -18,7 +18,7 @@ SecureDataExchange.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "LADO",
+          name: "Local Authority",
           href: "/local-authority",
         },
         {

@@ -1,8 +1,7 @@
 import * as Yup from "yup";
-import { Box, Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 
 export const ChildFamilyRelativesData = [
   {
@@ -132,6 +131,19 @@ export const ChildFamilyRelativesData = [
       sx: { mb: 4 },
     },
     options: [{ value: "UK", label: "UK" }],
+    component: RHFSelect,
+    md: 6,
+  },
+  {
+    gridLength: 6,
+    componentProps: {
+      name: "country",
+      label: "Country",
+      fullWidth: true,
+      select: true,
+      sx: { mb: 4 },
+    },
+    options: COUNTRIESDROPDOWN,
     component: RHFSelect,
     md: 6,
   },

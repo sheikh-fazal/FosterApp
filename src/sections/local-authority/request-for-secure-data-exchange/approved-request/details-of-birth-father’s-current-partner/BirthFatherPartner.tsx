@@ -1,18 +1,11 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useBirthFatherPartner } from "./useBirthFatherPartner";
 
 const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
-  const {
-    methods,
-    onSubmit,
-    handleSubmit,
-    reset,
-    setValue,
-    BirthFatherPartnerData,
-  } = useBirthFatherPartner();
+  const { methods, onSubmit, handleSubmit, BirthFatherPartnerData } =
+    useBirthFatherPartner();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ padding: "0.8rem" }}>
@@ -41,7 +34,7 @@ const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
                 "&:hover": {
                   backgroundColor: "#F6830F",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -55,15 +48,19 @@ const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
                 "&:hover": {
                   backgroundColor: "#23183D",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
             >
               Save
             </Button>
-
-            <Button onClick={handleNextTab} type="button" variant="contained">
+            <Button
+              sx={{ m: 1 }}
+              onClick={handleNextTab}
+              type="button"
+              variant="contained"
+            >
               Next
             </Button>
           </Grid>

@@ -79,7 +79,7 @@ export default function BarChart() {
                     <Grid container spacing={2} sx={{ marginLeft: "23px" }}>
                         {barChartTitles?.map((item, index) => (
                             <Grid key={index} item lg={4}>
-                                <Box key={item?.color} sx={{ mt: 0.5 }}>
+                                <Box key={item?.color} sx={{ mt: 0.5, mb: 1.8 }}>
                                     <Typography>{item?.title}</Typography>
                                     <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
                                         <Box

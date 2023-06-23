@@ -132,7 +132,7 @@ export const NAV_LINKS = [
     id: 16,
     text: "Children's Guide",
     img: <ClassOutlinedIcon />,
-    link: "",
+    link: "/children-guides",
   },
   {
     id: 17,
@@ -144,7 +144,7 @@ export const NAV_LINKS = [
     id: 18,
     text: "Compliance Management",
     img: <HandshakeOutlinedIcon />,
-    link: "",
+    link: "/compliance-management",
   },
   {
     id: 19,

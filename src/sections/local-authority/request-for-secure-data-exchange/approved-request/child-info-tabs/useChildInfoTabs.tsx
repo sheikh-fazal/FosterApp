@@ -1,7 +1,7 @@
 import { ReactNode, SyntheticEvent, useState } from "react";
 import { Box } from "@mui/material";
 
-import HdrAutoIcon from "@mui/icons-material/HdrAuto";
+
 
 import Cicon from "../../../../../assets/img/local authority/Cicon.png";
 import Oicon from "../../../../../assets/img/local authority/Oicon.png";
@@ -99,7 +99,7 @@ export const useChildInfoTabs = () => {
     {
       index: 5,
       title: "Social History of Birth Mother",
-      component: <SocialHistoryBirthMother />,
+      component: <SocialHistoryBirthMother handleNextTab={handleNextTab} handleBackTab={handlePreviousTab}/>,
     },
     {
       index: 6,
@@ -151,7 +151,7 @@ export const useChildInfoTabs = () => {
     {
       index: 12,
       title: "Social History of Birth Father",
-      component: <SocialHistoryOfBirthFather />,
+      component: <SocialHistoryOfBirthFather handleNextTab={handleNextTab} handleBackTab={handlePreviousTab}/>,
     },
     {
       index: 13,

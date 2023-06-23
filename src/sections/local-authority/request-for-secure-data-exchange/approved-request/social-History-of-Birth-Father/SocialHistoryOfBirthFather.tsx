@@ -2,8 +2,9 @@ import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import dayjs from "dayjs";
 import { useSocialHistoryOfBirthFather } from "./useSocialHistoryOfBirthFather";
+import { Button, Grid } from "@mui/material";
 
-const SocialHistoryOfBirthFather = () => {
+const SocialHistoryOfBirthFather = ({handleBackTab,handleNextTab}: any) => {
   const { methods, handleSubmit, onSubmit, route } =
     useSocialHistoryOfBirthFather();
 
@@ -39,6 +40,25 @@ const SocialHistoryOfBirthFather = () => {
           },
         ]}
       />
+      <Grid item xs={12}>
+        <Button
+          sx={{
+            backgroundColor: "#F6830F",
+            "&:hover": {
+              backgroundColor: "#F6830F",
+            },
+            mr: 2,
+          }}
+          type="submit"
+          variant="contained"
+          onClick={handleBackTab}
+        >
+          Back
+        </Button>
+        <Button type="button" variant="contained" onClick={handleNextTab}>
+          Next
+        </Button>
+      </Grid>
     </FormProvider>
   );
 };
