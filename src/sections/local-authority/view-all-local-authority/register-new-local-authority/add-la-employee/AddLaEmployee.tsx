@@ -31,7 +31,7 @@ const AddLaEmployee = () => {
           <Box sx={{ display: "flex" }}>
             {router.query.action !== 'view-local-authority' &&
               <LoadingButton sx={{ marginRight: "1rem" }} type="submit" variant="contained" loading={isSubmitting}>
-                Submit
+                Next
               </LoadingButton>
             }
             <Button sx={styles.submitButton}

@@ -9,7 +9,7 @@ import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-
 import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
 import LeftIcon from "../../../assets/svg/de-register/left-icon.svg";
-import { useFinalDeRegistration } from "./USEFinalDeRegistration";
+import { useFinalDeRegistration } from "./useFinalDeRegistration";
 
 const FinalDeRegistration = () => {
   const {
