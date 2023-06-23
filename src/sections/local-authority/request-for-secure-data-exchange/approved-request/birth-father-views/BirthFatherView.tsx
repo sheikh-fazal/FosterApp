@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useBirthFatherView } from "./useBirthFatherView";
 
 const BirthFatherView = ({ handleNextTab, handleBackTab }: any) => {
@@ -62,12 +61,6 @@ const BirthFatherView = ({ handleNextTab, handleBackTab }: any) => {
             >
               Save
             </Button>
-
-           
-              <Button onClick={handleNextTab} type="button" variant="contained">
-                Next
-              </Button>
-        
           </Grid>
         </Grid>
       </Box>

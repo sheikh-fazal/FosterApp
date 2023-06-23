@@ -150,9 +150,10 @@ export default function FormTable(props: any) {
       header: () => <span>{label}</span>,
     };
   });
-  columns.push(
-    {
-      id: "Manage Certificate",
+
+  if (certificate) {
+    columns.push({
+      id: "certificate",
       cell: (info: any) => (
         <Box
           sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
@@ -167,59 +168,113 @@ export default function FormTable(props: any) {
       isSortable: false,
     },
 
-    {
-      id: "actions",
-      cell: (info: any) => (
-        <Box
-          sx={{
-            display: "flex",
-            gap: "12px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {view && (
-            <TableAction
-              type="view"
-              onClicked={(id: number) => onViewHandler(info.row.index)}
-            />
-          )}
-          {print && (
-            <TableAction
-              type="print"
-              onClicked={(id: number) => window.print()}
-            />
-          )}
-          {share && (
-            <TableAction
-              type="share"
-              onClicked={() => setShareModal(!shareModal)}
-            />
-          )}
-
-          {route === "view" ? (
-            ""
-          ) : (
-            <>
+      {
+        id: "actions",
+        cell: (info: any) => (
+          <Box
+            sx={{
+              display: "flex",
+              gap: "12px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {view && (
               <TableAction
-                type="edit"
-                onClicked={(id: number) =>
-                  onViewHandler(info.row.index, "Update")
-                }
+                type="view"
+                onClicked={(id: number) => onViewHandler(info.row.index)}
               />
+            )}
+            {print && (
               <TableAction
-                type="delete"
-                onClicked={(id: number) => onDeleted(info.row.index)}
+                type="print"
+                onClicked={(id: number) => window.print()}
               />
-            </>
-          )}
-        </Box>
-      ),
+            )}
+            {share && (
+              <TableAction
+                type="share"
+                onClicked={() => setShareModal(!shareModal)}
+              />
+            )}
 
-      header: () => <span>actions</span>,
-      isSortable: false,
-    }
-  );
+            {route === "view" ? (
+              ""
+            ) : (
+              <>
+                <TableAction
+                  type="edit"
+                  onClicked={(id: number) =>
+                    onViewHandler(info.row.index, "Update")
+                  }
+                />
+                <TableAction
+                  type="delete"
+                  onClicked={(id: number) => onDeleted(info.row.index)}
+                />
+              </>
+            )}
+          </Box>
+        ),
+
+        header: () => <span>actions</span>,
+        isSortable: false,
+      });
+  }
+
+  columns.push({
+    id: "actions",
+    cell: (info: any) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {view && (
+          <TableAction
+            type="view"
+            onClicked={(id: number) => onViewHandler(info.row.index)}
+          />
+        )}
+        {print && (
+          <TableAction
+            type="print"
+            onClicked={(id: number) => window.print()}
+          />
+        )}
+        {share && (
+          <TableAction
+            type="share"
+            onClicked={() => setShareModal(!shareModal)}
+          />
+        )}
+
+        {showView === "view" ? (
+          ""
+        ) : (
+          <>
+            <TableAction
+              type="edit"
+              onClicked={(id: number) =>
+                onViewHandler(info.row.index, "Update")
+              }
+            />
+            <TableAction
+              type="delete"
+              onClicked={(id: number) => onDeleted(info.row.index)}
+            />
+          </>
+        )}
+      </Box>
+    ),
+
+    header: () => <span>actions</span>,
+    isSortable: false,
+  });
+
   const handleShare = () => {
     setShareModal(false);
   };

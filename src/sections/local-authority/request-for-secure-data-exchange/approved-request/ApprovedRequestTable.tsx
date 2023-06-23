@@ -4,12 +4,14 @@ import TableHeader from "@root/components/TableHeader";
 import { useApprovedRequestTable } from "./useApprovedRequestTable";
 
 const ApprovedRequestTable = () => {
-  const { tableHeaderRefTwo, router, TableData, columns, theme } =
-  useApprovedRequestTable();
+  const { tableHeaderRefTwo, router, TableData, columns, theme , SELECT_FILTERS} =
+    useApprovedRequestTable();
   return (
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
+        selectFilters= {SELECT_FILTERS}
+        showSelectFilters={true}
         title="Secure Data Exhange Requests"
         searchKey="search"
         onChanged={(data: any) => {}}

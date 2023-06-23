@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useChildBirthMother } from "./useChildBirthMother";
 
 const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
@@ -29,20 +28,6 @@ const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
           ))}
 
           <Grid item xs={12}>
-            <Button
-              sx={{
-                backgroundColor: "#F6830F",
-                "&:hover": {
-                  backgroundColor: "#F6830F",
-                },
-                mr: 2,
-              }}
-              type="submit"
-              variant="contained"
-              onClick={handleBackTab}
-            >
-              Back
-            </Button>
             <Button
               sx={{
                 backgroundColor: "#23183D",

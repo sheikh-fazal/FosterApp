@@ -62,12 +62,6 @@ const ChildFamilyRelativesForm = ({ setOpenForm }: any) => {
             >
               Save
             </Button>
-
-            <Link href={""} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Next
-              </Button>
-            </Link>
           </Grid>
         </Grid>
       </Box>

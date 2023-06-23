@@ -1,7 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Button, Grid } from "@mui/material";
-import Link from "next/link";
 import { useBirthMotherPartner } from "./useBirthMotherPartner";
 
 const BirthMotherPartner = ({ handleNextTab, handleBackTab }: any) => {
@@ -35,13 +34,13 @@ const BirthMotherPartner = ({ handleNextTab, handleBackTab }: any) => {
           ))}
 
           <Grid item xs={12}>
-            <Button
+          <Button
               sx={{
                 backgroundColor: "#F6830F",
                 "&:hover": {
                   backgroundColor: "#F6830F",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -55,7 +54,7 @@ const BirthMotherPartner = ({ handleNextTab, handleBackTab }: any) => {
                 "&:hover": {
                   backgroundColor: "#23183D",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -63,7 +62,7 @@ const BirthMotherPartner = ({ handleNextTab, handleBackTab }: any) => {
               Save
             </Button>
 
-            <Button type="button" variant="contained" onClick={handleNextTab}>
+            <Button sx={{m: 1}} type="button" variant="contained" onClick={handleNextTab}>
               Next
             </Button>
           </Grid>
