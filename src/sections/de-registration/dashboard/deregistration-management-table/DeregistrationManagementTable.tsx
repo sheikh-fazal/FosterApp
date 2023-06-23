@@ -2,6 +2,8 @@ import CustomTable from '@root/components/Table/CustomTable'
 import TableHeader from '@root/components/TableHeader'
 import { useDeregistrationManagementTable } from './useDeregistrationManagementTable'
 import { TableData } from '.'
+import { ExpandMore } from '@mui/icons-material'
+import { Box, Button } from '@mui/material'
 
 const DeregistrationManagementTable = () => {
     const { tableHeaderRefTwo, router, theme, SELECT_FILTERS, columns, } = useDeregistrationManagementTable()
@@ -36,6 +38,17 @@ const DeregistrationManagementTable = () => {
                 }}
                 rootSX={{ my: theme.spacing(2) }}
             />
+            <Box
+                sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "flex-end",
+                }}
+            >
+                <Button onClick={() => router.push(`${router.pathname}/deregistration-management`)}>
+                    View All<ExpandMore />
+                </Button>
+            </Box>
         </>
 
     )
