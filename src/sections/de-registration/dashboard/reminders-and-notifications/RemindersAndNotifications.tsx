@@ -19,7 +19,7 @@ const RemindersAndNotifications = () => {
     }));
     return (
         <>
-            <Typography variant='h5' sx={{ fontSize: "16px", m: "16px" }}>Reminders & Notifications</Typography>
+            <Typography variant='h5' sx={{ fontSize: "16px", m: "10px", mb: 0 }}>Reminders & Notifications</Typography>
 
             <Grid container spacing={2} sx={{ padding: "10px" }}>
                 {remaindersAndNotificationsData.map((item: any) => (

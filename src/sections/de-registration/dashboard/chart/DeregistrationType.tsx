@@ -45,7 +45,7 @@ export const DeregistrationType = () => {
                         {pieChartTitles?.map((item, index) => (
                             <Grid key={index} item lg={6} sx={{ flexDirection: "column" }}>
                                 <Box key={item?.color} sx={{ mt: 0.5 }}>
-                                    <Typography sx={{ whiteSpace: 'nowrap', mb: "6px" }}>{item?.title}</Typography>
+                                    <Typography sx={{ whiteSpace: 'nowrap', mb: "26px" }}>{item?.title}</Typography>
                                     <Box sx={{ display: "flex", gap: "6px", alignItems: "center" }}>
                                         <Box
                                             sx={{

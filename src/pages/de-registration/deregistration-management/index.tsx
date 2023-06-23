@@ -1,18 +1,18 @@
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import Dashboard from "@root/sections/de-registration/dashboard/Dashboard";
+import DeregistrationManagement from "@root/sections/de-registration/deregistration-management/DeregistrationManagement";
 
-const PAGE_TILE = "De-Registration";
+const PAGE_TILE = "Deregistration Management";
 
-DeregistrationManagement.getLayout = function getLayout(page: any) {
+DeregistrationManagements.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
             breadcrumbs={[
                 {
                     icon: <HomeIcon />,
-                    // href: "/dashboard",
+                    href: "/de-registration",
                 },
                 {
                     name: "Dashboard",
@@ -25,10 +25,10 @@ DeregistrationManagement.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function DeregistrationManagement() {
+export default function DeregistrationManagements() {
     return (
         <Page title={PAGE_TILE}>
-            <Dashboard />
+            <DeregistrationManagement />
         </Page>
     );
 }

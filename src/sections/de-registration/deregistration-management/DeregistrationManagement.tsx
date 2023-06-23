@@ -1,7 +1,8 @@
 import CustomTable from '@root/components/Table/CustomTable'
 import TableHeader from '@root/components/TableHeader'
-import { TableData } from '.'
+// import { TableData } from '.'
 import { useDeregistrationManagement } from './useDeregistrationManagement'
+import { TableData } from '.'
 
 
 const DeregistrationManagement = () => {

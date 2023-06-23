@@ -1,26 +1,6 @@
 import Link from 'next/link';
-import img1 from '../../../../assets/svg/referral/referralListImg1.svg';
+import img1 from '../../../assets/svg/referral/referralListImg1.svg';
 export const TableData = [
-    {
-        Sr_No: "01",
-        Image: img1,
-        Carer_Code: "PFC-10vfgdfgd1",
-        Carer_Name: <Link href={''}>Susan Smith</Link>,
-        Gender: "Female",
-        Area_Locality: "Bexleyhealth",
-        Area_Office: "Boxhill",
-        Dereg_Status: "Boxhill",
-    },
-    {
-        Sr_No: "01",
-        Image: img1,
-        Carer_Code: "PFC-10vfgdfgd1",
-        Carer_Name: <Link href={''}>Susan Smith</Link>,
-        Gender: "Female",
-        Area_Locality: "Bexleyhealth",
-        Area_Office: "Boxhill",
-        Dereg_Status: "Boxhill",
-    },
     {
         Sr_No: "01",
         Image: img1,

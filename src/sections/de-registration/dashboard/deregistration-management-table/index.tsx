@@ -21,36 +21,6 @@ export const TableData = [
         Area_Office: "Boxhill",
         Dereg_Status: "Boxhill",
     },
-    {
-        Sr_No: "01",
-        Image: img1,
-        Carer_Code: "PFC-10vfgdfgd1",
-        Carer_Name: <Link href={''}>Susan Smith</Link>,
-        Gender: "Female",
-        Area_Locality: "Bexleyhealth",
-        Area_Office: "Boxhill",
-        Dereg_Status: "Boxhill",
-    },
-    {
-        Sr_No: "01",
-        Image: img1,
-        Carer_Code: "PFC-10vfgdfgd1",
-        Carer_Name: <Link href={''}>Susan Smith</Link>,
-        Gender: "Female",
-        Area_Locality: "Bexleyhealth",
-        Area_Office: "Boxhill",
-        Dereg_Status: "Boxhill",
-    },
-    {
-        Sr_No: "01",
-        Image: img1,
-        Carer_Code: "PFC-10vfgdfgd1",
-        Carer_Name: <Link href={''}>Susan Smith</Link>,
-        Gender: "Female",
-        Area_Locality: "Bexleyhealth",
-        Area_Office: "Boxhill",
-        Dereg_Status: "Boxhill",
-    },
 ]
 
 export const menuItems = [
