@@ -1,5 +1,6 @@
 import HomeIcon from "@mui/icons-material/Home";
 import { Paper } from "@mui/material";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
@@ -8,18 +9,18 @@ import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: "Child Info",
-      href: "/foster-child/child-background-info/family-person-org-involved",
-    },
-    {
-      name: "Family Persons & Org Involved List",
-      href: "",
-    },
-  ];
-  
-  const PAGE_TITLE = "View Family Persons & Org Involved";
+  {
+    icon: <HomeIcon />,
+    name: "Child Info",
+    href: "/foster-child/child-background-info/family-person-org-involved",
+  },
+  {
+    name: "Family Persons & Org Involved List",
+    href: "",
+  },
+];
+
+const PAGE_TITLE = "View Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 ViewFamilyPersonForm.getLayout = function getLayout(page: any) {
@@ -40,21 +41,20 @@ export default function ViewFamilyPersonForm() {
 
   const familyPersonId = query["family_person_id"];
   const { data, isLoading, isSuccess, isError } =
-  useGetFamilyPersonListByIdQuery(familyPersonId);
+    useGetFamilyPersonListByIdQuery(familyPersonId);
 
   console.log("Is loading: ", data);
-  
+
   return (
     <Page title={PAGE_TITLE}>
-      <Paper elevation={4} sx={{ padding: 3 }}>
+      <HorizaontalTabs
+        tabsDataArray={["Family Org Involved", "Documents"]}
+      >
         {isLoading && <p>Loading...</p>}
         {isSuccess && (
-            <FamilyOrgInvolvedForm 
-            defaultValues={data[0]}
-            disabled
-            />
+          <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />
         )}
-      </Paper>
+      </HorizaontalTabs>
     </Page>
   );
 }

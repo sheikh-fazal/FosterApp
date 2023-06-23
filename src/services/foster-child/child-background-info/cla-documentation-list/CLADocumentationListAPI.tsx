@@ -5,10 +5,10 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of CLA Documentation
     claDocumentationList: builder.query<null, object>({
-      query: (search: any) => ({
+      query: ({params}: any) => ({
         url: "/foster-child/cla/list",
         method: "GET",
-        params: search,
+        params,
       }),
       providesTags: ["CLA_DOCUMENTATION_LIST"],
     }),

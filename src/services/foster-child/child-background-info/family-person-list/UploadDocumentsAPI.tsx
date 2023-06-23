@@ -5,10 +5,9 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of Family Person Upload Document
     getFamilyPersonUploadDocument: builder.query<null, object>({
-      query: (childFamilyOrgInfoId: any) => ({
+      query: ({ childFamilyOrgInfoId }: any) => ({
         url: `/foster-child/child-family-org-info/document/list/${childFamilyOrgInfoId}`,
         method: "GET",
-        param: childFamilyOrgInfoId,
       }),
       providesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],
     }),

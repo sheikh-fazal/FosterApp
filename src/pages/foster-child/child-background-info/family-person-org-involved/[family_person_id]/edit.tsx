@@ -5,6 +5,8 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
 
 // Constants
 const BREADCRUMBS = [
@@ -38,20 +40,24 @@ export default function EditFamilyPersonForm() {
   const { query } = useRouter();
   const familyPersonId = query["family_person_id"];
   const { data, isLoading, isSuccess, isError } =
-  useGetFamilyPersonListByIdQuery(familyPersonId);
+    useGetFamilyPersonListByIdQuery(familyPersonId);
 
   console.log("Is loading: ", data);
-  
+
   return (
     <Page title={PAGE_TITLE}>
-      <Paper elevation={4} sx={{ padding: 3 }}>
-        {isLoading && <p>Loading...</p>}
-        {isSuccess && (
-            <FamilyOrgInvolvedForm 
-            defaultValues={data[0]}
-            />
-        )}
-      </Paper>
+
+        <HorizaontalTabs
+          tabsDataArray={["Family Org Involved", "Uploaded documents"]}
+        >
+          {/* Family Person Form */}
+          {isLoading && <p>Loading...</p>}
+          {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
+
+          {/* Upload Document */}
+          <FamilyPersonDocument />
+        </HorizaontalTabs>
+
     </Page>
   );
 }

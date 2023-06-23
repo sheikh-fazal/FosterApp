@@ -5,10 +5,10 @@ export const FamilyPersonListAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     //Get API of Family Person List
     getFamilyPersonList: builder.query<null, object>({
-      query: (search: any) => ({
+      query: ({params}: any) => ({
         url: "/foster-child/child-info/family-org-involved/list-fc-family-org-involved",
         method: "GET",
-        param: search,
+        params,
       }),
       providesTags: ["FAMILY_PERSON_LIST"],
     }),

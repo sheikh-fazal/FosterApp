@@ -3,19 +3,21 @@ import router from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import { useFamilyPersonListTable } from "../useFamilyPersonListTable";
+import { useFamilyPersonListTable } from "./useFamilyPersonListTable";
 import TableAction from "@root/components/TableAction";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 export default function FamilyPersonListTable() {
   const {
     data,
-    setSearch,
+    headerChangeHandler,
     isError,
     isLoading,
     isSuccess,
     isFetching,
     listDeleteHandler,
+    pageChangeHandler,
+    sortChangeHandler,
   } = useFamilyPersonListTable();
 
   const columns = [
@@ -67,13 +69,11 @@ export default function FamilyPersonListTable() {
   return (
     <>
       <Card>
-        <TableHeader
+        <TableHeader 
           showAddBtn
           title="Child Family / Persons & Org. Involved"
           searchKey="search"
-          onChanged={(event: any) => {
-            setSearch(event.search);
-          }}
+          onChanged={headerChangeHandler}
           onAdd={() => {
             router.push(
               `/foster-child/child-background-info/family-person-org-involved/add-family-form-list`
@@ -88,14 +88,10 @@ export default function FamilyPersonListTable() {
           isError={isError}
           isSuccess={isSuccess}
           showSerialNo
-          currentPage={data?.data?.meta?.page ?? 1}
-          totalPages={data?.data?.meta?.pages ?? 2}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
+          currentPage={data?.meta?.page}
+          totalPages={data?.meta?.pages}
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
         />
       </Card>
     </>
