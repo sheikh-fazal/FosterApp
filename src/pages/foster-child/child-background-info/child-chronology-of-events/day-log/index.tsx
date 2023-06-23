@@ -3,7 +3,7 @@ import DayLogForm from "@root/sections/foster-child/child-background-info/child-
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { useGetChildChronologyOfEventsUploadedDocumentsByIdQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
+import { useGetChildChronologyOfEventsUploadedDocumentsListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 
 const BREADCRUMBS = [
   {
@@ -28,7 +28,7 @@ DayLog.getLayout = function getLayout(page: any) {
 
 export default function DayLog() {
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery();
   console.log("🚀 ~ file: index.tsx:32 ~ DayLog ~ data:", data);
 
   return (

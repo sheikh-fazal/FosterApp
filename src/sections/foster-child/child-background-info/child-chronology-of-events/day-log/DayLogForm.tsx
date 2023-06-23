@@ -11,8 +11,8 @@ const defaultValues = {
   correspondenceFromWhom: "asd",
   entryType: "entry",
 };
-const { action, id } = router.query;
 const DayLogForm = () => {
+  const { action, id } = router.query;
   const methods = useForm({
     defaultValues: defaultValues,
   });
