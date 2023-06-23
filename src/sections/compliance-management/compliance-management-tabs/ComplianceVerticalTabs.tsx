@@ -11,7 +11,7 @@ import {
 } from ".";
 
 import AddIcon from "@mui/icons-material/Add";
-import AddCategoryModal from "../Modals/add-modal/AddModal";
+import AddCategoryModal from "../Modals/category-modal/CategoryModal";
 
 
 const ComplianceVerticalTabs = ({
