@@ -6,7 +6,7 @@ import TableAction from "@root/components/TableAction";
 import Image from "next/image";
 
 export const useReferralListTable = () => {
-  const path = '/referral/referral-list/referral-form';
+  const path = "/referral/referral-list/referral-form";
   const router = useRouter();
   const [data, setData] = useState(TableDemoData);
   const [select, setSelect] = useState({ status: "", refereeType: "" });
@@ -45,11 +45,14 @@ export const useReferralListTable = () => {
 
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
-      case 'edit':
-        router.push({ pathname: `${path}/${id}`, query: { action: 'edit' } })
+      case "edit":
+        router.push({ pathname: `${path}/${id}`, query: { action: "edit" } });
         break;
-      case 'view':
-        router.push({ pathname: `${path}/${id}`, query: { action: 'view' } })
+      case "share":
+        setIsShareModal(true);
+        break;
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
         break;
       default:
         break;
@@ -144,8 +147,8 @@ export const useReferralListTable = () => {
     {
       id: "actions",
       cell: (info: any) => (
-       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {["edit","view",].map((action: string) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          {["edit", "share", "view"].map((action: string) => (
             <span key={action} style={{ flexShrink: 0 }}>
               <TableAction
                 type={action}
