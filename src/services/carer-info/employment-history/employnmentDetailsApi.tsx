@@ -23,20 +23,20 @@ export const userAPI: any = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["Experience"],
     }),
-    getSingleExperience: builder.query({
+    SingleExperience: builder.query({
       query: (id: any) => `employment-history/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
       },
-      providesTags: ["Experience"],
+      providesTags: ["Experience", 'SingleExperience'],
     }),
     deleteExperience: builder.mutation({
-      query: (id: any) => ({
-        url: `employment-history/${id}`,
+      query: (experienceId: any) => ({
+        url: `/employment-history/experience/${experienceId}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["Experience"],
+      invalidatesTags: ["Experience", 'SingleExperience'],
     }),
   }),
 });
@@ -46,4 +46,5 @@ export const {
   useExperienceMutation,
   useLazyGetSingleExperienceQuery,
   useEditExperienceMutation,
+  useDeleteExperienceMutation,
 } = userAPI;
