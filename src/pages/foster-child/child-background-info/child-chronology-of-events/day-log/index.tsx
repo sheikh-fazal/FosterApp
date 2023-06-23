@@ -3,7 +3,7 @@ import DayLogForm from "@root/sections/foster-child/child-background-info/child-
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { useGetChildChronologyOfEventsUploadedDocumentsListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
+import { useGetChildChronologyOfEventsUploadedDocumentsByIdQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 
 const BREADCRUMBS = [
   {
@@ -27,23 +27,33 @@ DayLog.getLayout = function getLayout(page: any) {
 };
 
 export default function DayLog() {
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetChildChronologyOfEventsUploadedDocumentsListQuery();
-  console.log("🚀 ~ file: index.tsx:31 ~ DayLog ~ data:", data)
+  const { data, isError, isLoading, isFetching, isSuccess }: any =
+    useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
+  console.log("🚀 ~ file: index.tsx:32 ~ DayLog ~ data:", data);
+
   return (
     <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documents"]}>
       <DayLogForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document}
+        tableData={data?.data?.foster_child_document?.filter(
+          (item: { formName: string }) => item?.formName === "day_log"
+        )}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
-        column={["formName", "documentType", "documentDate", "personUploaded", "documentPassword"]}
+        column={[
+          "documentOriginalName",
+          "documentType",
+          "documentDate",
+          "personUploaded",
+          "documentPassword",
+        ]}
         modalData={() => {}}
         onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={"1"}
-        totalPages={"1"}
+        currentPage={data?.data?.page}
+        totalPages={data?.data?.pages}
       />
     </HorizaontalTabs>
   );
