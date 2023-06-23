@@ -32,7 +32,10 @@ export const useDocuments = () => {
   };
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter);
+    useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter, {
+      skip: !!!query?.id,
+      refetchOnMountOrArgChange: true,
+    });
 
   const submitStatutoryMedicalListInfoDocumentData = async (data: any) => {
     const documentFormData = new FormData();
@@ -53,6 +56,7 @@ export const useDocuments = () => {
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -72,6 +76,7 @@ export const useDocuments = () => {
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -83,7 +88,7 @@ export const useDocuments = () => {
     data,
     isLoading,
     isError,
-    isSuccess,
+    isSuccess,      
     user,
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,

@@ -2,12 +2,10 @@ import React from "react";
 import { Button, Grid, Menu, MenuItem, Stack } from "@mui/material";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import AccordianList from "@root/components/AccordianList";
-import {
-  carerNameData,
-  carerTypeData,
-  statutoryMedicalListAccordionData,
-} from ".";
+import { carerNameData, statutoryMedicalListAccordionData } from ".";
 import { useStatutoryMedicalList } from "./useStatutoryMedicalList";
 
 const StatutoryMedicalList = () => {
@@ -27,6 +25,12 @@ const StatutoryMedicalList = () => {
       >
         {/* Carer Type Dropdown */}
         {/* Carer Name Dropdown */}
+        <Button variant="contained" sx={{ px: 0 }}>
+          <LocalPrintshopIcon />
+        </Button>
+        <Button variant="contained" sx={{ px: 0 }}>
+          <OpenInNewIcon />
+        </Button>
         <Button
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}

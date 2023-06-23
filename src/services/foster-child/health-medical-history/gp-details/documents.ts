@@ -1,6 +1,6 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
+export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getGpDetailsInfoDocumentData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -41,6 +41,7 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
 export const {
   useDeleteGpDetailsInfoDocumentDataByIdMutation,
   useGetGpDetailsInfoDocumentDataQuery,
+  useLazyGetGpDetailsInfoDocumentDataQuery,
   usePostGpDetailsInfoDocumentDataMutation,
   usePatchGpDetailsInfoDocumentDataMutation,
 } = gpDetailsInfoDocumentApi;

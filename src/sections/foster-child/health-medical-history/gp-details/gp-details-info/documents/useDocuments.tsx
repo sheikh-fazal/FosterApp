@@ -33,7 +33,10 @@ export const useDocuments = () => {
   };
   const apiDataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetGpDetailsInfoDocumentDataQuery(apiDataParameter);
+    useGetGpDetailsInfoDocumentDataQuery(apiDataParameter, {
+      skip: !!!query?.gpInfoId,
+      refetchOnMountOrArgChange: true,
+    });
 
   const submitGpDetailsInfoDocumentData = async (data: any) => {
     const documentFormData = new FormData();
@@ -53,6 +56,7 @@ export const useDocuments = () => {
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -71,6 +75,7 @@ export const useDocuments = () => {
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });

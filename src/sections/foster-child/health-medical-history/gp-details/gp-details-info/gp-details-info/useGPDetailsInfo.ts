@@ -39,6 +39,7 @@ export const useGPDetailsInfo = () => {
   const apiDataParameter = { pathParams };
 
   const setGpDetailsInfoDefaultValue = async () => {
+    if (!!!query?.gpInfoId) return;
     const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
       apiDataParameter,
       true
