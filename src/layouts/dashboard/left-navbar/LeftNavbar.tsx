@@ -66,7 +66,7 @@ const LeftNavbar = (props: any) => {
               variant="caption"
               sx={{ color: theme.palette.primary.main }}
             >
-              {/* {defaultRole ?? "User"}l */}
+              {/* {defaultRole ?? "User"} */}
             </Typography>
           </Box>
         )}

@@ -40,6 +40,8 @@ const TableHeader = forwardRef(function TableHeader(
     selectSize = "small",
     searchSize = "small",
     showAddBtn = false,
+    showRecordingBtn = false,
+    onRecording = () => { },
     showDeleteBtn = false,
     // share btn
     showShareBtn = false,
@@ -158,7 +160,14 @@ const TableHeader = forwardRef(function TableHeader(
           ))}
         </Stack>
       )}
-
+      {/* recording Icon */}
+      {showRecordingBtn && (
+        <TableAction
+          disabled={disabled}
+          onClicked={onRecording}
+          type="recording"
+        />
+      )}
       {/* Delete Button */}
       {showDeleteBtn && (
         <TableAction disabled={disabled} onClicked={onDelete} type="delete" />

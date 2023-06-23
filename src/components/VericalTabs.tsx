@@ -11,7 +11,8 @@ import { Tabs, Tab, Typography, useTheme, Grid, Box, Card } from "@mui/material"
 interface IVERTICALTABSPROPS {
   tabsDataArray: Array<Object>;
   children: ReactNode;
-  setActiveTab?:any;
+  setActiveTab?: any;
+  customStyle?: any;
 }
 
 // ----------------------------------------------------------------------
@@ -30,7 +31,7 @@ function CommonCircularProgress(props: CircularProgressProps & { value: number }
 
 // ----------------------------------------------------------------------
 
-export default function VericalTabs({ tabsDataArray, children,setActiveTab, ...other }: IVERTICALTABSPROPS) {
+export default function VericalTabs({ tabsDataArray, children, customStyle = {}, setActiveTab, ...other }: IVERTICALTABSPROPS) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -66,7 +67,7 @@ export default function VericalTabs({ tabsDataArray, children,setActiveTab, ...o
                   {item?.percentage && <CommonCircularProgress value={item?.percentage} />}
                 </Box>
               }
-              // onClick={() => setActiveTab(item.title)}
+            // onClick={() => setActiveTab(item.title)}
             />
           ))}
         </Tabs>
@@ -85,11 +86,13 @@ export default function VericalTabs({ tabsDataArray, children,setActiveTab, ...o
               <Typography variant="h5" component="div" color={"#ffffff"} sx={styles.tabPanelHeader(item?.background)}>
                 {item?.title}
               </Typography>
-              {arrayChildren?.map((child, index) => (
-                <Box key={index} sx={{ px: 3 }}>
-                  {value === index && child}
-                </Box>
-              ))}
+              <Box sx={customStyle}>
+                {arrayChildren?.map((child, index) => (
+                  <Box key={index} sx={{ px: 3 }}>
+                    {value === index && child}
+                  </Box>
+                ))}
+              </Box>
             </Card>
           </div>
         ))}

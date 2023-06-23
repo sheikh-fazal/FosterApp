@@ -43,12 +43,8 @@ const UpdateViewRefForm: FC<any> = ({ close, defValues, disabled }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {

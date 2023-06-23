@@ -12,7 +12,7 @@ import DiagreamIcon from "../assets/svg/Referrals/diagram.svg";
 import Image from "next/image";
 import PrintIcon from "@mui/icons-material/Print";
 import { FaShareSquare } from "react-icons/fa";
-
+import MicIcon from '@mui/icons-material/Mic';
 // ----------------------------------------------------------------------
 
 const TableAction = ({
@@ -73,6 +73,9 @@ const styles = {
         backgroundColor = theme.palette.grey[600];
         break;
 
+      case "recording":
+        backgroundColor = "#23183D";
+        break;
     }
     return {
       backgroundColor,
@@ -150,4 +153,7 @@ const icons: any = {
       style={{ color: "#fff", padding: "1px", fontSize: "25px" }}
     />
   ),
+  recording: (
+    <MicIcon sx={{ fontSize: "19px", color: '#DEBC0A' }} />
+  )
 };

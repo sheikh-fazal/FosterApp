@@ -9,7 +9,7 @@ import { useContactDirectory } from "./contact-directory-table/useContactDirecto
 
 // ====================================================================================
 
-const AgencySafeguardingOfficer = () => {
+const AgencySafeguardingOfficer = ({ defaultValue = 2 }: any) => {
   const { tableHeaderRef, filteredData, tabsArr, alphabets, handleClick, activeTab, setActiveTab, selectedAlphabet, contactDirectoryTabs, theme } =
     useAgencySafeguardingOfficer();
 
@@ -19,7 +19,7 @@ const AgencySafeguardingOfficer = () => {
     <>
       <Card sx={styles.card}>
         <TableHeader title={"Contact Directory"} ref={tableHeaderRef} searchKey="search" showAddBtn onAdd={handleEditOpen} />
-        <HorizaontalTabs tabsDataArray={tabsArr} setActiveTab={setActiveTab} defaultValue={2}>
+        <HorizaontalTabs tabsDataArray={tabsArr} setActiveTab={setActiveTab} defaultValue={defaultValue} disableBoxShadow>
           {contactDirectoryTabs.map((item: any, index: number) => (
             <Fragment key={index}>
               <ContactDirectoryTable data={filteredData} contactInfoModal={isEditModal} setContactInfoModal={handleEditOpen} />

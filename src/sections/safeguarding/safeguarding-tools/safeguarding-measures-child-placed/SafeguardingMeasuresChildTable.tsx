@@ -1,6 +1,6 @@
 import React from 'react'
 import TableHeader from '@root/components/TableHeader'
-import CollapsibleTable from '@root/pages/safeguarding/collapsible-table'
+import CollapsibleTable from '@root/components/Table/collapsible-table'
 import ShareModal from '@root/components/modal/shareModal'
 import { columns, innerColums, rowsData } from '.'
 import { useSafeguardingMeasuresChildTable } from './useSafeguardingMeasuresChildTable'
