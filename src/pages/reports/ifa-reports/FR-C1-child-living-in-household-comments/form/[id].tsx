@@ -22,7 +22,7 @@ FRC1.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-C1",
+          href: "/reports/ifa-reports/FR-C1-child-living-in-household-comments",
         },
         {
           name: "FR-C1 Child Living In The Household's Comments"

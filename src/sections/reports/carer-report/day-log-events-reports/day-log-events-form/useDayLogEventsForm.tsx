@@ -7,7 +7,7 @@ export const useDaylogEventsForm = () => {
     defaultValues: DaylogEventsFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push("/reports/carer-reports/day-log-events-reports");
+  const handleBack = () => router.push("/reports/carer-reports/day-log-events");
   const {
     reset,
     control,

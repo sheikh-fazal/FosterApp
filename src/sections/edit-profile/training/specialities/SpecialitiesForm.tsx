@@ -2,7 +2,7 @@ import { useState, FC, Fragment } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import InfoIcon from "@mui/icons-material/Info";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // @mui
 import { Button, Grid, Typography } from "@mui/material";
 // utils
@@ -26,7 +26,6 @@ import FormSkeleton from "../../render-form/FormSkeleton";
 
 const SpecialitiesForm: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
-  const [showPassword, setShowPassword] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [getSpecialitiesInfo] = useLazyGetSpecialitiesInfoQuery();
@@ -35,7 +34,7 @@ const SpecialitiesForm: FC<any> = ({ activateNextForm }) => {
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       setIsLoading(true);
-      const { data, isError,error } = await getSpecialitiesInfo(null, true);
+      const { data, isError, error } = await getSpecialitiesInfo(null, true);
       setIsLoading(false);
       if (isError || !data?.data) {
         data?.data && displayErrorMessage(error, enqueueSnackbar);
@@ -49,15 +48,9 @@ const SpecialitiesForm: FC<any> = ({ activateNextForm }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
-
-  const photo = useWatch({ control, name: "photo" });
 
   const onSubmit = async (data: any) => {
     const formData = {

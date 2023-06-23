@@ -20,6 +20,8 @@ import { FOSTERCHILDTABSDATAARRAY } from "@root/sections/foster-child/FosterChil
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import DoneIcon from "@mui/icons-material/Done";
 import HomeIcon from "@mui/icons-material/Home";
+import router, { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -54,57 +56,66 @@ FosterChild.getLayout = function getLayout(page: any) {
 
 export default function FosterChild() {
   const theme: any = useTheme();
-
-  return (
-    <Page title={PAGE_TITLE}>
-      <VericalTabs tabsDataArray={FOSTERCHILDTABSDATAARRAY}>
-        {FOSTERCHILDTABSDATAARRAY?.map((item) => (
-          <Fragment key={item?.index}>
-            {item?.innerDataArray?.map((innerItem) => (
-              <Box key={innerItem?.id} sx={styles?.container}>
-                <List sx={styles?.listContainer}>
-                  <NextLink
-                    href={innerItem?.link}
-                    style={styles?.nextLinkContainer}
-                  >
-                    <ListItem
-                      sx={styles?.listItemContainer(theme)}
-                      secondaryAction={
-                        <IconButton
-                          edge="end"
-                          sx={styles?.listIconButton(theme)}
-                        >
-                          P
-                          <DoneIcon
-                            sx={{ color: "#0E918C", fontSize: "14px" }}
-                          />
-                          A
-                          <FiberManualRecordIcon
-                            sx={{ color: "#F6830F", fontSize: "14px" }}
-                          />
-                        </IconButton>
-                      }
+  const Router: any = useRouter();
+  const { fosterChildId } = Router.query;
+  if (!fosterChildId) {
+    router.push("/foster-child-lists");
+    enqueueSnackbar("Foster Child Id Not Provided", { variant: "error" });
+  } else {
+    return (
+      <Page title={PAGE_TITLE}>
+        <VericalTabs tabsDataArray={FOSTERCHILDTABSDATAARRAY}>
+          {FOSTERCHILDTABSDATAARRAY?.map((item) => (
+            <Fragment key={item?.index}>
+              {item?.innerDataArray?.map((innerItem) => (
+                <Box key={innerItem?.id} sx={styles?.container}>
+                  <List sx={styles?.listContainer}>
+                    <NextLink
+                      href={{
+                        pathname: innerItem?.link,
+                        query: { fosterChildId: fosterChildId },
+                      }}
+                      style={styles?.nextLinkContainer}
                     >
-                      <ListItemAvatar
-                        sx={styles?.listItemAvatar(item?.background)}
-                      />
-                      <Typography
-                        variant="subtitle1"
-                        component="p"
-                        color={theme.palette.grey[600]}
+                      <ListItem
+                        sx={styles?.listItemContainer(theme)}
+                        secondaryAction={
+                          <IconButton
+                            edge="end"
+                            sx={styles?.listIconButton(theme)}
+                          >
+                            P
+                            <DoneIcon
+                              sx={{ color: "#0E918C", fontSize: "14px" }}
+                            />
+                            A
+                            <FiberManualRecordIcon
+                              sx={{ color: "#F6830F", fontSize: "14px" }}
+                            />
+                          </IconButton>
+                        }
                       >
-                        {innerItem?.title}
-                      </Typography>
-                    </ListItem>
-                  </NextLink>
-                </List>
-              </Box>
-            ))}
-          </Fragment>
-        ))}
-      </VericalTabs>
-    </Page>
-  );
+                        <ListItemAvatar
+                          sx={styles?.listItemAvatar(item?.background)}
+                        />
+                        <Typography
+                          variant="subtitle1"
+                          component="p"
+                          color={theme.palette.grey[600]}
+                        >
+                          {innerItem?.title}
+                        </Typography>
+                      </ListItem>
+                    </NextLink>
+                  </List>
+                </Box>
+              ))}
+            </Fragment>
+          ))}
+        </VericalTabs>
+      </Page>
+    );
+  }
 }
 
 // ----------------------------------------------------------------------

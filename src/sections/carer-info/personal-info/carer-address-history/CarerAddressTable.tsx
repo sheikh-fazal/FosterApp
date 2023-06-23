@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import React from "react";
 import TableHeader from "@root/components/TableHeader";
-import { columns, CarerAddressHistoryTableData } from ".";
+import { columns } from ".";
 import { useCarerAddressTable } from "./useCarerAddressTable";
 
 export function CarerAddressHistoryTable() {

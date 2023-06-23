@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddFosteringServiceManagerReport = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-H');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-H-fostering-service-manager');
 
 
   const methods: any = useForm({

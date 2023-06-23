@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddBirthParent = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-F3');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-F3-birth-parent');
 
 
   const methods: any = useForm({

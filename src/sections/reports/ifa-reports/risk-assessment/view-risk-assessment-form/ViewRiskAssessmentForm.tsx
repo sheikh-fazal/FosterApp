@@ -42,7 +42,7 @@ const RiskAssessmentViewForm = ({ action }: any) => {
 
           <Grid item xs={12}>
             <Link
-              href={"/reports/ifa-reports/risk-assessment-form"}
+              href={"/reports/ifa-reports/risk-assessment"}
               style={{ textDecoration: "none" }}
             >
               <Button

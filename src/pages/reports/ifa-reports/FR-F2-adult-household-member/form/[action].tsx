@@ -23,7 +23,7 @@ FRF2.getLayout = function getLayout(page: any) {
         },
         {
           name: "IFA Reports",
-          href: "/reports/ifa-reports/FR-F2",
+          href: "/reports/ifa-reports/FR-F2-adult-household-member",
         },
         {
           name:"FR-F2: Adult Household Member/Support To Foster Carer"

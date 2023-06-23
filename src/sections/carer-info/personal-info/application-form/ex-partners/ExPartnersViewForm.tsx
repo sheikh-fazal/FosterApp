@@ -1,23 +1,27 @@
 import { useState, useRef } from "react";
-// form
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, useWatch } from "react-hook-form";
-// @mui
 import { Grid, Box, Button, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-import { fTimestamp } from "@root/utils/formatTime";
-// components
 import { FormProvider } from "@root/components/hook-form";
-//
 import { FormSchema, defaultValues, formData } from ".";
 import { useExPartnersViewForm } from "./useExPartnersViewForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function ExPartnersViewForm(props: any) {
   const { changeView } = props;
 
-  let { methods, handleSubmit, onSubmit, isSubmitting, isDirty } =
-    useExPartnersViewForm(props);
+  let {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    postLoading,
+    editLoading,
+  } = useExPartnersViewForm(props);
+
+  if (postLoading || editLoading) {
+    return <SkeletonFormdata />;
+  }
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -57,7 +61,7 @@ export default function ExPartnersViewForm(props: any) {
         {props.viewData == "view" ? (
           <LoadingButton
             onClick={() => {
-              props.changeView(null);
+              changeView(null);
             }}
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
@@ -78,7 +82,7 @@ export default function ExPartnersViewForm(props: any) {
             </LoadingButton>
             <LoadingButton
               onClick={() => {
-                props.changeView(null);
+                changeView(null);
               }}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}

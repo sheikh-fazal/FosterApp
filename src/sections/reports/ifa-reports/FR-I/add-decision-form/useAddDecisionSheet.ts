@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 export const useAddDecisionSheet = () => {
   const router = useRouter();
 
-  const handleBack = () => router.push('/reports/ifa-reports/FR-I');
+  const handleBack = () => router.push('/reports/ifa-reports/FR-I-decision-sheet');
 
 
   const methods: any = useForm({

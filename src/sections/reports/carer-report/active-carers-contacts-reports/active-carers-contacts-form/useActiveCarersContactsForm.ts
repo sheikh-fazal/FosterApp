@@ -7,7 +7,7 @@ export const useActiveCarersContactsForm = () => {
     defaultValues: ActiveCarersContactFormDefaultValues,
   });
   const router = useRouter();
-  const handleBack = () => router.push('/reports/carer-reports/active-carers-contacts-reports')
+  const handleBack = () => router.push('/reports/carer-reports/active-carers-contacts')
   const {
     reset,
     control,

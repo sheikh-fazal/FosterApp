@@ -4,7 +4,7 @@ import { useState } from "react";
 export const useFosteringServiceManagerReport = () => {
   const [openDelete, setOpenDelete] = useState(false);
   const router = useRouter();
-  const path = '/reports/ifa-reports/FR-H-fostering-service-manager-report/form';
+  const path = '/reports/ifa-reports/FR-H-fostering-service-manager/form';
   const handleSearch = () => { };
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
