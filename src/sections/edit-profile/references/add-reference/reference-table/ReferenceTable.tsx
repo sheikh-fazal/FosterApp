@@ -7,6 +7,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
 import UpdateViewRefForm from "./update-view-reference-form/UpdateViewRefForm";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const ReferenceTable = () => {
   const theme: any = useTheme();
@@ -19,10 +20,11 @@ const ReferenceTable = () => {
     tableStatusInfo,
     openViewUpdateModel,
     closeViewUpdateModel,
+    delReference,
   } = useRefereneceTable();
 
-  const columns = getColumns({ openViewUpdateModel });
-  // if (isLoading) return <FormSkeleton />;
+  const columns = getColumns({ openViewUpdateModel, delReference });
+
   return (
     <>
       <Grid container>
@@ -73,26 +75,6 @@ const ReferenceTable = () => {
           />
         </Grid>
       </Modal>
-      {/* <Modal open={tableStatusInfo.viewModel} onClose={closeViewModel}>
-        <Grid
-          container
-          sx={{
-            background: "white",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
-          sm={5}
-          xs={10}
-        >
-          <UpdateViewRefForm
-            close={closeViewModel}
-            defValues={tableStatusInfo?.refFormDataHolder}
-            disabled
-          />
-        </Grid>
-      </Modal> */}
     </>
   );
 };

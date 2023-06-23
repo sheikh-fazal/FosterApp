@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTheme } from "@emotion/react";
 import { Grid, Modal, Typography } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
 import { useAdditionalTable } from "./useAdditionalTable";
 import CustomTable from "@root/components/Table/CustomTable";
 import { getColumns } from "./columnsInfo";
-import UpdateViewRefForm from "./update-view-reference-form/UpdateViewAdditionalForm";
-import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import UpdateViewAdditionalForm from "./update-view-reference-form/UpdateViewAdditionalForm";
 
 const AdditionalTrainingTable = () => {

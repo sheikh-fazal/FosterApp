@@ -21,27 +21,36 @@ export default function DashboardLayout({ children, ...other }: any) {
   const handleDrawer = () => (open ? setOpen(false) : setOpen(true));
   const handleDrawerright = () =>
     rightnavbars ? setrightbars(false) : setrightbars(true);
-
+  const screenSizeHandler = useMediaQuery(theme.breakpoints.down("sm"));
+  
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={styles.mainBoxStyles}>
         {/* leftnavabr */}
-        <LeftNavbar open={open} />
+        <LeftNavbar handleDrawer={handleDrawer} open={open} />
         {/* topnavbar */}
 
-        <Box sx={{ width: "100%" }}>
+        <Box
+          className="parenttop"
+          sx={styles.parentChildrenStyles(theme, rightnavbars, open)}
+          onClick={() => {
+            if (screenSizeHandler) {
+              return handleDrawer();
+            }
+          }}
+        >
           <Topnavbar leftopen={open} handleDrawer={handleDrawer} />
           <Box
             className="allset"
             sx={styles.childrenStyles(theme, rightnavbars)}
           >
+            {showTitleWithBreadcrumbs && (
+              <TitleWithBreadcrumbLinks sx={{ mb: 2 }} {...other} />
+            )}
             <Rightnavbar
               rightnavbars={rightnavbars}
               handleDrawerright={handleDrawerright}
             />
-            {showTitleWithBreadcrumbs && (
-              <TitleWithBreadcrumbLinks sx={{ mb: 2 }} {...other} />
-            )}
             {children}
           </Box>
         </Box>
@@ -58,6 +67,18 @@ const styles = {
     position: "relative",
     width: "100%",
   },
+  parentChildrenStyles: (theme: any, rightnavbars: boolean, open: boolean) => ({
+    [theme.breakpoints.up("xs")]: {
+      width: "100%",
+    },
+    [theme.breakpoints.up("xl")]: {
+      transition: theme.transitions.create("width", {
+        duration: "0.4s",
+      }),
+      width: open === true ? "calc(100% - 290px)" : "calc(100% - 80px)",
+    },
+  }),
+
   childrenStyles: (theme: any, rightnavbars: boolean) => ({
     minHeight: "100vh",
     [theme.breakpoints.up("xs")]: {
@@ -66,7 +87,6 @@ const styles = {
       pb: theme.spacing(5),
     },
     [theme.breakpoints.up("sm")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "100%",
       transition: "0.4s",
       overflowY: "auto",
       pt: theme.spacing(10),
@@ -75,7 +95,6 @@ const styles = {
       pb: theme.spacing(15),
     },
     [theme.breakpoints.up("md")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "100%",
       maxWidth: "calc(100% - 0px)",
       transition: "0.4s",
       overflowY: "auto",
@@ -85,7 +104,6 @@ const styles = {
       pb: theme.spacing(15),
     },
     [theme.breakpoints.up("lg")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "calc(100% - 80px)",
       transition: "0.4s",
       overflowY: "auto",
       maxWidth: "calc(100% - 80px)",
@@ -95,9 +113,9 @@ const styles = {
       pb: theme.spacing(6),
     },
     [theme.breakpoints.up("xl")]: {
-      width: rightnavbars === true ? "calc(100% - 300px)" : "calc(100% - 80px)",
       transition: "0.4s",
       overflowY: "auto",
+
       maxWidth: "calc(100% - 100px)",
       pt: theme.spacing(10),
       pl: theme.spacing(2.5),

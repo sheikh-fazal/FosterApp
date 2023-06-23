@@ -1,37 +1,45 @@
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useFamilyTable } from "./useFamilyTable";
 import { columns } from ".";
-import { useGetFamilyDetailsQuery } from "@root/services/carer-info/personal-info/application-form/FamilyApi";
 import FamilyViewForm from "./FamilyViewForm";
 
-export default function FamilyTable({ apllicationFormid, role }: any) {
+export default function FamilyTable({ applicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
-  let [refData, setRefData] = useState(null);
+  let [familyData, setFamilyData] = useState(null);
 
   const changeView = (val: any) => {
     setViewData(val);
   };
   const {
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
     router,
+    theme,
     tableHeaderRef,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-    theme,
-  } = useFamilyTable();
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetFamilyDetailsQuery(apllicationFormid);
+    meta,
+    listDeleteHandler,
+  } = useFamilyTable(applicationFormid);
+
   return (
     <Grid container>
       <Grid xs={12} item>
         {viewData ? (
           <FamilyViewForm
+            role
             disabled={viewData == "view" ? true : false}
-            refData={refData}
+            familyData={familyData}
             changeView={changeView}
+            viewData={viewData}
+            applicationFormid={applicationFormid}
           />
         ) : (
           <>
@@ -41,28 +49,28 @@ export default function FamilyTable({ apllicationFormid, role }: any) {
               title="Existing Family Member(s) Details"
               showAddBtn={role == "foster-carer" ? false : true}
               onAdd={() => {
-                changeView("view");
+                changeView("add");
               }}
               searchKey="search"
-              onChanged={(data: any) => {
-                console.log("Updated params: ", data);
-              }}
+              onChanged={headerChangeHandler}
             />
             <CustomTable
-              data={data?.data}
-              columns={columns}
+              data={data?.data?.application_form_family}
+              columns={columns(
+                changeView,
+                setFamilyData,
+                role,
+                listDeleteHandler
+              )}
               isLoading={isLoading}
               isFetching={isFetching}
               isError={isError}
               isSuccess={isSuccess}
+              currentPage={meta?.page}
+              totalPages={meta?.pages}
               showSerialNo
-              // count={Math.ceil(data?.data?.meta?.total / limit)}
-              currentPage={1}
-              onPageChange={(data: any) => {
-                console.log("Current page data: ", data);
-              }}
+              onPageChange={pageChangeHandler}
               onSortByChange={sortChangeHandler}
-              rootSX={{ my: theme.spacing(2) }}
             />
           </>
         )}

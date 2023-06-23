@@ -1,10 +1,8 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   relationShipType: "",
@@ -14,23 +12,16 @@ export const defaultValues = {
   address: "",
   phoneNumber: "",
   email: "",
-  childrenTogether: false,
+  childrenTogether: "",
 };
 
 export const FormSchema = Yup.object().shape({
   relationShipType: Yup.string().required("Field is required"),
   firstName: Yup.string().required("Field is required"),
-  middleName: Yup.string().required("Field is required"),
   lastName: Yup.string().required("Field is required"),
-  address: Yup.string()
-    .required("Address is required")
-    .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 10 characters"),
-  phoneNumber: Yup.string()
-    .required("Telephone is required")
-    .min(4, "Mininum 4 characters")
-    .max(15, "Maximum 15 characters"),
-  email: Yup.string().required("Email is required").email("Invalid Email"),
+  address: Yup.string().required("Field is required"),
+  phoneNumber: Yup.string().required("Field is required"),
+  email: Yup.string().required("Field is required").email("Invalid Email"),
   childrenTogether: Yup.string().required("Field is required"),
 });
 export const formData = [
@@ -100,7 +91,12 @@ export const formData = [
   },
 ];
 
-export const columns = (changeView: any, setExPartnerData: any) => {
+export const columns = (
+  changeView: any,
+  setExPartnerData: any,
+  role: any,
+  listDeleteHandler: any
+) => {
   return [
     {
       accessorFn: (row: any) => `${row.firstName} ${row.lastName}`,
@@ -121,6 +117,7 @@ export const columns = (changeView: any, setExPartnerData: any) => {
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",
@@ -133,6 +130,20 @@ export const columns = (changeView: any, setExPartnerData: any) => {
               changeView("view");
             }}
           />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setExPartnerData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,

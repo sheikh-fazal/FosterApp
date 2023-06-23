@@ -1,7 +1,11 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import {
+  useDeleteAddressHistoryMutation,
+  useGetAllHistoryQuery,
+} from "@root/services/carer-info/personal-info/carer-address-history/CarerAddressHistoryApi";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import { useRef } from "react";
 
 export const useCarerAddressTable = () => {
@@ -12,18 +16,39 @@ export const useCarerAddressTable = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  // ----------------------------------------------------------------------
-
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetCarerFamilyTableApiQuery({ params });
-  const family = data?.faimly_details;
-  const meta = data?.meta;
+    useGetAllHistoryQuery({ params });
+  const addressHistoryList = data?.data?.carer_address_history;
+  const meta = data?.data?.meta;
+  const [deleteAddressHistory, { isLoading: isLoadingDelete }] =
+    useDeleteAddressHistoryMutation();
+
+  const listDeleteHandler = (id: any) => {
+    deleteAddressHistory(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Record Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return {
-    router,
     tableHeaderRef,
+    isLoading,
     headerChangeHandler,
+    addressHistoryList,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
     pageChangeHandler,
     sortChangeHandler,
     theme,
+    router,
+    listDeleteHandler,
   };
 };

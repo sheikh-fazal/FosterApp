@@ -8,8 +8,8 @@ const TodoAudits = () => {
       <Typography sx={{ color: "#0E918C", fontSize: "14px", fontWeight: "600" }}>
         Audits to Do
       </Typography>
-      {todoAudits.map((item: any) => (
-        <Box display="flex" alignItems="center" gap="10px" mt="19px" ml="14px">
+      {todoAudits.map((item: any,index:number) => (
+        <Box display="flex" alignItems="center" key={index} gap="10px" mt="19px" ml="14px">
           <Box sx={Style.bulletStyle}></Box>
           <Typography key={item?.id} fontSize="14px" fontWeight="500">
             {item?.title}

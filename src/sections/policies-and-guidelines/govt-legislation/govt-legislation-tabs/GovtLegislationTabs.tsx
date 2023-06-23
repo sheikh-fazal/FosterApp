@@ -9,15 +9,13 @@ const GovtLegislationsTabs = () => {
   const {
     route,
     currentTab,
-    setCurrentTab,
-    handlePreviousTab,
+    setCurrentTab, 
     isDeleteOpenModal,
     setIsDeleteOpenModal,
     isAddUrlModalOpen,
     setIsAddUrlModalOpen,
     handleSubmit,
-    handleAddUrlSubmit,
-    handleAction,
+    handleAddUrlSubmit, 
   } = useGovtLegislationTabs();
 
   return (
@@ -37,7 +35,7 @@ const GovtLegislationsTabs = () => {
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}
-          handleAddNewBack={"/policies-and-guidelines/govt-legislations/govt-legislations-form"}
+          handleAddNewBack={"/policies-and-guidelines/govt-legislations"}
         />
         <AddWebsiteUrlModal
           onSubmit={handleAddUrlSubmit}

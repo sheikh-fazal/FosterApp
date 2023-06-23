@@ -1,13 +1,10 @@
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-import { CarerAddressHistory } from "@root/sections/carer-info/personal-info/carer-address-history";
 import React from "react";
-//  icons
 import HomeIcon from "@mui/icons-material/Home";
 import CarerAddressHistoryForm from "@root/sections/carer-info/personal-info/carer-address-history/CarerAddressHistoryForms";
 import { Card } from "@mui/material";
-
-// ----------------------------------------------------------------------
+import { defaultValues } from "@root/sections/carer-info/personal-info/carer-address-history";
 
 const BREADCRUMBS = [
   {
@@ -16,7 +13,7 @@ const BREADCRUMBS = [
     href: "/carer-info",
   },
   {
-    name: "Add Carer Adrress",
+    name: "Carer Adrress",
     href: "",
   },
 ];
@@ -35,13 +32,14 @@ AddAddressHistory.getLayout = function getLayout(page: any) {
   );
 };
 
-// ----------------------------------------------------------------------
-
 export default function AddAddressHistory() {
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <CarerAddressHistoryForm formType={"add"} />
+        <CarerAddressHistoryForm
+          historyData={{ ...defaultValues }}
+          formType={"add"}
+        />
       </Card>
     </Page>
   );

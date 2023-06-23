@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   RadioGroup,
   Radio,
+  Button,
 } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
@@ -135,21 +136,7 @@ function AllegationForm(props: any) {
               >
                 Submit
               </LoadingButton>
-              <LoadingButton
-                sx={{
-                  bgcolor: theme.palette.grey[800],
-                  "&:hover": { bgcolor: theme.palette.grey[800] },
-                }}
-                variant="contained"
-                onClick={() =>
-                  router.push(
-                    "/carer-info/personal-info/carer-chronology-of-events"
-                  )
-                }
-              >
-                Save as draft
-              </LoadingButton>
-              <LoadingButton
+              <Button
                 sx={{
                   bgcolor: theme.palette.orange.main,
                   "&:hover": { bgcolor: theme.palette.orange.main },
@@ -162,7 +149,7 @@ function AllegationForm(props: any) {
                 }
               >
                 Back
-              </LoadingButton>
+              </Button>
             </Grid>
           ) : null}
         </Grid>

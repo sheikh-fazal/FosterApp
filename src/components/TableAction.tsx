@@ -12,12 +12,12 @@ import DiagreamIcon from "../assets/svg/Referrals/diagram.svg";
 import Image from "next/image";
 import PrintIcon from "@mui/icons-material/Print";
 import { FaShareSquare } from "react-icons/fa";
-
+import MicIcon from '@mui/icons-material/Mic';
 // ----------------------------------------------------------------------
 
 const TableAction = ({
   type = "edit",
-  onClicked = () => {},
+  onClicked = () => { },
   ...other
 }: any) => {
   return (
@@ -54,20 +54,15 @@ const styles = {
         backgroundColor = theme.palette.success.dark;
         break;
       case "refresh":
-        backgroundColor = "#23183D";
+        backgroundColor = theme.palette.grey[600];
         break;
       // share icon
       case "share":
-        backgroundColor = "#23183D";
+        backgroundColor = theme.palette.grey[600];
         break;
       case "diagram":
         backgroundColor = theme.palette.orange.main;
         break;
-      // share icon
-      case "share":
-        backgroundColor = "#23183D";
-        break;
-
       //  print icon
       case "print":
         backgroundColor = theme.palette.orange.main;
@@ -75,6 +70,10 @@ const styles = {
 
       // header share icon
       case "headerShare":
+        backgroundColor = theme.palette.grey[600];
+        break;
+
+      case "recording":
         backgroundColor = "#23183D";
         break;
     }
@@ -154,4 +153,7 @@ const icons: any = {
       style={{ color: "#fff", padding: "1px", fontSize: "25px" }}
     />
   ),
+  recording: (
+    <MicIcon sx={{ fontSize: "19px", color: '#DEBC0A' }} />
+  )
 };

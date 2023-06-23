@@ -110,7 +110,7 @@ export const TABSDATAARRY = [
       {
         id: 1,
         title: "Training Profile",
-        link: "/carer-info/training-profiles/training-profile",
+        link: "/carer-info/training-profiles/trainings-list",
       },
     ],
   },

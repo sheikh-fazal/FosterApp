@@ -18,7 +18,6 @@ import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormFie
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import MultipleFileUploader from "@root/sections/edit-profile/file-uploaders/multifile-uploader/MultipleFileUploader";
 import IsFetching from "@root/components/loaders/IsFetching";
-import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import {
   displayErrorMessage,
   displaySuccessMessage,
@@ -42,12 +41,8 @@ const AddTrainingDocForm: FC<any> = ({ addRefModelClose }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {
@@ -121,7 +116,10 @@ const AddTrainingDocForm: FC<any> = ({ addRefModelClose }) => {
               {/* Custom Fields On Half Width  */}
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFDatePicker name="issueDate" label="certificate issued?" />
+                  <RHFDatePicker
+                    name="issuedDate"
+                    label="certificate issued?"
+                  />
                 </Grid>
               </Grid>
               <Grid item sm={6} container direction="column">
@@ -129,15 +127,6 @@ const AddTrainingDocForm: FC<any> = ({ addRefModelClose }) => {
                   <RHFDatePicker name="expiryDate" label="Expiry Date" />
                 </Grid>
               </Grid>
-              {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
-                />
-              </Grid>
-            </Grid> */}
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">

@@ -108,9 +108,9 @@ const Rightnavbar = (props: any) => {
                   <path
                     d="M17.2298 9.11548L12.1156 13.9986L16.9987 19.1128"
                     stroke="white"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
                 </SvgRapper>
               ) : (
@@ -192,8 +192,8 @@ const Rightnavbar = (props: any) => {
             <Grid container>
               <Grid xs={12} item>
                 <NewCalender
-                onChange={setDate}
-                 value={date}
+                  onChange={setDate}
+                  value={date}
                   iconsStyles={{
                     fontSize: "25px",
                     color: theme.palette.primary.main,
@@ -201,7 +201,7 @@ const Rightnavbar = (props: any) => {
                 />
 
                 <Box>
-                  <StickyNotes date={date}/>
+                  <StickyNotes date={date} />
                 </Box>
                 <Box
                   sx={{

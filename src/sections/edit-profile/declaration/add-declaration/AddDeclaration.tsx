@@ -1,7 +1,7 @@
-import { useState, FC, Fragment } from "react";
+import { useState, FC, Fragment, useEffect, useRef } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 // @mui
 import { Button, Grid, Typography } from "@mui/material";
 // utils
@@ -12,7 +12,7 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 
-import { FormSchema, defaultValues, fieldsInfo } from "./formData";
+import { FormSchema, defaultValues } from "./formData";
 import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
@@ -24,13 +24,36 @@ import {
   DotedHeadingsWithDesInfo,
   HeadingsWithDesInfo,
 } from "./static-info/heading-data";
+import { useLayoutInfo } from "../../layout/use-layout-info";
+import {
+  useLazyGetDeclarationInfoQuery,
+  useUpdateDeclarationInfoMutation,
+} from "@root/services/update-profile/declaration/declarationApi";
+import { displayErrorMessage, displaySuccessMessage } from "../../util/Util";
+import { enqueueSnackbar } from "notistack";
+import FormSkeleton from "../../render-form/FormSkeleton";
 
-const AddDeclaration: FC<any> = ({ activateNextForm }) => {
+const AddDeclaration: FC<any> = ({ MoveTo }) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const [getDeclarationInfo] = useLazyGetDeclarationInfoQuery();
+  const [updateDeclarationInfo] = useUpdateDeclarationInfoMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: async () => {
+      const { data, isError, error } = await getDeclarationInfo(null, false);
+      setIsLoading(false);
+      if (isError || !data) {
+        displayErrorMessage(error, enqueueSnackbar);
+        return defaultValues;
+      }
+      return {
+        ...data?.data,
+        workRight: "No",
+        dba: "No",
+      };
+    },
   });
 
   const {
@@ -39,14 +62,39 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
     register,
     setValue,
     handleSubmit,
+    getValues,
+    watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
 
+  useEffect(() => {
+    let counter = 0;
+    const subscription = watch(async (values: any) => {
+      try {
+        counter += 1;
+        // checking if the user is opening the form first time
+        // may be in production that condtion will not work
+        if (counter <= 2) return;
+        delete values?.workRight;
+        delete values?.dba;
+        // Api Needs to be fixed
+        const jsonData = { ...values };
+        const res = await updateDeclarationInfo(jsonData);
+        displaySuccessMessage(res, enqueueSnackbar);
+      } catch (error) {
+        displayErrorMessage(error, enqueueSnackbar);
+      }
+    });
+    return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
   const onSubmit = async (data: any) => {
-    console.log({ data });
-    activateNextForm();
+    // activateNextForm();
   };
-
+  const moveToDbsAndWriteToWork = (e: any) => {
+    MoveTo("BACKGROUND CHECKS", "Right to work");
+  };
+  if (isLoading) return <FormSkeleton />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container justifyContent="center" sx={{ padding: "0.5em" }}>
@@ -78,7 +126,7 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
             <Grid item sm={12} container direction="column">
               <Grid item>
                 <RHFSwitch
-                  name="agreeToAboveDec"
+                  name="agree"
                   label="I agree to the above Declaration."
                 />
               </Grid>
@@ -92,8 +140,9 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
             <Grid item sm={12} container direction="column">
               <Grid item sx={{ padding: "0 0.5em" }}>
                 <RHFRadioGroup
-                  name="rightToWork"
+                  name="workRight"
                   options={["Yes", "No"]}
+                  onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
               </Grid>
             </Grid>
@@ -101,8 +150,9 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
               <RHFTextField
                 multiline
                 rows={4}
-                name="moreDetails"
+                name="detail"
                 label="If Yes, please provide more details"
+                disabled
               />
             </Grid>
             {/* are you willing to  */}
@@ -115,8 +165,9 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
             <Grid item sm={12} container direction="column">
               <Grid item sx={{ padding: "0 0.5em" }}>
                 <RHFRadioGroup
-                  name="areYouWilling"
+                  name="dba"
                   options={["Yes", "No"]}
+                  onChange={moveToDbsAndWriteToWork}
                 ></RHFRadioGroup>
               </Grid>
             </Grid>
@@ -143,6 +194,12 @@ const AddDeclaration: FC<any> = ({ activateNextForm }) => {
                   />
                 );
               })}
+            </Grid>
+            <Grid item sm={12}>
+              <RHFSwitch
+                name="dataPrivacy"
+                label="I agree to the above Declaration."
+              />
             </Grid>
           </Grid>
         </Grid>

@@ -1,11 +1,11 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  firstName: "Ali",
-  lastName: "Khan",
-  email: "iamemial@email.com",
-  phoneNo: "+9230164028524",
-  relationShip: "Pakistani",
+  firstName: "",
+  lastName: "",
+  email: "",
+  phoneNo: "",
+  relationShip: "",
 };
 
 export const FormSchema = Yup.object().shape({

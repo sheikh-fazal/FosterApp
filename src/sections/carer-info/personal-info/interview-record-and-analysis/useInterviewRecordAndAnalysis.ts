@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
-import { fTimestamp } from "@root/utils/formatTime";
 import { useEditInterviewRecordAnalysisMutation } from "@root/services/carer-info/personal-info/interview-record-analysis/InterviewRecordAnalysis";
 import { enqueueSnackbar } from "notistack";
 
@@ -40,11 +39,6 @@ export const useInterviewRecordAndAnalysis = (
     try {
       const res: any = await editInterviewRecordAnalysis(form_data).unwrap();
       if (res.data) {
-        reset({
-          ...res.data,
-          interviewDate: new Date(res?.data.interviewDate),
-          signatureDate: new Date(res?.data.signatureDate),
-        });
         enqueueSnackbar("Record Updated Successfully", { variant: "success" });
       }
     } catch (error: any) {
@@ -61,5 +55,6 @@ export const useInterviewRecordAndAnalysis = (
     isSubmitting,
     isDirty,
     theme,
+    isLoading,
   };
 };

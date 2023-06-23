@@ -1,21 +1,14 @@
-// form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, useWatch } from "react-hook-form";
-// @mui
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
 import { FormSchema, defaultValues, formData1, formData2 } from ".";
 import { fTimestamp } from "@root/utils/formatTime";
 import { FormProvider } from "@root/components/hook-form";
 import { useRouter } from "next/router";
 import download from "@root/assets/img/download.png";
 import { useInterviewRecordAndAnalysis } from "./useInterviewRecordAndAnalysis";
-
-//mui icons
-
-// ----------------------------------------------------------------------
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function InterviewRecordAndAnalysis({
   disabled,
@@ -24,10 +17,18 @@ export default function InterviewRecordAndAnalysis({
 }: any) {
   let router: any = useRouter();
 
-  const { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme } =
-    useInterviewRecordAndAnalysis(disabled, data, role);
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    isDirty,
+    theme,
+    isLoading,
+  } = useInterviewRecordAndAnalysis(disabled, data, role);
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isLoading} />
       <Grid container spacing={4}>
         {formData1.map((form: any, i: any) => {
           return (

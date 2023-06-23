@@ -1,7 +1,7 @@
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { AssessmentFormValidationSchema, SafeguardingAssessmentAddForm, defaultValues } from ".";
+import { AssessmentFormValidationSchema, defaultValues } from ".";
 
 export const useSafeguardingAssessmentForm = () => {
   const methods: any = useForm({

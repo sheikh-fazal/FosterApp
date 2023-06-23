@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
@@ -16,15 +16,13 @@ const IdUpload: FC<any> = ({ activateNextForm }) => {
   const [avialableFile, setAvialableFile] = useState(null);
   const [updating, setUpdating] = useState(false);
   const theme: any = useTheme();
-  const { data, isSuccess, isError, isLoading } = useGetPhotoForIdUploadQuery(
-    {}
-  );
+  const { data, isSuccess, isError, error, isLoading } =
+    useGetPhotoForIdUploadQuery({});
   const [updatePhotoForIdUpload] = useUpdatePhotoForIdUploadMutation();
 
   useEffect(() => {
     if (isSuccess) {
-      const { name } = data?.data;
-      setFile({ name: name || "filename" });
+      data?.data?.name && setFile({ name: data?.data?.name || "filename" });
     }
   }, [isSuccess, data?.data]);
 
@@ -48,6 +46,9 @@ const IdUpload: FC<any> = ({ activateNextForm }) => {
     }
   };
   if (isLoading) return <FormSkeleton />;
+  if (isError) {
+    displaySuccessMessage(error, enqueueSnackbar);
+  }
   return (
     <>
       {updating && <IsFetching isFetching />}

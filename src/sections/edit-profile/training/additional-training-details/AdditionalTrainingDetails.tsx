@@ -1,11 +1,11 @@
-import { useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddTrainingDocForm from "./addTrainingForm/AddTrainingDocForm";
 import AdditionalTrainingTable from "./additional-training-table/AdditionalTrainingTable";
-const AdditionalTrainingDetails = () => {
+const AdditionalTrainingDetails: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [flags, setFlags] = useState({ addRefModel: false });
   const addRefModelOpen = () => {
@@ -33,11 +33,13 @@ const AdditionalTrainingDetails = () => {
       <Grid item container>
         <ButtonWithIcon text="Add Taining Docs" onClick={addRefModelOpen} />
       </Grid>
-      <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
-      </Grid>
       <Grid item sm={12}>
         <AdditionalTrainingTable />
+      </Grid>
+      <Grid item sx={{ mt: 2 }}>
+        <Button variant="contained" onClick={activateNextForm}>
+          continue
+        </Button>
       </Grid>
       <Modal open={flags.addRefModel} onClose={addRefModelClose}>
         <Grid

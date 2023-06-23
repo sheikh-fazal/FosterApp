@@ -4,7 +4,7 @@ import { Typography, useTheme } from "@mui/material";
 
 export default function RHFUploadFile(props: any) {
   const theme = useTheme();
-  const { disabled, name, ...other } = props;
+  const { disabled, name,label, ...other } = props;
   const [borderColor, setBorderColor] = useState(
     disabled
       ? theme.palette.action.disabledBackground
@@ -41,7 +41,7 @@ export default function RHFUploadFile(props: any) {
           {/* trimming extra words */}
           {(other?.getValues(`${name}`)?.name?.length > 20
             ? ". . ." + other?.getValues(`${name}`)?.name.slice(-15)
-            : other?.getValues(`${name}`)?.name) || "Upload Photo"}
+            : other?.getValues(`${name}`)?.name) ||label|| "Upload Photo"}
         </div>
         <FileUploadIcon
           sx={{

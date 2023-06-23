@@ -2,71 +2,70 @@ import React, { useRef, useState } from "react";
 import ExPartnersViewForm from "./ExPartnersViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useTheme } from "@mui/material";
 import { columns } from ".";
-import { useGetExPartnerDetailsQuery } from "@root/services/carer-info/personal-info/application-form/ExPartnersApi";
+import { useExPartnersTable } from "./useExPartnersTable";
 
-export default function ExPartnersView({ apllicationFormid }: any) {
-  let [viewData, setViewData] = useState(null);
-  let [exPartnerData, setExPartnerData] = useState(null);
+export default function ExPartnersView({ applicationFormid, role }: any) {
+  let {
+    changeView,
+    viewData,
+    setViewData,
+    theme,
+    exPartnerData,
+    setExPartnerData,
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+    tableHeaderRef,
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+  } = useExPartnersTable(applicationFormid, role);
 
-  const tableHeaderRef = useRef<any>();
-  const theme: any = useTheme();
-
-  const changeView = (val: any) => {
-    setViewData(val);
-  };
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetExPartnerDetailsQuery(apllicationFormid);
-  // const [data, setData] = React.useState([
-  //   {
-  //     srNo: "U4721XBUCA",
-  //     name: "John",
-  //     phone: "123456789",
-  //     email: "john@xyz",
-  //   },
-  //   {
-  //     srNo: "U3721XBUCB",
-  //     name: "John Doe",
-  //     phone: "12345678109",
-  //     email: "johndoe2@xyz",
-  //   },
-  // ]);
   return (
     <>
       {viewData ? (
         <ExPartnersViewForm
+          role
           disabled={viewData == "view" ? true : false}
           exPartnerData={exPartnerData}
           changeView={changeView}
+          viewData={viewData}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>
           <TableHeader
             ref={tableHeaderRef}
-            title="Existing Ex-Partners(s) Details"
-            searchKey="search"
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
+            title="Existing Ex-Partner(s) Details"
+            showAddBtn={role == "foster-carer" ? false : true}
+            onAdd={() => {
+              changeView("add");
             }}
+            searchKey="search"
+            onChanged={headerChangeHandler}
           />
           <CustomTable
             showSerialNo
-            data={data?.data}
-            columns={columns(changeView, setExPartnerData)}
+            data={data?.data?.application_form_expartners}
+            columns={columns(
+              changeView,
+              setExPartnerData,
+              role,
+              listDeleteHandler
+            )}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}
             isSuccess={isSuccess}
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />{" "}
         </>
       )}

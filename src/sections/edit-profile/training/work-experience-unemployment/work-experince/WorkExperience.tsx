@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useTheme } from "@emotion/react";
-import { Button, Grid, Modal } from "@mui/material";
+import { Grid, Modal } from "@mui/material";
 import ButtonWithIcon from "@root/sections/edit-profile/locals/ButtonWithIcon";
 import WorkExperinceForm from "./addExperinceForm/WorkExperinceForm";
 import WorkexperinceTable from "./workexperince-table/WorkexperinceTable";
 const WorkExperience = () => {
-  const theme: any = useTheme();
   const [flags, setFlags] = useState({ workExperienceModel: false });
   const workExperienceModelOpen = () => {
     setFlags((pre) => ({ ...pre, workExperienceModel: true }));
@@ -24,9 +23,7 @@ const WorkExperience = () => {
         />
       </Grid>
       <WorkexperinceTable />
-      <Grid item sx={{ mt: 2 }}>
-        <Button variant="contained">continue</Button>
-      </Grid>
+
       <Modal
         open={flags.workExperienceModel}
         onClose={workExperienceModelClose}

@@ -1,11 +1,9 @@
 import * as Yup from "yup";
-import { fData } from "@root/utils/formatNumber";
 import {
   RHFCheckbox,
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
-import { Hidden } from "@mui/material";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SignaturePad from "@root/components/hook-form/SignaturePad";
 
@@ -22,7 +20,7 @@ export const defaultValues = {
   socialWorkerAnalysis: "",
   accessorName: "",
   accessorSignature: null,
-  signDateAccessor: new Date(),
+  accessorSignatureDate: new Date(),
 };
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
@@ -42,7 +40,7 @@ export const FormSchema = Yup.object().shape({
     "Social Work Analysis is required"
   ),
   accessorName: Yup.string().required("Name Of Assessor is required"),
-  signDateAccessor: Yup.date().required("Date is required"),
+  accessorSignatureDate: Yup.date().required("Date is required"),
   signature: Yup.mixed()
     .nullable()
     .required("Signature Of Interviewee is required"),
@@ -179,8 +177,8 @@ export const formData2 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "signDateAccessor",
-      label: "Date of Interview",
+      name: "accessorSignatureDate",
+      label: "Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
