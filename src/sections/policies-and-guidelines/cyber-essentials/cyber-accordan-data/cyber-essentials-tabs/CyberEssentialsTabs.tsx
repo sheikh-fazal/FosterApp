@@ -7,7 +7,7 @@ import CyberEseentialsForm from "./cyber-essentials-form/CyberEseentialsForm";
 
 const CyberEssentialsTabs = ({ disabled, title }: any) => {
   return (
-    <HorizaontalTabs tabsDataArray={[title, "Uploaded Documents"]}>
+    <HorizaontalTabs tabsDataArray={[title, "Upload Documents"]}>
       <CyberEseentialsForm disabled={disabled} />
       <UploadedDocument />
     </HorizaontalTabs>

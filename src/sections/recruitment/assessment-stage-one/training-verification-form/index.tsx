@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
-export const columnsTrainingVerification = (
+export const columnsTrainingVerification = ( 
   handleDelete: any,
   router: any,
   cancelDelete: any,

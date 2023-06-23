@@ -7,8 +7,51 @@ import CustomTable from '@root/components/Table/CustomTable';
 import { Box, Checkbox, Grid, Typography, useTheme } from "@mui/material";
 import TableAction from '@root/components/TableAction';
 import { useRouter } from 'next/router';
-import { SAFE_CARING_POLICY_TABLE_DATA } from '@root/dropdown-data/safeCaringPolicyList';
 import DeleteModel from '@root/components/modal/DeleteModel';
+
+export const SAFE_CARING_POLICY_TABLE_DATA = [
+  {
+    safeguarding_policy_document: "PDF",
+    uploaded_image:"height.PNG",
+    date_uploaded: 12/11/2021,
+    discription: "Safeguarding policy",
+    version: "Version_12_02_423121345",
+    author: "Tom Hanks",
+    date_of_eSignature_of_author: 12/11/2021,
+    creatorRole: "Director",
+    creationTime: 12/11/2021,
+    approver: "David due",
+    approverRole: "Safegurad Officer",
+    date_of_eSignature_of_approver: 12/11/2021,
+    actions:"",
+    lastModifiedBy: "Victor Krum",
+    lastModifiedTime: 12/11/2021,
+    cancelled: "no",
+    CancelledBy: "10-02-2022 14:23:03",
+    CancelledAt: "Ani Cristea",
+  },
+  {
+    safeguarding_policy_document: "XLS",
+    uploaded_image:"height.PNG",
+    date_uploaded: "02/12/2021",
+    discription: "Safeguarding policy",
+    version: "Version_12_02_423121345",
+    author: "Janifer Hoston",
+    date_of_eSignature_of_author: 12/11/2021,
+    creatorRole: "Manager",
+    creationTime: 12/11/2021,
+    approver: "Victor Krum ",
+    approverRole: "Safegurad Officer",
+    date_of_eSignature_of_approver: 12/23/2021,
+    actions:"",
+    lastModifiedBy: "Soan Bella",
+    lastModifiedTime: 12/11/2021,
+    cancelled: "no",
+    CancelledBy: "10-02-2022 14:23:03",
+    CancelledAt: "Ani Cristea",
+  },
+]
+
 
 const PAGE_TITLE = "Safe Caring Policy List";
 

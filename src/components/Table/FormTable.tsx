@@ -121,6 +121,7 @@ export default function FormTable(props: any) {
     share,
     certificate,
     tableKey,
+    route = "view",
     columns: tableColumns,
   } = props;
   const { setValue, getValues } = useFormContext();
