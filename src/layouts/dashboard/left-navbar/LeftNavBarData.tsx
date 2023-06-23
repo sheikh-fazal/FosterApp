@@ -55,7 +55,7 @@ export const NAV_LINKS = [
   {
     text: "Foster Child",
     img: <Diversity3OutlinedIcon />,
-    link: "",
+    link: "foster-child",
   },
   {
     text: "Matching & Placement",

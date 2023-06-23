@@ -1,10 +1,9 @@
-import { ChildPersonalGoalsMain } from "@root/sections/foster-child/child-goals-pathway/child-personal-goals/ChildPersonalGoals";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-
-export default function ChildPersonalGoals() {
+import { ChildPersonalGoalsListView } from "@root/sections/foster-child/child-goals-pathway/child-personal-goals/personal-goals-list-view/ChildPersonalGoalsListView";
+export default function PersonalGoalsListView() {
   const PAGE_TITLE = "Child Personal Goals";
 
   const BREADCRUMBS = [
@@ -25,7 +24,7 @@ export default function ChildPersonalGoals() {
       title={PAGE_TITLE}
     >
       <Page title={PAGE_TITLE}>
-        <ChildPersonalGoalsMain />
+        <ChildPersonalGoalsListView />
       </Page>
     </Layout>
   );
