@@ -83,7 +83,7 @@ export const NAV_LINKS = [
     id: 8,
     text: "Deregister Foster Carer",
     img: <HowToRegOutlinedIcon />,
-    link: "",
+    link: "/de-registration",
   },
   {
     id: 9,

@@ -1,17 +1,17 @@
-import { Box, Button, CircularProgress, Grid, Skeleton } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, Skeleton, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
-import { useDeregAssessmentStageCarer } from "./useDeregAssessmentStageCarer";
+import { useDeregAssessmentFosteringPanel } from "./useDeregAssessmentFosteringPanel";
 import Link from "next/link";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
 import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
-import LeftIcon from "../../../assets/svg/de-register/left-icon.svg";
+import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
 
-const DeregAssessmentStageCarer = () => {
+const DeregAssessmentFosteringPanel = () => {
   const {
     theme,
     openIdForInfo,
@@ -23,9 +23,8 @@ const DeregAssessmentStageCarer = () => {
     deRegisterData,
     setDeRegisterData,
     currentIndex,
-    setCurrentIndex,
     goToNextSlide
-  } = useDeregAssessmentStageCarer();
+  } = useDeregAssessmentFosteringPanel();
 
   return (
     <>
@@ -41,15 +40,17 @@ const DeregAssessmentStageCarer = () => {
             }}
           >
             <Grid item container mt={1} direction={"column"} alignItems={"center"} lg={2.3} xs={12} pt={1} sx={{ position: "relative" }}>
+              {ele?.heading && <Typography component="h2" sx={{ textAlign: "center", fontSize: "14px", fontWeight: "700" }}>{ele?.heading}</Typography>}
               <Image src={ele?.imgIcon} alt={ele?.text} />
               <InfoOutlinedIcon
                 onClick={() => setOpenIdForInfo(ele?.id)}
                 sx={{
                   position: "absolute",
-                  right: "22px",
+                  right: "0",
                   fontSize: 18,
                   cursor: "pointer",
                   color: "black",
+                  top: `${ele?.id === 3 && "50px"}`
                 }}
               />
               <DeRegInfoDialogbox
@@ -146,4 +147,4 @@ const DeregAssessmentStageCarer = () => {
     </>
   );
 };
-export default DeregAssessmentStageCarer;
+export default DeregAssessmentFosteringPanel;

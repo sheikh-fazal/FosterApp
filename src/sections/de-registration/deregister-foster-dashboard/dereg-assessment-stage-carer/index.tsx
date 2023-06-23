@@ -1,6 +1,6 @@
-import deRegConsulationFosterImg from "../../../assets/img/de-register/dereg-consultation-foster-img.svg";
-import deFosterReviewImg from "../../../assets/img/de-register/dereg-foster-review-img.svg";
-import deFinalOutcomeImg from "../../../assets/img/de-register/final-outcome-img.svg";
+import deRegConsulationFosterImg from "../../../../assets/img/de-register/dereg-consultation-foster-img.svg";
+import deFosterReviewImg from "../../../../assets/img/de-register/dereg-foster-review-img.svg";
+import deFinalOutcomeImg from "../../../../assets/img/de-register/final-outcome-img.svg";
 
 export const DeRegAssessmentStageData = [
   {
@@ -44,7 +44,8 @@ export const DeRegAssessmentStageData = [
         subContentTwo: [
           { content: `Uncontested resignations.` },
           { content: `Termination of approval after allegations` },
-          { content: `Termination of approval when there have been no allegations 
+          {
+            content: `Termination of approval when there have been no allegations 
           and a resignation letter has not been received.` },
         ],
       },
