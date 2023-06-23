@@ -22,8 +22,8 @@ export const laBasicInformationSchema = Yup.object().shape({
     telephoneNo: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
     email: Yup.string().required("Email is required").email("Invalid Email"),
     designation: Yup.string().required("Field is required"),
-    localAuthorityPhone: Yup.string().required("Field is required"),
-    localAuthorityEmail: Yup.string().required("Field is required"),
+    localAuthorityPhone: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
+    localAuthorityEmail: Yup.string().required("Field is required").email("Invalid Email"),
     address: Yup.string().required("Field is required"),
 });
 

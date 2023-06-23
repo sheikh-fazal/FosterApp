@@ -53,7 +53,7 @@ export const addLaEmployeeFormData = [
     {
         gridLength: 12,
         title: "Phone",
-        otherOptions: { name: "phone", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
+        otherOptions: { name: "phone", fullWidth: true, type: "number", sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
         component: RHFTextField,
     },
     {

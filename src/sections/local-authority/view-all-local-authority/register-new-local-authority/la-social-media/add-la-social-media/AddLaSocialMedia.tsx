@@ -53,7 +53,7 @@ const AddPoliciesAgreementForm = (props: any) => {
                             }}
                             onClick={() => setIsAddSocialMediaIcon(false)}
                         >
-                            Back
+                            Cancel
                         </Button>
                     </Grid>
                 </Grid>
