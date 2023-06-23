@@ -27,7 +27,6 @@ ReportsLayout.getLayout = function getLayout(page: any) {
   );
 };
 // ----------------------------------------------------------------------
-
 export default function ReportsLayout() {
   return (
     <Page title={PAGE_TITLE}>

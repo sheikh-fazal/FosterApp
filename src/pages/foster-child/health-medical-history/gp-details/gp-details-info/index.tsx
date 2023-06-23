@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import GPDetailsInfoTabs from "@root/sections/foster-child/health-medical-history/gp-details/gp-details-info/gp-details-info-tabs/GPDetailsInfoTabs";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -26,8 +26,7 @@ const PAGE_TITLE = (action: any = "") =>
 
 // ----------------------------------------------------------------------
 
-GPDetailsInfo.getLayout = function getLayout(page: any) {
-  const { query } = useRouter();
+GPDetailsInfo.getLayout = function getLayout(page: any, { query }: NextRouter) {
   return (
     <Layout
       showTitleWithBreadcrumbs
