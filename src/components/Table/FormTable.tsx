@@ -16,6 +16,7 @@ import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 import { type } from "os";
 import ShareModal from "../modal/shareModal";
+import { useRouter } from "next/router";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 
 const ANON_FUNC = () => {};
@@ -118,6 +119,7 @@ export default function FormTable(props: any) {
     view,
     print,
     share,
+    certificate,
     tableKey,
     route = "view",
     columns: tableColumns, 
@@ -276,6 +278,10 @@ export default function FormTable(props: any) {
     setActionData(null);
   }
 
+  const router = useRouter();
+
+  const showView = router.query.action;
+
   return (
     <div>
       {certificateModal && (
@@ -320,7 +326,7 @@ export default function FormTable(props: any) {
         isPagination={false}
         isSuccess={true}
       />
-      {route === "view" ? (
+      {showView === "view" ? (
         ""
       ) : (
         <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
