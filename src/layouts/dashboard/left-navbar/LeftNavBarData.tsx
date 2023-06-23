@@ -120,7 +120,7 @@ export const NAV_LINKS = [
     id: 14,
     text: "Local Authority",
     img: <AssignmentOutlinedIcon />,
-    link: "",
+    link: "/local-authority",
   },
   {
     id: 15,
