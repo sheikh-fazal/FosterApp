@@ -1,29 +1,28 @@
-import fosterPanelInterviewImg from "../../../assets/img/de-register/foster-panel-interview-img.svg";
-import fosteringPanelRecommendationImg from "../../../assets/img/de-register/foster-panel-recommendation.svg";
-import proporsalTerminateImg from "../../../assets/img/de-register/proporsal-terminate-img.svg";
-import proporsalReviseImg from "../../../assets/img/de-register/proporsal-revise.svg";
-import statutoryChecksImg from "../../../assets/img/de-register/statutory-checks.svg";
-import finalOutcomeImg from "../../../assets/img/de-register/final-outcome-img.svg";
+import finalFinanceImg from "../../../../assets/img/de-register/final-finance-img.svg";
+import agencyPolicyAgreementsImg from "../../../../assets/img/de-register/agency-policy-agreements-img.svg";
+import noticeProporsalImg from "../../../../assets/img/de-register/notice-proporsal-img.svg";
+import termsApprovalImg from "../../../../assets/img/de-register/terms-approval-img.svg";
+import consentFormImg from "../../../../assets/img/de-register/consent-form-img.svg";
 
-export const DeRegStagePostingPanelData = [
+export const DeRegContractsAgreementsData = [
   {
     id: 1,
     informationIcon: [
       {
         content: `A report must be presented to the Fostering Panel on the foster carer's first review for a recommendation and thereafter may be presented to the fostering panel every three years. West Berkshire Children and Family Service complete the First Foster Care Review within 6 months of the carers approval. Other reasons to return to panel would include the following: where significant changes to the foster carer's approval or the termination of the foster carer's approval are recommended or where any circumstances exist which in the opinion of the Agency Decision Maker require consideration by the Fostering Panel. This may include the situation where an updating Disclosure and Barring Service check reveals a new concern about the foster carer or a member of the household.
     `,
-    
+
       },
       {
         content: `Whether presented to the fostering panel or not, the report will be presented to the Agency Decision Maker for a decision as to whether the foster carer remains suitable to foster and whether the terms of approval remain suitable. Where it has been presented to the fostering panel, the Agency Decision Maker will take into account the panel's recommendation.
     `,
-    
+
       },
     ],
-    imgIcon: fosterPanelInterviewImg,
+    imgIcon: finalFinanceImg,
     textForApi: "initalContact",
-    text: "Fostering Panel Assessment / interview",
-    informationText: "Fostering Panel Assessment / interview",
+    text: "Final Finance settlements",
+    informationText: "Final Finance settlements",
     viewForms: ["View Form"],
     href: "/recruitment/enquiry-stage/initial-contact",
     status: "Failed"
@@ -36,10 +35,10 @@ export const DeRegStagePostingPanelData = [
     `,
       },
     ],
-    imgIcon: fosteringPanelRecommendationImg,
+    imgIcon: agencyPolicyAgreementsImg,
     textForApi: "initalEnquiryStage",
-    text: "Fostering Panel Recommendation",
-    informationText: "Fostering Panel Recommendation",
+    text: "Agency Policy Agreements",
+    informationText: "Agency Policy Agreements",
     viewForms: ["View Form"],
     href: "#",
     status: "Passed"
@@ -53,16 +52,16 @@ export const DeRegStagePostingPanelData = [
         subContentTwo: [
           { content: `Uncontested resignations.` },
           { content: `Termination of approval after allegations` },
-          { content: `Termination of approval when there have been no allegations 
+          {
+            content: `Termination of approval when there have been no allegations 
           and a resignation letter has not been received.` },
         ],
       },
     ],
-    imgIcon: proporsalTerminateImg,
+    imgIcon: noticeProporsalImg,
     textForApi: "digitalInfo",
-    text: "Proposal to Terminate",
-    informationText: "Proposal to Terminate",
-    heading: "Representations/Review Procedure",
+    text: "Written notice of the proposal",
+    informationText: "Written notice of the proposal",
     viewForms: ["View Form",],
     href: "#",
     status: "Pending"
@@ -73,10 +72,10 @@ export const DeRegStagePostingPanelData = [
       { content: `Disclosure and Barring Service checks should be updated every 3 years and if necessary, a review of the foster carer's approval should be carried out immediately to take account of any new information.` },
       { content: `Medical information should also be updated at least every 3 years by writing to the foster carers GP. In the event of any serious concerns about the foster carers health, a review of the foster carers approval should be carried out immediately` },
     ],
-    imgIcon: statutoryChecksImg,
+    imgIcon: termsApprovalImg,
     textForApi: "digitalInfo",
-    text: "Statutory Checks",
-    informationText: "Statutory Checks",
+    text: "Terms of approval",
+    informationText: "Terms of approval",
     viewForms: ["View Form"],
     href: "#",
     status: "Pending"
@@ -90,15 +89,16 @@ export const DeRegStagePostingPanelData = [
         subContentTwo: [
           { content: `Uncontested resignations.` },
           { content: `Termination of approval after allegations` },
-          { content: `Termination of approval when there have been no allegations 
+          {
+            content: `Termination of approval when there have been no allegations 
           and a resignation letter has not been received.` },
         ],
       },
     ],
-    imgIcon: finalOutcomeImg,
+    imgIcon: consentFormImg,
     textForApi: "digitalInfo",
-    text: "Final Outcome",
-    informationText: "Final Outcome",
+    text: "Consent Form",
+    informationText: "Consent Form",
     viewForms: ["Termination of approval of the foster carer", "Foster care give up fostering", "Revise of approval of the foster carer"],
     href: "#",
     status: "Pending"

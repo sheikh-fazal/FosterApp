@@ -15,7 +15,8 @@ const RemindersAndNotifications = () => {
         display: "flex",
         // justifyContent: "center",
         alignItems: "center",
-        borderRadius: "11px"
+        borderRadius: "11px",
+        flexWrap: "wrap"
     }));
     return (
         <>
@@ -25,7 +26,7 @@ const RemindersAndNotifications = () => {
                 {remaindersAndNotificationsData.map((item: any) => (
                     <Grid item xs={12} md={6} lg={6} xl={6} key={item.id}>
                         <StyledCard background={item?.background} border={item?.border}>
-                            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                            <Box sx={{ display: "flex", justifyContent: "space-between", }}>
                                 <Box sx={{ mr: "8px" }}>
                                     <Image src={item?.img} alt={''} />
                                 </Box>

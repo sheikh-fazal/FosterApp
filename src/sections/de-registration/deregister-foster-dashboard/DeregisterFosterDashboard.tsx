@@ -5,7 +5,7 @@ import { ArrowDown } from "@root/assets/svg/arrowDown";
 import { deRegisterFosterStep } from ".";
 import StepIconsButton from "./StepIconsButton";
 
-const DeRegInitialRequest = () => {
+const DeregisterFosterDashboard = () => {
   const { activeStep, handleStep } = useDeregisterFosterDashboard();
   return (
     <Box sx={{ width: "100%" }}>
@@ -81,7 +81,7 @@ const DeRegInitialRequest = () => {
                   >
                     {activeStep === index && ele.component}
                   </Grid>
-                 
+
                 </Grid>
               </StepContent>
             </Grid>
@@ -91,4 +91,4 @@ const DeRegInitialRequest = () => {
     </Box>
   );
 };
-export default DeRegInitialRequest;
+export default DeregisterFosterDashboard;

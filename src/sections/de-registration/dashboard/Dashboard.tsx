@@ -24,7 +24,7 @@ const Dashboard = () => {
             <Box sx={{ mt: 2 }}>
 
                 <Grid container spacing={2}>
-                    <Grid item xl={7} lg={12}>
+                    <Grid item xl={7} lg={12} xs={12}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Card sx={styles.cardStyles}>

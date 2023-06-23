@@ -64,12 +64,13 @@ export default DeregistrationManagementTable
 //-----------Styles------------
 const styles = {
     headerTopBg: {
-        background: "linear-gradient(180deg, rgb(246, 70.44, 15) 0%, rgb(253.94, 43.38, 93.91) 100%)",
+        background: "linear-gradient(108.67deg, #0E918C -32.14%, #F6830F 124.99%)",
         height: "60px",
         width: "100%",
         borderRadius: "10px 10px 0px 0px",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        marginBottom: "20px"
     },
     headerTopContent: {
         color: "#fff",

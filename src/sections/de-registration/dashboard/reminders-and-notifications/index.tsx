@@ -1,7 +1,7 @@
 import ApprovalPendingIcon from "../../../../assets/svg/deregistration/ApprovalPending.svg";
 import CancelcrossIcon from "../../../../assets/svg/deregistration/CancelcrossIcon.svg";
 import ApprovalDone from "../../../../assets/svg/deregistration/ApprovalDone.svg";
-import ReviewPending from "../../../../assets/svg/deregistration/ReviewPending.svg";
+import ProgressBar from "../../../../assets/svg/deregistration/progressBar.svg";
 
 export const remaindersAndNotificationsData = [
     {
@@ -17,7 +17,7 @@ export const remaindersAndNotificationsData = [
     },
     {
         id: "2",
-        img: CancelcrossIcon,
+        img: ProgressBar,
         background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
         title: "Assessment Pending",
         titleColor: "#FFFFFF",

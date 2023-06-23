@@ -77,9 +77,9 @@ export const useDeregistrationManagement = () => {
             isSortable: true,
         },
         {
-            accessorFn: (row: any) => row.Carer_Name,
+            accessorFn: (row: any) => row,
             id: "Carer_Name",
-            cell: (info: any) => info.getValue(),
+            cell: (info: any) => <Box sx={{ cursor: "pointer" }} onClick={() => router.push({ pathname: `/de-registration/deregister-foster-carer`, query: { carer_name: info?.cell?.row?.original?.Carer_Name } })}>{info?.cell?.row?.original?.Carer_Name}</Box>,
             header: () => <span>Carer Name</span>,
             isSortable: true,
         },

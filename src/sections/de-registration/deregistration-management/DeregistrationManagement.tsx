@@ -3,6 +3,7 @@ import TableHeader from '@root/components/TableHeader'
 // import { TableData } from '.'
 import { useDeregistrationManagement } from './useDeregistrationManagement'
 import { TableData } from '.'
+import React from 'react'
 
 
 const DeregistrationManagement = () => {

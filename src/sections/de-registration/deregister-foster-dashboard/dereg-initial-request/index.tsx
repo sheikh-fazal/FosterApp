@@ -1,6 +1,6 @@
-import initialRequestImg from "../../../assets/img/de-register/initial-request-img.svg";
-import finalOutcomeImg from "../../../assets/img/de-register/final-outcome-img.svg";
-import socialWorkerInitialImg from "../../../assets/img/de-register/social-worker-initial-img.svg";
+import initialRequestImg from "../../../../assets/img/de-register/initial-request-img.svg";
+import finalOutcomeImg from "../../../../assets/img/de-register/final-outcome-img.svg";
+import socialWorkerInitialImg from "../../../../assets/img/de-register/social-worker-initial-img.svg";
 
 export const DeRegInitialRequestData = [
   {
@@ -44,7 +44,8 @@ export const DeRegInitialRequestData = [
         subContentTwo: [
           { content: `Uncontested resignations.` },
           { content: `Termination of approval after allegations` },
-          { content: `Termination of approval when there have been no allegations 
+          {
+            content: `Termination of approval when there have been no allegations 
           and a resignation letter has not been received.` },
         ],
       },
