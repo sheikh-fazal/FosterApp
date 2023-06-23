@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,9 +9,9 @@ import {
   styled,
 } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { RegAssessmentModalData } from ".";
-import useDeRegAssissmentAddModal from "./useDeRegAssissmentAddModal";
+import { FormalReviewModalMockData } from ".";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import useFormalReviewMeetingAddModal from "./useFormalReviewMeetingAddModal";
 
 interface IProps {
   open: boolean;
@@ -20,13 +20,13 @@ interface IProps {
   onSubmit?:Function;
   isHideSubmitButton?:boolean,
   title:string,
-  initialValues?: any;
 
 }
 
-const DeRegAssissmentAddModal = (props: IProps) => {
-  const { open, handleClose, disabled, onSubmit,title,isHideSubmitButton,initialValues} = props;
-  const { methods, handleSubmit } = useDeRegAssissmentAddModal();
+const FormalReviewMeetingAddModal = (props: IProps) => {
+  const { open, handleClose, disabled, onSubmit,title,isHideSubmitButton} = props;
+  const { methods, handleSubmit } = useFormalReviewMeetingAddModal();
+  // const [modalType,setModalType] = useState("FosterView")
   const ModalContent = styled(DialogContent)`
     @media (max-width: 852px) {
       width: 100%;
@@ -50,14 +50,14 @@ const DeRegAssissmentAddModal = (props: IProps) => {
           </Typography>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
-              {RegAssessmentModalData.map((item: any, i: number) => (
+              {FormalReviewModalMockData?.map((item: any, i: number) => (
                 <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5}>
                   {item.component && (
                     <item.component
                       {...item.componentProps}
                       disabled={disabled}
                       size={"small"}
-                    >
+                      >
                       {item.componentProps.select
                         ? item.options.map((option: any) => (
                             <option key={option.value} value={option.value}>
@@ -105,7 +105,7 @@ const DeRegAssissmentAddModal = (props: IProps) => {
   );
 };
 
-export default DeRegAssissmentAddModal;
+export default FormalReviewMeetingAddModal;
 
 // style
 

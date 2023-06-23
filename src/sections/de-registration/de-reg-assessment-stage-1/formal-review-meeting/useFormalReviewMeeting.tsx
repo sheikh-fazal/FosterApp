@@ -3,33 +3,21 @@ import { Box, Checkbox, useTheme } from '@mui/material';
 import TableAction from '@root/components/TableAction';
 import { DeRegAssessmentTableMockData, SelectFilter } from '.';
 
-const useDeRegAssessmentStageOneTable = () => {
+const useFormalReviewMeeting = () => {
     const [DeRegAssessmentTableData,setDeRegAssessmentTableData] = useState(DeRegAssessmentTableMockData);
     const [isOpenAddAssessment, setOpenAddAssessment] = useState(false);
     const [actionType, setActionType] = useState('Add');
     const [editData, setEditData] = useState<any>(null);
 
     const onHandleAddAssessment = (data: any) => {
-      setDeRegAssessmentTableData([...DeRegAssessmentTableData,data]);
-      console.log("UpdataArrayData====>>",setDeRegAssessmentTableData);
+      
       
     };
     const onHandleEditAssessment = (row: any) => {
       setOpenAddAssessment(true);
       setActionType('Edit');
-      const data = DeRegAssessmentTableData.find((item) => item.id === row.id);
-      if (data) {
-        const editData = {
-          consultation: data.consultation,
-          sWName: data.sWName,
-          meetingAtendees: data.meetingAtendees,
-          meetingOutcomes: data.meetingOutcomes,
-          meetingActions: data.meetingActions,
-          nextConsultationplan: data.nextConsultationplan,
-        };
-        setEditData(editData);
-        console.log('editData====>>>', editData);
-      }
+      
+      
     };
     
     const tableHeaderRef = useRef();
@@ -67,10 +55,10 @@ const useDeRegAssessmentStageOneTable = () => {
 
         },
         {
-            accessorFn: (row: any) => row.consultation,
-            id: "consultation",
+            accessorFn: (row: any) => row.meetingDateTime,
+            id: "meetingDateTime",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Consultation Date/Time</span>,
+            header: () => <span>Meeting Date/Time</span>,
 
         },
         {
@@ -102,10 +90,10 @@ const useDeRegAssessmentStageOneTable = () => {
 
         },
         {
-            accessorFn: (row: any) => row.nextConsultationplan,
-            id: "nextConsultationplan",
+            accessorFn: (row: any) => row.nextReviewplan,
+            id: "nextReviewplan",
             cell: (info: any) => info.getValue(),
-            header: () => <span>Next Consultation plan</span>,
+            header: () => <span>Next Review plan</span>,
 
         },
         
@@ -142,4 +130,4 @@ const useDeRegAssessmentStageOneTable = () => {
   }
 }
 
-export default useDeRegAssessmentStageOneTable
+export default useFormalReviewMeeting

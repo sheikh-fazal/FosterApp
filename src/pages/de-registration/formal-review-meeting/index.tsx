@@ -2,11 +2,11 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ConsultationWithFosterCarerTable from "@root/sections/de-registration/de-reg-assessment-stage-1/consultation-with-foster-carer/ConsultationWithFosterCarerTable";
+import FormalReviewMeetingTable from "@root/sections/de-registration/de-reg-assessment-stage-1/formal-review-meeting/FormalReviewMeetingTable";
 
 const PAGE_TILE = "De-Registration";
 
-DeRegistration.getLayout = function getLayout(page: any) {
+FormalReviewMeeting.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -27,10 +27,10 @@ DeRegistration.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function DeRegistration() {
+export default function FormalReviewMeeting() {
   return (
     <Page title={PAGE_TILE}>
-     <ConsultationWithFosterCarerTable/>
+     <FormalReviewMeetingTable/>
     </Page>
   );
 }

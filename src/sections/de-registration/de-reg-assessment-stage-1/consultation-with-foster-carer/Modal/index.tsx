@@ -4,7 +4,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 
 
-export const RegAssessmentModalData = [
+export const FosterCarerAddModalMockData = [
     {
         id: 1,
         componentProps: {
@@ -12,7 +12,7 @@ export const RegAssessmentModalData = [
             label: "Consultation date",
             fullWidth: true, 
         },
-        component: RHFDatePicker,
+        component: RHFDatePicker, 
         md: 6,
     },
     {
@@ -22,7 +22,7 @@ export const RegAssessmentModalData = [
             label: "Consultation Time",
             fullWidth: true, 
         },
-        component: RHFTimePicker,
+        component: RHFTimePicker, 
         md: 6,
     },
     {
@@ -33,7 +33,7 @@ export const RegAssessmentModalData = [
             fullWidth: true,
             size: "small",
         },
-        component: RHFTextField,
+        component: RHFTextField, 
         md: 12,
     },
     {
@@ -55,7 +55,7 @@ export const RegAssessmentModalData = [
             multiline: true,
             minRows: 3,
         },
-        component: RHFTextField,
+        component: RHFTextField, 
         md: 12,
     },
     {
@@ -66,7 +66,7 @@ export const RegAssessmentModalData = [
             multiline: true,
             minRows: 3,
         },
-        component: RHFTextField,
+        component: RHFTextField, 
         md: 12,
     },
     {
@@ -76,7 +76,7 @@ export const RegAssessmentModalData = [
             label: "Next Consultation date",
             fullWidth: true, 
         },
-        component: RHFDatePicker,
+        component: RHFDatePicker, 
         md: 6,
     },
     {
@@ -86,7 +86,7 @@ export const RegAssessmentModalData = [
             label: "Next Consultation Time",
             fullWidth: true,
         },
-        component: RHFTimePicker,
+        component: RHFTimePicker, 
         md: 6,
     },
 
@@ -108,10 +108,9 @@ export const RegAssessmentModalValues = {
     meetingAction: "",
     nextConsultationDate: "",
     nextConsultationTime: "",
-    updatePhoto: null,
-
-
-};
+    updatePhoto: '',
+  };
+  
 
 export const RegAssessmentModalValidationSchema = Yup.object().shape({
     consultationdate: Yup.string().trim().required("Field is Required"),
@@ -126,5 +125,5 @@ export const RegAssessmentModalValidationSchema = Yup.object().shape({
 
 });
 
-export { default as DeRegAssissmentAddModal } from "./DeRegAssissmentAddModal";
+export { default as ConsultationFosterCarerAddModal } from "./ConsultationFosterCarerAddModal";
 

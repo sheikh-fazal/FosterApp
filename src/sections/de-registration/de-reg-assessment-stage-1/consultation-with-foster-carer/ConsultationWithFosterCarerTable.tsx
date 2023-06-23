@@ -2,20 +2,17 @@ import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
 import TableHeader from '@root/components/TableHeader';
 import { Grid } from "@mui/material";
-import useDeRegAssessmentStageOneTable from './useDeRegAssessmentStageOneTable';
-import { DeRegAssissmentAddModal } from './Modal';
+import useConsultationWithFosterCarerTable from './useConsultationWithFosterCarerTable';
+import ConsultationFosterCarerAddModal from './Modal/ConsultationFosterCarerAddModal';
 
 
-
-
-
-const DeRegAssessmentStageOneTable = () => {
+const ConsultationWithFosterCarerTable = () => {
   const {
     DeRegAssessmentStageOneColumn,
     tableHeaderRef, theme, SelectFilter, isOpenAddAssessment, setOpenAddAssessment,
     actionType, setActionType,editData,
     DeRegAssessmentTableData, setDeRegAssessmentTableData, onHandleAddAssessment,onHandleEditAssessment
-  } = useDeRegAssessmentStageOneTable()
+  } = useConsultationWithFosterCarerTable()
 
 
 
@@ -48,8 +45,7 @@ const DeRegAssessmentStageOneTable = () => {
           }}
           rootSX={{ my: theme.spacing(2) }}
         />
-        <DeRegAssissmentAddModal
-         initialValues={editData}
+        <ConsultationFosterCarerAddModal
           title={
             actionType === 'View'
               ? 'View Person Uploaded: XYZ'
@@ -68,4 +64,4 @@ const DeRegAssessmentStageOneTable = () => {
   )
 }
 
-export default DeRegAssessmentStageOneTable
+export default ConsultationWithFosterCarerTable
