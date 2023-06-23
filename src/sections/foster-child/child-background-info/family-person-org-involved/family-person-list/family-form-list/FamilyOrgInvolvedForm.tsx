@@ -1,13 +1,14 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { FamilyOrgInvolvedFormData, FamilyOrgInvolvedFormValidation } from ".";
+import { Button, Grid } from "@mui/material";
+import { FamilyOrgInvolvedFormData } from ".";
+import { FormProvider } from "@root/components/hook-form";
+import { useFamilyOrgInvolvedForm } from "./useFamilyOrgInvolvedForm";
 
 
-export default function FamilyOrgInvolvedForm() {
+export default function FamilyOrgInvolvedForm(props: any) {
 
-  const { methods, handleSubmit, onSubmit } = FamilyOrgInvolvedFormValidation({});
+  const { methods, handleSubmit, onSubmit } = useFamilyOrgInvolvedForm(props);
 
   return (
     <>

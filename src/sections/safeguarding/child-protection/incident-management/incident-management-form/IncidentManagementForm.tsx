@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Card, Grid } from "@mui/material";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { useIncidentManagementForm } from "./useIncidentManagementForm";
 import { IncidentManagementFormData } from ".";
 
-const IncidentManagementForm = ({ disabled }: any) => {
+const IncidentManagementForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { HandlerClear, methods, onSubmit, handleSubmit } =
     useIncidentManagementForm();
 
   return (
+    <Card sx={{ p: 2 }}>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {IncidentManagementFormData?.map((form: any, i: any) => (
@@ -94,6 +96,7 @@ const IncidentManagementForm = ({ disabled }: any) => {
         </Grid>
       </Grid>
     </FormProvider>
+    </Card>
   );
 };
 

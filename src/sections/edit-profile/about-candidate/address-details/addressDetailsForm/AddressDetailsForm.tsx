@@ -56,14 +56,9 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
       };
     },
   });
-
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting, isDirty },
   } = methods;
 
   const onSubmit = async (data: any) => {

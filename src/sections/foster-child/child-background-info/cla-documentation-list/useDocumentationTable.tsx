@@ -13,6 +13,7 @@ export const useDocumentationTable = () => {
   const { data, isError, isLoading, isSuccess, isFetching } = useClaDocumentationListQuery<any>({search: search});
 
   const [deleteList] = useDeleteClaDocumentationListMutation();
+  
   //DELETE API For Cla Documentation List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
@@ -28,5 +29,5 @@ export const useDocumentationTable = () => {
       });
   };
 
-  return { router, data, isError, isLoading, isSuccess, isFetching, listDeleteHandler };
+  return { router, setSearch, data, isError, isLoading, isSuccess, isFetching, listDeleteHandler };
 };

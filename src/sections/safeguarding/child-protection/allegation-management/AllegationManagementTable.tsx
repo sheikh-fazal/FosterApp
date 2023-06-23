@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card } from '@mui/material'
 import TableHeader from '@root/components/TableHeader'
-import CollapsibleTable from '@root/pages/safeguarding/collapsible-table'
+import CollapsibleTable from '@root/components/Table/collapsible-table'
 import { columns, innerColums, rowsData } from '.'
 import DeleteModel from '@root/components/modal/DeleteModel'
 import { useAllegationManagementTable } from './useAllegationManagementTable'

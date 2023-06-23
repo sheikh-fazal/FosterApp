@@ -6,7 +6,7 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 // =============================================================================================================
 
-const AGENCYOFFICERSTABS: any = ["Foster Carers", "Agency Key Roles", "Safeguarding Role", "LA Safeguarding Role", "Edit", "Child Advocate"];
+const AGENCYOFFICERSTABS: any = ["Foster Carers", "Agency Key Roles", "Safeguarding Role", "LA Safeguarding Role", "Edit", "Child Advocate","Carer Advocate"];
 
 // =============================================================================================================
 
