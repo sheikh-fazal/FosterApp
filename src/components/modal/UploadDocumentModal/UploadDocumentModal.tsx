@@ -63,7 +63,7 @@ const UploadDocumentModal = (props: IProps) => {
                                 </Grid>
                             ))}
                         </Grid>
-                        <Grid item xs={12} md={6} sx={{ mt: '39px' }}>
+                        <Grid item xs={12} sx={{ mt: '39px' }}>
                             <Typography sx={styles.title}>Choose Files</Typography>
                             <RHFUploadFile name="updatePhoto" disabled={disabled} {...methods} required />
                         </Grid>

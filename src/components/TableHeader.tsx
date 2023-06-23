@@ -208,6 +208,7 @@ const styles = {
   rootBoxStyles: (theme: any) => ({
     flexDirection: { xs: "column", sm: "row" },
     flexWrap: "wrap",
+    mb:2,
     backgroundColor: alpha(theme.palette.primary.main, 0.8),
     padding: theme.spacing(1, 1.8),
     alignItems: "center",
