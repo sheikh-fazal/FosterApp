@@ -6,6 +6,7 @@ import TableAction from "@root/components/TableAction";
 import Image from "next/image";
 
 export const useReferralListTable = () => {
+  const path = "/referral/referral-list/referral-form";
   const router = useRouter();
   const [data, setData] = useState(TableDemoData);
   const [select, setSelect] = useState({ status: "", refereeType: "" });
@@ -39,6 +40,22 @@ export const useReferralListTable = () => {
           {info.getValue()}
         </Stack>
       );
+    }
+  };
+
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "edit":
+        router.push({ pathname: `${path}/${id}`, query: { action: "edit" } });
+        break;
+      case "share":
+        setIsShareModal(true);
+        break;
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      default:
+        break;
     }
   };
 
@@ -131,22 +148,14 @@ export const useReferralListTable = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {/* <ActionModal content={info} /> */}
-          <TableAction
-            type="edit"
-            onClicked={() => {
-              router.push("/referral/referral-list/edit-referral-list");
-            }}
-            size="small"
-          />
-
-          <TableAction
-            type="view"
-            onClicked={() => {
-              router.push("/referral/referral-list/view-referral-list");
-            }}
-            size="small"
-          />
+          {["edit", "share", "view"].map((action: string) => (
+            <span key={action} style={{ flexShrink: 0 }}>
+              <TableAction
+                type={action}
+                onClicked={() => handleAction(action, info.row.original.id)}
+              />
+            </span>
+          ))}
         </Box>
       ),
       header: "Actions",
@@ -156,7 +165,7 @@ export const useReferralListTable = () => {
 
   const selectHandler = (data: any) => {
     setSelect({ ...select, refereeType: data.refereeType });
-  }; 
+  };
   return {
     workFlowModal,
     setWorkFlowModal,
@@ -167,7 +176,7 @@ export const useReferralListTable = () => {
     selectHandler,
     columns,
     setIsShareModal,
-    isShareModal
+    isShareModal,
   };
 };
 

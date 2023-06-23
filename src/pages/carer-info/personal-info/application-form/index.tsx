@@ -23,14 +23,11 @@ import Reference from "@root/sections/carer-info/personal-info/application-form/
 import Employers from "@root/sections/carer-info/personal-info/application-form/employers/EmployersTable";
 import ExPartners from "@root/sections/carer-info/personal-info/application-form/ex-partners/ExPartnersTable";
 
-//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import { DocumentTable } from "@root/sections/carer-info/personal-info/application-form/documents/DocumentTable";
 import { useGetApplicationFormDataQuery } from "@root/services/carer-info/personal-info/application-form/ApplicationFormAllApi";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-// ----------------------------------------------------------------------
-// Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
@@ -84,18 +81,24 @@ export default function ApplicationForm() {
       </Page>
     );
   }
-
+  const applicationFormid = data?.data?.id;
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={ApplicationTabsData}>
         <BasicInformationForm
           role={role}
           disabled={role == "foster-carer" ? true : false}
-          id={data?.data?.id}
+          id={applicationFormid}
           data={{
             ...BasicdefaultValues,
             ...(data?.data?.basicInformation && {
               ...data?.data?.basicInformation,
+              hasDisability: JSON.parse(
+                data?.data?.basicInformation?.hasDisability
+              ),
+              hasEverConvicted: JSON.parse(
+                data?.data?.basicInformation?.hasEverConvicted
+              ),
               applicationFilledDate: new Date(
                 data?.data?.basicInformation?.applicationFilledDate
               ),
@@ -105,7 +108,7 @@ export default function ApplicationForm() {
         />
         <ContactForm
           role={role}
-          apllicationFormid={data?.data?.id}
+          applicationFormid={applicationFormid}
           data={{
             ...contactDefaultValues,
             ...(data?.data?.contact && {
@@ -114,9 +117,9 @@ export default function ApplicationForm() {
           }}
           disabled={role == "foster-carer" ? true : false}
         />
-        <FamilyTable role={role} apllicationFormid={data?.data?.id} />
-        <Reference role={role} apllicationFormid={data?.data?.id} />
-        <Employers role={role} apllicationFormid={data?.data?.id} />
+        <FamilyTable role={role} applicationFormid={applicationFormid} />
+        <Reference role={role} applicationFormid={applicationFormid} />
+        <Employers role={role} applicationFormid={applicationFormid} />
         <OtherInfoForm
           role={role}
           data={{
@@ -129,13 +132,13 @@ export default function ApplicationForm() {
               haveApplied: data?.data?.otherInfo.haveApplied ? "Yes" : "No",
             }),
           }}
-          apllicationFormid={data?.data?.id}
+          applicationFormid={applicationFormid}
           disabled={role == "foster-carer" ? true : false}
         />
-        <ExPartners role={role} apllicationFormid={data?.data?.id} />
+        <ExPartners role={role} applicationFormid={applicationFormid} />
         <PlacementPreferenceForm
           role={role}
-          apllicationFormid={data?.data?.id}
+          applicationFormid={applicationFormid}
           data={{
             ...placementPreferenceDefaultValues,
             ...(data?.data?.placementPreference && {

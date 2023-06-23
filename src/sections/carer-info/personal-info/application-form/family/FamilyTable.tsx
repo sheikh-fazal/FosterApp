@@ -1,12 +1,12 @@
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useFamilyTable } from "./useFamilyTable";
 import { columns } from ".";
 import FamilyViewForm from "./FamilyViewForm";
 
-export default function FamilyTable({ apllicationFormid, role }: any) {
+export default function FamilyTable({ applicationFormid, role }: any) {
   let [viewData, setViewData] = useState(null);
   let [familyData, setFamilyData] = useState(null);
 
@@ -27,7 +27,7 @@ export default function FamilyTable({ apllicationFormid, role }: any) {
     sortChangeHandler,
     meta,
     listDeleteHandler,
-  } = useFamilyTable(apllicationFormid);
+  } = useFamilyTable(applicationFormid);
 
   return (
     <Grid container>
@@ -39,7 +39,7 @@ export default function FamilyTable({ apllicationFormid, role }: any) {
             familyData={familyData}
             changeView={changeView}
             viewData={viewData}
-            apllicationFormid={apllicationFormid}
+            applicationFormid={applicationFormid}
           />
         ) : (
           <>

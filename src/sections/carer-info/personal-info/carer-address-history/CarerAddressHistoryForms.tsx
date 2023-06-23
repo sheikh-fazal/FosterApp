@@ -1,12 +1,9 @@
-// @mui
 import { Grid, Box, Button, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
 import { FormProvider } from "@root/components/hook-form";
-//
 import { formData, defaultValues } from ".";
 import { useCarerAddressHistoryForms } from "./useCarerAddressHistoryForms";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function CarerAddressHistoryForm(props: any) {
   const { formType, historyData } = props;
@@ -18,8 +15,13 @@ export default function CarerAddressHistoryForm(props: any) {
     isDirty,
     theme,
     router,
+    isLoadingEdit,
+    isLoadingPost,
   } = useCarerAddressHistoryForms(formType, historyData);
 
+  if (isLoadingEdit || isLoadingPost) {
+    return <SkeletonFormdata />;
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>

@@ -1,8 +1,5 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   accountType: "",

@@ -1,18 +1,12 @@
-// form
-
-// @mui
 import { Grid, Typography } from "@mui/material";
-// utils
-// components
 import { FormProvider } from "@root/components/hook-form";
-//
 import { formData, formDataPersonalDetails, formDataContactDetails } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useOtherInfoForm } from "./useOtherInfoForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function OtherInfoForm(props: any) {
-  const { disabled, data, apllicationFormid } = props;
+  const { disabled, data, applicationFormid } = props;
   const {
     methods,
     handleSubmit,
@@ -21,7 +15,7 @@ export default function OtherInfoForm(props: any) {
     isDirty,
     theme,
     isLoading,
-  } = useOtherInfoForm(data, apllicationFormid);
+  } = useOtherInfoForm(data, applicationFormid);
 
   if (isLoading) {
     return <SkeletonFormdata />;
