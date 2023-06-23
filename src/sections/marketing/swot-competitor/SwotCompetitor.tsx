@@ -9,22 +9,17 @@ import Link from "next/link";
 import { useSwotCompetitor } from "./useSwotCompetitor";
 
 const SwotCompetitor = (props: any) => {
-  const { routerPath } = props;
-  const { open, setopen , handleClose } = useSwotCompetitor();
+  const { routerPath, title } = props;
+  const { open, setopen, handleClose } = useSwotCompetitor();
   return (
     <Stack sx={{ overflowX: "auto" }}>
       <Box sx={style.box}>
         <Box sx={style.header}>
           <Typography component="p" variant="body1" fontWeight="600">
-            SWOT on - Marketing Strategy of Agency (Jan 2021 - Jun 2021)
+            {title}
           </Typography>
           <Box sx={{ display: "flex" }} gap={0.5}>
-            <Image
-              src={EditIcon}
-              alt="icon"
-              onClick={() => {}}
-              style={{ cursor: "pointer" }}
-            />
+            <Image src={EditIcon} alt="icon" onClick={() => {}} style={{ cursor: "pointer" }} />
             <Image
               src={add}
               alt="icon"
@@ -33,19 +28,11 @@ const SwotCompetitor = (props: any) => {
             />
           </Box>
         </Box>
-        <Grid
-          container
-          rowSpacing={2}
-          minHeight={"100px"}
-          alignItems={"center"}
-        >
+        <Grid container rowSpacing={2} minHeight={"100px"} alignItems={"center"}>
           {SwotData.map((data: any, i: number) => {
             return (
               <Grid key={i} item xs={3} lg={3}>
-                <Box
-                  key={i}
-                  sx={(theme) => style.swotCard(theme, data.bgColor)}
-                >
+                <Box key={i} sx={(theme) => style.swotCard(theme, data.bgColor)}>
                   <Box sx={style.swotTitle}>
                     <Image
                       src={data.titleIcon}
@@ -54,13 +41,8 @@ const SwotCompetitor = (props: any) => {
                       style={{ cursor: "pointer" }}
                     />
                   </Box>
-                  <Box
-                    sx={{ display: "flex", paddingBottom: "10px" }}
-                    gap={1.5}
-                  >
-                    <Typography sx={(theme) => style.subtitle(theme)}>
-                      {data.subTitle}
-                    </Typography>
+                  <Box sx={{ display: "flex", paddingBottom: "10px" }} gap={1.5}>
+                    <Typography sx={(theme) => style.subtitle(theme)}>{data.subTitle}</Typography>
                     <Image
                       src={data.icon}
                       alt=""
@@ -72,9 +54,7 @@ const SwotCompetitor = (props: any) => {
                     return (
                       <ul key={i} style={{ margin: " 0 20px" }}>
                         <li style={{ margin: " 0 20px" }}>
-                          <Typography sx={(theme) => style.content(theme)}>
-                            {item}
-                          </Typography>
+                          <Typography sx={(theme) => style.content(theme)}>{item}</Typography>
                         </li>
                       </ul>
                     );

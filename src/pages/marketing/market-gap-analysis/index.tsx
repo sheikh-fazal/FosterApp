@@ -2,11 +2,11 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import AddSwotForm from "@root/sections/marketing-gap-analysis/add-swot-info-form/AddSwotForm";
+import MarketAnalysisTable from "@root/sections/marketing/marketing-gap-analysis/MarketAnalysisTable";
 
-const PAGE_TILE = "Add SWOT Analysis Info";
+const PAGE_TILE = "Market gap Analysis";
 
-AddSwotInfo.getLayout = function getLayout(page: any) {
+MarketAnalysis.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -17,7 +17,7 @@ AddSwotInfo.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
-          name: "SWOT Analysis",
+          name: "Marketing",
         },
       ]}
       title={PAGE_TILE}
@@ -27,10 +27,10 @@ AddSwotInfo.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function AddSwotInfo() {
+export default function MarketAnalysis() {
   return (
     <Page title={PAGE_TILE}>
-      <AddSwotForm />
+      <MarketAnalysisTable />
     </Page>
   );
 }

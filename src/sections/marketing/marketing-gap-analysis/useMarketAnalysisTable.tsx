@@ -53,6 +53,7 @@ export const useMarketAnalysisTable = () => {
         <Image
           width={44}
           height={44}
+          onClick={() => router.push("/marketing/market-gap-analysis/swot-competitor")}
           style={{ cursor: "pointer", objectFit: "cover", margin: "0px auto" }}
           src={info.getValue()}
           alt=""

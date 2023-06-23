@@ -21,7 +21,7 @@ MerketingSwotAnalysisLayout.getLayout = function getLayout(page: any) {
           href: "/marketing",
         },
         {
-          name: "SWOT Analysis",
+          name: "Marketing Gap Analysis",
           href: "/marketing/swot-analysis",
         },
       ]}
@@ -34,10 +34,10 @@ MerketingSwotAnalysisLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function MerketingSwotAnalysisLayout() {
-  const title: string = "SWOT on - Marketing Strategy of Agency (Jan 2021 - Jun 2021)";
+  const title: string = "Busy Bee Fostering (South-East London)";
   return (
     <Page title={PAGE_TITLE}>
-      <SwotCompetitor routerPath={"/marketing/swot-analysis"} title={title} />
+      <SwotCompetitor routerPath={"/marketing/market-gap-analysis"} title={title} />
     </Page>
   );
 }

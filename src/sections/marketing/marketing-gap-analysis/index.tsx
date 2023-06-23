@@ -1,4 +1,4 @@
-import swotIcon from "../../assets/img/audits/swot-icon.png";
+import swotIcon from "../../../assets/img/audits/swot-icon.png";
 
 export const data = [
   {

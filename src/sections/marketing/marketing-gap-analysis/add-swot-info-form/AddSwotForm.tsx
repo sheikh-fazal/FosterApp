@@ -31,7 +31,7 @@ const AddSwotForm = () => {
             <Button
               type="button"
               variant="contained"
-              onClick={() => router.push("/market-gap-analysis")}
+              onClick={() => router.push("/marketing/market-gap-analysis")}
             >
               Back
             </Button>

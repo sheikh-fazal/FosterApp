@@ -19,7 +19,7 @@ const MarketAnalysisTable = () => {
           searchKey="search"
           showSelectFilters
           showAddBtn={true}
-          onAdd={() => router.push("/market-gap-analysis/add-swot-info")}
+          onAdd={() => router.push("/marketing/market-gap-analysis/add-swot-info")}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}
