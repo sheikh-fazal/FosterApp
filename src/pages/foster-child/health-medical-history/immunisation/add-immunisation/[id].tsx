@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
@@ -47,13 +47,18 @@ AddImmunisation.getLayout = function GetLayout(page: any) {
 export default function AddImmunisation() {
   const router: any = useRouter();
   let { id } = router.query;
+  let [immunisationId, setImmunisationId] = useState(null);
   return (
     <Box>
       <HorizaontalTabs
         tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
       >
-        <ImmunisationFrom id={id} action="add" />
-        <ImmunisationUploadTable />
+        <ImmunisationFrom
+          setImmunisationId={setImmunisationId}
+          id={id}
+          action="add"
+        />
+        <ImmunisationUploadTable immunisationId={immunisationId} />
       </HorizaontalTabs>
     </Box>
   );

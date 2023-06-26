@@ -16,11 +16,12 @@ import { useImmunisationForm } from "./useImmunisationForm";
 const backPath = "/foster-child/health-medical-history/immunisation";
 
 const ImmunisationFrom = (props: any) => {
-  const { action, id, immunisationData } = props;
+  const { action, id, immunisationData, setImmunisationId } = props;
   const { methods, onSubmit, handleSubmit, theme } = useImmunisationForm({
     action,
     id,
     immunisationData,
+    setImmunisationId,
   });
   return (
     <Box sx={{ px: 1, py: 2 }}>

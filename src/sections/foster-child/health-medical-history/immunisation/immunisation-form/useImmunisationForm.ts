@@ -14,7 +14,12 @@ import {
   useUpdateImmunisationMutation,
 } from "@root/services/foster-child/health-medical-history/immunisation/ImmunisationApi";
 
-export const useImmunisationForm = ({ action, id, immunisationData }: any) => {
+export const useImmunisationForm = ({
+  action,
+  id,
+  immunisationData,
+  setImmunisationId,
+}: any) => {
   const theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
@@ -58,6 +63,7 @@ export const useImmunisationForm = ({ action, id, immunisationData }: any) => {
       postImmunisation({ formData, id: id })
         .unwrap()
         .then((res: any) => {
+          setImmunisationId(res?.data?.id);
           enqueueSnackbar("Record Added Successfully", {
             variant: "success",
           });
