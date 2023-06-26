@@ -25,13 +25,13 @@ export const applicationFormDocumentApi = baseAPI.injectEndpoints({
     updateDocumentDetail: builder.mutation({
       query: ({ id, formData }: any) => ({
         url: `/application-form/application-form/document/${id}`,
-        method: "PUT",
+        method: "PATCH",
         body: formData,
       }),
       invalidatesTags: ["APPLICATIONFORM_DOCUMENTS"],
     }),
     deleteDocument: builder.mutation({
-      query: (id: any) => ({
+      query: ({ id }: any) => ({
         url: `/application-form/application-form/documents/${id}`,
         method: "DELETE",
       }),

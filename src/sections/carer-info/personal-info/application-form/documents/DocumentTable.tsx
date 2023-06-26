@@ -6,26 +6,10 @@ import TableHeader from "@root/components/TableHeader";
 import UploadDocumentsModel from "./UploadDocumentModal";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
-const data = [
-  {
-    documentName: "Doc Name",
-    documentType: "Pdf",
-    documentDate: "19/05/2021",
-    personUploaded: "Name Xame",
-    password: "123bc",
-  },
-  {
-    documentName: "Doc Name",
-    documentType: "Document Type",
-    documentDate: "19-05-2021",
-    personUploaded: "Name Xame",
-    password: "123bc",
-  },
-];
-
 export function DocumentTable(props: any) {
-  const { role } = props;
+  const { applicationFormid, role } = props;
   const {
+    data,
     theme,
     tableHeaderRef,
     changeView,
@@ -35,7 +19,14 @@ export function DocumentTable(props: any) {
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-  } = useUploadDocumentsTable();
+    docData,
+    setDocData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+  } = useUploadDocumentsTable({ applicationFormid });
 
   return (
     <Grid container>
@@ -49,17 +40,21 @@ export function DocumentTable(props: any) {
             changeView("add");
           }}
           searchKey="search"
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
+          onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={data}
-          columns={columns(changeView, setOpen)}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          data={data?.data}
+          columns={columns({
+            changeView,
+            setOpen,
+            role,
+            setDocData,
+            listDeleteHandler,
+          })}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
           showSerialNo
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
@@ -70,6 +65,8 @@ export function DocumentTable(props: any) {
             open={open}
             setOpen={setOpen}
             changeView={changeView}
+            docData={docData}
+            applicationFormid={applicationFormid}
           />
         )}
       </Grid>

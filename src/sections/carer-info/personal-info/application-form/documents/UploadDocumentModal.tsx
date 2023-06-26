@@ -6,9 +6,12 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsModal } from "./useUploadDocumentsModal";
 
 function UploadDocumentsModel(props: any) {
-  const { open, setOpen, view, changeView } = props;
+  const { open, setOpen, view, changeView, docData, applicationFormid } = props;
   const { onSubmit, theme, methods, handleSubmit } = useUploadDocumentsModal({
     view,
+    docData,
+    applicationFormid,
+    setOpen,
   });
 
   return (

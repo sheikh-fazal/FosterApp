@@ -7,6 +7,7 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { RHFUploadFile } from "../basic-information/RHFUploadFile";
+import Link from "next/link";
 
 export const UploadDocFormData = [
   {
@@ -14,17 +15,33 @@ export const UploadDocFormData = [
     gridLength: 12,
     componentProps: {
       fullWidth: true,
-      name: "type",
+      name: "documentType",
       label: "Document Type",
       select: true,
       options: [
         {
-          value: "PDF",
-          label: "PDF",
+          value: "pdf",
+          label: "pdf",
         },
         {
-          value: "WORD",
-          label: "WORD",
+          value: "docx",
+          label: "docx",
+        },
+        {
+          value: "doc",
+          label: "doc",
+        },
+        {
+          value: "png",
+          label: "png",
+        },
+        {
+          value: "jpg",
+          label: "jpg",
+        },
+        {
+          value: "jpeg",
+          label: "jpeg",
         },
       ],
     },
@@ -34,7 +51,7 @@ export const UploadDocFormData = [
     id: 3,
     componentProps: {
       name: "documentDate",
-      label: "Date Of Enquiry",
+      label: "Document Date",
       fullWidth: true,
     },
     gridLength: 6,
@@ -55,7 +72,7 @@ export const UploadDocFormData = [
   {
     gridLength: 12,
     componentProps: {
-      name: "file",
+      name: "documentName",
       fullWidth: true,
       size: "small",
       label: "Upload Document",
@@ -64,18 +81,24 @@ export const UploadDocFormData = [
   },
 ];
 export const defaultValues = {
-  type: "",
+  documentType: "",
   documentDate: new Date(),
   password: "",
-  file: null,
+  documentName: null,
 };
 export const formSchema = Yup.object().shape({
-  type: Yup.string().required("required"),
-  documentDate: Yup.date().required("required"),
-  password: Yup.string().required("required"),
-  file: Yup.mixed().nullable().required("Document is required"),
+  documentType: Yup.string().required("Field is required"),
+  documentDate: Yup.date().required("Field is required"),
+  password: Yup.string().required("Field is required"),
+  documentName: Yup.mixed().nullable().required("Document is required"),
 });
-export const columns = (changeView: any, setOpen: any) => {
+export const columns = ({
+  changeView,
+  setOpen,
+  role,
+  setDocData,
+  listDeleteHandler,
+}: any) => {
   return [
     {
       accessorFn: (row: any) => row.documentName ?? "-",
@@ -97,7 +120,7 @@ export const columns = (changeView: any, setOpen: any) => {
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>;
       },
-      header: () => <span>Date of Allegation</span>,
+      header: () => <span>Document Date</span>,
       isSortable: true,
     },
     {
@@ -118,24 +141,36 @@ export const columns = (changeView: any, setOpen: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => alert("Download")}
-          />
-          <DeletePrompt
-            onDeleteClick={() => console.log(info?.row?.original?.id)}
-          />
+          <Link
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.documentFile}`}
+            target="_blank"
+          >
+            <TableAction size="small" type="download" />
+          </Link>
           <TableAction
             size="small"
             type="view"
             onClicked={() => {
               setOpen(true);
+              setDocData(info.row.original);
               changeView("view");
             }}
           />
-          {/* Delete Modal */}
-          <DeleteModel onDeleteClick={() => console.log(info.srNo)} />
+          {role !== "foster-carer" && (
+            <>
+              <TableAction
+                type="edit"
+                onClicked={() => {
+                  setOpen(true);
+                  setDocData(info.row.original);
+                  changeView("edit");
+                }}
+              />
+              <DeletePrompt
+                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+              />
+            </>
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,
