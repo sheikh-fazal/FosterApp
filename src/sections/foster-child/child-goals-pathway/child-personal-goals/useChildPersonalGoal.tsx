@@ -4,6 +4,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
+import { useGetChildPersonalGoalsListQuery } from "@root/services/foster-child/child-goals-and-pathway/ChildGoalsAndPathwayApi";
 
 export const useChildPersonalGoal = () => {
   const route = useRouter();
@@ -11,6 +12,14 @@ export const useChildPersonalGoal = () => {
   const tableHeaderRefTwo = useRef<any>();
   const [childPersonalGoalMockData, setChildPersonalGoalMockData] =
     React.useState(CHILD_PERSONAL_GOALS_MOCK_DATA);
+  const {
+    data: childPersonalGoalsListData,
+    isError: childPersonalGoalsListError,
+    isFetching: childPersonalGoalsListFetching,
+    isLoading: childPersonalGoalsListLoading,
+    isSuccess: childPersonalGoalsListSuccess,
+  } = useGetChildPersonalGoalsListQuery({});
+  console.log(childPersonalGoalsListData);
 
   const columns = [
     {

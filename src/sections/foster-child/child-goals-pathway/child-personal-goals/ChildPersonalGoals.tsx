@@ -1,10 +1,11 @@
 import CustomTable from "@root/components/Table/CustomTable";
-import React, { useRef } from "react";
-import { Box, Checkbox, useTheme } from "@mui/material";
-import TableAction from "@root/components/TableAction";
+// import React, { useRef } from "react";
+// import { Box, Checkbox, useTheme } from "@mui/material";
+// import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import { useChildPersonalGoal } from "./useChildPersonalGoal";
+import { useTheme } from "@mui/material";
 // import { columns } from ".";
 
 export const ChildPersonalGoalsMain = () => {
@@ -14,9 +15,9 @@ export const ChildPersonalGoalsMain = () => {
     tableHeaderRefTwo,
     // search,
     setSearch,
-    columns
+    columns,
   } = useChildPersonalGoal();
-
+  const theme = useTheme();
   return (
     <>
       <TableHeader
@@ -42,10 +43,15 @@ export const ChildPersonalGoalsMain = () => {
         isLoading={false}
         isError={false}
         isSuccess={true}
-        totalPages={1}
+        totalPages={2}
         currentPage={1}
-        onPageChange
-        onSortByChange={() => {}}
+        onPageChange={(data: any) => {
+          console.log("Current page data: ", data);
+        }}
+        onSortByChange={(data: any) => {
+          console.log("Sort by: ", data);
+        }}
+        rootSX={{ my: theme.spacing(2) }}
         isPagination={true}
         // tableContainerSX = {}
         // rootSX = {}

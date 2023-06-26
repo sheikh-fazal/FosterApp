@@ -11,7 +11,7 @@ export default function ChildPersonalGoals() {
     {
       icon: <HomeIcon />,
       name: "Child Info",
-      href: "/",
+      href: "/foster-child",
     },
     {
       name: "Personal Goal List",

@@ -9,11 +9,11 @@ export default function PersonalGoalsListView() {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Child Info",
-      href: "/",
+      name: "Personal Goals List",
+      href: "/foster-child/child-goals-and-pathway/child-personal-goals/",
     },
     {
-      name: "Personal Goal List",
+      name: "Personal Goal",
       href: "/",
     },
   ];
