@@ -9,11 +9,7 @@ import AuthLayout from "./AuthLayout";
 
 // ----------------------------------------------------------------------
 
-export default function Layout({
-  variant = "dashboard",
-  children,
-  ...other
-}: any) {
+export default function Layout({ variant = "dashboard", children, ...other }: any) {
   if (variant === "auth") {
     return <AuthLayout {...other}> {children} </AuthLayout>;
   }
@@ -32,7 +28,7 @@ export default function Layout({
 
   return (
     // <AuthGuard>
-      <DashboardLayout {...other}> {children} </DashboardLayout>
+    <DashboardLayout {...other}> {children} </DashboardLayout>
     // </AuthGuard>
   );
 }
