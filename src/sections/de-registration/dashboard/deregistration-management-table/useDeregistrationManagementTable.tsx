@@ -92,45 +92,7 @@ export const useDeregistrationManagementTable = () => {
             accessorFn: (row: any, index: number) => row.Dereg_Status,
             id: "Dereg_Status",
             cell: (info: any) => (
-                // <Select
-                //     value={deregStatusValue}
-                //     onChange={handleChange}
-                //     sx={{
-                //         height: '30px', // Set the desired height
-                //         width: '270px', // Set the desired width
-                //         background: deregStatusBg,
-                //         color: "#fff",
-                //         '&:before': {
-                //             borderColor: 'white',
-                //         },
-                //         '&:after': {
-                //             borderColor: 'white',
-                //         },
-                //     }}
-                // >
-                //     {menuItems.map((item) => (
-                //         <MenuItem
-                //             key={item.value}
-                //             value={item.value}
-                //             id={item.id} // Assign the id based on the value
-                //             sx={{
-                //                 background: item.background,
-                //                 color: item.color,
-                //                 m: 1,
-                //                 '&:hover': {
-                //                     background: item.background,
-                //                 },
-                //                 '&.Mui-selected': {
-                //                     background: item.background,
-                //                 },
-                //             }}
-                //             onClick={() => setDeregStatusBg(item.background)}
-                //         >
-                //             {item.label}
-                //         </MenuItem>
-                //     ))}
-                // </Select>),
-                <DeRegTableDropdown status={info.status} handleChange={(val: string) => console.log("hfgshdfgshdgfhsdgfhs=====================================================", val)} />
+                <DeRegTableDropdown status={info.status} handleChange={(val: string) => console.log("==", val)} />
             ),
 
 
