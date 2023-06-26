@@ -26,10 +26,10 @@ interface IProps {
 const ConsultationFosterCarerAddModal = (props: IProps) => {
   const { open, handleClose, disabled, onSubmit,title,isHideSubmitButton} = props;
   const { methods, handleSubmit } = useConsultationFosterCarerAddModal();
-  // const [modalType,setModalType] = useState("FosterView")
+
   const ModalContent = styled(DialogContent)`
     @media (max-width: 852px) {
-      width: 100%;
+      width: 100% !important;
       height: auto;
     }
   `;
@@ -42,7 +42,7 @@ const ConsultationFosterCarerAddModal = (props: IProps) => {
           handleClose(), methods.reset();
         }}
         fullWidth={true}
-        maxWidth={"sm"}
+        maxWidth={'sm'}
       >
         <ModalContent>
           <Typography component={"p"} sx={styles.styleTitle}>
@@ -135,4 +135,6 @@ const styles = {
     letterSpacing: "0.005em",
     color: "#343A40",
   },
+  
+ 
 };
