@@ -212,7 +212,7 @@ export const UploadDocFormData = [
     gridLength: 12,
     componentProps: {
       fullWidth: true,
-      name: "type",
+      name: "documentType",
       label: "Document Type",
       select: true,
       options: [
@@ -254,3 +254,9 @@ export const UploadDocFormData = [
     component: RHFTextField,
   },
 ];
+
+export const defvalue = {
+  documentType: "",
+  documentDate: "",
+  password: "",
+};

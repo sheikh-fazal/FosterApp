@@ -28,12 +28,12 @@ interface model {
   modelOpen?: boolean;
   setModelOpen?: any;
   isloading?: boolean;
-  defaultValues?: any;
   action?: string;
   showActions?: boolean;
   onSubmit?: any;
   isFetching?: boolean;
   defaultValuesdef?: any;
+  defaultValues?: any;
 }
 function ModelUploadDoc(props: model) {
   const {
@@ -44,9 +44,10 @@ function ModelUploadDoc(props: model) {
     onSubmit,
     isFetching,
     isloading,
-    defaultValuesdef,
+    defaultValues,
   } = props;
   const [Model, setModel] = useState(false);
+
   return (
     <Box>
       {showActions && (
@@ -57,210 +58,256 @@ function ModelUploadDoc(props: model) {
         />
       )}
 
-      <Form
-        defaultValuesdef={defaultValuesdef}
-        isloading={isloading}
-        onSubmit={onSubmit}
-        Model={action === "edit" || action === "view" ? Model : modelOpen}
-        setModel={
-          action === "edit" || action === "view" ? setModel : setModelOpen
-        }
-        action={action}
-        isFetching={isFetching}
-      />
+      {action === "edit" || action === "view" ? (
+        <>
+          {Model && (
+            <Modal
+              open={Model}
+              onClose={() => setModel(false)}
+              aria-labelledby="modal-modal-titledsdsd"
+              aria-describedby="modal-modal-descriptiondsdsddsds"
+              closeAfterTransition
+              slots={{ backdrop: Backdrop }}
+              slotProps={{
+                backdrop: {
+                  timeout: 500,
+                },
+              }}
+            >
+              <Box sx={Styles.root}>
+              
+                  <EditViewFrom
+                    setModel={setModel}
+                    onSubmit={onSubmit}
+                    defaultValues={defaultValues}
+                    isloading={isloading}
+                  />
+              
+              </Box>
+            </Modal>
+          )}
+        </>
+      ) : (
+        <AddForm
+          open={modelOpen}
+          setOpen={setModelOpen}
+          isfatching={isFetching}
+          onUploadSubmit={onSubmit}
+        />
+      )}
     </Box>
   );
 }
-const Form = (props: any) => {
-  const {
-    Model,
-    setModel,
-    defaultValuesdef,
-    isloading,
-    onSubmit,
-    action,
-    isFetching,
-  } = props;
+const AddForm = (props: any) => {
+  const { open, setOpen, isfatching, onUploadSubmit } = props;
   const theme: any = useTheme();
+  const defaultValues = {
+    type: "",
+    documentDate: new Date(),
+    password: "",
+  };
+  const methods: any = useForm({
+    resolver: yupResolver(formSchemaModel),
+    defaultValues,
+  });
+  const { handleSubmit } = methods;
+  return (
+    <Modal
+      open={open}
+      onClose={() => setOpen(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}
+    >
+      <Box sx={Styles.root}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Typography variant="subtitle1">
+            Person Uploaded: Name Xname
+          </Typography>
+          <CloseIcon
+            onClick={() => setOpen(false)}
+            sx={{ cursor: "pointer" }}
+          />
+        </Box>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onUploadSubmit)}>
+          <Grid container rowSpacing={4} columnSpacing={2}>
+            {UploadDocFormData.map((form: any) => (
+              <Grid item xs={12} md={form?.gridLength} key={form.id}>
+                <form.component {...form.componentProps} size="small">
+                  {form.componentProps.select
+                    ? form.componentProps.options.map((option: any) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
+                    : null}
+                </form.component>
+              </Grid>
+            ))}
+            <Grid xs={12} item>
+              <RHFUploadFile name="file" {...methods} />
+            </Grid>
+          </Grid>
+          <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
+            <LoadingButton
+              type="submit"
+              sx={{
+                bgcolor: theme.palette.primary.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
+              loading={isfatching}
+            >
+              Upload
+            </LoadingButton>
+            <Button
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
+              onClick={() => setOpen(false)}
+            >
+              Clear
+            </Button>
+          </Box>
+        </FormProvider>
+      </Box>
+    </Modal>
+  );
+};
+const EditViewFrom = (props: any) => {
+  const { setModel, onSubmit, isloading, defaultValues, Formet } = props;
+  const theme: any = useTheme();
+  const dfv = {
+    type: "",
+    documentDate: new Date(),
+    password: "",
+  };
   const methods = useForm({
     resolver: yupResolver(formSchemaModel),
-    defaultValues: defaultValuesdef,
+    defaultValues: defaultValues ?? dfv,
   });
-  const { handleSubmit, getValues, reset } = methods;
 
-  return (
-    <>
-      {Model && (
-        <Modal
-          open={Model}
-          onClose={() => {
-            setModel(false);
-            reset();
-          }}
-          aria-labelledby="modal-modal-title-fdsfl"
-          aria-describedby="modal-modal-description-mkdsfnjs"
-          closeAfterTransition
-          slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 500,
-            },
+  const { handleSubmit, getValues } = methods;
+  if (isloading)
+    return (
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mb: 3,
           }}
         >
-          <Box sx={Styles.root}>
-            {isloading && (
-              <Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    mb: 3,
-                  }}
-                >
-                  <Typography variant="subtitle1">
-                    Person Uploaded: ...
-                  </Typography>
-                  <CloseIcon
-                    onClick={() => {
-                      setModel(false);
-                      reset();
-                    }}
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Box>
-                <Grid container>
-                  <Grid xs={12} sm={12} sx={{ px: 2, py: 1.5 }} item>
-                    <Skeleton
-                      animation="wave"
-                      variant="rectangular"
-                      width={"100%"}
-                      sx={Styles.skeleton(theme)}
-                    />
-                  </Grid>
-                  <Grid xs={12} sm={6} sx={{ px: 2, py: 1.5 }} item>
-                    <Skeleton
-                      animation="wave"
-                      variant="rectangular"
-                      width={"100%"}
-                      sx={Styles.skeleton(theme)}
-                    />
-                  </Grid>
-                  <Grid xs={12} sm={6} sx={{ px: 2, py: 1.5 }} item>
-                    <Skeleton
-                      animation="wave"
-                      variant="rectangular"
-                      width={"100%"}
-                      sx={Styles.skeleton(theme)}
-                    />
-                  </Grid>
-                  <Grid xs={12} sm={12} sx={{ px: 2, py: 1.5 }} item>
-                    <Skeleton
-                      animation="wave"
-                      variant="rectangular"
-                      width={"100%"}
-                      sx={Styles.skeleton(theme)}
-                    />
-                  </Grid>
-                </Grid>
-              </Box>
-            )}
-            <Box>
-              <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-                <IsFetching isFetching={isFetching} />
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    mb: 3,
-                  }}
-                >
-                  <Typography variant="subtitle1">
-                    Person Uploaded: {getValues("uploadBy")}
-                  </Typography>
-                  <CloseIcon
-                    onClick={() => setModel(false)}
-                    sx={{ cursor: "pointer" }}
-                  />
-                </Box>
-                <Grid container rowSpacing={4} columnSpacing={2}>
-                  {UploadViewDocFormData.map((form: any) => (
-                    <Grid item xs={12} md={form?.gridLength} key={form.id}>
-                      <form.component
-                        {...form.componentProps}
-                        disabled={
-                          action === "add" || action === "edit" ? false : true
-                        }
-                        InputLabelProps={{
-                          shrink:
-                            action === "add" || action === "edit"
-                              ? undefined
-                              : true,
-                          disabled:
-                            action === "add" || action === "edit"
-                              ? undefined
-                              : true,
-                        }}
-                        size="small"
-                      >
-                        {form.componentProps.select
-                          ? form.componentProps.options.map((option: any) => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))
-                          : null}
-                      </form.component>
-                    </Grid>
-                  ))}
-                  <Grid xs={12} item>
-                    {action === "edit" || action === "add" ? (
-                      <RHFUploadFile name="file" {...methods} />
-                    ) : (
-                      <RHFTextField
-                        name="documentName"
-                        disabled={true}
-                        InputLabelProps={{
-                          shrink: true,
-                          disabled: true,
-                        }}
-                        {...methods}
-                      />
-                    )}
-                  </Grid>
-                </Grid>
-                <Box sx={{ display: "flex", gap: 1.5, mt: 3 }}>
-                  {action === "edit" || action === "add" ? (
-                    <Button
-                      type="submit"
-                      sx={{
-                        bgcolor: theme.palette.primary.main,
-                        "&:hover": { bgcolor: theme.palette.orange.main },
-                      }}
-                      variant="contained"
-                    >
-                      Upload
-                    </Button>
-                  ) : null}
-                  <Button
-                    sx={{
-                      bgcolor: theme.palette.orange.main,
-                      "&:hover": { bgcolor: theme.palette.orange.main },
-                    }}
-                    variant="contained"
-                    onClick={() => {
-                      setModel(false);
-                      reset();
-                    }}
-                  >
-                    Back
-                  </Button>
-                </Box>
-              </FormProvider>
-            </Box>
-          </Box>
-        </Modal>
-      )}
-    </>
+          <Typography variant="subtitle1">Person Uploaded: ...</Typography>
+          <CloseIcon
+            // onClick={() => setOpen(false)}
+            sx={{ cursor: "pointer" }}
+          />
+        </Box>
+        <Grid container>
+          <Grid xs={12} sm={12} sx={{ px: 2, py: 1.5 }} item>
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              width={"100%"}
+              sx={Styles.skeleton(theme)}
+            />
+          </Grid>
+          <Grid xs={12} sm={6} sx={{ px: 2, py: 1.5 }} item>
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              width={"100%"}
+              sx={Styles.skeleton(theme)}
+            />
+          </Grid>
+          <Grid xs={12} sm={6} sx={{ px: 2, py: 1.5 }} item>
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              width={"100%"}
+              sx={Styles.skeleton(theme)}
+            />
+          </Grid>
+          <Grid xs={12} sm={12} sx={{ px: 2, py: 1.5 }} item>
+            <Skeleton
+              animation="wave"
+              variant="rectangular"
+              width={"100%"}
+              sx={Styles.skeleton(theme)}
+            />
+          </Grid>
+        </Grid>
+      </Box>
+    );
+  return (
+    <Box>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
+          <Typography variant="subtitle1">
+            Person Uploaded: {getValues("uploadBy")}
+          </Typography>
+          <CloseIcon
+            onClick={() => setModel(false)}
+            sx={{ cursor: "pointer" }}
+          />
+        </Box>
+        <Grid container rowSpacing={4} columnSpacing={2}>
+          {UploadViewDocFormData.map((form: any) => (
+            <Grid item xs={12} md={form?.gridLength} key={form.id}>
+              <form.component
+                {...form.componentProps}
+                disabled={true}
+                InputLabelProps={{
+                  shrink: true,
+                  disabled: true,
+                }}
+                size="small"
+              >
+                {form.componentProps.select
+                  ? form.componentProps.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </form.component>
+            </Grid>
+          ))}
+          <Grid xs={12} item>
+            <RHFTextField
+              name="documentName"
+              disabled={true}
+              InputLabelProps={{
+                shrink: true,
+                disabled: true,
+              }}
+              {...methods}
+            />
+          </Grid>
+        </Grid>
+        <Box sx={{ display: "flex", gap: 2, mt: 3 }}>
+          <Button
+            sx={{
+              bgcolor: theme.palette.orange.main,
+              "&:hover": { bgcolor: theme.palette.orange.main },
+            }}
+            variant="contained"
+            onClick={() => setModel(false)}
+          >
+            Back
+          </Button>
+        </Box>
+      </FormProvider>
+    </Box>
   );
 };
 

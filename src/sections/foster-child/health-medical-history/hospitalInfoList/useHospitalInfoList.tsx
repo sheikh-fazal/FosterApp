@@ -1,10 +1,12 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetHospitalInfoListQuery } from "@root/services/foster-child/health-medical-history/hospital-info-list/HospitalInfoList";
+
 import React, { useState } from "react";
 
 const useHospitalInfoList = (props: any) => {
-  const { fosterChildId } = props;
+  const { fosterChildId, hospitalinfoId } = props;
   const [search, setSearch] = useState("");
+
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const {
@@ -27,6 +29,7 @@ const useHospitalInfoList = (props: any) => {
     hospitalInfolistisLoading,
     hospitalInfolistisFetching,
     hospitalInfolistisSuccess,
+
     params,
     headerChangeHandler,
     pageChangeHandler,
