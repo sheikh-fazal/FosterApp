@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import { SELECT_FILTERS, menuItems } from '.';
 import { SelectChangeEvent } from '@mui/material/Select';
+import DeRegTableDropdown from '../dashboard/deregistration-management-table/select-deregistartion-dropdown/DeRegTableDropdown';
 
 
 export const useDeregistrationManagement = () => {
@@ -107,45 +108,47 @@ export const useDeregistrationManagement = () => {
         {
             accessorFn: (row: any, index: number) => row.Dereg_Status,
             id: "Dereg_Status",
-            cell: (info: any) =>
-                <Select
-                    value={deregStatusValue}
-                    onChange={handleChange}
-                    sx={{
-                        height: '30px', // Set the desired height
-                        width: '270px', // Set the desired width
-                        background: deregStatusBg,
-                        color: "#fff",
-                        '&:before': {
-                            borderColor: 'white',
-                        },
-                        '&:after': {
-                            borderColor: 'white',
-                        },
-                    }}
-                >
-                    {menuItems.map((item) => (
-                        <MenuItem
-
-                            key={item.value}
-                            value={item.value}
-                            sx={{
-                                background: item.background,
-                                color: item.color,
-                                m: 1,
-                                '&:hover': {
-                                    background: item.background,
-                                },
-                                '&.Mui-selected': {
-                                    background: item.background,
-                                },
-                            }}
-                            onClick={() => setDeregStatusBg(item.background)}
-                        >
-                            {item.label}
-                        </MenuItem>
-                    ))}
-                </Select>,
+            cell: (info: any) => (
+                // <Select
+                //     value={deregStatusValue}
+                //     onChange={handleChange}
+                //     sx={{
+                //         height: '30px', // Set the desired height
+                //         width: '270px', // Set the desired width
+                //         background: deregStatusBg,
+                //         color: "#fff",
+                //         '&:before': {
+                //             borderColor: 'white',
+                //         },
+                //         '&:after': {
+                //             borderColor: 'white',
+                //         },
+                //     }}
+                // >
+                //     {menuItems.map((item) => (
+                //         <MenuItem
+                //             key={item.value}
+                //             value={item.value}
+                //             id={item.id} // Assign the id based on the value
+                //             sx={{
+                //                 background: item.background,
+                //                 color: item.color,
+                //                 m: 1,
+                //                 '&:hover': {
+                //                     background: item.background,
+                //                 },
+                //                 '&.Mui-selected': {
+                //                     background: item.background,
+                //                 },
+                //             }}
+                //             onClick={() => setDeregStatusBg(item.background)}
+                //         >
+                //             {item.label}
+                //         </MenuItem>
+                //     ))}
+                // </Select>),
+                <DeRegTableDropdown status={info.status} handleChange={(val: string) => console.log("hfgshdfgshdgfhsdgfhs=====================================================", val)} />
+            ),
 
 
 

@@ -1,29 +1,14 @@
-import { Box, Checkbox, MenuItem, Select, useTheme } from '@mui/material';
+import { Box, Checkbox, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react'
+import React, { useRef, } from 'react'
 import Image from 'next/image'
-import { SELECT_FILTERS, menuItems } from '.';
-import { SelectChangeEvent } from '@mui/material/Select';
+import { SELECT_FILTERS, } from '.';
+import DeRegTableDropdown from './select-deregistartion-dropdown/DeRegTableDropdown';
 
 export const useDeregistrationManagementTable = () => {
     const tableHeaderRefTwo = useRef<any>();
-    const [deregStatusBg, setDeregStatusBg] = useState(menuItems[0].background);
-    const [deregStatusValue, setDeregStatusValue] = React.useState(menuItems[0].value);
     const router = useRouter()
     const theme: any = useTheme();
-
-
-    // let [expand, setExpand] = useState(false);
-    // const [tableData, SetTableData] = useState(TableData.slice(0, 2));
-    // const handleExpand = () => {
-    //     setExpand(!expand);
-    //     !expand ? SetTableData(TableData) : SetTableData(TableData.slice(0, 2));
-    // };
-
-    const handleChange = (event: SelectChangeEvent) => {
-        setDeregStatusValue(event.target.value);
-    };
-    console.log("handleChange", deregStatusValue)
 
     // table column start here
     const columns = [
@@ -107,44 +92,46 @@ export const useDeregistrationManagementTable = () => {
             accessorFn: (row: any, index: number) => row.Dereg_Status,
             id: "Dereg_Status",
             cell: (info: any) => (
-                <Select
-                    value={deregStatusValue}
-                    onChange={handleChange}
-                    sx={{
-                        height: '30px', // Set the desired height
-                        width: '270px', // Set the desired width
-                        background: deregStatusBg,
-                        color: "#fff",
-                        '&:before': {
-                            borderColor: 'white',
-                        },
-                        '&:after': {
-                            borderColor: 'white',
-                        },
-                    }}
-                >
-                    {menuItems.map((item) => (
-                        <MenuItem
-                            key={item.value}
-                            value={item.value}
-                            id={item.value} // Assign the id based on the value
-                            sx={{
-                                background: item.background,
-                                color: item.color,
-                                m: 1,
-                                '&:hover': {
-                                    background: item.background,
-                                },
-                                '&.Mui-selected': {
-                                    background: item.background,
-                                },
-                            }}
-                            onClick={() => setDeregStatusBg(item.background)}
-                        >
-                            {item.label}
-                        </MenuItem>
-                    ))}
-                </Select>),
+                // <Select
+                //     value={deregStatusValue}
+                //     onChange={handleChange}
+                //     sx={{
+                //         height: '30px', // Set the desired height
+                //         width: '270px', // Set the desired width
+                //         background: deregStatusBg,
+                //         color: "#fff",
+                //         '&:before': {
+                //             borderColor: 'white',
+                //         },
+                //         '&:after': {
+                //             borderColor: 'white',
+                //         },
+                //     }}
+                // >
+                //     {menuItems.map((item) => (
+                //         <MenuItem
+                //             key={item.value}
+                //             value={item.value}
+                //             id={item.id} // Assign the id based on the value
+                //             sx={{
+                //                 background: item.background,
+                //                 color: item.color,
+                //                 m: 1,
+                //                 '&:hover': {
+                //                     background: item.background,
+                //                 },
+                //                 '&.Mui-selected': {
+                //                     background: item.background,
+                //                 },
+                //             }}
+                //             onClick={() => setDeregStatusBg(item.background)}
+                //         >
+                //             {item.label}
+                //         </MenuItem>
+                //     ))}
+                // </Select>),
+                <DeRegTableDropdown status={info.status} handleChange={(val: string) => console.log("hfgshdfgshdgfhsdgfhs=====================================================", val)} />
+            ),
 
 
 
