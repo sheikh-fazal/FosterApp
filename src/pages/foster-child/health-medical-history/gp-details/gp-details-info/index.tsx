@@ -2,33 +2,36 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import ChildTherapyInfoTabs from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/child-therapy-info-tabs/ChildTherapyInfoTabs";
 import GPDetailsInfoTabs from "@root/sections/foster-child/health-medical-history/gp-details/gp-details-info/gp-details-info-tabs/GPDetailsInfoTabs";
+import { NextRouter, useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "/Health",
-    href: "/foster-child/health-medical-history/therapy-info",
+    name: "Health",
+    href: "/foster-child",
   },
   {
-    name: "GP Details Info List",
-    href: "#",
+    name: "GP Details Info",
+    href: "",
   },
 ];
 
-const PAGE_TITLE = "Edit GP Details Info List";
+const PAGE_TITLE = (action: any = "") =>
+  `${action?.[0]?.toUpperCase() ?? ""}${action?.slice?.(
+    1
+  )} GP Details Info List`;
 
 // ----------------------------------------------------------------------
 
-InitialHomeVisit.getLayout = function getLayout(page: any) {
+GPDetailsInfo.getLayout = function getLayout(page: any, { query }: NextRouter) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
+      title={PAGE_TITLE?.(query?.action)}
       variant="dashboard"
     >
       {page}
@@ -38,10 +41,11 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function InitialHomeVisit() {
+export default function GPDetailsInfo() {
+  const { query } = useRouter();
   return (
-    <Page title={PAGE_TITLE}>
-       <GPDetailsInfoTabs />
+    <Page title={PAGE_TITLE?.(query?.action)}>
+      <GPDetailsInfoTabs />
     </Page>
   );
 }

@@ -1,64 +1,72 @@
 import { useForm } from "react-hook-form";
-
+import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { defaultValueGpDetailsInfoForm, gpDetailsInfoFormDataFunction, gpDetailsInfoFormSchema } from ".";
-import { useLazyGetSingleGpDetailsInfoDataQuery, usePatchGpDetailsInfoDataMutation, usePostGpDetailsInfoDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/gpDetailsInfo";
+import {
+  defaultValueGpDetailsInfoForm,
+  gpDetailsInfoFormDataFunction,
+  gpDetailsInfoFormSchema,
+} from ".";
+import {
+  useLazyGetSingleGpDetailsInfoDataQuery,
+  usePatchGpDetailsInfoDataMutation,
+  usePostGpDetailsInfoDataMutation,
+} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useGPDetailsInfo = () => {
   const { query } = useRouter();
   const router = useRouter();
-  console.log(query.gpInfoId)
-  const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(query?.action === "view");
+  const theme: any = useTheme();
+  const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(
+    query?.action === "view"
+  );
 
   const [postGpDetailsInfoDataTrigger, postGpDetailsInfoDataStatus] =
-  usePostGpDetailsInfoDataMutation();
+    usePostGpDetailsInfoDataMutation();
 
   const [patchGpDetailsInfoDataTrigger, patchGpDetailsInfoDataStatus] =
-  usePatchGpDetailsInfoDataMutation();
+    usePatchGpDetailsInfoDataMutation();
 
-const [getSingleGpDetailsInfoDataTrigger, getSingleGpDetailsInfoDataStatus] =
-useLazyGetSingleGpDetailsInfoDataQuery();
-// get api params
-const pathParams = {
-  id:
-    query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
-};
+  const [getSingleGpDetailsInfoDataTrigger, getSingleGpDetailsInfoDataStatus] =
+    useLazyGetSingleGpDetailsInfoDataQuery();
+  // get api params
+  const pathParams = {
+    id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+  };
 
-const dataParameter = { pathParams };
+  const apiDataParameter = { pathParams };
 
-const setGpDetailsInfoDefaultValue = async () => {
-  const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
-    dataParameter,
-    true
-  );
-  if (isError) {
-    return defaultValueGpDetailsInfoForm(data);
-  }
-  return defaultValueGpDetailsInfoForm(data?.data);
-};
+  const setGpDetailsInfoDefaultValue = async () => {
+    const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
+      apiDataParameter,
+      true
+    );
+    if (isError) {
+      return defaultValueGpDetailsInfoForm(data);
+    }
+    return defaultValueGpDetailsInfoForm(data?.data);
+  };
 
   const methods: any = useForm({
-    resolver: yupResolver(gpDetailsInfoFormSchema) ,
+    resolver: yupResolver(gpDetailsInfoFormSchema),
     defaultValues: setGpDetailsInfoDefaultValue,
   });
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+  const { handleSubmit } = methods;
 
- const submitGpDetailsInfoForm = async (data: any) => {
-    const putDataParameter = { body: data };
-    if(!!query?.gpInfoId) {
+  const submitGpDetailsInfoForm = async (data: any) => {
+    const apiDataParameter = { body: data };
+    if (!!query?.gpInfoId) {
       patchGpDetailsInfoForm(data);
       return;
     }
     try {
       const res: any = await postGpDetailsInfoDataTrigger(
-        putDataParameter
+        apiDataParameter
       ).unwrap();
-      console.log(res)
       router.push(
-        `/foster-child/health-medical-history/gp-details/gp-details-info/${res?.data?.id}`
-      )
+        `/foster-child/health-medical-history/gp-details/gp-details-info?gpInfoId=${res?.data?.id}`
+      );
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -68,19 +76,16 @@ const setGpDetailsInfoDefaultValue = async () => {
     }
   };
 
-  const patchGpDetailsInfoForm = async (data:any) => {
+  const patchGpDetailsInfoForm = async (data: any) => {
     const pathParams = {
-      id:
-        query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
-    const putDataParameter = { body: data , pathParams};
+    const apiDataParameter = { body: data, pathParams };
     try {
       const res: any = await patchGpDetailsInfoDataTrigger(
-        putDataParameter
+        apiDataParameter
       ).unwrap();
-      router.push(
-        `/foster-child/health-medical-history/gp-details`
-      )
+      router.push(`/foster-child/health-medical-history/gp-details`);
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -88,8 +93,7 @@ const setGpDetailsInfoDefaultValue = async () => {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
-  }
-
+  };
 
   return {
     gpDetailsInfoFormData,
@@ -98,6 +102,9 @@ const setGpDetailsInfoDefaultValue = async () => {
     submitGpDetailsInfoForm,
     getSingleGpDetailsInfoDataStatus,
     query,
-    router
+    router,
+    postGpDetailsInfoDataStatus,
+    patchGpDetailsInfoDataStatus,
+    theme,
   };
 };

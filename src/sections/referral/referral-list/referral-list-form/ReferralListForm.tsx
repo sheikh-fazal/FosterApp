@@ -1,19 +1,25 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import {  Button, Grid,  } from "@mui/material";
+import {  Button, Card, Grid, Typography,  } from "@mui/material";
 import Link from "next/link";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { useReferralListForm } from "./useReferralListForm";
 import { ReferralListFormData } from ".";
 
-const ReferralListForm = ({ disabled }: any) => {
+const ReferralListForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit } =
     useReferralListForm();
   return (
+    <Card  sx={{ p: 2 }}>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {ReferralListFormData?.map((form: any, i: any) => (
+          
           <Grid item xs={12} md={form?.gridLength} key={i}>
+               <Typography sx={(theme) => styles.title(theme, disabled)}>
+             {form.label}
+           </Typography>
             {form.component && (
               <form.component
                 disabled={disabled}
@@ -31,7 +37,9 @@ const ReferralListForm = ({ disabled }: any) => {
               </form.component>
             )}
             {form?.uploadPhoto && (
-              <RHFUploadFile name={"updatePhoto"} {...methods} required />
+              <>
+              <RHFUploadFile name={"updatePhoto"}  {...methods} required />
+              </>
             )}
           </Grid>
         ))}
@@ -62,7 +70,15 @@ const ReferralListForm = ({ disabled }: any) => {
         </Grid>
       </Grid>
     </FormProvider>
+    </Card>
   );
 };
 
 export default ReferralListForm;
+const styles = {
+  title: (theme: any, disabled: any) => ({
+    fontSize: "16px",
+    fontWeight: 600,
+    color: disabled ? "#898989" : "#212529",
+  }),
+};

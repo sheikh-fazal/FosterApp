@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
 import { useEmployerTable } from "./useEmployerTable";
 
-export default function Employers({ apllicationFormid, role }: any) {
+export default function Employers({ applicationFormid, role }: any) {
   let {
     changeView,
     viewData,
@@ -24,7 +24,7 @@ export default function Employers({ apllicationFormid, role }: any) {
     pageChangeHandler,
     sortChangeHandler,
     meta,
-  } = useEmployerTable(apllicationFormid, role);
+  } = useEmployerTable(applicationFormid, role);
 
   return (
     <>
@@ -35,7 +35,7 @@ export default function Employers({ apllicationFormid, role }: any) {
           employerData={employerData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>
@@ -71,6 +71,4 @@ export default function Employers({ apllicationFormid, role }: any) {
       )}
     </>
   );
-
-  //  <div>Reference</div>
 }

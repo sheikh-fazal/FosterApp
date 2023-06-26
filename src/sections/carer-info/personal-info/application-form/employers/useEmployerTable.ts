@@ -7,7 +7,7 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useEmployerTable = (apllicationFormid: any, role: any) => {
+export const useEmployerTable = (applicationFormid: any, role: any) => {
   let [viewData, setViewData] = useState(null);
   let [employerData, setEmployerData] = useState(null);
   const tableHeaderRef = useRef<any>();
@@ -20,9 +20,9 @@ export const useEmployerTable = (apllicationFormid: any, role: any) => {
   const theme: any = useTheme();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetEmployerDetailsQuery({ id: apllicationFormid, params });
+    useGetEmployerDetailsQuery({ id: applicationFormid, params });
   const meta = data?.data;
-  const [deleteEmployer] = useDeleteEmployerMutation(apllicationFormid);
+  const [deleteEmployer] = useDeleteEmployerMutation(applicationFormid);
 
   const listDeleteHandler = (id: any) => {
     deleteEmployer(id)

@@ -15,8 +15,8 @@ export const defaultValues = {
   postCode: "",
   country: "",
   colorCode: "",
-}
- // ===============================================================================================
+};
+// ===============================================================================================
 export const FormSchema = Yup.object().shape({
   name: Yup.string().required("Field is required"),
   role: Yup.string().required("Field is required"),
@@ -24,7 +24,9 @@ export const FormSchema = Yup.object().shape({
   branch: Yup.string().required("Field is required"),
   businessPhone: Yup.string().required("Field is required"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
-  mobile: Yup.string().required('Field is required').matches(/^[0-9]{11}$/, 'Invalid mobile number'),
+  mobile: Yup.string()
+    .required("Field is required")
+    .matches(/^[0-9]{11}$/, "Invalid mobile number"),
   company: Yup.string().required("Field is required"),
   address: Yup.string().required("Field is required"),
   postCode: Yup.string().required("Field is required"),
@@ -149,7 +151,7 @@ export const formData = [
     gridLength: 6,
     title: "Color Code",
     fontWeight: 600,
-    otherOptions: { name: "colorCode", fullWidth: true, type: "color"},
+    otherOptions: { name: "colorCode", fullWidth: true, type: "color" },
     component: RHFTextField,
   },
   {
@@ -161,5 +163,3 @@ export const formData = [
     component: RHFCheckbox,
   },
 ];
-
-
