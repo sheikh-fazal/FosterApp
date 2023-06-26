@@ -5,21 +5,20 @@ import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
 import router from "next/router";
+import { useDayLogForm } from "./useDayLogForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-const defaultValues = {
-  dateOfOccurence: "sd",
-  correspondenceFromWhom: "asd",
-  entryType: "entry",
-};
-const DayLogForm = () => {
-  const { action, id } = router.query;
-  const methods = useForm({
-    defaultValues: defaultValues,
-  });
+const DayLogForm = (props: any) => {
+  const { action, id } = props;
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } = useDayLogForm(
+    action,
+    id
+  );
   const theme: any = useTheme();
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid>
-      <FormProvider methods={methods}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container sx={{ my: 2 }}>
           <Grid item xs={12} md={4}>
             Carer Name: Not Placed
@@ -100,7 +99,7 @@ const DayLogForm = () => {
             {action === "add" || action === "edit" ? (
               <LoadingButton
                 type="submit"
-                // loading={isSubmitting}
+                loading={isSubmitting}
                 sx={{
                   bgcolor: theme.palette.primary.main,
                   "&:hover": { bgcolor: theme.palette.primary.main },

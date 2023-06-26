@@ -1,5 +1,6 @@
 import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import * as Yup from "yup";
 
 export const DayLogFormFields = [
   {
@@ -19,7 +20,7 @@ export const DayLogFormFields = [
       name: "correspondenceToWhom",
       label: "If correspondence, to whom",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -31,7 +32,7 @@ export const DayLogFormFields = [
       name: "correspondenceFromWhom",
       label: "If correspondence, from whom",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -63,7 +64,7 @@ export const DayLogFormFields = [
       name: "dayLog",
       label: "Day log/journal Entry",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -75,7 +76,7 @@ export const DayLogFormFields = [
       name: "subject",
       label: "Subject",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -87,7 +88,7 @@ export const DayLogFormFields = [
       name: "actionNeeded",
       label: "Action Needed",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -122,9 +123,26 @@ export const DayLogFormFields = [
     },
     component: RHFCheckbox,
   },
- 
 ];
+export const defaultValues = {
+  // fosterChildId: 578786e3-1850-40cb-ac3e-5e7fa55cc59c,
+  dateOfOccurence: null,
+  correspondenceTo: null,
+  correspondenceFrom: null,
+  childSeen: true,
+  entryType: null,
+  subject: null,
+  dayLogEntry: null,
+  actionNeeded: null,
+  notificationDate: null,
+  addToCarerRecord: null,
+  updateSiblingRecord: false,
+};
+export const formatters: any = {};
 
-export const dayLogDocumentsTable=[
-  
-]
+export const formSchema = Yup.object().shape({
+  dateOfOccurence: Yup.date().required("Required"),
+  correspondenceTo: Yup.string().required("Required"),
+  correspondenceFrom: Yup.string().required("Required"),
+  entryType: Yup.string().required("Required"),
+});
