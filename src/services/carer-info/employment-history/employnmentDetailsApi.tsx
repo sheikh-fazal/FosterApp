@@ -23,7 +23,7 @@ export const userAPI: any = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["Experience"],
     }),
-    SingleExperience: builder.query({
+    singleExperience: builder.query({
       query: (id: any) => `employment-history/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);

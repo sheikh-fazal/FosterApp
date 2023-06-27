@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { Fragment, useEffect, useRef, useState } from "react";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { EmploymentType } from ".";
+import { EmploymentType, addFormValuesSchema } from ".";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useAddExperiencesFrom } from "./useAddExperiencesFrom";
@@ -22,10 +22,12 @@ import {
 import { LoadingButton } from "@mui/lab";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { de } from "date-fns/locale";
+import LoadingScreen from "@root/components/LoadingScreen";
+import Skeleton from "@root/theme/overrides/Skeleton";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function EditExperiencesModal({ open, setEditOpen, editData }: any) {
-  console.log(editData, "editData");
-
   const [editExperiences, { isLoading }] = useEditExperienceMutation();
   const [deleteExperience, deleteExperienceStatus] =
     useDeleteExperienceMutation();
@@ -56,9 +58,10 @@ function EditExperiencesModal({ open, setEditOpen, editData }: any) {
         }
       ),
     },
+    resolver: yupResolver(addFormValuesSchema),
   });
 
-  const { control, handleSubmit, getValues } = methods;
+  const { control, handleSubmit, getValues, setValue } = methods;
 
   const { fields, append } = useFieldArray({
     control,
@@ -66,8 +69,6 @@ function EditExperiencesModal({ open, setEditOpen, editData }: any) {
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data, "data");
-
     const formData: any = new FormData();
     // Append the properties of the main object excluding 'experiences'
     for (const key in data) {
@@ -80,9 +81,7 @@ function EditExperiencesModal({ open, setEditOpen, editData }: any) {
       const fieldName = `experiences`;
       formData.append(fieldName, JSON.stringify(experience));
     });
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+
     try {
       const res: any = await editExperiences({
         payload: formData,
@@ -102,10 +101,15 @@ function EditExperiencesModal({ open, setEditOpen, editData }: any) {
 
   ///////// DeleteExperienceHandler
   const deleteExperienceHanlder = async (experienceId: any) => {
-    console.log(experienceId, "experienceId");
+    const expIdx = getValues("experiences").findIndex(
+      (exp: any) => exp.expId === experienceId
+    );
+    const updatedExp = getValues("experiences");
+    updatedExp.splice(expIdx, 1);
 
     try {
       const res = await deleteExperience(experienceId);
+      setValue("experiences", updatedExp);
 
       enqueueSnackbar("Document Delete Successfully!", {
         variant: "success",
@@ -129,170 +133,175 @@ function EditExperiencesModal({ open, setEditOpen, editData }: any) {
         <Box sx={styles.root}>
           <Typography sx={styles.title(theme)}>Add Experience</Typography>
 
-          <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <RHFTextField
-                  name="companyName"
-                  label="Company Name"
-                  size="small"
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <RHFTextField name="location" label="Location" size="small" />
-              </Grid>
-              <Grid item xs={6}>
-                <RHFUploadFile name="media" {...methods} required />
-              </Grid>
-              <Grid item xs={6}></Grid>
-              {fields?.map((field: any, index) => {
-                console.log(field.expId, "field");
-
-                return (
-                  <Fragment key={field.id}>
-                    <Grid
-                      item
-                      xs={12}
-                      sx={{
-                        mt: 1,
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <Box
+          {isLoading ? (
+            <SkeletonFormdata />
+          ) : (
+            <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <RHFTextField
+                    name="companyName"
+                    label="Company Name"
+                    size="small"
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <RHFTextField name="location" label="Location" size="small" />
+                </Grid>
+                <Grid item xs={6}>
+                  <RHFUploadFile name="media" {...methods} required />
+                </Grid>
+                <Grid item xs={6}></Grid>
+                {fields?.map((field: any, index) => {
+                  return (
+                    <Fragment key={field.id}>
+                      <Grid
+                        item
+                        xs={12}
                         sx={{
+                          mt: 1,
                           display: "flex",
                           justifyContent: "space-between",
-                          width: "100%",
                         }}
-                        onClick={() => toggleCollapse(index)}
                       >
-                        <Typography sx={styles.title(theme)}>
-                          Experience No {index + 1}
-                        </Typography>
-                        {collapsedIndexes.includes(index) ? (
-                          <KeyboardArrowDownIcon
-                            sx={{ color: theme.palette.grey[900] }}
-                          />
-                        ) : (
-                          <KeyboardArrowUpIcon
-                            sx={{ color: theme.palette.grey[900] }}
-                          />
-                        )}
-                      </Box>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            width: "100%",
+                          }}
+                          onClick={() => toggleCollapse(index)}
+                        >
+                          <Typography sx={styles.title(theme)}>
+                            Experience No {index + 1}
+                          </Typography>
+                          {collapsedIndexes.includes(index) ? (
+                            <KeyboardArrowDownIcon
+                              sx={{ color: theme.palette.grey[900] }}
+                            />
+                          ) : (
+                            <KeyboardArrowUpIcon
+                              sx={{ color: theme.palette.grey[900] }}
+                            />
+                          )}
+                        </Box>
 
-                      <LoadingButton
-                        sx={styles.btnDelete}
-                        type="button"
-                        size="small"
-                        loading={deleteExperienceStatus?.isLoading}
-                        onClick={() => deleteExperienceHanlder(field?.expId)}
-                      >
-                        <DeleteIcon />
-                      </LoadingButton>
-                    </Grid>
-                    {collapsedIndexes.includes(index) ? null : (
-                      <>
-                        <Grid item xs={6}>
-                          <RHFTextField
-                            name={`experiences.${index}.title`}
-                            label="Title"
-                            size="small"
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <RHFSelect
-                            name={`experiences.${index}.employmentType`}
-                            label="Employment Type"
-                            size="small"
-                          >
-                            {EmploymentType?.map((option: any) => (
-                              <option key={option?.value} value={option?.value}>
-                                {option?.label}
-                              </option>
-                            ))}
-                          </RHFSelect>
-                        </Grid>
-                        <Grid item xs={12}>
-                          <RHFCheckbox
-                            name={`experiences.${index}.currentlyWorking`}
-                            label="I am currently working in this role"
-                            size="small"
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <RHFDatePicker
-                            name={`experiences.${index}.startDate`}
-                            label="Start Date"
-                            size="small"
-                            fullWidth={true}
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <RHFDatePicker
-                            name={`experiences.${index}.endDate`}
-                            label="End Date"
-                            size="small"
-                            fullWidth={true}
-                          />
-                        </Grid>
-                        <Grid item xs={12}>
-                          <RHFTextField
-                            multiline
-                            rows={3}
-                            name={`experiences.${index}.headline`}
-                            label="HeadLine"
-                            size="small"
-                          />
-                        </Grid>
-                        <Grid item xs={12}>
-                          <RHFTextField
-                            multiline
-                            rows={3}
-                            name={`experiences.${index}.industry`}
-                            label="Industry"
-                            size="small"
-                          />
-                        </Grid>
-                        <Grid item xs={12}>
-                          <RHFTextField
-                            multiline
-                            rows={3}
-                            name={`experiences.${index}.description`}
-                            label="Description"
-                            size="small"
-                          />
-                        </Grid>
-                      </>
-                    )}
-                  </Fragment>
-                );
-              })}
-              <Grid item xs={12} sx={{ mt: 2 }}>
-                <Button
-                  variant="text"
-                  startIcon={<AddIcon />}
-                  onClick={() => append({})}
-                >
-                  Add Another Experiences
-                </Button>
-              </Grid>
-              <Grid item xs={12}>
-                <Box sx={{ display: "flex", gap: 2, justifyContent: "end" }}>
+                        <LoadingButton
+                          sx={styles.btnDelete}
+                          type="button"
+                          size="small"
+                          loading={deleteExperienceStatus?.isLoading}
+                          onClick={() => deleteExperienceHanlder(field?.expId)}
+                        >
+                          <DeleteIcon />
+                        </LoadingButton>
+                      </Grid>
+                      {collapsedIndexes.includes(index) ? null : (
+                        <>
+                          <Grid item xs={6}>
+                            <RHFTextField
+                              name={`experiences.${index}.title`}
+                              label="Title"
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <RHFSelect
+                              name={`experiences.${index}.employmentType`}
+                              label="Employment Type"
+                              size="small"
+                            >
+                              {EmploymentType?.map((option: any) => (
+                                <option
+                                  key={option?.value}
+                                  value={option?.value}
+                                >
+                                  {option?.label}
+                                </option>
+                              ))}
+                            </RHFSelect>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <RHFCheckbox
+                              name={`experiences.${index}.currentlyWorking`}
+                              label="I am currently working in this role"
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <RHFDatePicker
+                              name={`experiences.${index}.startDate`}
+                              label="Start Date"
+                              size="small"
+                              fullWidth={true}
+                            />
+                          </Grid>
+                          <Grid item xs={6}>
+                            <RHFDatePicker
+                              name={`experiences.${index}.endDate`}
+                              label="End Date"
+                              size="small"
+                              fullWidth={true}
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <RHFTextField
+                              multiline
+                              rows={3}
+                              name={`experiences.${index}.headline`}
+                              label="HeadLine"
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <RHFTextField
+                              multiline
+                              rows={3}
+                              name={`experiences.${index}.industry`}
+                              label="Industry"
+                              size="small"
+                            />
+                          </Grid>
+                          <Grid item xs={12}>
+                            <RHFTextField
+                              multiline
+                              rows={3}
+                              name={`experiences.${index}.description`}
+                              label="Description"
+                              size="small"
+                            />
+                          </Grid>
+                        </>
+                      )}
+                    </Fragment>
+                  );
+                })}
+                <Grid item xs={12} sx={{ mt: 2 }}>
                   <Button
-                    sx={styles.btnBack}
-                    type="button"
-                    onClick={() => setEditOpen(false)}
+                    variant="text"
+                    startIcon={<AddIcon />}
+                    onClick={() => append({})}
                   >
-                    Cancel
+                    Add Another Experiences
                   </Button>
-                  <Button sx={styles.btnSuccess} type="submit">
-                    Update Experiense
-                  </Button>
-                </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <Box sx={{ display: "flex", gap: 2, justifyContent: "end" }}>
+                    <Button
+                      sx={styles.btnBack}
+                      type="button"
+                      onClick={() => setEditOpen(false)}
+                    >
+                      Cancel
+                    </Button>
+                    <Button sx={styles.btnSuccess} type="submit">
+                      Update Experiense
+                    </Button>
+                  </Box>
+                </Grid>
               </Grid>
-            </Grid>
-          </FormProvider>
+            </FormProvider>
+          )}
         </Box>
       </Box>
     </Modal>

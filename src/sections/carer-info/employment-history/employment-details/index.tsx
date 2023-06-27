@@ -2,7 +2,7 @@ import * as Yup from "yup";
 export const EXPERIENCE = {
   title: "",
   employmentType: "",
-  currentlyWorking: false,
+  currentlyWorking: null,
   startDate: new Date(),
   endDate: new Date(),
   headline: "",
