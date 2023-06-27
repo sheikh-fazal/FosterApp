@@ -18,19 +18,19 @@ const ComplianceHorizontalTabs = ({
   handleAddCategory,
   handleHorizontalTabChange,
   theme
-}:any) => {
-    const TabPanel = ({ children, value, index }: TabPanelProps) => {
-        return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`vertical-tabpanel-${index}`}
-                aria-labelledby={`vertical-tab-${index}`}
-            >
-                {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-            </div>
-        );
-    }
+}: any) => {
+  const TabPanel = ({ children, value, index }: TabPanelProps) => {
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`vertical-tabpanel-${index}`}
+        aria-labelledby={`vertical-tab-${index}`}
+      >
+        {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      </div>
+    );
+  }
   return (
     <Grid
       sx={{
@@ -85,10 +85,10 @@ const ComplianceHorizontalTabs = ({
           </TabPanel>
         ))}
       </Box>
-    <PdfViewModal
+      <PdfViewModal
         open={IsOpenPdfModal}
         handleClose={() => setIsOpenPdfModal(false)}
-      /> 
+      />
       <AddCategoryModal
         open={IsOpenAddCategory.type}
         onSubmit={(data: any) => handleAddCategory(data)}
