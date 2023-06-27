@@ -4,6 +4,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
+import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetChildPersonalGoalsListQuery } from "@root/services/foster-child/child-goals-and-pathway/ChildGoalsAndPathwayApi";
 
 export const useChildPersonalGoal = () => {
@@ -12,14 +13,19 @@ export const useChildPersonalGoal = () => {
   const tableHeaderRefTwo = useRef<any>();
   const [childPersonalGoalMockData, setChildPersonalGoalMockData] =
     React.useState(CHILD_PERSONAL_GOALS_MOCK_DATA);
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
   const {
-    data: childPersonalGoalsListData,
+    data,
     isError: childPersonalGoalsListError,
     isFetching: childPersonalGoalsListFetching,
     isLoading: childPersonalGoalsListLoading,
     isSuccess: childPersonalGoalsListSuccess,
-  } = useGetChildPersonalGoalsListQuery({});
-  console.log(childPersonalGoalsListData);
+  }: any = useGetChildPersonalGoalsListQuery({ search: search });
+
+  const childPersonalGoalsListData = data?.absence_details;
+  const meta = data?.meta;
+  console.log(childPersonalGoalsListData, meta);
 
   const columns = [
     {
@@ -46,22 +52,23 @@ export const useChildPersonalGoal = () => {
       ),
     },
     {
-      accessorFn: (row: any) => row.srNo,
+      accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) =>  info?.row?.index +1,
       header: () => <span>Sr. No</span>,
       isSortable: true,
+      
     },
     {
-      accessorFn: (row: any) => row.childId,
-      id: "childId",
+      accessorFn: (row: any) => row.fosterChildId,
+      id: "fosterChildId",
       cell: (info: any) => info.getValue(),
       header: () => <span>fostering Child ID</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.childFullName,
-      id: "childFullName",
+      accessorFn: (row: any) => row.fullName,
+      id: "fullName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Full Name</span>,
       isSortable: true,
@@ -124,5 +131,14 @@ export const useChildPersonalGoal = () => {
     search,
     setSearch,
     columns,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    childPersonalGoalsListError,
+    childPersonalGoalsListFetching,
+    childPersonalGoalsListLoading,
+    childPersonalGoalsListSuccess,
+    childPersonalGoalsListData,
+    meta,
   };
 };

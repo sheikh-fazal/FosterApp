@@ -55,7 +55,7 @@ export const NAV_LINKS = [
   {
     text: "Foster Child",
     img: <Diversity3OutlinedIcon />,
-    link: "foster-child",
+    link: "",
   },
   {
     text: "Matching & Placement",
@@ -151,7 +151,7 @@ export const NAV_LINKS = [
   {
     text: "User Manual",
     img: <GroupRemoveOutlinedIcon />,
-    link: "./user-manual",
+    link: "/user-manual",
   },
   {
     text: "IT Help Desk",

@@ -16,6 +16,15 @@ export const ChildPersonalGoalsMain = () => {
     // search,
     setSearch,
     columns,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    childPersonalGoalsListError,
+    childPersonalGoalsListFetching,
+    childPersonalGoalsListLoading,
+    childPersonalGoalsListSuccess,
+    childPersonalGoalsListData,
+    meta,
   } = useChildPersonalGoal();
   const theme = useTheme();
   return (
@@ -38,24 +47,20 @@ export const ChildPersonalGoalsMain = () => {
       />
       <CustomTable
         columns={columns}
-        data={childPersonalGoalMockData}
-        isFetching={false}
-        isLoading={false}
-        isError={false}
-        isSuccess={true}
-        totalPages={2}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
-        rootSX={{ my: theme.spacing(2) }}
+        data={childPersonalGoalsListData}
+        isFetching={childPersonalGoalsListFetching}
+        isLoading={childPersonalGoalsListLoading}
+        isError={childPersonalGoalsListError}
+        isSuccess={childPersonalGoalsListSuccess}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.pages ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
+        // rootSX={{ my: theme.spacing(2) }}
         isPagination={true}
         // tableContainerSX = {}
         // rootSX = {}
-        showSerialNo={false}
+        // showSerialNo={false}
       />
     </>
   );
