@@ -27,7 +27,7 @@ const StatutoryMedicalTypeList = (props: any) => {
           title={setHeaderHeading(props.type)}
           searchKey="search"
           showAddBtn={true}
-          searchParam={(data: any) => {
+          onChanged={(data: any) => {
             setSearchValue(data.search);
           }}
           onAdd={() =>
@@ -57,7 +57,7 @@ const StatutoryMedicalTypeList = (props: any) => {
         <DeleteModel
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}
-          onDeleteClick={(data: any, f: any) => {
+          onDeleteClick={(data: any) => {
             onDeleteConfirm?.(data);
           }}
         />

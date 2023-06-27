@@ -17,7 +17,6 @@ import {
 export const useStatutoryMedicalTypeInfo = () => {
   const { query } = useRouter();
   const router = useRouter();
-  console.log(query.type);
   const ehcpInfoFormData = ehcpInfoFormDataFunction(query?.action === "view");
 
   const [
@@ -36,7 +35,7 @@ export const useStatutoryMedicalTypeInfo = () => {
   ] = useLazyGetSingleStatutoryMedicalTypeDataQuery();
   // get api params
   const pathParams = {
-    id: query?.id || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    id: query?.id,
   };
   const params = {
     statutoryMedicalType: query?.type,
@@ -74,7 +73,6 @@ export const useStatutoryMedicalTypeInfo = () => {
       const res: any = await postStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-      console.log(res);
       router.push(
         `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${res?.data?.id}&type=${query.type}`
       );
@@ -89,7 +87,7 @@ export const useStatutoryMedicalTypeInfo = () => {
 
   const patchStatutoryMedicalTypeDataForm = async (data: any) => {
     const pathParams = {
-      id: query?.id || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      id: query?.id,
     };
     const params = {
       statutoryMedicalType: query?.type,
