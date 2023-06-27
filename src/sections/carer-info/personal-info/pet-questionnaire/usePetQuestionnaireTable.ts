@@ -8,8 +8,6 @@ export const usePetQuestionnaireTable = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  console.log("Params: ", params);
-
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =

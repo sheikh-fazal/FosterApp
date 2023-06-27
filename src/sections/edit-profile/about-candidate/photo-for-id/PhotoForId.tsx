@@ -21,9 +21,7 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
   const [fileForForm, setFileForForm] = useState<string | File>("");
   const [updating, setUpdating] = useState(false);
 
-  const { data, isSuccess, isError, isLoading } = useGetPhotoForIdBadgeQuery(
-    {}
-  );
+  const { data, isSuccess, isLoading } = useGetPhotoForIdBadgeQuery({});
   const [updatePhotoForIdBadge] = useUpdatePhotoForIdBadgeMutation();
   // try to find best alternative
   useEffect(() => {
@@ -58,9 +56,7 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
   const updatePhoto = async () => {
     const formData = new FormData();
     formData.append("profileImage", fileForForm);
-    const errorForm = {
-      profileImage: fileForForm,
-    };
+
     try {
       setUpdating(true);
       const data: any = await updatePhotoForIdBadge(formData);

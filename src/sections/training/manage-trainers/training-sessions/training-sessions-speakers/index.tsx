@@ -13,4 +13,3 @@ export const speakerData = [
     },
   ];
   
-  export {default as TrainingSessionsSpeakers} from './TrainingSessionsSpeakers'

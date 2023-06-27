@@ -1,11 +1,7 @@
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useTheme } from "@emotion/react";
 import { Button, Grid, Modal, Typography } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
-import PersonIcon from "@mui/icons-material/Person";
 import ButtonWithIcon from "../../locals/ButtonWithIcon";
 import AddRefForm from "./addRefForm/AddRefForm";
 import ReferenceTable from "./reference-table/ReferenceTable";
