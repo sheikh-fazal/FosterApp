@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useExamGradeInfoTable } from "./useExamGradeInfoTable";
 
-const ExamGradeInfoTable = () => {
+const ExamGradeInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

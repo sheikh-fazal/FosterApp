@@ -11,8 +11,9 @@ import {
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 
-export const useDayLogForm = (action: any, id: any) => {
+export const useDayLogForm = () => {
   const router = useRouter();
+  const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -20,7 +21,7 @@ export const useDayLogForm = (action: any, id: any) => {
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
 
   //API For Posting Car Insurance Form
-  const [postDayLagData] = usePostChildChronologyOfEventsDayLogMutation();
+  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation();
   //API For Patch Car Insurance List
   const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
@@ -61,23 +62,23 @@ export const useDayLogForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLagData(data)
+      postDayLogData({ ...data, fosterChildId })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
-          router.push({
-            pathname: "/carer-info/background-checks/statutory-checks-list/car-insurance",
-            query: { action: "edit", id: `${res?.data.id}` },
-          });
+          // router.push({
+          //   pathname: "/carer-info/background-checks/statutory-checks-list/car-insurance",
+          //   query: { action: "edit", id: `${res?.data.id}` },
+          // });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/background-checks/statutory-checks-list");
+          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
@@ -91,13 +92,13 @@ export const useDayLogForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
+          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
+          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
@@ -117,5 +118,7 @@ export const useDayLogForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
+    action,
+    id,
   };
 };

@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useChildMissingPlacementTable } from "./useChildMissingPlacementTable";
 
-const ChildMissingPlacementTable = () => {
+const ChildMissingPlacementTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

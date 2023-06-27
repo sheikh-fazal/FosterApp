@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useOOHReportsTable } from "./useOOHReportsTable";
 
-const OOHReportsTable = () => {
+const OOHReportsTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

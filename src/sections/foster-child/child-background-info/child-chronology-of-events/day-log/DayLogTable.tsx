@@ -6,7 +6,9 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useDayLogTable } from "./useDayLogTable";
 
-const DayLogTable = () => {
+const DayLogTable = (props: any) => {
+  const { fosterChildId } = props;
+  console.log("🚀 ~ file: DayLogTable.tsx:11 ~ DayLogTable ~ fosterChildId:", fosterChildId);
   const {
     listDeleteHandler,
     router,
@@ -62,7 +64,11 @@ const DayLogTable = () => {
             onClicked={() =>
               router.push({
                 pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -74,7 +80,11 @@ const DayLogTable = () => {
             onClicked={() =>
               router.push({
                 pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -95,7 +105,7 @@ const DayLogTable = () => {
         onAdd={() => {
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

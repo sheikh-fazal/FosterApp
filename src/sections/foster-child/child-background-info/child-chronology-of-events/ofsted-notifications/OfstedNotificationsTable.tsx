@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useOfstedNotificationsTable } from "./useOfstedNotificationsTable";
 
-const OfstedNotificationsTable = () => {
+const OfstedNotificationsTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

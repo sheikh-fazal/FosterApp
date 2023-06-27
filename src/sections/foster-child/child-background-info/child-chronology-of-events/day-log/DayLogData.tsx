@@ -142,7 +142,7 @@ export const formatters: any = {};
 
 export const formSchema = Yup.object().shape({
   dateOfOccurence: Yup.date().required("Required"),
-  correspondenceTo: Yup.string().required("Required"),
-  correspondenceFrom: Yup.string().required("Required"),
-  entryType: Yup.string().required("Required"),
+  // correspondenceTo: Yup.string().required("Required"),
+  // correspondenceFrom: Yup.string().required("Required"),
+  // entryType: Yup.string().required("Required"),
 });

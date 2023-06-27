@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useIncidentsInfoTable } from "./useIncidentsInfoTable";
 
-const IncidentsInfoTable = () => {
+const IncidentsInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

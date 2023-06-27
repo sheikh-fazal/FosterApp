@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useRiskAssessmentTable } from "./useRiskAssessmentTable";
 
-const RiskAssessmentTable = () => {
+const RiskAssessmentTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

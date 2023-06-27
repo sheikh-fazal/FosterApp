@@ -8,12 +8,10 @@ import router from "next/router";
 import { useDayLogForm } from "./useDayLogForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-const DayLogForm = (props: any) => {
-  const { action, id } = props;
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } = useDayLogForm(
-    action,
-    id
-  );
+const DayLogForm = () => {
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action, id } =
+    useDayLogForm();
+
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
   return (

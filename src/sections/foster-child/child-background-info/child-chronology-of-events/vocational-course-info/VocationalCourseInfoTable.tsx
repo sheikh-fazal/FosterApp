@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useVocationalCourseInfoTable } from "./useVocationalCourseInfoTable";
 
-const VocationalCourseInfoTable = () => {
+const VocationalCourseInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
