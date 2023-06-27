@@ -54,7 +54,7 @@ export default function BankAccountDetailsForm(props: any) {
     setOpen(false);
     !readOnly && closeModal(false);
   };
-  React.useEffect(() => {
+  useEffect(() => {
     status?.isSuccess && handleClose();
   }, [status?.isSuccess, handleClose]);
   return (

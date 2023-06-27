@@ -8,7 +8,17 @@ export const substituteCarerApi = baseAPI.injectEndpoints({
         params,
       }),
     }),
+    postSubstituteCarer: builder.mutation({
+      query: (body) => ({
+        url: "/carer-Info/carer-info/substitute-cares/add-carer",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
-export const { useGetSelectedSubstituteCarerQuery } = substituteCarerApi;
+export const {
+  useGetSelectedSubstituteCarerQuery,
+  usePostSubstituteCarerMutation,
+} = substituteCarerApi;

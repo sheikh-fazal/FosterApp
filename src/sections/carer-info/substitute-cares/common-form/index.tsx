@@ -29,27 +29,28 @@ export const defaultValues = {
   telephone: "+440000000",
   email: "test@test.com",
   ethnicity: "Roma",
-  language: "",
+  languageSpoken: "",
   religion: "Islam",
   practisingStatus: "Practicing",
   areChecksRequired: "",
   occupation: "",
-  numberOfApplicantSeen: "",
+  numberOfSeen: "",
   level: "Level 1",
-  dateOfAssessment: new Date(todayDate),
-  question1: "question 1",
-  question2: "question 2",
+  dateOfVisit: new Date(todayDate),
+  supporttheFosterCarer: "question 1",
+  currentlyInPlacement: "question 2",
+  knowCapacity: "capacity",
   background: "Background",
   health: "health",
   education: "education",
   contact: "contact",
   valuingDiversity: "valuingDiversity",
-  acceptingChild: "acceptingChild",
+  acceptingtheChild: "acceptingtheChild",
   affection: "affection",
   selfCare: "selfCare",
-  behaviorManagement: "behaviorManagement",
-  applicantSupportNetwork: "applicantSupportNetwork",
-  socialWorkersAssessment: "socialWorkersAssessment",
+  behaviuorManagement: "behaviuorManagement",
+  applicationsupportNetworks: "applicationsupportNetworks",
+  socialWorkerAssessment: "socialWorkerAssessment",
   conclusion: "conclusion",
   statutoryChecks: "statutoryChecks",
   training: "training",
@@ -67,14 +68,14 @@ export const FormSchema = Yup.object().shape({
   telephone: Yup.string().required("Field is required"),
   email: Yup.string().required("Field is required"),
   ethnicity: Yup.string().required("Field is required"),
-  language: Yup.string().required("Field is required"),
+  languageSpoken: Yup.string().required("Field is required"),
   religion: Yup.string().required("Field is required"),
   practisingStatus: Yup.string().required("Field is required"),
   occupation: Yup.string().required("Field is required"),
-  numberOfApplicantSeen: Yup.string().required("Field is required"),
-  dateOfAssessment: Yup.date().required("Field is required"),
-  question1: Yup.string().required("Field is required"),
-  question2: Yup.string().required("Field is required"),
+  numberOfSeen: Yup.string().required("Field is required"),
+  dateOfVisit: Yup.date().required("Field is required"),
+  supporttheFosterCarer: Yup.string().required("Field is required"),
+  currentlyInPlacement: Yup.string().required("Field is required"),
   background: Yup.string().required("Field is required"),
 });
 
@@ -141,7 +142,7 @@ export const SUBSTITUTECARERFORMDATA = [
       name: "dateOfBirth",
       label: "Date Of Birth",
       fullWidth: true,
-      minData: maxAgeCheck,
+      maxDate: new Date(ageOf18Years),
     },
     gridLength: 6,
     component: RHFDatePicker,
@@ -214,8 +215,8 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 12,
     componentProps: {
-      name: "language",
-      label: "Language Spoken",
+      name: "languageSpoken",
+      label: "languageSpoken Spoken",
     },
     gridLength: 6,
     component: RHFTextField,
@@ -277,7 +278,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 15,
     componentProps: {
-      name: "numberOfApplicantSeen",
+      name: "numberOfSeen",
       label: "Data and number of times applicant seen",
       multiline: true,
       minRows: 3,
@@ -306,7 +307,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 16.5,
     componentProps: {
-      name: "dateOfAssessment",
+      name: "dateOfVisit",
       label: "Date Of Assessment Visit",
       fullWidth: true,
     },
@@ -320,7 +321,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 17,
     componentProps: {
-      name: "question1",
+      name: "supporttheFosterCarer",
       text: "Why do you want to support the Foster Carer?",
       label: "Field Value",
       Component: RHFTextField,
@@ -335,7 +336,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 18,
     componentProps: {
-      name: "question2",
+      name: "currentlyInPlacement",
       text: "Do you know the CHildren Currently in placement?",
       label: "Field Value",
       Component: RHFTextField,
@@ -345,6 +346,25 @@ export const SUBSTITUTECARERFORMDATA = [
       },
     },
     gridLength: 6,
+    component: RHFInputWithLabel,
+  },
+  {
+    id: 18.5,
+    componentProps: {
+      name: "knowCapacity",
+      text: "How long have you known the foster carer and in what capacity?",
+      label: "Field Value",
+      Component: RHFTextField,
+
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+      typographyProps: {
+        variant: "body2",
+        mb: "10px",
+      },
+    },
+    gridLength: 12,
     component: RHFInputWithLabel,
   },
   {
@@ -410,7 +430,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 24,
     componentProps: {
-      name: "acceptingChild",
+      name: "acceptingtheChild",
       label: "Accepting the Child as he/she is",
       multiline: true,
       minRows: 3,
@@ -446,7 +466,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 27,
     componentProps: {
-      name: "behaviorManagement",
+      name: "behaviuorManagement",
       label: "Behavior Management",
       multiline: true,
       minRows: 3,
@@ -458,7 +478,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 28,
     componentProps: {
-      name: "applicantSupportNetwork",
+      name: "applicationsupportNetworks",
       label: "Applicant Support Network",
       multiline: true,
       minRows: 3,
@@ -470,7 +490,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 29,
     componentProps: {
-      name: "socialWorkersAssessment",
+      name: "socialWorkerAssessment",
       label: "Social Workers`s Assessment",
       multiline: true,
       minRows: 3,
@@ -483,7 +503,7 @@ export const SUBSTITUTECARERFORMDATA = [
     id: 30,
     componentProps: {
       name: "conclusion",
-      label: "Conclusion/Recommendation",
+      label: "conclusion/Recommendation",
       multiline: true,
       minRows: 3,
       fullWidth: true,

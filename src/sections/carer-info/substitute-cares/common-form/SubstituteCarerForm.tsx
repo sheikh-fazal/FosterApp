@@ -53,9 +53,25 @@ export default function SubstituteCarerForm(props: any) {
           );
         })}
         {!disabled && (
-          <Grid item xs={12}>
+          <Grid item xs={12} container gap={3}>
             <Button size="large" type="submit" variant="contained">
               Submit
+            </Button>
+            <Button
+              size="large"
+              type="submit"
+              variant="contained"
+              color="secondary"
+            >
+              Save as Draft
+            </Button>
+            <Button
+              size="large"
+              type="submit"
+              variant="contained"
+              color="warning"
+            >
+              Back
             </Button>
           </Grid>
         )}
