@@ -51,7 +51,6 @@ const UploadDocuments = (props: any) => {
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) => {
-          // console.log("oooooooooooooooooooooi data", data);
           modalData(data);
         }}
       />

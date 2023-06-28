@@ -74,30 +74,6 @@ export const UploadDocumentTable = (props: any) => {
     }, 1000);
   };
   const columns = [
-    // {
-    //   id: "select",
-    //   header: ({ table, row }: any) => {
-    //     console.log(table);
-    //     return (
-    //       <Box>
-    //         <Checkbox
-    //           indeterminate={table.getIsSomeRowsSelected()}
-    //           checked={table.getIsAllRowsSelected()}
-    //           onChange={table.getToggleAllRowsSelectedHandler()}
-    //         />
-    //       </Box>
-    //     );
-    //   },
-    //   cell: ({ row, table }: any) => (
-    //     <Box>
-    //       <Checkbox
-    //         disabled={row?.original?.Assigned}
-    //         checked={row?.original?.Assigned ? false : row.getIsSelected()}
-    //         onChange={row.getToggleSelectedHandler()}
-    //       />
-    //     </Box>
-    //   ),
-    // },
     {
       accessorFn: (row: any) => row[column[0]],
       id: "document",
@@ -106,14 +82,12 @@ export const UploadDocumentTable = (props: any) => {
           ? ". . ." + info.getValue()?.slice(-15)
           : info.getValue(),
       header: () => <span>Document Name</span>,
-      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row[column[1]],
       id: "Document Type",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Type</span>,
-      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row[column[2]],
@@ -153,7 +127,6 @@ export const UploadDocumentTable = (props: any) => {
             <TableAction
               type="delete"
               onClicked={() => {
-                console.log("delete this", info.row.original);
                 setOpenDeleteModalHasData(info.row.original);
               }}
               size="small"
@@ -203,9 +176,6 @@ export const UploadDocumentTable = (props: any) => {
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={onPageChange}
-        // onSortByChange={(data: any) => {
-        //   console.log("Sort by: ", data);
-        // }}
       />
     </Grid>
   );
