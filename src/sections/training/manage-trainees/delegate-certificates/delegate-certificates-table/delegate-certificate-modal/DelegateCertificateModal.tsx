@@ -6,7 +6,7 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
+  Image as PDFImage,
 } from "@react-pdf/renderer"; 
 import Dialog from "@mui/material/Dialog";   
 
@@ -142,10 +142,9 @@ const DelegateCertificateModal = (props: any) => {
           document={
             <Document>
               <Page size="A4" style={styles.page}> 
-                <Image 
+                <PDFImage 
                   src="https://i.ibb.co/cLcCbxN/Certificate.jpg"
                   style={styles.image}
-                  // alt="bg-img"
                 />
                 <View style={styles.section}>
                   <Text style={styles.certificate}>CERTIFICATE</Text>

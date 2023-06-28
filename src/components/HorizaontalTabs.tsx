@@ -19,6 +19,7 @@ const HorizaontalTabs = ({
   variant,
   spacing,
   defaultValue=0,
+  disableBoxShadow= false,
 }: any) => {
   const [value, setValue] = useState(defaultValue);
   const handleChange = (event: SyntheticEvent, newValue: number) => {
@@ -30,7 +31,7 @@ const HorizaontalTabs = ({
   const theme: any = useTheme();
 
   return (
-    <Card sx={{ px: spacing ?? 2 }}>
+    <Card sx={{ px: spacing ?? 2 , boxShadow: disableBoxShadow ? "none" : undefined,}}>
       <Tabs
         selectionFollowsFocus
         orientation="horizontal"
