@@ -1,13 +1,10 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
 export const columnsTrainingProfilesList = (
   handleDelete: any,
   router: any,
-  cancelDelete: any,
-  setCancelDelete: any,
   openDeleteModel: any
 ) => [
   {

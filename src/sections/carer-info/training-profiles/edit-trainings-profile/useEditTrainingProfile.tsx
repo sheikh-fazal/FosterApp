@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -50,8 +49,6 @@ const useEditTraingingsProfile = ({
       trainingProfileId,
       data,
     };
-
-    console.log(updatedData, "updated data");
 
     try {
       const res: any = await onSubmitHandler(updatedData).unwrap();

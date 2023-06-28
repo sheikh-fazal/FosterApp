@@ -3,14 +3,12 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
-import ViewTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/view-training-profile/ViewTrainingProfile";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
   usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import { useState } from "react";
-import { enqueueSnackbar } from "notistack";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import IsFetching from "@root/components/loaders/IsFetching";
 import ViewTraingsProfile from "@root/sections/carer-info/training-profiles/view-trainings-profile/ViewTrainingProfile";
@@ -45,7 +43,7 @@ export default function AddTraingVerification() {
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
 
-  const { data, isLoading, isError, isFetching, isSuccess } =
+  const { data, isLoading, isError, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
   const {
@@ -55,35 +53,15 @@ export default function AddTraingVerification() {
     isFetching: uploadDocumentsIsFetching,
   } = useGetTrainingProfileAllDocumentQuery({ id, params });
 
-  console.log(uploadDocuments, "uploaded documents");
-
-  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
-
   const uploadDocumentsHandler = async (postData: any) => {
-    formData.append("documentType", postData.documentType);
-    formData.append("date", postData.documentDate);
-    formData.append("password", postData.password);
-    formData.append("file", postData.chosenFile);
-
-    const updatedData = {
-      trainingProfileId: id,
-      data: formData,
-    };
-
-    // try {
-    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
-
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-
-    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    // }
+    // formData.append("documentType", postData.documentType);
+    // formData.append("date", postData.documentDate);
+    // formData.append("password", postData.password);
+    // formData.append("file", postData.chosenFile);
+    // const updatedData = {
+    //   trainingProfileId: id,
+    //   data: formData,
+    // };
   };
 
   return (
@@ -121,10 +99,7 @@ export default function AddTraingVerification() {
             <UploadDocuments
               readOnly={true}
               tableData={uploadDocuments?.data?.docs}
-              searchParam={
-                (searchedText: string) => setParams(searchedText)
-                // console.log(searchedText)
-              }
+              searchParam={(searchedText: string) => setParams(searchedText)}
               isLoading={uploadDocumentsIsLoading}
               isFetching={uploadDocumentsIsFetching}
               isError={uploadDocumentsIsError}

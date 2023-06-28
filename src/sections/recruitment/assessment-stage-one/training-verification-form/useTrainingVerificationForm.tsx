@@ -35,7 +35,6 @@ const useTrainingVerificationForm = () => {
   };
 
   const openDeleteModel = (id: string) => {
-    console.log("ProfileID: ", id);
     setTrainingProfileId(id);
   };
 
@@ -56,8 +55,6 @@ const useTrainingVerificationForm = () => {
     setCancelDelete,
     openDeleteModel
   );
-
-  console.log(data, "training profile");
 
   return {
     columnsTrainingVerificationFuntion,

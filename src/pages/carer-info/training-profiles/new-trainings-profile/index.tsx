@@ -65,7 +65,7 @@ export default function AddTraingVerification() {
       });
       setTabsArr(["Training Profile", "Upload Documents"]);
 
-      router.push('/carer-info/training-profiles/trainings-list')
+      router.push("/carer-info/training-profiles/trainings-list");
     } catch (error: any) {
       enqueueSnackbar("Something Went Wrong!", { variant: "error" });
     }
@@ -78,8 +78,6 @@ export default function AddTraingVerification() {
     isFetching: uploadDocumentsIsFetching,
     isSuccess,
   } = useGetTrainingProfileAllDocumentQuery({ id: profileId, params });
-
-  console.log(uploadDocuments, "uploaded documents");
 
   const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
@@ -104,8 +102,6 @@ export default function AddTraingVerification() {
         "/recruitment/assessment-stage-one/training-verification-form"
       );
     } catch (error) {
-      console.log(error);
-
       enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };
@@ -122,10 +118,7 @@ export default function AddTraingVerification() {
         <UploadDocuments
           readOnly={false}
           tableData={uploadDocuments?.data?.docs}
-          searchParam={
-            (searchedText: string) => setParams(searchedText)
-            // console.log(searchedText)
-          }
+          searchParam={(searchedText: string) => setParams(searchedText)}
           isLoading={uploadDocumentsIsLoading}
           isFetching={uploadDocumentsIsFetching}
           isError={uploadDocumentsIsError}

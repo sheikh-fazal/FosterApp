@@ -3,15 +3,15 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
-  usePatchTrainingProfileApiMutation,
+  usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
-import { useState } from "react";
 import EditTrainingsProfile from "@root/sections/carer-info/training-profiles/edit-trainings-profile/EditTrainingProfile";
 
 const PAGE_TITLE = "Training Profile";
@@ -44,7 +44,7 @@ export default function AddTraingVerification() {
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
 
-  const { data, isLoading, isError, isFetching, isSuccess } =
+  const { data, isLoading, isError, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
   const {
@@ -54,9 +54,7 @@ export default function AddTraingVerification() {
     isFetching: uploadDocumentsIsFetching,
   } = useGetTrainingProfileAllDocumentQuery({ id, params });
 
-  console.log(uploadDocuments, "uploaded documents");
-
-  const [postTrainingProfileData] = usePatchTrainingProfileApiMutation();
+  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
     formData.append("documentType", postData.documentType);
@@ -75,12 +73,8 @@ export default function AddTraingVerification() {
         variant: "success",
       });
 
-      router.push(
-        "/carer-info/training-profiles/trainings-list"
-      );
+      router.push("/carer-info/training-profiles/trainings-list");
     } catch (error) {
-      console.log(error);
-
       enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };
@@ -121,10 +115,7 @@ export default function AddTraingVerification() {
             <UploadDocuments
               readOnly={false}
               tableData={uploadDocuments?.data?.docs}
-              searchParam={
-                (searchedText: string) => setParams(searchedText)
-                // console.log(searchedText)
-              }
+              searchParam={(searchedText: string) => setParams(searchedText)}
               isLoading={uploadDocumentsIsLoading}
               isFetching={uploadDocumentsIsFetching}
               isError={uploadDocumentsIsError}
