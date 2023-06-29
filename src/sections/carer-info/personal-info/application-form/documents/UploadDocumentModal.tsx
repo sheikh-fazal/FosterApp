@@ -92,7 +92,7 @@ function UploadDocumentsModel(props: any) {
                   changeView("");
                 }}
               >
-                Clear
+                Close
               </Button>
             </Box>
           </FormProvider>

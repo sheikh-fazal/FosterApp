@@ -26,6 +26,7 @@ export function DocumentTable(props: any) {
     isFetching,
     isSuccess,
     listDeleteHandler,
+    meta
   } = useUploadDocumentsTable({ applicationFormid });
 
   return (
@@ -43,7 +44,7 @@ export function DocumentTable(props: any) {
           onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={data?.data}
+          data={data?.data?.application_form_docs}
           columns={columns({
             changeView,
             setOpen,
@@ -58,6 +59,8 @@ export function DocumentTable(props: any) {
           showSerialNo
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
+          currentPage={meta?.page}
+          totalPages={meta?.pages}
         />
         {open && (
           <UploadDocumentsModel

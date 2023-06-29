@@ -64,5 +64,6 @@ export const useUploadDocumentsTable = ({ applicationFormid }: any) => {
     isFetching,
     isSuccess,
     listDeleteHandler,
+    meta
   };
 };

@@ -124,8 +124,8 @@ export const columns = ({
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.personUploaded ?? "-",
-      id: "personUploaded",
+      accessorFn: (row: any) => row.uploadedBy ?? "-",
+      id: "uploadedBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Person Uploaded</span>,
       isSortable: true,

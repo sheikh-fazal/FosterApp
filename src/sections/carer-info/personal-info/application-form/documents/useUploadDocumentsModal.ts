@@ -22,7 +22,7 @@ export const useUploadDocumentsModal = ({
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(formSchema),
-    defaultValues: view == "add" ? defaultValues : docData,
+    defaultValues: view == "add" ? defaultValues : {...docData,documentDate:new Date(docData.documentDate)},
   });
 
   const {
@@ -40,7 +40,7 @@ export const useUploadDocumentsModal = ({
   const onSubmit = async (data: any) => {
     let { documentDate, documentType, password, documentName, id } = data;
     var formData = new FormData();
-    formData.append("date", documentDate);
+    formData.append("documentDate", documentDate);
     formData.append("documentType", documentType);
     formData.append("password", password);
     formData.append("file", documentName);
