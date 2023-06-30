@@ -1,4 +1,3 @@
-import { Box } from "@mui/material";
 import React from "react";
 import {
   BlobProvider,
@@ -7,32 +6,22 @@ import {
   Text,
   View,
   StyleSheet,
-  Image,
-} from "@react-pdf/renderer";
-import Certificatebg from "../../../../../../assets/img/delegateCertifactebg.jpg";
-import Of from "../../../../../../assets/img/Of.png";
-import Completion from "../../../../../../assets/img/Completion.png";
-import Dialog from "@mui/material/Dialog";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
+  Image as PDFImage,
+} from "@react-pdf/renderer"; 
+import Dialog from "@mui/material/Dialog";   
 
 const styles = StyleSheet.create({
   page: {
     position: "relative",
-    width: "900px",
-    height: "800px",
-    backgroundImage: `url${Certificatebg}`,
+    maxWidth: "900px",
+    maxHeight: "800px", 
   },
   pageBackground: {
     position: "absolute",
     minWidth: "100%",
     minHeight: "100%",
     height: "100%",
-    width: "100%",
-    backgroundImage: `url(${Certificatebg})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
+    width: "100%", 
   },
   section: {
     position: "absolute",
@@ -48,26 +37,30 @@ const styles = StyleSheet.create({
     position: "relative",
     width: "841px",
     height: "841px",
-
     zIndex: -1,
   },
   certificate: {
-    fontSize: 42,
+    fontSize: "42px",
     fontWeight: 600,
     marginBottom: "21px",
+    letterSpacing: "2px",
   },
   of: {
     fontSize: 40,
     fontWeight: 400,
-    marginBottom: "24px",
+    marginBottom: "24px", 
   },
   completion: {
-    marginBottom: "14px",
-    // width: "290px",
-    // height: "23px",
+    fontSize: "15.85px",
+    color: "#fff",
+    letterSpacing: "10px",
+    backgroundColor: "#D89330",
+    clipPath: "polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%)",
+    padding: "2px 30px",
+    marginBottom: "20px", 
   },
   presentTo: {
-    fontSize: 20,
+    fontSize: "20px",
     fontWeight: 300,
     margin: "0 auto",
     marginBottom: "27px",
@@ -77,33 +70,41 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     margin: "0 auto",
     marginBottom: "41px",
+    leadingTrim: "both",
+    textEdge: "cap",
   },
   course: {
-    fontSize: 18,
+    fontSize: "14px",
     fontWeight: 300,
     margin: "0 auto",
     marginBottom: "10px",
+    leadingTrim: "both",
+    textEdge: "cap",
   },
   courseDate: {
-    fontSize: 18,
+    fontSize: "14px",
     fontWeight: 300,
     margin: "0 auto",
     marginBottom: "20px",
+    leadingTrim: "both",
+    textEdge: "cap",
   },
   at: {
-    fontSize: 14,
+    fontSize: "14px",
     fontWeight: 300,
     margin: "0 auto",
-    marginBottom: "15px",
+    marginBottom: "5px",
+    color: "#505050",
   },
   facilitator: {
-    fontSize: 14,
+    color: "#505050",
+    fontSize: "14px",
     fontWeight: 300,
     margin: "0 auto",
     marginBottom: "20px",
   },
   facilitatorDate: {
-    fontSize: 20,
+    fontSize: "20px",
     fontWeight: 400,
     margin: "0 auto",
     marginBottom: "20px",
@@ -121,18 +122,8 @@ const certificateData = [
   },
 ];
 const DelegateCertificateModal = (props: any) => {
-  const Of = "../../../../../../assets/img/Of.png";
-  const Completion = "../../../../../../assets/img/Completion.png";
-  const Certificatebg = "../../../../../../assets/img/delegateCertifactebg.jpg";
-  //   const Certificatebg = "https://ibb.co/hfRZXCK";
-  const { open, setOpen } = props;
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
+  const { open, setOpen } = props; 
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -150,24 +141,17 @@ const DelegateCertificateModal = (props: any) => {
         <BlobProvider
           document={
             <Document>
-              <Page size="A4" style={styles.page}>
-                {/* <Image
-                  src={Certificatebg}
-                  style={{ border: "2px solid red" }}
-                /> */}
+              <Page size="A4" style={styles.page}> 
+                <PDFImage 
+                  src="https://i.ibb.co/cLcCbxN/Certificate.jpg"
+                  style={styles.image}
+                />
                 <View style={styles.section}>
-                  <Text style={styles.certificate}>Certificate</Text>
+                  <Text style={styles.certificate}>CERTIFICATE</Text>
                   <Text style={styles.of}>Of</Text>
-                  <Text style={styles.completion}>Completion</Text>
-                  <Image src="https://i.ibb.co/cLcCbxN/Certificate.jpg" />
-                  {/* *************************************************** below is imagees ******************************************************************* */}
-
-                  {/* <Text style={styles.of}>
-                                        <Image src={Of} />
-                                    </Text>
-                                    <Text style={styles.completion}>
-                                    </Text> */}
-
+                  <div style={styles.completion}>
+                    <Text>COMPLETION</Text>
+                  </div>
                   {certificateData.map((item: any) => {
                     return (
                       <div key={item.id}>
@@ -181,7 +165,7 @@ const DelegateCertificateModal = (props: any) => {
                         <Text style={styles.courseDate}>{item.date}</Text>
                         <Text style={styles.at}>At: {item.address}</Text>
                         <Text style={styles.facilitator}>
-                          Facilitator: {item.facilitator}
+                          Facilitator: {item.faclilator}
                         </Text>
                         <Text style={styles.facilitatorDate}>
                           {item.certificateDate}
@@ -190,8 +174,6 @@ const DelegateCertificateModal = (props: any) => {
                     );
                   })}
                 </View>
-                {/* *********************************************************************************below is backgroubd image ************************************** */}
-                {/* <Image src={Certificatebg} style={styles.image} /> */}
               </Page>
             </Document>
           }

@@ -21,17 +21,23 @@ export default function DashboardLayout({ children, ...other }: any) {
   const handleDrawer = () => (open ? setOpen(false) : setOpen(true));
   const handleDrawerright = () =>
     rightnavbars ? setrightbars(false) : setrightbars(true);
-
+  const screenSizeHandler = useMediaQuery(theme.breakpoints.down("sm"));
+  
   return (
     <Box sx={{ width: "100%" }}>
       <Box sx={styles.mainBoxStyles}>
         {/* leftnavabr */}
-        <LeftNavbar open={open} />
+        <LeftNavbar handleDrawer={handleDrawer} open={open} />
         {/* topnavbar */}
 
         <Box
           className="parenttop"
           sx={styles.parentChildrenStyles(theme, rightnavbars, open)}
+          onClick={() => {
+            if (screenSizeHandler) {
+              return handleDrawer();
+            }
+          }}
         >
           <Topnavbar leftopen={open} handleDrawer={handleDrawer} />
           <Box

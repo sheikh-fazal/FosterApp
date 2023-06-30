@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/partner-reference/UploadDocuments";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/partner-reference/upload-documents/UploadDocumentsTable";
 import PartnerReferenceForm from "@root/sections/carer-info/background-checks/statutory-checks-list/partner-reference/PartnerReferenceForm";
 import { useRouter } from "next/router";
 
@@ -44,7 +44,7 @@ export default function PartnerReference() {
       tabsDataArray={["Former Partner References", "Upload Documents"]}
     >
       <PartnerReferenceForm action={action} id={id} />
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }

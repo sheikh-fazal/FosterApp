@@ -24,9 +24,9 @@ export const IncidentManagementFormDefaultValues = {
   approverRole: "",
   lastModifiedTime: "",
   lastModifiedBy: "",
-  signDateAuther: "",
+  signDateAuther: new Date(todayDate),
   signatureAuther: "",
-  signDateApprover: "",
+  signDateApprover: new Date(todayDate),
   signatureApprover: "",
 };
 
@@ -198,10 +198,9 @@ export const IncidentManagementFormData = [
       name: "signDateAuther",
       label: "Date of eSignature of Author",
       sx: { mt: 2 },
-      multiline: true,
-      minRows: 5,
+      fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,
@@ -217,10 +216,9 @@ export const IncidentManagementFormData = [
       name: "signDateApprover",
       label: "Date of eSignatue of Approver",
       sx: { mt: 2 },
-      multiline: true,
-      minRows: 5,
+      fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     gridLength: 6,

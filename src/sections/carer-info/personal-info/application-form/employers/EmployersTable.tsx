@@ -5,7 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { columns } from ".";
 import { useEmployerTable } from "./useEmployerTable";
 
-export default function Employers({ apllicationFormid, role }: any) {
+export default function Employers({ applicationFormid, role }: any) {
   let {
     changeView,
     viewData,
@@ -20,7 +20,11 @@ export default function Employers({ apllicationFormid, role }: any) {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
-  } = useEmployerTable(apllicationFormid, role);
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    meta,
+  } = useEmployerTable(applicationFormid, role);
 
   return (
     <>
@@ -31,7 +35,7 @@ export default function Employers({ apllicationFormid, role }: any) {
           employerData={employerData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>
@@ -43,13 +47,11 @@ export default function Employers({ apllicationFormid, role }: any) {
               changeView("add");
             }}
             searchKey="search"
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
-            }}
+            onChanged={headerChangeHandler}
           />
           <CustomTable
             showSerialNo
-            data={data?.data}
+            data={data?.data?.application_form_employees}
             columns={columns(
               changeView,
               setEmployerData,
@@ -60,20 +62,13 @@ export default function Employers({ apllicationFormid, role }: any) {
             isFetching={isFetching}
             isError={isError}
             isSuccess={isSuccess}
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />
         </>
       )}
     </>
   );
-
-  //  <div>Reference</div>
 }

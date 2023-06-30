@@ -1,4 +1,5 @@
 import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useDeleteEmployerMutation,
   useGetEmployerDetailsQuery,
@@ -6,11 +7,12 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useEmployerTable = (apllicationFormid: any, role: any) => {
+export const useEmployerTable = (applicationFormid: any, role: any) => {
   let [viewData, setViewData] = useState(null);
   let [employerData, setEmployerData] = useState(null);
   const tableHeaderRef = useRef<any>();
-
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
   const changeView = (val: any) => {
     setViewData(val);
   };
@@ -18,8 +20,9 @@ export const useEmployerTable = (apllicationFormid: any, role: any) => {
   const theme: any = useTheme();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetEmployerDetailsQuery(apllicationFormid);
-  const [deleteEmployer] = useDeleteEmployerMutation(apllicationFormid);
+    useGetEmployerDetailsQuery({ id: applicationFormid, params });
+  const meta = data?.data;
+  const [deleteEmployer] = useDeleteEmployerMutation(applicationFormid);
 
   const listDeleteHandler = (id: any) => {
     deleteEmployer(id)
@@ -49,5 +52,9 @@ export const useEmployerTable = (apllicationFormid: any, role: any) => {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    meta,
   };
 };

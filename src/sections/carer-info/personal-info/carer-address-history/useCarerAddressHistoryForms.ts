@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import {
@@ -30,7 +29,8 @@ export const useCarerAddressHistoryForms = (
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  let [postAddressHistory, { isLoading }] = usePostAddressHistoryMutation();
+  let [postAddressHistory, { isLoading: isLoadingPost }] =
+    usePostAddressHistoryMutation();
   let [updateAddressHistory, { isLoading: isLoadingEdit }] =
     useUpdateAddressHistoryMutation();
 
@@ -43,7 +43,6 @@ export const useCarerAddressHistoryForms = (
             variant: "success",
           });
           router.push("/carer-info/personal-info/carer-address-history");
-          reset();
         })
         .catch((error) => {
           const errMsg = error?.data?.message;
@@ -56,8 +55,7 @@ export const useCarerAddressHistoryForms = (
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });
-          router.push("/carer-info/personal-info/carer-address-history");
-          reset();
+          // router.push("/carer-info/personal-info/carer-address-history");
         })
         .catch((error) => {
           const errMsg = error?.data?.message;
@@ -74,5 +72,7 @@ export const useCarerAddressHistoryForms = (
     isDirty,
     theme,
     router,
+    isLoadingEdit,
+    isLoadingPost,
   };
 };

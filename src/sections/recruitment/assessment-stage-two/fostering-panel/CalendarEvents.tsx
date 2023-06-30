@@ -12,15 +12,15 @@ export default function CalendarEvents() {
 
   let dateArray: any = [
     {
-      date: "2023-05-12T09:47:17.456000Z",
+      date: "2023-06-10T09:47:17.456000Z",
       colorName: "highlight",
     },
     {
-      date: "2023-05-15T09:47:17.456000Z",
+      date: "2023-06-13T09:47:17.456000Z",
       colorName: "highlight",
     },
     {
-      date: "2023-05-20T09:47:17.456000Z",
+      date: "2023-06-29T09:47:17.456000Z",
       colorName: "highlight",
     },
   ];
@@ -51,7 +51,9 @@ export default function CalendarEvents() {
 
 const NewCalender = styled(({ iconsStyles, ...props }: any) => (
   <Calendar
-    navigationLabel={({ date, label, locale, view }) => <p>{`Upcoming Panels - ${label}`}</p>}
+    navigationLabel={({ date, label, locale, view }) => (
+      <p>{`Upcoming Panels - ${label}`}</p>
+    )}
     {...props}
     nextLabel={<ArrowRightIcon sx={iconsStyles} />}
     next2Label={<SkipNextIcon sx={iconsStyles} />}

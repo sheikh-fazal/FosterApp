@@ -175,8 +175,8 @@ export const defaultValues = {
   comments: "",
 };
 export const formSchema = Yup.object().shape({
-  isEnhancedDbs: Yup.boolean().required("Required"),
-  inProcess: Yup.boolean().required("Required"),
+  isEnhancedDbs: Yup.boolean(),
+  inProcess: Yup.boolean(),
   sentToCarerDate: Yup.date().required("Required"),
   receivedFromCarerDate: Yup.date().required("Required"),
   sentToDbsDate: Yup.date().required("Required"),

@@ -137,20 +137,6 @@ function ComplaintForms(props: any) {
               </LoadingButton>
               <Button
                 sx={{
-                  bgcolor: theme.palette.grey[800],
-                  "&:hover": { bgcolor: theme.palette.grey[800] },
-                }}
-                variant="contained"
-                onClick={() =>
-                  router.push(
-                    "/carer-info/personal-info/carer-chronology-of-events"
-                  )
-                }
-              >
-                Save as draft
-              </Button>
-              <Button
-                sx={{
                   bgcolor: theme.palette.orange.main,
                   "&:hover": { bgcolor: theme.palette.orange.main },
                 }}

@@ -1,4 +1,5 @@
 import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useDeleteExPartnerMutation,
   useGetExPartnerDetailsQuery,
@@ -6,7 +7,7 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useExPartnersTable = (apllicationFormid: any, role: any) => {
+export const useExPartnersTable = (applicationFormid: any, role: any) => {
   let [viewData, setViewData] = useState(null);
   let [exPartnerData, setExPartnerData] = useState(null);
   const tableHeaderRef = useRef<any>();
@@ -14,11 +15,13 @@ export const useExPartnersTable = (apllicationFormid: any, role: any) => {
   const changeView = (val: any) => {
     setViewData(val);
   };
-
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
   const theme: any = useTheme();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetExPartnerDetailsQuery(apllicationFormid);
+    useGetExPartnerDetailsQuery({ id: applicationFormid, params });
+  const meta = data?.data?.meta;
 
   const [deleteExPartner] = useDeleteExPartnerMutation();
   const listDeleteHandler = (id: any) => {
@@ -49,5 +52,9 @@ export const useExPartnersTable = (apllicationFormid: any, role: any) => {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
   };
 };

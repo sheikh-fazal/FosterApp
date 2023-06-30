@@ -5,9 +5,6 @@ import {
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
-import { FormHelperText, Hidden } from "@mui/material";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { useFormContext, Controller } from "react-hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
@@ -22,7 +19,7 @@ const ageOf16Years = dayjs().subtract(19, "year").format("DD/MMM/YYYY");
 
 export const defaultValues = {
   areaOffice: "",
-  media: null,
+  image: null,
   title: "",
   firstName: "",
   middleName: "",
@@ -46,26 +43,15 @@ export const defaultValues = {
   applicationFilledDate: new Date(),
 };
 
-const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
+const MAX_FILE_SIZE = 3 * 1000 * 1000; // 3 Mb
 
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const FormSchema = Yup.object().shape({
   areaOffice: Yup.string().required("Area Office name is required"),
   title: Yup.string().required("Title is required"),
-  firstName: Yup.string()
-    .required("First Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
-  lastName: Yup.string()
-
-    .required("Last Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
 
   dateOfBirth: Yup.date().required("Date of Birth is required"),
 
@@ -79,7 +65,7 @@ export const FormSchema = Yup.object().shape({
   mobileNo: Yup.string()
     .required("Mobile  is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   languageSpoken: Yup.string().trim().required("Languages Spoken is required"),
   relationShipType: Yup.string()
@@ -93,19 +79,45 @@ export const FormSchema = Yup.object().shape({
   applicationFilledDate: Yup.date().required(
     "Applicant Filled Date is required"
   ),
-  media: Yup.mixed()
-    .nullable()
-    .required("Image is required")
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value: any) => value && FILE_FORMATS.includes(value.type)
-    )
-    .test(
-      "fileSize",
-      `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-      (value: any) => value && value.size <= MAX_FILE_SIZE
-    ),
+  age: Yup.number()
+    .typeError("Age is required")
+    .required("Age is required")
+    .positive("Age must be a positive number")
+    .integer()
+    .moreThan(18, "Age must be greater than or equal to 18")
+    .lessThan(120, "Age must be less than or equal to 120"),
+  image: Yup.lazy((value) => {
+    switch (typeof value) {
+      case "string":
+        return Yup.string().required("Image is required"); // schema for string
+      default:
+        return Yup.mixed()
+          .required("Image is required")
+          .test(
+            "fileFormat",
+            "Unsupported Format",
+            (value: any) => value && FILE_FORMATS.includes(value.type)
+          )
+          .test(
+            "fileSize",
+            `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+            (value: any) => value && value.size <= MAX_FILE_SIZE
+          ); // here you can decide what is the default
+    }
+  }),
+  // image: Yup.mixed()
+  //   .nullable()
+  //   .required("Image is required")
+  //   .test(
+  //     "fileFormat",
+  //     "Unsupported Format",
+  //     (value: any) => value && FILE_FORMATS.includes(value.type)
+  //   )
+  //   .test(
+  //     "fileSize",
+  //     `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //     (value: any) => value && value.size <= MAX_FILE_SIZE
+  //   ),
 });
 
 export const formDataAreaoffice = [
@@ -129,7 +141,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "media",
+      name: "image",
       fullWidth: true,
       size: "small",
     },
@@ -180,7 +192,7 @@ export const formDataAreaPersonalInfo = [
   },
   {
     gridLength: 6,
-    componentProps: { value: 19, name: "age", label: "Age", fullWidth: true },
+    componentProps: { name: "age", label: "Age", fullWidth: true },
     component: RHFTextField,
   },
   {

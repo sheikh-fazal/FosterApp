@@ -4,7 +4,6 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import { ClaDocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
 
-
 // Constants
 const BREADCRUMBS = [
   {
@@ -26,7 +25,8 @@ AddClaDocumentationList.getLayout = function getLayout(page: any) {
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}>
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
@@ -37,6 +37,7 @@ export default function AddClaDocumentationList() {
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
         <ClaDocumentationForm />
+
       </Paper>
     </Page>
   );

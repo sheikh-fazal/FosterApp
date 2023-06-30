@@ -151,9 +151,9 @@ const CustomTable = (props: TTable) => {
                           {header.isPlaceholder
                             ? null
                             : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
                           {header.column.columnDef.isSortable &&
                             !isSorted(header.id) && <KeyboardArrowDownIcon />}
                           {header.column.columnDef.isSortable &&

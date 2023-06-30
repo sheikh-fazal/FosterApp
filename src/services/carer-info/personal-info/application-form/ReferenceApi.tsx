@@ -6,12 +6,16 @@ export const referenceApi = baseAPI.injectEndpoints({
       query: (params: any) => "/application-form/reference-detail",
     }),
     getReferenceDetails: builder.query({
-      query: (id: any) => `/application-form/reference-details/${id}`,
+      query: ({ params, id }: any) => ({
+        url: `/application-form/reference-details/${id}`,
+        method: "GET",
+        params,
+      }),
       providesTags: ["POST_REFERENCE", "EDIT_REFERENCE"],
     }),
     postReferenceDetail: builder.mutation({
       query: (params: any) => ({
-        url: `/application-form/reference-detail/${params.apllicationFormid}`,
+        url: `/application-form/reference-detail/${params.id}`,
         method: "Post",
         body: params.formData,
       }),
@@ -25,6 +29,13 @@ export const referenceApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["EDIT_REFERENCE"],
     }),
+    deleteReferenceDetail: builder.mutation({
+      query: ({ id }: any) => ({
+        url: `/application-form/reference-detail/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["POST_REFERENCE"],
+    }),
   }),
 });
 
@@ -33,4 +44,5 @@ export const {
   useGetReferenceDetailsQuery,
   usePostReferenceDetailMutation,
   useUpdateReferenceMutation,
+  useDeleteReferenceDetailMutation,
 } = referenceApi;

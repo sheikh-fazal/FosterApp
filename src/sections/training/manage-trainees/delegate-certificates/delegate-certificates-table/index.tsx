@@ -9,6 +9,7 @@ export const defaultValues = {
       manageCertifiacte: "Delegate Certificate",
       trainer: "Draco Malfoy",
     },
+
   ],
 };
 

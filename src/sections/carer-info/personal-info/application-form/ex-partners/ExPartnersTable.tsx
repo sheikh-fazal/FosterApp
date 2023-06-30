@@ -2,13 +2,10 @@ import React, { useRef, useState } from "react";
 import ExPartnersViewForm from "./ExPartnersViewForm";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useTheme } from "@mui/material";
 import { columns } from ".";
-
-import { enqueueSnackbar } from "notistack";
 import { useExPartnersTable } from "./useExPartnersTable";
 
-export default function ExPartnersView({ apllicationFormid, role }: any) {
+export default function ExPartnersView({ applicationFormid, role }: any) {
   let {
     changeView,
     viewData,
@@ -23,7 +20,11 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
     isSuccess,
     listDeleteHandler,
     tableHeaderRef,
-  } = useExPartnersTable(apllicationFormid, role);
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+  } = useExPartnersTable(applicationFormid, role);
 
   return (
     <>
@@ -34,25 +35,23 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
           exPartnerData={exPartnerData}
           changeView={changeView}
           viewData={viewData}
-          apllicationFormid={apllicationFormid}
+          applicationFormid={applicationFormid}
         />
       ) : (
         <>
           <TableHeader
             ref={tableHeaderRef}
-            title="Existing Ex-Partners(s) Details"
+            title="Existing Ex-Partner(s) Details"
             showAddBtn={role == "foster-carer" ? false : true}
             onAdd={() => {
               changeView("add");
             }}
             searchKey="search"
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
-            }}
+            onChanged={headerChangeHandler}
           />
           <CustomTable
             showSerialNo
-            data={data?.data}
+            data={data?.data?.application_form_expartners}
             columns={columns(
               changeView,
               setExPartnerData,
@@ -63,15 +62,10 @@ export default function ExPartnersView({ apllicationFormid, role }: any) {
             isFetching={isFetching}
             isError={isError}
             isSuccess={isSuccess}
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />{" "}
         </>
       )}

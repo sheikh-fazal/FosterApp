@@ -75,26 +75,6 @@ const ReferenceTable = () => {
           />
         </Grid>
       </Modal>
-      {/* <Modal open={tableStatusInfo.viewModel} onClose={closeViewModel}>
-        <Grid
-          container
-          sx={{
-            background: "white",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
-          sm={5}
-          xs={10}
-        >
-          <UpdateViewRefForm
-            close={closeViewModel}
-            defValues={tableStatusInfo?.refFormDataHolder}
-            disabled
-          />
-        </Grid>
-      </Modal> */}
     </>
   );
 };

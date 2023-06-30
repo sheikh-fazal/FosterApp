@@ -23,57 +23,11 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import AlignHorizontalLeftIcon from "@mui/icons-material/AlignHorizontalLeft";
 import AlignHorizontalRightIcon from "@mui/icons-material/AlignHorizontalRight";
 import useLocales from "@root/hooks/useLocales";
+import { AnyAction } from "@reduxjs/toolkit";
 
 // -------------------------------------------------------------
 // CONSTANTS
 const DRAWER_WIDTH = "min(90vw, 450px)";
-
-// -------------------------------------------------------------
-// Current Page styled components
-const openedMixintwo = (theme: Theme): CSSObject => ({
-  width: DRAWER_WIDTH,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  borderRadius: "10px 0px 0px 10px",
-  overflowX: "hidden",
-  backgroundColor: theme.palette.background.default,
-  zIndex: 300,
-  boxShadow: "0px 9px 46px rgba(0, 0, 0, 0.08)",
-});
-
-const closedMixintwo = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-
-  backgroundColor: theme.palette.background.default,
-  zIndex: 300,
-  width: `calc(${theme.spacing(0)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(-1)} + 1px)`,
-  },
-});
-
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  width: DRAWER_WIDTH,
-  flexShrink: 5,
-  whiteSpace: "nowrap",
-  boxSizing: "border-box",
-  ...(open && {
-    ...openedMixintwo(theme),
-    "& .MuiDrawer-paper": openedMixintwo(theme),
-  }),
-  ...(!open && {
-    ...closedMixintwo(theme),
-    "& .MuiDrawer-paper": closedMixintwo(theme),
-  }),
-}));
-// -------------------------------------------------------------
 
 const Generalsettings = (props: any) => {
   const { open, openHander } = props;
@@ -105,23 +59,11 @@ const Generalsettings = (props: any) => {
         {open && (
           <Grid container>
             <Grid item xs={12} sx={{ px: 2 }}>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-
-                  py: 1,
-                  transition: theme.transitions.create("width", {
-                    easing: theme.transitions.easing.sharp,
-                    duration: theme.transitions.duration.enteringScreen,
-                  }),
-                }}
-              >
+              <Box sx={Styles.topBox(theme)}>
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{ fontWeight: "600", color: theme.palette.text.primary }}
+                  sx={Styles.typographystyles(theme)}
                 >
                   General settings
                 </Typography>
@@ -140,11 +82,7 @@ const Generalsettings = (props: any) => {
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{
-                    fontWeight: "600",
-                    color: theme.palette.text.primary,
-                    fontSize: "13px",
-                  }}
+                  sx={Styles.typographystylesTwo(theme)}
                 >
                   PRIMARY COLOR
                 </Typography>
@@ -165,48 +103,29 @@ const Generalsettings = (props: any) => {
                       // eslint-disable-next-line react/jsx-key
                       <Grid item>
                         <FormControlLabel
-                          sx={{
-                            position: "relative",
-                            backgroundColor: isSelected
-                              ? colorValue
-                              : btnBgColor,
-                            borderRadius: 100,
-                            outline: 1,
-                            outlineStyle: "solid",
-                            outlineColor: isSelected
-                              ? theme.palette.primary.main
-                              : "transparent",
-                            minWidth: 100,
-                            display: "flex",
-                            justifyContent: "center",
-                            padding: theme.spacing(1),
-                            textTransform: "capitalize",
-                          }}
+                          sx={Styles.formControlLabelStyles(
+                            theme,
+                            isSelected,
+                            colorValue,
+                            btnBgColor
+                          )}
                           label={
                             <Typography
                               variant="body1"
                               color="initial"
-                              sx={{
-                                fontWeight: "700",
-                                fontSize: "12px",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                color: isSelected
-                                  ? theme.palette.common.white
-                                  : textColor,
-                              }}
+                              sx={Styles.typogaphyInFrom(
+                                theme,
+                                isSelected,
+                                textColor
+                              )}
                             >
                               <Box
                                 component={"span"}
-                                sx={{
-                                  background: isSelected
-                                    ? theme.palette.common.white
-                                    : colorValue,
-                                  width: 15,
-                                  height: 15,
-                                  borderRadius: "50%",
-                                }}
+                                sx={Styles.colorNameStyle(
+                                  theme,
+                                  isSelected,
+                                  colorValue
+                                )}
                               ></Box>
                               {colorName}
                             </Typography>
@@ -227,11 +146,7 @@ const Generalsettings = (props: any) => {
                 <Typography
                   variant="body1"
                   color="initial"
-                  sx={{
-                    fontWeight: "600",
-                    color: theme.palette.text.primary,
-                    fontSize: "13px",
-                  }}
+                  sx={Styles.typographystylesTwo(theme)}
                 >
                   COLOR SCHEME
                 </Typography>
@@ -251,39 +166,20 @@ const Generalsettings = (props: any) => {
                       // eslint-disable-next-line react/jsx-key
                       <Grid key={mode} item>
                         <FormControlLabel
-                          sx={{
-                            position: "relative",
-                            background: btnBgColor,
-                            borderRadius: 100,
-                            Height: 30,
-                            minWidth: 100,
-                            display: "flex",
-                            justifyContent: "center",
-                            padding: theme.spacing(1),
-                            outline: 1,
-                            outlineStyle: "solid",
-                            outlineColor: isSelected
-                              ? theme.palette.primary.main
-                              : "transparent",
-                            textTransform: "capitalize",
-                            "&.MuiFormControlLabel-label": {
-                              fontWeight: "800",
-                            },
-                          }}
+                          sx={Styles.darkLightFromStyles(
+                            theme,
+                            isSelected,
+                            btnBgColor
+                          )}
                           label={
                             <Typography
                               variant="body1"
                               color="initial"
-                              sx={{
-                                fontWeight: "700",
-                                color: isSelected
-                                  ? theme.palette.primary.main
-                                  : textColor,
-                                fontSize: "12px",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                              }}
+                              sx={Styles.darkLightFromStylesTwo(
+                                theme,
+                                isSelected,
+                                textColor
+                              )}
                             >
                               {mode === "light" ? (
                                 <LightModeIcon />
@@ -339,39 +235,20 @@ const Generalsettings = (props: any) => {
                       // "left-to-right", "right-to-left"
                       <Grid key={ori} item>
                         <FormControlLabel
-                          sx={{
-                            position: "relative",
-                            background: btnBgColor,
-                            borderRadius: 100,
-                            Height: 30,
-                            minWidth: 100,
-                            display: "flex",
-                            justifyContent: "center",
-                            padding: theme.spacing(1),
-                            outline: 1,
-                            outlineStyle: "solid",
-                            outlineColor: isSelected
-                              ? theme.palette.primary.main
-                              : "transparent",
-                            textTransform: "capitalize",
-                            "&.MuiFormControlLabel-label": {
-                              fontWeight: "800",
-                            },
-                          }}
+                          sx={Styles.oritarionFromStyles(
+                            theme,
+                            isSelected,
+                            btnBgColor
+                          )}
                           label={
                             <Typography
                               variant="body1"
                               color="initial"
-                              sx={{
-                                fontWeight: "700",
-                                color: isSelected
-                                  ? theme.palette.primary.main
-                                  : textColor,
-                                fontSize: "12px",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                              }}
+                              sx={Styles.oritariontypographyStyles(
+                                theme,
+                                isSelected,
+                                textColor
+                              )}
                             >
                               {ori === "ltr" ? (
                                 <AlignHorizontalLeftIcon />
@@ -451,3 +328,153 @@ export default Generalsettings;
 
 // -------------------------------------------------------------
 // styles
+const Styles = {
+  topBox: (theme: any) => ({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+
+    py: 1,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  }),
+  typographystyles: (theme: any) => ({
+    fontWeight: "600",
+    color: theme.palette.text.primary,
+  }),
+  typographystylesTwo: (theme: any) => ({
+    fontWeight: "600",
+    color: theme.palette.text.primary,
+    fontSize: "13px",
+  }),
+  formControlLabelStyles: (
+    theme: any,
+    isSelected: any,
+    colorValue: any,
+    btnBgColor: any
+  ) => ({
+    position: "relative",
+    backgroundColor: isSelected ? colorValue : btnBgColor,
+    borderRadius: 100,
+    outline: 1,
+    outlineStyle: "solid",
+    outlineColor: isSelected ? theme.palette.primary.main : "transparent",
+    minWidth: 100,
+    display: "flex",
+    justifyContent: "center",
+    padding: theme.spacing(1),
+    textTransform: "capitalize",
+  }),
+  typogaphyInFrom: (theme: any, isSelected: any, textColor: any) => ({
+    fontWeight: "700",
+    fontSize: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    color: isSelected ? theme.palette.common.white : textColor,
+  }),
+  colorNameStyle: (theme: any, isSelected: any, colorValue: any) => ({
+    background: isSelected ? theme.palette.common.white : colorValue,
+    width: 15,
+    height: 15,
+    borderRadius: "50%",
+  }),
+  darkLightFromStyles: (theme: any, isSelected: any, btnBgColor: any) => ({
+    position: "relative",
+    background: btnBgColor,
+    borderRadius: 100,
+    Height: 30,
+    minWidth: 100,
+    display: "flex",
+    justifyContent: "center",
+    padding: theme.spacing(1),
+    outline: 1,
+    outlineStyle: "solid",
+    outlineColor: isSelected ? theme.palette.primary.main : "transparent",
+    textTransform: "capitalize",
+    "&.MuiFormControlLabel-label": {
+      fontWeight: "800",
+    },
+  }),
+  darkLightFromStylesTwo: (theme: any, isSelected: any, textColor: any) => ({
+    fontWeight: "700",
+    color: isSelected ? theme.palette.primary.main : textColor,
+    fontSize: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  }),
+  oritarionFromStyles: (theme: any, isSelected: any, btnBgColor: any) => ({
+    position: "relative",
+    background: btnBgColor,
+    borderRadius: 100,
+    Height: 30,
+    minWidth: 100,
+    display: "flex",
+    justifyContent: "center",
+    padding: theme.spacing(1),
+    outline: 1,
+    outlineStyle: "solid",
+    outlineColor: isSelected ? theme.palette.primary.main : "transparent",
+    textTransform: "capitalize",
+    "&.MuiFormControlLabel-label": {
+      fontWeight: "800",
+    },
+  }),
+  oritariontypographyStyles: (theme: any, isSelected: any, textColor: any) => ({
+    fontWeight: "700",
+    color: isSelected ? theme.palette.primary.main : textColor,
+    fontSize: "12px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  }),
+};
+// -------------------------------------------------------------
+// Current Page styled components
+const openedMixintwo = (theme: Theme): CSSObject => ({
+  width: DRAWER_WIDTH,
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  borderRadius: "10px 0px 0px 10px",
+  overflowX: "hidden",
+  backgroundColor: theme.palette.background.default,
+  zIndex: 300,
+  boxShadow: "0px 9px 46px rgba(0, 0, 0, 0.08)",
+});
+
+const closedMixintwo = (theme: Theme): CSSObject => ({
+  transition: theme.transitions.create("width", {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+
+  backgroundColor: theme.palette.background.default,
+  zIndex: 300,
+  width: `calc(${theme.spacing(0)} + 1px)`,
+  [theme.breakpoints.up("sm")]: {
+    width: `calc(${theme.spacing(-1)} + 1px)`,
+  },
+});
+
+const Drawer = styled(MuiDrawer, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ theme, open }) => ({
+  width: DRAWER_WIDTH,
+  flexShrink: 5,
+  whiteSpace: "nowrap",
+  boxSizing: "border-box",
+  ...(open && {
+    ...openedMixintwo(theme),
+    "& .MuiDrawer-paper": openedMixintwo(theme),
+  }),
+  ...(!open && {
+    ...closedMixintwo(theme),
+    "& .MuiDrawer-paper": closedMixintwo(theme),
+  }),
+}));
+// -------------------------------------------------------------

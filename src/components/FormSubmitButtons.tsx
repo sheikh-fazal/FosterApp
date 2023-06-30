@@ -18,14 +18,14 @@ export default function FormSubmitButtons(props: any) {
       >
         Submit
       </LoadingButton>
-      <LoadingButton
+      {/* <LoadingButton
         type="button"
         sx={{ marginRight: "1rem", backgroundColor: "#23183D" }}
         variant="contained"
         disabled={!isDirty}
       >
         Save as draft
-      </LoadingButton>
+      </LoadingButton> */}
       <LoadingButton
         onClick={() => router.back()}
         type="button"
