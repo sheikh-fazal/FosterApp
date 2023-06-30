@@ -32,7 +32,7 @@ export const defaultValues = {
   languageSpoken: "",
   religion: "Islam",
   practisingStatus: "Practicing",
-  areChecksRequired: "",
+  areChecksRequired: false,
   occupation: "",
   numberOfSeen: "",
   level: "Level 1",
@@ -162,7 +162,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 7,
     componentProps: {
-      typographyText: "Contact Details",
+      typographytext: "Contact Details",
       color: (theme: any) => theme.palette.primary.main,
     },
     component: Typography,
@@ -176,7 +176,6 @@ export const SUBSTITUTECARERFORMDATA = [
       multiline: true,
       minRows: 3,
       fullWidth: true,
-      maxDate: maxAgeCheck,
     },
     gridLength: 12,
     component: RHFTextField,
@@ -222,7 +221,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 12,
+    id: 13,
     componentProps: {
       name: "religion",
       label: "Religion",
@@ -234,7 +233,7 @@ export const SUBSTITUTECARERFORMDATA = [
     options: RELIGIONDROPDOWN,
   },
   {
-    id: 12,
+    id: 14,
     componentProps: {
       name: "practisingStatus",
       label: "Practising Status",
@@ -255,7 +254,7 @@ export const SUBSTITUTECARERFORMDATA = [
     ],
   },
   {
-    id: 13,
+    id: 15,
     componentProps: {
       name: "areChecksRequired",
       label: "Are Checks Required",
@@ -264,7 +263,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFCheckbox,
   },
   {
-    id: 14,
+    id: 16,
     componentProps: {
       name: "occupation",
       label: "Occupation",
@@ -276,7 +275,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 15,
+    id: 17,
     componentProps: {
       name: "numberOfSeen",
       label: "Data and number of times applicant seen",
@@ -288,7 +287,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 16,
+    id: 18,
     componentProps: {
       name: "level",
       text: "Level",
@@ -305,7 +304,7 @@ export const SUBSTITUTECARERFORMDATA = [
   },
 
   {
-    id: 16.5,
+    id: 19,
     componentProps: {
       name: "dateOfVisit",
       label: "Date Of Assessment Visit",
@@ -319,7 +318,7 @@ export const SUBSTITUTECARERFORMDATA = [
   },
 
   {
-    id: 17,
+    id: 20,
     componentProps: {
       name: "supporttheFosterCarer",
       text: "Why do you want to support the Foster Carer?",
@@ -334,7 +333,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFInputWithLabel,
   },
   {
-    id: 18,
+    id: 21,
     componentProps: {
       name: "currentlyInPlacement",
       text: "Do you know the CHildren Currently in placement?",
@@ -349,7 +348,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFInputWithLabel,
   },
   {
-    id: 18.5,
+    id: 22,
     componentProps: {
       name: "knowCapacity",
       text: "How long have you known the foster carer and in what capacity?",
@@ -368,7 +367,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFInputWithLabel,
   },
   {
-    id: 19,
+    id: 23,
     componentProps: {
       name: "background",
       label: "Background",
@@ -380,7 +379,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 20,
+    id: 24,
     componentProps: {
       name: "health",
       label: "Health",
@@ -392,7 +391,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 21,
+    id: 25,
     componentProps: {
       name: "education",
       label: "Education",
@@ -404,7 +403,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 22,
+    id: 26,
     componentProps: {
       name: "contact",
       label: "Contact",
@@ -416,7 +415,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 23,
+    id: 27,
     componentProps: {
       name: "valuingDiversity",
       label: "Valuing Diversity",
@@ -428,7 +427,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 24,
+    id: 28,
     componentProps: {
       name: "acceptingtheChild",
       label: "Accepting the Child as he/she is",
@@ -440,7 +439,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 25,
+    id: 29,
     componentProps: {
       name: "affection",
       label: "Affection",
@@ -452,7 +451,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 26,
+    id: 30,
     componentProps: {
       name: "selfCare",
       label: "Self Care",
@@ -464,7 +463,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 27,
+    id: 31,
     componentProps: {
       name: "behaviuorManagement",
       label: "Behavior Management",
@@ -476,7 +475,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 28,
+    id: 32,
     componentProps: {
       name: "applicationsupportNetworks",
       label: "Applicant Support Network",
@@ -488,7 +487,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 29,
+    id: 33,
     componentProps: {
       name: "socialWorkerAssessment",
       label: "Social Workers`s Assessment",
@@ -500,7 +499,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 30,
+    id: 34,
     componentProps: {
       name: "conclusion",
       label: "conclusion/Recommendation",
@@ -512,7 +511,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 31,
+    id: 35,
     componentProps: {
       name: "statutoryChecks",
       label: "Statutory Checks",
@@ -524,7 +523,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 32,
+    id: 36,
     componentProps: {
       name: "training",
       label: "Training",
@@ -536,7 +535,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 22,
+    id: 37,
     componentProps: {
       name: "healthAndSafety",
       label: "HealthAndSafety",

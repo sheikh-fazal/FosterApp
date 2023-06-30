@@ -8,6 +8,7 @@ import UploadDocuments from "@root/sections/documents/UploadDocuments";
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
   {
+    name: "",
     icon: <HomeIcon />,
     href: "/",
   },

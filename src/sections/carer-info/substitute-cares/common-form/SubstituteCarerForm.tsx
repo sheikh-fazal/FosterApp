@@ -5,10 +5,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues, SUBSTITUTECARERFORMDATA } from ".";
 import Error from "@root/components/Error";
+import { LoadingButton } from "@mui/lab";
 
 //component function
 export default function SubstituteCarerForm(props: any) {
-  const { disabled, onSubmit, data, isError } = props;
+  const { disabled, onSubmit, data, status }: any = props;
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -47,19 +48,33 @@ export default function SubstituteCarerForm(props: any) {
                         {option.label}
                       </option>
                     ))
-                  : form.componentProps.typographyText}
+                  : form.componentProps.typographytext}
               </form.component>
             </Grid>
           );
         })}
         {!disabled && (
           <Grid item xs={12} container gap={3}>
-            <Button size="large" type="submit" variant="contained">
-              Submit
-            </Button>
+            <LoadingButton
+              loading={status?.isLoading}
+              size="large"
+              disabled={status?.isLoading}
+              type="submit"
+              color={
+                status?.isError
+                  ? "error"
+                  : status?.isSuccess
+                  ? "success"
+                  : "primary"
+              }
+              variant="contained"
+            >
+              {status?.isError ? "Try Again" : "Submit"}
+            </LoadingButton>
             <Button
               size="large"
               type="submit"
+              disabled={status?.isLoading}
               variant="contained"
               color="secondary"
             >
@@ -67,6 +82,7 @@ export default function SubstituteCarerForm(props: any) {
             </Button>
             <Button
               size="large"
+              disabled={status?.isLoading}
               type="submit"
               variant="contained"
               color="warning"
@@ -79,6 +95,6 @@ export default function SubstituteCarerForm(props: any) {
     </FormProvider>
   );
 
-  if (isError) return <Error />;
+  if (status?.isError) return <Error />;
   return formEl;
 }
