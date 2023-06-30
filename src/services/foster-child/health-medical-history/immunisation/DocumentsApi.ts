@@ -3,15 +3,15 @@ const DocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getImmunisationDocumentsList: builder.query({
       query: ({ id, params }: any) => ({
-        url: `/foster-child/list-immunisationDocuments`,
+        url: `/foster-child/list-immunisationDocuments/${id}`,
         method: "GET",
         params,
       }),
-      //   providesTags: ["IMMUNISATION_LIST"],
+        providesTags: ["IMMUNISATION_LIST"],
     }),
     getImmunisationDocumentDetail: builder.query({
       query: ({ id }: any) => `/foster-child/immunisationDocuments/${id}`,
-      //   providesTags: ["IMMUNISATION_DETAIL"],
+        providesTags: ["IMMUNISATION_DETAIL"],
     }),
     updateImmunisationDocument: builder.mutation({
       query: ({ id, formData }: any) => ({
@@ -19,14 +19,16 @@ const DocumentsApi = baseAPI.injectEndpoints({
         method: "PATCH",
         body: formData,
       }),
-      //   invalidatesTags: ["IMMUNISATION_DETAIL", "IMMUNISATION_LIST"],
+        invalidatesTags: ["IMMUNISATION_LIST"],
     }),
     postImmunisationDocument: builder.mutation({
-      query: ({ id, formData }: any) => ({
+      query: ({formData }: any) => ({
         url: `/foster-child/immunisationDocuments`,
         method: "POST",
         body: formData,
       }),
+    invalidatesTags: ["IMMUNISATION_LIST"],
+
     }),
     deleteImmunisationDocument: builder.mutation({
       query: (id: any) => ({

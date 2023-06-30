@@ -89,13 +89,13 @@ export const UploadDocFormData = [
   },
 ];
 export const uploadDocDefaultValues = {
-  documentType: "",
+  type: "",
   documentDate: new Date(),
   password: "",
   documentName: null,
 };
 export const uploadDocFormSchema = Yup.object().shape({
-  documentType: Yup.string().required("Field is required"),
+  type: Yup.string().required("Field is required"),
   documentDate: Yup.date().required("Field is required"),
   password: Yup.string().required("Field is required"),
   documentName: Yup.mixed().nullable().required("Document is required"),
@@ -116,8 +116,8 @@ export const uploadDocColumns = ({
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.documentType,
-      id: "documentType",
+      accessorFn: (row: any) => row.type,
+      id: "type",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Type</span>,
       isSortable: true,
@@ -132,8 +132,8 @@ export const uploadDocColumns = ({
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.personUploaded ?? "-",
-      id: "personUploaded",
+      accessorFn: (row: any) => row.uploadBy ?? "-",
+      id: "uploadBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Person Uploaded</span>,
       isSortable: true,
@@ -160,7 +160,7 @@ export const uploadDocColumns = ({
             type="view"
             onClicked={() => {
               setOpen(true);
-              // setDocData(info.row.original);
+              setDocData(info.row.original);
               changeView("view");
             }}
           />
@@ -306,7 +306,7 @@ export const uploadDummyData = [
     documentName: "zyz",
     type: "zyz",
     documentDate: "zyz",
-    incidentId: "zyz",
+    incidentId: "zyz",  
     password: "zyz",
   },
 ];

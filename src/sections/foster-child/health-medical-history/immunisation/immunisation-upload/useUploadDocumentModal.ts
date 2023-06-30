@@ -6,23 +6,21 @@ import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { uploadDocDefaultValues, uploadDocFormSchema } from "..";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  usePostDocumentDetailMutation,
-  useUpdateDocumentDetailMutation,
-} from "@root/services/carer-info/personal-info/application-form/Documents";
+
+import { usePostImmunisationDocumentMutation, useUpdateImmunisationDocumentMutation } from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
 
 export const useUploadDocumentsModal = ({
   view,
   docData,
   changeView,
-  applicationFormid,
+  immunisationId,
   setOpen,
 }: any) => {
   let theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(uploadDocFormSchema),
-    defaultValues: view == "add" ? uploadDocDefaultValues : docData,
+    defaultValues: view == "add" ? uploadDocDefaultValues : {...docData,documentDate:new Date(docData.documentDate)},
   });
 
   const {
@@ -34,49 +32,49 @@ export const useUploadDocumentsModal = ({
     watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  let [postDocumentDetail, { isLoading }] = usePostDocumentDetailMutation();
-  let [updateDocumentDetail] = useUpdateDocumentDetailMutation();
+  let [postImmunisationDocument, { isLoading }] = usePostImmunisationDocumentMutation();
+  let [updateImmunisationDocument] = useUpdateImmunisationDocumentMutation();
 
   const onSubmit = async (data: any) => {
-    let { documentDate, documentType, password, documentName, id } = data;
+    let { documentDate, type, password, documentName, id } = data;
     var formData = new FormData();
-    formData.append("date", documentDate);
-    formData.append("documentType", documentType);
+    formData.append("documentDate", documentDate);
+    formData.append("type", type);
     formData.append("password", password);
     formData.append("file", documentName);
-    console.log("data", data);
-    // if (view == "add") {
-    //   try {
-    //     const res: any = await postDocumentDetail({
-    //       id: applicationFormid,
-    //       formData,
-    //     }).unwrap();
-    //     if (res.data) {
-    //       setOpen(false);
-    //       enqueueSnackbar("Record added Successfully", {
-    //         variant: "success",
-    //       });
-    //     }
-    //   } catch (error: any) {
-    //     const errMsg = error?.data?.message;
-    //     enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //   }
-    // } else if (view == "edit") {
-    //   try {
-    //     const res: any = await updateDocumentDetail({
-    //       id: id,
-    //       formData,
-    //     }).unwrap();
-    //     if (res.data) {
-    //       enqueueSnackbar("Record Updated Successfully", {
-    //         variant: "success",
-    //       });
-    //     }
-    //   } catch (error: any) {
-    //     const errMsg = error?.data?.message;
-    //     enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //   }
-    // }
+    formData.append("immunisationId", immunisationId);
+    if (view == "add") {
+      try {
+        const res: any = await postImmunisationDocument({
+          formData,
+        }).unwrap();
+        if (res.data) {
+          setOpen(false);
+          enqueueSnackbar("Record added Successfully", {
+            variant: "success",
+          });
+        }
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
+     }
+    else if (view == "edit") {
+      try {
+        const res: any = await updateImmunisationDocument({
+          id: id,
+          formData,
+        }).unwrap();
+        if (res.data) {
+          enqueueSnackbar("Record Updated Successfully", {
+            variant: "success",
+          });
+        }
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
+    }
   };
   return { methods, handleSubmit, onSubmit, isSubmitting, isDirty, theme };
 };

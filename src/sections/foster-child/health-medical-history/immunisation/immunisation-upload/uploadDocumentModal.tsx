@@ -10,11 +10,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsModal } from "./useUploadDocumentModal";
 
 function UploadDocumentsModel(props: any) {
-  const { open, setOpen, view, changeView, docData, applicationFormid } = props;
+  const { open, setOpen, view, changeView, docData, immunisationId } = props;
   const { onSubmit, theme, methods, handleSubmit } = useUploadDocumentsModal({
     view,
     docData,
-    applicationFormid,
+    immunisationId,
     setOpen,
   });
 
@@ -51,8 +51,8 @@ function UploadDocumentsModel(props: any) {
           </Box>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container rowSpacing={4} columnSpacing={2}>
-              {UploadDocFormData.map((form: any) => (
-                <Grid item xs={12} md={form?.gridLength} key={form.id}>
+              {UploadDocFormData.map((form: any,i) => (
+                <Grid item xs={12} md={form?.gridLength} key={i}>
                   <form.component
                     {...form.componentProps}
                     size="small"

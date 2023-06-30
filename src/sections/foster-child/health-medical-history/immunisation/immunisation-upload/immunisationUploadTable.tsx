@@ -70,7 +70,7 @@ const ImmunisationUploadTable = ({ immunisationId }: any) => {
               setOpen={setOpen}
               changeView={changeView}
               docData={docData}
-              applicationFormid={immunisationId}
+              immunisationId={immunisationId}
             />
           )}
         </Grid>

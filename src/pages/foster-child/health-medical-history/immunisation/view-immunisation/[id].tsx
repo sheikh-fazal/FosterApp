@@ -75,7 +75,7 @@ export default function ViewImmunisation() {
           action="view"
           id={id}
         />
-        <ImmunisationUploadTable />
+        <ImmunisationUploadTable  immunisationId={id}  />
       </HorizaontalTabs>
     </Box>
   );
