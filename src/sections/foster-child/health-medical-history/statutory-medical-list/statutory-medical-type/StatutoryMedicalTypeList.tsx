@@ -19,6 +19,7 @@ const StatutoryMedicalTypeList = (props: any) => {
     isSuccess,
     isError,
     isFetching,
+    STATUTORYMEDICALLISTTYPEPAGELIMIT
   } = useStatutoryMedicalTypeList(props);
   return (
     <>
@@ -49,7 +50,7 @@ const StatutoryMedicalTypeList = (props: any) => {
           currentPage={data?.data?.meta?.page ?? 1}
           totalPages={data?.data?.meta?.pages ?? 2}
           onPageChange={(pageNo: any) => {
-            setPage((pageNo - 1) * 10);
+            setPage((pageNo - 1) * STATUTORYMEDICALLISTTYPEPAGELIMIT);
           }}
         />
       </Box>

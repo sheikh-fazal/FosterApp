@@ -14,6 +14,7 @@ const Documents = () => {
     postGpDetailsInfoDocumentDataStatus,
     query,
     onDeleteConfirm,
+    GPDETAILSDOCUMENTPAGELIMIT
   } = useDocuments();
 
   return (
@@ -40,7 +41,7 @@ const Documents = () => {
       currentPage={data?.data?.meta?.page}
       totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((pageNo - 1) * 10);
+        setPage((pageNo - 1) * GPDETAILSDOCUMENTPAGELIMIT);
       }}
       onDelete={(data: any) => onDeleteConfirm(data)}
     />

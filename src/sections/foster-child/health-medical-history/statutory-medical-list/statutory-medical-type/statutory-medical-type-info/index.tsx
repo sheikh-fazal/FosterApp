@@ -35,11 +35,11 @@ export const ehcpInfoFormSchema: any = Yup.object().shape({
   result: Yup.string().trim()
     .required("Result is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(500, "Maximum 50 characters"),
   comments: Yup.string().trim()
     .required("Comments is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(500, "Maximum 50 characters"),
 });
 
 export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [

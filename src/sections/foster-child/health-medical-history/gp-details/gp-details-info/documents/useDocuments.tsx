@@ -11,6 +11,7 @@ import {
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
+  const GPDETAILSDOCUMENTPAGELIMIT =  10;
   // ----------------------------------------------------------------------
   const [
     postGpDetailsInfoDocumentDataTrigger,
@@ -25,7 +26,7 @@ export const useDocuments = () => {
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     offset: page,
-    limit: 10,
+    limit: GPDETAILSDOCUMENTPAGELIMIT,
     search: searchValue,
   };
   const pathParams = {
@@ -95,5 +96,6 @@ export const useDocuments = () => {
     query,
     postGpDetailsInfoDocumentDataStatus,
     onDeleteConfirm,
+    GPDETAILSDOCUMENTPAGELIMIT
   };
 };

@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 export const useStatutoryMedicalList =  () => {
-    const [carerType, setCarerType] = useState<null | HTMLElement>(null);
-    const open = Boolean(carerType);
-    const handleCarerName = (event: React.MouseEvent<HTMLButtonElement>) => {
-      setCarerType(event.currentTarget);
+    const [sortType, setSortType] = useState<null | HTMLElement>(null);
+    const open = Boolean(sortType);
+    const handleSortType = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setSortType(event.currentTarget);
     };
-    const carerNameMenuItemClick = (items: any) => {
-      setCarerType(null);
+    const sortTypeMenuItemClick = (items: any) => {
+      setSortType(null);
     };
     return {
         open,
-        handleCarerName,
-        carerType,
-        setCarerType,
-        carerNameMenuItemClick,
+        sortType,
+        setSortType,
+        handleSortType,
+        sortTypeMenuItemClick
       } 
 }

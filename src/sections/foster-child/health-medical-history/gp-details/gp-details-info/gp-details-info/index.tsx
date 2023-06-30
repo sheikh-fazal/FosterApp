@@ -38,19 +38,19 @@ export const gpDetailsInfoFormSchema: any = Yup.object().shape({
   physicianName: Yup.string()
     .trim()
     .required("Physician name is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .min(2, "Mininum 1 characters")
+    .max(30, "Maximum 50 characters"),
   physicianType: Yup.string().required("Physician type is required"),
   address: Yup.string()
     .trim()
     .required("Address is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(200, "Maximum 50 characters"),
   town: Yup.string()
     .trim()
     .required("Town is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(70, "Maximum 50 characters"),
   telephone: Yup.string()
     .trim()
     .required("Telephone is required")

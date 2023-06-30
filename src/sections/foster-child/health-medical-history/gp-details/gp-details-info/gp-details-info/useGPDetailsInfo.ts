@@ -18,7 +18,6 @@ export const useGPDetailsInfo = () => {
   const { query } = useRouter();
   const router = useRouter();
   const theme: any = useTheme();
-
   const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(
     query?.action === "view"
   );

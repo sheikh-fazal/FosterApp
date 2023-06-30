@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { gpDetailsInfoTableColumnsFunction } from ".";
+import { gpDetailsInfoTableColumnsFunction, GPDETAILSLISTPAGELIMIT } from ".";
 import { useGetAllGpDetailsListDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 
 export const useGPDetailsList = () => {
@@ -12,12 +12,14 @@ export const useGPDetailsList = () => {
   const params = {
     search: searchValue,
     offset: page,
-    limit: 10,
+    limit: GPDETAILSLISTPAGELIMIT,
   };
 
   const apiDataParameter = { params };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAllGpDetailsListDataQuery(apiDataParameter);
+    useGetAllGpDetailsListDataQuery(apiDataParameter,{
+      refectchOnMountOrArgChange:true
+    });
 
   return {
     gpDetailsInfoTableColumns,
@@ -29,5 +31,6 @@ export const useGPDetailsList = () => {
     setSearchValue,
     router,
     setPage,
+    GPDETAILSLISTPAGELIMIT
   };
 };

@@ -14,6 +14,7 @@ const GPDetailsList = () => {
     setSearchValue,
     router,
     setPage,
+    GPDETAILSLISTPAGELIMIT
   }: any = useGPDetailsList();
   return (
     <>
@@ -47,7 +48,7 @@ const GPDetailsList = () => {
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onPageChange={(pageNo: any) => {
-            setPage((pageNo - 1) * 10);
+            setPage((pageNo - 1) * GPDETAILSLISTPAGELIMIT);
           }}
         />
       </Box>

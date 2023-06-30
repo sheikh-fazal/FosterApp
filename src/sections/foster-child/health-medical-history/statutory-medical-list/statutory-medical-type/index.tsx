@@ -21,7 +21,7 @@ export const statutoryMedicalListXTableColumnsFunction = (
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row?.onFile,
+    accessorFn: (row: any) => row?.onfile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
@@ -60,3 +60,5 @@ export const statutoryMedicalListXTableColumnsFunction = (
     isSortable: false,
   },
 ];
+
+export const STATUTORYMEDICALLISTTYPEPAGELIMIT =  10;

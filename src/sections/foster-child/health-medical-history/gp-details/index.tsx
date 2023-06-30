@@ -7,21 +7,18 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
     id: "physicianName",
     cell: (info: any) => info.getValue(),
     header: () => <span>Physician Name</span>,
-    // isSortable: true,
   },
   {
     accessorFn: (row: any) => row.physicianType,
     id: "physicianType",
     cell: (info: any) => info.getValue(),
     header: () => <span>Physician Type</span>,
-    // isSortable: true,
   },
   {
     accessorFn: (row: any) => row.telephone,
     id: "telephone",
     cell: (info: any) => info.getValue(),
     header: () => <span>Telephone</span>,
-    // isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.id,
@@ -49,6 +46,7 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
       );
     },
     header: () => <span>Action</span>,
-    // isSortable: false,
   },
 ];
+
+export const GPDETAILSLISTPAGELIMIT =  10;

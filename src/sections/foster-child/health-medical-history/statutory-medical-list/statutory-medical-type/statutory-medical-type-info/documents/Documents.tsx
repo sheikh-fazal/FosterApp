@@ -13,6 +13,7 @@ const Documents = () => {
     submitStatutoryMedicalListInfoDocumentData,
     query,
     onDeleteConfirm,
+    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT
   }: any = useDocuments();
 
   return (
@@ -39,7 +40,7 @@ const Documents = () => {
       currentPage={data?.meta?.page}
       totalPages={data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((pageNo - 1) * 10);
+        setPage((pageNo - 1) * STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT);
       }}
       onDelete={(data: any) => onDeleteConfirm(data)}
     />

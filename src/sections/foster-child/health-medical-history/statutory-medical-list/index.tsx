@@ -24,7 +24,7 @@ export const statutoryMedicalListAccordionData = [
   },
 ];
 
-export const carerNameData = [
+export const sortTypeData = [
   {
     value: "Option 1",
   },

@@ -11,6 +11,7 @@ import {
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
+    const STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT =  10;
   // ----------------------------------------------------------------------
   const [
     postStatutoryMedicalListInfoDocumentDataTrigger,
@@ -24,7 +25,7 @@ export const useDocuments = () => {
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     offset: page,
-    limit: 10,
+    limit: STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
     search: searchValue,
   };
   const pathParams = {
@@ -94,5 +95,6 @@ export const useDocuments = () => {
     submitStatutoryMedicalListInfoDocumentData,
     query,
     onDeleteConfirm,
+    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT
   };
 };
