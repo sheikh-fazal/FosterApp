@@ -2,16 +2,15 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import IsFetching from "@root/components/loaders/IsFetching";
+import ViewTraingsProfile from "@root/sections/carer-info/training-profiles/view-trainings-profile/ViewTrainingProfile";
 import { useRouter } from "next/router";
 import {
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
-  usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import { useState } from "react";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import IsFetching from "@root/components/loaders/IsFetching";
-import ViewTraingsProfile from "@root/sections/carer-info/training-profiles/view-trainings-profile/ViewTrainingProfile";
 
 const PAGE_TITLE = "Training Profile";
 
