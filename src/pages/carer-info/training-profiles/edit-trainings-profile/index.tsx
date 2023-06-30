@@ -5,8 +5,10 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
+  useDeleteTrainingProfileDocumentMutation,
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
+  usePatchTrainingProfileApiMutation,
   usePostTrainingProfileDocumentMutation,
 } from "@root/services/recruitment/assessment-stage-one/training-verification-form/TrainingProfileAllApi";
 import IsFetching from "@root/components/loaders/IsFetching";
@@ -55,6 +57,8 @@ export default function AddTraingVerification() {
   } = useGetTrainingProfileAllDocumentQuery({ id, params });
 
   const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
+  const [deleteUploadedDocument] = useDeleteTrainingProfileDocumentMutation();
+  const [patchTrainingProfile] = usePatchTrainingProfileApiMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
     formData.append("documentType", postData.documentType);
@@ -74,6 +78,20 @@ export default function AddTraingVerification() {
       });
 
       router.push("/carer-info/training-profiles/trainings-list");
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
+
+  const deleteDocument = async (userId: any) => {
+    try {
+      let res = await deleteUploadedDocument({
+        trainingProfileId: id,
+        profileId: userId,
+      });
+      enqueueSnackbar(`Document Delete Successfully!`, {
+        variant: "success",
+      });
     } catch (error) {
       enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
@@ -100,7 +118,7 @@ export default function AddTraingVerification() {
                 date: new Date(data?.data?.date),
               }}
               trainingProfileId={id}
-              onSubmitHandler={postTrainingProfileData}
+              onSubmitHandler={patchTrainingProfile}
               message={"Updated"}
               isError={isError}
               isSuccess={isSuccess}
@@ -127,6 +145,9 @@ export default function AddTraingVerification() {
                 "password",
               ]}
               isSuccess={isSuccess}
+              onDelete={(data: any) => {
+                deleteDocument(data.id);
+              }}
               modalData={(data: any) => uploadDocumentsHandler(data)}
               onPageChange={(page: any) => console.log(page)}
               currentPage={uploadDocuments?.data?.meta?.page}
