@@ -75,7 +75,9 @@ export default function EditImmunisation() {
           action="edit"
           id={id}
         />
-        <ImmunisationUploadTable immunisationId={id} />
+        <ImmunisationUploadTable
+        action="edit"
+        immunisationId={id} />
       </HorizaontalTabs>
     </Box>
   );

@@ -31,10 +31,12 @@ const DocumentsApi = baseAPI.injectEndpoints({
 
     }),
     deleteImmunisationDocument: builder.mutation({
-      query: (id: any) => ({
-        url: `/foster-child/immunisationDocument/delete/${id}`,
+      query: ({id}: any) => ({
+        url: `/foster-child/immunisationDocument/delete${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["IMMUNISATION_LIST"],
+
     }),
   }),
 });

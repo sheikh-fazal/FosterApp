@@ -10,7 +10,7 @@ import Link from "next/link";
 import { uploadDummyData, uploadDocColumns } from "..";
 import UploadDocumentsModel from "./uploadDocumentModal";
 import { useUploadDocumentsTable } from "./useImmunisationTable";
-const ImmunisationUploadTable = ({ immunisationId }: any) => {
+const ImmunisationUploadTable = ({ immunisationId,action }: any) => {
   const {
     data,
     theme,
@@ -31,7 +31,6 @@ const ImmunisationUploadTable = ({ immunisationId }: any) => {
     listDeleteHandler,
     meta,
   } = useUploadDocumentsTable({ immunisationId });
-
   return (
     <>
       <Grid container>
@@ -39,7 +38,7 @@ const ImmunisationUploadTable = ({ immunisationId }: any) => {
           <TableHeader
             ref={tableHeaderRef}
             title="Uploaded Documents"
-            showAddBtn={true}
+            showAddBtn={action=='view'?false:true}
             onAdd={() => {
               setOpen(true);
               changeView("add");
@@ -50,6 +49,7 @@ const ImmunisationUploadTable = ({ immunisationId }: any) => {
           <CustomTable
             data={data?.data?.immunisation_documents}
             columns={uploadDocColumns({
+              action,
               changeView,
               setOpen,
               setDocData,

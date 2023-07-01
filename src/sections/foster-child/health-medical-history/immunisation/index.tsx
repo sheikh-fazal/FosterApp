@@ -101,6 +101,7 @@ export const uploadDocFormSchema = Yup.object().shape({
   documentName: Yup.mixed().nullable().required("Document is required"),
 });
 export const uploadDocColumns = ({
+  action,
   changeView,
   setOpen,
   role,
@@ -166,6 +167,10 @@ export const uploadDocColumns = ({
           />
           {role !== "foster-carer" && (
             <>
+            {
+            action=='view' ?
+            null :
+             <>
               <TableAction
                 type="edit"
                 onClicked={() => {
@@ -177,6 +182,9 @@ export const uploadDocColumns = ({
               <DeletePrompt
                 onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
               />
+             </>
+            }
+             
             </>
           )}
         </Box>
@@ -251,7 +259,7 @@ export const UploadViewDocFormData = [
     componentProps: {
       fullWidth: true,
       name: "type",
-      label: "Document Type",
+      label: "Document Type", 
       select: true,
       options: [
         {

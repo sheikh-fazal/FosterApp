@@ -8,7 +8,7 @@ import {
   usePostAllegationDocumentsMutation,
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
-import { useGetImmunisationDocumentsListQuery } from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
+import { useDeleteImmunisationDocumentMutation, useGetImmunisationDocumentsListQuery } from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef, useState } from "react";
@@ -32,10 +32,10 @@ export const useUploadDocumentsTable = ({ immunisationId }: any) => {
     useGetImmunisationDocumentsListQuery({ params, id: immunisationId });
   const meta = data?.data?.meta;
 
-  const [deleteDocument] = useDeleteDocumentMutation();
+  const [deleteImmunisationDocument] = useDeleteImmunisationDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
-    deleteDocument({ id })
+    deleteImmunisationDocument({ id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Record Deleted Successfully", {
