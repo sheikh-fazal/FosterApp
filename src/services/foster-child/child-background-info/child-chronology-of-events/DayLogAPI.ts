@@ -21,7 +21,7 @@ export const dayLogApi: any = baseAPI.injectEndpoints({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/day-log`,
         method: "POST",
-        body: queryArg.addDayLogRequestDto,
+        body: queryArg,
       }),
       invalidatesTags: [TAG],
     }),
@@ -88,10 +88,19 @@ export type AddDayLogResponseDto = {
   errors: object;
 };
 export type AddDayLogRequestDto = {
-  dateOfOccurence: string;
-  type: string;
-  subject: string;
-  status: string;
+  dateOfOccurence?: string;
+  correspondenceFrom?: string;
+  correspondenceTo?: string;
+  childSeen?: boolean;
+  entryType?: string;
+  subject?: string;
+  dayLogEntry?: string;
+  actionNeeded?: string;
+  notificationDate?: string;
+  addToCarerRecord?: string;
+  updateSiblingRecord?: boolean;
+  additionalEmailAddresses?: string;
+  userToBeNotified?: string;
 };
 export const {
   useGetChildChronologyOfEventsDayLogListQuery,

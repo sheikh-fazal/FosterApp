@@ -1,10 +1,8 @@
 import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
-import { useForm } from "react-hook-form";
 import { DayLogFormFields } from "./DayLogData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
-import router from "next/router";
 import { useDayLogForm } from "./useDayLogForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
@@ -71,9 +69,11 @@ const DayLogForm = () => {
                 <Grid item xs={6}>
                   <RHFSelect
                     label={"Select User to be Notified"}
-                    name={"SelectUsertobeNotified"}
-                    disabled
-                  />
+                    name={"userToBeNotified"}
+                    disabled={action === "view" ? true : false}
+                  >
+                    <option value="nil">nil</option>
+                  </RHFSelect>
                 </Grid>
 
                 <Grid item xs={12} sx={{ mt: 2 }}>
@@ -88,13 +88,16 @@ const DayLogForm = () => {
                     Enter Additional Email Addresses to be notified: (Email Addresses should be
                     seprated by commas.For example john@domain.com, Pete@domain.com)
                   </Typography>
-                  <RHFTextField name={"EnterAdditionalEmailAddresses"} disabled />
+                  <RHFTextField
+                    name={"additionalEmailAddresses"}
+                    disabled={action === "view" ? true : false}
+                  />
                 </Grid>
               </Box>
             </Paper>
           </Grid>
           <Grid xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }} item>
-            {action === "add" || action === "edit" ? (
+            {action !== "view" && (
               <LoadingButton
                 type="submit"
                 loading={isSubmitting}
@@ -106,7 +109,7 @@ const DayLogForm = () => {
               >
                 Submit
               </LoadingButton>
-            ) : null}
+            )}
             <Button
               sx={{
                 bgcolor: theme.palette.orange.main,

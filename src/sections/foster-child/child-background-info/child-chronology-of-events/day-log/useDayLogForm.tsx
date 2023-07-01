@@ -21,7 +21,7 @@ export const useDayLogForm = () => {
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
 
   //API For Posting Car Insurance Form
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation();
+  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
   //API For Patch Car Insurance List
   const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
@@ -60,9 +60,14 @@ export const useDayLogForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
+    console.log("🚀 ~ file: useDayLogForm.tsx:63 ~ onSubmit ~ data:", {
+      ...data,
+      fosterChildId,
+      status: "Pending",
+    });
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId })
+      postDayLogData({ ...data, fosterChildId, status: "Pending" })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);

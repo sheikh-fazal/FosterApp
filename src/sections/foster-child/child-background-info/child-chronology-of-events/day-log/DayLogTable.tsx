@@ -8,7 +8,6 @@ import { useDayLogTable } from "./useDayLogTable";
 
 const DayLogTable = (props: any) => {
   const { fosterChildId } = props;
-  console.log("🚀 ~ file: DayLogTable.tsx:11 ~ DayLogTable ~ fosterChildId:", fosterChildId);
   const {
     listDeleteHandler,
     router,
