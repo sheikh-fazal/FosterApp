@@ -31,10 +31,12 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       const res: any = await deleteStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
+            setIsRecordSetForDelete(false);
+
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
-      setIsRecordSetForDelete(false);
+      setPage(0)
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });

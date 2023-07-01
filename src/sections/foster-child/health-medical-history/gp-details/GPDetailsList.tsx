@@ -2,7 +2,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import { useGPDetailsList } from "./useGPDetailsList";
-
+import DeleteModel from "@root/components/modal/DeleteModel";
 const GPDetailsList = () => {
   const {
     gpDetailsInfoTableColumns,
@@ -14,7 +14,10 @@ const GPDetailsList = () => {
     setSearchValue,
     router,
     setPage,
-    GPDETAILSLISTPAGELIMIT
+    GPDETAILSLISTPAGELIMIT,
+     isRecordSetForDelete,
+    setIsRecordSetForDelete,
+    onDeleteConfirm,
   }: any = useGPDetailsList();
   return (
     <>
@@ -24,9 +27,12 @@ const GPDetailsList = () => {
           searchKey="search"
           showAddBtn={true}
           onAdd={() =>
-            router.push(
-              "/foster-child/health-medical-history/gp-details/gp-details-info"
-            )
+              router.push({
+                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query:{
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
           }
           onChanged={(data: any) => {
             setSearchValue(data?.search);
@@ -52,6 +58,15 @@ const GPDetailsList = () => {
           }}
         />
       </Box>
+         {isRecordSetForDelete && (
+        <DeleteModel
+          open={isRecordSetForDelete}
+          handleClose={() => setIsRecordSetForDelete(false)}
+          onDeleteClick={(data: any) => {
+            onDeleteConfirm?.(data);
+          }}
+        />
+      )}
     </>
   );
 };

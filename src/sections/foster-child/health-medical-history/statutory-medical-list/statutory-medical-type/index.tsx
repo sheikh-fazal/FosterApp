@@ -40,17 +40,29 @@ export const statutoryMedicalListXTableColumnsFunction = (
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=edit`
-              )
+                 router.push({
+                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query:{
+                  id: info.getValue(),
+                  type,
+                  action:'edit',
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=view`
-              )
+                router.push({
+                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query:{
+                  id: info.getValue(),
+                  type,
+                  action:'view',
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
             }
           />
         </Box>

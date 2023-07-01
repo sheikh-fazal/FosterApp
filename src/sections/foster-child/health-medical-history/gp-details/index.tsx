@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
+export const gpDetailsInfoTableColumnsFunction = (router?: any, prepareRecordForDelete?:any) => [
   {
     accessorFn: (row: any) => row?.physicianName,
     id: "physicianName",
@@ -29,17 +29,27 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info?gpInfoId=${info.getValue()}&action=edit`
-              )
+              router.push({
+                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query:{
+                  gpInfoId: info?.getValue(),
+                  action:'edit',
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info?gpInfoId=${info.getValue()}&action=view`
-              )
+               router.push({
+                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query:{
+                  gpInfoId: info.getValue(),
+                  action:'view',
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
             }
           />
         </Box>

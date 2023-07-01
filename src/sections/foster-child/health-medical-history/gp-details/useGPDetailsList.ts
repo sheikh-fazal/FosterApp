@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { gpDetailsInfoTableColumnsFunction, GPDETAILSLISTPAGELIMIT } from ".";
-import { useGetAllGpDetailsListDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
-
+import { useGetAllGpDetailsListDataQuery, useDeleteGpDetailsInfoDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
+import { enqueueSnackbar } from "notistack";
 export const useGPDetailsList = () => {
   const router = useRouter();
-
-  const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(router);
-  const [page, setPage] = useState(0);
+    const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);
+  const [deleteData, setDeleteData] = useState("");
+    const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
+
+  const [
+    deleteGpDetailsInfoDataTrigger,
+    deleteGpDetailsInfoDataStatus,
+  ] =  useDeleteGpDetailsInfoDataMutation();
+
+
+
   const params = {
     search: searchValue,
     offset: page,
@@ -21,6 +29,33 @@ export const useGPDetailsList = () => {
       refectchOnMountOrArgChange:true
     });
 
+
+  const onDeleteConfirm = async (data: any) => {
+    const pathParams = {
+      id: deleteData,
+    };
+    const apiDataParameter = { pathParams };
+    try {
+      const res: any = await deleteGpDetailsInfoDataTrigger(
+        apiDataParameter
+      ).unwrap();
+      setIsRecordSetForDelete(false);
+
+      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+        variant: "success",
+      });
+      setPage(0)
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+  const prepareRecordForDelete = (data: any) => {
+    setIsRecordSetForDelete(true);
+    setDeleteData(data);
+  };
+    const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(router, prepareRecordForDelete);
+
   return {
     gpDetailsInfoTableColumns,
     data,
@@ -31,6 +66,9 @@ export const useGPDetailsList = () => {
     setSearchValue,
     router,
     setPage,
-    GPDETAILSLISTPAGELIMIT
+    GPDETAILSLISTPAGELIMIT,
+     isRecordSetForDelete,
+    setIsRecordSetForDelete,
+    onDeleteConfirm,
   };
 };

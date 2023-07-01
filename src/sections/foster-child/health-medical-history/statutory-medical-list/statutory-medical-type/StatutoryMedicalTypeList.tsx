@@ -32,9 +32,13 @@ const StatutoryMedicalTypeList = (props: any) => {
             setSearchValue(data.search);
           }}
           onAdd={() =>
-            router.push(
-              `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?type=${props.type}`
-            )
+               router.push({
+                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query:{
+                  type:props.type,
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
           }
         />
 

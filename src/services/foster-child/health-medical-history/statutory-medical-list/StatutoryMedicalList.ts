@@ -8,7 +8,11 @@ export const statutoryMedicalListApi: any = baseAPI.injectEndpoints({
         method: "GET",
         params: apiDataParameter.params,
       }),
-      providesTags: ["STATUTORY_MEDICAL_LIST"],
+      providesTags:(result, error, arg) =>
+        !!result?.data?.statutory_medical?.length
+          ? [...result?.data?.statutory_medical?.map(({ id }) => { return ( { type: 'STATUTORY_MEDICAL_LIST' as const, id })}), 'STATUTORY_MEDICAL_LIST']
+          : ['STATUTORY_MEDICAL_LIST']
+      // providesTags:(result,error,arg)=>(console.log({result,error,arg})),
     }),
     getSingleStatutoryMedicalTypeData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -41,7 +45,9 @@ export const statutoryMedicalListApi: any = baseAPI.injectEndpoints({
         method: "DELETE",
         params: apiDataParameter?.params,
       }),
-      invalidatesTags: ["STATUTORY_MEDICAL_LIST"],
+      // invalidatesTags: ["STATUTORY_MEDICAL_LIST"],
+       invalidatesTags: (result, error, arg) => [{ type: 'STATUTORY_MEDICAL_LIST', id: arg?.pathParams?.id }],
+                                                     // invalidatesTags:(result,error,arg)=>(console.log({result,error,arg}))
     }),
   }),
 });

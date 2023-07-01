@@ -58,9 +58,13 @@ const StatutoryMedicalTypeInfo = () => {
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             onClick={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list`
-              )
+
+   router.push({
+                pathname:`/foster-child/health-medical-history/statutory-medical-list`,
+                query:{
+                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
+                }
+              })
             }
             variant="contained"
             disabled={
