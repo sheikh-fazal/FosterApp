@@ -20,7 +20,7 @@ export const useDayLogTable = () => {
   const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({ id: id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

@@ -15,26 +15,23 @@ export const useDayLogForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  //API For Getting Single Details
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
 
-  //API For Posting Car Insurance Form
   const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  //API For Patch Car Insurance List
   const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
-  //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id, true);
+      const { data, isError } = await getDayLogList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
       const responseData = { ...data.data };
+
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
@@ -60,11 +57,6 @@ export const useDayLogForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
-    console.log("🚀 ~ file: useDayLogForm.tsx:63 ~ onSubmit ~ data:", {
-      ...data,
-      fosterChildId,
-      status: "Pending",
-    });
     if (action === "add") {
       setIsFetching(true);
       postDayLogData({ ...data, fosterChildId, status: "Pending" })
@@ -89,7 +81,7 @@ export const useDayLogForm = () => {
       setIsFetching(true);
       const formData = {
         id,
-        ...data,
+        addDayLogRequestDto: { ...data },
       };
       editDayLogList(formData)
         .unwrap()

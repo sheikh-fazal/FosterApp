@@ -7,7 +7,7 @@ import { useDayLogForm } from "./useDayLogForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const DayLogForm = () => {
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action, id } =
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action } =
     useDayLogForm();
 
   const theme: any = useTheme();

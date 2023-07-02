@@ -41,7 +41,7 @@ export const dayLogApi: any = baseAPI.injectEndpoints({
       GetChildChronologyOfEventsDayLogByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/day-log/${queryArg.id}`,
+        url: `/child-chronology-of-events/day-log/${queryArg}`,
       }),
       providesTags: [TAG],
     }),
@@ -50,7 +50,7 @@ export const dayLogApi: any = baseAPI.injectEndpoints({
       DeleteChildChronologyOfEventsDayLogByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/day-log/${queryArg}`,
+        url: `/child-chronology-of-events/day-log/${queryArg.id}`,
         method: "DELETE",
       }),
       invalidatesTags: [TAG],

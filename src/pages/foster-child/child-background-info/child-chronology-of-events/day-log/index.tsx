@@ -29,7 +29,6 @@ DayLog.getLayout = function getLayout(page: any) {
 export default function DayLog() {
   const { data, isError, isLoading, isFetching, isSuccess }: any =
     useGetChildChronologyOfEventsUploadedDocumentsListQuery();
-  console.log("🚀 ~ file: index.tsx:32 ~ DayLog ~ data:", data);
 
   return (
     <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documents"]}>
