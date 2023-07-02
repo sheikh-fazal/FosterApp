@@ -19,8 +19,6 @@ export default function SubstituteCarerForm(props: any) {
   const { reset, handleSubmit } = methods;
 
   const onSubmitHandler = (data: any) => {
-    console.log("submitted Data", data);
-
     onSubmit(data);
     reset();
   };

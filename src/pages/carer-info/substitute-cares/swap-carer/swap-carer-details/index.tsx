@@ -44,7 +44,11 @@ SwapCarerDetails.getLayout = function getLayout(page: any) {
 export default function SwapCarerDetails() {
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
-      <SubstituteCarerForm />
+      <SubstituteCarerForm
+        onSubmit={(data: any) => {
+          console.log(data);
+        }}
+      />
 
       <UploadDocuments
         searchParam={(searchedText: string) =>

@@ -44,7 +44,11 @@ RespiteCarerDetails.getLayout = function getLayout(page: any) {
 export default function RespiteCarerDetails() {
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
-      <SubstituteCarerForm />
+      <SubstituteCarerForm
+        onSubmit={(data: any) => {
+          console.log(data);
+        }}
+      />
 
       <UploadDocuments
         searchParam={(searchedText: string) =>
