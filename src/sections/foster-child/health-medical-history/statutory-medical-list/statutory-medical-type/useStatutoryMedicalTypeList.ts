@@ -11,7 +11,8 @@ import { enqueueSnackbar } from "notistack";
 
 export const useStatutoryMedicalTypeList = (props: any) => {
   const router = useRouter();
-
+  const [page, setPage] = useState(0);
+  const [searchValue, setSearchValue] = useState(undefined);
   const [
     deleteStatutoryMedicalTypeDataTrigger,
     deleteStatutoryMedicalTypeDataStatus,
@@ -53,8 +54,7 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       prepareRecordForDelete
     );
 
-  const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
+
   const params = {
     search: searchValue,
     statutoryMedicalType: props?.type,

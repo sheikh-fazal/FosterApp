@@ -68,6 +68,7 @@ export const useDocuments = () => {
     const pathParams = {
       id: data?.id,
     };
+    console.log(pathParams)
     const apiDataParameter = { pathParams };
     try {
       const res: any =

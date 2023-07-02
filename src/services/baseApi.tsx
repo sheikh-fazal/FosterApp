@@ -51,6 +51,7 @@ export const TAGS = [
   "EDIT_EXPARTNER",
   "behaviorInfoList",
   "STATUTORY_MEDICAL_LIST",
+  "STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

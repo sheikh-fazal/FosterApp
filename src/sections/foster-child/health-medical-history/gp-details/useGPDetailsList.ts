@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { gpDetailsInfoTableColumnsFunction, GPDETAILSLISTPAGELIMIT } from ".";
 import { useGetAllGpDetailsListDataQuery, useDeleteGpDetailsInfoDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
+
 export const useGPDetailsList = () => {
   const router = useRouter();
     const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);

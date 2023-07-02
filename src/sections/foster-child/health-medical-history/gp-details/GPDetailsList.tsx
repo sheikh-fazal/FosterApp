@@ -37,9 +37,6 @@ const GPDetailsList = () => {
           onChanged={(data: any) => {
             setSearchValue(data?.search);
           }}
-          searchParam={(data: any) => {
-            setSearchValue(data.search);
-          }}
         />
 
         <CustomTable

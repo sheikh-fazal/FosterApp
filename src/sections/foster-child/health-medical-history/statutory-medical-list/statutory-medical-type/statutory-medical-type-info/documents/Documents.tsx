@@ -19,7 +19,7 @@ const Documents = () => {
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data}
+      tableData={data?.data?.statutory_medical_docs}
       isLoading={isLoading}
       column={[
         "documentName",
@@ -37,8 +37,8 @@ const Documents = () => {
       searchParam={(data: any) => {
         setSearchValue(data.search);
       }}
-      currentPage={data?.meta?.page}
-      totalPages={data?.meta?.pages}
+      currentPage={data?.data?.meta?.page}
+      totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
         setPage((pageNo - 1) * STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT);
       }}
