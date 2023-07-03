@@ -1,4 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 const TAG = "CHILD_CHRONOLOGY_OF_EVENTS";
 
@@ -43,6 +44,10 @@ export const dayLogApi: any = baseAPI.injectEndpoints({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/day-log/${queryArg}`,
       }),
+      transformResponse: (response: any) => {
+        parseDatesToTimeStampByKey(response.data);
+        return response;
+      },
       providesTags: [TAG],
     }),
     deleteChildChronologyOfEventsDayLogById: build.mutation<

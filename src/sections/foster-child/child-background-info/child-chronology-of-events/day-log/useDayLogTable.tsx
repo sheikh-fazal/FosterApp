@@ -15,6 +15,7 @@ export const useDayLogTable = () => {
     useGetChildChronologyOfEventsDayLogListQuery({
       search: search,
     });
+  console.log("🚀 ~ file: useDayLogTable.tsx:15 ~ useDayLogTable ~ data:", data);
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
   const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
