@@ -9,7 +9,6 @@ export const enquiryStageAllApi: any = baseAPI.injectEndpoints({
       query: ({ userId, body }: any) => ({
         url: `enquiry-stage/enquiry-stage/${userId}?enquiryStage=${body?.point}&status=${body?.status}`,
         method: "PATCH",
-        // body:{}
       }),
     }),
   }),

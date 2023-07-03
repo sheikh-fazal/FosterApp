@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useExclusionInfoTable } from "./useExclusionInfoTable";
 
-const ExclusionInfoTable = () => {
+const ExclusionInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,

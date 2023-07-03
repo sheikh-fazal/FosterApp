@@ -6,7 +6,9 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useTherapyInfoTable } from "./useTherapyInfoTable";
 
-const TherapyInfoTable = () => {
+const TherapyInfoTable = (props: any) => {
+  const { fosterChildId } = props;
+
   const {
     listDeleteHandler,
     router,
@@ -39,7 +41,7 @@ const TherapyInfoTable = () => {
       header: "Appointment",
       isSortable: true,
     },
-  
+
     {
       accessorFn: (row: any) => row?.id,
       id: "actions",
@@ -50,7 +52,8 @@ const TherapyInfoTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -62,7 +65,8 @@ const TherapyInfoTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -92,7 +96,7 @@ const TherapyInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_therapy_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

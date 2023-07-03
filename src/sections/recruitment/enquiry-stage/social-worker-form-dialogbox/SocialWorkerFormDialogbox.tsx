@@ -4,8 +4,14 @@ import { Button, Dialog, DialogContent, Grid } from "@mui/material";
 import useSocialWorkerFormDialogbox from "./useSocialWorkerFormDialogbox";
 
 const SocialWorkerFormDialogbox = (props: any) => {
-  const { handleCloseForm, openFormDialog, setOpenFormDialog, disabled } =
-    props;
+  const {
+    handleCloseForm,
+    openFormDialog,
+    setOpenFormDialog,
+    component,
+    disabled,
+    setOpenSocialWorkerAssessmentDialogbox
+  } = props;
 
   const { methods, handleSubmit, onSubmit } = useSocialWorkerFormDialogbox();
 
@@ -60,7 +66,7 @@ const SocialWorkerFormDialogbox = (props: any) => {
 
               <Grid item xs={12}>
                 <Button
-                  onClick={() => setOpenFormDialog(false)}
+                  onClick={() => setOpenSocialWorkerAssessmentDialogbox(false)}
                   size="large"
                   type="button"
                   variant="contained"
