@@ -3,10 +3,10 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import useChildExclusionInfoList from "./useChildExclusionInfoList";
 import { DummyChildExclusionData } from ".";
+import useOutSchoolActivityList from "./useOutSchoolActivityList";
 
-export const ChildExclusionInfoList = () => {
+export const OutSchoolActivityList = () => {
   const {
     columnsChildExclusionInfoTableFuntion,
     // trainingPRofileData,
@@ -18,7 +18,7 @@ export const ChildExclusionInfoList = () => {
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
-  } = useChildExclusionInfoList();
+  } = useOutSchoolActivityList();
   return (
     <>
       <DeleteModel
@@ -31,10 +31,12 @@ export const ChildExclusionInfoList = () => {
         <TableHeader
           showAddBtn
           ref={tableHeaderRef}
-          title="Child Exclusion Info"
+          title="Out of School Activity Info"
           searchKey="search"
           onAdd={() => {
-            router.push('/foster-child/education-records/child-exclusion-info/new-child-exclusion-info');
+            router.push(
+              "/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info"
+            );
           }}
           onChanged={headerChangeHandler}
         />
@@ -45,9 +47,8 @@ export const ChildExclusionInfoList = () => {
           onSortByChange={sortChangeHandler}
           isSuccess={true}
           isPagination={false}
-
         />
       </Card>
     </>
   );
-}
+};

@@ -2,15 +2,28 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import { useRef, useState } from "react";
 import { columnsChildExclusionInfoTable } from ".";
 import { useRouter } from "next/router";
+import { useGetChildExclusionInfoListQuery } from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
 
 const useChildExclusionInfoList = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
+  const [page, setPage] = useState(0);
+  const [searchValue, setSearchValue] = useState(undefined);
+
   const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
 
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
+
+  const params = {
+    search: searchValue,
+    offset: page,
+    limit: 10,
+  };
+
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetChildExclusionInfoListQuery(params);
 
   const deleteTrainingProfile = async () => {
     console.log(trainingProfileId);
@@ -37,7 +50,6 @@ const useChildExclusionInfoList = () => {
   return {
     tableHeaderRef,
     trainingProfileId,
-    params,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
@@ -45,6 +57,11 @@ const useChildExclusionInfoList = () => {
     closeDeleteProfile,
     deleteTrainingProfile,
     router,
+    data,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
   };
 };
 
