@@ -28,10 +28,10 @@ export const defaultValues = {
   address: "address initial value",
   telephone: "+440000000",
   email: "test@test.com",
-  ethnicity: "Roma",
+  ethinicity: "Roma",
   languageSpoken: "Japanglish",
   religion: "Islam",
-  practisingStatus: "Practicing",
+  practicingStatus: "Practicing",
   areChecksRequired: false,
   occupation: "Doctor",
   numberOfSeen: "Probably 3",
@@ -45,16 +45,16 @@ export const defaultValues = {
   education: "education",
   contact: "contact",
   valuingDiversity: "valuingDiversity",
-  acceptingtheChild: "acceptingtheChild",
+  acceptingtheChild: "accepting the Child",
   affection: "affection",
-  selfCare: "selfCare",
-  behaviuorManagement: "behaviuorManagement",
-  applicationsupportNetworks: "applicationsupportNetworks",
+  safeCare: "self Care",
+  behaviuorManagement: "behavior Management",
+  applicationsupportNetworks: "application support Networks",
   socialWorkerAssessment: "socialWorkerAssessment",
   conclusion: "conclusion",
   statutoryChecks: "statutoryChecks",
   training: "training",
-  healthAndSafety: "healthAndSafety",
+  healthandSafety: "health and Safety",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -67,10 +67,10 @@ export const FormSchema = Yup.object().shape({
   address: Yup.string().required("Field is required"),
   telephone: Yup.string().required("Field is required"),
   email: Yup.string().required("Field is required"),
-  ethnicity: Yup.string().required("Field is required"),
+  ethinicity: Yup.string().required("Field is required"),
   languageSpoken: Yup.string().required("Field is required"),
   religion: Yup.string().required("Field is required"),
-  practisingStatus: Yup.string().required("Field is required"),
+  practicingStatus: Yup.string().required("Field is required"),
   occupation: Yup.string().required("Field is required"),
   numberOfSeen: Yup.string().required("Field is required"),
   dateOfVisit: Yup.date().required("Field is required"),
@@ -202,8 +202,8 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 11,
     componentProps: {
-      name: "ethnicity",
-      label: "Ethnicity",
+      name: "ethinicity",
+      label: "ethinicity",
       select: true,
       fullWidth: true,
     },
@@ -235,7 +235,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 14,
     componentProps: {
-      name: "practisingStatus",
+      name: "practicingStatus",
       label: "Practising Status",
       select: true,
       fullWidth: true,
@@ -453,7 +453,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 30,
     componentProps: {
-      name: "selfCare",
+      name: "safeCare",
       label: "Self Care",
       multiline: true,
       minRows: 3,
@@ -537,8 +537,8 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 37,
     componentProps: {
-      name: "healthAndSafety",
-      label: "HealthAndSafety",
+      name: "healthandSafety",
+      label: "healthandSafety",
       multiline: true,
       minRows: 3,
       fullWidth: true,

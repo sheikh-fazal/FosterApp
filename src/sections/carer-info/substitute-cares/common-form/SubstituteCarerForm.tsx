@@ -71,7 +71,7 @@ export default function SubstituteCarerForm(props: any) {
             </LoadingButton>
             <Button
               size="large"
-              type="submit"
+              type="button"
               disabled={status?.isLoading}
               variant="contained"
               color="secondary"
@@ -81,7 +81,7 @@ export default function SubstituteCarerForm(props: any) {
             <Button
               size="large"
               disabled={status?.isLoading}
-              type="submit"
+              type="button"
               variant="contained"
               color="warning"
             >
@@ -93,6 +93,6 @@ export default function SubstituteCarerForm(props: any) {
     </FormProvider>
   );
 
-  if (status?.isError) return <Error />;
+  // if (status?.isError) return <Error />;
   return formEl;
 }

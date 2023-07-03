@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -42,14 +43,22 @@ BackupCarerDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function BackupCarerDetails() {
+  const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
+
+  const formSubmitHandler = (formData: any) => {
+    const body = { ...formData, carerType: "BC", status: " " };
+    console.log(body);
+
+    postSwapCarerData(body);
+  };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm
         onSubmit={(data: any) => {
-          console.log(data);
+          formSubmitHandler(data);
         }}
+        status={status}
       />
-
       <UploadDocuments
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
