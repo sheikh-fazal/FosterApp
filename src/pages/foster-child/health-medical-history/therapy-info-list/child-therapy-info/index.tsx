@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import TherapyInfoList from "@root/sections/foster-child/health-medical-history/therapy-info/TherapyInfoList";
+import ChildTherapyInfo from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/ChildTherapyInfo";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -38,5 +38,9 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InitialHomeVisit() {
-  return <Page title={PAGE_TITLE}>Child Therapy info</Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <ChildTherapyInfo />
+    </Page>
+  );
 }
