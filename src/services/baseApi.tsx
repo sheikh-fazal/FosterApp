@@ -52,6 +52,7 @@ export const TAGS = [
   "EDIT_EXPARTNER",
   "behaviorInfoList",
   "STATUTORY_MEDICAL_LIST",
+  "CHILD_CHRONOLOGY_OF_EVENTS",
   "STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS",
   "hospital-info-list",
   "hospital-info-list-document",
