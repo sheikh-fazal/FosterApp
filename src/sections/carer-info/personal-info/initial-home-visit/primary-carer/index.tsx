@@ -1,4 +1,5 @@
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
+import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
 import { MARITALSTATUSDROPDOWN } from "@root/dropdown-data/maritalStatus";
@@ -79,19 +80,23 @@ export const primaryCarerFormSchema = Yup.object().shape({
     .typeError("Date of visit is required")
     .required("Date of visit is required"),
   nameOfAgencyWorkingVisiting: Yup.string()
+    .trim()
     .required("Agency is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   title: Yup.string().required("title is required"),
   firstName: Yup.string()
+    .trim()
     .required("First name is required")
     .min(2, "Mininum 2 characters")
     .max(50, "Maximum 50 characters"),
   middleName: Yup.string()
+    .trim()
     .required("Middle name is required")
     .min(2, "Mininum 2 characters")
     .max(50, "Maximum 50 characters"),
   lastName: Yup.string()
+    .trim()
     .required("Last name is required")
     .min(2, "Mininum 2 characters")
     .max(50, "Maximum 50 characters"),
@@ -100,25 +105,30 @@ export const primaryCarerFormSchema = Yup.object().shape({
     .required("Date of birth is required"),
   gender: Yup.string().required("Gender is required"),
   address: Yup.string()
+    .trim()
     .required("Address line 1 is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   addressLine2: Yup.string()
+    .trim()
     .required("Address line 2 is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   city: Yup.string()
+    .trim()
     .required("town is required")
-    // .min(1, "Mininum 1 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   mobilePhone: Yup.string()
+    .trim()
     .required("mobile is required")
-    // .min(1, "Mininum 1 characters")
+    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   county: Yup.string().required("County is required"),
   country: Yup.string().required("Country is required"),
   postalCode: Yup.string()
+    .trim()
     .required("Postal code is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
@@ -126,18 +136,19 @@ export const primaryCarerFormSchema = Yup.object().shape({
   ethnicity: Yup.string().required("Ethnicity is required"),
   offSetEthnicity: Yup.string().required("Offset ethnicity is required"),
   religion: Yup.string().required("Religion is required"),
-  nationalInsuranceNo: Yup.string().required(
-    "National insurance no is required"
-  ),
+  nationalInsuranceNo: Yup.string()
+    .trim()
+    .required("National insurance no is required"),
   // practising: Yup.string().required("Practising is required"),
   // convictedOfAnyCriminal: Yup.string().required(
   //   "Conviction knowledge is required"
   // ),
   countryWhereBorn: Yup.string().required("Country where born is required"),
-  howLongLiveInLocalArea: Yup.string().required(
-    "Local area life span is required"
-  ),
+  howLongLiveInLocalArea: Yup.string()
+    .trim()
+    .required("Local area life span is required"),
   detailsOfPreviousMarriages: Yup.string()
+    .trim()
     .required("Previous marriages knowledge is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
@@ -252,12 +263,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
     label: "County",
     disabled: isFieldDisable,
     select: true,
-    options: [
-      {
-        value: "pakistan",
-        label: "Pakistan",
-      },
-    ],
+    options: COUNTYDROPDOWN,
   },
   {
     type: "select",

@@ -2,13 +2,13 @@ import { baseAPI } from "@root/services/baseApi";
 
 export const gpDetailsInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getAllGpDetailsInfoData: builder.query({
+    getAllGpDetailsListData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: "foster-child/gp-info",
+        url: "foster-child/gp-info/all",
         method: "GET",
         params: apiDataParameter.params,
       }),
-      //   providesTags: ["INITIAL_HOME_VISIT"],
+      providesTags: ["GP_DETAILS_INFO"],
     }),
     getSingleGpDetailsInfoData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -16,7 +16,6 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
         method: "GET",
         params: apiDataParameter?.params,
       }),
-      //   providesTags: ["INITIAL_HOME_VISIT"],
     }),
     postGpDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
@@ -36,13 +35,23 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["GP_DETAILS_INFO"],
     }),
+    deleteGpDetailsInfoData: builder.mutation({
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
+        method: "DELETE",
+        params: apiDataParameter?.params,
+      }),
+      invalidatesTags: ["GP_DETAILS_INFO"],
+    }),
   }),
 });
 
 export const {
-  useGetAllGpDetailsInfoDataQuery,
+  useGetAllGpDetailsListDataQuery,
+  useLazyGetAllGpDetailsListDataQuery,
   useLazyGetSingleGpDetailsInfoDataQuery,
   useGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
   usePostGpDetailsInfoDataMutation,
+  useDeleteGpDetailsInfoDataMutation,
 } = gpDetailsInfoApi;

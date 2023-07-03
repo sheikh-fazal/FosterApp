@@ -41,7 +41,7 @@ export const FamilyPersonDocument = () => {
         }}
         currentPage={data?.data?.meta?.page}
         totalPages={data?.data?.meta?.pages}
-        // onDelete={() => listDeleteHandler(info?.row?.original?.id)}
+        onDelete={(data: any) => console.log("Deleting", data)}
       />
     </>
   );

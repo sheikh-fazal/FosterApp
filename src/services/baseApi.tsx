@@ -23,6 +23,7 @@ export const TAGS = [
   "INITIAL_CONTACT",
   "INITIAL_HOME_VISIT",
   "Experience",
+  "SingleExperience",
   "CAR_INSURANCE",
   "DBS_CHECK",
   "EMPLOYMENT_REFERENCE1",
@@ -52,8 +53,9 @@ export const TAGS = [
   "EDIT_EXPARTNER",
   "behaviorInfoList",
   "STATUTORY_MEDICAL_LIST",
+  "STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS",
   "hospital-info-list",
-  "hospital-info-list-document"
+  "hospital-info-list-document",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
