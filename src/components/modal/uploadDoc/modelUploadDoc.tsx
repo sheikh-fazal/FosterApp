@@ -66,7 +66,6 @@ function ModelUploadDoc(props: model) {
 const Form = (props: any) => {
   const [isloading, setIsloading] = React.useState(false);
   const { open, action, setOpen, isfatching, onSubmit, defaultValues } = props;
-  const [defvalue, setdefvalue] = React.useState(defaultValues);
   const theme: any = useTheme();
   const defevalue = async () => {
     setIsloading(true);
@@ -180,7 +179,7 @@ const Form = (props: any) => {
                   }}
                 >
                   <Typography variant="subtitle1">
-                    Person Uploaded: Name Xname
+                    Person Uploaded: {defaultValues?.personUploaded ?? "--"}
                   </Typography>
                   <CloseIcon
                     onClick={() => setOpen(false)}
