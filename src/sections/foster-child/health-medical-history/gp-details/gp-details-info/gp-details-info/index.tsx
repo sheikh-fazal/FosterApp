@@ -1,4 +1,8 @@
+import { Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
+import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
+import { PHYSICIANTYPEDROPDOWN } from "@root/dropdown-data/physicianType";
 import * as Yup from "yup";
 
 export const gpDetailsInfoFormValues = {
@@ -7,64 +11,65 @@ export const gpDetailsInfoFormValues = {
   address: "",
   town: "",
   telephone: "",
-  phoneNo:"",
-  email:"",
-  county:"",
-  country:"",
-  postalCode:""
+  phoneNo: "",
+  email: "",
+  county: "",
+  country: "",
+  postalCode: "",
 };
 
-
-export const defaultValueGpDetailsInfoForm = (data: any = gpDetailsInfoFormValues) => {
+export const defaultValueGpDetailsInfoForm = (
+  data: any = gpDetailsInfoFormValues
+) => {
   return {
     physicianName: data?.physicianName,
     physicianType: data?.physicianType,
     address: data?.address,
     town: data?.town,
     telephone: data?.telephone,
-    phoneNo:data?.phoneNo,
-    email:data?.email,
-    county:data?.county,
-    country:data?.country,
-    postalCode:data?.postalCode
+    phoneNo: data?.phoneNo,
+    email: data?.email,
+    county: data?.county,
+    country: data?.country,
+    postalCode: data?.postalCode,
   };
 };
 
-export const gpDetailsInfoFormSchema = Yup.object().shape({
+export const gpDetailsInfoFormSchema: any = Yup.object().shape({
   physicianName: Yup.string()
+    .trim()
     .required("Physician name is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    physicianType: Yup.string()
-    .required("Physician type is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    address: Yup.string()
+    .min(2, "Mininum 1 characters")
+    .max(30, "Maximum 50 characters"),
+  physicianType: Yup.string().required("Physician type is required"),
+  address: Yup.string()
+    .trim()
     .required("Address is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    town: Yup.string()
+    .max(200, "Maximum 50 characters"),
+  town: Yup.string()
+    .trim()
     .required("Town is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    telephone: Yup.string()
+    .max(70, "Maximum 50 characters"),
+  telephone: Yup.string()
+    .trim()
     .required("Telephone is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    phoneNo: Yup.string()
+  phoneNo: Yup.string()
+    .trim()
     .required("Mobile phone is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-    email: Yup.string().required("Email is required").email("Invalid Email"),
-    county: Yup.string()
-    .required("County is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    country: Yup.string()
-    .required("Country is required")
-    .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-    postalCode: Yup.string()
+  email: Yup.string()
+    .trim()
+    .required("Email is required")
+    .email("Invalid Email"),
+  county: Yup.string().required("County is required"),
+  country: Yup.string().required("Country is required"),
+  postalCode: Yup.string()
+    .trim()
     .required("Postal code is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
@@ -82,8 +87,9 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     gridLength: 6,
     component: RHFTextField,
   },
+
   {
-    id: 4,
+    id: 2,
     component: RHFSelect,
     gridLength: 6,
     componentProps: {
@@ -91,17 +97,18 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       name: "physicianType",
       label: "Physician Type",
       select: true,
-      options: [{
-        id:1,
-        label:'Eye',
-        text:'Eye'
-      },
-      {
-        id:2,
-        label:'Physician',
-        text:'Physician'
-      }],
+      options: PHYSICIANTYPEDROPDOWN,
     },
+  },
+  {
+    id: 1.5,
+    componentProps: {
+      color: (theme: any) => theme.palette.primary.main,
+      variant: "h6",
+    },
+    heading: "Contact Details",
+    gridLength: 12,
+    component: Typography,
   },
   {
     id: 3,
@@ -115,7 +122,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     },
     gridLength: 6,
     component: RHFTextField,
-  },  
+  },
 
   {
     id: 4,
@@ -167,10 +174,13 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       fullWidth: true,
       name: "county",
       label: "County",
+      select: true,
+      options: COUNTRIESDROPDOWN,
       disabled: isFieldDisable,
     },
     gridLength: 6,
-    component: RHFTextField,
+    // component: RHFTextField,
+    component: RHFSelect,
   },
   {
     id: 9,
@@ -178,13 +188,13 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       fullWidth: true,
       name: "country",
       label: "Country",
-      // select: true,
-      // options: COUNTRIESDROPDOWN,
+      select: true,
+      options: COUNTYDROPDOWN,
       disabled: isFieldDisable,
     },
     gridLength: 6,
-    // component: RHFSelect,
-    component: RHFTextField,
+    component: RHFSelect,
+    // component: RHFTextField,
   },
   {
     id: 10,

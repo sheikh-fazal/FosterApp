@@ -1,11 +1,6 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
-import Hidden from "@mui/material/Hidden";
-
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   actualAuthorityLiveIn: "",
@@ -44,15 +39,15 @@ export const FormSchema = Yup.object().shape({
     .max(25, "Maximum 25 characters"),
   relyOnSupport: Yup.string()
     .required("Field is Required")
-    .min(4, "Mininum 6 characters")
+    .min(2, "Mininum 2 characters")
     .max(100, "Maximum 100 characters"),
   involvedInFostering: Yup.string()
     .required("Required")
-    .min(4, "Mininum 6 characters")
+    .min(2, "Mininum 2 characters")
     .max(100, "Maximum 100 characters"),
   commentsAndSuggestion: Yup.string()
     .required("Suggestions is Required")
-    .min(4, "Mininum 6 characters")
+    .min(2, "Mininum 2 characters")
     .max(100, "Maximum 100 characters"),
 });
 

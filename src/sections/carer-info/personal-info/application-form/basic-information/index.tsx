@@ -5,9 +5,6 @@ import {
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
-import { FormHelperText, Hidden } from "@mui/material";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
-import { useFormContext, Controller } from "react-hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
@@ -53,19 +50,8 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 export const FormSchema = Yup.object().shape({
   areaOffice: Yup.string().required("Area Office name is required"),
   title: Yup.string().required("Title is required"),
-  firstName: Yup.string()
-    .required("First Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
-  lastName: Yup.string()
-
-    .required("Last Name is required")
-
-    .min(3, "Mininum 6 characters")
-
-    .max(10, "Maximum 15 characters"),
+  firstName: Yup.string().required("First Name is required"),
+  lastName: Yup.string().required("Last Name is required"),
 
   dateOfBirth: Yup.date().required("Date of Birth is required"),
 
@@ -79,7 +65,7 @@ export const FormSchema = Yup.object().shape({
   mobileNo: Yup.string()
     .required("Mobile  is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   languageSpoken: Yup.string().trim().required("Languages Spoken is required"),
   relationShipType: Yup.string()
@@ -93,6 +79,13 @@ export const FormSchema = Yup.object().shape({
   applicationFilledDate: Yup.date().required(
     "Applicant Filled Date is required"
   ),
+  age: Yup.number()
+    .typeError("Age is required")
+    .required("Age is required")
+    .positive("Age must be a positive number")
+    .integer()
+    .moreThan(18, "Age must be greater than or equal to 18")
+    .lessThan(120, "Age must be less than or equal to 120"),
   image: Yup.lazy((value) => {
     switch (typeof value) {
       case "string":
@@ -199,7 +192,7 @@ export const formDataAreaPersonalInfo = [
   },
   {
     gridLength: 6,
-    componentProps: { value: 19, name: "age", label: "Age", fullWidth: true },
+    componentProps: { name: "age", label: "Age", fullWidth: true },
     component: RHFTextField,
   },
   {

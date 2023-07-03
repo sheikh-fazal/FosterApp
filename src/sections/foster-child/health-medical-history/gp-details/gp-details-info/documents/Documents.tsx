@@ -1,5 +1,3 @@
-
-
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useDocuments } from "./useDocuments";
 
@@ -12,14 +10,17 @@ const Documents = () => {
     isError,
     isSuccess,
     isFetching,
-    submitInitialHomeVisitDocument,
-    query
+    submitGpDetailsInfoDocumentData,
+    postGpDetailsInfoDocumentDataStatus,
+    query,
+    onDeleteConfirm,
+    GPDETAILSDOCUMENTPAGELIMIT,
   } = useDocuments();
 
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data}
+      tableData={data?.data?.gp_info_docs}
       isLoading={isLoading}
       column={[
         "documentName",
@@ -32,18 +33,17 @@ const Documents = () => {
       isError={isError}
       isSuccess={isSuccess}
       modalData={(data: any) => {
-        console.log("data all the way here", data);
-        submitInitialHomeVisitDocument(data);
+        submitGpDetailsInfoDocumentData(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
-        console.log("Updated params: ", data);
       }}
-      currentPage={data?.meta?.page}
-      totalPages={data?.meta?.pages}
-      onPageChange={(data: any) => {
-        setPage((page) => data - 1);
+      currentPage={data?.data?.meta?.page}
+      totalPages={data?.data?.meta?.pages}
+      onPageChange={(pageNo: any) => {
+        setPage((pageNo - 1) * GPDETAILSDOCUMENTPAGELIMIT);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

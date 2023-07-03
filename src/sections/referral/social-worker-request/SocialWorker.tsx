@@ -1,8 +1,9 @@
 import React from "react";
 import TableHeader from "@root/components/TableHeader";
-import CustomTable from "@root/components/Table/CustomTable"; 
+import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useSocialWorker } from "./useSocialWorker";
+import { STATUS_SELECT_FILTERS } from ".";
 
 const SocialWorker = () => {
   const {
@@ -14,18 +15,18 @@ const SocialWorker = () => {
     openDelete,
     setOpenDelete,
   } = useSocialWorker();
- 
+
   return (
-    <div>
+    <>
       <TableHeader
         ref={tableHeaderRefTwo}
         title="Referrals"
         searchKey="search"
         showAddBtn
+        showSelectFilters={true}
+        selectFilters={STATUS_SELECT_FILTERS}
         onAdd={() => {
-          navigate.push(
-            "/referral/social-worker-request/add-social-worker"
-          );
+          navigate.push("/referral/social-worker-request/add-social-worker");
         }}
       />
       <CustomTable
@@ -35,7 +36,7 @@ const SocialWorker = () => {
         isFetching={false}
         isError={false}
         isPagination={false}
-        isSuccess={true} 
+        isSuccess={true}
         currentPage={1}
         onPageChange={(data: any) => {
           console.log("Current page data: ", data);
@@ -50,7 +51,7 @@ const SocialWorker = () => {
         handleClose={() => setOpenDelete(false)}
         onDeleteClick={() => setOpenDelete(false)}
       />
-    </div>
+    </>
   );
 };
 

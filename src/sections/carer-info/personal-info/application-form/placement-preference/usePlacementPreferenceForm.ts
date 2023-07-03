@@ -7,7 +7,7 @@ import { useUpdatePlacementPreferenceMutation } from "@root/services/carer-info/
 
 export const usePlacementPreferenceForm = (
   data: any,
-  apllicationFormid: any
+  applicationFormid: any
 ) => {
   const theme: any = useTheme();
 
@@ -32,7 +32,7 @@ export const usePlacementPreferenceForm = (
     try {
       const res: any = await updatePlacementPreference({
         formData: data,
-        id: apllicationFormid,
+        id: applicationFormid,
       }).unwrap();
       if (res.data) {
         enqueueSnackbar("Record Updated Successfully", { variant: "success" });

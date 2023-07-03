@@ -13,7 +13,7 @@ const Document = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
-    onDeleteConfirm
+    onDeleteConfirm,
   } = useDocument();
 
   return (
@@ -39,10 +39,10 @@ const Document = () => {
       }}
       currentPage={data?.meta?.page}
       totalPages={data?.meta?.pages}
-      onPageChange={(data: any) => {
-        setPage((page) => data - 1);
+      onPageChange={(pageNo: any) => {
+        setPage((pageNo - 1) * 10);
       }}
-      onDelete={(data:any) => onDeleteConfirm(data)}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

@@ -1,47 +1,22 @@
-import { useState, useRef } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // @mui
-import {
-  Stack,
-  Grid,
-  Button,
-  Typography,
-  IconButton,
-  InputAdornment,
-  FormHelperText,
-} from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // utils
-import { fData } from "../../../utils/formatNumber";
-import { fTimestamp } from "../../../utils/formatTime";
 // components
 import {
   FormProvider,
   RHFTextField,
   RHFCheckbox,
-  RHFEditor,
   RHFSelect,
-  RHFSwitch,
   RHFRadioGroup,
 } from "../../../components/hook-form";
 //
 import { FormSchema, defaultValues } from ".";
-import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-
-//mui icons
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-
-// ----------------------------------------------------------------------
 
 export default function AboutCandidate() {
-  const fileInputRef: any = useRef(null);
-
-  const [showPassword, setShowPassword] = useState(false);
-
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -49,36 +24,12 @@ export default function AboutCandidate() {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting, isDirty },
   } = methods;
-
-  const photo = useWatch({ control, name: "photo" });
-
-  const handleShowPassword = () => {
-    setShowPassword((show) => !show);
-  };
-
-  const handleClickAttachPhoto = () => {
-    fileInputRef.current?.click();
-  };
 
   const onSubmit = async (data: any) => {
     console.log({ data });
-  };
-
-  const passwordEndAdornment = {
-    endAdornment: (
-      <InputAdornment position="end">
-        <IconButton onClick={handleShowPassword} edge="end">
-          {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-        </IconButton>
-      </InputAdornment>
-    ),
   };
 
   return (

@@ -5,16 +5,11 @@ import edit from "@root/assets/img/edit.png";
 import SocialMediaModal from "./SocialMediaModal";
 import Link from "next/link";
 import Error from "@root/components/Error";
-
-// icons
-import { RiEditCircleFill } from "react-icons/ri";
 import facebook from "@root/assets/img/facebook.png";
 import instagram from "@root/assets/img/instagram.png";
 import twitter from "@root/assets/img/twitter.png";
 import { useGetSocialMediaAccountsQuery } from "@root/services/carer-info/personal-info/social-media-links/socialMedia";
 import { SkeltonSocialLinks } from "@root/components/skeleton";
-
-// -----------------------
 
 export default function SocialMediaLinksSection() {
   const {

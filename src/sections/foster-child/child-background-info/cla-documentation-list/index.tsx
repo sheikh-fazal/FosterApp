@@ -1,13 +1,8 @@
 import * as Yup from "yup";
-import router from "next/router";
-import { Box, Typography } from "@mui/material";
-import TableAction from "@root/components/TableAction";
+import { Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { TargetsAndObjectives } from "./cla-documentation-form/PEPForm";
-import dayjs from "dayjs";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-
 
 export const EHCPFormData = [
   {
@@ -23,7 +18,7 @@ export const EHCPFormData = [
   {
     id: 2,
     componentProps: {
-      name: "date",
+      name: "fosterPlacement.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -34,7 +29,7 @@ export const EHCPFormData = [
   {
     id: 3,
     componentProps: {
-      name: "OnFile",
+      name: "fosterPlacement.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -49,7 +44,7 @@ export const EHCPFormData = [
   {
     id: 4,
     componentProps: {
-      name: "comments",
+      name: "fosterPlacement.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -71,7 +66,7 @@ export const EHCPFormData = [
   {
     id: 6,
     componentProps: {
-      name: "date",
+      name: "placementInfoRecord.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -82,7 +77,7 @@ export const EHCPFormData = [
   {
     id: 7,
     componentProps: {
-      name: "OnFile",
+      name: "placementInfoRecord.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -97,7 +92,7 @@ export const EHCPFormData = [
   {
     id: 8,
     componentProps: {
-      name: "comments",
+      name: "placementInfoRecord.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -119,7 +114,7 @@ export const EHCPFormData = [
   {
     id: 10,
     componentProps: {
-      name: "date",
+      name: "localAuthorityPlacementPlan.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -130,7 +125,7 @@ export const EHCPFormData = [
   {
     id: 11,
     componentProps: {
-      name: "OnFile",
+      name: "localAuthorityPlacementPlan.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -145,7 +140,7 @@ export const EHCPFormData = [
   {
     id: 12,
     componentProps: {
-      name: "comments",
+      name: "localAuthorityPlacementPlan.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -167,7 +162,7 @@ export const EHCPFormData = [
   {
     id: 14,
     componentProps: {
-      name: "date",
+      name: "localAuthorityRiskAssesssment.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -178,7 +173,7 @@ export const EHCPFormData = [
   {
     id: 15,
     componentProps: {
-      name: "OnFile",
+      name: "localAuthorityRiskAssesssment.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -193,7 +188,7 @@ export const EHCPFormData = [
   {
     id: 16,
     componentProps: {
-      name: "comments",
+      name: "localAuthorityRiskAssesssment.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -215,7 +210,7 @@ export const EHCPFormData = [
   {
     id: 18,
     componentProps: {
-      name: "date",
+      name: "delegatedAuthority.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -226,7 +221,7 @@ export const EHCPFormData = [
   {
     id: 19,
     componentProps: {
-      name: "OnFile",
+      name: "delegatedAuthority.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -241,7 +236,7 @@ export const EHCPFormData = [
   {
     id: 20,
     componentProps: {
-      name: "comments",
+      name: "delegatedAuthority.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -263,7 +258,7 @@ export const EHCPFormData = [
   {
     id: 22,
     componentProps: {
-      name: "date",
+      name: "claMedicalDate.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -274,7 +269,7 @@ export const EHCPFormData = [
   {
     id: 23,
     componentProps: {
-      name: "OnFile",
+      name: "claMedicalDate.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -289,7 +284,7 @@ export const EHCPFormData = [
   {
     id: 24,
     componentProps: {
-      name: "comments",
+      name: "claMedicalDate.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -311,7 +306,7 @@ export const EHCPFormData = [
   {
     id: 26,
     componentProps: {
-      name: "date",
+      name: "claReviewDate.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -322,7 +317,7 @@ export const EHCPFormData = [
   {
     id: 27,
     componentProps: {
-      name: "OnFile",
+      name: "claReviewDate.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -337,7 +332,7 @@ export const EHCPFormData = [
   {
     id: 28,
     componentProps: {
-      name: "comments",
+      name: "claReviewDate.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -359,7 +354,7 @@ export const EHCPFormData = [
   {
     id: 30,
     componentProps: {
-      name: "date",
+      name: "carePlanPt1.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -370,7 +365,7 @@ export const EHCPFormData = [
   {
     id: 31,
     componentProps: {
-      name: "OnFile",
+      name: "carePlanPt1.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -385,7 +380,7 @@ export const EHCPFormData = [
   {
     id: 32,
     componentProps: {
-      name: "comments",
+      name: "carePlanPt1.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -407,7 +402,7 @@ export const EHCPFormData = [
   {
     id: 34,
     componentProps: {
-      name: "date",
+      name: "carePlanPt2.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -418,7 +413,7 @@ export const EHCPFormData = [
   {
     id: 35,
     componentProps: {
-      name: "OnFile",
+      name: "carePlanPt2.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -433,7 +428,7 @@ export const EHCPFormData = [
   {
     id: 36,
     componentProps: {
-      name: "comments",
+      name: "carePlanPt2.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -455,7 +450,7 @@ export const EHCPFormData = [
   {
     id: 38,
     componentProps: {
-      name: "date",
+      name: "perDate.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -466,7 +461,7 @@ export const EHCPFormData = [
   {
     id: 39,
     componentProps: {
-      name: "OnFile",
+      name: "perDate.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -481,7 +476,7 @@ export const EHCPFormData = [
   {
     id: 40,
     componentProps: {
-      name: "comments",
+      name: "perDate.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -503,7 +498,7 @@ export const EHCPFormData = [
   {
     id: 42,
     componentProps: {
-      name: "date",
+      name: "ehcpDate.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -514,7 +509,7 @@ export const EHCPFormData = [
   {
     id: 43,
     componentProps: {
-      name: "OnFile",
+      name: "ehcpDate.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -529,7 +524,7 @@ export const EHCPFormData = [
   {
     id: 44,
     componentProps: {
-      name: "comments",
+      name: "ehcpDate.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -551,7 +546,7 @@ export const EHCPFormData = [
   {
     id: 46,
     componentProps: {
-      name: "date",
+      name: "pathwayPlan.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -562,7 +557,7 @@ export const EHCPFormData = [
   {
     id: 47,
     componentProps: {
-      name: "OnFile",
+      name: "pathwayPlan.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
@@ -577,7 +572,7 @@ export const EHCPFormData = [
   {
     id: 48,
     componentProps: {
-      name: "comments",
+      name: "pathwayPlan.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -599,7 +594,7 @@ export const EHCPFormData = [
   {
     id: 50,
     componentProps: {
-      name: "date",
+      name: "garbPack.date",
       label: "Date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -610,12 +605,12 @@ export const EHCPFormData = [
   {
     id: 51,
     componentProps: {
-      name: "OnFile",
+      name: "garbPack.onfile",
       label: "On File",
       sx: { mb: 4 },
       select: true,
     },
-    options: [
+    options: [ 
       { value: "Yes", label: "Yes" },
       { value: "No", label: "No" },
     ],
@@ -625,7 +620,7 @@ export const EHCPFormData = [
   {
     id: 52,
     componentProps: {
-      name: "comments",
+      name: "garbPack.comments",
       label: "Comments",
       sx: { mb: 4 },
       multiline: true,
@@ -680,7 +675,7 @@ export const PEPFormData = [
   {
     id: 5,
     componentProps: {
-      name: "from",
+      name: "pepDuration.from",
       label: "Pep Duration From",
       sx: { mb: 4 },
       fullWidth: true,
@@ -691,7 +686,7 @@ export const PEPFormData = [
   {
     id: 6,
     componentProps: {
-      name: "to",
+      name: "pepDuration.to",
       label: "Pep Duration to",
       sx: { mb: 4 },
       fullWidth: true,
@@ -868,35 +863,130 @@ export const StrategiesAndEvidence = [
   },
 ];
 
+// Default Values
+
+// PEP Form Default Values
 export const defaultValuesForPep = {
-  // PEP Form Default Values
   name: "",
   class: "",
   planDoneBy: "",
   assessmentDate: null,
-  from: null,
-  to: null,
+  pepDuration: {
+    from: null,
+    to: null,
+  },
   overAllOutcome: "",
-  document: "PEP personal Educational Plan",
+};
+// EHCP Form Default Values
+export const defaultValuesForEhcp = {
+  fosterPlacement: { date: null, onfile: "", comments: "" },
+
+  placementInfoRecord: { date: null, onfile: "", comments: "" },
+
+  localAuthorityPlacementPlan: { date: null, onfile: "", comments: "" },
+
+  localAuthorityRiskAssesssment: { date: null, onfile: "", comments: "" },
+
+  delegatedAuthority: { date: null, onfile: "", comments: "" },
+
+  claMedicalDate: { date: null, onfile: "", comments: "" },
+
+  claReviewDate: { date: null, onfile: "", comments: "" },
+
+  carePlanPt1: { date: null, onfile: "", comments: "" },
+
+  carePlanPt2: { date: null, onfile: "", comments: "" },
+
+  perDate: { date: null, onfile: "", comments: "" },
+
+  ehcpDate: { date: null, onfile: "", comments: "" },
+
+  pathwayPlan: { date: null, onfile: "", comments: "" },
+
+  garbPack: { date: null, onfile: "", comments: "" },
+
 };
 
+// EHCP Validations
 export const EHCPFormValidation = Yup.object().shape({
-  date: Yup.string().trim().required("Date is Required"),
-  OnFile: Yup.string().trim().required("Selection is Required"),
-  comments: Yup.string().trim().required("Comments is Required"),
+  fosterPlacement: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  placementInfoRecord: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  localAuthorityPlacementPlan: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  localAuthorityRiskAssesssment: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  delegatedAuthority: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  claMedicalDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  claReviewDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  carePlanPt1: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  carePlanPt2: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  perDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  ehcpDate: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  pathwayPlan: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
+  garbPack: Yup.object().shape({
+    date: Yup.date().required("Required"),
+    onfile: Yup.string().trim().required("Required"),
+    comments: Yup.string().trim().required("Required"),
+  }),
 });
 
+// PEP Validations
 export const PEPFormValidation = Yup.object().shape({
   name: Yup.string().trim().required("Required"),
   class: Yup.string().trim().required("Required"),
   planDoneBy: Yup.string().trim().required("Required"),
   assessmentDate: Yup.date(),
-  from: Yup.date(),
-  to: Yup.date(),
+  pepDuration: Yup.object().shape({
+    from: Yup.date().required("Required"),
+    to: Yup.date().required("Required"),
+  }),
   overAllOutcome: Yup.string().trim().required("Required"),
 });
 
 export { default as ClaDocumentationList } from "./ClaDocumentationTable";
-function listDeleteHandler(id: any) {
-  throw new Error("Function not implemented.");
-}

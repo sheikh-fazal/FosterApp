@@ -100,18 +100,21 @@ export const columns = (
       id: "relation",
       cell: (info: any) => info.getValue(),
       header: () => <span>Relation</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.subject,
       id: "subject",
       cell: (info: any) => info.getValue(),
       header: () => <span>Subject</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.isLivingAtHome,
       id: "isLivingAtHome",
       cell: (info: any) => (info.getValue() ? "Yes" : "No"),
       header: () => <span>Is Living at home</span>,
+      isSortable: true,
     },
     {
       id: "actions",

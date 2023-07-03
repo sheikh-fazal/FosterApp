@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
-import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 import { useUpdateBasicInformationMutation } from "@root/services/carer-info/personal-info/application-form/BasicInformationApi";
@@ -25,10 +24,22 @@ export const useBasicInformationForm = (data: any, id: any) => {
     watch,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
+
+  useEffect(() => {
+    const subscription = watch((values: any) => {
+      const dateOfBirth = values["dateOfBirth"];
+      if (dateOfBirth && dayjs(dateOfBirth).isValid()) {
+        const newAge = dayjs().diff(dayjs(dateOfBirth), "y");
+        values.age !== newAge &&
+          setValue("age", dayjs().diff(dayjs(dateOfBirth), "y"));
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setValue]);
+
   const [updateBasicInformation, { isLoading }] =
     useUpdateBasicInformationMutation();
   const onSubmit = async (data: any) => {
-    console.log(data);
     var form_data = new FormData();
     for (var key in data) {
       form_data.append(key, data[key]);

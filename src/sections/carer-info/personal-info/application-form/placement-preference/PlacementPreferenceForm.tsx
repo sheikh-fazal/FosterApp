@@ -1,7 +1,4 @@
-// form
-// @mui
 import { Grid } from "@mui/material";
-
 import { FormProvider } from "@root/components/hook-form";
 import { formData } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
@@ -9,7 +6,7 @@ import { usePlacementPreferenceForm } from "./usePlacementPreferenceForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 export default function PlacementPreferenceForm(props: any) {
-  const { disabled, data, apllicationFormid } = props;
+  const { disabled, data, applicationFormid } = props;
   const {
     methods,
     handleSubmit,
@@ -18,7 +15,7 @@ export default function PlacementPreferenceForm(props: any) {
     isDirty,
     theme,
     isLoading,
-  } = usePlacementPreferenceForm(data, apllicationFormid);
+  } = usePlacementPreferenceForm(data, applicationFormid);
 
   if (isLoading) {
     return <SkeletonFormdata />;

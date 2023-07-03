@@ -44,7 +44,7 @@ export default function ApprovedDetails() {
       labels: {
         show: true,
         style: {
-          colors: theme.palette.primary.contrastText,
+          colors: theme.palette.contrastText,
         },
       },
     },
@@ -53,7 +53,7 @@ export default function ApprovedDetails() {
       labels: {
         show: true,
         style: {
-          colors: theme.palette.primary.contrastText,
+          colors: theme.palette.contrastText,
         },
       },
     },

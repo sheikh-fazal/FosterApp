@@ -8,16 +8,16 @@ import StatutoryMedicalList from "@root/sections/foster-child/health-medical-his
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
+    name: "Child Info",
+    href: "/foster-child",
   },
   {
-    name: "Statutory Checks List",
+    name: "Statutory Medical List",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Statutory Checks List";
+const PAGE_TITLE = "Statutory Medical List";
 StatutoryCheckList.getLayout = function getLayout(page: any) {
   return (
     <Layout

@@ -1,82 +1,69 @@
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const gpDetailsInfoTableColumnsFunction = (router?: any) => [
-  //   {
-  //     id: "select",
-  //     header: ({ table, row }: any) => {
-  //       console.log(table.getSelectedRowModel().flatRows);
-  //       return (
-  //         <Box>
-  //           <Checkbox
-  //             checked={table.getIsAllRowsSelected()}
-  //             onChange={table.getToggleAllRowsSelectedHandler()}
-  //           />
-  //         </Box>
-  //       );
-  //     },
-  //     cell: ({ row, table }: any) => (
-  //       <Box>
-  //         <Checkbox
-  //           disabled={row?.original?.Assigned}
-  //           checked={row?.original?.Assigned ? false : row.getIsSelected()}
-  //           onChange={row.getToggleSelectedHandler()}
-  //         />
-  //       </Box>
-  //     ),
-  //   },
+export const gpDetailsInfoTableColumnsFunction = (
+  router?: any,
+  prepareRecordForDelete?: any
+) => [
   {
-    accessorFn: (row: any) => row.physicianName,
+    accessorFn: (row: any) => row?.physicianName,
     id: "physicianName",
     cell: (info: any) => info.getValue(),
     header: () => <span>Physician Name</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row.physicianType,
     id: "physicianType",
     cell: (info: any) => info.getValue(),
     header: () => <span>Physician Type</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row.telephone,
     id: "telephone",
     cell: (info: any) => info.getValue(),
     header: () => <span>Telephone</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.id,
     id: "actions",
     cell: (info: any) => {
-      console.log(info);
       return (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {/* <TableAction
-            type="delete"
-            // onClicked={() => SetIsSingleDocumentDetailViewed?.(true)}
-          /> */}
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info/${info.getValue()}?action=edit`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query: {
+                  gpInfoId: info?.getValue(),
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/gp-details/gp-details-info/${info.getValue()}?action=view`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query: {
+                  gpInfoId: info.getValue(),
+                  action: "view",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
         </Box>
       );
     },
     header: () => <span>Action</span>,
-    isSortable: false,
   },
 ];
+
+export const GPDETAILSLISTPAGELIMIT = 10;

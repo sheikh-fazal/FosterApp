@@ -1,11 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import dayjs from "dayjs";
-import { fTimestamp } from "@root/utils/formatTime";
-import { useTheme } from "@mui/material";
 import { FormSchema, defaultValues, formData } from ".";
-
 import { enqueueSnackbar } from "notistack";
 import {
   usePostExPartnerDetailMutation,
@@ -13,15 +9,17 @@ import {
 } from "@root/services/carer-info/personal-info/application-form/ExPartnersApi";
 
 export const useExPartnersViewForm = (props: any) => {
-  const { exPartnerData, viewData, apllicationFormid, changeView } = props;
+  const { exPartnerData, viewData, applicationFormid, changeView } = props;
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: viewData == "add" ? defaultValues : exPartnerData,
   });
-  let [postExPartnerDetail, { isLoading }] = usePostExPartnerDetailMutation();
-  let [updateExPartnerDetail] = useUpdateExPartnerDetailMutation();
+  let [postExPartnerDetail, { isLoading: postLoading }] =
+    usePostExPartnerDetailMutation();
+  let [updateExPartnerDetail, { isLoading: editLoading }] =
+    useUpdateExPartnerDetailMutation();
   const {
     reset,
     control,
@@ -50,12 +48,12 @@ export const useExPartnersViewForm = (props: any) => {
       email,
       phoneNumber,
       relationShipType,
-      childrenTogether: true,
+      childrenTogether,
     };
     if (Formtype == "add") {
       try {
         const res: any = await postExPartnerDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
@@ -78,7 +76,6 @@ export const useExPartnersViewForm = (props: any) => {
           formData,
         }).unwrap();
         if (res.data) {
-          changeView(null);
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });
@@ -101,5 +98,7 @@ export const useExPartnersViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

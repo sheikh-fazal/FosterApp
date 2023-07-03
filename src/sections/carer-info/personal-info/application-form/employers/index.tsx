@@ -5,9 +5,6 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   employerType: "Current",
@@ -18,26 +15,23 @@ export const defaultValues = {
   contactName: "",
   noticePeriod: "",
   disciplinaryCareer: "",
-  suitableDateReferenceSent: new Date(),
+  suitableDate: new Date(),
   email: "",
 };
 
 export const FormSchema = Yup.object().shape({
   companyName: Yup.string().required("Field is required"),
   durationOfEmploymentAndPost: Yup.string().required("Field is required"),
-  address: Yup.string()
-    .required("Field is required")
-    .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 10 characters"),
+  address: Yup.string().required("Field is required"),
   phone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   contactName: Yup.string().required("Field is required"),
   noticePeriod: Yup.string().required("Field is required"),
   disciplinaryCareer: Yup.string().required("Field is required"),
-  suitableDateReferenceSent: Yup.date().required("Field is required"),
-  email: Yup.string().required("Email is required").email("Invalid Email"),
+  suitableDate: Yup.date().required("Field is required"),
+  email: Yup.string().required("Field is required").email("Invalid Email"),
 });
 export const formData = [
   {
@@ -47,7 +41,6 @@ export const formData = [
       label: "Type?",
       name: "employerType",
       options: ["Current", "Previous"],
-      fullWidth: true,
     },
     component: RHFRadioGroupWithLabel,
   },
@@ -66,7 +59,7 @@ export const formData = [
     component: RHFTextField,
   },
   {
-    gridLength: 6,
+    gridLength: 12,
     otherOptions: {
       name: "durationOfEmploymentAndPost",
       label: "Duration of Employment and Post",
@@ -78,7 +71,7 @@ export const formData = [
     component: RHFTextField,
   },
   {
-    gridLength: 12,
+    gridLength: 6,
     otherOptions: {
       name: "phone",
       label: "Phone",
@@ -116,7 +109,7 @@ export const formData = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "suitableDateReferenceSent",
+      name: "suitableDate",
       label: "Suitable Date for your Reference to be sent",
       fullWidth: true,
     },
@@ -155,6 +148,7 @@ export const columns = (
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",

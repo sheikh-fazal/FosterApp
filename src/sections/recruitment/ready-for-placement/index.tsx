@@ -163,7 +163,8 @@ export const READYFORPLACEMENT = [
     text: "Placement Preference",
     informationText: "Placement Preference",
     viewForms: `View Document`,
-    href: "#",
+    href: "/recruitment/ready-for-placement/placement-preference",
+    status: "Passed",
   },
   {
     id: 7,
