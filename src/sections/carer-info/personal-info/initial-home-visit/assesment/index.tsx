@@ -25,34 +25,42 @@ export const defaultValuesAssesmentForm = (data = assesmentFormValues) => {
 };
 export const assessmentFormSchema = Yup.object().shape({
   familyBackground: Yup.string()
+    .trim()
     .required("Family background is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   theFamilyHouse: Yup.string()
+    .trim()
     .required("Family house is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   pets: Yup.string()
+    .trim()
     .required("Pets is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   finance: Yup.string()
+    .trim()
     .required("Finance is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   assesment: Yup.string()
+    .trim()
     .required("Assesment is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   outcome: Yup.string()
+    .trim()
     .required("Outcome is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   managerComments: Yup.string()
+    .trim()
     .required("Manager comments is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   managerRecommendation: Yup.string()
+    .trim()
     .required("Manager recommendation is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
