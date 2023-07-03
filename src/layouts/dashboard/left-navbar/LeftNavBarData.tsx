@@ -71,7 +71,7 @@ export const NAV_LINKS = [
     sublist: [
       {
         list: "Matching",
-        sublistlink: "/matching&placement/matching",
+        sublistlink: "",
       },
       {
         list: "Placement",
