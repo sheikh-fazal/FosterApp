@@ -30,10 +30,9 @@ const OrganisationalPoliciesTabs = () => {
     <>
       <CustomHorizaontalTab
         tabsArray={[
-          `${
-            route?.query?.action === "add" || route?.query?.action === "view"
-              ? route?.query?.name
-              : "Add New Policy"
+          `${route?.query?.action === "add" || route?.query?.action === "view"
+            ? route?.query?.name
+            : "Add New Policy"
           }`,
           "Upload document",
         ]}
