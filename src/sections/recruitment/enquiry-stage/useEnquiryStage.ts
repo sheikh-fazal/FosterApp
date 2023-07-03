@@ -24,7 +24,7 @@ export const useEnquiryStage:any = () => {
         status: enquiryStageApiData?.[item.textForApi],
       }))
     );
-  }, [data]);
+  }, [enquiryStageApiData]);
   
   const theme: any = useTheme();
   const [openIdForInfo, setOpenIdForInfo] = React.useState<any>();
