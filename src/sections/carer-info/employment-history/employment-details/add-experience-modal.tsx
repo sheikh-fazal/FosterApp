@@ -10,7 +10,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { Fragment, useEffect, useRef, useState } from "react";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { AddFormSchema, EmploymentType, EXPERIENCE } from ".";
+import { addFormValuesSchema, EmploymentType, EXPERIENCE } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -28,7 +28,9 @@ function AddExperiencesModal({ open, setOpen }: any) {
       setCollapsedIndexes([...collapsedIndexes, index]);
     }
   };
-  const methods: any = useForm();
+  const methods: any = useForm({
+    resolver: yupResolver(addFormValuesSchema),
+  });
 
   const { control, handleSubmit } = methods;
 
@@ -38,6 +40,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
   });
 
   const initialRenderRef = useRef(true);
+  console.log(initialRenderRef);
 
   useEffect(() => {
     if (!initialRenderRef.current && open) {
@@ -45,17 +48,15 @@ function AddExperiencesModal({ open, setOpen }: any) {
     } else {
       initialRenderRef.current = false;
     }
-  }, [open,append]);
+  }, [open, append]);
 
   const onSubmit = (data: any) => {
-
     submitAddExperiencesForm(data);
   };
 
   return (
     <Modal
       open={open}
-      
       onClose={() => setOpen(false)}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -81,7 +82,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                 <RHFUploadFile name="media" {...methods} required />
               </Grid>
               <Grid item xs={6}></Grid>
-              {fields.map((field, index) => (
+              {fields?.map((field, index) => (
                 <Fragment key={field.id}>
                   <Grid
                     item
@@ -106,7 +107,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                       )}
                     </Box>
                   </Grid>
-                  {collapsedIndexes.includes(index) ? null : (
+                  {collapsedIndexes?.includes(index) ? null : (
                     <>
                       <Grid item xs={6}>
                         <RHFTextField

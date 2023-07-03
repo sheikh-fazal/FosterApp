@@ -10,6 +10,7 @@ const SocialWorkerFormDialogbox = (props: any) => {
     setOpenFormDialog,
     component,
     disabled,
+    setOpenSocialWorkerAssessmentDialogbox
   } = props;
 
   const { methods, handleSubmit, onSubmit } = useSocialWorkerFormDialogbox();
@@ -72,7 +73,7 @@ const SocialWorkerFormDialogbox = (props: any) => {
 
               <Grid item xs={12}>
                 <Button
-                  onClick={() => setOpenFormDialog(false)}
+                  onClick={() => setOpenSocialWorkerAssessmentDialogbox(false)}
                   size="large"
                   type="button"
                   variant="contained"

@@ -8,7 +8,7 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
 import { uploadDummyData } from ".";
-import ModelUploadDoc from "@root/components/modal/modelUploadDoc";
+import ModelUploadDoc from "@root/components/modal/uploadDoc/modelUploadDoc";
 
 const HospitalizationUploadTable = () => {
   const [modelOpen, setModelOpen] = React.useState(false);
@@ -85,41 +85,41 @@ const HospitalizationUploadTable = () => {
     },
   ];
   return (
-   <>
-   <Box sx={{ mb: 1 }}>
-    <TableHeader
-      title="Uploaded Documents"
-      searchKey="search"
-      onChanged={(e: any) => {
-        console.log(e.search);
-      }}
-      showAddBtn
-      onAdd={() => {
-        setModelOpen(true);
-      }}
-    />
-  </Box>
-  <ModelUploadDoc
-    action={"add"}
-    modelOpen={modelOpen}
-    setModelOpen={setModelOpen}
-    isFetching={false}
-  />
-  <CustomTable
-    data={uploadDummyData ?? []}
-    columns={columns}
-    isLoading={false}
-    isFetching={false}
-    isError={false}
-    isSuccess={true}
-    isPagination={true}
-    showSerialNo={false}
-    // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-    // currentPage={incidentlist?.data?.meta?.page ?? 1}
-    // onPageChange={pageChangeHandler}
-    // onSortByChange={sortChangeHandler}
-  />
-</>
+    <>
+      <Box sx={{ mb: 1 }}>
+        <TableHeader
+          title="Uploaded Documents"
+          searchKey="search"
+          onChanged={(e: any) => {
+            console.log(e.search);
+          }}
+          showAddBtn
+          onAdd={() => {
+            setModelOpen(true);
+          }}
+        />
+      </Box>
+      <ModelUploadDoc
+        action={"add"}
+        modelOpen={modelOpen}
+        setModelOpen={setModelOpen}
+        isFetching={false}
+      />
+      <CustomTable
+        data={uploadDummyData ?? []}
+        columns={columns}
+        isLoading={false}
+        isFetching={false}
+        isError={false}
+        isSuccess={true}
+        isPagination={true}
+        showSerialNo={false}
+        // totalPages={incidentlist?.data?.meta?.pages ?? 0}
+        // currentPage={incidentlist?.data?.meta?.page ?? 1}
+        // onPageChange={pageChangeHandler}
+        // onSortByChange={sortChangeHandler}
+      />
+    </>
   );
 };
 

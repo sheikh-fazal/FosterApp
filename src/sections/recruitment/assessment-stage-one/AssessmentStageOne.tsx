@@ -1,9 +1,8 @@
-import { Button, Grid, useTheme } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { ASSESSMENTSTAGEONEDATA } from "./index";
 import Image from "@root/components/Image";
 import { RecruitmentStatusDropdown } from "../recruitment-status-dropdown/recruitment-status-dropdown";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
@@ -18,12 +17,18 @@ export default function AssessmentStageOne() {
     formDialogId,
     setFormDialogId,
     setOpenIdForInfo,
+    assessmentStageOneData,
+    setAssessmentStageOneData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
   } = useAssessmentStageOne();
 
   return (
     <div>
       <Grid container>
-        {ASSESSMENTSTAGEONEDATA?.map((ele: any) => (
+        {assessmentStageOneData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
@@ -52,7 +57,7 @@ export default function AssessmentStageOne() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color:'black'
+                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -70,7 +75,7 @@ export default function AssessmentStageOne() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color:'black'
+                  color: "black",
                 }}
               >
                 {ele?.text}
@@ -116,7 +121,36 @@ export default function AssessmentStageOne() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown id={ele?.id} status={ele?.status} />
+              {isLoading && isFetching && (
+                <Skeleton variant="rounded" width={200} height={50} />
+              )}
+              {isSuccess && (
+                <RecruitmentStatusDropdown
+                  id={"4f7512fb-2916-451b-8240-97f529ded73d"}
+                  status={ele?.status}
+                  textForApi={ele?.textForApi}
+                  component={"AssessmentStage1"}
+                  setMockData={setAssessmentStageOneData}
+                  mockData={assessmentStageOneData}
+                />
+              )}
+              {isError && (
+                <Skeleton
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    color: "red",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  variant="rounded"
+                  width={200}
+                  height={50}
+                >
+                  Server not Responding
+                </Skeleton>
+              )}
             </Grid>
             <Grid
               container

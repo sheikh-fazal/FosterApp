@@ -5,6 +5,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import UploadDocumentModal from "./UploadDocumentModal";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import dayjs from "dayjs";
 
 // ----------------------------------------------------------------------
 
@@ -102,9 +103,7 @@ export const UploadDocumentTable = (props: any) => {
       accessorFn: (row: any) => row[column[0]],
       id: "document",
       cell: (info: any) =>
-        info.getValue()?.length > 20
-          ? ". . ." + info.getValue()?.slice(-15)
-          : info.getValue(),
+        info.getValue()?.length > 20 ? ". . ." + info.getValue()?.slice(-15) : info.getValue(),
       header: () => <span>Document Name</span>,
       // isSortable: true,
     },
@@ -118,7 +117,7 @@ export const UploadDocumentTable = (props: any) => {
     {
       accessorFn: (row: any) => row[column[2]],
       id: "date",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>,
       header: () => <span>Document Date</span>,
     },
     {
@@ -144,11 +143,7 @@ export const UploadDocumentTable = (props: any) => {
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           {/* Can move it outside of the table if need arises */}
-          <TableAction
-            type="view"
-            onClicked={() => setModalHasData(info)}
-            size="small"
-          />
+          <TableAction type="view" onClicked={() => setModalHasData(info)} size="small" />
           {!readOnly && (
             <TableAction
               type="delete"

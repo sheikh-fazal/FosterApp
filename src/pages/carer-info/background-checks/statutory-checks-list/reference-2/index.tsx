@@ -2,9 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-2/UploadDocuments";
 import ReferenceTwoForm from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-2/ReferenceTwoForm";
 import { useRouter } from "next/router";
+import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/reference-2/upload-documents/UploadDocumentsTable";
 
 // Constants
 const BREADCRUMBS = [
@@ -41,7 +41,7 @@ export default function Reference2() {
   return (
     <HorizaontalTabs tabsDataArray={["References 2", "Upload Documents"]}>
       <ReferenceTwoForm action={action} id={id} />
-      <UploadDocuments />
+      <UploadDocumentsTable />
     </HorizaontalTabs>
   );
 }
