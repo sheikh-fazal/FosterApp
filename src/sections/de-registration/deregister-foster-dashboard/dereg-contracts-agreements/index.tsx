@@ -40,7 +40,7 @@ export const DeRegContractsAgreementsData = [
     text: "Agency Policy Agreements",
     informationText: "Agency Policy Agreements",
     viewForms: ["View Form"],
-    href: "#",
+    href: "/de-registration/deregister-foster-carer/policy-agreements",
     status: "Passed"
   },
   {
