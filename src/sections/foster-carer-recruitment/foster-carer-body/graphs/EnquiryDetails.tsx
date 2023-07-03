@@ -48,7 +48,7 @@ export default function EnquiryDetails() {
       labels: {
         show: true,
         style: {
-          colors: theme.palette.primary.contrastText,
+          colors: theme.palette.contrastText,
         },
       },
     },
@@ -71,7 +71,7 @@ export default function EnquiryDetails() {
       labels: {
         show: true,
         style: {
-          colors: theme.palette.primary.contrastText,
+          colors: theme.palette.contrastText,
         },
       },
     },

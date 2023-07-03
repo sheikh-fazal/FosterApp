@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Box, Typography, Tab, Tabs } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import PdfViewModal from "../Modals/pdf-modal/PdfModal";
-import AddCategoryModal from "../Modals/add-modal/AddModal";
+import AddCategoryModal from "../Modals/category-modal/CategoryModal";
 import { TabPanelProps, styles } from ".";
 
 
