@@ -28,7 +28,7 @@ export const useFamilyPersonDocument = () => {
   const [postFamilyPersonUploadDocument] =
     usePostFamilyPersonUploadDocumentMutation();
 
-  console.log(data);
+     console.log(data);
 
   const submitFamilyPersonDocumentData = async (data: any) => {
     const documentFormData = new FormData();
