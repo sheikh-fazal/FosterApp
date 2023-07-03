@@ -71,7 +71,7 @@ export const NAV_LINKS = [
     sublist: [
       {
         list: "Matching",
-        sublistlink: "/matching&placement/matching",
+        sublistlink: "",
       },
       {
         list: "Placement",
@@ -83,7 +83,7 @@ export const NAV_LINKS = [
     id: 8,
     text: "Deregister Foster Carer",
     img: <HowToRegOutlinedIcon />,
-    link: "",
+    link: "/de-registration",
   },
   {
     id: 9,
@@ -120,13 +120,13 @@ export const NAV_LINKS = [
     id: 14,
     text: "Local Authority",
     img: <AssignmentOutlinedIcon />,
-    link: "",
+    link: "/local-authority",
   },
   {
     id: 15,
     text: "Audits",
     img: <ContentPasteSearchOutlinedIcon />,
-    link: "",
+    link: "/audits",
   },
   {
     id: 16,
@@ -138,7 +138,7 @@ export const NAV_LINKS = [
     id: 17,
     text: "Advocacy",
     img: <GavelOutlinedIcon />,
-    link: "",
+    link: "/advocacy",
   },
   {
     id: 18,

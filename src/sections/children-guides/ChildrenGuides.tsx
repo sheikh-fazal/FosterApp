@@ -38,6 +38,7 @@ const ChildrenGuides = () => {
         handleClose={handleModal}
         disabled={false}
         onSubmit={(data: any) => { }}
+        label="Upload File"
         isHideSubmitButton
       />}
       {pdfFile && <PdfViewModal fileUrl={pdfFile} open={pdfModal} onClose={handleClosePdfModal} />}

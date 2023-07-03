@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 // @mui
 import {
+  Box,
   InputAdornment,
   MenuItem,
   Stack,
@@ -12,6 +13,7 @@ import {
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 import TableAction from "./TableAction";
+import Image from "next/image";
 
 // ----------------------------------------------------------------------
 // Variables
@@ -38,6 +40,8 @@ const TableHeader = forwardRef(function TableHeader(
     selectSize = "small",
     searchSize = "small",
     showAddBtn = false,
+    showRecordingBtn = false,
+    onRecording = () => { },
     showDeleteBtn = false,
     // share btn
     showShareBtn = false,
@@ -46,12 +50,12 @@ const TableHeader = forwardRef(function TableHeader(
     showDiagramBtn = false,
     debounceTimeout = 500,
     disabled = false,
-    onDelete = () => {},
-    onAdd = () => {},
-    onShare = () => {},
-    onPrint = () => {},
-    onChanged = () => {},
-    onDiagramBtn = () => {},
+    onDelete = () => { },
+    onAdd = () => { },
+    onShare = () => { },
+    onPrint = () => { },
+    onChanged = () => { },
+    onDiagramBtn = () => { },
   }: any,
   ref
 ) {
@@ -156,7 +160,14 @@ const TableHeader = forwardRef(function TableHeader(
           ))}
         </Stack>
       )}
-
+      {/* recording Icon */}
+      {showRecordingBtn && (
+        <TableAction
+          disabled={disabled}
+          onClicked={onRecording}
+          type="recording"
+        />
+      )}
       {/* Delete Button */}
       {showDeleteBtn && (
         <TableAction disabled={disabled} onClicked={onDelete} type="delete" />
@@ -184,6 +195,7 @@ const TableHeader = forwardRef(function TableHeader(
       {showDiagramBtn && (
         <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
       )}
+
     </Stack>
   );
 });
@@ -199,6 +211,7 @@ const styles = {
   rootBoxStyles: (theme: any) => ({
     flexDirection: { xs: "column", sm: "row" },
     flexWrap: "wrap",
+    mb: 2,
     backgroundColor: alpha(theme.palette.primary.main, 0.8),
     padding: theme.spacing(1, 1.8),
     alignItems: "center",

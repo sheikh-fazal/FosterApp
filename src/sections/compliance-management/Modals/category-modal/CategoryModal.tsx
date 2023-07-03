@@ -40,7 +40,7 @@ const CategoryModal = ({ open, onClose, categoryName, requireIcon }: any) => {
               <CloseIcon sx={{ fontSize: "12px", cursor: 'pointer' }} />
             </Box>)}
           </Box>}
-          {requireIcon && <RHFUploadFile name={'uploadIcon'} {...methods} />}
+          {requireIcon && <RHFUploadFile name={'uploadIcon'} label="Upload Icon"{...methods} />}
           <Box display={'flex'} gap={'10px'} marginTop={'20px'}>
             <Button type="submit" variant="contained" sx={styles.btnStyle}>Add</Button>
             <Button variant="contained" onClick={onClose}>Cancel</Button>
