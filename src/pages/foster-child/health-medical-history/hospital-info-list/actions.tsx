@@ -18,11 +18,19 @@ export default function HospitalinfoActions() {
   const Router: any = useRouter();
   const { action, fosterChildId, hospitalinfoId } = Router.query;
   const PAGE_TITLE = "Hospital info List";
+
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
       name: PAGE_TITLE,
       href: "",
+    },
+    {
+      name: "Hospitalinfolist",
+      href: {
+        pathname: "/foster-child/health-medical-history/hospital-info-list",
+        query: { fosterChildId: fosterChildId },
+      },
     },
     {
       name: "Hospital Info",

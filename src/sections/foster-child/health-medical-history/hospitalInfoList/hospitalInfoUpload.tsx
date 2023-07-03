@@ -5,23 +5,19 @@ import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
-import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
-import { Formet, defvalue, uploadDummyData } from ".";
-import {
-  useGetHospitalInfoListDocumentQuery,
-  useLazyGetHospitalInfoListDocumentBYIDQuery,
-} from "@root/services/foster-child/health-medical-history/hospital-info-list/hospitalInfoListDocument";
+import ModelUploadDoc from "../../../../components/modal/uploadDoc/modelUploadDoc";
+
+import { useGetHospitalInfoListDocumentQuery } from "@root/services/foster-child/health-medical-history/hospital-info-list/hospitalInfoListDocument";
 import { useTableParams } from "@root/hooks/useTableParams";
 import useHospitalinfoListForms from "./useHospitalinfoListForms";
+import { enqueueSnackbar } from "notistack";
 
 function HospitalInfoUpload(props: any) {
   const { fosterChildId, hospitalinfoId } = props;
 
   const [Search, setSearch] = React.useState("");
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
+  const { params, pageChangeHandler } = useTableParams();
   const { data, isError, isFetching, isLoading, isSuccess } =
     useGetHospitalInfoListDocumentQuery({
       params: {
@@ -32,13 +28,13 @@ function HospitalInfoUpload(props: any) {
       },
     });
   const {
-    onUploadSubmit,
     modelOpen,
-    setModelOpen,
     isloading,
     isFatching,
-    setisloading,
-    getdefvalue,
+    onUploadSubmit,
+    setModelOpen,
+    onUpdateSubmit,
+    onDeleteHander,
   } = useHospitalinfoListForms({
     fosterChildId: fosterChildId,
     hospitalinfoId: hospitalinfoId,
@@ -46,13 +42,13 @@ function HospitalInfoUpload(props: any) {
 
   const col = useMemo(() => {
     return [
-      {
-        accessorFn: (row: any) => row.id,
-        id: "srNo",
-        cell: (info: any) => info.getValue(),
-        header: () => <span>Sr. No</span>,
-        isSortable: true,
-      },
+      // {
+      //   accessorFn: (row: any) => row.id,
+      //   id: "srNo",
+      //   cell: (info: any) => info.getValue(),
+      //   header: () => <span>Sr. No</span>,
+      //   isSortable: true,
+      // },
       {
         accessorFn: (row: any) => row.documentName,
         id: "documentName",
@@ -94,25 +90,24 @@ function HospitalInfoUpload(props: any) {
         id: "actions",
         cell: (info: any) => (
           <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-            <DeletePrompt />
+            <DeletePrompt onDeleteClick={onDeleteHander} />
             <ModelUploadDoc
               showActions={true}
-              isFetching={false}
+              isFetching={isFatching}
+              defaultValues={info.row.original}
               action="edit"
               onSubmit={(data: any) => {
-                console.log(data);
+                onUpdateSubmit(data, info.row.original.id);
               }}
             />
             <ModelUploadDoc
               showActions={true}
+              onSubmit={() => {}}
               action="view"
-              defaultValues={async () =>
-                await getdefvalue(info.row.original.id)
-              }
-              isloading={isloading}
+              defaultValues={info.row.original}
             />
             <Link
-              href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
+              href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.documentFile}`}
               target="_blank"
             >
               <TableAction size="small" type="download" />
@@ -123,11 +118,11 @@ function HospitalInfoUpload(props: any) {
         isSortable: false,
       },
     ];
-  }, [getdefvalue, isloading]);
+  }, [isFatching, onDeleteHander, onUpdateSubmit]);
 
   return (
     <>
-      <Box sx={{ mb: 1 }}>
+      <Box sx={{ mb: 0.4 }}>
         <TableHeader
           title="Uploaded Documents"
           searchKey="search"
@@ -136,17 +131,17 @@ function HospitalInfoUpload(props: any) {
           }}
           showAddBtn
           onAdd={() => {
-            setModelOpen(true);
+            if (hospitalinfoId) {
+              setModelOpen(true);
+            } else {
+              enqueueSnackbar("Fill Hospital Info Form first ", {
+                variant: "error",
+              });
+            }
           }}
         />
       </Box>
-      <ModelUploadDoc
-        action={"add"}
-        modelOpen={modelOpen}
-        setModelOpen={setModelOpen}
-        isFetching={isFatching}
-        onSubmit={onUploadSubmit}
-      />
+
       <CustomTable
         data={data?.hospitalinfolistDocuments ?? []}
         columns={col}
@@ -155,11 +150,18 @@ function HospitalInfoUpload(props: any) {
         isError={isError}
         isSuccess={isSuccess}
         isPagination={true}
-        showSerialNo={false}
+        showSerialNo={true}
         totalPages={data?.meta?.pages ?? 0}
         currentPage={data?.meta?.page ?? 1}
         onPageChange={pageChangeHandler}
         // onSortByChange={sortChangeHandler}
+      />
+      <ModelUploadDoc
+        action={"add"}
+        modelOpen={modelOpen}
+        setModelOpen={setModelOpen}
+        isFetching={isFatching}
+        onSubmit={onUploadSubmit}
       />
     </>
   );

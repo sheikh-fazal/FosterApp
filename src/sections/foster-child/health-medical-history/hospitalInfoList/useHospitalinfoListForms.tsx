@@ -7,10 +7,12 @@ import {
 import router from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
-import { Formet, HospitalInfoListValue, defvalue } from ".";
+import { HospitalInfoListValue } from ".";
 import {
   useCreateHospitalInfoListDocumentMutation,
+  useDeleteHospitalInfoListDocumentMutation,
   useLazyGetHospitalInfoListDocumentBYIDQuery,
+  useUpdateHospitalInfoListDocumentMutation,
 } from "@root/services/foster-child/health-medical-history/hospital-info-list/hospitalInfoListDocument";
 
 const useHospitalinfoListForms = (props: any) => {
@@ -27,8 +29,10 @@ const useHospitalinfoListForms = (props: any) => {
   //UPLOAD DOCUMENT API HANDLERS
   const [createHospitalInfoListDocument] =
     useCreateHospitalInfoListDocumentMutation();
-  const [getHospitalInfoListDocumentBYID] =
-    useLazyGetHospitalInfoListDocumentBYIDQuery();
+  const [updateHospitalInfoListDocument] =
+    useUpdateHospitalInfoListDocumentMutation();
+  const [deleteHospitalInfoListDocument] =
+    useDeleteHospitalInfoListDocumentMutation();
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
@@ -155,6 +159,33 @@ const useHospitalinfoListForms = (props: any) => {
     })
       .unwrap()
       .then((res: any) => {
+        enqueueSnackbar("Information Add Successfully", {
+          variant: "success",
+        });
+        setisFatching(false);
+        setModelOpen(false);
+      })
+      .catch((error: any) => {
+        setisFatching(false);
+        setModelOpen(false);
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+  const onUpdateSubmit = (data: any, id: any) => {
+    setisFatching(true);
+    const formData = new FormData();
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("documentFile", data.documentFile);
+    updateHospitalInfoListDocument({
+      id: id,
+
+      body: formData,
+    })
+      .unwrap()
+      .then((res: any) => {
         enqueueSnackbar("Information Edit Successfully", {
           variant: "success",
         });
@@ -168,36 +199,18 @@ const useHospitalinfoListForms = (props: any) => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  const getdefvalue = async (id: any) => {
-    setisloading(true);
-    const { data, isError, isSuccess }: any =
-      await getHospitalInfoListDocumentBYID(
-        {
-          id: id,
-          params: {
-            id: id,
-          },
-        },
-        true
-      );
-
-    const responseData = { ...data.data };
-    console.log(responseData);
-
-    for (const key in responseData) {
-      const value = responseData[key];
-      if (Formet[key]) responseData[key] = Formet[key](value);
-    }
-
-    if (isError) {
-      enqueueSnackbar("Error occured", { variant: "error" });
-      return defvalue;
-    }
-
-    setisloading(false);
-    return responseData;
+  const onDeleteHander = (id: any) => {
+    deleteHospitalInfoListDocument({ id: id })
+      .then(() => {
+        enqueueSnackbar("Information Delete Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
-
   return {
     SubmitData,
     getDefaultValue,
@@ -205,7 +218,8 @@ const useHospitalinfoListForms = (props: any) => {
     onUploadSubmit,
     setModelOpen,
     setisloading,
-    getdefvalue,
+    onUpdateSubmit,
+    onDeleteHander,
     isloading,
     isFatching,
     modelOpen,

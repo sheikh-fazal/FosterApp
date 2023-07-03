@@ -23,7 +23,6 @@ const HospitalInfoListDocument = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/hospital-info-list/documents/${payload.id}`,
         method: "Put",
-        params: payload.params,
         body: payload.body,
       }),
       invalidatesTags: ["hospital-info-list-document"],
