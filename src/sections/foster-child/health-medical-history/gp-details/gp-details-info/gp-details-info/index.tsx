@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
+import { PHYSICIANTYPEDROPDOWN } from "@root/dropdown-data/physicianType";
 import * as Yup from "yup";
 
 export const gpDetailsInfoFormValues = {
@@ -96,18 +97,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       name: "physicianType",
       label: "Physician Type",
       select: true,
-      options: [
-        {
-          id: 1,
-          label: "Eye",
-          text: "Eye",
-        },
-        {
-          id: 2,
-          label: "Physician",
-          text: "Physician",
-        },
-      ],
+      options: PHYSICIANTYPEDROPDOWN,
     },
   },
   {

@@ -11,7 +11,7 @@ import {
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
-  const GPDETAILSDOCUMENTPAGELIMIT =  10;
+  const GPDETAILSDOCUMENTPAGELIMIT = 10;
   // ----------------------------------------------------------------------
   const [
     postGpDetailsInfoDocumentDataTrigger,
@@ -96,6 +96,6 @@ export const useDocuments = () => {
     query,
     postGpDetailsInfoDocumentDataStatus,
     onDeleteConfirm,
-    GPDETAILSDOCUMENTPAGELIMIT
+    GPDETAILSDOCUMENTPAGELIMIT,
   };
 };

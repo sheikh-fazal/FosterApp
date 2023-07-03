@@ -43,7 +43,7 @@ export const useStatutoryMedicalTypeInfo = () => {
   const apiDataParameter = { pathParams, params };
 
   const setGpDetailsInfoDefaultValue = async () => {
-      if (!!!query?.id) return;
+    if (!!!query?.id) return;
     const { data, isError } = await getSingleStatutoryMedicalTypeDataTrigger(
       apiDataParameter,
       true
@@ -58,7 +58,7 @@ export const useStatutoryMedicalTypeInfo = () => {
     resolver: yupResolver(ehcpInfoFormSchema),
     defaultValues: setGpDetailsInfoDefaultValue,
   });
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+  const { handleSubmit } = methods;
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
     const params = {
@@ -74,14 +74,16 @@ export const useStatutoryMedicalTypeInfo = () => {
       const res: any = await postStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-         router.push({
-                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
-                query:{
-                  id: res?.data?.id,
-                  type:query.type,
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
-              })
+      router.push({
+        pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+        query: {
+          id: res?.data?.id,
+          type: query.type,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -103,16 +105,17 @@ export const useStatutoryMedicalTypeInfo = () => {
       const res: any = await patchStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-
-   router.push({
-                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
-                query:{
-                  id: query.id,
-                  type:query.type,
-                  action:'edit',
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
-              })
+      router.push({
+        pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+        query: {
+          id: query.id,
+          type: query.type,
+          action: "edit",
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

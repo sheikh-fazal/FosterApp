@@ -11,21 +11,18 @@ export const statutoryMedicalListXTableColumnsFunction = (
     id: "medicalDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Medical Date</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.dueDate,
     id: "dueDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Due Date</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.onfile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.id,
@@ -40,28 +37,32 @@ export const statutoryMedicalListXTableColumnsFunction = (
           <TableAction
             type="edit"
             onClicked={() =>
-                 router.push({
-                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
-                query:{
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
                   id: info.getValue(),
                   type,
-                  action:'edit',
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-                router.push({
-                pathname:`/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
-                query:{
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
                   id: info.getValue(),
                   type,
-                  action:'view',
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+                  action: "view",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
           />
@@ -69,8 +70,7 @@ export const statutoryMedicalListXTableColumnsFunction = (
       );
     },
     header: () => <span>Action</span>,
-    isSortable: false,
   },
 ];
 
-export const STATUTORYMEDICALLISTTYPEPAGELIMIT =  10;
+export const STATUTORYMEDICALLISTTYPEPAGELIMIT = 10;

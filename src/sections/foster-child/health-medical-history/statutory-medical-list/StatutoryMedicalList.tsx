@@ -9,13 +9,8 @@ import { sortTypeData, statutoryMedicalListAccordionData } from ".";
 import { useStatutoryMedicalList } from "./useStatutoryMedicalList";
 
 const StatutoryMedicalList = () => {
-  const {
-    open,
-     sortType,
-        setSortType,
-        handleSortType,
-        sortTypeMenuItemClick
-  } = useStatutoryMedicalList();
+  const { open, sortType, setSortType, handleSortType, sortTypeMenuItemClick } =
+    useStatutoryMedicalList();
   return (
     <>
       <Stack

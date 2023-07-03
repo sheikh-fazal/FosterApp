@@ -15,7 +15,7 @@ const GPDetailsList = () => {
     router,
     setPage,
     GPDETAILSLISTPAGELIMIT,
-     isRecordSetForDelete,
+    isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,
   }: any = useGPDetailsList();
@@ -27,12 +27,14 @@ const GPDetailsList = () => {
           searchKey="search"
           showAddBtn={true}
           onAdd={() =>
-              router.push({
-                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
-                query:{
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
-              })
+            router.push({
+              pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+              query: {
+                ...(!!router?.query?.fosterChildId && {
+                  fosterChildId: router?.query?.fosterChildId,
+                }),
+              },
+            })
           }
           onChanged={(data: any) => {
             setSearchValue(data?.search);
@@ -55,7 +57,7 @@ const GPDetailsList = () => {
           }}
         />
       </Box>
-         {isRecordSetForDelete && (
+      {isRecordSetForDelete && (
         <DeleteModel
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}

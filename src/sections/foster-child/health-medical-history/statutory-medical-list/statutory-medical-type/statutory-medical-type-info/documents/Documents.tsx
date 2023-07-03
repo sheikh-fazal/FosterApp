@@ -13,7 +13,7 @@ const Documents = () => {
     submitStatutoryMedicalListInfoDocumentData,
     query,
     onDeleteConfirm,
-    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT
+    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
   }: any = useDocuments();
 
   return (

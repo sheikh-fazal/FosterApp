@@ -1,7 +1,10 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const gpDetailsInfoTableColumnsFunction = (router?: any, prepareRecordForDelete?:any) => [
+export const gpDetailsInfoTableColumnsFunction = (
+  router?: any,
+  prepareRecordForDelete?: any
+) => [
   {
     accessorFn: (row: any) => row?.physicianName,
     id: "physicianName",
@@ -30,25 +33,29 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any, prepareRecordFor
             type="edit"
             onClicked={() =>
               router.push({
-                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
-                query:{
+                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query: {
                   gpInfoId: info?.getValue(),
-                  action:'edit',
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-               router.push({
-                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
-                query:{
+              router.push({
+                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                query: {
                   gpInfoId: info.getValue(),
-                  action:'view',
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+                  action: "view",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
           />
@@ -59,4 +66,4 @@ export const gpDetailsInfoTableColumnsFunction = (router?: any, prepareRecordFor
   },
 ];
 
-export const GPDETAILSLISTPAGELIMIT =  10;
+export const GPDETAILSLISTPAGELIMIT = 10;

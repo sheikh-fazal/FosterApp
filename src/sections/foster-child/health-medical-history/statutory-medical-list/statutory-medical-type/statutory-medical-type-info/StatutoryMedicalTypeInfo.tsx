@@ -1,5 +1,4 @@
 import { Box, Grid } from "@mui/material";
-
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
@@ -58,12 +57,13 @@ const StatutoryMedicalTypeInfo = () => {
             type="button"
             sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
             onClick={() =>
-
-   router.push({
-                pathname:`/foster-child/health-medical-history/statutory-medical-list`,
-                query:{
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list`,
+                query: {
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
             variant="contained"

@@ -63,11 +63,13 @@ const GPDetailsInfo = () => {
               "&:hover": { bgcolor: theme.palette.orange.dark },
             }}
             onClick={() =>
-                router.push({
-                pathname:`/foster-child/health-medical-history/gp-details`,
-                query:{
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
+              router.push({
+                pathname: `/foster-child/health-medical-history/gp-details`,
+                query: {
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
               })
             }
             variant="contained"

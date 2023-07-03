@@ -14,7 +14,7 @@ const Documents = () => {
     postGpDetailsInfoDocumentDataStatus,
     query,
     onDeleteConfirm,
-    GPDETAILSDOCUMENTPAGELIMIT
+    GPDETAILSDOCUMENTPAGELIMIT,
   } = useDocuments();
 
   return (
