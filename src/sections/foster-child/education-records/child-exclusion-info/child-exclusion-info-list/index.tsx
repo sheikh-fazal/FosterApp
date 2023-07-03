@@ -8,7 +8,7 @@ export const columnsChildExclusionInfoTable = (
   router: any,
   cancelDelete: any,
   setCancelDelete: any,
-  openDeleteModel: any
+  openDeleteModel: any,
 ) => [
   {
     id: "select",

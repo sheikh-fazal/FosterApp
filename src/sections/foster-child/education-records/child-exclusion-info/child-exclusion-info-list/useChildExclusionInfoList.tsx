@@ -6,24 +6,25 @@ import { useGetChildExclusionInfoListQuery } from "@root/services/foster-child/e
 
 const useChildExclusionInfoList = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
-  const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
 
   const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+  const id = router?.query?.fosterChildId  
 
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  const params = {
-    search: searchValue,
-    offset: page,
-    limit: 10,
+  console.log(params);
+
+  const queryParams = {
+    search: params.search,
+    offset: params.page,
+    limit: params.offset,
   };
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetChildExclusionInfoListQuery(params);
+    useGetChildExclusionInfoListQuery(queryParams);
 
   const deleteTrainingProfile = async () => {
     console.log(trainingProfileId);
@@ -45,6 +46,7 @@ const useChildExclusionInfoList = () => {
     cancelDelete,
     setCancelDelete,
     openDeleteModel
+    
   );
 
   return {
@@ -62,6 +64,7 @@ const useChildExclusionInfoList = () => {
     isError,
     isFetching,
     isSuccess,
+    id
   };
 };
 

@@ -21,6 +21,7 @@ export const ChildExclusionInfoList = () => {
     isError,
     isFetching,
     isSuccess,
+    id
   } = useChildExclusionInfoList();
   return (
     <>
@@ -38,7 +39,7 @@ export const ChildExclusionInfoList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/child-exclusion-info/new-child-exclusion-info"
+              `/foster-child/education-records/child-exclusion-info/new-child-exclusion-info?${id}`
             );
           }}
           onChanged={headerChangeHandler}
