@@ -93,96 +93,6 @@ export const TableBodies = () => {
   );
 };
 
-export const EditableTable = () => {
-  const theme: any = useTheme();
-
-  // ----------------------------------------------------------------------
-  const [data, setData] = React.useState(() => [
-    {
-      u_id: "U4721XBUCA",
-      user: "Sijo Francis",
-      a_id: "A4821MNOHO",
-      TotalDbsFee: "£40.00",
-      TotalAdminFees: "£06.00",
-      TotalPaid: "£46.00",
-      cancelled: "no",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-    {
-      u_id: "U4721XBUCA",
-      user: "Sijo Francis",
-      a_id: "A4821MNOHO",
-      TotalDbsFee: "£40.00",
-      TotalAdminFees: "£06.00",
-      TotalPaid: "£46.00",
-      cancelled: "no",
-      CancelledBy: "10-02-2022 14:23:03",
-      CancelledAt: "Ani Cristea",
-    },
-  ]);
-  console.log(data);
-
-  const columns = [
-    {
-      accessorFn: (row: any) => row.u_id,
-      id: "u_id",
-
-      header: () => <span>U-ID</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.user,
-      id: "user",
-
-      header: () => <span>USER</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.a_id,
-      id: "a_id",
-
-      header: () => <span>A-ID</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.a_id,
-      id: "Actions",
-
-      header: () => <span>Actions</span>,
-    },
-  ];
-
-  return (
-    <Grid container>
-      <Grid xs={12} item>
-        <Typography variant="h4">Editable Table </Typography>
-
-        <CustomEditableTable
-          data={data}
-          setData={setData}
-          columns={columns}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isPagination={false}
-          editable={true}
-          isSuccess={true}
-          // count={Math.ceil(data?.data?.meta?.total / limit)}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          rootSX={{ my: theme.spacing(2) }}
-        />
-      </Grid>
-    </Grid>
-  );
-};
-
 export const TableWithActionBtns = () => {
   const theme: any = useTheme();
 
@@ -629,21 +539,18 @@ export function TableWithPagenation() {
       id: "U-ID",
       cell: (info: any) => info.getValue(),
       header: () => <span>U-ID</span>,
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.user,
       id: "user",
       cell: (info: any) => info.getValue(),
       header: () => <span>USER</span>,
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.a_id,
       id: "A-ID",
       cell: (info: any) => info.getValue(),
       header: () => <span>A-ID</span>,
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.a_id,
@@ -668,9 +575,6 @@ export function TableWithPagenation() {
           currentPage={1}
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
           }}
           rootSX={{ my: theme.spacing(2) }}
         />
@@ -760,3 +664,85 @@ export function TableWithNoData() {
     </Grid>
   );
 }
+export const EditableTable = () => {
+  const theme: any = useTheme();
+
+  // ----------------------------------------------------------------------
+  const [data, setData] = React.useState(() => [
+    {
+      u_id: "U4721XBUCA",
+      user: "Sijo Francis",
+      a_id: "A4821MNOHO",
+      TotalDbsFee: "£40.00",
+      TotalAdminFees: "£06.00",
+      TotalPaid: "£46.00",
+      cancelled: "no",
+      CancelledBy: "10-02-2022 14:23:03",
+      CancelledAt: "Ani Cristea",
+    },
+    {
+      u_id: "U4721XBUCA",
+      user: "Sijo Francis",
+      a_id: "A4821MNOHO",
+      TotalDbsFee: "£40.00",
+      TotalAdminFees: "£06.00",
+      TotalPaid: "£46.00",
+      cancelled: "no",
+      CancelledBy: "10-02-2022 14:23:03",
+      CancelledAt: "Ani Cristea",
+    },
+  ]);
+  console.log(data);
+
+  const columns = [
+    {
+      accessorFn: (row: any) => row.u_id,
+      id: "u_id",
+      header: () => <span>U-ID</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.user,
+      id: "user",
+
+      header: () => <span>USER</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.a_id,
+      id: "a_id",
+      header: () => <span>A-ID</span>,
+      isSortable: true,
+    },
+  ];
+  const [columnsDataS, setColumnsDataS] = React.useState(columns);
+  return (
+    <Grid container>
+      <Grid xs={12} item>
+        <Typography variant="h4">Editable Table </Typography>
+
+        <CustomEditableTable
+          data={data}
+          setData={setData}
+          setColumns={setColumnsDataS}
+          columns={columnsDataS}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isPagination={false}
+          editable={true}
+          isSuccess={true}
+          // count={Math.ceil(data?.data?.meta?.total / limit)}
+          currentPage={1}
+          onPageChange={(data: any) => {
+            console.log("Current page data: ", data);
+          }}
+          onSortByChange={(data: any) => {
+            console.log("Sort by: ", data);
+          }}
+          rootSX={{ my: theme.spacing(2) }}
+        />
+      </Grid>
+    </Grid>
+  );
+};

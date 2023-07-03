@@ -15,7 +15,7 @@ const IsFetching = ({ isFetching }: any) => {
         left: 0,
         right: 0,
         backgroundColor: alpha(theme.palette.background.paper, 0.775),
-        zIndex: 9999,
+        zIndex: 99999,
       }}
     >
       <CircularProgress
