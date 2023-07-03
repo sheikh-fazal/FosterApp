@@ -15,13 +15,17 @@ import { useGetChildPersonalViewDataQuery } from "@root/services/foster-child/ch
 import { childPersonalGoalListViewData } from ".";
 
 export const useChildPersonalGoalListView = () => {
-  const [childPersonalGoalViewData] = React.useState(childPersonalGoalListViewData)
+  const [childPersonalGoalViewData] = React.useState(
+    childPersonalGoalListViewData
+  );
   const router = useRouter();
   const { id, childId } = router.query;
   const todayDate = dayjs().format("MM/DD/YYYY");
+  const { data, isLoading, isSuccess, isFetching, isError }: any =
+    useGetChildPersonalViewDataQuery({ id: id, fosterChildId: childId });
 
   const defaultValues = {
-    goalName: "text",
+    goalName: "fghfgh",
     status: "456123.0",
     date: new Date(todayDate),
     comments: "43rtertretretre",
@@ -92,8 +96,6 @@ export const useChildPersonalGoalListView = () => {
   //   },
   // ];
 
-  const { data, isLoading, isSuccess, isFetching, isError } =
-    useGetChildPersonalViewDataQuery({ id: id, fosterChildId: childId });
   console.log(data);
   const theme: any = useTheme();
   const methods: any = useForm({
