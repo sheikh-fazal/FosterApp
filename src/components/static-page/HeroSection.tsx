@@ -3,7 +3,7 @@ import React from "react";
 import heroCircles from "@root/assets/svg/hero-circles.svg";
 import Image from "next/image";
 
-const HeroSection = () => {
+const HeroSection = ({ mainTitle, description }: any) => {
   const theme: any = useTheme();
   return (
     <Box sx={styles.header}>
@@ -17,9 +17,9 @@ const HeroSection = () => {
           variant="h2"
           sx={{ mb: 1, fontSize: { xs: "26px", sm: "46px" } }}
         >
-          Privacy & Policy
+          {mainTitle}
         </Typography>
-        <Typography variant="subtitle2">Last Modification 5/23</Typography>
+        <Typography variant="subtitle2">{description}</Typography>
       </Box>
       <Box sx={styles.wrapper}>
         <Image

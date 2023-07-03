@@ -4,6 +4,7 @@ import {
   Grid,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Typography,
   useTheme,
@@ -56,7 +57,9 @@ const PrivacyAndPolicy = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={10}>
-          <Card sx={{ p: 3, height: "100vh", overflowY: "auto" }}>
+          <Card
+            sx={{ p: { xs: 2, sm: 3 }, height: "100vh", overflowY: "auto" }}
+          >
             <Typography variant="h3" sx={styles.mainTitle}>
               Privacy Policy
             </Typography>
@@ -91,9 +94,11 @@ const PrivacyAndPolicy = () => {
                 the terms used in this privacy notice.
               </Typography>
               {introPoints.map((item: any) => (
-                <List>
-                  <ListItem disablePadding>
-                    <Box sx={styles.listStyling}></Box>
+                <List key={item.id}>
+                  <ListItem disablePadding sx={styles.listItemStyling}>
+                    <ListItemIcon sx={styles.listItemIcon}>
+                      <Box sx={styles.listStyling}></Box>
+                    </ListItemIcon>
                     <ListItemText
                       primary={
                         <Typography variant="body2">{item.title}</Typography>
@@ -359,6 +364,14 @@ const styles: any = {
     top: "10%",
     left: "8%",
     zIndex: 112,
+  },
+  listItemStyling: {
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  listItemIcon: {
+    minWidth: "unset",
+    marginRight: "3px",
   },
   spanTitles: (theme: any) => ({
     background: `linear-gradient(to right, ${theme.palette.primary.darker}, ${theme.palette.primary.light})`,
