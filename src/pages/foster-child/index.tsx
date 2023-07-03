@@ -30,6 +30,7 @@ const PAGE_TITLE = "Foster Child";
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
+    name: "Dashboard",
     href: "/",
   },
   {

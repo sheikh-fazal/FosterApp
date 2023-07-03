@@ -28,11 +28,19 @@ import {
   tableCellClasses,
   TextField,
 } from "@mui/material";
-
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import { Controller, useForm, useFormContext } from "react-hook-form";
+import {
+  FormProvider,
+  RHFCheckbox,
+  RHFTextField,
+} from "@root/components/hook-form";
 // @mui icons
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 // ----------------------------------------------------------------------
 // types
 type TTable = {
@@ -54,6 +62,7 @@ type TTable = {
   rootSX?: any;
   editable?: boolean;
   setData?: any;
+  setColumns?: any;
 };
 
 // ----------------------------------------------------------------------
@@ -78,12 +87,15 @@ const CustomEditableTable = (props: TTable) => {
     tableContainerSX = {},
     rootSX = {},
     setData = () => {},
+    setColumns = () => {},
     editable = false,
     showSerialNo = false,
   } = props;
 
   const [rowSelection, setRowSelection] = React.useState({});
+
   const [load, setload] = React.useState(false);
+
   const theme: any = useTheme();
   // Handling sort using useRef
   const refSortData = (() => {
@@ -143,7 +155,6 @@ const CustomEditableTable = (props: TTable) => {
       return (
         <TextField
           id="filled-hidden-label-normal"
-          defaultValue="Normal"
           variant="outlined"
           inputProps={{ min: 0, style: { textAlign: "center" } }}
           sx={{
@@ -171,13 +182,13 @@ const CustomEditableTable = (props: TTable) => {
   };
   const table = useReactTable({
     data: data ?? EMPTY_ARRAY,
-    columns: columnsData,
+    columns: columns,
     defaultColumn: editable === true ? def : undefined,
     meta:
       editable === true
         ? {
             updateData: (rowIndex: any, columnId: any, value: any) => {
-              
+              setload(true);
               setData((old: any) =>
                 old.map((row: any, index: any) => {
                   if (index === rowIndex) {
@@ -189,7 +200,7 @@ const CustomEditableTable = (props: TTable) => {
                   return row;
                 })
               );
-          
+              setload(false);
             },
           }
         : undefined,
@@ -204,7 +215,7 @@ const CustomEditableTable = (props: TTable) => {
     return sortRef.current[colId] % 2 === 1;
   };
 
-  if (isLoading) return <TableSkeleton />;
+  if (isLoading || load) return <TableSkeleton />;
   return (
     <Grid container sx={{ position: "relative", ...rootSX }}>
       <IsFetching isFetching={isFetching || load} />
@@ -231,9 +242,9 @@ const CustomEditableTable = (props: TTable) => {
                                 header.column.columnDef.header,
                                 header.getContext()
                               )}
-                          {header.column.columnDef.isSortable &&
+                          {header.column.columnDef.isSortable === false &&
                             !isSorted(header.id) && <KeyboardArrowDownIcon />}
-                          {header.column.columnDef.isSortable &&
+                          {header.column.columnDef.isSortable === false &&
                             isSorted(header.id) && <KeyboardArrowUpIcon />}
                         </Box>
                       </StyledTableCell>
@@ -303,6 +314,7 @@ const CustomEditableTable = (props: TTable) => {
           </Grid>
         </Grid>
       </Grid>
+      <EditAble columns={columns} setload={setload} setColumns={setColumns} />
     </Grid>
   );
 };
@@ -408,4 +420,107 @@ const styles = {
       color: "#FFFFFF",
     },
   }),
+  ModelRoot: () => ({
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: { xs: "95%", sm: 500 },
+    bgcolor: "background.paper",
+    borderRadius: "4px",
+    boxShadow: 24,
+    px: 2,
+    py: 2,
+  }),
+};
+
+const EditAble = (props: any) => {
+  const { setColumns, setload, columns } = props;
+  const [open, setOpen] = React.useState(false);
+
+  const theme: any = useTheme();
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const methods = useForm({
+    // mode: "onTouched",
+    resolver: yupResolver(
+      Yup.object().shape({
+        header: Yup.string()
+          .required("required")
+          .test("header", "Only unique values allowed.", (value: any) => {
+            const filter = columns.filter((data: any) => {
+              return data.id === value.toLowerCase().split(" ").join("");
+            });
+            if (filter.length === 0) {
+              return value;
+            }
+          }),
+      })
+    ),
+    defaultValues: {
+      header: "",
+    },
+  });
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = methods;
+  const SubmitData = (fdata: any) => {
+    setload(true);
+    setColumns((old: any) => {
+      const data = {
+        accessorFn: (row: any) =>
+          row[`${fdata.header.toLowerCase().split(" ").join("")}`],
+        id: `${fdata.header.toLowerCase().split(" ").join("")}`,
+        header: () => <span>{`${fdata.header}`}</span>,
+        isSortable: false,
+      };
+      return [...old, data];
+    });
+    setOpen(false);
+    setload(false);
+    reset();
+    // setOpen(false);
+  };
+  return (
+    <>
+      <Button onClick={handleOpen}>add columns</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box sx={styles.ModelRoot}>
+          <Typography
+            variant="body1"
+            color="initial"
+            sx={{
+              color: theme.palette.primary.main,
+              fontWeight: theme.typography.fontWeightMedium,
+            }}
+          >
+            Add Columns
+          </Typography>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
+            <Grid container>
+              <Grid xs={12} sx={{ my: 1 }} item>
+                <RHFTextField
+                  name={"header"}
+                  label={"Header Name"}
+                  fullWidth={true}
+                />
+              </Grid>
+            </Grid>
+            <Button type="submit">submit</Button>
+          </FormProvider>
+        </Box>
+      </Modal>
+    </>
+  );
 };
