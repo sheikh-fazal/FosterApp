@@ -40,6 +40,7 @@ export const TAGS = [
   "POST_REFERENCE",
   "EDIT_REFERENCE",
   "POST_EMPLOYEE",
+  "other-details/bank-details",
   "CLA_DOCUMENTATION_LIST",
   "GET_BASICINFORMATION",
   "NEXT-OF-KIN",
