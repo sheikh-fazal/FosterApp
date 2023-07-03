@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "@root/layouts";
-import Page from "@root/components/Page"; 
+import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import FosteringPanelAssessment from "@root/sections/deregister-foster-dashboard/dereg-assessment-fostering-panel/fostering-panel-assessment/FosteringPanelAssessment";
+import FosteringPanelRecommendation from "@root/sections/deregister-foster-dashboard/dereg-assessment-fostering-panel/fostering-panel-recommendation/FosteringPanelRecommendation";
 
 // ==========================================================
 
@@ -16,7 +16,7 @@ Panel.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "De-reg Assessments Stage 2",
-          href: "/deregister-foster-carer",
+          href: "/",
         },
         {
           name: "Fostering Panel",
@@ -32,8 +32,7 @@ Panel.getLayout = function getLayout(page: any) {
 export default function Panel() {
   return (
     <Page title={PAGE_TILE}>
-      <FosteringPanelAssessment />
+      <FosteringPanelRecommendation />
     </Page>
   );
 }
-
