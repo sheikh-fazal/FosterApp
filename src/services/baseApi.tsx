@@ -23,6 +23,7 @@ export const TAGS = [
   "INITIAL_CONTACT",
   "INITIAL_HOME_VISIT",
   "Experience",
+  "SingleExperience",
   "CAR_INSURANCE",
   "DBS_CHECK",
   "EMPLOYMENT_REFERENCE1",
