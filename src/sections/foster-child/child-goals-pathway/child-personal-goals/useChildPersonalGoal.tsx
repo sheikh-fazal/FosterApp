@@ -25,7 +25,6 @@ export const useChildPersonalGoal = () => {
 
   const childPersonalGoalsListData = data?.absence_details;
   const meta = data?.meta;
-  console.log(childPersonalGoalsListData, meta);
 
   const columns = [
     {
@@ -54,10 +53,9 @@ export const useChildPersonalGoal = () => {
     {
       accessorFn: (row: any) => row.id ?? "-",
       id: "srNo",
-      cell: (info: any) =>  info?.row?.index +1,
+      cell: (info: any) => info?.row?.index + 1,
       header: () => <span>Sr. No</span>,
       isSortable: true,
-      
     },
     {
       accessorFn: (row: any) => row.fosterChildId,
@@ -110,7 +108,11 @@ export const useChildPersonalGoal = () => {
             onClicked={() =>
               route.push({
                 pathname: `child-personal-goals/personal-goals-list-view`,
-                // query: { name: checklistName, id: info.row.original.id, action: "view" },
+                query: {
+                  id: info?.row?.original?.id,
+                  childId: info?.row?.original?.fosterChildId,
+                  action: "view",
+                },
               })
             }
           />

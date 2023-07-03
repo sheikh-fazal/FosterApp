@@ -1,34 +1,25 @@
 import React from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
+import { Button, Card, Grid, Typography } from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
-import { useForm } from "react-hook-form";
-import { childPersonalGoalListViewData, FormSchema, defaultValues } from ".";
-import { useRouter } from "next/router";
+
+import { useChildPersonalGoalListView } from "./useChildPersonalGoalListView";
 export const ChildPersonalGoalsListView = (props: any) => {
-  const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
-    props;
-  const router = useRouter();
-  const theme: any = useTheme();
-  const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
-    formData(data);
-  };
+  // const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
+  //   props;
+
+  const { defaultValues, router, theme, methods,childPersonalGoalViewData }: any =
+    useChildPersonalGoalListView();
   return (
     <Page title="Child Personal Goals">
       <Card sx={{ p: 2 }}>
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <FormProvider
+          methods={methods}
+          disableForm={true}
+          //  onSubmit={handleSubmit(onSubmit)}
+        >
           <Grid container spacing={3}>
-            {/* <Grid item md={12}>
-              <Typography variant="h6">Summary And Recommendation</Typography>
-            </Grid> */}
-
-            {childPersonalGoalListViewData?.map((form: any) => {
+            {childPersonalGoalViewData?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                   <>
@@ -36,7 +27,7 @@ export const ChildPersonalGoalsListView = (props: any) => {
                     {form.component ? (
                       <form.component
                         {...form.componentProps}
-                        disabled={disabled || isLoading}
+                        disabled={true}
                         size="small"
                       >
                         {form?.componentProps.select
@@ -63,17 +54,6 @@ export const ChildPersonalGoalsListView = (props: any) => {
             })}
 
             <Grid item xs={12}>
-              {/* <Button
-                type="submit"
-                sx={{
-                  bgcolor: theme.palette.primary.main,
-                  "&:hover": { bgcolor: theme.palette.primary.main },
-                }}
-                variant="contained"
-              >
-                Submit
-              </Button> */}
-
               <Button
                 sx={{
                   bgcolor: theme?.palette?.orange?.main,

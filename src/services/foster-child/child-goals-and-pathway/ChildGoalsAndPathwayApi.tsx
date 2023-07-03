@@ -10,7 +10,15 @@ export const childGoalsAndPathwayApi = baseAPI.injectEndpoints({
         offset,
       }),
     }),
+    getChildPersonalViewData: builder.query({
+      query: ({ id, fosterChildId }: any) => ({
+        url: `foster-child/personalGoal/get-personal-goal/${id}?fosterChildId=${fosterChildId}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetChildPersonalGoalsListQuery } = childGoalsAndPathwayApi;
+export const {
+  useGetChildPersonalGoalsListQuery,
+  useGetChildPersonalViewDataQuery,
+} = childGoalsAndPathwayApi;
