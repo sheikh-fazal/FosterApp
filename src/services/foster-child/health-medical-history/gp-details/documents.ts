@@ -1,6 +1,6 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
+export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getGpDetailsInfoDocumentData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -11,8 +11,8 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
       providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
     deleteGpDetailsInfoDocumentDataById: builder.mutation({
-      query: (params: any) => ({
-        url: `foster-child/gp-info/docs/${params.id}`,
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/gp-info/docs/${apiDataParameter.pathParams.id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
@@ -41,6 +41,7 @@ export const gpDetailsInfoDocumentApi = baseAPI.injectEndpoints({
 export const {
   useDeleteGpDetailsInfoDocumentDataByIdMutation,
   useGetGpDetailsInfoDocumentDataQuery,
+  useLazyGetGpDetailsInfoDocumentDataQuery,
   usePostGpDetailsInfoDocumentDataMutation,
   usePatchGpDetailsInfoDocumentDataMutation,
 } = gpDetailsInfoDocumentApi;

@@ -10,7 +10,7 @@ import {
   useLazyGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
   usePostGpDetailsInfoDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/gpDetailsInfo";
+} from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -32,12 +32,13 @@ export const useGPDetailsInfo = () => {
     useLazyGetSingleGpDetailsInfoDataQuery();
   // get api params
   const pathParams = {
-    id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    id: query?.gpInfoId,
   };
 
   const apiDataParameter = { pathParams };
 
   const setGpDetailsInfoDefaultValue = async () => {
+    if (!!!query?.gpInfoId) return;
     const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
       apiDataParameter,
       true
@@ -64,9 +65,16 @@ export const useGPDetailsInfo = () => {
       const res: any = await postGpDetailsInfoDataTrigger(
         apiDataParameter
       ).unwrap();
-      router.push(
-        `/foster-child/health-medical-history/gp-details/gp-details-info?gpInfoId=${res?.data?.id}`
-      );
+      router.push({
+        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        query: {
+          gpInfoId: res?.data?.id,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
+
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -78,14 +86,22 @@ export const useGPDetailsInfo = () => {
 
   const patchGpDetailsInfoForm = async (data: any) => {
     const pathParams = {
-      id: query?.gpInfoId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      id: query?.gpInfoId,
     };
     const apiDataParameter = { body: data, pathParams };
     try {
       const res: any = await patchGpDetailsInfoDataTrigger(
         apiDataParameter
       ).unwrap();
-      router.push(`/foster-child/health-medical-history/gp-details`);
+      router.push({
+        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        query: {
+          gpInfoId: query?.gpInfoId,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

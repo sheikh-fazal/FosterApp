@@ -18,7 +18,7 @@ import EditExperiencesModal from "./edit-experience-modal";
 function EmploymentDetailsCards() {
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
-  const [editData,setEditData]=useState()
+  const [editData, setEditData] = useState();
   const theme: any = useTheme();
   const { data, isLoading } = useGetExperienceQuery();
 
@@ -35,7 +35,7 @@ function EmploymentDetailsCards() {
       <Box>
         {data?.data?.map((item: any) => {
           return (
-            <Box sx={{ px: 2, pt: 1 }} key={item.editData}>
+            <Box sx={{ px: 2, pt: 1 }} key={item.id}>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box sx={{ display: "flex", alignItems: "start", gap: 1 }}>
                   <Box sx={{ mt: 0.5 }}>
@@ -54,7 +54,9 @@ function EmploymentDetailsCards() {
                   </Box>
                 </Box>
                 <IconButton
-                  onClick={() => {setEditData(item),setEditOpen(true)}}
+                  onClick={() => {
+                    setEditData(item), setEditOpen(true);
+                  }}
                   sx={styles.btnStyle(theme)}
                   size="small"
                 >
@@ -64,8 +66,9 @@ function EmploymentDetailsCards() {
               <Box sx={{ mt: 1 }}>
                 {item?.experiences?.map((data: any, index: number) => {
                   const isLastChild = index === item?.experiences?.length - 1;
+
                   return (
-                    <Box key={data.editData}>
+                    <Box key={data?.id}>
                       <Box
                         sx={{ display: "flex", alignItems: "start", gap: 1 }}
                       >
@@ -115,7 +118,13 @@ function EmploymentDetailsCards() {
       </Box>
 
       {open && <AddExperiencesModal open={open} setOpen={setOpen} />}
-      {editOpen && <EditExperiencesModal open={editOpen} setEditOpen={setEditOpen} editData={editData}  />}
+      {editOpen && (
+        <EditExperiencesModal
+          open={editOpen}
+          setEditOpen={setEditOpen}
+          editData={editData}
+        />
+      )}
     </Card>
   );
 }
