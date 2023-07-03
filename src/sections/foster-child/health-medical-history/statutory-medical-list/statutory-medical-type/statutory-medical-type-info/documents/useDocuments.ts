@@ -11,7 +11,7 @@ import {
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
-    const STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT =  10;
+  const STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT = 10;
   // ----------------------------------------------------------------------
   const [
     postStatutoryMedicalListInfoDocumentDataTrigger,
@@ -68,7 +68,7 @@ export const useDocuments = () => {
     const pathParams = {
       id: data?.id,
     };
-    console.log(pathParams)
+    console.log(pathParams);
     const apiDataParameter = { pathParams };
     try {
       const res: any =
@@ -90,12 +90,12 @@ export const useDocuments = () => {
     data,
     isLoading,
     isError,
-    isSuccess,      
+    isSuccess,
     user,
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,
     query,
     onDeleteConfirm,
-    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT
+    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
   };
 };

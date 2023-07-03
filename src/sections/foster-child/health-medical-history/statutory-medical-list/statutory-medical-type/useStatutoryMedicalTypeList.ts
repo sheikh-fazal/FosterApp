@@ -6,7 +6,10 @@ import {
   useDeleteStatutoryMedicalTypeDataMutation,
   useGetAllStatutoryMedicalListDataQuery,
 } from "@root/services/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
-import { statutoryMedicalListXTableColumnsFunction, STATUTORYMEDICALLISTTYPEPAGELIMIT } from ".";
+import {
+  statutoryMedicalListXTableColumnsFunction,
+  STATUTORYMEDICALLISTTYPEPAGELIMIT,
+} from ".";
 import { enqueueSnackbar } from "notistack";
 
 export const useStatutoryMedicalTypeList = (props: any) => {
@@ -32,12 +35,12 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       const res: any = await deleteStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-            setIsRecordSetForDelete(false);
+      setIsRecordSetForDelete(false);
 
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
-      setPage(0)
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -53,7 +56,6 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       props.type,
       prepareRecordForDelete
     );
-
 
   const params = {
     search: searchValue,
@@ -91,6 +93,6 @@ export const useStatutoryMedicalTypeList = (props: any) => {
     isSuccess,
     isError,
     isFetching,
-    STATUTORYMEDICALLISTTYPEPAGELIMIT
+    STATUTORYMEDICALLISTTYPEPAGELIMIT,
   };
 };

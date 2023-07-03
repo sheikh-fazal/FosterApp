@@ -35,13 +35,13 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["GP_DETAILS_INFO"],
     }),
-       deleteGpDetailsInfoData: builder.mutation({
+    deleteGpDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
         url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
         method: "DELETE",
         params: apiDataParameter?.params,
       }),
-        invalidatesTags: ["GP_DETAILS_INFO"],
+      invalidatesTags: ["GP_DETAILS_INFO"],
     }),
   }),
 });

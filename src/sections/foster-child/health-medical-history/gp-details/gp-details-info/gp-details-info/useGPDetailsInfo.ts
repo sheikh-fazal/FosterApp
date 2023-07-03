@@ -65,13 +65,15 @@ export const useGPDetailsInfo = () => {
       const res: any = await postGpDetailsInfoDataTrigger(
         apiDataParameter
       ).unwrap();
-         router.push({
-                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
-                query:{
-                  gpInfoId: res?.data?.id,
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
-              })
+      router.push({
+        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        query: {
+          gpInfoId: res?.data?.id,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
 
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -91,13 +93,15 @@ export const useGPDetailsInfo = () => {
       const res: any = await patchGpDetailsInfoDataTrigger(
         apiDataParameter
       ).unwrap();
-         router.push({
-                pathname:`/foster-child/health-medical-history/gp-details/gp-details-info`,
-                query:{
-                  gpInfoId:  query?.gpInfoId,
-                  ...(!!router?.query?.fosterChildId && {fosterChildId:router?.query?.fosterChildId})
-                }
-              })
+      router.push({
+        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        query: {
+          gpInfoId: query?.gpInfoId,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

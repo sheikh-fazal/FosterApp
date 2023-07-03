@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { gpDetailsInfoTableColumnsFunction, GPDETAILSLISTPAGELIMIT } from ".";
-import { useGetAllGpDetailsListDataQuery, useDeleteGpDetailsInfoDataMutation } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
+import {
+  useGetAllGpDetailsListDataQuery,
+  useDeleteGpDetailsInfoDataMutation,
+} from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 
 export const useGPDetailsList = () => {
   const router = useRouter();
-    const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);
+  const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);
   const [deleteData, setDeleteData] = useState("");
-    const [page, setPage] = useState(0);
+  const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
 
-  const [
-    deleteGpDetailsInfoDataTrigger,
-    deleteGpDetailsInfoDataStatus,
-  ] =  useDeleteGpDetailsInfoDataMutation();
-
-
+  const [deleteGpDetailsInfoDataTrigger, deleteGpDetailsInfoDataStatus] =
+    useDeleteGpDetailsInfoDataMutation();
 
   const params = {
     search: searchValue,
@@ -26,10 +25,9 @@ export const useGPDetailsList = () => {
 
   const apiDataParameter = { params };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAllGpDetailsListDataQuery(apiDataParameter,{
-      refectchOnMountOrArgChange:true
+    useGetAllGpDetailsListDataQuery(apiDataParameter, {
+      refetchOnMountOrArgChange: true,
     });
-
 
   const onDeleteConfirm = async (data: any) => {
     const pathParams = {
@@ -45,7 +43,7 @@ export const useGPDetailsList = () => {
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
-      setPage(0)
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -55,7 +53,10 @@ export const useGPDetailsList = () => {
     setIsRecordSetForDelete(true);
     setDeleteData(data);
   };
-    const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(router, prepareRecordForDelete);
+  const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(
+    router,
+    prepareRecordForDelete
+  );
 
   return {
     gpDetailsInfoTableColumns,
@@ -68,7 +69,7 @@ export const useGPDetailsList = () => {
     router,
     setPage,
     GPDETAILSLISTPAGELIMIT,
-     isRecordSetForDelete,
+    isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,
   };
