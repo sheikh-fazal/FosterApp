@@ -32,7 +32,7 @@ export const DeRegInitialRequestData = [
     text: "Social worker Initial Assessment",
     informationText: "Social worker Initial Assessment",
     viewForms: ["View Form"],
-    href: "#",
+    modal: true,
     status: "Passed"
   },
   {

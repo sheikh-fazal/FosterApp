@@ -86,7 +86,7 @@ const DeRegInitialRequest = () => {
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                {ele?.viewForms.length > 1 ? (
+                {ele?.viewForms.length > 1 || ele?.modal ? (
                   <Fragment>
                     <span
                       style={{
