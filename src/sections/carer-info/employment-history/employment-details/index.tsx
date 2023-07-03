@@ -2,7 +2,7 @@ import * as Yup from "yup";
 export const EXPERIENCE = {
   title: "",
   employmentType: "",
-  currentlyWorking: null,
+  currentlyWorking: false,
   startDate: new Date(),
   endDate: new Date(),
   headline: "",
@@ -43,14 +43,12 @@ export const EmploymentType = [
 const experienceSchema = Yup.object().shape({
   title: Yup.string().required("Title is required"),
   employmentType: Yup.string().required("Employment type is required"),
-  currentlyWorking: Yup.boolean().required("Currently working is required"),
+  // currentlyWorking: Yup.boolean().required("Currently working is required"),
   startDate: Yup.date().required("Start date is required"),
-  endDate: Yup.date().when("currentlyWorking", (currentlyWorking, schema) => {
-    console.log(schema);
-    return currentlyWorking
-      ? schema.notRequired()
-      : schema.required("End date is required");
-  }),
+  endDate: Yup.date()
+    .typeError("End date is required")
+    .required("End date is required")
+    .min(Yup.ref("startDate"), "End date must be later than start date"),
   headline: Yup.string().required("Headline is required"),
   industry: Yup.string().required("Industry is required"),
   description: Yup.string().required("Description is required"),
@@ -59,7 +57,7 @@ const experienceSchema = Yup.object().shape({
 export const addFormValuesSchema = Yup.object().shape({
   companyName: Yup.string().required("Company name is required"),
   location: Yup.string().required("Location is required"),
-  media: Yup.string().required("Media is required"),
+  media: Yup.mixed().required("Image  is is required"),
   experiences: Yup.array()
     .of(experienceSchema)
     .required("Experiences are required"),
