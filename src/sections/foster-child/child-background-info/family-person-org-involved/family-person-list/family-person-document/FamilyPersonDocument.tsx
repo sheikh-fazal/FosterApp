@@ -1,28 +1,30 @@
 import React from "react";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { UploadDocumentData } from ".";
 import { useFamilyPersonDocument } from "./useFamilyPersonDocument";
 
 export const FamilyPersonDocument = () => {
   const {
-    query,
     data,
+    query,
+    isError,
     isLoading,
     isSuccess,
     isFetching,
-    isError,
+    setPage,
+    setSearchValue,
+    listDeleteHandler,
     submitFamilyPersonDocumentData,
-  }:any = useFamilyPersonDocument();
+  }: any = useFamilyPersonDocument();
 
   console.log(data);
 
   return (
     <>
       <UploadDocuments
-        readOnly={false}
-        searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
-        }
+        readOnly={query?.action === "view"}
+        searchParam={(data: any) => {
+          setSearchValue(data.search);
+        }}
         tableData={data?.data}
         isLoading={isLoading}
         isFetching={isFetching}
@@ -32,8 +34,14 @@ export const FamilyPersonDocument = () => {
           console.log("data all the way here", data);
           submitFamilyPersonDocumentData(data);
         }}
-        column={["docName", "docType", "date", "uploadedBy", "password"]}
-        onPageChange={(page: any) => console.log("parent log", page)}
+        
+        column={["documentName", "documentType", "documentDate", "personName", "password"]}
+        onPageChange={(pageNo: any) => {
+          setPage(() => (pageNo - 1) * 10);
+        }}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
+        // onDelete={() => listDeleteHandler(info?.row?.original?.id)}
       />
     </>
   );

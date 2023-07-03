@@ -4,6 +4,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
 import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import { useRouter } from "next/router";
 
@@ -47,13 +48,16 @@ export default function ViewFamilyPersonForm() {
 
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs
-        tabsDataArray={["Family Org Involved", "Documents"]}
-      >
+      <HorizaontalTabs tabsDataArray={["Family Org Involved", "Documents"]}>
+
+
+        {/* Family Person Form */}
         {isLoading && <p>Loading...</p>}
-        {isSuccess && (
-          <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />
-        )}
+        {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />}
+
+        {/* Upload Document */}
+        <FamilyPersonDocument  />
+        
       </HorizaontalTabs>
     </Page>
   );

@@ -25,11 +25,11 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
 
     // Post API of Family Person Upload Document
     postFamilyPersonUploadDocument: builder.mutation({
-      query: (childFamilyOrgInfoId: any) => ({
-        url: `foster-child/add-child-family-org-info/document/${childFamilyOrgInfoId}`,
+      query: (apiDataParameter: any) => ({
+        url: `foster-child/add-child-family-org-info/document/${apiDataParameter.childFamilyOrgInfoId}`,
         method: "POST",
-        param: "63e5eefe677b0d581e40682a",
-        body: childFamilyOrgInfoId,
+        param: apiDataParameter.childFamilyOrgInfoId,
+        body: apiDataParameter.body,
       }),
       invalidatesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],
     }),

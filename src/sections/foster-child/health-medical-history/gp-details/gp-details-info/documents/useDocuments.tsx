@@ -10,13 +10,13 @@ import {
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
+  const [searchValue, setSearchValue] = useState(undefined);
   // ----------------------------------------------------------------------
   const [
     postGpDetailsInfoDocumentDataTrigger,
     postGpDetailsInfoDocumentDataStatus,
   ] = usePostGpDetailsInfoDocumentDataMutation();
   const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     offset: page,
     limit: 10,
