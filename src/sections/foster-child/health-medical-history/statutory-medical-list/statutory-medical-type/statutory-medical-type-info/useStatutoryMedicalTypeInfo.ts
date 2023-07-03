@@ -17,7 +17,6 @@ import {
 export const useStatutoryMedicalTypeInfo = () => {
   const { query } = useRouter();
   const router = useRouter();
-  console.log(query.type);
   const ehcpInfoFormData = ehcpInfoFormDataFunction(query?.action === "view");
 
   const [
@@ -36,7 +35,7 @@ export const useStatutoryMedicalTypeInfo = () => {
   ] = useLazyGetSingleStatutoryMedicalTypeDataQuery();
   // get api params
   const pathParams = {
-    id: query?.id || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    id: query?.id,
   };
   const params = {
     statutoryMedicalType: query?.type,
@@ -44,6 +43,7 @@ export const useStatutoryMedicalTypeInfo = () => {
   const apiDataParameter = { pathParams, params };
 
   const setGpDetailsInfoDefaultValue = async () => {
+    if (!!!query?.id) return;
     const { data, isError } = await getSingleStatutoryMedicalTypeDataTrigger(
       apiDataParameter,
       true
@@ -58,7 +58,7 @@ export const useStatutoryMedicalTypeInfo = () => {
     resolver: yupResolver(ehcpInfoFormSchema),
     defaultValues: setGpDetailsInfoDefaultValue,
   });
-  const { trigger, setValue, handleSubmit, getValues, watch, reset } = methods;
+  const { handleSubmit } = methods;
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
     const params = {
@@ -74,10 +74,16 @@ export const useStatutoryMedicalTypeInfo = () => {
       const res: any = await postStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-      console.log(res);
-      router.push(
-        `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${res?.data?.id}&type=${query.type}`
-      );
+      router.push({
+        pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+        query: {
+          id: res?.data?.id,
+          type: query.type,
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -89,7 +95,7 @@ export const useStatutoryMedicalTypeInfo = () => {
 
   const patchStatutoryMedicalTypeDataForm = async (data: any) => {
     const pathParams = {
-      id: query?.id || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      id: query?.id,
     };
     const params = {
       statutoryMedicalType: query?.type,
@@ -99,9 +105,17 @@ export const useStatutoryMedicalTypeInfo = () => {
       const res: any = await patchStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
-      router.push(
-        `/foster-child/health-medical-history/statutory-medical-list`
-      );
+      router.push({
+        pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+        query: {
+          id: query.id,
+          type: query.type,
+          action: "edit",
+          ...(!!router?.query?.fosterChildId && {
+            fosterChildId: router?.query?.fosterChildId,
+          }),
+        },
+      });
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });

@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useChildMissingPlacementTable } from "./useChildMissingPlacementTable";
 
-const ChildMissingPlacementTable = () => {
+const ChildMissingPlacementTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -102,7 +103,7 @@ const ChildMissingPlacementTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_child_missing_placement_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

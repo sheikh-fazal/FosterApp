@@ -12,16 +12,12 @@ const EditTrainingsProfile = (props: any) => {
     trainingProfileId,
     defaultValues,
     initialValueProps = defaultValues,
-    isError,
-    isSuccess,
   } = props;
   const { methods, handleSubmit, onSubmit } = useEditTraingingProfile({
     initialValueProps,
     onSubmitHandler,
     trainingProfileId,
   });
-
-  console.log(methods.formState.errors);
 
   return (
     <>
