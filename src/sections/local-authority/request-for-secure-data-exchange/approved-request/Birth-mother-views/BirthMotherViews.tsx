@@ -56,10 +56,6 @@ const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
             >
               Save
             </Button>
-
-            <Button onClick={handleNextTab} type="button" variant="contained">
-              Next
-            </Button>
           </Grid>
         </Grid>
       </Box>

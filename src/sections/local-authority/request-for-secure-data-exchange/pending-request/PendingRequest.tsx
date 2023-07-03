@@ -8,7 +8,6 @@ import { Box } from "@mui/material";
 const PendingRequest = () => {
   const {
     tableHeaderRefTwo,
-    router,
     TableData,
     columns,
     theme,

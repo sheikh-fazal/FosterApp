@@ -82,7 +82,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
                 "&:hover": {
                   backgroundColor: "#F6830F",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -95,7 +95,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
                 "&:hover": {
                   backgroundColor: "#23183D",
                 },
-                mr: 2,
+                m: 1,
               }}
               type="submit"
               variant="contained"
@@ -104,7 +104,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
             </Button>
 
             {/* <Link href={""} style={{ textDecoration: "none" }}> */}
-            <Button type="button" variant="contained" onClick={handleNextTab}>
+            <Button sx={{ m: 1}} type="button" variant="contained" onClick={handleNextTab}>
               Next
             </Button>
             {/* </Link> */}

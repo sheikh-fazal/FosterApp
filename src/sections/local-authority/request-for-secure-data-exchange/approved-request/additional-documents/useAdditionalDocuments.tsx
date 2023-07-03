@@ -6,6 +6,7 @@ import PDF from "../../../../../assets/img/local authority/pdficon.png";
 import Image from "next/image";
 import { TableData } from ".";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import UploadDocumentModal from "@root/components/modal/UploadDocumentModal/UploadDocumentModal";
 
 export const useAdditionalDocuments = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -13,6 +14,8 @@ export const useAdditionalDocuments = () => {
   const theme = useTheme();
   const [cancelDelete, setCancelDelete] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
 
   const handleDelete = () => {
     setCancelDelete(!cancelDelete);
@@ -85,23 +88,38 @@ export const useAdditionalDocuments = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction size="small" type="view" onClicked={() => {}} />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() => setViewModal(true)}
+          />
+          {viewModal && (
+            <UploadDocumentModal
+              disabled
+              open={viewModal}
+              handleClose={() => setViewModal(false)} 
+            />
+          )}
           <TableAction
             size="small"
             type="edit"
-            onClicked={() =>
-              router.push({
-                pathname: "",
-                query: { action: "edit", id: "" },
-              })
-            }
+            onClicked={() => setOpenEditModal(true)}
           />
+          {openEditModal && (
+            <UploadDocumentModal
+              open={openEditModal}
+              handleClose={() => setOpenEditModal(false)}
+              isHideSubmitButton={true}
+            />
+          )}
           <TableAction size="small" type="delete" onClicked={handleDelete} />
-          <DeleteModel
-            open={cancelDelete}
-            handleClose={() => setCancelDelete(false)}
-            onDeleteClick={handleDelete}
-          />
+          {cancelDelete && (
+            <DeleteModel
+              open={cancelDelete}
+              handleClose={() => setCancelDelete(false)}
+              onDeleteClick={handleDelete}
+            />
+          )}
         </Box>
       ),
       header: () => <span>actions</span>,

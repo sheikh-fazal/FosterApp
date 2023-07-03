@@ -1,6 +1,9 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from 'yup';
+import { fData } from "@root/utils/formatNumber";
+
+const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB
 
 export const addMeetingRecordingInitialValues = {
   meetingAgenda: '',
@@ -10,7 +13,7 @@ export const addMeetingRecordingInitialValues = {
   meetingNotes: "",
   meetingActions: "",
   report: "",
-  attachFile: ""
+  attachFile: null
 }
 export const addMeetingRecordingSchema = Yup.object().shape({
   meetingAgenda: Yup.string().required('Field is required'),
@@ -20,7 +23,9 @@ export const addMeetingRecordingSchema = Yup.object().shape({
   meetingNotes: Yup.string().required('Field is required'),
   meetingActions: Yup.string().required('Field is required'),
   report: Yup.string().required('Field is required'),
-  attachFile: Yup.string().required('Field is required'),
+  attachFile: Yup.mixed()
+  .required("Field is required")
+  .test("fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
 })
 export const addMeetingRecordingData = [
   {

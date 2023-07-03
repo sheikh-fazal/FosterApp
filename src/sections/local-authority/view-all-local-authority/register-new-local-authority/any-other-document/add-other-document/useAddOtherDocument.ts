@@ -1,13 +1,13 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { addOtherDocumentData, addOtherDocumentFormSchema } from ".";
+import { addOtherDocumentFormSchema, initialValues } from ".";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useAddOtherDocument = () => {
+
     const methods: any = useForm({
         resolver: yupResolver(addOtherDocumentFormSchema),
-        defaultValues: addOtherDocumentData,
+        defaultValues: initialValues,
     });
-
     const {
         reset,
         control,

@@ -37,20 +37,6 @@ const StatusOfChild = ({ handleNextTab, handleBackTab }: any) => {
           <Grid item xs={12}>
             <Button
               sx={{
-                backgroundColor: "#F6830F",
-                "&:hover": {
-                  backgroundColor: "#F6830F",
-                },
-                mr: 2,
-              }}
-              type="submit"
-              variant="contained"
-              onClick={handleBackTab}
-            >
-              Back
-            </Button>
-            <Button
-              sx={{
                 backgroundColor: "#23183D",
                 "&:hover": {
                   backgroundColor: "#23183D",
@@ -62,12 +48,6 @@ const StatusOfChild = ({ handleNextTab, handleBackTab }: any) => {
             >
               Save
             </Button>
-
-            
-              <Button onClick={handleNextTab} type="button" variant="contained">
-                Next
-              </Button>
-            
           </Grid>
         </Grid>
       </Box>

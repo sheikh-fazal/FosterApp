@@ -15,6 +15,7 @@ const GovtLegislationsTabs = () => {
     isAddUrlModalOpen,
     setIsAddUrlModalOpen,
     handleSubmit,
+    handlePreviousTab,
     handleAddUrlSubmit, 
   } = useGovtLegislationTabs();
 

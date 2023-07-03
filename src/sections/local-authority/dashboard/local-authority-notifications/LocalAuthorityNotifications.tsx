@@ -36,7 +36,7 @@ export default function LocalAuthorityNotifications() {
             }}
         >
             <Typography variant="h6" component="h6" sx={{ color: theme.palette.primary.main, mb: 1 }}>
-                Referral Notifications
+                Local Authority Notifications
             </Typography>
             <FormGroup>
                 <Box sx={styles.box}>

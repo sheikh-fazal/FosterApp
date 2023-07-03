@@ -19,7 +19,7 @@ import ShareModal from "../modal/shareModal";
 import { useRouter } from "next/router";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 
-const ANON_FUNC = () => {};
+const ANON_FUNC = () => { };
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -122,7 +122,7 @@ export default function FormTable(props: any) {
     certificate,
     tableKey,
     route = "view",
-    columns: tableColumns, 
+    columns: tableColumns,
   } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
@@ -149,23 +149,24 @@ export default function FormTable(props: any) {
       cell: (info: any) => info.getValue(),
       header: () => <span>{label}</span>,
     };
-  }); 
-    columns.push(
-      {
-        id: "Manage Certificate",
-        cell: (info: any) => (
-          <Box
-            sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
-            onClick={() => {
-              setCertificateModal(true);
-            }}
-          >
-            Delegate Certificate
-          </Box>
-        ),
-        header: () => <span>Manage Certificate</span>,
-        isSortable: false,
-      },
+  });
+
+  if (certificate) {
+    columns.push({
+      id: "certificate",
+      cell: (info: any) => (
+        <Box
+          sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
+          onClick={() => {
+            setCertificateModal(true);
+          }}
+        >
+          Delegate Certificate
+        </Box>
+      ),
+      header: () => <span>Manage Certificate</span>,
+      isSortable: false,
+    },
 
       {
         id: "actions",
@@ -218,8 +219,62 @@ export default function FormTable(props: any) {
 
         header: () => <span>actions</span>,
         isSortable: false,
-      }
-    ); 
+      });
+  }
+
+  columns.push({
+    id: "actions",
+    cell: (info: any) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {view && (
+          <TableAction
+            type="view"
+            onClicked={(id: number) => onViewHandler(info.row.index)}
+          />
+        )}
+        {print && (
+          <TableAction
+            type="print"
+            onClicked={(id: number) => window.print()}
+          />
+        )}
+        {share && (
+          <TableAction
+            type="share"
+            onClicked={() => setShareModal(!shareModal)}
+          />
+        )}
+
+        {showView === "view" ? (
+          ""
+        ) : (
+          <>
+            <TableAction
+              type="edit"
+              onClicked={(id: number) =>
+                onViewHandler(info.row.index, "Update")
+              }
+            />
+            <TableAction
+              type="delete"
+              onClicked={(id: number) => onDeleted(info.row.index)}
+            />
+          </>
+        )}
+      </Box>
+    ),
+
+    header: () => <span>actions</span>,
+    isSortable: false,
+  });
+
   const handleShare = () => {
     setShareModal(false);
   };
