@@ -7,9 +7,9 @@ import Link from "next/link";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
-import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
-import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
 import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
+import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
+import DeregSocialWorkerDialogbox from "../dereg-social-worker-dialogbox/DeregSocialWorkerDialogbox";
 
 const DeRegInitialRequest = () => {
   const {
@@ -25,7 +25,10 @@ const DeRegInitialRequest = () => {
     setDeRegisterData,
     currentIndex,
     setCurrentIndex,
-    goToNextSlide
+    goToNextSlide,
+    disabled,
+    handleDisabled,
+    handleViewChecklist
   } = useDeRegInitialRequest();
 
   return (
@@ -86,22 +89,20 @@ const DeRegInitialRequest = () => {
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                {ele?.viewForms.length > 1 ? (
-                  <Fragment>
-                    <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center"
-                      }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
-                    >
+                {ele?.viewForms.length > 1 || ele?.modal ? (
+                  <span
+                    style={{
+                      color: theme.palette.primary.main,
+                      fontWeight: 600,
+                      fontSize: 14,
+                      cursor: "pointer",
+                      textAlign: "center"
+                    }}
+                    onClick={() => { setOpenSocialWorkerAssessmentDialogbox(true) }}
+                  >
 
-                      {ele?.viewForms[currentIndex]}
-                    </span>
-                  </Fragment>
+                    {ele?.viewForms[currentIndex]}
+                  </span>
                 ) : (
                   <Link
                     style={{
@@ -143,7 +144,16 @@ const DeRegInitialRequest = () => {
           </Grid>
         ))}
       </Grid>
-      <SocialWorkerFormDialogbox openFormDialog={openSocialWorkerAsessmentDialogbox} setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox} />
+      {openSocialWorkerAsessmentDialogbox &&
+        <DeregSocialWorkerDialogbox
+          disabled={disabled}
+          isEdit
+          handleEdit={handleDisabled}
+          openFormDialog={openSocialWorkerAsessmentDialogbox}
+          setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox}
+          handleCloseForm={() => { setOpenSocialWorkerAssessmentDialogbox(false); handleDisabled() }}
+          handleViewChecklist={handleViewChecklist}
+        />}
     </>
   );
 };
