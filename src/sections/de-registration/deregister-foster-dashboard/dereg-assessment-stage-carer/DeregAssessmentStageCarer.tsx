@@ -24,7 +24,8 @@ const DeregAssessmentStageCarer = () => {
     setDeRegisterData,
     currentIndex,
     setCurrentIndex,
-    goToNextSlide
+    goToNextSlide,
+    handleSlide
   } = useDeregAssessmentStageCarer();
 
   return (
@@ -85,38 +86,58 @@ const DeregAssessmentStageCarer = () => {
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                {ele?.viewForms.length > 1 ? (
-                  <Fragment>
+                {Array.isArray(ele.viewForms) ? (
+                  <>
                     <span
                       style={{
                         color: theme.palette.primary.main,
                         fontWeight: 600,
                         fontSize: 14,
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
+                      }}
+                      onClick={handleSlide}
+                    >
+                      {ele.viewForms[currentIndex]}
+                    </span>
+                    <Image
+                      src={LeftIcon}
+                      alt=""
+                      style={{ marginLeft: "20px", cursor: "pointer" }}
+                      onClick={goToNextSlide}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {ele?.href ? (
+                      <Link
+                        href={ele?.href}
+                        passHref
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {ele?.viewForms}
+                      </Link>
+                    ) : <span
+                      style={{
+                        color: theme.palette.primary.main,
+                        fontWeight: 600,
+                        fontSize: 14,
+                        cursor: "pointer",
+                        textAlign: "center",
                       }}
                       onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
                     >
-
-                      {ele?.viewForms[currentIndex]}
-                    </span>
-                  </Fragment>
-                ) : (
-                  <Link
-                    style={{
-                      color: theme.palette.primary.main,
-                      fontWeight: 600,
-                      fontSize: 14,
-                      textDecoration: "none",
-                    }}
-                    href={ele?.href}
-                  >
-                    {ele?.viewForms}
-                  </Link>
+                      {ele.viewForms}
+                    </span>}
+                  </>
                 )}
-                {ele?.viewForms.length > 1 &&
-                  <Image src={LeftIcon} alt="" style={{ marginLeft: "20px", cursor: "pointer" }} onClick={goToNextSlide} />
-                }
               </Box>
             </Grid>
             <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>

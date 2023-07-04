@@ -11,10 +11,12 @@ export const useDeregContractsAgreements: any = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNextSlide = () => {
-    const newArray = deRegisterData.map((data) => data.viewForms);
-    const newMainIndex = currentIndex + 1 >= newArray.length ? 0 : currentIndex + 1;
-    setCurrentIndex(newMainIndex);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % deRegisterData.length);
   };
+
+  const handleSlide = () => {
+    
+  }
   
 
   return {
@@ -31,6 +33,7 @@ export const useDeregContractsAgreements: any = () => {
     setDeRegisterData,
     currentIndex,
     setCurrentIndex,
-    goToNextSlide
+    goToNextSlide,
+    handleSlide
   };
 };

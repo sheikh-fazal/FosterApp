@@ -9,7 +9,7 @@ import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitmen
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
 import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
-import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
+import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
 
 const DeRegInitialRequest = () => {
   const {
@@ -21,11 +21,10 @@ const DeRegInitialRequest = () => {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     deRegisterData,
-    enquiryStageApiData,
     setDeRegisterData,
     currentIndex,
-    setCurrentIndex,
-    goToNextSlide
+    goToNextSlide,
+    handleSlide
   } = useDeRegInitialRequest();
 
   return (
@@ -74,59 +73,68 @@ const DeRegInitialRequest = () => {
                 {ele?.text}
               </span>
             </Grid>
-            <Grid
-              container
-              alignItems={"center"}
-              justifyContent={"center"}
-              item
-              lg={1.5}
-              xs={12}
-            >
+            <Grid container alignItems={"center"} justifyContent={"center"} item lg={1.5} xs={12}>
               <ArrowLeftSharpIcon sx={{ fontSize: 35 }} />
             </Grid>
-            <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
+
+            <Grid container alignItems="center" justifyContent="center" item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                {ele?.viewForms.length > 1 || ele?.modal ? (
-                  <Fragment>
+                {Array.isArray(ele.viewForms) ? (
+                  <>
                     <span
                       style={{
                         color: theme.palette.primary.main,
                         fontWeight: 600,
                         fontSize: 14,
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
+                      }}
+                      onClick={handleSlide}
+                    >
+                      {ele.viewForms[currentIndex]}
+                    </span>
+                    <Image
+                      src={LeftIcon}
+                      alt=""
+                      style={{ marginLeft: "20px", cursor: "pointer" }}
+                      onClick={goToNextSlide}
+                    />
+                  </>
+                ) : (
+                  <>
+                    {ele?.href ? (
+                      <Link
+                        href={ele?.href}
+                        passHref
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {ele?.viewForms}
+                      </Link>
+                    ) : <span
+                      style={{
+                        color: theme.palette.primary.main,
+                        fontWeight: 600,
+                        fontSize: 14,
+                        cursor: "pointer",
+                        textAlign: "center",
                       }}
                       onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
                     >
-
-                      {ele?.viewForms[currentIndex]}
-                    </span>
-                  </Fragment>
-                ) : (
-                  <Link
-                    style={{
-                      color: theme.palette.primary.main,
-                      fontWeight: 600,
-                      fontSize: 14,
-                      textDecoration: "none",
-                    }}
-                    href={ele?.href}
-                  >
-                    {ele?.viewForms}
-                  </Link>
+                      {ele.viewForms}
+                    </span>}
+                  </>
                 )}
-                {ele?.viewForms.length > 1 &&
-                  <Image src={LeftIcon} alt="" style={{ marginLeft: "20px", cursor: "pointer" }} onClick={goToNextSlide} />
-                }
               </Box>
             </Grid>
             <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>
-              <RecruitmentStatusDropdown
-                status={ele?.status}
-                component={"EnquiryStage"}
-                setEnquiryStageData={setDeRegisterData}
-                enquiryStageData={deRegisterData}
-              />
+              <RecruitmentStatusDropdown status={ele?.status} component={"EnquiryStage"} setEnquiryStageData={setDeRegisterData} enquiryStageData={deRegisterData} />
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} md={6} xs={12}>
               <Button onClick={() => setFormDialogId(ele?.id)} variant="contained">
