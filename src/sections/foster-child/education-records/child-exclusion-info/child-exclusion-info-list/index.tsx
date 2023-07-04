@@ -8,7 +8,7 @@ export const columnsChildExclusionInfoTable = (
   router: any,
   cancelDelete: any,
   setCancelDelete: any,
-  openDeleteModel: any,
+  openDeleteModel: any
 ) => [
   {
     id: "select",
@@ -50,7 +50,7 @@ export const columnsChildExclusionInfoTable = (
   {
     accessorFn: (row: any) => row.dateReturn,
     id: "dateReturn",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => info.getValue(dayjs().format("MM/DD/YYYY")),
     header: () => <span>Return Date</span>,
     isSortable: true,
   },
@@ -68,7 +68,11 @@ export const columnsChildExclusionInfoTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info?${info.getValue()}`)}
+          onClicked={() =>
+            router.push(
+              `/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info?${info.getValue()}`
+            )
+          }
         />
         <TableAction
           type="delete"
@@ -78,7 +82,11 @@ export const columnsChildExclusionInfoTable = (
 
         <TableAction
           type="view"
-          onClicked={() => router.push(`/foster-child/education-records/child-exclusion-info/view-child-exclusion-info?${info.getValue()}`)}
+          onClicked={() =>
+            router.push(
+              `/foster-child/education-records/child-exclusion-info/view-child-exclusion-info?${info.getValue()}`
+            )
+          }
         />
       </Box>
     ),
