@@ -2,11 +2,11 @@ import Layout from '@root/layouts';
 import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
-
+import InitialRequestForm from '@root/sections/de-registration/deregister-foster-dashboard/dereg-initial-request/initial-request-form/initialRequestForm';
 
 const PAGE_TITLE = "De-Registration";
 
-InitialRequestForm.getLayout = function getLayout(page: any) {
+InitialRequestFormLayout.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -27,10 +27,10 @@ InitialRequestForm.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function InitialRequestForm() {
+export default function InitialRequestFormLayout() {
     return (
         <Page title={PAGE_TITLE}>
-            {/* <AgencyPolicyAgreements /> */}
+            <InitialRequestForm />
         </Page>
     );
 }
