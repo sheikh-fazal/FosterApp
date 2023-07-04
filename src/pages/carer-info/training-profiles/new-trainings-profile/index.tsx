@@ -2,6 +2,8 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import NewTrainingsProfile from "@root/sections/carer-info/training-profiles/new-trainings-profile/NewTrainingsProfile";
 import {
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
@@ -11,8 +13,6 @@ import {
 import { useState } from "react";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import NewTrainingsProfile from "@root/sections/carer-info/training-profiles/new-trainings-profile/NewTrainingsProfile";
 
 const PAGE_TITLE = "Training Profile";
 
@@ -45,28 +45,27 @@ export default function AddTraingVerification() {
   const router = useRouter();
   const formData = new FormData();
 
-  const [tabsArr, setTabsArr] = useState(["Training Profile"]);
+  const [profileTabs, setProfileTabs] = useState(["Training Profile"]);
   const [formState, setFormState] = useState("add");
   const [profileId, setProfileId] = useState("");
 
-  console.log(profileId);
-
   const updateTabs = async (data: any) => {
-    // try {
-    //   let res: any = null;
-    //   if (formState === "add") res = await postData(data).unwrap();
-    //   else
-    //     res = await updateData({ trainingProfileId: profileId, data }).unwrap();
-    //   if (res?.error) return;
-    //   setFormState("update");
-    //   setProfileId(res.data.id);
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
-    //   setTabsArr(["Training Profile", "Upload Documents"]);
-    // } catch (error: any) {
-    //   enqueueSnackbar("Something Went Wrong!", { variant: "error" });
-    // }
+    try {
+      let res: any = null;
+      if (formState === "add") res = await postData(data).unwrap();
+      else
+        res = await updateData({ trainingProfileId: profileId, data }).unwrap();
+      if (res?.error) return;
+      setFormState("update");
+      setProfileId(res.data.id);
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+      setProfileTabs(["Training Profile", "Upload Documents"]);
+      router.push("/carer-info/training-profiles/trainings-list");
+    } catch (error: any) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
+    }
   };
 
   const {
@@ -76,8 +75,6 @@ export default function AddTraingVerification() {
     isFetching: uploadDocumentsIsFetching,
     isSuccess,
   } = useGetTrainingProfileAllDocumentQuery({ id: profileId, params });
-
-  console.log(uploadDocuments, "uploaded documents");
 
   const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
@@ -92,25 +89,23 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    // try {
-    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await postTrainingProfileData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-
-    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    // }
+      router.push(
+        "/recruitment/assessment-stage-one/training-verification-form"
+      );
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
   };
 
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs tabsDataArray={tabsArr}>
+      <HorizaontalTabs tabsDataArray={profileTabs}>
         <NewTrainingsProfile
           profileId={profileId}
           formState={formState}
@@ -120,10 +115,7 @@ export default function AddTraingVerification() {
         <UploadDocuments
           readOnly={false}
           tableData={uploadDocuments?.data?.docs}
-          searchParam={
-            (searchedText: string) => setParams(searchedText)
-            // console.log(searchedText)
-          }
+          searchParam={(searchedText: string) => setParams(searchedText)}
           isLoading={uploadDocumentsIsLoading}
           isFetching={uploadDocumentsIsFetching}
           isError={uploadDocumentsIsError}

@@ -54,8 +54,14 @@ export const formData = [
     component: RHFTextField,
   },
   {
-    gridLength: 6,
-    otherOptions: { name: "address", label: "Address", fullWidth: true },
+    gridLength: 12,
+    otherOptions: {
+      name: "address",
+      label: "Address",
+      fullWidth: true,
+      multiline: true,
+      minRows: 3,
+    },
     component: RHFTextField,
   },
   {
