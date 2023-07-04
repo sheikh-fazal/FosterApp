@@ -4,7 +4,6 @@ import {
   Grid,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Typography,
   useTheme,
@@ -83,12 +82,12 @@ const CookiesPolicy = () => {
                   mb: 2,
                 }}
               >
-                This cookie policy ("Policy") describes what cookies are and how
-                and they're being used by the{" "}
+                {` This cookie policy ("Policy") describes what cookies are and how
+                and they're being used by the `}{" "}
                 <Link target="__blank" href="https://fosterapp.co.uk/">
                   fosterapp.co.uk{" "}
                 </Link>{" "}
-                website ("Website" or "Service") and any of its related products
+                {`website ("Website" or "Service") and any of its related products
                 and services (collectively, "Services"). This Policy is a
                 legally binding agreement between you ("User", "you" or "your")
                 and this Website operator ("Operator", "we", "us" or "our"). You
@@ -98,7 +97,7 @@ const CookiesPolicy = () => {
                 available to you regarding accepting or declining the use of
                 cookies. For further information on how we use, store and keep
                 your personal data secure, see our privacy policy. This cookie
-                policy was created with the help of the cookie policy generator.
+                policy was created with the help of the cookie policy generator.`}
               </Typography>
             </Box>
             <Box id="about-cookies">
@@ -117,28 +116,29 @@ const CookiesPolicy = () => {
                 component="p"
                 sx={styles.paragraphStyling}
               >
-                Cookies are small pieces of data stored in text files that are
+                {`Cookies are small pieces of data stored in text files that are
                 saved on your computer or other devices when websites are loaded
                 in a browser. They are widely used to remember you and your
                 preferences, either for a single visit (through a "session
                 cookie") or for multiple repeat visits (using a "persistent
-                cookie").
+                cookie").`}
                 <br /> <br />
-                Session cookies are temporary cookies that are used during the
+                {` Session cookies are temporary cookies that are used during the
                 course of your visit to the Website, and they expire when you
-                close the web browser. <br />
+                close the web browser.`}
                 <br />
-                Persistent cookies are used to remember your preferences within
+                <br />
+                {`Persistent cookies are used to remember your preferences within
                 our Website and remain on your desktop or mobile device even
                 after you close your browser or restart your computer. They
                 ensure a consistent and efficient experience for you while
-                visiting the Website and Services.
+                visiting the Website and Services.`}
                 <br /> <br />
-                Cookies may be set by the Website ("first-party cookies"), or by
+                {`Cookies may be set by the Website ("first-party cookies"), or by
                 third parties, such as those who serve content or provide
                 advertising or analytics services on the Website ("third party
                 cookies"). These third parties can recognize you when you visit
-                our website and also when you visit certain other websites.
+                our website and also when you visit certain other websites.`}
               </Typography>
             </Box>
             {/* Data we collect section started */}
@@ -151,7 +151,7 @@ const CookiesPolicy = () => {
                   mb: 2,
                 }}
               >
-                What type of cookies do we use?
+                {`What type of cookies do we use?`}
               </Typography>
               {cookiesTypes.map((item: any) => (
                 <div key={item.id}>
@@ -185,7 +185,7 @@ const CookiesPolicy = () => {
                   mb: 2,
                 }}
               >
-                What are your cookie options?
+                {`What are your cookie options?`}
               </Typography>
               <Typography
                 variant="body1"
@@ -194,12 +194,12 @@ const CookiesPolicy = () => {
                   mb: 2,
                 }}
               >
-                If you don't like the idea of cookies or certain types of
+                {`If you don't like the idea of cookies or certain types of
                 cookies, you can change your browser's settings to delete
                 cookies that have already been set and to not accept new
-                cookies. To learn more about how to do this, visit{" "}
+                cookies. To learn more about how to do this, visit`}{" "}
                 <Link href="https://www.internetcookies.com/" target="__blank">
-                  internetcookies.com.
+                  internetcookies.com
                 </Link>
               </Typography>
               <Typography
@@ -212,30 +212,30 @@ const CookiesPolicy = () => {
               >
                 Contacting us
               </Typography>
-              <List>
-                <ListItem disablePadding sx={styles.listItemStyling}>
-                  <ListItemIcon sx={styles.listItemIcon}>
-                    <Box sx={styles.listStyling}></Box>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Typography variant="body1">
-                        If you would like to contact us to understand more about
+              <Box
+                component="ul"
+                sx={{
+                  listStyleType: "disc",
+                  marginLeft: "10px",
+                  paddingLeft: "10px",
+                  lineHeight: "30px",
+                }}
+              >
+                <li>
+                  {" "}
+                  {`If you would like to contact us to understand more about
                         this Policy or wish to contact us concerning any matter
                         relating to our use of cookies, you may send an email to
-                        contact-us@fosterapp.co.uk or write a letter to{" "}
-                        <Link
-                          target="__blank"
-                          href="https://www.google.co.uk/maps/place/4+Roundwood+Ave,+Hayes,+Uxbridge+UB11+1AF/@51.5107245,-0.4437493,17z/data=!3m1!4b1!4m5!3m4!1s0x487672769cbf4edb:0x3870d88dc26cc28!8m2!3d51.5107212!4d-0.4415606?shorturl=1"
-                        >
-                          Office 77, Spaces Heathrow Airport, 4 Roundwood
-                          Avenue, Stockley Park, , UB11 1AF, United Kingdom.
-                        </Link>
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+                        contact-us@fosterapp.co.uk or write a letter to`}{" "}
+                  <Link
+                    target="__blank"
+                    href="https://www.google.co.uk/maps/place/4+Roundwood+Ave,+Hayes,+Uxbridge+UB11+1AF/@51.5107245,-0.4437493,17z/data=!3m1!4b1!4m5!3m4!1s0x487672769cbf4edb:0x3870d88dc26cc28!8m2!3d51.5107212!4d-0.4415606?shorturl=1"
+                  >
+                    {`Office 77, Spaces Heathrow Airport, 4 Roundwood
+                          Avenue, Stockley Park, , UB11 1AF, United Kingdom.`}
+                  </Link>
+                </li>
+              </Box>
             </Box>
           </Card>
         </Grid>
@@ -266,21 +266,6 @@ const styles: any = {
     left: "8%",
     zIndex: 112,
   },
-  listItemStyling: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  listItemIcon: {
-    minWidth: "unset",
-    marginRight: "3px",
-  },
-  listStyling: (theme: any) => ({
-    width: "10px",
-    height: "10px",
-    borderRadius: "50%",
-    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
-    mr: 1,
-  }),
   paragraphStyling: {
     lineHeight: "30px",
   },

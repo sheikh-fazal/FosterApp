@@ -4,7 +4,6 @@ import {
   Grid,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Typography,
   useTheme,
@@ -85,7 +84,7 @@ const DataAndSecurity = () => {
                   mb: 2,
                 }}
               >
-                The Data Protection Act 2018 came into force on 23 May 2018 (it
+                {`The Data Protection Act 2018 came into force on 23 May 2018 (it
                 replaced the Data Protection Act 1998) and is the UK’s
                 implementation of the General Data Protection Regulation (GDPR)
                 which came into force on 25 May 2018. The Data Protection Act
@@ -93,12 +92,14 @@ const DataAndSecurity = () => {
                 protection in the UK and has introduced new requirements for how
                 organisations process personal data, as well as expanding the
                 rights of individuals to control how their personal information
-                is collected and processed. <br />
-                <br /> Fostering services across the UK must comply with this
+                is collected and processed.`}{" "}
+                <br />
+                <br />{" "}
+                {`Fostering services across the UK must comply with this
                 legislation, in order to be more accountable for data protection
                 and consider issues of data compliance. This brief guidance
                 outlines some key issues when considering data protection
-                legislation for everyone involved in fostering.
+                legislation for everyone involved in fostering.`}
               </Typography>
             </Box>
             <Box id="about-protection">
@@ -117,40 +118,42 @@ const DataAndSecurity = () => {
                 component="p"
                 sx={styles.paragraphStyling}
               >
-                Data protection legislation controls how your personal
+                {`Data protection legislation controls how your personal
                 information is used by organisations, businesses or the
                 government. Fostering services have access to a variety of
                 personal data including sensitive personal data when working
                 with fostering applicants, foster carers, children and young
                 people, birth families, social care staff workforce, fostering
-                panel members and so on. <br /> <br /> Everyone responsible for
-                accessing and using data within the fostering system (dependant
-                on your role and responsibilities) has to follow strict rules
-                called ‘data protection principles’. <br /> <br /> The main
-                concepts and principles under the
+                panel members and so on.`}{" "}
+                <br /> <br />{" "}
+                {`Everyone responsible for accessing and using data
+                within the fostering system (dependant on your role and
+                responsibilities) has to follow strict rules called ‘data
+                protection principles’.`}{" "}
+                <br /> <br /> {`The main concepts and principles under the`}
                 <Link
                   target="__blank"
                   href="https://www.legislation.gov.uk/ukpga/2018/12/contents/enacted"
                 >
                   {" "}
                   UK Data Protection Act 2018
-                </Link>
+                </Link>{" "}
                 has incorporated the new elements and important enhancements
                 from{" "}
                 <Link target="__blank" href="https://gdpr-info.eu/">
                   GDPR
                 </Link>
-                , so therefore public authorities and fostering services will
+                {` , so therefore public authorities and fostering services will
                 need to consider some new areas as well as doing some things
-                differently.
+                differently.`}
                 <br /> <br />
-                Both the DPA 2018 and GDPR refer to sensitive personal data as
+                {`Both the DPA 2018 and GDPR refer to sensitive personal data as
                 “special categories of personal data” and says this is more
                 sensitive and so needs more protection i.e. racial or ethnic
                 origin, health, political opinions, religious or philosophical
                 beliefs, or trade union membership, genetics, biometrics (where
                 used for ID purposes) and data concerning a person’s sex life or
-                sexual orientation.{" "}
+                sexual orientation.`}{" "}
                 <Link
                   target="__blank"
                   href="https://www.legislation.gov.uk/ukpga/2018/12/schedule/1/enacted"
@@ -180,44 +183,38 @@ const DataAndSecurity = () => {
                 The following principles should apply in terms of data
                 protection:
               </Typography>
-              {introPoints.map((item: any) => (
-                <List>
-                  <ListItem
-                    disablePadding
-                    sx={styles.listItemStyling}
-                    key={item.id}
-                  >
-                    <ListItemIcon sx={styles.listItemIcon}>
-                      <Box sx={styles.listStyling}></Box>
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={
-                        <Typography variant="body1">{item.title}</Typography>
-                      }
-                    />
-                  </ListItem>
-                </List>
-              ))}
-              <List>
-                <ListItem disablePadding sx={styles.listItemStyling}>
-                  <ListItemIcon sx={styles.listItemIcon}>
-                    <Box sx={styles.listStyling}></Box>
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={
-                      <Typography variant="body1">
-                        Public authorities and fostering services have a
-                        responsibility to notify the{" "}
-                        <Link target="__blank" href="https://ico.org.uk/">
-                          Information Commissioners Office (ICO)
-                        </Link>{" "}
-                        to report a breach, as well as individuals where high
-                        risk instances will impact on individual rights.
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              </List>
+              <Box
+                component="ul"
+                sx={{
+                  listStyleType: "disc",
+                  marginLeft: "10px",
+                  paddingLeft: "10px",
+                  lineHeight: "30px",
+                }}
+              >
+                {introPoints.map((item: any) => (
+                  <li key={item.id}>{item.title}</li>
+                ))}
+              </Box>
+              <Box
+                component="ul"
+                sx={{
+                  listStyleType: "disc",
+                  marginLeft: "10px",
+                  paddingLeft: "10px",
+                  lineHeight: "30px",
+                }}
+              >
+                <li>
+                  {`Public authorities and fostering services have a
+                        responsibility to notify the`}{" "}
+                  <Link target="__blank" href="https://ico.org.uk/">
+                    {`Information Commissioners Office (ICO)`}
+                  </Link>{" "}
+                  {`to report a breach, as well as individuals where high
+                        risk instances will impact on individual rights.`}
+                </li>
+              </Box>
             </Box>
             {/* Data we collect section started */}
             <Box id="principles">
@@ -243,7 +240,7 @@ const DataAndSecurity = () => {
                 component="p"
                 sx={{ lineHeight: "30px", mb: 1 }}
               >
-                Tel: +44 7958 482516
+                {`Tel: +44 7958 482516`}
               </Typography>
               <Typography
                 variant="body1"
@@ -285,21 +282,6 @@ const styles: any = {
     left: "8%",
     zIndex: 112,
   },
-  listItemStyling: {
-    paddingTop: 0,
-    paddingBottom: 0,
-  },
-  listItemIcon: {
-    minWidth: "unset",
-    marginRight: "3px",
-  },
-  listStyling: (theme: any) => ({
-    width: "10px",
-    height: "10px",
-    borderRadius: "50%",
-    background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.light})`,
-    mr: 1,
-  }),
   paragraphStyling: {
     lineHeight: "30px",
   },
