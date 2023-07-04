@@ -8,9 +8,14 @@ import {
 } from "..";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsModal } from "./useUploadDocumentModal";
+import useAuth from "@root/hooks/useAuth";
 
 function UploadDocumentsModel(props: any) {
   const { open, setOpen, view, changeView, docData, immunisationId } = props;
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
+  
   const { onSubmit, theme, methods, handleSubmit } = useUploadDocumentsModal({
     view,
     docData,
@@ -39,7 +44,10 @@ function UploadDocumentsModel(props: any) {
         <Box sx={Styles.root}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
             <Typography variant="subtitle1">
-              Person Uploaded: Name Xname
+              Person Uploaded:{" "}
+              {view == "add"
+                ? `${firstName ?? "-"} ${lastName ?? "-"}`
+                : docData?.uploadBy}
             </Typography>
             <CloseIcon
               onClick={() => {
@@ -51,7 +59,7 @@ function UploadDocumentsModel(props: any) {
           </Box>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container rowSpacing={4} columnSpacing={2}>
-              {UploadDocFormData.map((form: any,i) => (
+              {UploadDocFormData.map((form: any, i) => (
                 <Grid item xs={12} md={form?.gridLength} key={i}>
                   <form.component
                     {...form.componentProps}

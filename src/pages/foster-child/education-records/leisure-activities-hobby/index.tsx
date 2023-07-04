@@ -47,7 +47,8 @@ export default function LeisureActivitiesHobby() {
 
   return (
     <Page title={PAGE_TITLE}>
-      <LeisureActivitiesTable />
+      {/* <LeisureActivitiesTable /> */}
+      Leisure Activites
     </Page>
   );
 }
