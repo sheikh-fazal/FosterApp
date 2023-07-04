@@ -15,7 +15,7 @@ export const DeRegInitialRequestData = [
     textForApi: "initalContact",
     text: "Initial Request for Deregistration",
     informationText: "Initial Request for Deregistration",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "/de-registration/deregister-foster-carer/initial-request-form",
     status: "Failed"
   },
@@ -31,9 +31,9 @@ export const DeRegInitialRequestData = [
     textForApi: "initalEnquiryStage",
     text: "Social worker Initial Assessment",
     informationText: "Social worker Initial Assessment",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     modal: true,
-    status: "Passed",
+    status: "Passed"
   },
   {
     id: 3,

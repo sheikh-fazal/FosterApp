@@ -15,11 +15,13 @@ export const useDeRegInitialRequest: any = () => {
   const handleDisabled = () => setDisabled(!disabled);
 
   const goToNextSlide = () => {
-    const newArray = deRegisterData.map((data) => data.viewForms);
-    const newMainIndex = currentIndex + 1 >= newArray.length ? 0 : currentIndex + 1;
-    setCurrentIndex(newMainIndex);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % deRegisterData.length);
   };
   const handleViewChecklist = () => router.push('/de-registration/deregister-foster-carer/sw-assessment');
+
+  const handleSlide = () => {
+    
+  }
 
   return {
     theme,
@@ -38,6 +40,7 @@ export const useDeRegInitialRequest: any = () => {
     goToNextSlide,
     disabled,
     handleDisabled,
-    handleViewChecklist
+    handleViewChecklist,
+    handleSlide
   };
 };

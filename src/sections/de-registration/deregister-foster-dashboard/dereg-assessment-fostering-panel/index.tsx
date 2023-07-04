@@ -22,9 +22,9 @@ export const DeRegStagePostingPanelData = [
     textForApi: "initalContact",
     text: "Fostering Panel Assessment / interview",
     informationText: "Fostering Panel Assessment / interview",
-    viewForms: ["View Form"],
-    href: "/de-registration/deregister-foster-carer/fostering-panel-assessment",
-    status: "Failed",
+    viewForms: "View Form",
+    href: "/recruitment/enquiry-stage/initial-contact",
+    status: "Failed"
   },
   {
     id: 2,
@@ -38,9 +38,9 @@ export const DeRegStagePostingPanelData = [
     textForApi: "initalEnquiryStage",
     text: "Fostering Panel Recommendation",
     informationText: "Fostering Panel Recommendation",
-    viewForms: ["View Form"],
-    href: "/de-registration/deregister-foster-carer/fostering-panel-recommendation",
-    status: "Passed",
+    viewForms: "View Form",
+    href: "#",
+    status: "Passed"
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const DeRegStagePostingPanelData = [
     text: "Proposal to Terminate",
     informationText: "Proposal to Terminate",
     heading: "Representations/Review Procedure",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "#",
     status: "Pending",
   },
@@ -81,7 +81,7 @@ export const DeRegStagePostingPanelData = [
     textForApi: "digitalInfo",
     text: "Statutory Checks",
     informationText: "Statutory Checks",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "#",
     status: "Pending",
   },
