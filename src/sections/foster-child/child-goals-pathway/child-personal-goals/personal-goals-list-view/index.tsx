@@ -14,7 +14,7 @@ export const childPersonalGoalListViewData = [
       fullWidth: true,
       label: "Goal Name",
       multiline: true,
-    //   minRows: 3,
+      //   minRows: 3,
     },
     gridLength: 6,
 
@@ -27,7 +27,7 @@ export const childPersonalGoalListViewData = [
       label: "Status",
       multiline: true,
       fullWidth: true,
-    //   minRows: 3,
+      //   minRows: 3,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -53,3 +53,10 @@ export const childPersonalGoalListViewData = [
     component: RHFTextField,
   },
 ];
+
+// export const defaultValues = {
+//   goalName: "",
+//   status: "",
+//   date: new Date(),
+//   comments: "",
+// };

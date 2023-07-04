@@ -2,7 +2,7 @@ import { RHFTextField } from "@root/components/hook-form";
 import dayjs from "dayjs";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material";
@@ -11,8 +11,9 @@ import { useTheme } from "@mui/material";
 //   //  FormSchema,
 //   defaultValues,
 // } from ".";
-import { useGetChildPersonalViewDataQuery } from "@root/services/foster-child/child-goals-and-pathway/ChildGoalsAndPathwayApi";
+import { useLazyGetChildPersonalViewDataQuery } from "@root/services/foster-child/child-goals-and-pathway/ChildGoalsAndPathwayApi";
 import { childPersonalGoalListViewData } from ".";
+import { enqueueSnackbar } from "notistack";
 
 export const useChildPersonalGoalListView = () => {
   const [childPersonalGoalViewData] = React.useState(
@@ -21,101 +22,53 @@ export const useChildPersonalGoalListView = () => {
   const router = useRouter();
   const { id, childId } = router.query;
   const todayDate = dayjs().format("MM/DD/YYYY");
-  const { data, isLoading, isSuccess, isFetching, isError }: any =
-    useGetChildPersonalViewDataQuery({ id: id, fosterChildId: childId });
-
-  const defaultValues = {
-    goalName: "fghfgh",
-    status: "456123.0",
+  const defaultValuesMain = {
+    goalName: "NA",
+    status: "NA",
     date: new Date(todayDate),
     comments: "43rtertretretre",
   };
-  // const FormSchema = Yup.object().shape({
-  //   // inspectionDate: Yup.date().required("Required"),
-  //   // nextInspectedDate: Yup.date().required("Date is required"),
-  //   // dateToBeCarriedOutOne: Yup.date().required("Required"),
-  //   // improvementsRequireOne: Yup.string().required("Required"),
-  //   // dateToBeCarriedOutTwo: Yup.date().required("Required"),
-  //   // improvementsRequireTwo: Yup.string().required("Required"),
-  //   // dateToBeCarriedOutThree: Yup.date().required("Required"),
-  //   // improvementsRequireThree: Yup.string().required("Required"),
-  //   // dateToBeCarriedOutFour: Yup.date().required("Required"),
-  //   // improvementsRequireFour: Yup.string().required("Required"),
-  // });
+  const formatters: any = {};
+  const da ={ id: id, fosterChildId: childId }
+  const [getChildPersonalView] = useLazyGetChildPersonalViewDataQuery();
+  // useGetChildPersonalViewDataQuery({ id: id, fosterChildId: childId });
+  const [isLoading1, setIsLoading] = React.useState(true);
+  const getDefaultValue = async () => {
+    console.log("hello");
+    const { data, isError,isLoading } = await getChildPersonalView(da,true);
+    console.log("hello 2" );  
+    setIsLoading(false);
+    console.log(data,isError);
+    if (isError) {
+      enqueueSnackbar("Error occured", { variant: "error" });
+      return defaultValuesMain;
+    }
+    const responseData = {
+      goalName: "NA", 
+      status: "NA",
+      date: new Date(todayDate),
+      comments: "43rtertretretre",
+    };
 
-  // const childPersonalGoalListViewData = [
-  //   {
-  //     id: 0.5,
-  //     variant: "subtitle2",
-  //     heading: `Personal Goals`,
-  //   },
-  //   {
-  //     id: 1,
-  //     componentProps: {
-  //       name: "goalName",
-  //       fullWidth: true,
-  //       label: "Goal Name",
-  //       multiline: true,
-  //       //   minRows: 3,
-  //     },
-  //     gridLength: 6,
-
-  //     component: RHFTextField,
-  //   },
-  //   {
-  //     id: 2,
-  //     componentProps: {
-  //       name: "status",
-  //       label: "Status",
-  //       multiline: true,
-  //       fullWidth: true,
-  //       //   minRows: 3,
-  //     },
-  //     gridLength: 6,
-  //     component: RHFTextField,
-  //   },
-  //   {
-  //     id: 3,
-  //     gridLength: 6,
-  //     componentProps: {
-  //       fullWidth: true,
-  //       name: "date",
-  //       label: "Date",
-  //     },
-  //     component: RHFDatePicker,
-  //   },
-  //   {
-  //     id: 4,
-  //     gridLength: 12,
-  //     componentProps: {
-  //       fullWidth: true,
-  //       name: "comments",
-  //       label: "Comments",
-  //     },
-  //     component: RHFTextField,
-  //   },
-  // ];
-
-  console.log(data);
-  const theme: any = useTheme();
+    return responseData;
+  };
   const methods: any = useForm({
-    // resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: getDefaultValue,
   });
-  // const { handleSubmit } = methods;
-  // const onSubmit = (data: any) => {
-  //   formData(data);
-  // };
+console.log(isLoading1);
+
+
+  // console.log(defaultValues);
+  const theme: any = useTheme();
 
   return {
-    defaultValues,
     router,
     theme,
     childPersonalGoalViewData,
     methods,
-    isLoading,
-    isSuccess,
-    isFetching,
-    isError,
+    // isLoading,
+    // isSuccess,
+    // isFetching,
+    // isError,
   };
 };
