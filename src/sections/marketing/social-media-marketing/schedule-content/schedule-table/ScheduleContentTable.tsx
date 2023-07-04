@@ -228,7 +228,6 @@ export default function ScheduleContentTable(props: any) {
           display: "flex",
           gap: "8px",
           alignItems: "center",
-          marginLeft: "0.5rem",
         }}
       >
         <Checkbox

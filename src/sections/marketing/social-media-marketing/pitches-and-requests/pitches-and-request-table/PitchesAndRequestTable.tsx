@@ -122,7 +122,7 @@ function TableFormModal(props: any) {
 
 // Form Table
 
-export default function ResultTable(props: any) {
+export default function PitchesAndRequestTable(props: any) {
   const { disabled, tableKey, columns: tableColumns } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
@@ -178,6 +178,27 @@ export default function ResultTable(props: any) {
     header: () => <span>actions</span>,
     isSortable: false,
   });
+
+  columns.splice(-3, 0, {
+    id: "image",
+    inputType: "textField",
+    type: "text",
+    label: "image",
+    cell: (info: any) => (
+      <Box>
+        <Image
+          style={{ borderRadius: "50%" }}
+          src={AvatarIMG}
+          alt="img"
+          width={49}
+          height={49}
+        />
+      </Box>
+    ),
+    header: () => <span>image</span>,
+    isSortable: false,
+  });
+
   columns.unshift({
     id: "srNo",
     header: ({ table, row }: any) => {
@@ -198,7 +219,6 @@ export default function ResultTable(props: any) {
           display: "flex",
           gap: "8px",
           alignItems: "center",
-          
         }}
       >
         <Checkbox
@@ -206,7 +226,7 @@ export default function ResultTable(props: any) {
           checked={row?.original?.Assigned ? false : row.getIsSelected()}
           onChange={row.getToggleSelectedHandler()}
         />
-         <Box>{Number(row.id) + 1}</Box>
+        <Box>{Number(row.id) + 1}</Box>
       </Box>
     ),
   });

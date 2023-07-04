@@ -3,14 +3,13 @@ import { Box } from "@mui/material";
 export const defaultValues = {
   exampleTable: [
     {
-      postTopic: "branded keywords",
-      publishDate: "6/1/2023 :: 02:12:12 PM",
-      typeOfPost: (
+      name: "branded keywords",
+      typeOfContent: (
         <Box
           sx={{
             fontSize: "14px",
             fontWeight: "400",
-            background: "#8cffa5",
+            background: "#8eeb92",
             borderRadius: "18px",
             padding: "4px",
             paddingLeft: "15px",
@@ -19,14 +18,14 @@ export const defaultValues = {
             whiteSpace: "nowrap",
           }}
         >
-          Evergreen Content
+          Team Social Proposal
         </Box>
       ),
-      impressions: "12430",
-      engagements: "315",
-      engagementsRate: "2.53%",
-      costPerEngagement: "$0.21",
-      spend: "$8,250.00",
+      requestor: "Shawn",
+      requestedDate: "4/26/2021",
+      goal: "Share a unique use of our video platform from an influencer.",
+      proposedCopy: "When an app doesn't work, neither can ....",
+      teamSocialNotes: "When an app doesn't work,",
     },
   ],
 };
