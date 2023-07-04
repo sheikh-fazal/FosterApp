@@ -8,11 +8,12 @@ import {
   usePostAllegationDocumentsMutation,
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
+import { useDeleteImmunisationDocumentMutation, useGetImmunisationDocumentsListQuery } from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef, useState } from "react";
 
-export const useUploadDocumentsTable = ({ applicationFormid }: any) => {
+export const useUploadDocumentsTable = ({ immunisationId }: any) => {
   const router = useRouter();
   let theme: any = useTheme();
   const tableHeaderRef = useRef<any>();
@@ -28,13 +29,13 @@ export const useUploadDocumentsTable = ({ applicationFormid }: any) => {
     useTableParams();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetDocumentsQuery({ params, id: applicationFormid });
+    useGetImmunisationDocumentsListQuery({ params, id: immunisationId });
   const meta = data?.data?.meta;
 
-  const [deleteDocument] = useDeleteDocumentMutation();
+  const [deleteImmunisationDocument] = useDeleteImmunisationDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
-    deleteDocument({ id })
+    deleteImmunisationDocument({ id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Record Deleted Successfully", {
@@ -64,6 +65,6 @@ export const useUploadDocumentsTable = ({ applicationFormid }: any) => {
     isFetching,
     isSuccess,
     listDeleteHandler,
-    meta
+    meta,
   };
 };
