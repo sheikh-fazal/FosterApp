@@ -1,6 +1,4 @@
-import { Box, Button, Grid, Modal, Stack } from "@mui/material";
-import CustomTable from "./CustomTable";
-import TableAction from "../TableAction";
+import { Box, Button, Checkbox, Grid, Modal, Stack } from "@mui/material";
 
 // RHF
 import { useForm, useFormContext, useWatch } from "react-hook-form";
@@ -11,18 +9,30 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 // @mui icons
 import AddIcon from "@mui/icons-material/Add";
-import { FormProvider, RHFTextField } from "../hook-form";
-import RHFDatePicker from "../hook-form/RHFDatePicker";
 import { useState } from "react";
 import { type } from "os";
-import ShareModal from "../modal/shareModal";
-import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
+import {
+  FormProvider,
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import CustomTable from "@root/components/Table/CustomTable";
+import AvatarIMG from "../../../../../assets/img/ifaAvatar.png";
+import Image from "next/image";
+import TableAction from "@root/components/TableAction";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import SocialMediaDropDown from "../../social-media-dropdown/SocialMediaDropDown";
 
 const ANON_FUNC = () => {};
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
   datePicker: RHFDatePicker,
+  selectField: RHFSelect,
+  checkbox: RHFCheckbox,
+  upload: RHFUploadFile,
 };
 
 // ----------------------------------------------------------------------
@@ -112,16 +122,8 @@ function TableFormModal(props: any) {
 
 // Form Table
 
-export default function FormTable(props: any) {
-  const {
-    disabled,
-    view ,
-    print,
-    share,
-    tableKey,
-    route,
-    columns: tableColumns, 
-  } = props;
+export default function ResultTable(props: any) {
+  const { disabled, tableKey, columns: tableColumns } = props;
   const { setValue, getValues } = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
@@ -147,80 +149,71 @@ export default function FormTable(props: any) {
       cell: (info: any) => info.getValue(),
       header: () => <span>{label}</span>,
     };
-  }); 
-    columns.push(
-      {
-        id: "Manage Certificate",
-        cell: (info: any) => (
-          <Box
-            sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
-            onClick={() => {
-              setCertificateModal(true);
-            }}
-          >
-            Delegate Certificate
-          </Box>
-        ),
-        header: () => <span>Manage Certificate</span>,
-        isSortable: false,
-      },
+  });
 
-      {
-        id: "actions",
-        cell: (info: any) => (
-          <Box
-            sx={{
-              display: "flex",
-              gap: "12px",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            {view && (
-              <TableAction
-                type="view"
-                onClicked={(id: number) => onViewHandler(info.row.index)}
-              />
-            )}
-            {print && (
-              <TableAction
-                type="print"
-                onClicked={(id: number) => window.print()}
-              />
-            )}
-            {share && (
-              <TableAction
-                type="share"
-                onClicked={() => setShareModal(!shareModal)}
-              />
-            )}
+  columns.push(
+    {
+      id: "actions",
+      cell: (info: any) => (
+        <Box
+          sx={{
+            display: "flex",
+            gap: "12px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <>
+            <TableAction
+              type="edit"
+              onClicked={(id: number) =>
+                onViewHandler(info.row.index, "Update")
+              }
+            />
+            <TableAction
+              type="delete"
+              onClicked={(id: number) => onDeleted(info.row.index)}
+            />
+          </>
+        </Box>
+      ),
 
-            {route === "view" ? (
-              ""
-            ) : (
-              <>
-                <TableAction
-                  type="edit"
-                  onClicked={(id: number) =>
-                    onViewHandler(info.row.index, "Update")
-                  }
-                />
-                <TableAction
-                  type="delete"
-                  onClicked={(id: number) => onDeleted(info.row.index)}
-                />
-              </>
-            )}
-          </Box>
-        ),
-
-        header: () => <span>actions</span>,
-        isSortable: false,
-      }
-    ); 
-  const handleShare = () => {
-    setShareModal(false);
-  };
+      header: () => <span>actions</span>,
+      isSortable: false,
+    }
+  );
+  columns.unshift({
+    id: "srNo",
+    header: ({ table, row }: any) => {
+      console.log(table.getSelectedRowModel().flatRows);
+      return (
+        <Box sx={{ display: "flex", gap: "8px", alignItems: "center" }}>
+          <Checkbox
+            checked={table.getIsAllRowsSelected()}
+            onChange={table.getToggleAllRowsSelectedHandler()}
+          />
+          <Box>SrNo</Box>
+        </Box>
+      );
+    },
+    cell: ({ row, table }: any) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "8px",
+          alignItems: "center",
+          marginLeft: "0.5rem",
+        }}
+      >
+        <Checkbox
+          disabled={row?.original?.Assigned}
+          checked={row?.original?.Assigned ? false : row.getIsSelected()}
+          onChange={row.getToggleSelectedHandler()}
+        />
+        <Box>1</Box>
+      </Box>
+    ),
+  });
 
   /* CANCEL HANDLER */
   function onCancelHandler() {
@@ -278,24 +271,6 @@ export default function FormTable(props: any) {
 
   return (
     <div>
-      {certificateModal && (
-        <DelegateCertificateModal
-          open={certificateModal}
-          setOpen={setCertificateModal}
-        />
-      )}
-      {shareModal && (
-        <ShareModal
-          open={shareModal}
-          data={[{ email: "hassan@gmail.com" }]}
-          handleClose={handleShare}
-          onSubmit={(values: any) => {
-            console.log(values);
-            setShareModal(false);
-          }}
-        />
-      )}
-
       {viewModal && (
         <TableFormModal
           disabled={disabled}
@@ -320,18 +295,15 @@ export default function FormTable(props: any) {
         isPagination={false}
         isSuccess={true}
       />
-      {route === "view" ? (
-        ""
-      ) : (
-        <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
-          Add
-        </Button>
-      )}
+
+      <Button variant="text" startIcon={<AddIcon />} onClick={onAddHandler}>
+        Add
+      </Button>
     </div>
   );
 }
 
-//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------//
 // styles
 const styles = {
   root: (theme: any) => ({
