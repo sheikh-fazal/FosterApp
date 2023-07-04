@@ -13,7 +13,6 @@ const StatutoryMedicalTypeInfo = () => {
     getSingleStatutoryMedicalTypeDataStatus,
     postStatutoryMedicalTypeDataStatus,
     patchStatutoryMedicalTypeDataStatus,
-    query,
     router,
   } = useStatutoryMedicalTypeInfo();
   if (getSingleStatutoryMedicalTypeDataStatus?.isLoading)
@@ -40,7 +39,7 @@ const StatutoryMedicalTypeInfo = () => {
           );
         })}
       </Grid>
-      {query?.action !== "view" && (
+      {router.query?.action !== "view" && (
         <Box sx={{ display: "flex", mb: "1rem", mt: "1rem" }}>
           <LoadingButton
             sx={{ marginRight: "1rem" }}
