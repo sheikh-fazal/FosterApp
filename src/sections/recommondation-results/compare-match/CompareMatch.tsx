@@ -5,48 +5,94 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Card } from '@mui/material';
+import { Box, Button, Card, TableHead, Typography } from '@mui/material';
+import { compareMatchData, compareMatchHeader } from '.';
+import Image from 'next/image';
+import Link from 'next/link';
 
-function createData(name: string, calories: number, fat: number) {
-    return { name, calories, fat };
+
+// Styles
+const styles = {
+    cardStyling: {
+        padding: '20px', boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)"
+    },
+    title: {
+        fontSize: "16px", fontWeight: "600", color: "#0E918C", mb: 1
+    },
+    tableHeaderCell: {
+        borderBottom: 'none', position: 'sticky', top: 0, background: '#fff', zIndex: 1, minWidth: "350px"
+    },
+    tableBody: {
+        width: "100%", maxHeight: "45vh", overflowY: "auto"
+    },
+    tableBodyContent: {
+        minWidth: "350px", border: '1px solid #898989', fontSize: "14px", fontWeight: "500", color: "#212529"
+    },
+    tableBodyCriteria: {
+        minWidth: "350px", border: '1px solid #898989', fontSize: "14px", fontWeight: "600", color: "#212529"
+    },
 }
-
-const rows = [
-    createData('Cupcake', 305, 3.7),
-    createData('Donut', 452, 25.0),
-    createData('Eclair', 262, 16.0),
-    createData('Frozen yoghurt', 159, 6.0),
-    createData('Gingerbread', 356, 16.0),
-    createData('Honeycomb', 408, 3.2),
-    createData('Ice cream sandwich', 237, 9.0),
-    createData('Jelly Bean', 375, 0.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 export default function CompareMatch() {
     return (
-        <Card sx={{ pading: "10px" }}>
-            <TableContainer component={Paper} style={{ border: '1px solid #ddd' }}>
+        <Card sx={styles.cardStyling}>
+            <Typography sx={styles.title}>Compare Match</Typography>
+            <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell component="th" style={{ width: 160 }} scope="row" sx={{ border: '1px solid #ddd' }}>
-                                    {row.name}
+                    <TableHead>
+                        <TableRow>
+                            {compareMatchHeader.map((item: any) => {
+                                return (
+                                    <TableCell sx={styles.tableHeaderCell}>
+                                        <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                            <Image src={item?.img} alt='img' />
+                                            <Typography sx={{ fontSize: "15px", fontWeight: "500", color: "#212529" }}>{item?.title}</Typography>
+                                        </Box>
+
+                                    </TableCell>
+                                )
+                            })}
+                        </TableRow>
+                    </TableHead>
+                </Table>
+                <TableBody>
+                    <Box sx={styles.tableBody}>
+                        {compareMatchData.map((row: any) => (
+                            <TableRow key={row?.criteria} >
+                                <TableCell component="th" scope="row" sx={styles.tableBodyCriteria}>
+                                    {row?.criteria}
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right" sx={{ border: '1px solid #ddd', }}>
-                                    {row.calories}
+                                <TableCell align="center" sx={styles.tableBodyContent}>
+                                    {row.personOne}
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right" sx={{ border: '1px solid #ddd' }} >
-                                    {row.fat}
+                                <TableCell align="center" sx={styles.tableBodyContent}>
+                                    {row.personTwo}
                                 </TableCell>
-                                <TableCell style={{ width: 160 }} align="right" sx={{ border: '1px solid #ddd' }} >
-                                    {row.fat}
+                                <TableCell align="center" sx={styles.tableBodyContent}>
+                                    {row.CancelIcon}
                                 </TableCell>
                             </TableRow>
                         ))}
-                    </TableBody>
-                </Table>
+                    </Box>
+
+                </TableBody>
             </TableContainer>
+            <Box sx={{ display: "flex", gap: "10px", mt: 3 }}>
+                <Button type="button" variant="contained">
+                    Add to Placement List
+                </Button>
+                <Button type="button" variant="contained">
+                    Add to Consideration List
+                </Button>
+                <Link
+                    href={"/recommondations-result-tab"}
+                    style={{ textDecoration: "none" }}
+                >
+                    <Button type="button" variant="contained">
+                        Back
+                    </Button>
+                </Link>
+            </Box>
         </Card>
     );
 }
