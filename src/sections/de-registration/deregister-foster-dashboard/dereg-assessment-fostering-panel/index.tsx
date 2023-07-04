@@ -23,7 +23,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Assessment / interview",
     informationText: "Fostering Panel Assessment / interview",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-assessment",
     status: "Failed"
   },
   {
@@ -39,7 +39,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Recommendation",
     informationText: "Fostering Panel Recommendation",
     viewForms: "View Form",
-    href: "#",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-recommendation",
     status: "Passed"
   },
   {
