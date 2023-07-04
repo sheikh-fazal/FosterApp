@@ -23,7 +23,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "initalContact",
     text: "Final Finance settlements",
     informationText: "Final Finance settlements",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "/recruitment/enquiry-stage/initial-contact",
     status: "Failed"
   },
@@ -39,7 +39,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "initalEnquiryStage",
     text: "Agency Policy Agreements",
     informationText: "Agency Policy Agreements",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "/de-registration/deregister-foster-carer/policy-agreements",
     status: "Passed"
   },
@@ -62,7 +62,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "digitalInfo",
     text: "Written notice of the proposal",
     informationText: "Written notice of the proposal",
-    viewForms: ["View Form",],
+    viewForms: "View Form",
     href: "#",
     status: "Pending"
   },
@@ -76,7 +76,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "digitalInfo",
     text: "Terms of approval",
     informationText: "Terms of approval",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "#",
     status: "Pending"
   },
@@ -99,7 +99,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "digitalInfo",
     text: "Consent Form",
     informationText: "Consent Form",
-    viewForms: ["Termination of approval of the foster carer", "Foster care give up fostering", "Revise of approval of the foster carer"],
+    viewForms: "View Form",
     href: "#",
     status: "Pending"
   },

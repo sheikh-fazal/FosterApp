@@ -15,7 +15,7 @@ export const DeRegAssessmentStageData = [
     textForApi: "initalContact",
     text: "Consultation with Foster Carer",
     informationText: "Consultation with Foster Carer",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "/recruitment/enquiry-stage/initial-contact",
     status: "Failed"
   },
@@ -31,7 +31,7 @@ export const DeRegAssessmentStageData = [
     textForApi: "initalEnquiryStage",
     text: "Formal Review Meeting",
     informationText: "Formal Review Meeting",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "#",
     status: "Passed"
   },
@@ -54,7 +54,7 @@ export const DeRegAssessmentStageData = [
     textForApi: "digitalInfo",
     text: "Final Outcome",
     informationText: "Final Outcome",
-    viewForms: ["Review Report",],
+    viewForms: "Review Report",
     href: "#",
     status: "Pending"
   },

@@ -4,6 +4,7 @@ import { useDeregisterFosterDashboard } from "./useDeregisterFosterDashboard";
 import { ArrowDown } from "@root/assets/svg/arrowDown";
 import { deRegisterFosterStep } from ".";
 import StepIconsButton from "./StepIconsButton";
+import Image from "next/image";
 
 const DeregisterFosterDashboard = () => {
   const { activeStep, handleStep } = useDeregisterFosterDashboard();
@@ -31,15 +32,19 @@ const DeregisterFosterDashboard = () => {
                   fontWeight: 700,
                   fontSize: 20,
                   color: "white",
-                  p: 2.5,
+                  p: 2,
                   mt: 1,
                   borderRadius: 3,
                   boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
                   cursor: "pointer",
                   position: "relative",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
                 }}
               >
                 {ele.label}
+                { activeStep !== index &&  <Image src={ele?.icon} alt="" /> }
                 <div
                   style={{
                     display: "flex",

@@ -7,11 +7,11 @@ import DeregisterFosterDashboard from "@root/sections/de-registration/deregister
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    href: "/",
+    href: "/de-registration",
 
   },
   {
-    name: "Recruitment",
+    name: "DeRegistration",
     href: "",
   },
 ];
@@ -22,7 +22,7 @@ const Forms = () => {
       <Layout
         showTitleWithBreadcrumbs
         breadcrumbs={BREADCRUMBS}
-        title="Recuitment"
+        title="DeRegistration status of foster carer"
       >
         <DeregisterFosterDashboard />
       </Layout>
