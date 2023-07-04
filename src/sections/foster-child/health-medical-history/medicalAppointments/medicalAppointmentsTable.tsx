@@ -6,11 +6,26 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
+import useMedicalAppointmentList from "./useMedicalAppointmentList";
 
 const activepath =
   "/foster-child/health-medical-history/medical-appointments/actions";
 
-const MedicalAppointmentsTable = () => {
+const MedicalAppointmentsTable = (props: any) => {
+  const { fosterChildId } = props;
+  const {
+    MedicalAppointmentListdata,
+    MedicalAppointmentListIserror,
+    MedicalAppointmentListisLoading,
+    MedicalAppointmentListisFetching,
+    MedicalAppointmentListisSuccess,
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+  } = useMedicalAppointmentList({ fosterChildId: fosterChildId });
+  console.log(MedicalAppointmentListdata,"check");
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,17 +35,17 @@ const MedicalAppointmentsTable = () => {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.dateOfAppointmentVisit,
-      id: "dateOfAppointmentVisit",
+      accessorFn: (row: any) => row.appointmentDate,
+      id: "appointmentDate",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Date Of Immunisation</span>,
+      header: () => <span>Date Of Appointment/visit</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.doctorName,
       id: "doctorName",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Immunisation type</span>,
+      header: () => <span>Doctor Name</span>,
       isSortable: true,
     },
 
@@ -77,7 +92,7 @@ const MedicalAppointmentsTable = () => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="Child Immunisation Info"
+                  title="Medical Appointments"
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {}}
@@ -90,12 +105,12 @@ const MedicalAppointmentsTable = () => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={MedicalAppointmentListdata?.data ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={MedicalAppointmentListisLoading}
+                isFetching={MedicalAppointmentListisFetching}
+                isError={MedicalAppointmentListIserror}
+                isSuccess={MedicalAppointmentListisSuccess}
                 isPagination={true}
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}
