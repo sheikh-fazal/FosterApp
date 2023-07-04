@@ -7,9 +7,9 @@ import Link from "next/link";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
-import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
+import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
-import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
+import DeregSocialWorkerDialogbox from "../dereg-social-worker-dialogbox/DeregSocialWorkerDialogbox";
 
 const DeRegInitialRequest = () => {
   const {
@@ -23,7 +23,11 @@ const DeRegInitialRequest = () => {
     deRegisterData,
     setDeRegisterData,
     currentIndex,
+    setCurrentIndex,
     goToNextSlide,
+    disabled,
+    handleDisabled,
+    handleViewChecklist,
     handleSlide
   } = useDeRegInitialRequest();
 
@@ -151,7 +155,16 @@ const DeRegInitialRequest = () => {
           </Grid>
         ))}
       </Grid>
-      <SocialWorkerFormDialogbox openFormDialog={openSocialWorkerAsessmentDialogbox} setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox} />
+      {openSocialWorkerAsessmentDialogbox &&
+        <DeregSocialWorkerDialogbox
+          disabled={disabled}
+          isEdit
+          handleEdit={handleDisabled}
+          openFormDialog={openSocialWorkerAsessmentDialogbox}
+          setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox}
+          handleCloseForm={() => { setOpenSocialWorkerAssessmentDialogbox(false); handleDisabled() }}
+          handleViewChecklist={handleViewChecklist}
+        />}
     </>
   );
 };

@@ -16,7 +16,7 @@ export const DeRegInitialRequestData = [
     text: "Initial Request for Deregistration",
     informationText: "Initial Request for Deregistration",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/de-registration/deregister-foster-carer/initial-request-form",
     status: "Failed"
   },
   {
