@@ -10,7 +10,8 @@ import { dummy } from ".";
 const activepath =
   "/foster-child/health-medical-history/child-medication-info/actions";
 
-const ChildMedicationInfotable = () => {
+const ChildMedicationInfotable = (prop: any) => {
+  const { fosterChildId } = prop;
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
