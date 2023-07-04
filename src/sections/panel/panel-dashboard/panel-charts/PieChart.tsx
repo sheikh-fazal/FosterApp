@@ -1,8 +1,8 @@
 import React from "react";
+import { chartTitles } from ".";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 import { Box, Grid, Typography } from "@mui/material";
-import { chartTitles } from ".";
 
 // ===============================================================
 

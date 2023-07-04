@@ -6,7 +6,6 @@ import { Box, Typography } from "@mui/material";
 import { InfoIcon } from "@root/theme/overrides/CustomIcons";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 
-
 // ============================================================
 
 const PanelCharts = () => {
@@ -36,7 +35,7 @@ const PanelCharts = () => {
                   <Box
                     sx={{
                       width: "14px",
-                      height: "10px",
+                      height: "13px",
                       background: item?.color,
                       borderRadius: "4px",
                       flexShrink: 0,
@@ -73,7 +72,7 @@ const styles = {
     boxShadow: "0px 0px 7px rgba(14, 145, 140, 0.25)",
     borderRadius: "10px",
     width: "134px",
-    height: "226px",
+    height: "150px",
     overflowY: "auto",
   },
   statisticsHeading: {

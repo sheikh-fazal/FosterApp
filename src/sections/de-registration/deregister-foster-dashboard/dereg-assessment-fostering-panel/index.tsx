@@ -23,7 +23,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Assessment / interview",
     informationText: "Fostering Panel Assessment / interview",
     viewForms: ["View Form"],
-    href: "/deregister-foster-carer/fostering-panel-assessment",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-assessment",
     status: "Failed",
   },
   {
@@ -39,7 +39,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Recommendation",
     informationText: "Fostering Panel Recommendation",
     viewForms: ["View Form"],
-    href: "/deregister-foster-carer/fostering-panel-recommendation",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-recommendation",
     status: "Passed",
   },
   {
@@ -53,7 +53,8 @@ export const DeRegStagePostingPanelData = [
           { content: `Termination of approval after allegations` },
           {
             content: `Termination of approval when there have been no allegations 
-          and a resignation letter has not been received.` },
+          and a resignation letter has not been received.`,
+          },
         ],
       },
     ],
@@ -95,7 +96,8 @@ export const DeRegStagePostingPanelData = [
           { content: `Termination of approval after allegations` },
           {
             content: `Termination of approval when there have been no allegations 
-          and a resignation letter has not been received.` },
+          and a resignation letter has not been received.`,
+          },
         ],
       },
     ],
