@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
 import UploadedDocumentsTable from "@root/sections/foster-child/education-records/leisure-activites-hobby/upload-documents/UploadDocumentsTable";
-import LeisureActivitiesForm from "@root/sections/foster-child/education-records/leisure-activites-hobby/LeisureActivitiesForm";
+import LeisureActivitiesForm from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table/LeisureActivitiesForm";
 
 // Constants
 const BREADCRUMBS = [
