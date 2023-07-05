@@ -58,7 +58,7 @@ export const useEhcpForm = (props: any) => {
       const res: any = await patchEhcpClaDocumentationList(patchData).unwrap();
       console.log(res);
       router.push(`/foster-child/child-background-info/cla-documentation`);
-      enqueueSnackbar(res?.message ?? `Details UPdated Successfully`, {
+      enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
         variant: "success",
       });
     } catch (error: any) {

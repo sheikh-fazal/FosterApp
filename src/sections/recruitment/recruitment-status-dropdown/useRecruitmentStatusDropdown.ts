@@ -1,59 +1,56 @@
 import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 import React, { useEffect } from "react";
-const optionData = [
-  {
-    id: 1,
-    text: "Failed",
-    bgColor: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
-  },
-  {
-    id: 2,
-    text: "To be reviewed",
-    bgColor: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
-  },
-  {
-    id: 3,
-    text: "Passed",
-    bgColor: "linear-gradient(90deg, #2CB764 10.76%, #0E918C 133.7%)",
-  },
-  {
-    id: 4,
-    text: "Pending",
-    bgColor: "linear-gradient(108.65deg, #F6830F -23.21%, #DC3545 190.22%)",
-  },
-];
+import { optionData } from ".";
+import { usePatchStageOneStatusMutation } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
+import { usePatchStageTwoStatusMutation } from "@root/services/recruitment/assessment-stage-two/assessmentStageTwoApi";
+import { usePatchReadyForPlacementStatusMutation } from "@root/services/recruitment/ready-for-placement/readyForPlacementApi";
+
 export const useRecruitmentStatusDropdown = ({
   id,
   status,
-  apiData,
   textForApi,
-  setEnquiryStageData,
+  setMockData,
   component,
-  enquiryStageData,
+  mockData,
 }: any) => {
-  const [enquiryStagePatchData,{ isLoading:isUpdating, isSuccess:hasUpdated }] = usePatchEnquiryStageStatusMutation({});
+  const [enquiryStagePatchData, { isLoading: isUpdatingEnquiryStage }] =
+    usePatchEnquiryStageStatusMutation({});
+  const [
+    assessmentStageOnePatchData,
+    { isLoading: isUpdatingAssessmentStageOne },
+  ] = usePatchStageOneStatusMutation({});
+
+  const [
+    assessmentStageTwoPatchData,
+    { isLoading: isUpdatingAssessmentStageTwo },
+  ] = usePatchStageTwoStatusMutation({});
+
+  const [
+    readyForPlacementPatchData,
+    { isLoading: isUpdatingReadyForPlacement },
+  ] = usePatchReadyForPlacementStatusMutation({});
+
   const [open, setOpen] = React.useState(false);
   const [selectedIndex, setSelectedIndex] = React.useState(
     optionData.findIndex((x) => x.text === status)
   );
   useEffect(() => {
-    setSelectedIndex(optionData.findIndex((x) => x.text === status));
+    setSelectedIndex(optionData?.findIndex((x) => x?.text === status));
   }, [status]);
-  
 
   const anchorRef = React.useRef<HTMLDivElement>(null);
 
   const handleMenuItemClick = (event: any, index: number) => {
     setSelectedIndex(index);
-    const x = optionData.find((ele: any, ind: any) => ind === index);
+    const x = optionData?.find((ele: any, ind: any) => ind === index);
     const patchObj = {
       point: textForApi,
       status: x?.text,
     };
-    setEnquiryStageData(
-      enquiryStageData.map((item: any) => ({
+    setMockData(
+      mockData?.map((item: any) => ({
         ...item,
-        status: item.textForApi === textForApi ? x?.text : item.status,
+        status: item?.textForApi === textForApi ? x?.text : item?.status,
       }))
     );
 
@@ -63,12 +60,27 @@ export const useRecruitmentStatusDropdown = ({
           enquiryStagePatchData({
             userId: id,
             body: patchObj,
-          }) && setOpen(false) 
+          }) && setOpen(false)
         );
-      // case "assessmentStageOne":
-      // case "assessmentStageTwo":
-      // case "contractsAndDeclaratins":
-      // case "readyForPlacement":
+      case "AssessmentStage1":
+        return (
+          assessmentStageOnePatchData({
+            userId: id,
+            body: patchObj,
+          }) && setOpen(false)
+        );
+      case "AssessmentStage2":
+        return (
+          assessmentStageTwoPatchData({
+            userId: id,
+            body: patchObj,
+          }) && setOpen(false)
+        );
+      case "ReadyForPlacement":
+        readyForPlacementPatchData({
+          userId: id,
+          body: patchObj,
+        }) && setOpen(false);
 
       // default: setOpen(false);
     }
@@ -93,6 +105,9 @@ export const useRecruitmentStatusDropdown = ({
     handleMenuItemClick,
     handleClose,
     optionData,
-    isUpdating
+    isUpdatingEnquiryStage,
+    isUpdatingAssessmentStageOne,
+    isUpdatingAssessmentStageTwo,
+    isUpdatingReadyForPlacement,
   };
 };

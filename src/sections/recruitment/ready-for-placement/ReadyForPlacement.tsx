@@ -1,9 +1,8 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import React from "react";
 import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
-import { READYFORPLACEMENT } from "./index";
 import Image from "@root/components/Image";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
 import { AssignedFormDialogbox } from "../assigned-form-dialogbox/AssignedFormDialogbox";
@@ -19,12 +18,18 @@ export default function ReadyForPlacement() {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
+    readyForPlacementData,
+    setReadyForPlacementData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
   } = useReadyForPlacement();
 
   return (
     <div>
       <Grid container>
-        {READYFORPLACEMENT?.map((ele: any) => (
+        {readyForPlacementData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
@@ -53,7 +58,7 @@ export default function ReadyForPlacement() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color:'black'
+                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -71,7 +76,7 @@ export default function ReadyForPlacement() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color:'black'
+                  color: "black",
                 }}
               >
                 {ele?.text}
@@ -117,7 +122,36 @@ export default function ReadyForPlacement() {
               md={6}
               xs={12}
             >
-              <RecruitmentStatusDropdown id={ele?.id} status={ele?.status} />
+              {isLoading && isFetching && (
+                <Skeleton variant="rounded" width={200} height={50} />
+              )}
+              {isSuccess && (
+                <RecruitmentStatusDropdown
+                  id={"4f7512fb-2916-451b-8240-97f529ded73d"}
+                  status={ele?.status}
+                  textForApi={ele?.textForApi}
+                  component={"ReadyForPlacement"}
+                  setMockData={setReadyForPlacementData}
+                  mockData={readyForPlacementData}
+                />
+              )}
+              {isError && (
+                <Skeleton
+                  sx={{
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    color: "red",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                  variant="rounded"
+                  width={200}
+                  height={50}
+                >
+                  Server not Responding
+                </Skeleton>
+              )}
             </Grid>
             <Grid
               container
