@@ -75,3 +75,10 @@ export const statutoryMedicalListXTableColumnsFunction = (
 ];
 
 export const STATUTORYMEDICALLISTTYPEPAGELIMIT = 10;
+
+ export const headerHeading: any = {
+    EHCP: "EHCP",
+    CLA: "CLA MEDICAL",
+    Dental: "Dental Check",
+    Optician: "Optician Check",
+  };

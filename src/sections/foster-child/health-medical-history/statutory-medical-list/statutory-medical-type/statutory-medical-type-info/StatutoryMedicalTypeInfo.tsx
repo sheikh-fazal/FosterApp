@@ -29,7 +29,7 @@ const StatutoryMedicalTypeInfo = () => {
               <form.component {...form.componentProps} size="small">
                 {form.componentProps.select
                   ? form.componentProps.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
+                      <option key={option.label} value={option.value}>
                         {option.label}
                       </option>
                     ))
