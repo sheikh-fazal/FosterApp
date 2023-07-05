@@ -13,14 +13,12 @@ export const useFamilyPersonDocument = () => {
   const [searchValue, setSearchValue] = useState(undefined);
   const [page, setPage] = useState(0);
 
-
-
   const childFamilyOrgInfoId = {
     childFamilyOrgInfoId:
       query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
-      offset: page,
-      limit: 10,
-      search: searchValue,
+    offset: page,
+    limit: 10,
+    search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
@@ -28,13 +26,11 @@ export const useFamilyPersonDocument = () => {
   const [postFamilyPersonUploadDocument] =
     usePostFamilyPersonUploadDocumentMutation();
 
-     console.log(data);
+  console.log(data);
 
   const submitFamilyPersonDocumentData = async (data: any) => {
     const documentFormData = new FormData();
 
-    documentFormData.append("personName", "Child Family Org Info");
-    documentFormData.append("documentName", "Orcalo");
     documentFormData.append("documentType", data.documentType);
     documentFormData.append(
       "documentDate",
@@ -63,6 +59,8 @@ export const useFamilyPersonDocument = () => {
   const [deleteList] = useDeleteFamilyPersonUploadDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
+    console.log(id);
+
     deleteList(id)
       .unwrap()
       .then((res: any) => {
@@ -75,7 +73,6 @@ export const useFamilyPersonDocument = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-
 
   return {
     data,
