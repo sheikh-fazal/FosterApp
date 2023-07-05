@@ -151,63 +151,53 @@ export default function ScheduleContentTable(props: any) {
     };
   });
 
-  columns.push(
-    {
-      id: "image",
-      inputType: "textField",
-      type: "text",
-      label: "image",
-      cell: (info: any) => (
-        <Box>
-          <Image
-            style={{ borderRadius: "50%" }}
-            src={AvatarIMG}
-            alt="img"
-            width={49}
-            height={49}
-          />
-        </Box>
-      ),
-      header: () => <span>image</span>,
-      isSortable: false,
-    },
-    {
-      id: "socialMediaOwner",
-      inputType: "textField",
-      cell: (info: any) => <Box>Faisal</Box>,
-      header: () => <span>Social Media Owner</span>,
-      isSortable: false,
-    },
-    {
-      id: "actions",
-      cell: (info: any) => (
-        <Box
-          sx={{
-            display: "flex",
-            gap: "12px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <>
-            <TableAction
-              type="edit"
-              onClicked={(id: number) =>
-                onViewHandler(info.row.index, "Update")
-              }
-            />
-            <TableAction
-              type="delete"
-              onClicked={(id: number) => onDeleted(info.row.index)}
-            />
-          </>
-        </Box>
-      ),
+  columns.splice(-1, 0, {
+    id: "image",
+    inputType: "textField",
+    type: "text",
+    label: "image",
+    cell: (info: any) => (
+      <Box>
+        <Image
+          style={{ borderRadius: "50%" }}
+          src={AvatarIMG}
+          alt="img"
+          width={49}
+          height={49}
+        />
+      </Box>
+    ),
+    header: () => <span>image</span>,
+    isSortable: false,
+  });
 
-      header: () => <span>actions</span>,
-      isSortable: false,
-    }
-  );
+  columns.push({
+    id: "actions",
+    cell: (info: any) => (
+      <Box
+        sx={{
+          display: "flex",
+          gap: "12px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <>
+          <TableAction
+            type="edit"
+            onClicked={(id: number) => onViewHandler(info.row.index, "Update")}
+          />
+          <TableAction
+            type="delete"
+            onClicked={(id: number) => onDeleted(info.row.index)}
+          />
+        </>
+      </Box>
+    ),
+
+    header: () => <span>actions</span>,
+    isSortable: false,
+  });
   columns.unshift({
     id: "No",
     header: ({ table, row }: any) => {

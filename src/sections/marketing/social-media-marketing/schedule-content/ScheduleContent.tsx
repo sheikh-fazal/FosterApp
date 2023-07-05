@@ -52,6 +52,14 @@ const ScheduleContent = () => {
             label: "Copy",
             validation: (Yup: any) => {},
           },
+          {
+            inputType: "textField",
+            type: "text",
+            key: "socialMediaOwner",
+            defaultValue: "Drive traffic to site, CPC >$2.25",
+            label: "Social Media Owner",
+            validation: (Yup: any) => {},
+          },
         ]}
       />
     </FormProvider>

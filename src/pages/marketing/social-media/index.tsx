@@ -8,7 +8,7 @@ import Results from "@root/sections/marketing/social-media-marketing/results/Res
 import PitchesAndRequests from "@root/sections/marketing/social-media-marketing/pitches-and-requests/PitchesAndRequests";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 
-const PAGE_TITLE = "Schedule Content";
+const PAGE_TITLE = "Social Media Marketing";
 
 MarketingSocialMediaLayout.getLayout = function getLayout(page: any) {
   return (
@@ -23,9 +23,6 @@ MarketingSocialMediaLayout.getLayout = function getLayout(page: any) {
         {
           name: "Merketing",
           href: "/marketing",
-        },
-        {
-          name: "Social Media Marketing",
         },
       ]}
       title={PAGE_TITLE}
