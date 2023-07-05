@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import {
   Box,
   Card,
@@ -183,28 +184,12 @@ const DataAndSecurity = () => {
                 The following principles should apply in terms of data
                 protection:
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {introPoints.map((item: any) => (
                   <li key={item.id}>{item.title}</li>
                 ))}
               </Box>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 <li>
                   {`Public authorities and fostering services have a
                         responsibility to notify the`}{" "}
@@ -283,6 +268,12 @@ const styles: any = {
     zIndex: 112,
   },
   paragraphStyling: {
+    lineHeight: "30px",
+  },
+  unorderedList: {
+    listStyleType: "disc",
+    marginLeft: "10px",
+    paddingLeft: "10px",
     lineHeight: "30px",
   },
 };

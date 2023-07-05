@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import {
   Box,
   Card,
@@ -212,15 +213,7 @@ const CookiesPolicy = () => {
               >
                 Contacting us
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 <li>
                   {" "}
                   {`If you would like to contact us to understand more about
@@ -267,6 +260,12 @@ const styles: any = {
     zIndex: 112,
   },
   paragraphStyling: {
+    lineHeight: "30px",
+  },
+  unorderedList: {
+    listStyleType: "disc",
+    marginLeft: "10px",
+    paddingLeft: "10px",
     lineHeight: "30px",
   },
 };

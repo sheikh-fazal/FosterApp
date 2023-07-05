@@ -1,11 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import {
   Box,
   Card,
   Grid,
-  Icon,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Typography,
   useTheme,
@@ -33,6 +32,7 @@ const PrivacyAndPolicy = () => {
     <Box sx={styles.mainWrapper}>
       <Grid container justifyContent="center">
         <Grid item xs={12} md={2} sx={{ position: "relative" }}>
+          {/* Left Tabs Grid */}
           <Grid item xs={12} lg={12} sx={styles.mainGrid}>
             {listItems.map((item: any) => (
               <Link
@@ -107,15 +107,7 @@ const PrivacyAndPolicy = () => {
                 have also included a Glossary to explain the meaning of some of
                 the terms used in this privacy notice.`}
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {introPoints.map((item: any) => (
                   <li key={item.id}>{item.title}</li>
                 ))}
@@ -195,16 +187,17 @@ const PrivacyAndPolicy = () => {
               >
                 {`Postal Address: 77, Spaces Healthrow Airport, 4 Roundwood
                 Avenue, Stockley Park, Uxbridge, UB11 1AF, United Kingdom.`}{" "}
-                <br /> <br /> You have the right to make a complaint at any time
+                <br /> <br />{" "}
+                {`You have the right to make a complaint at any time
                 to the Information Commissioner’s Office (ICO), the UK
-                supervisory authority for data protection issues
+                supervisory authority for data protection issues`}
                 <Link target="__blank" href="https://ico.org.uk/">
                   {" "}
                   {`(Information Commissioner's Office (ICO)`}
                 </Link>{" "}
-                We would, however, appreciate the chance to deal with your
+                {`  We would, however, appreciate the chance to deal with your
                 concerns before you approach the ICO, so please contact us in
-                the first instance.
+                the first instance.`}
                 {`We would, however,
                 appreciate the chance to deal with your concerns before you
                 approach the ICO, so please contact us in the first instance.`}
@@ -269,15 +262,7 @@ const PrivacyAndPolicy = () => {
                 <br />
               </Typography>
 
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {dataCollection.map((item: any) => (
                   <li key={item.id}>{item.title}</li>
                 ))}
@@ -357,10 +342,10 @@ const PrivacyAndPolicy = () => {
                 }}
               >
                 <li>
-                  Direct interactions. You may give us your Identity, Contact
+                  {`Direct interactions. You may give us your Identity, Contact
                   and Financial Data by filling in forms or by corresponding
                   with us by post, phone, email or otherwise. This includes
-                  personal data you provide when you:
+                  personal data you provide when you:`}
                 </li>
               </Box>
               <Box
@@ -388,10 +373,10 @@ const PrivacyAndPolicy = () => {
                 }}
               >
                 <li>
-                  Third parties or publicly available sources. We may receive
+                  {` Third parties or publicly available sources. We may receive
                   personal data about you from various third parties and public
                   sources as set out below:- Technical Data from the following
-                  parties:
+                  parties:`}
                 </li>
               </Box>
               <Box
@@ -611,15 +596,7 @@ const PrivacyAndPolicy = () => {
                 <br /> <br />
                 {`We use a cookie to remember your cookie preferences this has a couple of consequences:`}
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 <li>
                   If you delete all your cookies you will have to update your
                   preferences with us again.
@@ -660,7 +637,7 @@ const PrivacyAndPolicy = () => {
                 component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
-                As web tracking offers more chances to market to website
+                {`As web tracking offers more chances to market to website
                 visitors across the Internet, you as a visitor to our agency
                 website may be targeted with adverts on other websites. Google
                 and third party vendors might show targeted adverts with the
@@ -670,7 +647,7 @@ const PrivacyAndPolicy = () => {
                 in your web browser to stop these adverts. If you are a
                 registered Facebook user, you may also receive targeted adverts
                 from us. You can read about how Facebook works by following this
-                link{" "}
+                link`}{" "}
                 <Link
                   target="__blank"
                   href="https://en-gb.facebook.com/privacy/policies/cookies/?entry_point=cookie_policy_redirect&entry=0"
@@ -721,19 +698,11 @@ const PrivacyAndPolicy = () => {
                 component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
-                We may have to share your personal data with the parties set out
+                {`We may have to share your personal data with the parties set out
                 below for the purposes set out in the table in paragraph 4
-                above. Such third parties consist of:
+                above. Such third parties consist of:`}
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {disclosureData.map((item: any) => (
                   <li key={item.id}>{item.title}</li>
                 ))}
@@ -743,12 +712,12 @@ const PrivacyAndPolicy = () => {
                 component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
-                We require all third parties to respect the security of your
+                {` We require all third parties to respect the security of your
                 personal data and to treat it in accordance with the law. We do
                 not allow our third-party service providers to use your personal
                 data for their own purposes and only permit them to process your
                 personal data for specified purposes and in accordance with our
-                instructions.
+                instructions.`}
               </Typography>
             </Box>
             {/* International Transfers */}
@@ -864,15 +833,7 @@ const PrivacyAndPolicy = () => {
                 protection laws in relation to your personal data. Your rights
                 include:`}
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {legalRights.map((item: any) => (
                   <div key={item.id}>
                     <li style={{ fontWeight: 700 }}>{item.title}</li>
@@ -952,15 +913,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Lawful Basis
               </Typography>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  marginLeft: "10px",
-                  paddingLeft: "10px",
-                  lineHeight: "30px",
-                }}
-              >
+              <Box component="ul" sx={styles.unorderedList}>
                 {glossary.map((item: any) => (
                   <div key={item.id}>
                     <li style={{ fontWeight: 700 }}>{item.title}</li>
@@ -1018,6 +971,12 @@ const styles: any = {
     textDecoration: "underline",
   }),
   paragraphStyling: {
+    lineHeight: "30px",
+  },
+  unorderedList: {
+    listStyleType: "disc",
+    marginLeft: "10px",
+    paddingLeft: "10px",
     lineHeight: "30px",
   },
 };
