@@ -74,7 +74,6 @@ const CookiesPolicy = () => {
                 Introduction
               </Typography>
               <Typography
-                component="p"
                 variant="body1"
                 sx={{
                   color: theme.palette.grey[800],
@@ -112,11 +111,7 @@ const CookiesPolicy = () => {
               >
                 What are cookies?
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`Cookies are small pieces of data stored in text files that are
                 saved on your computer or other devices when websites are loaded
                 in a browser. They are widely used to remember you and your
@@ -246,9 +241,7 @@ const styles: any = {
     mt: { xs: 4, sm: 5, lg: 8 },
   },
   mainTitle: (theme: any) => ({
-    background: `linear-gradient(to right, ${theme.palette.primary.darker}, ${theme.palette.primary.light})`,
-    "-webkit-background-clip": "text",
-    "-webkit-text-fill-color": "transparent",
+    color: theme.palette.primary.main,
     display: "inline-block",
     fontWeight: 700,
   }),

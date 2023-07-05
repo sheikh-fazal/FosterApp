@@ -50,7 +50,7 @@ export const listItems = [
     link: "/privacy-policy#legal-rights",
   },
   {
-    id: 10,
+    id: 11,
     title: "Glossary",
     link: "/privacy-policy#glossary",
   },

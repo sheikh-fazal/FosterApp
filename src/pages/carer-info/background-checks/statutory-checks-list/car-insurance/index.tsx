@@ -1,16 +1,17 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import CarInsuranceForm from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/CarInsuranceForm";
 import { useRouter } from "next/router";
 
 import {
+  useDeleteStatutoryUploadDocumentsMutation,
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
-import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/upload-documents/UploadDocumentsTable";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { enqueueSnackbar } from "notistack";
 
 // Constants
 const BREADCRUMBS = [
@@ -39,9 +40,10 @@ CarInsurance.getLayout = function getLayout(page: any) {
 };
 
 export default function CarInsurance() {
-  const router = useRouter();
+  const [params, setParams] = useState("");
+  const router: any = useRouter();
   const { action, id } = router.query;
-  const formData = new FormData();
+
   if (!action && !id) {
     router.push("/carer-info/background-checks/statutory-checks-list");
   }
@@ -51,28 +53,46 @@ export default function CarInsurance() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useStatutoryUploadDocumentListQuery({});
+  }: any = useStatutoryUploadDocumentListQuery({ params: params });
 
+  //Car Insurance Upload Modal API
   const [postDocuments] = usePostStatutoryUploadDocumentsMutation();
+
+  //API For Delete Document List
+  const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 
   const tableData: any = documentData?.data?.as_statutory_checks_list_document;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {
-    console.log("data", tableData);
+    const formData = new FormData();
     formData.append("formName", "CAR_INSURANCE");
-    formData.append("recordId", tableData.id);
+    formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);
-    formData.append("documentPassword", data.documentPassword);
+    formData.append("documentPassword", data.password);
     formData.append("file", data.chosenFile);
-    // postDocuments(formData);
+    postDocuments(formData);
+  };
+
+  const deleteDocument = async (id: any) => {
+    deleteDocumentList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted  Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
 
   return (
     <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
       <CarInsuranceForm action={action} id={id} />
-      {/* <UploadDocuments
+      <UploadDocuments
         // readOnly={true}
         tableData={tableData}
         isLoading={isDocumentLoading}
@@ -86,12 +106,15 @@ export default function CarInsurance() {
           "personUploaded",
           "documentPassword",
         ]}
+        searchParam={(searchedText: string) => setParams(searchedText)}
         modalData={(data: any) => documentUploadHandler(data)}
         onPageChange={(page: any) => console.log("parent log", page)}
         currentPage={metaData?.page}
         totalPages={metaData?.pages}
-      /> */}
-      <UploadDocumentsTable />
+        onDelete={(data: any) => {
+          deleteDocument(data.id);
+        }}
+      />
     </HorizaontalTabs>
   );
 }

@@ -30,9 +30,9 @@ const PersonalTable = () => {
         </TableHead>
         <TableBody>
           {personalDataTable.map((row: any) => (
-            <TableRow key={row.name} sx={{ border: "1px solid #000" }}>
+            <TableRow key={row.id} sx={{ border: "1px solid #000" }}>
               <TableCell component="th" scope="row">
-                {row.purpose.map((item: any) => (
+                {row?.purpose?.map((item: any) => (
                   <Box key={item.title} sx={{ lineHeight: "30px" }}>
                     {item.title}
                   </Box>
@@ -47,7 +47,7 @@ const PersonalTable = () => {
                     lineHeight: "30px",
                   }}
                 >
-                  {row.dataType.map((item: any) => (
+                  {row?.dataType?.map((item: any) => (
                     <li key={item.title}>{item.title}</li>
                   ))}
                 </Box>
@@ -61,7 +61,7 @@ const PersonalTable = () => {
                     lineHeight: "30px",
                   }}
                 >
-                  {row.interest.map((item: any) => (
+                  {row?.interest?.map((item: any) => (
                     <li key={item.title}>{item.title}</li>
                   ))}
                 </Box>

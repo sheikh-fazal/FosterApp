@@ -78,17 +78,10 @@ const PrivacyAndPolicy = () => {
               Privacy Policy
             </Typography>
             <Box id="introduction">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 Introduction
               </Typography>
               <Typography
-                component="p"
                 variant="body1"
                 sx={{
                   color: theme.palette.grey[800],
@@ -114,17 +107,11 @@ const PrivacyAndPolicy = () => {
               </Box>
             </Box>
             <Box id="who-we-are">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 1. Important information and{" "}
                 <Typography
                   variant="h4"
-                  component="span"
+                  component={"span"}
                   sx={styles.spanTitles}
                 >
                   who we are
@@ -133,11 +120,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Purpose of this Privacy Notice
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`This privacy notice aims to give you information on how
                 FosterApp collects and processes your personal data. It is
                 important that you read this privacy notics so that you are
@@ -146,11 +129,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Controller
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`FosterApp is the controller and responsible for your personal
                 data (collectively referred to as FosterApp, "we", "us", or
                 "our" in this privacy notice). We have a Data Protection Oficer
@@ -162,29 +141,17 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Contact Details
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`Phone Number: (+44) - 750028 - 7504`}
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 Email address for our DPO:{" "}
                 <Link href={`mailto:${`contact-us@fosterapp.co.uk`}`}>
                   {" "}
                   contact-us@fosterapp.co.uk
                 </Link>
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`Postal Address: 77, Spaces Healthrow Airport, 4 Roundwood
                 Avenue, Stockley Park, Uxbridge, UB11 1AF, United Kingdom.`}{" "}
                 <br /> <br />{" "}
@@ -206,11 +173,7 @@ const PrivacyAndPolicy = () => {
                 {` Changes to the privacy notice and your duty to inform us of
                 changes`}
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`This version was last updated in September 2021. `}
                 <br /> <br />
                 {`It is important that the personal data we hold about you is
@@ -220,11 +183,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Third Party Links
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`This website may include links to third-party websites, plug-ins
                 and applications. Clicking on those links or enabling those
                 connections may allow third parties to collect or share data
@@ -246,11 +205,7 @@ const PrivacyAndPolicy = () => {
               >
                 2. The data we collect about you
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`Personal data, or personal information, means any information
                 about an individual from which that person can be identified. It
                 does not include data where the identity has been removed
@@ -267,11 +222,7 @@ const PrivacyAndPolicy = () => {
                   <li key={item.id}>{item.title}</li>
                 ))}
               </Box>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px", mt: 1 }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px", mt: 1 }}>
                 {`We also collect, use and share Aggregated Data such as
                 statistical or demographic data for any purpose. Aggregated Data
                 may be derived from your personal data but is not considered
@@ -287,11 +238,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 If you fail to provide personal data
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px" }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px" }}>
                 {`Where we need to collect personal data by law, or under the
                 terms of a contract we have with you, and you fail to provide
                 that data when requested, we may not be able to perform the
@@ -314,18 +261,11 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Personal Data Collected */}
             <Box id="personal-data-collected">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 3. How your personal data is collected
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 1, mb: 1 }}
               >
                 We use different methods to collect data from and about you
@@ -398,18 +338,11 @@ const PrivacyAndPolicy = () => {
              How we use personal data
              --------- */}
             <Box id="personal-data-use">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 4. How we use your personal data
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 We will only use your personal data when the law allows us to.
@@ -433,11 +366,7 @@ const PrivacyAndPolicy = () => {
               <Typography variant="subtitle1" sx={styles.subTitles}>
                 Using your sensitive personal data
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px", mt: 2 }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px", mt: 2 }}>
                 {`If you submit your personal data to us via an enquiry form on
                 one of our webpages, we will accept this as consent for us to
                 contact you with information regarding fostering.`}
@@ -460,7 +389,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` We have set out below, in a table format, a description of all
@@ -483,7 +411,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`We strive to provide you with choices regarding certain personal
@@ -494,7 +421,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` We may use your Identity, Contact, Technical, Usage and Profile
@@ -512,7 +438,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` We will get your opt-in consent before we share your personal
@@ -524,7 +449,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`You can ask us or third parties to stop sending you marketing
@@ -545,7 +469,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`Our site uses cookies to keep track of progress and to provide
@@ -561,7 +484,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`You can ask us or third parties to stop sending you marketing
@@ -579,7 +501,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`FosterApp uses necessary cookies to make the website easier for
@@ -611,7 +532,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` You may be served cookies from advertisers while visiting our
@@ -623,7 +543,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`Please view our Cookie Policy on the website for information on
@@ -634,7 +553,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`As web tracking offers more chances to market to website
@@ -652,10 +570,13 @@ const PrivacyAndPolicy = () => {
                   target="__blank"
                   href="https://en-gb.facebook.com/privacy/policies/cookies/?entry_point=cookie_policy_redirect&entry=0"
                 >
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                  <Typography
+                    component={"span"}
+                    sx={{ display: "flex", alignItems: "center" }}
+                  >
                     <FacebookIcon sx={{ color: "#3b5998" }} /> Meta Cookies
                     Policy
-                  </Box>
+                  </Typography>
                 </Link>
               </Typography>
               <Typography variant="subtitle1" sx={styles.subTitles}>
@@ -663,7 +584,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`  We will only use your personal data for the purposes for which
@@ -684,18 +604,11 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Disclosure Personal Data */}
             <Box id="disclosure-personal-data">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 5. Disclosures of your personal data
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`We may have to share your personal data with the parties set out
@@ -709,7 +622,6 @@ const PrivacyAndPolicy = () => {
               </Box>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` We require all third parties to respect the security of your
@@ -722,18 +634,11 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* International Transfers */}
             <Box id="international-transfers">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 6. International Transfers
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` The only circumstances where data may be transferred outside the
@@ -745,18 +650,11 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Data Security */}
             <Box id="data-security">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 7. Data Security
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`  We have put in place appropriate security measures to prevent
@@ -777,13 +675,7 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Data Retention */}
             <Box id="data-retention">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 8. Data Retention
               </Typography>
               <Typography variant="subtitle1" sx={styles.subTitles}>
@@ -791,7 +683,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`FosterApp will only retain your personal data for as long as
@@ -815,18 +706,11 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Legal Rights Section */}
             <Box id="legal-rights">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 9. Your legal rights
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` Under certain circumstances, you have rights under data
@@ -835,21 +719,19 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Box component="ul" sx={styles.unorderedList}>
                 {legalRights.map((item: any) => (
-                  <div key={item.id}>
+                  <Box key={item.id}>
                     <li style={{ fontWeight: 700 }}>{item.title}</li>
                     <Typography
                       variant="body1"
-                      component="p"
                       sx={{ lineHeight: "30px", mb: 2 }}
                     >
                       {item.description}
                     </Typography>
-                  </div>
+                  </Box>
                 ))}
               </Box>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` If you wish to exercise any of these rights, please contact
@@ -860,7 +742,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`You will not have to pay a fee to access your personal data (or
@@ -874,7 +755,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {`We may need to request specific information from you to help us
@@ -890,7 +770,6 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 2 }}
               >
                 {` We try to respond to all legitimate requests within one month.
@@ -901,13 +780,7 @@ const PrivacyAndPolicy = () => {
             </Box>
             {/* Glossary */}
             <Box id="glossary">
-              <Typography
-                variant="h4"
-                sx={{
-                  color: theme.palette.grey[800],
-                  mt: 4,
-                }}
-              >
+              <Typography variant="h4" sx={styles.subHeadings}>
                 10. Glossary
               </Typography>
               <Typography variant="subtitle1" sx={styles.subTitles}>
@@ -915,16 +788,15 @@ const PrivacyAndPolicy = () => {
               </Typography>
               <Box component="ul" sx={styles.unorderedList}>
                 {glossary.map((item: any) => (
-                  <div key={item.id}>
+                  <Box key={item.id}>
                     <li style={{ fontWeight: 700 }}>{item.title}</li>
                     <Typography
                       variant="body1"
-                      component="p"
                       sx={{ lineHeight: "30px", mb: 2 }}
                     >
                       {item.description}
                     </Typography>
-                  </div>
+                  </Box>
                 ))}
               </Box>
             </Box>
@@ -944,9 +816,7 @@ const styles: any = {
     mt: { xs: 4, sm: 5, lg: 8 },
   },
   mainTitle: (theme: any) => ({
-    background: `linear-gradient(to right, ${theme.palette.primary.darker}, ${theme.palette.primary.light})`,
-    "-webkit-background-clip": "text",
-    "-webkit-text-fill-color": "transparent",
+    color: theme.palette.primary.main,
     display: "inline-block",
     fontWeight: 700,
   }),
@@ -958,9 +828,6 @@ const styles: any = {
     zIndex: 112,
   },
   spanTitles: (theme: any) => ({
-    background: `linear-gradient(to right, ${theme.palette.primary.darker}, ${theme.palette.primary.light})`,
-    "-webkit-background-clip": "text",
-    "-webkit-text-fill-color": "transparent",
     display: "inline-block",
   }),
 
@@ -979,4 +846,8 @@ const styles: any = {
     paddingLeft: "10px",
     lineHeight: "30px",
   },
+  subHeadings: (theme: any) => ({
+    color: theme.palette.grey[800],
+    mt: 4,
+  }),
 };

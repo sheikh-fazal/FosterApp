@@ -15,8 +15,6 @@ import Link from "next/link";
 
 const DataAndSecurity = () => {
   const theme: any = useTheme();
-  console.log(introPoints);
-
   return (
     <Box sx={styles.mainWrapper}>
       <Grid container justifyContent="center">
@@ -76,7 +74,6 @@ const DataAndSecurity = () => {
                 Introduction
               </Typography>
               <Typography
-                component="p"
                 variant="body1"
                 sx={{
                   color: theme.palette.grey[800],
@@ -114,11 +111,7 @@ const DataAndSecurity = () => {
               >
                 About Data Protection
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={styles.paragraphStyling}
-              >
+              <Typography variant="body1" sx={styles.paragraphStyling}>
                 {`Data protection legislation controls how your personal
                 information is used by organisations, businesses or the
                 government. Fostering services have access to a variety of
@@ -176,11 +169,7 @@ const DataAndSecurity = () => {
               >
                 Principles of Data Protection
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px", mb: 1 }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px", mb: 1 }}>
                 The following principles should apply in terms of data
                 protection:
               </Typography>
@@ -214,24 +203,15 @@ const DataAndSecurity = () => {
               </Typography>
               <Typography
                 variant="body1"
-                component="p"
                 sx={{ lineHeight: "30px", mt: 2, mb: 1 }}
               >
                 Florence Chiwetu is the Data Protection officer and can be
                 contacted using the details below
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px", mb: 1 }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px", mb: 1 }}>
                 {`Tel: +44 7958 482516`}
               </Typography>
-              <Typography
-                variant="body1"
-                component="p"
-                sx={{ lineHeight: "30px", mb: 1 }}
-              >
+              <Typography variant="body1" sx={{ lineHeight: "30px", mb: 1 }}>
                 Email:{" "}
                 <Link href={`mailto:${`florence.chiwetu@fosterapp.co.uk`}`}>
                   florence.chiwetu@fosterapp.co.uk
@@ -254,9 +234,7 @@ const styles: any = {
     mt: { xs: 4, sm: 5, lg: 8 },
   },
   mainTitle: (theme: any) => ({
-    background: `linear-gradient(to right, ${theme.palette.primary.darker}, ${theme.palette.primary.light})`,
-    "-webkit-background-clip": "text",
-    "-webkit-text-fill-color": "transparent",
+    color: theme.palette.primary.main,
     display: "inline-block",
     fontWeight: 700,
   }),
