@@ -18,7 +18,7 @@ export const ClaDocumentationForm = (props: any) => {
 
   return (
     <>
-      {router.query.action !== "view" && (
+      {!disabled && (
         <FormControl disabled={disabled} sx={{ width: "300px", m: 2 }}>
           <Select value={selectForm} onChange={handleSelectChange}>
             <MenuItem value="EHCP">EHCP</MenuItem>

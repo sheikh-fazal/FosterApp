@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useVocationalCourseInfoTable } from "./useVocationalCourseInfoTable";
 
-const VocationalCourseInfoTable = () => {
+const VocationalCourseInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -96,7 +97,7 @@ const VocationalCourseInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_vocational_course_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

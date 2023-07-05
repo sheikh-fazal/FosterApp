@@ -1,8 +1,8 @@
 import React from "react";
+import Link from "next/link";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { TrainingProfileData } from "./";
-import Link from "next/link";
 import useEditTraingingProfile from "./useEditTrainingProfile";
 const EditTrainingProfile = (props: any) => {
   const {
@@ -11,16 +11,12 @@ const EditTrainingProfile = (props: any) => {
     trainingProfileId,
     defaultValues,
     initialValueProps = defaultValues,
-    isError,
-    isSuccess,
   } = props;
   const { methods, handleSubmit, onSubmit } = useEditTraingingProfile({
     initialValueProps,
     onSubmitHandler,
     trainingProfileId,
   });
-
-  console.log(methods.formState.errors);
 
   return (
     <>
@@ -38,8 +34,8 @@ const EditTrainingProfile = (props: any) => {
                     >
                       {form.otherOptions
                         ? form.options?.map((option: any) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
+                            <option key={option?.value} value={option?.value}>
+                              {option?.label}
                             </option>
                           ))
                         : null}
