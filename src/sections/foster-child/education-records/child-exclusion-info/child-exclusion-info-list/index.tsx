@@ -43,14 +43,14 @@ export const columnsChildExclusionInfoTable = (
   {
     accessorFn: (row: any) => row.dateExclusion,
     id: "dateExclusion",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: () => <span>Exclusion Date</span>,
     isSortable: true,
   },
   {
     accessorFn: (row: any) => row.dateReturn,
     id: "dateReturn",
-    cell: (info: any) => info.getValue(dayjs().format("MM/DD/YYYY")),
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: () => <span>Return Date</span>,
     isSortable: true,
   },

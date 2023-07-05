@@ -19,7 +19,7 @@ EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Child Exclusion Info List",
-          href: "/child-info",
+          href: "/foster-child/education-records/child-exclusion-info",
         },
         {
           name: "Child Exclusion Info",
@@ -39,7 +39,6 @@ export default function EditChildExclusionInfoPage() {
 
   const { data, isError, isSuccess, isLoading } =
     useGetSingleChildExclusionInfoRecordQuery(id);
-  console.log(data);
 
   return (
     <Page title={PAGE_TITLE}>
@@ -52,8 +51,8 @@ export default function EditChildExclusionInfoPage() {
               initialValueProps={{
                 actionTaken: data?.data?.actionTaken,
                 classStudying: data?.data?.classStudying,
-                dateExclusion:  new Date(data?.data?.dateExclusion),
-                dateReturn:  new Date(data?.data?.dateReturn),
+                dateExclusion: new Date(data?.data?.dateExclusion),
+                dateReturn: new Date(data?.data?.dateReturn),
                 outcome: data?.data?.outcome,
                 type: data?.data?.type,
                 exclusionDetails: data?.data?.exclusionDetails,
