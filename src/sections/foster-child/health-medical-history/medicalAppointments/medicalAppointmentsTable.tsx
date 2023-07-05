@@ -7,6 +7,7 @@ import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
 import useMedicalAppointmentList from "./useMedicalAppointmentList";
+import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
 
 const activepath =
   "/foster-child/health-medical-history/medical-appointments/actions";
@@ -25,7 +26,8 @@ const MedicalAppointmentsTable = (props: any) => {
     sortChangeHandler,
     setSearch,
   } = useMedicalAppointmentList({ fosterChildId: fosterChildId });
-  console.log(MedicalAppointmentListdata,"check");
+  const { deleteHander} = useMedicalAppointmentForm({});
+  
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -54,7 +56,9 @@ const MedicalAppointmentsTable = (props: any) => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt onDeleteClick={()=>{
+              deleteHander(info.row.original.id)
+            }} />
 
             <TableAction
               size="small"
@@ -62,7 +66,11 @@ const MedicalAppointmentsTable = (props: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    medicalAppointmentID: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -72,7 +80,11 @@ const MedicalAppointmentsTable = (props: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    medicalAppointmentID: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -95,17 +107,19 @@ const MedicalAppointmentsTable = (props: any) => {
                   title="Medical Appointments"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={MedicalAppointmentListdata?.data ?? []}
+                data={MedicalAppointmentListdata?.data?.medicalappointmentlist ?? []}
                 columns={columns}
                 isLoading={MedicalAppointmentListisLoading}
                 isFetching={MedicalAppointmentListisFetching}

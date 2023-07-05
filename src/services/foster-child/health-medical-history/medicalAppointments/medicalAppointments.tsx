@@ -12,14 +12,14 @@ const medicalAppointments = baseAPI.injectEndpoints({
     }),
     medicalAppointmentsById: Builder.query({
       query: (payload: any) => ({
-        url: `/medicalappointments/${payload.id}`,
+        url: `/foster-child/get-medical-appointment/${payload.params.medicalAppointmentId}`,
         method: "Get",
         params: payload.params,
       }),
     }),
     createmedicalAppointments: Builder.mutation({
       query: (payload: any) => ({
-        url: "/medicalappointments",
+        url: `/foster-child/add-medical-appointment/${payload?.params?.fosterChildId}`,
         method: "Post",
         params: payload.params,
         body: payload.body,
@@ -28,18 +28,16 @@ const medicalAppointments = baseAPI.injectEndpoints({
     }),
     updatemedicalAppointments: Builder.mutation({
       query: (payload: any) => ({
-        url: `/medicalappointments/${payload.id}`,
-        method: "Put",
-        params: payload.params,
+        url: `/foster-child/update-medical-appointment/${payload?.params.medicalAppointmentId }`,
+        method: "PATCH",
         body: payload.body,
       }),
       invalidatesTags: ["medicalappointments"],
     }),
     deletemedicalAppointments: Builder.mutation({
       query: (payload: any) => ({
-        url: `/medicalappointments/${payload.id}`,
+        url: `/foster-child/delete-medical-appointment/${payload?.params?.medicalAppointmentId}`,
         method: "Delete",
-        params: payload.params,
       }),
       invalidatesTags: ["medicalappointments"],
     }),
@@ -51,6 +49,6 @@ export const {
   useCreatemedicalAppointmentsMutation,
   useDeletemedicalAppointmentsMutation,
   useMedicalAppointmentsByIdQuery,
-  useMedicalAppointmentsListQuery,
   useUpdatemedicalAppointmentsMutation,
+  useMedicalAppointmentsListQuery,
 } = medicalAppointments;

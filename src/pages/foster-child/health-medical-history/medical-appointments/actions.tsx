@@ -19,7 +19,7 @@ MedicalAppointments.getLayout = function getLayout(page: any) {
 
 export default function MedicalAppointments() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { action, medicalAppointmentID,fosterChildId } = Router.query;
   const PAGE_TITLE = "Medical Appointments";
   const BREADCRUMBS = [
     {
@@ -46,7 +46,7 @@ export default function MedicalAppointments() {
       <HorizaontalTabs
         tabsDataArray={["Medical Appointments Info", "Uploaded Documents"]}
       >
-        <MedicalAppointmentsFrom action={action} id={id} />
+        <MedicalAppointmentsFrom action={action} medicalAppointmentID={medicalAppointmentID} fosterChildId={fosterChildId} />
         <MedicalAppointmentsUploadtable />
       </HorizaontalTabs>
     </Box>
