@@ -2,6 +2,13 @@ import PersonImg from '../../assets/svg/person.svg';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+
+
+const styles = {
+    icon: {
+        fontSize: "1.875rem"
+    }
+}
 export const recommondationResultsData = [
     { id: "1", type: "BEST MATCH", title: "BEST MATCH", subTitle: "4 Matches Found", progress: "60", progressColor: "#198754" },
     { id: "2", type: "GOOD MATCH", title: "GOOD MATCH", subTitle: "4 Matches Found", progress: "70", progressColor: "#2B8F29" },
@@ -13,7 +20,7 @@ export const recommondationResultsData = [
 
 export const recommondationResultsDetail = [
     {
-        id: "1", name: "Shawn Murphy4", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon />,
+        id: "1", name: "Shawn Murphy4", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -59,7 +66,7 @@ export const recommondationResultsDetail = [
 
     },
     {
-        id: "2", name: "Usman Basit", age: "08", cast: "Asian", image: PersonImg, progress: "80", type: "GOOD MATCH", progressColor: "#2B8F29", icon: <SentimentSatisfiedAltIcon />,
+        id: "2", name: "Usman Basit", age: "08", cast: "Asian", image: PersonImg, progress: "80", type: "GOOD MATCH", progressColor: "#2B8F29", icon: <SentimentSatisfiedAltIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -105,7 +112,7 @@ export const recommondationResultsDetail = [
 
     },
     {
-        id: "3", name: "Shawn Murphy4", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "SATISFACTORY MATCH", progressColor: "#F6B40F", icon: <SentimentSatisfiedAltIcon />,
+        id: "3", name: "Shawn Murphy4", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "SATISFACTORY MATCH", progressColor: "#F6B40F", icon: <SentimentSatisfiedAltIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -151,7 +158,7 @@ export const recommondationResultsDetail = [
 
     },
     {
-        id: "4", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "SUFFICIENT MATCH", progressColor: "#F6460F", icon: <SentimentVeryDissatisfiedIcon />,
+        id: "4", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "SUFFICIENT MATCH", progressColor: "#F6460F", icon: <SentimentVeryDissatisfiedIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -197,7 +204,7 @@ export const recommondationResultsDetail = [
 
     },
     {
-        id: "5", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "GOOD MATCH", progressColor: "#2B8F29", icon: <SentimentSatisfiedAltIcon />,
+        id: "5", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "GOOD MATCH", progressColor: "#2B8F29", icon: <SentimentSatisfiedAltIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -243,7 +250,7 @@ export const recommondationResultsDetail = [
 
     },
     {
-        id: "6", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon />,
+        id: "6", name: "Usman Basit", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",

@@ -4,7 +4,16 @@ import { useRecommondationResults } from './useRecommondationResults';
 import RecommendationResultHeader from './recommendationResultHeader/RecommendationResultHeader';
 
 const RecommondationResults = () => {
-  const { selectedCard, setSelectedCard, filteredDetailData, setFilteredDetailData, handleChangeType, recommondationResultsData, router } = useRecommondationResults()
+  const { selectedCard, filteredDetailData, handleChangeType, recommondationResultsData, router } = useRecommondationResults()
+
+  const handleViewChildDetails = () => {
+    router.push({
+      pathname: `${router.pathname}/child-details`,
+      query: { param1: "value1", param2: "value2" }, // Add your query parameters here
+    });
+  };
+
+
   return (
     <>
 
@@ -62,16 +71,16 @@ const RecommondationResults = () => {
           {filteredDetailData.map((item: any) => {
             return (
               <Grid item xs={12} md={12} lg={6}>
-                <Card sx={{ p: 3, }}>
+                <Card sx={{ p: 3, boxShadow: "rgba(0, 0, 0, 0.25)" }}>
                   <Box sx={{ display: "flex", justifyContent: "space-between", mb: 1, flexWrap: "wrap-reverse" }}>
                     <Box>
-                      <Typography sx={{ fontSize: "16px", color: "rgba(14, 145, 140, 1)", fontWeight: "600", mb: 1 }} >
+                      <Typography sx={(theme) => styles.personalInfo(theme)} >
                         {item?.name}
                       </Typography>
-                      <Typography sx={{ fontSize: "16px", color: "rgba(14, 145, 140, 1)", fontWeight: "600", mb: 1 }} >
+                      <Typography sx={(theme) => styles.personalInfo(theme)} >
                         {item?.age}
                       </Typography>
-                      <Typography sx={{ fontSize: "16px", color: "rgba(14, 145, 140, 1)", fontWeight: "600", mb: 1 }}>
+                      <Typography sx={(theme) => styles.personalInfo(theme)}>
                         {item?.cast}
                       </Typography>
                     </Box>
@@ -116,7 +125,7 @@ const RecommondationResults = () => {
                     ))}
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                       <Box sx={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
-                        <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }}>View Child Details</Button>
+                        <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }} onClick={() => router.push(`${router.pathname}/child-details`)}>View Child Details</Button>
                         <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }} onClick={() => router.push(`${router.pathname}/compare-match`)}>Compare Match</Button>
                       </Box>
                     </Grid>
@@ -160,5 +169,14 @@ const styles = {
     transform: 'translate(-50%, -50%)',
     color: 'black',
     fontWeight: 'bold'
-  }
+  },
+  // personalInfo: {
+  //   fontSize: "16px", color: "rgba(14, 145, 140, 1)", fontWeight: "600", marginBottom: "16px"
+  // },
+  personalInfo: (theme: any) => ({
+    fontSize: "16px",
+    fontWeight: 600,
+    marginBottom: "16px",
+    color: theme.palette.primary.main,
+  }),
 };

@@ -16,9 +16,12 @@ const styles = {
     cardStyling: {
         padding: '20px', boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)"
     },
-    title: {
-        fontSize: "16px", fontWeight: "600", color: "#0E918C", mb: 1
-    },
+    titles: (theme: any) => ({
+        fontSize: "16px",
+        fontWeight: 600,
+        marginBottom: "16px",
+        color: theme.palette.primary.main,
+    }),
     tableHeaderCell: {
         borderBottom: 'none', position: 'sticky', top: 0, background: '#fff', zIndex: 1, minWidth: "350px"
     },
@@ -36,7 +39,7 @@ const styles = {
 export default function CompareMatch() {
     return (
         <Card sx={styles.cardStyling}>
-            <Typography sx={styles.title}>Compare Match</Typography>
+            <Typography sx={(theme) => styles.titles(theme)}>Compare Match</Typography>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
                     <TableHead>
