@@ -12,12 +12,10 @@ export const DeRegStagePostingPanelData = [
       {
         content: `A report must be presented to the Fostering Panel on the foster carer's first review for a recommendation and thereafter may be presented to the fostering panel every three years. West Berkshire Children and Family Service complete the First Foster Care Review within 6 months of the carers approval. Other reasons to return to panel would include the following: where significant changes to the foster carer's approval or the termination of the foster carer's approval are recommended or where any circumstances exist which in the opinion of the Agency Decision Maker require consideration by the Fostering Panel. This may include the situation where an updating Disclosure and Barring Service check reveals a new concern about the foster carer or a member of the household.
     `,
-
       },
       {
         content: `Whether presented to the fostering panel or not, the report will be presented to the Agency Decision Maker for a decision as to whether the foster carer remains suitable to foster and whether the terms of approval remain suitable. Where it has been presented to the fostering panel, the Agency Decision Maker will take into account the panel's recommendation.
     `,
-
       },
     ],
     imgIcon: fosterPanelInterviewImg,
@@ -25,7 +23,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Assessment / interview",
     informationText: "Fostering Panel Assessment / interview",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-assessment",
     status: "Failed"
   },
   {
@@ -41,7 +39,7 @@ export const DeRegStagePostingPanelData = [
     text: "Fostering Panel Recommendation",
     informationText: "Fostering Panel Recommendation",
     viewForms: "View Form",
-    href: "#",
+    href: "/de-registration/deregister-foster-carer/fostering-panel-recommendation",
     status: "Passed"
   },
   {
@@ -55,7 +53,8 @@ export const DeRegStagePostingPanelData = [
           { content: `Termination of approval after allegations` },
           {
             content: `Termination of approval when there have been no allegations 
-          and a resignation letter has not been received.` },
+          and a resignation letter has not been received.`,
+          },
         ],
       },
     ],
@@ -66,13 +65,17 @@ export const DeRegStagePostingPanelData = [
     heading: "Representations/Review Procedure",
     viewForms: "View Form",
     href: "#",
-    status: "Pending"
+    status: "Pending",
   },
   {
     id: 4,
     informationIcon: [
-      { content: `Disclosure and Barring Service checks should be updated every 3 years and if necessary, a review of the foster carer's approval should be carried out immediately to take account of any new information.` },
-      { content: `Medical information should also be updated at least every 3 years by writing to the foster carers GP. In the event of any serious concerns about the foster carers health, a review of the foster carers approval should be carried out immediately` },
+      {
+        content: `Disclosure and Barring Service checks should be updated every 3 years and if necessary, a review of the foster carer's approval should be carried out immediately to take account of any new information.`,
+      },
+      {
+        content: `Medical information should also be updated at least every 3 years by writing to the foster carers GP. In the event of any serious concerns about the foster carers health, a review of the foster carers approval should be carried out immediately`,
+      },
     ],
     imgIcon: statutoryChecksImg,
     textForApi: "digitalInfo",
@@ -80,7 +83,7 @@ export const DeRegStagePostingPanelData = [
     informationText: "Statutory Checks",
     viewForms: "View Form",
     href: "#",
-    status: "Pending"
+    status: "Pending",
   },
   {
     id: 5,
@@ -93,7 +96,8 @@ export const DeRegStagePostingPanelData = [
           { content: `Termination of approval after allegations` },
           {
             content: `Termination of approval when there have been no allegations 
-          and a resignation letter has not been received.` },
+          and a resignation letter has not been received.`,
+          },
         ],
       },
     ],
@@ -103,6 +107,6 @@ export const DeRegStagePostingPanelData = [
     informationText: "Final Outcome",
     viewForms: ["Termination of approval of the foster carer", "Foster care give up fostering", "Revise of approval of the foster carer"],
     href: "#",
-    status: "Pending"
+    status: "Pending",
   },
 ];
