@@ -22,26 +22,32 @@ export const defaultValuesBackgroundForm = (data = backgroundFormValues) => {
 
 export const backgroundFormSchema = Yup.object().shape({
   knowledgeOfSexualHarmful: Yup.string()
+    .trim()
     .required("Knowledge of sexual harmful is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   availability: Yup.string()
+    .trim()
     .required("Availability is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   supportNetwork: Yup.string()
+    .trim()
     .required("Support network is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   interestAndHobby: Yup.string()
+    .trim()
     .required("Interest and hobby is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   health: Yup.string()
+    .trim()
     .required("Health is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   conviction: Yup.string()
+    .trim()
     .required("Conviction knowledge is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),

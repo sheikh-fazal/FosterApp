@@ -1,5 +1,4 @@
 import { useTheme } from "@mui/material";
-import { usePatchEnquiryStageStatusMutation } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 import { ENQUIRYSTAGEDATA } from "./index";
 import { useGetEnquiryStageStatusQuery } from "@root/services/recruitment/enquiry-stage/enquiryStage";
 
@@ -24,7 +23,7 @@ export const useEnquiryStage:any = () => {
         status: enquiryStageApiData?.[item.textForApi],
       }))
     );
-  }, [data]);
+  }, [enquiryStageApiData]);
   
   const theme: any = useTheme();
   const [openIdForInfo, setOpenIdForInfo] = React.useState<any>();
@@ -43,13 +42,10 @@ export const useEnquiryStage:any = () => {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     enquiryStageData,
-    enquiryStageApiData,
     isLoading,
     isError,
     isFetching,
     isSuccess,
-    isUpdating:false,
-    hasUpdated:false,
     setEnquiryStageData,
   };
 };

@@ -120,7 +120,7 @@ export const NAV_LINKS = [
     id: 14,
     text: "Local Authority",
     img: <AssignmentOutlinedIcon />,
-    link: "",
+    link: "/local-authority",
   },
   {
     id: 15,
@@ -132,7 +132,7 @@ export const NAV_LINKS = [
     id: 16,
     text: "Children's Guide",
     img: <ClassOutlinedIcon />,
-    link: "",
+    link: "/children-guides",
   },
   {
     id: 17,
@@ -144,7 +144,7 @@ export const NAV_LINKS = [
     id: 18,
     text: "Compliance Management",
     img: <HandshakeOutlinedIcon />,
-    link: "",
+    link: "/compliance-management",
   },
   {
     id: 19,
@@ -174,7 +174,7 @@ export const NAV_LINKS = [
     id: 23,
     text: "User Manual",
     img: <GroupRemoveOutlinedIcon />,
-    link: "./user-manual",
+    link: "/user-manual",
   },
   {
     id: 24,

@@ -1,13 +1,10 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
 export const columnsTrainingProfilesList = (
   handleDelete: any,
   router: any,
-  cancelDelete: any,
-  setCancelDelete: any,
   openDeleteModel: any
 ) => [
   {
@@ -69,7 +66,9 @@ export const columnsTrainingProfilesList = (
         <TableAction
           type="edit"
           onClicked={() => {
-            router.push(`/carer-info/training-profiles/edit-trainings-profile`);
+            router.push(
+              `/carer-info/training-profiles/edit-trainings-profile?${info.getValue()}`
+            );
           }}
         />
         <TableAction
@@ -81,7 +80,9 @@ export const columnsTrainingProfilesList = (
         <TableAction
           type="view"
           onClicked={() => {
-            router.push(`/carer-info/training-profiles/view-trainings-profile`);
+            router.push(
+              `/carer-info/training-profiles/view-trainings-profile?${info.getValue()}`
+            );
           }}
         />
       </Box>

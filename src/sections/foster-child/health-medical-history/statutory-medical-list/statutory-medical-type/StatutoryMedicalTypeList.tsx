@@ -19,6 +19,7 @@ const StatutoryMedicalTypeList = (props: any) => {
     isSuccess,
     isError,
     isFetching,
+    STATUTORYMEDICALLISTTYPEPAGELIMIT,
   } = useStatutoryMedicalTypeList(props);
   return (
     <>
@@ -27,13 +28,19 @@ const StatutoryMedicalTypeList = (props: any) => {
           title={setHeaderHeading(props.type)}
           searchKey="search"
           showAddBtn={true}
-          searchParam={(data: any) => {
+          onChanged={(data: any) => {
             setSearchValue(data.search);
           }}
           onAdd={() =>
-            router.push(
-              `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?type=${props.type}`
-            )
+            router.push({
+              pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+              query: {
+                type: props.type,
+                ...(!!router?.query?.fosterChildId && {
+                  fosterChildId: router?.query?.fosterChildId,
+                }),
+              },
+            })
           }
         />
 
@@ -49,19 +56,15 @@ const StatutoryMedicalTypeList = (props: any) => {
           currentPage={data?.data?.meta?.page ?? 1}
           totalPages={data?.data?.meta?.pages ?? 2}
           onPageChange={(pageNo: any) => {
-            setPage((page) => (pageNo - 1) * 10);
+            setPage((pageNo - 1) * STATUTORYMEDICALLISTTYPEPAGELIMIT);
           }}
-          // onSortByChange={(data: any) => {
-          //   console.log("Sort by: ", data);
-          // }}
         />
       </Box>
       {isRecordSetForDelete && (
         <DeleteModel
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}
-          onDeleteClick={(data: any, f: any) => {
-            console.log(f);
+          onDeleteClick={(data: any) => {
             onDeleteConfirm?.(data);
           }}
         />
