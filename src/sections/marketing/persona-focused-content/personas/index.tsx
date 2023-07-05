@@ -8,7 +8,7 @@ export const defaultValues = {
       srNo: "1",
       name:"Foster Carers",
       notes:"Loves client case studies wants to see how other solved problems",
-      contentIdeas:"Case Studies",
+      // contentIdeas:"Case Studies",
       attachments:img1,
       editorial:"5 Keys to Success With SEO",
       Vertical:"Real Estate"
@@ -17,7 +17,7 @@ export const defaultValues = {
       srNo: "2",
       name:"Social Workers",
       notes:"Needs ROI Validation",
-      contentIdeas:"Case Studies",
+      // contentIdeas:"Case Studies",
       attachments:img2,
       editorial:"5 Keys to Success With SEO",
       Vertical:"Healthcare"
@@ -26,7 +26,7 @@ export const defaultValues = {
       srNo: "3",
       name:"Local Authority",
       notes:"Wants inspiration",
-      contentIdeas:"Case Studies",
+      // contentIdeas:"Case Studies",
       attachments:img3,
       editorial:"5 Keys to Success With SEO",
       Vertical:"Retail"

@@ -1,4 +1,12 @@
-import { Box, Button, Checkbox, Grid, Modal, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  Grid,
+  Modal,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 // RHF
 import { useForm, useFormContext, useWatch } from "react-hook-form";
@@ -24,6 +32,20 @@ import TableAction from "@root/components/TableAction";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const ANON_FUNC = () => {};
+const contentIdeasArray = [
+  {
+    name: `Case Studies`,
+    bgColor: "#93C3EF",
+  },
+  {
+    name: "Narratives",
+    bgColor: "#8FE0FA",
+  },
+  {
+    name: "Interviews",
+    bgColor: "#FEA6A1",
+  },
+];
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -145,6 +167,24 @@ export default function PersonasTable(props: any) {
       cell: (info: any) => info.getValue(),
       header: () => <span>{label}</span>,
     };
+  });
+  columns.splice(2, 0, {
+    id: "image",
+    inputType: "textField",
+    type: "text",
+    cell: (info: any) => (
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        {contentIdeasArray.map((item, i) => {
+          return (
+            <Typography sx={(theme) => styles.contentIdeas(theme , item.bgColor)} key={i}>
+              {item.name}
+            </Typography>
+          );
+        })}
+      </Box>
+    ),
+    header: () => <span>Content Ideas</span>,
+    isSortable: false,
   });
   columns.splice(3, 0, {
     id: "image",
@@ -347,5 +387,20 @@ const styles = {
     "&:disabled": {
       backgroundColor: theme.palette.grey[400],
     },
+  }),
+  contentIdeas: (theme: any , bgcolor:any) => ({
+    bgcolor: bgcolor,
+    borderRadius: "20px",
+    disply: "flex",
+    justifyContent: "center",
+    alignItme: "center",
+    margin: "auto 5px",
+    height: "22px",
+    wordWrap: "break-word",
+    width: "105px",
+    color:"#637381",
+    fontWeight: 600,
+    fontSize:"14px"
+
   }),
 };

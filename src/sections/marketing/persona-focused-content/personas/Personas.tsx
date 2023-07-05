@@ -33,16 +33,16 @@ const Personas = () => {
               return Yup.string().required("Field is required");
             },
           },
-          {
-            inputType: "textField",
-            type: "text",
-            key: "contentIdeas",
-            defaultValue: "",
-            label: "Content Ideas",
-            validation: (Yup: any) => {
-              return Yup.string().required("Field is required");
-            },
-          },
+          // {
+          //   inputType: "textField",
+          //   type: "text",
+          //   key: "contentIdeas",
+          //   defaultValue: "",
+          //   label: "Content Ideas",
+          //   validation: (Yup: any) => {
+          //     return Yup.string().required("Field is required");
+          //   },
+          // },
           {
             inputType: "textField",
             type: "text",
