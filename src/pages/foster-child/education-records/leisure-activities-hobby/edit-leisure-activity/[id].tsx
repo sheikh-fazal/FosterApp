@@ -9,7 +9,10 @@ import { useGetLeisureActivityDetailQuery } from "@root/services/foster-child/ed
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import Page from "@root/components/Page";
 import { LeisureActivityDefaultValues } from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { default as dayjs } from "dayjs";
 
+dayjs.extend(customParseFormat);
 // Constants
 const BREADCRUMBS = [
   {
@@ -49,6 +52,7 @@ export default function EditLeisureActivity() {
       </Page>
     );
   }
+  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
   return (
     <HorizaontalTabs tabsDataArray={["Leisure Activities", "Upload document"]}>
       <LeisureActivitiesForm
@@ -57,13 +61,13 @@ export default function EditLeisureActivity() {
           ...(data?.data && {
             ...data?.data,
             date: new Date(data?.data?.date),
-            time: new Date(data.data.time),
+            time: $d,
           }),
         }}
         action="edit"
         id={id}
       />
-      <UploadedDocumentsTable />
+      <UploadedDocumentsTable action="edit" leisureActivityId={id} />
     </HorizaontalTabs>
   );
 }

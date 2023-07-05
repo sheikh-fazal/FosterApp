@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
@@ -32,10 +32,20 @@ LeisureActivity.getLayout = function getLayout(page: any) {
   );
 };
 export default function LeisureActivity() {
+  const router: any = useRouter();
+  let { id } = router.query;
+  let [leisureActivityId, setLeisureActivityId] = useState(null);
   return (
     <HorizaontalTabs tabsDataArray={["Leisure Activities", "Upload document"]}>
-      <LeisureActivitiesForm />
-      <UploadedDocumentsTable />
+      <LeisureActivitiesForm
+        setLeisureActivityId={setLeisureActivityId}
+        id={id}
+        action="add"
+      />
+      <UploadedDocumentsTable
+        action="add"
+        leisureActivityId={leisureActivityId}
+      />
     </HorizaontalTabs>
   );
 }

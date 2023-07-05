@@ -48,40 +48,40 @@ export const useLeisureActivitiesForm = (
     useUpdateLeisureActivityMutation();
   const onSubmit = async (data: any) => {
     let { hobby, description, stars, date, time, media } = data;
-    // let formData: any = new FormData();
-    // formData.append("hobby", hobby);
-    // formData.append("description", description);
-    // formData.append("stars", 2);
-    // formData.append("date", new Date(date).toISOString());
-    // formData.append("time", dayjs(time).format("hh:mm:ss"));
-    // formData.append("media", media);
+    let formData: any = new FormData();
+    formData.append("hobby", hobby);
+    formData.append("description", description);
+    formData.append("stars", stars);
+    formData.append("date", new Date(date).toISOString());
+    formData.append("time", dayjs(time).format("hh:mm:ss"));
+    formData.append("media", media);
 
-    // if (action == "edit") {
-    //   updateLeisureActivity({ formData, id: id })
-    //     .unwrap()
-    //     .then((res: any) => {
-    //       enqueueSnackbar("Record Updated Successfully", {
-    //         variant: "success",
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       const errMsg = error?.data?.message;
-    //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //     });
-    // } else if (action == "add") {
-    //   postLeisureActivity({ formData, id: id })
-    //     .unwrap()
-    //     .then((res: any) => {
-    //       setLeisureActivityId(res?.data?.id);
-    //       enqueueSnackbar("Record Added Successfully", {
-    //         variant: "success",
-    //       });
-    //     })
-    //     .catch((error) => {
-    //       const errMsg = error?.data?.message;
-    //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //     });
-    // }
+    if (action == "edit") {
+      updateLeisureActivity({ formData, id: id })
+        .unwrap()
+        .then((res: any) => {
+          enqueueSnackbar("Record Updated Successfully", {
+            variant: "success",
+          });
+        })
+        .catch((error) => {
+          const errMsg = error?.data?.message;
+          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+        });
+    } else if (action == "add") {
+      postLeisureActivity({ formData, id: id })
+        .unwrap()
+        .then((res: any) => {
+          setLeisureActivityId(res?.data?.id);
+          enqueueSnackbar("Record Added Successfully", {
+            variant: "success",
+          });
+        })
+        .catch((error) => {
+          const errMsg = error?.data?.message;
+          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+        });
+    }
   };
   return {
     methods,

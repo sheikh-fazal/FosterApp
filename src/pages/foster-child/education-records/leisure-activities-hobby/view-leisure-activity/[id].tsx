@@ -43,6 +43,8 @@ export default function LeisureActivity() {
   const { data, isLoading, isError }: any = useGetLeisureActivityDetailQuery({
     id,
   });
+  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
+
   if (isLoading) {
     return (
       <Page title={PAGE_TITLE}>
@@ -59,13 +61,13 @@ export default function LeisureActivity() {
           ...(data?.data && {
             ...data?.data,
             date: new Date(data?.data?.date),
-            time: new Date(data.data.time),
+            time: $d,
           }),
         }}
         action="view"
         id={id}
       />
-      <UploadedDocumentsTable />
+      <UploadedDocumentsTable action="view" leisureActivityId={id} />
     </HorizaontalTabs>
   );
 }

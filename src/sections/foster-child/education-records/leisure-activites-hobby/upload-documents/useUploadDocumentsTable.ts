@@ -1,45 +1,75 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
-
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useDeleteDocumentMutation,
+  useGetDocumentsQuery,
+} from "@root/services/carer-info/personal-info/application-form/Documents";
+import {
+  usePostAllegationDocumentsMutation,
+  useUploadDocumentListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
+import { useDeleteLeisureActivityMutation } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivitiesHobby";
+import { useGetLeisureActivityDocumentsListQuery } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivityDocuments";
+import {
+  useDeleteImmunisationDocumentMutation,
+  useGetImmunisationDocumentsListQuery,
+} from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useRef } from "react";
-import { useForm } from "react-hook-form";
-import { formSchema, defaultValues } from "./index";
-export const useUploadDocumentsTable = () => {
-  const [search, setSearch] = React.useState("");
+import React, { useRef, useState } from "react";
+
+export const useUploadDocumentsTable = ({ leisureActivityId }: any) => {
   const router = useRouter();
-  const { id, action }: any = router.query;
-  const [open, setOpen] = React.useState(false);
-  const modelHandler = () => (open === true ? setOpen(false) : setOpen(true));
-  const tableHeaderRefTwo = useRef<any>();
-  const theme: any = useTheme();
+  let theme: any = useTheme();
+  const tableHeaderRef = useRef<any>();
+  const [view, setView] = useState("");
+  const [open, setOpen] = useState(false);
+  const [docData, setDocData] = useState(null);
 
-  //API For Post Documents
-  //API For Delete Document List
+  const changeView = (name: any) => {
+    setView(name);
+  };
 
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues,
-  });
-  const {
-    handleSubmit,
-    getValues,
-    formState: { isSubmitting },
-  } = methods;
-  //Submit Function To Submit Form Data
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
 
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetLeisureActivityDocumentsListQuery({ params, id: leisureActivityId });
+  const meta = data?.data?.meta;
+
+  const [deleteLeisureActivityDocument] = useDeleteLeisureActivityMutation();
+
+  const listDeleteHandler = (id: any) => {
+    deleteLeisureActivityDocument({ id })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Record Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return {
-    router,
-    tableHeaderRefTwo,
+    data,
     theme,
-    action,
-    setSearch,
-    handleSubmit,
-    methods,
-    isSubmitting,
-    getValues,
-    modelHandler,
+    tableHeaderRef,
+    view,
     open,
+    setOpen,
+    changeView,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    docData,
+    setDocData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+    meta,
   };
 };

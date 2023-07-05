@@ -1,111 +1,84 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
-import TableHeader from "@root/components/TableHeader";
 import TableAction from "@root/components/TableAction";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import TableHeader from "@root/components/TableHeader";
 import dayjs from "dayjs";
-import ViewDocumentsModal from "./ViewDocumentsModal";
-import UploadDocumentsModal from "./UploadDocumentsModal";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
-function UploadedDocumentsTable() {
-  const { setSearch, modelHandler, open } = useUploadDocumentsTable();
-
-  const columns = [
-    {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentName ?? "-",
-      id: "documentName",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Name</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.type ?? "-",
-      id: "documentType",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Document Type</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.documentDate ?? "-",
-      id: "documentDate",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
-      header: () => <span>Document Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.uploadBy ?? "-",
-      id: "personUploaded",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Person Uploaded</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.password ?? "-",
-      id: "password",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Password</span>,
-      isSortable: true,
-    },
-    {
-      id: "actions",
-      cell: (info: any) => (
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <Link
-            target="__blank"
-            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
-          >
-            <TableAction size="small" type="download" />
-          </Link>
-          {/* Calling Delete Modal */}
-
-          <DeletePrompt
-            onDeleteClick={() => console.log(info?.row?.original?.id)}
-          />
-
-          {/* Modal To Display Specific Document Record */}
-          <ViewDocumentsModal id={info?.row?.original?.id} />
-        </Box>
-      ),
-      header: () => <span>actions</span>,
-      isSortable: false,
-    },
-  ];
+import { UPLOAD_DOCUMENTS, uploadDocColumns } from ".";
+import UploadDocumentsModel from "./UploadDocumentsModal";
+import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
+const LeisureUploadTable = ({ leisureActivityId, action }: any) => {
+  const {
+    data,
+    theme,
+    tableHeaderRef,
+    changeView,
+    open,
+    setOpen,
+    view,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    docData,
+    setDocData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+    meta,
+  } = useUploadDocumentsTable({ leisureActivityId });
   return (
     <>
-      <Box sx={{ mb: 1 }}>
-        <TableHeader
-          title="Uploaded Documents"
-          searchKey="search"
-          showAddBtn
-          onChanged={(e: any) => {
-            setSearch(e.search);
-          }}
-          onAdd={() => {
-            return modelHandler();
-          }}
-        />
-      </Box>
-      {/* Upload Documents Modal */}
-      <UploadDocumentsModal
-        open={open}
-        setOpen={modelHandler}
-        // uploadDocumentsHandler={uploadDocumentsHandler}
-      />
-      <CustomTable data={[{}]} columns={columns} isPagination={true} />
+      <Grid container>
+        <Grid xs={12} item>
+          <TableHeader
+            ref={tableHeaderRef}
+            title="Uploaded Documents"
+            showAddBtn={action == "view" ? false : true}
+            onAdd={() => {
+              setOpen(true);
+              changeView("add");
+            }}
+            searchKey="search"
+            onChanged={headerChangeHandler}
+          />
+          <CustomTable
+            data={data?.data}
+            columns={uploadDocColumns({
+              action,
+              changeView,
+              setOpen,
+              setDocData,
+              listDeleteHandler,
+            })}
+            isLoading={isLoading}
+            isFetching={isFetching}
+            isError={isError}
+            isSuccess={isSuccess}
+            showSerialNo
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
+          />
+          {open && (
+            <UploadDocumentsModel
+              view={view}
+              open={open}
+              setOpen={setOpen}
+              changeView={changeView}
+              docData={docData}
+              leisureActivityId={leisureActivityId}
+            />
+          )}
+        </Grid>
+      </Grid>
     </>
   );
-}
+};
 
-export default UploadedDocumentsTable;
+export default LeisureUploadTable;

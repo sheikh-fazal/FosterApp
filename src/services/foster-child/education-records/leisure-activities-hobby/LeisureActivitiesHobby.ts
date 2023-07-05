@@ -19,7 +19,7 @@ const LeisureActivitiesApi = baseAPI.injectEndpoints({
         method: "PATCH",
         body: formData,
       }),
-      //   invalidatesTags: ["IMMUNISATION_DETAIL", "IMMUNISATION_LIST"],
+      invalidatesTags: ["LEISURE_ACTIVITY_LIST"],
     }),
     postLeisureActivity: builder.mutation({
       query: ({ id, formData }: any) => ({
@@ -27,7 +27,7 @@ const LeisureActivitiesApi = baseAPI.injectEndpoints({
         method: "POST",
         body: formData,
       }),
-      //   invalidatesTags: ["IMMUNISATION_LIST"],
+      invalidatesTags: ["LEISURE_ACTIVITY_LIST"],
     }),
     deleteLeisureActivity: builder.mutation({
       query: (id: any) => ({

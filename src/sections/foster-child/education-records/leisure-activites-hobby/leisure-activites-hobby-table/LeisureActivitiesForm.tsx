@@ -9,7 +9,7 @@ import { formData } from ".";
 import { useLeisureActivitiesForm } from "./useLeisureActivitiesForm";
 
 export default function LeisureActivitiesForm(props: any) {
-  const { action, LeisureAcitivityData, id, setLeisureActivity } = props;
+  const { action, LeisureAcitivityData, id, setLeisureActivityId } = props;
   const {
     methods,
     handleSubmit,
@@ -22,7 +22,7 @@ export default function LeisureActivitiesForm(props: any) {
     action,
     LeisureAcitivityData,
     id,
-    setLeisureActivity
+    setLeisureActivityId
   );
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
