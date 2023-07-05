@@ -18,7 +18,7 @@ import {
   childMedicationInfoData,
 } from ".";
 
-const backPath = "/foster-child/health-medical-history/hospitalisation";
+const backPath = "/foster-child/health-medical-history/child-medication-info";
 
 const ChildMedicationInfoForm = (props: any) => {
   const { action, id } = props;

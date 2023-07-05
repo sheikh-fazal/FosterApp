@@ -6,12 +6,30 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
+import useChildMedicationInfotable from "./useChildMedicationInfotable";
+import useChildMedicationInfoForm from "./useChildMedicationInfoForm";
 
 const activepath =
   "/foster-child/health-medical-history/child-medication-info/actions";
 
 const ChildMedicationInfotable = (prop: any) => {
   const { fosterChildId } = prop;
+  const {
+    childMedicationInfotabledata,
+    childMedicationInfotableIserror,
+    childMedicationInfotableisLoading,
+    childMedicationInfotableisFetching,
+    childMedicationInfotableSuccess,
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+  } = useChildMedicationInfotable({
+    fosterChildId: fosterChildId,
+  });
+
+  const { deleteHander } = useChildMedicationInfoForm({});
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -29,7 +47,7 @@ const ChildMedicationInfotable = (prop: any) => {
     },
 
     {
-      accessorFn: (row: any) => row.dateIssued,
+      accessorFn: (row: any) => row.issuedDate,
       id: "dateIssued",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Date Issued</span>,
@@ -49,7 +67,8 @@ const ChildMedicationInfotable = (prop: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: { action: "edit", ChildMedicationInfo:info.row.original.id,
+                  fosterChildId: fosterChildId, },
                 });
               }}
             />
@@ -59,7 +78,8 @@ const ChildMedicationInfotable = (prop: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: { action: "view", ChildMedicationInfo:info.row.original.id,
+                  fosterChildId: fosterChildId,},
                 });
               }}
             />
@@ -92,12 +112,12 @@ const ChildMedicationInfotable = (prop: any) => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={childMedicationInfotabledata?.data ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={childMedicationInfotableisLoading}
+                isFetching={childMedicationInfotableisFetching}
+                isError={childMedicationInfotableIserror}
+                isSuccess={childMedicationInfotableSuccess}
                 isPagination={true}
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}
