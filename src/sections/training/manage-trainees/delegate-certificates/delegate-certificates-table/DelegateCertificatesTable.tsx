@@ -7,10 +7,10 @@ import { Box } from "@mui/material";
 
 
 const DelegateCertificatesTable = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear } = useDelegateCertificatesTable();
+  const { methods, handleSubmit, tableData, onSubmit, onClear, } = useDelegateCertificatesTable();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <FormTable print share view
+      <FormTable print share view certificate
         tableKey="exampleTable"
         columns={[
           {
@@ -65,9 +65,9 @@ const DelegateCertificatesTable = () => {
           },
           // {
           //   inputType: "textField",
-          //   type: "text",
+          //   type: "certificate",
           //   key: "manageCertifiacte",
-          //   defaultValue: "Delegate Certificate",
+          //   // defaultValue: "Delegate Certificate",
           //   label: "Manage Certificate",
           //   validation: (Yup: any) => {
           //     return Yup.string().required("Field is required")

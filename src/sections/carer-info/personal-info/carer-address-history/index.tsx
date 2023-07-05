@@ -217,7 +217,7 @@ export const columns = (listDeleteHandler: any) => {
             type="edit"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/carer-address-history/edit-address-history?id=${info?.row?.original?.id}`
+                `/carer-info/personal-info/carer-address-history/edit-address-history/${info?.row?.original?.id}`
               )
             }
           />
@@ -225,7 +225,7 @@ export const columns = (listDeleteHandler: any) => {
             type="view"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/carer-address-history/view-address-history?id=${info?.row?.original?.id}`
+                `/carer-info/personal-info/carer-address-history/view-address-history/${info?.row?.original?.id}`
               )
             }
           />

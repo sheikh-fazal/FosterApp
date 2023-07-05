@@ -30,16 +30,17 @@ export const ehcpInfoFormSchema: any = Yup.object().shape({
   dueDate: Yup.date()
     .typeError("Due Date  is required")
     .required("Due Date  is required"),
-  onfile: Yup.string()
-    .required("on File is required"),
-  result: Yup.string().trim()
+  onfile: Yup.string().required("on File is required"),
+  result: Yup.string()
+    .trim()
     .required("Result is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-  comments: Yup.string().trim()
+    .max(500, "Maximum 50 characters"),
+  comments: Yup.string()
+    .trim()
     .required("Comments is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(500, "Maximum 50 characters"),
 });
 
 export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [

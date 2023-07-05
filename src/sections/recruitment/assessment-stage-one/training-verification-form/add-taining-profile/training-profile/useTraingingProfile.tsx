@@ -41,10 +41,8 @@ const useTraingingProfile = (onSubmitHandler: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit =  (data: any) => {
-    const res: any = onSubmitHandler(data)
-   
-    console.log(data);
+  const onSubmit = (data: any) => {
+    const res: any = onSubmitHandler(data);
   };
 
   return { methods, handleSubmit, onSubmit, router };

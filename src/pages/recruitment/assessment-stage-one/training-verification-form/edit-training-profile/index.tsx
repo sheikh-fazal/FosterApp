@@ -47,21 +47,17 @@ export default function AddTraingVerification() {
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
 
-  const { data, isLoading, isError, isFetching, isSuccess } =
+  const { data, isLoading, isError, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
   const [deleteUploadedDocument] = useDeleteTrainingProfileDocumentMutation();
-
+  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
   const {
     data: uploadDocuments,
     isLoading: uploadDocumentsIsLoading,
     isError: uploadDocumentsIsError,
     isFetching: uploadDocumentsIsFetching,
   } = useGetTrainingProfileAllDocumentQuery({ id, params });
-
-  console.log(uploadDocuments, "uploaded documents");
-
-  const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
     formData.append("documentType", postData.documentType);
@@ -84,8 +80,6 @@ export default function AddTraingVerification() {
         "/recruitment/assessment-stage-one/training-verification-form"
       );
     } catch (error) {
-      console.log(error);
-
       enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };

@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useOOHReportsTable } from "./useOOHReportsTable";
 
-const OOHReportsTable = () => {
+const OOHReportsTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -98,7 +99,7 @@ const OOHReportsTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_ooh_report}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}
