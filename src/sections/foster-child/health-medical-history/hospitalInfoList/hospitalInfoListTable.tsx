@@ -6,12 +6,31 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
-import ModelUploadDoc from "../../../../components/modal/modelUploadDoc";
+import ModelUploadDoc from "../../../../components/modal/uploadDoc/modelUploadDoc";
+import useHospitalInfoList from "./useHospitalInfoList";
+import useHospitalinfoListForms from "./useHospitalinfoListForms";
 
 const activepath =
   "/foster-child/health-medical-history/hospital-info-list/actions";
 
-function HospitalInfoListTable() {
+function HospitalInfoListTable(props: any) {
+  const { fosterChildId } = props;
+  const {
+    hospitalInfolistdata,
+    hospitalInfolistIserror,
+    hospitalInfolistisLoading,
+    hospitalInfolistisFetching,
+    hospitalInfolistisSuccess,
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+  } = useHospitalInfoList({
+    fosterChildId: fosterChildId,
+  });
+
+  const { deleteHander } = useHospitalinfoListForms({});
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -40,7 +59,11 @@ function HospitalInfoListTable() {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() =>
+                deleteHander(info.row.original.id, fosterChildId)
+              }
+            />
 
             <TableAction
               size="small"
@@ -48,7 +71,11 @@ function HospitalInfoListTable() {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    hospitalinfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -58,7 +85,11 @@ function HospitalInfoListTable() {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    hospitalinfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -81,28 +112,30 @@ function HospitalInfoListTable() {
                   title="Hospital Info list"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={hospitalInfolistdata?.hospitalinfolist ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={hospitalInfolistisLoading}
+                isFetching={hospitalInfolistisFetching}
+                isError={hospitalInfolistIserror}
+                isSuccess={hospitalInfolistisSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                totalPages={hospitalInfolistdata?.meta?.pages ?? 0}
+                currentPage={hospitalInfolistdata?.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
             </Box>
           </Paper>

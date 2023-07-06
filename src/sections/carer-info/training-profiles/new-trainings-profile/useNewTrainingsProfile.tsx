@@ -1,5 +1,5 @@
-import dayjs from "dayjs";
 import * as Yup from "yup";
+import dayjs from "dayjs";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
@@ -43,8 +43,6 @@ const useNewTrainingsProfile = (onSubmitHandler: any) => {
 
   const onSubmit = (data: any) => {
     const res: any = onSubmitHandler(data);
-
-    console.log(data);
   };
 
   return { methods, handleSubmit, onSubmit, router };

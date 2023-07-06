@@ -1,20 +1,20 @@
-import { RHFRadioGroup } from "@root/components/hook-form";
+import { RHFBooleanRadioGroup } from "@root/components/hook-form";
 import * as Yup from "yup";
 
 export const defaultValues = {
-  parentChildReport: "Yes",
-  shortbreakFosteringReport: "Yes",
-  permanentFosteringReport: "Yes",
-  remandForestingReport: "Yes",
-  otherSpecialistReport: "Yes",
+  parentChildReport: true,
+  shortbreakFosteringReport: true,
+  permanentFosteringReport: true,
+  remandForestingReport: true,
+  otherSpecialistReport: true,
 };
 
 export const FormSchema = Yup.object().shape({
-  parentChildReport: Yup.string().required("Required"),
-  shortbreakFosteringReport: Yup.string().required("Required"),
-  permanentFosteringReport: Yup.string().required("Required"),
-  otherSpecialistReport: Yup.string().required("Required"),
-  remandForestingReport: Yup.string().required("Required"),
+  parentChildReport: Yup.boolean().required("Required"),
+  shortbreakFosteringReport: Yup.boolean().required("Required"),
+  permanentFosteringReport: Yup.boolean().required("Required"),
+  otherSpecialistReport: Yup.boolean().required("Required"),
+  remandForestingReport: Yup.boolean().required("Required"),
 });
 export const SPECIALISTREPORTSFORMDATA = [
   {
@@ -23,9 +23,10 @@ export const SPECIALISTREPORTSFORMDATA = [
     heading: "Parent and child report",
     otherOptions: {
       name: "parentChildReport",
-      options: ["Yes", "No"],
+      options: [true, false],
+      getOptionLabel: ["Yes", "No"],
     },
-    component: RHFRadioGroup,
+    component: RHFBooleanRadioGroup,
   },
   {
     id: 2,
@@ -33,9 +34,10 @@ export const SPECIALISTREPORTSFORMDATA = [
     heading: "Short break fostering report",
     otherOptions: {
       name: "shortbreakFosteringReport",
-      options: ["Yes", "No"],
+      options: [true, false],
+      getOptionLabel: ["Yes", "No"],
     },
-    component: RHFRadioGroup,
+    component: RHFBooleanRadioGroup,
   },
   {
     id: 3,
@@ -43,9 +45,10 @@ export const SPECIALISTREPORTSFORMDATA = [
     gridLength: 6,
     otherOptions: {
       name: "permanentFosteringReport",
-      options: ["Yes", "No"],
+      options: [true, false],
+      getOptionLabel: ["Yes", "No"],
     },
-    component: RHFRadioGroup,
+    component: RHFBooleanRadioGroup,
   },
   {
     id: 4,
@@ -53,19 +56,21 @@ export const SPECIALISTREPORTSFORMDATA = [
     gridLength: 6,
     otherOptions: {
       name: "remandForestingReport",
-      options: ["Yes", "No"],
+      options: [true, false],
+      getOptionLabel: ["Yes", "No"],
     },
-    component: RHFRadioGroup,
+    component: RHFBooleanRadioGroup,
   },
   {
     id: 5,
     heading: "Other specialist scheme report",
     otherOptions: {
       name: "otherSpecialistReport",
-      options: ["Yes", "No"],
+      options: [true, false],
+      getOptionLabel: ["Yes", "No"],
     },
     gridLength: 6,
-    component: RHFRadioGroup,
+    component: RHFBooleanRadioGroup,
   },
 ];
 

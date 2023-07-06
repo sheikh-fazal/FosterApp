@@ -1,7 +1,7 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useGetDayLogListQuery,
-  useDeleteDayLogListMutation,
+  useGetChildChronologyOfEventsDayLogListQuery,
+  useDeleteChildChronologyOfEventsDayLogByIdMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -11,15 +11,17 @@ export const useDayLogTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetDayLogListQuery({
-    search: search,
-  });
+  const { data, isError, isLoading, isFetching, isSuccess }: any =
+    useGetChildChronologyOfEventsDayLogListQuery({
+      search: search,
+    });
+  console.log("🚀 ~ file: useDayLogTable.tsx:15 ~ useDayLogTable ~ data:", data);
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteDayLogListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({ id: id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

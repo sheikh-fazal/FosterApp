@@ -8,6 +8,7 @@ const AddLaEmployee = () => {
   const { router, theme, handleSubmit, onSubmit, methods, isSubmitting } =
     useAddLaEmployee();
 
+    
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3} py="30px">

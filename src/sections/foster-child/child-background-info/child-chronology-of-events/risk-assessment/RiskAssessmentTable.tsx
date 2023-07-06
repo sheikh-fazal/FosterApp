@@ -5,7 +5,8 @@ import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useRiskAssessmentTable } from "./useRiskAssessmentTable";
 
-const RiskAssessmentTable = () => {
+const RiskAssessmentTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -20,8 +21,6 @@ const RiskAssessmentTable = () => {
     isLoading,
   } = useRiskAssessmentTable();
   const columns = [
-   
-    
     {
       accessorFn: (row: any) => row?.childName,
       id: "childName",
@@ -53,7 +52,8 @@ const RiskAssessmentTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -65,7 +65,8 @@ const RiskAssessmentTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -86,7 +87,8 @@ const RiskAssessmentTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
             query: { action: "add", id: "" },
           });
         }}
@@ -95,7 +97,7 @@ const RiskAssessmentTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_risk_assessment}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

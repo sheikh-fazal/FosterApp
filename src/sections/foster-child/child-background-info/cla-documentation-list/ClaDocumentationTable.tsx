@@ -10,7 +10,9 @@ import TableAction from "@root/components/TableAction";
 export default function ClaDocumentationListTable() {
   const {
     router,
-    setSearch,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
     data,
     isError,
     isLoading,
@@ -19,7 +21,7 @@ export default function ClaDocumentationListTable() {
     listDeleteHandler,
   } = useDocumentationTable();
 
-  console.log("data", data)
+  console.log("data", data);
 
   const columns = [
     {
@@ -90,9 +92,7 @@ export default function ClaDocumentationListTable() {
         showAddBtn
         title="CLA Documentation"
         searchKey="search"
-        onChanged={(event: any) => {
-          setSearch(event.search);
-        }}
+        onChanged={headerChangeHandler}
         onAdd={() => {
           router.push(
             "/foster-child/child-background-info/cla-documentation/add-cla-documentation"
@@ -106,14 +106,10 @@ export default function ClaDocumentationListTable() {
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
-        currentPage={data?.data?.meta?.page ?? 1}
-        totalPages={data?.data?.meta?.pages ?? 2}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
+        currentPage={data?.meta?.page}
+          totalPages={data?.meta?.pages}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </Card>
   );

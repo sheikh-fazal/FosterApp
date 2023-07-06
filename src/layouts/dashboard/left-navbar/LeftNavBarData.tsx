@@ -174,7 +174,7 @@ export const NAV_LINKS = [
     id: 23,
     text: "User Manual",
     img: <GroupRemoveOutlinedIcon />,
-    link: "./user-manual",
+    link: "/user-manual",
   },
   {
     id: 24,
