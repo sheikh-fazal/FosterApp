@@ -33,7 +33,7 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Health: Details of health issues',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/details-of-health-issues',
       },
       {
         title: 'Education-related contacts',
@@ -41,27 +41,27 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Educational needs',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/educational-needs',
       },
       {
         title: 'Identity ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/identity',
       },
       {
         title: 'Contact ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/contact',
       },
       {
         title: 'Support for carers ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/support-for-carers',
       },
       {
         title: 'Action sheet',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/action-sheet',
       },
       {
         title: 'Information checklist for foster carer',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/information-checklist',
       },
       {
         title: 'Signature page',
@@ -75,7 +75,7 @@ export const FosteringPlacementData = [
     subArr: [
       {
         title: 'What is Decision Support Tool?',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/decision-support-tool',
       },
       {
         title: 'Medical and health ',
@@ -91,11 +91,11 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Faith and religious observance',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/faith-and-religious-observance',
       },
       {
         title: 'Identity and names ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/identity-and-names',
       },
       {
         title: 'Contact',
