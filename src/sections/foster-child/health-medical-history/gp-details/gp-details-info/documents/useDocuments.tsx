@@ -12,6 +12,7 @@ export const useDocuments = () => {
   const { user }: any = useAuth();
   const { query } = useRouter();
   const GPDETAILSDOCUMENTPAGELIMIT = 10;
+  const [searchValue, setSearchValue] = useState(undefined);
   // ----------------------------------------------------------------------
   const [
     postGpDetailsInfoDocumentDataTrigger,
@@ -23,7 +24,6 @@ export const useDocuments = () => {
   ] = useDeleteGpDetailsInfoDocumentDataByIdMutation();
 
   const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     offset: page,
     limit: GPDETAILSDOCUMENTPAGELIMIT,
