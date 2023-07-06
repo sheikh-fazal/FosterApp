@@ -5,7 +5,7 @@ import { useFamilyPersonDocument } from "./useFamilyPersonDocument";
 export const FamilyPersonDocument = () => {
   const {
     data,
-    query,
+    router,
     isError,
     isLoading,
     isSuccess,
@@ -21,7 +21,7 @@ export const FamilyPersonDocument = () => {
   return (
     <>
       <UploadDocuments
-        readOnly={query?.action === "view"}
+        readOnly={router?.asPath.split("/").pop() === "view"}
         searchParam={(data: any) => {
           setSearchValue(data.search);
         }}
@@ -34,16 +34,13 @@ export const FamilyPersonDocument = () => {
           console.log("data all the way here", data);
           submitFamilyPersonDocumentData(data);
         }}
-        
         column={["documentName", "documentType", "documentDate", "personName", "password"]}
         onPageChange={(pageNo: any) => {
           setPage(() => (pageNo - 1) * 10);
         }}
         currentPage={data?.data?.meta?.page}
         totalPages={data?.data?.meta?.pages}
-        onDelete={(data: any) =>{ console.log("Deleting", data);
-      
-        listDeleteHandler(data?.childFamilyOrgInfoId)}
+        onDelete={(data: any) =>{listDeleteHandler(data?.id);  console.log("Deleting", data);}
       }
       />
     </>

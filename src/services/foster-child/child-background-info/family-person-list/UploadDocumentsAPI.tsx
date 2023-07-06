@@ -36,8 +36,8 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
 
     // Delete API of Family Person Upload Document
     deleteFamilyPersonUploadDocument: builder.mutation({
-      query: (childFamilyOrgInfoDocId: any) => ({
-        url: `foster-child/child-family-org-info/document/${childFamilyOrgInfoDocId}`,
+      query: (id: any) => ({
+        url: `/foster-child/child-family-org-info/document/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],

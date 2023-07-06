@@ -9,13 +9,14 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 export const useFamilyPersonDocument = () => {
-  const { query } = useRouter();
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState(undefined);
   const [page, setPage] = useState(0);
+  console.log(router?.asPath.split("/").pop());
 
   const childFamilyOrgInfoId = {
     childFamilyOrgInfoId:
-      query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
+      router?.query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
     offset: page,
     limit: 10,
     search: searchValue,
@@ -29,6 +30,11 @@ export const useFamilyPersonDocument = () => {
   console.log(data);
 
   const submitFamilyPersonDocumentData = async (data: any) => {
+    if (!router?.query?.family_person_id) {
+      return enqueueSnackbar("Please Fill the Form First", {
+        variant: "error",
+      });
+    }
     const documentFormData = new FormData();
 
     documentFormData.append("documentType", data.documentType);
@@ -40,7 +46,7 @@ export const useFamilyPersonDocument = () => {
     documentFormData.append("chooseFiles", data.chosenFile);
 
     const apiDataParameter = {
-      childFamilyOrgInfoId: query?.family_person_id,
+      childFamilyOrgInfoId: router?.query?.family_person_id,
       body: documentFormData,
     };
     try {
@@ -76,7 +82,7 @@ export const useFamilyPersonDocument = () => {
 
   return {
     data,
-    query,
+    router,
     isError,
     isLoading,
     isSuccess,
