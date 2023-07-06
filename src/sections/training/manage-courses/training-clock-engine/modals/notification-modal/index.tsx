@@ -21,7 +21,7 @@ export const NotificationSettings = [
         componentProps: {
             name: "configurationItem",
             label: 'Configuration Item',
-            fullWidth: true,
+            fullWidth: true, 
         },
         component: RHFTextField,
         md: 6,
