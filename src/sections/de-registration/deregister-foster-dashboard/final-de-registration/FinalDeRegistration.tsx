@@ -6,10 +6,10 @@ import Link from "next/link";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
-import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
-import LeftIcon from "../../../assets/svg/de-register/left-icon.svg";
+import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
 import { useFinalDeRegistration } from "./useFinalDeRegistration";
+import FinalDeRegistrationDialogbox from "./final-de-registration-dialogbox/FinalDeRegistrationDialogbox";
 
 const FinalDeRegistration = () => {
   const {
@@ -18,12 +18,14 @@ const FinalDeRegistration = () => {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
-    openSocialWorkerAsessmentDialogbox,
-    setOpenSocialWorkerAssessmentDialogbox,
     deRegisterData,
     setDeRegisterData,
     currentIndex,
-    goToNextSlide
+    goToNextSlide,
+    isSuccessfullyModalOpen,
+    setIsSuccessfullyModalOpen,
+    handleViewFormModal,
+    route
   } = useFinalDeRegistration();
 
   return (
@@ -85,35 +87,56 @@ const FinalDeRegistration = () => {
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                {ele?.viewForms.length > 1 ? (
-                  <Fragment>
+                {Array.isArray(ele.viewForms) ? (
+                  <>
                     <span
                       style={{
                         color: theme.palette.primary.main,
                         fontWeight: 600,
                         fontSize: 14,
                         cursor: "pointer",
-                        textAlign: "center"
+                        textAlign: "center",
                       }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
                     >
-
-                      {ele?.viewForms[currentIndex]}
+                      {ele.viewForms[currentIndex]}
                     </span>
-                  </Fragment>
+                    <Image
+                      src={LeftIcon}
+                      alt=""
+                      style={{ marginLeft: "20px", cursor: "pointer" }}
+                      onClick={goToNextSlide}
+                    />
+                  </>
                 ) : (
-                  <Link
-                    style={{
-                      color: theme.palette.primary.main,
-                      fontWeight: 600,
-                      fontSize: 14,
-                      textDecoration: "none",
-                      textAlign: "center"
-                    }}
-                    href={ele?.href}
-                  >
-                    {ele?.viewForms}
-                  </Link>
+                  <>
+                    {ele?.href ? (
+                      <Link
+                        href={ele?.href}
+                        passHref
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                          textDecoration: "none",
+                        }}
+                      >
+                        {ele?.viewForms}
+                      </Link>
+                    ) : <span
+                      style={{
+                        color: theme.palette.primary.main,
+                        fontWeight: 600,
+                        fontSize: 14,
+                        cursor: "pointer",
+                        textAlign: "center",
+                      }}
+                      onClick={() => handleViewFormModal(ele?.id)}
+                    >
+                      {ele.viewForms}
+                    </span>}
+                  </>
                 )}
               </Box>
             </Grid>
@@ -140,7 +163,7 @@ const FinalDeRegistration = () => {
           </Grid>
         ))}
       </Grid>
-      <SocialWorkerFormDialogbox openFormDialog={openSocialWorkerAsessmentDialogbox} setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox} />
+      <FinalDeRegistrationDialogbox isSuccessfullyModalOpen={isSuccessfullyModalOpen} setIsSuccessfullyModalOpen={setIsSuccessfullyModalOpen} route={route} />
     </>
   );
 };

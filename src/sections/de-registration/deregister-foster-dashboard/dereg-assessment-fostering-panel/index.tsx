@@ -4,6 +4,7 @@ import proporsalTerminateImg from "../../../../assets/img/de-register/proporsal-
 import proporsalReviseImg from "../../../../assets/img/de-register/proporsal-revise.svg";
 import statutoryChecksImg from "../../../../assets/img/de-register/statutory-checks.svg";
 import finalOutcomeImg from "../../../../assets/img/de-register/final-outcome-img.svg";
+import QuantityImg from "../../../../assets/img/de-register/quality-icon.png"
 
 export const DeRegStagePostingPanelData = [
   {
@@ -59,12 +60,11 @@ export const DeRegStagePostingPanelData = [
         ],
       },
     ],
-    imgIcon: proporsalTerminateImg,
+    imgIcon: QuantityImg,
     textForApi: "digitalInfo",
-    text: "Proposal to Terminate",
-    informationText: "Proposal to Terminate",
-    heading: "Representations/Review Procedure",
-    viewForms: "View Form",
+    text: "Representations/Review Procedure",
+    informationText: "Representations/Review Procedure",
+    viewForms: ["Proposal to Terminate", "Proposal to Revise"],
     href: "#",
     status: "Pending"
   },
@@ -79,7 +79,7 @@ export const DeRegStagePostingPanelData = [
     text: "Statutory Checks",
     informationText: "Statutory Checks",
     viewForms: "View Form",
-    href: "#",
+    href: "/de-registration/deregister-foster-carer/statutory-checks",
     status: "Pending"
   },
   {

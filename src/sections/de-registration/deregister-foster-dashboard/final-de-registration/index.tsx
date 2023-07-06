@@ -20,7 +20,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "initalContact",
     text: "Agency Decision ",
     informationText: "Agency Decision ",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "/recruitment/enquiry-stage/initial-contact",
     status: "Failed"
   },
@@ -35,7 +35,7 @@ export const DeRegContractsAgreementsData = [
     textForApi: "initalEnquiryStage",
     text: "Resignation by Foster Carers",
     informationText: "Resignation by Foster Carers",
-    viewForms: ["View Form"],
+    viewForms: "View Form",
     href: "#",
     status: "Passed"
   },
@@ -58,8 +58,27 @@ export const DeRegContractsAgreementsData = [
     textForApi: "digitalInfo",
     text: "Moved to De-register status",
     informationText: "Moved to De-register status",
-    viewForms: ["De-registeration Done Successfully",],
-    href: "#",
+    viewForms: "De-registeration Done Successfully",
+    modal: true,
     status: "Pending"
   },
 ];
+
+
+export const PolicyVerticalAddNewDefaultValues = {
+  title: "",
+  dateUploaded: null,
+  description: "",
+  version: "",
+  createdBy: "",
+  approvedBy: "",
+  author: null,
+  approver: null,
+  creationTime: null,
+  lastModifiedTime: null,
+  modifiedBy: "",
+  eSignatureofAuthor: "",
+  eSignatureofApprover: "",
+  updatePhoto: "",
+};
+
