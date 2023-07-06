@@ -12,7 +12,8 @@ export const documentsApi: any = baseAPI.injectEndpoints({
         url: `/child-chronology-of-events/uploaded-documents`,
         method: "POST",
         body: queryArg.addDocumentCcRequestDto,
-      })
+      }),
+      invalidatesTags: [TAG],
     }),
     getChildChronologyOfEventsUploadedDocumentsList: build.query<
       GetChildChronologyOfEventsUploadedDocumentsListApiResponse,
@@ -22,23 +23,26 @@ export const documentsApi: any = baseAPI.injectEndpoints({
         url: `/child-chronology-of-events/uploaded-documents/List`,
         params: queryArg,
       }),
+      providesTags: [TAG],
     }),
     getChildChronologyOfEventsUploadedDocumentsById: build.query<
       GetChildChronologyOfEventsUploadedDocumentsByIdApiResponse,
       GetChildChronologyOfEventsUploadedDocumentsByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/uploaded-documents/${queryArg.id}`,
+        url: `/child-chronology-of-events/uploaded-documents/59dab800-41ba-4880-baf3-9568b7cb9db9`,
       }),
+      providesTags: [TAG],
     }),
     deleteChildChronologyOfEventsUploadedDocumentById: build.mutation<
       DeleteChildChronologyOfEventsUploadedDocumentByIdApiResponse,
       DeleteChildChronologyOfEventsUploadedDocumentByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/uploaded-document/${queryArg.id}`,
+        url: `/child-chronology-of-events/uploaded-document/${queryArg}`,
         method: "DELETE",
       }),
+      invalidatesTags: [TAG],
     }),
   }),
 });
