@@ -1,26 +1,10 @@
-import dayjs from "dayjs";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
-import { enqueueSnackbar } from "notistack";
 
 const useViewTraingProfile = (initialValueProps: any) => {
-  const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
-
-  const defaultValues = {
-    carerName: "",
-    courseAttended: "",
-    courseStatus: "",
-    comments: "",
-    trainingNeeds: "",
-    otherTraining: "",
-    addtionalInfo: "",
-    attendance: false,
-    expiryDate: new Date(),
-    date: new Date(),
-  };
 
   const tainingProfileSchema = Yup.object().shape({
     carerName: Yup.string().required("Required"),

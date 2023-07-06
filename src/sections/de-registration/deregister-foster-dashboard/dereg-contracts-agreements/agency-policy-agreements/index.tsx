@@ -1,5 +1,4 @@
 import RecruitmentAssessmentPolicyIcon from "../../../../../assets/svg/policy-guidelines/Recruitment-Assessment-Policy.svg";
-import PanelPolicyIcon from "../../../../../assets/svg/policy-guidelines/Panel-Policy.svg";
 import SafeGuardingPolicyIcon from "../../../../../assets/svg/policy-guidelines/SafeGuarding-Policy.svg";
 import AllegationsPolicyIcon from "../../../../../assets/svg/policy-guidelines/Allegations-Policy.svg";
 import EqualitiesPolicyIcon from "../../../../../assets/svg/policy-guidelines/Equalities-Policy.svg";
@@ -12,6 +11,7 @@ import EducationalPolicyPolicyIcon from "../../../../../assets/svg/policy-guidel
 import PromotingContactPolicyIcon from "../../../../../assets/svg/policy-guidelines/Promoting-Contact-Policy.svg";
 import StaffSupervisionPolicyIcon from "../../../../../assets/svg/policy-guidelines/Staff-Supervision-Policy.svg";
 import RecordingKeepingPolicyIcon from "../../../../../assets/svg/policy-guidelines/Recording-Keeping-Policy.svg";
+import AgencyPolicyIcon from "../../../../../assets/svg/policy-guidelines/agency-policy-icon.svg";
 
 export const agencyPolicyData = [
     {
@@ -33,7 +33,7 @@ export const agencyPolicyData = [
     {
         index: 1,
         title: "Agency Policy",
-        img: PanelPolicyIcon,
+        img: AgencyPolicyIcon,
         innerData: [
             {
                 id: '2',
@@ -48,8 +48,8 @@ export const agencyPolicyData = [
     },
     {
         index: 2,
-        title: "Safe Guarding Policy",
-        img: SafeGuardingPolicyIcon,
+        title: "Recording Keeping Policy",
+        img: RecordingKeepingPolicyIcon,
         innerData: [
             {
                 id: '3',
@@ -64,8 +64,8 @@ export const agencyPolicyData = [
     },
     {
         index: 3,
-        title: "Allegations Policy",
-        img: AllegationsPolicyIcon,
+        title: "Safe Guarding Policy",
+        img: SafeGuardingPolicyIcon,
         innerData: [
             {
                 id: '4',
@@ -80,8 +80,8 @@ export const agencyPolicyData = [
     },
     {
         index: 4,
-        title: "Equalities Policy",
-        img: EqualitiesPolicyIcon,
+        title: "Allegations Policy",
+        img: AllegationsPolicyIcon,
         innerData: [
             {
                 id: '5',
@@ -96,8 +96,8 @@ export const agencyPolicyData = [
     },
     {
         index: 5,
-        title: "Missing From Care Policy",
-        img: MissingCarePolicyIcon,
+        title: "Equalities Policy",
+        img: EqualitiesPolicyIcon,
         innerData: [
             {
                 id: '6',
@@ -112,8 +112,8 @@ export const agencyPolicyData = [
     },
     {
         index: 6,
-        title: "Behaviour Management Policy",
-        img: BehaviourManagementPolicyIcon,
+        title: "Missing From Care Policy",
+        img: MissingCarePolicyIcon,
         innerData: [
             {
                 id: '7',
@@ -128,8 +128,8 @@ export const agencyPolicyData = [
     },
     {
         index: 7,
-        title: "7 Standards of Care Policy",
-        img: StandardsCarePolicyIcon,
+        title: "Behaviour Management Policy",
+        img: BehaviourManagementPolicyIcon,
         innerData: [
             {
                 id: '8',
@@ -144,8 +144,8 @@ export const agencyPolicyData = [
     },
     {
         index: 8,
-        title: "Supervision Training Support Policy",
-        img: SupervisionTrainingSupportPolicy,
+        title: "7 Standards of Care Policy",
+        img: StandardsCarePolicyIcon,
         innerData: [
             {
                 id: '9',
@@ -224,8 +224,8 @@ export const agencyPolicyData = [
     },
     {
         index: 13,
-        title: "Recording Keeping Policy",
-        img: RecordingKeepingPolicyIcon,
+        title: "Supervision Training Support Policy",
+        img: SupervisionTrainingSupportPolicy,
         innerData: [
             {
                 id: '14',

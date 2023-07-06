@@ -11,53 +11,46 @@ const DeleteModel = (props: any) => {
   //---usestate handlers and themes
   const { open, handleClose, onDeleteClick } = props;
   const theme: any = useTheme();
-
   return (
-    <Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Box sx={Styles.root}>
-          <Grid container>
-            <Grid xs={12} item>
-              <Box sx={Styles.innerBox(theme)}>
-                <Image src={DeleteIcon} alt="" />
-                <Box sx={{ pt: "24px", textAlign: "center" }}>
-                  <Typography variant="h3" sx={Styles.heading}>Are you sure ?</Typography>
-                  <Typography variant="h5" sx={{ fontWeight: "500" }}>
-                    You won’t be able to revert this !
-                  </Typography>
-                </Box>
-                <Box sx={Styles.buttonWrapper}>
-                  <Button
-                    onClick={onDeleteClick}
-                    sx={Styles.buttonError(theme)}
-                  >
-                    Yes, delete it
-                  </Button>
-                  <Button
-                    onClick={handleClose}
-                    sx={Styles.buttonSuccess(theme)}
-                  >
-                    Cancel
-                  </Button>
-                </Box>
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      closeAfterTransition
+      slots={{ backdrop: Backdrop }}
+      slotProps={{
+        backdrop: {
+          timeout: 500,
+        },
+      }}
+    >
+      <Box sx={Styles.root}>
+        <Grid container>
+          <Grid xs={12} item>
+            <Box sx={Styles.innerBox(theme)}>
+              <Image src={DeleteIcon} alt="" />
+              <Box sx={{ pt: "24px", textAlign: "center" }}>
+                <Typography variant="h3" sx={Styles.heading}>
+                  Are you sure ?
+                </Typography>
+                <Typography variant="h5" sx={{ fontWeight: "500" }}>
+                  You won’t be able to revert this !
+                </Typography>
               </Box>
-            </Grid>
+              <Box sx={Styles.buttonWrapper}>
+                <Button onClick={onDeleteClick} sx={Styles.buttonError(theme)}>
+                  Yes, delete it
+                </Button>
+                <Button onClick={handleClose} sx={Styles.buttonSuccess(theme)}>
+                  Cancel
+                </Button>
+              </Box>
+            </Box>
           </Grid>
-        </Box>
-      </Modal>
-    </Box>
+        </Grid>
+      </Box>
+    </Modal>
   );
 };
 
@@ -82,14 +75,14 @@ const Styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    pt: "10px"
+    pt: "10px",
   }),
   buttonWrapper: (theme: any) => ({
     display: "flex",
     justifyContent: "center",
     gap: "12px",
     mt: 3.5,
-    mb: 1
+    mb: 1,
   }),
   buttonError: (theme: any) => ({
     bgcolor: theme.palette.error.darker,
@@ -98,7 +91,7 @@ const Styles = {
     px: 2,
     py: 1,
     fontSize: "16px !important",
-    fontWeight: "600"
+    fontWeight: "600",
   }),
   buttonSuccess: (theme: any) => ({
     bgcolor: theme.palette.primary.main,
@@ -106,7 +99,7 @@ const Styles = {
     minWidth: "100px",
     "&:hover": { bgcolor: theme.palette.primary.main },
     fontSize: "16px !important",
-    fontWeight: "600"
+    fontWeight: "600",
   }),
-  heading: { fontSize: "24px", fontWeight: "600" }
+  heading: { fontSize: "24px", fontWeight: "600" },
 };

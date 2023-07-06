@@ -14,7 +14,7 @@ DeregisterCarer.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "DeRegistration Agency Policies",
-                    href: "/deregister-carer/policy-agreements",
+                    href: "/de-registration/deregister-foster-carer/policy-agreements",
                 },
                 {
                     name: "Form",

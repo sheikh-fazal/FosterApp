@@ -17,7 +17,7 @@ export const DeRegAssessmentStageData = [
     text: "Consultation with Foster Carer",
     informationText: "Consultation with Foster Carer",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/de-registration/deregister-foster-carer/consultation-with-foster-carer",
     status: "Failed"
   },
   {
@@ -33,7 +33,7 @@ export const DeRegAssessmentStageData = [
     text: "Formal Review Meeting",
     informationText: "Formal Review Meeting",
     viewForms: "View Form",
-    href: "#",
+    href: "/de-registration/deregister-foster-carer/formal-review-meeting",
     status: "Passed"
   },
   {
