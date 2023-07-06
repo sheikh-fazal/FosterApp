@@ -20,22 +20,27 @@ export const defaultValueInterestForm = (data: any = interestFormValues) => {
 
 export const interestFormSchema = Yup.object().shape({
   previousExperience: Yup.string()
+    .trim()
     .required("Previous experience is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   motivation: Yup.string()
+    .trim()
     .required("Motivation is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   impactOfTheTask: Yup.string()
+    .trim()
     .required("Impact of task is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   skilledOffered: Yup.string()
+    .trim()
     .required("Skilled offer is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
   knowledgeOfTheReason: Yup.string()
+    .trim()
     .required("knowledge of the reason is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),

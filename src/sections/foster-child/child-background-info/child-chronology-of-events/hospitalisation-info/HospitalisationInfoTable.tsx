@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useHospitalisationInfoTable } from "./useHospitalisationInfoTable";
 
-const HospitalisationInfoTable = () => {
+const HospitalisationInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -102,7 +103,7 @@ const HospitalisationInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_hospitalisation_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

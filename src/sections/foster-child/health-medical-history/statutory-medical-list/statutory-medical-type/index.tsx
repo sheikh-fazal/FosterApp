@@ -1,4 +1,4 @@
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const statutoryMedicalListXTableColumnsFunction = (
@@ -11,21 +11,18 @@ export const statutoryMedicalListXTableColumnsFunction = (
     id: "medicalDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Medical Date</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.dueDate,
     id: "dueDate",
     cell: (info: any) => info.getValue(),
     header: () => <span>Due Date</span>,
-    isSortable: true,
   },
   {
-    accessorFn: (row: any) => row?.onFile,
+    accessorFn: (row: any) => row?.onfile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.id,
@@ -40,23 +37,40 @@ export const statutoryMedicalListXTableColumnsFunction = (
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=edit`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
+                  id: info.getValue(),
+                  type,
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=view`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
+                  id: info.getValue(),
+                  type,
+                  action: "view",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
         </Box>
       );
     },
     header: () => <span>Action</span>,
-    isSortable: false,
   },
 ];
+
+export const STATUTORYMEDICALLISTTYPEPAGELIMIT = 10;

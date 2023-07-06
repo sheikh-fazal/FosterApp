@@ -1,10 +1,9 @@
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { ChildExclusionInfoList } from "@root/sections/foster-child/child-exclusion-info/child-exclusion-info-list/ChildExclusionInfoList";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useState } from "react";
-import NewChildExclusionInfo from "@root/sections/foster-child/child-exclusion-info/new-child-exclusion-info/NewChildExclusionInfo";
+import NewChildExclusionInfo from "@root/sections/foster-child/education-records/child-exclusion-info/new-child-exclusion-info/NewChildExclusionInfo";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 const PAGE_TITLE = "Child Exclusion Info";

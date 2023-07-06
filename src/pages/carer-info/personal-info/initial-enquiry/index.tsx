@@ -125,20 +125,20 @@ export default function InitialEnquiry() {
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
         }
-        // tableData={tableData}
-        tableData={[
-          {
-            document: "bad.png",
-            documentType: "png",
-            date: "09/09/2009",
-            personName: "My name",
-            password: "password123",
-          },
-        ]}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
+        tableData={tableData}
+        // tableData={[
+        //   {
+        //     document: "bad.png",
+        //     documentType: "png",
+        //     date: "09/09/2009",
+        //     personName: "My name",
+        //     password: "password123",
+        //   },
+        // ]}
+        isLoading={isDocumentLoading}
+        isFetching={isFetching}
+        isError={hasDocumentError}
+        isSuccess={isSuccess}
         column={["document", "documentType", "date", "personName", "password"]}
         modalData={documentUploadHandler}
         onDelete={(data: any) => console.log("Deleting", data)}

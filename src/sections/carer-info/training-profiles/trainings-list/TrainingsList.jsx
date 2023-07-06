@@ -1,6 +1,6 @@
+import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
 import useTrainingsList from "./useTrainingsList";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { Card } from "@mui/material";

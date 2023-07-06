@@ -1,23 +1,20 @@
-import { Box, Grid, Paper, Typography, useTheme } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
 import { DayLogFormFields } from "./DayLogData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
-
-const defaultValues = {
-  dateOfOccurence: "sd",
-  correspondenceFromWhom: "asd",
-  entryType: "entry",
-};
+import { LoadingButton } from "@mui/lab";
+import { useDayLogForm } from "./useDayLogForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const DayLogForm = () => {
-  const methods = useForm({
-    defaultValues: defaultValues,
-  });
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action } =
+    useDayLogForm();
+
   const theme: any = useTheme();
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid>
-      <FormProvider methods={methods}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container sx={{ my: 2 }}>
           <Grid item xs={12} md={4}>
             Carer Name: Not Placed
@@ -34,7 +31,11 @@ const DayLogForm = () => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id} sx={{ mt: 1 }}>
                 {form.component !== "RadioGroup" && (
-                  <form.component size="small" {...form.otherOptions} disabled={true}>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -68,9 +69,11 @@ const DayLogForm = () => {
                 <Grid item xs={6}>
                   <RHFSelect
                     label={"Select User to be Notified"}
-                    name={"SelectUsertobeNotified"}
-                    disabled
-                  />
+                    name={"userToBeNotified"}
+                    disabled={action === "view" ? true : false}
+                  >
+                    <option value="nil">nil</option>
+                  </RHFSelect>
                 </Grid>
 
                 <Grid item xs={12} sx={{ mt: 2 }}>
@@ -85,10 +88,40 @@ const DayLogForm = () => {
                     Enter Additional Email Addresses to be notified: (Email Addresses should be
                     seprated by commas.For example john@domain.com, Pete@domain.com)
                   </Typography>
-                  <RHFTextField name={"EnterAdditionalEmailAddresses"} disabled />
+                  <RHFTextField
+                    name={"additionalEmailAddresses"}
+                    disabled={action === "view" ? true : false}
+                  />
                 </Grid>
               </Box>
             </Paper>
+          </Grid>
+          <Grid xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }} item>
+            {action !== "view" && (
+              <LoadingButton
+                type="submit"
+                loading={isSubmitting}
+                sx={{
+                  bgcolor: theme.palette.primary.main,
+                  "&:hover": { bgcolor: theme.palette.primary.main },
+                }}
+                variant="contained"
+              >
+                Submit
+              </LoadingButton>
+            )}
+            <Button
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
+              onClick={() =>
+                router.push("/foster-child/child-background-info/child-chronology-of-events")
+              }
+            >
+              Back
+            </Button>
           </Grid>
         </Grid>
       </FormProvider>
