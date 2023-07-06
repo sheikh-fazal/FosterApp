@@ -3,7 +3,8 @@ import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box } from '@mui/material';
-import ChildDetailsForm from '@root/sections/recommondation-results/child-details/ChildDetailsForm';
+import { ChildDetailsForm } from '@root/sections/matching-and-placement/matching/recommondation-results/child-details';
+// import ChildDetailsForm from '@root/sections/recommondation-results/child-details/ChildDetailsForm';
 
 const PAGE_TITLE = "Carer Details";
 

@@ -7,8 +7,8 @@ import { LoadingButton } from "@mui/lab";
 import { ReferralSchemeForm } from ".";
 import { useChildDetailsForm } from "./useChildDetailsForm";
 import Image from "next/image";
-import ChildDetailImg from '../../../assets/svg/childDetail.svg'
-import carerDetail from "../../../assets/svg/carerDetail.svg"
+import ChildDetailImg from '../../../../../assets/svg/childDetail.svg'
+import carerDetail from "../../../../../assets/svg/carerDetail.svg"
 
 
 //-----------Styles------------
@@ -33,7 +33,7 @@ export default function ChildDetailsForm({ disabled, }: any) {
                     sx={{ backgroundColor: "var(--logo-green, #0E918C)", boxShadow: "2px 4px 7px 0px rgba(14, 145, 140, 0.20)", p: 1, mb: 4, mt: 2 }}
                 >
                     <>
-                        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
+                        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Box sx={styles.detailsImg}>
                                 <Image style={{ width: "100%", height: "100%" }} src={ChildDetailImg} alt="" />
                             </Box>
@@ -60,7 +60,7 @@ export default function ChildDetailsForm({ disabled, }: any) {
                     sx={{ backgroundColor: "var(--logo-green, #0E918C)", boxShadow: "2px 4px 7px 0px rgba(14, 145, 140, 0.20)", p: 1, mb: 4, mt: 2 }}
                 >
                     <>
-                        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
+                        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <Box sx={styles.detailsImg}>
                                 <Image style={{ width: "100%", height: "100%" }} src={carerDetail} alt="carerDetail" />
                             </Box>
@@ -114,7 +114,7 @@ export default function ChildDetailsForm({ disabled, }: any) {
 
                     <Grid item xs={12}>
                         <Link
-                            href={lastValue === "child-details" ? "/recommondations-result" : "/matching-and-placement/matching"}
+                            href={lastValue === "child-details" ? "/matching/recommondations-result" : "/matching"}
                             style={{ textDecoration: "none" }}
                         >
                             <Button type="button" variant="contained">

@@ -1,4 +1,4 @@
-import PersonImg from '../../assets/svg/person.svg';
+import PersonImg from '../../../../assets/svg/person.svg';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';

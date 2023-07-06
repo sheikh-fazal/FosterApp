@@ -88,7 +88,7 @@ export default function CompareMatch() {
                     Add to Consideration List
                 </Button>
                 <Link
-                    href={"/recommondations-result"}
+                    href={"/matching/recommondations-result"}
                     style={{ textDecoration: "none" }}
                 >
                     <Button type="button" variant="contained">

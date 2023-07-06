@@ -1,10 +1,10 @@
 
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleSharpIcon from '@mui/icons-material/CheckCircleSharp';
-import CriteriaIcon from '../../../assets/svg/criteria.svg'
-import PersonOne from '../../../assets/svg/personOne.svg'
-import PersonTwo from '../../../assets/svg/personTwo.svg'
-import CompareResults from '../../../assets/svg/compareResults.svg'
+import CriteriaIcon from '../../../../../assets/svg/criteria.svg'
+import PersonOne from '../../../../../assets/svg/personOne.svg'
+import PersonTwo from '../../../../../assets/svg/personTwo.svg'
+import CompareResults from '../../../../../assets/svg/compareResults.svg'
 
 interface RowData {
     criteria: string;

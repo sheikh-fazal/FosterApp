@@ -2,8 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import RecommondationResults from "@root/sections/recommondation-results/RecommondationResults";
-import CompareMatch from "@root/sections/recommondation-results/compare-match/CompareMatch";
+import CompareMatch from "@root/sections/matching-and-placement/matching/recommondation-results/compare-match/CompareMatch";
 
 const PAGE_TILE = "Recommendation Results";
 
