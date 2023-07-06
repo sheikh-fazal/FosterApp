@@ -1,19 +1,34 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Grid, Button } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues, SUBSTITUTECARERFORMDATA } from ".";
 import Error from "@root/components/Error";
 import { LoadingButton } from "@mui/lab";
+import { useRouter } from "next/router";
+import { useGetSubstituteCarerByIdQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 
 //component function
 export default function SubstituteCarerForm(props: any) {
-  const { disabled, onSubmit, data, status }: any = props;
+  const { disabled, onSubmit, data: P, status }: any = props;
+
+  const params = useRouter();
+  const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
+    params.query?.carerId,
+    { skip: !!!params.query?.carerId }
+  );
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: disabled ? data : defaultValues,
+    // defaultValues: disabled ? data : defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      ...data,
+      dateOfBirth: new Date(),
+      dateOfVisit: new Date(),
+    },
   });
 
   const { reset, handleSubmit } = methods;
@@ -22,7 +37,17 @@ export default function SubstituteCarerForm(props: any) {
     onSubmit(data);
     reset();
   };
+  // updating defaultValues
 
+  // useEffect(() => {
+  //   reset((formValues: any) => ({
+  //     ...formValues,
+  //     ...data,
+  //     dateOfBirth: new Date(),
+  //     dateOfVisit: new Date(),
+  //   }));
+  // }, [data]);
+  console.log(!!params.query?.carerId);
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>
@@ -38,7 +63,7 @@ export default function SubstituteCarerForm(props: any) {
               <form.component
                 size="small"
                 {...form.componentProps}
-                disabled={disabled}
+                disabled={!!!params.query?.carerId}
               >
                 {form.componentProps.select
                   ? form.options.map((option: any) => (
@@ -92,7 +117,8 @@ export default function SubstituteCarerForm(props: any) {
       </Grid>
     </FormProvider>
   );
-
   // if (status?.isError) return <Error />;
+  // if (!status?.isSuccess) return <div>Loading . . </div>;
+  // if (status?.isSuccess)
   return formEl;
 }
