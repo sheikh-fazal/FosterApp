@@ -4,12 +4,15 @@ import {
   useGetFamilyPersonListQuery,
 } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
 
 export const useFamilyPersonListTable = () => {
-  const [search, setSearch] = React.useState("");
+  
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
 
   const { data, isError, isLoading, isSuccess, isFetching } =
-    useGetFamilyPersonListQuery<any>({ search: search });
+    useGetFamilyPersonListQuery<any>({ params });
 
   const [deleteList] = useDeleteFamilyPersonListMutation();
 
@@ -30,11 +33,13 @@ export const useFamilyPersonListTable = () => {
 
   return {
     data,
-    setSearch,
+    headerChangeHandler,
     isError,
     isLoading,
     isSuccess,
     isFetching,
     listDeleteHandler,
+    pageChangeHandler,
+    sortChangeHandler,
   };
 };

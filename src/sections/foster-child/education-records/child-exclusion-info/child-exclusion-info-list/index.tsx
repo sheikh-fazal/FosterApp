@@ -8,7 +8,7 @@ export const columnsChildExclusionInfoTable = (
   router: any,
   cancelDelete: any,
   setCancelDelete: any,
-  openDeleteModel: any
+  openDeleteModel: any,
 ) => [
   {
     id: "select",
@@ -41,22 +41,22 @@ export const columnsChildExclusionInfoTable = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.exclusionDate,
-    id: "exclusionDate",
+    accessorFn: (row: any) => row.dateExclusion,
+    id: "dateExclusion",
     cell: (info: any) => info.getValue(),
     header: () => <span>Exclusion Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.returnDate,
-    id: "returnDate",
+    accessorFn: (row: any) => row.dateReturn,
+    id: "dateReturn",
     cell: (info: any) => info.getValue(),
     header: () => <span>Return Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.typeExclusion,
-    id: "typeExclusion",
+    accessorFn: (row: any) => row.type,
+    id: "type",
     cell: (info: any) => info.getValue(),
     header: () => <span>Type of Exclusion</span>,
     isSortable: true,
@@ -84,15 +84,5 @@ export const columnsChildExclusionInfoTable = (
     ),
     header: () => <span>Actions</span>,
     isSortable: false,
-  },
-];
-
-export const DummyChildExclusionData = [
-  {
-    id: 1,
-    srNo: "1",
-    returnDate: new Date().toDateString(),
-    exclusionDate: new Date().toDateString(),
-    typeExclusion: "abc",
   },
 ];

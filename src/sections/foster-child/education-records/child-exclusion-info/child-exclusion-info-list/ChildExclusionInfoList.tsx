@@ -3,13 +3,12 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { DummyChildExclusionData } from ".";
-import useOutSchoolActivityList from "./useOutSchoolActivityList";
+import useChildExclusionInfoList from "./useChildExclusionInfoList";
 
-export const OutSchoolActivityList = () => {
+export const ChildExclusionInfoList = () => {
   const {
     columnsChildExclusionInfoTableFuntion,
-    // trainingPRofileData,
+    data,
     router,
     headerChangeHandler,
     tableHeaderRef,
@@ -18,7 +17,12 @@ export const OutSchoolActivityList = () => {
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
-  } = useOutSchoolActivityList();
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    id
+  } = useChildExclusionInfoList();
   return (
     <>
       <DeleteModel
@@ -35,18 +39,23 @@ export const OutSchoolActivityList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info"
+              `/foster-child/education-records/child-exclusion-info/new-child-exclusion-info?${id}`
             );
           }}
           onChanged={headerChangeHandler}
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={DummyChildExclusionData}
+          data={data?.data}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={true}
-          isPagination={false}
+          isSuccess={isSuccess}
+          isError={isError}
+          isFetching={isFetching}
+          isLoading={isLoading}
+          isPagination={true}
+          currentPage={1}
+          totalPages={1}
         />
       </Card>
     </>

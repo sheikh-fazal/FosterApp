@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import EditChildExclusionInfo from "@root/sections/foster-child/child-exclusion-info/edit-child-exclusion-info/EditChildExclusionInfo";
+import EditChildExclusionInfo from "@root/sections/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info/EditChildExclusionInfo";
 
 const PAGE_TITLE = "Child Exclusion Info";
 
