@@ -68,21 +68,21 @@ export const endListItems = [
   {
     id: 2,
     title: "Cookie Policy",
-    link: "",
+    link: "/cookie-policy",
   },
   {
     id: 3,
     title: "Privacy Policy",
-    link: "",
+    link: "/privacy-policy",
   },
   {
     id: 4,
     title: "Terms & Conditions",
-    link: "",
+    link: "/terms-conditions",
   },
   {
     id: 5,
     title: "Data Security",
-    link: "",
+    link: "/data-security",
   },
 ];
