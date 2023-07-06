@@ -91,7 +91,7 @@ export default function DbsCheck() {
     <HorizaontalTabs tabsDataArray={["DBS Check", "Upload Documents"]}>
       <DbsCheckForm action={action} id={id} />
       <UploadDocuments
-        // readOnly={true}
+        readOnly={action === "view" ? true : false}
         tableData={tableData}
         isLoading={isDocumentLoading}
         isFetching={isFetching}

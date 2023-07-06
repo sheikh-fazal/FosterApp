@@ -93,7 +93,7 @@ export default function CarInsurance() {
     <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
       <CarInsuranceForm action={action} id={id} />
       <UploadDocuments
-        // readOnly={true}
+        readOnly={action === "view" ? true : false}
         tableData={tableData}
         isLoading={isDocumentLoading}
         isFetching={isFetching}
