@@ -40,5 +40,7 @@ Matching.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function Matching() {
-  return <Page title={PAGE_TITLE}></Page>;
+  return <Page title={PAGE_TITLE}>
+
+  </Page>;
 }

@@ -67,11 +67,11 @@ export const NAV_LINKS = [
     id: 7,
     text: "Matching & Placement",
     img: <SettingsOutlinedIcon />,
-    link: "",
+    link: "/matching",
     sublist: [
       {
         list: "Matching",
-        sublistlink: "/matching&placement/matching",
+        sublistlink: "/matching",
       },
       {
         list: "Placement",
@@ -83,7 +83,7 @@ export const NAV_LINKS = [
     id: 8,
     text: "Deregister Foster Carer",
     img: <HowToRegOutlinedIcon />,
-    link: "",
+    link: "/de-registration",
   },
   {
     id: 9,
