@@ -19,7 +19,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "View CLA Documentation";
+const PAGE_TITLE = "Edit CLA Documentation";
 // ----------------------------------------------------------------------
 
 EditClaDocumentationList.getLayout = function getLayout(page: any) {

@@ -1,27 +1,27 @@
+import React from "react";
 import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
 import useTrainingVerificationForm from "./useTrainingVerificationForm";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 export default function TrainingVerificationForm() {
   const {
-    columnsTrainingVerificationFuntion,
-    trainingPRofileData,
-    router,
-    isLoading,
-    isError,
-    isFetching,
-    isSuccess,
-    headerChangeHandler,
-    tableHeaderRef,
     meta,
+    router,
+    isError,
+    isSuccess,
+    isLoading,
+    isFetching,
+    tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
     trainingProfileId,
     closeDeleteProfile,
-    deleteTrainingProfile
+    headerChangeHandler,
+    trainingPRofileData,
+    deleteTrainingProfile,
+    columnsTrainingVerificationFuntion,
   } = useTrainingVerificationForm();
   return (
     <>
@@ -30,7 +30,6 @@ export default function TrainingVerificationForm() {
         onDeleteClick={deleteTrainingProfile}
         handleClose={closeDeleteProfile}
       />
-
       <Card>
         <TableHeader
           showAddBtn

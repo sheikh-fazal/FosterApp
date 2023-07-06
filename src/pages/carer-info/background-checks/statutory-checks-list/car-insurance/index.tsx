@@ -10,7 +10,7 @@ import {
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 import UploadDocumentsTable from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/upload-documents/UploadDocumentsTable";
-// import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 // Constants
 const BREADCRUMBS = [
@@ -66,7 +66,7 @@ export default function CarInsurance() {
     formData.append("documentDate", data.documentDate);
     formData.append("documentPassword", data.documentPassword);
     formData.append("file", data.chosenFile);
-    postDocuments(formData);
+    // postDocuments(formData);
   };
 
   return (
