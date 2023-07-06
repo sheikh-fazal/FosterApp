@@ -1,12 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { FamilyOrgInvolvedFormData } from ".";
 import { FormProvider } from "@root/components/hook-form";
 import { useFamilyOrgInvolvedForm } from "./useFamilyOrgInvolvedForm";
+import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function FamilyOrgInvolvedForm(props: any) {
-  const { methods, handleSubmit, disabled, onSubmit } =
+  const { methods, handleSubmit, disabled, isSubmitting, onSubmit } =
     useFamilyOrgInvolvedForm(props);
 
   return (
@@ -39,22 +40,29 @@ export default function FamilyOrgInvolvedForm(props: any) {
 
           {!disabled && (
             <Grid item xs={12}>
-              <Button size="large" type="submit" variant="contained">
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                loading={isSubmitting}
+              >
                 Submit
-              </Button>
-              <Link href={"/foster-child/child-background-info/family-person-org-involved"}>
-                <Button
+              </LoadingButton>
+              <Link
+                href={
+                  "/foster-child/child-background-info/family-person-org-involved"
+                }
+              >
+                <LoadingButton
                   type="button"
                   sx={{
                     color: "#fff",
                     ml: 1,
                     backgroundColor: "#F6830F",
                   }}
-                  size="large"
                   variant="contained"
                 >
                   Back
-                </Button>
+                </LoadingButton>
               </Link>
             </Grid>
           )}
