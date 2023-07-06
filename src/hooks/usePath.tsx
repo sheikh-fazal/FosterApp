@@ -6,11 +6,24 @@ const usePath = () => {
   const router = useRouter();
   const query = router.query;
 
-  const makePath = (path = "", passQuery = true) => {
-    return {
+  const makePath = ({
+    path = "",
+    passOldQuery = true,
+    queryParams = {},
+    skipQueries = [""],
+  }) => {
+    const filteredParams = { ...query };
+    skipQueries.forEach((queryKey) => {
+      if (queryKey in filteredParams) delete filteredParams[queryKey];
+    });
+    const pathObject = {
       pathname: path,
-      ...(passQuery && { query }),
+      query: {
+        ...(passOldQuery && filteredParams),
+        ...queryParams,
+      },
     };
+    return pathObject;
   };
 
   return { makePath, query };

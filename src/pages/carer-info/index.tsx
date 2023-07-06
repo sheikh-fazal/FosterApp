@@ -22,6 +22,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -59,6 +60,7 @@ export default function CarerInfo() {
   const theme: any = useTheme();
   const router: any = useRouter();
   const { fosterCarerId } = router.query;
+  const { makePath } = usePath();
 
   if (!fosterCarerId) {
     router.push("/foster-carer-list");
@@ -73,10 +75,10 @@ export default function CarerInfo() {
                 <Box key={innerItem?.id} sx={styles?.container}>
                   <List sx={styles?.listContainer}>
                     <NextLink
-                      href={{
-                        pathname: innerItem?.link,
-                        query: { fosterCarerId: fosterCarerId },
-                      }}
+                      href={makePath({
+                        path: innerItem?.link,
+                        passOldQuery: true,
+                      })}
                       style={styles?.nextLinkContainer}
                     >
                       <ListItem

@@ -5,7 +5,6 @@ import router from "next/router";
 import dayjs from "dayjs";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import usePath from "@root/hooks/usePath";
 
 export const SELECTFILTERS = [
   {
@@ -28,11 +27,16 @@ export const SELECTFILTERS = [
 export const getFosterCarerListColumns = (makePath: any) => {
   return [
     {
-      accessorFn: (row: any) => row?.img,
+      accessorFn: (row: any) => row?.profileImage,
       id: "img",
       cell: (info: any) => (
         <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-          <Image src={info.getValue()} alt={"Image"} width={35} height={35} />
+          <Image
+            src={process.env.NEXT_PUBLIC_IMG_URL + info.getValue()}
+            alt={"Image"}
+            width={35}
+            height={35}
+          />
         </Box>
       ),
       header: "Image",
@@ -54,9 +58,9 @@ export const getFosterCarerListColumns = (makePath: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.areaLocality,
+      accessorFn: (row: any) => row?.nationality ?? "-",
       id: "areaLocality",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => info.getValue(),
       header: "Area/Locality",
       isSortable: true,
     },
@@ -68,16 +72,17 @@ export const getFosterCarerListColumns = (makePath: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.areaOffice,
+      accessorFn: (row: any) => row?.location ?? "-",
       id: "areaOffice",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => info.getValue(),
       header: "Area Office",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.status,
+      accessorFn: (row: any) =>
+        row?.trainingHistory?.specialities?.status ?? "-",
       id: "status",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => info.getValue(),
       header: "Status",
       isSortable: true,
     },
@@ -87,7 +92,15 @@ export const getFosterCarerListColumns = (makePath: any) => {
       cell: (info: any) => (
         <Button
           variant={"outlined"}
-          onClick={() => router.push(makePath("carer-info", info.getValue()))}
+          onClick={() =>
+            router.push(
+              makePath({
+                path: "carer-info",
+                passOldQuery: true,
+                queryParams: { fosterCarerId: info.getValue() },
+              })
+            )
+          }
           sx={{ whiteSpace: "nowrap" }}
         >
           View Details

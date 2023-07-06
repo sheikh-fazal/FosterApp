@@ -3,10 +3,10 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { useCarerFamilySupportNetworkTable } from "./useCarerFamilySupportNetworkTable";
-import { columns } from "./";
 
 export default function CarerFamilySupportNetworkTable() {
   const {
+    makePath,
     router,
     tableHeaderRef,
     isLoading,
@@ -18,6 +18,7 @@ export default function CarerFamilySupportNetworkTable() {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    columnsCarerFamilySupportNetwork,
   } = useCarerFamilySupportNetworkTable();
 
   return (
@@ -25,19 +26,22 @@ export default function CarerFamilySupportNetworkTable() {
       <TableHeader
         ref={tableHeaderRef}
         disabled={isLoading}
-        title="Excisting Family Member Details"
+        title="Existing Family Member Details"
         searchKey="search"
         showAddBtn
         onAdd={() => {
           router.push(
-            "/carer-info/personal-info/carer-family-support-network/add-family-support"
+            makePath({
+              path: "/carer-info/personal-info/carer-family-support-network/add-family-support",
+              passOldQuery: true,
+            })
           );
         }}
         onChanged={headerChangeHandler}
       />
       <CustomTable
         data={family}
-        columns={columns}
+        columns={columnsCarerFamilySupportNetwork}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
