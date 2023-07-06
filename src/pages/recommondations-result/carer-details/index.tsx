@@ -3,13 +3,11 @@ import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box } from '@mui/material';
-import { SafeguardingAssessmentAddForm, SafeguardingAssessmentForm } from '@root/sections/safeguarding/safeguarding-tools/safeguarding-assessment-tool/safeguarding-assessment-add-form';
 import ChildDetailsForm from '@root/sections/recommondation-results/child-details/ChildDetailsForm';
-// import SafeguardingAssessmentAddForm from '@root/sections/safeguarding/safeguarding-tools/safeguarding-assessment-tool/safeguarding-assessment-add-form';
 
-const PAGE_TITLE = "Child Details";
+const PAGE_TITLE = "Carer Details";
 
-ChildDetails.getLayout = function getLayout(page: any) {
+CarerDetails.getLayout = function getLayout(page: any) {
     return (
         <Layout
             showTitleWithBreadcrumbs
@@ -17,10 +15,10 @@ ChildDetails.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "IFA",
-                    href: "/recommondations-result-tab",
+                    href: "/matching-and-placement/matching",
                 },
                 {
-                    name: "Matching",
+                    name: "Dashboard",
                 },
             ]}
             title={PAGE_TITLE}
@@ -30,9 +28,8 @@ ChildDetails.getLayout = function getLayout(page: any) {
     );
 };
 
-export default function ChildDetails() {
+export default function CarerDetails() {
     return (
-        //  <SafeguardingAssessmentAddForm/>
         <Page title={PAGE_TITLE}>
             <Box>
                 <ChildDetailsForm disabled />

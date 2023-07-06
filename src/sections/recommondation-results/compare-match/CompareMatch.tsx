@@ -80,7 +80,7 @@ export default function CompareMatch() {
 
                 </TableBody>
             </TableContainer>
-            <Box sx={{ display: "flex", gap: "10px", mt: 3 }}>
+            <Box sx={{ display: "flex", gap: "10px", mt: 3, flexWrap: "wrap" }}>
                 <Button type="button" variant="contained">
                     Add to Placement List
                 </Button>
@@ -88,7 +88,7 @@ export default function CompareMatch() {
                     Add to Consideration List
                 </Button>
                 <Link
-                    href={"/recommondations-result-tab"}
+                    href={"/recommondations-result"}
                     style={{ textDecoration: "none" }}
                 >
                     <Button type="button" variant="contained">
