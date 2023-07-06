@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import dayjs from "dayjs";
-import { fTimestamp } from "@root/utils/formatTime";
-import { useTheme } from "@mui/material";
 import { FormSchema, defaultValues, formData } from ".";
 import {
   usePostReferenceDetailMutation,
@@ -12,15 +9,16 @@ import {
 import { enqueueSnackbar } from "notistack";
 
 export const useReferenceViewForm = (props: any) => {
-  const { refData, viewData, apllicationFormid, changeView } = props;
-
+  const { refData, viewData, applicationFormid, changeView } = props;
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: viewData == "add" ? defaultValues : refData,
   });
-  let [postReferenceDetail, { isLoading }] = usePostReferenceDetailMutation();
-  let [updateReference] = useUpdateReferenceMutation();
+  let [postReferenceDetail, { isLoading: postLoading }] =
+    usePostReferenceDetailMutation();
+  let [updateReference, { isLoading: editLoading }] =
+    useUpdateReferenceMutation();
   const {
     reset,
     control,
@@ -43,7 +41,7 @@ export const useReferenceViewForm = (props: any) => {
     if (Formtype == "add") {
       try {
         const res: any = await postReferenceDetail({
-          apllicationFormid,
+          id: applicationFormid,
           formData,
         }).unwrap();
         if (res.data) {
@@ -54,9 +52,8 @@ export const useReferenceViewForm = (props: any) => {
           reset();
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
     if (Formtype == "edit") {
@@ -66,15 +63,13 @@ export const useReferenceViewForm = (props: any) => {
           formData,
         }).unwrap();
         if (res.data) {
-          changeView(null);
           enqueueSnackbar("Record Updated Successfully", {
             variant: "success",
           });
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
   };
@@ -89,5 +84,7 @@ export const useReferenceViewForm = (props: any) => {
     onSubmit,
     isSubmitting,
     isDirty,
+    postLoading,
+    editLoading,
   };
 };

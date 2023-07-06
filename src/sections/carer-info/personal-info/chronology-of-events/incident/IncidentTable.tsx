@@ -25,13 +25,13 @@ const Incident = () => {
   } = useIncidentTable();
 
   const columns = [
-    {
-      accessorFn: (row: any) => row?.id,
-      id: "id",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Sr.No</span>,
-      isSortable: false,
-    },
+    // {
+    //   accessorFn: (row: any) => row?.id,
+    //   id: "id",
+    //   cell: (info: any) => info.getValue() ?? "-",
+    //   header: () => <span>Sr.No</span>,
+    //   isSortable: false,
+    // },
     {
       accessorFn: (row: any) => row.incidentName,
       id: "incidentName",
@@ -116,6 +116,7 @@ const Incident = () => {
       <CustomTable
         data={incidentlist?.data?.incident ?? []}
         columns={columns}
+        showSerialNo={true}
         isLoading={incidentListIsloading}
         isFetching={incidentlistIsfetching}
         isError={incidentListError}

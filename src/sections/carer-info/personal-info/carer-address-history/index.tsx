@@ -7,10 +7,7 @@ import router from "next/router";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-
-// utils
-
-// ----------------------------------------------------------------------
+import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 
 export const defaultValues = {
   type: "Pre Approved",
@@ -38,22 +35,21 @@ export const FormSchema = Yup.object().shape({
   telephone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   officePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   mobilePhone: Yup.string()
     .required("Field is required")
     .min(4, "Mininum 4 characters")
-    .max(25, "Maximum 25 characters"),
+    .max(35, "Maximum 35 characters"),
   email: Yup.string()
     .required("Field is required")
     .email("Invalid Email Address"),
-  county: Yup.string().required("Field is required"),
   country: Yup.string().required("Field is required"),
   postalCode: Yup.string().required("Field is required"),
-  dateMovedOut: Yup.date().required("Date of Interview is required"),
+  dateMovedOut: Yup.date().required("Field is required"),
   localAuthority: Yup.string().required("Field is required"),
 });
 export const formData = [
@@ -143,10 +139,7 @@ export const formData = [
       fullWidth: true,
       select: true,
     },
-    options: [
-      { value: "Male", label: "Male" },
-      { value: "Female", label: "Female" },
-    ],
+    options: COUNTYDROPDOWN,
     component: RHFSelect,
   },
   {
@@ -224,7 +217,7 @@ export const columns = (listDeleteHandler: any) => {
             type="edit"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/carer-address-history/edit-address-history?id=${info?.row?.original?.id}`
+                `/carer-info/personal-info/carer-address-history/edit-address-history/${info?.row?.original?.id}`
               )
             }
           />
@@ -232,7 +225,7 @@ export const columns = (listDeleteHandler: any) => {
             type="view"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/carer-address-history/view-address-history?id=${info?.row?.original?.id}`
+                `/carer-info/personal-info/carer-address-history/view-address-history/${info?.row?.original?.id}`
               )
             }
           />
@@ -247,20 +240,4 @@ export const columns = (listDeleteHandler: any) => {
   ];
 };
 
-export const CarerAddressHistoryTableData = [
-  {
-    srNo: "1",
-    city: "Doc Name",
-    address: "Document Type",
-    currentAddress: "19/05/2021",
-    status: "Name Xame",
-  },
-  {
-    srNo: "2",
-    city: "Doc Name",
-    address: "Document Type",
-    currentAddress: "19/05/2021",
-    status: "Name Xame",
-  },
-];
 export { default as CarerAddressHistory } from "./CarerAddressHistoryForms";

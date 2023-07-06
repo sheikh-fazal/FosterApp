@@ -220,6 +220,7 @@ const MuiSelect = () => {
       label="Select Action"
       sx={{ textAlign: "left", width: "80%" }}
       defaultValue={" "}
+      size={"small"}
     >
       <MenuItem value=" ">Select Option</MenuItem>
       {options.map((option: any) => (

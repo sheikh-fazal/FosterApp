@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 
-const AddWebsiteUrlModal = ({ open, handleClose, onSubmit }: any) => {
+const AddWebsiteUrlModal = ({ open, handleClose, onSubmit, back }: any) => {
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: initialValues,
@@ -29,7 +29,10 @@ const AddWebsiteUrlModal = ({ open, handleClose, onSubmit }: any) => {
       open={open}
       PaperProps={{ style: { width: "725px" } }}
       maxWidth={"sm"}
-      onClose={handleClose}
+      onClose={() => {
+        handleClose();
+        back();
+      }}
     >
       <DialogTitle
         sx={{ display: "flex", justifyContent: "space-between" }}
@@ -59,7 +62,10 @@ const AddWebsiteUrlModal = ({ open, handleClose, onSubmit }: any) => {
             sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F" } }}
             type="button"
             variant="contained"
-            onClick={handleClose}
+            onClick={() => {
+              handleClose();
+              back();
+            }}
           >
             Cancel
           </Button>

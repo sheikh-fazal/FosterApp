@@ -3,9 +3,6 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-// utils
-
-// ----------------------------------------------------------------------
 
 export const defaultValues = {
   firstName: "",
@@ -18,12 +15,8 @@ export const defaultValues = {
 
 export const FormSchema = Yup.object().shape({
   firstName: Yup.string().required("First Name is required"),
-  middleName: Yup.string().required("Middle Name is required"),
   lastName: Yup.string().required("Last Name is required"),
-  address: Yup.string()
-    .required("Address is required")
-    .min(6, "Mininum 6 characters")
-    .max(20, "Maximum 20 characters"),
+  address: Yup.string().required("Address is required"),
   phoneNum: Yup.string()
     .required("Phone Number is required")
     .min(4, "Mininum 4 characters")
@@ -100,6 +93,7 @@ export const columns = (
       id: "email",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email</span>,
+      isSortable: true,
     },
     {
       id: "actions",

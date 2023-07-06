@@ -39,7 +39,7 @@ const CurrentReferralForm = ({ disabled }: any) => {
           QuickReferralFormData.map((form, i) => (
             <Grid item xs={12} md={form.gridLength} key={i}>
               {form.head && <Typography sx={{ fontWeight: 600, color: theme.palette.grey[600] }}>{form.head}</Typography>}
-              {form.requireUploadImage && <RHFUploadFile name='updatePhoto' {...methods} required />}
+              {form.requireUploadImage && <RHFUploadFile disabled={disabled} name='updatePhoto' {...methods} required />}
               {form.otherOptions && <form.component disabled={disabled} size='small' {...form.otherOptions}>
                 {form.otherOptions.select
                   ? form.otherOptions.options.map((option: any) => (

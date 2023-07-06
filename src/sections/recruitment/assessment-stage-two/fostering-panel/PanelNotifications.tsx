@@ -106,8 +106,15 @@ export default function PanelNotifications() {
             setExpand(!expand);
           }}
         >
-          more
-          {expand ? <ExpandMore /> : <ExpandLess />}
+          {expand ? (
+            <>
+              Less <ExpandLess />
+            </>
+          ) : (
+            <>
+              More <ExpandMore />
+            </>
+          )}
         </Button>
       </Box>
     </Card>

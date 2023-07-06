@@ -14,9 +14,8 @@ const ReferralListTable = () => {
     selectHandler,
     columns,
     setIsShareModal,
-    isShareModal
+    isShareModal,
   } = useReferralListTable();
-
 
   return (
     <>
@@ -28,7 +27,9 @@ const ReferralListTable = () => {
         showDiagramBtn
         showShareBtn
         showPrintBtn
-        onPrint={() => { window.print() }}
+        onPrint={() => {
+          window.print();
+        }}
         onDiagramBtn={() => setWorkFlowModal(true)}
         onAdd={() => setWorkFlowModal(true)}
         onShare={() => setIsShareModal(true)}
@@ -42,16 +43,22 @@ const ReferralListTable = () => {
         isLoading={false}
         isFetching={false}
         isError={false}
-        isSuccess={true} 
+        isSuccess={true}
         currentPage={1}
-        onPageChange={(data: any) => { }}
-        onSortByChange={(data: any) => { }}
+        onPageChange={(data: any) => {}}
+        onSortByChange={(data: any) => {}}
       />
       <WorkFlowModal
         open={workFlowModal}
         handleClose={() => setWorkFlowModal(false)}
       />
-      <ShareModal open={isShareModal} data={[{ email: 'hassan@gmail.com' }]} handleClose={() => setIsShareModal(false)} />
+      {isShareModal && (
+        <ShareModal
+          open={isShareModal}
+          data={[{ email: "hassan@gmail.com" }]}
+          handleClose={() => setIsShareModal(false)}
+        />
+      )}
     </>
   );
 };

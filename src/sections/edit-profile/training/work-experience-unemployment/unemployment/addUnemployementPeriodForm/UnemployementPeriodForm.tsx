@@ -16,10 +16,7 @@ import { useTheme } from "@emotion/react";
 import FullWidthFormField from "@root/components/form-generator/FullWidthFormField";
 import HalfWidthFormField from "@root/components/form-generator/HalfWidthFormField";
 import IsFetching from "@root/components/loaders/IsFetching";
-import {
-  useAddUnemploymentPeriodMutation,
-  useAddWorkExperienceMutation,
-} from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
+import { useAddUnemploymentPeriodMutation } from "@root/services/update-profile/training-and-work-his/trainingAndWorkHistoryApi";
 import {
   displayErrorMessage,
   displaySuccessMessage,
@@ -27,7 +24,6 @@ import {
 import { enqueueSnackbar } from "notistack";
 
 const UnemployementPeriodForm: FC<any> = ({ close }) => {
-  const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [addUnemploymentPeriod] = useAddUnemploymentPeriodMutation();
   const methods: any = useForm({
@@ -37,12 +33,8 @@ const UnemployementPeriodForm: FC<any> = ({ close }) => {
   });
 
   const {
-    reset,
-    control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
   const onSubmit = async (data: any) => {

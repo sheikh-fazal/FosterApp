@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Grid } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import BankAccountDetailsForm from "./BankAccountDetailsForm";
@@ -8,45 +8,45 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 
 // ----------------------------------------------------------------------
 export const BankAccountDetailsTable = (props: any) => {
-  const { readOnly, isLoading, isError, isFetching, isSuccess, tableData } =
-    props;
+  const {
+    readOnly,
+    gettingStatus,
+    tableData,
+    editedData,
+    editingStatus,
+    deletingStatus,
+    onDelete,
+    onPageChange,
+    modalStatus,
+  } = props;
+  //modal states
   const [openDeleteModal, setOpenDeleteModal] = useState<any>(false);
+  const [openFormModalWithData, setOpenFormModalWithData] =
+    useState<any>(false);
+
   // ----------------------------------------------------------------------
-  const tableRows = [
-    {
-      id: 1,
-      accountNumber: "522",
-      accountType: "Savings",
-      accountName: "Ahmed Shah",
-      nameOfBank: "HBL",
-      sortName: "name",
-    },
-    {
-      id: 2,
-      accountNumber: "888",
-      accountType: "platinum",
-      accountName: "Butt",
-      nameOfBank: "Alfalah",
-      sortName: "none",
-    },
-  ];
+  useEffect(() => {
+    // close modal upon successful deletion otherwise leave it open
+    deletingStatus?.isSuccess && setOpenDeleteModal(false);
+  }, []);
+  //-------------------------------------Table Column--------------------------------------
   const columns = [
     {
       accessorFn: (row: any) => row.accountNumber,
       id: "Account Number",
       cell: (info: any) => info.getValue(),
       header: () => <span>Account Number</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
       accessorFn: (row: any) => row.sortName,
       id: "Sort Name",
       cell: (info: any) => info.getValue(),
       header: () => <span>Sort Name</span>,
-      isSortable: true,
+      // isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.nameOfBank,
+      accessorFn: (row: any) => row.bankName,
       id: "Name of the Bank",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of the Bank</span>,
@@ -67,16 +67,10 @@ export const BankAccountDetailsTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <BankAccountDetailsForm
-            content={info}
-            btnType="edit"
-            closeModal={() => {}}
-            formData={(data: any) =>
-              console.log("oooooooooooooooooooooi Edit", {
-                ...info.row?.original,
-                ...data,
-              })
-            }
+          <TableAction
+            type="edit"
+            onClicked={() => setOpenFormModalWithData(info)}
+            size="small"
           />
           <TableAction
             type="delete"
@@ -88,6 +82,7 @@ export const BankAccountDetailsTable = (props: any) => {
             content={info}
             readOnly
             btnType="view"
+            modalStatus={() => {}}
             closeModal={() => {}}
           />
         </Box>
@@ -96,41 +91,46 @@ export const BankAccountDetailsTable = (props: any) => {
       isSortable: false,
     },
   ];
+  //---------------------------------------------------------------------------------------
 
   return (
     <Grid container>
+      {/* edit form in a modal */}
+      <BankAccountDetailsForm
+        openModal={openFormModalWithData}
+        content={openFormModalWithData}
+        status={editingStatus}
+        modalStatus={modalStatus}
+        closeModal={() => {
+          setOpenFormModalWithData(false);
+        }}
+        formData={(data: any) =>
+          editedData({
+            id: openFormModalWithData.row?.original?.id,
+            body: data,
+          })
+        }
+      />
       <DeleteModel
         open={openDeleteModal}
-        onDeleteClick={() => alert(openDeleteModal?.nameOfBank)}
+        onDeleteClick={() => {
+          onDelete(openDeleteModal?.id);
+          setOpenDeleteModal(false);
+        }}
         handleClose={() => {
           setOpenDeleteModal(false);
         }}
       />
       <CustomTable
-        data={tableRows}
+        data={tableData?.carer_bank_detail}
         columns={columns}
-        isLoading={
-          false
-          // isLoading
-        }
-        isFetching={
-          false
-          // isFetching
-        }
-        isError={
-          false
-          // isError
-        }
-        isSuccess={
-          true
-          // isSuccess
-        }
-        showSerialNo
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
+        isLoading={gettingStatus?.isLoading}
+        isFetching={gettingStatus?.isFetching}
+        isError={gettingStatus?.isError}
+        isSuccess={gettingStatus?.isSuccess}
+        totalPages={tableData?.meta?.pages}
+        currentPage={tableData?.meta?.page}
+        onPageChange={onPageChange}
         onSortByChange={(data: any) => {
           console.log("Sort by: ", data);
         }}

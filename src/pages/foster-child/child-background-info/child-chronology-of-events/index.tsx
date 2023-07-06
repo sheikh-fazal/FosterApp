@@ -1,7 +1,7 @@
-
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import ChildChronologyOfEventsList from "@root/sections/foster-child/child-background-info/child-chronology-of-events/ChildChronologyOfEventsList";
+import { useRouter } from "next/router";
 
 const BREADCRUMBS = [
   {
@@ -25,5 +25,7 @@ ChildChronologyOfEvents.getLayout = function getLayout(page: any) {
 };
 
 export default function ChildChronologyOfEvents() {
-  return <ChildChronologyOfEventsList/>;
+  const router = useRouter();
+  const { fosterChildId } = router.query;
+  return <ChildChronologyOfEventsList fosterChildId={fosterChildId} />;
 }

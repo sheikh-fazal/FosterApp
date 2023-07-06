@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,13 +7,11 @@ import { usePatchTrainingProfileApiMutation } from "@root/services/recruitment/a
 
 const useEditTraingingProfile = ({
   initialValueProps,
-  onSubmitHandler,
   trainingProfileId,
 }: any) => {
-
   const router = useRouter();
 
-  const[postEditData]=usePatchTrainingProfileApiMutation()
+  const [postEditData] = usePatchTrainingProfileApiMutation();
 
   const tainingProfileSchema = Yup.object().shape({
     carerName: Yup.string().required("Required"),
@@ -54,8 +51,6 @@ const useEditTraingingProfile = ({
       trainingProfileId,
       data,
     };
-
-    console.log(updatedData, "updated data");
 
     try {
       const res: any = await postEditData(updatedData).unwrap();

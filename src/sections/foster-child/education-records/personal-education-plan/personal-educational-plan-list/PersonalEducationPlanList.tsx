@@ -31,7 +31,7 @@ export const PersonalEducationPlanList = () => {
         <TableHeader
           showAddBtn
           ref={tableHeaderRef}
-          title="Child Exclusion Info"
+          title="Personal Education Plan"
           searchKey="search"
           onAdd={() => {
             router.push(

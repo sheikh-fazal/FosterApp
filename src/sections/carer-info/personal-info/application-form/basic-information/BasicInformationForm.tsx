@@ -1,17 +1,8 @@
-// form
-// @mui
-import { Box, Grid, Typography, useTheme } from "@mui/material";
-// utils
-// components
+import { Grid, Typography } from "@mui/material";
 import { FormProvider } from "../../../../../components/hook-form";
-//
 import { formDataAreaoffice, formDataAreaPersonalInfo } from ".";
 import FormSubmitButtons from "@root/components/FormSubmitButtons";
 import { useBasicInformationForm } from "./useBasicInformationForm";
-
-//mui icons
-
-// ----------------------------------------------------------------------
 
 export default function BasicInformationForm(props: any) {
   const { disabled, data, id } = props;

@@ -1,67 +1,42 @@
-import { Box, useTheme } from '@mui/material';
-import React, { useState } from 'react'
-import { ComplianceVerticalTabsData } from '.';
-import { TabPanelProps } from './compliance-management-tabs';
+import { SyntheticEvent, useState } from "react";
 
+export const useComplianceManagement = () => {
+    const [currentTab, setCurrentTab] = useState(0);
+    const [categoryModal, setCategoryModal] = useState(false);
+    const [categoryData, setCategoryData] = useState<any>();
+    const [pdfModal, setPdfModal] = useState(false);
+    const [categoryIcon, setCategoryIcon] = useState(false);
+    const [file, setFile] = useState(null)
 
-const useComplianceManagement = () => {
-    const [verticalTab, setVerticalTab] = useState(0);
-    const [horizontalTabValue, setHorizontalTabValue] = useState(0);
-    const [IsOpenPdfModal, setIsOpenPdfModal] = useState(false);
-    const [SelectedTabColor, setSelectedTabColor] = useState('');
-    const [IsOpenAddCategory, setIsOpenAddCategory] = useState({value:'',type:''});
-    const [tabsArray,setTabsArray] = useState(ComplianceVerticalTabsData)
+    const handlePdf = (file: any) => { setPdfModal(!pdfModal); setFile(file) };
 
-
-    const handleAddCategory = (data:any)=>{
-        if (data && data.title && data.img) {
-            const newTab = {
-              index: tabsArray.length,
-              title: data.title, 
-              img: data.img, 
-              color: '', 
-              innerData: [], 
-            };
-           console.log('update data===>>>>>',newTab);
-        
-            const newTabsArray = [...tabsArray, newTab]; 
-            setTabsArray(newTabsArray);
-            console.log('update datassssssss===>>>>>',newTabsArray);
-            const newIndex = newTabsArray.length - 1;
-            setHorizontalTabValue(newIndex);
-          }
-      };
-    
-
-    
-    const TabPanel = ({ children, value, index }: TabPanelProps) => {
-        return (
-            <div
-                role="tabpanel"
-                hidden={value !== index}
-                id={`vertical-tabpanel-${index}`}
-                aria-labelledby={`vertical-tab-${index}`}
-            >
-                {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
-            </div>
-        );
+    const handleCategoryModal = () => {
+        setCategoryModal(!categoryModal);
+        setCategoryData(null);
+        setCategoryIcon(true);
     }
-    const handleTabChange = (index: number, color: string) => {
-        setVerticalTab(index);
-        setSelectedTabColor(color);
-        setHorizontalTabValue(0);
+
+    const handleChange = (event: SyntheticEvent, newValue: number) => {
+        setCurrentTab(newValue);
     };
-    const handleHorizontalTabChange = (event: React.SyntheticEvent, newValue: any) => {
-        setHorizontalTabValue(newValue);
-    };
-  
-    const theme: any = useTheme();
-    return {tabsArray,
-        verticalTab, horizontalTabValue, SelectedTabColor, TabPanel, handleTabChange, handleHorizontalTabChange,
-        theme,IsOpenPdfModal,setIsOpenPdfModal,IsOpenAddCategory, setIsOpenAddCategory,handleAddCategory
-        
-        
+
+    const handleSubCategory = (item: any) => {
+        setCategoryModal(!categoryModal);
+        setCategoryData(item);
+        setCategoryIcon(false);
+    }
+
+    return {
+        currentTab,
+        handleChange,
+        categoryModal,
+        handleCategoryModal,
+        handleSubCategory,
+        categoryData,
+        pdfModal,
+        handlePdf,
+        categoryIcon,
+        file
     }
 }
 
-export default useComplianceManagement

@@ -1,49 +1,30 @@
-import ClaMedicalList from "./cla-medical/ClaMedicalList";
-import DentalCheckList from "./dental-check/DentalCheckList";
-import EhcpList from "./ehcp/EhcpList";
-import OpticianCheckList from "./optician-check/OpticianCheckList";
+import StatutoryMedicalTypeList from "./statutory-medical-type/StatutoryMedicalTypeList";
 
 //Accordian Data
 export const statutoryMedicalListAccordionData = [
   {
     id: 1,
     title: "EHCP",
-    component: <EhcpList />,
+    component: <StatutoryMedicalTypeList type="EHCP" />,
   },
   {
     id: 2,
     title: "CLA Medical",
-    component: <ClaMedicalList />,
+    component: <StatutoryMedicalTypeList type="CLA" />,
   },
   {
     id: 3,
     title: "Dental Check",
-    component: <DentalCheckList />,
+    component: <StatutoryMedicalTypeList type="Dental" />,
   },
   {
     id: 4,
     title: "Optician Check",
-    component: <OpticianCheckList />,
+    component: <StatutoryMedicalTypeList type="Optician" />,
   },
 ];
 
-//Carer Type Mock Data
-export const carerTypeData = [
-  {
-    value: "Option 1",
-  },
-  {
-    value: "Option 2",
-  },
-  {
-    value: "Option 3",
-  },
-  {
-    value: "Option 4",
-  },
-];
-//Carer Name Mock Data
-export const carerNameData = [
+export const sortTypeData = [
   {
     value: "Option 1",
   },

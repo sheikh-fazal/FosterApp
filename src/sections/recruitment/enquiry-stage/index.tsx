@@ -102,7 +102,7 @@ export const ENQUIRYSTAGEDATA = [
     text: "Digital Info Pack",
     informationText: "Digital Application Pack/ info Pack",
     viewForms: "View Form",
-    href: "#",
+    href: "/recruitment/enquiry-stage/digital-info-pack",
   },
   {
     id: 4,

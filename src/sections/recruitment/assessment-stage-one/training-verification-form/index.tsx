@@ -8,12 +8,11 @@ export const columnsTrainingVerification = (
   router: any,
   cancelDelete: any,
   setCancelDelete: any,
-  openDeleteModel:any
+  openDeleteModel: any
 ) => [
   {
     id: "select",
     header: ({ table, row }: any) => {
-      // console.log(table.getSelectedRowModel().flatRows);
       return (
         <Box>
           <Checkbox
@@ -79,8 +78,6 @@ export const columnsTrainingVerification = (
           onClicked={() => openDeleteModel(info.getValue())}
           size="small"
         />
-        
-
         <TableAction
           type="view"
           onClicked={() =>
