@@ -5,9 +5,9 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
 import useMedicalAppointmentList from "./useMedicalAppointmentList";
 import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
+import dayjs from "dayjs";
 
 const activepath =
   "/foster-child/health-medical-history/medical-appointments/actions";
@@ -39,7 +39,9 @@ const MedicalAppointmentsTable = (props: any) => {
     {
       accessorFn: (row: any) => row.appointmentDate,
       id: "appointmentDate",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Date Of Appointment/visit</span>,
       isSortable: true,
     },
