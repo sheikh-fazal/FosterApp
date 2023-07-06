@@ -1,9 +1,7 @@
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { TrainingProfileData } from ".";
-
-import Link from "next/link";
 import useViewTraingProfile from "./useViewTraingProfile";
 
 const ViewTraingProfile = (props: any) => {

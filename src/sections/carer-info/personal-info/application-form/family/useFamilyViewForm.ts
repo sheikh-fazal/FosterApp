@@ -53,9 +53,8 @@ export const useFamilyViewForm = (props: any) => {
           reset();
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
     if (Formtype == "edit") {
@@ -70,9 +69,8 @@ export const useFamilyViewForm = (props: any) => {
           });
         }
       } catch (error: any) {
-        enqueueSnackbar(error?.data?.message, {
-          variant: "error",
-        });
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
     }
   };

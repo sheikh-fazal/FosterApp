@@ -147,7 +147,7 @@ export default function ApplicationForm() {
           }}
           disabled={role == "foster-carer" ? true : false}
         />
-        <DocumentTable role={role} />
+        <DocumentTable applicationFormid={applicationFormid} role={role} />
       </HorizaontalTabs>
     </Page>
   );

@@ -1,5 +1,7 @@
 import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
+import * as Yup from "yup";
 
 export const DayLogFormFields = [
   {
@@ -16,10 +18,10 @@ export const DayLogFormFields = [
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "correspondenceToWhom",
+      name: "correspondenceFrom",
       label: "If correspondence, to whom",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -28,10 +30,10 @@ export const DayLogFormFields = [
     id: 3,
     gridLength: 12,
     otherOptions: {
-      name: "correspondenceFromWhom",
+      name: "correspondenceTo",
       label: "If correspondence, from whom",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -53,17 +55,19 @@ export const DayLogFormFields = [
       name: "entryType",
       label: "Entry Type",
       fullWidth: true,
+      select: true,
     },
+    options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
   },
   {
     id: 6,
     gridLength: 12,
     otherOptions: {
-      name: "dayLog",
+      name: "dayLogEntry",
       label: "Day log/journal Entry",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -75,7 +79,7 @@ export const DayLogFormFields = [
       name: "subject",
       label: "Subject",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -87,7 +91,7 @@ export const DayLogFormFields = [
       name: "actionNeeded",
       label: "Action Needed",
       fullWidth: true,
-    multiline: true,
+      multiline: true,
       minRows: 2,
     },
     component: RHFTextField,
@@ -96,7 +100,7 @@ export const DayLogFormFields = [
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "notiicationDate",
+      name: "notificationDate",
       label: "Notification Date",
       fullWidth: true,
     },
@@ -106,25 +110,47 @@ export const DayLogFormFields = [
     id: 10,
     gridLength: 6,
     otherOptions: {
-      name: "carerRecord",
+      name: "addToCarerRecord",
       label: "Add to Carer Record",
       fullWidth: true,
+      select: true,
     },
+    options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
   },
   {
     id: 11,
     gridLength: 12,
     otherOptions: {
-      name: "childSeen",
+      name: "updateSiblingRecord",
       label: "Add / Edit to Siblings Record",
       fullWidth: true,
     },
     component: RHFCheckbox,
   },
- 
 ];
+export const defaultValues = {
+  dateOfOccurence: null,
+  correspondenceFrom: null,
+  correspondenceTo: null,
+  childSeen: true,
+  entryType: null,
+  subject: null,
+  dayLogEntry: null,
+  actionNeeded: null,
+  notificationDate: null,
+  addToCarerRecord: null,
+  updateSiblingRecord: false,
+  additionalEmailAddresses: null,
+  userToBeNotified: null,
+};
+export const formatters: any = {};
 
-export const dayLogDocumentsTable=[
-  
-]
+export const formSchema = Yup.object().shape({
+  dateOfOccurence: Yup.date().required("Required"),
+  correspondenceTo: Yup.string().required("Required"),
+  correspondenceFrom: Yup.string().required("Required"),
+  entryType: Yup.string().required("Required"),
+  subject: Yup.string().required("Required"),
+  dayLogEntry: Yup.string().required("Required"),
+});

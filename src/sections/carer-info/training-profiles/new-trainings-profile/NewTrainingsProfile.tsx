@@ -6,10 +6,10 @@ import { NewTrainingProfileData } from ".";
 import useNewTrainingsProfile from "./useNewTrainingsProfile";
 
 const NewTrainingsProfile = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const { disabled, onSubmitHandler, formState } = props;
 
-  const { methods, handleSubmit, onSubmit } = useNewTrainingsProfile(onSubmitHandler);
+  const { methods, handleSubmit, onSubmit } =
+    useNewTrainingsProfile(onSubmitHandler);
 
   return (
     <>

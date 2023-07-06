@@ -1,7 +1,7 @@
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { OutSchoolActivityList } from "@root/sections/foster-child/out-of-school-activity/out-of-school-activity-info-list/OutSchoolActivity";
+import { OutSchoolActivityList } from "@root/sections/foster-child/education-records/out-of-school-activity/out-of-school-activity-info-list/OutSchoolActivity";
 
 const PAGE_TITLE = "Out of School Activity";
 

@@ -6,28 +6,28 @@ import TableHeader from "@root/components/TableHeader";
 import UploadDocumentsModel from "./UploadDocumentModal";
 import { useUploadDocumentsTable } from "./useUploadDocumentsTable";
 
-export function DocumentTable({ changeView }: any) {
-  const { postAllegationDetails, router, theme, onSubmit } =
-    useUploadDocumentsTable();
-  const tableHeaderRef = useRef<any>();
-  const [open, setOpen] = React.useState(false);
-  const isOpenModal = () => setOpen(!open);
-  const [data, setData] = React.useState([
-    {
-      documentName: "Doc Name",
-      documentType: "Pdf",
-      documentDate: "19/05/2021",
-      personUploaded: "Name Xame",
-      password: "123bc",
-    },
-    {
-      documentName: "Doc Name",
-      documentType: "Document Type",
-      documentDate: "19-05-2021",
-      personUploaded: "Name Xame",
-      password: "123bc",
-    },
-  ]);
+export function DocumentTable(props: any) {
+  const { applicationFormid, role } = props;
+  const {
+    data,
+    theme,
+    tableHeaderRef,
+    changeView,
+    open,
+    setOpen,
+    view,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    docData,
+    setDocData,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    listDeleteHandler,
+    meta
+  } = useUploadDocumentsTable({ applicationFormid });
 
   return (
     <Grid container>
@@ -37,32 +37,41 @@ export function DocumentTable({ changeView }: any) {
           title="Uploaded Documents"
           showAddBtn={true}
           onAdd={() => {
-            isOpenModal();
+            setOpen(true);
+            changeView("add");
           }}
           searchKey="search"
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
+          onChanged={headerChangeHandler}
         />
         <CustomTable
-          data={data}
-          columns={columns(isOpenModal)}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          data={data?.data?.application_form_docs}
+          columns={columns({
+            changeView,
+            setOpen,
+            role,
+            setDocData,
+            listDeleteHandler,
+          })}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
           showSerialNo
-          // count={Math.ceil(data?.data?.meta?.total / limit)}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-          rootSX={{ my: theme.spacing(2) }}
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
+          currentPage={meta?.page}
+          totalPages={meta?.pages}
         />
-        {open && <UploadDocumentsModel open={open} isOpenModal={isOpenModal} />}
+        {open && (
+          <UploadDocumentsModel
+            view={view}
+            open={open}
+            setOpen={setOpen}
+            changeView={changeView}
+            docData={docData}
+            applicationFormid={applicationFormid}
+          />
+        )}
       </Grid>
     </Grid>
   );
