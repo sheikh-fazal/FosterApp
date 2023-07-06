@@ -40,6 +40,7 @@ export const {
   useGetSelectedSubstituteCarerQuery,
   usePostSubstituteCarerMutation,
   useGetSubstituteCarerByIdQuery,
+  useLazyGetSubstituteCarerByIdQuery,
   useDeleteSubstituteCarerMutation,
   usePatchSubstituteCarerMutation,
 } = substituteCarerApi;

@@ -26,8 +26,8 @@ export default function SubstituteCarerForm(props: any) {
     defaultValues: {
       ...defaultValues,
       ...data,
-      dateOfBirth: new Date(),
-      dateOfVisit: new Date(),
+      dateOfBirth: new Date(data?.dateOfBirth),
+      dateOfVisit: new Date(data?.dateOfVisit),
     },
   });
 
@@ -63,7 +63,7 @@ export default function SubstituteCarerForm(props: any) {
               <form.component
                 size="small"
                 {...form.componentProps}
-                disabled={!!!params.query?.carerId}
+                disabled={params.query?.view}
               >
                 {form.componentProps.select
                   ? form.options.map((option: any) => (
