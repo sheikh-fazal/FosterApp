@@ -1,7 +1,7 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useDeleteVocationalCourseInfoListMutation,
-  useGetVocationalCourseInfoListQuery,
+  useDeleteChildChronologyOfEventsVocationalCourseInfoByIdMutation,
+  useGetChildChronologyOfEventsVocationalCourseInfoListQuery,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/VocationalGradeInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -12,15 +12,15 @@ export const useVocationalCourseInfoTable = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetVocationalCourseInfoListQuery({
+    useGetChildChronologyOfEventsVocationalCourseInfoListQuery({
       search: search,
     });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteVocationalCourseInfoListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsVocationalCourseInfoByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({ id: id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

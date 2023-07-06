@@ -30,7 +30,7 @@ export const documentsApi: any = baseAPI.injectEndpoints({
       GetChildChronologyOfEventsUploadedDocumentsByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/uploaded-documents/59dab800-41ba-4880-baf3-9568b7cb9db9`,
+        url: `/child-chronology-of-events/uploaded-documents/${queryArg.id}`,
       }),
       providesTags: [TAG],
     }),
