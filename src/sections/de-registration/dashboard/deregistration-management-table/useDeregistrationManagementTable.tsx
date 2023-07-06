@@ -92,7 +92,7 @@ export const useDeregistrationManagementTable = () => {
             accessorFn: (row: any, index: number) => row.Dereg_Status,
             id: "Dereg_Status",
             cell: (info: any) => (
-                <DeRegTableDropdown status={info.status} handleChange={(val: string) => console.log("==", val)} />
+                <DeRegTableDropdown status={info.getValue()} handleChange={(val: string) => console.log("==", val)} />
             ),
 
 

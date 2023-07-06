@@ -5,15 +5,6 @@ import RecommendationResultHeader from './recommendationResultHeader/Recommendat
 
 const RecommondationResults = () => {
   const { selectedCard, filteredDetailData, handleChangeType, recommondationResultsData, router } = useRecommondationResults()
-
-  const handleViewChildDetails = () => {
-    router.push({
-      pathname: `${router.pathname}/child-details`,
-      query: { param1: "value1", param2: "value2" }, // Add your query parameters here
-    });
-  };
-
-
   return (
     <>
 

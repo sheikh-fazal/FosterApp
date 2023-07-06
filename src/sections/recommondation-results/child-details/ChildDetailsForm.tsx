@@ -1,10 +1,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
-import { ChildDetails, ReferralSchemeForm } from ".";
+import { ReferralSchemeForm } from ".";
 import { useChildDetailsForm } from "./useChildDetailsForm";
 import Image from "next/image";
 import ChildDetailImg from '../../../assets/svg/childDetail.svg'
@@ -16,36 +16,15 @@ const styles = {
     title: {
         fontSize: "14px", color: "#FFF", fontWeight: "700", marginBottom: "6px"
     },
-
-    // personalInfo: {
-    //   fontSize: "16px", color: "rgba(14, 145, 140, 1)", fontWeight: "600", marginBottom: "16px"
-    // },
-    // personalInfo: (theme: any) => ({
-    //   fontSize: "16px",
-    //   fontWeight: 600,
-    //   marginBottom: "16px",
-    //   color: theme.palette.primary.main,
-    // }),
+    detailsImg: {
+        height: "120px", width: "120px", borderRadius: "14px", outline: "4px solid #FFF"
+    },
 };
 
 
 export default function ChildDetailsForm({ disabled, }: any) {
-    const { methods, handleSubmit, onSubmit, lastValue } = useChildDetailsForm()
-    // id: "2",
-    //     childName: "John Doe",
-    //     type: "Child",
-    //     Identifier: "",
-    //     localAuthority: "Redbridge",
-    //     agencySocialWorker: "Not Assigned"
+    const { methods, handleSubmit, onSubmit, lastValue } = useChildDetailsForm();
 
-    // {
-    //     // id: "3",
-    //     dateOfBirth: "01/01/2010",
-    //     age: "33",
-    //     gender: "male",
-    //     areaOffice: "hayes",
-    //     lASocialWoker: "Not Assigned"
-    // }
 
     return (
         <>
@@ -55,7 +34,10 @@ export default function ChildDetailsForm({ disabled, }: any) {
                 >
                     <>
                         <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
-                            <Image src={ChildDetailImg} alt="" />
+                            <Box sx={styles.detailsImg}>
+                                <Image style={{ width: "100%", height: "100%" }} src={ChildDetailImg} alt="" />
+                            </Box>
+
                         </Grid>
                         <Grid item xs={4.5}>
                             <Typography sx={styles.title}>Child Name (code) : John Doe</Typography>
@@ -79,7 +61,10 @@ export default function ChildDetailsForm({ disabled, }: any) {
                 >
                     <>
                         <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
-                            <Image src={carerDetail} alt="carerDetail" />
+                            <Box sx={styles.detailsImg}>
+                                <Image style={{ width: "100%", height: "100%" }} src={carerDetail} alt="carerDetail" />
+                            </Box>
+
                         </Grid>
                         <Grid item xs={4.5}>
                             <Typography sx={styles.title}>Carer Name (code) : Gloria Bell</Typography>
@@ -103,8 +88,10 @@ export default function ChildDetailsForm({ disabled, }: any) {
             }
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Grid container columnSpacing={4}>
-                    {ReferralSchemeForm?.map((item: any) => (
+                    {ReferralSchemeForm(lastValue)?.map((item: any) => (
                         <Grid item xs={12} md={item?.md} key={item?.id}>
+
+                            {/* lastValue === "child-details" && item.id === "2" ?} */}
 
                             <item.component
                                 {...item.componentProps}
@@ -126,28 +113,19 @@ export default function ChildDetailsForm({ disabled, }: any) {
                     ))}
 
                     <Grid item xs={12}>
-                        {!disabled && (
-                            <LoadingButton
-                                type="submit"
-                                variant="contained"
-                                sx={{ mr: 2 }}
-                            // loading={isSubmitting}
-                            >
-                                Submit
-                            </LoadingButton>
-                        )}
                         <Link
-                            href={"/recommondations-result-tab"}
+                            href={lastValue === "child-details" ? "/recommondations-result-tab" : "/matching-and-placement/matching"}
                             style={{ textDecoration: "none" }}
                         >
                             <Button type="button" variant="contained">
                                 Back
                             </Button>
                         </Link>
+
                     </Grid>
 
                 </Grid>
-            </FormProvider>
+            </FormProvider >
         </>
     );
 }
