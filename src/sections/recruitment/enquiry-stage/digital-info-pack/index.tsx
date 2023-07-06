@@ -8,42 +8,42 @@ export const digitalInfoPackData = [
       {
         id: 2,
         title: "Application Form",
-        link: "/recruitment/enquiry-stage/application-form",
+        link: "",
       },
       {
         id: 3,
         title: "Form F",
-        link: "/recruitment/enquiry-stage/form-f",
+        link: "",
       },
       {
         id: 5,
         title: "Carer Chronology of Events",
-        link: "/recruitment/enquiry-stage/carer-chronology-of-events",
+        link: "",
       },
       {
         id: 6,
         title: "Carer Family / Support Network",
-        link: "/recruitment/enquiry-stage/carer-family-support-network",
+        link: "",
       },
       {
         id: 7,
         title: "Address History",
-        link: "/recruitment/enquiry-stage/carer-address-history",
+        link: "",
       },
       {
         id: 8,
         title: "Pet Questionnaire",
-        link: "/recruitment/enquiry-stage/pet-questionnaire",
+        link: "",
       },
       {
         id: 9,
         title: "Interview Record and Analysis",
-        link: "/recruitment/enquiry-stage/interview-record-and-analysis",
+        link: "",
       },
       {
         id: 10,
         title: "Social Media Links",
-        link: "/recruitment/enquiry-stage/social-media-links",
+        link: "",
       },
     ],
   },
@@ -56,7 +56,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Statutory Checks List",
-        link: "/carer-info/background-checks/statutory-checks-list",
+        link: "",
       },
     ],
   },
@@ -69,12 +69,12 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Health and Safety",
-        link: "/carer-info/medical-history/health-and-safety",
+        link: "",
       },
       {
         id: 2,
         title: "Immunisations",
-        link: "/carer-info/medical-history/immunisations",
+        link: "",
       },
     ],
   },
@@ -87,7 +87,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Employment Details",
-        link: "/carer-info/employment-history/employment-details",
+        link: "",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Training Profile",
-        link: "/carer-info/training-profiles/training-profile",
+        link: "",
       },
     ],
   },
@@ -113,12 +113,12 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Next of Kin",
-        link: "/carer-info/other-information/next-of-kin",
+        link: "",
       },
       {
         id: 2,
         title: "Bank Account Details ",
-        link: "/carer-info/other-information/bank-account-details",
+        link: "",
       },
     ],
   },
@@ -131,17 +131,17 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Backup carer",
-        link: "/carer-info/substitute-cares/backup-carer",
+        link: "",
       },
       {
         id: 2,
         title: "Swap Carer",
-        link: "/carer-info/substitute-cares/swap-carer",
+        link: "",
       },
       {
         id: 3,
         title: "Respite Carer",
-        link: "/carer-info/substitute-cares/respite-carer",
+        link: "",
       },
     ],
   },

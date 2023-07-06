@@ -2,9 +2,10 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import EditTrainingProfile from "@root/sections/recruitment/assessment-stage-one/training-verification-form/edit-training-profile/EditTrainingProfile";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import {
+  useDeleteTrainingProfileDocumentMutation,
   useGetSingleTrainingProfileDataQuery,
   useGetTrainingProfileAllDocumentQuery,
   usePatchTrainingProfileApiMutation,
@@ -13,7 +14,7 @@ import {
 import IsFetching from "@root/components/loaders/IsFetching";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
-import { useState } from "react";
+import EditTrainingsProfile from "@root/sections/carer-info/training-profiles/edit-trainings-profile/EditTrainingProfile";
 
 const PAGE_TITLE = "Training Profile";
 
@@ -45,7 +46,7 @@ export default function AddTraingVerification() {
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
 
-  const { data, isLoading, isError, isFetching, isSuccess } =
+  const { data, isLoading, isError, isSuccess } =
     useGetSingleTrainingProfileDataQuery(id);
 
   const {
@@ -55,9 +56,9 @@ export default function AddTraingVerification() {
     isFetching: uploadDocumentsIsFetching,
   } = useGetTrainingProfileAllDocumentQuery({ id, params });
 
-  console.log(uploadDocuments, "uploaded documents");
-
   const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
+  const [deleteUploadedDocument] = useDeleteTrainingProfileDocumentMutation();
+  const [patchTrainingProfile] = usePatchTrainingProfileApiMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
     formData.append("documentType", postData.documentType);
@@ -70,20 +71,30 @@ export default function AddTraingVerification() {
       data: formData,
     };
 
-    // try {
-    //   const res: any = await postTrainingProfileData(updatedData).unwrap();
-    //   enqueueSnackbar(res?.message ?? `Successfully!`, {
-    //     variant: "success",
-    //   });
+    try {
+      const res: any = await postTrainingProfileData(updatedData).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
 
-    //   router.push(
-    //     "/recruitment/assessment-stage-one/training-verification-form"
-    //   );
-    // } catch (error) {
-    //   console.log(error);
+      router.push("/carer-info/training-profiles/trainings-list");
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
 
-    //   enqueueSnackbar(`Something went wrong`, { variant: "error" });
-    // }
+  const deleteDocument = async (userId: any) => {
+    try {
+      let res = await deleteUploadedDocument({
+        trainingProfileId: id,
+        profileId: userId,
+      });
+      enqueueSnackbar(`Document Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
   };
 
   return (
@@ -93,7 +104,7 @@ export default function AddTraingVerification() {
           <IsFetching isFetching={isLoading} />
         ) : (
           <>
-            <EditTrainingProfile
+            <EditTrainingsProfile
               initialValueProps={{
                 carerName: data?.data?.carerName,
                 courseAttended: data?.data?.courseAttended,
@@ -107,7 +118,7 @@ export default function AddTraingVerification() {
                 date: new Date(data?.data?.date),
               }}
               trainingProfileId={id}
-              onSubmitHandler={postTrainingProfileData}
+              onSubmitHandler={patchTrainingProfile}
               message={"Updated"}
               isError={isError}
               isSuccess={isSuccess}
@@ -122,10 +133,7 @@ export default function AddTraingVerification() {
             <UploadDocuments
               readOnly={false}
               tableData={uploadDocuments?.data?.docs}
-              searchParam={
-                (searchedText: string) => setParams(searchedText)
-                // console.log(searchedText)
-              }
+              searchParam={(searchedText: string) => setParams(searchedText)}
               isLoading={uploadDocumentsIsLoading}
               isFetching={uploadDocumentsIsFetching}
               isError={uploadDocumentsIsError}
@@ -137,6 +145,9 @@ export default function AddTraingVerification() {
                 "password",
               ]}
               isSuccess={isSuccess}
+              onDelete={(data: any) => {
+                deleteDocument(data.id);
+              }}
               modalData={(data: any) => uploadDocumentsHandler(data)}
               onPageChange={(page: any) => console.log(page)}
               currentPage={uploadDocuments?.data?.meta?.page}

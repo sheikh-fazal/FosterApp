@@ -23,6 +23,7 @@ export const useChildMissingPlacementTable = () => {
     deleteList(id)
       .unwrap()
       .then((res: any) => {
+        console.log(id, res);
         enqueueSnackbar("Information Deleted Successfully", {
           variant: "success",
         });
