@@ -7,53 +7,54 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import ChildMedicationInfoForm from "@root/sections/foster-child/health-medical-history/child-medication-info/childMedicationInfoForm";
 import ChildMedicationInfoUploadTable from "@root/sections/foster-child/health-medical-history/child-medication-info/childMedicationInfoUploadTable";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-
-
-ChildMedicationInfo.getLayout = function GetLayout(page: any) {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  // Constants
-
-  const PAGE_TITLE = "Child Medication Info";
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "/foster-child/health-medical-history/child-medication-info",
-    },
-    {
-      name: "Medication Info ",
-      href: "",
-    },
-    // {
-    //   name: "Child Medication Info",
-    //   href: "",
-    // },
-  ];
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+ChildMedicationInfoActions.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function ChildMedicationInfo() {
+export default function ChildMedicationInfoActions() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { action, fosterChildId, ChildMedicationInfoId } = Router.query;
+  const PAGE_TITLE = "Child Medication Info";
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: PAGE_TITLE,
+      href: "",
+    },
+    {
+      name: "Medication Info",
+      href: {
+        pathname: "/foster-child/health-medical-history/child-medication-info",
+        query: { fosterChildId: fosterChildId },
+      },
+    },
+    {
+      name: "Child Medication Info",
+      href: "/foster-child/health-medical-history/child-medication-info/",
+    },
+  ];
   return (
     <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       <HorizaontalTabs
         tabsDataArray={["Medication Info", "Uploaded Documents"]}
       >
-        <ChildMedicationInfoForm action={action} id={id} />
-        <ChildMedicationInfoUploadTable />
+        <ChildMedicationInfoForm
+          action={action}
+          fosterChildId={fosterChildId}
+          ChildMedicationInfoId={ChildMedicationInfoId}
+        />
+        {/* <ChildMedicationInfoUploadTable /> */}
         <UploadDocuments
           readOnly={false}
           searchParam={(searchedText: string) =>

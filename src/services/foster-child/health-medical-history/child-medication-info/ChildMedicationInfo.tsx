@@ -20,7 +20,7 @@ const ChildMedicationInfo = baseAPI.injectEndpoints({
     createChildMedicationInfo: Builder.mutation({
       query: (payload: any) => ({
         url: "/foster-child/child-medication-info",
-        method: "Post",
+        method: "POST",
         params: payload.params,
         body: payload.body,
       }),
@@ -28,8 +28,8 @@ const ChildMedicationInfo = baseAPI.injectEndpoints({
     }),
     updateChildMedicationInfoById: Builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/update-child-medication-info/${payload.id}`,
-        method: "Put",
+        url: `/foster-child/update-child-medicaton-info/${payload.id}`,
+        method: "PATCH",
         params: payload.params,
         body: payload.body,
       }),
@@ -38,8 +38,7 @@ const ChildMedicationInfo = baseAPI.injectEndpoints({
     deleteChildMedicationInfoById: Builder.mutation({
       query: (payload: any) => ({
         url: `/foster-child/delete-child-medication-info/${payload.id}`,
-        method: "Delete",
-        params: payload.params,
+        method: "DELETE",
       }),
       invalidatesTags: ["child-medication-info"],
     }),
@@ -47,11 +46,11 @@ const ChildMedicationInfo = baseAPI.injectEndpoints({
 });
 
 export const {
-useCreateChildMedicationInfoMutation,
-useDeleteChildMedicationInfoByIdMutation,
-useGetChildMedicationInfoByIdQuery,
-useGetChildMedicationInfoQuery,
-useLazyGetChildMedicationInfoByIdQuery,
-useLazyGetChildMedicationInfoQuery,
-useUpdateChildMedicationInfoByIdMutation,
+  useCreateChildMedicationInfoMutation,
+  useDeleteChildMedicationInfoByIdMutation,
+  useGetChildMedicationInfoByIdQuery,
+  useGetChildMedicationInfoQuery,
+  useLazyGetChildMedicationInfoByIdQuery,
+  useLazyGetChildMedicationInfoQuery,
+  useUpdateChildMedicationInfoByIdMutation,
 } = ChildMedicationInfo;

@@ -3,12 +3,11 @@ import {
   useCreateChildMedicationInfoMutation,
   useGetChildMedicationInfoQuery,
 } from "@root/services/foster-child/health-medical-history/child-medication-info/ChildMedicationInfo";
-import { useGetHospitalInfoListQuery } from "@root/services/foster-child/health-medical-history/hospital-info-list/HospitalInfoList";
 
 import React, { useState } from "react";
 
 const useChildMedicationInfotable = (props: any) => {
-  const { fosterChildId, hospitalinfoId } = props;
+  const { fosterChildId, ChildMedicationInfoId } = props;
   const [search, setSearch] = useState("");
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =

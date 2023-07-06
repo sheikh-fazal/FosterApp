@@ -5,15 +5,15 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
 import useChildMedicationInfotable from "./useChildMedicationInfotable";
 import useChildMedicationInfoForm from "./useChildMedicationInfoForm";
+import dayjs from "dayjs";
 
 const activepath =
   "/foster-child/health-medical-history/child-medication-info/actions";
 
 const ChildMedicationInfotable = (prop: any) => {
-  const { fosterChildId } = prop;
+  const { fosterChildId, ChildMedicationInfoId } = prop;
   const {
     childMedicationInfotabledata,
     childMedicationInfotableIserror,
@@ -28,7 +28,7 @@ const ChildMedicationInfotable = (prop: any) => {
   } = useChildMedicationInfotable({
     fosterChildId: fosterChildId,
   });
-
+  console.log(childMedicationInfotabledata);
   const { deleteHander } = useChildMedicationInfoForm({});
   const columns = [
     // {
@@ -49,7 +49,7 @@ const ChildMedicationInfotable = (prop: any) => {
     {
       accessorFn: (row: any) => row.issuedDate,
       id: "dateIssued",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: () => <span>Date Issued</span>,
       isSortable: true,
     },
@@ -59,7 +59,9 @@ const ChildMedicationInfotable = (prop: any) => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -67,8 +69,11 @@ const ChildMedicationInfotable = (prop: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", ChildMedicationInfo:info.row.original.id,
-                  fosterChildId: fosterChildId, },
+                  query: {
+                    action: "edit",
+                    ChildMedicationInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -78,8 +83,11 @@ const ChildMedicationInfotable = (prop: any) => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", ChildMedicationInfo:info.row.original.id,
-                  fosterChildId: fosterChildId,},
+                  query: {
+                    action: "view",
+                    ChildMedicationInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -99,14 +107,16 @@ const ChildMedicationInfotable = (prop: any) => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="hospitalization"
+                  title="Child Medication Info"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />

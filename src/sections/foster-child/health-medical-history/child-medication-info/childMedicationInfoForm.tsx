@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FormProvider } from "@root/components/hook-form";
@@ -17,16 +9,24 @@ import {
   FormSchema,
   childMedicationInfoData,
 } from ".";
+import useChildMedicationInfoForm from "./useChildMedicationInfoForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const backPath = "/foster-child/health-medical-history/child-medication-info";
 
 const ChildMedicationInfoForm = (props: any) => {
-  const { action, id } = props;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { action, fosterChildId, ChildMedicationInfoId } = props;
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useChildMedicationInfoForm({
+      action,
+      fosterChildId,
+      ChildMedicationInfoId,
+    });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: ChildMedicationInfoListValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -37,18 +37,16 @@ const ChildMedicationInfoForm = (props: any) => {
     reset,
     formState: { errors },
   } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const theme: any = useTheme();
-  console.log(errors);
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
+              <IsFetching isFetching={isFatching} />
               {childMedicationInfoData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -150,7 +148,14 @@ const ChildMedicationInfoForm = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`${backPath}`)}
+                  onClick={() =>
+                    router.push({
+                      pathname: `${backPath}`,
+                      query: {
+                        fosterChildId: fosterChildId,
+                      },
+                    })
+                  }
                 >
                   back
                 </Button>

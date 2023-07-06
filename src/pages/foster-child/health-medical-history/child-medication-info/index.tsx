@@ -27,16 +27,17 @@ export default function ChildMedicationInfo() {
       name: "child Info",
       href: "/foster-child",
     },
-    // {
-    //   name: "child Info",
-    //   href: {
-    //     pathname: "/foster-child",
-    //     query: { fosterChildId: fosterChildId },
-    //   },
-    // },
+    {
+      name: "child Info",
+      href: {
+        pathname: "/foster-child",
+        query: { fosterChildId: fosterChildId },
+      },
+    },
     {
       name: "Child Medication Info",
-      href: "/foster-child/health-medical-history/child-medication-info",
+      href: "",
+      // /foster-child/health-medical-history/child-medication-info
     },
   ];
   const PAGE_TITLE = "Child Medication Info";
