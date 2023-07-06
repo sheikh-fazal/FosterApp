@@ -7,7 +7,6 @@ const RecommondationResults = () => {
   const { selectedCard, filteredDetailData, handleChangeType, recommondationResultsData, router } = useRecommondationResults()
   return (
     <>
-
       <RecommendationResultHeader />
       <Card sx={{ p: 5, mt: 2, boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)" }}>
         <Box sx={{ flexGrow: 1 }}>
@@ -58,7 +57,6 @@ const RecommondationResults = () => {
           </Grid>
         </Box>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-
           {filteredDetailData.map((item: any) => {
             return (
               <Grid item xs={12} md={12} lg={6}>
@@ -120,18 +118,13 @@ const RecommondationResults = () => {
                         <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }} onClick={() => router.push(`${router.pathname}/compare-match`)}>Compare Match</Button>
                       </Box>
                     </Grid>
-
                   </Grid>
                 </Card>
-
               </Grid>
             )
           })}
-
         </Grid>
       </Card >
-
-
     </>
   )
 }

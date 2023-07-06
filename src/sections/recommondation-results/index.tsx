@@ -24,17 +24,17 @@ export const recommondationResultsDetail = [
         recommondationResultsCheckbox: [
             {
                 id: "1",
-                value: false,
+                value: true,
                 label: "Ethinicity",
             },
             {
                 id: "2",
-                value: false,
+                value: true,
                 label: "Connected Person",
             },
             {
                 id: "3",
-                value: false,
+                value: true,
                 label: "Language",
             },
             {
@@ -136,7 +136,7 @@ export const recommondationResultsDetail = [
             },
             {
                 id: "5",
-                value: true,
+                value: false,
                 label: "Religion",
             },
             {
@@ -146,12 +146,12 @@ export const recommondationResultsDetail = [
             },
             {
                 id: "7",
-                value: true,
+                value: false,
                 label: "Locality",
             },
             {
                 id: "8",
-                value: true,
+                value: false,
                 label: "Preference of the Carer",
             },
         ]
@@ -162,17 +162,17 @@ export const recommondationResultsDetail = [
         recommondationResultsCheckbox: [
             {
                 id: "1",
-                value: false,
+                value: true,
                 label: "Ethinicity",
             },
             {
                 id: "2",
-                value: false,
+                value: true,
                 label: "Connected Person",
             },
             {
                 id: "3",
-                value: false,
+                value: true,
                 label: "Language",
             },
             {
@@ -223,22 +223,22 @@ export const recommondationResultsDetail = [
             },
             {
                 id: "4",
-                value: true,
+                value: false,
                 label: "Preference of the Child",
             },
             {
                 id: "5",
-                value: true,
+                value: false,
                 label: "Religion",
             },
             {
                 id: "6",
-                value: true,
+                value: false,
                 label: "Foster Carers Availability",
             },
             {
                 id: "7",
-                value: true,
+                value: false,
                 label: "Locality",
             },
             {
