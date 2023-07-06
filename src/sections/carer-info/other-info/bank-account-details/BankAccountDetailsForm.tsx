@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -15,6 +15,7 @@ import {
   RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
+import { LoadingButton } from "@mui/lab";
 
 const style = {
   position: "absolute" as "absolute",
@@ -28,22 +29,34 @@ const style = {
   p: 2,
 };
 export default function BankAccountDetailsForm(props: any) {
-  const { content, readOnly, btnType, openModal, closeModal, formData } = props;
+  const {
+    content,
+    readOnly,
+    btnType,
+    openModal,
+    closeModal,
+    formData,
+    status,
+    modalStatus,
+  }: any = props;
 
   const theme: any = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const selectedRow = content?.row?.original;
 
   const handleOpen = () => {
+    modalStatus(true);
     setOpen(true);
-    console.log("View", content?.row?.original);
   };
   const handleClose = () => {
+    modalStatus(false);
     setOpen(false);
     !readOnly && closeModal(false);
   };
-
+  useEffect(() => {
+    status?.isSuccess && handleClose();
+  }, [status?.isSuccess, handleClose]);
   return (
     <div>
       {btnType && (
@@ -76,6 +89,8 @@ export default function BankAccountDetailsForm(props: any) {
               disableForm={readOnly}
               selectedRow={selectedRow}
               formData={formData}
+              isError={status?.isError}
+              isLoading={status?.isLoading}
             >
               <Button
                 size="small"
@@ -98,34 +113,34 @@ export default function BankAccountDetailsForm(props: any) {
 }
 
 const FormPiece = (props: any) => {
-  const { disableForm, children, selectedRow, formData } = props;
-  const theme: any = useTheme();
+  const { disableForm, children, selectedRow, formData, isError, isLoading } =
+    props;
+
   //-------------------------------------------//
   const defaultValues = {
     accountNumber: selectedRow?.accountNumber || "",
     sortName: selectedRow?.sortName || "",
-    nameOfBank: selectedRow?.nameOfBank || "",
+    accountType: selectedRow?.accountType || "Platinum",
     accountName: selectedRow?.accountName || "",
-    accountType: selectedRow?.accountType || "platinum",
+    bankName: selectedRow?.bankName || "",
   };
   //-----------------------------------------------//
   const FormSchema = Yup.object().shape({
-    accountNumber: Yup.string().required("Required"), //1
+    accountNumber: Yup.string()
+      .matches(/^UK0[0-9]{8}$/, "Please match UK0XXXXXXXX")
+      .required("Required"), //1
     sortName: Yup.string().required("Required"), //2
-    nameOfBank: Yup.string().required("Required"), //3
-    accountName: Yup.string().required("Required"), //3
-    accountType: Yup.string().required("Required"), //4
+    bankName: Yup.string().required("Required"), //3
+    accountName: Yup.string().required("Required"), //4
+    accountType: Yup.string().required("Required"), //5
   });
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
-
   const { reset, handleSubmit } = methods;
-
   const onSubmit = (data: any) => {
-    // console.log(data, "submitted data");
     formData(data);
     // reset();
   };
@@ -159,18 +174,18 @@ const FormPiece = (props: any) => {
           justifyContent={"space-between"}
         >
           {!disableForm && (
-            <Button
+            <LoadingButton
               size="small"
+              loading={isLoading}
               type="submit"
               variant="contained"
+              color={isError ? "error" : "primary"}
               sx={{
                 mt: 1,
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.dark },
               }}
             >
-              Submit
-            </Button>
+              {isError ? "Try Again" : "Submit"}
+            </LoadingButton>
           )}
           {children}
         </Grid>
@@ -206,7 +221,7 @@ export const formDataArray = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "nameOfBank",
+      name: "bankName",
       label: "Name OF Bank",
     },
   },
@@ -228,20 +243,12 @@ export const formDataArray = [
       select: true,
       options: [
         {
-          value: "platinum",
-          label: "Platinum",
+          value: "SECONDARY",
+          label: "Secondary",
         },
         {
-          value: "gold",
-          label: "Gold",
-        },
-        {
-          value: "plus",
-          label: "Plus",
-        },
-        {
-          value: "standard",
-          label: "Standard",
+          value: "PRIMARY",
+          label: "Primary",
         },
       ],
       fullWidth: true,

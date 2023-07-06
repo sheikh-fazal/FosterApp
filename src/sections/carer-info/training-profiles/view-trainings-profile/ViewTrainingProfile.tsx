@@ -1,7 +1,7 @@
-import { Button, Grid } from "@mui/material";
 import React from "react";
-import { FormProvider } from "@root/components/hook-form";
+import { Grid } from "@mui/material";
 import { ViewTrainingProfileData } from ".";
+import { FormProvider } from "@root/components/hook-form";
 import useViewTraingsProfile from "./useViewTraingProfile";
 
 const ViewTraingsProfile = (props: any) => {
@@ -16,7 +16,7 @@ const ViewTraingsProfile = (props: any) => {
         <Grid container spacing={3}>
           {ViewTrainingProfileData?.map((form: any) => {
             return (
-              <Grid item xs={12} md={form?.gridLength} key={form?.id}>
+              <Grid item xs={12} md={form.gridLength} key={form.id}>
                 <>
                   <Grid>
                     <form.component
