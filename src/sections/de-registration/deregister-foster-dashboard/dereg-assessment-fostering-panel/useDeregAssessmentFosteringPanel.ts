@@ -11,12 +11,10 @@ export const useDeregAssessmentFosteringPanel: any = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % deRegisterData.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
   };
 
-  const handleSlide = () => {
-    
-  }
+  const handleSlide = () => {};
 
   return {
     theme,

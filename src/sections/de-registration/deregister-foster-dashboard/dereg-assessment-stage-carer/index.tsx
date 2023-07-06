@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import deRegConsulationFosterImg from "../../../../assets/img/de-register/dereg-consultation-foster-img.svg";
 import deFosterReviewImg from "../../../../assets/img/de-register/dereg-foster-review-img.svg";
 import deFinalOutcomeImg from "../../../../assets/img/de-register/final-outcome-img.svg";
@@ -55,8 +56,12 @@ export const DeRegAssessmentStageData = [
     text: "Final Outcome",
     informationText: "Final Outcome",
     viewForms: "Review Report",
-    href: "#",
+    modal: true,
     status: "Pending"
   },
 
 ];
+
+export const DeRegisterAssessmentStageCarerSchema: any = Yup.object().shape({
+  updatePhoto: Yup.mixed().required("Field is Required"),
+});

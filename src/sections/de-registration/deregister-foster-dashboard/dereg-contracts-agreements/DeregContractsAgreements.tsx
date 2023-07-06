@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Button, Grid,  } from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -7,9 +7,9 @@ import Link from "next/link";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
-import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
 import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
+import FinalFinanceDialogbox from "./final-finance-dialogbox/FinalFinanceDialogbox";
 
 const DeregContractsAgreements = () => {
   const {
@@ -18,13 +18,17 @@ const DeregContractsAgreements = () => {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
-    openSocialWorkerAsessmentDialogbox,
-    setOpenSocialWorkerAssessmentDialogbox,
+    isFinalFinanceModalOpen, 
+    setIsFinalFinanceModalOpen,
     deRegisterData,
     setDeRegisterData,
     currentIndex,
     goToNextSlide,
-    handleSlide
+    handleSlide,
+    handleContractModalOpen,
+    handleSubmit,
+    methods,
+    onSubmit
   } = useDeregContractsAgreements();
 
   return (
@@ -132,7 +136,7 @@ const DeregContractsAgreements = () => {
                         cursor: "pointer",
                         textAlign: "center",
                       }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
+                      onClick={() => handleContractModalOpen(ele?.id)}
                     >
                       {ele.viewForms}
                     </span>}
@@ -163,7 +167,7 @@ const DeregContractsAgreements = () => {
           </Grid>
         ))}
       </Grid>
-      <SocialWorkerFormDialogbox openFormDialog={openSocialWorkerAsessmentDialogbox} setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox} />
+      <FinalFinanceDialogbox isFinalFinanceModalOpen={isFinalFinanceModalOpen} setIsFinalFinanceModalOpen={setIsFinalFinanceModalOpen} methods={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
     </>
   );
 };

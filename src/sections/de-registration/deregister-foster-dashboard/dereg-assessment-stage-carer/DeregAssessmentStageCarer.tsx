@@ -10,6 +10,7 @@ import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-
 import SocialWorkerFormDialogbox from "@root/sections/recruitment/enquiry-stage/social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
 import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
+import ReviewReportDialogbox from "./review-report-dialogbox/ReviewReportDialogbox";
 
 const DeregAssessmentStageCarer = () => {
   const {
@@ -18,14 +19,16 @@ const DeregAssessmentStageCarer = () => {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
-    openSocialWorkerAsessmentDialogbox,
-    setOpenSocialWorkerAssessmentDialogbox,
+    isReviewReportModalOpen,
+    setIsReviewReportModalOpen,
     deRegisterData,
     setDeRegisterData,
     currentIndex,
-    setCurrentIndex,
     goToNextSlide,
-    handleSlide
+    handleReviewReport,
+    handleSubmit,
+    methods,
+    onSubmit
   } = useDeregAssessmentStageCarer();
 
   return (
@@ -96,7 +99,6 @@ const DeregAssessmentStageCarer = () => {
                         cursor: "pointer",
                         textAlign: "center",
                       }}
-                      onClick={handleSlide}
                     >
                       {ele.viewForms[currentIndex]}
                     </span>
@@ -132,7 +134,7 @@ const DeregAssessmentStageCarer = () => {
                         cursor: "pointer",
                         textAlign: "center",
                       }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
+                      onClick={() => handleReviewReport(ele?.id)}
                     >
                       {ele.viewForms}
                     </span>}
@@ -163,7 +165,7 @@ const DeregAssessmentStageCarer = () => {
           </Grid>
         ))}
       </Grid>
-      <SocialWorkerFormDialogbox openFormDialog={openSocialWorkerAsessmentDialogbox} setOpenSocialWorkerAssessmentDialogbox={setOpenSocialWorkerAssessmentDialogbox} />
+      <ReviewReportDialogbox isReviewReportModalOpen={isReviewReportModalOpen} setIsReviewReportModalOpen={setIsReviewReportModalOpen} handleSubmit={handleSubmit} methods={methods} onSubmit={onSubmit} />
     </>
   );
 };
