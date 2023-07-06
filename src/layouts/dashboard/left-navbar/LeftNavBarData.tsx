@@ -75,7 +75,7 @@ export const NAV_LINKS = [
       },
       {
         list: "Placement",
-        sublistlink: "",
+        sublistlink: "placement",
       },
     ],
   },
