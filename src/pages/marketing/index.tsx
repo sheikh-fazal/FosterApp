@@ -5,7 +5,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import Marketing from "@root/sections/marketing/dashboard/Marketing";
 
 const PAGE_TITLE = "Marketing";
-
 MarketingDashboardLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
