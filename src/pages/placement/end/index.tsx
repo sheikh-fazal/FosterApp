@@ -2,9 +2,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import Dashboard from "@root/sections/matching-and-placement/placement/dashboard/Dashboard";
 
-const PAGE_TILE = "Placement";
+const PAGE_TILE = "End Placement";
 
 PlacementModule.getLayout = function getLayout(page: any) {
   return (
@@ -13,11 +12,11 @@ PlacementModule.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "IFA",
-          href: "/",
+          name: "Dashboard",
+          href: "/placement",
         },
         {
-          name: "Dashboard",
+          name: "Child Discharge List",
         },
       ]}
       title={PAGE_TILE}
@@ -30,7 +29,7 @@ PlacementModule.getLayout = function getLayout(page: any) {
 export default function PlacementModule() {
   return (
     <Page title={PAGE_TILE}>
-      <Dashboard />
+      {PAGE_TILE}
     </Page>
   );
 }
