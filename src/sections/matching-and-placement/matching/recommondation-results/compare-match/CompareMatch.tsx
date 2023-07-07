@@ -82,7 +82,7 @@ export default function CompareMatch() {
             </TableContainer>
             <Box sx={{ display: "flex", gap: "10px", mt: 3, flexWrap: "wrap" }}>
                 <Button type="button" variant="contained">
-                    Add to Placement List
+                    <Link href='/placement/placement-plan' style={{ all: 'unset' }}>Add to Placement List</Link>
                 </Button>
                 <Button type="button" variant="contained">
                     Add to Consideration List
