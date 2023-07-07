@@ -59,6 +59,7 @@ const useChildMedicationInfoForm = (props: any) => {
         .unwrap()
         .then((data) => {
           setisFatching(false);
+          console.log(data);
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
@@ -69,7 +70,7 @@ const useChildMedicationInfoForm = (props: any) => {
             query: {
               action: "edit",
               fosterChildId: fosterChildId,
-              ChildMedicationInfoId: data?.id,
+              ChildMedicationInfoId: data?.data?.id,
             },
           });
         })
@@ -139,9 +140,13 @@ const useChildMedicationInfoForm = (props: any) => {
       return ChildMedicationInfoListValue;
     }
   };
-  const deleteHander = (id: any) => {
+  const deleteHander = (id: any, fosterChildId: any) => {
     deleteChildMedicationInfoById({
       id: id,
+      params: {
+        id: id,
+        fosterChildId: fosterChildId,
+      },
     })
       .unwrap()
       .then(() => {

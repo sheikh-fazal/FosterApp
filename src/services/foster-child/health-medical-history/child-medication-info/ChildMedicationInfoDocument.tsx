@@ -1,55 +1,60 @@
 import { baseAPI } from "@root/services/baseApi";
 
-const HospitalInfoListDocument = baseAPI.injectEndpoints({
+const ChildMedicationInfoDocument = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    createHospitalInfoListDocument: builder.mutation({
+    createChildMedicationInfoDocument: builder.mutation({
       query: (payload: any) => ({
-        url: `/hospital-info-list/documents/${payload.hospitalInfoFormId}`,
-        method: "Post",
-        params: payload.params,
+        url: `/foster-child/add-child-medication-info/document/${payload.params.childMedicationInfoId}`,
+        method: "POST",
+        // params: payload.params,
         body: payload.body,
       }),
-      invalidatesTags: ["hospital-info-list-document"],
+      invalidatesTags: ["child-medication-info-document"],
     }),
-    deleteHospitalInfoListDocument: builder.mutation({
+    deleteChildMedicationInfoDocument: builder.mutation({
       query: (payload: any) => ({
-        url: `/hospital-info-list/documents/${payload.id}`,
+        url: `/foster-child/child-medication-info/document/${payload.childMedicationInfoDocId}`,
         method: "Delete",
-        params: payload.params,
+        // params: payload.params,
       }),
-      invalidatesTags: ["hospital-info-list-document"],
+      invalidatesTags: ["child-medication-info-document"],
     }),
-    updateHospitalInfoListDocument: builder.mutation({
+    // updateChildMedicationInfoDocument: builder.mutation({
+    //   query: (payload: any) => ({
+    //     url: `/hospital-info-list/documents/${payload.id}`,
+    //     method: "Put",
+    //     body: payload.body,
+    //   }),
+    //   invalidatesTags: ["child-medication-info-document"],
+    // }),
+    getChildMedicationInfoDocumentBYID: builder.query({
       query: (payload: any) => ({
-        url: `/hospital-info-list/documents/${payload.id}`,
-        method: "Put",
-        body: payload.body,
-      }),
-      invalidatesTags: ["hospital-info-list-document"],
-    }),
-    getHospitalInfoListDocumentBYID: builder.query({
-      query: (payload: any) => ({
-        url: `/hospital-info-list/documents/${payload.id}`,
+        // url: `/hospital-info-list/documents/${payload.id}`,
+        url: `/foster-child/child-medication-info/document/${payload.childMedicationInfoDocId}`,
         method: "Get",
-        params: payload.params,
+        // params: payload.params,
+        params: payload.childMedicationInfoDocId,
       }),
-      providesTags: ["hospital-info-list-document"],
+      providesTags: ["child-medication-info-document"],
     }),
-    getHospitalInfoListDocument: builder.query({
+    getChildMedicationInfoDocument: builder.query({
       query: (payload: any) => ({
-        url: `/hospital-info-list/all-documents/hospital-info-documents/${payload?.params?.hospitalInfoFormId}`,
+        // url: `/hospital-info-list/all-documents/hospital-info-documents/${payload?.params?.hospitalInfoFormId}`,
+        url: `/foster-child/child-medication-info/document/list/${payload.childMedicationInfoId}`,
         method: "Get",
-        params: payload.params,
+        // params: payload.params,
+        params: payload.childMedicationInfoId,
       }),
-      providesTags: ["hospital-info-list-document"],
+      providesTags: ["child-medication-info-document"],
     }),
   }),
 });
 
 export const {
-  useCreateHospitalInfoListDocumentMutation,
-  useDeleteHospitalInfoListDocumentMutation,
-  useUpdateHospitalInfoListDocumentMutation,
-  useGetHospitalInfoListDocumentQuery,
-  useLazyGetHospitalInfoListDocumentBYIDQuery,
-} = HospitalInfoListDocument;
+  useCreateChildMedicationInfoDocumentMutation,
+  useDeleteChildMedicationInfoDocumentMutation,
+  useGetChildMedicationInfoDocumentBYIDQuery,
+  useGetChildMedicationInfoDocumentQuery,
+  useLazyGetChildMedicationInfoDocumentBYIDQuery,
+  useLazyGetChildMedicationInfoDocumentQuery,
+} = ChildMedicationInfoDocument;
