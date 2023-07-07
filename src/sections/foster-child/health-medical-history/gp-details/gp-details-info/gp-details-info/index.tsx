@@ -39,29 +39,26 @@ export const gpDetailsInfoFormSchema: any = Yup.object().shape({
   physicianName: Yup.string()
     .trim()
     .required("Physician name is required")
-    .min(2, "Mininum 1 characters")
+    .matches(/^[A-Za-z\s]*$/, "only Aplhabets are allowed")
+    .min(1, "Mininum 1 characters")
     .max(30, "Maximum 50 characters"),
   physicianType: Yup.string().required("Physician type is required"),
   address: Yup.string()
     .trim()
     .required("Address is required")
     .min(1, "Mininum 1 characters")
-    .max(200, "Maximum 50 characters"),
+    .max(400, "Maximum 400 characters"),
   town: Yup.string()
     .trim()
     .required("Town is required")
     .min(1, "Mininum 1 characters")
-    .max(70, "Maximum 50 characters"),
-  telephone: Yup.string()
-    .trim()
-    .required("Telephone is required")
-    .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
-  phoneNo: Yup.string()
-    .trim()
+  telephone: Yup.string().required("Telephone is required"),
+  phoneNo: Yup.number()
+    .typeError("That doesn't look like a phone number")
     .required("Mobile phone is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(10, "max is 10"),
   email: Yup.string()
     .trim()
     .required("Email is required")
@@ -70,6 +67,7 @@ export const gpDetailsInfoFormSchema: any = Yup.object().shape({
   country: Yup.string().required("Country is required"),
   postalCode: Yup.string()
     .trim()
+    .matches(/^[A-Za-z0-9\s]*$/, "only Aplhanumeric characters are allowed")
     .required("Postal code is required")
     .min(1, "Mininum 1 characters")
     .max(50, "Maximum 50 characters"),
@@ -87,7 +85,6 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     gridLength: 6,
     component: RHFTextField,
   },
-
   {
     id: 2,
     component: RHFSelect,
@@ -101,7 +98,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     },
   },
   {
-    id: 1.5,
+    id: 3,
     componentProps: {
       color: (theme: any) => theme.palette.primary.main,
       variant: "h6",
@@ -111,7 +108,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     component: Typography,
   },
   {
-    id: 3,
+    id: 4,
     componentProps: {
       fullWidth: true,
       name: "address",
@@ -123,9 +120,8 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     gridLength: 6,
     component: RHFTextField,
   },
-
   {
-    id: 4,
+    id: 5,
     componentProps: {
       fullWidth: true,
       name: "town",
@@ -136,7 +132,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     component: RHFTextField,
   },
   {
-    id: 5,
+    id: 6,
     componentProps: {
       fullWidth: true,
       name: "telephone",
@@ -147,7 +143,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     component: RHFTextField,
   },
   {
-    id: 6,
+    id: 7,
     componentProps: {
       fullWidth: true,
       name: "phoneNo",
@@ -158,7 +154,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     component: RHFTextField,
   },
   {
-    id: 7,
+    id: 8,
     componentProps: {
       fullWidth: true,
       name: "email",
@@ -169,7 +165,7 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     component: RHFTextField,
   },
   {
-    id: 8,
+    id: 9,
     componentProps: {
       fullWidth: true,
       name: "county",
@@ -179,11 +175,10 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
       disabled: isFieldDisable,
     },
     gridLength: 6,
-    // component: RHFTextField,
     component: RHFSelect,
   },
   {
-    id: 9,
+    id: 10,
     componentProps: {
       fullWidth: true,
       name: "country",
@@ -194,10 +189,9 @@ export const gpDetailsInfoFormDataFunction = (isFieldDisable = false) => [
     },
     gridLength: 6,
     component: RHFSelect,
-    // component: RHFTextField,
   },
   {
-    id: 10,
+    id: 11,
     componentProps: {
       fullWidth: true,
       name: "postalCode",

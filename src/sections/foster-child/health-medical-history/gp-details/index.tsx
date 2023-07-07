@@ -30,6 +30,10 @@ export const gpDetailsInfoTableColumnsFunction = (
       return (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
+            type="delete"
+            onClicked={() => prepareRecordForDelete?.(info?.getValue())}
+          />
+          <TableAction
             type="edit"
             onClicked={() =>
               router.push({
