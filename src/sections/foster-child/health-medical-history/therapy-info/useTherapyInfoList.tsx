@@ -3,7 +3,7 @@ import { getColumns } from "./columnsInfo";
 import { useRouter } from "next/router";
 import { useSafeCarePolicyListQuery } from "@root/services/foster-child/other-information/safeCarePolicyApi";
 
-export const useSafeCarePolicyList = () => {
+export const useTherapyInfoList = () => {
   const router = useRouter();
   const { query } = useRouter();
   const [page, setPage] = useState(1);

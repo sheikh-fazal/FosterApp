@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
-const SafeCarePolicyList = () => {
+const UploadDocuments = () => {
   // const [tabelData, setTabelData] = useState([
   //   {
   //     a: "a",
@@ -39,7 +39,7 @@ const SafeCarePolicyList = () => {
     <Box>
       <TableHeader
         ref={tableHeaderRef}
-        title="Safe Care Policy"
+        title="Uploaded Documents"
         searchKey="search"
         showAddBtn={true}
         onAdd={() => console.log("Test")}
@@ -52,7 +52,7 @@ const SafeCarePolicyList = () => {
         data={data}
         columns={columns}
         isLoading={isLoading}
-        // showSerialNo
+        showSerialNo
         isFetching={isFetching}
         isError={isError}
         isPagination={true}
@@ -71,4 +71,4 @@ const SafeCarePolicyList = () => {
   );
 };
 
-export default SafeCarePolicyList;
+export default UploadDocuments;
