@@ -16,7 +16,7 @@ export default function CarerFamilySupportNetworkForm({
   isError,
   isSuccess,
 }: any) {
-  const { methods, handleSubmit, onSubmit, isSubmitting } =
+  const { methods, handleSubmit, onSubmit, isSubmitting, router, makePath } =
     useCarerFamilySupportNetworkForm({
       onSubmitHandler,
       initialValueProps,
@@ -55,14 +55,25 @@ export default function CarerFamilySupportNetworkForm({
               >
                 {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
               </LoadingButton>
-              <Link
+              {/* <Link
                 href={"/carer-info/personal-info/carer-family-support-network"}
                 style={{ textDecoration: "none" }}
+              > */}
+              <Button
+                type="button"
+                variant="contained"
+                onClick={() =>
+                  router.push(
+                    makePath({
+                      path: "/carer-info/personal-info/carer-family-support-network",
+                      skipQueries: ["familyId"],
+                    })
+                  )
+                }
               >
-                <Button type="button" variant="contained">
-                  Back
-                </Button>
-              </Link>
+                Back
+              </Button>
+              {/* </Link> */}
             </Grid>
           )}
         </Grid>

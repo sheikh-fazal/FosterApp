@@ -52,9 +52,9 @@ EditPetQuestionnaire.getLayout = function getLayout(page: any) {
 
 export default function EditPetQuestionnaire() {
   const router = useRouter();
-  const id = Object.keys(router?.query)[0];
+  const { petId } = router.query;
 
-  const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(id);
+  const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(petId);
 
   const [patchDataA] = usePatchPetQuestionnaireAApiMutation();
   const [patchDataB] = usePatchPetQuestionnaireBApiMutation();
@@ -78,7 +78,7 @@ export default function EditPetQuestionnaire() {
         >
           <PetQuestionnaireA
             initialValueProps={data?.petQuestionnaire1}
-            onSubmitHandler={(data: any) => patchDataA({ ...data, id })}
+            onSubmitHandler={(data: any) => patchDataA({ ...data, petId })}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -90,7 +90,7 @@ export default function EditPetQuestionnaire() {
                 ? "Yes"
                 : "No",
             }}
-            onSubmitHandler={(data: any) => patchDataB({ ...data, id })}
+            onSubmitHandler={(data: any) => patchDataB({ ...data, petId })}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -100,7 +100,7 @@ export default function EditPetQuestionnaire() {
               ...data?.petQuestionnaire3,
               date: new Date(data?.petQuestionnaire3?.date),
             }}
-            onSubmitHandler={(data: any) => patchDataC({ ...data, id })}
+            onSubmitHandler={(data: any) => patchDataC({ ...data, petId })}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -111,7 +111,7 @@ export default function EditPetQuestionnaire() {
               date1: new Date(data?.petQuestionnaire4?.date1),
               date2: new Date(data?.petQuestionnaire4?.date2),
             }}
-            onSubmitHandler={(data: any) => patchDataD({ ...data, id })}
+            onSubmitHandler={(data: any) => patchDataD({ ...data, petId })}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}

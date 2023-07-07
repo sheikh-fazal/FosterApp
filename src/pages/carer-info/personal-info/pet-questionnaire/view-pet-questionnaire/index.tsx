@@ -46,9 +46,9 @@ ViewPetQuestionnaire.getLayout = function getLayout(page: any) {
 
 export default function ViewPetQuestionnaire() {
   const router = useRouter();
-  const id = Object.keys(router?.query)[0];
+  const { petId } = router.query;
 
-  const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(id);
+  const { data, isLoading, isError } = useGetPetQuestionnaireByIdQuery(petId);
 
   if (isError) return <Error />;
 
