@@ -40,23 +40,29 @@ export const EmploymentType = [
   },
 ];
 
-export const AddFormSchema = Yup.object().shape({
-  companyname: Yup.string().required("Company Name is required"),
-  location: Yup.string().required("Location is required"),
-  updatePhoto: Yup.mixed().required("Photo is required"),
-  experiences: Yup.array().of(
-    Yup.object().shape({
-      title: Yup.string().required("Title is required"),
-      employmentType: Yup.string().required("Employment Type is required"),
-      currentlyWorking: Yup.boolean(),
-      startDate: Yup.date().required("Start Date is required"),
-      endDate: Yup.date().required("Start Date is required"),
-      headline: Yup.string().required("HeadLine is required"),
-      industry: Yup.string().required("Industry is required"),
-      description: Yup.string().required("Description is required"),
-    })
-  ),
+const experienceSchema = Yup.object().shape({
+  title: Yup.string().required("Title is required"),
+  employmentType: Yup.string().required("Employment type is required"),
+  // currentlyWorking: Yup.boolean().required("Currently working is required"),
+  startDate: Yup.date().required("Start date is required"),
+  endDate: Yup.date()
+    .typeError("End date is required")
+    .required("End date is required")
+    .min(Yup.ref("startDate"), "End date must be later than start date"),
+  headline: Yup.string().required("Headline is required"),
+  industry: Yup.string().required("Industry is required"),
+  description: Yup.string().required("Description is required"),
 });
+
+export const addFormValuesSchema = Yup.object().shape({
+  companyName: Yup.string().required("Company name is required"),
+  location: Yup.string().required("Location is required"),
+  media: Yup.mixed().required("Image  is is required"),
+  experiences: Yup.array()
+    .of(experienceSchema)
+    .required("Experiences are required"),
+});
+
 export const addExperienceForm = [
   {
     type: "text",
@@ -119,13 +125,8 @@ export const addExperienceForm = [
   },
 ];
 
-
-
-
-
-
 // <Fragment key={field.id}>
-                  
+
 // <Grid item xs={6}  onClick={() => toggleCollapse(index)}
 // style={{ cursor: "pointer" }}>
 //   <RHFTextField

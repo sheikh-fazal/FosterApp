@@ -67,15 +67,15 @@ export const NAV_LINKS = [
     id: 7,
     text: "Matching & Placement",
     img: <SettingsOutlinedIcon />,
-    link: "",
+    link: "/matching",
     sublist: [
       {
         list: "Matching",
-        sublistlink: "",
+        sublistlink: "/matching",
       },
       {
         list: "Placement",
-        sublistlink: "",
+        sublistlink: "placement",
       },
     ],
   },
@@ -174,7 +174,7 @@ export const NAV_LINKS = [
     id: 23,
     text: "User Manual",
     img: <GroupRemoveOutlinedIcon />,
-    link: "./user-manual",
+    link: "/user-manual",
   },
   {
     id: 24,

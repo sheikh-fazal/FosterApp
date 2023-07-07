@@ -24,23 +24,7 @@ export const statutoryMedicalListAccordionData = [
   },
 ];
 
-//Carer Type Mock Data
-export const carerTypeData = [
-  {
-    value: "Option 1",
-  },
-  {
-    value: "Option 2",
-  },
-  {
-    value: "Option 3",
-  },
-  {
-    value: "Option 4",
-  },
-];
-//Carer Name Mock Data
-export const carerNameData = [
+export const sortTypeData = [
   {
     value: "Option 1",
   },
