@@ -2,20 +2,22 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import { useRef, useState } from "react";
 import { columnsChildExclusionInfoTable } from ".";
 import { useRouter } from "next/router";
-import { useGetChildExclusionInfoListQuery } from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
+import {
+  useDeleteSingleChildExclusionInfoRecordMutation,
+  useGetChildExclusionInfoListQuery,
+} from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
+import { enqueueSnackbar } from "notistack";
 
 const useChildExclusionInfoList = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
 
-  const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
+  const [childRecordId, setChildRecordId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
-  const id = router?.query?.fosterChildId  
+  const id = router?.query?.fosterChildId;
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-
-  console.log(params);
 
   const queryParams = {
     search: params.search,
@@ -26,18 +28,29 @@ const useChildExclusionInfoList = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetChildExclusionInfoListQuery(queryParams);
 
+  const [deleteChildRecord] = useDeleteSingleChildExclusionInfoRecordMutation();
+
   const deleteTrainingProfile = async () => {
-    console.log(trainingProfileId);
-    setTrainingProfileId(null);
+    try {
+      deleteChildRecord(childRecordId);
+      enqueueSnackbar(`Deleted Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong!`, {
+        variant: "error",
+      });
+    }
+    setChildRecordId(null);
   };
 
   const openDeleteModel = (id: string) => {
-    console.log("ProfileID: ", id);
-    setTrainingProfileId(id);
+    // console.log("ProfileID: ", id);
+    setChildRecordId(id);
   };
 
   const closeDeleteProfile = (id: string) => {
-    setTrainingProfileId(null);
+    setChildRecordId(null);
   };
 
   const columnsChildExclusionInfoTableFuntion = columnsChildExclusionInfoTable(
@@ -46,12 +59,11 @@ const useChildExclusionInfoList = () => {
     cancelDelete,
     setCancelDelete,
     openDeleteModel
-    
   );
 
   return {
     tableHeaderRef,
-    trainingProfileId,
+    childRecordId,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
@@ -64,7 +76,7 @@ const useChildExclusionInfoList = () => {
     isError,
     isFetching,
     isSuccess,
-    id
+    id,
   };
 };
 
