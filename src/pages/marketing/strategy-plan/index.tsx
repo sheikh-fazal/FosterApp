@@ -2,21 +2,18 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import MarketingStrategyPlan from "@root/sections/marketing/marketing-strategy-plan/MarketingStrategyPlan";
 
 const PAGE_TITLE = "Market Strategy";
 
-MarketingStrategyPlanLayout.getLayout = function getLayout(page: any) {
+MarketingStrategyLayout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
-        },
-        {
-          name: "Merketing",
+          name: "Marketing",
           href: "/marketing",
         },
         {
@@ -31,6 +28,8 @@ MarketingStrategyPlanLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function MarketingStrategyPlanLayout() {
-  return <Page title={PAGE_TITLE}></Page>;
+export default function MarketingStrategyLayout() {
+  return <Page title={PAGE_TITLE}>
+    <MarketingStrategyPlan/>
+  </Page>;
 }

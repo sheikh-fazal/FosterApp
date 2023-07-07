@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import Campaigns from "@root/sections/marketing/campaigns-marketing/Campaigns";
 
 const PAGE_TITLE = "Campaigns";
 
@@ -34,7 +35,7 @@ CampaignsLayout.getLayout = function getLayout(page: any) {
 export default function CampaignsLayout() {
   return (
     <Page title={PAGE_TITLE}>
-   
+      <Campaigns />
     </Page>
   );
 }
