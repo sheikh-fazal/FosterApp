@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetHospitalisationInfoListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/HospitalisationInfoAPI";
+import { useGetHospitalisationInfoListQuery } from "@root/services/foster-child/health-medical-history/hospitalization/HospitalizationApi";
 const useHospitalizationTable = () => {
-
   const [search, setSearch] = useState("");
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
