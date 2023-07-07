@@ -19,9 +19,9 @@ const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
 
 export const defaultValues = {
   title: "USD",
-  firstName: "Ahmed",
-  middleName: "MAC",
-  lastName: "Afzal",
+  firstName: "NaME",
+  middleName: "mIDDEL nAMe",
+  lastName: "lAsT nnMAE",
   dateOfBirth: new Date(ageOf18Years),
   dateOfEnquiry: new Date(todayDate),
   gender: "Male",
@@ -29,7 +29,7 @@ export const defaultValues = {
   telephone: "+440000000",
   email: "test@test.com",
   ethinicity: "Roma",
-  languageSpoken: "Japanglish",
+  languageSpoken: "URDU",
   religion: "Islam",
   practicingStatus: "Practicing",
   areChecksRequired: false,

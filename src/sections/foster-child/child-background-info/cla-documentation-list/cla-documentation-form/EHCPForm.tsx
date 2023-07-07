@@ -38,7 +38,7 @@ export default function EHCPForm(props: any) {
               sx={{ marginRight: "1rem" }}
               type="submit"
               variant="contained"
-              loading={isSubmitting}
+              loading={isSubmitting} 
             >
               Submit
             </LoadingButton>

@@ -1,5 +1,5 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useDeleteTherapyInfoListMutation, useGetTherapyInfoListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/TherapyInfoAPI";
+import { useDeleteChildChronologyOfEventsTherapyInfoByIdMutation, useGetChildChronologyOfEventsTherapyInfoListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/TherapyInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
@@ -8,15 +8,15 @@ export const useTherapyInfoTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetTherapyInfoListQuery({
+  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetChildChronologyOfEventsTherapyInfoListQuery({
     search: search,
   });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteTherapyInfoListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsTherapyInfoByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({id:id})
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {
