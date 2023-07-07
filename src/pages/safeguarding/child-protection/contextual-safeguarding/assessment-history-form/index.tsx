@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
@@ -31,9 +31,12 @@ AssessmentHistoryForm.getLayout = function getLayout(page: any) {
 };
 
 export default function AssessmentHistoryForm() {
+
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs tabsDataArray={["Assessment Info", "Termination Info"]}>
+      <HorizaontalTabs
+        tabsDataArray={["Assessment Info", "Termination Info"]}
+      >
         <AssessmentInfoForm />
         <TerminationInfoForm />
       </HorizaontalTabs>

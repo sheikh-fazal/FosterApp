@@ -34,10 +34,7 @@ const AssessmentInfoForm = ({ disabled }: any) => {
             </Button>
           )}
 
-          <Link
-            href={""}
-            style={{ textDecoration: "none" }}
-          >
+          <Link href={""} style={{ textDecoration: "none" }}>
             <Button
               type="button"
               variant="contained"

@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { formDataFeild, formDataValues, formValidationSchema } from ".";
 
-export const useAssessmentInfoForm = () => {
+export const useRevisionAssessmentInfoForm = () => {
   const methods: any = useForm({
     resolver: yupResolver(formValidationSchema),
     defaultValues: formDataValues,
@@ -12,7 +12,6 @@ export const useAssessmentInfoForm = () => {
 
   const onSubmit = (data: any) => {
     console.log(data, "submitted data");
-    
   };
 
   return {

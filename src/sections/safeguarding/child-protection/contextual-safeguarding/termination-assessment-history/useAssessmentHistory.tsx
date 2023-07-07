@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import { TableData } from ".";
+import { TableData, SELECT_FILTERS } from ".";
 import TableAction from "@root/components/TableAction";
 
 export const useAssessmentHistory = () => {
@@ -105,5 +105,6 @@ export const useAssessmentHistory = () => {
     TableData,
     columns,
     theme,
+    SELECT_FILTERS
   };
 };

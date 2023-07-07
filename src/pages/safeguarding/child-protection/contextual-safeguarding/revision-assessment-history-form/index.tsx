@@ -6,8 +6,8 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import AssessmentInfoForm from "@root/sections/safeguarding/child-protection/contextual-safeguarding/termination-assessment-history/assessment-info-form/AssessmentInfoForm";
 import TerminationInfoForm from "@root/sections/safeguarding/child-protection/contextual-safeguarding/termination-assessment-history/termination-info-form/TerminationInfoForm";
-import RevisionAssessmentInfo from "@root/sections/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history/revision-assessment-info/RevisionAssessmentInfo";
-import RevisionInfo from "@root/sections/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history/revision-info/RevisionInfo";
+import RevisionAssessmentInfo from "@root/sections/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history/revision-assessment-info-form/RevisionAssessmentInfoForm";
+import RevisionInfo from "@root/sections/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history/revision-info-form/RevisionInfoForm";
 
 const PAGE_TITLE = "Contextual Safeguarding List";
 

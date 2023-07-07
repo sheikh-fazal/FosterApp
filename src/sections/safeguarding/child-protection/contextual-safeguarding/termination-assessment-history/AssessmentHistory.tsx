@@ -4,8 +4,14 @@ import React from "react";
 import { useAssessmentHistory } from "./useAssessmentHistory";
 
 const AssessmentHistory = () => {
-  const { tableHeaderRefTwo, router, columns, TableData, theme } =
-    useAssessmentHistory();
+  const {
+    tableHeaderRefTwo,
+    router,
+    columns,
+    TableData,
+    theme,
+    SELECT_FILTERS,
+  } = useAssessmentHistory();
   return (
     <>
       <TableHeader
@@ -13,6 +19,8 @@ const AssessmentHistory = () => {
         title="Assessment to"
         searchKey="search"
         showAddBtn
+        selectFilters={SELECT_FILTERS}
+        showSelectFilters="true"
         onAdd={() => {
           router.push({
             pathname:

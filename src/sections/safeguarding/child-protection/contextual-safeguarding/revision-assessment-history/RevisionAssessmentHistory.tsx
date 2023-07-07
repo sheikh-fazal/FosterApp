@@ -4,8 +4,14 @@ import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
 const RevisionAssessmentHistory = () => {
-  const { tableHeaderRefTwo, router, columns, TableData, theme } =
-    useRevisionAssessmentHistory();
+  const {
+    tableHeaderRefTwo,
+    router,
+    columns,
+    TableData,
+    theme,
+    SELECT_FILTERS,
+  } = useRevisionAssessmentHistory();
   return (
     <>
       <TableHeader
@@ -13,6 +19,8 @@ const RevisionAssessmentHistory = () => {
         title="Revision Assessment to"
         searchKey="search"
         showAddBtn
+        selectFilters={SELECT_FILTERS}
+        showSelectFilters="true"
         onAdd={() => {
           router.push({
             pathname:

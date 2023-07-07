@@ -35,8 +35,8 @@ export default function ContextualSafeguarding() {
     <Page title={PAGE_TITLE}>
       <Box>
         {/* <ContextualSafeguardingTable /> */}
-        {/* <AssessmentHistory /> */}
-        <RevisionAssessmentHistory/>
+        <AssessmentHistory />
+        {/* <RevisionAssessmentHistory/> */}
       </Box>
     </Page>
   );

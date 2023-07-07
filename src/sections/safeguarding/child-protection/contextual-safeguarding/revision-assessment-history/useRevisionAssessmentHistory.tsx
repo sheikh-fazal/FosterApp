@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { useRouter } from "next/router";
-import { TableData } from ".";
+import { TableData, SELECT_FILTERS } from ".";
 
 export const useRevisionAssessmentHistory = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -105,5 +105,6 @@ export const useRevisionAssessmentHistory = () => {
     TableData,
     columns,
     theme,
+    SELECT_FILTERS
   };
 };
