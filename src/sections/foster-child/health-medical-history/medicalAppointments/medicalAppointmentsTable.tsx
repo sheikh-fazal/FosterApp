@@ -129,10 +129,10 @@ const MedicalAppointmentsTable = (props: any) => {
                 isSuccess={MedicalAppointmentListisSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                totalPages={MedicalAppointmentListdata?.data?.meta?.pages ?? 0}
+                currentPage={MedicalAppointmentListdata?.data?.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
             </Box>
           </Paper>
