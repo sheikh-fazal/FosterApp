@@ -67,15 +67,15 @@ export const NAV_LINKS = [
     id: 7,
     text: "Matching & Placement",
     img: <SettingsOutlinedIcon />,
-    link: "",
+    link: "/matching",
     sublist: [
       {
         list: "Matching",
-        sublistlink: "",
+        sublistlink: "/matching",
       },
       {
         list: "Placement",
-        sublistlink: "",
+        sublistlink: "placement",
       },
     ],
   },
