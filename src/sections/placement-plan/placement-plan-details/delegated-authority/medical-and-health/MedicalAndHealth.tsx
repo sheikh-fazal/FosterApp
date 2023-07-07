@@ -2,38 +2,21 @@ import React from 'react';
 import { Button, Card, Grid, Typography } from '@mui/material';
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from '@mui/lab';
-import { useContact } from './useContact';
-import TableHeader from '@root/components/TableHeader';
-import CustomTable from '@root/components/Table/CustomTable';
+import { useMedicalAndHealth } from './useMedicalAndHealth';
+import { formData } from '.';
 
-const Contact = () => {
+const HealthDetailsOfKeyPeople = () => {
 
-  const { methods, handleSubmit, onSubmit, disabled, handleBack, formData, handleTableAdd } = useContact();
+  const { methods, handleSubmit, onSubmit, disabled, handleBack } = useMedicalAndHealth();
 
   return (
     <Card sx={styles.card}>
-      <Typography sx={styles.title}>Contact</Typography>
+      <Typography sx={styles.title}>Medical and health</Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
           {
             formData.map((item, i) => (
               <Grid item key={i} md={item.gridLength} xs={12}>
-                {item.requireTable && <>
-                  <TableHeader
-                    title={item.tableTitle}
-                    hideSearch
-                    showAddBtn={disabled ? false : true}
-                    onAdd={() => handleTableAdd(item.type)}
-                  />
-                  <CustomTable
-                    columns={item.tableCoulmns}
-                    data={item.tableData}
-                    isLoading={false}
-                    isError={false}
-                    isSuccess={true}
-                  />
-                  {item.modal}
-                </>}
                 {item.component ?
                   <item.component
                     size={"small"}
@@ -67,7 +50,7 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default HealthDetailsOfKeyPeople
 
 const styles = {
   card: { p: 2, boxShadow: '0px 0px 7px 3px #0E918C33' },

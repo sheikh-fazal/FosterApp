@@ -9,7 +9,7 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Details of key people',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/details-of-key-people',
       },
       {
         title: 'Placement details',
@@ -29,7 +29,7 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Health: Details of key people',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/health-details-of-key-people',
       },
       {
         title: 'Health: Details of health issues',
@@ -37,7 +37,7 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Education-related contacts',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/education-related-contacts',
       },
       {
         title: 'Educational needs',
@@ -65,7 +65,7 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Signature page',
-        href: '',
+        href: '/placement-plan/placement-plan-details/fostering-placement/signature-page',
       },
     ]
   },
@@ -79,15 +79,15 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Medical and health ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/medical-and-health',
       },
       {
         title: 'Education ',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/education',
       },
       {
         title: 'Personal, leisure and home life',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/persoanl-leisure-and-home-life',
       },
       {
         title: 'Faith and religious observance',
@@ -99,15 +99,15 @@ export const FosteringPlacementData = [
       },
       {
         title: 'Contact',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/contact',
       },
       {
         title: 'Other areas or categories',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/other-areas-or-categories',
       },
       {
         title: 'Additional notes or questions',
-        href: '',
+        href: '/placement-plan/placement-plan-details/delegated-authority/additional-notes-or-questions',
       },
     ]
   },

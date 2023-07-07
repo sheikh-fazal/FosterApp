@@ -9,7 +9,7 @@ import ActionSheetModal from './ActionSheetModal'
 
 const ActionSheet = () => {
 
-  const { handleAction, openModal, handleOpenModal, disabledModal } = useActionSheet();
+  const { handleAction, openModal, handleOpenModal, disabledModal, disabled } = useActionSheet();
 
   const columns = [
     {
@@ -51,7 +51,7 @@ const ActionSheet = () => {
       <TableHeader
         title={'Action sheet - transfer actions identified through the plan into the Care Plan'}
         hideSearch
-        showAddBtn
+        showAddBtn={disabled ? false : true}
         onAdd={handleOpenModal}
       />
       <CustomTable

@@ -3,12 +3,11 @@ import { Button, Card, Grid, Typography } from '@mui/material';
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from '@mui/lab';
 import { useContact } from './useContact';
-import TableHeader from '@root/components/TableHeader';
-import CustomTable from '@root/components/Table/CustomTable';
+import { formData } from '.';
 
 const Contact = () => {
 
-  const { methods, handleSubmit, onSubmit, disabled, handleBack, formData, handleTableAdd } = useContact();
+  const { methods, handleSubmit, onSubmit, disabled, handleBack } = useContact();
 
   return (
     <Card sx={styles.card}>
@@ -18,22 +17,6 @@ const Contact = () => {
           {
             formData.map((item, i) => (
               <Grid item key={i} md={item.gridLength} xs={12}>
-                {item.requireTable && <>
-                  <TableHeader
-                    title={item.tableTitle}
-                    hideSearch
-                    showAddBtn={disabled ? false : true}
-                    onAdd={() => handleTableAdd(item.type)}
-                  />
-                  <CustomTable
-                    columns={item.tableCoulmns}
-                    data={item.tableData}
-                    isLoading={false}
-                    isError={false}
-                    isSuccess={true}
-                  />
-                  {item.modal}
-                </>}
                 {item.component ?
                   <item.component
                     size={"small"}
