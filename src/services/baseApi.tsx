@@ -19,6 +19,7 @@ export const TAGS = [
   "UPDATE_PROFILE",
   "ALLEGATION_DOCUMENTS",
   "COMPLAINT_LIST",
+  "COMPLAINT_DOCUMENTS",
   "INCIENT_UPLOAD_DOCUMENTS",
   "INITIAL_CONTACT",
   "INITIAL_HOME_VISIT",
@@ -63,6 +64,7 @@ export const TAGS = [
   "hospital-info-list-document",
   "LEISURE_ACTIVITY_LIST",
   "LEISURE_ACTIVITY_DOCUMENTS_LIST",
+  "medicalappointments",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

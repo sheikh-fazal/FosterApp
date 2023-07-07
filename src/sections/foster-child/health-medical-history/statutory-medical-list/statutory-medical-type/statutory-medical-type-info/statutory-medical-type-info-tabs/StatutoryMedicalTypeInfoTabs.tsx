@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import StatutoryMedicalTypeInfo from "../StatutoryMedicalTypeInfo";
 
 const StatutoryMedicalTypeInfoTabs = () => {
-  const { query } = useRouter();
+  const router = useRouter();
   const headerHeading: any = {
     EHCP: "EHCP",
     CLA: "CLA MEDICAL",
@@ -19,7 +19,7 @@ const StatutoryMedicalTypeInfoTabs = () => {
   return (
     <HorizaontalTabs
       tabsDataArray={StatutoryMedicalTypeTabsDataFunction?.(
-        setHeaderHeading?.(query.type)
+        setHeaderHeading?.(router?.query?.type)
       )}
     >
       <StatutoryMedicalTypeInfo />

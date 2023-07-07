@@ -102,7 +102,7 @@ const AbsenceInfoTable = (props: any) => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_absence_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

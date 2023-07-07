@@ -9,6 +9,7 @@ import {
 import {
   statutoryMedicalListXTableColumnsFunction,
   STATUTORYMEDICALLISTTYPEPAGELIMIT,
+  headerHeading,
 } from ".";
 import { enqueueSnackbar } from "notistack";
 
@@ -64,12 +65,12 @@ export const useStatutoryMedicalTypeList = (props: any) => {
     limit: STATUTORYMEDICALLISTTYPEPAGELIMIT,
   };
 
-  const headerHeading: any = {
-    EHCP: "EHCP",
-    CLA: "CLA MEDICAL",
-    Dental: "Dental Check",
-    Optician: "Optician Check",
-  };
+  // const headerHeading: any = {
+  //   EHCP: "EHCP",
+  //   CLA: "CLA MEDICAL",
+  //   Dental: "Dental Check",
+  //   Optician: "Optician Check",
+  // };
   const setHeaderHeading = (type: any) => {
     return headerHeading?.[type];
   };

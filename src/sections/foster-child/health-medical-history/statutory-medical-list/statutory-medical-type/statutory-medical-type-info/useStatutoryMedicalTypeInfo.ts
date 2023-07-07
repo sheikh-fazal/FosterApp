@@ -15,9 +15,10 @@ import {
 } from "@root/services/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
 
 export const useStatutoryMedicalTypeInfo = () => {
-  const { query } = useRouter();
   const router = useRouter();
-  const ehcpInfoFormData = ehcpInfoFormDataFunction(query?.action === "view");
+  const ehcpInfoFormData = ehcpInfoFormDataFunction(
+    router.query?.action === "view"
+  );
 
   const [
     postStatutoryMedicalTypeDataTrigger,
@@ -35,15 +36,15 @@ export const useStatutoryMedicalTypeInfo = () => {
   ] = useLazyGetSingleStatutoryMedicalTypeDataQuery();
   // get api params
   const pathParams = {
-    id: query?.id,
+    id: router.query?.id,
   };
   const params = {
-    statutoryMedicalType: query?.type,
+    statutoryMedicalType: router.query?.type,
   };
   const apiDataParameter = { pathParams, params };
 
   const setGpDetailsInfoDefaultValue = async () => {
-    if (!!!query?.id) return;
+    if (!!!router.query?.id) return;
     const { data, isError } = await getSingleStatutoryMedicalTypeDataTrigger(
       apiDataParameter,
       true
@@ -62,11 +63,11 @@ export const useStatutoryMedicalTypeInfo = () => {
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
     const params = {
-      statutoryMedicalType: query?.type,
+      statutoryMedicalType: router.query?.type,
     };
 
     const apiDataParameter = { params, body: data };
-    if (!!query?.id) {
+    if (!!router.query?.id) {
       patchStatutoryMedicalTypeDataForm(data);
       return;
     }
@@ -78,7 +79,7 @@ export const useStatutoryMedicalTypeInfo = () => {
         pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
         query: {
           id: res?.data?.id,
-          type: query.type,
+          type: router.query.type,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -95,10 +96,10 @@ export const useStatutoryMedicalTypeInfo = () => {
 
   const patchStatutoryMedicalTypeDataForm = async (data: any) => {
     const pathParams = {
-      id: query?.id,
+      id: router.query?.id,
     };
     const params = {
-      statutoryMedicalType: query?.type,
+      statutoryMedicalType: router.query?.type,
     };
     const apiDataParameter = { params, body: data, pathParams };
     try {
@@ -108,8 +109,8 @@ export const useStatutoryMedicalTypeInfo = () => {
       router.push({
         pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
         query: {
-          id: query.id,
-          type: query.type,
+          id: router.query.id,
+          type: router.query.type,
           action: "edit",
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
@@ -133,7 +134,6 @@ export const useStatutoryMedicalTypeInfo = () => {
     getSingleStatutoryMedicalTypeDataStatus,
     postStatutoryMedicalTypeDataStatus,
     patchStatutoryMedicalTypeDataStatus,
-    query,
     router,
   };
 };

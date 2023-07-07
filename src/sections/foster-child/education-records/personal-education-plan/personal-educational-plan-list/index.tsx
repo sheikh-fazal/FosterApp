@@ -39,8 +39,8 @@ export const columnsPersonalEducationPlanTable = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.schoolName,
-    id: "schoolName",
+    accessorFn: (row: any) => row.school,
+    id: "school",
     cell: (info: any) => info.getValue(),
     header: () => <span>School Name</span>,
     isSortable: true,

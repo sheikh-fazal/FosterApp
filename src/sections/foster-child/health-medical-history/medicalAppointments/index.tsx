@@ -21,6 +21,9 @@ export const medicalAppointmentsFormValue = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 2,
@@ -69,14 +72,22 @@ export const medicalAppointmentsFormValue = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 ];
+export const medialFormets:any = {}
+for (const formControl of medicalAppointmentsFormValue) {
+  if (formControl.format)
+  medialFormets[formControl.otherOptions.name] = formControl.format;
+}
 export const MedicalAppointmentsInfoListValue = {
-  appointmentDate: "",
+  appointmentDate: new Date(),
   doctorName: "",
   healthAppointmentType: "",
   details: "",
-  dateOfNextAppointment: "",
+  dateOfNextAppointment: new Date(),
 };
 export const FormSchema = Yup.object().shape({
   appointmentDate: Yup.date().required("required"),
