@@ -6,11 +6,28 @@ import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { dummy } from ".";
+import useMedicalAppointmentList from "./useMedicalAppointmentList";
+import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
 
 const activepath =
   "/foster-child/health-medical-history/medical-appointments/actions";
 
-const MedicalAppointmentsTable = () => {
+const MedicalAppointmentsTable = (props: any) => {
+  const { fosterChildId } = props;
+  const {
+    MedicalAppointmentListdata,
+    MedicalAppointmentListIserror,
+    MedicalAppointmentListisLoading,
+    MedicalAppointmentListisFetching,
+    MedicalAppointmentListisSuccess,
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+  } = useMedicalAppointmentList({ fosterChildId: fosterChildId });
+  const { deleteHander} = useMedicalAppointmentForm({});
+  
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -20,17 +37,17 @@ const MedicalAppointmentsTable = () => {
     //   isSortable: false,
     // },
     {
-      accessorFn: (row: any) => row.dateOfAppointmentVisit,
-      id: "dateOfAppointmentVisit",
+      accessorFn: (row: any) => row.appointmentDate,
+      id: "appointmentDate",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Date Of Immunisation</span>,
+      header: () => <span>Date Of Appointment/visit</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.doctorName,
       id: "doctorName",
       cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Immunisation type</span>,
+      header: () => <span>Doctor Name</span>,
       isSortable: true,
     },
 
@@ -39,7 +56,9 @@ const MedicalAppointmentsTable = () => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt onDeleteClick={()=>{
+              deleteHander(info.row.original.id)
+            }} />
 
             <TableAction
               size="small"
@@ -47,7 +66,11 @@ const MedicalAppointmentsTable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    medicalAppointmentID: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -57,7 +80,11 @@ const MedicalAppointmentsTable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    medicalAppointmentID: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -77,25 +104,27 @@ const MedicalAppointmentsTable = () => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="Child Immunisation Info"
+                  title="Medical Appointments"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={MedicalAppointmentListdata?.data?.medicalappointmentlist ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={MedicalAppointmentListisLoading}
+                isFetching={MedicalAppointmentListisFetching}
+                isError={MedicalAppointmentListIserror}
+                isSuccess={MedicalAppointmentListisSuccess}
                 isPagination={true}
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}
