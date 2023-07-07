@@ -23,8 +23,7 @@ const PAGE_TITLE = "GP Details Info List";
 
 // ----------------------------------------------------------------------
 
-GPDetails.getLayout = function getLayout(page: any) {
-  const { query } = useRouter();
+GPDetails.getLayout = function getLayout(page: any, { query }: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs

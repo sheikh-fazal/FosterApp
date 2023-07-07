@@ -1,6 +1,4 @@
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useLazyGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/primary/primaryCarer";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -20,8 +18,7 @@ export const usePrimaryCarerForm = () => {
   // get api params
   const params = {
     value: "primaryCarer",
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
   const dataParameter = { params };
@@ -31,7 +28,6 @@ export const usePrimaryCarerForm = () => {
       dataParameter,
       true
     );
-    console.log(getAllInitialHomeVisitDataStatus);
     if (isError) {
       return defaultValuesPrimaryCarer(data);
     }
@@ -41,11 +37,9 @@ export const usePrimaryCarerForm = () => {
 
   const submitPrimaryCarerForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
-    // console.log(data);
     try {
       const res: any = await postPrimaryCarerDataTrigger(
         putDataParameter

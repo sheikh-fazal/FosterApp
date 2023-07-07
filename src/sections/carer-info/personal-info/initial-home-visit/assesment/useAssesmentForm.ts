@@ -1,7 +1,5 @@
 import { usePostInitialHomeAssessmentDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/assessment/assessment";
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useLazyGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import {
@@ -27,7 +25,7 @@ export const useAssesmentForm = () => {
   const params = {
     value: "assessment",
     fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+      query?.fosterCarerId,
   };
 
   const dataParameter = { params };
@@ -46,11 +44,9 @@ export const useAssesmentForm = () => {
 
   const submitAssesmentForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
-    console.log({ data });
     try {
       const res: any = await postInitialHomeAssessmentDataTrigger(
         putDataParameter

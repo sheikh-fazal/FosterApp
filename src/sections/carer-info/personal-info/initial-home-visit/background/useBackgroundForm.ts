@@ -1,7 +1,5 @@
 import { usePostInitialHomeBackgroundDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/background/background";
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useLazyGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
 import {
   backgroundFormFieldsInfoFunction,
@@ -25,8 +23,7 @@ export const useBackgroundForm = () => {
     useLazyGetAllInitialHomeVisitDataQuery();
   const params = {
     value: "backGround",
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
   const dataParameter = { params };
@@ -44,8 +41,7 @@ export const useBackgroundForm = () => {
   };
   const submitBackgroundForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
     try {

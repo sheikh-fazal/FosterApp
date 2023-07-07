@@ -24,8 +24,7 @@ const PAGE_TITLE = "Statutory Medical List";
 
 // ----------------------------------------------------------------------
 
-StatutoryMedicalType.getLayout = function getLayout(page: any) {
-  const { query } = useRouter();
+StatutoryMedicalType.getLayout = function getLayout(page: any, { query }: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
