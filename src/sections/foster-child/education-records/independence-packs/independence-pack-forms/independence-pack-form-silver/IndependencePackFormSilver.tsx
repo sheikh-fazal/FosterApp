@@ -9,14 +9,19 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 //
-import { formData1, ListOfSkills } from "..";
-import { useIndependencePackForm } from "./useIndependencePackForm";
+import {
+  formData1,
+  ListOfSkills,
+  ListOfSkillsWithEvidence,
+  formData2,
+} from ".";
+import { useIndependencePackFormSilver } from "./useIndependencePackFormSilver";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import SingleLevel from "../Levels/SingleLevel";
+import SingleLevel from "../../Levels/SingleLevel";
 import BronzeLevel from "@root/assets/svg/bronze-level";
 import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
 
-export default function IndependencePackForm(props: any) {
+export default function IndependencePackFormSilver(props: any) {
   const { formType, level } = props;
   const {
     methods,
@@ -26,7 +31,7 @@ export default function IndependencePackForm(props: any) {
     isDirty,
     theme,
     router,
-  } = useIndependencePackForm();
+  } = useIndependencePackFormSilver();
 
   return (
     <Card sx={{ p: 2 }}>
@@ -117,7 +122,7 @@ export default function IndependencePackForm(props: any) {
                 List of Skills With My Evidence
               </Typography>
             </Grid>
-            {ListOfSkills.map((form: any, i: any) => {
+            {ListOfSkillsWithEvidence.map((form: any, i: any) => {
               return (
                 <Grid item xl={12} xs={12} key={i}>
                   <form.component
@@ -138,6 +143,26 @@ export default function IndependencePackForm(props: any) {
               );
             })}
           </Grid>
+          {formData2.map((form: any, i: any) => {
+            return (
+              <Grid item xs={12} md={form?.gridLength} key={i}>
+                <form.component
+                  {...form.otherOptions}
+                  disabled={props.disabled}
+                  size="small"
+                >
+                  {form.otherOptions?.select
+                    ? form.options.map((option: any, index: any) => (
+                        <option key={index} value={option.value}>
+                          {" "}
+                          {option.label}{" "}
+                        </option>
+                      ))
+                    : null}
+                </form.component>
+              </Grid>
+            );
+          })}
           <Grid item xs={12}>
             <Box
               sx={{

@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
-import { FormSchema, defaultValues } from "..";
+import { FormSchema, defaultValues } from ".";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 
-export const useIndependencePackForm = () => {
+export const useIndependencePackFormGold = () => {
   let theme = useTheme();
   let router = useRouter();
   const methods: any = useForm({
