@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useExclusionInfoTable } from "./useExclusionInfoTable";
 
-const ExclusionInfoTable = () => {
+const ExclusionInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -102,7 +103,7 @@ const ExclusionInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_exclusion_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

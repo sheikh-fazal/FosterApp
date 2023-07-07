@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useAllegationsInfoTable } from "./useAllegationsInfoTable";
 
-const AllegationsInfoTable = () => {
+const AllegationsInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -37,7 +38,7 @@ const AllegationsInfoTable = () => {
       header: "Status",
       isSortable: true,
     },
-    
+
     {
       accessorFn: (row: any) => row?.id,
       id: "actions",
@@ -48,7 +49,8 @@ const AllegationsInfoTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
                 query: { action: "edit", id: info?.row?.original?.id },
               })
             }
@@ -60,7 +62,8 @@ const AllegationsInfoTable = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
                 query: { action: "view", id: info?.row?.original?.id },
               })
             }
@@ -81,7 +84,8 @@ const AllegationsInfoTable = () => {
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
             query: { action: "add", id: "" },
           });
         }}
@@ -90,7 +94,7 @@ const AllegationsInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_allegation_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

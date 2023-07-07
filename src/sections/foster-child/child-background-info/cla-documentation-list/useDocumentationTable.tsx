@@ -3,14 +3,16 @@ import React from "react";
 import { useRouter } from "next/router";
 import { useClaDocumentationListQuery, useDeleteClaDocumentationListMutation } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
 import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
 
 export const useDocumentationTable = () => {
 
   const router = useRouter();
 
-  const [search, setSearch] = React.useState("");
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
 
-  const { data, isError, isLoading, isSuccess, isFetching } = useClaDocumentationListQuery<any>({search: search});
+  const { data, isError, isLoading, isSuccess, isFetching } = useClaDocumentationListQuery<any>({ params });
 
   const [deleteList] = useDeleteClaDocumentationListMutation();
   
@@ -29,5 +31,5 @@ export const useDocumentationTable = () => {
       });
   };
 
-  return { router, setSearch, data, isError, isLoading, isSuccess, isFetching, listDeleteHandler };
+  return { router, headerChangeHandler, pageChangeHandler, sortChangeHandler, data, isError, isLoading, isSuccess, isFetching, listDeleteHandler };
 };

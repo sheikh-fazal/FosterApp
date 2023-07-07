@@ -13,8 +13,8 @@ export const useEhcpForm = (props: any) => {
   const { disabled, defaultValues } = props;
 
   const methods: any = useForm({
-    resolver: yupResolver(EHCPFormValidation),
-    defaultValues,
+    resolver: yupResolver(EHCPFormValidation), 
+    defaultValues: defaultValues,
   });
 
   const {
@@ -28,15 +28,13 @@ export const useEhcpForm = (props: any) => {
     usePatchEHCPClaDocumentationListMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data, "EHCP FOrm");
-    console.log(router?.query?.cla_document_id, "EHCP Id");
 
     if (!!router?.query?.cla_document_id) {
       return patchEHCPHanlder(data);
     }
-    // Post EHCP API of CLA Documentation
     const updatedData = { ...data, document: "Educaton, Health, Care Plan Document" };
-
+    
+    // Post EHCP API of CLA Documentation
     try {
       const res: any = await postEhcpClaDocumentationList(updatedData).unwrap();
       console.log(res);
@@ -58,7 +56,7 @@ export const useEhcpForm = (props: any) => {
       const res: any = await patchEhcpClaDocumentationList(patchData).unwrap();
       console.log(res);
       router.push(`/foster-child/child-background-info/cla-documentation`);
-      enqueueSnackbar(res?.message ?? `Details UPdated Successfully`, {
+      enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
         variant: "success",
       });
     } catch (error: any) {

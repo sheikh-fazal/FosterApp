@@ -3,16 +3,16 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const claDocumentationApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    //Get API of CLA Documentation
+    // Get API of CLA Documentation
     claDocumentationList: builder.query<null, object>({
-      query: (search: any) => ({
+      query: ({params}: any) => ({
         url: "/foster-child/cla/list",
         method: "GET",
-        params: search,
+        params,
       }),
       providesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
-    //Get API By Id of CLA Documentation
+    // Get API By Id of CLA Documentation
     getClaDocumentationById: builder.query({
       query: (id: any) => `/foster-child/cla/${id}`,
       transformResponse: (response: any) => {
@@ -21,7 +21,7 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
       },
       providesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
-    //Post PEP API of CLA Documentation
+    // Post PEP API of CLA Documentation
     postPepClaDocumentationList: builder.mutation({
       query: (putDataParameter: any) => ({
         url: "/foster-child/cla-pep",
@@ -30,7 +30,7 @@ export const claDocumentationApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["CLA_DOCUMENTATION_LIST"],
     }),
-    //Post EHCP API of CLA Documentation
+    // Post EHCP API of CLA Documentation
     postEhcpClaDocumentationList: builder.mutation({
       query: (putDataParameter: any) => ({
         url: "/foster-child/cla-ehcp",

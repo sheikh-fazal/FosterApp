@@ -1,5 +1,5 @@
 import { enqueueSnackbar } from "notistack";
-import { PEPFormValidation, defaultValuesForPep } from "..";
+import { PEPFormValidation,  } from "..";
 import { useRouter } from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -11,9 +11,7 @@ import {
 export const usePepFom = (props: any) => {
   const router = useRouter();
   const { disabled, defaultValues } = props;
-  console.log("Form default values: ", defaultValuesForPep);
-  console.log("API default values: ", defaultValues);
-  console.log("Id", router?.query);
+
 
   const methods: any = useForm({
     resolver: yupResolver(PEPFormValidation),
@@ -31,7 +29,6 @@ export const usePepFom = (props: any) => {
     usePatchPepClaDocumentationListMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
 
     if (!!router?.query?.cla_document_id) {
       return patchPEPHanlder(data);

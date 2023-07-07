@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useAbsenceInfoTable } from "./useAbsenceInfoTable";
 
-const AbsenceInfoTable = () => {
+const AbsenceInfoTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -101,7 +102,7 @@ const AbsenceInfoTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_absence_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}
