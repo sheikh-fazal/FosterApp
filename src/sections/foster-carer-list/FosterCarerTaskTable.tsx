@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
 import { Card } from "@mui/material";
+import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useTableParams } from "@root/hooks/useTableParams";
-import CustomTable from "@root/components/Table/CustomTable";
-import { SELECTFILTERS, columnsFosterCarerList, dataFosterCarerList } from "./";
+import React, { useRef } from "react";
+import { columnsFosterCarerTask, dataFosterCarerTask } from ".";
 
-const FosterCarerListTable = () => {
+const FosterCarerTaskTable = () => {
   const tableHeaderRef = useRef<any>();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -15,15 +15,14 @@ const FosterCarerListTable = () => {
       <TableHeader
         ref={tableHeaderRef}
         //   disabled={isLoading}
-        title="Foster Carer List"
-        searchKey="search"
-        showSelectFilters
-        selectFilters={SELECTFILTERS}
+        title="Foster Carer Task"
         onChanged={headerChangeHandler}
+        showAddBtn
+        hideSearch
       />
       <CustomTable
-        data={dataFosterCarerList}
-        columns={columnsFosterCarerList}
+        data={dataFosterCarerTask}
+        columns={columnsFosterCarerTask}
         isLoading={false}
         isFetching={false}
         isError={false}
@@ -34,7 +33,6 @@ const FosterCarerListTable = () => {
         //   isSuccess={isSuccess}
         //   currentPage={meta?.page}
         //   totalPages={meta?.pages}
-        showSerialNo
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />
@@ -42,4 +40,4 @@ const FosterCarerListTable = () => {
   );
 };
 
-export default FosterCarerListTable;
+export default FosterCarerTaskTable;
