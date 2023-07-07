@@ -2,7 +2,6 @@ import { RHFSwitch } from "@root/components/hook-form";
 import { Grid, Typography } from "@mui/material";
 import * as Yup from "yup";
 
-
 export const MatchingAndPlacementData = [
   { value: "fosterCarer",
     label: "Foster Carer",
