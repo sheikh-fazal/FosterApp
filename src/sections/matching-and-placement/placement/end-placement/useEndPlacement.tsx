@@ -3,11 +3,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Box, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import pdfFile from "../../../assets/svg/safeguarding/pdfDownload.svg";
+import pdfFile from "../../../../assets/svg/safeguarding/pdfDownload.svg";
 
 // ===========================================================================
 
-export const useDischargePlacement = () => {
+export const useEndPlacement = () => {
   let router = useRouter();
   const theme: any = useTheme();
   const [isDeleteModal, setIsDeleteModal] = useState(false);
@@ -28,6 +28,7 @@ export const useDischargePlacement = () => {
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Name</span>,
       isSortable: false,
+      
     },
     {
       accessorFn: (row: any) => row.carerName,
@@ -87,7 +88,7 @@ export const useDischargePlacement = () => {
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
             type="edit"
-            onClicked={() => router.push({ pathname: "/placement/discharge-placement/form", query: { id: info.row.original.id, action: "edit" } })}
+            onClicked={() => router.push({ pathname: "/placement/end/form", query: { id: info.row.original.id, action: "edit" } })}
           />
           <TableAction type="delete" onClicked={() => setIsDeleteModal(true)} />
         </Box>
@@ -99,6 +100,7 @@ export const useDischargePlacement = () => {
   return { theme, router, columns, SELECT_FILTERS, isDeleteModal, handleDeleteClose };
 };
 
+// =================================================================================
 
 const buttonStyle = (status:string) => ({
   width: "95px",

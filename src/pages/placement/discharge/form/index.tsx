@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ChildDischargeForm from "@root/sections/placement/discharge-placement/child-discharge-form/ChildDischargeForm";
+import ChildDischargeForm from "@root/sections/matching-and-placement/placement/discharge-placement/child-discharge-form/ChildDischargeForm";
 
 // =======================================================================================================
 
@@ -16,7 +16,7 @@ ChildReferral.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Child Discharge List",
-          href: "/",
+          href: "/placement/discharge",
         },
         {
           name: "Child Respite",

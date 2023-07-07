@@ -19,7 +19,7 @@ const DischargePlacement = () => {
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         showAddBtn
-        onAdd={() => router.push("/placement/discharge-placement/form")}
+        onAdd={() => router.push("/placement/discharge/form")}
         onChanged={(data: any) => {
           console.log("Updated params: ", data);
         }}

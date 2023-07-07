@@ -9,7 +9,7 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 // ================================================================================
 
-const PanelActionsForm = (props: any) => {
+const ChildDischargeForm = (props: any) => {
   const { theme, router, methods, onSubmit, handleSubmit, isSubmitting } = useChildDischargeForm();
 
   return (
@@ -60,7 +60,7 @@ const PanelActionsForm = (props: any) => {
                   },
                 }}
                 onClick={() => {
-                  router.push("/placement/discharge-placement");
+                  router.push("/placement/discharge");
                 }}
                 type="button"
                 variant="contained"
@@ -74,4 +74,4 @@ const PanelActionsForm = (props: any) => {
     </FormProvider>
   );
 };
-export default PanelActionsForm;
+export default ChildDischargeForm;
