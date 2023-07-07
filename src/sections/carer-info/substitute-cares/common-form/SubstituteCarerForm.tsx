@@ -8,45 +8,43 @@ import Error from "@root/components/Error";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
 import { useGetSubstituteCarerByIdQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import dayjs from "dayjs";
 
 //component function
 export default function SubstituteCarerForm(props: any) {
-  const { disabled, onSubmit, data: P, status }: any = props;
+  const { disabled, onSubmit, status, onEdit }: any = props;
 
   const params = useRouter();
-  const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
-    params.query?.carerId,
-    { skip: !!!params.query?.carerId }
-  );
+  const { data, isSuccess, isError, isLoading } =
+    useGetSubstituteCarerByIdQuery(params.query?.carerId, {
+      skip: !!!params.query?.carerId,
+    });
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     // defaultValues: disabled ? data : defaultValues,
-    defaultValues: {
-      ...defaultValues,
-      ...data,
-      dateOfBirth: new Date(data?.dateOfBirth),
-      dateOfVisit: new Date(data?.dateOfVisit),
-    },
+    defaultValues,
   });
 
   const { reset, handleSubmit } = methods;
 
   const onSubmitHandler = (data: any) => {
     onSubmit(data);
+    onEdit({ ...data, id: params.query?.carerId });
     reset();
   };
   // updating defaultValues
 
-  // useEffect(() => {
-  //   reset((formValues: any) => ({
-  //     ...formValues,
-  //     ...data,
-  //     dateOfBirth: new Date(),
-  //     dateOfVisit: new Date(),
-  //   }));
-  // }, [data]);
+  useEffect(() => {
+    reset((formValues: any) => ({
+      ...formValues,
+      ...data?.[0],
+      dateOfBirth: new Date(dayjs(data?.[0]?.dateOfBirth).format("MM/DD/YYYY")),
+      dateOfVisit: new Date(dayjs(data?.[0]?.dateOfVisit).format("MM/DD/YYYY")),
+    }));
+  }, [data]);
   console.log(!!params.query?.carerId);
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
@@ -81,7 +79,7 @@ export default function SubstituteCarerForm(props: any) {
             <LoadingButton
               loading={status?.isLoading}
               size="large"
-              disabled={status?.isLoading}
+              disabled={status?.isLoading || params.query?.view}
               type="submit"
               color={
                 status?.isError
@@ -97,7 +95,7 @@ export default function SubstituteCarerForm(props: any) {
             <Button
               size="large"
               type="button"
-              disabled={status?.isLoading}
+              disabled={status?.isLoading || params.query?.view}
               variant="contained"
               color="secondary"
             >
@@ -105,7 +103,7 @@ export default function SubstituteCarerForm(props: any) {
             </Button>
             <Button
               size="large"
-              disabled={status?.isLoading}
+              disabled={status?.isLoading || params.query?.view}
               type="button"
               variant="contained"
               color="warning"
@@ -118,7 +116,7 @@ export default function SubstituteCarerForm(props: any) {
     </FormProvider>
   );
   // if (status?.isError) return <Error />;
-  // if (!status?.isSuccess) return <div>Loading . . </div>;
+  if (status?.isLoading || isLoading) return <SkeletonFormdata />;
   // if (status?.isSuccess)
-  return formEl;
+  else return formEl;
 }

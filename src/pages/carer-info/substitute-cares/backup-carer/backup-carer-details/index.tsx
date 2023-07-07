@@ -58,6 +58,7 @@ export default function BackupCarerDetails() {
           formSubmitHandler(data);
         }}
         status={status}
+        onEdit={(data: any) => console.log(data)}
       />
       <UploadDocuments
         searchParam={(searchedText: string) =>

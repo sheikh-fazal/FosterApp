@@ -54,9 +54,9 @@ export default function SwapCarerDetails() {
 
     postSwapCarerData(body);
   };
-  const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
-    "17210af4-a43c-40a8-bf70-c43d6cb45ea0"
-  );
+  // const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
+  //   "17210af4-a43c-40a8-bf70-c43d6cb45ea0"
+  // );
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm
@@ -64,7 +64,7 @@ export default function SwapCarerDetails() {
           formSubmitHandler(data);
         }}
         status={status}
-        data={data?.[0]}
+        onEdit={(data: any) => console.log(data)}
       />
 
       <UploadDocuments
