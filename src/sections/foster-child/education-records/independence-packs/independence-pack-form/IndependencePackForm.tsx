@@ -3,16 +3,21 @@ import { Grid, Box, Button, Typography, Card } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // utils
 // components
-import { FormProvider, RHFTextField } from "@root/components/hook-form";
+import {
+  FormProvider,
+  RHFCheckbox,
+  RHFTextField,
+} from "@root/components/hook-form";
 //
-import { formData1 } from "..";
+import { formData1, ListOfSkills } from "..";
 import { useIndependencePackForm } from "./useIndependencePackForm";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SingleLevel from "../Levels/SingleLevel";
 import BronzeLevel from "@root/assets/svg/bronze-level";
+import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
 
 export default function IndependencePackForm(props: any) {
-  const { formType } = props;
+  const { formType, level } = props;
   const {
     methods,
     handleSubmit,
@@ -46,11 +51,7 @@ export default function IndependencePackForm(props: any) {
           </Grid>
           <Grid item xs={12} md={6}>
             <Box sx={{ display: "flex", justifyContent: "end" }}>
-              <SingleLevel
-                levelName="Bronze"
-                bgColor={"#A46628"}
-                isBadge={true}
-              >
+              <SingleLevel levelName={level} isBadge={true}>
                 <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
               </SingleLevel>
             </Box>
@@ -75,7 +76,7 @@ export default function IndependencePackForm(props: any) {
               </Grid>
             );
           })}
-          <Grid container item spacing={4} sm={6}>
+          <Grid container spacing={2} item sm={6}>
             <Grid item xs={12}>
               <Typography
                 variant="h6"
@@ -85,65 +86,57 @@ export default function IndependencePackForm(props: any) {
                 List of Skills
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
+            {ListOfSkills.map((form: any, i: any) => {
+              return (
+                <Grid item xl={12} xs={12} key={i}>
+                  <form.component
+                    disabled={props.disabled}
+                    size="small"
+                    {...form.otherOptions}
+                  >
+                    {form.otherOptions.select
+                      ? form.options.map((option: any) => (
+                          <option key={option.value} value={option.value}>
+                            {" "}
+                            {option.label}{" "}
+                          </option>
+                        ))
+                      : null}
+                  </form.component>
+                </Grid>
+              );
+            })}
           </Grid>
-          <Grid container item spacing={4} sm={6}>
+          <Grid container spacing={2} item sm={6}>
             <Grid item xs={12}>
               <Typography
                 variant="h6"
                 component="h6"
                 sx={{ color: theme.palette.primary.main }}
               >
-                List of Skills
+                List of Skills With My Evidence
               </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <RHFTextField
-                disabled={props.disabled}
-                size="small"
-                name="Name"
-                label="Name"
-              />
-            </Grid>
+            {ListOfSkills.map((form: any, i: any) => {
+              return (
+                <Grid item xl={12} xs={12} key={i}>
+                  <form.component
+                    disabled={props.disabled}
+                    size="small"
+                    {...form.otherOptions}
+                  >
+                    {form.otherOptions.select
+                      ? form.options.map((option: any) => (
+                          <option key={option.value} value={option.value}>
+                            {" "}
+                            {option.label}{" "}
+                          </option>
+                        ))
+                      : null}
+                  </form.component>
+                </Grid>
+              );
+            })}
           </Grid>
           <Grid item xs={12}>
             <Box

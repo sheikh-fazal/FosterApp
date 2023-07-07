@@ -28,7 +28,7 @@ export default function IndependencePackTable() {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <LevelButtons />
         <Box sx={{ mt: 1 }}>
-          <SingleLevel isBadge={true} levelName="Bronze" bgColor={"#A46628"}>
+          <SingleLevel isBadge={true} levelName="Bronze">
             <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
           </SingleLevel>
         </Box>

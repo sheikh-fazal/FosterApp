@@ -31,7 +31,7 @@ const LeisureActivityDocumentsApi = baseAPI.injectEndpoints({
       invalidatesTags: ["LEISURE_ACTIVITY_DOCUMENTS_LIST"],
     }),
     deleteLeisureActivityDocument: builder.mutation({
-      query: ({ id }: any) => ({
+      query: (id: any) => ({
         url: `/education-records/leisure-activity/document/${id}`,
         method: "DELETE",
       }),

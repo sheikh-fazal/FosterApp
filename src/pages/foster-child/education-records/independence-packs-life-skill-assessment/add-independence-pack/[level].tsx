@@ -56,7 +56,7 @@ export default function AddIndependencePack() {
   const { level } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <IndependenceForm />
+      <IndependenceForm level={level} />
     </Page>
   );
 }

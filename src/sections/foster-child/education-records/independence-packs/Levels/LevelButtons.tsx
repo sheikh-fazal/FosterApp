@@ -13,7 +13,7 @@ export default function LevelButtons() {
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Bronze`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Bronze`
             );
           }}
           sx={{
@@ -40,7 +40,7 @@ export default function LevelButtons() {
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Silver`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Silver`
             );
           }}
           sx={{
@@ -67,7 +67,7 @@ export default function LevelButtons() {
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Gold`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Gold`
             );
           }}
           sx={{

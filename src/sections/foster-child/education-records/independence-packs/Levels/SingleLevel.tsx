@@ -2,12 +2,11 @@ import { Box, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
 
-export default function SingleLevel({
-  levelName,
-  children,
-  bgColor,
-  isBadge,
-}: any) {
+let Silver = "#A4B0C1";
+let Bronze = "#A46628";
+let Gold = "#FFBA01";
+
+export default function SingleLevel({ levelName, children, isBadge }: any) {
   const theme = useTheme();
   const router = useRouter();
   const el = (
@@ -18,7 +17,12 @@ export default function SingleLevel({
         textAlign: "center",
         width: "110px",
         height: "110px",
-        backgroundColor: bgColor,
+        backgroundColor:
+          levelName == "Silver"
+            ? Silver
+            : levelName == "Bronze"
+            ? Bronze
+            : Gold,
         padding: "4px",
       }}
     >
@@ -46,7 +50,7 @@ export default function SingleLevel({
         <Box
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=${levelName}`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/${levelName}`
             );
           }}
           sx={{

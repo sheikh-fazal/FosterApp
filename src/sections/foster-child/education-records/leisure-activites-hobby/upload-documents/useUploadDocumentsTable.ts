@@ -1,19 +1,11 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
+
 import {
-  useDeleteDocumentMutation,
-  useGetDocumentsQuery,
-} from "@root/services/carer-info/personal-info/application-form/Documents";
-import {
-  usePostAllegationDocumentsMutation,
-  useUploadDocumentListQuery,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
-import { useDeleteLeisureActivityMutation } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivitiesHobby";
-import { useGetLeisureActivityDocumentsListQuery } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivityDocuments";
-import {
-  useDeleteImmunisationDocumentMutation,
-  useGetImmunisationDocumentsListQuery,
-} from "@root/services/foster-child/health-medical-history/immunisation/DocumentsApi";
+  useDeleteLeisureActivityDocumentMutation,
+  useGetLeisureActivityDocumentsListQuery,
+} from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivityDocuments";
+
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef, useState } from "react";
@@ -37,10 +29,11 @@ export const useUploadDocumentsTable = ({ leisureActivityId }: any) => {
     useGetLeisureActivityDocumentsListQuery({ params, id: leisureActivityId });
   const meta = data?.data?.meta;
 
-  const [deleteLeisureActivityDocument] = useDeleteLeisureActivityMutation();
+  const [deleteLeisureActivityDocument] =
+    useDeleteLeisureActivityDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
-    deleteLeisureActivityDocument({ id })
+    deleteLeisureActivityDocument(id)
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Record Deleted Successfully", {

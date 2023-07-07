@@ -47,10 +47,7 @@ export default function IndependencePacksLifeSkillAssessment() {
 
   return (
     <Page title={PAGE_TITLE}>
-      {/* <IndependencePackTable /> */}
-      independence pack
+      <IndependencePackTable />
     </Page>
   );
 }
-
-// ----------------------------------------------------------------------
