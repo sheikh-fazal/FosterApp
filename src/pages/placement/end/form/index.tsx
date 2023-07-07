@@ -1,8 +1,10 @@
 import React from "react";
 import Layout from "@root/layouts";
-import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import EndPlacement from "@root/sections/matching-and-placement/placement/end-placement/EndPlacement";
+import HomeIcon from "@mui/icons-material/Home";
+import EndPlacementForm from "@root/sections/matching-and-placement/placement/end-placement/end-placement-form/EndPlacementForm";
+
+// =================================================================================
 
 const PAGE_TILE = "End Placement";
 
@@ -13,11 +15,11 @@ PlacementModule.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/placement",
+          name: "End Placement List",
+          href: "/placement/end",
         },
         {
-          name: "Child Discharge List",
+          name: "End Placement",
         },
       ]}
       title={PAGE_TILE}
@@ -30,7 +32,7 @@ PlacementModule.getLayout = function getLayout(page: any) {
 export default function PlacementModule() {
   return (
     <Page title={PAGE_TILE}>
-      <EndPlacement />
+      <EndPlacementForm />
     </Page>
   );
 }
