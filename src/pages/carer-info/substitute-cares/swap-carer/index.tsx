@@ -42,7 +42,7 @@ export default function SwapCarer() {
     offset: "0",
     type: "SC",
   });
-
+  console.log(data);
   const router = useRouter();
   const title = "Swap Carer List";
   const FORMROUTE =
