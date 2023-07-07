@@ -3,6 +3,7 @@ import DayLogForm from "@root/sections/foster-child/child-background-info/child-
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import OOHReportsForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/ooh-reports/OOHReportsForm";
 
 const BREADCRUMBS = [
   {
@@ -28,7 +29,7 @@ OHHReports.getLayout = function getLayout(page: any) {
 export default function OHHReports() {
   return (
     <HorizaontalTabs tabsDataArray={["OOH Reports", "Documents"]}>
-      <DayLogForm />
+      <OOHReportsForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
         tableData={[]}

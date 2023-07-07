@@ -103,6 +103,6 @@ export const {
   useGetChildChronologyOfEventsOohReportsListQuery,
   usePostChildChronologyOfEventsOohReportsMutation,
   usePatchChildChronologyOfEventsOohReportsByIdMutation,
-  useGetChildChronologyOfEventsOohReportsByIdQuery,
+  useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
   useDeleteChildChronologyOfEventsOohReportsByIdMutation,
 } = OOHReportsApi;

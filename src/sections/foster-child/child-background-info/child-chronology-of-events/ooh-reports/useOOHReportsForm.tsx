@@ -1,29 +1,33 @@
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./DayLogData";
+import { useState } from "react";
+import { defaultValues, formSchema, formatters } from "./OOHReportsData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
+  usePostChildChronologyOfEventsOohReportsMutation,
+  usePatchChildChronologyOfEventsOohReportsByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/OOHReportsAPI";
 
-export const useDayLogForm = () => {
+export const useOohReportsForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
+  console.log(
+    "🚀 ~ file: useOOHReportsForm.tsx:13 ~ useOohReportsForm ~ fosterChildId:",
+    fosterChildId
+  );
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [getOohReportsList] = useLazyGetChildChronologyOfEventsOohReportsByIdQuery();
+  const [postOohReportsData] = usePostChildChronologyOfEventsOohReportsMutation({});
+  const [editOohReportsList] = usePatchChildChronologyOfEventsOohReportsByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getOohReportsList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -55,7 +59,7 @@ export const useDayLogForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postOohReportsData({ addOohReportsRequestDto: { ...data, fosterChildId: '578786e3-1850-40cb-ac3e-5e7fa55cc59c', status: "Pending" } })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -63,9 +67,8 @@ export const useDayLogForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId: fosterChildId },
           });
         })
         .catch((error: any) => {
@@ -80,7 +83,7 @@ export const useDayLogForm = () => {
         id,
         addDayLogRequestDto: { ...data },
       };
-      editDayLogList(formData)
+      editOohReportsList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
@@ -111,6 +114,6 @@ export const useDayLogForm = () => {
     isSubmitting,
     action,
     id,
-    fosterChildId
+    fosterChildId,
   };
 };
