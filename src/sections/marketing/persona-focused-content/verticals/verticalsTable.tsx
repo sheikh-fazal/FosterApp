@@ -177,7 +177,6 @@ export default function VerticalsTable(props: any) {
     cell: (info: any) => (
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <Image
-          style={{ borderRadius: "50%" }}
           src={AvatarIMG}
           alt="img"
           width={49}

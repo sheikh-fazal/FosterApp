@@ -31,5 +31,23 @@ export const defaultValues = {
     },
   ],
 };
+export const selectArticleList = [
+  {
+    menuItem: "How a Standing Desk Can Improve",
+    color: "#BBD6EF",
+  },
+  {
+    menuItem: "2019 Tools Roundup",
+    color: "#BBD6EF",
+  },
+  {
+    menuItem: "SEO for Dummies",
+    color: "#BBD6EF",
+  },
+  {
+    menuItem: "Falling Up: How I Found Myself Doing",
+    color: "#BBD6EF",
+  },
+];
 
 

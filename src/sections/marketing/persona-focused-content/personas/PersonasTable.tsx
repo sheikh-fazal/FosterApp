@@ -168,37 +168,34 @@ export default function PersonasTable(props: any) {
       header: () => <span>{label}</span>,
     };
   });
-  columns.splice(2, 0, {
-    id: "image",
-    inputType: "textField",
-    type: "text",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        {contentIdeasArray.map((item, i) => {
-          return (
-            <Typography sx={(theme) => styles.contentIdeas(theme , item.bgColor)} key={i}>
-              {item.name}
-            </Typography>
-          );
-        })}
-      </Box>
-    ),
-    header: () => <span>Content Ideas</span>,
-    isSortable: false,
-  });
+  // columns.splice(2, 0, {
+  //   id: "image",
+  //   inputType: "textField",
+  //   type: "text",
+  //   cell: (info: any) => (
+  //     <Box sx={{ display: "flex", justifyContent: "center" }}>
+  //       {contentIdeasArray.map((item, i) => {
+  //         return (
+  //           <Typography
+  //             sx={(theme) => styles.contentIdeas(theme, item.bgColor)}
+  //             key={i}
+  //           >
+  //             {item.name}
+  //           </Typography>
+  //         );
+  //       })}
+  //     </Box>
+  //   ),
+  //   header: () => <span>Content Ideas</span>,
+  //   isSortable: false,
+  // });
   columns.splice(3, 0, {
     id: "image",
     inputType: "textField",
     type: "text",
     cell: (info: any) => (
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <Image
-          style={{ borderRadius: "50%" }}
-          src={AvatarIMG}
-          alt="img"
-          width={49}
-          height={49}
-        />
+        <Image src={AvatarIMG} alt="img" width={49} height={49} />
       </Box>
     ),
     header: () => <span>Attachments</span>,
@@ -388,7 +385,7 @@ const styles = {
       backgroundColor: theme.palette.grey[400],
     },
   }),
-  contentIdeas: (theme: any , bgcolor:any) => ({
+  contentIdeas: (theme: any, bgcolor: any) => ({
     bgcolor: bgcolor,
     borderRadius: "20px",
     disply: "flex",
@@ -398,9 +395,8 @@ const styles = {
     height: "22px",
     wordWrap: "break-word",
     width: "105px",
-    color:"#637381",
+    color: "#637381",
     fontWeight: 600,
-    fontSize:"14px"
-
+    fontSize: "14px",
   }),
 };

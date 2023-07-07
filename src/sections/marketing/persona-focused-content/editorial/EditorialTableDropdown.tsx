@@ -2,42 +2,10 @@ import { MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-const selectList = [
-  {
-    menuItem: "Brainstorming",
-    color: "#93C3EF",
-  },
-  {
-    menuItem: "Researching",
-    color: "#8FE0FA",
-  },
-  {
-    menuItem: "Revising",
-    color: "#F8ED8F",
-  },
-  {
-    menuItem: "Drafting",
-    color: "#FCBEBA",
-  },
-  {
-    menuItem: "Publishing",
-    color: "#8FFBAD",
-  },
-  {
-    menuItem: "Promoted",
-    color: "#D6ADEA",
-  },
-];
-
-const DeRegTableDropdown = ({
-  status,
-  options = selectList,
-  handleChange,
-}: any) => {
-  const [bg, setBg] = useState(
-    "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)"
-  );
-  const [newStatus, setNewStatus] = useState("Brainstorming");
+const EditorialTableDropdown = ({ status, options, handleChange }: any) => {
+  console.log("+++++++++", status);
+  const [bg, setBg] = useState("");
+  const [newStatus, setNewStatus] = useState(status);
 
   const handleStatusChange = (data: any) => {
     setNewStatus(data.target.value);
@@ -45,7 +13,7 @@ const DeRegTableDropdown = ({
 
     switch (data.target.value) {
       case "Brainstorming":
-        return setBg("8FE0FA");
+        return setBg("#93C3EF");
       case "Researching":
         return setBg("#8FE0FA");
       case "Revising":
@@ -56,15 +24,27 @@ const DeRegTableDropdown = ({
         return setBg("#8FFBAD");
       case "Promoted":
         return setBg("#D6ADEA");
+      case "Medium":
+        return setBg("#8FE0FA");
+      case "Guest Blog":
+        return setBg("#F8ED8F");
+      case "Melisa Davis":
+        return setBg("#FEA6A1");
+      case "Kelly Rippa":
+        return setBg("#93C3EF");
+      case "Alvin Terrtown":
+        return setBg("#F8ED8F");
+      case "Alvin Terrtown":
+        return setBg("#8FE0FA");
       default:
-        return;
+        return setBg("#BBD6EF");
     }
   };
 
   useEffect(() => {
     switch (status) {
       case "Brainstorming":
-        return setBg("8FE0FA");
+        return setBg("#93C3EF");
       case "Researching":
         return setBg("#8FE0FA");
       case "Revising":
@@ -75,8 +55,20 @@ const DeRegTableDropdown = ({
         return setBg("#8FFBAD");
       case "Promoted":
         return setBg("#D6ADEA");
+      case "Medium":
+        return setBg("#8FE0FA");
+      case "Guest Blog":
+        return setBg("#F8ED8F");
+      case "Melisa Davis":
+        return setBg("#FEA6A1");
+      case "Kelly Rippa":
+        return setBg("#93C3EF");
+      case "Alvin Terrtown":
+        return setBg("#F8ED8F");
+      case "Alvin Terrtown":
+        return setBg("#8FE0FA");
       default:
-        return;
+        return setBg("#BBD6EF");
     }
   }, [status]);
 
@@ -92,13 +84,7 @@ const DeRegTableDropdown = ({
         <MenuItem
           key={i}
           value={item.menuItem}
-          sx={{
-            background: item.color,
-            m: 0.9,
-            color: "#fff",
-            borderRadius: "4px",
-            width: "270px",
-          }}
+          sx={styles.menuList(item.color)}
         >
           {item.menuItem}
         </MenuItem>
@@ -107,27 +93,46 @@ const DeRegTableDropdown = ({
   );
 };
 
-export default DeRegTableDropdown;
+export default EditorialTableDropdown;
 
 const styles = {
   select: (background: string) => ({
     height: "30px",
-    width: "210px !important",
+    // width: "210px !important",
     textTransform: "capitalize",
-    color: "#fff !important",
+    color: "#637381 !important",
+    padding: "0 25px",
     fontWeight: 600,
+    borderRadius: "20px",
     fontSize: "14px",
+    cursor: "pointer",
     background: background,
     "& .MuiSelect-select": { paddingX: "0 !important" },
+
     boxShadow: "none",
     ".MuiOutlinedInput-notchedOutline": { border: 0 },
     ".MuiSelect-outlined": {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      padding: "0px important",
+      padding: "10px important",
     },
     "& fieldset": { border: "none !important" },
   }),
-  menuList: (color: string) => ({}),
+  menuList: (color: string) => ({
+    background: color,
+    padding: "0 25px",
+    color: "1D1D1D",
+    borderRadius: "20px",
+    margin: "10px auto",
+    fontWeight: "400",
+    fontSize: "16px",
+    width: "min-content",
+    textAlign: "center",
+
+    ":hover": {
+      background: "none",
+      cursor: "pointer",
+    },
+  }),
 };
