@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useViewChildExclusionInfo = () => {
+const useViewChildExclusionInfo = ({initialValueProps,id}:any) => {
     const todayDate = dayjs().format("MM/DD/YYYY");
     const router = useRouter();
   
@@ -30,7 +30,7 @@ const useViewChildExclusionInfo = () => {
   
     const methods: any = useForm({
       resolver: yupResolver(childExclusionSchema),
-      defaultValues,
+      defaultValues: initialValueProps,
     });
   
     const { handleSubmit } = methods;
@@ -39,7 +39,7 @@ const useViewChildExclusionInfo = () => {
       console.log(data);
     };
   
-    return { methods, handleSubmit, onSubmit, router };
+    return { methods, handleSubmit, onSubmit, router,defaultValues };
 }
 
 export default useViewChildExclusionInfo

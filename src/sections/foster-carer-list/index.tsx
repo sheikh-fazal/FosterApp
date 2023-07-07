@@ -24,93 +24,93 @@ export const SELECTFILTERS = [
   },
 ];
 
-export const dataFosterCarerList = [
-  {
-    img: TableImage,
-    name: "John",
-    agencySocialWorker: "Orcalo",
-    areaLocality: "Pakistan",
-    gender: "Male",
-    areaOffice: "XYZ",
-    status: "Approved",
-    detailsId: "2163421684589234523806598",
-  },
-];
-
-export const columnsFosterCarerList = [
-  {
-    accessorFn: (row: any) => row?.img,
-    id: "img",
-    cell: (info: any) => (
-      <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
-        <Image
-          src={info.getValue()}
-          alt={"User Image"}
-          width={35}
-          height={35}
-        />
-      </Box>
-    ),
-    header: "Image",
-    isSortable: false,
-  },
-  {
-    accessorFn: (row: any) => row?.name,
-    id: "name",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Name",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.agencySocialWorker,
-    id: "agencySocialWorker",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Agency Social Worker",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.areaLocality,
-    id: "areaLocality",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Area/Locality",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.gender,
-    id: "gender",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Gender",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.areaOffice,
-    id: "areaOffice",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Area Office",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.status,
-    id: "status",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Status",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.detailsId,
-    id: "detailsId",
-    cell: (info: any) => (
-      <Button
-        variant={"outlined"}
-        onClick={() => router.push(`/carer-info/?${info.getValue()}`)}
-      >
-        View Details
-      </Button>
-    ),
-    header: "Details",
-    isSortable: false,
-  },
-];
+export const getFosterCarerListColumns = (makePath: any) => {
+  return [
+    {
+      accessorFn: (row: any) => row?.profileImage,
+      id: "img",
+      cell: (info: any) => (
+        <Box display={"flex"} alignItems={"center"} justifyContent={"center"}>
+          <Image
+            src={process.env.NEXT_PUBLIC_IMG_URL + info.getValue()}
+            alt={"Image"}
+            width={35}
+            height={35}
+          />
+        </Box>
+      ),
+      header: "Image",
+      isSortable: false,
+    },
+    {
+      accessorFn: (row: any) =>
+        `${row?.firstName ?? "-"} ${row?.lastName ?? ""}`,
+      id: "name",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: "Name",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.agencySocialWorker,
+      id: "agencySocialWorker",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: "Agency Social Worker",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.nationality ?? "-",
+      id: "areaLocality",
+      cell: (info: any) => info.getValue(),
+      header: "Area/Locality",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.gender ?? "-",
+      id: "gender",
+      cell: (info: any) => info.getValue(),
+      header: "Gender",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.location ?? "-",
+      id: "areaOffice",
+      cell: (info: any) => info.getValue(),
+      header: "Area Office",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) =>
+        row?.trainingHistory?.specialities?.status ?? "-",
+      id: "status",
+      cell: (info: any) => info.getValue(),
+      header: "Status",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.id,
+      id: "detailsId",
+      cell: (info: any) => (
+        <Button
+          variant={"outlined"}
+          onClick={() =>
+            router.push(
+              makePath({
+                path: "carer-info",
+                passOldQuery: true,
+                queryParams: { fosterCarerId: info.getValue() },
+              })
+            )
+          }
+          sx={{ whiteSpace: "nowrap" }}
+        >
+          View Details
+        </Button>
+      ),
+      header: "Details",
+      isSortable: false,
+    },
+  ];
+};
 
 export const dataFosterCarerTask = [
   {
@@ -157,7 +157,7 @@ export const columnsFosterCarerTask = [
             display={"flex"}
             alignItems={"center"}
             justifyContent={"center"}
-            color={(theme: any) => theme.palette.primary.main}
+            color={(theme: any) => theme.palette.error.main}
           >
             <ArrowDownwardIcon />
             Low

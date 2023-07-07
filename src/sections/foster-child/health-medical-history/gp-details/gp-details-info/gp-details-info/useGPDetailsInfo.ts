@@ -15,11 +15,10 @@ import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useGPDetailsInfo = () => {
-  const { query } = useRouter();
   const router = useRouter();
   const theme: any = useTheme();
   const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(
-    query?.action === "view"
+    router?.query?.action === "view"
   );
 
   const [postGpDetailsInfoDataTrigger, postGpDetailsInfoDataStatus] =
@@ -32,13 +31,13 @@ export const useGPDetailsInfo = () => {
     useLazyGetSingleGpDetailsInfoDataQuery();
   // get api params
   const pathParams = {
-    id: query?.gpInfoId,
+    id: router.query?.gpInfoId,
   };
 
   const apiDataParameter = { pathParams };
 
   const setGpDetailsInfoDefaultValue = async () => {
-    if (!!!query?.gpInfoId) return;
+    if (!!!router.query?.gpInfoId) return;
     const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
       apiDataParameter,
       true
@@ -57,7 +56,7 @@ export const useGPDetailsInfo = () => {
 
   const submitGpDetailsInfoForm = async (data: any) => {
     const apiDataParameter = { body: data };
-    if (!!query?.gpInfoId) {
+    if (!!router.query?.gpInfoId) {
       patchGpDetailsInfoForm(data);
       return;
     }
@@ -86,7 +85,7 @@ export const useGPDetailsInfo = () => {
 
   const patchGpDetailsInfoForm = async (data: any) => {
     const pathParams = {
-      id: query?.gpInfoId,
+      id: router.query?.gpInfoId,
     };
     const apiDataParameter = { body: data, pathParams };
     try {
@@ -96,7 +95,7 @@ export const useGPDetailsInfo = () => {
       router.push({
         pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
         query: {
-          gpInfoId: query?.gpInfoId,
+          gpInfoId: router.query?.gpInfoId,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -117,7 +116,6 @@ export const useGPDetailsInfo = () => {
     handleSubmit,
     submitGpDetailsInfoForm,
     getSingleGpDetailsInfoDataStatus,
-    query,
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,

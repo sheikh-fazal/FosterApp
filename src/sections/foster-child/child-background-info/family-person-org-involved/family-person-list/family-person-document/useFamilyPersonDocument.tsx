@@ -9,18 +9,17 @@ import dayjs from "dayjs";
 import { useState } from "react";
 
 export const useFamilyPersonDocument = () => {
-  const { query } = useRouter();
+  const router = useRouter();
   const [searchValue, setSearchValue] = useState(undefined);
   const [page, setPage] = useState(0);
-
-
+  console.log(router?.asPath.split("/").pop());
 
   const childFamilyOrgInfoId = {
     childFamilyOrgInfoId:
-      query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
-      offset: page,
-      limit: 10,
-      search: searchValue,
+      router?.query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
+    offset: page,
+    limit: 10,
+    search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
@@ -28,13 +27,16 @@ export const useFamilyPersonDocument = () => {
   const [postFamilyPersonUploadDocument] =
     usePostFamilyPersonUploadDocumentMutation();
 
-     console.log(data);
+  console.log(data);
 
   const submitFamilyPersonDocumentData = async (data: any) => {
+    if (!router?.query?.family_person_id) {
+      return enqueueSnackbar("Please Fill the Form First", {
+        variant: "error",
+      });
+    }
     const documentFormData = new FormData();
 
-    documentFormData.append("personName", "Child Family Org Info");
-    documentFormData.append("documentName", "Orcalo");
     documentFormData.append("documentType", data.documentType);
     documentFormData.append(
       "documentDate",
@@ -44,7 +46,7 @@ export const useFamilyPersonDocument = () => {
     documentFormData.append("chooseFiles", data.chosenFile);
 
     const apiDataParameter = {
-      childFamilyOrgInfoId: query?.family_person_id,
+      childFamilyOrgInfoId: router?.query?.family_person_id,
       body: documentFormData,
     };
     try {
@@ -63,6 +65,8 @@ export const useFamilyPersonDocument = () => {
   const [deleteList] = useDeleteFamilyPersonUploadDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
+    console.log(id);
+
     deleteList(id)
       .unwrap()
       .then((res: any) => {
@@ -76,10 +80,9 @@ export const useFamilyPersonDocument = () => {
       });
   };
 
-
   return {
     data,
-    query,
+    router,
     isError,
     isLoading,
     isSuccess,

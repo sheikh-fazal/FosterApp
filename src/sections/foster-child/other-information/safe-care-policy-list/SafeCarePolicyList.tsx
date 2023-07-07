@@ -5,24 +5,24 @@ import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
 const SafeCarePolicyList = () => {
-  const [tabelData, setTabelData] = useState([
-    {
-      a: "a",
-      b: "b",
-      c: "c",
-      d: "d",
-      e: "e",
-      f: "f",
-    },
-    {
-      a: "a",
-      b: "b",
-      c: "c",
-      d: "d",
-      e: "e",
-      f: "f",
-    },
-  ]);
+  // const [tabelData, setTabelData] = useState([
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -32,6 +32,8 @@ const SafeCarePolicyList = () => {
     isError,
     isFetching,
     setSearchValue,
+    setPage,
+    page,
   } = useSafeCarePolicyList();
   return (
     <Box>
@@ -55,11 +57,10 @@ const SafeCarePolicyList = () => {
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={1}
-        totalPages={2}
+        currentPage={page}
+        totalPages={10}
         onPageChange={(data: any) => {
-          return;
-          // setPage((page) => data - 1);
+          setPage(() => data);
         }}
         onSortByChange={(data: any) => {
           // console.log("Sort by: ", data);

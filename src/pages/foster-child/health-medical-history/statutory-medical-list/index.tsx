@@ -1,15 +1,16 @@
 import Layout from "@root/layouts";
-import StatutoryChecksList from "@root/sections/carer-info/background-checks/statutory-checks-list/StatutoryChecksList";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalList from "@root/sections/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
+import { useRouter } from "next/router";
 
-// Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/foster-child",
+    href: !!query?.fosterChildId
+      ? `/foster-child?fosterChildId=${query?.fosterChildId}`
+      : "/foster-child",
   },
   {
     name: "Statutory Medical List",
@@ -18,11 +19,12 @@ const BREADCRUMBS = [
 ];
 
 const PAGE_TITLE = "Statutory Medical List";
-StatutoryCheckList.getLayout = function getLayout(page: any) {
+StatutoryMedicalListPage.getLayout = function getLayout(page: any) {
+  const { query } = useRouter();
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(query)}
       title={PAGE_TITLE}
     >
       {page}
@@ -30,6 +32,6 @@ StatutoryCheckList.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function StatutoryCheckList() {
+export default function StatutoryMedicalListPage() {
   return <StatutoryMedicalList />;
 }

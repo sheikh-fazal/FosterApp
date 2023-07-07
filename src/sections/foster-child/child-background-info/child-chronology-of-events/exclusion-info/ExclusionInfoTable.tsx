@@ -103,7 +103,7 @@ const ExclusionInfoTable = (props: any) => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_exclusion_info}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

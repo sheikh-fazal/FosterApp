@@ -4,14 +4,22 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter, Router } from "next/router";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import MedicalAdvisorForm from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/MedicalAdvisorForm";
 import MedicalAppointmentsUploadtable from "@root/sections/foster-child/health-medical-history/medicalAppointments/medicalAppointmentsUploadtable";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import MedicalAppointmentsFrom from "@root/sections/foster-child/health-medical-history/medicalAppointments/medicalAppointmentsFrom";
 
-MedicalAppointments.getLayout = function GetLayout(page: any) {
+MedicalAppointments.getLayout = function getLayout(page: any) {
+
+  return (
+   <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>
+  );
+};
+
+// ----------------------------------------------------------------------
+
+export default function MedicalAppointments() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
-  // Constants
-
+  const { action, medicalAppointmentID,fosterChildId } = Router.query;
   const PAGE_TITLE = "Medical Appointments";
   const BREADCRUMBS = [
     {
@@ -29,27 +37,16 @@ MedicalAppointments.getLayout = function GetLayout(page: any) {
     },
   ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function MedicalAppointments() {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  return (
     <Box>
+     <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs
         tabsDataArray={["Medical Appointments Info", "Uploaded Documents"]}
       >
-        <MedicalAdvisorForm action={action} id={id} />
+        <MedicalAppointmentsFrom action={action} medicalAppointmentID={medicalAppointmentID} fosterChildId={fosterChildId} />
         <MedicalAppointmentsUploadtable />
       </HorizaontalTabs>
     </Box>

@@ -11,14 +11,14 @@ const Documents = () => {
     isSuccess,
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,
-    query,
+    router,
     onDeleteConfirm,
     STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
   }: any = useDocuments();
 
   return (
     <UploadDocuments
-      readOnly={query?.action === "view"}
+      readOnly={router.query?.action === "view"}
       tableData={data?.data?.statutory_medical_docs}
       isLoading={isLoading}
       column={[
