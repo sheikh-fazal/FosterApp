@@ -114,7 +114,7 @@ export default function ChildDetailsForm({ disabled, }: any) {
 
                     <Grid item xs={12}>
                         <Link
-                            href={lastValue === "child-details" ? "/matching/recommondations-result" : "/matching"}
+                            href={lastValue === "child-details" ? "/matching/recommondations-result?viewParam=view+carer" : "/matching/recommondations-result?viewParam=view+child"}
                             style={{ textDecoration: "none" }}
                         >
                             <Button type="button" variant="contained">

@@ -9,13 +9,13 @@ const styles = {
         fontSize: "1.875rem"
     }
 }
-export const recommondationResultsData = [
+export const recommondationResultsCarerData = [
     { id: "1", type: "BEST MATCH", title: "BEST MATCH", subTitle: "4 Matches Found", progress: "60", progressColor: "#198754" },
     { id: "2", type: "GOOD MATCH", title: "GOOD MATCH", subTitle: "4 Matches Found", progress: "70", progressColor: "#2B8F29" },
     { id: "3", type: "SATISFACTORY MATCH", title: "SATISFACTORY MATCH", subTitle: "4 Matches Found", progress: "80", progressColor: "#F6B40F" },
     { id: "4", type: "SUFFICIENT MATCH", title: "SUFFICIENT MATCH", subTitle: "4 Matches Found", progress: "90", progressColor: "#F6460F" },
 ]
-export const recommondationResultsData1 = [
+export const recommondationResultsChildData = [
     { id: "1", type: "BEST MATCH", title: "BEST MATCH", subTitle: "4 Matches Found", progress: "60", progressColor: "#198754" },
     { id: "2", type: "GOOD MATCH", title: "GOOD MATCH", subTitle: "4 Matches Found", progress: "70", progressColor: "#2B8F29" },
     { id: "3", type: "SATISFACTORY MATCH", title: "SATISFACTORY MATCH", subTitle: "4 Matches Found", progress: "80", progressColor: "#F6B40F" },
@@ -25,7 +25,7 @@ export const recommondationResultsData1 = [
 
 
 
-export const recommondationResultsDetail = [
+export const recommondationResultsViewCarerDetail = [
     {
         id: "1", name: "Shawn Murphy4", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
@@ -306,9 +306,9 @@ export const recommondationResultsDetail = [
 ]
 
 
-export const recommondationResultsDetail2 = [
+export const recommondationResultsViewChildDetail = [
     {
-        id: "1", name: "Shawn hjghjkhjkj", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon sx={styles.icon} />,
+        id: "1", name: "Shawn ", age: "08", cast: "Caucasian", image: PersonImg, progress: "80", type: "BEST MATCH", progressColor: "#198754", icon: <TagFacesIcon sx={styles.icon} />,
         recommondationResultsCheckbox: [
             {
                 id: "1",
@@ -318,7 +318,7 @@ export const recommondationResultsDetail2 = [
             {
                 id: "2",
                 value: true,
-                label: "Connected Person",
+                label: "Connected Person2",
             },
             {
                 id: "3",

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { matchingRecommendationsFormDefaultValues } from ".";
+import { useRouter } from "next/router";
 
 export default function useRecommendationResultHeader() {
+  const {query}:any = useRouter() 
+  const queryValue = query?.viewParam;
   let [expand, setExpand] = useState(false);
   const methods: any = useForm({
     defaultValues: matchingRecommendationsFormDefaultValues,
@@ -21,5 +24,6 @@ export default function useRecommendationResultHeader() {
     methods,
     onSubmit,
     handleSubmit,
+    queryValue
   };
 }

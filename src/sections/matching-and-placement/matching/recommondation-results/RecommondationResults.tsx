@@ -2,19 +2,19 @@ import { Box, Button, Card, Checkbox, CircularProgress, FormControlLabel, Grid, 
 import Image from 'next/image';
 import { useRecommondationResults } from './useRecommondationResults';
 import RecommendationResultHeader from './recommendationResultHeader/RecommendationResultHeader';
-import { useRouter } from 'next/router';
-import { recommondationResultsData1 } from '.';
+import { recommondationResultsChildData,recommondationResultsCarerData } from '.';
 
 const RecommondationResults = () => {
 
-  const { selectedCard, filteredDetailData, handleChangeType, recommondationResultsData, router,paramValue,filteredDetailData1, setFilteredDetailData1 } = useRecommondationResults()
+  const { selectedCard, filteredViewCarerDetailData, handleChangeType, recommondationResultsCarerData,recommondationResultsChildData,
+     router,queryValue,filteredViewChildCarerDetailData } = useRecommondationResults()
   return (
     <>
       <RecommendationResultHeader />
       <Card sx={{ p: 5, mt: 2, boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)" }}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={{ xs: 2, md: 3 }}>
-            {(queryValue ==="view carer"? recommondationResultsData : recommondationResultsData1)?.map((item: any) => {
+            {(queryValue ==="view carer"? recommondationResultsCarerData : recommondationResultsChildData)?.map((item: any) => {
               return (
                 <Grid key={item.id} item xs={12} md={6} lg={3} sx={{ borderRadius: "5px 5px 0px 0px", }} >
                   <Card  sx={{
@@ -61,7 +61,7 @@ const RecommondationResults = () => {
         </Box>
         
           <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          {(queryValue ==="view carer"? filteredDetailData : filteredDetailData1)?.map((item: any) => {
+          {(queryValue ==="view carer"? filteredViewCarerDetailData : filteredViewChildCarerDetailData)?.map((item: any) => {
             return (
               <Grid key={item.id} item xs={12} md={12} lg={6}>
                 <Card sx={{ p: 3, boxShadow: "rgba(0, 0, 0, 0.25)" }}>
@@ -118,16 +118,18 @@ const RecommondationResults = () => {
                     ))}
                     <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                       <Box sx={{ display: "flex", gap: "10px", justifyContent: "center", flexWrap: "wrap" }}>
-                        <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }} onClick={() => router.push(`${router.pathname}/child-details`)}>
-                        {/* {queryValue === "view carer" && (
-        <span>View Child Details</span>
-      )}
+                        <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }}
+                        //  onClick={() => router.push(`${router.pathname}/child-details`)}
+                        onClick={() =>
+                          router.push(
+                            queryValue === "view carer"
+                              ? `${router.pathname}/child-details`
+                              : `/matching/carer-details`
+                          )
+                        }
+                         >
 
-      {query.viewParam === "view child" && (
-        <span>View Carer Details</span>
-      )}
-      <span>View Child Details</span> */}
-      {queryValue == "view carer"  ? "carer":"child"}
+                         {queryValue == "view carer"  ? "View Child Details":"View Carer Details"}
                         
                           </Button>
                         <Button type="button" variant="contained" sx={{ p: 1, cursor: "pointer" }} onClick={() => router.push(`${router.pathname}/compare-match`)}>Compare Match</Button>

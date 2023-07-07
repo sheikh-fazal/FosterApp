@@ -263,12 +263,47 @@ export const fosterCarerSwitchdata = [
 export const matchingDefaultValues = {
   selectFosterCarerAndChild: "",
   selectTheCarerName: "",
-
+  ethinicity:true,
+  placementwithSiblings:true,
+  fosterCarersAvailability:true,
+  specialRequirements:true,
+  language:true,
+  connectedPerson:true,
+  childFamilyHistory:true,
+  childPhysicalHealth:true,
+  religion:true,
+  adoptionConsideration:false,
+  childFamilyLifeStory:true,
+  childMentalHealth:true,
+  locality:true,
+  ageoftheChild:true,
+  childDevelopmentalNeeds:true,
+  temporaryArrangementsRespite:false,
+  preferenceoftheChild:true,
+  preferenceoftheCarer:true,
 };
 
 export const MatchingFormDataValidationSchema = Yup.object().shape({
   selectFosterCarerAndChild: Yup.string().trim().required("Field is Required"),
   selectTheCarerName: Yup.string().trim().required("Field is Required"),
+  ethinicity: Yup.boolean().required("Field is Required"),
+  placementwithSiblings: Yup.boolean().required("Field is Required"),
+  fosterCarersAvailability: Yup.boolean().required("Field is Required"),
+  specialRequirements: Yup.boolean().required("Field is Required"),
+  language: Yup.boolean().required("Field is Required"),
+  connectedPerson: Yup.boolean().required("Field is Required"),
+  childFamilyHistory: Yup.boolean().required("Field is Required"),
+  childPhysicalHealth: Yup.boolean().required("Field is Required"),
+  religion: Yup.boolean().required("Field is Required"),
+  adoptionConsideration: Yup.boolean().required("Field is Required"),
+  childFamilyLifeStory: Yup.boolean().required("Field is Required"),
+  locality: Yup.boolean().required("Field is Required"),
+  childMentalHealth: Yup.boolean().required("Field is Required"),
+  ageoftheChild: Yup.boolean().required("Field is Required"),
+  childDevelopmentalNeeds: Yup.boolean().required("Field is Required"),
+  temporaryArrangementsRespite: Yup.boolean().required("Field is Required"),
+  preferenceoftheChild: Yup.boolean().required("Field is Required"),
+  preferenceoftheCarer: Yup.boolean().required("Field is Required"),
 
 });
 
