@@ -50,12 +50,12 @@ export default function Chart() {
   return (
     <Grid sx={{ px: { lg: 0, sm: 2, xs: 1 }, py: 3.8 }} container spacing={4}>
       <Grid item lg={5} md={6} xs={12}>
-        <Box>
+        <Box sx={{height:{lg:"330px", xs:'250px'}}}>
           <ReactApexChart
             options={options}
             series={series}
             type="donut"
-            height={330}
+            height='100%'
           />
         </Box>
       </Grid>
