@@ -63,7 +63,8 @@ export default function Reference2() {
   const tableData: any = documentData?.data?.as_statutory_checks_list_document;
   const metaData: any = documentData?.data?.meta;
 
-  const documentUploadHandler = (data: any) => {
+  //Handling POST API
+  const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
     formData.append("formName", "REFERENCE_2");
     formData.append("recordId", id);
@@ -71,7 +72,15 @@ export default function Reference2() {
     formData.append("documentDate", data.documentDate);
     formData.append("documentPassword", data.password);
     formData.append("file", data.chosenFile);
-    postDocuments(formData);
+    try {
+      await postDocuments(formData).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   const deleteDocument = async (id: any) => {
