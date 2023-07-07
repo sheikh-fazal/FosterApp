@@ -77,7 +77,7 @@ export const useDischargePlacement = () => {
     {
       accessorFn: (row: any) => row.status,
       id: "status",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => <button  style={buttonStyle(info.getValue())}>{info.getValue()}</button>,
       header: () => <span>Status</span>,
       isSortable: false,
     },
@@ -98,3 +98,13 @@ export const useDischargePlacement = () => {
   ];
   return { theme, router, columns, SELECT_FILTERS, isDeleteModal, handleDeleteClose };
 };
+
+
+const buttonStyle = (status:string) => ({
+  width: "95px",
+  height: "31px",
+  border: "none",
+  borderRadius: "4px",
+  color: "#fff",
+  backgroundColor:status === 'Inprogress' ? '#F6830F' : '#0E918C'
+});

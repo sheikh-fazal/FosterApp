@@ -1,10 +1,10 @@
 import React from "react";
-import { data } from ".";
 import { Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useDischargePlacement } from "./useDischargePlacement";
+import { data } from ".";
 
 // ==============================================================
 
@@ -52,5 +52,6 @@ const styles = {
   card: {
     px: 1,
     py: 2,
+    '& .MuiStack-root .MuiButtonBase-root':{marginLeft:'20px'}
   },
 };
