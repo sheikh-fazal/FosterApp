@@ -123,6 +123,9 @@ export default function CarInsurance() {
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
+        disabled={
+          !!id && (action === "add" || action === "edit") ? false : true
+        }
       />
     </HorizaontalTabs>
   );

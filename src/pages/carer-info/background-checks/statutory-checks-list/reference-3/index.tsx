@@ -122,6 +122,9 @@ export default function Reference3() {
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
+        disabled={
+          !!id && (action === "add" || action === "edit") ? false : true
+        }
       />
     </HorizaontalTabs>
   );

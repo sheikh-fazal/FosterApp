@@ -124,6 +124,9 @@ export default function EmployementReference1() {
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
+        disabled={
+          !!id && (action === "add" || action === "edit") ? false : true
+        }
       />
     </HorizaontalTabs>
   );
