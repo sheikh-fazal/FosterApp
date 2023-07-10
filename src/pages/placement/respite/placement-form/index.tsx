@@ -3,9 +3,9 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import TransferPlacementForm from "@root/sections/placement-status/transfer-placement-table/transfer-placement-form/TransferPlacementForm";
+import RespitePlacementForm from "@root/sections/matching-and-placement/placement/respite-placement/respite-placement-form/RespitePlacementForm";
 
-const PAGE_TILE = "Transfer Placement";
+const PAGE_TILE = "Child Respite";
 
 AddPlacementForm.getLayout = function getLayout(page: any) {
   return (
@@ -14,11 +14,11 @@ AddPlacementForm.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Transfer Placement",
-          href: "/transfer-placement",
+          name: "Child Respite List",
+          href: "/respite-placement",
         },
         {
-          name: "Transfer Placement",
+          name: "Child Respite",
         },
       ]}
       title={PAGE_TILE}
@@ -31,7 +31,7 @@ AddPlacementForm.getLayout = function getLayout(page: any) {
 export default function AddPlacementForm() {
   return (
     <Page title={PAGE_TILE}>
-      <TransferPlacementForm />
+      <RespitePlacementForm />
     </Page>
   );
 }

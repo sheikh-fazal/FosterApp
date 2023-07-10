@@ -2,13 +2,11 @@ import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import React from "react";
 import { formFields } from ".";
 import { FormProvider } from "@root/components/hook-form";
-import { useRespitePlacementForm } from "./useRespitePlacementForm";
+import { useTransferPlacementForm } from "./useTransferPlacementForm";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const RespitePlacementForm = ({ action, id }: any) => {
-  const { methods, handleSubmit, router, onSubmit } = useRespitePlacementForm();
-
-  const disabled = action === "view" ? true : false;
+const TransferPlacementForm = ({ id }: any) => {
+  const { methods, handleSubmit, router, onSubmit } = useTransferPlacementForm();
 
   return (
     <Card sx={{ py: 3, px: 2 }}>
@@ -18,12 +16,7 @@ const RespitePlacementForm = ({ action, id }: any) => {
             <Grid item md={field.gridLength} xs={12} key={i}>
               <Typography sx={styles.heading}>{field.title}</Typography>
               {field.component ? (
-                <field.component
-                  disabled={disabled}
-                  size={"small"}
-                  fullWidth
-                  {...field.otherOptions}
-                >
+                <field.component size={"small"} fullWidth {...field.otherOptions}>
                   {field.otherOptions?.select
                     ? field.otherOptions?.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -36,7 +29,7 @@ const RespitePlacementForm = ({ action, id }: any) => {
                 <Typography sx={field?.sx ? field?.sx : styles.heading}>{field.heading}</Typography>
               )}
               {field.requireFileUpload && (
-                <RHFUploadFile disabled={disabled} name={field.otherOptions.name} {...methods} />
+                <RHFUploadFile name={field.otherOptions.name} {...methods} />
               )}
             </Grid>
           ))}
@@ -50,7 +43,7 @@ const RespitePlacementForm = ({ action, id }: any) => {
               sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F" } }}
               type="button"
               variant="contained"
-              onClick={() => router.push("/respite-placement")}
+              onClick={() => router.push("/placement/transfer")}
             >
               Back
             </Button>
@@ -61,7 +54,7 @@ const RespitePlacementForm = ({ action, id }: any) => {
   );
 };
 
-export default RespitePlacementForm;
+export default TransferPlacementForm;
 
 const styles = {
   heading: {

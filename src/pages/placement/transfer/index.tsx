@@ -1,11 +1,13 @@
 import React from "react";
+
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
+import TransferPlacementTable from "@root/sections/matching-and-placement/placement/transfer-placement/transferPlacementTable";
 
 const PAGE_TILE = "Transfer Placement";
 
-PlacementModule.getLayout = function getLayout(page: any) {
+TransferPlacement.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -13,7 +15,7 @@ PlacementModule.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Dashboard",
-          href: "/placement",
+          href: "/dashboard",
         },
         {
           name: "Transfer Placement List",
@@ -26,10 +28,10 @@ PlacementModule.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function PlacementModule() {
+export default function TransferPlacement() {
   return (
     <Page title={PAGE_TILE}>
-      {PAGE_TILE}
+      <TransferPlacementTable />
     </Page>
   );
 }

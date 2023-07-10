@@ -16,7 +16,7 @@ const RespitePlacementTable = () => {
         rootSX={{ overflowX: "scroll" }}
         searchKey="search"
         showAddBtn
-        onAdd={() => router.push("/respite-placement/placement-form")}
+        onAdd={() => router.push("/placement/respite/placement-form")}
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         onChanged={(data: any) => {

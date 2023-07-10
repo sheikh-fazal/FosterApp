@@ -3,8 +3,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import RespitePlacementForm from "@root/sections/placement-status/respite-placement-table/respite-placement-form/RespitePlacementForm";
 import { useRouter } from "next/router";
+import RespitePlacementForm from "@root/sections/matching-and-placement/placement/respite-placement/respite-placement-form/RespitePlacementForm";
 
 const PAGE_TILE = "Child Respite";
 

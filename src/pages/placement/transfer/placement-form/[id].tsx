@@ -3,8 +3,8 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import TransferPlacementForm from "@root/sections/placement-status/transfer-placement-table/transfer-placement-form/TransferPlacementForm";
 import { useRouter } from "next/router";
+import TransferPlacementForm from "@root/sections/matching-and-placement/placement/transfer-placement/transfer-placement-form/TransferPlacementForm";
 
 const PAGE_TILE = "Transfer Placement";
 

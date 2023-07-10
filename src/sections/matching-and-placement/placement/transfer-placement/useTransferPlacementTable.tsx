@@ -1,14 +1,14 @@
 import Image from "next/image";
 import router from "next/router";
 import { Box, Button, useTheme } from "@mui/material";
-import documentIcon from "../../../assets/img/documentIcon.png";
+import documentIcon from "../../../../assets/img/documentIcon.png";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useState } from "react";
 
 // ===================================================================================
 
-export const useRespitePlacementTable = () => {
+export const useTransferPlacementTable = () => {
   const [DeleteModal, setDeleteModal] = useState(false);
   const theme = useTheme();
 
@@ -25,7 +25,7 @@ export const useRespitePlacementTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        router.push({ pathname: `/respite-placement/placement-form/${id}` });
+        router.push({ pathname: `/placement/transfer/placement-form/${id}` });
         break;
       case "delete":
         handleDeleteModal();
@@ -35,7 +35,7 @@ export const useRespitePlacementTable = () => {
     }
   };
 
-  const respitePlacementColumns = [
+  const transferPlacementColumns = [
     {
       accessorFn: (row: any) => row.childName,
       id: "childName",
@@ -44,42 +44,35 @@ export const useRespitePlacementTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.primaryCarer,
-      id: "primaryCarer",
+      accessorFn: (row: any) => row.carerNameFrom,
+      id: "carerNameFrom",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Primary Carer</span>,
+      header: () => <span>Carer Name(From)</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.respiteCarerName,
-      id: "respiteCarerName",
+      accessorFn: (row: any) => row.carerNameTo,
+      id: "carerNameTo",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Respite Carer Name</span>,
+      header: () => <span>Carer Name(Transferred To)</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.respiteStartDate,
-      id: "respiteStartDate",
+      accessorFn: (row: any) => row.dateOfTransfer,
+      id: "dateOfTransfer",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Respite(Start Date)</span>,
+      header: () => <span>Date of Transfer</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.respiteEndDate,
-      id: "respiteEndDate",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Respite(End Date)</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.respitePlan,
-      id: "respitePlan",
+      accessorFn: (row: any) => row.transferReport,
+      id: "transferReport",
       cell: (info: any) => (
         <Box display="flex" justifyContent="center">
           <Image width={28} height={32} src={documentIcon} alt="" />
         </Box>
       ),
-      header: () => <span>Respite Plan</span>,
+      header: () => <span>Placement Plan</span>,
     },
     {
       accessorFn: (row: any) => row.approvedBy,
@@ -140,7 +133,7 @@ export const useRespitePlacementTable = () => {
   ];
 
   return {
-    respitePlacementColumns,
+    transferPlacementColumns,
     theme,
     router,
     SELECT_FILTERS,

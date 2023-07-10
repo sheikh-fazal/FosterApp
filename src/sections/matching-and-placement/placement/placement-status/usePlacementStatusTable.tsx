@@ -1,14 +1,14 @@
 import Image from "next/image";
 import router from "next/router";
 import { Box, Button, useTheme } from "@mui/material";
-import documentIcon from "../../../assets/img/documentIcon.png";
+import documentIcon from "../../../../assets/img/documentIcon.png";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useState } from "react";
 
 // ===================================================================================
 
-export const useTransferPlacementTable = () => {
+export const usePlacementStatusTable = () => {
   const [DeleteModal, setDeleteModal] = useState(false);
   const theme = useTheme();
 
@@ -25,7 +25,7 @@ export const useTransferPlacementTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        router.push({ pathname: `/transfer-placement/placement-form/${id}` });
+        alert("Edit action");
         break;
       case "delete":
         handleDeleteModal();
@@ -35,7 +35,7 @@ export const useTransferPlacementTable = () => {
     }
   };
 
-  const transferPlacementColumns = [
+  const placementStatusColumns = [
     {
       accessorFn: (row: any) => row.childName,
       id: "childName",
@@ -44,41 +44,38 @@ export const useTransferPlacementTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.carerNameFrom,
-      id: "carerNameFrom",
+      accessorFn: (row: any) => row.carerName,
+      id: "carerName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Carer Name(From)</span>,
+      header: () => <span>Carer Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.carerNameTo,
-      id: "carerNameTo",
+      accessorFn: (row: any) => row.typeOfPlacement,
+      id: "typeOfPlacement",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Carer Name(Transferred To)</span>,
+      header: () => <span>Type of Placement</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dateOfTransfer,
-      id: "dateOfTransfer",
+      accessorFn: (row: any) => row.dateOfPlacement,
+      id: "dateOfPlacement",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Date of Transfer</span>,
+      header: () => <span>Date of Placement</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.transferReport,
-      id: "transferReport",
-      cell: (info: any) => (
-        <Box display="flex" justifyContent="center">
-          <Image width={28} height={32} src={documentIcon} alt="" />
-        </Box>
-      ),
-      header: () => <span>Placement Plan</span>,
+      accessorFn: (row: any) => row.placementEndDate,
+      id: "placementEndDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Placement End date</span>,
+      isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.approvedBy,
-      id: "approvedBy",
+      accessorFn: (row: any) => row.agencySocialWorker,
+      id: "agencySocialWorker",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Approved By(Role)</span>,
+      header: () => <span>Agency Social Worker</span>,
       isSortable: true,
     },
     {
@@ -89,10 +86,10 @@ export const useTransferPlacementTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.localAuthoritySw,
-      id: "localAuthoritySw",
+      accessorFn: (row: any) => row.laSocialWorker,
+      id: "laSocialWorker",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Local Authority SW</span>,
+      header: () => <span>LA Social Worker</span>,
       isSortable: true,
     },
     {
@@ -104,6 +101,33 @@ export const useTransferPlacementTable = () => {
         </Box>
       ),
       header: () => <span>Status</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.placementPlan,
+      id: "placementPlan",
+      cell: (info: any) => (
+        <Box display="flex" justifyContent="center">
+          <Image width={28} height={32} src={documentIcon} alt="" />
+        </Box>
+      ),
+      header: () => <span>Placement Plan</span>,
+    },
+    {
+      accessorFn: (row: any) => row.placementAgreements,
+      id: "placementAgreements",
+      cell: (info: any) => (
+        <Box display="flex" justifyContent="center">
+          <Image width={28} height={32} src={documentIcon} alt="" />
+        </Box>
+      ),
+      header: () => <span>Placement Agreements</span>,
+    },
+    {
+      accessorFn: (row: any) => row.approvedBy,
+      id: "approvedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Approved By(Role)</span>,
       isSortable: true,
     },
     {
@@ -133,9 +157,8 @@ export const useTransferPlacementTable = () => {
   ];
 
   return {
-    transferPlacementColumns,
+    placementStatusColumns,
     theme,
-    router,
     SELECT_FILTERS,
   };
 };

@@ -16,7 +16,7 @@ const TransferPlacementTable = () => {
         rootSX={{ overflowX: "scroll" }}
         searchKey="search"
         showAddBtn
-        onAdd={() => router.push("/transfer-placement/placement-form")}
+        onAdd={() => router.push("/placement/transfer/placement-form")}
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         onChanged={(data: any) => {

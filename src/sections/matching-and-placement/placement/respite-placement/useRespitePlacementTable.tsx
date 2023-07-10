@@ -1,14 +1,14 @@
 import Image from "next/image";
 import router from "next/router";
 import { Box, Button, useTheme } from "@mui/material";
-import documentIcon from "../../../assets/img/documentIcon.png";
+import documentIcon from "../../../../assets/img/documentIcon.png";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useState } from "react";
 
 // ===================================================================================
 
-export const usePlacementStatusTable = () => {
+export const useRespitePlacementTable = () => {
   const [DeleteModal, setDeleteModal] = useState(false);
   const theme = useTheme();
 
@@ -25,7 +25,7 @@ export const usePlacementStatusTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        alert("Edit action");
+        router.push({ pathname: `/placement/respite/placement-form/${id}` });
         break;
       case "delete":
         handleDeleteModal();
@@ -35,7 +35,7 @@ export const usePlacementStatusTable = () => {
     }
   };
 
-  const placementStatusColumns = [
+  const respitePlacementColumns = [
     {
       accessorFn: (row: any) => row.childName,
       id: "childName",
@@ -44,38 +44,48 @@ export const usePlacementStatusTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.carerName,
-      id: "carerName",
+      accessorFn: (row: any) => row.primaryCarer,
+      id: "primaryCarer",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Carer Name</span>,
+      header: () => <span>Primary Carer</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.typeOfPlacement,
-      id: "typeOfPlacement",
+      accessorFn: (row: any) => row.respiteCarerName,
+      id: "respiteCarerName",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Type of Placement</span>,
+      header: () => <span>Respite Carer Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dateOfPlacement,
-      id: "dateOfPlacement",
+      accessorFn: (row: any) => row.respiteStartDate,
+      id: "respiteStartDate",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Date of Placement</span>,
+      header: () => <span>Respite(Start Date)</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.placementEndDate,
-      id: "placementEndDate",
+      accessorFn: (row: any) => row.respiteEndDate,
+      id: "respiteEndDate",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Placement End date</span>,
+      header: () => <span>Respite(End Date)</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.agencySocialWorker,
-      id: "agencySocialWorker",
+      accessorFn: (row: any) => row.respitePlan,
+      id: "respitePlan",
+      cell: (info: any) => (
+        <Box display="flex" justifyContent="center">
+          <Image width={28} height={32} src={documentIcon} alt="" />
+        </Box>
+      ),
+      header: () => <span>Respite Plan</span>,
+    },
+    {
+      accessorFn: (row: any) => row.approvedBy,
+      id: "approvedBy",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Agency Social Worker</span>,
+      header: () => <span>Approved By(Role)</span>,
       isSortable: true,
     },
     {
@@ -86,10 +96,10 @@ export const usePlacementStatusTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.laSocialWorker,
-      id: "laSocialWorker",
+      accessorFn: (row: any) => row.localAuthoritySw,
+      id: "localAuthoritySw",
       cell: (info: any) => info.getValue(),
-      header: () => <span>LA Social Worker</span>,
+      header: () => <span>Local Authority SW</span>,
       isSortable: true,
     },
     {
@@ -101,33 +111,6 @@ export const usePlacementStatusTable = () => {
         </Box>
       ),
       header: () => <span>Status</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.placementPlan,
-      id: "placementPlan",
-      cell: (info: any) => (
-        <Box display="flex" justifyContent="center">
-          <Image width={28} height={32} src={documentIcon} alt="" />
-        </Box>
-      ),
-      header: () => <span>Placement Plan</span>,
-    },
-    {
-      accessorFn: (row: any) => row.placementAgreements,
-      id: "placementAgreements",
-      cell: (info: any) => (
-        <Box display="flex" justifyContent="center">
-          <Image width={28} height={32} src={documentIcon} alt="" />
-        </Box>
-      ),
-      header: () => <span>Placement Agreements</span>,
-    },
-    {
-      accessorFn: (row: any) => row.approvedBy,
-      id: "approvedBy",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Approved By(Role)</span>,
       isSortable: true,
     },
     {
@@ -157,8 +140,9 @@ export const usePlacementStatusTable = () => {
   ];
 
   return {
-    placementStatusColumns,
+    respitePlacementColumns,
     theme,
+    router,
     SELECT_FILTERS,
   };
 };
