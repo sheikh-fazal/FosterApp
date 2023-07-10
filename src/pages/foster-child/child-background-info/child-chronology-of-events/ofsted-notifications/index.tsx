@@ -3,6 +3,7 @@ import DayLogForm from "@root/sections/foster-child/child-background-info/child-
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import OfstedNotificationForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/ofsted-notifications/ofstedNotificationsForm";
 
 const BREADCRUMBS = [
   {
@@ -28,7 +29,7 @@ OfstedNotifications.getLayout = function getLayout(page: any) {
 export default function OfstedNotifications() {
   return (
     <HorizaontalTabs tabsDataArray={["Ofsted Notifications", "Documents"]}>
-      <DayLogForm />
+      <OfstedNotificationForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
         tableData={[]}
