@@ -1,114 +1,97 @@
-import { Box } from "@mui/material";
+import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import dayjs from "dayjs";
-import { useRouter } from "next/router";
 import React from "react";
-import { useRef } from "react";
+import router from "next/router";
+import { usePetQuestionnaireTable } from "./usePetQuestionnaireTable";
+import dayjs from "dayjs";
+import TableAction from "@root/components/TableAction";
 
-const PetQuestionnaireTable = () => {
-  const router = useRouter();
-  const tableHeaderRef = useRef<any>();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      questionnaireDate: "10/10/2021",
-      nextInspectionDate: "11/10/2021",
-      petName: "Dog",
-      status: "Yes",
-    },
-    {
-      srNo: 2,
-      questionnaireDate: "10/10/2021",
-      nextInspectionDate: "11/10/2021",
-      petName: "Dog",
-      status: "Yes",
-    },
-  ]);
+export default function PetQuestionnaireTable() {
+  const {
+    tableHeaderRef,
+    isLoading,
+    headerChangeHandler,
+    petQuestionnaire,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+  } = usePetQuestionnaireTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
+      accessorFn: (row: any) => row.createdAt,
+      id: "createdAt",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      header: "Pet Questionnaire Date",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.inspectionDate,
+      id: "inspectionDate",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      header: "Next Inspection Date",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.petQuestionnaire1?.nameOfAnimal,
+      id: "nameOfAnimal",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.questionnaireDate ?? "-",
-      id: "questionnaireDate",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
-      header: () => <span>Pet Questionnaire Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.nextInspectionDate ?? "-",
-      id: "nextInspectionDate",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
-      header: () => <span>Next Inspection Date</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.petName,
-      id: "petName",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Name of Pet</span>,
+      header: "Name Of Pet",
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.status,
       id: "status",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Status</span>,
+      cell: (info: any) => (info.getValue() ? "Yes" : "No"),
+      header: "Status",
       isSortable: true,
     },
     {
+      accessorFn: (row: any) => row?.id,
       id: "actions",
       cell: (info: any) => (
-        <TableAction
-          size="small"
-          type="view"
-          onClicked={() =>
-            router.push(
-              "/carer-info/personal-info/carer-chronology-of-events/pet-questionnaire"
-            )
-          }
-        />
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="view"
+            onClicked={() =>
+              router.push(
+                `/carer-info/personal-info/pet-questionnaire/view-pet-questionnaire?${info.getValue()}`
+              )
+            }
+          />
+        </Box>
       ),
-      header: () => <span>actions</span>,
+      header: "Actions",
       isSortable: false,
     },
   ];
-  return (
-    <>
-      <Box sx={{ mb: 1 }}>
-        <TableHeader
-          ref={tableHeaderRef}
-          title="Questionaire"
-          searchKey="search"
-          onChanged={(data: any) => {}}
-        />
-      </Box>
-      <CustomTable
-        data={data}
-        columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
-      />
-    </>
-  );
-};
 
-export default PetQuestionnaireTable;
+  return (
+    <Card sx={{ p: 2 }}>
+      <TableHeader
+        ref={tableHeaderRef}
+        disabled={isLoading}
+        title="Pet Questionnaire List"
+        searchKey="search"
+        onChanged={headerChangeHandler}
+      />
+      <CustomTable
+        data={petQuestionnaire}
+        columns={columns}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        currentPage={meta?.page}
+        totalPages={meta?.pages}
+        showSerialNo
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
+      />
+    </Card>
+  );
+}

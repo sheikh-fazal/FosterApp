@@ -62,14 +62,22 @@ export default function Allegation() {
   const tableData: any = documentData?.data?.allegation_documents;
   const metaData: any = documentData?.data?.meta;
 
-  const documentUploadHandler = (data: any) => {
+  const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
     formData.append("type", data.documentType);
     formData.append("documentDate", data.documentDate);
     formData.append("password", data.password);
     formData.append("file", data.chosenFile);
     formData.append("allegationId", id);
-    postDocuments(formData);
+    try {
+      await postDocuments(formData).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   const deleteDocument = async (id: any) => {
