@@ -12,7 +12,7 @@ export const SchoolDeatilInfoFormData = [
   },
   {
     id: 2,
-    componentProps: { name: "buildingNo", label: "Building Name/No:" },
+    componentProps: { name: "buildingName", label: "Building Name/No:" },
     component: RHFTextField,
     md: 6,
   },
@@ -69,13 +69,13 @@ export const SchoolDeatilInfoFormData = [
   },
   {
     id: 9,
-    componentProps: { name: "mobileNumber", label: "Mobile:" },
+    componentProps: { name: "mobile", label: "Mobile:" },
     component: RHFTextField,
     md: 6,
   },
   {
     id: 10,
-    componentProps: { name: "faxNumber", label: "Fax:" },
+    componentProps: { name: "fax", label: "Fax:" },
     component: RHFTextField,
     md: 6,
   },
@@ -109,7 +109,7 @@ export const defaultValues = {
 };
 export const SchoolDetailInfoFormSchema = Yup.object().shape({
   schoolName: Yup.string().trim().required("School Name is Required"),
-  buildingNo: Yup.string().trim().required("Building Number/Name is Required"),
+  buildingName: Yup.string().trim().required("Building Number/Name is Required"),
   street: Yup.string().trim().required("Street Number is Required"),
   city: Yup.string().trim().required("City is Required"),
   county: Yup.string().trim().required("County is Required"),
@@ -120,12 +120,12 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
     .min(10, "Invalid Telephone Number")
     .matches(/^\+44\d{10}$/, "Invalid Telephone Number")
     .required("Telephone Number is Required"),
-  mobileNumber: Yup.string()
+  mobile: Yup.string()
     .typeError("Must be a number")
     .min(10, "Invalid Mobile Number")
     .matches(/^\+44\d{10}$/, "Invalid Mobile Number")
     .required("Mobile Number is Required"),
-  faxNumber: Yup.string().required("Fax Number is Required"),
+  fax: Yup.string().required("Fax Number is Required"),
   email: Yup.string().required("Email is Required").email("Invalid Email"),
   principalName: Yup.string().trim().required("Principal Name is Required"),
 });

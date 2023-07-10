@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import TableAction from "@root/components/TableAction";
-import { useSchoolDetailInfoTable } from "./useSchoolDetailInfoTable";
+import { useStudySupportInfoTable } from "./useStudySupportInfoTable";
 import { Box, Card } from "@mui/material";
+import TableAction from "@root/components/TableAction";
+import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import DeleteModel from "@root/components/modal/DeleteModel";
 
-export default function SchoolDetailInfoTable(props: any) {
-  const { fosterChildId } = props;
+export const StudySupportInfoTable = () => {
   const [open, setOpen] = useState(false);
   const {
     router,
+    tableHeaderRef,
     isLoading,
     headerChangeHandler,
     family,
@@ -19,21 +19,21 @@ export default function SchoolDetailInfoTable(props: any) {
     isSuccess,
     meta,
     pageChangeHandler,
-  } = useSchoolDetailInfoTable();
-
+    sortChangeHandler,
+  } = useStudySupportInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.schoolName,
-      id: "schoolName",
+      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
+      id: "name",
       cell: (info: any) => info.getValue(),
-      header: "School Name",
+      header: "From Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.principalName,
-      id: "principalName",
+      accessorFn: (row: any) => row.relation,
+      id: "relation",
       cell: (info: any) => info.getValue() ?? "-",
-      header: "Principal Name",
+      header: "Study Type",
       isSortable: true,
     },
 
@@ -77,7 +77,6 @@ export default function SchoolDetailInfoTable(props: any) {
       isSortable: false,
     },
   ];
-
   return (
     <Card sx={{ p: 2 }}>
       <DeleteModel
@@ -86,16 +85,15 @@ export default function SchoolDetailInfoTable(props: any) {
         onDeleteClick={() => {}}
       />
       <TableHeader
+        ref={tableHeaderRef}
         disabled={isLoading}
-        title="School Detail Info"
+        title="Study Support Info"
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push({
-            pathname:
-              "/foster-child/education-records/school-detail-info/add-school-detail",
-            query: { action: "add", fosterChildId: fosterChildId },
-          });
+          router.push(
+            "/foster-child/education-records/school-detail-info/add-school-detail"
+          );
         }}
         onChanged={headerChangeHandler}
       />
@@ -106,11 +104,12 @@ export default function SchoolDetailInfoTable(props: any) {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
-        currentPage={meta?.page ?? "1"}
-        totalPages={meta?.pages ?? "1"}
+        currentPage={meta?.page}
+        totalPages={meta?.pages}
         showSerialNo
         onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </Card>
   );
-}
+};
