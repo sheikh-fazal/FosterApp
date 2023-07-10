@@ -62,7 +62,8 @@ export const TAGS = [
   "STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS",
   "hospital-info-list",
   "hospital-info-list-document",
-  "medicalappointments"
+  "medicalappointments",
+  "ABSENCE_INFO",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

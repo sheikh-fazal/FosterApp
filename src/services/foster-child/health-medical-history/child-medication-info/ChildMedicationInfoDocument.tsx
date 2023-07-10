@@ -38,12 +38,12 @@ const ChildMedicationInfoDocument = baseAPI.injectEndpoints({
       providesTags: ["child-medication-info-document"],
     }),
     getChildMedicationInfoDocument: builder.query({
-      query: (payload: any) => ({
+      query: ({ChildMedicationInfoId,params}: any) => ({
         // url: `/hospital-info-list/all-documents/hospital-info-documents/${payload?.params?.hospitalInfoFormId}`,
-        url: `/foster-child/child-medication-info/document/list/${payload.childMedicationInfoId}`,
+        url: `/foster-child/child-medication-info/document/list/${ChildMedicationInfoId}`,
         method: "Get",
         // params: payload.params,
-        params: payload.childMedicationInfoId,
+        params,
       }),
       providesTags: ["child-medication-info-document"],
     }),

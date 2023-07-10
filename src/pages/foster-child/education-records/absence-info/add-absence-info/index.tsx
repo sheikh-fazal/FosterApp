@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-child/absence-info-form/AbsenceInfoForm";
+import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 // Constants

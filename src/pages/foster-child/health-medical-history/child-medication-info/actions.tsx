@@ -14,6 +14,7 @@ import {
   useDeleteChildMedicationInfoDocumentMutation,
   useGetChildMedicationInfoDocumentBYIDQuery,
   useGetChildMedicationInfoDocumentQuery,
+  useLazyGetChildMedicationInfoDocumentQuery,
 } from "@root/services/foster-child/health-medical-history/child-medication-info/ChildMedicationInfoDocument";
 import useAuth from "@root/hooks/useAuth";
 import dayjs from "dayjs";
@@ -32,7 +33,7 @@ export default function ChildMedicationInfoActions() {
   const Router: any = useRouter();
   const { action, fosterChildId, ChildMedicationInfoId } = Router.query;
   const PAGE_TITLE = "Child Medication Info";
-
+  console.log(Router);
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -61,7 +62,9 @@ export default function ChildMedicationInfoActions() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useGetChildMedicationInfoDocumentBYIDQuery(fosterChildId);
+  }: any = useGetChildMedicationInfoDocumentQuery({
+    ChildMedicationInfoId,
+  });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = useCreateChildMedicationInfoDocumentMutation();
@@ -125,13 +128,7 @@ export default function ChildMedicationInfoActions() {
           isFetching={isFetching}
           isError={hasDocumentError}
           isSuccess={isSuccess}
-          column={[
-            "documentOriginalName",
-            "documentType",
-            "documentDate",
-            "personUploaded",
-            "documentPassword",
-          ]}
+          column={["docName", "date", "docType", "uploadedBy", "password"]}
           searchParam={(searchedText: string) => setParams(searchedText)}
           modalData={(data: any) => documentUploadHandler(data)}
           onPageChange={(page: any) => console.log("parent log", page)}
