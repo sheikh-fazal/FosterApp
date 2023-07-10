@@ -3,22 +3,22 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import PlacementStatusTable from "@root/sections/placement-status/placement-status-table/PlacementStatusTable";
+import RespitePlacementForm from "@root/sections/placement-status/respite-placement-table/respite-placement-form/RespitePlacementForm";
 
-const PAGE_TILE = "Placement Status";
+const PAGE_TILE = "Child Respite";
 
-PlacementStatus.getLayout = function getLayout(page: any) {
+AddPlacementForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
+          name: "Child Respite List",
+          href: "/respite-placement",
         },
         {
-          name: "Placement Status List",
+          name: "Child Respite",
         },
       ]}
       title={PAGE_TILE}
@@ -28,10 +28,10 @@ PlacementStatus.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function PlacementStatus() {
+export default function AddPlacementForm() {
   return (
     <Page title={PAGE_TILE}>
-      <PlacementStatusTable />
+      <RespitePlacementForm />
     </Page>
   );
 }

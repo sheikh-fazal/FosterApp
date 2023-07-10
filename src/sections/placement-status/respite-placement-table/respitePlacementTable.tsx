@@ -8,15 +8,15 @@ import CustomTable from "@root/components/Table/CustomTable";
 // ============================================================================================
 
 const RespitePlacementTable = () => {
-  const { respitePlacementColumns, theme, SELECT_FILTERS } = useRespitePlacementTable();
+  const { respitePlacementColumns, theme, router, SELECT_FILTERS } = useRespitePlacementTable();
   return (
-    <Card sx={{ py: 2, px: 1 }}>
+    <Card sx={styles.card}>
       <TableHeader
         title="Child Respite"
         rootSX={{ overflowX: "scroll" }}
         searchKey="search"
         showAddBtn
-        onAdd={() => alert("add functionality")}
+        onAdd={() => router.push("/respite-placement/placement-form")}
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         onChanged={(data: any) => {
@@ -45,3 +45,15 @@ const RespitePlacementTable = () => {
 };
 
 export default RespitePlacementTable;
+
+const styles = {
+  card: {
+    px: 2,
+    py: 1,
+    "& .MuiStack-root": {
+      "& .MuiButtonBase-root": {
+        ml: "15px",
+      },
+    },
+  },
+};

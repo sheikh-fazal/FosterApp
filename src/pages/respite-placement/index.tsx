@@ -3,9 +3,9 @@ import React from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import PlacementStatusTable from "@root/sections/placement-status/placement-status-table/PlacementStatusTable";
+import RespitePlacementTable from "@root/sections/placement-status/respite-placement-table/respitePlacementTable";
 
-const PAGE_TILE = "Placement Status";
+const PAGE_TILE = "Child Respite";
 
 PlacementStatus.getLayout = function getLayout(page: any) {
   return (
@@ -18,7 +18,7 @@ PlacementStatus.getLayout = function getLayout(page: any) {
           href: "/dashboard",
         },
         {
-          name: "Placement Status List",
+          name: "Child Respite List",
         },
       ]}
       title={PAGE_TILE}
@@ -31,7 +31,7 @@ PlacementStatus.getLayout = function getLayout(page: any) {
 export default function PlacementStatus() {
   return (
     <Page title={PAGE_TILE}>
-      <PlacementStatusTable />
+      <RespitePlacementTable />
     </Page>
   );
 }

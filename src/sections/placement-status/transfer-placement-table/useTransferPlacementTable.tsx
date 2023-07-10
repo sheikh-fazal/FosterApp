@@ -25,7 +25,7 @@ export const useTransferPlacementTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        alert("Edit action");
+        router.push({ pathname: `/transfer-placement/placement-form/${id}` });
         break;
       case "delete":
         handleDeleteModal();

@@ -25,7 +25,7 @@ export const useRespitePlacementTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        alert("Edit action");
+        router.push({ pathname: `/respite-placement/placement-form/${id}` });
         break;
       case "delete":
         handleDeleteModal();
@@ -142,6 +142,7 @@ export const useRespitePlacementTable = () => {
   return {
     respitePlacementColumns,
     theme,
+    router,
     SELECT_FILTERS,
   };
 };

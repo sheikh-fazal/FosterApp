@@ -1,5 +1,6 @@
 export const fosterCarerData = [
   {
+    id: "1",
     childName: "Draco Malfoy",
     carerNameFrom: "Tom Hanks",
     carerNameTo: "Tom Hanks",
@@ -11,6 +12,7 @@ export const fosterCarerData = [
     status: "Active",
   },
   {
+    id: "2",
     childName: "Draco Malfoy",
     carerNameFrom: "Tom Hanks",
     carerNameTo: "Tom Hanks",
@@ -22,6 +24,7 @@ export const fosterCarerData = [
     status: "Active",
   },
   {
+    id: "3",
     childName: "Draco Malfoy",
     carerNameFrom: "Tom Hanks",
     carerNameTo: "Tom Hanks",
