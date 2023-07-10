@@ -24,8 +24,8 @@ export default function MedicalAppointments() {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Medical Appointments",
-      href: "/carer-info/other-information/next-of-kin",
+      name: null,
+      href: "",
     },
     {
       name: "child Info",
