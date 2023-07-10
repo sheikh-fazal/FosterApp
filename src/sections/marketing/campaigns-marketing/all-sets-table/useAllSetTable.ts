@@ -1,12 +1,3 @@
-// import React from 'react'
-
-// export const useAllSetTable = () => {
-//   return (
-//     <div>useAllSetTable</div>
-//   )
-// }
-
-
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { defaultValues } from '.';
