@@ -19,38 +19,36 @@ import {
 } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import Error from "@root/components/Error";
+import usePath from "@root/hooks/usePath";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Pet Questionnaire List",
-    href: "/carer-info/personal-info/pet-questionnaire",
-  },
-  {
-    name: "Edit Pet Questionnaire",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Pet Questionnaire";
 
 // ----------------------------------------------------------------------
 
 EditPetQuestionnaire.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function EditPetQuestionnaire() {
+  const { makePath } = usePath();
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Pet Questionnaire List",
+      href: makePath({
+        path: "/carer-info/personal-info/pet-questionnaire",
+      }),
+    },
+    {
+      name: "Edit Pet Questionnaire",
+      href: "",
+    },
+  ];
+
   const router = useRouter();
   const { petId } = router.query;
 
@@ -65,6 +63,11 @@ export default function EditPetQuestionnaire() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       {isLoading ? (
         <SkeletonFormdata />
       ) : (

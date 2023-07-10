@@ -18,6 +18,7 @@ import {
   usePostPetQuestionnaireAApiMutation,
 } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
 
@@ -29,11 +30,15 @@ AddPetQuestionnaire.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 export default function AddPetQuestionnaire() {
+  const { makePath } = usePath();
+
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
       name: "Pet Questionnaire List",
-      href: "/carer-info/personal-info/pet-questionnaire",
+      href: makePath({
+        path: "/carer-info/personal-info/pet-questionnaire",
+      }),
     },
     {
       name: "Add Pet Questionnaire",
