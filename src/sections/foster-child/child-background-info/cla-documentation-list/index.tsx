@@ -863,8 +863,6 @@ export const StrategiesAndEvidence = [
   },
 ];
 
-// Default Values
-
 // PEP Form Default Values
 export const defaultValuesForPep = { 
   name: "",
