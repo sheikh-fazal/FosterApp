@@ -1,7 +1,5 @@
 import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
-import { useFormContext, Controller } from "react-hook-form";
-import { FormHelperText, Typography } from "@mui/material";
-import FileUploadIcon from "@mui/icons-material/FileUpload";
+import {  Typography } from "@mui/material";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";

@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, MenuItem, Select, Skeleton, Typography } from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -24,7 +24,7 @@ const DeregAssessmentFosteringPanel = () => {
     setDeRegisterData,
     currentIndex,
     goToNextSlide,
-    handleSlide
+    handleSlide,
   } = useDeregAssessmentFosteringPanel();
 
   return (
@@ -41,7 +41,6 @@ const DeregAssessmentFosteringPanel = () => {
             }}
           >
             <Grid item container mt={1} direction={"column"} alignItems={"center"} lg={2.3} xs={12} pt={1} sx={{ position: "relative" }}>
-              {ele?.heading && <Typography component="h2" sx={{ textAlign: "center", fontSize: "14px", fontWeight: "700" }}>{ele?.heading}</Typography>}
               <Image src={ele?.imgIcon} alt={ele?.text} />
               <InfoOutlinedIcon
                 onClick={() => setOpenIdForInfo(ele?.id)}
@@ -51,7 +50,6 @@ const DeregAssessmentFosteringPanel = () => {
                   fontSize: 18,
                   cursor: "pointer",
                   color: "black",
-                  top: `${ele?.id === 3 && "50px"}`
                 }}
               />
               <DeRegInfoDialogbox
@@ -75,38 +73,51 @@ const DeregAssessmentFosteringPanel = () => {
                 {ele?.text}
               </span>
             </Grid>
-            <Grid
-              container
-              alignItems={"center"}
-              justifyContent={"center"}
-              item
-              lg={1.5}
-              xs={12}
-            >
+            <Grid container alignItems={"center"} justifyContent={"center"} item lg={1.5} xs={12}>
               <ArrowLeftSharpIcon sx={{ fontSize: 35 }} />
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 {Array.isArray(ele.viewForms) ? (
                   <>
-                    <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={handleSlide}
-                    >
-                      {ele.viewForms[currentIndex]}
-                    </span>
-                    <Image
-                      src={LeftIcon}
-                      alt=""
-                      style={{ marginLeft: "20px", cursor: "pointer" }}
-                      onClick={goToNextSlide}
-                    />
+                    {ele?.id === 3 && (
+                      <>
+                        <span
+                          style={{
+                            color: theme.palette.primary.main,
+                            fontWeight: 600,
+                            fontSize: 14,
+                            cursor: "pointer",
+                            textAlign: "center",
+                          }}
+                          onClick={handleSlide}
+                        >
+                          {ele.viewForms[currentIndex]}
+                        </span>
+                        <Image src={LeftIcon} alt="" style={{ marginLeft: "20px", cursor: "pointer" }} onClick={goToNextSlide} />
+                      </>
+                    )}
+                    {ele?.id === 5 && (
+                      <Select
+                        sx={{
+                          width: 200,
+                          "& .MuiSelect-root": {
+                            width: "100%",
+                          },
+                          "& .MuiMenuItem-root": {
+                            width: "100%",
+                          },
+                        }}
+                        defaultValue={ele.viewForms[0]}
+                        size="small"
+                      >
+                        {ele.viewForms.map((form: any, index: any) => (
+                          <MenuItem key={index} value={form}>
+                            {form}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    )}
                   </>
                 ) : (
                   <>
@@ -125,29 +136,26 @@ const DeregAssessmentFosteringPanel = () => {
                       >
                         {ele?.viewForms}
                       </Link>
-                    ) : <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
-                    >
-                      {ele.viewForms}
-                    </span>}
+                    ) : (
+                      <span
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                        }}
+                        onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
+                      >
+                        {ele.viewForms}
+                      </span>
+                    )}
                   </>
                 )}
               </Box>
             </Grid>
             <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>
-              <RecruitmentStatusDropdown
-                status={ele?.status}
-                component={"EnquiryStage"}
-                setEnquiryStageData={setDeRegisterData}
-                enquiryStageData={deRegisterData}
-              />
+              <RecruitmentStatusDropdown status={ele?.status} component={"EnquiryStage"} setEnquiryStageData={setDeRegisterData} enquiryStageData={deRegisterData} />
             </Grid>
             <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} md={6} xs={12}>
               <Button onClick={() => setFormDialogId(ele?.id)} variant="contained">

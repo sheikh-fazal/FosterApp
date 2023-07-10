@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Grid, Skeleton } from "@mui/material";
+import { Box, Button, CircularProgress, Grid, MenuItem, Select, Skeleton } from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -84,26 +84,13 @@ const DeRegInitialRequest = () => {
             <Grid container alignItems="center" justifyContent="center" item lg={2.3} xs={12}>
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 {Array.isArray(ele.viewForms) ? (
-                  <>
-                    <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={handleSlide}
-                    >
-                      {ele.viewForms[currentIndex]}
-                    </span>
-                    <Image
-                      src={LeftIcon}
-                      alt=""
-                      style={{ marginLeft: "20px", cursor: "pointer" }}
-                      onClick={goToNextSlide}
-                    />
-                  </>
+                  <Select sx={{ width: 200 }} size="small" defaultValue={ele.viewForms[0]}>
+                    {ele.viewForms.map((form: any, index: any) => (
+                      <MenuItem key={index} value={form} >
+                        {form}
+                      </MenuItem>
+                    ))}
+                  </Select>
                 ) : (
                   <>
                     {ele?.href ? (
@@ -121,18 +108,20 @@ const DeRegInitialRequest = () => {
                       >
                         {ele?.viewForms}
                       </Link>
-                    ) : <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
-                    >
-                      {ele.viewForms}
-                    </span>}
+                    ) : (
+                      <span
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                        }}
+                        onClick={() => setOpenSocialWorkerAssessmentDialogbox(true)}
+                      >
+                        {ele.viewForms}
+                      </span>
+                    )}
                   </>
                 )}
               </Box>

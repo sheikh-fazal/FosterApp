@@ -1,21 +1,26 @@
 import { useTheme } from "@mui/material";
 import { DeRegContractsAgreementsData } from "./index";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 export const useFinalDeRegistration: any = () => {
   const [deRegisterData, setDeRegisterData] = useState(DeRegContractsAgreementsData);
-  const theme: any = useTheme();
+  const [isSuccessfullyModalOpen, setIsSuccessfullyModalOpen] = useState(false);
   const [openIdForInfo, setOpenIdForInfo] = useState<any>();
   const [formDialogId, setFormDialogId] = useState<any>();
   const [openSocialWorkerAsessmentDialogbox, setOpenSocialWorkerAssessmentDialogbox] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const theme: any = useTheme();
+  const route = useRouter();
 
   const goToNextSlide = () => {
-    const newArray = deRegisterData.map((data) => data.viewForms);
-    const newMainIndex = currentIndex + 1 >= newArray.length ? 0 : currentIndex + 1;
-    setCurrentIndex(newMainIndex);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % deRegisterData.length);
   };
-  
+
+  const handleViewFormModal = (id: any) => {
+    id === 3 && setIsSuccessfullyModalOpen(true)
+  }
+
 
   return {
     theme,
@@ -26,11 +31,13 @@ export const useFinalDeRegistration: any = () => {
     openSocialWorkerAsessmentDialogbox,
     setOpenSocialWorkerAssessmentDialogbox,
     deRegisterData,
-    isUpdating: false,
-    hasUpdated: false,
     setDeRegisterData,
     currentIndex,
     setCurrentIndex,
-    goToNextSlide
+    goToNextSlide,
+    isSuccessfullyModalOpen,
+    setIsSuccessfullyModalOpen,
+    handleViewFormModal,
+    route
   };
 };

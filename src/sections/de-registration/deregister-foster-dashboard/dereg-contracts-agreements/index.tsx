@@ -1,3 +1,4 @@
+import * as Yup from "yup";
 import finalFinanceImg from "../../../../assets/img/de-register/final-finance-img.svg";
 import agencyPolicyAgreementsImg from "../../../../assets/img/de-register/agency-policy-agreements-img.svg";
 import noticeProporsalImg from "../../../../assets/img/de-register/notice-proporsal-img.svg";
@@ -24,7 +25,7 @@ export const DeRegContractsAgreementsData = [
     text: "Final Finance settlements",
     informationText: "Final Finance settlements",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    modal: true,
     status: "Failed"
   },
   {
@@ -104,3 +105,7 @@ export const DeRegContractsAgreementsData = [
     status: "Pending"
   },
 ];
+
+export const DeRegisterFinalFinanceSchema: any = Yup.object().shape({
+  updatePhoto: Yup.mixed().required("Field is Required"),
+});
