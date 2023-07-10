@@ -43,23 +43,88 @@ export default function ViewClaDocumentationList() {
     useGetClaDocumentationByIdQuery(documentId);
 
   console.log("Is loading: ", isLoading);
-  
+  console.log("data", data);
+
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        {/* SHow form skeleton if loadin */}
-
-        {/* show form is not loading */}
         {isLoading && <p>Loading...</p>}
         {isSuccess && (
           <ClaDocumentationForm
             defaultFormType={data.data.documentType}
             defaultValues={{
+              // PEP default values
               ...data?.data,
               assessmentDate: new Date(data?.data?.assessmentDate),
               pepDuration: {
                 to: new Date(data?.data?.pepDuration?.to),
                 from: new Date(data?.data?.pepDuration?.from),
+              },
+              // EHCP default values
+              fosterPlacement: {
+                date: new Date(data?.data.fosterPlacement?.date),
+                onfile: data?.data.fosterPlacement?.onfile,
+                comments: data?.data.fosterPlacement?.comments,
+              },
+              placementInfoRecord: {
+                date: new Date(data?.data.placementInfoRecord?.date),
+                onfile: data?.data.placementInfoRecord?.onfile,
+                comments: data?.data.placementInfoRecord?.comments,
+              },
+              localAuthorityPlacementPlan: {
+                date: new Date(data?.data.localAuthorityPlacementPlan?.date),
+                onfile: data?.data.localAuthorityPlacementPlan?.onfile,
+                comments: data?.data.localAuthorityPlacementPlan?.comments,
+              },
+              localAuthorityRiskAssesssment: {
+                date: new Date(data?.data.localAuthorityRiskAssesssment?.date),
+                onfile: data?.data.localAuthorityRiskAssesssment?.onfile,
+                comments: data?.data.localAuthorityRiskAssesssment?.comments,
+              },
+              delegatedAuthority: {
+                date: new Date(data?.data.delegatedAuthority?.date),
+                onfile: data?.data.delegatedAuthority?.onfile,
+                comments: data?.data.delegatedAuthority?.comments,
+              },
+              claReviewDate: {
+                date: new Date(data?.data.claReviewDate?.date),
+                onfile: data?.data.claReviewDate?.onfile,
+                comments: data?.data.claReviewDate?.comments,
+              },
+              claMedicalDate: {
+                date: new Date(data?.data.claMedicalDate?.date),
+                onfile: data?.data.claMedicalDate?.onfile,
+                comments: data?.data.claMedicalDate?.comments,
+              },
+              carePlanPt1: {
+                date: new Date(data?.data.carePlanPt1?.date),
+                onfile: data?.data.carePlanPt1?.onfile,
+                comments: data?.data.carePlanPt1?.comments,
+              },
+              carePlanPt2: {
+                date: new Date(data?.data.carePlanPt2?.date),
+                onfile: data?.data.carePlanPt2?.onfile,
+                comments: data?.data.carePlanPt2?.comments,
+              },
+              perDate: {
+                date: new Date(data?.data.perDate?.date),
+                onfile: data?.data.perDate?.onfile,
+                comments: data?.data.perDate?.comments,
+              },
+              ehcpDate: {
+                date: new Date(data?.data.ehcpDate?.date),
+                onfile: data?.data.ehcpDate?.onfile,
+                comments: data?.data.ehcpDate?.comments,
+              },
+              pathwayPlan: {
+                date: new Date(data?.data.pathwayPlan?.date),
+                onfile: data?.data.pathwayPlan?.onfile,
+                comments: data?.data.pathwayPlan?.comments,
+              },
+              garbPack: {
+                date: new Date(data?.data.garbPack?.date),
+                onfile: data?.data.garbPack?.onfile,
+                comments: data?.data.garbPack?.comments,
               },
             }}
             disabled

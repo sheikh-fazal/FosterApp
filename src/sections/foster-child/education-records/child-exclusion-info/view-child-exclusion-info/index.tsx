@@ -11,19 +11,19 @@ export const ViewTrainingProfileData = [
       fullWidth: true,
       select: true,
     },
-    options: [],
+    options: [{ value: "o level", label: "O Level" }],
     component: RHFSelect,
   },
   {
     id: 2,
     gridLength: 6,
     otherOptions: {
-      name: "typeExclusion",
+      name: "type",
       label: "Type of Exclusion",
       fullWidth: true,
       select: true,
     },
-    options: [],
+    options: [{ value: "o level", label: "O Level" }],
     component: RHFSelect,
   },
   {
@@ -41,7 +41,7 @@ export const ViewTrainingProfileData = [
     gridLength: 6,
     otherOptions: {
       label: "Date of Return",
-      name: "returnDate",
+      name: "dateReturn",
       fullWidth: true,
     },
     component: RHFDatePicker,

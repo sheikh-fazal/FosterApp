@@ -17,15 +17,23 @@ import {
   MedicalAppointmentsInfoListValue,
   medicalAppointmentsFormValue,
 } from ".";
+import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
-const backPath = "/foster-child/health-medical-history/medical-appointments/";
+const backPath = "/foster-child/health-medical-history/medical-appointments";
 const MedicalAppointmentsFrom = (props: any) => {
-  const { action, id } = props;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { action, medicalAppointmentID, fosterChildId } = props;
+  const { SubmitData,getDefaultValue,isloading ,isFatching} = useMedicalAppointmentForm({
+    action,
+    medicalAppointmentID,
+    fosterChildId,
+  });
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: MedicalAppointmentsInfoListValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -37,17 +45,18 @@ const MedicalAppointmentsFrom = (props: any) => {
     formState: { errors },
   } = methods;
   const submitHander = (data: any) => {
-    console.log(data);
+    SubmitData(data);
   };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const theme: any = useTheme();
-  console.log(errors);
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
           <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
             <Grid container>
+            <IsFetching isFetching={isFatching} />
               {medicalAppointmentsFormValue.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -107,7 +116,14 @@ const MedicalAppointmentsFrom = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`${backPath}`)}
+                  onClick={() =>
+                    router.push({
+                      pathname: `${backPath}`,
+                      query: {
+                        fosterChildId: fosterChildId,
+                      },
+                    })
+                  }
                 >
                   back
                 </Button>

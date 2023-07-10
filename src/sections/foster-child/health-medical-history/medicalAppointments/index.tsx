@@ -1,13 +1,7 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
-export const dummy = [
-  {
-    id: 1,
-    dateOfAppointmentVisit: "16 May 2021",
-    doctorName: "Robert Brown",
-  },
-];
+
 
 export const medicalAppointmentsFormValue = [
   {
@@ -21,6 +15,9 @@ export const medicalAppointmentsFormValue = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 2,
@@ -69,14 +66,22 @@ export const medicalAppointmentsFormValue = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 ];
+export const medialFormets:any = {}
+for (const formControl of medicalAppointmentsFormValue) {
+  if (formControl.format)
+  medialFormets[formControl.otherOptions.name] = formControl.format;
+}
 export const MedicalAppointmentsInfoListValue = {
-  appointmentDate: "",
+  appointmentDate: new Date(),
   doctorName: "",
   healthAppointmentType: "",
   details: "",
-  dateOfNextAppointment: "",
+  dateOfNextAppointment: new Date(),
 };
 export const FormSchema = Yup.object().shape({
   appointmentDate: Yup.date().required("required"),
