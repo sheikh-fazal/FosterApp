@@ -95,7 +95,7 @@ const ChildMissingPlacementTable = (props: any) => {
           router.push({
             pathname:
               "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

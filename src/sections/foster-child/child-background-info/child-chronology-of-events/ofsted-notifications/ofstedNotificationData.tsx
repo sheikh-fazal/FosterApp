@@ -1,4 +1,4 @@
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
@@ -159,7 +159,7 @@ export const ofstedNotificationFormFields = [
     component: RHFDatePicker,
   },
   {
-    id: 9,
+    id: 14,
     gridLength: 12,
     otherOptions: {
       name: "serviceName",
@@ -170,9 +170,169 @@ export const ofstedNotificationFormFields = [
     },
     component: RHFTextField,
   },
+  {
+    id: 15,
+    gridLength: 6,
+    otherOptions: {
+      name: "placingAuthorityDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 16,
+    gridLength: 6,
+    otherOptions: {
+      name: "placingAuthority",
+      label: "Placing Authority (all events) Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 17,
+    gridLength: 6,
+    otherOptions: {
+      name: "secretaryOfStateDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 18,
+    gridLength: 6,
+    otherOptions: {
+      name: "secretaryOfState",
+      label: "Secretary of State (a only) Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 19,
+    gridLength: 6,
+    otherOptions: {
+      name: "areaAuthorityDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 20,
+    gridLength: 6,
+    otherOptions: {
+      name: "areaAuthority",
+      label: "Area Authority (a & f) Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 21,
+    gridLength: 6,
+    otherOptions: {
+      name: "healthAuthorityDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 22,
+    gridLength: 6,
+    otherOptions: {
+      name: "healthAuthority",
+      label: "Health Authority (a & d) Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 23,
+    gridLength: 6,
+    otherOptions: {
+      name: "policePersonNotifiedDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 24,
+    gridLength: 6,
+    otherOptions: {
+      name: "policePersonNotified",
+      label: "Police (e &d) Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 25,
+    gridLength: 6,
+    otherOptions: {
+      name: "parentsNotifiedDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 26,
+    gridLength: 6,
+    otherOptions: {
+      name: "parentsNotified",
+      label: "Have Parents been Notified (if applicable) ?",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 27,
+    gridLength: 6,
+    otherOptions: {
+      name: "inspectorNotifiedDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 28,
+    gridLength: 6,
+    otherOptions: {
+      name: "inspectorNotified",
+      label: "Chief Inspector Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 29,
+    gridLength: 6,
+    otherOptions: {
+      name: "trustPersonNotifiedDate",
+      label: "Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
+  {
+    id: 30,
+    gridLength: 6,
+    otherOptions: {
+      name: "trustPersonNotified",
+      label: "Primary Care Trust Person Notified",
+      fullWidth: true,
+    },
+    component: RHFCheckbox,
+  },
   ///////
   {
-    id: 9,
+    id: 31,
     gridLength: 12,
     otherOptions: {
       name: "outcomeOfIncident",
@@ -183,14 +343,121 @@ export const ofstedNotificationFormFields = [
     },
     component: RHFTextField,
   },
+  {
+    id: 32,
+    gridLength: 12,
+    otherOptions: {
+      name: "actionsToBeTaken",
+      label: "Actions to be taken to Prevent further Occurence",
+      fullWidth: true,
+      multiline: true,
+      minRows: 2,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 33,
+    gridLength: 12,
+    otherOptions: {
+      name: "additionalInformation",
+      label:
+        "Use this box if you need more space to provide us with any additional information. Please use people's initials only",
+      fullWidth: true,
+      multiline: true,
+      minRows: 2,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 33,
+    gridLength: 12,
+    otherOptions: {
+      name: "detailsOfChildren",
+      label: "Details of Child(ren) if applicabe, include date of Birth and use only Initials",
+      fullWidth: true,
+      multiline: true,
+      minRows: 2,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 34,
+    gridLength: 12,
+    otherOptions: {
+      name: "placingAuthorities",
+      label: "Placing Authority(ies) if applicable",
+      fullWidth: true,
+      multiline: true,
+      minRows: 2,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 35,
+    gridLength: 6,
+    otherOptions: {
+      name: "closureDate",
+      label: "Closure Date",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+  },
 ];
 export const defaultValues = {
   dateOfIncident: null,
-  correspondenceFrom: null,
+  location: null,
+  reasonForNotification: null,
+  causeOfDeath: null,
+  dateOfDeath: null,
+  inquestOrPostMortem: null,
+  jobTitleOfStaffOnDuty: null,
+  jobTitleOfWitness: null,
+  descriptionOfIncident: null,
+  gpCalled: null,
+  gpCalledDate: null,
+  emergencyServicesCalled: null,
+  emergencyServicesCalledDate: null,
+  serviceName: null,
+  placingAuthorityDate: null,
+  placingAuthority: false,
+  secretaryOfStateDate: null,
+  secretaryOfState: false,
+  areaAuthorityDate: null,
+  areaAuthority: false,
+  healthAuthorityDate: null,
+  healthAuthority: false,
+  policePersonNotifiedDate: null,
+  policePersonNotified: false,
+  parentsNotifiedDate: null,
+  parentsNotified: false,
+  inspectorNotifiedDate: null,
+  inspectorNotified: false,
+  trustPersonNotifiedDate: null,
+  trustPersonNotified: false,
+  outcomeOfIncident: null,
+  actionsToBeTaken: null,
+  additionalInformation: null,
+  detailsOfChildren: null,
+  placingAuthorities: null,
+  closureDate: null,
 };
 export const formatters: any = {};
 
 export const formSchema = Yup.object().shape({
   dateOfIncident: Yup.date().required("Required"),
-  correspondenceTo: Yup.string().required("Required"),
+  location: Yup.string().required("Required"),
+  reasonForNotification: Yup.string().required("Required"),
+  dateOfDeath: Yup.date().required("Required"),
+  inquestOrPostMortem: Yup.string().required("Required"),
+  jobTitleOfStaffOnDuty: Yup.string().required("Required"),
+  jobTitleOfWitness: Yup.string().required("Required"),
+  descriptionOfIncident: Yup.string().required("Required"),
+  gpCalled: Yup.string().required("Required"),
+  gpCalledDate: Yup.date().required("Required"),
+  emergencyServicesCalled: Yup.string().required("Required"),
+  emergencyServicesCalledDate: Yup.date().required("Required"),
+  serviceName: Yup.string().required("Required"),
+  outcomeOfIncident: Yup.string().required("Required"),
+  actionsToBeTaken: Yup.string().required("Required"),
+  closureDate: Yup.date().required("Required"),
 });
