@@ -34,9 +34,7 @@ export default function LeisureActivitiesTable(props: any) {
           onAdd={() => {
             router.push(`${activePath}/add-leisure-activity/${fosterChildId}`);
           }}
-          onChanged={(data: any) => {
-            console.log("Updated params: ", data);
-          }}
+          onChanged={headerChangeHandler}
         />
         <CustomTable
           data={leisureActivity}

@@ -194,9 +194,7 @@ export default function IndependencePackFormBronze(props: any) {
                   },
                 }}
                 onClick={() => {
-                  router.push(
-                    "/carer-info/personal-info/carer-address-history"
-                  );
+                  router.back();
                 }}
                 type="button"
                 variant="contained"
