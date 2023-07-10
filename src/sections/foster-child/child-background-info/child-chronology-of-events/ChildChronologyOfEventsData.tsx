@@ -14,65 +14,65 @@ import AllegationsInfoTable from "./allegations-info/AllegationsInfoTable";
 import ComplaintsInfoTable from "./complaints-info/ComplaintsInfoTable";
 import IncidentsInfoTable from "./incidents-info/IncidentsInfoTable";
 
-export const childChronologyListData = [
+export const childChronologyListData = (fosterChildId: any) => [
   {
     title: "Day Log / Journal Entries",
-    component: <DayLogTable />,
+    component: <DayLogTable fosterChildId={fosterChildId} />,
   },
   {
     title: "OOH Reports",
-    component: <OOHReportsTable />,
+    component: <OOHReportsTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Ofsted Notifications",
-    component: <OfstedNotificationsTable />,
+    component: <OfstedNotificationsTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Child Missing Placement",
-    component: <ChildMissingPlacementTable />,
+    component: <ChildMissingPlacementTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Absence Info",
-    component: <AbsenceInfoTable />,
+    component: <AbsenceInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Exclusion Info",
-    component: <ExclusiveInfoTable />,
+    component: <ExclusiveInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "SATS / Exam / Grades Info",
-    component: <ExamGradeInfoTable />,
+    component: <ExamGradeInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Vocational Course Info",
-    component: <VocationalCourseInfoTable />,
+    component: <VocationalCourseInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Hospitalisation Info",
-    component: <HospitalisationInfoTable/>,
+    component: <HospitalisationInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Therapy Info",
-    component: <TherapyInfoTable />,
+    component: <TherapyInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Risk Assessment",
-    component: <RiskAssessmentTable />,
+    component: <RiskAssessmentTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Immunisation Info",
-    component: <ImmunisationInfoTable />,
+    component: <ImmunisationInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Allegations Info",
-    component: <AllegationsInfoTable />,
+    component: <AllegationsInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Complaints Info",
-    component: <ComplaintsInfoTable />,
+    component: <ComplaintsInfoTable fosterChildId={fosterChildId} />,
   },
   {
     title: "Incidents Info",
-    component: <IncidentsInfoTable />,
+    component: <IncidentsInfoTable fosterChildId={fosterChildId} />,
   },
 ];

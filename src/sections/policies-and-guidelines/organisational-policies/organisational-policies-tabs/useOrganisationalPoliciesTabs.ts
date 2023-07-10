@@ -24,7 +24,6 @@ export const useOrganisationalPoliciesTabs = () => {
     }
   };
 
-
   const handleAction = (action: any, id: any) => {
     switch (action) {
       case "delete":

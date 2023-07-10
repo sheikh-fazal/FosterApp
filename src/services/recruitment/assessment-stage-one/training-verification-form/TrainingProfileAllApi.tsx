@@ -50,7 +50,7 @@ export const trainingPRofileAllApi: any = baseAPI.injectEndpoints({
       query: ({ data, trainingProfileId }: any) => ({
         url: `/training-profile/document?trainingProfileId=${trainingProfileId}`,
         method: "POST",
-        body:data,
+        body: data,
       }),
     }),
     deleteTrainingProfileDocument: builder.mutation<null, void>({

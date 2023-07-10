@@ -32,7 +32,7 @@ export default function EHCPForm(props: any) {
             </Grid>
           ))}
         </Grid>
-        {router.query.action !== "view" && (
+        {!disabled && (
           <Box sx={{ display: "flex", mb: "1rem" }}>
             <LoadingButton
               sx={{ marginRight: "1rem" }}

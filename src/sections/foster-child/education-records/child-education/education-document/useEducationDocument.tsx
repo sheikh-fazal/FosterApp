@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useGetGpDetailsInfoDocumentDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/gp-details-info/documents";
+import { useGetGpDetailsInfoDocumentDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/documents";
 
 export const useEducationDocument = () => {
   const theme: any = useTheme();
@@ -26,12 +26,12 @@ export const useEducationDocument = () => {
     limit: 10,
     search: searchValue,
   };
-const pathParams = {
-  gpInfoId:query?.gpInfoId
-}
+  const pathParams = {
+    gpInfoId: query?.gpInfoId,
+  };
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-  useGetGpDetailsInfoDocumentDataQuery(dataParameter);
+    useGetGpDetailsInfoDocumentDataQuery(dataParameter);
 
   const submitInitialHomeVisitDocument = async (data: any) => {
     const documentFormData = new FormData();
@@ -68,6 +68,6 @@ const pathParams = {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
-    query
+    query,
   };
 };

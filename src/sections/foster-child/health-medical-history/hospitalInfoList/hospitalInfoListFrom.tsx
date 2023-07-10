@@ -13,15 +13,24 @@ import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormSchema, HospitalInfoListForm, HospitalInfoListValue } from ".";
+import useHospitalinfoListForms from "./useHospitalinfoListForms";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
-const backPath = "/foster-child/health-medical-history/hospital-info-list/";
+const backPath = "/foster-child/health-medical-history/hospital-info-list";
 
 function HospitalInfoListFrom(props: any) {
-  const { action, id } = props;
+  const { action, fosterChildId, hospitalinfoId } = props;
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useHospitalinfoListForms({
+      action,
+      fosterChildId,
+      hospitalinfoId,
+    });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: HospitalInfoListValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -32,18 +41,16 @@ function HospitalInfoListFrom(props: any) {
     reset,
     formState: { errors },
   } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
 
   const theme: any = useTheme();
-  console.log(errors);
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
+              <IsFetching isFetching={isFatching} />
               {HospitalInfoListForm.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -71,7 +78,8 @@ function HospitalInfoListFrom(props: any) {
                           InputLabelProps={{
                             shrink:
                               action === "view" ||
-                              (action === "edit" && form.id === 1)
+                              action === "edit" ||
+                              form.id === 1
                                 ? true
                                 : undefined,
                             disabled:
@@ -116,7 +124,14 @@ function HospitalInfoListFrom(props: any) {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`${backPath}`)}
+                  onClick={() =>
+                    router.push({
+                      pathname: backPath,
+                      query: {
+                        fosterChildId: fosterChildId,
+                      },
+                    })
+                  }
                 >
                   back
                 </Button>

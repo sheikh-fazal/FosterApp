@@ -5,25 +5,77 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 export const allegationFormData = [
   {
     id: 1,
-    gridLength: 6,
     otherOptions: {
       name: "allegationAgainstPersonCategory",
-      label: "Allegation against person category",
-      multiline: false,
-      //   minRows: 3,
+      label: "Allegation against person category:",
+      select: true,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFSelect,
+    gridLength: 6,
+    options: [
+      {
+        value: "childParents",
+        label: "Child Parents",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childYoungPerson",
+        label: "Child/Young Person",
+      },
+      {
+        value: "fosterCarer",
+        label: "Foster Carer",
+      },
+      {
+        value: "otherProfessional",
+        label: "Other Professional",
+      },
+      {
+        value: "other",
+        label: "Other",
+      },
+    ],
   },
   {
     id: 2,
-    gridLength: 6,
     otherOptions: {
       name: "allegationAgainstPerson",
-      label: "Allegation against person",
+      label: "Allegation against person:",
+      select: true,
       fullWidth: true,
     },
-    component: RHFTextField,
+    component: RHFSelect,
+    gridLength: 6,
+    options: [
+      {
+        value: "childParents",
+        label: "Child Parents",
+      },
+      {
+        value: "childSocialWorker",
+        label: "Child Social Worker",
+      },
+      {
+        value: "childYoungPerson",
+        label: "Child/Young Person",
+      },
+      {
+        value: "fosterCarer",
+        label: "Foster Carer",
+      },
+      {
+        value: "otherProfessional",
+        label: "Other Professional",
+      },
+      {
+        value: "other",
+        label: "Other",
+      },
+    ],
   },
   {
     id: 3,
@@ -133,10 +185,6 @@ export const allegationFormData = [
         label: "Child Social Worker",
       },
       {
-        value: "childSocialWorker",
-        label: "Child Social Worker",
-      },
-      {
         value: "childYoungPerson",
         label: "Child/Young Person",
       },
@@ -168,10 +216,6 @@ export const allegationFormData = [
       {
         value: "childParents",
         label: "Child Parents",
-      },
-      {
-        value: "childSocialWorker",
-        label: "Child Social Worker",
       },
       {
         value: "childSocialWorker",
@@ -269,10 +313,6 @@ export const allegationFormData = [
       {
         value: "childParents",
         label: "Child Parents",
-      },
-      {
-        value: "childSocialWorker",
-        label: "Child Social Worker",
       },
       {
         value: "childSocialWorker",
