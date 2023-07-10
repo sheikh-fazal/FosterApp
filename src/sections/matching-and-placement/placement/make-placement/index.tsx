@@ -1,3 +1,4 @@
+import { SelectPlacementType } from "./select-placement-type";
 
 
 
@@ -21,7 +22,7 @@ export const placementStepData = [
   {
     id: 3,
     label: "Select Placement Type",
-    // component: <DeregAssessmentFosteringPanel />,
+    component: <SelectPlacementType/>,
     background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%)",
     color: "rgb(246, 163, 15)",
     // icon: AssessmentStageIcon
