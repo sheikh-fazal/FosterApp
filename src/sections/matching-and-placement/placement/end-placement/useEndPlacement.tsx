@@ -41,7 +41,7 @@ export const useEndPlacement = () => {
       accessorFn: (row: any) => row.dateDischarge,
       id: "dateDischarge",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Date Of Discharge</span>,
+      header: () => <span>Placement End Date</span>,
       isSortable: false,
     },
     {
@@ -52,7 +52,7 @@ export const useEndPlacement = () => {
           <Image width={40} height={40} src={pdfFile} alt="" />
         </Box>
       ),
-      header: () => <span>Discharge report</span>,
+      header: () => <span>End of Placement report</span>,
     },
     {
       accessorFn: (row: any) => row.approvedRole,
