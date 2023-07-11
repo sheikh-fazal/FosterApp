@@ -93,9 +93,9 @@ export default function Allegation() {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-
   return (
     <HorizaontalTabs tabsDataArray={["Allegation", "Uploaded Documents"]}>
+
       <AllegationForm action={action} id={id} />
       <UploadDocuments
         readOnly={action === "view" ? true : false}

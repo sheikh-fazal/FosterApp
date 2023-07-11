@@ -59,7 +59,7 @@ export default function PetQuestionnaireTable() {
             type="view"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/pet-questionnaire/view-pet-questionnaire?${info.getValue()}`
+                `/carer-info/personal-info/carer-chronology-of-events/pet-questionnaire?${info.getValue()}`
               )
             }
           />
