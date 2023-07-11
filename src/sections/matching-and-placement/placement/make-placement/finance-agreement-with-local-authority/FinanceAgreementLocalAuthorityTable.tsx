@@ -1,16 +1,16 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
 import { Grid } from "@mui/material";
-import { PlacementMeetingRecordsData } from '.';
-import { usePlacementMeetingRecordTable } from './usePlacementMeetingRecordTable';
+import { FinanceAgreementLocalAuthData } from '.';
+import { usePlacementSpecialNeedsAgreementTable } from './useFinanceAgreementLocalAuthorityTable';
 import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 
 
 
 
-const PlacementMeetingRecordTable = () => {
-  const {PlacementMeetingRecordColumns,theme} = usePlacementMeetingRecordTable()
+const FinanceAgreementLocalAuthorityTable = () => {
+  const {FinanceAgreementLocalAuthorityColumns,theme} = usePlacementSpecialNeedsAgreementTable()
 
 
   return (
@@ -18,14 +18,14 @@ const PlacementMeetingRecordTable = () => {
       <Grid item xs={12} mt={2}>
 
        <TableHeader
-        title="Placement Meeting Record"
+        title="Placement Special Needs Agreement"
         showAddBtn
         hideSearch
         onAdd={''}
       />
         <CustomTable
-          data={PlacementMeetingRecordsData}
-          columns={PlacementMeetingRecordColumns}
+          data={FinanceAgreementLocalAuthData}
+          columns={FinanceAgreementLocalAuthorityColumns}
           isLoading={false}
           isFetching={false}
           isError={false}
@@ -54,4 +54,4 @@ const PlacementMeetingRecordTable = () => {
   )
 }
 
-export default PlacementMeetingRecordTable
+export default FinanceAgreementLocalAuthorityTable

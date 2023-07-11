@@ -2,8 +2,11 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import DeleteModel from "@root/components/modal/DeleteModel";
 export const useMandatoryTraining = () => {
-    const [IsOpenTrainingClockModal, setIsOpenTrainingClockModal] = useState(false)
+    const [IsOpenMandatoryModal, setIsOpenMandatoryModal] = useState(false)
+    const [IsOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
+    const [actionType, setActionType] = useState('add');
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
 
@@ -65,25 +68,26 @@ export const useMandatoryTraining = () => {
                 <TableAction
                   size="small"
                   type="edit"
-                  // onClicked={''}
+                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('edit')}}
+                  
                 />
              
                   <TableAction
                     size="small"
                     type="delete"
-                    // onClicked={() => setCancelDelete(!cancelDelete)}
+                    onClicked={() => setIsOpenDeleteModal(!IsOpenDeleteModal)}
                   />
                 
       
-                {/* <DeleteModel
-                  open={cancelDelete}
-                  onDeleteClick={handleDelete}
-                  handleClose={() => setCancelDelete(!cancelDelete)}
-                /> */}
+                <DeleteModel
+                  open={IsOpenDeleteModal}
+                  onDeleteClick={IsOpenDeleteModal}
+                  handleClose={() => setIsOpenDeleteModal(!IsOpenDeleteModal)}
+                />
                 <TableAction
                   size="small"
                   type="view"
-                //   onClicked={() => setViewOpenModal(!viewOpenModal)}
+                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('view')}}
                 />
               </Box>
             ),
@@ -97,8 +101,7 @@ export const useMandatoryTraining = () => {
         MandatoryTrainingColumns,
         tableHeaderRef,
         theme,
-        IsOpenTrainingClockModal,
-        setIsOpenTrainingClockModal,
+        IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType, setActionType
        
     }
 }
