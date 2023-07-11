@@ -1,11 +1,13 @@
 import React from "react";
+
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
+import RespitePlacementTable from "@root/sections/matching-and-placement/placement/respite-placement/respitePlacementTable";
 
 const PAGE_TILE = "Child Respite";
 
-PlacementModule.getLayout = function getLayout(page: any) {
+PlacementStatus.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -13,7 +15,7 @@ PlacementModule.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Dashboard",
-          href: "/placement",
+          href: "/dashboard",
         },
         {
           name: "Child Respite List",
@@ -26,10 +28,10 @@ PlacementModule.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function PlacementModule() {
+export default function PlacementStatus() {
   return (
     <Page title={PAGE_TILE}>
-      {PAGE_TILE}
+      <RespitePlacementTable />
     </Page>
   );
 }

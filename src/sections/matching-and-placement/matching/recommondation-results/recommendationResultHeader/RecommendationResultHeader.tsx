@@ -7,7 +7,7 @@ import { FormProvider } from "@root/components/hook-form";
 import useRecommendationResultHeader from "./useRecommendationResultHeader";
 
 const RecommendationResultHeader = () => {
-  const { handleExpand, expand, methods, onSubmit, handleSubmit } =
+  const { handleExpand, expand, methods, onSubmit, handleSubmit,queryValue } =
   useRecommendationResultHeader();
   return (
     <Card
@@ -52,7 +52,8 @@ const RecommendationResultHeader = () => {
             onClick={() => {}}
             variant="contained"
           >
-            View Carer Details
+          {queryValue == "view carer"  ? "View Carer Details":"View Child Details"}
+            
           </Button>
         </Box>
       </Box>
