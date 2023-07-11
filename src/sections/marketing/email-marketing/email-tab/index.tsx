@@ -5,18 +5,22 @@ import MeetOurNewHeadOfSafeguarding from "./meet-our-new-head-of-safeguarding/Me
 export const data = [
   {
     title: "Foster A Child This New Year-get 25% more benefits",
-      component: <FosterAChildThisNewYear />
+      component: <FosterAChildThisNewYear />,
+      countValue: 3
   },
   {
     title: "Promote you Foster Child for Participation Policy",
-      component: <PromoteYourFosterChild />
+      component: <PromoteYourFosterChild />,
+      countValue: 2
   },
   {
     title: "Learn our new Safeguarding Policies",
-      component: <LearnOurNewSafeguardingPolicies />
+      component: <LearnOurNewSafeguardingPolicies />,
+      countValue: 7
   },
   {
     title: "Meet our new Head of Safegurading",
-      component: <MeetOurNewHeadOfSafeguarding />
+      component: <MeetOurNewHeadOfSafeguarding />,
+      countValue: 4
   }
 ];
