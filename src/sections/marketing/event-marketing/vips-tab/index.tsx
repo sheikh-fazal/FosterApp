@@ -5,18 +5,22 @@ import Influencer from "./influencer/Influencer";
 export const data = [
     {
       title: "VIP Customer",
-        component: <VipCustomer />
+        component: <VipCustomer />,
+        countValue: 5,
     },
     {
       title: "Customer",
-        component: <Customer />
+        component: <Customer />,
+        countValue: 1,
     },
     {
       title: "PorchCam Partner",
-        component: <PorchCamPartner />
+        component: <PorchCamPartner />,
+        countValue: 6,
     },
     {
       title: "Influencer",
-        component: <Influencer />
+        component: <Influencer />,
+        countValue: 8,
     }
   ];
