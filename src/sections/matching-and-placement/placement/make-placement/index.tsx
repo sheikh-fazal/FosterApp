@@ -1,6 +1,8 @@
 import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
 import CarerSelection from "./carer-selection/CarerSelection";
 import ChildSelection from "./child-selection/ChildSelection";
+import FinalPlacementApprovalDeclarations from "./final-placement-approval-declarations/FinalPlacementApprovalDeclarations";
+import FinanceAgreementCarer from "./finance-agreement-carer/FinanceAgreementCarer";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
 import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
 import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
@@ -112,7 +114,7 @@ export const placementStepData = [
   {
     id: 13,
     label: "Finance Agreement with Carer",
-    // component: <FinalDeRegistration />,
+    component: <FinanceAgreementCarer />,
     background: "linear-gradient(233deg, #CB236D 0%, #4C246D 100%)",
     color: "rgb(139,35,109)",
     // icon: AssessmentStageIcon
@@ -120,7 +122,7 @@ export const placementStepData = [
   {
     id: 14,
     label: "Final Placement Approval / Declarations",
-    // component: <FinalDeRegistration />,
+    component: <FinalPlacementApprovalDeclarations />,
     background: "linear-gradient(135deg, #F6830F 0%, #F6C30F 100%)",
     color: "rgb(246,163,15)",
     // icon: AssessmentStageIcon
