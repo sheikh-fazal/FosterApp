@@ -3,7 +3,16 @@ import DayLogForm from "@root/sections/foster-child/child-background-info/child-
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { useGetChildChronologyOfEventsUploadedDocumentsListQuery } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
+import {
+  useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
+  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery,
+  useGetChildChronologyOfEventsUploadedDocumentsListQuery,
+  usePostChildChronologyOfEventsUploadedDocumentsMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
+import { useRouter } from "next/router";
+import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 
 const BREADCRUMBS = [
   {
@@ -27,9 +36,49 @@ DayLog.getLayout = function getLayout(page: any) {
 };
 
 export default function DayLog() {
+  const router = useRouter();
+  const { id, action }: any = router.query;
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetChildChronologyOfEventsUploadedDocumentsListQuery();
+  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
+  console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data)
+  const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
+  const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
+  const deleteDocument = async (queryArg: any) => {
+    try {
+      await deleteUploadedDocument(queryArg);
 
+      enqueueSnackbar(`Document Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
+  const uploadDocumentsHandler = async (postData: any) => {
+  const formData = new FormData();
+    formData.append("documentType", postData.documentType);
+    formData.append("documentDate", postData.documentDate);
+    formData.append("documentPassword", postData.password);
+    formData.append("file", postData.chosenFile);
+    formData.append("formName", 'day_log');
+    formData.append("recordId", id)
+
+    // const updatedData = {
+    //   trainingProfileId: id,
+    //   data: formData,
+    // };
+
+    try {
+      const res: any = await postUploadedDocument({addDocumentCcRequestDto:formData}).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      console.log(error);
+
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
   return (
     <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documents"]}>
       <DayLogForm />
@@ -49,10 +98,15 @@ export default function DayLog() {
           "personUploaded",
           "documentPassword",
         ]}
-        modalData={() => {}}
+        // onDelete={}
+        onDelete={(data: any) => {
+          deleteDocument(data.id);
+        }}
+        modalData={(data: any) => uploadDocumentsHandler(data)}
         onPageChange={(page: any) => console.log("parent log", page)}
         currentPage={data?.data?.page}
         totalPages={data?.data?.pages}
+        disabled={!!id && (action === "add" || action === "edit") ? false : true}
       />
     </HorizaontalTabs>
   );

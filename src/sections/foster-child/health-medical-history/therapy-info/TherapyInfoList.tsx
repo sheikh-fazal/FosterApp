@@ -1,46 +1,73 @@
-import CustomTable from "@root/components/Table/CustomTable";
-import TableHeader from "@root/components/TableHeader";
-import { useTherapyInfoList } from "./useTherapyinfoList";
+import React, { useState } from "react";
+import { useTherapyInfoList } from "./useTherapyInfoList";
 import { Box } from "@mui/material";
+import TableHeader from "@root/components/TableHeader";
+import CustomTable from "@root/components/Table/CustomTable";
 
 const TherapyInfoList = () => {
-  const { therapyInfoTableColumns, tableHeaderRef, data, dataTable } =
-    useTherapyInfoList();
+  // const [tabelData, setTabelData] = useState([
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  // ]);
+  const {
+    tableHeaderRef,
+    columns,
+    data,
+    isLoading,
+    isSuccess,
+    isError,
+    isFetching,
+    setSearchValue,
+    setPage,
+    page,
+  } = useTherapyInfoList();
   return (
-    <>
-      <Box>
-        <TableHeader
-          ref={tableHeaderRef}
-          title="Child Therapy Info"
-          searchKey="search"
-          showAddBtn={true}
-          // onAdd={() => setOpenModal(true)}
-          //   onChanged={(data: any) => {
-          //     setSearchValue(data.search);
-          //     console.log("Updated params: ", data);
-          //   }}
-        />
-
-        <CustomTable
-          data={dataTable}
-          columns={therapyInfoTableColumns}
-          isLoading={false}
-          showSerialNo
-          isFetching={false}
-          isError={false}
-          isPagination={true}
-          isSuccess={true}
-          currentPage={data?.meta?.page ?? 1}
-          totalPages={data?.meta?.pages ?? 2}
-          //   onPageChange={(data: any) => {
-          //     setPage((page) => data - 1);
-          //   }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-        />
-      </Box>
-    </>
+    <Box>
+      <TableHeader
+        ref={tableHeaderRef}
+        title="Child Therapy Info "
+        searchKey="search"
+        showAddBtn={true}
+        onAdd={() => console.log("Test")}
+        onChanged={(data: any) => {
+          setSearchValue(data?.search);
+          console.log("Updated params: ", data);
+        }}
+      />
+      <CustomTable
+        data={data}
+        columns={columns}
+        isLoading={isLoading}
+        showSerialNo
+        isFetching={isFetching}
+        isError={isError}
+        isPagination={true}
+        isSuccess={isSuccess}
+        currentPage={page}
+        totalPages={10}
+        onPageChange={(data: any) => {
+          setPage(() => data);
+        }}
+        onSortByChange={(data: any) => {
+          // console.log("Sort by: ", data);
+          return;
+        }}
+      />
+    </Box>
   );
 };
 

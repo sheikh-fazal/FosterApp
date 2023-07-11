@@ -1,11 +1,17 @@
+import usePath from "@root/hooks/usePath";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
 import { useRouter } from "next/router";
 import { useRef } from "react";
+import { getColumnsCarerFamilySupportNetwork } from "./";
 
 export const useCarerFamilySupportNetworkTable = () => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+
+  const { makePath } = usePath();
+
+  const columnsCarerFamilySupportNetwork = getColumnsCarerFamilySupportNetwork(makePath);
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -19,6 +25,7 @@ export const useCarerFamilySupportNetworkTable = () => {
   const meta = data?.meta;
 
   return {
+    makePath,
     router,
     tableHeaderRef,
     isLoading,
@@ -30,5 +37,6 @@ export const useCarerFamilySupportNetworkTable = () => {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    columnsCarerFamilySupportNetwork
   };
 };

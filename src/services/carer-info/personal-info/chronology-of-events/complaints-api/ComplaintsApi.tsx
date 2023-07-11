@@ -33,7 +33,7 @@ export const complaintsApi = baseAPI.injectEndpoints({
         method: "PATCH",
         body: formData,
       }),
-      invalidatesTags: ["ALLEGATION_LIST"],
+      invalidatesTags: ["COMPLAINT_LIST"],
     }),
     deleteComplaintList: builder.mutation({
       query: (id: any) => ({
