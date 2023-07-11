@@ -1,4 +1,6 @@
 import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
+import CarerSelection from "./carer-selection/CarerSelection";
+import ChildSelection from "./child-selection/ChildSelection";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
 import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
 import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
@@ -13,15 +15,15 @@ export const placementStepData = [
   {
     id: 1,
     label: "Child Selection",
-    // component: <DeRegInitialRequest />,
+    component: <ChildSelection />,
     background: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
     color: "rgba(251, 55, 61, 1)",
-    // icon: CheckIcon
+    // icon: 
   },
   {
     id: 2,
     label: "Carer Selection",
-    // component: <DeregAssessmentStageCarer />,
+    component: <CarerSelection />,
     background: "linear-gradient(106.35deg, #1A202E 0%, #424E68 100%)",
     color: "rgb(46, 55, 75)",
     // icon: UnCheckIcon

@@ -1,49 +1,36 @@
 import { Box, Grid, Step, StepContent, StepLabel, Stepper, StepConnector } from "@mui/material";
 import { useMakePlacement } from "./useMakePlacement";
 import { ArrowDown } from "@root/assets/svg/arrowDown";
+import CountDownIcon from "../../../../assets/svg/placement/count-down.svg";
+import CloseIcon from "../../../../assets/svg/placement/close-icon.svg";
+import CheckIcon from "../../../../assets/svg/placement/check-icon.svg";
 import { placementStepData } from ".";
 import StepIconsButton from "./StepIconsButton";
+
 import Image from "next/image";
 
 const MakePlacement = () => {
   const { activeStep, handleStep } = useMakePlacement();
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper nonLinear orientation="vertical" activeStep={activeStep} sx={{ "& .MuiStepContent-root": { marginLeft: "36px" } }} connector={<StepConnector sx={{ marginLeft: "36px" }} />}>
+      <Stepper nonLinear orientation="vertical" activeStep={activeStep} sx={styles.stepperWrapper} connector={<StepConnector sx={styles.stepConnectorWrap} />}>
         {placementStepData.map((ele: any, index) => (
-          <Step key={ele.id} sx={{ display: "flex" }}>
-            <Grid container justifyContent={"space-between"} direction={"row"}>
-              <Grid item container xs={0.7}>
-                <StepLabel
-                  // onClick={handleStep(index)
-                  StepIconComponent={() => StepIconsButton(index, ele?.background)}
-                ></StepLabel>
-              </Grid>
-
+          <Step key={ele.id} >
+            <Grid container sx={{ justifyContent: { xl: "space-between", lg: "center", xs: "center" } }}>
+              <StepLabel
+                // onClick={handleStep(index)
+                StepIconComponent={() => StepIconsButton(index, ele?.background)}
+              ></StepLabel>
               <Grid
                 container
                 xs={11}
+                lg={11}
                 item
                 onClick={handleStep(index)}
-                sx={{
-                  background: ele?.background,
-                  width: "100%",
-                  fontWeight: 700,
-                  fontSize: 20,
-                  color: "white",
-                  p: 2,
-                  mt: 1,
-                  borderRadius: 3,
-                  boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-                  cursor: "pointer",
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
+                sx={styles.stepContent(ele)}
               >
                 {ele.label}
-                { activeStep !== index &&  <Image src={ele?.icon} alt="" /> }
+                <Image src={activeStep === index ? CountDownIcon : CloseIcon} alt="" />
                 <div
                   style={{
                     display: "flex",
@@ -70,25 +57,22 @@ const MakePlacement = () => {
                   </Box>
                 </div>
               </Grid>
-
-              <StepContent>
-                <Grid item container justifyContent={"end"} xs={12}>
-                  <Grid
-                    container
-                    justifyContent={"end"}
-                    item
-                    sm={11.25}
-                    xs={12}
-                    sx={{
-                      boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
-                    }}
-                  >
-                    {activeStep === index && ele.component}
-                  </Grid>
-
-                </Grid>
-              </StepContent>
             </Grid>
+            <StepContent>
+              <Grid container>
+              <Grid
+                item
+                xl={11.46}
+                md={11.6}
+                sm={11.6}
+                xs={11.6}
+                sx={styles.stepActiveContent}
+              >
+                {activeStep === index && ele.component}
+              </Grid>
+              </Grid>
+            </StepContent>
+
           </Step>
         ))}
       </Stepper>
@@ -96,3 +80,31 @@ const MakePlacement = () => {
   );
 };
 export default MakePlacement;
+
+const styles = {
+  stepperWrapper: { "& .MuiStepContent-root": { marginLeft: { xl: "36px", lg: "20px", xs: "20px" }, borderLeft: { xl: '1px solid #C4CDD5', lg: 'none', xs: "none" } }, },
+  stepConnectorWrap: { marginLeft: { xl: "36px !important", lg: "27px", xs: "27px" }, "& .MuiStepConnector-line": { borderLeft: { xl: '1px solid #C4CDD5', lg: 'none', xs: "none" } } },
+  stepContent: (ele: any) => ({
+    background: ele?.background,
+    width: "100%",
+    fontWeight: 700,
+    fontSize: 20,
+    color: "white",
+    px: 2.5,
+    py: 2,
+    mt: 1,
+    borderRadius: 3,
+    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
+    cursor: "pointer",
+    position: "relative",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  }),
+  stepActiveContent: {
+    boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
+    borderRadius: 3,
+    backgroundColor: "#fff",
+    marginLeft: { xl: "auto", lg: '0', xs: '0' }
+  }
+}
