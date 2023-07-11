@@ -4,8 +4,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import ContextualSafeguardingTable from "@root/sections/safeguarding/child-protection/contextual-safeguarding/ContextualSafeguardingTable";
-import AssessmentHistory from "@root/sections/safeguarding/child-protection/contextual-safeguarding/termination-assessment-history/AssessmentHistory";
-import RevisionAssessmentHistory from "@root/sections/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history/RevisionAssessmentHistory";
 
 const PAGE_TITLE = "Contextual Safeguarding List";
 
@@ -34,9 +32,7 @@ export default function ContextualSafeguarding() {
   return (
     <Page title={PAGE_TITLE}>
       <Box>
-        {/* <ContextualSafeguardingTable /> */}
-        <AssessmentHistory />
-        {/* <RevisionAssessmentHistory/> */}
+        <ContextualSafeguardingTable />
       </Box>
     </Page>
   );

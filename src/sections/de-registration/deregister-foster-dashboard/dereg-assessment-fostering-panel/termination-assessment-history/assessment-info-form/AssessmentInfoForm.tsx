@@ -34,7 +34,7 @@ const AssessmentInfoForm = ({ disabled }: any) => {
             </Button>
           )}
 
-          <Link href={""} style={{ textDecoration: "none" }}>
+          <Link href={"/de-registration/deregister-foster-carer/proposal-to-teminate"} style={{ textDecoration: "none" }}>
             <Button
               type="button"
               variant="contained"

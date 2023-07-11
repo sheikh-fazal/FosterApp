@@ -2,11 +2,12 @@ import React from "react";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { useRevisionInfoFrom } from "./useRevisionInfoFrom";
+import { useTerminationInfoForm } from "./useTerminationInfoForm";
 
-const RevisionInfo = ({ disabled }: any) => {
+
+const TerminationInfoForm = ({ disabled }: any) => {
   const { methods, formDataFeildData, handleSubmit, onSubmit } =
-    useRevisionInfoFrom();
+    useTerminationInfoForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -18,7 +19,6 @@ const RevisionInfo = ({ disabled }: any) => {
               disabled={disabled}
               size={"small"}
             >
-              {item.heading}
               {item.componentProps.select
                 ? item.options.map((option: any) => (
                     <option key={option.value} value={option.value}>
@@ -42,7 +42,10 @@ const RevisionInfo = ({ disabled }: any) => {
             </Button>
           )}
 
-          <Link href={""} style={{ textDecoration: "none" }}>
+          <Link
+            href={"/de-registration/deregister-foster-carer/proposal-to-teminate"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               type="button"
               variant="contained"
@@ -60,4 +63,4 @@ const RevisionInfo = ({ disabled }: any) => {
   );
 };
 
-export default RevisionInfo;
+export default TerminationInfoForm;

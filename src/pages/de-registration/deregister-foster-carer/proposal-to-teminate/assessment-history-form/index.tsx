@@ -4,10 +4,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import AssessmentInfoForm from "@root/sections/safeguarding/child-protection/contextual-safeguarding/termination-assessment-history/assessment-info-form/AssessmentInfoForm";
-import TerminationInfoForm from "@root/sections/safeguarding/child-protection/contextual-safeguarding/termination-assessment-history/termination-info-form/TerminationInfoForm";
+import AssessmentInfoForm from "@root/sections/de-registration/deregister-foster-dashboard/dereg-assessment-fostering-panel/termination-assessment-history/assessment-info-form/AssessmentInfoForm";
+import TerminationInfoForm from "@root/sections/de-registration/deregister-foster-dashboard/dereg-assessment-fostering-panel/termination-assessment-history/termination-info-form/TerminationInfoForm";
 
-const PAGE_TITLE = "Contextual Safeguarding List";
+const PAGE_TITLE = "De-Registration";
 
 AssessmentHistoryForm.getLayout = function getLayout(page: any) {
   return (
@@ -16,11 +16,11 @@ AssessmentHistoryForm.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Safeguarding Panel",
-          href: "/safeguarding",
+          name: "De-reg Assessment Stage 2",
+          href: "/de-registration/deregister-foster-carer/",
         },
         {
-          name: "Contextual Safeguarding",
+          name: "Assessment Form",
         },
       ]}
       title={PAGE_TITLE}

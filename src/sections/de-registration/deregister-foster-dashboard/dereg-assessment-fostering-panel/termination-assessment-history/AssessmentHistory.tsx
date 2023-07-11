@@ -1,9 +1,9 @@
-import React from "react";
-import { useRevisionAssessmentHistory } from "./useRevisionAssessmentHistory";
-import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import TableHeader from "@root/components/TableHeader";
+import React from "react";
+import { useAssessmentHistory } from "./useAssessmentHistory";
 
-const RevisionAssessmentHistory = () => {
+const AssessmentHistory = () => {
   const {
     tableHeaderRefTwo,
     router,
@@ -11,12 +11,12 @@ const RevisionAssessmentHistory = () => {
     TableData,
     theme,
     SELECT_FILTERS,
-  } = useRevisionAssessmentHistory();
+  } = useAssessmentHistory();
   return (
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
-        title="Revision Assessment to"
+        title="Assessment to"
         searchKey="search"
         showAddBtn
         selectFilters={SELECT_FILTERS}
@@ -24,7 +24,7 @@ const RevisionAssessmentHistory = () => {
         onAdd={() => {
           router.push({
             pathname:
-              "/safeguarding/child-protection/contextual-safeguarding/revision-assessment-history-form",
+              "/de-registration/deregister-foster-carer/proposal-to-teminate/assessment-history-form",
             query: { action: "add", id: "" },
           });
         }}
@@ -51,4 +51,4 @@ const RevisionAssessmentHistory = () => {
   );
 };
 
-export default RevisionAssessmentHistory;
+export default AssessmentHistory;
