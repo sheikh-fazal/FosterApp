@@ -1,20 +1,35 @@
 import { useTheme } from "@mui/material";
 import { DeRegStagePostingPanelData } from "./index";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 export const useDeregAssessmentFosteringPanel: any = () => {
-  const [deRegisterData, setDeRegisterData] = useState(DeRegStagePostingPanelData);
+  const [deRegisterData, setDeRegisterData] = useState(
+    DeRegStagePostingPanelData
+  );
   const theme: any = useTheme();
   const [openIdForInfo, setOpenIdForInfo] = useState<any>();
   const [formDialogId, setFormDialogId] = useState<any>();
-  const [openSocialWorkerAsessmentDialogbox, setOpenSocialWorkerAssessmentDialogbox] = useState(false);
+  const [
+    openSocialWorkerAsessmentDialogbox,
+    setOpenSocialWorkerAssessmentDialogbox,
+  ] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % 2);
   };
-
-  const handleSlide = () => {};
+  const route = useRouter();
+  const handleSlide = () => {
+   
+    if (currentIndex === 0) {
+      route.push(
+        "/de-registration/deregister-foster-carer/proposal-to-teminate"
+      );
+    } else {
+      route.push("/de-registration/deregister-foster-carer/proposal-to-revise");
+    }
+  };
 
   return {
     theme,
@@ -31,6 +46,6 @@ export const useDeregAssessmentFosteringPanel: any = () => {
     currentIndex,
     setCurrentIndex,
     goToNextSlide,
-    handleSlide
+    handleSlide,
   };
 };
