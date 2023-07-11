@@ -4,7 +4,7 @@ import RHFSelectWithCheckbox from "./SelectWithCheckbox";
 import * as Yup from "yup";
 
 export const initialValues = {
-  meetingDate: "",
+  meetingDate: new Date(),
   meetingAttendees: "",
   meetingAgenda: "",
   meetingActions: "",
@@ -14,7 +14,7 @@ export const initialValues = {
 };
 
 export const validationSchema = Yup.object().shape({
-  meetingDate: Yup.string().required("Field is required"),
+  meetingDate: Yup.date().required("Field is required"),
   meetingAttendees: Yup.string().required("Field is required"),
   meetingAgenda: Yup.string().required("Field is required"),
   meetingActions: Yup.string().required("Field is required"),
