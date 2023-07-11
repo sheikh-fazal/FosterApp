@@ -13,13 +13,13 @@ const EndPlacement = () => {
   return (
     <Card sx={styles.card}>
       <TableHeader
-        title="Child Discharge"
+        title="End Placement"
         rootSX={{ overflowX: "scroll" }}
         searchKey="search"
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         showAddBtn
-        onAdd={() => router.push("/placement/discharge/form")}
+        onAdd={() => router.push("/placement/end/form")}
         onChanged={(data: any) => {
           console.log("Updated params: ", data);
         }}
