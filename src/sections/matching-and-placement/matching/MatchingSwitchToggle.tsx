@@ -12,6 +12,8 @@ import router from "next/router";
 const MatchingSwitchToggle = ({ selectValueFosterCarerOrChild }: any) => {
   const { onSubmit, methods, handleSubmit } = useMatching();
 
+  
+
   return (
     <Grid lg={12} xs={12}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -36,14 +38,20 @@ const MatchingSwitchToggle = ({ selectValueFosterCarerOrChild }: any) => {
         </Box>
         <Grid item xs={12} mt={2}>
           <Box sx={styles.buttonBox}>
+        
             <LoadingButton
               sx={{ marginRight: "1rem" }}
               type="submit"
               variant="contained"
-              onClick={() => router.push(`${router.pathname}/recommondations-result`)}
+              // onClick={() => router.push(`${router.pathname}/recommondations-result`)}
+              onClick={() => router.push({
+                pathname: `${router.pathname}/recommondations-result`,
+                query: { viewParam:`${selectValueFosterCarerOrChild === 'fosterCarer' ? "view carer" : "view child"}`}
+              })}
             >
-              Find Match
+                Find Match
             </LoadingButton>
+
           </Box>
         </Grid>
       </FormProvider>

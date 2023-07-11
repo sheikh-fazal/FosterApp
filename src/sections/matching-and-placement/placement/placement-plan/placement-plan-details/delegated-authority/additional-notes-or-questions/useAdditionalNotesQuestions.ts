@@ -5,7 +5,7 @@ export const useAdditionalNotesQuestions = () => {
 
   const router = useRouter();
   const { query } = router;
-
+  const disabled = query.action === 'view' ? true : false
   const [noteValue, setNoteValue] = useState('');
 
   const handleBack = () => router.push({ pathname: '/placement/placement-plan/placement-plan-details', query })
@@ -15,6 +15,7 @@ export const useAdditionalNotesQuestions = () => {
   return {
     noteValue,
     handleChange,
-    handleBack
+    handleBack,
+    disabled
   }
 }

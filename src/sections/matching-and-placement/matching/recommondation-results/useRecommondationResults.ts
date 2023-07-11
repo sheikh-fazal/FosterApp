@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
-import { recommondationResultsDetail, recommondationResultsData } from '.';
+import { recommondationResultsViewCarerDetail, recommondationResultsCarerData,recommondationResultsChildData ,recommondationResultsViewChildDetail } from '.';
 import { useRouter } from 'next/router';
 
 export const useRecommondationResults = () => {
-    const router = useRouter()
+    const router = useRouter();
+    const paramValue = router.query.paramName;
+    const {query}:any = useRouter() 
+    const queryValue = query?.viewParam;
     const [selectedCard, setSelectedCard] = useState(null);
-    const [filteredDetailData, setFilteredDetailData] = useState(recommondationResultsDetail);
+    const [filteredViewCarerDetailData, setFilteredViewCarerDetailData] = useState(recommondationResultsViewCarerDetail);
+    const [filteredViewChildCarerDetailData, setFilteredViewChildCarerDetailData] = useState(recommondationResultsViewChildDetail);
     const handleChangeType = (type: any) => {
         setSelectedCard(type);
-        const filteredData: any = recommondationResultsDetail.filter(item => item.type === type);
-        setFilteredDetailData(filteredData);
+        const filteredData: any = (queryValue ==="view carer"?recommondationResultsViewCarerDetail:recommondationResultsViewChildDetail).filter(item => item.type === type);
+        setFilteredViewCarerDetailData(filteredData);
+        setFilteredViewChildCarerDetailData(filteredData);
         console.log("type is ", type)
     }
     return {
-        selectedCard, setSelectedCard, filteredDetailData, setFilteredDetailData, handleChangeType, recommondationResultsData, router
+        selectedCard, setSelectedCard, filteredViewCarerDetailData, setFilteredViewCarerDetailData, handleChangeType, recommondationResultsCarerData,recommondationResultsChildData,
+         router,paramValue,queryValue
+,filteredViewChildCarerDetailData, setFilteredViewChildCarerDetailData
     }
 
 
