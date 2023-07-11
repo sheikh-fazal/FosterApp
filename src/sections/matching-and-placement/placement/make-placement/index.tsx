@@ -1,5 +1,7 @@
+import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
 import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
+import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
 import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBeforeTable";
 import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDurationTable";
 import { SelectLASW } from "./select-la-sw";
@@ -83,7 +85,7 @@ export const placementStepData = [
   {
     id: 10,
     label: "Placement Special Needs agreement",
-    // component: <FinalDeRegistration />,
+    component: <PlacementSpecialNeedsAgreementTable/>,
     background: "linear-gradient(135deg, #F6460F 0%, #FE2B5E 100%)",
     color: "rgb(250,56,54)",
     // icon: AssessmentStageIcon
@@ -91,7 +93,7 @@ export const placementStepData = [
   {
     id: 11,
     label: "Finance Agreement with  Local Authority",
-    // component: <FinalDeRegistration />,
+    component: <FinanceAgreementLocalAuthorityTable/>,
     background: "linear-gradient(90deg, #2CB764 0%, #0E918C 100%)",
     color: "rgb(29,164,120)",
     // icon: AssessmentStageIcon
