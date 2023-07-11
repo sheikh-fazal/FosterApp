@@ -1,25 +1,33 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { SchoolDetailInfoFormSchema, defaultValues } from ".";
-import { usePostSchoolDetailInfoApiMutation } from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
+import { usePostSchoolDetailInfoApiMutation,useGetSchoolDetailInfoByIdQuery } from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export const useSchoolDetailInfoForm = () => {
+  const router = useRouter();
+  const {data}=useGetSchoolDetailInfoByIdQuery(router?.query?.schoolInfoId,{skip:!!!router?.query?.schoolInfoId})
   const [postData, { isError, isSuccess, isLoading }] =
     usePostSchoolDetailInfoApiMutation();
-  const router = useRouter();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(SchoolDetailInfoFormSchema),
-    defaultValues: defaultValues,
+    defaultValues
   });
 
   const {
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = methods;
-
+useEffect(()=>{
+  reset((formValues: any) => ({
+    ...formValues,
+    ...data?.data,
+  }));
+},[data, reset])
   const onSubmit = async (data: any) => {
     console.log("onSubmit", data);
     try {

@@ -21,17 +21,27 @@ export const contactApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
-    getCarerFamilyById: builder.query({
-      query: (id) => `/carer-Info/personal-info/carer-family/${id}`,
-      providesTags: (result) => generalTags(result?.faimly_details, TAG),
+    getSchoolDetailInfoById: builder.query({
+      query: (id) => `/school-info/${id}`,
     }),
-    putCarerFamilyById: builder.mutation<null, void>({
+    putSchoolDetailInfoById: builder.mutation<null, void>({
       query: (data: any) => {
         const { id, ...body } = data;
         return {
-          url: `/carer-Info/personal-info/carer-family/${id}`,
-          method: "PUT",
+          url: `/school-info/${id}`,
+          method: "PATCH",
           body,
+        };
+      },
+      invalidatesTags: [TAG],
+    }),
+    deleteSchoolDetailInfoById: builder.mutation<null, void>({
+      query: (data: any) => {
+        const { id } = data;
+        return {
+          url: `/school-info/${id}`,
+          method: "DELETE",
+          
         };
       },
       invalidatesTags: [TAG],
@@ -42,6 +52,7 @@ export const contactApi = baseAPI.injectEndpoints({
 export const {
   useGetSchoolDetailInfoTableApiQuery,
   usePostSchoolDetailInfoApiMutation,
-  useGetCarerFamilyByIdQuery,
-  usePutCarerFamilyByIdMutation,
+  useGetSchoolDetailInfoByIdQuery,
+  usePutSchoolDetailInfoByIdMutation,
+  useDeleteSchoolDetailInfoByIdMutation,
 } = contactApi;

@@ -95,15 +95,15 @@ export const SchoolDeatilInfoFormData = [
 
 export const defaultValues = {
   schoolName: "",
-  buildingNo: "",
+  buildingName: "",
   street: "",
   city: "",
   county: "",
   country: "",
   postalCode: "",
   telephoneNumber: "",
-  mobileNumber: "",
-  faxNumber: "",
+  mobile: "",
+  fax: "",
   email: "",
   principalName: "",
 };

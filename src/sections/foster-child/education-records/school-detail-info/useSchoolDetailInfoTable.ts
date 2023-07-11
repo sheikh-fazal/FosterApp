@@ -1,4 +1,4 @@
-import { useGetSchoolDetailInfoTableApiQuery } from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
+import { useGetSchoolDetailInfoTableApiQuery,useDeleteSchoolDetailInfoByIdMutation } from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -18,6 +18,7 @@ export const useSchoolDetailInfoTable = () => {
       params,
       fosterChildId: router?.query?.fosterChildId,
     });
+const [postData]=useDeleteSchoolDetailInfoByIdMutation();
 
   const family = data?.data;
   const meta = data?.meta;
@@ -37,5 +38,6 @@ export const useSchoolDetailInfoTable = () => {
     isSuccess,
     meta,
     pageChangeHandler,
+    postData
   };
 };
