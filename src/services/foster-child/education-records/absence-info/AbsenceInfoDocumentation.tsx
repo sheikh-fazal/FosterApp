@@ -29,7 +29,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
         url: `/foster-child/child-absence-info/document//${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["ABSENCE_INFO"],
+      invalidatesTags: ["ABSENCE_INFO"], 
     }),
   }),
 });
