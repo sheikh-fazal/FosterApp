@@ -9,6 +9,7 @@ import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-pl
 import { SelectLASW } from "./select-la-sw";
 import { SelectPlacementType } from "./select-placement-type";
 import { SelectSupervisingSocialWorker } from "./select-supervising-social-worker";
+import PlacementAgreementCarerTable from "./placement-agreement-with-carer/PlacementAgreementCarerTable";
 
 
 export const placementStepData = [
@@ -103,7 +104,7 @@ export const placementStepData = [
   {
     id: 12,
     label: "Placement Agreement  with Carer",
-    // component: <FinalDeRegistration />,
+    component: <PlacementAgreementCarerTable/>,
     background: "linear-gradient(135deg, #0A6460 0%, #23E0D9 100%)",
     color: "rgb(20,164,157)",
     // icon: AssessmentStageIcon

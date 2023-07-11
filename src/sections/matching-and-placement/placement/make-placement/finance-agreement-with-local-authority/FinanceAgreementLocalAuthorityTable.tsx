@@ -15,7 +15,7 @@ const FinanceAgreementLocalAuthorityTable = () => {
 
   return (
     <Grid container >
-      <Grid item xs={12}>
+      <Grid item xs={12} mt={2}>
 
        <TableHeader
         title="Placement Special Needs Agreement"
@@ -34,7 +34,7 @@ const FinanceAgreementLocalAuthorityTable = () => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          rootSX={{ my: theme.spacing(2) }}
+          rootSX={{ my: theme.spacing(2),p:1.5 }}
 
         />
       </Grid>

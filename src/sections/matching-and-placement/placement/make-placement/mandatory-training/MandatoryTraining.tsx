@@ -5,35 +5,35 @@ import {Mandatorydata } from '.';
 import { useMandatoryTraining } from './useMandatoryTraining';
 import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
+import MandatoryModal from './Modal/MandatoryModal';
 
 
 
 
 const MandatoryTraining = () => {
-  const {tableHeaderRef, MandatoryTrainingColumns,theme,
-    IsOpenTrainingClockModal,
-    setIsOpenTrainingClockModal,
+  const {MandatoryTrainingColumns,theme,
+    IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType,
   } = useMandatoryTraining()
 
 
   return (
     <Grid container >
-      <Grid item xs={12}>
-        {/* <TrainingClockEngineModal
+      <Grid item xs={12} mt={2}>
+      <MandatoryModal
           title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
-          open={IsOpenTrainingClockModal}
-          handleClose={() => setIsOpenTrainingClockModal(false)}
+          open={IsOpenMandatoryModal}
+          handleClose={() => setIsOpenMandatoryModal(false)}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
           CancelBtnText="Cancel"
         
-        /> */}
+        />
        <TableHeader
         // ref={tableHeaderRef}
         title="Placement Meeting Record"
         // disabled={props.disabled}
         showAddBtn
         hideSearch
-        onAdd={''}
+        onAdd={()=>setIsOpenNotificationModal(true)}
       />
         <CustomTable
           data={Mandatorydata}
@@ -46,7 +46,7 @@ const MandatoryTraining = () => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          rootSX={{ my: theme.spacing(2) }}
+          rootSX={{ my: theme.spacing(2), p:1.5}}
 
         />
       </Grid>

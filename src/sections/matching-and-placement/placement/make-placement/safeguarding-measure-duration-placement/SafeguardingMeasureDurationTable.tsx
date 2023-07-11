@@ -18,7 +18,7 @@ const SafeguardingMeasureDurationTable = () => {
 
   return (
     <Grid container >
-      <Grid item xs={12}>
+      <Grid item xs={12} mt={1}>
         {/* <TrainingClockEngineModal
           title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
           open={IsOpenTrainingClockModal}
@@ -39,7 +39,7 @@ const SafeguardingMeasureDurationTable = () => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          rootSX={{ my: theme.spacing(2) }}
+          rootSX={{ my: theme.spacing(2) ,p:1.5}}
 
         />
       </Grid>

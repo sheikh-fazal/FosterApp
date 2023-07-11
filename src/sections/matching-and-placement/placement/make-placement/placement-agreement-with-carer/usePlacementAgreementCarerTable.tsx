@@ -1,10 +1,10 @@
-import { Box, Checkbox, FormControlLabel, TableCell, useTheme } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, useTheme } from "@mui/material";
 import Image from "next/image";
 
-export const usePlacementSpecialNeedsAgreementTable = () => {
+export const usePlacementAgreementCarerTable = () => {
   const theme: any = useTheme();
 
-  const FinanceAgreementLocalAuthorityColumns = [
+  const PlacementAgreementCarerTableColumns = [
     {
       accessorFn: (row: any) => row.placementAgreementReceipts,
       id: "placementAgreementReceipts",
@@ -12,7 +12,7 @@ export const usePlacementSpecialNeedsAgreementTable = () => {
       header: () => <span>Placement Agreement/Receipts</span>,
     },
     {
-      accessorFn: (row: any) =>  <Box sx={styles.ImgBoxStyled}><Image src={row.policy} alt="Document Icon " /></Box> ,
+      accessorFn: (row: any) =><Box sx={styles.ImgBoxStyled}>  <Image src={row.policy} alt="Document Icon " /></Box>,
       id: "policy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Policy</span>,
@@ -24,22 +24,17 @@ export const usePlacementSpecialNeedsAgreementTable = () => {
       header: () => <span>Date Approved</span>,
     },
     {
-      accessorFn: (row: any) => row.agencyApprovedByRole,
-      id: "agencyApprovedByRole",
+      accessorFn: (row: any) => row.approvedByRole,
+      id: "approvedByRole",
       cell: (info: any) => info.getValue(),
-      header: () => <span> Agency Approved by (Role)</span>,
+      header: () => <span> Approved by (Role)</span>,
     },
-    {
-      accessorFn: (row: any) => row.LaApprovedByRole,
-      id: "LaApprovedByRole",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>LA Approved by (Role)</span>,
-    },
+
     {
       id: 'digitalSignature',
       header: () => <span>Digital Signature</span>,
       cell: ({ row, table }: any) => (
-          <Box sx={{display:'flex',justifyContent:"start",alignItems:'start',marginLeft:'80px'}}>
+          <Box sx={{display:'flex',justifyContent:"start",alignItems:'start',marginLeft:'10rem'}}>
               <FormControlLabel 
                   control={
                       <Checkbox  
@@ -57,11 +52,10 @@ export const usePlacementSpecialNeedsAgreementTable = () => {
   ];
 
   return {
-    FinanceAgreementLocalAuthorityColumns,
+    PlacementAgreementCarerTableColumns,
     theme,
   };
 };
-
 // style
 const styles = {
   ImgBoxStyled: { 

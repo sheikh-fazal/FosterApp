@@ -1,36 +1,31 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
 import { Grid } from "@mui/material";
-import {safeguardingMeasureData } from '.';
-import { useSafeguardingMeasureBeforeTable } from './useSafeguardingMeasureBeforeTable';
+import { PlacementAgreementCarerData } from '.';
+import { usePlacementAgreementCarerTable } from './usePlacementAgreementCarerTable';
 import { LoadingButton } from '@mui/lab';
+import TableHeader from "@root/components/TableHeader";
 
 
 
 
-
-const SafeguardingMeasureBeforeTable = () => {
-  const {tableHeaderRef, safeguardingMeasureColumns,theme,
-    IsOpenTrainingClockModal,
-    setIsOpenTrainingClockModal,
-  } = useSafeguardingMeasureBeforeTable()
+const PlacementAgreementCarerTable = () => {
+  const {PlacementAgreementCarerTableColumns,theme} = usePlacementAgreementCarerTable()
 
 
   return (
     <Grid container >
-      <Grid item xs={12} mt={1}>
-        {/* <TrainingClockEngineModal
-          title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
-          open={IsOpenTrainingClockModal}
-          handleClose={() => setIsOpenTrainingClockModal(false)}
-          SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
-          CancelBtnText="Cancel"
-        
-        /> */}
+      <Grid item xs={12} mt={2}>
 
+       <TableHeader
+        title="Placement Special Needs Agreement"
+        showAddBtn
+        hideSearch
+        onAdd={''}
+      />
         <CustomTable
-          data={safeguardingMeasureData}
-          columns={safeguardingMeasureColumns}
+          data={PlacementAgreementCarerData}
+          columns={PlacementAgreementCarerTableColumns}
           isLoading={false}
           isFetching={false}
           isError={false}
@@ -59,4 +54,4 @@ const SafeguardingMeasureBeforeTable = () => {
   )
 }
 
-export default SafeguardingMeasureBeforeTable
+export default PlacementAgreementCarerTable
