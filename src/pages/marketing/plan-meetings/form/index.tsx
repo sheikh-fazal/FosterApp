@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import MarketingPlanMeetings from "@root/sections/marketing/marketing-plan-meetings/MarketingPlanMeetings";
+import MarketingPlanMeetingForm from "@root/sections/marketing/marketing-plan-meetings/form/MarketingPlanMeetingForm";
 
 const PAGE_TITLE = "Marketing Plan Meetings";
 
-MarketingPlanMeetingLayout.getLayout = function getLayout(page: any) {
+MarketingPlanMeetingLayoutForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -32,8 +32,8 @@ MarketingPlanMeetingLayout.getLayout = function getLayout(page: any) {
 };
 // ----------------------------------------------------------------------
 
-export default function MarketingPlanMeetingLayout() {
+export default function MarketingPlanMeetingLayoutForm() {
   return <Page title={PAGE_TITLE}>
-    <MarketingPlanMeetings />
+    <MarketingPlanMeetingForm />
   </Page>;
 }
