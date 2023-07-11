@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import dayjs from "dayjs";
 import { useState } from "react";
-import { useDeleteAbsenceInfoUploadDocumentMutation, useGetAbsenceInfoDocumentQuery, usePostAbsenceInfoUploadDocumentMutation } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentation";
+import {
+  useDeleteAbsenceInfoUploadDocumentMutation,
+  useGetAbsenceInfoDocumentQuery,
+  usePostAbsenceInfoUploadDocumentMutation,
+} from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentationAPI";
 
 export const useAbsenceInfoDocument = () => {
   const router = useRouter();
@@ -10,23 +14,22 @@ export const useAbsenceInfoDocument = () => {
   const [page, setPage] = useState(0);
   console.log(router?.asPath.split("/").pop());
 
-  const childFamilyOrgInfoId = {
-    childFamilyOrgInfoId:
-      router?.query?.family_person_id || "  ",
+  const childAbsenceInfoId = {
+    childAbsenceInfoId: router?.query?.absence_info_id || "  ",
     offset: page,
     limit: 10,
     search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
-  useGetAbsenceInfoDocumentQuery(childFamilyOrgInfoId);
+    useGetAbsenceInfoDocumentQuery(childAbsenceInfoId);
   const [postAbsenceInfoUploadDocument] =
-  usePostAbsenceInfoUploadDocumentMutation();
+    usePostAbsenceInfoUploadDocumentMutation();
 
   console.log(data);
 
   const submitAbsenceInfoDocumentData = async (data: any) => {
-    if (!router?.query?.family_person_id) {
+    if (!router?.query?.absence_info_id) {
       return enqueueSnackbar("Please Fill the Form First", {
         variant: "error",
       });
@@ -42,7 +45,7 @@ export const useAbsenceInfoDocument = () => {
     documentFormData.append("chooseFiles", data.chosenFile);
 
     const apiDataParameter = {
-      childFamilyOrgInfoId: router?.query?.family_person_id,
+      childAbsenceInfoId: router?.query?.absence_info_id,
       body: documentFormData,
     };
     try {
@@ -77,6 +80,14 @@ export const useAbsenceInfoDocument = () => {
   };
 
   return {
-    data, isLoading, isFetching, isError, isSuccess, submitAbsenceInfoDocumentData, setSearchValue
+    data,
+    isLoading,
+    isFetching,
+    isError,
+    isSuccess,
+    setPage,
+    submitAbsenceInfoDocumentData,
+    setSearchValue,
+    listDeleteHandler,
   };
 };

@@ -8,7 +8,8 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAbsenceInfoForm } from "./useAbsenceInfoForm";
 import { LoadingButton } from "@mui/lab";
 import IsFetching from "@root/components/loaders/IsFetching";
-function AbsenceInfoForm(props: any) {
+
+export default function AbsenceInfoForm(props: any) {
   const { action, id } = props;
   //Allegation Custom Hook
   const {
@@ -18,7 +19,7 @@ function AbsenceInfoForm(props: any) {
     handleSubmit,
     methods,
     absenceInfoFormData,
-  } = useAbsenceInfoForm(action, id);
+  } = useAbsenceInfoForm(props);
 
   // if (isLoading) return <SkeletonFormdata />;
   return (
@@ -102,4 +103,3 @@ function AbsenceInfoForm(props: any) {
   );
 }
 
-export default AbsenceInfoForm;

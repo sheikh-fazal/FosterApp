@@ -11,11 +11,12 @@ import { defaultValues, formSchema, absenceInfoFormData } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { log } from "console";
-export const useAbsenceInfoForm = (action: any, id: any) => {
+export const useAbsenceInfoForm = (props:any) => {
   const router = useRouter();
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
+  const { disabled, defaultValues } = props;
   //API For Getting Single Details
   // const [getAllegationList] = useLazySingleAllegetionListQuery();
   //API For Posting Allegation Form

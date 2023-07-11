@@ -5,6 +5,15 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of Abence Info Document
     getAbsenceInfoDocument: builder.query<null, object>({
+      query: ({ childAbsenceInfoId }: any) => ({
+        url: `/foster-child/child-absence-info/document/list/${childAbsenceInfoId}`,
+        method: "GET",
+      }),
+      providesTags: ["ABSENCE_INFO"],
+    }),
+
+    // Get API of Abence Info Document By Id
+    getAbsenceInfoDocumentById: builder.query<null, object>({
       query: ({ childAbsenceInfoDocId }: any) => ({
         url: `/foster-child/child-absence-info/document/${childAbsenceInfoDocId}`,
         method: "GET",
@@ -26,16 +35,17 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
     // Delete API of Abence Info Document
     deleteAbsenceInfoUploadDocument: builder.mutation({
       query: (id: any) => ({
-        url: `/foster-child/child-absence-info/document//${id}`,
+        url: `/foster-child/child-absence-info/document/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["ABSENCE_INFO"], 
+      invalidatesTags: ["ABSENCE_INFO"],
     }),
   }),
 });
 
 export const {
   useGetAbsenceInfoDocumentQuery,
+  useGetAbsenceInfoDocumentByIdQuery,
   usePostAbsenceInfoUploadDocumentMutation,
   useDeleteAbsenceInfoUploadDocumentMutation,
 } = AbsenceInfoUploadDocumentsAPI;

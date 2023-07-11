@@ -5,6 +5,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 // Constants
 const BREADCRUMBS = [
   {
@@ -39,8 +40,11 @@ export default function AbsenceInfoFormLayout() {
   return (
     <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
       <AbsenceInfoForm action={action} id={id} />
+
+    <AbsenceInfoDocument />
+
       {/* <UploadedDocumentsTable /> */}
-      <UploadDocuments
+      {/* <UploadDocuments
         readOnly={true}
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
@@ -65,7 +69,7 @@ export default function AbsenceInfoFormLayout() {
         onPageChange={(page: any) => console.log("parent log", page)}
         currentPage={"1"}
         totalPages={"1"}
-      />
+      /> */}
     </HorizaontalTabs>
   );
 }
