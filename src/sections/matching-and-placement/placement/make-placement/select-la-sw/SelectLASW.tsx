@@ -1,31 +1,30 @@
 import React from "react";
-import { Grid} from "@mui/material";
+import {  Grid  } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { SelectPlacementData } from ".";
-import useSelectPlacementType from "./useSelectPlacementType";
+import { SelectLaSwData } from ".";
+import useSelectSupervisingSocialWorker from "./useSelectLASW";
 import { LoadingButton } from "@mui/lab";
 
-const SelectPlacementType = ({ disabled }: any) => {
-  const { onSubmit, methods, handleSubmit, theme } = useSelectPlacementType();
+const SelectLASW = ({ disabled }: any) => {
+  const { onSubmit, methods, handleSubmit, theme } = useSelectSupervisingSocialWorker();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container >
-        {SelectPlacementData?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id} mt={5} pl={2.5} pr={2.5}>
+        {SelectLaSwData?.map((item: any) => (
+          <Grid item xs={12} md={item?.md}  key={item?.id} mt={5} pl={2.5} pr={2.5}>
               <item.component
                 {...item.componentProps}
                 disabled={disabled}
                 size={"small"}
               >
-                {item.componentProps.select
-                  ? item.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
-                  : null}
-                {item?.heading}
+                {item.otherOptions?.select
+                    ? item.options?.map((option: any) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
+                    : null}
               </item.component>
          
           </Grid>
@@ -35,7 +34,6 @@ const SelectPlacementType = ({ disabled }: any) => {
             type="submit"
             sx={{
               bgcolor: theme.palette.primary.main,
-              "&:hover": {},
             }}
             variant="contained"
             // loading={isfatching}
@@ -47,4 +45,4 @@ const SelectPlacementType = ({ disabled }: any) => {
     </FormProvider>
   );
 };
-export default SelectPlacementType;
+export default SelectLASW;

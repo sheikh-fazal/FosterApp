@@ -1,18 +1,18 @@
 import React from "react";
-import { Grid} from "@mui/material";
+import {  Grid  } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { SelectPlacementData } from ".";
-import useSelectPlacementType from "./useSelectPlacementType";
+import { SelectSupervisingSocialWorkerData } from ".";
+import useSelectSupervisingSocialWorker from "./useSelectSupervisingSocialWorker";
 import { LoadingButton } from "@mui/lab";
 
-const SelectPlacementType = ({ disabled }: any) => {
-  const { onSubmit, methods, handleSubmit, theme } = useSelectPlacementType();
+const SelectSupervisingSocialWorker = ({ disabled }: any) => {
+  const { onSubmit, methods, handleSubmit, theme } = useSelectSupervisingSocialWorker();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container >
-        {SelectPlacementData?.map((item: any) => (
-          <Grid item xs={12} md={item?.md} key={item?.id} mt={5} pl={2.5} pr={2.5}>
+        {SelectSupervisingSocialWorkerData?.map((item: any) => (
+          <Grid item xs={12} md={item?.md}  key={item?.id} mt={5} pl={2.5} pr={2.5}>
               <item.component
                 {...item.componentProps}
                 disabled={disabled}
@@ -47,4 +47,4 @@ const SelectPlacementType = ({ disabled }: any) => {
     </FormProvider>
   );
 };
-export default SelectPlacementType;
+export default SelectSupervisingSocialWorker;

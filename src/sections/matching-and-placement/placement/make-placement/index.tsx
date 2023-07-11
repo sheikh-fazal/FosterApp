@@ -1,5 +1,10 @@
+import MandatoryTraining from "./mandatory-training/MandatoryTraining";
+import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
+import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBeforeTable";
+import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDurationTable";
+import { SelectLASW } from "./select-la-sw";
 import { SelectPlacementType } from "./select-placement-type";
-
+import { SelectSupervisingSocialWorker } from "./select-supervising-social-worker";
 
 
 export const placementStepData = [
@@ -30,7 +35,7 @@ export const placementStepData = [
   {
     id: 4,
     label: "Select Supervising Social Worker",
-    // component: <DeregContractsAgreements />,
+    component: <SelectSupervisingSocialWorker/>,
     background: "linear-gradient(90deg, #2CB764 0%, #0E918C 100%)",
     color: "rgb(29, 164, 120)",
     // icon: UnCheckIcon
@@ -38,7 +43,7 @@ export const placementStepData = [
   {
     id: 5,
     label: "Select LA SW",
-    // component: <FinalDeRegistration />,
+    component: <SelectLASW/>,
     background: "linear-gradient(135deg, #0A6460 0%, #23E0D9 100%)",
     color: "rgb(14, 163, 154, 1)",
     // icon: AssessmentStageIcon
@@ -46,7 +51,7 @@ export const placementStepData = [
   {
     id: 6,
     label: "Safeguarding Measure ( Before Placement )",
-    // component: <FinalDeRegistration />,
+    component: <SafeguardingMeasureBeforeTable/>,
     background: "linear-gradient(135deg, #134E5E 0%, #71B280 100%)",
     color: "rgb(67, 129, 114)",
     // icon: AssessmentStageIcon
@@ -54,7 +59,7 @@ export const placementStepData = [
   {
     id: 7,
     label: "Safeguarding Measure ( During Placement )",
-    // component: <FinalDeRegistration />,
+    component: <SafeguardingMeasureDurationTable/>,
     background: "linear-gradient(135deg, #1A202E 0%, #424E68 100%)",
     color: "rgb(46, 55, 75)",
     // icon: AssessmentStageIcon
@@ -62,7 +67,7 @@ export const placementStepData = [
   {
     id: 8,
     label: "Mandatory Training",
-    // component: <FinalDeRegistration />,
+    component: <MandatoryTraining/>,
     background: "linear-gradient(135deg, #4B79A1 0%, #283E51 100%)",
     color: "rgb(57, 90, 122)",
     // icon: AssessmentStageIcon
@@ -70,7 +75,7 @@ export const placementStepData = [
   {
     id: 9,
     label: "Placement Meeting record",
-    // component: <FinalDeRegistration />,
+    component: <PlacementMeetingRecordTable/>,
     background: "linear-gradient(143deg, #F6830F 0%, #DC3545 100%)",
     color: "rgb(233,93,42)",
     // icon: AssessmentStageIcon
