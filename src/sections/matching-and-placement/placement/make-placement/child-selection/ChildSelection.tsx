@@ -34,38 +34,36 @@ const ChildSelection = () => {
         },
     ];
     return (
-        <Box>
-            <FormProvider methods={methods}>
-                <Box sx={styles.collapseWrapper}>
-                    <Box sx={styles.searchWrap}>
-                        <RHFTextField
-                            name="selectFosterCarerPendingPayment"
-                            label="Select the Foster Child (Pending Placement)"
-                            size="small"
-                        />
-                        <Button type="submit" sx={styles.button}>Search</Button>
-                    </Box>
-                    <Box sx={{ pt: 2 }}>
-                        <CustomTable
-                            data={childSelectionData}
-                            columns={columns}
-                            isLoading={false}
-                            isFetching={false}
-                            isError={false}
-                            isSuccess={true}
-                            currentPage={1}
-                            onPageChange={(data: any) => {
-                                console.log("Current page data: ", data);
-                            }}
-                            onSortByChange={(data: any) => {
-                                console.log("Sort by: ", data);
-                            }}
-                            rootSX={{ my: theme.spacing(2) }}
-                        />
-                    </Box>
+        <FormProvider methods={methods}>
+            <Box sx={styles.collapseWrapper}>
+                <Box sx={styles.searchWrap}>
+                    <RHFTextField
+                        name="selectFosterCarerPendingPayment"
+                        label="Select the Foster Child (Pending Placement)"
+                        size="small"
+                    />
+                    <Button type="submit" sx={styles.button}>Search</Button>
                 </Box>
-            </FormProvider>
-        </Box>
+                <Box sx={{ pt: 2 }}>
+                    <CustomTable
+                        data={childSelectionData}
+                        columns={columns}
+                        isLoading={false}
+                        isFetching={false}
+                        isError={false}
+                        isSuccess={true}
+                        currentPage={1}
+                        onPageChange={(data: any) => {
+                            console.log("Current page data: ", data);
+                        }}
+                        onSortByChange={(data: any) => {
+                            console.log("Sort by: ", data);
+                        }}
+                        rootSX={{ my: theme.spacing(2) }}
+                    />
+                </Box>
+            </Box>
+        </FormProvider>
     );
 };
 
