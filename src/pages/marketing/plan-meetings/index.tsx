@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import MarketingPlanMeetings from "@root/sections/marketing/marketing-plan-meetings/MarketingPlanMeetings";
 
 const PAGE_TITLE = "Marketing Plan Meetings";
 
@@ -32,5 +33,7 @@ MarketingPlanMeetingLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function MarketingPlanMeetingLayout() {
-  return <Page title={PAGE_TITLE}></Page>;
+  return <Page title={PAGE_TITLE}>
+    <MarketingPlanMeetings />
+  </Page>;
 }

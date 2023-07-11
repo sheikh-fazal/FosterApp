@@ -172,12 +172,18 @@ export const NAV_LINKS = [
   },
   {
     id: 23,
+    text: "Marketing",
+    img: <PolicyOutlinedIcon />,
+    link: "/marketing",
+  },
+  {
+    id: 24,
     text: "User Manual",
     img: <GroupRemoveOutlinedIcon />,
     link: "/user-manual",
   },
   {
-    id: 24,
+    id: 25,
     text: "IT Help Desk",
     img: <SupportAgentOutlinedIcon />,
     link: "",
