@@ -1,13 +1,9 @@
-import React, { useRef, useState } from "react";
-import TableAction from "@root/components/TableAction";
-import { useTableParams } from "@root/hooks/useTableParams";
-import { defaultValues } from ".";
-import { Box } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import React, { useState } from 'react'
+import { useForm } from 'react-hook-form';
+import { defaultValues } from '.';
+import { useRouter } from 'next/router';
 
-
-export const useMarketingStrategyPlan = () => {
+export const useResultsTable = () => {
     const [tableData, setTableDate] = useState<any>(null);
     const methods: any = useForm({
       defaultValues,
@@ -43,3 +39,4 @@ export const useMarketingStrategyPlan = () => {
       route,
     };
 }
+
