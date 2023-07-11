@@ -64,6 +64,7 @@ export const TAGS = [
   "hospital-info-list-document",
   "medicalappointments",
   "ABSENCE_INFO",
+  "hospitalization"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
