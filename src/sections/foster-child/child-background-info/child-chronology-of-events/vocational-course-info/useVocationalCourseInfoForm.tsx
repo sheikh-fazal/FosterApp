@@ -1,8 +1,8 @@
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./DayLogData";
+import React, { useState } from "react";
+import { defaultValues, formSchema, formatters } from "./VocationalCourseInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -11,7 +11,7 @@ import {
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 
-export const useDayLogForm = () => {
+export const useVocationalCourseInfoForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
@@ -63,7 +63,8 @@ export const useDayLogForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/day-log",
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
@@ -110,6 +111,6 @@ export const useDayLogForm = () => {
     isSubmitting,
     action,
     id,
-    fosterChildId,
+    fosterChildId
   };
 };

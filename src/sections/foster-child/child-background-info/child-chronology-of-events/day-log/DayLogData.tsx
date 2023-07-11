@@ -1,6 +1,5 @@
 import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 import * as Yup from "yup";
 
 export const DayLogFormFields = [

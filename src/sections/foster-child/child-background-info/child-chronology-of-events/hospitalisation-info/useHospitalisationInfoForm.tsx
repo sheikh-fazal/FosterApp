@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./DayLogData";
+import { defaultValues, formSchema, formatters } from "./HospitalisationInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -11,7 +11,7 @@ import {
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 
-export const useDayLogForm = () => {
+export const useHospitalisationInfoForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
