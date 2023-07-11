@@ -2,13 +2,17 @@ import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import PitchesAndRequestTable from "./pitches-and-request-table/PitchesAndRequestTable";
 import { usePitchesAndRequests } from "./usePitchesAndRequests";
+import FormTable from "@root/components/Table/FormTable";
+import { Box } from "@mui/material";
+import AvatarIMG from "../../../../assets/img/ifaAvatar.png";
+import Image from "next/image";
 
 const PitchesAndRequests = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
     usePitchesAndRequests();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <PitchesAndRequestTable
+      <FormTable
         tableKey="exampleTable"
         route={route}
         columns={[
@@ -21,7 +25,7 @@ const PitchesAndRequests = () => {
             validation: (Yup: any) => {},
           },
           {
-            inputType: "textField",
+            inputType: "multi-select",
             type: "text",
             key: "typeOfContent",
             defaultValue: "6/1/2023 :: 02:12:12 PM ",
@@ -48,7 +52,8 @@ const PitchesAndRequests = () => {
             inputType: "textField",
             type: "text",
             key: "goal",
-            defaultValue: "Share a unique use of our video platform from an influencer.",
+            defaultValue:
+              "Share a unique use of our video platform from an influencer.",
             label: "Goal",
             validation: (Yup: any) => {},
           },
@@ -58,6 +63,13 @@ const PitchesAndRequests = () => {
             key: "proposedCopy",
             defaultValue: "315",
             label: "Proposed Copy",
+            validation: (Yup: any) => {},
+          },
+          {
+            inputType: "file",
+            type: "upload",
+            key: "name",
+            label: "Name",
             validation: (Yup: any) => {},
           },
           {
