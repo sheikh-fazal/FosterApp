@@ -1,5 +1,6 @@
 export const fosterCarerData = [
   {
+    id: "1",
     carerName: "Tom Hanks",
     childName: "Draco Malfoy",
     typeOfPlacement: "Long-Term",
@@ -14,6 +15,7 @@ export const fosterCarerData = [
     approvedBy: "Sirius Black(Director)",
   },
   {
+    id: "2",
     carerName: "Tom Hanks",
     childName: "Draco Malfoy",
     typeOfPlacement: "Long-Term",
@@ -28,6 +30,7 @@ export const fosterCarerData = [
     approvedBy: "Sirius Black(Director)",
   },
   {
+    id: "3",
     carerName: "Tom Hanks",
     childName: "Draco Malfoy",
     typeOfPlacement: "Long-Term",

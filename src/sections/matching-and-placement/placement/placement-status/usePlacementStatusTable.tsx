@@ -25,7 +25,7 @@ export const usePlacementStatusTable = () => {
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
       case "edit":
-        alert("Edit action");
+        router.push({ pathname: `/placement/status/placement-form/${id}` });
         break;
       case "delete":
         handleDeleteModal();
@@ -160,5 +160,6 @@ export const usePlacementStatusTable = () => {
     placementStatusColumns,
     theme,
     SELECT_FILTERS,
+    router,
   };
 };

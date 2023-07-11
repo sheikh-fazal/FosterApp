@@ -8,13 +8,15 @@ import CustomTable from "@root/components/Table/CustomTable";
 // ============================================================================================
 
 const PlacementStatusTable = () => {
-  const { placementStatusColumns, theme, SELECT_FILTERS } = usePlacementStatusTable();
+  const { placementStatusColumns, theme, router, SELECT_FILTERS } = usePlacementStatusTable();
   return (
-    <Card sx={{ py: 2, px: 1 }}>
+    <Card sx={styles.card}>
       <TableHeader
         title="Placement Status"
         rootSX={{ overflowX: "scroll" }}
         searchKey="search"
+        showAddBtn
+        onAdd={() => router.push("/placement/status/placement-form")}
         showSelectFilters
         selectFilters={SELECT_FILTERS}
         onChanged={(data: any) => {
@@ -43,3 +45,15 @@ const PlacementStatusTable = () => {
 };
 
 export default PlacementStatusTable;
+
+const styles = {
+  card: {
+    px: 2,
+    py: 1,
+    "& .MuiStack-root": {
+      "& .MuiButtonBase-root": {
+        ml: "15px",
+      },
+    },
+  },
+};
