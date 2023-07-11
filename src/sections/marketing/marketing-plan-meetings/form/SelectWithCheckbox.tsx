@@ -1,19 +1,17 @@
 import { useFormContext, Controller } from "react-hook-form";
 import {
   Checkbox,
+  FormControl,
   FormHelperText,
+  InputLabel,
   ListItemText,
   MenuItem,
   Select,
-  TextField,
 } from "@mui/material";
 import { useState } from "react";
 
-// ----------------------------------------------------------------------
-
 export default function RHFSelectWithCheckbox({
   name,
-  children,
   options,
   ...other
 }: any) {
@@ -29,28 +27,41 @@ export default function RHFSelectWithCheckbox({
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState: { error } }) => (
-        <Select
-          {...field}
-          multiple
-          value={selectedOptions}
-          onChange={handleOptionChange}
-          renderValue={(selected: any) => selected.join(", ")}
-          error={!!error}
-          {...other}
-        >
-          {options.map((option: any) => (
-            <MenuItem key={option} value={option}>
-              <Checkbox checked={selectedOptions.includes(option)} />
-              <ListItemText primary={option} />
-            </MenuItem>
-          ))}
-          {!!error && (
+      render={({ field: { onChange, onBlur, ref }, fieldState: { error } }) => (
+        <FormControl fullWidth error={!!error}>
+          <InputLabel
+            sx={{
+              top: selectedOptions?.length > 0 ? "0px" : "-7px",
+              "&.Mui-focused": { top: "0px" },
+            }}
+          >
+            {other.label}
+          </InputLabel>
+          <Select
+            multiple
+            value={selectedOptions}
+            onChange={(e: any) => {
+              handleOptionChange(e);
+              onChange(e.target.value.join(","));
+            }}
+            onBlur={onBlur}
+            inputRef={ref}
+            renderValue={(selected: any) => selected.join(", ")}
+            {...other}
+          >
+            {options.map((option: any) => (
+              <MenuItem key={option} value={option}>
+                <Checkbox checked={selectedOptions.includes(option)} />
+                <ListItemText primary={option} />
+              </MenuItem>
+            ))}
+          </Select>
+          {error && (
             <FormHelperText error sx={{ px: 2 }}>
               {error.message}
             </FormHelperText>
           )}
-        </Select>
+        </FormControl>
       )}
     />
   );

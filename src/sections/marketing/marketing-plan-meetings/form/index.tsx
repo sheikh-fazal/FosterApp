@@ -1,10 +1,27 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFSelectWithCheckbox from "./SelectWithCheckbox";
+import * as Yup from "yup";
 
-export const validationSchema = {};
+export const initialValues = {
+  meetingDate: "",
+  meetingAttendees: "",
+  meetingAgenda: "",
+  meetingActions: "",
+  meetingOutcome: "",
+  meetingCoordinator: "",
+  meetingManager: "",
+};
 
-export const initialValues = {};
+export const validationSchema = Yup.object().shape({
+  meetingDate: Yup.string().required("Field is required"),
+  meetingAttendees: Yup.string().required("Field is required"),
+  meetingAgenda: Yup.string().required("Field is required"),
+  meetingActions: Yup.string().required("Field is required"),
+  meetingOutcome: Yup.string().required("Field is required"),
+  meetingCoordinator: Yup.string().required("Field is required"),
+  meetingManager: Yup.string().required("Field is required"),
+});
 
 export const formData = [
   {

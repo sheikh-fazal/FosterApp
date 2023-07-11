@@ -1,8 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as Yup from "yup";
-import { initialValues, validationSchema } from ".";
 import { useRouter } from "next/router";
+import { initialValues, validationSchema } from ".";
 
 export const useMarketingPlanMeetingForm = () => {
 
@@ -10,7 +9,7 @@ export const useMarketingPlanMeetingForm = () => {
     const handleBack = () => router.push('/marketing/plan-meetings')
 
     const methods: any = useForm({
-        resolver: yupResolver(Yup.object().shape(validationSchema)),
+        resolver: yupResolver(validationSchema),
         defaultValues: initialValues,
     });
 
@@ -24,7 +23,7 @@ export const useMarketingPlanMeetingForm = () => {
     } = methods
 
     const onSubmit = (data: any) => {
-        console.log(data);
+        console.log('data', data);
 
     };
 
