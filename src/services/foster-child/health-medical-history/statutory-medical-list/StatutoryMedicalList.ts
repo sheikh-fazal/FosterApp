@@ -1,6 +1,6 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const statutoryMedicalListApi: any = baseAPI.injectEndpoints({
+export const statutoryMedicalListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllStatutoryMedicalListData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -8,7 +8,15 @@ export const statutoryMedicalListApi: any = baseAPI.injectEndpoints({
         method: "GET",
         params: apiDataParameter.params,
       }),
-      providesTags: ["STATUTORY_MEDICAL_LIST"],
+      providesTags: (result) =>
+        !!result?.data?.statutory_medical?.length
+          ? [
+              ...result?.data?.statutory_medical?.map(({ id }: any) => {
+                return { type: "STATUTORY_MEDICAL_LIST" as const, id };
+              }),
+              "STATUTORY_MEDICAL_LIST",
+            ]
+          : ["STATUTORY_MEDICAL_LIST"],
     }),
     getSingleStatutoryMedicalTypeData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -41,7 +49,9 @@ export const statutoryMedicalListApi: any = baseAPI.injectEndpoints({
         method: "DELETE",
         params: apiDataParameter?.params,
       }),
-      invalidatesTags: ["STATUTORY_MEDICAL_LIST"],
+      invalidatesTags: (result, error, arg) => [
+        { type: "STATUTORY_MEDICAL_LIST", id: arg?.pathParams?.id },
+      ],
     }),
   }),
 });

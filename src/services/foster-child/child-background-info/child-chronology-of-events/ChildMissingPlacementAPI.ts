@@ -3,18 +3,54 @@ import { baseAPI } from "@root/services/baseApi";
 const TAG = "CHILD_CHRONOLOGY_OF_EVENTS";
 
 export const childMissingPlacementApi: any = baseAPI.injectEndpoints({
-  endpoints: (builder) => ({
-    getChildMissingPlacementList: builder.query({
-      query: ({ params }: any) => ({
+  endpoints: (build) => ({
+    getChildChronologyOfEventsChildMissingPlacementList: build.query<
+      GetChildChronologyOfEventsChildMissingPlacementListApiResponse,
+      GetChildChronologyOfEventsChildMissingPlacementListApiArg
+    >({
+      query: (queryArg) => ({
         url: `/child-chronology-of-events/child-missing-placement/List`,
-        method: "GET",
-        params,
+        params: { limit: queryArg.limit, offset: queryArg.offset },
       }),
       providesTags: [TAG],
     }),
-    deleteChildMissingPlacementList: builder.mutation({
-      query: (id: any) => ({
-        url: `/child-chronology-of-events/child-missing-placement/${id}`,
+    postChildChronologyOfEventsChildMissingPlacement: build.mutation<
+      PostChildChronologyOfEventsChildMissingPlacementApiResponse,
+      PostChildChronologyOfEventsChildMissingPlacementApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/child-chronology-of-events/child-missing-placement`,
+        method: "POST",
+        body: queryArg.addChildMissingPlacementRequestDto,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    patchChildChronologyOfEventsChildMissingPlacementById: build.mutation<
+      PatchChildChronologyOfEventsChildMissingPlacementByIdApiResponse,
+      PatchChildChronologyOfEventsChildMissingPlacementByIdApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/child-chronology-of-events/child-missing-placement/${queryArg.id}`,
+        method: "PATCH",
+        body: queryArg.addOfstedNotificationsRequestDto,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    getChildChronologyOfEventsChildMissingPlacementById: build.query<
+      GetChildChronologyOfEventsChildMissingPlacementByIdApiResponse,
+      GetChildChronologyOfEventsChildMissingPlacementByIdApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/child-chronology-of-events/child-missing-placement/${queryArg.id}`,
+      }),
+      providesTags: [TAG],
+    }),
+    deleteChildChronologyOfEventsChildMissingPlacementById: build.mutation<
+      DeleteChildChronologyOfEventsChildMissingPlacementByIdApiResponse,
+      DeleteChildChronologyOfEventsChildMissingPlacementByIdApiArg
+    >({
+      query: (queryArg) => ({
+        url: `/child-chronology-of-events/child-missing-placement/${queryArg.id}`,
         method: "DELETE",
       }),
       invalidatesTags: [TAG],
@@ -22,5 +58,50 @@ export const childMissingPlacementApi: any = baseAPI.injectEndpoints({
   }),
 });
 
-export const { useGetChildMissingPlacementListQuery, useDeleteChildMissingPlacementListMutation } =
-  childMissingPlacementApi;
+export type GetChildChronologyOfEventsChildMissingPlacementListApiResponse =
+  /** status 201  */ AddChildMissingPlacementResponseDto;
+export type GetChildChronologyOfEventsChildMissingPlacementListApiArg = {
+  limit: number | null;
+  offset: number | null;
+};
+export type PostChildChronologyOfEventsChildMissingPlacementApiResponse =
+  /** status 201  */ AddChildMissingPlacementResponseDto;
+export type PostChildChronologyOfEventsChildMissingPlacementApiArg = {
+  addChildMissingPlacementRequestDto: AddChildMissingPlacementRequestDto;
+};
+export type PatchChildChronologyOfEventsChildMissingPlacementByIdApiResponse =
+  /** status 201  */ AddChildMissingPlacementResponseDto;
+export type PatchChildChronologyOfEventsChildMissingPlacementByIdApiArg = {
+  id: string;
+  addOfstedNotificationsRequestDto: AddOfstedNotificationsRequestDto;
+};
+export type GetChildChronologyOfEventsChildMissingPlacementByIdApiResponse =
+  /** status 201  */ AddChildMissingPlacementResponseDto;
+export type GetChildChronologyOfEventsChildMissingPlacementByIdApiArg = {
+  id: string;
+};
+export type DeleteChildChronologyOfEventsChildMissingPlacementByIdApiResponse = unknown;
+export type DeleteChildChronologyOfEventsChildMissingPlacementByIdApiArg = {
+  id: string;
+};
+export type AddChildMissingPlacementResponseDto = {
+  data: object;
+  message: string;
+  errors: object;
+};
+export type AddChildMissingPlacementRequestDto = {
+  childMissingDate: string;
+  reportedDate: string;
+  missingReason: string;
+};
+export type AddOfstedNotificationsRequestDto = {
+  dateOfIncidentAndTime: string;
+  status: string;
+};
+export const {
+  useGetChildChronologyOfEventsChildMissingPlacementListQuery,
+  usePostChildChronologyOfEventsChildMissingPlacementMutation,
+  usePatchChildChronologyOfEventsChildMissingPlacementByIdMutation,
+  useGetChildChronologyOfEventsChildMissingPlacementByIdQuery,
+  useDeleteChildChronologyOfEventsChildMissingPlacementByIdMutation,
+} = childMissingPlacementApi;

@@ -8,7 +8,7 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 export const ehcpInfoFormValues = {
   medicalDate: todayDate,
   dueDate: todayDate,
-  onfile: "",
+  onFile: "",
   result: "",
   comments: "",
 };
@@ -17,7 +17,7 @@ export const defaultValueEhcpInfoForm = (data: any = ehcpInfoFormValues) => {
   return {
     medicalDate: new Date(data?.medicalDate),
     dueDate: new Date(data?.dueDate),
-    onfile: data?.onfile,
+    onFile: data?.onFile,
     result: data?.result,
     comments: data?.comments,
   };
@@ -30,16 +30,17 @@ export const ehcpInfoFormSchema: any = Yup.object().shape({
   dueDate: Yup.date()
     .typeError("Due Date  is required")
     .required("Due Date  is required"),
-  onfile: Yup.string()
-    .required("on File is required"),
-  result: Yup.string().trim()
+  onFile: Yup.string().required("on File is required"),
+  result: Yup.string()
+    .trim()
     .required("Result is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
-  comments: Yup.string().trim()
+    .max(500, "Maximum 50 characters"),
+  comments: Yup.string()
+    .trim()
     .required("Comments is required")
     .min(1, "Mininum 1 characters")
-    .max(50, "Maximum 50 characters"),
+    .max(500, "Maximum 50 characters"),
 });
 
 export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [
@@ -71,7 +72,7 @@ export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "onfile",
+      name: "onFile",
       label: "On File",
       select: true,
       options: [

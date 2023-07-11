@@ -20,8 +20,6 @@ const useTrainingVerificationForm = () => {
   const router = useRouter();
 
   const deleteTrainingProfile = async () => {
-    console.log(trainingProfileId);
-
     const res: any = deleteProfile(trainingProfileId)
       .unwrap()
       .then((res: any) => {
@@ -37,7 +35,6 @@ const useTrainingVerificationForm = () => {
   };
 
   const openDeleteModel = (id: string) => {
-    console.log("ProfileID: ", id);
     setTrainingProfileId(id);
   };
 
@@ -58,8 +55,6 @@ const useTrainingVerificationForm = () => {
     setCancelDelete,
     openDeleteModel
   );
-
-  console.log(data, "training profile");
 
   return {
     columnsTrainingVerificationFuntion,

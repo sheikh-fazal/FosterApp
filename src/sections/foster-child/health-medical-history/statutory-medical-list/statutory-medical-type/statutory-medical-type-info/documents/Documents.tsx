@@ -11,13 +11,15 @@ const Documents = () => {
     isSuccess,
     isFetching,
     submitStatutoryMedicalListInfoDocumentData,
-    query,
-  } = useDocuments();
+    router,
+    onDeleteConfirm,
+    STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
+  }: any = useDocuments();
 
   return (
     <UploadDocuments
-      readOnly={query?.action === "view"}
-      tableData={data?.data}
+      readOnly={router.query?.action === "view"}
+      tableData={data?.data?.statutory_medical_docs}
       isLoading={isLoading}
       column={[
         "documentName",
@@ -34,13 +36,13 @@ const Documents = () => {
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
-        console.log("Updated params: ", data);
       }}
-      currentPage={data?.meta?.page}
-      totalPages={data?.meta?.pages}
+      currentPage={data?.data?.meta?.page}
+      totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((page) => (pageNo - 1) * 10);
+        setPage((pageNo - 1) * STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

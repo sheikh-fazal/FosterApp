@@ -6,7 +6,8 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { useOfstedNotificationsTable } from "./useOfstedNotificationsTable";
 
-const OfstedNotificationsTable = () => {
+const OfstedNotificationsTable = (props: any) => {
+  const { fosterChildId } = props;
   const {
     listDeleteHandler,
     router,
@@ -93,7 +94,7 @@ const OfstedNotificationsTable = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.child_chronology_of_events}
+        data={data?.data?.cc_ofsted_notification}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

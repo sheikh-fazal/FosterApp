@@ -12,12 +12,14 @@ const Documents = () => {
     isFetching,
     submitGpDetailsInfoDocumentData,
     postGpDetailsInfoDocumentDataStatus,
-    query,
+    router,
+    onDeleteConfirm,
+    GPDETAILSDOCUMENTPAGELIMIT,
   } = useDocuments();
 
   return (
     <UploadDocuments
-      readOnly={query?.action === "view"}
+      readOnly={router?.query?.action === "view"}
       tableData={data?.data?.gp_info_docs}
       isLoading={isLoading}
       column={[
@@ -39,8 +41,9 @@ const Documents = () => {
       currentPage={data?.data?.meta?.page}
       totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((page) => (pageNo - 1) * 10);
+        setPage((pageNo - 1) * GPDETAILSDOCUMENTPAGELIMIT);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };

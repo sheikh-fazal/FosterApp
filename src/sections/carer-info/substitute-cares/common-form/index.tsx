@@ -19,41 +19,42 @@ const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
 
 export const defaultValues = {
   title: "USD",
-  firstName: "Ahmed",
-  middleName: "MAC",
-  lastName: "Afzal",
+  firstName: "NaME",
+  middleName: "mIDDEL nAMe",
+  lastName: "lAsT nnMAE",
   dateOfBirth: new Date(ageOf18Years),
   dateOfEnquiry: new Date(todayDate),
   gender: "Male",
   address: "address initial value",
   telephone: "+440000000",
   email: "test@test.com",
-  ethnicity: "Roma",
-  language: "",
+  ethinicity: "Roma",
+  languageSpoken: "URDU",
   religion: "Islam",
-  practisingStatus: "Practicing",
-  areChecksRequired: "",
-  occupation: "",
-  numberOfApplicantSeen: "",
+  practicingStatus: "Practicing",
+  areChecksRequired: false,
+  occupation: "Doctor",
+  numberOfSeen: "Probably 3",
   level: "Level 1",
-  dateOfAssessment: new Date(todayDate),
-  question1: "question 1",
-  question2: "question 2",
+  dateOfVisit: new Date(todayDate),
+  supporttheFosterCarer: "question 1",
+  currentlyInPlacement: "question 2",
+  knowCapacity: "capacity",
   background: "Background",
   health: "health",
   education: "education",
   contact: "contact",
   valuingDiversity: "valuingDiversity",
-  acceptingChild: "acceptingChild",
+  acceptingtheChild: "accepting the Child",
   affection: "affection",
-  selfCare: "selfCare",
-  behaviorManagement: "behaviorManagement",
-  applicantSupportNetwork: "applicantSupportNetwork",
-  socialWorkersAssessment: "socialWorkersAssessment",
+  safeCare: "self Care",
+  behaviuorManagement: "behavior Management",
+  applicationsupportNetworks: "application support Networks",
+  socialWorkerAssessment: "socialWorkerAssessment",
   conclusion: "conclusion",
   statutoryChecks: "statutoryChecks",
   training: "training",
-  healthAndSafety: "healthAndSafety",
+  healthandSafety: "health and Safety",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -66,15 +67,15 @@ export const FormSchema = Yup.object().shape({
   address: Yup.string().required("Field is required"),
   telephone: Yup.string().required("Field is required"),
   email: Yup.string().required("Field is required"),
-  ethnicity: Yup.string().required("Field is required"),
-  language: Yup.string().required("Field is required"),
+  ethinicity: Yup.string().required("Field is required"),
+  languageSpoken: Yup.string().required("Field is required"),
   religion: Yup.string().required("Field is required"),
-  practisingStatus: Yup.string().required("Field is required"),
+  practicingStatus: Yup.string().required("Field is required"),
   occupation: Yup.string().required("Field is required"),
-  numberOfApplicantSeen: Yup.string().required("Field is required"),
-  dateOfAssessment: Yup.date().required("Field is required"),
-  question1: Yup.string().required("Field is required"),
-  question2: Yup.string().required("Field is required"),
+  numberOfSeen: Yup.string().required("Field is required"),
+  dateOfVisit: Yup.date().required("Field is required"),
+  supporttheFosterCarer: Yup.string().required("Field is required"),
+  currentlyInPlacement: Yup.string().required("Field is required"),
   background: Yup.string().required("Field is required"),
 });
 
@@ -141,7 +142,7 @@ export const SUBSTITUTECARERFORMDATA = [
       name: "dateOfBirth",
       label: "Date Of Birth",
       fullWidth: true,
-      minData: maxAgeCheck,
+      maxDate: new Date(ageOf18Years),
     },
     gridLength: 6,
     component: RHFDatePicker,
@@ -161,7 +162,7 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 7,
     componentProps: {
-      typographyText: "Contact Details",
+      typographytext: "Contact Details",
       color: (theme: any) => theme.palette.primary.main,
     },
     component: Typography,
@@ -175,7 +176,6 @@ export const SUBSTITUTECARERFORMDATA = [
       multiline: true,
       minRows: 3,
       fullWidth: true,
-      maxDate: maxAgeCheck,
     },
     gridLength: 12,
     component: RHFTextField,
@@ -202,8 +202,8 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 11,
     componentProps: {
-      name: "ethnicity",
-      label: "Ethnicity",
+      name: "ethinicity",
+      label: "ethinicity",
       select: true,
       fullWidth: true,
     },
@@ -214,14 +214,14 @@ export const SUBSTITUTECARERFORMDATA = [
   {
     id: 12,
     componentProps: {
-      name: "language",
-      label: "Language Spoken",
+      name: "languageSpoken",
+      label: "languageSpoken Spoken",
     },
     gridLength: 6,
     component: RHFTextField,
   },
   {
-    id: 12,
+    id: 13,
     componentProps: {
       name: "religion",
       label: "Religion",
@@ -233,9 +233,9 @@ export const SUBSTITUTECARERFORMDATA = [
     options: RELIGIONDROPDOWN,
   },
   {
-    id: 12,
+    id: 14,
     componentProps: {
-      name: "practisingStatus",
+      name: "practicingStatus",
       label: "Practising Status",
       select: true,
       fullWidth: true,
@@ -254,7 +254,7 @@ export const SUBSTITUTECARERFORMDATA = [
     ],
   },
   {
-    id: 13,
+    id: 15,
     componentProps: {
       name: "areChecksRequired",
       label: "Are Checks Required",
@@ -263,7 +263,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFCheckbox,
   },
   {
-    id: 14,
+    id: 16,
     componentProps: {
       name: "occupation",
       label: "Occupation",
@@ -275,9 +275,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 15,
+    id: 17,
     componentProps: {
-      name: "numberOfApplicantSeen",
+      name: "numberOfSeen",
       label: "Data and number of times applicant seen",
       multiline: true,
       minRows: 3,
@@ -287,7 +287,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 16,
+    id: 18,
     componentProps: {
       name: "level",
       text: "Level",
@@ -304,9 +304,9 @@ export const SUBSTITUTECARERFORMDATA = [
   },
 
   {
-    id: 16.5,
+    id: 19,
     componentProps: {
-      name: "dateOfAssessment",
+      name: "dateOfVisit",
       label: "Date Of Assessment Visit",
       fullWidth: true,
     },
@@ -318,9 +318,9 @@ export const SUBSTITUTECARERFORMDATA = [
   },
 
   {
-    id: 17,
+    id: 20,
     componentProps: {
-      name: "question1",
+      name: "supporttheFosterCarer",
       text: "Why do you want to support the Foster Carer?",
       label: "Field Value",
       Component: RHFTextField,
@@ -333,9 +333,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFInputWithLabel,
   },
   {
-    id: 18,
+    id: 21,
     componentProps: {
-      name: "question2",
+      name: "currentlyInPlacement",
       text: "Do you know the CHildren Currently in placement?",
       label: "Field Value",
       Component: RHFTextField,
@@ -348,7 +348,26 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFInputWithLabel,
   },
   {
-    id: 19,
+    id: 22,
+    componentProps: {
+      name: "knowCapacity",
+      text: "How long have you known the foster carer and in what capacity?",
+      label: "Field Value",
+      Component: RHFTextField,
+
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+      typographyProps: {
+        variant: "body2",
+        mb: "10px",
+      },
+    },
+    gridLength: 12,
+    component: RHFInputWithLabel,
+  },
+  {
+    id: 23,
     componentProps: {
       name: "background",
       label: "Background",
@@ -360,7 +379,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 20,
+    id: 24,
     componentProps: {
       name: "health",
       label: "Health",
@@ -372,7 +391,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 21,
+    id: 25,
     componentProps: {
       name: "education",
       label: "Education",
@@ -384,7 +403,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 22,
+    id: 26,
     componentProps: {
       name: "contact",
       label: "Contact",
@@ -396,7 +415,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 23,
+    id: 27,
     componentProps: {
       name: "valuingDiversity",
       label: "Valuing Diversity",
@@ -408,9 +427,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 24,
+    id: 28,
     componentProps: {
-      name: "acceptingChild",
+      name: "acceptingtheChild",
       label: "Accepting the Child as he/she is",
       multiline: true,
       minRows: 3,
@@ -420,7 +439,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 25,
+    id: 29,
     componentProps: {
       name: "affection",
       label: "Affection",
@@ -432,9 +451,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 26,
+    id: 30,
     componentProps: {
-      name: "selfCare",
+      name: "safeCare",
       label: "Self Care",
       multiline: true,
       minRows: 3,
@@ -444,9 +463,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 27,
+    id: 31,
     componentProps: {
-      name: "behaviorManagement",
+      name: "behaviuorManagement",
       label: "Behavior Management",
       multiline: true,
       minRows: 3,
@@ -456,9 +475,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 28,
+    id: 32,
     componentProps: {
-      name: "applicantSupportNetwork",
+      name: "applicationsupportNetworks",
       label: "Applicant Support Network",
       multiline: true,
       minRows: 3,
@@ -468,9 +487,9 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 29,
+    id: 33,
     componentProps: {
-      name: "socialWorkersAssessment",
+      name: "socialWorkerAssessment",
       label: "Social Workers`s Assessment",
       multiline: true,
       minRows: 3,
@@ -480,10 +499,10 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 30,
+    id: 34,
     componentProps: {
       name: "conclusion",
-      label: "Conclusion/Recommendation",
+      label: "conclusion/Recommendation",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -492,7 +511,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 31,
+    id: 35,
     componentProps: {
       name: "statutoryChecks",
       label: "Statutory Checks",
@@ -504,7 +523,7 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 32,
+    id: 36,
     componentProps: {
       name: "training",
       label: "Training",
@@ -516,10 +535,10 @@ export const SUBSTITUTECARERFORMDATA = [
     component: RHFTextField,
   },
   {
-    id: 22,
+    id: 37,
     componentProps: {
-      name: "healthAndSafety",
-      label: "HealthAndSafety",
+      name: "healthandSafety",
+      label: "healthandSafety",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -527,63 +546,5 @@ export const SUBSTITUTECARERFORMDATA = [
     gridLength: 12,
     component: RHFTextField,
   },
-  // {
-  //   id: 7,
-  //   componentProps: {
-  //     name: "anyCurrentOrPreviousMedicalConditions",
-  //     label: "Any current or previous medical conditions",
-  //   },
-  //   gridLength: 6,
-  //   component: RHFCheckbox,
-  // },
-  // {
-  //   id: 8,
-  //   componentProps: {
-  //     name: "IHVcriteria",
-  //     text: "Does this enquiry meet the criteria for IHV:",
-  //     Component: RHFRadioGroup,
-  //     options: [true, false],
-  //     getOptionLabel: ["Yes", "No"],
-  //   },
-  //   gridLength: 12,
-  //   component: RHFInputWithLabel,
-  // },
-
-  // {
-  //   id: 9,
-  //   componentProps: {
-  //     name: "IHV",
-  //     label: "If yes , who will complete the IHV?",
-  //     multiline: true,
-  //     minRows: 3,
-  //     fullWidth: true,
-  //   },
-  //   gridLength: 6,
-  //   component: RHFTextField,
-  // },
-  // {
-  //   id: 10,
-  //   componentProps: {
-  //     name: "counselledOutDetails",
-  //     label: "Counselled Out reason Details:",
-  //     multiline: true,
-  //     minRows: 3,
-  //     fullWidth: true,
-  //   },
-  //   component: RHFTextField,
-  //   gridLength: 6,
-  // },
-  // {
-  //   id: 11,
-  //   componentProps: {
-  //     name: "relevantExperience",
-  //     label: "Relevant Experience:",
-  //     multiline: true,
-  //     minRows: 3,
-  //     fullWidth: true,
-  //   },
-  //   gridLength: 6,
-  //   component: RHFTextField,
-  // },
 ];
 export { default as SubstituteCarerForm } from "./SubstituteCarerForm";

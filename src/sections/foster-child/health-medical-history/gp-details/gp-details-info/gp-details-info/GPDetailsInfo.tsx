@@ -11,7 +11,7 @@ const GPDetailsInfo = () => {
     handleSubmit,
     submitGpDetailsInfoForm,
     getSingleGpDetailsInfoDataStatus,
-    query,
+
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
@@ -30,17 +30,19 @@ const GPDetailsInfo = () => {
               <form.component {...form.componentProps} size="small">
                 {form.componentProps.select
                   ? form.componentProps.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
+                      <option key={option.id} value={option.value}>
                         {option.label}
                       </option>
                     ))
+                  : form?.heading
+                  ? form?.heading
                   : null}
               </form.component>
             </Grid>
           );
         })}
       </Grid>
-      {query?.action !== "view" && (
+      {router.query?.action !== "view" && (
         <Box sx={{ display: "flex", mb: "1rem", mt: "1rem" }}>
           <LoadingButton
             sx={{ marginRight: "1rem" }}
@@ -61,7 +63,14 @@ const GPDetailsInfo = () => {
               "&:hover": { bgcolor: theme.palette.orange.dark },
             }}
             onClick={() =>
-              router.push(`/foster-child/health-medical-history/gp-details`)
+              router.push({
+                pathname: `/foster-child/health-medical-history/gp-details`,
+                query: {
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
             variant="contained"
             disabled={

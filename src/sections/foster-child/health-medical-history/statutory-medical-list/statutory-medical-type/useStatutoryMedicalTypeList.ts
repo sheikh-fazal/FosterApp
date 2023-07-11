@@ -6,13 +6,17 @@ import {
   useDeleteStatutoryMedicalTypeDataMutation,
   useGetAllStatutoryMedicalListDataQuery,
 } from "@root/services/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
-import { statutoryMedicalListXTableColumnsFunction } from ".";
+import {
+  statutoryMedicalListXTableColumnsFunction,
+  STATUTORYMEDICALLISTTYPEPAGELIMIT,
+  headerHeading,
+} from ".";
 import { enqueueSnackbar } from "notistack";
 
 export const useStatutoryMedicalTypeList = (props: any) => {
   const router = useRouter();
-  const { query } = useRouter();
-
+  const [page, setPage] = useState(0);
+  const [searchValue, setSearchValue] = useState(undefined);
   const [
     deleteStatutoryMedicalTypeDataTrigger,
     deleteStatutoryMedicalTypeDataStatus,
@@ -32,10 +36,12 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       const res: any = await deleteStatutoryMedicalTypeDataTrigger(
         apiDataParameter
       ).unwrap();
+      setIsRecordSetForDelete(false);
+
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
-      setIsRecordSetForDelete(false);
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -52,21 +58,19 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       prepareRecordForDelete
     );
 
-  const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     search: searchValue,
     statutoryMedicalType: props?.type,
     offset: page,
-    limit: 10,
+    limit: STATUTORYMEDICALLISTTYPEPAGELIMIT,
   };
 
-  const headerHeading: any = {
-    EHCP: "EHCP",
-    CLA: "CLA MEDICAL",
-    Dental: "Dental Check",
-    Optician: "Optician Check",
-  };
+  // const headerHeading: any = {
+  //   EHCP: "EHCP",
+  //   CLA: "CLA MEDICAL",
+  //   Dental: "Dental Check",
+  //   Optician: "Optician Check",
+  // };
   const setHeaderHeading = (type: any) => {
     return headerHeading?.[type];
   };
@@ -90,5 +94,6 @@ export const useStatutoryMedicalTypeList = (props: any) => {
     isSuccess,
     isError,
     isFetching,
+    STATUTORYMEDICALLISTTYPEPAGELIMIT,
   };
 };

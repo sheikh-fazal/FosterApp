@@ -1,5 +1,6 @@
-import { Box, Checkbox } from "@mui/material";
+import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import dayjs from "dayjs";
 
 export const statutoryMedicalListXTableColumnsFunction = (
   router?: any,
@@ -9,23 +10,20 @@ export const statutoryMedicalListXTableColumnsFunction = (
   {
     accessorFn: (row: any) => row?.medicalDate,
     id: "medicalDate",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: () => <span>Medical Date</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.dueDate,
     id: "dueDate",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: () => <span>Due Date</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.onFile,
     id: "onFile",
     cell: (info: any) => info.getValue(),
     header: () => <span>On File</span>,
-    isSortable: true,
   },
   {
     accessorFn: (row: any) => row?.id,
@@ -40,23 +38,47 @@ export const statutoryMedicalListXTableColumnsFunction = (
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=edit`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
+                  id: info.getValue(),
+                  type,
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type?id=${info.getValue()}&type=${type}&action=view`
-              )
+              router.push({
+                pathname: `/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type`,
+                query: {
+                  id: info.getValue(),
+                  type,
+                  action: "view",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
             }
           />
         </Box>
       );
     },
     header: () => <span>Action</span>,
-    isSortable: false,
   },
 ];
+
+export const STATUTORYMEDICALLISTTYPEPAGELIMIT = 10;
+
+ export const headerHeading: any = {
+    EHCP: "EHCP",
+    CLA: "CLA MEDICAL",
+    Dental: "Dental Check",
+    Optician: "Optician Check",
+  };
