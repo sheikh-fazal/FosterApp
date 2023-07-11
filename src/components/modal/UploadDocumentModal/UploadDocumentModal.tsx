@@ -15,7 +15,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { formSchema, initialValues, uploadDocument } from ".";
 import { FormProvider } from "@root/components/hook-form";
-import 0 from "@root/components/hook-form/RHFUploadFile";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { LoadingButton } from "@mui/lab";
 
 interface IProps {
