@@ -1,14 +1,17 @@
+import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
 import CarerSelection from "./carer-selection/CarerSelection";
 import ChildSelection from "./child-selection/ChildSelection";
 import FinalPlacementApprovalDeclarations from "./final-placement-approval-declarations/FinalPlacementApprovalDeclarations";
 import FinanceAgreementCarer from "./finance-agreement-carer/FinanceAgreementCarer";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
 import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
+import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
 import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBeforeTable";
 import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDurationTable";
 import { SelectLASW } from "./select-la-sw";
 import { SelectPlacementType } from "./select-placement-type";
 import { SelectSupervisingSocialWorker } from "./select-supervising-social-worker";
+import PlacementAgreementCarerTable from "./placement-agreement-with-carer/PlacementAgreementCarerTable";
 
 
 export const placementStepData = [
@@ -87,7 +90,7 @@ export const placementStepData = [
   {
     id: 10,
     label: "Placement Special Needs agreement",
-    // component: <FinalDeRegistration />,
+    component: <PlacementSpecialNeedsAgreementTable/>,
     background: "linear-gradient(135deg, #F6460F 0%, #FE2B5E 100%)",
     color: "rgb(250,56,54)",
     // icon: AssessmentStageIcon
@@ -95,7 +98,7 @@ export const placementStepData = [
   {
     id: 11,
     label: "Finance Agreement with  Local Authority",
-    // component: <FinalDeRegistration />,
+    component: <FinanceAgreementLocalAuthorityTable/>,
     background: "linear-gradient(90deg, #2CB764 0%, #0E918C 100%)",
     color: "rgb(29,164,120)",
     // icon: AssessmentStageIcon
@@ -103,7 +106,7 @@ export const placementStepData = [
   {
     id: 12,
     label: "Placement Agreement  with Carer",
-    // component: <FinalDeRegistration />,
+    component: <PlacementAgreementCarerTable/>,
     background: "linear-gradient(135deg, #0A6460 0%, #23E0D9 100%)",
     color: "rgb(20,164,157)",
     // icon: AssessmentStageIcon

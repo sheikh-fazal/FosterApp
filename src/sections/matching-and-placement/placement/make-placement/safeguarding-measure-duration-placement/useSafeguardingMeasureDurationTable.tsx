@@ -1,4 +1,4 @@
-import { useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
@@ -36,7 +36,7 @@ export const useSafeguardingMeasureDurationTable = () => {
             header: () => <span>Safeguarding Course Name</span>,
         },
         {
-            accessorFn: (row: any) => <Image src={row.certificate} alt=" Document Icon"/>,
+            accessorFn: (row: any) =>   <Box sx={styles.ImgBoxStyled}><Image src={row.certificate} alt=" Document Icon"/></Box>,
             id: "certificate",
             cell: (info: any) => info.getValue(),
             header: () => <span>Certificate</span>,
@@ -58,4 +58,12 @@ export const useSafeguardingMeasureDurationTable = () => {
         setIsOpenTrainingClockModal,
        
     }
+}
+// style
+const styles = {
+    ImgBoxStyled: { 
+     display:'flex',
+     justifyContent:'center',
+     alignItems:'center', 
+    },
 }

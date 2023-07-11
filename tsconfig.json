@@ -36,7 +36,7 @@
     "src/sections/safeguarding/child-protection/child-abuse-and-expolitation-management/userChildAbuseExpolitationManagement",
     "src/sections/carer-info/training-profile",
     "src/sections/carer-info/training-profiles/trainings-list/TrainingsList.jsx"
-  ],
+, "src/sections/matching-and-placement/placement/make-placement/placement-special-needs-agreement/usePlacementSpecialNeedsAgreementTable.tsx"  ],
   "exclude": [
     "node_modules"
   ]
