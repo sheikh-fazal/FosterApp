@@ -24,9 +24,12 @@ const MandatoryTraining = () => {
           open={IsOpenMandatoryModal}
           handleClose={() => setIsOpenMandatoryModal(false)}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
-          CancelBtnText="Cancel"
-        
+          disabled={actionType === 'View'}
+          isHideSubmitButton
+          // onSubmit={actionType === 'Add' ? (data: any) => onHandleAddAssessment(data) :  (data: any) => onHandleEditAssessment(data) }
         />
+
+
        <TableHeader
         // ref={tableHeaderRef}
         title="Placement Meeting Record"
