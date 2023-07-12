@@ -3,10 +3,6 @@ import CustomTable from '@root/components/Table/CustomTable';
 import { Button, Grid } from "@mui/material";
 import {safeguardingMeasureData } from '.';
 import { useSafeguardingMeasureBefore } from './useSafeguardingMeasureBefore';
-import { LoadingButton } from '@mui/lab';
-
-
-
 
 
 const SafeguardingMeasureBefore = () => {

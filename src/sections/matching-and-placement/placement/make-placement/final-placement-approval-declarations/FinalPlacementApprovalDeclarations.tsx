@@ -16,7 +16,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import FinancePlacementApprovalAddModal from "./Modal/FinalPlacementApprovalAddModal";
 import FinalPlacementApprovalAddModal from "./Modal/FinalPlacementApprovalAddModal";
 
-const FinalPlacementApprovalDeclarations = () => {
+const FinalPlacementApprovalDeclarations = ({ handleIncreamentStep }: any) => {
   const {
     theme,
     isOpenFinalPlacementModal,
@@ -86,7 +86,7 @@ const FinalPlacementApprovalDeclarations = () => {
           rootSX={{ my: theme.spacing(2), p: 2.5 }}
         />
         <Box ml={2.8} mb={2} mt={0}>
-          <Button sx={styles.saveBtn}>Continue</Button>
+          <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
         </Box>
       </Box>
       <FinalPlacementApprovalAddModal

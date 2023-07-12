@@ -3,14 +3,13 @@ import CustomTable from '@root/components/Table/CustomTable';
 import { Button, Grid } from "@mui/material";
 import {Mandatorydata } from '.';
 import { useMandatoryTraining } from './useMandatoryTraining';
-import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 import MandatoryModal from './Modal/MandatoryModal';
 
 
 
 
-const MandatoryTraining = () => {
+const MandatoryTraining = ({ handleIncreamentStep }: any) => {
   const {MandatoryTrainingColumns,theme,
     IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType,setActionType,
     handleEditClicked,handleAddMandatoryRecord
@@ -53,7 +52,7 @@ const MandatoryTraining = () => {
         />
       </Grid>
       <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
     </Grid>
     </Grid>
   )

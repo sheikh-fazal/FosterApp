@@ -2,7 +2,7 @@ import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import { Button, Grid } from "@mui/material";
 import { SpecialNeedsAgreementData } from ".";
-import { usePlacementSpecialNeedsAgreement } from "./usePlacementSpecialNeedsAgreementTable";
+import { usePlacementSpecialNeedsAgreement } from "./usePlacementSpecialNeedsAgreement";
 import TableHeader from "@root/components/TableHeader";
 import PlacementSpecialNeedsAgreementModal from "./Modal/PlacementSpecialNeedsAgreementModal";
 

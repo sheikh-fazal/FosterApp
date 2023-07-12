@@ -8,7 +8,7 @@ import TableHeader from "@root/components/TableHeader";
 import Image from "next/image";
 import FinanceAgreementcarerAddModal from "./Modal/FinanceAgreementcarerAddModal";
 
-const FinanceAgreementCarer = () => {
+const FinanceAgreementCarer = ({ handleIncreamentStep }: any) => {
     const { theme, isOpenFinanceAgreementWithcarerModal, setIsOpenFinanceAgreementWithcarerModal,
         onAddFinanceAgreementCarer } = useFinanceAgreementCarer();
 
@@ -65,6 +65,7 @@ const FinanceAgreementCarer = () => {
             ),
         },
     ];
+    
     return (
         <>
         <Box sx={{ pt: 2 }}>
@@ -91,7 +92,7 @@ const FinanceAgreementCarer = () => {
                 rootSX={{ my: theme.spacing(2), p:2.5 }}
             />
            <Box   ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
     </Box>
         </Box>
         <FinanceAgreementcarerAddModal title='Finance Agrement With Carer' open={isOpenFinanceAgreementWithcarerModal} handleClose={()=>setIsOpenFinanceAgreementWithcarerModal(false)}
