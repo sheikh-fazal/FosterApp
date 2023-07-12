@@ -21,7 +21,7 @@ const OriginalChildReferralForm = (props: any) => {
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
-            <RHFTextField label="CHC-2" size="small" name="childCode" {...methods} disabled={props.disabled} />
+            <RHFTextField label="CHC-2" size="small" fullWidth name="childCode" {...methods} disabled={props.disabled} />
           </Grid>
           <Grid item xs={12} md={6}>
             <RHFUploadFile name="updatePhoto" {...methods} required disabled={props.disabled} />
@@ -35,7 +35,7 @@ const OriginalChildReferralForm = (props: any) => {
                   {form.title}
                 </Typography>
                 {form.component ? (
-                  <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
+                  <form.component disabled={props.disabled} fullWidth size="small" {...form.otherOptions}>
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
