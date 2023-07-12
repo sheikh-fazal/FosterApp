@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { defaultValues } from '.';
 import { useRouter } from 'next/router';
+import useUploadImage from '@root/hooks/useUploadImage';
 
 export const useAllSetTable = () => {
     const [tableData, setTableDate] = useState<any>(null);
     const methods: any = useForm({
       defaultValues,
     });
+     const { uploadImage } = useUploadImage();
     const router = useRouter()
   
     const {
@@ -37,6 +39,7 @@ export const useAllSetTable = () => {
       tableData,
       onClear,
       route,
+      uploadImage
     };
 }
 
