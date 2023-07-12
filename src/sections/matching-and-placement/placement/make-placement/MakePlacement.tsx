@@ -15,7 +15,7 @@ const MakePlacement = () => {
     <Box sx={{ width: "100%" }}>
       <Stepper nonLinear orientation="vertical" activeStep={activeStep} sx={styles.stepperWrapper} connector={<StepConnector sx={styles.stepConnectorWrap} />}>
         {placementStepData.map((ele: any, index) => (
-          <Step key={ele.id} >
+          <Step key={ele.id} disabled={true}>
             <Grid container sx={{ justifyContent: { xl: "space-between", lg: "center", xs: "center" } }}>
               <StepLabel
                 // onClick={handleStep(index)
