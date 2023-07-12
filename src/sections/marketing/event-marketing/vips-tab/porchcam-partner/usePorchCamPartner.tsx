@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { defaultValues } from ".";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 export const usePorchCamPartner = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
+  const { uploadImage } = useUploadImage();
   const {
     handleSubmit,
     formState: { isSubmitting, isValid },
@@ -30,5 +32,6 @@ export const usePorchCamPartner = () => {
     isSubmitting,
     tableData,
     onClear,
+    uploadImage,
   };
 };
