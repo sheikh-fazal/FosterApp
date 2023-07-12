@@ -1,4 +1,3 @@
-
 import { useRef } from "react";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
@@ -78,7 +77,8 @@ export const useRevisionAssessmentHistory = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "",
+                pathname:
+                  "/de-registration/deregister-foster-carer/proposal-to-revise/edit-revision-assessment-history-form",
                 query: { action: "edit", id: "" },
               })
             }
@@ -88,7 +88,8 @@ export const useRevisionAssessmentHistory = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "",
+                pathname:
+                  "/de-registration/deregister-foster-carer/proposal-to-revise/view-revision-assessment-history-form",
                 query: { action: "view", id: "" },
               })
             }
@@ -105,6 +106,6 @@ export const useRevisionAssessmentHistory = () => {
     TableData,
     columns,
     theme,
-    SELECT_FILTERS
+    SELECT_FILTERS,
   };
 };

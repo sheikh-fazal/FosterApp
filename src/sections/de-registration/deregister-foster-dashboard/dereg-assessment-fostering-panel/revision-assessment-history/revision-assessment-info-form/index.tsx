@@ -86,11 +86,11 @@ export const formDataFeild = [
 ];
 
 export const formDataValues = {
-  revisionAssessmentMeetingDate: "",
+  revisionAssessmentMeetingDate: new Date(),
   revisionAssessmentByRole: "",
   finalDecision: "",
   writtenNoticeIssued: "",
-  noticeIssuedDate: "",
+  noticeIssuedDate: new Date(),
   responseToWrittenNotice: "",
 };
 
