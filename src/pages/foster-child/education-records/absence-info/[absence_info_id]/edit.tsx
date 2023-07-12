@@ -3,7 +3,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
-import { useGetAbsenceInfoDocumentByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentationAPI";
+import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
@@ -36,13 +36,19 @@ EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
 
 export default function EditAbsenceInfoForm() {
   const { query } = useRouter();
-  // const absenceInfoId = query["absence_info_id"];
-  // const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoDocumentByIdQuery(absenceInfoId);
+  const absenceInfoId = query["absence_info_id"];
+  const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoByIdQuery(absenceInfoId);
 
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabDataArray={["Absence Info", "Upload Documents"]}>
-        <AbsenceInfoForm />
+        <AbsenceInfoForm
+        defaultValues={{
+          ...data?.data,
+          dateOfAbsence: new Date(data?.data?.dateofAbsence),
+          label: new Date(data?.data?.label)
+        }}
+        />
       </HorizaontalTabs>
     </Page>
   );

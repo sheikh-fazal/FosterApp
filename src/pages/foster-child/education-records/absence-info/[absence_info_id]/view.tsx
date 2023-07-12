@@ -2,6 +2,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
+import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
+import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 import { useGetAbsenceInfoDocumentByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentationAPI";
 import { useRouter } from "next/router";
 
@@ -35,14 +37,25 @@ ViewAbsenceInfoForm.getLayout = function getLayout(page: any) {
 
 export default function ViewAbsenceInfoForm() {
   const { query } = useRouter();
-  // const absenceInfoId = query["absence_info_id"];
-  // const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoDocumentByIdQuery(absenceInfoId);
+  const absenceInfoId = query["absence_info_id"];
+  const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoByIdQuery(absenceInfoId);
 
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs
         tabDataArray={["Absence Info", "Upload Documents"]}
-      ></HorizaontalTabs>
+      >
+        {isLoading && <p>Loading...</p>}
+        {isSuccess &&  <AbsenceInfoForm 
+        disabled 
+        defaultValues={{
+          ...data?.data,
+          dateOfAbsence: new Date(data?.data?.dateofAbsence),
+          label: new Date(data?.data?.label)
+        }}
+        />}
+       
+      </HorizaontalTabs>
     </Page>
   );
 }

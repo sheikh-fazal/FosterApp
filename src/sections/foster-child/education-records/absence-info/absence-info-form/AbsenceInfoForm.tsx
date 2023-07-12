@@ -1,25 +1,14 @@
-import {
-  Box,
-  Grid,
-} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useAbsenceInfoForm } from "./useAbsenceInfoForm";
 import { LoadingButton } from "@mui/lab";
-import IsFetching from "@root/components/loaders/IsFetching";
+import { absenceInfoFormData } from ".";
 
 export default function AbsenceInfoForm(props: any) {
-  const { action, id } = props;
-  //Allegation Custom Hook
-  const {
-    router,
-    onSubmit,
-    theme,
-    handleSubmit,
-    methods,
-    absenceInfoFormData,
-  } = useAbsenceInfoForm(props);
+  //AbsenceInfo Custom Hook
+  const { router, onSubmit, disabled, handleSubmit, methods, isSubmitting } =
+    useAbsenceInfoForm(props);
 
   // if (isLoading) return <SkeletonFormdata />;
   return (
@@ -33,17 +22,21 @@ export default function AbsenceInfoForm(props: any) {
                   <form.component
                     size="small"
                     {...form.otherOptions}
-                    disabled={action === "view" ? true : false}
-                    InputLabelProps={{
-                      shrink: action === "view" ? true : undefined,
-                      disabled: action === "view" ? true : undefined,
-                    }}
-                  ></form.component>
+                    disabled={disabled}
+                  >
+                    {form.otherOptions
+                      ? form.options?.map((option: any) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : null}
+                  </form.component>
                 </Box>
               </Grid>
             );
           })}
-          {action === "add" || action === "edit" ? (
+          {!disabled  && (
             <Grid
               xs={12}
               sx={{
@@ -56,19 +49,13 @@ export default function AbsenceInfoForm(props: any) {
             >
               <LoadingButton
                 type="submit"
-                sx={{
-                  bgcolor: theme.palette.primary.main,
-                  "&:hover": { bgcolor: theme.palette.primary.main },
-                }}
+                loading={isSubmitting}
                 variant="contained"
               >
                 Submit
               </LoadingButton>
               <LoadingButton
-                sx={{
-                  bgcolor: theme.palette.orange.main,
-                  "&:hover": { bgcolor: theme.palette.orange.main },
-                }}
+              sx={{color: "#fff",ml:1, backgroundColor: "#F6830F"}}
                 variant="contained"
                 onClick={() =>
                   router.push("/foster-child/education-records/absence-info")
@@ -77,10 +64,10 @@ export default function AbsenceInfoForm(props: any) {
                 Back
               </LoadingButton>
             </Grid>
-          ) : null}
+          )}
         </Grid>
       </FormProvider>
-
+{/* 
       {action === "view" && (
         <Grid container>
           <Grid xs={12} sx={{ mt: 2 }} item>
@@ -98,8 +85,7 @@ export default function AbsenceInfoForm(props: any) {
             </LoadingButton>
           </Grid>
         </Grid>
-      )}
+      )} */}
     </>
   );
 }
-

@@ -45,7 +45,7 @@ export const absenceInfoFormData = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "reasonforAbsence",
+      name: "reasonOfAbsence",
       label: "Reason for Absence",
       fullWidth: true,
     },
@@ -72,16 +72,16 @@ export const absenceInfoFormData = [
 //     formatters[formControl.otherOptions.name] = formControl.format;
 // }
 
-export const defaultValues = {
+export const AbsenceInfodefaultValues = {
   schoolName: "",
-  reasonforAbsence: "",
+  reasonOfAbsence: "",
   dateOfAbsence: new Date(),
   label: new Date(),
   comments: "",
 };
 export const formSchema = Yup.object().shape({
   schoolName: Yup.string().required("School Name Required"),
-  reasonforAbsence: Yup.string().required("Absence Reason Required"),
+  reasonOfAbsence: Yup.string().required("Absence Reason Required"),
   dateOfAbsence: Yup.date().required("Absence Date Required"),
   label: Yup.date().required("Agency Reported Date Required"),
   comments: Yup.string(),
