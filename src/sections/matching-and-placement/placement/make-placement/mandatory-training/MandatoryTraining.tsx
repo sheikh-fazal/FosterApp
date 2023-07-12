@@ -20,7 +20,7 @@ const MandatoryTraining = () => {
     <Grid container >
       <Grid item xs={12} mt={2}>
       <MandatoryModal
-          title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
+         title={actionType === 'add' ? 'Add Mandatory Record' : actionType === 'edit' ? 'Edit Mandatory Record' : 'View Mandatory Record'}
           open={IsOpenMandatoryModal}
           handleClose={() => setIsOpenMandatoryModal(false)}
           SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
@@ -33,7 +33,7 @@ const MandatoryTraining = () => {
         // disabled={props.disabled}
         showAddBtn
         hideSearch
-        onAdd={()=>setIsOpenNotificationModal(true)}
+        onAdd={()=>setIsOpenMandatoryModal(true)}
       />
         <CustomTable
           data={Mandatorydata}

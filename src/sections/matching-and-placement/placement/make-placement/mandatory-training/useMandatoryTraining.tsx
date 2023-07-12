@@ -10,6 +10,9 @@ export const useMandatoryTraining = () => {
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
 
+const handleEditClicked =(data:any) =>{
+
+}
   const MandatoryTrainingColumns = [
     {
         id: "select",
@@ -68,7 +71,7 @@ export const useMandatoryTraining = () => {
                 <TableAction
                   size="small"
                   type="edit"
-                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('edit')}}
+                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('edit'), handleEditClicked(info.row.id)}}
                   
                 />
              
