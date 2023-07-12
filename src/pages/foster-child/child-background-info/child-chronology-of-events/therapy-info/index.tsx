@@ -17,6 +17,7 @@ import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/c
 import ExclusionInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exclusion-info/ExclusionInfoForm";
 import VocationalCourseInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/vocational-course-info/VocationalCourseInfoForm";
 import HospitalisationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info/HospitalisationInfoForm";
+import TherapyInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/therapy-info/TherapyInfoForm";
 
 const BREADCRUMBS = [
   {
@@ -25,12 +26,12 @@ const BREADCRUMBS = [
     href: "/foster-child/child-background-info/child-chronology-of-events",
   },
   {
-    name: "Hospitalisation Info",
+    name: "Therapy Info",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Hospitalisation Info";
+const PAGE_TITLE = "Therapy Info";
 HospitalisationInfo.getLayout = function getLayout(page: any) {
   return (
     <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
@@ -84,8 +85,8 @@ export default function HospitalisationInfo() {
     }
   };
   return (
-    <HorizaontalTabs tabsDataArray={["Hospitalisation Info", "Documents"]}>
-      <HospitalisationInfoForm />
+    <HorizaontalTabs tabsDataArray={["Therapy Info", "Documents"]}>
+      <TherapyInfoForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
         tableData={data?.data?.foster_child_document?.filter(
