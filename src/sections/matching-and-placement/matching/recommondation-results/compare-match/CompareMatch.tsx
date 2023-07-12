@@ -9,90 +9,98 @@ import { Box, Button, Card, TableHead, Typography } from "@mui/material";
 import { compareMatchData, compareMatchHeader } from ".";
 import Image from "next/image";
 import Link from "next/link";
+import { useCompareMatch } from "./useCompareMatch";
+import AddConsiderationModal from "./add-consideration-modal/AddConsiderationModal";
 
-export default function CompareMatch() {
+const CompareMatch = () => {
+  const { isAddConsiderationModalOpen, setIsAddConsiderationModalOpen } = useCompareMatch()
   return (
-    <Card sx={styles.cardStyling}>
-      <Typography sx={(theme) => styles.titles(theme)}>
-        Compare Match
-      </Typography>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-          <TableHead>
-            <TableRow>
-              {compareMatchHeader.map((item: any) => {
-                return (
-                  <TableCell sx={styles.tableHeaderCell}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Image src={item?.img} alt="img" />
-                      <Typography
+    <>
+      <Card sx={styles.cardStyling}>
+        <Typography sx={(theme) => styles.titles(theme)}>
+          Compare Match
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+            <TableHead>
+              <TableRow>
+                {compareMatchHeader.map((item: any, i: number) => {
+                  return (
+                    <TableCell sx={styles.tableHeaderCell} key={i}>
+                      <Box
                         sx={{
-                          fontSize: "15px",
-                          fontWeight: "500",
-                          color: "#212529",
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "center",
                         }}
                       >
-                        {item?.title}
-                      </Typography>
-                    </Box>
-                  </TableCell>
-                );
-              })}
-            </TableRow>
-          </TableHead>
-        </Table>
-        <TableBody>
-          <Box sx={styles.tableBody}>
-            {compareMatchData.map((row: any) => (
-              <TableRow key={row?.criteria}>
-                <TableCell
-                  component="th"
-                  scope="row"
-                  sx={styles.tableBodyCriteria}
-                >
-                  {row?.criteria}
-                </TableCell>
-                <TableCell align="center" sx={styles.tableBodyContent}>
-                  {row.personOne}
-                </TableCell>
-                <TableCell align="center" sx={styles.tableBodyContent}>
-                  {row.personTwo}
-                </TableCell>
-                <TableCell align="center" sx={styles.tableBodyContent}>
-                  {row.CancelIcon}
-                </TableCell>
+                        <Image src={item?.img} alt="img" />
+                        <Typography
+                          sx={{
+                            fontSize: "15px",
+                            fontWeight: "500",
+                            color: "#212529",
+                          }}
+                        >
+                          {item?.title}
+                        </Typography>
+                      </Box>
+                    </TableCell>
+                  );
+                })}
               </TableRow>
-            ))}
-          </Box>
-        </TableBody>
-      </TableContainer>
-      <Box sx={{ display: "flex", gap: "10px", mt: 3, flexWrap: "wrap" }}>
-        <Button type="button" variant="contained">
-          <Link href="/placement/placement-plan" style={{ all: "unset" }}>
-            Add to Placement List
-          </Link>
-        </Button>
-        <Button type="button" variant="contained">
-          Add to Consideration List
-        </Button>
-        <Link
-          href={"/matching/recommondations-result"}
-          style={{ textDecoration: "none" }}
-        >
+            </TableHead>
+          </Table>
+          <TableBody>
+            <Box sx={styles.tableBody}>
+              {compareMatchData.map((row: any) => (
+                <TableRow key={row?.criteria}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    sx={styles.tableBodyCriteria}
+                  >
+                    {row?.criteria}
+                  </TableCell>
+                  <TableCell align="center" sx={styles.tableBodyContent}>
+                    {row.personOne}
+                  </TableCell>
+                  <TableCell align="center" sx={styles.tableBodyContent}>
+                    {row.personTwo}
+                  </TableCell>
+                  <TableCell align="center" sx={styles.tableBodyContent}>
+                    {row.CancelIcon}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </Box>
+          </TableBody>
+        </TableContainer>
+        <Box sx={{ display: "flex", gap: "10px", mt: 3, flexWrap: "wrap" }}>
           <Button type="button" variant="contained">
-            Back
+            <Link href="/placement/placement-plan" style={{ all: "unset" }}>
+              Add to Placement List
+            </Link>
           </Button>
-        </Link>
-      </Box>
-    </Card>
+          <Button type="button" variant="contained" onClick={() => setIsAddConsiderationModalOpen(true)}>
+            Add to Consideration List
+          </Button>
+          <Link
+            href={"/matching/recommondations-result"}
+            style={{ textDecoration: "none" }}
+          >
+            <Button type="button" variant="contained">
+              Back
+            </Button>
+          </Link>
+        </Box>
+      </Card>
+      <AddConsiderationModal isAddConsiderationModalOpen={isAddConsiderationModalOpen} setIsAddConsiderationModalOpen={setIsAddConsiderationModalOpen} />
+    </>
   );
 }
+
+export default CompareMatch
 
 // Styles
 const styles = {
