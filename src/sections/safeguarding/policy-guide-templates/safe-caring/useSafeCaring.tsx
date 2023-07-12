@@ -1,18 +1,14 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
-import { useForm } from "react-hook-form";
-import { FormSchema, defaultValues } from ".";
 
-export const useAgencySafeguardingPolicy = () => {
-  const path = "/safeguarding/policy-guide-templates/agency-policy/form";
+export const useSafeCaring = () => {
+  const path = "/safeguarding/policy-guide-templates/safe-caring/form";
   const router = useRouter();
   const theme = useTheme();
   let tableHeaderRefTwo = useRef<any>();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
   const handleClose = () => setIsDeleteModalOpen(false);
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
@@ -54,42 +50,49 @@ export const useAgencySafeguardingPolicy = () => {
       ),
     },
     {
-      accessorFn: (row: any) => row.policyDocument,
-      id: "policyDocument",
+      accessorFn: (row: any) => row.safeguarding_policy_document,
+      id: "Safeguarding-Policy-Document",
       cell: (info: any) => info.getValue(),
       header: () => <span>Safeguarding Policy Document</span>,
+      isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.uploadedDate,
-      id: "uploadedDate",
+      accessorFn: (row: any) => row.date_uploaded,
+      id: "Date Uploaded",
       cell: (info: any) => info.getValue(),
       header: () => <span>Date Uploaded</span>,
+      isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.description,
-      id: "description",
+      accessorFn: (row: any) => row.discription,
+      id: "Discription",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Description</span>,
+      header: () => <span>Discription</span>,
+      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.version,
-      id: "version",
+      id: "Version",
       cell: (info: any) => info.getValue(),
       header: () => <span>Version</span>,
+      isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.authorRole,
-      id: "authorRole",
+      accessorFn: (row: any) => row.author,
+      id: "Author(Role)",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Author (Role)</span>,
+      header: () => <span>Author(Role)</span>,
+      isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.approverRole,
-      id: "approverRole",
+      accessorFn: (row: any) => row.approver,
+      id: "Approver(Role)",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Approver (Role)</span>,
+      header: () => <span>Approver(Role)</span>,
+      isSortable: true,
     },
     {
+      accessorFn: (row: any) => row.actions,
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
@@ -107,42 +110,12 @@ export const useAgencySafeguardingPolicy = () => {
       isSortable: false,
     },
   ];
-
-  const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-
-  const {
-    reset,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
-
-  const onSubmit = async (data: any) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.log("data", data);
-    alert(
-      JSON.stringify(
-        {
-          ...data,
-        },
-        null,
-        2
-      )
-    );
-    reset();
-  };
   return {
-    columns,
     theme,
     router,
     isDeleteModalOpen,
+    columns,
     tableHeaderRefTwo,
     handleClose,
-    isSubmitting,
-    methods,
-    handleSubmit,
-    onSubmit,
   };
 };

@@ -5,7 +5,8 @@ import { AForm } from ".";
 import { useCaringPolicyForm } from "./useCaringPolicyForm";
 import Link from "next/link";
 
-export default function AddCaringPolicyForm({ disabled }: any) {
+export default function AddCaringPolicyForm({ action }: any) {
+  const disabled = action === "view" ? true : false;
   const {
     methods,
     handleSubmit,
@@ -18,14 +19,10 @@ export default function AddCaringPolicyForm({ disabled }: any) {
       <Grid container columnSpacing={4}>
         {AForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
+            <item.component fullWidth
               {...item.componentProps}
               disabled={query.action === "view" && disabled}
-              value={
-                query.action === "edit" || query.action === "view"
-                  ? item.componentProps.value
-                  : ""
-              }
+              
               size={"small"}
             >
               {item?.heading}

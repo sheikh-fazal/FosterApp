@@ -4,7 +4,7 @@ import PersonalInfo from './personal-info/PersonalInfo'
 import ApprovedDetails from './approved-details/ApprovedDetails'
 import UploadDocument from './social-worker-upload-document/UploadDocument'
 
-const AddSocialWorkerForm = () => {
+const AddSocialWorkerForm = ({action}:any) => {
   return (
     <HorizaontalTabs
         tabsDataArray={[
@@ -13,9 +13,9 @@ const AddSocialWorkerForm = () => {
           "Upload Documents"
         ]}
       >
-        <PersonalInfo  message="Added" />
-        <ApprovedDetails  message="Added" />
-        <UploadDocument/>
+        <PersonalInfo  message="Added"  action={action}/>
+        <ApprovedDetails  message="Added" action={action} />
+        <UploadDocument />
       </HorizaontalTabs>
   )
 }
