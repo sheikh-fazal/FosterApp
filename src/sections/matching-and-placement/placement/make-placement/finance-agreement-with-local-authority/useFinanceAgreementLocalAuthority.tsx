@@ -1,9 +1,14 @@
-import { Box, Checkbox, FormControlLabel, TableCell, useTheme } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, useTheme } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
-export const usePlacementSpecialNeedsAgreementTable = () => {
+export const useFinanceAgreementLocalAuthority = () => {
+  const [isOpenFinanceAgreementModal, setIsOpenFinanceAgreementModal] = useState(false)
   const theme: any = useTheme();
-
+   const onAddFinanceAgreementModal = (data:any) =>{
+    console.log(data);
+    
+   }
   const FinanceAgreementLocalAuthorityColumns = [
     {
       accessorFn: (row: any) => row.placementAgreementReceipts,
@@ -58,7 +63,7 @@ export const usePlacementSpecialNeedsAgreementTable = () => {
 
   return {
     FinanceAgreementLocalAuthorityColumns,
-    theme,
+    theme,isOpenFinanceAgreementModal, setIsOpenFinanceAgreementModal,onAddFinanceAgreementModal
   };
 };
 

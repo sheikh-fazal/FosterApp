@@ -5,14 +5,14 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from 'yup';
 
 export const defaultValues  = {
-    carerName: 'd',
-    courseAttended: 'd',
+    carerName: '',
+    courseAttended: '',
     attendedDate: new Date(),
 }
 export const MandatoryformSchemaValidation = Yup.object().shape({
     carerName: Yup.string().trim().required('Field is required'),
     courseAttended: Yup.string().trim().required('Field is required'),
-    attendedDate: Yup.string().required('Field is required'),
+    attendedDate: Yup.date().required('Field is required'),
 })
 
 
@@ -54,3 +54,4 @@ export const MandatoryModalData = [
 
 
 ]
+export { default as MandatoryModal } from "./MandatoryModal";

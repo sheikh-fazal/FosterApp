@@ -1,8 +1,14 @@
 import { Box, Checkbox, FormControlLabel, useTheme } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
-export const usePlacementAgreementCarerTable = () => {
+export const usePlacementAgreementWithCarer = () => {
+  const [isOpenPlacementAgreementModal, setIsOpenPlacementAgreementModal] = useState(false)
   const theme: any = useTheme();
+   const onAddPlacementAgreementModal = (data:any) =>{
+    console.log(data);
+    
+   }
 
   const PlacementAgreementCarerTableColumns = [
     {
@@ -53,7 +59,7 @@ export const usePlacementAgreementCarerTable = () => {
 
   return {
     PlacementAgreementCarerTableColumns,
-    theme,
+    theme,isOpenPlacementAgreementModal, setIsOpenPlacementAgreementModal,onAddPlacementAgreementModal
   };
 };
 // style

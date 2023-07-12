@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, FormControlLabel, TableCell, } from "@mui/material";
+import { Box, Button, Checkbox, FormControlLabel, Grid, TableCell, } from "@mui/material";
 import React from "react";
 import { useFinanceAgreementCarer } from "./useFinanceAgreementCarer";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -6,9 +6,11 @@ import TableAction from "@root/components/TableAction";
 import { financeAgreementCarerData } from ".";
 import TableHeader from "@root/components/TableHeader";
 import Image from "next/image";
+import FinanceAgreementcarerAddModal from "./Modal/FinanceAgreementcarerAddModal";
 
 const FinanceAgreementCarer = () => {
-    const { theme } = useFinanceAgreementCarer();
+    const { theme, isOpenFinanceAgreementWithcarerModal, setIsOpenFinanceAgreementWithcarerModal,
+        onAddFinanceAgreementCarer } = useFinanceAgreementCarer();
 
     const columns = [
 
@@ -64,11 +66,13 @@ const FinanceAgreementCarer = () => {
         },
     ];
     return (
+        <>
         <Box sx={{ pt: 2 }}>
             <TableHeader
                 title="Placement Special Needs agreement"
                 hideSearch
                 showAddBtn
+                onAdd={()=>setIsOpenFinanceAgreementWithcarerModal(true)}
             />
             <CustomTable
                 data={financeAgreementCarerData}
@@ -84,11 +88,21 @@ const FinanceAgreementCarer = () => {
                 onSortByChange={(data: any) => {
                     console.log("Sort by: ", data);
                 }}
-                rootSX={{ my: theme.spacing(2) }}
+                rootSX={{ my: theme.spacing(2), p:2.5 }}
             />
-            <Button type="submit" sx={{ backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, mx: 2, my: 2 }}>Continue</Button>
+           <Box   ml={2.8} mb={2} mt={0}>
+      <Button sx={styles.saveBtn}>Continue</Button>
+    </Box>
         </Box>
+        <FinanceAgreementcarerAddModal title='Finance Agrement With Carer' open={isOpenFinanceAgreementWithcarerModal} handleClose={()=>setIsOpenFinanceAgreementWithcarerModal(false)}
+       onSubmit={onAddFinanceAgreementCarer}/>
+        </>
     );
 };
 
 export default FinanceAgreementCarer;
+
+const styles = {
+    saveBtn: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.2, py: 1, fontSize: "16px", fontWeight: 600 }
+  };
+  

@@ -1,9 +1,15 @@
 import { Box, useTheme } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
-export const usePlacementSpecialNeedsAgreementTable = () => {
+export const usePlacementSpecialNeedsAgreement = () => {
+  const [isOpenPlacementSpecialNeedsModal, setIsOpenPlacementSpecialNeedsModal] = useState(false)
   const theme: any = useTheme();
+  
+  const onAddSpecialNeedsModalData = (data:any) =>{
+console.log(data);
 
+  }
   const SpecialNeedsAgreementColumns = [
     {
       accessorFn: (row: any) => row.specialNeedsAgreement,
@@ -50,6 +56,6 @@ export const usePlacementSpecialNeedsAgreementTable = () => {
 
   return {
     SpecialNeedsAgreementColumns,
-    theme,
+    theme,isOpenPlacementSpecialNeedsModal, setIsOpenPlacementSpecialNeedsModal,onAddSpecialNeedsModalData
   };
 };

@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import {Mandatorydata } from '.';
 import { useMandatoryTraining } from './useMandatoryTraining';
 import { LoadingButton } from '@mui/lab';
@@ -32,9 +32,7 @@ const MandatoryTraining = () => {
 
 
        <TableHeader
-        // ref={tableHeaderRef}
         title="Placement Meeting Record"
-        // disabled={props.disabled}
         showAddBtn
         hideSearch
         onAdd={()=>{setIsOpenMandatoryModal(true); setActionType('Add')}}
@@ -50,24 +48,19 @@ const MandatoryTraining = () => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          rootSX={{ my: theme.spacing(2), p:1.5}}
+          rootSX={{ my: theme.spacing(2), p:2.5}}
 
         />
       </Grid>
-      <Grid item xs={12}  ml={3.5} mb={2} mt={0}>
-          <LoadingButton
-            type="submit"
-            sx={{
-              bgcolor: theme.palette.primary.main,
-            }}
-            variant="contained"
-            // loading={isfatching}
-          >
-            Continue
-          </LoadingButton>
+      <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
+      <Button sx={styles.saveBtn}>Continue</Button>
     </Grid>
     </Grid>
   )
 }
 
 export default MandatoryTraining
+
+const styles = {
+  saveBtn: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.2, py: 1, fontSize: "16px", fontWeight: 600 }
+};

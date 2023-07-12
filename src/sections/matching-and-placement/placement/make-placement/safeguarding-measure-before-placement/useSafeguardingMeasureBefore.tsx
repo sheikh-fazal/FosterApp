@@ -2,9 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-export const useSafeguardingMeasureBeforeTable = () => {
-    const [IsOpenTrainingClockModal, setIsOpenTrainingClockModal] = useState(false)
-    const tableHeaderRef = useRef();
+export const useSafeguardingMeasureBefore = () => {
     const theme: any = useTheme();
 
   const safeguardingMeasureColumns = [
@@ -53,11 +51,7 @@ export const useSafeguardingMeasureBeforeTable = () => {
 
     return {
         safeguardingMeasureColumns,
-        tableHeaderRef,
         theme,
-        IsOpenTrainingClockModal,
-        setIsOpenTrainingClockModal,
-       
     }
 }
 

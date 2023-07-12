@@ -70,7 +70,7 @@ const ChildSelection = () => {
 export default ChildSelection;
 
 const styles = {
-    collapseWrapper: { px: 3, py: 4 },
+    collapseWrapper: { px: 2.5, py: 4 },
     heading: { color: "#343A40", fontSize: "14px", fontWeight: 600 },
     searchWrap: { display: "flex", alignItems: "center", gap: "40px", width: "100%", maxWidth: "500px" },
     button: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, },

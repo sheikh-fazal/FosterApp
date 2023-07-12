@@ -1,17 +1,17 @@
-import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
+import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthority";
 import CarerSelection from "./carer-selection/CarerSelection";
 import ChildSelection from "./child-selection/ChildSelection";
 import FinalPlacementApprovalDeclarations from "./final-placement-approval-declarations/FinalPlacementApprovalDeclarations";
 import FinanceAgreementCarer from "./finance-agreement-carer/FinanceAgreementCarer";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
-import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
-import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
-import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBeforeTable";
-import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDurationTable";
+import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecord";
+import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreement";
+import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBefore";
+import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDuration";
 import { SelectLASW } from "./select-la-sw";
 import { SelectPlacementType } from "./select-placement-type";
 import { SelectSupervisingSocialWorker } from "./select-supervising-social-worker";
-import PlacementAgreementCarerTable from "./placement-agreement-with-carer/PlacementAgreementCarerTable";
+import PlacementAgreementCarerTable from "./placement-agreement-with-carer/PlacementAgreementWithCarer";
 
 
 export const placementStepData = [
