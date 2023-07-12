@@ -2,13 +2,14 @@ import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import { useResults } from "./useResults";
 import ResultTable from "./result-table/ResultTable";
+import FormTable from "@root/components/Table/FormTable";
 
 const Results = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
     useResults();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <ResultTable
+      <FormTable
         tableKey="exampleTable"
         route={route}
         columns={[

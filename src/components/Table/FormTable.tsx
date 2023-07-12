@@ -29,7 +29,7 @@ import { useRouter } from "next/router";
 import AddIcon from "@mui/icons-material/Add";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 
-const ANON_FUNC = () => { };
+const ANON_FUNC = () => {};
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -166,7 +166,7 @@ function TableFormModal(props: any) {
 export default function FormTable(props: any) {
   const {
     disabled,
-    view ,
+    view,
     print,
     share,
     certificate,

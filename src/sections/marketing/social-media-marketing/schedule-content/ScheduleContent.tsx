@@ -2,16 +2,17 @@ import React from "react";
 import { useScheduleContent } from "./useScheduleContent";
 import { FormProvider } from "@root/components/hook-form";
 import ScheduleContentTable from "./schedule-table/ScheduleContentTable";
+import FormTable from "@root/components/Table/FormTable";
 
 const ScheduleContent = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
     useScheduleContent();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <ScheduleContentTable
+      <FormTable
         tableKey="exampleTable"
         route={route}
-        columns={[
+        columns={[         
           {
             inputType: "textField",
             type: "text",
