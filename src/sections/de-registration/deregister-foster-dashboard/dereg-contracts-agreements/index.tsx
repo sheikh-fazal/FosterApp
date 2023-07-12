@@ -63,7 +63,7 @@ export const DeRegContractsAgreementsData = [
     text: "Written notice of the proposal",
     informationText: "Written notice of the proposal",
     viewForms: "View Form",
-    href: "#",
+    modal: true,
     status: "Pending",
   },
   {
@@ -81,7 +81,7 @@ export const DeRegContractsAgreementsData = [
     text: "Terms of approval",
     informationText: "Terms of approval",
     viewForms: "View Form",
-    href: "#",
+    modal: true,
     status: "Pending",
   },
   {
