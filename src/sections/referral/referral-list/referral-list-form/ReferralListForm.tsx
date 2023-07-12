@@ -10,6 +10,13 @@ const ReferralListForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit } =
     useReferralListForm();
+    
+  let label: any;
+  if (action === "view") {
+    label = "uploaded doc";
+  } else {
+    label = "upload doc";
+  }
   return (
     <Card  sx={{ p: 2 }}>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -21,7 +28,7 @@ const ReferralListForm = ({ action }: any) => {
              {form.label}
            </Typography>
             {form.component && (
-              <form.component
+              <form.component fullWidth
                 disabled={disabled}
                 size="small"
                 {...form.componentProps}
@@ -38,7 +45,7 @@ const ReferralListForm = ({ action }: any) => {
             )}
             {form?.uploadPhoto && (
               <>
-              <RHFUploadFile name={"updatePhoto"}  {...methods} required />
+              <RHFUploadFile name={"updatePhoto"} label={label} {...methods} required />
               </>
             )}
           </Grid>

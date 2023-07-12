@@ -5,50 +5,11 @@ import { Controller, useFormContext } from "react-hook-form";
 import * as Yup from "yup";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { FormHelperText, Typography } from "@mui/material"; 
+import dayjs from "dayjs";
 
- const SAFE_CARING_POLICY_TABLE_DATA = [
-  {
-    safeguarding_policy_document: "PDF",
-    uploaded_image:"height.PNG",
-    date_uploaded: '12/11/2021',
-    discription: "Safeguarding policy",
-    version: "Version_12_02_423121345",
-    author: "Tom Hanks",
-    date_of_eSignature_of_author: '12/11/2021',
-    creatorRole: "Director",
-    creationTime: '12/11/2021',
-    approver: "David due",
-    approverRole: "Safegurad Officer",
-    date_of_eSignature_of_approver: '12/11/2021',
-    actions:"",
-    lastModifiedBy: "Victor Krum",
-    lastModifiedTime: '12/11/2021',
-    cancelled: "no",
-    CancelledBy: "10-02-2022 14:23:03",
-    CancelledAt: "Ani Cristea",
-  },
-  {
-    safeguarding_policy_document: "XLS",
-    uploaded_image:"height.PNG",
-    date_uploaded: "02/12/2021",
-    discription: "Safeguarding policy",
-    version: "Version_12_02_423121345",
-    author: "Janifer Hoston",
-    date_of_eSignature_of_author: '12/11/2021',
-    creatorRole: "Manager",
-    creationTime: '12/11/2021',
-    approver: "Victor Krum ",
-    approverRole: "Safegurad Officer",
-    date_of_eSignature_of_approver: '12/23/2021',
-    actions:"",
-    lastModifiedBy: "Soan Bella",
-    lastModifiedTime: '12/11/2021',
-    cancelled: "no",
-    CancelledBy: "10-02-2022 14:23:03",
-    CancelledAt: "Ani Cristea",
-  },
-]
 
+
+const todayDate = dayjs().format("MM/DD/YYYY");
 export const AForm = [
   {
     id: 1,
@@ -67,7 +28,7 @@ export const AForm = [
       label: "Date Uploaded",
       fullWidth: true,
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_uploaded,
+      // value: SAFE_CARING_POLICY_TABLE_DATA[0].date_uploaded,
     },
     component: RHFDatePicker,
     md: 6,
@@ -79,7 +40,7 @@ export const AForm = [
       label: "Upload Image",
       fullWidth: true,
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].uploaded_image,
+  
     },
     component: RHFUploadFile,
     md: 6,
@@ -92,7 +53,7 @@ export const AForm = [
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].discription,
+    
     },
     component: RHFTextField,
 
@@ -104,7 +65,7 @@ export const AForm = [
       name: "version",
       label: "Version",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].version,
+    
     },
     component: RHFTextField,
     md: 6,
@@ -115,7 +76,7 @@ export const AForm = [
       name: "creatorRole",
       label: "Creator role",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].creatorRole,
+  
     },
     component: RHFTextField,
     md: 6,
@@ -126,7 +87,7 @@ export const AForm = [
       name: "createdBy",
       label: "Created by",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].author,
+     
     },
     component: RHFTextField,
     md: 6,
@@ -137,7 +98,7 @@ export const AForm = [
       name: "creationTime",
       label: "Creation time",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].creationTime,
+     
     },
     component: RHFTextField,
     md: 6,
@@ -148,7 +109,7 @@ export const AForm = [
       name: "approvedBy",
       label: "Approved by",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].approver,
+    
     },
     component: RHFTextField,
     md: 6,
@@ -159,7 +120,7 @@ export const AForm = [
       name: "approverRole",
       label: "Approver role",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].approverRole,
+   
     },
     component: RHFTextField,
     md: 6,
@@ -170,7 +131,7 @@ export const AForm = [
       name: "lastModifiedTime",
       label: "Last modified time",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].lastModifiedTime,
+   
     },
     component: RHFTextField,
     md: 6,
@@ -181,7 +142,7 @@ export const AForm = [
       name: "lastModifiedBy",
       label: "Last modified by",
       sx: { mb: 4 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].lastModifiedBy,
+      
     },
     component: RHFTextField,
     md: 6,
@@ -193,7 +154,7 @@ export const AForm = [
       label: "Date of eSignatue of Author",
       fullWidth: true,
       sx: { mt: 2, mb: 10 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_author,
+   
     },
     component: RHFDatePicker,
     md: 6,
@@ -214,7 +175,7 @@ export const AForm = [
       label: "Date of eSignatue of Approver",
       fullWidth: true,
       sx: { mt: 2, mb: 10 },
-      value: SAFE_CARING_POLICY_TABLE_DATA[0].date_of_eSignature_of_approver,
+    
     },
     component: RHFDatePicker,
     md: 6,
@@ -233,7 +194,7 @@ export const AForm = [
 ];
 
 export const AFormDefaultValues = {
-  dateUploaded: "",
+  dateUploaded: null,
   uploadImage: "",
   description: "",
   version: "",
@@ -244,9 +205,9 @@ export const AFormDefaultValues = {
   approverRole: "",
   lastModifiedTime: "",
   lastModifiedBy: "",
-  signDateAuthor: "",
+  signDateAuthor: null,
   signatureAuther: "",
-  signDateApprover: "",
+  signDateApprover: null,
   signatureApprover: "",
 };
 

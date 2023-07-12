@@ -52,6 +52,7 @@ export const AForm = [
     componentProps: {
       name: "firstName",
       label: "First Name",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -62,6 +63,7 @@ export const AForm = [
     componentProps: {
       name: "lastName",
       label: "Last Name",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -83,6 +85,7 @@ export const AForm = [
     componentProps: {
       name: "age",
       label: "Age",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -133,6 +136,7 @@ export const AForm = [
     componentProps: {
       name: "email",
       label: "Email",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -143,6 +147,7 @@ export const AForm = [
     componentProps: {
       name: "phoneNumber",
       label: "Phone Number",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -173,6 +178,7 @@ export const AForm = [
     componentProps: {
       name: "address",
       label: "Address",
+      fullWidth: true,
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -185,6 +191,7 @@ export const AForm = [
     componentProps: {
       name: "otherDetails",
       label: "Other Details",
+      fullWidth: true,
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },

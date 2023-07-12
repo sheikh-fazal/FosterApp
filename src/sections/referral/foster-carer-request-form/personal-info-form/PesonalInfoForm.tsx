@@ -3,17 +3,24 @@ import Link from "next/link";
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { usePersonalInfoForm } from "./usePersonalInfoForm";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const PesonalInfoForm = ({ disabled }: any) => {
+const PesonalInfoForm = ({ action }: any) => {
+  const disabled = action === "view" ? true : false;
   const { PersonalInfoFormData, onSubmit, handleSubmit, methods, router } =
     usePersonalInfoForm();
-
+    let label: any;
+    if (action === "view") {
+      label = "uploaded doc";
+    } else {
+      label = "upload doc";
+    }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {PersonalInfoFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
+            <item.component fullWidth
               {...item.componentProps}
               disabled={disabled}
               size={"small"}
@@ -27,6 +34,14 @@ const PesonalInfoForm = ({ disabled }: any) => {
                 : null}
               {item?.heading}
             </item.component>
+            {item?.uploadPhoto && (
+                  <RHFUploadFile
+                    name={"updatePhoto"}
+                    label={label}
+                    {...methods}
+                    required
+                  />
+                )}
           </Grid>
         ))}
 

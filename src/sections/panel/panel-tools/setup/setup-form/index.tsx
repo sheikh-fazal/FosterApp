@@ -7,8 +7,8 @@ export const initialValues = {
   carer: '',
   status: '',
   case: '',
-  time: '',
-  date: '',
+  time: new Date(),
+  date: new Date(),
   socialWorker: '',
   member: ''
 };

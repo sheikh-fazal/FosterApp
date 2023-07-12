@@ -4,8 +4,9 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import AddCaringPolicyForm from "@root/sections/safeguarding/policy-guide-templates/safe-caring/add/addCaringPolicyForm";
+import AddCaringPolicyForm from "@root/sections/safeguarding/policy-guide-templates/safe-caring/add-safe-caring/addCaringPolicyForm";
 import { Box, Card } from "@mui/material";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -38,10 +39,12 @@ AddCaringPolicy.getLayout = function getLayout(page: any) {
 };
 
 export default function AddCaringPolicy() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <AddCaringPolicyForm disabled={true}/>
+        <AddCaringPolicyForm action={action} id={id}  />
       </Card>
     </Page>
   );

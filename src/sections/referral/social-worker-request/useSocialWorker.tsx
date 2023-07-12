@@ -93,7 +93,7 @@ export const useSocialWorker = () => {
             type="edit"
             onClicked={() =>
               navigate.push(
-                "/referral/social-worker-request-form/add-social-worker?action=edit"
+                "/referral/social-worker-request/add-social-worker?action=edit"
               )
             }
           />
@@ -101,7 +101,7 @@ export const useSocialWorker = () => {
             type="view"
             onClicked={() =>
               navigate.push(
-                "/referral/social-worker-request-form/add-social-worker?action=view"
+                "/referral/social-worker-request/add-social-worker?action=view"
               )
             }
           />

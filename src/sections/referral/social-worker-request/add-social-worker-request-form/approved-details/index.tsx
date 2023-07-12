@@ -12,6 +12,7 @@ export const BForm = [
     componentProps: {
       name: "userCode",
       label: "User Code",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -23,6 +24,7 @@ export const BForm = [
     componentProps: {
       name: "referredBy",
       label: "Referred By",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -85,6 +87,7 @@ export const BForm = [
     componentProps: {
       name: "branchManagerEmail",
       label: "Branch Manager Email",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -96,6 +99,7 @@ export const BForm = [
       name: "branchAddress",
       label: "Branch Address",
       multiline: true,
+      fullWidth: true,
       minRows: 3,
       sx: { mb: 4 },
     },
@@ -106,6 +110,7 @@ export const BForm = [
     id: 1,
     componentProps: {
       name: "branchManagerName",
+      fullWidth: true,
       label: "Branch Manager Name",
       sx: { mb: 4 },
     },
@@ -116,6 +121,7 @@ export const BForm = [
     id: 1,
     componentProps: {
       name: "branchManagerTelephone",
+      fullWidth: true,
       label: "Branch Manager Telephone",
       sx: { mb: 4 },
     },
@@ -126,6 +132,7 @@ export const BForm = [
     id: 1,
     componentProps: {
       name: "areaTeam",
+      fullWidth: true,
       label: "Area Team",
       sx: { mb: 4 },
     },
@@ -137,6 +144,7 @@ export const BForm = [
     componentProps: {
       name: "EDTNumber",
       label: "EDT Number",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -147,6 +155,7 @@ export const BForm = [
     componentProps: {
       name: "behavioural",
       label: "Behavioural",
+      fullWidth: true,
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -159,6 +168,7 @@ export const BForm = [
     componentProps: {
       name: "otherDetails",
       label: "Other Details",
+      fullWidth: true,
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
