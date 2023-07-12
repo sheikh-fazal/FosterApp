@@ -6,12 +6,17 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 export const useMandatoryTraining = () => {
     const [IsOpenMandatoryModal, setIsOpenMandatoryModal] = useState(false)
     const [IsOpenDeleteModal, setIsOpenDeleteModal] = useState(false)
-    const [actionType, setActionType] = useState('add');
+    const [actionType, setActionType] = useState('Add');
     const tableHeaderRef = useRef();
     const theme: any = useTheme();
 
+const handleAddMandatoryRecord =(data:any) =>{
+  setIsOpenMandatoryModal(true);
+  setActionType('Add');
+}
 const handleEditClicked =(data:any) =>{
-
+  setIsOpenMandatoryModal(true);
+  setActionType('Edit');
 }
   const MandatoryTrainingColumns = [
     {
@@ -71,7 +76,7 @@ const handleEditClicked =(data:any) =>{
                 <TableAction
                   size="small"
                   type="edit"
-                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('edit'), handleEditClicked(info.row.id)}}
+                  onClicked={() => handleEditClicked(info?.row?.original) }
                   
                 />
              
@@ -90,7 +95,8 @@ const handleEditClicked =(data:any) =>{
                 <TableAction
                   size="small"
                   type="view"
-                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('view')}}
+                  onClicked={() => {setIsOpenMandatoryModal(true),setActionType('View')}}
+                  
                 />
               </Box>
             ),
@@ -104,7 +110,8 @@ const handleEditClicked =(data:any) =>{
         MandatoryTrainingColumns,
         tableHeaderRef,
         theme,
-        IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType, setActionType
+        IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType, setActionType,
+        handleEditClicked,handleAddMandatoryRecord
        
     }
 }

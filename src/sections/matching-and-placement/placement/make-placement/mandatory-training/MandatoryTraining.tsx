@@ -12,7 +12,8 @@ import MandatoryModal from './Modal/MandatoryModal';
 
 const MandatoryTraining = () => {
   const {MandatoryTrainingColumns,theme,
-    IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType,
+    IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType,setActionType,
+    handleEditClicked,handleAddMandatoryRecord
   } = useMandatoryTraining()
 
 
@@ -20,13 +21,13 @@ const MandatoryTraining = () => {
     <Grid container >
       <Grid item xs={12} mt={2}>
       <MandatoryModal
-         title={actionType === 'add' ? 'Add Mandatory Record' : actionType === 'edit' ? 'Edit Mandatory Record' : 'View Mandatory Record'}
+         title={actionType === 'Add' ? 'Add Mandatory Record' : actionType === 'edit' ? 'Edit Mandatory Record' : 'View Mandatory Record'}
           open={IsOpenMandatoryModal}
           handleClose={() => setIsOpenMandatoryModal(false)}
-          SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
+          SubmitBtnText={actionType === "Edit" ? "Update" : "Submit"}
           disabled={actionType === 'View'}
-          isHideSubmitButton
-          // onSubmit={actionType === 'Add' ? (data: any) => onHandleAddAssessment(data) :  (data: any) => onHandleEditAssessment(data) }
+          isHideSubmitButton={actionType === 'View' }
+          onSubmit={actionType === 'Add' ? (data: any) => handleAddMandatoryRecord(data) :  (data: any) => handleEditClicked(data) }
         />
 
 
@@ -36,7 +37,7 @@ const MandatoryTraining = () => {
         // disabled={props.disabled}
         showAddBtn
         hideSearch
-        onAdd={()=>setIsOpenMandatoryModal(true)}
+        onAdd={()=>{setIsOpenMandatoryModal(true); setActionType('Add')}}
       />
         <CustomTable
           data={Mandatorydata}
