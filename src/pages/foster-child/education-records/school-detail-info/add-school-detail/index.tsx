@@ -36,7 +36,7 @@ export default function AddSchoolDetail() {
       href: "",
     },
   ];
-  
+
   const PAGE_TITLE = "School Detail Info";
   return (
     <Box>

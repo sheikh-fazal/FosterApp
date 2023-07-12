@@ -1,4 +1,3 @@
-
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import * as Yup from "yup";
@@ -109,7 +108,9 @@ export const defaultValues = {
 };
 export const SchoolDetailInfoFormSchema = Yup.object().shape({
   schoolName: Yup.string().trim().required("School Name is Required"),
-  buildingName: Yup.string().trim().required("Building Number/Name is Required"),
+  buildingName: Yup.string()
+    .trim()
+    .required("Building Number/Name is Required"),
   street: Yup.string().trim().required("Street Number is Required"),
   city: Yup.string().trim().required("City is Required"),
   county: Yup.string().trim().required("County is Required"),
@@ -129,6 +130,5 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
   email: Yup.string().required("Email is Required").email("Invalid Email"),
   principalName: Yup.string().trim().required("Principal Name is Required"),
 });
-
 
 export { default as SchoolDetailInfoTable } from "./SchoolDetailInfoTable";

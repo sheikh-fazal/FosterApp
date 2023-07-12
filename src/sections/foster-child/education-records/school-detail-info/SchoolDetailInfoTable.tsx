@@ -78,7 +78,7 @@ export default function SchoolDetailInfoTable(props: any) {
                 pathname:
                   "/foster-child/education-records/school-detail-info/view-school-detail",
                 query: {
-                  action: "edit",
+                  action: "view",
                   schoolInfoId: info.row.original.id,
                   fosterChildId: fosterChildId,
                 },

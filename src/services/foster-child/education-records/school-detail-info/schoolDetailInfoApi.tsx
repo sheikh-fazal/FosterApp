@@ -24,11 +24,10 @@ export const contactApi = baseAPI.injectEndpoints({
     getSchoolDetailInfoById: builder.query({
       query: (id) => `/school-info/${id}`,
     }),
-    putSchoolDetailInfoById: builder.mutation<null, void>({
-      query: (data: any) => {
-        const { id, ...body } = data;
+    putSchoolDetailInfoById: builder.mutation({
+      query: ({ body, schoolInfoId }: any) => {
         return {
-          url: `/school-info/${id}`,
+          url: `/school-info/${schoolInfoId}`,
           method: "PATCH",
           body,
         };
@@ -41,7 +40,6 @@ export const contactApi = baseAPI.injectEndpoints({
         return {
           url: `/school-info/${id}`,
           method: "DELETE",
-          
         };
       },
       invalidatesTags: [TAG],
