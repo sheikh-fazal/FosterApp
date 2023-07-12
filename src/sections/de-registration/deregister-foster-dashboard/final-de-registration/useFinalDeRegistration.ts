@@ -10,6 +10,7 @@ export const useFinalDeRegistration: any = () => {
   const [formDialogId, setFormDialogId] = useState<any>();
   const [openSocialWorkerAsessmentDialogbox, setOpenSocialWorkerAssessmentDialogbox] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [viewResignationByFosterCarers, setViewResignationByFosterCarers] = useState(false)
   const theme: any = useTheme();
   const route = useRouter();
 
@@ -18,7 +19,11 @@ export const useFinalDeRegistration: any = () => {
   };
 
   const handleViewFormModal = (id: any) => {
-    id === 3 && setIsSuccessfullyModalOpen(true)
+    if(id === 3) {
+      setIsSuccessfullyModalOpen(true)
+    } else if (id === 2){
+      setViewResignationByFosterCarers(true)
+    }
   }
 
 
@@ -37,6 +42,8 @@ export const useFinalDeRegistration: any = () => {
     goToNextSlide,
     isSuccessfullyModalOpen,
     setIsSuccessfullyModalOpen,
+    viewResignationByFosterCarers,
+    setViewResignationByFosterCarers,
     handleViewFormModal,
     route
   };

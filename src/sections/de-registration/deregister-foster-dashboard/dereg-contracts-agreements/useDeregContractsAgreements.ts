@@ -11,6 +11,8 @@ export const useDeregContractsAgreements: any = () => {
   const [formDialogId, setFormDialogId] = useState<any>();
   const [isFinalFinanceModalOpen, setIsFinalFinanceModalOpen] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [viewWritenNoticeOfProposal, setviewWritenNoticeOfProposal] = useState(false)
+  const [viewTermsOfApproval, setViewTermsOfApproval] = useState(false)
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % deRegisterData.length);
@@ -21,7 +23,13 @@ export const useDeregContractsAgreements: any = () => {
   }
 
   const handleContractModalOpen = (id: any) => {
-    id === 1 && setIsFinalFinanceModalOpen(true)
+    if(id === 1) {
+      setIsFinalFinanceModalOpen(true)
+    } else if (id === 3){
+      setviewWritenNoticeOfProposal(true)
+    } else if(id === 4){
+      setViewTermsOfApproval(true)
+    }
   }
 
   const methods: any = useForm({
@@ -51,6 +59,10 @@ export const useDeregContractsAgreements: any = () => {
     goToNextSlide,
     handleSlide,
     handleContractModalOpen,
+    viewWritenNoticeOfProposal, 
+    setviewWritenNoticeOfProposal,
+    viewTermsOfApproval, 
+    setViewTermsOfApproval,
     handleSubmit,
     methods,
     onSubmit

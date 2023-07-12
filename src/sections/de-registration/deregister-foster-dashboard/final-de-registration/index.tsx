@@ -21,7 +21,7 @@ export const DeRegContractsAgreementsData = [
     text: "Agency Decision ",
     informationText: "Agency Decision ",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: "/de-registration/deregister-foster-carer/agency-decision",
     status: "Failed"
   },
   {
@@ -36,7 +36,7 @@ export const DeRegContractsAgreementsData = [
     text: "Resignation by Foster Carers",
     informationText: "Resignation by Foster Carers",
     viewForms: "View Form",
-    href: "#",
+    modal: true,
     status: "Passed"
   },
   {

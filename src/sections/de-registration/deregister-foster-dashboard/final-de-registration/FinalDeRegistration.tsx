@@ -10,6 +10,8 @@ import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
 import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
 import { useFinalDeRegistration } from "./useFinalDeRegistration";
 import FinalDeRegistrationDialogbox from "./final-de-registration-dialogbox/FinalDeRegistrationDialogbox";
+import ViewFormModal from "../ViewFormModal/ViewFormModal";
+import ResignationByFosterCarers from "../ViewFormModal/ResignationByFosterCarers";
 
 const FinalDeRegistration = () => {
   const {
@@ -25,6 +27,8 @@ const FinalDeRegistration = () => {
     isSuccessfullyModalOpen,
     setIsSuccessfullyModalOpen,
     handleViewFormModal,
+    viewResignationByFosterCarers,
+    setViewResignationByFosterCarers,
     route
   } = useFinalDeRegistration();
 
@@ -139,6 +143,13 @@ const FinalDeRegistration = () => {
                   </>
                 )}
               </Box>
+              <ViewFormModal
+                Component={ResignationByFosterCarers}
+                open={viewResignationByFosterCarers}
+                handleClose={() => {
+                  setViewResignationByFosterCarers(false);
+                }}
+              />
             </Grid>
             <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>
               <RecruitmentStatusDropdown
