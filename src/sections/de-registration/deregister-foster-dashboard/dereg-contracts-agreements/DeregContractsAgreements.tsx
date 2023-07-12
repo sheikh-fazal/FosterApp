@@ -1,4 +1,4 @@
-import { Box, Button, Grid,  } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -8,8 +8,11 @@ import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import { RecruitmentStatusDropdown } from "@root/sections/recruitment/recruitment-status-dropdown/recruitment-status-dropdown";
 import { AssignedFormDialogbox } from "@root/sections/recruitment/assigned-form-dialogbox/AssignedFormDialogbox";
 import { DeRegInfoDialogbox } from "../dereg-info-dialogbox/deRegInfoDialogbox";
-import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg"
+import LeftIcon from "../../../../assets/svg/de-register/left-icon.svg";
 import FinalFinanceDialogbox from "./final-finance-dialogbox/FinalFinanceDialogbox";
+import ViewFormModal from "../ViewFormModal/ViewFormModal";
+import TermsOfApproval from "../ViewFormModal/TermsOfApproval";
+import WritenNoticeOfProposal from "../ViewFormModal/WritenNoticeOfProposal";
 
 const DeregContractsAgreements = () => {
   const {
@@ -18,7 +21,7 @@ const DeregContractsAgreements = () => {
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
-    isFinalFinanceModalOpen, 
+    isFinalFinanceModalOpen,
     setIsFinalFinanceModalOpen,
     deRegisterData,
     setDeRegisterData,
@@ -26,9 +29,13 @@ const DeregContractsAgreements = () => {
     goToNextSlide,
     handleSlide,
     handleContractModalOpen,
+    viewWritenNoticeOfProposal, 
+    setviewWritenNoticeOfProposal,
+    viewTermsOfApproval, 
+    setViewTermsOfApproval,
     handleSubmit,
     methods,
-    onSubmit
+    onSubmit,
   } = useDeregContractsAgreements();
 
   return (
@@ -44,7 +51,17 @@ const DeregContractsAgreements = () => {
               bgcolor: theme.palette.mode === "light" ? "white" : "silver",
             }}
           >
-            <Grid item container mt={1} direction={"column"} alignItems={"center"} lg={2.3} xs={12} pt={1} sx={{ position: "relative" }}>
+            <Grid
+              item
+              container
+              mt={1}
+              direction={"column"}
+              alignItems={"center"}
+              lg={2.3}
+              xs={12}
+              pt={1}
+              sx={{ position: "relative" }}
+            >
               <Image src={ele?.imgIcon} alt={ele?.text} />
               <InfoOutlinedIcon
                 onClick={() => setOpenIdForInfo(ele?.id)}
@@ -54,7 +71,7 @@ const DeregContractsAgreements = () => {
                   fontSize: 18,
                   cursor: "pointer",
                   color: "black",
-                  top: "0 !important"
+                  top: "0 !important",
                 }}
               />
               <DeRegInfoDialogbox
@@ -88,7 +105,14 @@ const DeregContractsAgreements = () => {
             >
               <ArrowLeftSharpIcon sx={{ fontSize: 35 }} />
             </Grid>
-            <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={2.3}
+              xs={12}
+            >
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 {Array.isArray(ele.viewForms) ? (
                   <>
@@ -128,23 +152,48 @@ const DeregContractsAgreements = () => {
                       >
                         {ele?.viewForms}
                       </Link>
-                    ) : <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={() => handleContractModalOpen(ele?.id)}
-                    >
-                      {ele.viewForms}
-                    </span>}
+                    ) : (
+                      <span
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                        }}
+                        onClick={() => handleContractModalOpen(ele?.id)}
+                      >
+                        {ele.viewForms}
+                      </span>
+                    )}
                   </>
                 )}
               </Box>
+              <ViewFormModal
+                Component={WritenNoticeOfProposal}
+                open={viewWritenNoticeOfProposal}
+                handleClose={() => {
+                  setviewWritenNoticeOfProposal(false);
+                }}
+              />
+              <ViewFormModal
+                Component={TermsOfApproval}
+                open={viewTermsOfApproval}
+                handleClose={() => {
+                  setViewTermsOfApproval(false);
+                }}
+              />
             </Grid>
-            <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>
+            <Grid
+              my={1}
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={3.6}
+              md={6}
+              xs={12}
+            >
               <RecruitmentStatusDropdown
                 status={ele?.status}
                 component={"EnquiryStage"}
@@ -152,8 +201,19 @@ const DeregContractsAgreements = () => {
                 enquiryStageData={deRegisterData}
               />
             </Grid>
-            <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} md={6} xs={12}>
-              <Button onClick={() => setFormDialogId(ele?.id)} variant="contained">
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={2.3}
+              md={6}
+              xs={12}
+            >
+              <Button
+                onClick={() => setFormDialogId(ele?.id)}
+                variant="contained"
+              >
                 Assigned To
               </Button>
               <AssignedFormDialogbox
@@ -167,7 +227,13 @@ const DeregContractsAgreements = () => {
           </Grid>
         ))}
       </Grid>
-      <FinalFinanceDialogbox isFinalFinanceModalOpen={isFinalFinanceModalOpen} setIsFinalFinanceModalOpen={setIsFinalFinanceModalOpen} methods={methods} onSubmit={onSubmit} handleSubmit={handleSubmit} />
+      <FinalFinanceDialogbox
+        isFinalFinanceModalOpen={isFinalFinanceModalOpen}
+        setIsFinalFinanceModalOpen={setIsFinalFinanceModalOpen}
+        methods={methods}
+        onSubmit={onSubmit}
+        handleSubmit={handleSubmit}
+      />
     </>
   );
 };
