@@ -6,10 +6,7 @@ import { usePlacementMeetingRecordTable } from './usePlacementMeetingRecordTable
 import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 
-
-
-
-const PlacementMeetingRecordTable = () => {
+const PlacementMeetingRecordTable = ({handleIncreamentStep}: any) => {
   const {PlacementMeetingRecordColumns,theme} = usePlacementMeetingRecordTable()
 
 
@@ -45,6 +42,7 @@ const PlacementMeetingRecordTable = () => {
               bgcolor: theme.palette.primary.main,
             }}
             variant="contained"
+            onClick={handleIncreamentStep}
             // loading={isfatching}
           >
             Continue

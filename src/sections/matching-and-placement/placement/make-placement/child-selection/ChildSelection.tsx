@@ -6,13 +6,8 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import { childSelectionData } from ".";
 
-const ChildSelection = (props: any) => {
-    const { activeStep, index } = props;
-    const { methods, handleSubmit, onSubmit, theme, isSelectedTable } = useChildSelection();
-
-    console.log(activeStep,' activeStep')
-    console.log(index,' index')
-
+const ChildSelection = ({ handleIncreamentStep }: any) => {
+    const { methods, handleSubmit, onSubmit, theme, isSelectedTable, } = useChildSelection();
     const columns = [
 
         {
@@ -37,7 +32,7 @@ const ChildSelection = (props: any) => {
             isSortable: false,
         },
     ];
-    
+
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box sx={styles.collapseWrapper}>
@@ -71,7 +66,7 @@ const ChildSelection = (props: any) => {
                                 rootSX={{ my: theme.spacing(2) }}
                             />
                         </Box>
-                        <Button type="submit" sx={styles.saveBtn}>Save and Continue</Button>
+                        <Button type="submit" sx={styles.saveBtn} onClick={handleIncreamentStep}>Save and Continue</Button>
                     </>
                 }
             </Box>

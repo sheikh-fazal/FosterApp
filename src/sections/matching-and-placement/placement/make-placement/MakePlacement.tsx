@@ -3,78 +3,87 @@ import { useMakePlacement } from "./useMakePlacement";
 import { ArrowDown } from "@root/assets/svg/arrowDown";
 import CountDownIcon from "../../../../assets/svg/placement/count-down.svg";
 import CloseIcon from "../../../../assets/svg/placement/close-icon.svg";
-import CheckIcon from "../../../../assets/svg/placement/check-icon.svg";
 import { placementStepData } from ".";
 import StepIconsButton from "./StepIconsButton";
 
 import Image from "next/image";
+import React from "react";
 
 const MakePlacement = () => {
-  const { activeStep, handleStep } = useMakePlacement();
+  const { activeStep, handleStep, handleIncreamentStep } = useMakePlacement();
+
+
   return (
     <Box sx={{ width: "100%" }}>
-      <Stepper nonLinear orientation="vertical" activeStep={activeStep} sx={styles.stepperWrapper} connector={<StepConnector sx={styles.stepConnectorWrap} />}>
-        {placementStepData.map((ele: any, index) => (
-          <Step key={ele.id} disabled={true}>
-            <Grid container sx={{ justifyContent: { xl: "space-between", lg: "center", xs: "center" } }}>
-              <StepLabel
-                // onClick={handleStep(index)
-                StepIconComponent={() => StepIconsButton(index, ele?.background)}
-              ></StepLabel>
-              <Grid
-                container
-                xs={11}
-                lg={11}
-                item
-                onClick={handleStep(index)}
-                sx={styles.stepContent(ele)}
-              >
-                {ele.label}
-                <Image src={activeStep === index ? CountDownIcon : CloseIcon} alt="" />
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    width: "100%",
-                  }}
+      <Stepper
+        nonLinear
+        orientation="vertical"
+        activeStep={activeStep}
+        sx={styles.stepperWrapper}
+        connector={<StepConnector sx={styles.stepConnectorWrap} />}
+      >
+        {placementStepData.map((ele: any, index) => {
+          return (
+            <Step key={ele.id} sx={{ pointerEvents: activeStep === index ? 'initial' : 'none' }}>
+              <Grid container sx={{ justifyContent: { xl: "space-between", lg: "center", xs: "center" } }}>
+                <StepLabel
+                  StepIconComponent={() => StepIconsButton(index, ele?.background)}
+                ></StepLabel>
+                <Grid
+                  container
+                  xs={11}
+                  lg={11}
+                  item
+                  onClick={() => handleStep(index)}
+                  sx={styles.stepContent(ele)}
                 >
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      bottom: "-31px",
-                      display: activeStep === index ? "none" : "block",
-                      svg: {
-                        "& path": {
-                          fill: `${ele.color} !important`,
-                        },
-                        "& ellipse": {
-                          fill: `${ele.color} !important`,
-                        },
-                      },
+                  {ele.label}
+                  <Image src={activeStep === index ? CountDownIcon : CloseIcon} alt="" />
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      width: "100%",
                     }}
                   >
-                    <ArrowDown />
-                  </Box>
-                </div>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        bottom: "-31px",
+                        display: activeStep === index ? "none" : "block",
+                        svg: {
+                          "& path": {
+                            fill: `${ele.color} !important`,
+                          },
+                          "& ellipse": {
+                            fill: `${ele.color} !important`,
+                          },
+                        },
+                      }}
+                    >
+                      <ArrowDown />
+                    </Box>
+                  </div>
+                </Grid>
               </Grid>
-            </Grid>
-            <StepContent>
-              <Grid container>
-              <Grid
-                item
-                xl={11.46}
-                md={11.6}
-                sm={11.6}
-                xs={11.6}
-                sx={styles.stepActiveContent}
-              >
-                {activeStep === index && ele.component}
-              </Grid>
-              </Grid>
-            </StepContent>
+              <StepContent>
+                <Grid container>
+                  <Grid
+                    item
+                    xl={11.46}
+                    md={11.6}
+                    sm={11.6}
+                    xs={11.6}
+                    sx={styles.stepActiveContent}
+                  >
+                    {activeStep === index && <ele.component handleIncreamentStep={handleIncreamentStep} />}
+                  </Grid>
+                </Grid>
+              </StepContent>
 
-          </Step>
-        ))}
+            </Step>
+          )
+        })}
       </Stepper>
     </Box>
   );

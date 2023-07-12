@@ -6,17 +6,12 @@ import { usePlacementAgreementCarerTable } from './usePlacementAgreementCarerTab
 import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 
-
-
-
-const PlacementAgreementCarerTable = () => {
+const PlacementAgreementCarerTable = ({ handleIncreamentStep }: any) => {
   const {PlacementAgreementCarerTableColumns,theme} = usePlacementAgreementCarerTable()
-
 
   return (
     <Grid container >
       <Grid item xs={12} mt={2}>
-
        <TableHeader
         title="Placement Special Needs Agreement"
         showAddBtn
@@ -45,6 +40,7 @@ const PlacementAgreementCarerTable = () => {
               bgcolor: theme.palette.primary.main,
             }}
             variant="contained"
+            onClick={handleIncreamentStep}
             // loading={isfatching}
           >
             Continue

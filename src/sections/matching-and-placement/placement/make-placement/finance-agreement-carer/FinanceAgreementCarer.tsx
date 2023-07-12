@@ -7,7 +7,7 @@ import { financeAgreementCarerData } from ".";
 import TableHeader from "@root/components/TableHeader";
 import Image from "next/image";
 
-const FinanceAgreementCarer = () => {
+const FinanceAgreementCarer = ({ handleIncreamentStep }: any) => {
     const { theme } = useFinanceAgreementCarer();
 
     const columns = [
@@ -63,6 +63,7 @@ const FinanceAgreementCarer = () => {
             ),
         },
     ];
+    
     return (
         <Box sx={{ pt: 2 }}>
             <TableHeader
@@ -86,7 +87,7 @@ const FinanceAgreementCarer = () => {
                 }}
                 rootSX={{ my: theme.spacing(2) }}
             />
-            <Button type="submit" sx={{ backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, mx: 2, my: 2 }}>Continue</Button>
+            <Button type="button" sx={{ backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, mx: 2, my: 2 }} onClick={handleIncreamentStep}>Continue</Button>
         </Box>
     );
 };

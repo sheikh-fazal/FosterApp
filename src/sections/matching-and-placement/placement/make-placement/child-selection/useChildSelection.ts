@@ -16,7 +16,6 @@ export const useChildSelection = () => {
 
   const { handleSubmit } = methods;
   
-
   const onSubmit = () => {
     setIsSelectedTable(true)
   };
@@ -26,6 +25,6 @@ export const useChildSelection = () => {
     handleSubmit,
     onSubmit,
     theme,
-    isSelectedTable
+    isSelectedTable,
   };
 };

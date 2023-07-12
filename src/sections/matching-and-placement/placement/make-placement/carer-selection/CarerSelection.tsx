@@ -6,12 +6,9 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import { carerSelectionData } from ".";
 
-const CarerSelection = (props: any) => {
-    const { activeStep, index } = props;
+const CarerSelection = ({handleIncreamentStep}: any) => {
+    // const { activeStep, index } = props;
     const { methods, handleSubmit, onSubmit, theme, isSelectedTable } = useCarerSelection();
-
-    console.log(activeStep,' activeStepactiveStepactiveStep')
-    console.log(index,' indeindexindexx')
 
     const columns = [
 
@@ -71,7 +68,7 @@ const CarerSelection = (props: any) => {
                                     rootSX={{ my: theme.spacing(2) }}
                                 />
                             </Box>
-                            <Button sx={styles.saveBtn}>Save and Continue</Button>
+                            <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Save and Continue</Button>
                         </>
                     }
 
