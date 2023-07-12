@@ -19,6 +19,7 @@ const AgencyDecisionForm = ({ action }: any) => {
                 <form.component
                   disabled={disabled}
                   size="small"
+                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
