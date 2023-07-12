@@ -6,7 +6,7 @@ import Image from "next/image";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 
-const FinalPlacementApprovalDeclarations = () => {
+const FinalPlacementApprovalDeclarations = ({ handleIncreamentStep }: any) => {
     const { theme } = useFinalPlacementApprovalDeclarations();
 
     const columns = [
@@ -69,7 +69,7 @@ const FinalPlacementApprovalDeclarations = () => {
                 }}
                 rootSX={{ my: theme.spacing(2) }}
             />
-            <Button type="submit" sx={{ backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, mx: 2, my: 2 }}>Continue</Button>
+            <Button type="submit" sx={{ backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, mx: 2, my: 2 }} onClick={handleIncreamentStep}>Continue</Button>
         </Box>
     );
 };

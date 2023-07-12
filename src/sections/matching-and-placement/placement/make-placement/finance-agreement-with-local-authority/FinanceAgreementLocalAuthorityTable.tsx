@@ -6,12 +6,8 @@ import { usePlacementSpecialNeedsAgreementTable } from './useFinanceAgreementLoc
 import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 
-
-
-
-const FinanceAgreementLocalAuthorityTable = () => {
+const FinanceAgreementLocalAuthorityTable = ({handleIncreamentStep}: any) => {
   const {FinanceAgreementLocalAuthorityColumns,theme} = usePlacementSpecialNeedsAgreementTable()
-
 
   return (
     <Grid container >
@@ -45,6 +41,7 @@ const FinanceAgreementLocalAuthorityTable = () => {
               bgcolor: theme.palette.primary.main,
             }}
             variant="contained"
+            onClick={handleIncreamentStep}
             // loading={isfatching}
           >
             Continue

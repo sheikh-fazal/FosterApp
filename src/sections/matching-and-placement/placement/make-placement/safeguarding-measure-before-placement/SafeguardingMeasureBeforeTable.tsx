@@ -5,29 +5,13 @@ import {safeguardingMeasureData } from '.';
 import { useSafeguardingMeasureBeforeTable } from './useSafeguardingMeasureBeforeTable';
 import { LoadingButton } from '@mui/lab';
 
-
-
-
-
-const SafeguardingMeasureBeforeTable = () => {
-  const {tableHeaderRef, safeguardingMeasureColumns,theme,
-    IsOpenTrainingClockModal,
-    setIsOpenTrainingClockModal,
-  } = useSafeguardingMeasureBeforeTable()
+const SafeguardingMeasureBeforeTable = ({handleIncreamentStep}: any) => {
+  const {tableHeaderRef, safeguardingMeasureColumns,theme, IsOpenTrainingClockModal, setIsOpenTrainingClockModal, } = useSafeguardingMeasureBeforeTable()
 
 
   return (
     <Grid container >
       <Grid item xs={12} mt={1}>
-        {/* <TrainingClockEngineModal
-          title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
-          open={IsOpenTrainingClockModal}
-          handleClose={() => setIsOpenTrainingClockModal(false)}
-          SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
-          CancelBtnText="Cancel"
-        
-        /> */}
-
         <CustomTable
           data={safeguardingMeasureData}
           columns={safeguardingMeasureColumns}
@@ -50,7 +34,7 @@ const SafeguardingMeasureBeforeTable = () => {
               bgcolor: theme.palette.primary.main,
             }}
             variant="contained"
-            // loading={isfatching}
+            onClick={handleIncreamentStep}
           >
             Continue
           </LoadingButton>
