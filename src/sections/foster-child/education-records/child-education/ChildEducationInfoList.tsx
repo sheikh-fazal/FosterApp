@@ -7,6 +7,7 @@ import WorkFlowModal from "@root/components/modal/workFlowModal";
 import ShareModal from "@root/components/modal/shareModal";
 import { useChildEducationInfo } from "./useChildEducationInfo";
 import { Card } from "@mui/material";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ChildEducationInfoList = () => {
   const {
@@ -17,10 +18,14 @@ const ChildEducationInfoList = () => {
     isFetching,
     setSearchValue,
     router,
-    columns,
+    educationInfoTableColumns,
     setPage,
     theme,
+    onDeleteConfirm,
+    isRecordSetForDelete,
+    setIsRecordSetForDelete,
   } = useChildEducationInfo();
+  console.log(router?.query);
 
   return (
     <Card sx={{ p: 2 }}>
@@ -33,15 +38,20 @@ const ChildEducationInfoList = () => {
           router.push({
             pathname:
               "/foster-child/education-records/child-education/child-education-info",
+            query: {
+              ...(!!router?.query?.fosterChildId && {
+                fosterChildId: router?.query?.fosterChildId,
+              }),
+            },
           })
         }
-        // onChanged={(data: any) => {
-        //   selectHandler(data);
-        // }}
+        onChanged={(data: any) => {
+          setSearchValue(data?.search);
+        }}
       />
       <CustomTable
         data={data?.data?.education_info}
-        columns={columns}
+        columns={educationInfoTableColumns}
         isLoading={isLoading}
         showSerialNo
         isFetching={isFetching}
@@ -53,9 +63,14 @@ const ChildEducationInfoList = () => {
         onPageChange={(data: any) => {
           setPage((page: any) => data - 1);
         }}
-        onSortByChange={(data: any) => {}}
-        rootSX={{ my: theme.spacing(2) }}
       />
+      {isRecordSetForDelete && (
+        <DeleteModel
+          open={isRecordSetForDelete}
+          handleClose={() => setIsRecordSetForDelete(false)}
+          onDeleteClick={() => onDeleteConfirm?.()}
+        />
+      )}
     </Card>
   );
 };

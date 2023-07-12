@@ -7,13 +7,21 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import UserImg from "../../../assets/img/ifaAvatar.png";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { useGetAllEducationInfoListDataQuery } from "@root/services/foster-child/education-records/child-education-info/ChildEducationInfoList";
+import {
+  useDeleteEducationInfoDataMutation,
+  useGetAllEducationInfoListDataQuery,
+} from "@root/services/foster-child/education-records/child-education-info/ChildEducationInfoList";
+import { enqueueSnackbar } from "notistack";
+import { educationInfoTableColumnsFunction } from ".";
 
 export const useChildEducationInfo = () => {
   const router = useRouter();
   const theme = useTheme();
+  const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);
+  const [deleteData, setDeleteData] = useState("");
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
+  const [deleteEducationInfoData] = useDeleteEducationInfoDataMutation();
   const params = {
     search: searchValue,
     offset: page,
@@ -22,99 +30,39 @@ export const useChildEducationInfo = () => {
   // const methods: any = useForm({
   //     defaultValues,
   // });
-
+  const apiDataParameter = { params };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAllEducationInfoListDataQuery(params);
+    useGetAllEducationInfoListDataQuery(apiDataParameter, {
+      refetchOnMountOrArgChange: true,
+    });
 
-  const columns = [
-    // {
-    //   id: "select",
-    //   header: ({ table, row }: any) => {
-    //     console.log(table.getSelectedRowModel().flatRows);
-    //     return (
-    //       <Box>
-    //         <Checkbox
-    //           checked={table.getIsAllRowsSelected()}
-    //           onChange={table.getToggleAllRowsSelectedHandler()}
-    //         />
-    //       </Box>
-    //     );
-    //   },
-    //   cell: ({ row, table }: any) => (
-    //     <Box>
-    //       <Checkbox
-    //         disabled={row?.original?.Assigned}
-    //         checked={row?.original?.Assigned ? false : row.getIsSelected()}
-    //         onChange={row.getToggleSelectedHandler()}
-    //       />
-    //     </Box>
-    //   ),
-    // },
-    {
-      accessorFn: (row: any) => row.school,
-      id: "school",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>School Name</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.classStudying,
-      id: "classStudying",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Class Studying</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.schoolYear,
-      id: "schoolYear",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>School Year</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.school,
-      id: "school",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Current School</span>,
-      isSortable: true,
-    },
-    {
-      id: "actions",
-      cell: (info: any) => {
-        console.log(info);
+  const onDeleteConfirm = async () => {
+    try {
+      const res: any = await deleteEducationInfoData({id: deleteData}).unwrap();
+      setIsRecordSetForDelete(false);
 
-        return (
-          <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt
-            // onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-            />
-            <TableAction
-              type="edit"
-              onClicked={() =>
-                router.push(
-                  `/foster-child/education-records/child-education/child-education-info/${info?.row?.original?.id}?action=edit`
-                )
-              }
-              // onClicked={() =>console.log(info,'info')}
-            />
-            <TableAction
-              type="view"
-              onClicked={() =>
-                router.push(
-                  `/foster-child/education-records/child-education/child-education-info/${info?.row?.original?.id}?action=view`
-                )
-              }
-              // onClicked={() =>console.log(info,'info')}
-            />
-          </Box>
-        );
-      },
-      header: () => <span>actions</span>,
-    },
-  ];
+      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+        variant: "success",
+      });
+      setPage(0);
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+  const prepareRecordForDelete = (data: any) => {
+    console.log(data);
+
+    setIsRecordSetForDelete(true);
+    setDeleteData(data);
+  };
+  const educationInfoTableColumns = educationInfoTableColumnsFunction(
+    router,
+    prepareRecordForDelete
+  );
 
   return {
-    columns,
+    educationInfoTableColumns,
     data,
     isLoading,
     isSuccess,
@@ -124,5 +72,8 @@ export const useChildEducationInfo = () => {
     router,
     theme,
     setPage,
+    onDeleteConfirm,
+    isRecordSetForDelete,
+    setIsRecordSetForDelete,
   };
 };

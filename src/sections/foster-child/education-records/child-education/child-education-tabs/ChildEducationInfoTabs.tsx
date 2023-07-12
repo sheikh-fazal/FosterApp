@@ -8,8 +8,6 @@ import ChildEducationInfoForm from "../child-education-info-form/child-info-form
 const ChildEducationInfoTabs = () => {
   return (
     <HorizaontalTabs tabsDataArray={["Education Info", "Upload Documents"]}>
-      {/* <GPDetailsInfo />
-      <Documents /> */}
       <ChildEducationInfoForm />
       <EducationDocument />
     </HorizaontalTabs>

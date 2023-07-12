@@ -6,37 +6,104 @@ import {
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
+import { designatedAuthority } from "@root/dropdown-data/designatedAuthority";
+import { educationStage } from "@root/dropdown-data/educationStage";
 import { personalEducationPlan } from "@root/dropdown-data/personalEducationPlan";
 import { SCHOOLTYPE } from "@root/dropdown-data/schoolType";
 import { schoolYear } from "@root/dropdown-data/schoolYear";
 
-export const defaultValues = {
-  placement: true,
-  details: "",
+export const educationInfoDefaultValues = {
+  schoolPlacement: false,
+  ifNotSchoolPlacement: "",
+  school: "",
   schoolType: "",
+  Is_current_school: false,
+  Is_foster_change: false,
+  Special_educational_needs: false,
+  personalEducationPlan: "",
+  schoolYear: "",
+  classStudying: "",
+  currentKeyStage: "",
+  expectedKeyStage: "",
+  attendance: "",
+  schoolBusPhone: "",
+  teacherName: "",
+  teacherRole: "",
+  teacherPhone: "",
+  teacherEmail: "",
+  designatedAuthority: "",
+  educationStage: "",
+  specialEducationNeeds: "",
+  arrangementSpecialEducation: "",
+  achievements: "",
+  awardsAndRewards: "",
+  notes: "",
 };
-
-export const educationInfoFormData = [
+export const defaultValueEducationInfoForm = (
+  data: any = educationInfoDefaultValues
+) => {
+  return {
+    schoolPlacement: data?.schoolPlacement,
+    ifNotSchoolPlacement: data?.ifNotSchoolPlacement,
+    school: data?.school,
+    schoolType: data?.schoolType,
+    Is_current_school: data?.Is_current_school,
+    Is_foster_change: data?.Is_foster_change,
+    Special_educational_needs: data?.Special_educational_needs,
+    personalEducationPlan: data?.personalEducationPlan,
+    schoolYear: data?.schoolYear,
+    classStudying: data?.classStudying,
+    currentKeyStage: data?.currentKeyStage,
+    expectedKeyStage: data?.expectedKeyStage,
+    attendance: data?.attendance,
+    schoolBusPhone: data?.schoolBusPhone,
+    teacherName: data?.teacherName,
+    teacherRole: data?.teacherRole,
+    teacherPhone: data?.teacherPhone,
+    teacherEmail: data?.teacherEmail,
+    designatedAuthority: data?.designatedAuthority,
+    educationStage: data?.educationStage,
+    specialEducationNeeds: data?.specialEducationNeeds,
+    arrangementSpecialEducation: data?.arrangementSpecialEducation,
+    achievements: data?.achievements,
+    awardsAndRewards: data?.awardsAndRewards,
+    notes: data?.notes,
+  };
+};
+export const educationInfoFormDataFunction = (isFieldDisable= false) => [
   {
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "placement",
+      name: "schoolPlacement",
       label: "Does this child have a Placement?",
+      disabled: isFieldDisable,
     },
     component: RHFCheckbox,
   },
   {
     id: 3,
     gridLength: 12,
-    title:
-      "Describe Any issue in relation to health and hygiene, and how they will be managed?",
+    title: "If no to above question, please give details",
     otherOptions: {
-      name: "details",
+      name: "ifNotSchoolPlacement",
       multiline: true,
       minRows: 3,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
+  },
+  {
+    id: 6,
+    title: "School:",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "school",
+      select: true,
+      disabled: isFieldDisable,
+    },
+    options: SCHOOLTYPE,
   },
   {
     id: 6,
@@ -46,6 +113,7 @@ export const educationInfoFormData = [
     otherOptions: {
       name: "schoolType",
       select: true,
+      disabled: isFieldDisable,
     },
     options: SCHOOLTYPE,
   },
@@ -61,8 +129,9 @@ export const educationInfoFormData = [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "currentSchool",
+      name: "Is_current_school",
       label: "Is this child's Current School?",
+      disabled: isFieldDisable,
     },
     component: RHFCheckbox,
   },
@@ -70,8 +139,9 @@ export const educationInfoFormData = [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "fosterPlacement",
+      name: "Is_foster_change",
       label: "Is this School due to Foster Placement change?",
+      disabled: isFieldDisable,
     },
     component: RHFCheckbox,
   },
@@ -79,8 +149,9 @@ export const educationInfoFormData = [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "educationalNeeds",
+      name: "Special_educational_needs",
       label: "Does the child have a statement of special educational needs?",
+      disabled: isFieldDisable,
     },
     component: RHFCheckbox,
   },
@@ -90,8 +161,9 @@ export const educationInfoFormData = [
     component: RHFSelect,
     gridLength: 6,
     otherOptions: {
-      name: "personalEducation",
+      name: "personalEducationPlan",
       select: true,
+      disabled: isFieldDisable,
     },
     options: personalEducationPlan,
   },
@@ -103,6 +175,7 @@ export const educationInfoFormData = [
     otherOptions: {
       name: "schoolYear",
       select: true,
+      disabled: isFieldDisable,
     },
     options: schoolYear,
   },
@@ -114,189 +187,196 @@ export const educationInfoFormData = [
       name: "classStudying",
       multiline: true,
       minRows: 3,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "Carer Status", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "No of Carer(s)", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: {
-  //     label: "Approval Date",
-  //     name: "uploadDate",
-  //     fullWidth: true,
-  //   },
-  //   component: RHFDatePicker,
-  // },
-  // {
-  //   head: "Personal Details",
-  // },
-  // // {
-  // //   gridLength: 6,
-  // //   title: "Title",
-  // //   otherOptions: {
-  // //     name: "Title",
-  // //     fullWidth: true,
-  // //     select: true,
-  // //   },
-  // //   options: [
-  // //     { value: "Victor Krum (Safeguarding Officer)", label: "Victor Krum (Safeguarding Officer)" },
-  // //   ], component: RHFSelect,
-  // // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "Title", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { fileUpload: true, label: 'Upload image' },
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "Local Authority", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "Area Office", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "First Name", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "areaOffice", label: "Last Name", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: {
-  //     label: "Date of Birth",
-  //     name: "uploadDate",
-  //     fullWidth: true,
-  //   },
-  //   component: RHFDatePicker,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Age", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Gender", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Ethnicity", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Ofstead Ethnicity", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Partnership status", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Nationality", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Language", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Religion", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Age Range", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Immigration Status", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Behaviour", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Agency Social Worker", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Siblings group accepted?", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   head: "Contact Details",
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Email", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Phone number", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "City/Town", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "County", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "County", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 6,
-  //   otherOptions: { name: "age", label: "Postal code", fullWidth: true },
-  //   component: RHFTextField,
-  // },
-  // {
-  //   gridLength: 12,
-  //   otherOptions: {
-  //     name: "address",
-  //     label: "Address",
-  //     multiline: true,
-  //     minRows: 3,
-  //     fullWidth: true,
-  //     size: "small",
-  //   },
-  //   component: RHFTextField,
-  // },
-];
+  {
+    id: 6,
+    title: "Current Key Stage",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "currentKeyStage",
+      select: true,
+      disabled: isFieldDisable,
+    },
+    options: [
+      {
+        label: "Option 1",
+        value: "option1",
+      },
+      {
+        label: "Option 2",
+        value: "option2",
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "Expected Key Stage",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "expectedKeyStage",
+      select: true,
+      disabled: isFieldDisable,
+    },
+    options: [
+      {
+        label: "Option 1",
+        value: "option1",
+      },
+      {
+        label: "Option 2",
+        value: "option2",
+      },
+    ],
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "Attendance (%)",
+    otherOptions: {
+      name: "attendance",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "School Bus Phone",
+    otherOptions: {
+      name: "schoolBusPhone",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "Teacher's Name",
+    otherOptions: {
+      name: "teacherName",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "Teacher's Role",
+    otherOptions: {
+      name: "teacherRole",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "Teacher's Phone",
+    otherOptions: {
+      name: "teacherPhone",
+      type: "number",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 6,
+    title: "Teacher's Email Address",
+    otherOptions: {
+      name: "teacherEmail",
+      type: "email",
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 6,
+    title: "Designated Authority",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "designatedAuthority",
+      select: true,
+      disabled: isFieldDisable,
+    },
+    options: designatedAuthority,
+  },
+  {
+    id: 6,
+    title: "Stage of Education",
+    component: RHFSelect,
+    gridLength: 6,
+    otherOptions: {
+      name: "educationStage",
+      select: true,
+      disabled: isFieldDisable,
+    },
+    options: educationStage,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "Special Education Needs",
+    otherOptions: {
+      name: "specialEducationNeeds",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "ArrangementForSpecialEduNeeds",
+    otherOptions: {
+      name: "arrangementSpecialEducation",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "Achievements",
+    otherOptions: {
+      name: "achievements",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "Awards and Rewards",
+    otherOptions: {
+      name: "awardsAndRewards",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 3,
+    gridLength: 12,
+    title: "Notes",
+    otherOptions: {
+      name: "notes",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+]
