@@ -77,7 +77,8 @@ export const useAssessmentHistory = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "",
+                pathname:
+                  "/de-registration/deregister-foster-carer/proposal-to-teminate/edit-assessment-history-form",
                 query: { action: "edit", id: "" },
               })
             }
@@ -87,7 +88,8 @@ export const useAssessmentHistory = () => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "",
+                pathname:
+                  "/de-registration/deregister-foster-carer/proposal-to-teminate/view-assessment-history-form",
                 query: { action: "view", id: "" },
               })
             }
@@ -105,6 +107,6 @@ export const useAssessmentHistory = () => {
     TableData,
     columns,
     theme,
-    SELECT_FILTERS
+    SELECT_FILTERS,
   };
 };

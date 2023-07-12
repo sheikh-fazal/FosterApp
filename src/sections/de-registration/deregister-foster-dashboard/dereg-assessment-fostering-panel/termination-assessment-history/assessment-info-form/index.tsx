@@ -86,12 +86,12 @@ export const formDataFeild = [
 ];
 
 export const formDataValues = {
-  assessmentMeetingDate: "",
-  assessmentByRole:"",
-  finalDecision:"",
-  writtenNoticeIssued:"",
-  noticeIssuedDate:"",
-  responseToWrittenNotice:"",
+  assessmentMeetingDate: new Date(),
+  assessmentByRole: "",
+  finalDecision: "",
+  writtenNoticeIssued: "",
+  noticeIssuedDate: new Date(),
+  responseToWrittenNotice: "",
 };
 
 export const formValidationSchema = Yup.object().shape({

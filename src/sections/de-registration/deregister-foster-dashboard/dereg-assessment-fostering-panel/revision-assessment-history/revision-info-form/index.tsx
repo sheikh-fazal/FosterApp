@@ -147,7 +147,7 @@ export const formDataValues = {
   fosterCarerApproval: "",
   fosterCarerName: "",
   placementType: "",
-  terminationDate: "",
+  terminationDate: new Date(),
   underThisCarer: "",
   terminationAssessment: "",
   responseToWrittenNotice: "",
