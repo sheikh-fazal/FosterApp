@@ -13,7 +13,6 @@ const StatutoryMedicalTypeInfo = () => {
     getSingleStatutoryMedicalTypeDataStatus,
     postStatutoryMedicalTypeDataStatus,
     patchStatutoryMedicalTypeDataStatus,
-    query,
     router,
   } = useStatutoryMedicalTypeInfo();
   if (getSingleStatutoryMedicalTypeDataStatus?.isLoading)
@@ -30,7 +29,7 @@ const StatutoryMedicalTypeInfo = () => {
               <form.component {...form.componentProps} size="small">
                 {form.componentProps.select
                   ? form.componentProps.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
+                      <option key={option.label} value={option.value}>
                         {option.label}
                       </option>
                     ))
@@ -40,7 +39,7 @@ const StatutoryMedicalTypeInfo = () => {
           );
         })}
       </Grid>
-      {query?.action !== "view" && (
+      {router.query?.action !== "view" && (
         <Box sx={{ display: "flex", mb: "1rem", mt: "1rem" }}>
           <LoadingButton
             sx={{ marginRight: "1rem" }}

@@ -14,19 +14,19 @@ export const ChildExclusionInfoList = () => {
     tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
-    trainingProfileId,
+    childRecordId,
     closeDeleteProfile,
     deleteTrainingProfile,
     isLoading,
     isError,
     isFetching,
     isSuccess,
-    id
+    id,
   } = useChildExclusionInfoList();
   return (
     <>
       <DeleteModel
-        open={trainingProfileId}
+        open={childRecordId}
         onDeleteClick={deleteTrainingProfile}
         handleClose={closeDeleteProfile}
       />
@@ -46,7 +46,7 @@ export const ChildExclusionInfoList = () => {
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={data?.data}
+          data={data?.data?.exclusion_info}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}

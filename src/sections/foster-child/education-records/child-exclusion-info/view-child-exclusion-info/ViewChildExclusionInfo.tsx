@@ -1,14 +1,21 @@
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import Link from "next/link";
 import { ViewTrainingProfileData } from ".";
 import useViewChildExclusionInfo from "./useViewChildExclusionInfo";
 
 const ViewChildExclusionInfo = (props: any) => {
-  const { disabled, formState } = props;
+  const {
+    id,
+    formState,
+    defaultValues,
+    initialValueProps = defaultValues,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useViewChildExclusionInfo();
+  const { methods, handleSubmit, onSubmit } = useViewChildExclusionInfo({
+    initialValueProps,
+    id,
+  });
 
   return (
     <>
@@ -37,26 +44,6 @@ const ViewChildExclusionInfo = (props: any) => {
               </Grid>
             );
           })}
-
-          <Grid item xs={12}>
-            <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
-            </Button>
-            <Link href={"/recruitment"}>
-              <Button
-                type="button"
-                sx={{
-                  color: "#fff",
-                  ml: 1,
-                  backgroundColor: "#F6830F",
-                }}
-                size="large"
-                variant="contained"
-              >
-                Back
-              </Button>
-            </Link>
-          </Grid>
         </Grid>
       </FormProvider>
     </>

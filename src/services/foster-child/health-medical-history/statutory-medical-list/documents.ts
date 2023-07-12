@@ -22,7 +22,6 @@ export const statutoryMedicalListInfoDocumentApi = baseAPI.injectEndpoints({
         url: `foster-child/statutory-medical/docs/${apiDataParameter?.pathParams?.id}`,
         method: "POST",
         body: apiDataParameter?.body,
-        // params: dataParameter?.params,
       }),
       invalidatesTags: ["STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS"],
     }),

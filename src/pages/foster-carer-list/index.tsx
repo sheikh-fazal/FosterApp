@@ -2,8 +2,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import { Stack } from "@mui/material";
-import FosterCarerListTable from "@root/sections/foster-carer/FosterCarerListTable";
-import FosterCarerTaskTable from "@root/sections/foster-carer/FosterCarerTaskTable";
+import FosterCarerListTable from "@root/sections/foster-carer-list/FosterCarerListTable";
+import FosterCarerTaskTable from "@root/sections/foster-carer-list/FosterCarerTaskTable";
 
 // ----------------------------------------------------------------------
 

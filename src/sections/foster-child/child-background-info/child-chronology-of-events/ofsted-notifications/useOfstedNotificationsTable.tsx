@@ -1,7 +1,7 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useDeleteOfstedNotificationsListMutation,
-  useGetOfstedNotificationsListQuery,
+  useDeleteChildChronologyOfEventsOfstedNotificationsByIdMutation,
+  useGetChildChronologyOfEventsOfstedNotificationsListQuery,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/OfstedNotificationsAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -12,15 +12,15 @@ export const useOfstedNotificationsTable = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetOfstedNotificationsListQuery({
+    useGetChildChronologyOfEventsOfstedNotificationsListQuery({
       search: search,
     });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteOfstedNotificationsListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsOfstedNotificationsByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({id:id})
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

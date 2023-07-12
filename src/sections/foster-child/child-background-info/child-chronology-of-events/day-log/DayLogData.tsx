@@ -133,7 +133,7 @@ export const defaultValues = {
   dateOfOccurence: null,
   correspondenceFrom: null,
   correspondenceTo: null,
-  childSeen: true,
+  childSeen: false,
   entryType: null,
   subject: null,
   dayLogEntry: null,
@@ -153,4 +153,7 @@ export const formSchema = Yup.object().shape({
   entryType: Yup.string().required("Required"),
   subject: Yup.string().required("Required"),
   dayLogEntry: Yup.string().required("Required"),
+  actionNeeded: Yup.string().required("Required"),
+  notificationDate: Yup.date().required("Required"),
+  addToCarerRecord: Yup.string().required("Required"),
 });

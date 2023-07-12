@@ -10,6 +10,7 @@ export const PersonalEducationPlanList = () => {
   const {
     columnsChildExclusionInfoTableFuntion,
     // trainingPRofileData,
+    data,
     router,
     headerChangeHandler,
     tableHeaderRef,
@@ -18,6 +19,7 @@ export const PersonalEducationPlanList = () => {
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
+    isSuccess
   } = useOutSchoolActivityList();
   return (
     <>
@@ -42,11 +44,11 @@ export const PersonalEducationPlanList = () => {
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={DummyChildExclusionData}
+          data={data?.data?.personal_education_plan}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={true}
-          isPagination={false}
+          isSuccess={isSuccess}
+          isPagination={true}
         />
       </Card>
     </>
