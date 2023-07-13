@@ -4,6 +4,13 @@ import { useFormContext, Controller } from "react-hook-form";
 import { FormHelperText } from "@mui/material";
 //
 import { UploadAvatar, UploadSingleFile, UploadMultiFile } from "../upload";
+import UploadFileWithView from "../upload/UploadFileWithView";
+
+// ----------------------------------------------------------------------
+
+export function RHFUploadFileWithView({ name, ...other }: any) {
+  return <UploadFileWithView name={name} {...other} />;
+}
 
 // ----------------------------------------------------------------------
 
