@@ -20,6 +20,7 @@ export const formDataFeild = [
     componentProps: {
       name: "assessmentByRole",
       label: "Assessment By (Role)",
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -31,6 +32,7 @@ export const formDataFeild = [
       label: "Final Decision",
       multiline: true,
       minRows: 3,
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -78,6 +80,7 @@ export const formDataFeild = [
       label: "Response to Written Notice",
       multiline: true,
       minRows: 3,
+      fullWidth: true,
       sx: { mb: 4 },
     },
     component: RHFTextField,
