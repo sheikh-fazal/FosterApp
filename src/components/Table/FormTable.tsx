@@ -8,6 +8,7 @@ import RHFMultiSelect from "../hook-form/RHFMultiSelect";
 import RHFDatePicker from "../hook-form/RHFDatePicker";
 import {
   FormProvider,
+  RHFCheckbox,
   RHFTextField,
   RHFUploadFileWithView,
 } from "../hook-form";
@@ -28,6 +29,7 @@ import { useRouter } from "next/router";
 // @mui icons
 import AddIcon from "@mui/icons-material/Add";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
+import RHFSecondarySelect from "../hook-form/RHFSecondarySelect";
 
 const ANON_FUNC = () => {};
 
@@ -35,7 +37,9 @@ const FIELDS_OBJ: any = {
   textField: RHFTextField,
   datePicker: RHFDatePicker,
   file: RHFUploadFileWithView,
+  checkbox: RHFCheckbox,
   "multi-select": RHFMultiSelect,
+  select: RHFSecondarySelect,
 };
 
 // ----------------------------------------------------------------------
