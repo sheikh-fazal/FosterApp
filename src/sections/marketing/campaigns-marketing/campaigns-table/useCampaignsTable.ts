@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { defaultValues } from '.';
 import { useRouter } from 'next/router';
+// import useUploadImage from '@root/hooks/useUploadImage';
 
 export const useCampaignsTable = () => {
     const [tableData, setTableDate] = useState<any>(null);
@@ -9,6 +10,7 @@ export const useCampaignsTable = () => {
       defaultValues,
     });
     const router = useRouter()
+    // const { uploadImage } = useUploadImage();
   
     const {
       handleSubmit,
@@ -36,7 +38,6 @@ export const useCampaignsTable = () => {
       isSubmitting,
       tableData,
       onClear,
-      route,
     };
 }
 

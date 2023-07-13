@@ -5,6 +5,7 @@ import { defaultValues } from ".";
 import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 
 export const useMarketingStrategyPlan = () => {
@@ -13,6 +14,7 @@ export const useMarketingStrategyPlan = () => {
       defaultValues,
     });
     const router = useRouter()
+    const { uploadImage } = useUploadImage();
   
     const {
       handleSubmit,
@@ -41,5 +43,6 @@ export const useMarketingStrategyPlan = () => {
       tableData,
       onClear,
       route,
+      uploadImage
     };
 }
