@@ -25,9 +25,11 @@ const useChildMedicationInfotable = (props: any) => {
     isSuccess: childMedicationInfotableSuccess,
     // } = useGetHospitalInfoListQuery({
   } = useGetChildMedicationInfoQuery({
-    ...params,
-    search: search,
-    fosterCarerId: fosterChildId,
+    params: {
+      fosterChildId: fosterChildId,
+      ...params,
+      search: search,
+    },
   });
 
   return {

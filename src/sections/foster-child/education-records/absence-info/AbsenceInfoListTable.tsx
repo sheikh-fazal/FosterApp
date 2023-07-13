@@ -110,6 +110,7 @@ export default function AbsenceInfoListTable() {
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
         />
+        
       </Card>
     </>
   );
