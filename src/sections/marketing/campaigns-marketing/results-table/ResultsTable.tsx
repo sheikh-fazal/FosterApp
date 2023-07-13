@@ -28,14 +28,138 @@ const OPTIONS = [
   },
 ];
 
+const COLUMNS = [
+  
+    {
+      inputType: "textField",
+      type: "text",
+      key: "name",
+      fullWidth:true,
+      defaultValue: "Branded keywords",
+      label: "Name",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "goal",
+      fullWidth:true,
+      defaultValue: "Drive traffic to site, CPC >$2.25",
+      label: "Goals",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "spend",
+      fullWidth:true,
+      defaultValue: "$2,500.00",
+      label: "Spend",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "impressions",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "Impressions",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "cpm",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "CPM",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "clicks",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "Clicks",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "cpc",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "CPC",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "conversions",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "Conversions",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "textField",
+      type: "text",
+      key: "cpa",
+      fullWidth:true,
+      defaultValue: "2083333",
+      label: "CPA",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+    {
+      inputType: "multi-select",
+      type: "select",
+      key: "nextSteps",
+      fullWidth:true,
+      defaultValue: [],
+      label: "Next Steps",
+      options: OPTIONS,
+      validation: (Yup: any) => {
+        return Yup.array()
+          .of(
+            Yup.object().shape({
+              label: Yup.string(),
+              value: Yup.string(),
+              bgColor: Yup.string(),
+              textColor: Yup.string(),
+            })
+          )
+          .test(
+            "required",
+            "Platform is required.",
+            (arr: any) => arr.length > 0
+          );
+      },
+      format: (selectedValues = []) => {
+        return <DataChips options={selectedValues} />;
+      },
+    },
 
-
-
-const ResultsTable = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
-  useResultsTable();
-
-
+ 
+]
 function DataChips({ options }: any) {
   return (
     <Box
@@ -75,134 +199,16 @@ function DataChips({ options }: any) {
   );
 }
 
+const ResultsTable = () => {
+  const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
+  useResultsTable();
+
   return (
     <Card sx={{ padding: "10px" }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <FormTable
           tableKey="exampleTable"
-          columns={[
-
-            {
-              inputType: "textField",
-              type: "text",
-              key: "name",
-              defaultValue: "Branded keywords",
-              label: "Name",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "goal",
-              defaultValue: "Drive traffic to site, CPC >$2.25",
-              label: "Goals",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "spend",
-              defaultValue: "$2,500.00",
-              label: "Spend",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "impressions",
-              defaultValue: "2083333",
-              label: "Impressions",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "cpm",
-              defaultValue: "2083333",
-              label: "CPM",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "clicks",
-              defaultValue: "2083333",
-              label: "Clicks",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "cpc",
-              defaultValue: "2083333",
-              label: "CPC",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "conversions",
-              defaultValue: "2083333",
-              label: "Conversions",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "cpa",
-              defaultValue: "2083333",
-              label: "CPA",
-              validation: (Yup: any) => {
-                return Yup.string().required("Name is required").min(3);
-              },
-            },
-
-        
-            {
-              inputType: "multi-select",
-              type: "select",
-              key: "nextSteps",
-              defaultValue: [],
-              label: "Next Steps",
-              options: OPTIONS,
-              validation: (Yup: any) => {
-                return Yup.array()
-                  .of(
-                    Yup.object().shape({
-                      label: Yup.string(),
-                      value: Yup.string(),
-                      bgColor: Yup.string(),
-                      textColor: Yup.string(),
-                    })
-                  )
-                  .test(
-                    "required",
-                    "Platform is required.",
-                    (arr: any) => arr.length > 0
-                  );
-              },
-              format: (selectedValues = []) => {
-                return <DataChips options={selectedValues} />;
-              },
-            },
-
-          ]}
+          columns={COLUMNS}
           
           
         />
