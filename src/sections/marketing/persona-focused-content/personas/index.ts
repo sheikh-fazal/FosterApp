@@ -25,7 +25,7 @@ export const defaultValues = {
           bgColor: "#8FE0FA",
         },
       ],
-      attechment:img1,
+      image:"uploads/images/4f7512fb-2916-451b-8240-97f529ded73d/d96f3bf5-5109-4179-9a6d-c82d94a142b1.png",
       
           editorial: [
         {

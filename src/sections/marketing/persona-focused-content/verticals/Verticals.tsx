@@ -91,7 +91,7 @@ const COLUMNS = [
   {
     inputType: "file",
     type: "file",
-    key: "attechment",
+    key: "image",
     label: "Attechment",
     size: { xs: 12, md: 12 },
     // Use this validation for images
