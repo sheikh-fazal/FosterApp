@@ -5,13 +5,15 @@ import { defaultValues } from ".";
 import { Box } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 export const useScheduleContent = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
-  const router = useRouter();
+
+  const { uploadImage } = useUploadImage();
 
   const {
     handleSubmit,
@@ -23,11 +25,10 @@ export const useScheduleContent = () => {
   const onClear = () => {
     setTableDate(null);
   };
+
   const onSubmit = async (data: any) => {
     setTableDate(JSON.stringify(data));
   };
-
-  const route = router.query.action;
   return {
     methods,
     handleSubmit,
@@ -38,6 +39,6 @@ export const useScheduleContent = () => {
     isSubmitting,
     tableData,
     onClear,
-    route,
+    uploadImage,
   };
 };
