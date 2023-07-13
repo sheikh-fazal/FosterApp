@@ -44,6 +44,7 @@ const CarerImmunisationDetailForm = ({ action }: any) => {
                 <>
                   <RHFUploadFile
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />

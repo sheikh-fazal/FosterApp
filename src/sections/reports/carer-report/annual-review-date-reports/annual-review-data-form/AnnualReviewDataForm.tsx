@@ -44,6 +44,7 @@ const AnnualReviewDataForm = ({ action }: any) => {
                 <>
                   <RHFUploadFile
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />

@@ -16,7 +16,7 @@ ChildReferral.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Dashboard",
-          href: "/dashboard",
+          href: "/referral",
         },
         {
           name: "Referral",
