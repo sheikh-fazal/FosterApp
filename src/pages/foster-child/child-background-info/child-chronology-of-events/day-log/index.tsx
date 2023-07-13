@@ -38,9 +38,14 @@ DayLog.getLayout = function getLayout(page: any) {
 export default function DayLog() {
   const router = useRouter();
   const { id, action }: any = router.query;
+  const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
-  console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data)
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+    });
+  console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data);
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
   const deleteDocument = async (queryArg: any) => {
@@ -55,13 +60,13 @@ export default function DayLog() {
     }
   };
   const uploadDocumentsHandler = async (postData: any) => {
-  const formData = new FormData();
+    const formData = new FormData();
     formData.append("documentType", postData.documentType);
     formData.append("documentDate", postData.documentDate);
     formData.append("documentPassword", postData.password);
     formData.append("file", postData.chosenFile);
-    formData.append("formName", 'day_log');
-    formData.append("recordId", id)
+    formData.append("formName", "day_log");
+    formData.append("recordId", id);
 
     // const updatedData = {
     //   trainingProfileId: id,
@@ -69,7 +74,7 @@ export default function DayLog() {
     // };
 
     try {
-      const res: any = await postUploadedDocument({addDocumentCcRequestDto:formData}).unwrap();
+      const res: any = await postUploadedDocument({ addDocumentCcRequestDto: formData }).unwrap();
       enqueueSnackbar(res?.message ?? `Successfully!`, {
         variant: "success",
       });
@@ -103,9 +108,11 @@ export default function DayLog() {
           deleteDocument(data.id);
         }}
         modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={data?.data?.page}
-        totalPages={data?.data?.pages}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
+        }}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
         disabled={!!id && (action === "add" || action === "edit") ? false : true}
       />
     </HorizaontalTabs>
