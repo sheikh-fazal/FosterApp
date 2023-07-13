@@ -78,7 +78,6 @@ export const RAChildDetailsFormFields = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      defaultValue: "No",
       label: "Known / Suspected CSE Risk Y/N",
       name: "knownSuspectedCSERisk",
       options: ["Yes", "No"],
@@ -251,17 +250,26 @@ export const RAChildInformationFormFields = [
 export const defaultValues = {
   assessmentDate: null,
   nextAssessmentDate: null,
+  laOOHContactNumber: null,
+  height: null,
+  hairColor: null,
+  eyeColor: null,
+  distinguishingMarks: null,
+  knownSuspectedCSERisk: null,
+  knownNetworkOfChild: null,
+  circumstancesThatIncreaseRisk: null,
 };
 export const formatters: any = {};
 
 export const formSchema = Yup.object().shape({
-  dateOfOccurence: Yup.date().required("Required"),
-  correspondenceTo: Yup.string().required("Required"),
-  correspondenceFrom: Yup.string().required("Required"),
-  entryType: Yup.string().required("Required"),
-  subject: Yup.string().required("Required"),
-  dayLogEntry: Yup.string().required("Required"),
-  actionNeeded: Yup.string().required("Required"),
-  notificationDate: Yup.date().required("Required"),
-  addToCarerRecord: Yup.string().required("Required"),
+  assessmentDate: Yup.date().required("Required"),
+  nextAssessmentDate: Yup.date().required("Required"),
+  laOOHContactNumber: Yup.string().required("Required"),
+  height: Yup.string().required("Required"),
+  hairColor: Yup.string().required("Required"),
+  eyeColor: Yup.string().required("Required"),
+  distinguishingMarks: Yup.string().required("Required"),
+  knownSuspectedCSERisk: Yup.string().required("Required"),
+  knownNetworkOfChild: Yup.string().required("Required"),
+  circumstancesThatIncreaseRisk: Yup.string().required("Required"),
 });

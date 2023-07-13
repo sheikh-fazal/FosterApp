@@ -14,21 +14,15 @@ export const riskAssessmentApi: any = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
-    postChildChronologyOfEventsRiskAssessment: build.mutation<
-      PostChildChronologyOfEventsRiskAssessmentApiResponse,
-      PostChildChronologyOfEventsRiskAssessmentApiArg
-    >({
+    postChildChronologyOfEventsRiskAssessment: build.mutation({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/risk-assessment`,
         method: "POST",
-        body: queryArg.addRiskAssessmentRequestDto,
+        body: queryArg,
       }),
       invalidatesTags: [TAG],
     }),
-    patchChildChronologyOfEventsRiskAssessmentById: build.mutation<
-      PatchChildChronologyOfEventsRiskAssessmentByIdApiResponse,
-      PatchChildChronologyOfEventsRiskAssessmentByIdApiArg
-    >({
+    patchChildChronologyOfEventsRiskAssessmentById: build.mutation({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/risk-assessment/${queryArg.id}`,
         method: "PATCH",
@@ -63,17 +57,10 @@ export type GetChildChronologyOfEventsRiskAssessmentListApiArg = {
   limit: number | null;
   offset: number | null;
 };
-export type PostChildChronologyOfEventsRiskAssessmentApiResponse =
-  /** status 201  */ AddRiskAssessmentResponseDto;
-export type PostChildChronologyOfEventsRiskAssessmentApiArg = {
-  addRiskAssessmentRequestDto: AddRiskAssessmentRequestDto;
-};
+
 export type PatchChildChronologyOfEventsRiskAssessmentByIdApiResponse =
   /** status 201  */ AddRiskAssessmentResponseDto;
-export type PatchChildChronologyOfEventsRiskAssessmentByIdApiArg = {
-  id: string;
-  addRiskAssessmentRequestDto: AddRiskAssessmentRequestDto;
-};
+
 export type GetChildChronologyOfEventsRiskAssessmentByIdApiResponse =
   /** status 201  */ AddRiskAssessmentResponseDto;
 export type GetChildChronologyOfEventsRiskAssessmentByIdApiArg = {

@@ -10,6 +10,7 @@ import {
   usePatchChildChronologyOfEventsDayLogByIdMutation,
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+import { usePostChildChronologyOfEventsRiskAssessmentMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 
 export const useRAChildDetailsForm = () => {
   const router = useRouter();
@@ -18,7 +19,7 @@ export const useRAChildDetailsForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
+  const [postRiskAssessmentData] = usePostChildChronologyOfEventsRiskAssessmentMutation({});
   const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
   const getDefaultValue = async () => {
@@ -55,16 +56,18 @@ export const useRAChildDetailsForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postRiskAssessmentData({
+        raChildDetails: { ...data },
+        fosterChildId,
+        childName: "child",
+        gender: "male",
+        notes: "notes",
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
-          });
-          router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
           });
         })
         .catch((error: any) => {
