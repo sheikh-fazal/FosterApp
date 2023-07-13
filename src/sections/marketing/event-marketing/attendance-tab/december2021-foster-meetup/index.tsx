@@ -3,7 +3,14 @@ export const defaultValues = {
       {
         srNo: "1",
         name: "November 2021 Foster Carers Meetup, Fostering",
-        person: "Belinda Chen",
+        person: [
+          {
+            label: "Blenda chen",
+            value: "Blenda chen",
+            bgColor: "#59b369",
+            textColor: "white",
+          },
+        ],
         showedUp: "yes",
         rsvPed: "no",
         invited: "yes",

@@ -6,11 +6,25 @@ export const defaultValues = {
         sendData: "5/21/2021",
         product: "Front of the House",
         owner: "Faisal",
-        status: "Live",
+        status: [
+          {
+            label: "Live",
+            value: "Live",
+            bgColor: "#59b369",
+            textColor: "white",
+          },
+        ],
         linkToDraft: "https://fake.mailservice.com/id/1",
-        goal:"Provide Advice",
+        goal: [
+          {
+            label: "Provide Advice",
+            value: "Provide Advice",
+            bgColor: "#59b369",
+            textColor: "white",
+          },
+        ],
         sendListName:"FotH ALL",
-        imageAssets: 'link',
+        imageAssets: "uploads/images/4f7512fb-2916-451b-8240-97f529ded73d/d96f3bf5-5109-4179-9a6d-c82d94a142b1.png",
         landingPage: "link",
         facebookShareLink:"link",
         twitterShareLink: "link",
