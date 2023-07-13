@@ -2,13 +2,15 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { defaultValues } from ".";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 export const usePitchesAndRequests = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
-  const router = useRouter();
+
+  const { uploadImage } = useUploadImage();
 
   const {
     handleSubmit,
@@ -20,11 +22,10 @@ export const usePitchesAndRequests = () => {
   const onClear = () => {
     setTableDate(null);
   };
+
   const onSubmit = async (data: any) => {
     setTableDate(JSON.stringify(data));
   };
-
-  const route = router.query.action;
   return {
     methods,
     handleSubmit,
@@ -35,6 +36,6 @@ export const usePitchesAndRequests = () => {
     isSubmitting,
     tableData,
     onClear,
-    route,
+    uploadImage,
   };
 };
