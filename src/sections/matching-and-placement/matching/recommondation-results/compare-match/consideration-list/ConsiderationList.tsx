@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Card } from '@mui/material'
 import TableHeader from '@root/components/TableHeader'
 import React from 'react'
 import { useConsiderationList } from './useConsiderationList';
@@ -47,7 +47,7 @@ const ConsiderationList = () => {
   ];
 
   return (
-    <Box>
+    <Card sx={{ p: 2 }}>
       <TableHeader
         title={`${route?.query?.name} Consideration List`}
       />
@@ -67,7 +67,7 @@ const ConsiderationList = () => {
         }}
         rootSX={{ my: theme.spacing(2) }}
       />
-    </Box>
+    </Card>
   )
 }
 
