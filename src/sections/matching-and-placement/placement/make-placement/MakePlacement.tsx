@@ -23,9 +23,9 @@ const MakePlacement = () => {
         connector={<StepConnector sx={styles.stepConnectorWrap} />}
       >
         {placementStepData.map((ele: any, index) => {
-          // sx={{ pointerEvents: activeStep === index ? 'initial' : 'none' }}
+          
           return (
-            <Step key={ele.id} >
+            <Step key={ele.id} sx={{ pointerEvents: activeStep === index ? 'initial' : 'none' }}>
               <Grid container sx={{ justifyContent: { xl: "space-between", lg: "center", xs: "center" } }}>
                 <StepLabel
                   StepIconComponent={() => StepIconsButton(index, ele?.background)}
