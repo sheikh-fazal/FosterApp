@@ -1,100 +1,339 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import dayjs from "dayjs";
-import { Card } from "@mui/material";
+import { Box, Card, Chip } from "@mui/material";
 import { useCampaignsTable } from "./useCampaignsTable";
 
+// Constants
+const StatusOptions = [
+  {
+    label: "Reviews",
+    value: "Reviews",
+    bgColor: "#73F2A6",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Planning",
+    value: "Planning",
+    bgColor: "#C4CE4C",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Published",
+    value: "Published",
+
+    bgColor: "#F29973",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "On Hold",
+    value: "On Hold",
+
+    bgColor: "#A3A1F6",
+    textColor: "#1D1D1D",
+  },
+ 
+];
+const FunnelStageOptions = [
+ 
+  {
+    label: "Awareness",
+    value: "Awareness",
+
+    bgColor: "#6B9FED",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Conversion",
+    value: "Conversion",
+
+    bgColor: "#9AE06E",
+    textColor: "#1D1D1D",
+  },
+ 
+];
+const NextStepsOptions = [
+ 
+  {
+    label: "Pause",
+    value: "Pause",
+
+    bgColor: "#D6D870",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Analysis",
+    value: "Analysis",
+
+    bgColor: "#C4EA86",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Stop",
+    value: "Stop",
+
+    bgColor: "#E5726B",
+    textColor: "#1D1D1D",
+  },
+ 
+];
+const PlatformOptions = [
+ 
+  {
+    label: "Facebook",
+    value: "Facebook",
+
+    bgColor: "#9AC3F4",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Instagram",
+    value: "Instagram",
+
+    bgColor: "#E2C68F",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Twitter",
+    value: "Twitter",
+
+    bgColor: "#BC93EF",
+    textColor: "#1D1D1D",
+  },
+];
+const COLUMNS=[
+
+    {
+      inputType: "textField",
+      type: "text",
+      key: "campaigns",
+      fullWidth:true,
+      defaultValue: "John",
+      label: "Campaigns",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+
+    {
+      inputType: "multi-select",
+      type: "select",
+      key: "status",
+      fullWidth:true,
+      defaultValue: [],
+      label: "status",
+      options: StatusOptions,
+      validation: (Yup: any) => {
+        return Yup.array()
+          .of(
+            Yup.object().shape({
+              label: Yup.string(),
+              value: Yup.string(),
+              bgColor: Yup.string(),
+              textColor: Yup.string(),
+            })
+          )
+          .test(
+            "required",
+            "Platform is required.",
+            (arr: any) => arr.length > 0
+          );
+      },
+      format: (selectedValues = []) => {
+        return <DataChips options={selectedValues} />;
+      },
+    },
+   
+    {
+      inputType: "textField",
+      type: "text",
+      key: "goal",
+      fullWidth:true,
+      defaultValue: "Drive traffic to site, CPC >$2.25",
+      label: "Goal",
+      validation: (Yup: any) => {
+        return Yup.string().required("Name is required").min(3);
+      },
+    },
+
+    {
+      inputType: "multi-select",
+      type: "select",
+      key: "funnelStage",
+      fullWidth:true,
+      defaultValue: [],
+      label: "Funnel Stage",
+      options: FunnelStageOptions,
+      validation: (Yup: any) => {
+        return Yup.array()
+          .of(
+            Yup.object().shape({
+              label: Yup.string(),
+              value: Yup.string(),
+              bgColor: Yup.string(),
+              textColor: Yup.string(),
+            })
+          )
+          .test(
+            "required",
+            "Platform is required.",
+            (arr: any) => arr.length > 0
+          );
+      },
+      format: (selectedValues = []) => {
+        return <DataChips options={selectedValues} />;
+      },
+    },
+
+    
+    {
+      inputType: "datePicker",
+      type: "dob",
+      key: "startDate",
+      fullWidth:true,
+      defaultValue: new Date(),
+      label: "Start Date",
+      validation: (Yup: any) => {
+        return Yup.date()
+          .typeError("End date is required")
+          .required("End date is required");
+      },
+      format: (date: any) => {
+        return dayjs(date).format("DD/MM/YYYY");
+      },
+    },
+
+    {
+      inputType: "datePicker",
+      type: "dob",
+      key: "endDate",
+      fullWidth:true,
+      defaultValue: new Date(),
+      label: "End Date",
+      validation: (Yup: any) => {
+        return Yup.date()
+          .typeError("End date is required")
+          .required("End date is required");
+      },
+      format: (date: any) => {
+        return dayjs(date).format("DD/MM/YYYY");
+      },
+    },   
+    {
+      inputType: "multi-select",
+      type: "select",
+      key: "nextSteps",
+      fullWidth:true,
+      defaultValue: [],
+      label: "Next Steps",
+      options: NextStepsOptions,
+      validation: (Yup: any) => {
+        return Yup.array()
+          .of(
+            Yup.object().shape({
+              label: Yup.string(),
+              value: Yup.string(),
+              bgColor: Yup.string(),
+              textColor: Yup.string(),
+            })
+          )
+          .test(
+            "required",
+            "Platform is required.",
+            (arr: any) => arr.length > 0
+          );
+      },
+      format: (selectedValues = []) => {
+        return <DataChips options={selectedValues} />;
+      },
+    },
+    {
+      inputType: "multi-select",
+      type: "select",
+      key: "platform",
+      fullWidth:true,
+      defaultValue: [],
+      label: "Platform",
+      options: PlatformOptions,
+      validation: (Yup: any) => {
+        return Yup.array()
+          .of(
+            Yup.object().shape({
+              label: Yup.string(),
+              value: Yup.string(),
+              bgColor: Yup.string(),
+              textColor: Yup.string(),
+            })
+          )
+          .test(
+            "required",
+            "Platform is required.",
+            (arr: any) => arr.length > 0
+          );
+      },
+      format: (selectedValues = []) => {
+        return <DataChips options={selectedValues} />;
+      },
+    },
+
+ 
+]
+
+function DataChips({ options }: any) {
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "unwrap",
+        gap: 1,
+      }}
+    >
+      {options
+        .slice(0, 3)
+        .map(
+          ({
+            value,
+            label,
+            bgColor = "#e4e7eb",
+            textColor = "#212b36",
+          }: any) => (
+            <Chip
+              sx={{
+                backgroundColor: bgColor,
+                color: textColor,
+                fontSize: "10px !important",
+                p: "5px 10px",
+                maxHeight: "22px",
+
+                "& .MuiChip-label": {
+                  p: 0,
+                },
+              }}
+              key={value}
+              label={label}
+            />
+          )
+        )}
+    </Box>
+  );
+}
+
 const CampaignsTable = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear, route } =
+  const { methods, handleSubmit, tableData, onSubmit, onClear, } =
   useCampaignsTable();
+
+
+
+
   return (
     <Card sx={{ padding: "10px" }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <FormTable
           tableKey="exampleTable"
-          columns={[
-            {
-              inputType: "textField",
-              type: "text",
-              key: "campaigns",
-              defaultValue: "Branded keywords",
-              label: "Campaigns",
-              validation: (Yup: any) => { },
-            },
-
-            {
-              inputType: "textField",
-              type: "text",
-              key: "status",
-              defaultValue: "Development",
-              label: "Status",
-              validation: (Yup: any) => { },
-            },
-
-            {
-              inputType: "textField",
-              type: "text",
-              key: "goal",
-              defaultValue: "Drive traffic to site, CPC >$2.25",
-              label: "Goal",
-              validation: (Yup: any) => { },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "funnelStage",
-              defaultValue: "Consideration",
-              label: "Funnel Stage",
-              validation: (Yup: any) => { },
-            },
-            {
-              inputType: "datePicker",
-              type: "dob",
-              key: "startDate",
-              defaultValue: new Date(),
-              label: "Start Date",
-              validation: (Yup: any) => {
-                return Yup.date()
-                  .typeError("End date is required")
-                  .required("End date is required");
-              },
-              format: (date: any) => {
-                return dayjs(date).format("DD/MM/YYYY");
-              },
-            },
-            {
-              inputType: "datePicker",
-              type: "dob",
-              key: "endDate",
-              defaultValue: new Date(),
-              label: "End Date",
-              validation: (Yup: any) => {
-                return Yup.date()
-                  .typeError("End date is required")
-                  .required("End date is required");
-              },
-              format: (date: any) => {
-                return dayjs(date).format("DD/MM/YYYY");
-              },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "nextSteps",
-              defaultValue: "Continue",
-              label: "Next Steps",
-              validation: (Yup: any) => { },
-            },
-            {
-              inputType: "textField",
-              type: "text",
-              key: "platform",
-              defaultValue: "Google",
-              label: "Platform",
-              validation: (Yup: any) => { },
-            },
-
-          ]}
+          columns={COLUMNS}
+         
+          
+          
         />
       </FormProvider>
     </Card>
