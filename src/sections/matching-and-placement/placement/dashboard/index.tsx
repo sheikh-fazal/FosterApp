@@ -10,6 +10,9 @@ import PlacementMeetingIcon from '../../../../assets/svg/placement/placement-mee
 import WarningIcon from '../../../../assets/svg/placement/warning.svg'
 import InfoIcon from '../../../../assets/svg/placement/info.svg'
 import DangerIcon from '../../../../assets/svg/placement/danger.svg'
+import * as Yup from 'yup';
+import { RHFSelect, RHFTextField } from '@root/components/hook-form'
+import RHFDatePicker from '@root/components/hook-form/RHFDatePicker'
 
 
 export const placementCardsData = [
@@ -122,3 +125,59 @@ export const chartTitles = [
     { title: "Local Authority 4", color: "#FFB600", percentage: 18 },
     { title: "Local Authority 5", color: "#5BA316", percentage: 10 },
 ];
+
+
+///////////////////////////// Tasks Modal Data ///////////////////////
+
+export const initialValues: any = {
+    title: '',
+    priority: '',
+    updatePhoto: null,
+    date: null
+}
+export const formSchema = Yup.object().shape({
+    title: Yup.string().required('Field is required'),
+    priority: Yup.string().required('Field is required'),
+    updatePhoto: Yup.string().required('Field is required'),
+    date: Yup.string().required('Field is required'),
+})
+
+export const addTaskFormData = [
+    {
+        gridLength: 6,
+        otherOptions: { name: "title", label: "Task Title", fullWidth: true },
+        component: RHFTextField,
+    },
+    {
+        gridLength: 6,
+        otherOptions: {
+            label: "Priority",
+            name: "priority",
+            fullWidth: true,
+            select: true,
+        },
+        options: [
+            { value: "High", label: "High" },
+            { value: "Low", label: "Low" },
+        ],
+        component: RHFSelect,
+    },
+    {
+        gridLength: 6,
+        otherOptions: {
+            label: "Upload Image",
+            name: "updatePhoto",
+            fullWidth: true,
+        },
+    },
+    {
+        gridLength: 6,
+        otherOptions: {
+            label: "Date",
+            name: "date",
+            fullWidth: true,
+        },
+        component: RHFDatePicker,
+    },
+
+]

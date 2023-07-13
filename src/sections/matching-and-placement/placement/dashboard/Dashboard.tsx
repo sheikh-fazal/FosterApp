@@ -8,9 +8,10 @@ import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { usePlacementDashboard } from "./useDashboard";
 import Chart from "./Chart";
+import AddTaskModal from "./tasks-modal/TasksModal";
 
 const Dashboard = () => {
-  const { tableHeaderRefThree, columns } = usePlacementDashboard();
+  const { tableHeaderRefThree, columns, isTaskModalOpen, setIsTaskModalOpen, handleClose } = usePlacementDashboard();
   return (
     <>
       <Grid container spacing="20px">
@@ -37,6 +38,7 @@ const Dashboard = () => {
               hideSearch
               title="Tasks"
               showAddBtn
+              onAdd={() => setIsTaskModalOpen(true)}
               onChanged={(data: any) => {
                 console.log("Updated params: ", data);
               }}
@@ -59,8 +61,8 @@ const Dashboard = () => {
               Reminders & Notifications
             </Typography>
             <Grid container spacing={2} pt="10px">
-              {remaindersAndNotificationsData.map((item: any) => (
-                <Grid item xs={12} md={12} lg={6} xl={6} key={item.id}>
+              {remaindersAndNotificationsData.map((item: any, i: any) => (
+                <Grid item xs={12} md={12} lg={6} xl={6} key={i}>
                   <StyledCard
                     background={item?.background}
                     border={item?.border}
@@ -96,6 +98,7 @@ const Dashboard = () => {
           </Card>
         </Grid>
       </Grid>
+      {isTaskModalOpen && <AddTaskModal isTaskModalOpen={isTaskModalOpen} handleClose={handleClose} />}
     </>
   );
 };

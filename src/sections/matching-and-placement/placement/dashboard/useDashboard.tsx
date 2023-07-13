@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Box, Checkbox, FormControlLabel, Typography, useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -7,9 +7,9 @@ import HighPriorityIcon from "../../../../assets/svg/placement/high.svg";
 import LowPriorityIcon from "../../../../assets/svg/placement/low.svg";
 
 export const usePlacementDashboard = () => {
-
     const router = useRouter();
     const theme = useTheme();
+    const [isTaskModalOpen, setIsTaskModalOpen] = useState<any>(false)
     let tableHeaderRefThree = useRef<any>();
 
     const columns = [
@@ -47,10 +47,18 @@ export const usePlacementDashboard = () => {
             cell: (info: any) => info.getValue()
         },
     ];
+
+    const handleClose = () => {
+        setIsTaskModalOpen(false)
+    }
+
     return {
         columns,
         theme,
         router,
         tableHeaderRefThree,
+        isTaskModalOpen,
+        handleClose,
+        setIsTaskModalOpen
     }
 }
