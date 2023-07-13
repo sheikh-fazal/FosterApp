@@ -93,21 +93,15 @@ export const BForm = [
     md: 6,
   },
   {
-    id: 3,
-    componentProps: {
-      name: "uploadImage",
-      label: "Upload Image",
-      fullWidth: true,
-      sx: { mb: 8 },
-    },
-    component: RHFUploadFile,
+    gridLength: 6,
+    uploadPhoto: true,
     md: 6,
   },
 ];
 
 export const defaultValues = {
   title: "",
-  date: "",
+  date: null,
   time: "",
   duration: "",
   timeZone: "",
