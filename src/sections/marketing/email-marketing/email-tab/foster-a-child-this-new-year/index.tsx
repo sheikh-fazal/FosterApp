@@ -24,7 +24,7 @@ export const defaultValues = {
           },
         ],
         sendListName:"FotH ALL",
-        imageAssets: "users/4f7512fb-2916-451b-8240-97f529ded73d/badge/72fd0112-f976-4910-b7a3-e3c8013f4204.jpg",
+        imageAssets: "uploads/images/4f7512fb-2916-451b-8240-97f529ded73d/d96f3bf5-5109-4179-9a6d-c82d94a142b1.png",
         landingPage: "link",
         facebookShareLink:"link",
         twitterShareLink: "link",

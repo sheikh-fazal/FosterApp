@@ -5,8 +5,8 @@ export const defaultValues = {
       name: "November 2021 Foster Carers Meetup, Fostering",
       person: [
         {
-          label: "VIP Customer",
-          value: "VIP Customer",
+          label: "Blenda chen",
+          value: "Blenda chen",
           bgColor: "#59b369",
           textColor: "white",
         },
