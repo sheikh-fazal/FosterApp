@@ -25,7 +25,7 @@ const dashboard = () => {
         >
           {systemAdminData.map((item: any, i: any) => {
             return (
-              <Grid key={i} item xs={12} lg={2.4}>
+              <Grid key={i} item xs={12} md={4} sm={6} lg={2.4}>
                 <Link href={`${item.link}`} style={{ textDecoration: "none" }}>
                   <Box
                     sx={(theme) => styles.marketingCard(theme, item.bgColor)}
@@ -56,7 +56,7 @@ const dashboard = () => {
       >
         More System Admin Features
       </Divider>
-      
+
       <Card sx={{ p: 2 }}>
         <Grid
           container
@@ -67,26 +67,20 @@ const dashboard = () => {
         >
           {moreSystemAdminFeature.map((item: any, i: any) => {
             return (
-              <Grid key={i} item xs={12} lg={2.4}>
-                <Link
-                  href={`${item.link}`}
-                  style={{ textDecoration: "none", cursor: "default" }}
-                >
-                  <Box sx={styles.moreFeatureCard}>
-                    <Box sx={(theme) => styles.marketingCardContent(theme)}>
-                      <Typography sx={(theme) => styles.cardText(theme)}>
-                        {item.title}
-                      </Typography>
-
-                      <Image
-                        src={item.image}
-                        width={52}
-                        height={52}
-                        alt="image"
-                      />
-                    </Box>
+              <Grid key={i} item xs={12} md={4} sm={6} lg={2.4}>
+                <Box sx={styles.moreFeatureCard}>
+                  <Box sx={(theme) => styles.marketingCardContent(theme)}>
+                    <Typography sx={(theme) => styles.cardText(theme)}>
+                      {item.title}
+                    </Typography>
+                    <Image
+                      src={item.image}
+                      width={52}
+                      height={52}
+                      alt="image"
+                    />
                   </Box>
-                </Link>
+                </Box>
               </Grid>
             );
           })}
