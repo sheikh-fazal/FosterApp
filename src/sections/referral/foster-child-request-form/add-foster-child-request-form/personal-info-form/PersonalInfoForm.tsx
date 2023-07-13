@@ -10,7 +10,12 @@ import { PersonalInfoFormData } from ".";
 
 const PersonalInfoForm = ({ disabled, handleNextBtn }: any) => {
   const { onSubmit, methods, handleSubmit, } = usePersonalInfoForm({ handleNextBtn: handleNextBtn });
-
+  let label: any;
+  if (disabled) {
+    label = "uploaded doc";
+  } else {
+    label = "upload doc";
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
@@ -18,7 +23,7 @@ const PersonalInfoForm = ({ disabled, handleNextBtn }: any) => {
           <Grid item xs={12} md={item?.md} key={item?.id}>
             <Typography sx={{ marginBottom: "5px", fontSize: "16px !important", fontWeight: "600" }} variant="h6" gutterBottom>{item.title}</Typography>
             {item.component && (
-              <item.component
+              <item.component fullWidth
                 {...item.componentProps}
                 disabled={disabled}
                 size={"small"}>
@@ -34,7 +39,7 @@ const PersonalInfoForm = ({ disabled, handleNextBtn }: any) => {
               </item.component>
             )}
             {!item.component && (
-              <RHFUploadFile name={"updatePhoto"} {...methods} required  disabled={disabled}/>
+              <RHFUploadFile name={"updatePhoto"} label={label}{...methods} required  disabled={disabled}/>
             )}
           </Grid>
         ))}

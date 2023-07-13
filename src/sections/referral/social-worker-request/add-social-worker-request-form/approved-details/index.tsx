@@ -203,11 +203,11 @@ export const BForm = [
 export const defaultValues = {
   userCode: "",
   referredBy: "",
-  referralDate: "",
+  referralDate: null,
   approvedBy: "",
   userGeography: "",
   localAuthority: "",
-  requestDateNotified: "",
+  requestDateNotified: null,
   branchManagerEmail: "",
   branchAddress: "",
   branchManagerName: "",

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AForm, defaultValues } from ".";
 import { LoadingButton } from "@mui/lab";
 import { usePersonalInfo } from "./usePersonalInfo";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 export default function PersonalInfo({
   disabled,
@@ -20,19 +21,30 @@ export default function PersonalInfo({
       initialValueProps,
       message
     });
+    let label: any;
+    if (disabled) {
+      label = "uploaded doc";
+    } else {
+      label = "upload doc";
+    }
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {AForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
+            {item.component && ( <item.component
               {...item.componentProps}
               disabled={disabled}
               size={"small"}
             >
               {item?.heading}
-            </item.component>
+            </item.component>)}
+            {item?.uploadPhoto && (
+              <>
+              <RHFUploadFile name={"updatePhoto"} label={label} {...methods} required />
+              </>
+            )}
           </Grid>
         ))}
         {!disabled && (

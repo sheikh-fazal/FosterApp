@@ -20,28 +20,27 @@ const PesonalInfoForm = ({ action }: any) => {
       <Grid container columnSpacing={4}>
         {PersonalInfoFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component fullWidth
-              {...item.componentProps}
-              disabled={disabled}
-              size={"small"}
-            >
-              {item.componentProps.select
-                ? item.options.map((option: any) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))
-                : null}
-              {item?.heading}
-            </item.component>
-            {item?.uploadPhoto && (
-                  <RHFUploadFile
-                    name={"updatePhoto"}
-                    label={label}
-                    {...methods}
-                    required
-                  />
-                )}
+         {item.component && (
+              <item.component fullWidth
+                disabled={disabled}
+                size="small"
+                {...item.componentProps}
+              >
+                {item?.heading}
+                {item.componentProps.select
+                  ? item.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </item.component>
+            )}
+              {item?.uploadPhoto && (
+              <>
+              <RHFUploadFile name={"updatePhoto"} label={label} {...methods} required />
+              </>
+            )}
           </Grid>
         ))}
 
