@@ -63,12 +63,14 @@ const FinalPlacementApprovalDeclarations = ({ handleIncreamentStep }: any) => {
   return (
     <>
       <Box sx={{ pt: 2 }}>
+      <Box sx={{pl:2.5,pr:2.5}}>
         <TableHeader
-          title="Placement Special Needs agreement"
+          title="Final Placement Approval / Declarations"
           hideSearch
           showAddBtn
           onAdd={() => setIsOpenFinalPlacementModal(true)}
         />
+        </Box>
         <CustomTable
           data={finalPlacementApprovalDeclarationData}
           columns={columns}

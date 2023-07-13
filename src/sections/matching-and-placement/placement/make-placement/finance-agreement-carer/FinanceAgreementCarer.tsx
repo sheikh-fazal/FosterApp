@@ -69,12 +69,14 @@ const FinanceAgreementCarer = ({ handleIncreamentStep }: any) => {
     return (
         <>
         <Box sx={{ pt: 2 }}>
+        <Box sx={{pl:2.5,pr:2.5}}>
             <TableHeader
-                title="Placement Special Needs agreement"
+                title="Finance Agreement with Carer"
                 hideSearch
                 showAddBtn
                 onAdd={()=>setIsOpenFinanceAgreementWithcarerModal(true)}
             />
+           </Box>
             <CustomTable
                 data={financeAgreementCarerData}
                 columns={columns}

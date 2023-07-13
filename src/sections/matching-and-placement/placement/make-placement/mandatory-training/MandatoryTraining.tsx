@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import {Mandatorydata } from '.';
 import { useMandatoryTraining } from './useMandatoryTraining';
 import TableHeader from "@root/components/TableHeader";
@@ -29,13 +29,14 @@ const MandatoryTraining = ({ handleIncreamentStep }: any) => {
           onSubmit={actionType === 'Add' ? (data: any) => handleAddMandatoryRecord(data) :  (data: any) => handleEditClicked(data) }
         />
 
-
-       <TableHeader
-        title="Placement Meeting Record"
+       <Box sx={{pl:2.5,pr:2.5}}>
+       <TableHeader 
+        title="Mandatory Training"
         showAddBtn
         hideSearch
         onAdd={()=>{setIsOpenMandatoryModal(true); setActionType('Add')}}
       />
+      </Box>
         <CustomTable
           data={Mandatorydata}
           columns={MandatoryTrainingColumns}

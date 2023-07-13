@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { PlacementMeetingRecordsData } from '.';
 import { usePlacementMeetingRecord } from './usePlacementMeetingRecord';
 import TableHeader from "@root/components/TableHeader";
@@ -9,7 +9,7 @@ import PlacementMeetingAddModal from './Modal/PlacementMeetingAddModal';
 
 
 
-const PlacementMeetingRecord = () => {
+const PlacementMeetingRecord = ({handleIncreamentStep}: any) => {
   const {PlacementMeetingRecordColumns,theme,isOpenPlacementMeetingModal, setIsOpenPlacementMeetingModal
   ,onAddPlacementMeetingRecord} = usePlacementMeetingRecord()
 
@@ -17,13 +17,14 @@ const PlacementMeetingRecord = () => {
   return (
     <Grid container >
       <Grid item xs={12} mt={2}>
-
+      <Box sx={{pl:2.5,pr:2.5}}>
        <TableHeader
         title="Placement Meeting Record"
         showAddBtn
         hideSearch
         onAdd={()=>setIsOpenPlacementMeetingModal(true)}
       />
+      </Box>
         <CustomTable
           data={PlacementMeetingRecordsData}
           columns={PlacementMeetingRecordColumns}
@@ -40,7 +41,7 @@ const PlacementMeetingRecord = () => {
         />
       </Grid>
       <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
     </Grid>
     
     <PlacementMeetingAddModal title='Placement Meeting Record' open={isOpenPlacementMeetingModal} handleClose={()=>setIsOpenPlacementMeetingModal(false)}

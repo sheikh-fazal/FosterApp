@@ -1,12 +1,12 @@
 import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { SpecialNeedsAgreementData } from ".";
 import { usePlacementSpecialNeedsAgreement } from "./usePlacementSpecialNeedsAgreement";
 import TableHeader from "@root/components/TableHeader";
 import PlacementSpecialNeedsAgreementModal from "./Modal/PlacementSpecialNeedsAgreementModal";
 
-const PlacementSpecialNeedsAgreement = () => {
+const PlacementSpecialNeedsAgreement = ({handleIncreamentStep}: any) => {
   const {
     SpecialNeedsAgreementColumns,
     theme,
@@ -17,12 +17,14 @@ const PlacementSpecialNeedsAgreement = () => {
   return (
     <Grid container>
       <Grid item xs={12} mt={2}>
+      <Box sx={{pl:2.5,pr:2.5}}>
         <TableHeader
           title="Placement Special Needs Agreement"
           showAddBtn
           hideSearch
           onAdd={()=> setIsOpenPlacementSpecialNeedsModal(true)}
         />
+        </Box>
         <CustomTable
           data={SpecialNeedsAgreementData}
           columns={SpecialNeedsAgreementColumns}
@@ -38,7 +40,7 @@ const PlacementSpecialNeedsAgreement = () => {
         />
       </Grid>
       <Grid item xs={12} ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
       </Grid>
       <PlacementSpecialNeedsAgreementModal
         title="Placement Special Needs Agreement"

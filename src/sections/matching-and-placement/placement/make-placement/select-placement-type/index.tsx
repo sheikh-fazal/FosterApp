@@ -78,17 +78,17 @@ export const SelectPlacementData = [
 export const SelectPlacementDefaultValues = {
   placementType: "",
   paymentType: "",
-  startDate: "",
-  endDate: "",
-  duration: "",
+  startDate: new Date(),
+  endDate: new Date(),
+  duration: new Date(),
 };
 
 export const SelectPlacementValidationSchema = Yup.object().shape({
   placementType: Yup.string().trim().required("Field is Required"),
   paymentType: Yup.string().trim().required("Field is Required"),
-  startDate: Yup.string().trim().required("Field is Required"),
-  endDate: Yup.string().trim().required("Field is Required"),
-  duration: Yup.string().trim().required("Field is Required"),
+  startDate: Yup.date().required("Field is Required"),
+  endDate: Yup.date().required("Field is Required"),
+  duration: Yup.date().required("Field is Required"),
 });
 
 export { default as SelectPlacementType } from "./SelectPlacementType";

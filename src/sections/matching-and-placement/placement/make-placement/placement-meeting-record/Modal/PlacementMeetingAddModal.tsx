@@ -9,21 +9,19 @@ import {
   styled,
 } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { PlacementMeetingData } from ".";
+import { PlacementMeetingMockData } from ".";
 import { usePlacementMeetingAddModal } from "./usePlacementMeetingAddModal";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-
-
 
 interface IProps {
   open: boolean;
   handleClose: () => void;
-  onSubmit?:Function;
-  title:string,
+  onSubmit?: Function;
+  title: string;
 }
 
 const PlacementMeetingAddModal = (props: IProps) => {
-  const { open, handleClose, onSubmit,title,} = props;
+  const { open, handleClose, onSubmit, title } = props;
   const { methods, handleSubmit } = usePlacementMeetingAddModal();
 
   const ModalContent = styled(DialogContent)`
@@ -41,7 +39,7 @@ const PlacementMeetingAddModal = (props: IProps) => {
           handleClose(), methods.reset();
         }}
         fullWidth={true}
-        maxWidth={'md'}
+        maxWidth={"md"}
       >
         <ModalContent>
           <Typography component={"p"} sx={styles.styleTitle}>
@@ -49,35 +47,48 @@ const PlacementMeetingAddModal = (props: IProps) => {
           </Typography>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
-              {PlacementMeetingData?.map((item: any, i: number) => (
-                <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5} sx={item.sx}>
-                     <Typography sx={{ marginBottom: "0px", fontSize: "14px !important", fontWeight: "500" }} variant="h6" gutterBottom>{item.title}</Typography>
+              {PlacementMeetingMockData?.map((item: any, i: number) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={item?.md}
+                  key={item?.id}
+                  mt={1.5}
+                  sx={item.sx}
+                >
+                  <Typography
+                    sx={{
+                      marginBottom: "0px",
+                      fontSize: "14px !important",
+                      fontWeight: "500",
+                    }}
+                    variant="h6"
+                    gutterBottom
+                  >
+                    {item.title}
+                  </Typography>
                   {item.component && (
-                    <item.component
-                      {...item.componentProps}
-                      size={"small"}
-                      >
-                      {item.componentProps.select
-                        ? item.options.map((option: any) => (
+                    <item.component {...item.componentProps} size={"small"}>
+                      {item?.componentProps?.select
+                        ? item?.options?.map((option: any) => (
                             <option key={option.value} value={option.value}>
-                              {option.label}
+                              {option?.label}
                             </option>
                           ))
                         : null}
                       {item?.heading}
                     </item.component>
-)}
+                  )}
                   {!item.component && (
-              <RHFUploadFile name={"updatePhoto"} {...methods} required />
-            )}
+                    <RHFUploadFile name={"updatePhoto"} {...methods} required />
+                  )}
                 </Grid>
               ))}
             </Grid>
             <Grid item xs={12} mt={3}>
               <Box sx={{ display: "flex", gap: "1rem" }}>
-             
-                <Button type="submit" variant="contained" sx={styles.uploadBtn} >
-                 Submit
+                <Button type="submit" variant="contained" sx={styles.uploadBtn}>
+                  Submit
                 </Button>
 
                 <Button
@@ -129,7 +140,4 @@ const styles = {
     letterSpacing: "0.005em",
     color: "#343A40",
   },
-  
- 
 };
-

@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { FinanceAgreementLocalAuthData } from '.';
 import { useFinanceAgreementLocalAuthority } from './useFinanceAgreementLocalAuthority';
 import TableHeader from "@root/components/TableHeader";
@@ -9,20 +9,21 @@ import FinanceAgreementAddModal from './Modal/FinanceAgreementAddModal';
 
 
 
-const FinanceAgreementLocalAuthority = () => {
+const FinanceAgreementLocalAuthority = ({handleIncreamentStep}: any) => {
   const {FinanceAgreementLocalAuthorityColumns,theme,isOpenFinanceAgreementModal, setIsOpenFinanceAgreementModal,onAddFinanceAgreementModal} = useFinanceAgreementLocalAuthority()
 
 
   return (
     <Grid container >
       <Grid item xs={12} mt={2}>
-
+      <Box sx={{pl:2.5,pr:2.5}}>
        <TableHeader
-        title="Placement Special Needs Agreement"
+        title="Finance Agreement with Local Authority"
         showAddBtn
         hideSearch
         onAdd={()=>setIsOpenFinanceAgreementModal(true)}
       />
+      </Box>
         <CustomTable
           data={FinanceAgreementLocalAuthData}
           columns={FinanceAgreementLocalAuthorityColumns}
@@ -39,7 +40,7 @@ const FinanceAgreementLocalAuthority = () => {
         />
       </Grid>
       <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
           <FinanceAgreementAddModal title='Finance Agrement With Local Authority' open={isOpenFinanceAgreementModal} handleClose={()=>setIsOpenFinanceAgreementModal(false)}
        onSubmit={onAddFinanceAgreementModal}/>
     </Grid>

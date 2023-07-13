@@ -1,12 +1,12 @@
 import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
-import { Button, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { PlacementAgreementCarerData } from ".";
 import { usePlacementAgreementWithCarer } from "./usePlacementAgreementWithCarer";
 import TableHeader from "@root/components/TableHeader";
 import PlacementAgreementcarerAddModal from "./Modal/PlacementAgreementcarerAddModal";
 
-const PlacementAgreementWithCarer = () => {
+const PlacementAgreementWithCarer = ({handleIncreamentStep}:any) => {
   const {
     PlacementAgreementCarerTableColumns,
     theme,
@@ -18,12 +18,14 @@ const PlacementAgreementWithCarer = () => {
   return (
     <Grid container>
       <Grid item xs={12} mt={2}>
+      <Box sx={{pl:2.5,pr:2.5}}>
         <TableHeader
-          title="Placement Special Needs Agreement"
+          title="Placement Agreement with Carer"
           showAddBtn
           hideSearch
           onAdd={() => setIsOpenPlacementAgreementModal(true)}
         />
+        </Box>
         <CustomTable
           data={PlacementAgreementCarerData}
           columns={PlacementAgreementCarerTableColumns}
@@ -39,7 +41,7 @@ const PlacementAgreementWithCarer = () => {
         />
       </Grid>
       <Grid item xs={12} ml={2.8} mb={2} mt={0}>
-        <Button sx={styles.saveBtn}>Continue</Button>
+        <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
         <PlacementAgreementcarerAddModal
           title="Placement Agrement With Carer"
           open={isOpenPlacementAgreementModal}

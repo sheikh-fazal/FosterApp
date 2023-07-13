@@ -12,6 +12,7 @@ import { FormProvider } from "@root/components/hook-form";
 
 import { PlacementSpecialNeedsMockData } from ".";
 import { usePlacementAgreementcarerAddModal } from "./usePlacementAgreementcarerAddModal";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 
 
@@ -52,7 +53,7 @@ const PlacementAgreementcarerAddModal = (props: IProps) => {
             <Grid container spacing={2}>
               {PlacementSpecialNeedsMockData?.map((item: any, i: number) => (
                 <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5} >
-            
+             {item.component && (
                      <item.component
                       {...item.componentProps}
                       size={"small"}
@@ -66,6 +67,10 @@ const PlacementAgreementcarerAddModal = (props: IProps) => {
                         : null}
                       {item?.heading}
                     </item.component>
+                    )}
+                    {!item.component && (
+              <RHFUploadFile name={"updatePhoto"} {...methods} required />
+            )}
                 </Grid>
               ))}
             </Grid>

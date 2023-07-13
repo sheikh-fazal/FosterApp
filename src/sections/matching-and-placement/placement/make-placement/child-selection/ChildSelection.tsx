@@ -36,13 +36,14 @@ const ChildSelection = ({ handleIncreamentStep }: any) => {
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box sx={styles.collapseWrapper}>
-                <Box sx={styles.searchWrap}>
+                <Box sx={styles.searchWrap} mt={1}>
                     <RHFSelect
                         name="selectFosterCarerPendingPayment"
                         label="Select the Foster Child (Pending Placement)"
                         size="small"
                     >
                         <option value="Foster Child">Foster Child</option>
+                        <option value="Foster Child">Foster carer</option>
                     </RHFSelect>
                     <Button type="submit" sx={styles.button}>Search</Button>
                 </Box>

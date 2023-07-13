@@ -11,7 +11,7 @@ export const defaultValues  = {
     // meetingAttendeesRole:true,
     meetingAgenda:'',
     meetingActions:'',
-    updatePhoto: null,
+    updatePhoto: '',
     meetingOutcome:''
 }
 export const PlacementMeetingformSchemaValidation = Yup.object().shape({
@@ -27,14 +27,14 @@ export const PlacementMeetingformSchemaValidation = Yup.object().shape({
 })
 
 
-export const PlacementMeetingData = [
+export const PlacementMeetingMockData = [
     {
         id: 1,
         componentProps: {
             name: "childName",
             label: 'Child Name',
             fullWidth: true,
-            sx: { mb: 1 },
+            sx: { mb: 1.5 },
         },
         component: RHFTextField,
         md: 6,
@@ -45,7 +45,7 @@ export const PlacementMeetingData = [
             name: "carerName",
             label: 'Carer Name',
             fullWidth: true,
-            sx: { mb: 1 },
+            sx: { mb: 1.5 },
         },
        
         component: RHFTextField,
@@ -57,7 +57,7 @@ export const PlacementMeetingData = [
             name: "meetingDate",
             label: 'Meeting Date',
             fullWidth: true,
-            sx: { mb: 2 },
+            sx: { mb: 1.5 },
         },
         component: RHFDatePicker,
         md: 6,
@@ -80,12 +80,12 @@ export const PlacementMeetingData = [
             label: 'Meeting Agenda',
             fullWidth: true,
             multiline:true,
-            row:3,
-            sx: { mb: 1 },
+            minRows: 3,
+            sx: { mb: 1.5 },
         },
        
         component: RHFTextField,
-        md: 6,
+        md: 12,
     },
     {
         id: 6,
@@ -115,8 +115,6 @@ export const PlacementMeetingData = [
         component: RHFTextField,
         md: 6,
     },
-    
-
 ]
 export { default as PlacementMeetingAddModal } from "./PlacementMeetingAddModal";
 

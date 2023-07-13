@@ -5,7 +5,7 @@ import {safeguardingMeasureData } from '.';
 import { useSafeguardingMeasureBefore } from './useSafeguardingMeasureBefore';
 
 
-const SafeguardingMeasureBefore = () => {
+const SafeguardingMeasureBefore = ({handleIncreamentStep}: any) => {
   const { safeguardingMeasureColumns,theme,
   } = useSafeguardingMeasureBefore()
 
@@ -30,7 +30,7 @@ const SafeguardingMeasureBefore = () => {
         />
       </Grid>
       <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
-      <Button sx={styles.saveBtn}>Continue</Button>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
     </Grid>
     </Grid>
   )
