@@ -20,7 +20,7 @@ const SwotAnalysisForm = ({ action }: any) => {
                 {form.title}
               </Typography>
               {form.component && (
-                <form.component
+                <form.component fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
