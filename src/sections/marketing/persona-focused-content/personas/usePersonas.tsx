@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { defaultValues } from ".";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 export const usePersonas = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
+  const { uploadImage } = useUploadImage();
   const {
     handleSubmit,
     formState: { isSubmitting, isValid },
@@ -29,6 +31,7 @@ export const usePersonas = () => {
     onSubmit,
     isSubmitting,
     tableData,
+    uploadImage,
     onClear,
   };
 };
