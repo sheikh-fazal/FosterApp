@@ -3,8 +3,6 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 export const useSafeguardingMeasureDurationTable = () => {
-    const [IsOpenTrainingClockModal, setIsOpenTrainingClockModal] = useState(false)
-    const tableHeaderRef = useRef();
     const theme: any = useTheme();
 
   const safeguardingMeasureDurationColumns = [
@@ -52,11 +50,7 @@ export const useSafeguardingMeasureDurationTable = () => {
 
     return {
         safeguardingMeasureDurationColumns,
-        tableHeaderRef,
         theme,
-        IsOpenTrainingClockModal,
-        setIsOpenTrainingClockModal,
-       
     }
 }
 // style

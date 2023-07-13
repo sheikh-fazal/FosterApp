@@ -1,11 +1,11 @@
 import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { MandatoryformSchemaValidation, defaultValues ,  } from '.';
+import { PlacementSpecialNeedsformSchemaValidation, defaultValues ,  } from '.';
 
-export const useMandatoryModal = () => {
+export const useFinalPlacementApprovalAddModal = () => {
     const methods: any = useForm({
-        resolver: yupResolver(MandatoryformSchemaValidation),
+        resolver: yupResolver(PlacementSpecialNeedsformSchemaValidation),
         defaultValues: defaultValues  ,
     });
     const { reset, handleSubmit, formState: { errors, isSubmitting, isDirty }, }: any = methods;

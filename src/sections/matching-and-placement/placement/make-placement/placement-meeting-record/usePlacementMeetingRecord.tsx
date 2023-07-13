@@ -1,9 +1,14 @@
 import { Box, useTheme } from "@mui/material";
 import Image from "next/image";
+import { useState } from "react";
 
-export const usePlacementMeetingRecordTable = () => {
+export const usePlacementMeetingRecord = () => {
+  const [isOpenPlacementMeetingModal, setIsOpenPlacementMeetingModal] = useState(false)
   const theme: any = useTheme();
-
+   const onAddPlacementMeetingRecord = (data:any) =>{
+    console.log(data);
+    
+   }
   const PlacementMeetingRecordColumns = [
     {
       accessorFn: (row: any) => row.meetingAgenda,
@@ -71,6 +76,6 @@ export const usePlacementMeetingRecordTable = () => {
 
   return {
     PlacementMeetingRecordColumns,
-    theme,
+    theme,isOpenPlacementMeetingModal, setIsOpenPlacementMeetingModal,onAddPlacementMeetingRecord
   };
 };

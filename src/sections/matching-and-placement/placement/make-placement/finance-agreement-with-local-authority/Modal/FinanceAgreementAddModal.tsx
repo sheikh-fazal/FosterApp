@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -9,25 +9,23 @@ import {
   styled,
 } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { MandatoryModalData } from ".";
-import { useMandatoryModal } from "./useMandatoryModal";
+import { useFinanceAgreementAddModal } from "./useFinanceAgreementAddModal";
+import { PlacementSpecialNeedsMockData } from ".";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+
 
 
 
 interface IProps {
   open: boolean;
   handleClose: () => void;
-  disabled?: boolean;
   onSubmit?:Function;
-  isHideSubmitButton?:boolean,
   title:string,
-  SubmitBtnText:string
-
 }
 
-const MandatoryModal = (props: IProps) => {
-  const { open, handleClose, disabled, onSubmit,title,isHideSubmitButton,SubmitBtnText} = props;
-  const { methods, handleSubmit } = useMandatoryModal();
+const FinanceAgreementAddModal = (props: IProps) => {
+  const { open, handleClose, onSubmit,title,} = props;
+  const { methods, handleSubmit } = useFinanceAgreementAddModal();
 
   const ModalContent = styled(DialogContent)`
     @media (max-width: 852px) {
@@ -52,34 +50,36 @@ const MandatoryModal = (props: IProps) => {
           </Typography>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
-              {MandatoryModalData?.map((item: any, i: number) => (
-                <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5}>
-                  {item.component && (
-                    <item.component
+              {PlacementSpecialNeedsMockData?.map((item: any, i: number) => (
+                <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5} >
+             {item.component && (
+                     <item.component
                       {...item.componentProps}
-                      disabled={disabled}
                       size={"small"}
                       >
-                      {item.componentProps.select
-                        ? item.options.map((option: any) => (
+                      {item.componentProps?.select
+                        ? item.options?.map((option: any) => (
                             <option key={option.value} value={option.value}>
-                              {option.label}
+                              {option?.label}
                             </option>
                           ))
                         : null}
                       {item?.heading}
                     </item.component>
-                  )}
+             )}
+              {!item.component && (
+              <RHFUploadFile name={"updatePhoto"} {...methods} required  />
+            )}
                 </Grid>
               ))}
             </Grid>
             <Grid item xs={12} mt={3}>
               <Box sx={{ display: "flex", gap: "1rem" }}>
-              {isHideSubmitButton === false &&
+             
                 <Button type="submit" variant="contained" sx={styles.uploadBtn} >
-                 {SubmitBtnText}
+                 Submit
                 </Button>
-}
+
                 <Button
                   sx={styles.clearBtn}
                   type="button"
@@ -99,7 +99,7 @@ const MandatoryModal = (props: IProps) => {
   );
 };
 
-export default MandatoryModal;
+export default FinanceAgreementAddModal;
 
 // style
 

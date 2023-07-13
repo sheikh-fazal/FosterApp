@@ -2,16 +2,17 @@ import CarerSelection from "./carer-selection/CarerSelection";
 import ChildSelection from "./child-selection/ChildSelection";
 import FinalPlacementApprovalDeclarations from "./final-placement-approval-declarations/FinalPlacementApprovalDeclarations";
 import FinanceAgreementCarer from "./finance-agreement-carer/FinanceAgreementCarer";
-import FinanceAgreementLocalAuthorityTable from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthorityTable";
+import FinanceAgreementLocalAuthority from "./finance-agreement-with-local-authority/FinanceAgreementLocalAuthority";
 import MandatoryTraining from "./mandatory-training/MandatoryTraining";
-import PlacementAgreementCarerTable from "./placement-agreement-with-carer/PlacementAgreementCarerTable";
-import PlacementMeetingRecordTable from "./placement-meeting-record/PlacementMeetingRecordTable";
-import PlacementSpecialNeedsAgreementTable from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreementTable";
-import SafeguardingMeasureBeforeTable from "./safeguarding-measure-before-placement/SafeguardingMeasureBeforeTable";
-import SafeguardingMeasureDurationTable from "./safeguarding-measure-duration-placement/SafeguardingMeasureDurationTable";
+import PlacementAgreementWithCarer from "./placement-agreement-with-carer/PlacementAgreementWithCarer";
+import PlacementMeetingRecord from "./placement-meeting-record/PlacementMeetingRecord";
+import PlacementSpecialNeedsAgreement from "./placement-special-needs-agreement/PlacementSpecialNeedsAgreement";
+import SafeguardingMeasureBefore from "./safeguarding-measure-before-placement/SafeguardingMeasureBefore";
+import SafeguardingMeasureDuration from "./safeguarding-measure-duration-placement/SafeguardingMeasureDuration";
 import { SelectLASW } from "./select-la-sw";
 import { SelectPlacementType } from "./select-placement-type";
 import { SelectSupervisingSocialWorker } from "./select-supervising-social-worker";
+
 
 export const placementStepData = [
   {
@@ -52,14 +53,14 @@ export const placementStepData = [
   {
     id: 6,
     label: "Safeguarding Measure ( Before Placement )",
-    component: SafeguardingMeasureBeforeTable,
+    component: SafeguardingMeasureBefore,
     background: "linear-gradient(135deg, #134E5E 0%, #71B280 100%)",
     color: "rgb(67, 129, 114)",
   },
   {
     id: 7,
     label: "Safeguarding Measure ( During Placement )",
-    component: SafeguardingMeasureDurationTable,
+    component: SafeguardingMeasureDuration,
     background: "linear-gradient(135deg, #1A202E 0%, #424E68 100%)",
     color: "rgb(46, 55, 75)",
   },
@@ -73,28 +74,28 @@ export const placementStepData = [
   {
     id: 9,
     label: "Placement Meeting record",
-    component: PlacementMeetingRecordTable,
+    component: PlacementMeetingRecord,
     background: "linear-gradient(143deg, #F6830F 0%, #DC3545 100%)",
     color: "rgb(233,93,42)",
   },
   {
     id: 10,
     label: "Placement Special Needs agreement",
-    component: PlacementSpecialNeedsAgreementTable,
+    component: PlacementSpecialNeedsAgreement,
     background: "linear-gradient(135deg, #F6460F 0%, #FE2B5E 100%)",
     color: "rgb(250,56,54)",
   },
   {
     id: 11,
     label: "Finance Agreement with  Local Authority",
-    component: FinanceAgreementLocalAuthorityTable,
+    component: FinanceAgreementLocalAuthority,
     background: "linear-gradient(90deg, #2CB764 0%, #0E918C 100%)",
     color: "rgb(29,164,120)",
   },
   {
     id: 12,
     label: "Placement Agreement with Carer",
-    component: PlacementAgreementCarerTable,
+    component: PlacementAgreementWithCarer,
     background: "linear-gradient(135deg, #0A6460 0%, #23E0D9 100%)",
     color: "rgb(20,164,157)",
   },

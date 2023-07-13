@@ -9,25 +9,20 @@ import {
   styled,
 } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { MandatoryModalData } from ".";
-import { useMandatoryModal } from "./useMandatoryModal";
-
-
+import { PlacementMeetingMockData } from ".";
+import { usePlacementMeetingAddModal } from "./usePlacementMeetingAddModal";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 interface IProps {
   open: boolean;
   handleClose: () => void;
-  disabled?: boolean;
-  onSubmit?:Function;
-  isHideSubmitButton?:boolean,
-  title:string,
-  SubmitBtnText:string
-
+  onSubmit?: Function;
+  title: string;
 }
 
-const MandatoryModal = (props: IProps) => {
-  const { open, handleClose, disabled, onSubmit,title,isHideSubmitButton,SubmitBtnText} = props;
-  const { methods, handleSubmit } = useMandatoryModal();
+const PlacementMeetingAddModal = (props: IProps) => {
+  const { open, handleClose, onSubmit, title } = props;
+  const { methods, handleSubmit } = usePlacementMeetingAddModal();
 
   const ModalContent = styled(DialogContent)`
     @media (max-width: 852px) {
@@ -44,7 +39,7 @@ const MandatoryModal = (props: IProps) => {
           handleClose(), methods.reset();
         }}
         fullWidth={true}
-        maxWidth={'md'}
+        maxWidth={"md"}
       >
         <ModalContent>
           <Typography component={"p"} sx={styles.styleTitle}>
@@ -52,34 +47,50 @@ const MandatoryModal = (props: IProps) => {
           </Typography>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Grid container spacing={2}>
-              {MandatoryModalData?.map((item: any, i: number) => (
-                <Grid item xs={12} md={item?.md} key={item?.id} mt={1.5}>
+              {PlacementMeetingMockData?.map((item: any, i: number) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={item?.md}
+                  key={item?.id}
+                  mt={1.5}
+                  sx={item.sx}
+                >
+                  <Typography
+                    sx={{
+                      marginBottom: "0px",
+                      fontSize: "14px !important",
+                      fontWeight: "500",
+                    }}
+                    variant="h6"
+                    gutterBottom
+                  >
+                    {item.title}
+                  </Typography>
                   {item.component && (
-                    <item.component
-                      {...item.componentProps}
-                      disabled={disabled}
-                      size={"small"}
-                      >
-                      {item.componentProps.select
-                        ? item.options.map((option: any) => (
+                    <item.component {...item.componentProps} size={"small"}>
+                      {item?.componentProps?.select
+                        ? item?.options?.map((option: any) => (
                             <option key={option.value} value={option.value}>
-                              {option.label}
+                              {option?.label}
                             </option>
                           ))
                         : null}
                       {item?.heading}
                     </item.component>
                   )}
+                  {!item.component && (
+                    <RHFUploadFile name={"updatePhoto"} {...methods} required />
+                  )}
                 </Grid>
               ))}
             </Grid>
             <Grid item xs={12} mt={3}>
               <Box sx={{ display: "flex", gap: "1rem" }}>
-              {isHideSubmitButton === false &&
-                <Button type="submit" variant="contained" sx={styles.uploadBtn} >
-                 {SubmitBtnText}
+                <Button type="submit" variant="contained" sx={styles.uploadBtn}>
+                  Submit
                 </Button>
-}
+
                 <Button
                   sx={styles.clearBtn}
                   type="button"
@@ -99,7 +110,7 @@ const MandatoryModal = (props: IProps) => {
   );
 };
 
-export default MandatoryModal;
+export default PlacementMeetingAddModal;
 
 // style
 
@@ -129,7 +140,4 @@ const styles = {
     letterSpacing: "0.005em",
     color: "#343A40",
   },
-  
- 
 };
-

@@ -1,9 +1,8 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Button, Grid} from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { SelectPlacementData } from ".";
 import useSelectPlacementType from "./useSelectPlacementType";
-import { LoadingButton } from "@mui/lab";
 
 const SelectPlacementType = ({ handleIncreamentStep }: any) => {
   const { onSubmit, methods, handleSubmit, theme } = useSelectPlacementType(handleIncreamentStep);
@@ -29,21 +28,15 @@ const SelectPlacementType = ({ handleIncreamentStep }: any) => {
 
           </Grid>
         ))}
-        <Grid item xs={12} ml={2.5} mb={2.5} mt={1.5}>
-          <LoadingButton
-            type="submit"
-            sx={{
-              bgcolor: theme.palette.primary.main,
-            }}
-            variant="contained"
-
-          // loading={isfatching}
-          >
-            Save and Continue
-          </LoadingButton>
+    <Grid item xs={12}  ml={2.5} mb={2.5} mt={1.5}>
+     <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Save and Continue</Button>
         </Grid>
       </Grid>
     </FormProvider>
   );
 };
 export default SelectPlacementType;
+
+const styles = {
+  saveBtn: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.2, py: 1, fontSize: "16px", fontWeight: 600 }
+};
