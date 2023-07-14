@@ -9,7 +9,7 @@ export const dummy = [
   {
     id: 1,
     medicationName: "Amoxillin",
-    dateIssued: "Date Issued",
+    issuedDate: "Date Issued",
   },
 ];
 export const childMedicationInfoData = [
@@ -41,7 +41,7 @@ export const childMedicationInfoData = [
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "nameofMedication",
+      name: "medicationName",
       label: "Name of Medication",
       multiline: false,
       //   minRows: 3,
@@ -65,7 +65,7 @@ export const childMedicationInfoData = [
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "givenBy",
+      name: "givenByPersonName",
       label: "Given By (Person Name)",
       multiline: false,
       //   minRows: 3,
@@ -86,15 +86,15 @@ export const childMedicationInfoData = [
     id: 7,
     gridLength: 6,
     otherOptions: {
-      name: "issuetoCarer",
+      name: "issueToCarer",
       label: "Issue to Carer",
       fullWidth: true,
       select: true,
     },
     options: [
       {
-        value: "",
-        label: "",
+        value: "Cora Langley",
+        label: "Cora Langley",
       },
     ],
     component: RHFSelect,
@@ -103,7 +103,7 @@ export const childMedicationInfoData = [
     id: 8,
     gridLength: 6,
     otherOptions: {
-      name: "dateIssued",
+      name: "issuedDate",
       label: "Date Issued",
       multiline: false,
       //   minRows: 3,
@@ -115,7 +115,7 @@ export const childMedicationInfoData = [
     id: 9,
     gridLength: 6,
     otherOptions: {
-      name: "anyReactions",
+      name: "anyReaction",
       label: "Any Reactions",
       multiline: true,
       minRows: 3,
@@ -137,27 +137,27 @@ export const childMedicationInfoData = [
   },
 ];
 export const ChildMedicationInfoListValue = {
-  prescriptionIssueDate: "",
-  nextPrescriptionDueDate: "",
-  nameofMedication: "",
+  prescriptionIssueDate: new Date(),
+  nextPrescriptionDueDate: new Date(),
+  medicationName: "",
   dosageFrequencyGiven: "",
-  givenBy: "",
-  prescribedByGP: "",
-  issuetoCarer: "",
-  dateIssued: "",
-  anyReactions: "",
+  givenByPersonName: "",
+  prescribedByGP: undefined,
+  issueToCarer: "",
+  issuedDate: new Date(),
+  anyReaction: "",
   comments: "",
 };
 export const FormSchema = Yup.object().shape({
   prescriptionIssueDate: Yup.date().required("required"),
   nextPrescriptionDueDate: Yup.date().required("required"),
-  nameofMedication: Yup.string().required("required"),
+  medicationName: Yup.string().required("required"),
   dosageFrequencyGiven: Yup.string().required("required"),
-  givenBy: Yup.string().required("required"),
-  prescribedByGP: Yup.string().required("required"),
-  issuetoCarer: Yup.string().required("required"),
-  dateIssued: Yup.date().required("required"),
-  anyReactions: Yup.string().required("required"),
+  givenByPersonName: Yup.string().required("required"),
+  prescribedByGP: Yup.boolean().required("required"),
+  issueToCarer: Yup.string().required("required"),
+  issuedDate: Yup.date().required("required"),
+  anyReaction: Yup.string().required("required"),
   comments: Yup.string().required("required"),
 });
 //upload document

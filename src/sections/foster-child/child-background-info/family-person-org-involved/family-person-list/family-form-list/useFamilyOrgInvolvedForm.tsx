@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { familyFormListValidation } from ".";
+import { defaultValuesFamilyList, familyFormListValidation } from ".";
 import { useRouter } from "next/router";
 import {
   usePatchFamilyPersonListMutation,
@@ -10,13 +10,14 @@ import { enqueueSnackbar } from "notistack";
 
 export const useFamilyOrgInvolvedForm = (props: any) => {
   const router = useRouter();
+  console.log(router, "router?.query");
 
   const { disabled, defaultValues } = props;
   console.log("defaultValues", defaultValues);
 
   const methods: any = useForm({
     resolver: yupResolver(familyFormListValidation),
-    defaultValues,
+    defaultValues: defaultValues ?? defaultValuesFamilyList,
   });
 
   const {
@@ -37,8 +38,9 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
     // Post API of Family Person List
     try {
       const res: any = await postFamilyPersonList(data).unwrap();
+
       router.push(
-        `/foster-child/child-background-info/family-person-org-involved`
+        `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?family_person_id=${res?.id}`
       );
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -51,15 +53,24 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
 
   // Patch API of Family Person Liat
   const patchFamilyPersonFormHanlder = async (data: any) => {
-    const patchData = { body: data, id: router?.query?.family_person_id};
+    const patchData = { body: data, id: router?.query?.family_person_id };
     console.log(patchData);
 
     try {
       const res: any = await patchFamilyPersonList(patchData).unwrap();
       console.log(res);
-      router.push(
-        `/foster-child/child-background-info/family-person-org-involved`
-      );
+      if (
+        router?.asPath.split("/").pop() === "view" ||
+        router?.asPath.split("/").pop() === "edit"
+      ) {
+        router.push(
+          `/foster-child/child-background-info/family-person-org-involved`
+        );
+      } else {
+        router.push(
+          `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?family_person_id=${router?.query?.family_person_id}`
+        );
+      }
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
         variant: "success",
       });

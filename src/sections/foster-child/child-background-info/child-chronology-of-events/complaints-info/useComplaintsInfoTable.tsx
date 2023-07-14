@@ -1,5 +1,5 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetComplaintsInfoListQuery, useDeleteComplaintsInfoListMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/ComplaintsInfoAPI";
+import { useGetChildChronologyOfEventsComplaintsInfoListQuery, useDeleteChildChronologyOfEventsComplaintsInfoByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/ComplaintsInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
@@ -8,15 +8,15 @@ export const useComplaintsInfoTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetComplaintsInfoListQuery({
+  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetChildChronologyOfEventsComplaintsInfoListQuery({
     search: search,
   });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteComplaintsInfoListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsComplaintsInfoByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({id:id})
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

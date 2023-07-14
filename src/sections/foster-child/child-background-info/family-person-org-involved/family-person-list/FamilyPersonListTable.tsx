@@ -52,7 +52,7 @@ export default function FamilyPersonListTable() {
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}`
+                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/view`
               )
             }
           />

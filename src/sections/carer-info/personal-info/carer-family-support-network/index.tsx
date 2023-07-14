@@ -159,61 +159,71 @@ export const CarerFamilySupportNetworkFormSchema = Yup.object().shape({
   address: Yup.string().trim().required("Address is Required"),
 });
 
-export const columns = [
-  {
-    accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-    id: "name",
-    cell: (info: any) => info.getValue(),
-    header: "Name",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.dateOfBirth,
-    id: "dateOfBirth",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    header: "Date of Birth",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.relation,
-    id: "relation",
-    cell: (info: any) => info.getValue() ?? "-",
-    header: "Relation",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => (row?.livingAtHome ? "Yes" : "No"),
-    id: "livingAtHome",
-    cell: (info: any) => info.getValue(),
-    header: "Living At Home",
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row?.id,
-    id: "actions",
-    cell: (info: any) => (
-      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="edit"
-          onClicked={() =>
-            router.push(
-              `/carer-info/personal-info/carer-family-support-network/edit-family-support?${info.getValue()}`
-            )
-          }
-        />
-        <TableAction
-          type="view"
-          onClicked={() =>
-            router.push(
-              `/carer-info/personal-info/carer-family-support-network/view-family-support?${info.getValue()}`
-            )
-          }
-        />
-      </Box>
-    ),
-    header: "Actions",
-    isSortable: false,
-  },
-];
+export const getColumnsCarerFamilySupportNetwork = (makePath: any) => {
+  return [
+    {
+      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
+      id: "name",
+      cell: (info: any) => info.getValue(),
+      header: "Name",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.dateOfBirth,
+      id: "dateOfBirth",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      header: "Date of Birth",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.relation,
+      id: "relation",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: "Relation",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => (row?.livingAtHome ? "Yes" : "No"),
+      id: "livingAtHome",
+      cell: (info: any) => info.getValue(),
+      header: "Living At Home",
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row?.id,
+      id: "actions",
+      cell: (info: any) => (
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            type="edit"
+            onClicked={() =>
+              router.push(
+                makePath({
+                  path: "/carer-info/personal-info/carer-family-support-network/edit-family-support",
+                  passOldQuery: true,
+                  queryParams: { familyId: info.getValue() },
+                })
+              )
+            }
+          />
+          <TableAction
+            type="view"
+            onClicked={() =>
+              router.push(
+                makePath({
+                  path: "/carer-info/personal-info/carer-family-support-network/view-family-support",
+                  passOldQuery: true,
+                  queryParams: { familyId: info.getValue() },
+                })
+              )
+            }
+          />
+        </Box>
+      ),
+      header: "Actions",
+      isSortable: false,
+    },
+  ];
+};
 
 export { default as CarerFamilySupportNetworkForm } from "./CarerFamilySupportNetworkForm";

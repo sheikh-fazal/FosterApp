@@ -6,10 +6,20 @@ import { NewTrainingProfileData } from ".";
 import useViewChildExclusionInfo from "./useEditChildExclusionInfo";
 
 const EditChildExclusionInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const {
+    id,
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    defaultValues,
+    initialValueProps = defaultValues,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useViewChildExclusionInfo();
+  console.log(initialValueProps);
+  
+  const { methods, handleSubmit, onSubmit } = useViewChildExclusionInfo({initialValueProps,id});
 
   return (
     <>

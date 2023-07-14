@@ -7,6 +7,8 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
+import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -38,6 +40,16 @@ FamilyPersonList.getLayout = function getLayout(page: any) {
 };
 
 export default function FamilyPersonList() {
+  const { query } = useRouter();
+  console.log(query);
+
+  const familyPersonId = query["family_person_id"];
+  const { data, isLoading, isSuccess, isError } =
+    useGetFamilyPersonListByIdQuery(familyPersonId, {
+      skip: !familyPersonId,
+    });
+
+  console.log("Is loading: ", data);
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
@@ -45,11 +57,10 @@ export default function FamilyPersonList() {
           tabsDataArray={["Family Org Involved", "Uploaded documents"]}
         >
           {/* Family Person Form */}
-          <FamilyOrgInvolvedForm />
+          <FamilyOrgInvolvedForm defaultValues={data?.[0]} />
 
           {/* Upload Document */}
           <FamilyPersonDocument />
-          
         </HorizaontalTabs>
       </Paper>
     </Page>
