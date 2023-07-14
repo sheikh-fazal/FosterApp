@@ -119,7 +119,7 @@ const styles = {
   }),
   cardsText: {
     color: "white",
-    fontSize: "24px",
+    fontSize: "23px",
     fontWeight: "600",
     paddingTop: "50px",
   },
@@ -134,5 +134,6 @@ const StyledCard = styled(Card)(
     alignItems: "center",
     borderRadius: "11px",
     color: "white",
+    fontSize:"23px"
   })
 );

@@ -10,86 +10,121 @@ import MatchingSwitchToggle from "./MatchingSwitchToggle";
 import router from "next/router";
 
 const Matching = () => {
-  const { onSubmit, methods, handleSubmit, selectValueFosterCarerOrChild,
-    fosterOptionsArray, isSecondFieldSelected, selectValueName,
-    onSelectCarerChildHandleChange, onSelectNameHandleChange,
-    isOpenHowItWorkModal, setIsOpenHowItWorkModal,
-    handleGetFosterOptions } = useMatching();
-  console.log("selectValueFosterCarerOrChild===>>", selectValueFosterCarerOrChild)
+  const {
+    onSubmit,
+    methods,
+    handleSubmit,
+    selectValueFosterCarerOrChild,
+    fosterOptionsArray,
+    isSecondFieldSelected,
+    selectValueName,
+    onSelectCarerChildHandleChange,
+    onSelectNameHandleChange,
+    onClickNameHandleChange,
+    isOpenHowItWorkModal,
+    setIsOpenHowItWorkModal,
+    handleGetFosterOptions,
+  } = useMatching();
   return (
     <Grid container sx={styles.box}>
       <Grid lg={12} xs={12} mb={2}>
         <Box sx={styles.topHeadingBox} mt={1} mb={2}>
-          <Typography sx={styles.topHeading} >Matching & Placement</Typography>
-          {selectValueFosterCarerOrChild === 'fosterCarer' ? (
-            <Typography sx={styles.howItWorkStyle} onClick={() => { setIsOpenHowItWorkModal(true) }}>How it Works</Typography>
+          <Typography sx={styles.topHeading}>Matching & Placement</Typography>
+          {selectValueFosterCarerOrChild === "fosterCarer" ? (
+            <Typography
+              sx={styles.howItWorkStyle}
+              onClick={() => {
+                setIsOpenHowItWorkModal(true);
+              }}
+            >
+              How it Works
+            </Typography>
           ) : null}
         </Box>
-        <HowItWorkModal title='Matching & Placment Algrothim' open={isOpenHowItWorkModal} handleClose={() => setIsOpenHowItWorkModal(false)} />
+        <HowItWorkModal
+          title="Matching & Placment Algrothim"
+          open={isOpenHowItWorkModal}
+          handleClose={() => setIsOpenHowItWorkModal(false)}
+        />
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container columnSpacing={4}>
-            <Grid item lg={6} xs={12} >
-              <label style={styles.selectLabel}>Select the Foster Carer or Foster Child (Pending Placement)</label>
-              <Select value={selectValueFosterCarerOrChild} onChange={onSelectCarerChildHandleChange} fullWidth
+            <Grid item lg={6} xs={12}>
+              <label style={styles.selectLabel}>
+                Select the Foster Carer or Foster Child (Pending Placement)
+              </label>
+              <Select
+                value={selectValueFosterCarerOrChild}
+                onChange={onSelectCarerChildHandleChange}
+                fullWidth
                 sx={{ height: 42 }}
               >
                 {MatchingAndPlacementData.map((item: any) => {
                   return (
-                    <MenuItem value={item.value} key={item} onClick={() => handleGetFosterOptions(item.childOptions)}>{item.label}</MenuItem >
-                  )
+                    <MenuItem
+                      value={item.value}
+                      key={item.id}
+                      onClick={() => handleGetFosterOptions(item.childOptions)}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </Grid>
 
-            <Grid item lg={6} xs={12} >
-
-              {selectValueFosterCarerOrChild === 'fosterCarer' ? (
+            <Grid item lg={6} xs={12}>
+              {selectValueFosterCarerOrChild === "fosterCarer" ? (
                 <label style={styles.selectLabel}>Select the Carer Name</label>
-              ) : selectValueFosterCarerOrChild === 'fosterChild' ? (
+              ) : selectValueFosterCarerOrChild === "fosterChild" ? (
                 <label style={styles.selectLabel}>Select the Child Name</label>
               ) : (
                 <label style={styles.selectLabel}>Select the Name</label>
               )}
 
-              <Select value={selectValueName}
-                onChange={onSelectNameHandleChange} fullWidth
+              <Select
+                value={selectValueName}
+                onChange={onSelectNameHandleChange}
+                fullWidth
                 disabled={!isSecondFieldSelected}
                 sx={{ height: 42 }}
               >
                 {fosterOptionsArray.map((item: any) => {
                   return (
-                    <MenuItem value={item.value} key={item} >{item.label}</MenuItem >
-                  )
+                    <MenuItem value={item.value} key={item.id}
+                    onClick={(event) => onClickNameHandleChange(event, item.id)}>
+                      {item.label}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </Grid>
 
-
-            {(selectValueFosterCarerOrChild && selectValueName) && (
+            {selectValueFosterCarerOrChild && selectValueName && (
               <Grid item xs={12} mt={2.5}>
                 <Box sx={styles.buttonBox}>
-                  {selectValueFosterCarerOrChild === 'fosterCarer' ? (
+                  {selectValueFosterCarerOrChild === "fosterCarer" ? (
                     <LoadingButton
                       sx={{ marginRight: "1rem" }}
-
                       variant="contained"
-                      onClick={() => router.push(`${router.pathname}/carer-details`)}
+                      onClick={() =>
+                        router.push(`${router.pathname}/carer-details`)
+                      }
                     >
                       View Carer Details
                     </LoadingButton>
-                  )
-                    :
-                    (
-                      <LoadingButton
-                        sx={{ marginRight: "1rem" }}
-
-                        variant="contained"
-                        onClick={() => router.push(`${router.pathname}/recommondations-result/child-details`)}
-                      >
-                        View Child Details
-                      </LoadingButton>
-                    )
-                  }
+                  ) : (
+                    <LoadingButton
+                      sx={{ marginRight: "1rem" }}
+                      variant="contained"
+                      onClick={() =>
+                        router.push(
+                          `${router.pathname}/recommondations-result/child-details`
+                        )
+                      }
+                    >
+                      View Child Details
+                    </LoadingButton>
+                  )}
                 </Box>
               </Grid>
             )}
@@ -97,8 +132,10 @@ const Matching = () => {
         </FormProvider>
       </Grid>
       {/* foster carer */}
-      {(selectValueFosterCarerOrChild && selectValueName) && (
-        <MatchingSwitchToggle selectValueFosterCarerOrChild={selectValueFosterCarerOrChild} />
+      {selectValueFosterCarerOrChild && selectValueName && (
+        <MatchingSwitchToggle
+          selectValueFosterCarerOrChild={selectValueFosterCarerOrChild}
+        />
       )}
     </Grid>
   );
@@ -121,7 +158,7 @@ const styles = {
     fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: 700,
-    cursor: "pointer"
+    cursor: "pointer",
   },
   selectLabel: {
     color: "#343A40",
@@ -133,9 +170,9 @@ const styles = {
     letterSpacing: " 0.08px",
   },
   topHeadingBox: {
-    display: 'flex',
+    display: "flex",
     justifyContent: "space-between",
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   box: {

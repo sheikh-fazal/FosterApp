@@ -3,32 +3,33 @@ import { Grid, Typography } from "@mui/material";
 import * as Yup from "yup";
 
 export const MatchingAndPlacementData = [
-  { value: "fosterCarer",
+  {
+    id: "1",
+    value: "fosterCarer",
     label: "Foster Carer",
     childOptions: [
-      { value: "gloriaBell", label: "Gloria Bell" },
-  { value: "amira", label: "Amira" },
-  { value: "awais", label: "Awais" },
-  { value: "babar", label: "Babar" },
-  { value: "ali", label: "Ali" },
-  { value: "david", label: "David" },
-    ] 
+      { id: "1", value: "gloriaBell", label: "Gloria Bell" },
+      { id: "2", value: "amira", label: "Amira" },
+      { id: "3", value: "awais", label: "Awais" },
+      { id: "4", value: "babar", label: "Babar" },
+      { id: "5", value: "ali", label: "Ali" },
+      { id: "6", value: "david", label: "David" },
+    ],
   },
-  { value: "fosterChild", label: "Foster Child" ,
-   childOptions:[
-    { value: "johnDoe", label: "John Doe" },
-    { value: "rutabSohail", label: "Rutab Sohail" },
-    { value: "taimorAhmed", label: "Taimor Ahmed" },
-    { value: "ahmed", label: "Ahmed" },
-    { value: "adil", label: "Adil" },
-    { value: "shahzeb", label: "Shahzeb" },
-   ]
-
-},
- 
-]
-
-
+  {
+    id: "2",
+    value: "fosterChild",
+    label: "Foster Child",
+    childOptions: [
+      { id: "1", value: "johnDoe", label: "John Doe" },
+      { id: "2", value: "rutabSohail", label: "Rutab Sohail" },
+      { id: "3", value: "taimorAhmed", label: "Taimor Ahmed" },
+      { id: "4", value: "ahmed", label: "Ahmed" },
+      { id: "5", value: "adil", label: "Adil" },
+      { id: "6", value: "shahzeb", label: "Shahzeb" },
+    ],
+  },
+];
 
 export const fosterCarerSwitchdata = [
   {
@@ -256,31 +257,29 @@ export const fosterCarerSwitchdata = [
     component: Grid,
     md: 3,
   },
-
-
-]
+];
 
 export const matchingDefaultValues = {
   selectFosterCarerAndChild: "",
   selectTheCarerName: "",
-  ethinicity:true,
-  placementwithSiblings:true,
-  fosterCarersAvailability:true,
-  specialRequirements:true,
-  language:true,
-  connectedPerson:true,
-  childFamilyHistory:true,
-  childPhysicalHealth:true,
-  religion:true,
-  adoptionConsideration:false,
-  childFamilyLifeStory:true,
-  childMentalHealth:true,
-  locality:true,
-  ageoftheChild:true,
-  childDevelopmentalNeeds:true,
-  temporaryArrangementsRespite:false,
-  preferenceoftheChild:true,
-  preferenceoftheCarer:true,
+  ethinicity: true,
+  placementwithSiblings: true,
+  fosterCarersAvailability: true,
+  specialRequirements: true,
+  language: true,
+  connectedPerson: true,
+  childFamilyHistory: true,
+  childPhysicalHealth: true,
+  religion: true,
+  adoptionConsideration: false,
+  childFamilyLifeStory: true,
+  childMentalHealth: true,
+  locality: true,
+  ageoftheChild: true,
+  childDevelopmentalNeeds: true,
+  temporaryArrangementsRespite: false,
+  preferenceoftheChild: true,
+  preferenceoftheCarer: true,
 };
 
 export const MatchingFormDataValidationSchema = Yup.object().shape({
@@ -304,8 +303,6 @@ export const MatchingFormDataValidationSchema = Yup.object().shape({
   temporaryArrangementsRespite: Yup.boolean().required("Field is Required"),
   preferenceoftheChild: Yup.boolean().required("Field is Required"),
   preferenceoftheCarer: Yup.boolean().required("Field is Required"),
-
 });
 
 export { default as Matching } from "./Matching";
-
