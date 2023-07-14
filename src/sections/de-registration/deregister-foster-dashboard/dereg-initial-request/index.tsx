@@ -23,8 +23,7 @@ export const DeRegInitialRequestData = [
     id: 2,
     informationIcon: [
       {
-        content: `Prospective Foster Carers / Customers makes initial enquiry by Phone / Social  media / Whatsapp  or use our Website - contact us form
-    `,
+        content: `Based on the information collected on Initial Request, Social Worker commissions a full end-to-end assessment about the Deregistration case.`,
       },
     ],
     imgIcon: socialWorkerInitialImg,
@@ -38,7 +37,7 @@ export const DeRegInitialRequestData = [
   {
     id: 3,
     informationIcon: [
-      { content: `IFA Office admin will send out a Digital  info Pack` },
+      { content: `Deregistration Type and reason and Deregistration report is finilized by the SW.` },
       {
         heading: `Deregistration Type`,
         subContentTwo: [
@@ -53,7 +52,7 @@ export const DeRegInitialRequestData = [
     imgIcon: finalOutcomeImg,
     textForApi: "digitalInfo",
     text: " Final Outcome",
-    informationText: "Digital Application Pack/ info Pack",
+    informationText: "Final Outcome",
     viewForms: ["Uncontested resignations", "Termination of approval without Allegation", "Termination of approval after Allegation"],
     href: "#",
     status: "Pending"
