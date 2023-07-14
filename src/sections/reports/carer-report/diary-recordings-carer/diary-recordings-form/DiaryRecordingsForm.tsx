@@ -50,6 +50,7 @@ const DiaryRecordingsForm = ({ action }: any) => {
                   label={label}
                     {...form.componentProps}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />

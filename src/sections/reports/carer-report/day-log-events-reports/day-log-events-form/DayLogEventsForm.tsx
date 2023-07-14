@@ -61,6 +61,7 @@ const DayLogEventsForm = ({ action }: any) => {
                   <RHFUploadFile
                     label={label}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />
