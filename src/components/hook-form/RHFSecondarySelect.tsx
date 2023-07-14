@@ -22,10 +22,10 @@ const MenuProps = {
   },
 };
 
-function getStyles(option: string, options: any[], theme: Theme) {
+function getStyles(option: string, selectedOptions: any, theme: Theme) {
   return {
     fontWeight:
-      options.findIndex(({ value }: any) => value === option) > -1
+      selectedOptions.value === option
         ? theme.typography.fontWeightMedium
         : theme.typography.fontWeightRegular,
   };
@@ -33,26 +33,13 @@ function getStyles(option: string, options: any[], theme: Theme) {
 
 // ----------------------------------------------------------------------
 
-function ChipWrapper({ selected, options }: any) {
-  const selectedValue = options.find(
-    (option: any) => option.value === selected
-  );
-
-  if (!selectedValue) return null;
-
-  const { value, label } = selectedValue;
-
+function ChipWrapper({ selected: { label, value, bgColor, textColor } }: any) {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        gap: 0.5,
-        maxWidth: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Chip key={value} label={label} />
-    </Box>
+    <Chip
+      key={value}
+      label={label}
+      sx={{ backgroundColor: bgColor, color: textColor }}
+    />
   );
 }
 
@@ -105,8 +92,12 @@ export default function RHFMultiSelect({
               }, 0);
             }}
           >
-            {options.map(({ value, label }: any) => (
-              <MenuItem key={value} value={value}>
+            {options.map(({ value, label, ...other }: any) => (
+              <MenuItem
+                key={value}
+                value={{ label, value, ...other }}
+                style={getStyles(value, field.value, theme)}
+              >
                 {label}
               </MenuItem>
             ))}
