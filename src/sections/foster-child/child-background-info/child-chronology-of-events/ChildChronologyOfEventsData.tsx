@@ -10,7 +10,7 @@ import HospitalisationInfoTable from "./hospitalisation-info/HospitalisationInfo
 import TherapyInfoTable from "./therapy-info/TherapyInfoTable";
 import RiskAssessmentTable from "./risk-assessment/RiskAssessmentTable";
 import ImmunisationInfoTable from "./immunisation-info/ImmunisationInfoTable";
-import AllegationsInfoTable from "./allegations-info/AllegationsInfoTable";
+import AllegationsInfoTable from "./allegation-info/AllegationInfoTable";
 import ComplaintsInfoTable from "./complaints-info/ComplaintsInfoTable";
 import IncidentsInfoTable from "./incidents-info/IncidentsInfoTable";
 

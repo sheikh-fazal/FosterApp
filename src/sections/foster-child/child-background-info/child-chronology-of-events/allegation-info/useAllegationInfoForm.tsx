@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { childInformationDefaultValues, formatters } from "./RiskAssessmentData";
+import { defaultValues, formSchema, formatters } from "./AllegationInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -10,17 +10,16 @@ import {
   usePatchChildChronologyOfEventsDayLogByIdMutation,
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
-import { usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 
-export const useRAChildInformationForm = () => {
+export const useAllegationInfoForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [patchChildInformationData] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation({});
-  // const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
+  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
@@ -28,7 +27,7 @@ export const useRAChildInformationForm = () => {
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
-        return childInformationDefaultValues;
+        return defaultValues;
       }
       const responseData = { ...data.data };
 
@@ -39,10 +38,11 @@ export const useRAChildInformationForm = () => {
       return responseData;
     } else {
       setIsLoading(false);
-      return childInformationDefaultValues;
+      return defaultValues;
     }
   };
   const methods: any = useForm({
+    resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -55,16 +55,7 @@ export const useRAChildInformationForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      patchChildInformationData({
-        addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
-          fosterChildId,
-          childName: "child",
-          gender: "male",
-          notes: "notes",
-        },
-        id: id,
-      })
+      postDayLogData({ ...data, fosterChildId, status: "Pending" })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -84,17 +75,11 @@ export const useRAChildInformationForm = () => {
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      
-      patchChildInformationData({
-        addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
-          fosterChildId,
-          childName: "child",
-          gender: "male",
-          notes: "notes",
-        },
-        id: id,
-      })
+      const formData = {
+        id,
+        addDayLogRequestDto: { ...data },
+      };
+      editDayLogList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {

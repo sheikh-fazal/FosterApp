@@ -13,14 +13,7 @@ import { useRouter } from "next/router";
 import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
-import ExclusionInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exclusion-info/ExclusionInfoForm";
-import VocationalCourseInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/vocational-course-info/VocationalCourseInfoForm";
-import HospitalisationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info/HospitalisationInfoForm";
-import RAChildDetailsForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildDetailsForm";
-import RAChildInformationForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildInformationForm";
-import RAChildRiskDetailsForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildRiskDetailsForm";
-import RADelegatedAuthorityForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RADelegatedAuthorityForm";
+import AllegationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/allegation-info/AllegationInfoForm";
 
 const BREADCRUMBS = [
   {
@@ -29,13 +22,13 @@ const BREADCRUMBS = [
     href: "/foster-child/child-background-info/child-chronology-of-events",
   },
   {
-    name: "Risk Assessment",
+    name: "Allegation Info",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Risk Assessment";
-RiskAssessment.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Allegation Info";
+AllegationInfo.getLayout = function getLayout(page: any) {
   return (
     <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
       {page}
@@ -43,11 +36,16 @@ RiskAssessment.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function RiskAssessment() {
+export default function AllegationInfo() {
   const router = useRouter();
   const { id, action }: any = router.query;
+  const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+    });
   console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data);
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
@@ -88,19 +86,8 @@ export default function RiskAssessment() {
     }
   };
   return (
-    <HorizaontalTabs
-      tabsDataArray={[
-        "RA-Child Details",
-        "RA-Child Information",
-        "RA-Child Risk Details",
-        "RA-Delegated Authority Details",
-        "Documents",
-      ]}
-    >
-      <RAChildDetailsForm />
-      <RAChildInformationForm />
-      <RAChildRiskDetailsForm />
-      <RADelegatedAuthorityForm />
+    <HorizaontalTabs tabsDataArray={["Allegation Info", "Documents"]}>
+      <AllegationInfoForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
         tableData={data?.data?.foster_child_document?.filter(
@@ -122,9 +109,11 @@ export default function RiskAssessment() {
           deleteDocument(data.id);
         }}
         modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={data?.data?.page}
-        totalPages={data?.data?.pages}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
+        }}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
         disabled={!!id && (action === "add" || action === "edit") ? false : true}
       />
     </HorizaontalTabs>

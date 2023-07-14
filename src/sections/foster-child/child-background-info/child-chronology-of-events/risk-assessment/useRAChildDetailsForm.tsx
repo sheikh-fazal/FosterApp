@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./RiskAssessmentData";
+import { childDetailsdefaultValues, childDetailsformSchema, formatters } from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -28,7 +28,7 @@ export const useRAChildDetailsForm = () => {
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
+        return childDetailsdefaultValues;
       }
       const responseData = { ...data.data };
 
@@ -39,11 +39,11 @@ export const useRAChildDetailsForm = () => {
       return responseData;
     } else {
       setIsLoading(false);
-      return defaultValues;
+      return childDetailsdefaultValues;
     }
   };
   const methods: any = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(childDetailsformSchema),
     defaultValues: getDefaultValue,
   });
 
