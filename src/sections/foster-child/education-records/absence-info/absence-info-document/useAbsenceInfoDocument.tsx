@@ -36,6 +36,8 @@ export const useAbsenceInfoDocument = () => {
     }
     const documentFormData = new FormData();
 
+    documentFormData.append("documentName", "Ashraf");
+    documentFormData.append("personName", "Ashraf");
     documentFormData.append("documentType", data.documentType);
     documentFormData.append(
       "documentDate",

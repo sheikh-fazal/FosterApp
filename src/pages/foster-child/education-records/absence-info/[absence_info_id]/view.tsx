@@ -2,9 +2,11 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
+import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 import { useGetAbsenceInfoDocumentByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentationAPI";
+import { log } from "console";
 import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
@@ -21,7 +23,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Absence Info";
+const PAGE_TITLE = "View Absence Info";
 
 ViewAbsenceInfoForm.getLayout = function getLayout(page: any) {
   return (
@@ -38,23 +40,27 @@ ViewAbsenceInfoForm.getLayout = function getLayout(page: any) {
 export default function ViewAbsenceInfoForm() {
   const { query } = useRouter();
   const absenceInfoId = query["absence_info_id"];
-  const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoByIdQuery(absenceInfoId);
-
+  const { data, isLoading, isSuccess, isError } =
+    useGetAbsenceInfoByIdQuery(absenceInfoId);
+  console.log(data);
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs
-        tabDataArray={["Absence Info", "Upload Documents"]}
-      >
+      <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>
         {isLoading && <p>Loading...</p>}
-        {isSuccess &&  <AbsenceInfoForm 
-        disabled 
-        defaultValues={{
-          ...data?.data,
-          dateOfAbsence: new Date(data?.data?.dateofAbsence),
-          label: new Date(data?.data?.label)
-        }}
-        />}
-       
+        {isSuccess && 
+          <AbsenceInfoForm
+            disabled
+            defaultValues={{
+              ...data?.[0],
+              dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+              label: new Date(data?.[0]?.label),
+            }}
+          />
+          // {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
+          
+        }
+        <AbsenceInfoDocument />
+        
       </HorizaontalTabs>
     </Page>
   );

@@ -9,7 +9,8 @@ export const useAbsenceInfoListTable = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   const { data, isError, isLoading, isSuccess, isFetching } =
-  useGetAbsenceInfoQuery<any>({ params });
+    useGetAbsenceInfoQuery<any>({ params });
+  console.log("🚀:", data?.data);
   const [deleteList] = useDeleteAbsenceInfoMutation();
 
   // DELETE API Absence Info
@@ -39,47 +40,3 @@ export const useAbsenceInfoListTable = () => {
     sortChangeHandler,
   };
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const router = useRouter();
-// const [search, setSearch] = React.useState("");
-// const tableHeaderRefTwo = useRef<any>();
-// const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-//   useTableParams();
-// //GET API For absence Info List
-// const {
-//   data: absenceInfolist,
-//   isError: absenceInfoListError,
-//   isLoading: absenceInfoListIsloading,
-//   isFetching: absenceInfolistIsfetching,
-//   isSuccess: absenceInfoListIsSuccess,
-// }: any = useGetAbsenceInfoQuery({ search: search });
-
-// const absenceInfos = absenceInfolist?.data?.absenceInfo;
-// const meta = absenceInfolist?.data?.meta;
-// const [deleteList] = useDeleteAbsenceInfoMutation();
-// //DELETE API For Allegation List
-// const listDeleteHandler = (id: any) => {
-//   deleteList(id)
-//     .unwrap()
-//     .then((res: any) => {
-//       enqueueSnackbar("Information Deleted Successfully", {
-//         variant: "success",
-//       });
-//     })
-//     .catch((error) => {
-//       const errMsg = error?.data?.message;
-//       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-//     });
-// };

@@ -54,9 +54,7 @@ export const useAbsenceInfoForm = (props: any) => {
         router?.asPath.split("/").pop() === "view" ||
         router?.asPath.split("/").pop() === "edit"
       ) {
-        router.push(
-          `/foster-child/education-records/absence-info`
-        );
+        router.push(`/foster-child/education-records/absence-info`);
       } else {
         router.push(
           `/foster-child/education-records/absence-info/add-absence-info?absence_info_id=${router?.query?.absence_info_id}`
@@ -79,26 +77,3 @@ export const useAbsenceInfoForm = (props: any) => {
     isSubmitting,
   };
 };
-
-// const router = useRouter();
-// const theme: any = useTheme();
-// const [isLoading, setIsLoading] = React.useState(true);
-// const [isFetching, setIsFetching] = useState(false);
-// const { disabled, defaultValues } = props;
-// //API For Getting Single Details
-// // const [getAllegationList] = useLazySingleAllegetionListQuery();
-// //API For Posting Allegation Form
-// // const [postAllegationDetails] = usePostAllegationListMutation();
-// //API For Patch Allegation List
-// // const [editAllegationList] = usePatchAllegationListMutation();
-
-// //GET DEFAULT VALUE HANDLER
-// const getDefaultValue = async () => {};
-// const methods: any = useForm({
-//   resolver: yupResolver(formSchema),
-//   defaultValues: absenceInfoFormData,
-// });
-// const { handleSubmit } = methods;
-// const onSubmit = async (data: any) => {
-//   console.log("data", data);
-// };

@@ -33,43 +33,12 @@ AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
 };
 export default function AbsenceInfoFormLayout() {
   const router = useRouter();
-  const { action, id } = router.query;
-  if (!action && !id) {
-    router.push("/foster-child/education-records/absence-info");
-  }
+  // const { action, id } = router.query;
+
   return (
     <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm action={action} id={id} />
-
-    <AbsenceInfoDocument />
-
-      {/* <UploadedDocumentsTable /> */}
-      {/* <UploadDocuments
-        readOnly={true}
-        searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
-        }
-        tableData={[
-          {
-            document: "Ash",
-            documentType: "pdf",
-            date: "10/10/2011",
-            personName: "Ashraf",
-            password: "Admin",
-          },
-        ]}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        column={["document", "documentType", "date", "personName", "password"]}
-        modalData={(data: any) => {
-          console.log("searched Value", data);
-        }}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={"1"}
-        totalPages={"1"}
-      /> */}
+      <AbsenceInfoForm />
+      <AbsenceInfoDocument />
     </HorizaontalTabs>
   );
 }

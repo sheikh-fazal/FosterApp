@@ -5,11 +5,11 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of Abence Info Document
     getAbsenceInfoDocument: builder.query<null, object>({
-      query: ({ childAbsenceInfoId }: any) => ({
+      query: ({ childAbsenceInfoId}: any) => ({
         url: `/foster-child/child-absence-info/document/list/${childAbsenceInfoId}`,
         method: "GET",
       }),
-      providesTags: ["ABSENCE_INFO"],
+      providesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
     }),
 
     // Get API of Abence Info Document By Id
@@ -18,7 +18,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
         url: `/foster-child/child-absence-info/document/${childAbsenceInfoDocId}`,
         method: "GET",
       }),
-      providesTags: ["ABSENCE_INFO"],
+      providesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
     }),
 
     // Post API of Abence Info Document
@@ -29,16 +29,16 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
         param: apiDataParameter.childFamilyOrgInfoId,
         body: apiDataParameter.body,
       }),
-      invalidatesTags: ["ABSENCE_INFO"],
+      invalidatesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
     }),
 
     // Delete API of Abence Info Document
     deleteAbsenceInfoUploadDocument: builder.mutation({
-      query: (id: any) => ({
-        url: `/foster-child/child-absence-info/document/${id}`,
+      query: (childAbsenceInfoDocId : any) => ({
+        url: `/foster-child/child-absence-info/document/${childAbsenceInfoDocId }`,
         method: "DELETE",
       }),
-      invalidatesTags: ["ABSENCE_INFO"],
+      invalidatesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
     }),
   }),
 });

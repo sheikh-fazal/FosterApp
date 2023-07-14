@@ -18,20 +18,18 @@ export const AbsenceInfoDocument = () => {
     <>
       <UploadDocuments
         readOnly={false}
-        searchParam={
-          (data: any) => {
-            setSearchValue(data.search);
-          }
-        }
+        searchParam={(data: any) => {
+          setSearchValue(data.search);
+        }}
         tableData={data?.data}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
         column={[
-          "document",
+          "documentName",
           "documentType",
-          "DocumentDate",
+          "documentDate",
           "personName",
           "password",
         ]}
@@ -40,11 +38,13 @@ export const AbsenceInfoDocument = () => {
           submitAbsenceInfoDocumentData(data);
         }}
         onPageChange={(page: any) => {
-          setPage(() => (page -1) * 10)
+          setPage(() => (page - 1) * 10);
         }}
         currentPage={data?.data?.meta?.data}
         totalPages={data?.data?.meta?.data}
-        onDelete={(data: any) => {listDeleteHandler(data?.id);}}
+        onDelete={(data: any) => {
+          listDeleteHandler(data?.childAbsenceInfoId);
+        }}
       />
     </>
   );

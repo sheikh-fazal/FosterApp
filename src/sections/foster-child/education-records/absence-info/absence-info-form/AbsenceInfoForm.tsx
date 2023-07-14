@@ -36,17 +36,18 @@ export default function AbsenceInfoForm(props: any) {
               </Grid>
             );
           })}
-          {!disabled  && (
-            <Grid
-              xs={12}
-              sx={{
-                mt: 2,
-                display: "flex",
-                gap: "15px",
-                flexWrap: "wrap",
-              }}
-              item
-            >
+
+          <Grid
+            xs={12}
+            sx={{
+              mt: 2,
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
+            }}
+            item
+          >
+            {!disabled && (
               <LoadingButton
                 type="submit"
                 loading={isSubmitting}
@@ -54,20 +55,20 @@ export default function AbsenceInfoForm(props: any) {
               >
                 Submit
               </LoadingButton>
-              <LoadingButton
-              sx={{color: "#fff",ml:1, backgroundColor: "#F6830F"}}
-                variant="contained"
-                onClick={() =>
-                  router.push("/foster-child/education-records/absence-info")
-                }
-              >
-                Back
-              </LoadingButton>
-            </Grid>
-          )}
+            )}
+            <LoadingButton
+              sx={{ color: "#fff", ml: 1, backgroundColor: "#F6830F" }}
+              variant="contained"
+              onClick={() =>
+                router.push("/foster-child/education-records/absence-info")
+              }
+            >
+              Back
+            </LoadingButton>
+          </Grid>
         </Grid>
       </FormProvider>
-{/* 
+      {/* 
       {action === "view" && (
         <Grid container>
           <Grid xs={12} sx={{ mt: 2 }} item>

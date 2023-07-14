@@ -93,9 +93,9 @@ export default function AbsenceInfoListTable() {
           title="Absence Info"
           onChanged={headerChangeHandler}
           onAdd={() => {
-            router.push({
-              pathname: `/foster-child/education-records/absence-info/add-absence-info`,
-            });
+            router.push(
+              `/foster-child/education-records/absence-info/add-absence-info`
+            );
           }}
         />
         <CustomTable
@@ -110,7 +110,6 @@ export default function AbsenceInfoListTable() {
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
         />
-        
       </Card>
     </>
   );

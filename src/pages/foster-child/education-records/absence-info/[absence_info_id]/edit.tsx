@@ -2,6 +2,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
+import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
+import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
+import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 import { useRouter } from "next/router";
@@ -12,7 +15,7 @@ const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/",
+    href: "/foster-child/education-records/absence-info",
   },
   {
     name: "Absence Info List",
@@ -20,7 +23,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Absence Info";
+const PAGE_TITLE = "Edit Absence Info";
 
 EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
   return (
@@ -37,19 +40,43 @@ EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
 export default function EditAbsenceInfoForm() {
   const { query } = useRouter();
   const absenceInfoId = query["absence_info_id"];
-  const {data, isLoading, isSuccess, isError} = useGetAbsenceInfoByIdQuery(absenceInfoId);
+  const { data, isLoading, isSuccess, isError } =
+    useGetAbsenceInfoByIdQuery(absenceInfoId);
 
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs tabDataArray={["Absence Info", "Upload Documents"]}>
+      <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>
         <AbsenceInfoForm
-        defaultValues={{
-          ...data?.data,
-          dateOfAbsence: new Date(data?.data?.dateofAbsence),
-          label: new Date(data?.data?.label)
-        }}
+          defaultValues={{
+            ...data?.[0],
+            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+            label: new Date(data?.[0]?.label),
+          }}
         />
+        <AbsenceInfoDocument />
       </HorizaontalTabs>
+       {/* <HorizaontalTabs
+    tabsDataArray={["Family Org Involved", "Uploaded documents"]}
+  >
+    <AbsenceInfoForm
+          defaultValues={{
+            ...data?.[0],
+            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+            label: new Date(data?.[0]?.label),
+          }}
+        />
+        <AbsenceInfoDocument />
+  </HorizaontalTabs> */}
     </Page>
   );
 }
+{/* <Page title={PAGE_TITLE}>
+  <HorizaontalTabs
+    tabsDataArray={["Family Org Involved", "Uploaded documents"]}
+  >
+    {isLoading && <p>Loading...</p>}
+    {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
+
+    <FamilyPersonDocument />
+  </HorizaontalTabs>
+</Page>; */}
