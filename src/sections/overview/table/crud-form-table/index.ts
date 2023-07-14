@@ -3,6 +3,8 @@ export const defaultValues = {
     {
       dob: new Date(),
       name: "Jon",
+      continue: false,
+      "user-type": 1,
       platforms: [
         {
           label: "Oliver Hansen",
@@ -22,6 +24,8 @@ export const defaultValues = {
     },
     {
       dob: new Date(),
+      continue: true,
+      "user-type": 2,
       platforms: [
         {
           label: "April Tucker",
