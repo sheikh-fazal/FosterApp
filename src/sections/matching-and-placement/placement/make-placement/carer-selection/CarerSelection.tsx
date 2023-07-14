@@ -43,9 +43,10 @@ const CarerSelection = ({handleIncreamentStep}: any) => {
                             name="selectCarer"
                             label="Select Carer"
                             size="small"
-                        >
+                            placeholder='Foster Carer'
+                        > 
+                            <option value="Foster Carer">Foster Carer</option>
                             <option value="Foster Child">Foster Child</option>
-                            <option value="Foster Child">Foster Carer</option>
                         </RHFSelect>
                         <Button type="submit" sx={styles.button}>Search</Button>
                     </Box>
