@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Box, Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { ReferralSchemeForm } from ".";
@@ -7,6 +6,7 @@ import { useChildDetailsForm } from "./useChildDetailsForm";
 import Image from "next/image";
 import ChildDetailImg from "../../../../../assets/svg/childDetail.svg";
 import carerDetail from "../../../../../assets/svg/carerDetail.svg";
+
 
 //-----------Styles------------
 const styles = {
@@ -24,9 +24,9 @@ const styles = {
   },
 };
 
-export default function ChildDetailsForm({ disabled ,onClickNameHandleChange}: any) {
+export default function ChildDetailsForm({ disabled }: any) {
   const { methods, handleSubmit, onSubmit, lastValue, } = useChildDetailsForm();
-
+  
   return (
     <>
       {lastValue === "child-details" ? (
@@ -171,20 +171,11 @@ export default function ChildDetailsForm({ disabled ,onClickNameHandleChange}: a
           ))}
 
           <Grid item xs={12}>
-            <Link
-              href={{
-                pathname: '/matching',
-                query: {
-                  selectedValue: lastValue === 'child-details' ? 'childCarer' : 'fosterCarer',
-                //   childValue: id,
-                },
-              }}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" variant="contained" onClick={onClickNameHandleChange}>
+           
+              <Button type="button" variant="contained" onClick={() =>{ history.back()}}>
                 Back
               </Button>
-            </Link>
+           
           </Grid>
         </Grid>
       </FormProvider>

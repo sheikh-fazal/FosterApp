@@ -13,11 +13,18 @@ export const useMatching = () => {
   const [isOpenHowItWorkModal, setIsOpenHowItWorkModal] = useState(false);
 
 
-  // useEffect(() => {
-  //   const selectedValue:any = router.query.selectedValue || '';
-  //   setselectValueFosterCarerOrChild(selectedValue);
-  //   setIsSecondFieldSelected(true);
-  // }, [router.query.selectedValue]);
+  useEffect(() => {
+    const { selectedValue, childValue }:any = router.query;
+
+    if (selectedValue) {
+      setselectValueFosterCarerOrChild(selectedValue);
+      setIsSecondFieldSelected(selectedValue !== "Select");
+    }
+
+    if (childValue) {
+      setSelectValueName(childValue);
+    }
+  }, [router.query]);
 
   const methods: any = useForm({
     resolver: yupResolver(MatchingFormDataValidationSchema),
@@ -34,6 +41,7 @@ export const useMatching = () => {
     setIsSecondFieldSelected(true);
     setselectValueFosterCarerOrChild(selectedValue)
     setSelectValueName('')
+   
     router.push({
       pathname: '/matching',
       query: { selectedValue },
@@ -43,6 +51,7 @@ export const useMatching = () => {
     const selectedValue = event.target.value;
     setIsSecondFieldSelected(selectedValue !== 'Select');
     setSelectValueName(selectedValue); 
+
   };
 
 const onClickNameHandleChange = (event: any,id:any) =>{
@@ -50,12 +59,12 @@ const onClickNameHandleChange = (event: any,id:any) =>{
   setIsSecondFieldSelected(selectedValue !== 'Select');
   setSelectValueName(selectedValue);
   console.log('Selected option ID:', id);
-  
   router.push({
     pathname: '/matching',
     query: {
       selectedValue: selectValueFosterCarerOrChild,
       childValue: id,
+     
     },
   });
 }
@@ -63,12 +72,7 @@ const onClickNameHandleChange = (event: any,id:any) =>{
   const handleGetFosterOptions = (event: any) => {
     setfosterOptionsArray(event)
   }
-    // Reset route on page refresh
-    // useEffect(() => {
-    //   window.onbeforeunload = () => {
-    //     router.push('/matching');
-    //   };
-    // }, [router]);
+   
   
   return {
     methods,

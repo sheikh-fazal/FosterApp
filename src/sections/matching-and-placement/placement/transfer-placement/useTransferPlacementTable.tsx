@@ -72,7 +72,7 @@ export const useTransferPlacementTable = () => {
           <Image width={28} height={32} src={documentIcon} alt="" />
         </Box>
       ),
-      header: () => <span>Placement Plan</span>,
+      header: () => <span>Transport Report</span>,
     },
     {
       accessorFn: (row: any) => row.approvedBy,
