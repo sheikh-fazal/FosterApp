@@ -14,7 +14,6 @@ import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormSchema,
-  MedicalAppointmentsInfoListValue,
   medicalAppointmentsFormValue,
 } from ".";
 import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
