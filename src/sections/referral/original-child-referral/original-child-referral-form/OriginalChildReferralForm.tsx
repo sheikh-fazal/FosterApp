@@ -9,33 +9,68 @@ import { useOriginalChildReferralForm } from "./useOriginalChildReferralForm";
 // ====================================================================================================================
 
 const OriginalChildReferralForm = (props: any) => {
-  const { theme, router, handleSubmit, onSubmit, methods } = useOriginalChildReferralForm();
+  const { theme, router, handleSubmit, onSubmit, methods } =
+    useOriginalChildReferralForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Card sx={{ px: 1, py: 2 }}>
         <Grid container columnSpacing={4} pb={3}>
           <Grid item xs={12} md={12}>
-            <Typography pt="10px" pb="30px" sx={{ fontSize: "16px", fontWeight: 700, color: theme.palette.primary.main }}>
+            <Typography
+              pt="10px"
+              pb="30px"
+              sx={{
+                fontSize: "16px",
+                fontWeight: 700,
+                color: theme.palette.primary.main,
+              }}
+            >
               Personal Details
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
-            <RHFTextField label="CHC-2" size="small" fullWidth name="childCode" {...methods} disabled={props.disabled} />
+            <RHFTextField
+              label="CHC-2"
+              size="small"
+              fullWidth
+              name="childCode"
+              {...methods}
+              disabled={props.disabled}
+            />
           </Grid>
           <Grid item xs={12} md={6}>
-            <RHFUploadFile name="updatePhoto" {...methods} required disabled={props.disabled} />
+            <RHFUploadFile
+              name="Uploaded Image"
+              {...methods}
+              required
+              disabled={props.disabled}
+            />
           </Grid>
         </Grid>
         <Grid container columnSpacing={4} rowSpacing={3}>
           {originalChildFormData.map((form: any, i: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={i}>
-                <Typography sx={{ fontWeight: 600, mb: 0.3, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }}>
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    mb: 0.3,
+                    color:
+                      theme.palette.mode === "light"
+                        ? "#343A40"
+                        : theme.palette.mode,
+                  }}
+                >
                   {form.title}
                 </Typography>
                 {form.component ? (
-                  <form.component disabled={props.disabled} fullWidth size="small" {...form.otherOptions}>
+                  <form.component
+                    disabled={props.disabled}
+                    fullWidth
+                    size="small"
+                    {...form.otherOptions}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -45,7 +80,15 @@ const OriginalChildReferralForm = (props: any) => {
                       : null}
                   </form.component>
                 ) : (
-                  <Typography sx={{ fontSize: "16px", fontWeight: 700, color: theme.palette.primary.main }}>{form.head}</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 700,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    {form.head}
+                  </Typography>
                 )}
               </Grid>
             );

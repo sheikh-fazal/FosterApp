@@ -11,9 +11,9 @@ const PesonalInfoForm = ({ action }: any) => {
     usePersonalInfoForm();
     let label: any;
     if (action === "view") {
-      label = "uploaded doc";
+      label = "Uploaded Image";
     } else {
-      label = "upload doc";
+      label = "Upload Image";
     }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

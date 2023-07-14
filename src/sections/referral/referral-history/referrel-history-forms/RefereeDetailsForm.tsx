@@ -13,6 +13,11 @@ const RefereeDetailsForm = ({ handleNextTab, disabled }: any) => {
   const { methods, router, theme } = useReferralHistory();
 
   let label: any;
+  if (disabled) {
+    label = "Uploaded Image";
+  } else {
+    label = "Upload Image";
+  }
 
   return (
     <FormProvider methods={methods}>
@@ -45,7 +50,7 @@ const RefereeDetailsForm = ({ handleNextTab, disabled }: any) => {
             name="updatePhoto"
             {...methods}
             required
-            label={"uploaded doc"}
+            label={label}
             disabled={disabled}
           />
         </Grid>

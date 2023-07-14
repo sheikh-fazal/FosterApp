@@ -11,12 +11,12 @@ const ReferralListForm = ({ action }: any) => {
   const { methods, onSubmit, handleSubmit } =
     useReferralListForm();
     
-  let label: any;
-  if (action === "view") {
-    label = "uploaded doc";
-  } else {
-    label = "upload doc";
-  }
+    let label: any;
+    if (action === "view") {
+      label = "Uploaded Image";
+    } else {
+      label = "Upload Image";
+    }
   return (
     <Card  sx={{ p: 2 }}>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

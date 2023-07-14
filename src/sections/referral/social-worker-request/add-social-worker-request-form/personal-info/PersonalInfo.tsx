@@ -23,9 +23,9 @@ export default function PersonalInfo({
     });
     let label: any;
     if (disabled) {
-      label = "uploaded doc";
+      label = "Uploaded Image";
     } else {
-      label = "upload doc";
+      label = "Upload Image";
     }
 
   return (

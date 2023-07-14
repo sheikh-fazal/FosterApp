@@ -54,7 +54,7 @@ export default function AddNewModal({ open, handleClose, addHandler }: any) {
                     </form.component>
                   )}
                   {form?.uploadPhoto && (
-                    <RHFUploadFile name={"updatePhoto"} {...methods} required />
+                    <RHFUploadFile name={"updatePhoto"} label="Category Image" {...methods} required />
                   )}
                 </Grid>
               );

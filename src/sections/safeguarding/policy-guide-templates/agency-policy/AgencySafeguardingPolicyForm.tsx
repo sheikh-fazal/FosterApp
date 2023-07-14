@@ -11,12 +11,11 @@ import { formData } from ".";
 export default function CarerAddressHistoryForm({ action }: any) {
   const disabled = action === "view" ? true : false;
   const { methods, handleSubmit,  onSubmit, theme, isSubmitting, router } = useAgencySafeguardingPolicy();
-
   let label: any;
   if (action === "view") {
-    label = "uploaded doc";
+    label = "Uploaded Image";
   } else {
-    label = "upload doc";
+    label = "Upload Image";
   }
 
   return (

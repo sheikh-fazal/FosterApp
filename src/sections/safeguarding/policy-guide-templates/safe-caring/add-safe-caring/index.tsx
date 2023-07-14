@@ -34,15 +34,8 @@ export const AForm = [
     md: 6,
   },
   {
-    id: 3,
-    componentProps: {
-      name: "uploadImage",
-      label: "Upload Image",
-      fullWidth: true,
-      sx: { mb: 4 },
-  
-    },
-    component: RHFUploadFile,
+    gridLength: 6,
+    uploadPhoto: true,
     md: 6,
   },
   {
