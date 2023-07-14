@@ -863,47 +863,59 @@ export const StrategiesAndEvidence = [
   },
 ];
 
-// Default Values
-
 // PEP Form Default Values
-export const defaultValuesForPep = {
+export const defaultValuesForPep = { 
   name: "",
   class: "",
   planDoneBy: "",
-  assessmentDate: null,
+  assessmentDate: new Date(),
   pepDuration: {
-    from: null,
-    to: null,
+    from: new Date(),
+    to: new Date(),
   },
   overAllOutcome: "",
 };
+
+// PEP Validations
+export const PEPFormValidation = Yup.object().shape({
+  name: Yup.string().trim().required("Required"),
+  class: Yup.string().trim().required("Required"),
+  planDoneBy: Yup.string().trim().required("Required"),
+  assessmentDate: Yup.date(),
+  pepDuration: Yup.object().shape({
+    from: Yup.date().required("Required"),
+    to: Yup.date().required("Required"),
+  }),
+  overAllOutcome: Yup.string().trim().required("Required"),
+});
+
 // EHCP Form Default Values
 export const defaultValuesForEhcp = {
-  fosterPlacement: { date: null, onfile: "", comments: "" },
+  fosterPlacement: { date: new Date(), onfile: "", comments: "" },
 
-  placementInfoRecord: { date: null, onfile: "", comments: "" },
+  placementInfoRecord: { date: new Date(), onfile: "", comments: "" },
 
-  localAuthorityPlacementPlan: { date: null, onfile: "", comments: "" },
+  localAuthorityPlacementPlan: { date: new Date(), onfile: "", comments: "" },
 
-  localAuthorityRiskAssesssment: { date: null, onfile: "", comments: "" },
+  localAuthorityRiskAssesssment: { date: new Date(), onfile: "", comments: "" },
 
-  delegatedAuthority: { date: null, onfile: "", comments: "" },
+  delegatedAuthority: { date: new Date(), onfile: "", comments: "" },
 
-  claMedicalDate: { date: null, onfile: "", comments: "" },
+  claMedicalDate: { date: new Date(), onfile: "", comments: "" },
 
-  claReviewDate: { date: null, onfile: "", comments: "" },
+  claReviewDate: { date: new Date(), onfile: "", comments: "" },
 
-  carePlanPt1: { date: null, onfile: "", comments: "" },
+  carePlanPt1: { date: new Date(), onfile: "", comments: "" },
 
-  carePlanPt2: { date: null, onfile: "", comments: "" },
+  carePlanPt2: { date: new Date(), onfile: "", comments: "" },
 
-  perDate: { date: null, onfile: "", comments: "" },
+  perDate: { date: new Date(), onfile: "", comments: "" },
 
-  ehcpDate: { date: null, onfile: "", comments: "" },
+  ehcpDate: { date: new Date(), onfile: "", comments: "" },
 
-  pathwayPlan: { date: null, onfile: "", comments: "" },
+  pathwayPlan: { date: new Date(), onfile: "", comments: "" },
 
-  garbPack: { date: null, onfile: "", comments: "" },
+  garbPack: { date: new Date(), onfile: "", comments: "" },
 
 };
 
@@ -974,19 +986,6 @@ export const EHCPFormValidation = Yup.object().shape({
     onfile: Yup.string().trim().required("Required"),
     comments: Yup.string().trim().required("Required"),
   }),
-});
-
-// PEP Validations
-export const PEPFormValidation = Yup.object().shape({
-  name: Yup.string().trim().required("Required"),
-  class: Yup.string().trim().required("Required"),
-  planDoneBy: Yup.string().trim().required("Required"),
-  assessmentDate: Yup.date(),
-  pepDuration: Yup.object().shape({
-    from: Yup.date().required("Required"),
-    to: Yup.date().required("Required"),
-  }),
-  overAllOutcome: Yup.string().trim().required("Required"),
 });
 
 export { default as ClaDocumentationList } from "./ClaDocumentationTable";

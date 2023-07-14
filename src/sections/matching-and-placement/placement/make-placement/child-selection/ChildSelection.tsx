@@ -36,13 +36,14 @@ const ChildSelection = ({ handleIncreamentStep }: any) => {
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <Box sx={styles.collapseWrapper}>
-                <Box sx={styles.searchWrap}>
+                <Box sx={styles.searchWrap} mt={1}>
                     <RHFSelect
                         name="selectFosterCarerPendingPayment"
                         label="Select the Foster Child (Pending Placement)"
                         size="small"
                     >
                         <option value="Foster Child">Foster Child</option>
+                        <option value="Foster Child">Foster carer</option>
                     </RHFSelect>
                     <Button type="submit" sx={styles.button}>Search</Button>
                 </Box>
@@ -77,7 +78,7 @@ const ChildSelection = ({ handleIncreamentStep }: any) => {
 export default ChildSelection;
 
 const styles = {
-    collapseWrapper: { px: 3, py: 4 },
+    collapseWrapper: { px: 2.5, py: 4 },
     heading: { color: "#343A40", fontSize: "14px", fontWeight: 600 },
     searchWrap: { display: "flex", gap: "40px", width: "100%", maxWidth: "550px" },
     button: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.5, py: 0.8, fontSize: "16px", fontWeight: 600, height: "40px" },

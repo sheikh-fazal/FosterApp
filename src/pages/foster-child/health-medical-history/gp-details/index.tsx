@@ -1,16 +1,17 @@
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import GPDetailsList from "@root/sections/foster-child/health-medical-history/gp-details/GPDetailsList";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
-// Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Health",
-    href: "/foster-child",
+    href: !!query?.fosterChildId
+      ? `/foster-child?fosterChildId=${query?.fosterChildId}`
+      : "/foster-child",
   },
   {
     name: "All",
@@ -23,10 +24,11 @@ const PAGE_TITLE = "GP Details Info List";
 // ----------------------------------------------------------------------
 
 GPDetails.getLayout = function getLayout(page: any) {
+  const { query } = useRouter();
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(query)}
       title={PAGE_TITLE}
     >
       {page}

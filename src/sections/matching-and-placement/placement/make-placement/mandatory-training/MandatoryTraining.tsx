@@ -1,33 +1,42 @@
 import React from 'react'
 import CustomTable from '@root/components/Table/CustomTable';
-import { Grid } from "@mui/material";
-import { Mandatorydata } from '.';
+import { Box, Button, Grid } from "@mui/material";
+import {Mandatorydata } from '.';
 import { useMandatoryTraining } from './useMandatoryTraining';
-import { LoadingButton } from '@mui/lab';
 import TableHeader from "@root/components/TableHeader";
 import MandatoryModal from './Modal/MandatoryModal';
 
+
+
+
 const MandatoryTraining = ({ handleIncreamentStep }: any) => {
-  const { MandatoryTrainingColumns, theme, IsOpenMandatoryModal, setIsOpenMandatoryModal, actionType, } = useMandatoryTraining()
+  const {MandatoryTrainingColumns,theme,
+    IsOpenMandatoryModal, setIsOpenMandatoryModal,actionType,setActionType,
+    handleEditClicked,handleAddMandatoryRecord
+  } = useMandatoryTraining()
+
 
   return (
     <Grid container >
       <Grid item xs={12} mt={2}>
-        <MandatoryModal
-          title={actionType === 'add' ? 'Add New Setting' : 'Edit Setting'}
+      <MandatoryModal
+         title={actionType === 'Add' ? 'Add Mandatory Record' : actionType === 'edit' ? 'Edit Mandatory Record' : 'View Mandatory Record'}
           open={IsOpenMandatoryModal}
           handleClose={() => setIsOpenMandatoryModal(false)}
-          SubmitBtnText={actionType === "edit" ? "Update" : "Submit"}
-          CancelBtnText="Cancel"
+          SubmitBtnText={actionType === "Edit" ? "Update" : "Submit"}
+          disabled={actionType === 'View'}
+          isHideSubmitButton={actionType === 'View' }
+          onSubmit={actionType === 'Add' ? (data: any) => handleAddMandatoryRecord(data) :  (data: any) => handleEditClicked(data) }
+        />
 
-        />
-        <TableHeader
-          // ref={tableHeaderRef}
-          title="Placement Meeting Record"
-          // disabled={props.disabled}
-          showAddBtn
-          hideSearch
-        />
+       <Box sx={{pl:2.5,pr:2.5}}>
+       <TableHeader 
+        title="Mandatory Training"
+        showAddBtn
+        hideSearch
+        onAdd={()=>{setIsOpenMandatoryModal(true); setActionType('Add')}}
+      />
+      </Box>
         <CustomTable
           data={Mandatorydata}
           columns={MandatoryTrainingColumns}
@@ -39,24 +48,19 @@ const MandatoryTraining = ({ handleIncreamentStep }: any) => {
           onPageChange={(data: any) => {
             console.log("Current page data: ", data);
           }}
-          rootSX={{ my: theme.spacing(2), p: 1.5 }}
+          rootSX={{ my: theme.spacing(2), p:2.5}}
 
         />
       </Grid>
-      <Grid item xs={12} ml={3.5} mb={2} mt={0}>
-        <LoadingButton
-          type="submit"
-          sx={{
-            bgcolor: theme.palette.primary.main,
-          }}
-          variant="contained"
-          onClick={handleIncreamentStep}
-        >
-          Continue
-        </LoadingButton>
-      </Grid>
+      <Grid item xs={12}  ml={2.8} mb={2} mt={0}>
+      <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Continue</Button>
+    </Grid>
     </Grid>
   )
 }
 
 export default MandatoryTraining
+
+const styles = {
+  saveBtn: { backgroundColor: "#0E918C", color: "#fff", "&:hover": { backgroundColor: "#0E918C" }, px: 2.2, py: 1, fontSize: "16px", fontWeight: 600 }
+};

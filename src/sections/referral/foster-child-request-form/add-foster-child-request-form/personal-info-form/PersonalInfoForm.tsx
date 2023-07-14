@@ -34,7 +34,7 @@ const PersonalInfoForm = ({ disabled, handleNextBtn }: any) => {
               </item.component>
             )}
             {!item.component && (
-              <RHFUploadFile name={"updatePhoto"} {...methods} required  disabled={disabled}/>
+              <RHFUploadFile name={"updatePhoto"} {...methods} required   disabled={disabled}/>
             )}
           </Grid>
         ))}

@@ -4,38 +4,14 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter, Router } from "next/router";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import MedicalAdvisorForm from "@root/sections/carer-info/background-checks/statutory-checks-list/medical-advisor/MedicalAdvisorForm";
 import MedicalAppointmentsUploadtable from "@root/sections/foster-child/health-medical-history/medicalAppointments/medicalAppointmentsUploadtable";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import MedicalAppointmentsFrom from "@root/sections/foster-child/health-medical-history/medicalAppointments/medicalAppointmentsFrom";
 
-MedicalAppointments.getLayout = function GetLayout(page: any) {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  // Constants
+MedicalAppointments.getLayout = function getLayout(page: any) {
 
-  const PAGE_TITLE = "Medical Appointments";
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
-    },
-    {
-      name: "Medical Appointments Info ",
-      href: "",
-    },
-    {
-      name: "Medical AppointmentsInfo",
-      href: "",
-    },
-  ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
+   <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>
   );
 };
 
@@ -43,13 +19,37 @@ MedicalAppointments.getLayout = function GetLayout(page: any) {
 
 export default function MedicalAppointments() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { action, medicalAppointmentID,fosterChildId } = Router.query;
+  const PAGE_TITLE = "Medical Appointments";
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: null,
+      href: "",
+    },
+    {
+      name: "Medical Appointments Info ",
+      href:  {
+        pathname: "/foster-child/health-medical-history/medical-appointments",
+        query: { fosterChildId: fosterChildId },
+      },
+    },
+    {
+      name: "Info",
+      href: "",
+    },
+  ];
   return (
     <Box>
+     <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs
         tabsDataArray={["Medical Appointments Info", "Uploaded Documents"]}
       >
-        <MedicalAdvisorForm action={action} id={id} />
+        <MedicalAppointmentsFrom action={action} medicalAppointmentID={medicalAppointmentID} fosterChildId={fosterChildId} />
         <MedicalAppointmentsUploadtable />
       </HorizaontalTabs>
     </Box>

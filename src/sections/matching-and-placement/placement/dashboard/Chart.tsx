@@ -71,7 +71,7 @@ export default function Chart() {
           <Grid container spacing={3}>
             {chartTitles?.map((item, index) => (
               <Grid key={index} item lg={6}>
-                <Box key={item?.color} sx={{ mt: 0.5 }}>
+                <Box sx={{ mt: 0.5 }}>
                   <Typography fontSize="16px" fontWeight={500}>
                     {item?.title}
                   </Typography>

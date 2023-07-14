@@ -1,7 +1,7 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useGetExamGradeInfoListQuery,
-  useDeleteExamGradeInfoListMutation,
+  useGetChildChronologyOfEventsExamGradeInfoListQuery,
+  useDeleteChildChronologyOfEventsExamGradeInfoByIdMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/ExamGradeInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -11,15 +11,15 @@ export const useExamGradeInfoTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetExamGradeInfoListQuery({
+  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetChildChronologyOfEventsExamGradeInfoListQuery({
     search: search,
   });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteExamGradeInfoListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsExamGradeInfoByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteList({id:id})
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

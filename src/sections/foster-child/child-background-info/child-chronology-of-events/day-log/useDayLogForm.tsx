@@ -66,10 +66,11 @@ export const useDayLogForm = () => {
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
-          // router.push({
-          //   pathname: "/carer-info/background-checks/statutory-checks-list/car-insurance",
-          //   query: { action: "edit", id: `${res?.data.id}` },
-          // });
+          router.push({
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            query: { action: "edit", id: `${res?.data.id}` },
+          });
         })
         .catch((error: any) => {
           setIsFetching(false);
@@ -117,5 +118,6 @@ export const useDayLogForm = () => {
     isSubmitting,
     action,
     id,
+    fosterChildId
   };
 };
