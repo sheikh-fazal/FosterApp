@@ -99,30 +99,15 @@ const COLUMNS = [
     },
   },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "status",
-    defaultValue: [],
     label: "Status",
     options: STATUS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.string().required("status Type is required");
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
     },
   },
   {

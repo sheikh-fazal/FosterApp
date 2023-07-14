@@ -24,7 +24,7 @@ export const defaultValues = {
     },
     {
       dob: new Date(),
-      continue: true,
+      continue: "",
       "user-type": 2,
       platforms: [
         {

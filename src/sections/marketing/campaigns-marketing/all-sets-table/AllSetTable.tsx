@@ -10,7 +10,7 @@ const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 // Constants
 const PlatformOptions = [
- 
+
   {
     label: "Facebook",
     value: "Facebook",
@@ -34,7 +34,7 @@ const PlatformOptions = [
   },
 ];
 const CampaignsOptions = [
- 
+
   {
     label: "Family-safety-security",
     value: "Family-safety-security",
@@ -65,135 +65,144 @@ const CampaignsOptions = [
   },
 ];
 const COLUMNS = [
-  
-    {
-      inputType: "file",
-      type: "file",
-      key: "image",
-      label: "Creative",
-      size: { xs: 12, md: 12 },
-      // Use this validation for images
-      validation: (Yup: any) => {
-        return Yup.mixed()
-          .test("required", "Image is required", (value: any) => {
+  {
+    inputType: "textField",
+    type: "text",
+    key: "adSet",
+    fullWidth: true,
+    defaultValue: "John",
+    label: "Ad Set",
+    validation: (Yup: any) => {
+      return Yup.string().required("Name is required").min(3);
+    },
+  },
+  {
+    inputType: "file",
+    type: "file",
+    key: "image",
+    label: "Creative",
+    size: { xs: 12, md: 6 },
+    // Use this validation for images
+    validation: (Yup: any) => {
+      return Yup.mixed()
+        .test("required", "Image is required", (value: any) => {
+          if (!value) return false;
+          if (typeof value === "string") return !!value;
+          return value.type;
+        })
+        .test("fileFormat", "Unsupported Format", (value: any) => {
+          if (!value) return false;
+          if (typeof value === "string") return !!value;
+          return value && FILE_FORMATS.includes(value.type);
+        })
+        .test(
+          "fileSize",
+          `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+          (value: any) => {
             if (!value) return false;
             if (typeof value === "string") return !!value;
-            return value.type;
+            return value && value.size <= MAX_FILE_SIZE;
+          }
+        );
+    },
+    format: (imgUrl: any) => {
+      if (!!imgUrl)
+        return (
+          <MyAvatar
+            src={String(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`)}
+            sx={{
+              mx: "auto",
+            }}
+          />
+        );
+
+      return "-";
+    },
+  },
+  {
+    inputType: "textField",
+    type: "text",
+    key: "copy",
+    fullWidth: true,
+    defaultValue: "There's an easier way to keep your home and family safe. ",
+    label: "Copy",
+    validation: (Yup: any) => {
+      return Yup.string().required("Name is required").min(3);
+    },
+  },
+
+
+  {
+    inputType: "multi-select",
+    type: "select",
+    key: "platform",
+    fullWidth: true,
+    defaultValue: [],
+    label: "Platform",
+    options: PlatformOptions,
+    validation: (Yup: any) => {
+      return Yup.array()
+        .of(
+          Yup.object().shape({
+            label: Yup.string(),
+            value: Yup.string(),
+            bgColor: Yup.string(),
+            textColor: Yup.string(),
           })
-          .test("fileFormat", "Unsupported Format", (value: any) => {
-            if (!value) return false;
-            if (typeof value === "string") return !!value;
-            return value && FILE_FORMATS.includes(value.type);
-          })
-          .test(
-            "fileSize",
-            `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-            (value: any) => {
-              if (!value) return false;
-              if (typeof value === "string") return !!value;
-              return value && value.size <= MAX_FILE_SIZE;
-            }
-          );
-      },
-      format: (imgUrl: any) => {
-        if (!!imgUrl)
-          return (
-            <MyAvatar
-              src={String(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`)}
-              sx={{
-                mx: "auto",
-              }}
-            />
-          );
-  
-        return "-";
-      },
+        )
+        .test(
+          "required",
+          "Platform is required.",
+          (arr: any) => arr.length > 0
+        );
     },
+    format: (selectedValues = []) => {
+      return <DataChips options={selectedValues} />;
+    },
+  },
 
-    {
-      inputType: "textField",
-      type: "text",
-      key: "adSet",
-      fullWidth:true,
-      defaultValue: "John",
-      label: "Ad Set",
-      validation: (Yup: any) => {
-        return Yup.string().required("Name is required").min(3);
-      },
+  // {
+  //   inputType: "multi-select",
+  //   type: "select",
+  //   key: "campaigns",
+  //   fullWidth:true,
+  //   defaultValue: [],
+  //   label: "Campaigns",
+  //   options: CampaignsOptions,
+  //   validation: (Yup: any) => {
+  //     return Yup.array()
+  //       .of(
+  //         Yup.object().shape({
+  //           label: Yup.string(),
+  //           value: Yup.string(),
+  //           bgColor: Yup.string(),
+  //           textColor: Yup.string(),
+  //         })
+  //       )
+  //       .test(
+  //         "required",
+  //         "Platform is required.",
+  //         (arr: any) => arr.length > 0
+  //       );
+  //   },
+  //   format: (selectedValues = []) => {
+  //     return <DataChips options={selectedValues} />;
+  //   },
+  // },
+  {
+    inputType: "select",
+    key: "campaigns",
+    fullWidth: true,
+    label: "Campaigns",
+    options: CampaignsOptions,
+    validation: (Yup: any) => {
+      return Yup.string().required("User Type is required");
     },
-    
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
+    },
+  },
 
-    {
-      inputType: "textField",
-      type: "text",
-      key: "copy",
-      fullWidth:true,
-      defaultValue: "There's an easier way to keep your home and family safe. ",
-      label: "Copy",
-      validation: (Yup: any) => {
-        return Yup.string().required("Name is required").min(3);
-      },
-    },
-
-
-    {
-      inputType: "multi-select",
-      type: "select",
-      key: "platform",
-      fullWidth:true,
-      defaultValue: [],
-      label: "Platform",
-      options: PlatformOptions,
-      validation: (Yup: any) => {
-        return Yup.array()
-          .of(
-            Yup.object().shape({
-              label: Yup.string(),
-              value: Yup.string(),
-              bgColor: Yup.string(),
-              textColor: Yup.string(),
-            })
-          )
-          .test(
-            "required",
-            "Platform is required.",
-            (arr: any) => arr.length > 0
-          );
-      },
-      format: (selectedValues = []) => {
-        return <DataChips options={selectedValues} />;
-      },
-    },
-   
-    {
-      inputType: "multi-select",
-      type: "select",
-      key: "campaigns",
-      fullWidth:true,
-      defaultValue: [],
-      label: "Campaigns",
-      options: CampaignsOptions,
-      validation: (Yup: any) => {
-        return Yup.array()
-          .of(
-            Yup.object().shape({
-              label: Yup.string(),
-              value: Yup.string(),
-              bgColor: Yup.string(),
-              textColor: Yup.string(),
-            })
-          )
-          .test(
-            "required",
-            "Platform is required.",
-            (arr: any) => arr.length > 0
-          );
-      },
-      format: (selectedValues = []) => {
-        return <DataChips options={selectedValues} />;
-      },
-    },
- 
 ]
 function DataChips({ options }: any) {
   return (
@@ -236,21 +245,21 @@ function DataChips({ options }: any) {
 
 
 const AllSetTable = () => {
-  const { methods, handleSubmit, tableData, onSubmit, onClear, route,uploadImage } =
-  useAllSetTable();
+  const { methods, handleSubmit, tableData, onSubmit, onClear, route, uploadImage } =
+    useAllSetTable();
 
 
 
   return (
     <Card sx={{ padding: "10px" }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-      <FormTable
+        <FormTable
           tableKey="exampleTable"
           beforeAdd={(methods: any) => uploadImage("image", methods)}
           beforeUpdate={(methods: any) => uploadImage("image", methods)}
           columns={COLUMNS}
-          
-          
+
+
         />
       </FormProvider>
     </Card>

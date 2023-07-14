@@ -94,31 +94,44 @@ const COLUMNS = [
       return Yup.string().required("Name is required").min(3);
     },
   },
+  // {
+  //   inputType: "multi-select",
+  //   type: "select",
+  //   key: "type",
+  //   defaultValue: [],
+  //   label: "type",
+  //   options: OPTIONS,
+  //   validation: (Yup: any) => {
+  //     return Yup.array()
+  //       .of(
+  //         Yup.object().shape({
+  //           label: Yup.string(),
+  //           value: Yup.string(),
+  //           bgColor: Yup.string(),
+  //           textColor: Yup.string(),
+  //         })
+  //       )
+  //       .test(
+  //         "required",
+  //         "Platform is required.",
+  //         (arr: any) => arr.length > 0
+  //       );
+  //   },
+  //   format: (selectedValues = []) => {
+  //     return <DataChips options={selectedValues} />;
+  //   },
+  // },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "type",
-    defaultValue: [],
+    fullWidth:true,
     label: "type",
     options: OPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.string().required("User Type is required");
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
     },
   },
   {

@@ -13,15 +13,11 @@ MarketingPlanMeetingLayout.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
-        },
-        {
           name: "Merketing",
           href: "/marketing",
         },
         {
-          name: "marketing",
+          name: "Marketing",
         },
       ]}
       title={PAGE_TITLE}

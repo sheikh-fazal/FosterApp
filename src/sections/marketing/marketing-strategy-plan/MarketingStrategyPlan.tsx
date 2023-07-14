@@ -40,31 +40,15 @@ const OPTIONS = [
 
 const COLUMNS = [
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "strategyType",
-    fullWidth:true,
-    defaultValue: [],
     label: "Strategy Type",
     options: OPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.string().required("Strategy Type is required");
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
     },
   },
   {

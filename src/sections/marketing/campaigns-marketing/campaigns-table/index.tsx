@@ -3,15 +3,16 @@ export const defaultValues = {
   exampleTable: [
     {
       campaigns: "Branded keywords",
-      status: [
-        {
-          label: "Development",
-          value: "Development",
-          bgColor: "#73D4F2",
-          textColor: "#1D1D1D",
-        },
+      // status: [
+      //   {
+      //     label: "Development",
+      //     value: "Development",
+      //     bgColor: "#73D4F2",
+      //     textColor: "#1D1D1D",
+      //   },
         
-      ],
+      // ],
+      "status": 1,
       goal: "Drive traffic to site, CPC >$2.25",
       funnelStage: [
         {

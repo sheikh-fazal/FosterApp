@@ -147,31 +147,44 @@ const COLUMNS = [
       return Yup.string().required("Field is required")
     },
   },
+  // {
+  //   inputType: "multi-select",
+  //   type: "select",
+  //   key: "hostedEvents",
+  //   defaultValue: [],
+  //   label: "Hosted Events",
+  //   options: OPTIONS,
+  //   validation: (Yup: any) => {
+  //     return Yup.array()
+  //       .of(
+  //         Yup.object().shape({
+  //           label: Yup.string(),
+  //           value: Yup.string(),
+  //           bgColor: Yup.string(),
+  //           textColor: Yup.string(),
+  //         })
+  //       )
+  //       .test(
+  //         "required",
+  //         "Platform is required.",
+  //         (arr: any) => arr.length > 0
+  //       );
+  //   },
+  //   format: (selectedValues = []) => {
+  //     return <DataChips options={selectedValues} />;
+  //   },
+  // },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "hostedEvents",
-    defaultValue: [],
+    fullWidth:true,
     label: "Hosted Events",
     options: OPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.string().required("User Type is required");
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
     },
   },
   {
