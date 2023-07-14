@@ -47,12 +47,12 @@ const WritenNoticeOfProposal = () => {
           Dear (Foster Carer Name)
         </Typography>
         <Typography variant="body1" sx={{ fontWeight: "700" }}>
-          RE: Child's Name(Date of birth)
+          {/* RE: Child's Name(Date of birth) */}
         </Typography>
         <Box sx={{ padding: 1 }}>
           <Typography variant="body2">
             After carefull consideration, we have decided to withdrow the child
-            "Child Name" from your Fostering, in order to take personal
+            {/* "Child Name" from your Fostering, in order to take personal */}
             responsibility for his/her education, care, safeguarding. Also,
             panel members have decided to de-register you from our agency.
           </Typography>

@@ -1,18 +1,11 @@
-import {
-  Avatar,
-  Box,
-  CardMedia,
+import { 
+  Box, 
   ThemeProvider,
   Typography,
-  createTheme,
-  List,
-  ListItem,
+  createTheme, 
   Grid,
 } from "@mui/material";
-import React from "react";
-import logo from "@root/assets/img/logo.png";
-import Image from "@root/components/Image";
-import SignaturePad from "@root/components/hook-form/SignaturePad";
+import React from "react"; 
 
 const theme = createTheme({
   typography: {
@@ -71,7 +64,7 @@ const ResignationByFosterCarers = () => {
         <Box sx={{ padding: 1 }}>
           <Typography variant="body2">
             This is to formally advice you that I am giving [insert Independent
-            Fostering Agency's name] 28 days notice of my resignation, as
+            Fostering Agency&apos;s name] 28 days notice of my resignation, as
             required under the Fostering Regulation 2011 28 (13) with effect
             from [insert date]
           </Typography>
