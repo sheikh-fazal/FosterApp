@@ -87,10 +87,14 @@ const OPTIONS2 = [
   {
     label: "Oliver Hansen",
     value: 1,
+    bgColor: "green",
+    textColor: "white",
   },
   {
     label: "John Doe",
     value: 2,
+    bgColor: "green",
+    textColor: "white",
   },
 ];
 
