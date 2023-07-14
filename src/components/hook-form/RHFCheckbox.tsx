@@ -5,11 +5,12 @@ import { Checkbox, FormGroup, FormControlLabel } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
-export function RHFCheckbox({ name, ...other }: any) {
+export function RHFCheckbox({ name, label, ...other }: any) {
   const { control } = useFormContext();
 
   return (
     <FormControlLabel
+      label={label}
       control={
         <Controller
           name={name}
@@ -27,7 +28,6 @@ export function RHFCheckbox({ name, ...other }: any) {
           )}
         />
       }
-      {...other}
     />
   );
 }

@@ -83,6 +83,17 @@ const OPTIONS = [
   },
 ];
 
+const OPTIONS2 = [
+  {
+    label: "Oliver Hansen",
+    value: 1,
+  },
+  {
+    label: "John Doe",
+    value: 2,
+  },
+];
+
 const COLUMNS = [
   {
     inputType: "file",
@@ -165,6 +176,18 @@ const COLUMNS = [
     },
   },
   {
+    inputType: "select",
+    key: "user-type",
+    label: "User Type",
+    options: OPTIONS2,
+    validation: (Yup: any) => {
+      return Yup.string().required("User Type is required");
+    },
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
+    },
+  },
+  {
     inputType: "datePicker",
     type: "dob",
     key: "dob",
@@ -177,6 +200,15 @@ const COLUMNS = [
     },
     format: (date: any) => {
       return dayjs(date).format("DD/MM/YYYY");
+    },
+  },
+  {
+    inputType: "checkbox",
+    key: "continue",
+    defaultValue: false,
+    label: "Should Continue?",
+    format: (shouldContinue: boolean) => {
+      return shouldContinue ? "Yes" : "No";
     },
   },
 ];
