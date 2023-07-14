@@ -13,15 +13,15 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
     }),
 
     // Get API By Id of Family Person Upload Document
-    getFamilyPersonUploadDocumentById: builder.query({
-      query: (childFamilyOrgInfoDocId: any) =>
-        `/foster-child/child-family-org-info/document/list/${childFamilyOrgInfoDocId}`,
-      transformResponse: (response: any) => {
-        parseDatesToTimeStampByKey(response.data);
-        return response;
-      },
-      providesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],
-    }),
+    // getFamilyPersonUploadDocumentById: builder.query({
+    //   query: (childFamilyOrgInfoDocId: any) =>
+    //     `/foster-child/child-family-org-info/document/${childFamilyOrgInfoDocId}`,
+    //   transformResponse: (response: any) => {
+    //     parseDatesToTimeStampByKey(response.data);
+    //     return response;
+    //   },
+    //   providesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],
+    // }),
 
     // Post API of Family Person Upload Document
     postFamilyPersonUploadDocument: builder.mutation({
@@ -36,8 +36,8 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
 
     // Delete API of Family Person Upload Document
     deleteFamilyPersonUploadDocument: builder.mutation({
-      query: (childFamilyOrgInfoDocId: any) => ({
-        url: `foster-child/child-family-org-info/document/${childFamilyOrgInfoDocId}`,
+      query: (id: any) => ({
+        url: `/foster-child/child-family-org-info/document/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["FAMILY_PERSON_UPLOAD_DOCUMENT"],
@@ -47,7 +47,7 @@ export const FamilyPersonUploadDocumentsAPI = baseAPI.injectEndpoints({
 
 export const {
   useGetFamilyPersonUploadDocumentQuery,
-  useGetFamilyPersonUploadDocumentByIdQuery,
+  // useGetFamilyPersonUploadDocumentByIdQuery,
   usePostFamilyPersonUploadDocumentMutation,
   useDeleteFamilyPersonUploadDocumentMutation,
 } = FamilyPersonUploadDocumentsAPI;

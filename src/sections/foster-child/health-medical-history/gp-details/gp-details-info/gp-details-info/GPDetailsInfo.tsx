@@ -11,7 +11,7 @@ const GPDetailsInfo = () => {
     handleSubmit,
     submitGpDetailsInfoForm,
     getSingleGpDetailsInfoDataStatus,
-    query,
+
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
@@ -42,7 +42,7 @@ const GPDetailsInfo = () => {
           );
         })}
       </Grid>
-      {query?.action !== "view" && (
+      {router.query?.action !== "view" && (
         <Box sx={{ display: "flex", mb: "1rem", mt: "1rem" }}>
           <LoadingButton
             sx={{ marginRight: "1rem" }}

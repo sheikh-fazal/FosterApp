@@ -7,7 +7,7 @@ import { useDayLogForm } from "./useDayLogForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const DayLogForm = () => {
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action } =
+  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action,fosterChildId } =
     useDayLogForm();
 
   const theme: any = useTheme();
@@ -117,7 +117,7 @@ const DayLogForm = () => {
               }}
               variant="contained"
               onClick={() =>
-                router.push("/foster-child/child-background-info/child-chronology-of-events")
+                router.push(`/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`)
               }
             >
               Back
