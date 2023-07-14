@@ -3,24 +3,24 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Dashboard from "@root/sections/system-admin/Dashboard";
+import PerformanceMonitoring from "@root/sections/system-admin/system-performance-monitoring/PerformanceMonitoring";
 
 // Constants
 
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Dashboard",
-    href: "/dashboard",
+    name: "System Admin",
+    href: "/system-admin",
   },
   {
-    name: "All",
+    name: "System Performance Monitoring",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "System Admin";
-SystemAdmin.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "System Performance Monitoring";
+SystemPerformanceMonitoring.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +31,10 @@ SystemAdmin.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function SystemAdmin() {
+export default function SystemPerformanceMonitoring() {
   return (
     <Page title={PAGE_TITLE}>
-      <Dashboard />
+      <PerformanceMonitoring />
     </Page>
   );
 }

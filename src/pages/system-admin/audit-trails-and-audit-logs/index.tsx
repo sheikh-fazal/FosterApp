@@ -3,24 +3,24 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Dashboard from "@root/sections/system-admin/Dashboard";
+import AuditLogs from "@root/sections/system-admin/audit-trails-and-audit-logs/AuditLogs";
 
 // Constants
 
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Dashboard",
-    href: "/dashboard",
+    name: "System Admin",
+    href: "/system-admin",
   },
   {
-    name: "All",
+    name: "Audit Trails And Audit Logs",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "System Admin";
-SystemAdmin.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Audit Trails And Audit Logs";
+AuditTrailsAndAuditLogs.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +31,10 @@ SystemAdmin.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function SystemAdmin() {
+export default function AuditTrailsAndAuditLogs() {
   return (
     <Page title={PAGE_TITLE}>
-      <Dashboard />
+      <AuditLogs />
     </Page>
   );
 }
