@@ -32,10 +32,10 @@ const StatusOptions = [
     bgColor: "#A3A1F6",
     textColor: "#1D1D1D",
   },
- 
+
 ];
 const FunnelStageOptions = [
- 
+
   {
     label: "Awareness",
     value: "Awareness",
@@ -50,10 +50,10 @@ const FunnelStageOptions = [
     bgColor: "#9AE06E",
     textColor: "#1D1D1D",
   },
- 
+
 ];
 const NextStepsOptions = [
- 
+
   {
     label: "Pause",
     value: "Pause",
@@ -75,10 +75,10 @@ const NextStepsOptions = [
     bgColor: "#E5726B",
     textColor: "#1D1D1D",
   },
- 
+
 ];
 const PlatformOptions = [
- 
+
   {
     label: "Facebook",
     value: "Facebook",
@@ -101,223 +101,198 @@ const PlatformOptions = [
     textColor: "#1D1D1D",
   },
 ];
-const COLUMNS=[
+const COLUMNS = [
 
-    {
-      inputType: "textField",
-      type: "text",
-      key: "campaigns",
-      fullWidth:true,
-      defaultValue: "John",
-      label: "Campaigns",
-      validation: (Yup: any) => {
-        return Yup.string().required("Name is required").min(3);
-      },
+  {
+    inputType: "textField",
+    type: "text",
+    key: "campaigns",
+    fullWidth: true,
+    defaultValue: "John",
+    label: "Campaigns",
+    validation: (Yup: any) => {
+      return Yup.string().required("Name is required").min(3);
     },
+  },
 
-    // {
-    //   inputType: "multi-select",
-    //   type: "select",
-    //   key: "status",
-    //   fullWidth:true,
-    //   defaultValue: [],
-    //   label: "status",
-    //   options: StatusOptions,
-    //   validation: (Yup: any) => {
-    //     return Yup.array()
-    //       .of(
-    //         Yup.object().shape({
-    //           label: Yup.string(),
-    //           value: Yup.string(),
-    //           bgColor: Yup.string(),
-    //           textColor: Yup.string(),
-    //         })
-    //       )
-    //       .test(
-    //         "required",
-    //         "Platform is required.",
-    //         (arr: any) => arr.length > 0
-    //       );
-    //   },
-    //   format: (selectedValues = []) => {
-    //     return <DataChips options={selectedValues} />;
-    //   },
-    // },
-
-    {
-      inputType: "select",
-      key: "status",
-      label: "Status",
-      options: StatusOptions,
-      validation: (Yup: any) => {
-        return Yup.string().required("User Type is required");
-      },
-      format: (selectedUserType: any) => {
-        return selectedUserType && selectedUserType.label;
-      },
+  {
+    inputType: "select",
+    key: "status",
+    label: "Status",
+    options: StatusOptions,
+    validation: (Yup: any) => {
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-   
-    {
-      inputType: "textField",
-      type: "text",
-      key: "goal",
-      fullWidth:true,
-      defaultValue: "Drive traffic to site, CPC >$2.25",
-      label: "Goal",
-      validation: (Yup: any) => {
-        return Yup.string().required("Name is required").min(3);
-      },
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
+  },
 
-    // {
-    //   inputType: "multi-select",
-    //   type: "select",
-    //   key: "funnelStage",
-    //   fullWidth:true,
-    //   defaultValue: [],
-    //   label: "Funnel Stage",
-    //   options: FunnelStageOptions,
-    //   validation: (Yup: any) => {
-    //     return Yup.array()
-    //       .of(
-    //         Yup.object().shape({
-    //           label: Yup.string(),
-    //           value: Yup.string(),
-    //           bgColor: Yup.string(),
-    //           textColor: Yup.string(),
-    //         })
-    //       )
-    //       .test(
-    //         "required",
-    //         "Platform is required.",
-    //         (arr: any) => arr.length > 0
-    //       );
-    //   },
-    //   format: (selectedValues = []) => {
-    //     return <DataChips options={selectedValues} />;
-    //   },
-    // },
-
-    {
-      inputType: "select",
-      key: "funnelStage",
-      fullWidth:true,
-      label: "Funnel Stage",
-      options: FunnelStageOptions,
-      validation: (Yup: any) => {
-        return Yup.string().required("User Type is required");
-      },
-      format: (selectedUserType: any) => {
-        return selectedUserType && selectedUserType.label;
-      },
+  {
+    inputType: "textField",
+    type: "text",
+    key: "goal",
+    fullWidth: true,
+    defaultValue: "Drive traffic to site, CPC >$2.25",
+    label: "Goal",
+    validation: (Yup: any) => {
+      return Yup.string().required("Name is required").min(3);
     },
+  },
 
-    
-    {
-      inputType: "datePicker",
-      type: "dob",
-      key: "startDate",
-      fullWidth:true,
-      defaultValue: new Date(),
-      label: "Start Date",
-      validation: (Yup: any) => {
-        return Yup.date()
-          .typeError("End date is required")
-          .required("End date is required");
-      },
-      format: (date: any) => {
-        return dayjs(date).format("DD/MM/YYYY");
-      },
+  {
+    inputType: "select",
+    key: "funnelStage",
+    fullWidth: true,
+    label: "Funnel Stage",
+    options: FunnelStageOptions,
+    validation: (Yup: any) => {
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
+    format: (selectedUserType: any) => {
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
 
-    {
-      inputType: "datePicker",
-      type: "dob",
-      key: "endDate",
-      fullWidth:true,
-      defaultValue: new Date(),
-      label: "End Date",
-      validation: (Yup: any) => {
-        return Yup.date()
-          .typeError("End date is required")
-          .required("End date is required");
-      },
-      format: (date: any) => {
-        return dayjs(date).format("DD/MM/YYYY");
-      },
-    },   
-    // {
-    //   inputType: "multi-select",
-    //   type: "select",
-    //   key: "nextSteps",
-    //   fullWidth:true,
-    //   defaultValue: [],
-    //   label: "Next Steps",
-    //   options: NextStepsOptions,
-    //   validation: (Yup: any) => {
-    //     return Yup.array()
-    //       .of(
-    //         Yup.object().shape({
-    //           label: Yup.string(),
-    //           value: Yup.string(),
-    //           bgColor: Yup.string(),
-    //           textColor: Yup.string(),
-    //         })
-    //       )
-    //       .test(
-    //         "required",
-    //         "Platform is required.",
-    //         (arr: any) => arr.length > 0
-    //       );
-    //   },
-    //   format: (selectedValues = []) => {
-    //     return <DataChips options={selectedValues} />;
-    //   },
-    // },
-
-    {
-      inputType: "select",
-      key: "nextSteps",
-      fullWidth:true,
-      label: "Next Steps",
-      options: NextStepsOptions,
-      validation: (Yup: any) => {
-        return Yup.string().required("User Type is required");
-      },
-      format: (selectedUserType: any) => {
-        return selectedUserType && selectedUserType.label;
-      },
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
-    {
-      inputType: "multi-select",
-      type: "select",
-      key: "platform",
-      fullWidth:true,
-      defaultValue: [],
-      label: "Platform",
-      options: PlatformOptions,
-      validation: (Yup: any) => {
-        return Yup.array()
-          .of(
-            Yup.object().shape({
-              label: Yup.string(),
-              value: Yup.string(),
-              bgColor: Yup.string(),
-              textColor: Yup.string(),
-            })
-          )
-          .test(
-            "required",
-            "Platform is required.",
-            (arr: any) => arr.length > 0
-          );
-      },
-      format: (selectedValues = []) => {
-        return <DataChips options={selectedValues} />;
-      },
-    },
+  },
 
- 
+
+  {
+    inputType: "datePicker",
+    type: "dob",
+    key: "startDate",
+    fullWidth: true,
+    defaultValue: new Date(),
+    label: "Start Date",
+    validation: (Yup: any) => {
+      return Yup.date()
+        .typeError("End date is required")
+        .required("End date is required");
+    },
+    format: (date: any) => {
+      return dayjs(date).format("DD/MM/YYYY");
+    },
+  },
+
+  {
+    inputType: "datePicker",
+    type: "dob",
+    key: "endDate",
+    fullWidth: true,
+    defaultValue: new Date(),
+    label: "End Date",
+    validation: (Yup: any) => {
+      return Yup.date()
+        .typeError("End date is required")
+        .required("End date is required");
+    },
+    format: (date: any) => {
+      return dayjs(date).format("DD/MM/YYYY");
+    },
+  },
+
+
+  {
+    inputType: "select",
+    key: "nextSteps",
+    fullWidth: true,
+    label: "Next Steps",
+    options: NextStepsOptions,
+    validation: (Yup: any) => {
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
+    },
+    format: (selectedUserType: any) => {
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        key={selectedUserType && selectedUserType.value}
+        label={selectedUserType && selectedUserType.label}
+      />
+    },
+  },
+
+  {
+    inputType: "multi-select",
+    type: "select",
+    key: "platform",
+    fullWidth: true,
+    defaultValue: [],
+    label: "Platform",
+    options: PlatformOptions,
+    validation: (Yup: any) => {
+      return Yup.array()
+        .of(
+          Yup.object().shape({
+            label: Yup.string(),
+            value: Yup.string(),
+            bgColor: Yup.string(),
+            textColor: Yup.string(),
+          })
+        )
+        .test(
+          "required",
+          "Platform is required.",
+          (arr: any) => arr.length > 0
+        );
+    },
+    format: (selectedValues = []) => {
+      return <DataChips options={selectedValues} />;
+    },
+  },
+
+
 ]
 
 function DataChips({ options }: any) {
@@ -359,9 +334,10 @@ function DataChips({ options }: any) {
   );
 }
 
+
 const CampaignsTable = () => {
   const { methods, handleSubmit, tableData, onSubmit, onClear, } =
-  useCampaignsTable();
+    useCampaignsTable();
 
 
 
@@ -372,9 +348,6 @@ const CampaignsTable = () => {
         <FormTable
           tableKey="exampleTable"
           columns={COLUMNS}
-         
-          
-          
         />
       </FormProvider>
     </Card>
