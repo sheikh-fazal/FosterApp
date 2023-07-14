@@ -185,7 +185,12 @@ const COLUMNS = [
     label: "User Type",
     options: OPTIONS2,
     validation: (Yup: any) => {
-      return Yup.string().required("User Type is required");
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
     format: (selectedUserType: any) => {
       return selectedUserType && selectedUserType.label;
