@@ -18,6 +18,7 @@ const SuperVisoryCarerSectionB = ({ action, handleBack }: any) => {
             </Typography>
             {form.component && (
               <form.component
+              fullWidth
                 disabled={disabled}
                 size="small"
                 {...form.componentProps}

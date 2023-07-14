@@ -11,6 +11,12 @@ const SecondOpinionForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, handleBack, onSubmit, handleSubmit } =
     usePermanentFosteringForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded  Meeting Record";
+  } else {
+    label = "Upload  Meeting Record";
+  }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -22,6 +28,7 @@ const SecondOpinionForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -44,6 +51,7 @@ const SecondOpinionForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'
                     {...methods}
@@ -85,6 +93,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "#212529",
+    color: theme.palette.primary.main,
   }),
 };

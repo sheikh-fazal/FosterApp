@@ -23,6 +23,7 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.otherOptions}
@@ -80,6 +81,7 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
                   suscipit labore. Ad!
                 </Typography>
                 <RHFTextField
+                  fullWidth
                   name={"familyFostering"}
                   multiline={true}
                   minRows={5}
@@ -92,9 +94,9 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
                   Acknowleded By *
                 </Typography>
                 <RHFTextField
+                  fullWidth
                   name={"familyFostering"}
                   sx={" mb: 4 "}
-                  fullWidth={true}
                 />
               </Grid>
             </Grid>
@@ -157,7 +159,7 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "black",
+    color: theme.palette.primary.main,
   }),
   notice: (theme: any, disabled: any) => ({
     fontSize: "16px",

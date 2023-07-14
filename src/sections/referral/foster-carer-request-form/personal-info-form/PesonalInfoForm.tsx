@@ -11,37 +11,36 @@ const PesonalInfoForm = ({ action }: any) => {
     usePersonalInfoForm();
     let label: any;
     if (action === "view") {
-      label = "uploaded doc";
+      label = "Uploaded Image";
     } else {
-      label = "upload doc";
+      label = "Upload Image";
     }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {PersonalInfoFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component fullWidth
-              {...item.componentProps}
-              disabled={disabled}
-              size={"small"}
-            >
-              {item.componentProps.select
-                ? item.options.map((option: any) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))
-                : null}
-              {item?.heading}
-            </item.component>
-            {item?.uploadPhoto && (
-                  <RHFUploadFile
-                    name={"updatePhoto"}
-                    label={label}
-                    {...methods}
-                    required
-                  />
-                )}
+         {item.component && (
+              <item.component fullWidth
+                disabled={disabled}
+                size="small"
+                {...item.componentProps}
+              >
+                {item?.heading}
+                {item.componentProps.select
+                  ? item.options.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
+                  : null}
+              </item.component>
+            )}
+              {item?.uploadPhoto && (
+              <>
+              <RHFUploadFile name={"updatePhoto"} label={label} {...methods} required />
+              </>
+            )}
           </Grid>
         ))}
 

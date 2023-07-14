@@ -27,14 +27,8 @@ export const PersonalInfoFormData = [
     md: 6,
   },
   {
-    id: 2,
-    componentProps: {
-      name: "uploadImage",
-      fullWidth: true,
-      size: "small",
-      sx: { mb: 4 },
-    },
-    component: RHFUploadFile,
+    gridLength: 6,
+    uploadPhoto: true,
     md: 6,
   },
   {

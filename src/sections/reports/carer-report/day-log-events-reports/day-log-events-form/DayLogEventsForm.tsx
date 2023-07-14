@@ -9,6 +9,12 @@ import { LoadingButton } from "@mui/lab";
 const DayLogEventsForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, handleBack, onSubmit, handleSubmit } = useDaylogEventsForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded  Meeting Record";
+  } else {
+    label = "Upload  Meeting Record";
+  }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -20,6 +26,7 @@ const DayLogEventsForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -52,6 +59,7 @@ const DayLogEventsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'
                     {...methods}

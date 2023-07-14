@@ -4,29 +4,40 @@ import React from "react";
 import { AForm } from ".";
 import { useCaringPolicyForm } from "./useCaringPolicyForm";
 import Link from "next/link";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 export default function AddCaringPolicyForm({ action }: any) {
   const disabled = action === "view" ? true : false;
-  const {
-    methods,
-    handleSubmit,
-    onSubmit,
-    query,
-  } = useCaringPolicyForm();
-  
+  const { methods, handleSubmit, onSubmit, query } = useCaringPolicyForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded Image";
+  } else {
+    label = "Upload Image";
+  }
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>
         {AForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component fullWidth
-              {...item.componentProps}
-              disabled={query.action === "view" && disabled}
-              
-              size={"small"}
-            >
-              {item?.heading}
-            </item.component>
+            {item.component && (
+              <item.component
+                fullWidth
+                {...item.componentProps}
+                disabled={query.action === "view" && disabled}
+                size={"small"}
+              >
+                {item?.heading}
+              </item.component>
+            )}
+            {item?.uploadPhoto && (
+              <RHFUploadFile
+                name={"updatePhoto"}
+                label={label}
+                {...methods}
+                required
+              />
+            )}
           </Grid>
         ))}
         <Grid item xs={12}>

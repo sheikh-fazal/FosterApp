@@ -8,18 +8,26 @@ import { LoadingButton } from "@mui/lab";
 
 const PermanentFosteringForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods,handleBack , onSubmit, handleSubmit, }  = usePermanentFosteringForm();
+  const { methods, handleBack, onSubmit, handleSubmit } =
+    usePermanentFosteringForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded  Meeting Record";
+  } else {
+    label = "Upload  Meeting Record";
+  }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {PermanentFosteringFormValues?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.gridLength} key={i}>
-               <Typography sx={(theme) => styles.title(theme, disabled)}>
+              <Typography sx={(theme) => styles.title(theme, disabled)}>
                 {form.title}
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -42,6 +50,7 @@ const PermanentFosteringForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'
                     {...methods}
@@ -51,8 +60,8 @@ const PermanentFosteringForm = ({ action }: any) => {
               )}
             </Grid>
           ))}
-           <Grid item xs={12}>
-            <Box sx={{ display: "flex", gap: "1rem" , mt:4 }}>
+          <Grid item xs={12}>
+            <Box sx={{ display: "flex", gap: "1rem", mt: 4 }}>
               {!disabled && (
                 <LoadingButton type="submit" variant="contained">
                   Submit
@@ -83,6 +92,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: "#898989",
+    color: theme.palette.primary.main,
   }),
 };
