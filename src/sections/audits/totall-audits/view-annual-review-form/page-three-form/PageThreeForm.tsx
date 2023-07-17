@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { formFields } from ".";
 import { FormProvider } from "@root/components/hook-form";
@@ -6,6 +6,7 @@ import { usePageThreeForm } from "./usePageThreeForm";
 
 const PageThreeForm = () => {
   const { methods, handleSubmit, onSubmit } = usePageThreeForm();
+  const theme = useTheme()
 
   return (
     <Box sx={{ padding: "5px 30px" }}>
@@ -13,11 +14,14 @@ const PageThreeForm = () => {
         <Grid container spacing={2}>
           {formFields.map((field, i) => (
             <Grid item md={field.gridLength} xs={12} key={i}>
-              <Typography sx={styles.heading}>{field.title}</Typography>
               {field.component ? (
-                <field.component size={"small"} fullWidth {...field.otherOptions} />
+                <field.component
+                  size={"small"}
+                  fullWidth
+                  {...field.otherOptions}
+                />
               ) : (
-                <Typography sx={{ ...styles.heading, fontSize: "18px" }}>
+                <Typography sx={{ ...styles.heading, fontSize: "18px", color: theme.palette.primary.main}}>
                   {field.heading}
                 </Typography>
               )}
