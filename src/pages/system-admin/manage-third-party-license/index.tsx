@@ -3,24 +3,24 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Dashboard from "@root/sections/system-admin/Dashboard";
+import ThirdPartyLicense from "@root/sections/system-admin/manage-third-party-license/ThirdPartyLicense";
 
 // Constants
 
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Dashboard",
-    href: "/dashboard",
+    name: "System Admin",
+    href: "/system-admin",
   },
   {
-    name: "All",
+    name: "Manage Third Party License",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "System Admin";
-SystemAdmin.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Manage Third Party License";
+ManageThirdParty.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +31,10 @@ SystemAdmin.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function SystemAdmin() {
+export default function ManageThirdParty() {
   return (
     <Page title={PAGE_TITLE}>
-      <Dashboard />
+      <ThirdPartyLicense />
     </Page>
   );
 }

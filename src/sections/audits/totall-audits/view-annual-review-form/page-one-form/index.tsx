@@ -1,4 +1,8 @@
-import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const pageOneFormData = {
@@ -30,10 +34,11 @@ export const pageOneFormData = {
   ],
   formFields: [
     {
-      title: "Review Written by (if other than the Supervising Social Worker)",
       gridLength: 6,
       otherOptions: {
         name: "reviewWritten",
+        label:
+          "Review Written by (if other than the Supervising Social Worker)",
       },
       component: RHFTextField,
     },
@@ -41,12 +46,13 @@ export const pageOneFormData = {
       tag: <br />,
     },
     {
-      title: "Review Type",
       gridLength: 6,
       otherOptions: {
+        label: "Review Type",
         name: "reviewType",
         select: true,
         options: [{ value: "Diasabeled Choice", label: "Diasabeled Choice" }],
+        sx: { mb: 4}
       },
       component: RHFSelect,
     },
@@ -55,39 +61,43 @@ export const pageOneFormData = {
       otherOptions: {
         name: "onFile",
         label: "on File",
-        sx: { mt: "20px" },
+        sx: { mb: 4}
       },
       component: RHFCheckbox,
     },
     {
-      title: "Review Date",
       gridLength: 6,
       otherOptions: {
+        label: "Review Date",
         name: "reviewDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Next Review Date",
       gridLength: 6,
       otherOptions: {
+        label: "Next Review Date",
         name: "nextReviewDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Prevoius Review Date",
       gridLength: 6,
       otherOptions: {
+        label: "Prevoius Review Date",
         name: "preReviewDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Confirmation of Review Held Date:",
       gridLength: 6,
       otherOptions: {
+        label: "Confirmation of Review Held Date:",
         name: "confirmationofReviewHeldDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
@@ -100,116 +110,128 @@ export const pageOneFormData = {
       component: RHFCheckbox,
     },
     {
-      title: "Purpose Of Review:",
       gridLength: 12,
       otherOptions: {
+        label: "Purpose Of Review:",
         name: "purposeOfReview",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Independent Review Offer:",
       gridLength: 12,
       otherOptions: {
+        label: "Independent Review Offer:",
         name: "independentReviewOffer",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Next Panel Date:",
       gridLength: 6,
       otherOptions: {
+        label: "Next Panel Date:",
         name: "nextPanelDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Previous Panel Date:",
       gridLength: 6,
       otherOptions: {
+        label: "Previous Panel Date:",
         name: "previousPanelDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Current Approval Date:",
       gridLength: 6,
       otherOptions: {
+        label: "Current Approval Date:",
         name: "currentApprovalDate",
+        sx: { mb: 4}
       },
       component: RHFDatePicker,
     },
     {
-      title: "Terms Of Approval:",
       gridLength: 12,
       otherOptions: {
+        label: "Terms Of Approval:",
         name: "termsOfApproval",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Pets Info:",
       gridLength: 12,
       otherOptions: {
+        label: "Pets Info:",
         name: "petsInfo",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Previous Review Officer Recommendation",
       gridLength: 12,
       otherOptions: {
+        label: "Previous Review Officer Recommendation",
         name: "previousReviewOfficerRecommendation",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Previous Panel Recommendation",
       gridLength: 12,
       otherOptions: {
+        label: "Previous Panel Recommendation",
         name: "previousPanelRecommendation",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Issues for Discussion at Review Time",
       gridLength: 12,
       otherOptions: {
+        label: "Issues for Discussion at Review Time",
         name: "issuesforDiscussionatReviewTime",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Dates of Supervising Social Worker Visits",
       gridLength: 12,
       otherOptions: {
+        label: "Dates of Supervising Social Worker Visits",
         name: "datesofSupervisingSocialWorkerVisits",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Dates Of Unannounced Visit",
       gridLength: 12,
       otherOptions: {
+        label: "Dates Of Unannounced Visit",
         name: "datesOfUnannouncedVisit",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
@@ -218,41 +240,45 @@ export const pageOneFormData = {
       otherOptions: {
         name: "safeCaringPolicyisUptodate",
         label: "Safe Caring Policy is Up to date?",
+        sx: { mb: 4}
       },
       component: RHFCheckbox,
     },
     {
-      title: "Mettings",
       gridLength: 12,
       otherOptions: {
+        label: "Mettings",
         name: "mettings",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Number of rooms currently used for the purpose of fostering?",
       gridLength: 6,
       otherOptions: {
+        label: "Number of rooms currently used for the purpose of fostering?",
         name: "numberofRooms",
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Foster Carer Current Placement",
       gridLength: 12,
       otherOptions: {
+        label: "Foster Carer Current Placement",
         name: "FosterCarerCurrentPlacement",
         multiline: true,
         minRows: 3,
+        sx: { mb: 4}
       },
       component: RHFTextField,
     },
     {
-      title: "Sleeping Arrangments",
       gridLength: 12,
       otherOptions: {
+        label: "Sleeping Arrangments",
         name: "sleepingArrangments",
         multiline: true,
         minRows: 3,
