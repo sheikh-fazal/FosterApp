@@ -6,10 +6,17 @@ import { useRouter, Router } from "next/router";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import HospitalizationFrom from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationFrom";
 import HospitalizationUploadTable from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationUploadTable";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 Hospitalisation.getLayout = function GetLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
+
+// ----------------------------------------------------------------------
+
+export default function Hospitalisation() {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { action, fosterChildId, hospitalizationId } = Router.query;
   // Constants
 
   const PAGE_TITLE = "Hospitalization";
@@ -21,7 +28,10 @@ Hospitalisation.getLayout = function GetLayout(page: any) {
     },
     {
       name: "Hospitalization Info list",
-      href: "",
+      href: {
+        pathname: "/foster-child/health-medical-history/hospital-info-list",
+        query: { fosterChildId: fosterChildId },
+      },
     },
     {
       name: "Hospitalization Info",
@@ -29,28 +39,25 @@ Hospitalisation.getLayout = function GetLayout(page: any) {
     },
   ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function Hospitalisation() {
-  const Router: any = useRouter();
-  const { action, id } = Router.query;
-  return (
     <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs
         tabsDataArray={["Hospitalization Info", "Uploaded Documents"]}
       >
-        <HospitalizationFrom action={action} id={id} />
-        <HospitalizationUploadTable />
+        <HospitalizationFrom
+          action={action}
+          fosterChildId={fosterChildId}
+          hospitalizationId={hospitalizationId}
+        />
+        <HospitalizationUploadTable
+          action={action}
+          fosterChildId={fosterChildId}
+          hospitalizationId={hospitalizationId}
+        />
       </HorizaontalTabs>
     </Box>
   );

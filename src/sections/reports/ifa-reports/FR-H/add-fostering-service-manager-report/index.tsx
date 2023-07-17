@@ -8,13 +8,14 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
 export const initialValues = {
-  dateOfReviewMeeting: "",
+  nameOfFosterCarer:"",
+  dateOfReviewMeeting: null,
   recommendation: "",
   reason: "",
   comments: "",
   nameOfFosteringServiceManager: "",
   signature: "",
-  date: "",
+  date: null,
   checkBox: "",
 };
 
