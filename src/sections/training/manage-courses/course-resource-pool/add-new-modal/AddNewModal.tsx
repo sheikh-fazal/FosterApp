@@ -42,7 +42,7 @@ export default function AddNewModal({ open, handleClose, addHandler }: any) {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={i}>
                   {form.component && (
-                    <form.component size="small" {...form.componentProps}>
+                    <form.component size="small" fullWidth {...form.componentProps}>
                       {form?.heading}
                       {form.componentProps.select
                         ? form.options.map((option: any) => (
@@ -54,7 +54,7 @@ export default function AddNewModal({ open, handleClose, addHandler }: any) {
                     </form.component>
                   )}
                   {form?.uploadPhoto && (
-                    <RHFUploadFile name={"updatePhoto"} {...methods} required />
+                    <RHFUploadFile name={"updatePhoto"} label="Category Image" {...methods} required />
                   )}
                 </Grid>
               );

@@ -7,8 +7,8 @@ export const initialValues = {
   carer: '',
   status: '',
   case: '',
-  time: '',
-  date: '',
+  time: new Date(),
+  date: new Date(),
   socialWorker: '',
   member: ''
 };
@@ -61,6 +61,7 @@ export const setupFormData = [
       fullWidth: true,
       name: 'time',
       label: 'Time Selection',
+      value: new Date()
     },
     component: RHFTimePicker
   },
@@ -70,6 +71,7 @@ export const setupFormData = [
       fullWidth: true,
       name: 'date',
       label: 'Panel Date',
+      value: new Date()
     },
     component: RHFDatePicker
   },

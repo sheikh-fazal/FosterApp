@@ -5,10 +5,10 @@ import * as Yup from "yup";
 
 export const initialValues = {
   nameOfChild: "",
-  dateTimeOfOccurence: "",
+  dateTimeOfOccurence: null,
   createdBy: "",
   nameOfFosterCarer: "",
-  date: "",
+  date: null,
 };
 
 export const formSchema = Yup.object().shape({

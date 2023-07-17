@@ -296,11 +296,11 @@ export const LADetailsFormFormData = [
 export const LADetailsFormFormValues = {
     childCode: "",
     referrerName: "",
-    referralDate: "",
+    referralDate: null,
     lASocialWorkerName: "",
     childGeography: "",
     childPlacingAuthority:"",
-    dateLANotified: "",
+    dateLANotified: null,
     localAuthority: "",
     lAAddress: "",
     lAManagerName: "",
