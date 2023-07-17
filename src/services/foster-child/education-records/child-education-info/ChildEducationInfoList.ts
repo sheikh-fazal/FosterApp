@@ -18,11 +18,11 @@ export const ChildEducationInfoList = baseAPI.injectEndpoints({
       }),
     }),
     postEducationInfoData: builder.mutation({
-      query: (apiDataParameter: any) => ({
-        url: `education-records/education-info/${apiDataParameter.fosterChildId}`,
+      //check the str of body here
+      query: ({ body, fosterChildId }: any) => ({
+        url: `education-records/education-info/${fosterChildId}`,
         method: "POST",
-        params: apiDataParameter.fosterChildId,
-        body: apiDataParameter.body,
+        body: body,
       }),
       invalidatesTags: ["CHILD_EDUCATION_INFO_LIST"],
     }),

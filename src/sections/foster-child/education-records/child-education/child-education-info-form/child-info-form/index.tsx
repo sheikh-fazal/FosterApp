@@ -17,9 +17,11 @@ export const educationInfoDefaultValues = {
   ifNotSchoolPlacement: "",
   school: "",
   schoolType: "",
-  Is_current_school: false,
-  Is_foster_change: false,
-  Special_educational_needs: false,
+  schoolAddress: {
+    isChildCurrentSchool: true,
+    isFosterPlacementChange: false,
+    doesSpecialEducationalNeeds: true,
+  },
   personalEducationPlan: "",
   schoolYear: "",
   classStudying: "",
@@ -47,9 +49,11 @@ export const defaultValueEducationInfoForm = (
     ifNotSchoolPlacement: data?.ifNotSchoolPlacement,
     school: data?.school,
     schoolType: data?.schoolType,
-    Is_current_school: data?.Is_current_school,
-    Is_foster_change: data?.Is_foster_change,
-    Special_educational_needs: data?.Special_educational_needs,
+    schoolAddress: {
+      isChildCurrentSchool: data?.schoolAddress?.isChildCurrentSchool,
+      isFosterPlacementChange: data?.schoolAddress?.isFosterPlacementChange,
+      doesSpecialEducationalNeeds: data?.schoolAddress?.doesSpecialEducationalNeeds,
+    },
     personalEducationPlan: data?.personalEducationPlan,
     schoolYear: data?.schoolYear,
     classStudying: data?.classStudying,
@@ -70,7 +74,7 @@ export const defaultValueEducationInfoForm = (
     notes: data?.notes,
   };
 };
-export const educationInfoFormDataFunction = (isFieldDisable= false) => [
+export const educationInfoFormDataFunction = (isFieldDisable = false) => [
   {
     id: 1,
     gridLength: 12,
@@ -129,7 +133,7 @@ export const educationInfoFormDataFunction = (isFieldDisable= false) => [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "Is_current_school",
+      name: "schoolAddress.isChildCurrentSchool",
       label: "Is this child's Current School?",
       disabled: isFieldDisable,
     },
@@ -139,7 +143,7 @@ export const educationInfoFormDataFunction = (isFieldDisable= false) => [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "Is_foster_change",
+      name: "schoolAddress.isFosterPlacementChange",
       label: "Is this School due to Foster Placement change?",
       disabled: isFieldDisable,
     },
@@ -149,7 +153,7 @@ export const educationInfoFormDataFunction = (isFieldDisable= false) => [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "Special_educational_needs",
+      name: "schoolAddress.doesSpecialEducationalNeeds",
       label: "Does the child have a statement of special educational needs?",
       disabled: isFieldDisable,
     },
@@ -379,4 +383,4 @@ export const educationInfoFormDataFunction = (isFieldDisable= false) => [
     },
     component: RHFTextField,
   },
-]
+];

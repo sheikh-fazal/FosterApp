@@ -2,34 +2,40 @@ import React, { useEffect } from "react";
 import { useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { defaultValueEducationInfoForm, educationInfoFormDataFunction,  } from ".";
+import {
+  defaultValueEducationInfoForm,
+  educationInfoFormDataFunction,
+} from ".";
 import dayjs from "dayjs";
 import { fTimestamp } from "@root/utils/formatTime";
 import { enqueueSnackbar } from "notistack";
 import router, { useRouter } from "next/router";
-import { useLazyGetSingleEducationInfoDataQuery, usePatchEducationInfoDataMutation, usePostEducationInfoDataMutation } from "@root/services/foster-child/education-records/child-education-info/ChildEducationInfoList";
+import {
+  useLazyGetSingleEducationInfoDataQuery,
+  usePatchEducationInfoDataMutation,
+  usePostEducationInfoDataMutation,
+} from "@root/services/foster-child/education-records/child-education-info/ChildEducationInfoList";
 
 export const useChildEducationForm = () => {
   const router = useRouter();
   const theme = useTheme();
+  const childEducationInfoFormData = educationInfoFormDataFunction(
+    router?.query?.action === "view"
+  );
 
   const [postEducationInfoDataTrigger, postEducationInfoDataStatus] =
     usePostEducationInfoDataMutation();
 
-    const [patchEducationInfoDataTrigger, patchEducationInfoDataStatus] =
+  const [patchEducationInfoDataTrigger, patchEducationInfoDataStatus] =
     usePatchEducationInfoDataMutation();
 
-    const [getSingleEducationInfoDataTrigger, getSingleEducationInfoDataStatus] =
+  const [getSingleEducationInfoDataTrigger, getSingleEducationInfoDataStatus] =
     useLazyGetSingleEducationInfoDataQuery();
-
-    const childEducationInfoFormData = educationInfoFormDataFunction(
-      router?.query?.action === "view"
-    );
 
   const setEducationInfoDefaultValue = async () => {
     if (!!!router.query?.educationInfoId) return;
     const { data, isError } = await getSingleEducationInfoDataTrigger(
-      {educationInfoId: router?.query?.educationInfoId},
+      { educationInfoId: router?.query?.educationInfoId },
       true
     );
     if (isError) {
@@ -44,12 +50,17 @@ export const useChildEducationForm = () => {
     defaultValues: setEducationInfoDefaultValue,
   });
   const onSubmitHandler = async (data: any) => {
-    console.log(data);
-
-    const apiDataParameter = {
-      body: data,
-      fosterChildId: router.query?.educationInfoId,
+    const formData = {
+      ...data,
+      teacherPhone: Number(data?.teacherPhone),
+      schoolBusPhone: Number(data?.schoolBusPhone),
     };
+    console.log(formData);
+    const apiDataParameter = {
+      body: formData,
+      fosterChildId: router?.query?.fosterChildId,
+    };
+    console.log(apiDataParameter, "apiDataParameter");
 
     if (!!router.query?.educationInfoId) {
       patchEducationInfoForm(data);
@@ -60,9 +71,9 @@ export const useChildEducationForm = () => {
         apiDataParameter
       ).unwrap();
       router.push({
-        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        pathname: `/foster-child/education-records/child-education/child-education-info`,
         query: {
-          gpInfoId: res?.data?.id,
+          educationInfoId: res?.data?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -77,7 +88,6 @@ export const useChildEducationForm = () => {
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
   };
-  
 
   const patchEducationInfoForm = async (data: any) => {
     const pathParams = {
