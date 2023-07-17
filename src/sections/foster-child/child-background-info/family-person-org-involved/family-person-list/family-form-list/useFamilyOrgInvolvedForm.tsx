@@ -22,7 +22,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
 
   const {
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { errors, isSubmitting, ioisDirty },
   } = methods;
 
   const [postFamilyPersonList] = usePostFamilyPersonListMutation();
@@ -51,7 +51,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
     }
   };
 
-  // Patch API of Family Person Liat
+  // Patch API of Family Person List
   const patchFamilyPersonFormHanlder = async (data: any) => {
     const patchData = { body: data, id: router?.query?.family_person_id };
     console.log(patchData);
@@ -63,7 +63,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
         router?.asPath.split("/").pop() === "view" ||
         router?.asPath.split("/").pop() === "edit"
       ) {
-        router.push(
+        router.push( 
           `/foster-child/child-background-info/family-person-org-involved`
         );
       } else {

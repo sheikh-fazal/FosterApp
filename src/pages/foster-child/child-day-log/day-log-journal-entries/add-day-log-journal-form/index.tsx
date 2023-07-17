@@ -1,14 +1,14 @@
 import React from "react";
 //  @mui icons
-import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
+import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import DayLogJournalForm from "@root/sections/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form/DayLogJournalForm";
-import { DayLogjournalentriesListTableData } from "@root/sections/foster-child/child-day-log/day-log-journal-entries";
-
+import { DayLogDocument } from "@root/sections/foster-child/child-day-log/day-log-journal-entries/child-day-log-document/DayLogDocument";
+import { useRouter } from "next/router";
+import { useGetDayLogJournalEntriesByIdQuery } from "@root/services/foster-child/child-day-log/DayLogJournalEntriesAPI";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -27,41 +27,40 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "Day Log/Journal Entries";
 // ----------------------------------------------------------------------
 
-FamilyPersonList.getLayout = function getLayout(page: any) {
+AddDayLogJournal.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}>
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
 };
 
-export default function FamilyPersonList() {
+export default function AddDayLogJournal() {
+  const { query } = useRouter();
+  console.log(query);
+
+  const daylogjournalId = query["daylog_journal_id"];
+  const { data, isLoading, isSuccess, isError } =
+    useGetDayLogJournalEntriesByIdQuery(daylogjournalId, {
+      skip: !daylogjournalId,
+    });
 
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <HorizaontalTabs tabsDataArray={["Day Log Journal", "Uploaded documents"]}>
+        <HorizaontalTabs
+          tabsDataArray={["Day Log Journal", "Uploaded documents"]}
+        >
+          {/*  Day Log Journal Form   */}
+          <DayLogJournalForm defaultValues={data?.[0]} />
 
-          <DayLogJournalForm />
-          <UploadDocuments
-            readOnly={false}
-            searchParam={(searchedText: string) =>
-              console.log("searched Value", searchedText)
-            }
-            tableData={DayLogjournalentriesListTableData}
-            isLoading={false}
-            isFetching={false}
-            isError={false}
-            isSuccess={true}
-            column={["document", "documentType", "date", "personName", "password"]}
-            onPageChange={(page: any) => console.log("parent log", page)}
-          />
-
+          {/*  Upload Document   */}
+          <DayLogDocument />
         </HorizaontalTabs>
-
       </Paper>
     </Page>
   );

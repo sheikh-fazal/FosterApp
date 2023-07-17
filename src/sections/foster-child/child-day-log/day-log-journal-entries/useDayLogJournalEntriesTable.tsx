@@ -1,21 +1,17 @@
-import {
-  useDeleteFamilyPersonListMutation,
-  useGetFamilyPersonListQuery,
-} from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import { enqueueSnackbar } from "notistack";
 import { useTableParams } from "@root/hooks/useTableParams";
+import { useDeleteDayLogJournalEntriesMutation, useGetDayLogJournalEntriesQuery } from "@root/services/foster-child/child-day-log/DayLogJournalEntriesAPI";
 
-export const useFamilyPersonListTable = () => {
-  
+export default function useDayLogJournalEntriesTable() {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
   const { data, isError, isLoading, isSuccess, isFetching } =
-    useGetFamilyPersonListQuery<any>({ params });
+  useGetDayLogJournalEntriesQuery<any>({ params });
 
-  const [deleteList] = useDeleteFamilyPersonListMutation();
+  const [deleteList] = useDeleteDayLogJournalEntriesMutation();
 
-  // DELETE API For Family Person List
+  //   DELETE API For Day Log Journal Entries
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()
@@ -39,6 +35,6 @@ export const useFamilyPersonListTable = () => {
     isFetching,
     listDeleteHandler,
     pageChangeHandler,
-    sortChangeHandler, 
+    sortChangeHandler,
   };
-};
+}
