@@ -168,13 +168,13 @@ const style = {
     display: "flex",
     fontSize: "14px",
     fontWeight: 400,
-    color:
-      theme.palette.mode === "dark" ? theme.palette.common.white : "#343A40",
+    color: theme.palette.primary.main,
   }),
   headingBold: (theme: any) => ({
     fontWeight: 500,
     fontSize: "14px",
     paddingLeft: "2px",
+    color: theme.palette.primary.main,
   }),
   checkboxText: (theme: any) => ({
     fontWeight: 500,
