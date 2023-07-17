@@ -2,31 +2,8 @@ import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Card, Chip } from "@mui/material";
 import { useResultsTable } from "./useResultsTable";
+import { OPTIONS } from ".";
 
-const OPTIONS = [
-
-  {
-    label: "Pause",
-    value: "Pause",
-
-    bgColor: "#D6D870",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Analysis",
-    value: "Analysis",
-
-    bgColor: "#C4EA86",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Stop",
-    value: "Stop",
-
-    bgColor: "#E5726B",
-    textColor: "#1D1D1D",
-  },
-];
 
 const COLUMNS = [
   
@@ -129,34 +106,6 @@ const COLUMNS = [
         return Yup.string().required("Name is required").min(3);
       },
     },
-    // {
-    //   inputType: "multi-select",
-    //   type: "select",
-    //   key: "nextSteps",
-    //   fullWidth:true,
-    //   defaultValue: [],
-    //   label: "Next Steps",
-    //   options: OPTIONS,
-    //   validation: (Yup: any) => {
-    //     return Yup.array()
-    //       .of(
-    //         Yup.object().shape({
-    //           label: Yup.string(),
-    //           value: Yup.string(),
-    //           bgColor: Yup.string(),
-    //           textColor: Yup.string(),
-    //         })
-    //       )
-    //       .test(
-    //         "required",
-    //         "Platform is required.",
-    //         (arr: any) => arr.length > 0
-    //       );
-    //   },
-    //   format: (selectedValues = []) => {
-    //     return <DataChips options={selectedValues} />;
-    //   },
-    // },
     {
       inputType: "select",
       key: "nextSteps",
@@ -164,10 +113,29 @@ const COLUMNS = [
       label: "Next Steps",
       options: OPTIONS,
       validation: (Yup: any) => {
-        return Yup.string().required("User Type is required");
+        return Yup.object().shape({
+          label: Yup.string(),
+          value: Yup.number(),
+          bgColor: Yup.string(),
+          textColor: Yup.string(),
+        });
       },
       format: (selectedUserType: any) => {
-        return selectedUserType && selectedUserType.label;
+        return <Chip
+          sx={{
+            backgroundColor: selectedUserType?.bgColor,
+            color: selectedUserType.textColor,
+            fontSize: "10px !important",
+            p: "5px 10px",
+            maxHeight: "22px",
+  
+            "& .MuiChip-label": {
+              p: 0,
+            },
+          }}
+          // key={value}
+          label={selectedUserType.label}
+        />
       },
     },
 

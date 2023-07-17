@@ -16,21 +16,21 @@ const OPTIONS = [
 
   {
     label: "Market Development Strategy",
-    value: "Market Development Strategy",
+    value: "1",
 
     bgColor: "#C4CE4C",
     textColor: "#1D1D1D",
   },
   {
     label: "Product Development Strategy",
-    value: "Product Development Strategy",
+    value: "2",
 
     bgColor: "#73F2A6",
     textColor: "#1D1D1D",
   },
   {
     label: "Diversification Strategy",
-    value: "Diversification Strategy",
+    value: "3",
 
     bgColor: "#F29973",
     textColor: "#1D1D1D",
@@ -45,12 +45,34 @@ const COLUMNS = [
     label: "Strategy Type",
     options: OPTIONS,
     validation: (Yup: any) => {
-      return Yup.string().required("Strategy Type is required");
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
     format: (selectedUserType: any) => {
-      return selectedUserType && selectedUserType.label;
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
+
   {
     inputType: "file",
     type: "file",

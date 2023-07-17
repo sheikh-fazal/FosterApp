@@ -4,29 +4,25 @@ export const defaultValues = {
   exampleTable: [
     {
       title: "Real Estate",
-      article: [
-        {
-          label: "5 Keys to Success With SEO",
-          value: "5 Keys to Success With SEO",
+      "article": {
+        label: "5 Keys to Success With SEO",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
       publishDate: new Date(),
-      persona: [
-        {
-          label: "Social Worker",
-          value: "Social Worker",
+      "persona": {
+        label: "Social Worker",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-
-      ],
-      vertical: [
-        {
-          label: "Real Estate",
-          value: "Real Estate",
+          textColor: "#1D1D1D",
+      },
+      "vertical": {
+        label: "Real Estate",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
     },
   ],
 }
@@ -36,17 +32,17 @@ export const defaultValues = {
 export const ARTICLEOPTIONS = [
   {
     label: "5 Keys to Success With SEO",
-    value: "5 Keys to Success With SEO",
+    value: "1",
     bgColor: "#C7DDF1",
   },
   {
     label: "Priming your site for search",
-    value: "Priming your site for search",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "How Google uses Google ",
-    value: "How Google uses Google  ",
+    value: "3",
     bgColor: "#C7DDF1",
   },
 
@@ -54,38 +50,38 @@ export const ARTICLEOPTIONS = [
 export const VERTICALOPTIONS = [
   {
     label: "Real Estate",
-    value: "Real Estate",
+    value: "1",
     bgColor: "#C7DDF1",
   },
   {
     label: "Healthcare",
-    value: "Healthcare",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "Retail",
-    value: "Retail",
+    value: "3",
     bgColor: "#C7DDF1",
   },
   {
     label: "Media/Entertainment",
-    value: "Media/Entertainment",
+    value: "4",
     bgColor: "#C7DDF1",
   },]
 export const PERSONAOPTIONS = [
   {
     label: "Social Worker",
-    value: "Social Worker",
+    value: "1",
     bgColor: "#C7DDF1",
   },
   {
     label: "Foster Carer",
-    value: "Foster Carer",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "Local Authority",
-    value: "Local Authority",
+    value: "3",
     bgColor: "#C7DDF1",
   },
 ]

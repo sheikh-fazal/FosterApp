@@ -1,87 +1,13 @@
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import { useFosterAChildThisNewYear } from "./useFosterAChildThisNewYear";
-import dayjs from "dayjs";
-import { Box, Button, Chip, Typography } from "@mui/material";
+import { Box, Chip,} from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
+import { GoalOptions, StatusOptions } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-
-///---------------------------------
-// Constants
-const OPTIONS = [
-  {
-    label: "Oliver Hansen",
-    value: "Oliver Hansen",
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Van Henry",
-    value: "Van Henry",
-
-    bgColor: "blue",
-    textColor: "white",
-  },
-  {
-    label: "April Tucker",
-    value: "April Tucker",
-
-    bgColor: "grey",
-    textColor: "white",
-  },
-  {
-    label: "Ralph Hubbard",
-    value: "Ralph Hubbard",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Omar Alexander",
-    value: "Omar Alexander",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Carlos Abbott",
-    value: "Carlos Abbott",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Miriam Wagner",
-    value: "Miriam Wagner",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Bradley Wilkerson",
-    value: "Bradley Wilkerson",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Virginia Andrews",
-    value: "Virginia Andrews",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-  {
-    label: "Kelly Snyder",
-    value: "Kelly Snyder",
-
-    bgColor: "green",
-    textColor: "white",
-  },
-];
 
 const COLUMNS = [
   {
@@ -124,43 +50,35 @@ const COLUMNS = [
       return Yup.string().required("Field is required")
     },
   },
-  // {
-  //   inputType: "multi-select",
-  //   type: "select",
-  //   key: "status",
-  //   defaultValue: [],
-  //   label: "status",
-  //   options: OPTIONS,
-  //   validation: (Yup: any) => {
-  //     return Yup.array()
-  //       .of(
-  //         Yup.object().shape({
-  //           label: Yup.string(),
-  //           value: Yup.string(),
-  //           bgColor: Yup.string(),
-  //           textColor: Yup.string(),
-  //         })
-  //       )
-  //       .test(
-  //         "required",
-  //         "Platform is required.",
-  //         (arr: any) => arr.length > 0
-  //       );
-  //   },
-  //   format: (selectedValues = []) => {
-  //     return <DataChips options={selectedValues} />;
-  //   },
-  // },
   {
     inputType: "select",
     key: "status",
     label: "status",
-    options: OPTIONS,
+    options: StatusOptions,
     validation: (Yup: any) => {
-      return Yup.string().required("status is required");
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
     format: (selectedUserType: any) => {
-      return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {
@@ -173,43 +91,37 @@ const COLUMNS = [
       return Yup.string().required("Field is required")
     },
   },
-  // {
-  //   inputType: "multi-select",
-  //   type: "select",
-  //   key: "goal",
-  //   defaultValue: [],
-  //   label: "goal",
-  //   options: OPTIONS,
-  //   validation: (Yup: any) => {
-  //     return Yup.array()
-  //       .of(
-  //         Yup.object().shape({
-  //           label: Yup.string(),
-  //           value: Yup.string(),
-  //           bgColor: Yup.string(),
-  //           textColor: Yup.string(),
-  //         })
-  //       )
-  //       .test(
-  //         "required",
-  //         "Platform is required.",
-  //         (arr: any) => arr.length > 0
-  //       );
-  //   },
-  //   format: (selectedValues = []) => {
-  //     return <DataChips options={selectedValues} />;
-  //   },
-  // },
   {
     inputType: "select",
     key: "goal",
     label: "goal",
-    options: OPTIONS,
+    options: GoalOptions,
     validation: (Yup: any) => {
-      return Yup.string().required("goal is required");
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
     format: (selectedUserType: any) => {
-      return selectedUserType && selectedUserType.label;
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {
