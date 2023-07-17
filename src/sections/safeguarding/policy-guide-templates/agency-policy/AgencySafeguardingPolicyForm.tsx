@@ -8,9 +8,15 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import { useAgencySafeguardingPolicy } from "./useAgencySafeguardingPolicy";
 import { formData } from ".";
 
-export default function CarerAddressHistoryForm(props: any) {
-  const { methods, handleSubmit, onSubmit, theme, isSubmitting, router } = useAgencySafeguardingPolicy();
-
+export default function CarerAddressHistoryForm({ action }: any) {
+  const disabled = action === "view" ? true : false;
+  const { methods, handleSubmit,  onSubmit, theme, isSubmitting, router } = useAgencySafeguardingPolicy();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded Image";
+  } else {
+    label = "Upload Image";
+  }
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -28,12 +34,12 @@ export default function CarerAddressHistoryForm(props: any) {
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
-          <RHFUploadFile name="updatePhoto" {...methods} disabled={props.disabled} required />
+          <RHFUploadFile name="updatePhoto" {...methods} disabled={disabled} label={label} required />
         </Grid>
         {formData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
-              <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
+              <form.component disabled={disabled} size="small" {...form.otherOptions}>
                 {form.otherOptions.select
                   ? form.options.map((option: any) => (
                     <option key={option.value} value={option.value}>
@@ -52,7 +58,7 @@ export default function CarerAddressHistoryForm(props: any) {
               display: "flex",
             }}
           >
-            {!props?.disabled && (
+            {!disabled && (
               <LoadingButton sx={{ marginRight: "1rem" }} type="submit" variant="contained" loading={isSubmitting}>
                 Submit
               </LoadingButton>

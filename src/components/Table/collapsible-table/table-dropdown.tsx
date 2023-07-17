@@ -66,7 +66,7 @@ const styles: any = {
     fontWeight: 600,
     fontSize: '14px',
     background: background,
-    "& .MuiSelect-select": {paddingX: "0 !important"},
+    "& .MuiSelect-select": { paddingX: "0 !important" },
     boxShadow: 'none',
     '.MuiOutlinedInput-notchedOutline': { border: 0, },
     '.MuiSelect-outlined': { display: "flex", alignItems: "center", justifyContent: "center", padding: '0px important' },

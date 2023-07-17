@@ -4,7 +4,12 @@ export const defaultValues = {
       dob: new Date(),
       name: "Jon",
       continue: false,
-      "user-type": 1,
+      "user-type": {
+        label: "Oliver Hansen",
+        value: 1,
+        bgColor: "green",
+        textColor: "white",
+      },
       platforms: [
         {
           label: "Oliver Hansen",
@@ -25,7 +30,12 @@ export const defaultValues = {
     {
       dob: new Date(),
       continue: true,
-      "user-type": 2,
+      "user-type": {
+        label: "John Doe",
+        value: 2,
+        bgColor: "green",
+        textColor: "white",
+      },
       platforms: [
         {
           label: "April Tucker",

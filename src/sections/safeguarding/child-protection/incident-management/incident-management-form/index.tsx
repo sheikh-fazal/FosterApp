@@ -126,7 +126,7 @@ export const IncidentManagementFormData = [
     gridLength: 6,
     componentProps: {
       name: "createRole",
-      label: "Create Role",
+      label: "Creator Role",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -146,7 +146,7 @@ export const IncidentManagementFormData = [
     gridLength: 6,
     componentProps: {
       name: "createTime",
-      label: "Create Time",
+      label: "Creation Time",
       sx: { mb: 4 },
     },
     component: RHFTextField,

@@ -7,6 +7,7 @@ export const useTraineeList = () => {
   const [addRow, setAddRow] = useState(sortingData);
   const [anchorEl, setAnchorEl] = useState(null);
   const [editRowId, setEditRowId] = useState("");
+  const [DeleteModal, setDeleteModal] = useState(false);
   const [modalType, setModalType] = useState({
     type: "",
     value: null,
@@ -37,9 +38,8 @@ export const useTraineeList = () => {
     setAddRow([...filteredRows, newObj]);
   };
 
-  const handleDelete = (itemToDelete: any) => {
-    const updatedArray = addRow.filter((item: any) => item !== itemToDelete);
-    setAddRow(updatedArray);
+  const handleDeleteModal = (itemToDelete: any) => {
+    setDeleteModal(!DeleteModal)
   };
 
   return {
@@ -55,6 +55,7 @@ export const useTraineeList = () => {
     handleClose,
     addRowHandler,
     sortingByData,
-    handleDelete,
+    handleDeleteModal,
+    DeleteModal
   };
 };
