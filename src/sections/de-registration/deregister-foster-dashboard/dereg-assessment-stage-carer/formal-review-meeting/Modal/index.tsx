@@ -11,6 +11,7 @@ export const FormalReviewModalMockData = [
             name: "meetingdate",
             label: "Meeting Date",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFDatePicker, 
         md: 6,
@@ -21,6 +22,7 @@ export const FormalReviewModalMockData = [
             name: "meetingTime",
             label: "Meeting Time",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFTimePicker, 
         md: 6,
@@ -75,6 +77,7 @@ export const FormalReviewModalMockData = [
             name: "nextReviewDate",
             label: "Next Review date",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFDatePicker, 
         md: 6,
@@ -85,6 +88,7 @@ export const FormalReviewModalMockData = [
             name: "nextReviewTime",
             label: "Next Review Time",
             fullWidth: true,
+            value: new Date()
         },
         component: RHFTimePicker, 
         md: 6,
