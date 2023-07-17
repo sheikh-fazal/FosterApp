@@ -8,11 +8,11 @@ import { useApprovedDetails } from "./useApprovedDetails";
 
 export default function ApprovedDetails({
   disabled,
+  handleBack,
   onSubmitHandler,
   initialValueProps = defaultValues,
   message,
 }: any) {
-
   const { methods, onSubmit, handleSubmit, isSubmitting } = useApprovedDetails({
     disabled,
     onSubmitHandler,
@@ -42,16 +42,12 @@ export default function ApprovedDetails({
               sx={{ mr: 2 }}
               loading={isSubmitting}
             >
-              Next
+              Submit
             </LoadingButton>
-            <Link
-              href={"/referral/social-worker-request-form"}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
+
+            <Button type="button" variant="contained" onClick={handleBack}>
+              Back
+            </Button>
           </Grid>
         )}
       </Grid>

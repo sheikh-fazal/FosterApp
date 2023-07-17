@@ -16,7 +16,7 @@ export const initialValues = {
   haveYouBeenProvidedInfoAboutMakingComplaint: "",
   anythingElseYouWantToSay: "",
   signature: "",
-  date: "",
+  date: null,
 };
 
 export const formSchema = Yup.object().shape({

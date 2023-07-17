@@ -103,14 +103,14 @@ const ContactDirectory = ({ data, id }: any) => {
     {
       accessorFn: (row: any) => row.country,
       id: "country",
-      cell: (info: any) => <Image src={UkFlag} alt="img" />,
+      cell: (info: any) =>    <Box sx={{ display: "flex", justifyContent: "center" }}><Image src={UkFlag} alt="img" /></Box>,
       header: () => <span>Country</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.colorCode,
       id: "colorCode",
-      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" }} />,
+      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" , margin:"auto" }} />,
       header: () => <span>Color Code</span>,
       isSortable: true,
     },
@@ -140,9 +140,10 @@ const ContactDirectory = ({ data, id }: any) => {
   ];
 
   return (
-    <>
-      <TableContainer id={id}>
+    <Box >
+      <TableContainer id={id} >
         <CustomTable
+        
           data={data}
           rootSX={{ overflowX: "scroll" }}
           columns={columns}
@@ -161,7 +162,7 @@ const ContactDirectory = ({ data, id }: any) => {
       {isDeleteModal && <DeleteModel open={isDeleteModal} handleClose={handleDeleteClose} />}
       {isPhoneModal && <PhoneModal open={isPhoneModal} handleClose={handlePhoneClose} />}
       {isEditModal && <ContactInfoModal open={isEditModal} onClose={handleEditClose} />}
-    </>
+    </Box>
   );
 };
 export default ContactDirectory;
