@@ -1,11 +1,11 @@
-import { 
-  Box, 
+import {
+  Box,
   ThemeProvider,
   Typography,
-  createTheme, 
+  createTheme,
   Grid,
 } from "@mui/material";
-import React from "react"; 
+import React from "react";
 
 const theme = createTheme({
   typography: {
@@ -18,12 +18,16 @@ const theme = createTheme({
 
 const ResignationByFosterCarers = () => {
   return (
-    <div>
+    <>
       <ThemeProvider theme={theme}>
         <Typography variant="body1" sx={{ fontWeight: "700", marginBottom: 3 }}>
           Letter of Resignation for Foster Carer with no children in Placement
         </Typography>
-        <Typography variant="body2" align='right' sx={{ fontWeight: "600", marginBottom: 3 }}>
+        <Typography
+          variant="body2"
+          align="right"
+          sx={{ fontWeight: "600", marginBottom: 3 }}
+        >
           Date: November 15, 2012
         </Typography>
         <Grid container>
@@ -72,7 +76,7 @@ const ResignationByFosterCarers = () => {
           <Typography variant="body2">Your Sincerely,</Typography>
         </Box>
       </ThemeProvider>
-    </div>
+    </>
   );
 };
 

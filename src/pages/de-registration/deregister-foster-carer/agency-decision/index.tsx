@@ -1,9 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import ChildAdditional from "@root/sections/reports/child-reports/child-additional/ChildAdditional";
-import AgencyDecision from "@root/sections/de-registration/final-de-reg/agency-decision/AgencyDecision"
+import AgencyDecision from "@root/sections/de-registration/final-de-reg/agency-decision/AgencyDecision";
 
 const PAGE_TITLE = "De-Registration";
 
@@ -23,7 +22,7 @@ AgencyDecisionLayout.getLayout = function getLayout(page: any) {
         },
         {
           name: "final-de-reg",
-          href: "/final-de-reg",
+          href: "/de-registration/deregister-foster-carer",
         },
         {
           name: "agency-decision",
@@ -40,7 +39,6 @@ AgencyDecisionLayout.getLayout = function getLayout(page: any) {
 export default function AgencyDecisionLayout() {
   return (
     <Page title={PAGE_TITLE}>
-      {/* <ChildAdditional /> */}
       <AgencyDecision />
     </Page>
   );

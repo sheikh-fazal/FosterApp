@@ -1,4 +1,11 @@
-import { Box, Button, CircularProgress, Grid, Skeleton, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Grid,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -29,7 +36,7 @@ const FinalDeRegistration = () => {
     handleViewFormModal,
     viewResignationByFosterCarers,
     setViewResignationByFosterCarers,
-    route
+    route,
   } = useFinalDeRegistration();
 
   return (
@@ -45,7 +52,17 @@ const FinalDeRegistration = () => {
               bgcolor: theme.palette.mode === "light" ? "white" : "silver",
             }}
           >
-            <Grid item container mt={1} direction={"column"} alignItems={"center"} lg={2.3} xs={12} pt={1} sx={{ position: "relative" }}>
+            <Grid
+              item
+              container
+              mt={1}
+              direction={"column"}
+              alignItems={"center"}
+              lg={2.3}
+              xs={12}
+              pt={1}
+              sx={{ position: "relative" }}
+            >
               <Image src={ele?.imgIcon} alt={ele?.text} />
               <InfoOutlinedIcon
                 onClick={() => setOpenIdForInfo(ele?.id)}
@@ -55,7 +72,7 @@ const FinalDeRegistration = () => {
                   fontSize: 18,
                   cursor: "pointer",
                   color: "black",
-                  top: "0 !important"
+                  top: "0 !important",
                 }}
               />
               <DeRegInfoDialogbox
@@ -89,7 +106,14 @@ const FinalDeRegistration = () => {
             >
               <ArrowLeftSharpIcon sx={{ fontSize: 35 }} />
             </Grid>
-            <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} xs={12}>
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={2.3}
+              xs={12}
+            >
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 {Array.isArray(ele.viewForms) ? (
                   <>
@@ -128,18 +152,20 @@ const FinalDeRegistration = () => {
                       >
                         {ele?.viewForms}
                       </Link>
-                    ) : <span
-                      style={{
-                        color: theme.palette.primary.main,
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                      onClick={() => handleViewFormModal(ele?.id)}
-                    >
-                      {ele.viewForms}
-                    </span>}
+                    ) : (
+                      <span
+                        style={{
+                          color: theme.palette.primary.main,
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          textAlign: "center",
+                        }}
+                        onClick={() => handleViewFormModal(ele?.id)}
+                      >
+                        {ele.viewForms}
+                      </span>
+                    )}
                   </>
                 )}
               </Box>
@@ -151,7 +177,16 @@ const FinalDeRegistration = () => {
                 }}
               />
             </Grid>
-            <Grid my={1} container alignItems={"center"} justifyContent={"center"} item lg={3.6} md={6} xs={12}>
+            <Grid
+              my={1}
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={3.6}
+              md={6}
+              xs={12}
+            >
               <RecruitmentStatusDropdown
                 status={ele?.status}
                 component={"EnquiryStage"}
@@ -159,8 +194,19 @@ const FinalDeRegistration = () => {
                 enquiryStageData={deRegisterData}
               />
             </Grid>
-            <Grid container alignItems={"center"} justifyContent={"center"} item lg={2.3} md={6} xs={12}>
-              <Button onClick={() => setFormDialogId(ele?.id)} variant="contained">
+            <Grid
+              container
+              alignItems={"center"}
+              justifyContent={"center"}
+              item
+              lg={2.3}
+              md={6}
+              xs={12}
+            >
+              <Button
+                onClick={() => setFormDialogId(ele?.id)}
+                variant="contained"
+              >
                 Assigned To
               </Button>
               <AssignedFormDialogbox
@@ -174,7 +220,13 @@ const FinalDeRegistration = () => {
           </Grid>
         ))}
       </Grid>
-      <FinalDeRegistrationDialogbox isSuccessfullyModalOpen={isSuccessfullyModalOpen} setIsSuccessfullyModalOpen={setIsSuccessfullyModalOpen} route={route} />
+      {isSuccessfullyModalOpen && (
+        <FinalDeRegistrationDialogbox
+          isSuccessfullyModalOpen={isSuccessfullyModalOpen}
+          setIsSuccessfullyModalOpen={setIsSuccessfullyModalOpen}
+          route={route}
+        />
+      )}
     </>
   );
 };

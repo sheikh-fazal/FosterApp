@@ -1,5 +1,5 @@
+import React from "react";
 import { Box, Button, Grid } from "@mui/material";
-import React, { Fragment } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
 import { useDeregContractsAgreements } from "./useDeregContractsAgreements";

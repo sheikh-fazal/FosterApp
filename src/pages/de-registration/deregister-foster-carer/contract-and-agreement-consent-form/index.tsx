@@ -16,7 +16,7 @@ Consent.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "De-reg Contracts and Agreements ",
-          href: "/",
+          href: "/de-registration/deregister-foster-carer",
         },
         {
           name: "Consent Form",
