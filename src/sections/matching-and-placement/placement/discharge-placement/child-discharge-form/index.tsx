@@ -33,6 +33,7 @@ export const childDischargeData = [
     otherOptions: {
       label: "Child Name",
       name: "childName",
+      fullWidth:true,
       size: "small",
     },
     component: RHFTextField,
@@ -43,6 +44,7 @@ export const childDischargeData = [
       label: "Carer Name",
       name: "carerName",
       size: "small",
+      fullWidth:true,
     },
     component: RHFTextField,
   },
