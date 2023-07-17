@@ -40,6 +40,7 @@ export const formDataFeildData = [
       label: "Termination Date",
       name: "terminationDate",
       fullWidth: true,
+      value: new Date(),
       sx: { mb: 4 },
     },
     component: RHFDatePicker,

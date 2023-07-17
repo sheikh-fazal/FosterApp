@@ -11,6 +11,7 @@ export const FosterCarerAddModalMockData = [
             name: "consultationdate",
             label: "Consultation date",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFDatePicker, 
         md: 6,
@@ -21,6 +22,7 @@ export const FosterCarerAddModalMockData = [
             name: "consultationTime",
             label: "Consultation Time",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFTimePicker, 
         md: 6,
@@ -75,6 +77,7 @@ export const FosterCarerAddModalMockData = [
             name: "nextConsultationDate",
             label: "Next Consultation date",
             fullWidth: true, 
+            value: new Date()
         },
         component: RHFDatePicker, 
         md: 6,
@@ -85,6 +88,7 @@ export const FosterCarerAddModalMockData = [
             name: "nextConsultationTime",
             label: "Next Consultation Time",
             fullWidth: true,
+            value: new Date()
         },
         component: RHFTimePicker, 
         md: 6,
