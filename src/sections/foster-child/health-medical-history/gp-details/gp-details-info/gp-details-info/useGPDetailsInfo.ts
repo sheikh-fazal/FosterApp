@@ -55,7 +55,10 @@ export const useGPDetailsInfo = () => {
   const { handleSubmit } = methods;
 
   const submitGpDetailsInfoForm = async (data: any) => {
-    const apiDataParameter = { body: data };
+    const queryParams = {
+      fosterChildId: router.query.fosterChildId,
+    };
+    const apiDataParameter = { body: data, queryParams };
     if (!!router.query?.gpInfoId) {
       patchGpDetailsInfoForm(data);
       return;
