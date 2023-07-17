@@ -162,7 +162,7 @@ export const NAV_LINKS = [
     id: 21,
     text: "System Admin",
     img: <ManageAccountsOutlinedIcon />,
-    link: "",
+    link: "/system-admin",
   },
   {
     id: 22,

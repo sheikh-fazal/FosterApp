@@ -77,6 +77,7 @@ export const NotificationSettings = [
             multiline: true,
             minRows: 3,
             sx: { mb: 2 },
+            fullWidth:true
         },
         component: RHFTextField,
         md: 12,

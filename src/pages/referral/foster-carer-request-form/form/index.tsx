@@ -1,22 +1,21 @@
 import React from "react";
 import Layout from "@root/layouts";
-import Page from '@root/components/Page';
+import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import HomeIcon from "@mui/icons-material/Home";
 import { PesonalInfoForm } from "@root/sections/referral/foster-carer-request-form/personal-info-form";
 import { ApprovedDetailsForm } from "@root/sections/referral/foster-carer-request-form/approved-details-form";
 import UploadDocTable from "@root/sections/referral/foster-carer-request-form/upload-documents/UploadDocTable";
+import TabsSection from "@root/sections/referral/foster-carer-request-form/tabs";
+import { useRouter } from "next/router";
 
-
-const PAGE_TITLE = "View Carer Request Form";
+const PAGE_TITLE = "Add Carer Request Form";
 
 export const CarerRequestData = [
   "Personal Info",
   "Approved Details",
   "Upload Documents",
 ];
-
-const disabled = "disabled";
 
 // ----------------------------------------------------------------------
 
@@ -45,13 +44,11 @@ ApplicationForm.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ApplicationForm() {
+  const router = useRouter();
+  const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs tabsDataArray={CarerRequestData}>
-        <PesonalInfoForm disabled />
-        <ApprovedDetailsForm disabled />
-        <UploadDocTable disabled={disabled} />
-      </HorizaontalTabs>
+      <TabsSection action={action} id={id} />
     </Page>
   );
 }

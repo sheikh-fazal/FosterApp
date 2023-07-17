@@ -4,8 +4,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from '@root/components/Page';
 import { Box, Card } from '@mui/material';
 import AgencySafeguardingPolicyForm from '@root/sections/safeguarding/policy-guide-templates/agency-policy/AgencySafeguardingPolicyForm';
+import { useRouter } from 'next/router';
 
-const PAGE_TITLE = "View Agency Safeguarding Policy";
+const PAGE_TITLE = "Add Agency Safeguarding Policy";
 
 AddSafeguardingPolicy.getLayout = function getLayout(page: any) {
   return (
@@ -29,10 +30,13 @@ AddSafeguardingPolicy.getLayout = function getLayout(page: any) {
 };
 
 export default function AddSafeguardingPolicy() {
+  const router = useRouter();
+  const { action, id } = router.query;
+
   return (
     <Page title={PAGE_TITLE}>
       <Card sx={{ p: 2 }}>
-        <AgencySafeguardingPolicyForm disabled={true}/>
+        <AgencySafeguardingPolicyForm action={action} id={id} />
       </Card>
     </Page>
   );
