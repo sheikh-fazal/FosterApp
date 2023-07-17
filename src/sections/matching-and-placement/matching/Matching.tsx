@@ -24,6 +24,8 @@ const Matching = () => {
     isOpenHowItWorkModal,
     setIsOpenHowItWorkModal,
     handleGetFosterOptions,
+    buttonLabel,
+    buttonPath,
   } = useMatching();
   return (
     <Grid container sx={styles.box}>
@@ -90,8 +92,13 @@ const Matching = () => {
               >
                 {fosterOptionsArray.map((item: any) => {
                   return (
-                    <MenuItem value={item.value} key={item.id}
-                    onClick={(event) => onClickNameHandleChange(event, item.id)}>
+                    <MenuItem
+                      value={item.value}
+                      key={item.id}
+                      onClick={(event) =>
+                        onClickNameHandleChange(event, item.id)
+                      }
+                    >
                       {item.label}
                     </MenuItem>
                   );
@@ -102,29 +109,13 @@ const Matching = () => {
             {selectValueFosterCarerOrChild && selectValueName && (
               <Grid item xs={12} mt={2.5}>
                 <Box sx={styles.buttonBox}>
-                  {selectValueFosterCarerOrChild === "fosterCarer" ? (
-                    <LoadingButton
-                      sx={{ marginRight: "1rem" }}
-                      variant="contained"
-                      onClick={() =>
-                        router.push(`${router.pathname}/carer-details`)
-                      }
-                    >
-                      View Carer Details
-                    </LoadingButton>
-                  ) : (
-                    <LoadingButton
-                      sx={{ marginRight: "1rem" }}
-                      variant="contained"
-                      onClick={() =>
-                        router.push(
-                          `${router.pathname}/recommondations-result/child-details`
-                        )
-                      }
-                    >
-                      View Child Details
-                    </LoadingButton>
-                  )}
+                  <LoadingButton
+                    sx={{ marginRight: "1rem" }}
+                    variant="contained"
+                    onClick={() => router.push(buttonPath)}
+                  >
+                    {buttonLabel}
+                  </LoadingButton>
                 </Box>
               </Grid>
             )}

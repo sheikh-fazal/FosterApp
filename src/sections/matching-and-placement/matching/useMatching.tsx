@@ -73,7 +73,16 @@ const onClickNameHandleChange = (event: any,id:any) =>{
     setfosterOptionsArray(event)
   }
    
-  
+  // button
+  const buttonLabel =
+  selectValueFosterCarerOrChild === "fosterCarer"
+    ? "View Carer Details"
+    : "View Child Details";
+
+const buttonPath =
+  selectValueFosterCarerOrChild === "fosterCarer"
+    ? `${router.pathname}/carer-details`
+    : `${router.pathname}/recommondations-result/child-details`;
   return {
     methods,
     handleSubmit,
@@ -81,7 +90,7 @@ const onClickNameHandleChange = (event: any,id:any) =>{
     selectValueFosterCarerOrChild, fosterOptionsArray,
     isSecondFieldSelected, selectValueName,
     onSelectCarerChildHandleChange, onSelectNameHandleChange,onClickNameHandleChange,
-    handleGetFosterOptions,isOpenHowItWorkModal, setIsOpenHowItWorkModal
+    handleGetFosterOptions,isOpenHowItWorkModal, setIsOpenHowItWorkModal,buttonLabel,buttonPath
 
   };
 };
