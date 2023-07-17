@@ -4,8 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import MarketAnalysisTable from "@root/sections/marketing/marketing-gap-analysis/MarketAnalysisTable";
 
-const PAGE_TILE = "Market gap Analysis";
-
+const PAGE_TILE = "Market Gap Analysis";
 MarketAnalysis.getLayout = function getLayout(page: any) {
   return (
     <Layout
@@ -14,10 +13,10 @@ MarketAnalysis.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Marketing",
-          href: "/dashboard",
+          href: "/marketing",
         },
         {
-          name: "Marketing",
+          name: "Marketings",
         },
       ]}
       title={PAGE_TILE}

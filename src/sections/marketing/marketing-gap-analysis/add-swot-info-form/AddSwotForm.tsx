@@ -12,6 +12,10 @@ const AddSwotForm = () => {
     <Box sx={styles.cardStyle}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={2}>
+
+          <Grid item md={12} xs={12} >
+            <Typography sx={styles.mainHeading}>SWOT Analysis Info</Typography>
+          </Grid>
           {formFields.map((field, i) => (
             <Grid item md={field.gridLength} xs={12} key={i}>
               <Typography sx={styles.heading}>{field.title}</Typography>
@@ -49,6 +53,11 @@ const styles = {
     p: "20px 22px",
     boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.2)",
     borderRadius: "10px",
+  },
+  mainHeading: {
+    color: (theme: any) => theme.palette.primary.main,
+    fontSize: "20px",
+    fontWeight: "600",
   },
   heading: {
     color: "#898989",

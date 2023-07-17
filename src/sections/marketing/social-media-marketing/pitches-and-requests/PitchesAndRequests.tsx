@@ -5,66 +5,12 @@ import { Box, Button, Chip, Typography } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
 import { usePitchesAndRequests } from "./usePitchesAndRequests";
+import { TypeOfContent } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-///---------------------------------
-// Constants
 
-const TypeOfContent = [
-  {
-    label: "Request",
-    value: "Request",
-    bgColor: "#BEA2FA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "UGC",
-    value: "UGC",
-    bgColor: "#A2C5FA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Team Social Proposal",
-    value: "Team Social Proposal",
-    bgColor: "#8EEB92",
-    textColor: "#1D1D1D",
-  },
-];
-
-const CHANNELS = [
-  {
-    label: "Twitter",
-    value: "Twitter",
-    bgColor: "#D6ADEA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Linkedin",
-    value: "Linkedin",
-    bgColor: "#ADE6EA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Instagram",
-    value: "Instagram",
-    bgColor: "#6BD5ED",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "TikTok",
-    value: "TikTok",
-    bgColor: "#E0C06E",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Facebook",
-    value: "Facebook",
-    bgColor: "#BC6EE0",
-    textColor: "#1D1D1D",
-  },
-];
 
 const COLUMNS = [
   {
@@ -78,30 +24,36 @@ const COLUMNS = [
     },
   },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "typeOfContent",
-    defaultValue: [],
     label: "Type of Content",
     options: TypeOfContent,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {
@@ -141,6 +93,49 @@ const COLUMNS = [
       return Yup.string().required("Name is required").min(3);
     },
   },
+  // {
+  //   inputType: "file",
+  //   type: "file",
+  //   key: "image",
+  //   label: "Image",
+  //   size: { xs: 12, md: 12 },
+  //   // Use this validation for images
+  //   validation: (Yup: any) => {
+  //     return Yup.mixed()
+  //       .test("required", "Image is required", (value: any) => {
+  //         if (!value) return false;
+  //         if (typeof value === "string") return !!value;
+  //         return value.type;
+  //       })
+  //       .test("fileFormat", "Unsupported Format", (value: any) => {
+  //         if (!value) return false;
+  //         if (typeof value === "string") return !!value;
+  //         return value && FILE_FORMATS.includes(value.type);
+  //       })
+  //       .test(
+  //         "fileSize",
+  //         `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
+  //         (value: any) => {
+  //           if (!value) return false;
+  //           if (typeof value === "string") return !!value;
+  //           return value && value.size <= MAX_FILE_SIZE;
+  //         }
+  //       );
+  //   },
+  //   format: (imgUrl: any) => {
+  //     if (!!imgUrl)
+  //       return (
+  //         <MyAvatar
+  //           src={String(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`)}
+  //           sx={{
+  //             mx: "auto",
+  //           }}
+  //         />
+  //       );
+
+  //     return "-";
+  //   },
+  // },
   {
     inputType: "file",
     type: "file",

@@ -56,33 +56,41 @@ const COLUMNS = [
       return Yup.string().required("Name is required").min(3);
     },
   },
+  
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "article",
-    defaultValue: [],
     label: "Article",
     options: ARTICLEOPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
+
 
 
   {
@@ -100,60 +108,74 @@ const COLUMNS = [
       return dayjs(date).format("DD/MM/YYYY");
     },
   },
+ 
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "persona",
-    defaultValue: [],
     label: "Persona",
-    options: PERSONAOPTIONS,
+    options: ARTICLEOPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "vertical",
-    defaultValue: [],
     label: "vertical",
     options: VERTICALOPTIONS,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
+
 
 ];
 

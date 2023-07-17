@@ -40,13 +40,12 @@ export const defaultValues = {
         },
       
       ],
-      vertical: [
-        {
-          label: "Real Estate",
-          value: "Real Estate",
+      "vertical": {
+        label: "Real Estate",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
     },
   ],}
 
@@ -85,17 +84,17 @@ export const defaultValues = {
   export  const VERTICALOPTIONS= [
     {
       label: "Real Estate",
-      value: "Real Estate",
+      value: "1",
       bgColor: "#C7DDF1",
     },
     {
       label: "Healthcare",
-      value: "Healthcare",
+      value: "2",
       bgColor: "#C7DDF1",
     },
     {
       label: "Retail",
-      value: "Retail",
+      value: "3",
       bgColor: "#C7DDF1",
     },
   ]

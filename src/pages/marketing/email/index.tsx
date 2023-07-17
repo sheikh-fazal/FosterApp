@@ -13,10 +13,6 @@ MarketingEmailLayout.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
-        },
-        {
           name: "Merketing",
           href: "/marketing",
         },

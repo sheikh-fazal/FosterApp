@@ -5,72 +5,12 @@ import { Box, Button, Chip, Typography } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
 import { useScheduleContent } from "./useScheduleContent";
+import { CHANNELS, StatusOptions } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-///---------------------------------
-// Constants
 
-const STATUS = [
-  {
-    label: "In Progress",
-    value: "In Progress",
-    bgColor: "#BEA2FA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Live",
-    value: "Live",
-    bgColor: "#89CDFF",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "On Hold",
-    value: "On Hold",
-    bgColor: "#8CFFA5",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Planning",
-    value: "Planning",
-    bgColor: "#94E4D6",
-    textColor: "#1D1D1D",
-  },
-];
-
-const CHANNELS = [
-  {
-    label: "Twitter",
-    value: "Twitter",
-    bgColor: "#D6ADEA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Linkedin",
-    value: "Linkedin",
-    bgColor: "#ADE6EA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Instagram",
-    value: "Instagram",
-    bgColor: "#6BD5ED",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "TikTok",
-    value: "TikTok",
-    bgColor: "#E0C06E",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Facebook",
-    value: "Facebook",
-    bgColor: "#BC6EE0",
-    textColor: "#1D1D1D",
-  },
-];
 
 const COLUMNS = [
   {
@@ -99,30 +39,36 @@ const COLUMNS = [
     },
   },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "status",
-    defaultValue: [],
     label: "Status",
-    options: STATUS,
+    options: StatusOptions,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {

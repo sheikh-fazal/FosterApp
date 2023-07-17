@@ -5,6 +5,7 @@ import { Box, Button, Chip, Typography } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
 import { useResults } from "./useResults";
+import { TYPEOFPOST } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
@@ -12,32 +13,7 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 ///---------------------------------
 // Constants
 
-const TYPEOFPOST = [
-  {
-    label: "Organic",
-    value: "Organic",
-    bgColor: "#BEA2FA",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Paid Campaign",
-    value: "Paid Campaign",
-    bgColor: "#89CDFF",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Evergreen Content",
-    value: "Evergreen Content",
-    bgColor: "#8CFFA5",
-    textColor: "#1D1D1D",
-  },
-  {
-    label: "Launch",
-    value: "Launch",
-    bgColor: "#CDFF8C",
-    textColor: "#1D1D1D",
-  },
-];
+
 
 
 
@@ -68,30 +44,36 @@ const COLUMNS = [
     },
   },
   {
-    inputType: "multi-select",
-    type: "select",
+    inputType: "select",
     key: "TypeOfPost",
-    defaultValue: [],
     label: "Type of Post",
     options: TYPEOFPOST,
     validation: (Yup: any) => {
-      return Yup.array()
-        .of(
-          Yup.object().shape({
-            label: Yup.string(),
-            value: Yup.string(),
-            bgColor: Yup.string(),
-            textColor: Yup.string(),
-          })
-        )
-        .test(
-          "required",
-          "Platform is required.",
-          (arr: any) => arr.length > 0
-        );
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-    format: (selectedValues = []) => {
-      return <DataChips options={selectedValues} />;
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      // return selectedUserType && selectedUserType.label;
+      return <Chip
+        sx={{
+          backgroundColor: selectedUserType.bgColor,
+          color: selectedUserType.textColor,
+          fontSize: "10px !important",
+          p: "5px 10px",
+          maxHeight: "22px",
+
+          "& .MuiChip-label": {
+            p: 0,
+          },
+        }}
+        // key={value}
+        label={selectedUserType.label}
+      />
     },
   },
   {

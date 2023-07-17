@@ -16,7 +16,7 @@ export const defaultValues = {
       campaigns: [
         {
           label: "Drone- Security",
-          value: "Drone- Security",
+          value: "DroneSecurity",
           bgColor: "#93C3EF",
           textColor: "#1D1D1D",
         },
@@ -29,3 +29,62 @@ export const defaultValues = {
     
   ],
 };
+
+
+
+// Constants
+export const PlatformOptions = [
+
+  {
+    label: "Facebook",
+    value: "Facebook",
+
+    bgColor: "#9AC3F4",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Instagram",
+    value: "Instagram",
+
+    bgColor: "#E2C68F",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Twitter",
+    value: "Twitter",
+
+    bgColor: "#BC93EF",
+    textColor: "#1D1D1D",
+  },
+];
+export const CampaignsOptions = [
+
+  {
+    label: "Family-safety-security",
+    value: "Family-safety-security",
+
+    bgColor: "#93C3EF",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Home-safety",
+    value: "Home-safety",
+
+    bgColor: "#93C3EF",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Reinforce-security",
+    value: "Reinforce-security",
+
+    bgColor: "#93C3EF",
+    textColor: "#1D1D1D",
+  },
+  {
+    label: "Peace-of-mind",
+    value: "Peace-of-mind",
+
+    bgColor: "#93C3EF",
+    textColor: "#1D1D1D",
+  },
+];

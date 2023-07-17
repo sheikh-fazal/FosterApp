@@ -2,57 +2,51 @@ export const defaultValues = {
   exampleTable: [
     {
       title: "5 Keys to Success With SEO",
-      status: [
-        {
-          label: "Brainstorming",
-          value: "Brainstorming",
+      "status": {
+        label: "Brainstorming",
+          value: "1",
           bgColor: "#93C3EF",
-        },
-      ],
-      writer: [
-        {
-          label: "Melisa Davis",
-          value: "Melisa Davis",
+          textColor: "#1D1D1D",
+      },
+      "writer": {
+        label: "Melisa Davis",
+          value: "1",
           bgColor: "#FEA6A1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
       publishOn: new Date(),
-      PublishLocation: [
-        {
-          label: "Blog",
-          value: "Blog",
+      "PublishLocation": {
+        label: "Blog",
+          value: "1",
           bgColor: "#BBD6EF",
-        },
-      ],
-      persona: [
-        {
-          label: "Foster Carers",
-          value: "Foster Carers",
+          textColor: "#1D1D1D",
+      },
+      "persona": {
+        label: "Foster Carers",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
+      "contentIdeas": {
+        label: "Foundational piece for real estate SEO",
+          value: "1",
+          bgColor: "#C7DDF1",
+          textColor: "#1D1D1D",
+      },
 
-      contentIdeas: [
-        {
-          label: "Foundational piece for real estate SEO",
-          value: "Foundational piece for real estate SEO",
-          bgColor: "#C7DDF1",
-        },
-      ],
-      vertical: [
-        {
+      "vertical": {
           label: "Real Estate",
-          value: "Real Estate",
+          value: "1",
           bgColor: "#C7DDF1",
-        },
-      ],
-      published: [
-        {
-          label: "2017 Tools Roundup",
-          value: "2017 Tools Roundup",
-          bgColor: "#C7DDF1",
-        },
-      ],
+          textColor: "#1D1D1D",
+      },
+
+      "published": {
+        label: "2017 Tools Roundup",
+        value: "1",
+        bgColor: "#C7DDF1",
+        textColor: "#1D1D1D",
+    },
 
       //   image:
       //     "users/4f7512fb-2916-451b-8240-97f529ded73d/badge/72fd0112-f976-4910-b7a3-e3c8013f4204.jpg",
@@ -66,32 +60,32 @@ export const defaultValues = {
 export const STATUSOPTIONS = [
   {
     label: "Brainstorming",
-    value: "Brainstorming",
+    value: "1",
     bgColor: "#93C3EF",
   },
   {
     label: "Researching",
-    value: "Researching",
+    value: "2",
     bgColor: "#8FE0FA",
   },
   {
     label: "Revising",
-    value: "Revising",
+    value: "3",
     bgColor: "#F8ED8F",
   },
   {
     label: "Drafting",
-    value: "Drafting",
+    value: "4",
     bgColor: "#FCBEBA",
   },
   {
     label: "Publishing",
-    value: "Publishing",
+    value: "5",
     bgColor: "#8FFBAD",
   },
   {
     label: "Promoted",
-    value: "Promoted",
+    value: "6",
     bgColor: "#D6ADEA",
   },
   
@@ -99,22 +93,22 @@ export const STATUSOPTIONS = [
 export const WRITEROPTIONS = [
   {
     label: "Melisa Davis",
-    value: "Melisa Davis",
+    value: "1",
     bgColor: "#FEA6A1",
   },
   {
     label: "Kelly Rippa",
-    value: "Kelly Rippa",
+    value: "2",
     bgColor: "#93C3EF",
   },
   {
     label: "Terry Twotrees",
-    value: "Terry Twotrees",
+    value: "3",
     bgColor: "#F8ED8F",
   },
   {
     label: "Alvin Terrtown",
-    value: "Alvin Terrtown",
+    value: "4",
     bgColor: "#F8ED8F",
   },
   
@@ -122,17 +116,17 @@ export const WRITEROPTIONS = [
 export const PUBLISHOPTIONS = [
   {
     label: "Blog",
-    value: "Blog",
+    value: "1",
     bgColor: "#BBD6EF",
   },
   {
     label: "Guest Blog",
-    value: "Guest Blog",
+    value: "2",
     bgColor: "#F8ED8F",
   },
   {
     label: "Medium",
-    value: "Medium",
+    value: "3",
     bgColor: "#8FE0FA",
   },
 
@@ -140,17 +134,17 @@ export const PUBLISHOPTIONS = [
 export const PERSONAOPTIONS = [
   {
     label: "Foster Carers",
-    value: "Foster Carers",
+    value: "1",
     bgColor: "#C7DDF1",
   },
   {
     label: "Local Authority",
-    value: "Local Authority",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "Social Worker",
-    value: "Social Worker",
+    value: "3",
     bgColor: "#C7DDF1",
   },
  
@@ -158,22 +152,22 @@ export const PERSONAOPTIONS = [
 export const CONTENTIDEASOPTIONS = [
   {
     label: "Foundational Piece for real estate SEO ",
-    value: "Foundational Piece for real estate SEO ",
+    value: "1 ",
     bgColor: "#C7DDF1",
   },
   {
     label: "101 on-page SEO piece",
-    value: "101 on-page SEO piece",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "Case study of Google's SEO",
-    value: "Case study of Google's SEO",
+    value: "3",
     bgColor: "#C7DDF1",
   },
   {
     label: "Media/Entertainment",
-    value: "Media agency piece",
+    value: "4",
     bgColor: "#C7DDF1",
   },
  
@@ -181,22 +175,22 @@ export const CONTENTIDEASOPTIONS = [
 export const VERTICALOPTIONS = [
   {
     label: "Real Estate ",
-    value: "Real Estate ",
+    value: "1",
     bgColor: "#C7DDF1",
   },
   {
     label: "Healthcare",
-    value: "Healthcare",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "Retail",
-    value: "Retail",
+    value: "3",
     bgColor: "#C7DDF1",
   },
   {
     label: "Media/Entertainment",
-    value: "Media/Entertainment",
+    value: "4",
     bgColor: "#C7DDF1",
   },
  
@@ -204,22 +198,22 @@ export const VERTICALOPTIONS = [
 export const PUBLISHEDOPTIONS = [
   {
     label: "How a Standing Desk Can Improve Your Productivity",
-    value: "How a Standing Desk Can Improve Your Productivity ",
+    value: "1 ",
     bgColor: "#C7DDF1",
   },
   {
     label: "2017 Tools Roundup",
-    value: "2017 Tools Roundup",
+    value: "2",
     bgColor: "#C7DDF1",
   },
   {
     label: "SEO for Dummies",
-    value: "SEO for Dummies",
+    value: "3",
     bgColor: "#C7DDF1",
   },
   {
     label: "Failing Up : How i Found Myself Doing This All Over Again",
-    value: "Failing Up : How i Found Myself Doing This All Over Again",
+    value: "4",
     bgColor: "#C7DDF1",
   },
  
