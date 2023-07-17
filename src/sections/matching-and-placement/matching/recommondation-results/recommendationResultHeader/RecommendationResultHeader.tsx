@@ -5,10 +5,12 @@ import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import { matchingRecommendationsData } from ".";
 import { FormProvider } from "@root/components/hook-form";
 import useRecommendationResultHeader from "./useRecommendationResultHeader";
+import { useRouter } from "next/router";
 
 const RecommendationResultHeader = () => {
   const { handleExpand, expand, methods, onSubmit, handleSubmit,queryValue } =
   useRecommendationResultHeader();
+  const route =useRouter();
   return (
     <Card
       sx={{
@@ -49,7 +51,7 @@ const RecommendationResultHeader = () => {
         <Box>
           <Button
             sx={(theme) => styles.button(theme)}
-            onClick={() => {}}
+            onClick={() => route.push(queryValue == "view carer"  ?'/matching/carer-details':'/matching/recommondations-result/child-details')}
             variant="contained"
           >
           {queryValue == "view carer"  ? "View Carer Details":"View Child Details"}
