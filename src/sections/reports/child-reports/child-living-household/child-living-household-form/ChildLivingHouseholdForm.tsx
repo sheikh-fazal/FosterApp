@@ -52,6 +52,7 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
                   name={"familyFostering"}
                   multiline={true}
                   minRows={5}
+                  fullWidth
                   sx={" mb: 4 "}
                 />
               </Grid>

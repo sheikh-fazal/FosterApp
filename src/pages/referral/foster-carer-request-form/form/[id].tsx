@@ -1,12 +1,9 @@
 import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import HomeIcon from "@mui/icons-material/Home";
-import { PesonalInfoForm } from "@root/sections/referral/foster-carer-request-form/personal-info-form";
-import { ApprovedDetailsForm } from "@root/sections/referral/foster-carer-request-form/approved-details-form";
-import UploadDocTable from "@root/sections/referral/foster-carer-request-form/upload-documents/UploadDocTable";
 import { useRouter } from "next/router";
+import TabsSection from "@root/sections/referral/foster-carer-request-form/tabs";
 
 const PAGE_TITLE = "Add Carer Request Form";
 
@@ -47,11 +44,7 @@ export default function ApplicationForm() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-      <HorizaontalTabs tabsDataArray={CarerRequestData}>
-        <PesonalInfoForm action={action} id={id} />
-        <ApprovedDetailsForm action={action} id={id} />
-        <UploadDocTable action={action} id={id} />
-      </HorizaontalTabs>
+      <TabsSection action={action} id={id} />
     </Page>
   );
 }
