@@ -6,14 +6,34 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const useFosterCarerRequest = () => {
+  const [DeleteModal, setDeleteModal] = useState(false);
+  const handleDeleteModal = () => setDeleteModal(!DeleteModal);
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const theme = useTheme()
-  const [cancelDelete, setCancelDelete] = useState(false);
+  const theme = useTheme();
+  const path = "/referral/foster-carer-request-form/form";
+  const [currentTab, setCurrentTab] = useState(0);
+  const handleTabChange = (value: any) => setCurrentTab(value);
+  const handleNextTab = () => setCurrentTab(currentTab + 1);
+  const handlePreviousTab = () => setCurrentTab(currentTab - 1);
 
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
+  const handleAction = (action?: string, id?: any) => {
+    switch (action) {
+      case "add":
+        router.push({ pathname: path });
+        break;
+      case "edit":
+        router.push({ pathname: `${path}/${id}`, query: { action: "edit" } });
+        break;
+      case "view":
+        router.push({ pathname: `${path}/${id}`, query: { action: "view" } });
+        break;
+      case "delete":
+        handleDeleteModal();
+        break;
+      default:
+        break;
+    }
   };
 
   const columns = [
@@ -93,37 +113,18 @@ export const useFosterCarerRequest = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            size="small"
-            type="delete"
-            onClicked={() => setCancelDelete(!cancelDelete)}
-          />
+          {["delete", "edit", "view"].map((action: string) => (
+            <span key={action} style={{ flexShrink: 0 }}>
+              <TableAction
+                type={action}
+                onClicked={() => handleAction(action, info.row.original.id)}
+              />
+            </span>
+          ))}
           <DeleteModel
-            open={cancelDelete}
-            onDeleteClick={handleDelete}
-            handleClose={() => setCancelDelete(!cancelDelete)}
-          />
-          <TableAction
-            size="small"
-            type="edit"
-            onClicked={() =>
-              router.push({
-                pathname:
-                  "/referral/foster-carer-request-form/edit-carer-request-form",
-                query: { action: "edit", id: "" },
-              })
-            }
-          />
-          <TableAction
-            size="small"
-            type="view"
-            onClicked={() =>
-              router.push({
-                pathname:
-                  "/referral/foster-carer-request-form/view-carer-request-form",
-                query: { action: "view", id: "" },
-              })
-            }
+            open={DeleteModal}
+            handleClose={handleDeleteModal}
+            onDeleteClick={handleDeleteModal}
           />
         </Box>
       ),
@@ -138,6 +139,10 @@ export const useFosterCarerRequest = () => {
     SELECT_FILTERS,
     tableData,
     columns,
-    theme
+    theme,
+    handleNextTab,
+    handlePreviousTab,
+    currentTab,
+    handleTabChange,
   };
 };

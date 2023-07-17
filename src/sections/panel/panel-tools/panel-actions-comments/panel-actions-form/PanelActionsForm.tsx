@@ -22,7 +22,7 @@ const PanelActionsForm = (props: any) => {
                   {form.title}
                 </Typography>
                 {form.component ? (
-                  <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
+                  <form.component disabled={props.disabled} size="small" fullWidth {...form.otherOptions}>
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

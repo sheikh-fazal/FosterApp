@@ -18,6 +18,7 @@ import SwapVertIcon from "@mui/icons-material/SwapVert";
 import CustomAccordian from "@root/components/CustomAccordian";
 import TraineeListModal from "./trainee-list-modal/TraineeListModal";
 import { useTraineeList } from "./useTraineeList";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 const TraineeLists = () => {
   const {
@@ -33,7 +34,8 @@ const TraineeLists = () => {
     handleClose,
     addRowHandler,
     sortingByData,
-    handleDelete,
+    DeleteModal,
+    handleDeleteModal,
   } = useTraineeList();
 
   return (
@@ -134,7 +136,7 @@ const TraineeLists = () => {
                 });
               }}
               handleRowDelete={(item: any) => {
-                handleDelete(item);
+                handleDeleteModal(item);
               }}
             />
           </Grid>
@@ -149,6 +151,11 @@ const TraineeLists = () => {
           }}
         />
       </Box>
+      <DeleteModel
+        open={DeleteModal}
+        handleClose={handleDeleteModal}
+        onDeleteClick={handleDeleteModal}
+      />
     </Card>
   );
 };

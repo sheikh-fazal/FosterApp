@@ -6,13 +6,13 @@ import * as Yup from "yup";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 export const SwotAnalysisFormDefaultValues = {
-  reportDate: "",
+  reportDate: null,
   topic: "",
-  duration: "",
+  duration: null,
   competitor: null,
-  date: "",
+  date: null,
   reviewerRole: "",
-  reviewerDate: "",
+  reviewerDate: null,
   strengths: "",
   weaknesses: "",
   opportunities: "",

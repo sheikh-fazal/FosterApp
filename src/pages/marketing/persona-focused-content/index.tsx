@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
+import PersonaFocusedContent from "@root/sections/marketing/persona-focused-content/PersonaFocusedContent";
 
 const PAGE_TITLE = "Editorial";
 
@@ -12,10 +13,6 @@ MarketingPersonaFocusedContentLayout.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
-        },
-        {
           name: "Merketing",
           href: "/marketing",
         },
@@ -32,5 +29,7 @@ MarketingPersonaFocusedContentLayout.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function MarketingPersonaFocusedContentLayout() {
-  return <Page title={PAGE_TITLE}></Page>;
+  return <Page title={PAGE_TITLE}>
+    <PersonaFocusedContent/>
+  </Page>;
 }

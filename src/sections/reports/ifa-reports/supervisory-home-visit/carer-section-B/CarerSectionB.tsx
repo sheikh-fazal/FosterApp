@@ -1,9 +1,10 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { CarerSectionBFromDate } from ".";
 import { useCarerSectionB } from "./useCarerSectionB";
-import Link from "next/link";
+import { LoadingButton } from "@mui/lab";
+
 
 const SuperVisoryCarerSectionB = ({ action, handleBack }: any) => {
   const disabled = action === "view" ? true : false;
@@ -18,6 +19,7 @@ const SuperVisoryCarerSectionB = ({ action, handleBack }: any) => {
             </Typography>
             {form.component && (
               <form.component
+              fullWidth
                 disabled={disabled}
                 size="small"
                 {...form.componentProps}
@@ -28,6 +30,14 @@ const SuperVisoryCarerSectionB = ({ action, handleBack }: any) => {
           </Grid>
         ))}
         <Grid item xs={12}>
+        <Box
+            sx={{ display: "flex", gap: '1rem' }}>
+        <LoadingButton
+              type="submit"
+              variant="contained"
+            >
+              Submit
+            </LoadingButton>
           <Button
             type="button"
             variant="contained"
@@ -41,6 +51,7 @@ const SuperVisoryCarerSectionB = ({ action, handleBack }: any) => {
           >
             back
           </Button>
+          </Box>
         </Grid>
       </Grid>
     </FormProvider>
@@ -53,6 +64,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "black",
+    color: theme.palette.primary.main,
   }),
 };

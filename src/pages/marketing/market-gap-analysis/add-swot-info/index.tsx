@@ -14,7 +14,7 @@ AddSwotInfo.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Marketing",
-          href: "/dashboard",
+          href: "/marketing",
         },
         {
           name: "SWOT Analysis",

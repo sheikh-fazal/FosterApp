@@ -20,6 +20,7 @@ const RiskAssessmentViewForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -71,6 +72,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "black",
+    color: theme.palette.primary.main,
   }),
 };

@@ -14,7 +14,7 @@ Checklist.getLayout = function getLayout(page: any) {
                 {
                     icon: <HomeIcon />,
                     name: "Panel",
-                    href: "/",
+                    href: "/panel",
                 },
                 {
                     name: "Panel Dashboard",

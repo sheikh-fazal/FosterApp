@@ -15,6 +15,10 @@ const Dashboard = () => {
   const { theme } = useDashboard();
   return (
     <Box>
+      <Box gap={4} sx={{display:"flex" , justifyContent:"end"  , margin :"0px 40px 5px 0px"}}>
+      <Typography sx={{fontWeight:500, fontSize:"16px"}}>Home</Typography>
+      <Typography sx={{fontWeight:500, fontSize:"16px"}}>Monitoring Dashboard</Typography>
+    </Box>
       <TrainingTabs tabsDataArray={TABSDATAARRY}>
         {TABSDATAARRY?.map((item) => (
           <Fragment key={item?.index}>

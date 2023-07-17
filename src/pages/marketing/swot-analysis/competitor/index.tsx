@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import SwotCompetitor from "@root/sections/marketing/swot-competitor/SwotCompetitor";
 
-const PAGE_TITLE = "SWOT";
+const PAGE_TITLE = "SWOT Analysis";
 
 MerketingSwotAnalysisLayout.getLayout = function getLayout(page: any) {
   return (
@@ -13,16 +13,11 @@ MerketingSwotAnalysisLayout.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
-          href: "/dashboard",
-        },
-        {
           name: "Merketing",
           href: "/marketing",
         },
         {
-          name: "SWOT Analysis",
-          href: "/marketing/swot-analysis",
+          name: "Market Gap Analysis",
         },
       ]}
       title={PAGE_TITLE}

@@ -32,7 +32,7 @@ const GovtLegislationsTabs = () => {
         ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
-        isDisabled={true}
+        // isDisabled={true}
       >
         <PolicyVerticalAddNew
           onSubmit={handleSubmit}

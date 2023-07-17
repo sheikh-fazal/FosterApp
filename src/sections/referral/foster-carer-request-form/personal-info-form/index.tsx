@@ -27,14 +27,8 @@ export const PersonalInfoFormData = [
     md: 6,
   },
   {
-    id: 2,
-    componentProps: {
-      name: "uploadImage",
-      fullWidth: true,
-      size: "small",
-      sx: { mb: 4 },
-    },
-    component: RHFUploadFile,
+    gridLength: 6,
+    uploadPhoto: true,
     md: 6,
   },
   {
@@ -336,7 +330,7 @@ export const PersonalInfoFormValues = {
   firstName: "",
   middleName: "",
   lastName: "",
-  dob: "",
+  dob: null,
   age: "",
   gender: "",
   ethnicity: "",
@@ -413,7 +407,7 @@ function RHFUploadFile(props: any) {
                 <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
                   {field?.value?.name || "Upload Image"}
                 </div>
-                <FileUploadIcon
+                <FileUploadIcon 
                   sx={{
                     color: "#A3A6BB",
                     marginRight: "10px",

@@ -11,12 +11,6 @@ export const useChildLivingHousehold = () => {
   const handleCloseDeleteModal = () => setOpenDelete(!openDelete);
   const handleAction = (action?: string, id?: string) => {
     switch (action) {
-      case "add":
-        router.push({ pathname: path });
-        break;
-      case "edit":
-        router.push({ pathname: path+"/edit" });
-        break;
       case "view":
         router.push({ pathname: path+"/view" });
         break;
@@ -94,7 +88,7 @@ export const useChildLivingHousehold = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          {["edit", "delete", "view", "print"].map((action: string) => (
+          {[ "delete", "view", "print"].map((action: string) => (
             <span key={action} style={{ flexShrink: 0 }}>
               <TableAction
                 type={action}
