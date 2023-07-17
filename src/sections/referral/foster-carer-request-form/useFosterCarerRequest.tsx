@@ -11,8 +11,11 @@ export const useFosterCarerRequest = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const theme = useTheme();
-  const [cancelDelete, setCancelDelete] = useState(false);
   const path = "/referral/foster-carer-request-form/form";
+  const [currentTab, setCurrentTab] = useState(0);
+  const handleTabChange = (value: any) => setCurrentTab(value);
+  const handleNextTab = () => setCurrentTab(currentTab + 1);
+  const handlePreviousTab = () => setCurrentTab(currentTab - 1);
 
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
@@ -137,5 +140,9 @@ export const useFosterCarerRequest = () => {
     tableData,
     columns,
     theme,
+    handleNextTab,
+    handlePreviousTab,
+    currentTab,
+    handleTabChange,
   };
 };

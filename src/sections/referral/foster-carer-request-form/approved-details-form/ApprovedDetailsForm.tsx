@@ -6,7 +6,7 @@ import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { useApprovedDetailsForm } from "./useApprovedDetailsForm";
 
-const ApprovedDetailsForm = ({ action }: any) => {
+const ApprovedDetailsForm = ({ action, handleBack }: any) => {
   const disabled = action === "view" ? true : false;
 
   const { onSubmit, handleSubmit, ApprovedDetailsFormData, methods, router } =
@@ -17,7 +17,8 @@ const ApprovedDetailsForm = ({ action }: any) => {
       <Grid container columnSpacing={4}>
         {ApprovedDetailsFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component fullWidth
+            <item.component
+              fullWidth
               {...item.componentProps}
               disabled={disabled}
               size={"small"}
@@ -45,21 +46,17 @@ const ApprovedDetailsForm = ({ action }: any) => {
             Submit
           </Button>
 
-          <Link href={""} style={{ textDecoration: "none" }}>
-            <Button
-              onClick={() =>
-                router.push("/referral/foster-carer-request-form/")
-              }
-              type="button"
-              variant="contained"
-              sx={{
-                backgroundColor: "#F6830F",
-                "&:hover": { backgroundColor: "#F6830F" },
-              }}
-            >
-              Back
-            </Button>
-          </Link>
+          <Button
+            type="button"
+            variant="contained"
+            sx={{
+              backgroundColor: "#F6830F",
+              "&:hover": { backgroundColor: "#F6830F" },
+            }}
+            onClick={handleBack}
+          >
+            Back
+          </Button>
         </Grid>
       </Grid>
     </FormProvider>

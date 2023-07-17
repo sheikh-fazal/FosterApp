@@ -43,7 +43,7 @@ const CurrentReferralForm = ({ disabled }: any) => {
           <Grid item xs={12} md={form.gridLength} key={i}>
             {form.head && (
               <Typography
-                sx={{ fontWeight: 600, color: theme.palette.grey[600] }}
+                sx={{ fontWeight: 600, color: theme.palette.primary.main }}
               >
                 {form.head}
               </Typography>

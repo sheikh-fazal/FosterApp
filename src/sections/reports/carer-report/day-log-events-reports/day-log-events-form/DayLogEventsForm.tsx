@@ -59,7 +59,7 @@ const DayLogEventsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                    label={label}
+                    
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'
                     {...methods}
@@ -101,6 +101,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "#212529",
+    color: theme.palette.primary.main,
   }),
 };

@@ -62,7 +62,7 @@ const PersonalInfoForm = ({ disabled, handleNextBtn }: any) => {
         ))}
         <Grid item xs={12}>
           <Button type="submit" variant="contained" sx={{ mr: 2 }}>
-            Next
+            Submit
           </Button>
           <Link
             href="/referral/foster-child-request-form"

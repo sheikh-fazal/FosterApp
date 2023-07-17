@@ -23,9 +23,9 @@ export const drawerWidth = 300;
 //============================================================
 
 const LeftNavbar = (props: any) => {
-  const {
-    user: { firstName, defaultRole, lastName },
-  }: any = useAuth();
+  // const {
+  //   user: { firstName, defaultRole, lastName },
+  // }: any = useAuth();
 
   const theme: any = useTheme();
   const { open, handleDrawer } = props;
@@ -54,7 +54,7 @@ const LeftNavbar = (props: any) => {
             sx={{ ...AVATAR_SIZE, borderRadius: "10px" }}
           />
         </Box>
-        {open && (
+        {/* {open && (
           <Box sx={{ textAlign: "center", mt: 1.5 }}>
             <Typography
               variant="subtitle2"
@@ -69,7 +69,7 @@ const LeftNavbar = (props: any) => {
               {defaultRole ?? "User"}
             </Typography>
           </Box>
-        )}
+        )} */}
 
         {open && (
           <Stack

@@ -1,9 +1,10 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { CarerSectionAFromDate } from ".";
 import { useCarerSectionA } from "./useCarerSectionA";
+import { LoadingButton } from "@mui/lab";
 
 const SuperVisoryCarerSectionA = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
@@ -37,10 +38,10 @@ const SuperVisoryCarerSectionA = ({ action }: any) => {
         ))}
 
         <Grid item xs={12}>
-          <Link
-            href={"/reports/ifa-reports/supervisory-home-visit"}
-            style={{ textDecoration: "none" }}
-          >
+          <Box sx={{ display: "flex", gap: "1rem" }}>
+            <LoadingButton type="submit" variant="contained">
+              Submit
+            </LoadingButton>
             <Button
               type="button"
               variant="contained"
@@ -53,7 +54,7 @@ const SuperVisoryCarerSectionA = ({ action }: any) => {
             >
               back
             </Button>
-          </Link>
+          </Box>
         </Grid>
       </Grid>
     </FormProvider>

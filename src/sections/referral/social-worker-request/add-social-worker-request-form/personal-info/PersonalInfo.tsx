@@ -55,10 +55,10 @@ export default function PersonalInfo({
               sx={{ mr: 2 }}
               loading={isSubmitting}
             >
-              Next
+              Submit
             </LoadingButton>
             <Link
-              href={"/referral/social-worker-request-form"}
+              href={"/referral/social-worker-request/"}
               style={{ textDecoration: "none" }}
             >
               <Button type="button" variant="contained">
