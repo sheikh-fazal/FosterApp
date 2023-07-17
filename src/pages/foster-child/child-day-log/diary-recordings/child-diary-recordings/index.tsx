@@ -2,31 +2,33 @@ import Layout from "@root/layouts";
 import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import EmploymentReferenceOneForm from "@root/sections/carer-info/background-checks/statutory-checks-list/employment-reference-1/EmploymentReferenceOneForm";
+import CarInsuranceForm from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/CarInsuranceForm";
 import { useRouter } from "next/router";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
+
 import {
   useDeleteStatutoryUploadDocumentsMutation,
   usePostStatutoryUploadDocumentsMutation,
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
+import DiaryRecordingsForm from "@root/sections/foster-child/child-day-log/diary-recordings/DiaryRecordingsForm";
 
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "Statutory Check List",
-    href: "/carer-info/background-checks/statutory-checks-list",
+    name: "Diary Recordings List",
+    href: "/foster-child",
   },
   {
-    name: "Employment Reference 1",
+    name: "Child Diary Recordings",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Employment Reference 1";
-EmployementReference1.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Diary Recordings";
+ChildDiaryRecordings.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -38,14 +40,14 @@ EmployementReference1.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function EmployementReference1() {
+export default function ChildDiaryRecordings() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
   const { action, id } = router.query;
+
   if (!action && !id) {
     router.push("/carer-info/background-checks/statutory-checks-list");
   }
-
   const {
     data: documentData,
     isLoading: isDocumentLoading,
@@ -59,8 +61,8 @@ export default function EmployementReference1() {
     },
   });
 
-  //API For Post Documents
-  const [postDocuments]: any = usePostStatutoryUploadDocumentsMutation();
+  //Car Insurance Upload Modal API
+  const [postDocuments] = usePostStatutoryUploadDocumentsMutation();
 
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
@@ -68,9 +70,10 @@ export default function EmployementReference1() {
   const tableData: any = documentData?.data?.as_statutory_checks_list_document;
   const metaData: any = documentData?.data?.meta;
 
+  //Handling POST API
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
-    formData.append("formName", "EMPLOYMENT_REFERENCE_1");
+    formData.append("formName", "CAR_INSURANCE");
     formData.append("recordId", id);
     formData.append("documentType", data.documentType);
     formData.append("documentDate", data.documentDate);
@@ -87,7 +90,6 @@ export default function EmployementReference1() {
     }
   };
 
-  //Handling POST API
   const deleteDocument = async (id: any) => {
     deleteDocumentList(id)
       .unwrap()
@@ -104,10 +106,10 @@ export default function EmployementReference1() {
 
   return (
     <HorizaontalTabs
-      tabsDataArray={["Employment Reference 1", "Upload Documents"]}
+      tabsDataArray={["Child Diary Recording", "Upload Documents"]}
     >
-      <EmploymentReferenceOneForm action={action} id={id} />
-      <UploadDocuments
+      <DiaryRecordingsForm />
+      {/* <UploadDocuments
         readOnly={action === "view" ? true : false}
         tableData={tableData}
         isLoading={isDocumentLoading}
@@ -132,7 +134,7 @@ export default function EmployementReference1() {
         disabled={
           !!id && (action === "add" || action === "edit") ? false : true
         }
-      />
+      /> */}
     </HorizaontalTabs>
   );
 }

@@ -6,26 +6,26 @@ import { defaultValues, formSchema, formatters } from "./index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  usePatchCarInsuranceMutation,
-  usePostCarInsuranceMutation,
-  useLazySingleCarInsuranceListQuery,
-} from "@root/services/carer-info/background-checks/statutory-check-list/car-insurance/carInsuranceApi";
-export const useCarInsuranceForm = (action: any, id: any) => {
+  useLazySingleRecordingListQuery,
+  usePatchRecordingListMutation,
+  usePostDiaryRecordingListMutation,
+} from "@root/services/foster-child/child-day-log/diary-recordings/DiaryRecordingsApi";
+export const useDiaryRecordingsForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
-  const [getCarInsuranceList] = useLazySingleCarInsuranceListQuery();
+  const [getsingleDiaryRecording] = useLazySingleRecordingListQuery();
   //API For Posting Car Insurance Form
-  const [postCarInsuranceDetails] = usePostCarInsuranceMutation();
+  const [postDiaryRecordings] = usePostDiaryRecordingListMutation();
   //API For Patch Car Insurance List
-  const [editCarInsuranceList] = usePatchCarInsuranceMutation();
+  const [editDiaryRecording] = usePatchRecordingListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getCarInsuranceList(id, true);
+      const { data, isError } = await getsingleDiaryRecording(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -60,7 +60,7 @@ export const useCarInsuranceForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postCarInsuranceDetails(data)
+      postDiaryRecordings(data)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -69,8 +69,11 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/car-insurance",
-            query: { action: "edit", id: `${res?.data.id}` },
+              "/foster-child/child-day-log/diary-recordings/child-diary-recordings",
+            query: {
+              action: "edit",
+              id: `${res?.data.id}`,
+            },
           });
         })
         .catch((error: any) => {
@@ -85,14 +88,14 @@ export const useCarInsuranceForm = (action: any, id: any) => {
         id,
         ...data,
       };
-      editCarInsuranceList(formData)
+      editDiaryRecording(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
           router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
+            "/foster-child/child-day-log/diary-recordings/child-diary-recordings"
           );
           setIsFetching(false);
         })

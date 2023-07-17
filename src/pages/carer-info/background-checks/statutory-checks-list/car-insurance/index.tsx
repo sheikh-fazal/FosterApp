@@ -53,7 +53,12 @@ export default function CarInsurance() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useStatutoryUploadDocumentListQuery({ params: params });
+  }: any = useStatutoryUploadDocumentListQuery({
+    params: {
+      recordId: id,
+      params: params,
+    },
+  });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostStatutoryUploadDocumentsMutation();
@@ -64,7 +69,8 @@ export default function CarInsurance() {
   const tableData: any = documentData?.data?.as_statutory_checks_list_document;
   const metaData: any = documentData?.data?.meta;
 
-  const documentUploadHandler = (data: any) => {
+  //Handling POST API
+  const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
     formData.append("formName", "CAR_INSURANCE");
     formData.append("recordId", id);
@@ -72,7 +78,15 @@ export default function CarInsurance() {
     formData.append("documentDate", data.documentDate);
     formData.append("documentPassword", data.password);
     formData.append("file", data.chosenFile);
-    postDocuments(formData);
+    try {
+      await postDocuments(formData).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
 
   const deleteDocument = async (id: any) => {
@@ -114,6 +128,9 @@ export default function CarInsurance() {
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
+        disabled={
+          !!id && (action === "add" || action === "edit") ? false : true
+        }
       />
     </HorizaontalTabs>
   );
