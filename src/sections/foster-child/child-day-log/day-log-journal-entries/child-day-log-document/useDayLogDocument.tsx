@@ -1,38 +1,37 @@
 import dayjs from "dayjs";
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
+import { useState } from "react";
 import {
-  useDeleteFamilyPersonUploadDocumentMutation,
-  useGetFamilyPersonUploadDocumentQuery,
-  usePostFamilyPersonUploadDocumentMutation,
-} from "@root/services/foster-child/child-background-info/family-person-list/UploadDocumentsAPI";
+  useDeleteDayLogJournalUploadDocumentMutation,
+  useGetDayLogJournalUploadDocumentQuery,
+  usePostDayLogJournalUploadDocumentMutation,
+} from "@root/services/foster-child/child-day-log/DayLogJournalDocumentAPI";
 
-export const useFamilyPersonDocument = () => {
+export const useDayLogDocument = () => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState(undefined);
   const [page, setPage] = useState(0);
   console.log(router?.asPath.split("/").pop());
 
-  const childFamilyOrgInfoId = {
-    childFamilyOrgInfoId:
-      router?.query?.family_person_id || "",
+  const childDayLogJournalId = {
+    childDayLogJournalId: router?.query?.daylog_journal_id || "",
     offset: page,
     limit: 10,
     search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
-    useGetFamilyPersonUploadDocumentQuery(childFamilyOrgInfoId, {
+    useGetDayLogJournalUploadDocumentQuery(childDayLogJournalId, {
       refetchOnMountOrArgChange: true,
     });
-  const [postFamilyPersonUploadDocument] =
-    usePostFamilyPersonUploadDocumentMutation();
+  const [postDayLogJournalUploadDocument] =
+    usePostDayLogJournalUploadDocumentMutation();
 
   console.log(data);
 
-  const submitFamilyPersonDocumentData = async (data: any) => {
-    if (!router?.query?.family_person_id) {
+  const submitDayLogJournalDocumentData = async (data: any) => {
+    if (!router?.query?.daylog_journal_id) {
       return enqueueSnackbar("Please Fill the Form First", {
         variant: "error",
       });
@@ -48,11 +47,11 @@ export const useFamilyPersonDocument = () => {
     documentFormData.append("chooseFiles", data.chosenFile);
 
     const apiDataParameter = {
-      childFamilyOrgInfoId: router?.query?.family_person_id,
+      childDayLogJournalId: router?.query?.daylog_journal_id,
       body: documentFormData,
     };
     try {
-      const res: any = await postFamilyPersonUploadDocument(
+      const res: any = await postDayLogJournalUploadDocument(
         apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
@@ -64,7 +63,7 @@ export const useFamilyPersonDocument = () => {
     }
   };
 
-  const [deleteList] = useDeleteFamilyPersonUploadDocumentMutation();
+  const [deleteList] = useDeleteDayLogJournalUploadDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
     console.log(id);
@@ -92,6 +91,6 @@ export const useFamilyPersonDocument = () => {
     setPage,
     setSearchValue,
     listDeleteHandler,
-    submitFamilyPersonDocumentData,
+    submitDayLogJournalDocumentData,
   };
 };

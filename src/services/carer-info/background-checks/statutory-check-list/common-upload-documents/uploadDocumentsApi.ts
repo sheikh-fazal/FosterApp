@@ -6,7 +6,7 @@ export const statutoryUploadDocumentsApi = baseAPI.injectEndpoints({
       query: (search: any) => ({
         url: "assessment-stage-one/statutory-checks-list/uploaded-documents/List",
         method: "GET",
-        params: search,
+        params: search.params,
       }),
       providesTags: ["STATUTORY_LIST_UPLOAD_DOCUMENTS"],
     }),
