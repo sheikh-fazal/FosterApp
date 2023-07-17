@@ -18,20 +18,12 @@ import dayjs from "dayjs";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useUploadDocumentsMutation } from "@root/services/carer-info/personal-info/initial-enquiry/documentsApi";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Initial Enquiry",
-    href: "/carer-info/personal-info/initial-enquiry",
-  },
-];
 
 const PAGE_TITLE = "Initial Enquiry";
 
@@ -45,21 +37,29 @@ export const INITIALENQUIRYDATA = [
 // ----------------------------------------------------------------------
 
 InitialEnquiry.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function InitialEnquiry() {
+  const { makePath } = usePath();
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info",
+      }),
+    },
+    {
+      name: "Initial Enquiry",
+      href: "/carer-info/personal-info/initial-enquiry",
+    },
+  ];
   const formData = new FormData();
 
   const { data, isLoading, isError }: any = useGetInitialInquiryDataQuery({});
@@ -157,5 +157,14 @@ export default function InitialEnquiry() {
         </Box>
       </Page>
     );
-  return <Page title={PAGE_TITLE}>{formEl}</Page>;
+  return (
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      {formEl}
+    </Page>
+  );
 }

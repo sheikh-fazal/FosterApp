@@ -6,45 +6,44 @@ import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
 import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Backup Carer",
-    href: "/carer-info/substitute-cares/backup-carer",
-  },
-];
 
 const PAGE_TITLE = "Backup Carer";
 
 BackupCarer.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function BackupCarer() {
+  const { makePath } = usePath();
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info",
+      }),
+    },
+    {
+      name: "Backup Carer",
+      href: "/carer-info/substitute-cares/backup-carer",
+    },
+  ];
+
   const { data } = useGetSelectedSubstituteCarerQuery({
     limit: "10",
     offset: "0",
     type: "BC",
   });
 
-  const router = useRouter();
   const title = "Backup Carer List";
   const FORMROUTE =
     "/carer-info/substitute-cares/backup-carer/backup-carer-details";
@@ -136,15 +135,22 @@ export default function BackupCarer() {
   };
   console.log(data);
   return (
-    <SubstituteCarerTable
-      columns={columns}
-      tableData={tableData}
-      meta={meta}
-      title={title}
-      searchedText={searchTextHandler}
-      apiStatus={status}
-      onPageChange={pageChangeHandler}
-      route={FORMROUTE}
-    />
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <SubstituteCarerTable
+        columns={columns}
+        tableData={tableData}
+        meta={meta}
+        title={title}
+        searchedText={searchTextHandler}
+        apiStatus={status}
+        onPageChange={pageChangeHandler}
+        route={FORMROUTE}
+      />
+    </>
   );
 }
