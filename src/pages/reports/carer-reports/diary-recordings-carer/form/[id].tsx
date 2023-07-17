@@ -22,7 +22,7 @@ DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"Diary Recordings Reports List"
+          name:"Diary Recordings By Reports List"
         }
       
       ]}

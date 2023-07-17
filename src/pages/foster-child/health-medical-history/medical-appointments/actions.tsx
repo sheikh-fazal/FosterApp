@@ -24,15 +24,18 @@ export default function MedicalAppointments() {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: PAGE_TITLE,
+      name: null,
       href: "",
     },
     {
       name: "Medical Appointments Info ",
-      href: "",
+      href:  {
+        pathname: "/foster-child/health-medical-history/medical-appointments",
+        query: { fosterChildId: fosterChildId },
+      },
     },
     {
-      name: "Medical AppointmentsInfo",
+      name: "Info",
       href: "",
     },
   ];

@@ -25,8 +25,8 @@ const FosterCarerRequestFormTable: React.FC = () => {
         onAdd={() => {
           router.push({
             pathname:
-              "/referral/foster-carer-request-form/add-carer-request-forms",
-            query: { action: "add", id: "" },
+              "/referral/foster-carer-request-form/form",
+            query:{ action: "add",},
           });
         }}
         onChanged={(data: any) => {}}

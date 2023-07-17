@@ -5,12 +5,14 @@ import { Box, Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { enqueueSnackbar } from "notistack";
 
-export default function SchoolDetailInfoTable() {
+export default function SchoolDetailInfoTable(props: any) {
+  const { fosterChildId } = props;
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState<any>("");
   const {
     router,
-    tableHeaderRef,
     isLoading,
     headerChangeHandler,
     family,
@@ -19,31 +21,25 @@ export default function SchoolDetailInfoTable() {
     isSuccess,
     meta,
     pageChangeHandler,
-    sortChangeHandler,
+    postData,
   } = useSchoolDetailInfoTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-      id: "name",
+      accessorFn: (row: any) => row?.schoolName,
+      id: "schoolName",
       cell: (info: any) => info.getValue(),
       header: "School Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.principalName,
+      id: "principalName",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Principal Name",
       isSortable: true,
     },
-    {
-      accessorFn: (row: any) => (row?.livingAtHome ? "Yes" : "No"),
-      id: "livingAtHome",
-      cell: (info: any) => info.getValue(),
-      header: "Action",
-      isSortable: true,
-    },
+
     {
       id: "actions",
       cell: (info: any) => (
@@ -53,8 +49,8 @@ export default function SchoolDetailInfoTable() {
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
               setOpen(true);
+              setId(info.row.original);
             }}
             size="small"
           />
@@ -62,9 +58,15 @@ export default function SchoolDetailInfoTable() {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/edit-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/school-detail-info/edit-school-detail",
+                query: {
+                  action: "edit",
+                  schoolInfoId: info.row.original.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
             }
             size="small"
           />
@@ -72,9 +74,15 @@ export default function SchoolDetailInfoTable() {
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/view-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/school-detail-info/view-school-detail",
+                query: {
+                  action: "view",
+                  schoolInfoId: info.row.original.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
             }
             size="small"
           />
@@ -84,24 +92,40 @@ export default function SchoolDetailInfoTable() {
       isSortable: false,
     },
   ];
+  const onDelete = async (data: any) => {
+    try {
+      const res: any = await postData(data).unwrap();
+      setOpen(false);
+      enqueueSnackbar(res?.message ?? `Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      setOpen(false);
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
 
   return (
     <Card sx={{ p: 2 }}>
       <DeleteModel
         open={open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => {}}
+        onDeleteClick={() => {
+          onDelete(id);
+        }}
       />
       <TableHeader
-        ref={tableHeaderRef}
         disabled={isLoading}
         title="School Detail Info"
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push(
-            "/foster-child/education-records/school-detail-info/add-school-detail"
-          );
+          router.push({
+            pathname:
+              "/foster-child/education-records/school-detail-info/add-school-detail",
+            query: { action: "add", fosterChildId: fosterChildId },
+          });
         }}
         onChanged={headerChangeHandler}
       />
@@ -112,11 +136,10 @@ export default function SchoolDetailInfoTable() {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
-        currentPage={meta?.page}
-        totalPages={meta?.pages}
+        currentPage={meta?.page ?? "1"}
+        totalPages={meta?.pages ?? "1"}
         showSerialNo
         onPageChange={pageChangeHandler}
-        onSortByChange={sortChangeHandler}
       />
     </Card>
   );
