@@ -102,5 +102,6 @@ const styles = {
     fontSize: "16px",
     fontWeight: 600,
     color: theme.palette.primary.main,
+    
   }),
 };
