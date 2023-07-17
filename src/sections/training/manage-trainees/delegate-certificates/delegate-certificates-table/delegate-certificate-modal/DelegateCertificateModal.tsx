@@ -178,7 +178,7 @@ const DelegateCertificateModal = (props: any) => {
             </Document>
           }
         >
-          {({ blob, url, loading, error }) =>
+          {({ blob, url, loading, error }:any) =>
             loading
               ? "Loading document..."
               : blob && (

@@ -29,9 +29,7 @@ const LeftNavbar = (props: any) => {
 
   const theme: any = useTheme();
   const { open, handleDrawer } = props;
-  const AVATAR_SIZE = open
-    ? { width: "75px", height: "75px" }
-    : { width: "55px", height: "55px" };
+  const AVATAR_SIZE = open ? { width: "75px", height: "75px" } : { width: "55px", height: "55px" };
   const screenSizeHandler = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Drawer variant="permanent" open={open}>
@@ -49,23 +47,14 @@ const LeftNavbar = (props: any) => {
           )}
         </DrawerHeader>
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
-          <MyAvatar
-            variant="square"
-            sx={{ ...AVATAR_SIZE, borderRadius: "10px" }}
-          />
+          <MyAvatar variant="square" sx={{ ...AVATAR_SIZE, borderRadius: "10px" }} />
         </Box>
         {open && (
           <Box sx={{ textAlign: "center", mt: 1.5 }}>
-            <Typography
-              variant="subtitle2"
-              sx={{ color: theme.palette.grey[400] }}
-            >
+            <Typography variant="subtitle2" sx={{ color: theme.palette.grey[400] }}>
               {`${firstName ?? "-"} ${lastName ?? "-"}`}
             </Typography>
-            <Typography
-              variant="caption"
-              sx={{ color: theme.palette.primary.main }}
-            >
+            <Typography variant="caption" sx={{ color: theme.palette.primary.main }}>
               {defaultRole ?? "User"}
             </Typography>
           </Box>
