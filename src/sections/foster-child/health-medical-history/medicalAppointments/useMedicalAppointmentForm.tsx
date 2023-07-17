@@ -105,14 +105,11 @@ const useMedicalAppointmentForm = (props: any) => {
         return MedicalAppointmentsInfoListValue;
       }
       const responseData = { ...data?.data?.getMedicalAppointment };
-      const defdata: any = {};
       for (const key in responseData) {
-        console.log(key, "responseData2");
         if (key.includes("Date") || key.includes("date")) {
           responseData[key] = new Date(responseData[key]);
         }
       }
-      console.log(responseData, "responseData");
 
       return responseData;
     } else {
