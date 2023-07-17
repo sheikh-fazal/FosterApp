@@ -1,6 +1,7 @@
 import React from "react";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useFamilyPersonDocument } from "./useFamilyPersonDocument";
+import { SearchSharp } from "@mui/icons-material";
 
 export const FamilyPersonDocument = () => {
   const {
@@ -14,7 +15,7 @@ export const FamilyPersonDocument = () => {
     setSearchValue,
     listDeleteHandler,
     submitFamilyPersonDocumentData,
-  }: any = useFamilyPersonDocument();
+  }: any = useFamilyPersonDocument(); 
 
   console.log(data);
 
@@ -24,6 +25,7 @@ export const FamilyPersonDocument = () => {
         readOnly={router?.asPath.split("/").pop() === "view"}
         searchParam={(data: any) => {
           setSearchValue(data.search);
+          console.log(data, 'search')
         }}
         tableData={data?.data}
         isLoading={isLoading}

@@ -8,7 +8,6 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import useDayLogJournalEntriesTable from "./useDayLogJournalEntriesTable";
 
 export default function DayLogJournalEntriesTable() {
-
   const {
     data,
     headerChangeHandler,
@@ -96,23 +95,21 @@ export default function DayLogJournalEntriesTable() {
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form${info.getValue()}/edit`
+                `/foster-child/child-day-log/day-log-journal-entries/add-day-log-journal-form${info.getValue()}/edit`
               )
             }
           />
           <TableAction
             type="view"
-            // onClicked={() => console.log(info.getValue())}
             onClicked={() =>
               router.push(
-                `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form?action=view${info.getValue()}/view`
+                `/foster-child/child-day-log/day-log-journal-entries/add-day-log-journal-form?action=view${info.getValue()}/view`
               )
             }
           />
           <DeletePrompt
-          onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
           />
-  
         </Box>
       ),
       header: () => <span>Actions</span>,
@@ -126,9 +123,10 @@ export default function DayLogJournalEntriesTable() {
         <TableHeader
           showAddBtn
           title="Day Log/Journal Entries"
+          onChanged={headerChangeHandler}
           onAdd={() => {
             router.push(
-              `/foster-child/child-day-log/day-log-journal-entries/day-log-journal-form`
+              `/foster-child/child-day-log/day-log-journal-entries/add-day-log-journal-form`
             );
           }}
         />

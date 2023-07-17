@@ -16,7 +16,7 @@ export const useFamilyPersonDocument = () => {
 
   const childFamilyOrgInfoId = {
     childFamilyOrgInfoId:
-      router?.query?.family_person_id || "",
+      router?.query?.family_person_id || "", 
     offset: page,
     limit: 10,
     search: searchValue,
