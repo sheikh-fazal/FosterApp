@@ -6,7 +6,7 @@ export const statutoryMedicalListApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: "foster-child/statutory-medical/all",
         method: "GET",
-        params: apiDataParameter.params,
+        params: apiDataParameter.queryParams,
       }),
       providesTags: (result) =>
         !!result?.data?.statutory_medical?.length
@@ -29,7 +29,7 @@ export const statutoryMedicalListApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: "foster-child/statutory-medical",
         method: "POST",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
         body: apiDataParameter?.body,
       }),
       invalidatesTags: ["STATUTORY_MEDICAL_LIST"],
@@ -38,7 +38,7 @@ export const statutoryMedicalListApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/statutory-medical/${apiDataParameter?.pathParams?.id}`,
         method: "PATCH",
-        params: apiDataParameter.params,
+        params: apiDataParameter.queryParams,
         body: apiDataParameter?.body,
       }),
       invalidatesTags: ["STATUTORY_MEDICAL_LIST"],

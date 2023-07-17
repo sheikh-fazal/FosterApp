@@ -38,10 +38,10 @@ export const useStatutoryMedicalTypeInfo = () => {
   const pathParams = {
     id: router.query?.id,
   };
-  const params = {
+  const queryParams = {
     statutoryMedicalType: router.query?.type,
   };
-  const apiDataParameter = { pathParams, params };
+  const apiDataParameter = { pathParams, queryParams };
 
   const setGpDetailsInfoDefaultValue = async () => {
     if (!!!router.query?.id) return;
@@ -62,15 +62,17 @@ export const useStatutoryMedicalTypeInfo = () => {
   const { handleSubmit } = methods;
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
-    const params = {
-      statutoryMedicalType: router.query?.type,
-    };
-
-    const apiDataParameter = { params, body: data };
     if (!!router.query?.id) {
       patchStatutoryMedicalTypeDataForm(data);
       return;
     }
+    const queryParams = {
+      statutoryMedicalType: router.query?.type,
+      ...(router?.query?.fosterChildId && {
+        fosterChildId: router?.query?.fosterChildId,
+      }),
+    };
+    const apiDataParameter = { queryParams, body: data };
     try {
       const res: any = await postStatutoryMedicalTypeDataTrigger(
         apiDataParameter
@@ -98,10 +100,10 @@ export const useStatutoryMedicalTypeInfo = () => {
     const pathParams = {
       id: router.query?.id,
     };
-    const params = {
+    const queryParams = {
       statutoryMedicalType: router.query?.type,
     };
-    const apiDataParameter = { params, body: data, pathParams };
+    const apiDataParameter = { queryParams, body: data, pathParams };
     try {
       const res: any = await patchStatutoryMedicalTypeDataTrigger(
         apiDataParameter

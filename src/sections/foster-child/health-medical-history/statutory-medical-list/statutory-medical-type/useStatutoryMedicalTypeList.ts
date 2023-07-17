@@ -1,7 +1,5 @@
 import { useState } from "react";
-
 import { useRouter } from "next/router";
-
 import {
   useDeleteStatutoryMedicalTypeDataMutation,
   useGetAllStatutoryMedicalListDataQuery,
@@ -58,24 +56,21 @@ export const useStatutoryMedicalTypeList = (props: any) => {
       prepareRecordForDelete
     );
 
-  const params = {
+  const queryParams = {
     search: searchValue,
     statutoryMedicalType: props?.type,
     offset: page,
     limit: STATUTORYMEDICALLISTTYPEPAGELIMIT,
+    ...(router?.query?.fosterChildId && {
+      fosterChildId: router?.query?.fosterChildId,
+    }),
   };
 
-  // const headerHeading: any = {
-  //   EHCP: "EHCP",
-  //   CLA: "CLA MEDICAL",
-  //   Dental: "Dental Check",
-  //   Optician: "Optician Check",
-  // };
   const setHeaderHeading = (type: any) => {
     return headerHeading?.[type];
   };
 
-  const apiDataParameter = { params };
+  const apiDataParameter = { queryParams };
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetAllStatutoryMedicalListDataQuery(apiDataParameter, {
       refetchOnMountOrArgChange: true,

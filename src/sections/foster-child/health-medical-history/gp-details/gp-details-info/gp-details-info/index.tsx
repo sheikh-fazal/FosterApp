@@ -56,12 +56,12 @@ export const gpDetailsInfoFormSchema: any = Yup.object().shape({
   telephone: Yup.string()
     .matches(/^[0-9]*$/, "must be a number")
     .required("Telephone is required")
-    .min(1, "Mininum 1 characters")
+    .min(12, "Mininum 12 characters")
     .max(12, "max is 12"),
   phoneNo: Yup.string()
     .matches(/^[0-9]*$/, "must be a number")
     .required("Mobile phone is required")
-    .min(1, "Mininum 1 characters")
+    .min(12, "Mininum 12 characters")
     .max(12, "max is 12"),
   email: Yup.string()
     .trim()
