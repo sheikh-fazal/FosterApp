@@ -19,6 +19,7 @@ import {
   usePostRemovePermissionsFromUserMutation,
 } from "@root/services/system-admin/systemAdminApi";
 import { data, permissionsArr } from "../permissions";
+import useAuth from "@root/hooks/useAuth";
 
 type Permission = {
   id: string;
@@ -178,9 +179,10 @@ function Row(props: {
 }
 
 function UserRights() {
+  const authData: any = useAuth();
   const { data, isLoading, isError } = useGetUserPermissionsQuery({
-    roleId: "5ea7a98e-1b2f-11ee-9cf8-02752d2cfcf8",
-    userId: "4f7512fb-2916-451b-8240-97f529ded73d",
+    roleId: authData?.user?.defaultRole,
+    userId: authData?.user?.userId,
   });
   const [postAssignPermissionsToUser, { isLoading: assignLoading }] =
     usePostAssignPermissionsToUserMutation();
@@ -212,15 +214,15 @@ function UserRights() {
         //   ...affectedPermissions
         // ])
         postAssignPermissionsToUser({
-          roleId: "5ea7a98e-1b2f-11ee-9cf8-02752d2cfcf8",
-          userId: "4f7512fb-2916-451b-8240-97f529ded73d",
+          roleId: authData?.user?.defaultRole,
+          userId: authData?.user?.userId,
           dto: { permissionIds: affectedPermissions },
         });
       } else {
         // setPermissionIDs(permissionIDs.filter((pID) => !affectedPermissions.includes(pID)));
         postRemovePermissionsFromUser({
-          roleId: "5ea7a98e-1b2f-11ee-9cf8-02752d2cfcf8",
-          userId: "4f7512fb-2916-451b-8240-97f529ded73d",
+          roleId: authData?.user?.defaultRole,
+          userId: authData?.user?.userId,
           dto: { permissionIds: affectedPermissions },
         });
       }

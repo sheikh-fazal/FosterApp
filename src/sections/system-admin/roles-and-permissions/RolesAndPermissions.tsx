@@ -22,6 +22,7 @@ import {
   data,
   permissionsArr,
 } from "../../../sections/system-admin/permissions";
+import useAuth from "@root/hooks/useAuth";
 
 type Permission = {
   id: string;
@@ -181,8 +182,9 @@ function Row(props: {
 }
 
 function RolesAndPermissions() {
+  const authData: any = useAuth();
   const { data, isLoading, isError } = useGetRolePermissionsQuery({
-    roleId: "5ea7a98e-1b2f-11ee-9cf8-02752d2cfcf8",
+    roleId: authData?.user?.defaultRole,
   });
   const [postAssignPermissions, { isLoading: assignLoading }] =
     usePostAssignPermissionsMutation();
