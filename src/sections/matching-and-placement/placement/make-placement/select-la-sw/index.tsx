@@ -1,4 +1,4 @@
-import { RHFRadioGroup, RHFTextField } from "@root/components/hook-form";
+import {  RHFTextField } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
 // Styles
@@ -72,7 +72,7 @@ export const SelectLaSwDataDefaultValues = {
   localAuthorityNumber: "",
   localAuthoritySocialWorker: "",
   localAuthorityDesignatedOfficer: "",
-  otherLAContact:false,
+  otherLAContact:'',
  
 };
 
@@ -81,7 +81,7 @@ export const SelectLaSwDataValidationSchema = Yup.object().shape({
   localAuthorityNumber: Yup.string().trim().required("Field is Required"),
   localAuthoritySocialWorker: Yup.string().trim().required("Field is Required"),
   localAuthorityDesignatedOfficer: Yup.string().trim().required("Field is Required"),
-  otherLAContact: Yup.boolean().required("Field is Required"),
+  otherLAContact: Yup.string().required("Field is Required"),
 });
 
 export { default as SelectLASW } from "./SelectLASW";

@@ -29,7 +29,7 @@ const SelectPlacementType = ({ handleIncreamentStep }: any) => {
           </Grid>
         ))}
     <Grid item xs={12}  ml={2.5} mb={2.5} mt={1.5}>
-     <Button sx={styles.saveBtn} onClick={handleIncreamentStep}>Save and Continue</Button>
+     <Button type="submit" sx={styles.saveBtn} >Save and Continue</Button>
         </Grid>
       </Grid>
     </FormProvider>

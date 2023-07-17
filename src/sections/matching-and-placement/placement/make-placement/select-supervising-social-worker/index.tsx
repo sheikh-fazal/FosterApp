@@ -13,8 +13,12 @@ export const SelectSupervisingSocialWorkerData = [
     //   sx: { mb: 1 },
     },
     options: [
-        { value: "fosterCarer", label: "Foster Carer" },
-        { value: "childCarer", label: "Child Carer" },
+      { id: "1", value: "johnDoe", label: "John Doe" },
+      { id: "2", value: "rutabSohail", label: "Rutab Sohail" },
+      { id: "3", value: "taimorAhmed", label: "Taimor Ahmed" },
+      { id: "4", value: "ahmed", label: "Ahmed" },
+      { id: "5", value: "adil", label: "Adil" },
+      { id: "6", value: "shahzeb", label: "Shahzeb" },
       ],
       component: RHFSelect,
     md: 6,
@@ -30,8 +34,12 @@ export const SelectSupervisingSocialWorkerData = [
     //   sx: { mb: 1 },
     },
     options: [
-        { value: "fosterType", label: "Foster Type" },
-        { value: "fosterType", label: "Foster Type" },
+      { id: "1", value: "gloriaBell", label: "Gloria Bell" },
+      { id: "2", value: "amira", label: "Amira" },
+      { id: "3", value: "awais", label: "Awais" },
+      { id: "4", value: "babar", label: "Babar" },
+      { id: "5", value: "ali", label: "Ali" },
+      { id: "6", value: "david", label: "David" },
       ],
       component: RHFSelect,
     md: 6,
@@ -48,8 +56,12 @@ export const SelectSupervisingSocialWorkerData = [
     //   sx: { mb: 1.5 },
     },
     options: [
-      { value: "fosterType", label: "Foster Type" },
-      { value: "fosterType", label: "Foster Type" },
+      { id: "1", value: "johnDoe", label: "John Doe" },
+      { id: "2", value: "rutabSohail", label: "Rutab Sohail" },
+      { id: "3", value: "taimorAhmed", label: "Taimor Ahmed" },
+      { id: "4", value: "ahmed", label: "Ahmed" },
+      { id: "5", value: "adil", label: "Adil" },
+      { id: "6", value: "shahzeb", label: "Shahzeb" },
     ],
     component: RHFSelect,
     md: 6,
@@ -76,6 +88,7 @@ export const SelectSupervisingSocialWorkerData = [
   },
   
 ];
+
 
 export const SelectSupervisingSocialWorkerDefaultValues = {
   supervisingSocialWorker: "",

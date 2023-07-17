@@ -13,8 +13,9 @@ export const SelectPlacementData = [
     //   sx: { mb: 1 },
     },
     options: [
-        { value: "fosterCarer", label: "Foster Carer" },
-        { value: "childCarer", label: "Child Carer" },
+        { value: "fullTime", label: "Full Time" },
+        { value: "partTime", label: "Part Time" },
+        { value: "contract", label: "Contract" },
       ],
       component: RHFSelect,
     md: 6,
@@ -30,8 +31,10 @@ export const SelectPlacementData = [
     //   sx: { mb: 1 },
     },
     options: [
-        { value: "fosterType", label: "Foster Type" },
-        { value: "fosterType", label: "Foster Type" },
+        { value: "creditCard", label: "Credit Card" },
+        { value: "debitCard", label: "Debit Card" },
+        { value: "payPal", label: "PayPal" },
+        { value: "bankTransfer", label: "Bank Transfer" },
       ],
       component: RHFSelect,
     md: 6,
@@ -74,6 +77,7 @@ export const SelectPlacementData = [
     md: 6,
   },
 ];
+
 
 export const SelectPlacementDefaultValues = {
   placementType: "",
