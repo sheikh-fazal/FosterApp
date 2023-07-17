@@ -9,7 +9,7 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 //component function
 export default function VocationalCourseForm(props: any) {
-  const { disabled, onSubmit, status, onEdit }: any = props;
+  const { disabled, onSubmit, status, onEdit, data }: any = props;
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
@@ -22,7 +22,12 @@ export default function VocationalCourseForm(props: any) {
     onSubmit(data);
     reset();
   };
-
+  useEffect(() => {
+    reset((formValues: any) => ({
+      ...formValues,
+      ...data,
+    }));
+  }, [data]);
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>

@@ -14,7 +14,7 @@ export default function VocationalCourseInfoTable(props: any) {
     searchedText,
     apiStatus,
     onPageChange,
-    route = "/foster-child/education-records/vocational-course-info/details",
+    route,
   } = props;
   const router = useRouter();
   const [open, setOpen] = useState<any>(false);

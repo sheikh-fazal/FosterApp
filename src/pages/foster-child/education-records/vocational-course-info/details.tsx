@@ -6,6 +6,7 @@ import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import VocationalCourseForm from "@root/sections/foster-child/vocational-course-info/vocational-course-form/VocationalCourseForm";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -44,6 +45,9 @@ VocationalCourseInfoForm.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function VocationalCourseInfoForm() {
+  const router = useRouter();
+  const id = router?.query?.fosterChildId;
+
   const formSubmitHandler = (formData: any) => {
     const body = { ...formData, carerType: "BC", status: " " };
     console.log(body);
