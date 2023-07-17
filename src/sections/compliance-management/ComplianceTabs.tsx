@@ -158,7 +158,6 @@ const PDF = ({ data, onClick }: any) => {
     </>
   );
 };
-
 const styles: any = {
   container: {
     display: { xs: "block", md: "flex" },

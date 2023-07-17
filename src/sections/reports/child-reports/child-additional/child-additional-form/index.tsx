@@ -5,12 +5,12 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   nameOfChild: '',
-  childsDOB: '',
+  childsDOB: null,
   supervisingSocialWorker: '',
   createdBy: '',
   nameOfFosterCarer: '',
   signature: '',
-  date: '',
+  date: null,
 };
 
 export const formSchema = Yup.object().shape({
