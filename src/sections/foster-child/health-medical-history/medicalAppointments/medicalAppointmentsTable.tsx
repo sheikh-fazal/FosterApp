@@ -29,13 +29,7 @@ const MedicalAppointmentsTable = (props: any) => {
   const { deleteHander} = useMedicalAppointmentForm({});
   
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
+   
     {
       accessorFn: (row: any) => row.appointmentDate,
       id: "appointmentDate",

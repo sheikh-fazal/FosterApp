@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { formFields } from ".";
 import { FormProvider } from "@root/components/hook-form";
@@ -7,6 +7,7 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const PlacementReviewForm = () => {
   const { methods, handleSubmit, onSubmit } = usePlacementReviewForm();
+  const theme = useTheme()
 
   return (
     <Box sx={{ padding: "5px 30px" }}>
@@ -14,7 +15,6 @@ const PlacementReviewForm = () => {
         <Grid container spacing={2}>
           {formFields.map((field: any, i: number) => (
             <Grid item md={field.gridLength} xs={12} key={i}>
-              <Typography sx={styles.heading}>{field.title}</Typography>
               {field.component ? (
                 <field.component
                   size={"small"}
@@ -30,9 +30,7 @@ const PlacementReviewForm = () => {
                     : null}
                 </field.component>
               ) : (
-                <Typography sx={field?.sx ? field?.sx : styles.heading}>
-                  {field.heading}
-                </Typography>
+                <Typography sx={{...styles.heading,color: theme.palette.primary.main } }>{field.heading}</Typography>
               )}
               {field.requireFileUpload && (
                 <RHFUploadFile name={field.otherOptions.name} {...methods} />

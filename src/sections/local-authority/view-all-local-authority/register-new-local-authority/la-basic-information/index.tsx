@@ -53,7 +53,7 @@ export const laBasicInformationFormData = [
     {
         gridLength: 12,
         title: "Telephone",
-        otherOptions: { name: "telephoneNo", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
+        otherOptions: { name: "telephoneNo", fullWidth: true, type: "number", sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both",  } },
         component: RHFTextField,
     }, 
     {
@@ -71,13 +71,13 @@ export const laBasicInformationFormData = [
     {
         gridLength: 12,
         title: "Local Authority Phone",
-        otherOptions: { name: "localAuthorityPhone", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
+        otherOptions: { name: "localAuthorityPhone", type: "number", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
         component: RHFTextField,
     },
     {
         gridLength: 12,
         title: "Local Authority Email ID",
-        otherOptions: { name: "localAuthorityEmail", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
+        otherOptions: { name: "localAuthorityEmail", type: "email", fullWidth: true, sx: { width: { lg: "58%", md: "100%", xs: "100%", }, clear: "both" } },
         component: RHFTextField,
     },
     {

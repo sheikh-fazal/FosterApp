@@ -12,13 +12,13 @@ export default function AddTrainingSessionAttendees({
   initialValueProps = defaultValues,
   message,
 }: any) {
-
-  const { methods, onSubmit, handleSubmit, isSubmitting } = useAddTrainingSessionAttendees({
-    disabled,
-    onSubmitHandler,
-    initialValueProps,
-    message,
-  });
+  const { methods, onSubmit, handleSubmit, isSubmitting } =
+    useAddTrainingSessionAttendees({
+      disabled,
+      onSubmitHandler,
+      initialValueProps,
+      message,
+    });
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -26,6 +26,7 @@ export default function AddTrainingSessionAttendees({
         {BForm?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
             <item.component
+              fullWidth
               {...item.componentProps}
               disabled={disabled}
               size={"small"}
@@ -35,7 +36,7 @@ export default function AddTrainingSessionAttendees({
           </Grid>
         ))}
         {!disabled && (
-          <Grid item xs={12} sx={{mt:4}}>
+          <Grid item xs={12} sx={{ mt: 4 }}>
             <LoadingButton
               type="submit"
               variant="contained"
