@@ -51,7 +51,12 @@ export default function EmployementReference2() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useStatutoryUploadDocumentListQuery({ params: params });
+  }: any = useStatutoryUploadDocumentListQuery({
+    params: {
+      recordId: id,
+      params: params,
+    },
+  });
 
   //API For Post Documents
   const [postDocuments]: any = usePostStatutoryUploadDocumentsMutation();

@@ -53,7 +53,12 @@ export default function CarInsurance() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useStatutoryUploadDocumentListQuery({ params: params });
+  }: any = useStatutoryUploadDocumentListQuery({
+    params: {
+      recordId: id,
+      params: params,
+    },
+  });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostStatutoryUploadDocumentsMutation();

@@ -51,7 +51,12 @@ export default function Complaints() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useUploadDocumentListQuery({ params: params });
+  }: any = useUploadDocumentListQuery({
+    params: {
+      complaintId: id,
+      params: params,
+    },
+  });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostComplaintDocumentsMutation();

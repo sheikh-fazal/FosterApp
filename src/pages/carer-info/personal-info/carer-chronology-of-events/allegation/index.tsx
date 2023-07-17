@@ -51,7 +51,12 @@ export default function Allegation() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useUploadDocumentListQuery({ params: params });
+  }: any = useUploadDocumentListQuery({
+    params: {
+      allegationId: id,
+      params: params,
+    },
+  });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostAllegationDocumentsMutation();
@@ -95,7 +100,6 @@ export default function Allegation() {
   };
   return (
     <HorizaontalTabs tabsDataArray={["Allegation", "Uploaded Documents"]}>
-
       <AllegationForm action={action} id={id} />
       <UploadDocuments
         readOnly={action === "view" ? true : false}
