@@ -41,6 +41,7 @@ export default function EditPetQuestionnaire() {
       name: "Pet Questionnaire List",
       href: makePath({
         path: "/carer-info/personal-info/pet-questionnaire",
+        skipQueries: ["petId"],
       }),
     },
     {

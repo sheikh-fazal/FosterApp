@@ -1,7 +1,6 @@
 import { Button, Card, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import Link from "next/link";
 import { CarerFamilySupportNetworkFormData, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
 import { useCarerFamilySupportNetworkForm } from "./useCarerFamilySupportNetworkForm";
@@ -32,6 +31,7 @@ export default function CarerFamilySupportNetworkForm({
               <item.component
                 disabled={disabled}
                 {...item.componentProps}
+                fullWidth
                 size={"small"}
               >
                 {item?.componentProps?.select
