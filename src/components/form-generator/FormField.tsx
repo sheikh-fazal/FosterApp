@@ -14,12 +14,12 @@ const FormField: FC<any> = (props) => {
   delete prop.fieldType;
   switch (fieldType) {
     case "TEXT":
-      return <RHFTextField {...prop} />;
+      return <RHFTextField fullWidth {...prop} />;
 
     case "TEXT_MULTILINE":
-      return <RHFTextField multiline rows={4} {...prop} />;
+      return <RHFTextField fullWidth multiline rows={4} {...prop} />;
     case "TEXT_MULTILINE_TWO_LINES":
-      return <RHFTextField multiline rows={2} {...prop} />;
+      return <RHFTextField fullWidth multiline rows={2} {...prop} />;
     case "DATE_PICKER":
       return <RHFDatePicker fullWidth {...prop} />;
 
