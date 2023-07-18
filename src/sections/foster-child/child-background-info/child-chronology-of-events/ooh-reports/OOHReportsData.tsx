@@ -122,7 +122,7 @@ export const defaultValues = {
   callStartTime: null,
   callEndTime: null,
   callDuration: null,
-  emergencyPlacementRequired: 'false',
+  emergencyPlacementRequired: false,
   natureOfCall: null,
   actionTaken: null,
   actionNeeded: null,

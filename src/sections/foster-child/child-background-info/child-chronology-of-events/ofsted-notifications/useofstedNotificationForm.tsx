@@ -5,25 +5,37 @@ import React, { useState } from "react";
 import { defaultValues, formSchema, formatters } from "./ofstedNotificationData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 
+import {
+  useLazyGetChildChronologyOfEventsOfstedNotificationsByIdQuery,
+  usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation,
+  usePostChildChronologyOfEventsOfstedNotificationsMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/OfstedNotificationsAPI";
+
+// useGetChildChronologyOfEventsOfstedNotificationsListQuery,
+//   usePostChildChronologyOfEventsOfstedNotificationsMutation,
+//   usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation,
+//   useGetChildChronologyOfEventsOfstedNotificationsByIdQuery,
+//   useDeleteChildChronologyOfEventsOfstedNotificationsByIdMutation,
 export const useOfstedNotificationForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+
+  const [getOfstedNotificatinData] =
+    useLazyGetChildChronologyOfEventsOfstedNotificationsByIdQuery();
+  const [postOfstedNotificationData] = usePostChildChronologyOfEventsOfstedNotificationsMutation(
+    {}
+  );
+  const [editOfstedNotificationList] =
+    usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getOfstedNotificatinData({ id });
+      console.log("🚀 ~ file: useofstedNotificationForm.tsx:38 ~ getDefaultValue ~ data:", data)
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -55,7 +67,9 @@ export const useOfstedNotificationForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postOfstedNotificationData({
+        addOfstedNotificationsRequestDto: { ...data, fosterChildId, status: "Pending" },
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -63,8 +77,7 @@ export const useOfstedNotificationForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
@@ -80,7 +93,7 @@ export const useOfstedNotificationForm = () => {
         id,
         addDayLogRequestDto: { ...data },
       };
-      editDayLogList(formData)
+      editOfstedNotificationList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
@@ -111,6 +124,6 @@ export const useOfstedNotificationForm = () => {
     isSubmitting,
     action,
     id,
-    fosterChildId
+    fosterChildId,
   };
 };

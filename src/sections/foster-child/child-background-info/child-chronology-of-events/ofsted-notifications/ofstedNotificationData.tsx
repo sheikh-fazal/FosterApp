@@ -137,8 +137,8 @@ export const ofstedNotificationFormFields = [
     id: 12,
     gridLength: 6,
     otherOptions: {
-      name: "gpCalled",
-      label: "Was the GP Called",
+      name: "emergencyServicesCalled",
+      label: "Emergency",
       fullWidth: true,
       select: true,
     },
@@ -347,7 +347,7 @@ export const ofstedNotificationFormFields = [
     id: 32,
     gridLength: 12,
     otherOptions: {
-      name: "actionsToBeTaken",
+      name: "actionToBeTaken",
       label: "Actions to be taken to Prevent further Occurence",
       fullWidth: true,
       multiline: true,
@@ -356,7 +356,7 @@ export const ofstedNotificationFormFields = [
     component: RHFTextField,
   },
   {
-    id: 33,
+    id: 83,
     gridLength: 12,
     otherOptions: {
       name: "additionalInformation",
@@ -405,7 +405,7 @@ export const ofstedNotificationFormFields = [
 ];
 export const defaultValues = {
   dateOfIncident: null,
-  location: null,
+  location: "",
   reasonForNotification: null,
   causeOfDeath: null,
   dateOfDeath: null,
@@ -435,7 +435,7 @@ export const defaultValues = {
   trustPersonNotifiedDate: null,
   trustPersonNotified: false,
   outcomeOfIncident: null,
-  actionsToBeTaken: null,
+  actionToBeTaken: null,
   additionalInformation: null,
   detailsOfChildren: null,
   placingAuthorities: null,
@@ -458,6 +458,6 @@ export const formSchema = Yup.object().shape({
   emergencyServicesCalledDate: Yup.date().required("Required"),
   serviceName: Yup.string().required("Required"),
   outcomeOfIncident: Yup.string().required("Required"),
-  actionsToBeTaken: Yup.string().required("Required"),
+  actionToBeTaken: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),
 });

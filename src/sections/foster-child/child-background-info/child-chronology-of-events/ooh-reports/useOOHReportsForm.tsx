@@ -14,10 +14,6 @@ import {
 export const useOohReportsForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
-  console.log(
-    "🚀 ~ file: useOOHReportsForm.tsx:13 ~ useOohReportsForm ~ fosterChildId:",
-    fosterChildId
-  );
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -59,7 +55,7 @@ export const useOohReportsForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postOohReportsData({ addOohReportsRequestDto: { ...data, fosterChildId: '578786e3-1850-40cb-ac3e-5e7fa55cc59c', status: "Pending" } })
+      postOohReportsData({ addOohReportsRequestDto: { ...data, fosterChildId, status: "Pending" } })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
