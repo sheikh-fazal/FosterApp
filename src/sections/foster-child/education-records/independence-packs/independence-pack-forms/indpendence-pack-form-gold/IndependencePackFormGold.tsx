@@ -43,6 +43,7 @@ export default function IndependencePackFormGold(props: any) {
               size="small"
               name="Name"
               label="Name"
+              fullWidth
             />
             <Box sx={{ mt: 4 }}>
               <RHFDatePicker
