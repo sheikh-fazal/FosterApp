@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Layout from "@root/layouts";
-import Page from "@root/components/page";
+import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import AgencyDecisionForm from "@root/sections/de-registration/final-de-reg/agency-decision/agency-decision-form/AgencyDecisionForm";

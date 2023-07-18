@@ -13,9 +13,9 @@ const CarerRegisterForm = ({ action }: any) => {
     useCarerRegisterForm();
   let label: any;
   if (action === "view") {
-    label = "Uploaded  Meeting Record";
+    label = "Uploaded Meeting Record";
   } else {
-    label = "Upload  Meeting Record";
+    label = "Upload Meeting Record";
   }
   return (
     <Card sx={{ p: 2 }}>

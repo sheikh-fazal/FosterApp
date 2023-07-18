@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalTypeInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/statutory-medical-type-info/statutory-medical-type-info-tabs/StatutoryMedicalTypeInfoTabs";
-import { useRouter } from "next/router";
+import { NextRouter, useRouter } from "next/router";
 import { headerHeading } from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
