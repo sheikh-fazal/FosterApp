@@ -6,7 +6,7 @@ export const initialValues = {
   localAuthorityNumber: "",
   requestedPerson: "",
   role: "",
-  date: "",
+  date: null,
   dataType: "",
 };
 export const formSchema = Yup.object().shape({
@@ -19,8 +19,8 @@ export const formSchema = Yup.object().shape({
 export const SecureDataExchange = [
   {
     gridLength: 6,
-    title: "Local Authority Number",
     otherOptions: {
+      label: "Local Authority Number",
       size: "small",
       name: "localAuthorityNumber",
       fullWidth: true,
@@ -30,8 +30,8 @@ export const SecureDataExchange = [
   },
   {
     gridLength: 6,
-    title: "Requested By (IFA Requested Person)",
     otherOptions: {
+      label: "Requested By (IFA Requested Person)",
       size: "small",
       name: "requestedPerson",
       fullWidth: true,
@@ -41,8 +41,8 @@ export const SecureDataExchange = [
   },
   {
     gridLength: 6,
-    title: "Role",
     otherOptions: {
+      label: "Role",
       size: "small",
       name: "role",
       fullWidth: true,
@@ -52,8 +52,8 @@ export const SecureDataExchange = [
   },
   {
     gridLength: 6,
-    title: "Date",
     otherOptions: {
+      label: "Date",
       name: "date",
       size: "small",
       fullWidth: true,
@@ -62,8 +62,8 @@ export const SecureDataExchange = [
   },
   {
     gridLength: 6,
-    title: "Data Type",
     otherOptions: {
+      label: "Data Type",
       size: "small",
       name: "dataType",
       fullWidth: true,
@@ -77,8 +77,8 @@ export const SecureDataExchange = [
   },
   {
     gridLength: 12,
-    title: "Other Details",
     otherOptions: {
+      label: "Other Details",
       name: "otherDetails",
       fullWidth: true,
       multiline: true,

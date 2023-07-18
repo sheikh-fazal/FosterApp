@@ -46,7 +46,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
           {wishesData?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
-                <form.component size="small" {...form.componentProps}>
+                <form.component size="small" fullWidth {...form.componentProps}>
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "10px" }}
                   >

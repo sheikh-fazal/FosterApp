@@ -155,7 +155,7 @@ export const wishesData = [
 
 export const wishesDataDataValues = {
   ChildsName: "",
-  dateCompleted: "",
+  dateCompleted: null,
   address: "",
   adoptive: "",
   mosque: "",

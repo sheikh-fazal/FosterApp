@@ -140,7 +140,7 @@ const COLUMNS = [
   {
     inputType: "file",
     type: "file",
-    key: "imageAssets",
+    key: "image",
     label: "Image Assets",
     size: { xs: 12, md: 12 },
     // Use this validation for images
