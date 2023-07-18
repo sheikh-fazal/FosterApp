@@ -115,12 +115,18 @@ export default function ReactHookForm() {
             <RHFTextField name="email" label="Email address" />
             <RHFTextField name="age" label="Age" type="number" />
 
-            <Stack spacing={{ xs: 2, sm: 3 }} direction={{ xs: "column", sm: "row" }}>
+            <Stack
+              spacing={{ xs: 2, sm: 3 }}
+              direction={{ xs: "column", sm: "row" }}
+            >
               <RHFDatePicker name="startDate" label="Start Date" />
               <RHFDatePicker name="endDate" label="End Date" />
             </Stack>
 
-            <Stack spacing={{ xs: 2, sm: 3 }} direction={{ xs: "column", sm: "row" }}>
+            <Stack
+              spacing={{ xs: 2, sm: 3 }}
+              direction={{ xs: "column", sm: "row" }}
+            >
               <RHFTimePicker name="startTime" label="Start Time" />
               <RHFTimePicker name="endTime" label="End Time" />
             </Stack>
@@ -138,7 +144,6 @@ export default function ReactHookForm() {
               type={showPassword ? "text" : "password"}
               InputProps={passwordEndAdornment}
             />
-
             <RHFSelect name="category" label="Category">
               {CATEGORY_OPTION.map((category) => (
                 <optgroup key={category.group} label={category.group}>
@@ -169,9 +174,14 @@ export default function ReactHookForm() {
                 </Button>
 
                 <div>
-                  {photo?.name && <Typography variant="subtitle2">{photo.name}</Typography>}
+                  {photo?.name && (
+                    <Typography variant="subtitle2">{photo.name}</Typography>
+                  )}
                   {photo?.size && (
-                    <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "text.secondary" }}
+                    >
                       {fData(photo.size)}
                     </Typography>
                   )}

@@ -28,7 +28,7 @@ export const BankAccountDetailsTable = (props: any) => {
   useEffect(() => {
     // close modal upon successful deletion otherwise leave it open
     deletingStatus?.isSuccess && setOpenDeleteModal(false);
-  }, []);
+  }, [deletingStatus]);
   //-------------------------------------Table Column--------------------------------------
   const columns = [
     {

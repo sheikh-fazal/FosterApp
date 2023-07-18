@@ -5,12 +5,16 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
+import dayjs from "dayjs";
+import useHospitalizationTable from "./useHospitalizationTable";
+import useHospitalizationForm from "./useHospitalizationForm";
 
 const activepath =
   "/foster-child/health-medical-history/hospitalisation/actions";
 
-const HospitalizationTable = () => {
+const HospitalizationTable = (props: any) => {
+  const { fosterChildId, hospitalizationId } = props;
+  const { deleteHander } = useHospitalizationForm({});
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -27,16 +31,16 @@ const HospitalizationTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.AdmissionDate,
+      accessorFn: (row: any) => row.admissionDate,
       id: "AdmissionDate",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: () => <span>Admission Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.DischargeDate,
+      accessorFn: (row: any) => row.dischargeDate,
       id: "DischargeDate",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: () => <span>Discharge Date</span>,
       isSortable: true,
     },
@@ -46,7 +50,9 @@ const HospitalizationTable = () => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -54,7 +60,11 @@ const HospitalizationTable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    hospitalizationId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -64,7 +74,11 @@ const HospitalizationTable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    hospitalizationId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -75,6 +89,14 @@ const HospitalizationTable = () => {
       isSortable: false,
     },
   ];
+  const {
+    hospitalizationdata,
+    hospitalizationIserror,
+    hospitalizationisLoading,
+    hospitalizationisFetching,
+    hospitalizationisSuccess,
+    pageChangeHandler,
+  } = useHospitalizationTable();
   return (
     <Box>
       <Grid container>
@@ -91,23 +113,23 @@ const HospitalizationTable = () => {
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={hospitalizationdata?.data?.cc_hospitalisation_info ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={hospitalizationisLoading}
+                isFetching={hospitalizationisFetching}
+                isError={hospitalizationIserror}
+                isSuccess={hospitalizationisSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
+                totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
+                currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>

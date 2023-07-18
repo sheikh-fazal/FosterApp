@@ -1,12 +1,12 @@
+import dayjs from "dayjs";
+import { useState } from "react";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import {
   useDeleteFamilyPersonUploadDocumentMutation,
   useGetFamilyPersonUploadDocumentQuery,
   usePostFamilyPersonUploadDocumentMutation,
 } from "@root/services/foster-child/child-background-info/family-person-list/UploadDocumentsAPI";
-import { enqueueSnackbar } from "notistack";
-import dayjs from "dayjs";
-import { useState } from "react";
 
 export const useFamilyPersonDocument = () => {
   const router = useRouter();
@@ -16,14 +16,16 @@ export const useFamilyPersonDocument = () => {
 
   const childFamilyOrgInfoId = {
     childFamilyOrgInfoId:
-      router?.query?.family_person_id || "f305d230-f26b-4710-b291-7f0ed177e0ed",
+      router?.query?.family_person_id || "",
     offset: page,
     limit: 10,
     search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
-    useGetFamilyPersonUploadDocumentQuery(childFamilyOrgInfoId);
+    useGetFamilyPersonUploadDocumentQuery(childFamilyOrgInfoId, {
+      refetchOnMountOrArgChange: true,
+    });
   const [postFamilyPersonUploadDocument] =
     usePostFamilyPersonUploadDocumentMutation();
 
