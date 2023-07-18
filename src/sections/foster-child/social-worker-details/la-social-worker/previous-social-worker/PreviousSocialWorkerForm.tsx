@@ -52,8 +52,8 @@ export default function PreviousSocialWorkerForm(props: any) {
               </item.component>
             </Grid>
           ))}
-          {!disabled && (
-            <Grid item xs={12}>
+          <Grid item xs={12}>
+            {!disabled && (
               <LoadingButton
                 type="submit"
                 variant="contained"
@@ -63,16 +63,23 @@ export default function PreviousSocialWorkerForm(props: any) {
               >
                 {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
               </LoadingButton>
-              <Link
-                href={`/foster-child/social-worker-details/la-social-worker?fosterChildId=${router?.query?.fosterChildId}`}
-                style={{ textDecoration: "none" }}
+            )}
+            <Link
+              href={`/foster-child/social-worker-details/la-social-worker?fosterChildId=${router?.query?.fosterChildId}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Button
+                type="button"
+                sx={{
+                  bgcolor: theme.palette.orange.main,
+                  "&:hover": { bgcolor: theme.palette.orange.main },
+                }}
+                variant="contained"
               >
-                <Button type="button" variant="contained">
-                  Back
-                </Button>
-              </Link>
-            </Grid>
-          )}
+                Back
+              </Button>
+            </Link>
+          </Grid>
         </Grid>
       </Card>
     </FormProvider>
