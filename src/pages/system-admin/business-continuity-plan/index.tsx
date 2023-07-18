@@ -14,12 +14,12 @@ const BREADCRUMBS = [
     href: "/system-admin",
   },
   {
-    name: "Business Continuity Plan",
+    name: "Business Continuity Plan / Disaster recovery - BCP / DR",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Business Continuity Plan";
+const PAGE_TITLE = "System Administration";
 BusinessContinuity.getLayout = function getLayout(page: any) {
   return (
     <Layout

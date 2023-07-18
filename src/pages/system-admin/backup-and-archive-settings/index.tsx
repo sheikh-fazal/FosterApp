@@ -1,7 +1,6 @@
 import { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import { Card } from "@mui/material";
 import Page from "@root/components/Page";
 import ArchiveSettings from "@root/sections/system-admin/backup-and-archive-settings/ArchiveSettings";
 
@@ -19,7 +18,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Backup And Archive Settings";
+const PAGE_TITLE = "System Administration";
 BackupAndArchiveSettings.getLayout = function getLayout(page: any) {
   return (
     <Layout
