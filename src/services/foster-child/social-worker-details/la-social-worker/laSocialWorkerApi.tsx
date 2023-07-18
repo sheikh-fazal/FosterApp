@@ -31,7 +31,10 @@ export const contactApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
-    deleteActiveSocialWorkerById: builder.mutation<null, void>({
+    getActiveSocialWorkerById: builder.query({
+      query: (id) => `/school-info/${id}`,
+    }),
+    deleteActiveSocialWorkerById: builder.mutation({
       query: (data: any) => {
         const { id } = data;
         return {
@@ -49,11 +52,36 @@ export const contactApi = baseAPI.injectEndpoints({
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
-    getActiveSocialWorkerById: builder.query({
-      query: (id) => `/school-info/${id}`,
+    postPreviousSocialWorkerApi: builder.mutation({
+      query: ({ body, fosterChildId }: any) => ({
+        url: `school-info/${fosterChildId}`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    putPreviousSocialWorkerById: builder.mutation({
+      query: ({ body, schoolInfoId }: any) => {
+        return {
+          url: `/school-info/${schoolInfoId}`,
+          method: "PATCH",
+          body,
+        };
+      },
+      invalidatesTags: [TAG],
     }),
     getPreviousSocialWorkerById: builder.query({
       query: (id) => `/school-info/${id}`,
+    }),
+    deletePreviousSocialWorkerById: builder.mutation({
+      query: (data: any) => {
+        const { id } = data;
+        return {
+          url: `/school-info/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [TAG],
     }),
   }),
 });
@@ -62,8 +90,11 @@ export const {
   useGetActiveSocialWorkerTableApiQuery,
   usePostActiveSocialWorkerApiMutation,
   usePutActiveSocialWorkerByIdMutation,
+  useGetActiveSocialWorkerByIdQuery,
   useDeleteActiveSocialWorkerByIdMutation,
   useGetPreviousSocialWorkerTableApiQuery,
-  useGetActiveSocialWorkerByIdQuery,
+  usePostPreviousSocialWorkerApiMutation,
+  usePutPreviousSocialWorkerByIdMutation,
   useGetPreviousSocialWorkerByIdQuery,
+  useDeletePreviousSocialWorkerByIdMutation,
 } = contactApi;

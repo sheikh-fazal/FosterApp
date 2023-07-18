@@ -6,7 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
+import PreviousSocialWorkerForm from "@root/sections/foster-child/social-worker-details/la-social-worker/previous-social-worker/PreviousSocialWorkerForm";
 
 ViewPreviousSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -38,7 +38,7 @@ export default function ViewPreviousSocialWorker() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <StudySupportInfoForm disabled />
+      <PreviousSocialWorkerForm disabled />
     </Box>
   );
 }

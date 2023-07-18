@@ -2,14 +2,15 @@ import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { useRouter } from "next/router";
 import React from "react";
-import { ActiveSocialWorkerFormData } from ".";
+import { ActiveSocialWorkerFormData } from "../active-social-worker/index";
 import { LoadingButton } from "@mui/lab";
 import Link from "next/link";
-import { useActiveSocialWorkerForm } from "./useActiveSocialWorkerForm";
+import { usePreviousSocialWorkerForm } from "./usePreviousSocialWorkerForm";
 
-export default function ActiveSocialWorkerForm(props: any) {
+export default function PreviousSocialWorkerForm(props: any) {
   const router = useRouter();
   const theme: any = useTheme();
+
   const { disabled } = props;
   const {
     methods,
@@ -19,12 +20,19 @@ export default function ActiveSocialWorkerForm(props: any) {
     isError,
     isSuccess,
     isLoading,
-  } = useActiveSocialWorkerForm();
+  } = usePreviousSocialWorkerForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Card sx={{ px: 2, pb: 3 }}>
-        <Typography variant="h6" color={theme.palette.primary.main} sx={{my:2}}>Active LA Social Worker Contact Details</Typography>
+        <Typography
+          variant="h6"
+          color={theme.palette.primary.main}
+          sx={{ my: 2 }}
+        >
+          Previous LA Social Worker Contact Details
+        </Typography>
+
         <Grid container spacing={4}>
           {ActiveSocialWorkerFormData?.map((item) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>

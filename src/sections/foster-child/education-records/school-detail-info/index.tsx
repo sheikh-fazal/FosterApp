@@ -115,7 +115,7 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
   city: Yup.string().trim().required("City is Required"),
   county: Yup.string().trim().required("County is Required"),
   country: Yup.string().trim().required("Country is Required"),
-  postalcode: Yup.number().required("Postal Code is Required"),
+  postalcode: Yup.string().required("Postal Code is Required"),
   telephone: Yup.string()
     .typeError("Must be a number")
     .min(10, "Invalid Telephone Number")
