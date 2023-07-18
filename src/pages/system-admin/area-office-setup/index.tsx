@@ -14,12 +14,12 @@ const BREADCRUMBS = [
     href: "/system-admin",
   },
   {
-    name: "Area Office Setup",
+    name: "Local Office List",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Area Office Setup";
+const PAGE_TITLE = "System Administration";
 AreaOfficeSetups.getLayout = function getLayout(page: any) {
   return (
     <Layout
