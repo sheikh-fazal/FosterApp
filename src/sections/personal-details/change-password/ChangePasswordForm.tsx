@@ -96,6 +96,7 @@ const ChangePasswordForm = () => {
           sx={styles.oldPassword}
           type={oldPassword ? "text" : "password"}
           InputProps={oldPasswordAdornment}
+          fullWidth
         />
         <RHFTextField
           name="newPassword"
@@ -105,6 +106,7 @@ const ChangePasswordForm = () => {
           type={newPassword ? "text" : "password"}
           InputProps={newpasswordAdornment}
           sx={styles.newPassword}
+          fullWidth
         />
         <RHFTextField
           name="confirmNewPassword"
@@ -114,6 +116,7 @@ const ChangePasswordForm = () => {
           type={confirmPassword ? "text" : "password"}
           InputProps={confirmPasswordAdornment}
           sx={styles.confirmPassword}
+          fullWidth
         />
         <LoadingButton
           color="primary"
