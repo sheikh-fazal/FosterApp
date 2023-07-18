@@ -1,16 +1,14 @@
 import { FormProvider } from "@root/components/hook-form";
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { PersonalInfoFormData, defaultValues, validationSchema } from "./";
+import { LaDetailsFormData, defaultValues, validationSchema } from "./";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Grid } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
 import usePath from "@root/hooks/usePath";
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-import dayjs from "dayjs";
 
-export default function PersonalInfoForm({
+export default function LaDetails({
   disabled,
   onSubmitHandler,
   initialValueProps = defaultValues,
@@ -29,21 +27,7 @@ export default function PersonalInfoForm({
   const {
     handleSubmit,
     formState: { isSubmitting },
-    watch,
-    setValue,
   } = methods;
-
-  useEffect(() => {
-    const subscription = watch((values: any) => {
-      const dateOfBirth = values["dob"];
-      if (dateOfBirth && dayjs(dateOfBirth).isValid()) {
-        const newAge = dayjs().diff(dayjs(dateOfBirth), "y");
-        values.age !== newAge &&
-          setValue("age", dayjs().diff(dayjs(dateOfBirth), "y"));
-      }
-    });
-    return () => subscription.unsubscribe();
-  }, [watch, setValue]);
 
   const onSubmit = async (data: any) => {
     console.log(data);
@@ -62,26 +46,22 @@ export default function PersonalInfoForm({
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
-        {PersonalInfoFormData?.map((item: any) => (
+        {LaDetailsFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            {item.id === 6 ? (
-              <RHFUploadFile name="image" {...methods} disabled={disabled} />
-            ) : (
-              <item.component
-                disabled={disabled}
-                {...item.componentProps}
-                size={"small"}
-                fullWidth
-              >
-                {item?.componentProps?.select
-                  ? item?.options?.map((option: any) => (
-                      <option key={option?.value} value={option?.value}>
-                        {option?.label}
-                      </option>
-                    ))
-                  : item?.heading}
-              </item.component>
-            )}
+            <item.component
+              disabled={disabled}
+              {...item.componentProps}
+              size={"small"}
+              fullWidth
+            >
+              {item?.componentProps?.select
+                ? item?.options?.map((option: any) => (
+                    <option key={option?.value} value={option?.value}>
+                      {option?.label}
+                    </option>
+                  ))
+                : item?.heading}
+            </item.component>
           </Grid>
         ))}
         <Grid item xs={12}>

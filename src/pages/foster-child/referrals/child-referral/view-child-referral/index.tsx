@@ -6,6 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import usePath from "@root/hooks/usePath";
 import { PersonalInfoForm } from "@root/sections/foster-child/referrals/child-referral/personalInfo";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import LaDetails from "@root/sections/foster-child/referrals/child-referral/laDetails/LaDetails";
 
 const PAGE_TITLE = "View Child Referral";
 
@@ -41,7 +42,8 @@ export default function ViewChildReferral() {
       <HorizaontalTabs
         tabsDataArray={["Personal Info", "LA-Details", "Document(s)"]}
       >
-        <PersonalInfoForm />
+        <PersonalInfoForm disabled />
+        <LaDetails />
       </HorizaontalTabs>
     </Page>
   );
