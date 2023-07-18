@@ -122,7 +122,7 @@ export default function RHFMultiSelect({
             }}
             onClose={() => {
               setTimeout(() => {
-                document?.activeElement?.blur();
+                (document.activeElement as HTMLElement).blur();
               }, 0);
             }}
           >

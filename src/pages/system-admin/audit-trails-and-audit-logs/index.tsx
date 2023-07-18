@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import AuditLogs from "@root/sections/system-admin/audit-trails-and-audit-logs/AuditLogs";
+// import AuditLogs from "@root/sections/system-admin/audit-trails-and-audit-logs/AuditLogs";
 
 // Constants
 
@@ -34,7 +34,7 @@ AuditTrailsAndAuditLogs.getLayout = function getLayout(page: any) {
 export default function AuditTrailsAndAuditLogs() {
   return (
     <Page title={PAGE_TITLE}>
-      <AuditLogs />
+      {/* <AuditLogs /> */}
     </Page>
   );
 }
