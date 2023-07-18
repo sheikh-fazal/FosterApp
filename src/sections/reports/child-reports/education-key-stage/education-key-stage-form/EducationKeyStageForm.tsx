@@ -12,14 +12,7 @@ const EducationKeyStageForm = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
+      <Typography sx={(theme)=>style.headerTitle(theme)}>
           EDUCATION KEY STAGE FORM
         </Typography>
         <Typography
@@ -82,3 +75,11 @@ const EducationKeyStageForm = ({ action, id }: any) => {
 };
 
 export default EducationKeyStageForm;
+const style = {
+  headerTitle: (theme: any) => ({
+    fontWeight: 700,
+    mb: "20px",
+    fontSize: "17px",
+    color: theme.palette.primary.main,
+  }),
+};

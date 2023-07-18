@@ -35,7 +35,7 @@ const TemplatePoliciesTabs = () => {
         ]}
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
-        isDisabled={true}
+        // isDisabled={true}
       >
         <PolicyVerticalAddNew onSubmit={handleSubmit} handleAddNewBack={"/policies-and-guidelines/templates"} />
 
