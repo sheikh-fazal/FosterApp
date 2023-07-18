@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import DayLogJournalEntriesTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogJournalEntriesTable";
+import DayLogJournalEntriesTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogjournalentriesTable";
 
 // ----------------------------------------------------------------------
 

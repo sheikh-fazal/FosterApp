@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Dashboard from "@root/sections/system-admin/Dashboard";
+// import Dashboard from "@root/sections/system-admin/Dashboard";
 
 // Constants
 
@@ -34,7 +34,7 @@ SystemAdmin.getLayout = function getLayout(page: any) {
 export default function SystemAdmin() {
   return (
     <Page title={PAGE_TITLE}>
-      <Dashboard />
+      {/* <Dashboard /> */}
     </Page>
   );
 }

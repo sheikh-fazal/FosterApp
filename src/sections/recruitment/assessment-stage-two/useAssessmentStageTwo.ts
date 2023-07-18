@@ -19,7 +19,7 @@ export const useAssessmentStageTwo = () => {
     setAssessmentStageTwoData(
       ASSESSMENTSTAGETWODATA?.map((item: any) => ({
         ...item,
-        status: assessmentStageTwoApiData?.[item?.textForApi],
+        status: data?.data?.[item?.textForApi],
       }))
     );
   }, [data]);
