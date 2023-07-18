@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import DataManagments from "@root/sections/system-admin/reference-data-managment/DataManagment";
+// import DataManagments from "@root/sections/system-admin/reference-data-managment/DataManagment";
 
 // Constants
 
@@ -34,7 +34,7 @@ DataManagment.getLayout = function getLayout(page: any) {
 export default function DataManagment() {
   return (
     <Page title={PAGE_TITLE}>
-      <DataManagments />
+      {/* <DataManagments /> */}
     </Page>
   );
 }

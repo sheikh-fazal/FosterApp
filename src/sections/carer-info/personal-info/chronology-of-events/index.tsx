@@ -46,15 +46,9 @@ export const accordionData = [
 
 export const sortingData = [
   {
-    value: "Option 1",
+    value: "Ascending",
   },
   {
-    value: "Option 2",
-  },
-  {
-    value: "Option 3",
-  },
-  {
-    value: "Option 4",
+    value: "Decending",
   },
 ];
