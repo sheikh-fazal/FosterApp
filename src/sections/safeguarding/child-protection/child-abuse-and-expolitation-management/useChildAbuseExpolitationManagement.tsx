@@ -11,21 +11,22 @@ export const useChildAbuseExpolitationManagement = () => {
   const path = '/safeguarding/child-protection/child-abuse-and-expolitation-management';
 
   const columns = [
-    { id: '1', title: 'Case ID', render: (data: any) => <span>{data.caseId}</span> },
-    { id: '2', title: 'Child Name', render: (data: any) => <span>{data.childName}</span> },
-    { id: '3', title: 'Type', render: (data: any) => <span>{data.allegationType}</span> },
-    { id: '4', title: "Exploitation Description Document", render: (data: any) => <span>{data.document}</span> },
-    { id: '5', title: 'Status', render: (data: any) => <TableDropdown status={data.status} handleChange={(val: string) => console.log(val)} /> },
-    { id: '6', title: 'Person involved in Exploitation  ( Role )', render: (data: any) => <span>{data.person}</span> },
-  ]
-  const innerColums = [
-    { id: '1', title: 'Stage', render: (data: any) => <span>{data.stage}</span> },
-    { id: '2', title: 'Status', render: (data: any) => <TableDropdown status={data.status} handleChange={(val: string) => console.log(val)} /> },
-    { id: '3', title: 'Date', render: (data: any) => <span>{data?.date}</span> },
-    { id: '4', title: 'Comments', render: (data: any) => <span>{data?.comments}</span> },
-    { id: '5', title: 'Performed by  (Role)', render: (data: any) => (<span>{data?.role}</span>) },
-    { id: '5', title: 'Stake Holders (Role ) ', render: (data: any) => (<span>{data?.holders}</span>) },
-    { id: '5', title: 'Other Documents / Evidence ', render: (data: any) => (<span>{data?.document}</span>) },
+    { id: '1', title: 'Case ID', render: (data: any) => <span>{data.caseId}</span>, isSortable: true },
+    { id: '2', title: 'Child Name', render: (data: any) => <span>{data.childName}</span>, isSortable: true },
+    { id: '3', title: 'Type', render: (data: any) => <span>{data.allegationType}</span>, isSortable: true },
+    { id: '4', title: "Exploitation Description Document", render: (data: any) => <span>{data.document}</span>, isSortable: true },
+    { id: '5', title: 'Status', render: (data: any) => <TableDropdown status={data.status} handleChange={(val: string) => console.log(val)} />, isSortable: true },
+    { id: '6', title: 'Person involved in Exploitation  ( Role )', render: (data: any) => <span>{data.person}</span>, isSortable: true },
+  ];
+  
+  const innerColums  = [
+    { id: '1', title: 'Stage', render: (data: any) => <span>{data.stage}</span>, isSortable: true },
+    { id: '2', title: 'Status', render: (data: any) => <TableDropdown status={data.status} handleChange={(val: string) => console.log(val)} />, isSortable: true },
+    { id: '3', title: 'Date', render: (data: any) => <span>{data?.date}</span>, isSortable: true },
+    { id: '4', title: 'Comments', render: (data: any) => <span>{data?.comments}</span>, isSortable: true },
+    { id: '5', title: 'Performed by  (Role)', render: (data: any) => (<span>{data?.role}</span>), isSortable: true },
+    { id: '6', title: 'Stake Holders (Role)', render: (data: any) => (<span>{data?.holders}</span>), isSortable: true },
+    { id: '7', title: 'Other Documents / Evidence', render: (data: any) => (<span>{data?.document}</span>), isSortable: true },
   ];
 
   const handleAction = (action: string, row: any) => {

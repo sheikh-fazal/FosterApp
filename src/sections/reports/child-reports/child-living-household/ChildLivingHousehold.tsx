@@ -14,7 +14,7 @@ const ChildLivingHousehold = () => {
   return (
     <>
       <Card sx={{ py: 2, px: 1 }}>
-        <TableHeader title={"CHILD LIVING IN THE HOUSEHOLD'S COMMENTS"} showAddBtn onAdd={() => handleAction("add")} />
+        <TableHeader title={"CHILD LIVING IN THE HOUSEHOLD'S COMMENTS"}  />
         <CustomTable
           isError={false}
           isLoading={false}

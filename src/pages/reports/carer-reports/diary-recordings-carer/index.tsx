@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import DiaryRecordings from "@root/sections/reports/carer-report/diary-recordings-carer/DiaryRecordings";
 
-const PAGE_TITLE = "Diary Recordings Carer Reports";
+const PAGE_TITLE = "Diary Recordings By Carer Reports";
 
 DiaryRecordingsLayout.getLayout = function getLayout(page: any) {
   return (

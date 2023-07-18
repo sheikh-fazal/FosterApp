@@ -14,14 +14,13 @@ import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
   FormSchema,
-  MedicalAppointmentsInfoListValue,
   medicalAppointmentsFormValue,
 } from ".";
 import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const backPath = "/foster-child/health-medical-history/medical-appointments/";
+const backPath = "/foster-child/health-medical-history/medical-appointments";
 const MedicalAppointmentsFrom = (props: any) => {
   const { action, medicalAppointmentID, fosterChildId } = props;
   const { SubmitData,getDefaultValue,isloading ,isFatching} = useMedicalAppointmentForm({

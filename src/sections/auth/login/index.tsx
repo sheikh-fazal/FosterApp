@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  email: "IFA5@yopmail.com",
+  email: "super_admin@yopmail.com",
   password: "IFApp$$786",
   remember: false,
 };
