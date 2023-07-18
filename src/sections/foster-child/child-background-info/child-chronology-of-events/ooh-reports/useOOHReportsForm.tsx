@@ -6,10 +6,16 @@ import { defaultValues, formSchema, formatters } from "./OOHReportsData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
+  usePatchChildChronologyOfEventsDayLogByIdMutation,
+  usePostChildChronologyOfEventsDayLogMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+import {
   useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
   usePostChildChronologyOfEventsOohReportsMutation,
   usePatchChildChronologyOfEventsOohReportsByIdMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/OOHReportsAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useOohReportsForm = () => {
   const router = useRouter();
@@ -17,6 +23,11 @@ export const useOohReportsForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
+  // useGetChildChronologyOfEventsOohReportsListQuery,
+  // usePostChildChronologyOfEventsOohReportsMutation,
+  // usePatchChildChronologyOfEventsOohReportsByIdMutation,
+  // useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
+  // useDeleteChildChronologyOfEventsOohReportsByIdMutation,
   const [getOohReportsList] = useLazyGetChildChronologyOfEventsOohReportsByIdQuery();
   const [postOohReportsData] = usePostChildChronologyOfEventsOohReportsMutation({});
   const [editOohReportsList] = usePatchChildChronologyOfEventsOohReportsByIdMutation();
@@ -35,6 +46,11 @@ export const useOohReportsForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
+      console.log("🚀 ~ file: useOOHReportsForm.tsx:50 ~ getDefaultValue ~ responseData:", responseData)
+      // responseData.callDuration = new Date(responseData.callDuration);
+      // responseData.callEndTime = new Date(responseData.callEndTime);
+      // responseData.callStartTime = new Date(responseData.callStartTime);
       return responseData;
     } else {
       setIsLoading(false);
@@ -64,7 +80,7 @@ export const useOohReportsForm = () => {
           });
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
-            query: { action: "edit", id: `${res?.data.id}`, fosterChildId: fosterChildId },
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {

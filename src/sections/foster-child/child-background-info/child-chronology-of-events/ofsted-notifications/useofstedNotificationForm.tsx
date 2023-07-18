@@ -11,6 +11,7 @@ import {
   usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation,
   usePostChildChronologyOfEventsOfstedNotificationsMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/OfstedNotificationsAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 // useGetChildChronologyOfEventsOfstedNotificationsListQuery,
 //   usePostChildChronologyOfEventsOfstedNotificationsMutation,
@@ -35,7 +36,7 @@ export const useOfstedNotificationForm = () => {
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
       const { data, isError } = await getOfstedNotificatinData({ id });
-      console.log("🚀 ~ file: useofstedNotificationForm.tsx:38 ~ getDefaultValue ~ data:", data)
+      console.log("🚀 ~ file: useofstedNotificationForm.tsx:38 ~ getDefaultValue ~ data:", data);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -47,6 +48,7 @@ export const useOfstedNotificationForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData)
       return responseData;
     } else {
       setIsLoading(false);
@@ -77,8 +79,9 @@ export const useOfstedNotificationForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/ofsted-notifications",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {

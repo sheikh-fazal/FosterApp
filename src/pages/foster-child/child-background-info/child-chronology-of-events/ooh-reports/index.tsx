@@ -25,7 +25,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Day Log / Journal Entires";
+const PAGE_TITLE = "OOH Reports";
 OHHReports.getLayout = function getLayout(page: any) {
   return (
     <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>

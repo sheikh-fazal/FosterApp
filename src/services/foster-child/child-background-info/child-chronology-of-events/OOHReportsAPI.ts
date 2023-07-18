@@ -1,4 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 const TAG = "CHILD_CHRONOLOGY_OF_EVENTS";
 
@@ -41,8 +42,12 @@ export const OOHReportsApi: any = baseAPI.injectEndpoints({
       GetChildChronologyOfEventsOohReportsByIdApiArg
     >({
       query: (queryArg) => ({
-        url: `/child-chronology-of-events/ooh-reports/${queryArg.id}`,
+        url: `/child-chronology-of-events/ooh-reports/${queryArg}`,
       }),
+      // transformResponse: (response: any) => {
+      //   parseDatesToTimeStampByKey(response.data);
+      //   return response;
+      // },
       providesTags: [TAG],
     }),
     deleteChildChronologyOfEventsOohReportsById: build.mutation<

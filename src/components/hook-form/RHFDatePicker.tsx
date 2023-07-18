@@ -11,21 +11,25 @@ export default function RHFDatePicker({ name, label, ...other }: any) {
     <Controller
       name={name}
       control={control}
-      render={({ field, fieldState: { error } }) => (
-        <DatePicker
-          {...field}
-          {...other}
-          slotProps={{
-            textField: {
-              helperText: error ? error.message : "",
-              error: error,
-              fullWidth: other.fullWidth,
-              size: other.size,
-            },
-          }}
-          label={label}
-        />
-      )}
+      render={({ field, fieldState: { error } }) => {
+        console.log(name, field.value);
+
+        return (
+          <DatePicker
+            {...field}
+            {...other}
+            slotProps={{
+              textField: {
+                helperText: error ? error.message : "",
+                error: error,
+                fullWidth: other.fullWidth,
+                size: other.size,
+              },
+            }}
+            label={label}
+          />
+        );
+      }}
     />
   );
 }

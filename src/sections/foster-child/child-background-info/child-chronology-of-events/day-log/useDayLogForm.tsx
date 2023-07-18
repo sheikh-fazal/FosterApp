@@ -27,6 +27,7 @@ export const useDayLogForm = () => {
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
+
         return defaultValues;
       }
       const responseData = { ...data.data };
@@ -35,6 +36,7 @@ export const useDayLogForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+     
       return responseData;
     } else {
       setIsLoading(false);
@@ -78,6 +80,7 @@ export const useDayLogForm = () => {
       const formData = {
         id,
         addDayLogRequestDto: { ...data },
+        fosterChildId,
       };
       editDayLogList(formData)
         .unwrap()

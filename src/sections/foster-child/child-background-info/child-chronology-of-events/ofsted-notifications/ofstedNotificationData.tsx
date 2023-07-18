@@ -347,7 +347,7 @@ export const ofstedNotificationFormFields = [
     id: 32,
     gridLength: 12,
     otherOptions: {
-      name: "actionToBeTaken",
+      name: "actionsToPrevent",
       label: "Actions to be taken to Prevent further Occurence",
       fullWidth: true,
       multiline: true,
@@ -435,7 +435,7 @@ export const defaultValues = {
   trustPersonNotifiedDate: null,
   trustPersonNotified: false,
   outcomeOfIncident: null,
-  actionToBeTaken: null,
+  actionsToPrevent: null,
   additionalInformation: null,
   detailsOfChildren: null,
   placingAuthorities: null,
@@ -458,6 +458,6 @@ export const formSchema = Yup.object().shape({
   emergencyServicesCalledDate: Yup.date().required("Required"),
   serviceName: Yup.string().required("Required"),
   outcomeOfIncident: Yup.string().required("Required"),
-  actionToBeTaken: Yup.string().required("Required"),
+  actionsToPrevent: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),
 });
