@@ -11,14 +11,29 @@ const ChildMedicationInfoDocument = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["child-medication-info-document"],
     }),
+    // deleteChildMedicationInfoDocument: builder.mutation({
+    //   query: (payload: any) => ({
+    //     url: `/foster-child/child-medication-info/document/${payload.childMedicationInfoDocId}`,
+    //     method: "Delete",
+    //     // params: payload.params,
+    //   }),
+    //   invalidatesTags: ["child-medication-info-document"],
+    // }),
     deleteChildMedicationInfoDocument: builder.mutation({
-      query: (payload: any) => ({
-        url: `/foster-child/child-medication-info/document/${payload.childMedicationInfoDocId}`,
+      query: (id: any) => ({
+        url: `/foster-child/child-medication-info/document/${id}`,
         method: "Delete",
         // params: payload.params,
       }),
       invalidatesTags: ["child-medication-info-document"],
     }),
+    // deleteAbsenceInfoUploadDocument: builder.mutation({
+    //   query: (id : any) => ({
+    //     url: `/foster-child/child-absence-info/document/${id}`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
+    // }),
     // updateChildMedicationInfoDocument: builder.mutation({
     //   query: (payload: any) => ({
     //     url: `/hospital-info-list/documents/${payload.id}`,

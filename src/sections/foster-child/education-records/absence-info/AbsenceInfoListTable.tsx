@@ -1,6 +1,6 @@
 import React from "react";
 import { data } from ".";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
@@ -10,6 +10,8 @@ import { useAbsenceInfoListTable } from "./useAbsenceInfoListTable";
 import dayjs from "dayjs";
 
 export default function AbsenceInfoListTable() {
+  const router = useRouter();
+  const { childInfoId } = router.query;
   const {
     data,
     headerChangeHandler,
@@ -68,6 +70,7 @@ export default function AbsenceInfoListTable() {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/edit`,
+                query: { childInfoId: childInfoId },
               })
             }
           />
@@ -76,6 +79,7 @@ export default function AbsenceInfoListTable() {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/view`,
+                     query: { childInfoId: childInfoId },
               })
             }
           />
@@ -93,9 +97,10 @@ export default function AbsenceInfoListTable() {
           title="Absence Info"
           onChanged={headerChangeHandler}
           onAdd={() => {
-            router.push(
-              `/foster-child/education-records/absence-info/add-absence-info`
-            );
+            router.push({
+              pathname: `/foster-child/education-records/absence-info/add-absence-info`,
+              query: { childInfoId: childInfoId },
+            });
           }}
         />
         <CustomTable

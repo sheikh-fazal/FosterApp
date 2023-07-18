@@ -20,7 +20,7 @@ export const AbsenceInfoDocument = () => {
       <UploadDocuments
         readOnly={router?.asPath.split("/").pop() === "view"}
         searchParam={(data: any) => {
-          setSearchValue(data.search);
+          return setSearchValue(data.search);
         }}
         tableData={data?.data}
         isLoading={isLoading}
@@ -30,8 +30,8 @@ export const AbsenceInfoDocument = () => {
         column={[
           "documentName",
           "documentType",
-          "documentDate",
-          "personName",
+          "date",
+          "uploadBy",
           "password",
         ]}
         modalData={(data: any) => {
@@ -43,8 +43,7 @@ export const AbsenceInfoDocument = () => {
         }}
         currentPage={data?.data?.meta?.data}
         totalPages={data?.data?.meta?.data}
-        onDelete={(data: any) => listDeleteHandler(data?.id)
-        }
+        onDelete={(data: any) => listDeleteHandler(data?.id)}
       />
     </>
   );

@@ -9,6 +9,7 @@ export default function AbsenceInfoForm(props: any) {
   //AbsenceInfo Custom Hook
   const { router, onSubmit, disabled, handleSubmit, methods, isSubmitting } =
     useAbsenceInfoForm(props);
+  const { childInfoId } = router.query;
 
   // if (isLoading) return <SkeletonFormdata />;
   return (
@@ -60,7 +61,10 @@ export default function AbsenceInfoForm(props: any) {
               sx={{ color: "#fff", ml: 1, backgroundColor: "#F6830F" }}
               variant="contained"
               onClick={() =>
-                router.push("/foster-child/education-records/absence-info")
+                router.push({
+                  pathname: "/foster-child/education-records/absence-info",
+                  query: { childInfoId: childInfoId },
+                })
               }
             >
               Back

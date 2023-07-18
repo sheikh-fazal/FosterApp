@@ -5,16 +5,13 @@ import { Box } from "@mui/material";
 import { useRouter, Router } from "next/router";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import ChildMedicationInfoForm from "@root/sections/foster-child/health-medical-history/child-medication-info/childMedicationInfoForm";
-import ChildMedicationInfoUploadTable from "@root/sections/foster-child/health-medical-history/child-medication-info/childMedicationInfoUploadTable";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { enqueueSnackbar } from "notistack";
 import {
   useCreateChildMedicationInfoDocumentMutation,
   useDeleteChildMedicationInfoDocumentMutation,
-  useGetChildMedicationInfoDocumentBYIDQuery,
   useGetChildMedicationInfoDocumentQuery,
-  useLazyGetChildMedicationInfoDocumentQuery,
 } from "@root/services/foster-child/health-medical-history/child-medication-info/ChildMedicationInfoDocument";
 import useAuth from "@root/hooks/useAuth";
 import dayjs from "dayjs";
@@ -57,7 +54,7 @@ export default function ChildMedicationInfoActions() {
   const [params, setParams] = useState("");
 
   const {
-    data: documentData,
+    data,
     isLoading: isDocumentLoading,
     isFetching,
     isError: hasDocumentError,
@@ -65,6 +62,7 @@ export default function ChildMedicationInfoActions() {
   }: any = useGetChildMedicationInfoDocumentQuery({
     ChildMedicationInfoId,
   });
+  console.log(data);
 
   //Car Insurance Upload Modal API
   const [postDocuments] = useCreateChildMedicationInfoDocumentMutation();
@@ -72,13 +70,10 @@ export default function ChildMedicationInfoActions() {
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteChildMedicationInfoDocumentMutation();
 
-  const tableData: any = documentData?.data;
-  const metaData: any = documentData?.data?.meta;
-
   const documentUploadHandler = (data: any) => {
     const formData = new FormData();
-    formData.append("docName", "Child Medication Info");
-    formData.append("uploadedBy", firstName);
+    formData.append("docName", data.docName);
+    formData.append("uploadedBy", data.uploadedBy);
     formData.append("docType", data.documentType);
     formData.append("date", dayjs(data.documentDate).format("DD/MM/YYYY"));
     formData.append("password", data.password);
@@ -91,7 +86,7 @@ export default function ChildMedicationInfoActions() {
     });
   };
 
-  const deleteDocument = async (id: any) => {
+  const deleteDocument = (id: any) => {
     deleteDocumentList(id)
       .unwrap()
       .then((res: any) => {
@@ -104,6 +99,19 @@ export default function ChildMedicationInfoActions() {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
+  // const listDeleteHandler = (id: any) => {
+  //   deleteList(id)
+  //     .unwrap()
+  //     .then((res: any) => {
+  //       enqueueSnackbar("Information Deleted Successfully", {
+  //         variant: "success",
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       const errMsg = error?.data?.message;
+  //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+  //     });
+  // };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -123,20 +131,18 @@ export default function ChildMedicationInfoActions() {
         {/* <ChildMedicationInfoUploadTable /> */}
         <UploadDocuments
           readOnly={action === "view" ? true : false}
-          tableData={tableData}
+          tableData={data?.data}
           isLoading={isDocumentLoading}
           isFetching={isFetching}
           isError={hasDocumentError}
           isSuccess={isSuccess}
-          column={["docName", "date", "docType", "uploadedBy", "password"]}
+          column={["docName", "docType", "date", "uploadedBy", "password"]}
           searchParam={(searchedText: string) => setParams(searchedText)}
           modalData={(data: any) => documentUploadHandler(data)}
           onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={metaData?.page}
-          totalPages={metaData?.pages}
-          onDelete={(data: any) => {
-            deleteDocument(data.id);
-          }}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
+          onDelete={(data: any) => deleteDocument(data?.id)}
         />
       </HorizaontalTabs>
     </Box>

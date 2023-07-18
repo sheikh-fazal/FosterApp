@@ -39,9 +39,9 @@ EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
 
 export default function EditAbsenceInfoForm() {
   const { query } = useRouter();
-  const absenceInfoId = query["absence_info_id"];
+  const childInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } =
-    useGetAbsenceInfoByIdQuery(absenceInfoId);
+    useGetAbsenceInfoByIdQuery(childInfoId);
 
   return (
     <Page title={PAGE_TITLE}>
@@ -55,18 +55,6 @@ export default function EditAbsenceInfoForm() {
         />
         <AbsenceInfoDocument />
       </HorizaontalTabs>
-       {/* <HorizaontalTabs
-    tabsDataArray={["Family Org Involved", "Uploaded documents"]}
-  >
-    <AbsenceInfoForm
-          defaultValues={{
-            ...data?.[0],
-            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-            label: new Date(data?.[0]?.label),
-          }}
-        />
-        <AbsenceInfoDocument />
-  </HorizaontalTabs> */}
     </Page>
   );
 }

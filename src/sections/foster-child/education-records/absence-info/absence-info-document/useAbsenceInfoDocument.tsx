@@ -35,12 +35,9 @@ export const useAbsenceInfoDocument = () => {
       });
     }
     const documentFormData = new FormData();
-
-    documentFormData.append("documentName", "Ashraf");
-    documentFormData.append("personName", "Ashraf");
     documentFormData.append("documentType", data.documentType);
     documentFormData.append(
-      "documentDate",
+      "date",
       dayjs(data.documentDate).format("DD/MM/YYYY")
     );
     documentFormData.append("password", data.password);
@@ -66,7 +63,6 @@ export const useAbsenceInfoDocument = () => {
   const [deleteList] = useDeleteAbsenceInfoUploadDocumentMutation();
 
   const listDeleteHandler = (id: any) => {
-    console.log(id);
     deleteList(id)
       .unwrap()
       .then((res: any) => {
