@@ -22,7 +22,7 @@ export const statutoryMedicalListApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/statutory-medical/${apiDataParameter?.pathParams?.id}`,
         method: "GET",
-        params: apiDataParameter.params,
+        params: apiDataParameter.queryParams,
       }),
     }),
     postStatutoryMedicalTypeData: builder.mutation({

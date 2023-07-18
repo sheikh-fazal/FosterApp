@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,19 +6,20 @@ import {
   defaultValueEhcpInfoForm,
   ehcpInfoFormDataFunction,
   ehcpInfoFormSchema,
+  ehcpInfoFormValues,
 } from ".";
 import {
-  useLazyGetSingleStatutoryMedicalTypeDataQuery,
+  useGetSingleStatutoryMedicalTypeDataQuery,
   usePatchStatutoryMedicalTypeDataMutation,
   usePostStatutoryMedicalTypeDataMutation,
 } from "@root/services/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
+import { useEffect } from "react";
 
 export const useStatutoryMedicalTypeInfo = () => {
   const router = useRouter();
   const ehcpInfoFormData = ehcpInfoFormDataFunction(
     router.query?.action === "view"
   );
-
   const [
     postStatutoryMedicalTypeDataTrigger,
     postStatutoryMedicalTypeDataStatus,
@@ -30,10 +30,6 @@ export const useStatutoryMedicalTypeInfo = () => {
     patchStatutoryMedicalTypeDataStatus,
   ] = usePatchStatutoryMedicalTypeDataMutation();
 
-  const [
-    getSingleStatutoryMedicalTypeDataTrigger,
-    getSingleStatutoryMedicalTypeDataStatus,
-  ] = useLazyGetSingleStatutoryMedicalTypeDataQuery();
   // get api params
   const pathParams = {
     id: router.query?.id,
@@ -42,24 +38,23 @@ export const useStatutoryMedicalTypeInfo = () => {
     statutoryMedicalType: router.query?.type,
   };
   const apiDataParameter = { pathParams, queryParams };
-
-  const setGpDetailsInfoDefaultValue = async () => {
-    if (!!!router.query?.id) return;
-    const { data, isError } = await getSingleStatutoryMedicalTypeDataTrigger(
-      apiDataParameter,
-      true
-    );
-    if (isError) {
-      return defaultValueEhcpInfoForm(data);
+  const { data, isLoading } = useGetSingleStatutoryMedicalTypeDataQuery(
+    apiDataParameter,
+    {
+      skip: !!!router.query?.id,
+      refetchOnMountOrArgChange: true,
     }
-    return defaultValueEhcpInfoForm(data?.data);
-  };
+  );
 
   const methods: any = useForm({
     resolver: yupResolver(ehcpInfoFormSchema),
-    defaultValues: setGpDetailsInfoDefaultValue,
+    defaultValues: defaultValueEhcpInfoForm(ehcpInfoFormValues),
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
+
+  useEffect(() => {
+    reset(() => defaultValueEhcpInfoForm(data?.data));
+  }, [data]);
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
     if (!!router.query?.id) {
@@ -133,9 +128,9 @@ export const useStatutoryMedicalTypeInfo = () => {
     methods,
     handleSubmit,
     submitStatutoryMedicalTypeDataForm,
-    getSingleStatutoryMedicalTypeDataStatus,
     postStatutoryMedicalTypeDataStatus,
     patchStatutoryMedicalTypeDataStatus,
     router,
+    isLoading,
   };
 };

@@ -5,14 +5,17 @@ import {
   defaultValueGpDetailsInfoForm,
   gpDetailsInfoFormDataFunction,
   gpDetailsInfoFormSchema,
+  gpDetailsInfoFormValues,
 } from ".";
 import {
+  useGetSingleGpDetailsInfoDataQuery,
   useLazyGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
   usePostGpDetailsInfoDataMutation,
 } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 export const useGPDetailsInfo = () => {
   const router = useRouter();
@@ -27,32 +30,29 @@ export const useGPDetailsInfo = () => {
   const [patchGpDetailsInfoDataTrigger, patchGpDetailsInfoDataStatus] =
     usePatchGpDetailsInfoDataMutation();
 
-  const [getSingleGpDetailsInfoDataTrigger, getSingleGpDetailsInfoDataStatus] =
-    useLazyGetSingleGpDetailsInfoDataQuery();
   // get api params
   const pathParams = {
     id: router.query?.gpInfoId,
   };
 
   const apiDataParameter = { pathParams };
-
-  const setGpDetailsInfoDefaultValue = async () => {
-    if (!!!router.query?.gpInfoId) return;
-    const { data, isError } = await getSingleGpDetailsInfoDataTrigger(
-      apiDataParameter,
-      true
-    );
-    if (isError) {
-      return defaultValueGpDetailsInfoForm(data);
+  const { data, isLoading } = useGetSingleGpDetailsInfoDataQuery(
+    apiDataParameter,
+    {
+      skip: !!!router.query?.gpInfoId,
+      refetchOnMountOrArgChange: true,
     }
-    return defaultValueGpDetailsInfoForm(data?.data);
-  };
+  );
 
   const methods: any = useForm({
     resolver: yupResolver(gpDetailsInfoFormSchema),
-    defaultValues: setGpDetailsInfoDefaultValue,
+    defaultValues: defaultValueGpDetailsInfoForm(gpDetailsInfoFormValues),
   });
-  const { handleSubmit } = methods;
+  const { handleSubmit, reset } = methods;
+
+  useEffect(() => {
+    reset(() => defaultValueGpDetailsInfoForm(data?.data));
+  }, [data]);
 
   const submitGpDetailsInfoForm = async (data: any) => {
     const queryParams = {
@@ -118,10 +118,10 @@ export const useGPDetailsInfo = () => {
     methods,
     handleSubmit,
     submitGpDetailsInfoForm,
-    getSingleGpDetailsInfoDataStatus,
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
     theme,
+    isLoading,
   };
 };
