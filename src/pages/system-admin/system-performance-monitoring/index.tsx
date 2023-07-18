@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import PerformanceMonitoring from "@root/sections/system-admin/system-performance-monitoring/PerformanceMonitoring";
+// import PerformanceMonitoring from "@root/sections/system-admin/system-performance-monitoring/PerformanceMonitoring";
 
 // Constants
 
@@ -34,7 +34,7 @@ SystemPerformanceMonitoring.getLayout = function getLayout(page: any) {
 export default function SystemPerformanceMonitoring() {
   return (
     <Page title={PAGE_TITLE}>
-      <PerformanceMonitoring />
+      {/* <PerformanceMonitoring /> */}
     </Page>
   );
 }

@@ -3,6 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import GPDetailsList from "@root/sections/foster-child/health-medical-history/gp-details/GPDetailsList";
 import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
@@ -23,23 +24,22 @@ const PAGE_TITLE = "GP Details Info List";
 
 // ----------------------------------------------------------------------
 
-GPDetails.getLayout = function getLayout(page: any, { query }: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(query)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+GPDetails.getLayout = function getLayout(page: any) {
+  return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function GPDetails() {
+  const { query } = useRouter();
+
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(query)}
+      />
       <GPDetailsList />
     </Page>
   );

@@ -5,7 +5,8 @@ import { FormProvider } from "@root/components/hook-form";
 import { usePlacementStatusForm } from "./usePlacementStatusForm";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const PlacementStatusForm = () => {
+const PlacementStatusForm = (props: any) => {
+  const { action, id } = props;
   const { methods, handleSubmit, router, onSubmit } = usePlacementStatusForm();
 
   return (

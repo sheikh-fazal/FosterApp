@@ -203,6 +203,7 @@ function UserRights() {
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>, childrenIds?: string[]) => {
+      const { defaultRole, userId } = authData;
       let action = e.target.id.split(".").at(-1)!;
       let affectedPermissions = childrenIds?.length
         ? [...childrenIds?.filter((_) => _.endsWith(action))]
@@ -214,20 +215,20 @@ function UserRights() {
         //   ...affectedPermissions
         // ])
         postAssignPermissionsToUser({
-          roleId: authData?.user?.defaultRole,
-          userId: authData?.user?.userId,
+          roleId: defaultRole,
+          userId: userId,
           dto: { permissionIds: affectedPermissions },
         });
       } else {
         // setPermissionIDs(permissionIDs.filter((pID) => !affectedPermissions.includes(pID)));
         postRemovePermissionsFromUser({
-          roleId: authData?.user?.defaultRole,
-          userId: authData?.user?.userId,
+          roleId: defaultRole,
+          userId: userId,
           dto: { permissionIds: affectedPermissions },
         });
       }
     },
-    [permissionIDs]
+    [authData, postAssignPermissionsToUser, postRemovePermissionsFromUser]
   );
 
   return (

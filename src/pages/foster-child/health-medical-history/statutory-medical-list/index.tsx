@@ -3,6 +3,8 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalList from "@root/sections/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
 import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import Page from "@root/components/Page";
 
 const BREADCRUMBS = (query: any) => [
   {
@@ -19,21 +21,21 @@ const BREADCRUMBS = (query: any) => [
 ];
 
 const PAGE_TITLE = "Statutory Medical List";
-StatutoryMedicalListPage.getLayout = function getLayout(            
-  page: any,
-  { query }: any
-) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(query)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+StatutoryMedicalListPage.getLayout = function getLayout(page: any) {
+  return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
 export default function StatutoryMedicalListPage() {
-  return <StatutoryMedicalList />;
+  const { query } = useRouter();
+
+  return (
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(query)}
+      />
+      <StatutoryMedicalList />
+    </Page>
+  );
 }
