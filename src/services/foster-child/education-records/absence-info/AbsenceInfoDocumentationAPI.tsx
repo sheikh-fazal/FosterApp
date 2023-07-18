@@ -34,8 +34,8 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
 
     // Delete API of Abence Info Document
     deleteAbsenceInfoUploadDocument: builder.mutation({
-      query: (childAbsenceInfoDocId : any) => ({
-        url: `/foster-child/child-absence-info/document/${childAbsenceInfoDocId }`,
+      query: (id : any) => ({
+        url: `/foster-child/child-absence-info/document/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],

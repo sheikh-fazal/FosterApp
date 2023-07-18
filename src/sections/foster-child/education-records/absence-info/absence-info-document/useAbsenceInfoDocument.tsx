@@ -15,7 +15,7 @@ export const useAbsenceInfoDocument = () => {
   console.log(router?.asPath.split("/").pop());
 
   const childAbsenceInfoId = {
-    childAbsenceInfoId: router?.query?.absence_info_id || "  ",
+    childAbsenceInfoId: router?.query?.absence_info_id || " ",
     offset: page,
     limit: 10,
     search: searchValue,
@@ -67,7 +67,6 @@ export const useAbsenceInfoDocument = () => {
 
   const listDeleteHandler = (id: any) => {
     console.log(id);
-
     deleteList(id)
       .unwrap()
       .then((res: any) => {
@@ -83,6 +82,7 @@ export const useAbsenceInfoDocument = () => {
 
   return {
     data,
+    router,
     isLoading,
     isFetching,
     isError,

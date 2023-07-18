@@ -4,6 +4,7 @@ import { useAbsenceInfoDocument } from "./useAbsenceInfoDocument";
 export const AbsenceInfoDocument = () => {
   const {
     data,
+    router,
     isLoading,
     isFetching,
     isError,
@@ -17,7 +18,7 @@ export const AbsenceInfoDocument = () => {
   return (
     <>
       <UploadDocuments
-        readOnly={false}
+        readOnly={router?.asPath.split("/").pop() === "view"}
         searchParam={(data: any) => {
           setSearchValue(data.search);
         }}
@@ -42,9 +43,8 @@ export const AbsenceInfoDocument = () => {
         }}
         currentPage={data?.data?.meta?.data}
         totalPages={data?.data?.meta?.data}
-        onDelete={(data: any) => {
-          listDeleteHandler(data?.childAbsenceInfoId);
-        }}
+        onDelete={(data: any) => listDeleteHandler(data?.id)
+        }
       />
     </>
   );
