@@ -37,7 +37,7 @@ export const NAV_LINKS = [
     id: 2,
     text: "Carer Info",
     img: <PermIdentityOutlinedIcon />,
-    link: "/carer-info",
+    link: "/foster-carer-list",
   },
   {
     id: 3,

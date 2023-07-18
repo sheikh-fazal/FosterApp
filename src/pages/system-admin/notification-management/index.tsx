@@ -3,8 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import ManageContentDirectory from "@root/sections/system-admin/manage-content-directory/ManageContentDirectory";
-import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
+// import ManageContentDirectory from "@root/sections/system-admin/manage-content-directory/ManageContentDirectory";
+// import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
 
 // Constants
 
@@ -35,7 +35,7 @@ Notification.getLayout = function getLayout(page: any) {
 export default function Notification() {
   return (
     <Page title={PAGE_TITLE}>
-      <NotificationManagement />
+      {/* <NotificationManagement /> */}
     </Page>
   );
 }

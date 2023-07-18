@@ -12,9 +12,9 @@ const DiaryRecordingsForm = ({ action }: any) => {
     useDiaryRecordingsForm();
     let label: any;
     if (action === "view") {
-      label = "Uploaded  Meeting Record";
+      label = "Uploaded Meeting Record";
     } else {
-      label = "Upload  Meeting Record";
+      label = "Upload Meeting Record";
     }
   return (
     <Card sx={{ p: 2 }}>
@@ -24,7 +24,7 @@ const DiaryRecordingsForm = ({ action }: any) => {
             <Grid item xs={12} md={form?.gridLength} key={i}>
               {form.component && (
                 <form.component
-                fullWidth
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -47,10 +47,9 @@ const DiaryRecordingsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                  label={label}
+                    label={label}
                     {...form.componentProps}
                     name={"updateMeetingRecord"}
-                    label='Upload Meeting record'
                     {...methods}
                     required
                   />

@@ -3,9 +3,9 @@ export const incidentUploadDocumentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     incidentUploadDocumentList: builder.query<null, object>({
       query: (search: any) => ({
-        url: "/chronology-events/list-incidentDocuments",
+        url: `/chronology-events/list-incidentDocuments/${search?.params.incidentId}`,
         method: "GET",
-        params: search,
+        params: search.params,
       }),
       providesTags: ["INCIENT_UPLOAD_DOCUMENTS"],
     }),
