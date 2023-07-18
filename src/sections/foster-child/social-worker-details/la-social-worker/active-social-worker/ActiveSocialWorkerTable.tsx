@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { useStudySupportInfoTable } from "./useStudySupportInfoTable";
 import { Box, Card } from "@mui/material";
-import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { enqueueSnackbar } from "notistack";
+import TableAction from "@root/components/TableAction";
+import TableHeader from "@root/components/TableHeader";
+import DeleteModel from "@root/components/modal/DeleteModel";
+import React, { useState } from "react";
+import { useActiveSocialWorkerTable } from "./useActiveSocialWorkerTable";
 
-export default function StudySupportInfoTable(props: any) {
+export default function ActiveSocialWorkerTable(props: any) {
   const { fosterChildId } = props;
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState<any>("");
   const {
     router,
     tableHeaderRef,
@@ -23,35 +21,39 @@ export default function StudySupportInfoTable(props: any) {
     meta,
     pageChangeHandler,
     sortChangeHandler,
-    postData,
-  } = useStudySupportInfoTable();
+  } = useActiveSocialWorkerTable();
   const columns = [
     {
       accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
       id: "name",
       cell: (info: any) => info.getValue(),
-      header: "From Date",
+      header: "Social Worker Name",
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.relation,
       id: "relation",
       cell: (info: any) => info.getValue() ?? "-",
-      header: "Study Type",
+      header: "Social Worker Title",
       isSortable: true,
     },
-
+    {
+      accessorFn: (row: any) => row.relation,
+      id: "relation",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: "Contact",
+      isSortable: true,
+    },
     {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           {/* Can move it outside of the table if need arises */}
-
-          <TableAction
+          {/* <TableAction
             type="delete"
             onClicked={() => {
+              console.log("delete this", info.row.original);
               setOpen(true);
-              setId(info.row.original);
             }}
             size="small"
           />
@@ -70,14 +72,13 @@ export default function StudySupportInfoTable(props: any) {
               })
             }
             size="small"
-          />
-
+          /> */}
           <TableAction
             type="view"
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/education-records/study-support-info/view-study-support-info",
+                  "/foster-child/social-worker-details/la-social-worker/view-active-social-worker",
                 query: {
                   action: "view",
                   schoolInfoId: info.row.original.id,
@@ -93,42 +94,18 @@ export default function StudySupportInfoTable(props: any) {
       isSortable: false,
     },
   ];
-
-  const onDelete = async (data: any) => {
-    try {
-      const res: any = await postData(data).unwrap();
-      setOpen(false);
-      enqueueSnackbar(res?.message ?? `Delete Successfully!`, {
-        variant: "success",
-      });
-    } catch (error: any) {
-      setOpen(false);
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-    }
-  };
   return (
     <Card sx={{ p: 2 }}>
       <DeleteModel
         open={open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => {
-          onDelete(id);
-        }}
+        onDeleteClick={() => {}}
       />
       <TableHeader
         ref={tableHeaderRef}
         disabled={isLoading}
-        title="Study Support Info"
+        title="Active Social Worker"
         searchKey="search"
-        showAddBtn
-        onAdd={() => {
-          router.push({
-            pathname:
-              "/foster-child/education-records/study-support-info/add-study-support-info",
-            query: { action: "add", fosterChildId: fosterChildId },
-          });
-        }}
         onChanged={headerChangeHandler}
       />
       <CustomTable

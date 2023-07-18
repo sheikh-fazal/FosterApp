@@ -1,34 +1,36 @@
-import Page from "@root/components/Page";
-import Layout from "@root/layouts";
 import React from "react";
+// layout
+import Layout from "@root/layouts";
+//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
+import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import { Box } from "@mui/material";
-import { StudySupportInfoTable } from "@root/sections/foster-child/education-records/study-support-info";
+import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
 
-StudySupportInfo.getLayout = function getLayout(page: any) {
+EditPreviousSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-export default function StudySupportInfo() {
+
+export default function EditPreviousSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Child Info",
+      name: "LA Social Worker List",
       href: {
-        pathname: "/foster-child",
+        pathname: "/foster-child/social-worker-details/la-social-worker",
         query: { fosterChildId: fosterChildId },
       },
     },
     {
-      name: "Study Support Info List",
+      name: "LA Social Worker Details",
       href: "",
     },
   ];
 
-  const PAGE_TITLE = "Study Support Info ";
+  const PAGE_TITLE = "LA Social Worker ";
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -36,7 +38,7 @@ export default function StudySupportInfo() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <StudySupportInfoTable fosterChildId={fosterChildId}/>
+      <StudySupportInfoForm disabled />
     </Box>
   );
 }
