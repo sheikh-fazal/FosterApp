@@ -14,24 +14,28 @@ import { default as dayjs } from "dayjs";
 
 dayjs.extend(customParseFormat);
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Leisure Activities List",
-    href: "/foster-child/education-records/leisure-activities-hobby",
-  },
-  {
-    name: "Leisure Activity",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Leisure Activities";
 EditLeisureActivity.getLayout = function getLayout(page: any) {
+  const router: any = useRouter();
+  let { fosterChildId } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          href: "/",
+        },
+        {
+          name: "Leisure Activities List",
+          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: "Leisure Activity",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}

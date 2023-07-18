@@ -7,24 +7,28 @@ import UploadedDocumentsTable from "@root/sections/foster-child/education-record
 import LeisureActivitiesForm from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table/LeisureActivitiesForm";
 
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Leisure Activities List",
-    href: "/foster-child/education-records/leisure-activities-hobby",
-  },
-  {
-    name: "Leisure Activity",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Leisure Activities";
 LeisureActivity.getLayout = function getLayout(page: any) {
+  const router: any = useRouter();
+  let { id } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          href: "/",
+        },
+        {
+          name: "Leisure Activities List",
+          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${id}`,
+        },
+        {
+          name: "Leisure Activity",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}

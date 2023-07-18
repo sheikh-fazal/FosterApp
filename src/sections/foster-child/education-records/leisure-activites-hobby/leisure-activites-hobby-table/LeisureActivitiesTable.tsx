@@ -38,7 +38,7 @@ export default function LeisureActivitiesTable(props: any) {
         />
         <CustomTable
           data={leisureActivity}
-          columns={columns({ activePath, listDeleteHandler })}
+          columns={columns({ activePath, listDeleteHandler, fosterChildId })}
           isLoading={isLoading}
           isFetching={isFetching}
           isError={isError}

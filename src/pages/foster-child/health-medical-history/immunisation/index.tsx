@@ -7,29 +7,31 @@ import { useRouter } from "next/router";
 import { useGetImmunisationListQuery } from "@root/services/foster-child/health-medical-history/immunisation/ImmunisationApi";
 
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Immunisation",
-    href: "/carer-info/other-information/next-of-kin",
-  },
-  {
-    name: "child Info",
-    href: "/foster-child",
-  },
-  {
-    name: "Immunisation info list",
-    href: "",
-  },
-];
+
 const PAGE_TITLE = "Immunisation";
 // ----------------------------------------------------------------------
 
 Immunisation.getLayout = function getLayout(page: any) {
+  const router: any = useRouter();
+  const { fosterChildId } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          // name: "Immunisation",
+          // href: ``,
+        },
+        {
+          name: "child Info",
+          href: `/foster-child?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: "Immunisation info list",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}

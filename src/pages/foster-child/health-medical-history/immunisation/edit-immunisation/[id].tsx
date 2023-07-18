@@ -14,27 +14,25 @@ const PAGE_TITLE = "Immunisation";
 
 EditImmunisation.getLayout = function GetLayout(page: any) {
   const router: any = useRouter();
-  const { action, id } = router.query;
-
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
-    },
-    {
-      name: "Child Immunisation Info ",
-      href: "",
-    },
-    {
-      name: "Immunisation Info",
-      href: "",
-    },
-  ];
+  let { fosterChildId } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          // name: "",
+          href: `/`,
+        },
+        {
+          name: "Child Immunisation Info",
+          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: "Immunisation info",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}
@@ -75,9 +73,7 @@ export default function EditImmunisation() {
           action="edit"
           id={id}
         />
-        <ImmunisationUploadTable
-        action="edit"
-        immunisationId={id} />
+        <ImmunisationUploadTable action="edit" immunisationId={id} />
       </HorizaontalTabs>
     </Box>
   );

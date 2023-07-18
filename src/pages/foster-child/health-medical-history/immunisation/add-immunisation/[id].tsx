@@ -14,27 +14,25 @@ const PAGE_TITLE = "Immunisation";
 
 AddImmunisation.getLayout = function GetLayout(page: any) {
   const router: any = useRouter();
-  const { action, id } = router.query;
-
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
-    },
-    {
-      name: "Child Immunisation Info ",
-      href: "",
-    },
-    {
-      name: "Immunisation Info",
-      href: "",
-    },
-  ];
+  let { id } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          // name: "",
+          href: `/`,
+        },
+        {
+          name: "Child Immunisation Info",
+          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${id}`,
+        },
+        {
+          name: "Immunisation info",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}

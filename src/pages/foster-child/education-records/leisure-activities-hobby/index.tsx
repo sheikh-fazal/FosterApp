@@ -12,28 +12,28 @@ import { useRouter } from "next/router";
 // Constants
 const PAGE_TITLE = "Leisure Activities List";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    href: "/",
-  },
-  {
-    name: "Child Info",
-    href: "/child-info",
-  },
-  {
-    name: PAGE_TITLE,
-    href: "",
-  },
-];
-
 // ----------------------------------------------------------------------
 
 LeisureActivitiesHobby.getLayout = function getLayout(page: any) {
+  const router: any = useRouter();
+  const { fosterChildId } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          href: "/",
+        },
+        {
+          name: "Child Info",
+          href: `/foster-child?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: PAGE_TITLE,
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}

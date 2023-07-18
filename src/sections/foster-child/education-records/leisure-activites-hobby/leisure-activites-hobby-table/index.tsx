@@ -107,7 +107,11 @@ export const formData = [
     component: RHFRating,
   },
 ];
-export const columns = ({ activePath, listDeleteHandler }: any) => {
+export const columns = ({
+  activePath,
+  listDeleteHandler,
+  fosterChildId,
+}: any) => {
   return [
     {
       accessorFn: (row: any) => row.hobby,
@@ -177,7 +181,7 @@ export const columns = ({ activePath, listDeleteHandler }: any) => {
             type="edit"
             onClicked={() =>
               router.push(
-                `${activePath}/edit-leisure-activity/${info?.row?.original?.id}`
+                `${activePath}/edit-leisure-activity/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
               )
             }
           />
@@ -188,7 +192,7 @@ export const columns = ({ activePath, listDeleteHandler }: any) => {
             type="view"
             onClicked={() =>
               router.push(
-                `${activePath}/view-leisure-activity/${info?.row?.original?.id}`
+                `${activePath}/view-leisure-activity/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
               )
             }
           />

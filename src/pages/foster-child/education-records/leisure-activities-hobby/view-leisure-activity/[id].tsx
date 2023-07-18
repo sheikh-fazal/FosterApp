@@ -26,10 +26,25 @@ const BREADCRUMBS = [
 
 const PAGE_TITLE = "Leisure Activities";
 LeisureActivity.getLayout = function getLayout(page: any) {
+  const router: any = useRouter();
+  let { fosterChildId } = router.query;
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          href: "/",
+        },
+        {
+          name: "Leisure Activities List",
+          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: "Leisure Activity",
+          href: "",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}
