@@ -18,9 +18,9 @@ export const educationInfoDefaultValues = {
   school: "",
   schoolType: "",
   schoolAddress: {
-    isChildCurrentSchool: true,
+    isChildCurrentSchool: false,
     isFosterPlacementChange: false,
-    doesSpecialEducationalNeeds: true,
+    doesSpecialEducationalNeeds: false,
   },
   personalEducationPlan: "",
   schoolYear: "",
@@ -41,39 +41,7 @@ export const educationInfoDefaultValues = {
   awardsAndRewards: "",
   notes: "",
 };
-export const defaultValueEducationInfoForm = (
-  data: any = educationInfoDefaultValues
-) => {
-  return {
-    schoolPlacement: data?.schoolPlacement,
-    ifNotSchoolPlacement: data?.ifNotSchoolPlacement,
-    school: data?.school,
-    schoolType: data?.schoolType,
-    schoolAddress: {
-      isChildCurrentSchool: data?.schoolAddress?.isChildCurrentSchool,
-      isFosterPlacementChange: data?.schoolAddress?.isFosterPlacementChange,
-      doesSpecialEducationalNeeds: data?.schoolAddress?.doesSpecialEducationalNeeds,
-    },
-    personalEducationPlan: data?.personalEducationPlan,
-    schoolYear: data?.schoolYear,
-    classStudying: data?.classStudying,
-    currentKeyStage: data?.currentKeyStage,
-    expectedKeyStage: data?.expectedKeyStage,
-    attendance: data?.attendance,
-    schoolBusPhone: data?.schoolBusPhone,
-    teacherName: data?.teacherName,
-    teacherRole: data?.teacherRole,
-    teacherPhone: data?.teacherPhone,
-    teacherEmail: data?.teacherEmail,
-    designatedAuthority: data?.designatedAuthority,
-    educationStage: data?.educationStage,
-    specialEducationNeeds: data?.specialEducationNeeds,
-    arrangementSpecialEducation: data?.arrangementSpecialEducation,
-    achievements: data?.achievements,
-    awardsAndRewards: data?.awardsAndRewards,
-    notes: data?.notes,
-  };
-};
+
 export const educationInfoFormDataFunction = (isFieldDisable = false) => [
   {
     id: 1,
@@ -384,3 +352,39 @@ export const educationInfoFormDataFunction = (isFieldDisable = false) => [
     component: RHFTextField,
   },
 ];
+
+export const defaultValueEducationInfoForm = (
+  data: any = educationInfoDefaultValues
+) => {
+  return {
+    schoolPlacement: data?.schoolPlacement,
+    ifNotSchoolPlacement: data?.ifNotSchoolPlacement,
+    school: data?.school,
+    schoolType: data?.schoolType,
+    schoolAddress: {
+      isChildCurrentSchool: data?.schoolAddress?.isChildCurrentSchool ?? false,
+      isFosterPlacementChange:
+        data?.schoolAddress?.isFosterPlacementChange ?? false,
+      doesSpecialEducationalNeeds:
+        data?.schoolAddress?.doesSpecialEducationalNeeds ?? false,
+    },
+    personalEducationPlan: data?.personalEducationPlan,
+    schoolYear: data?.schoolYear,
+    classStudying: data?.classStudying,
+    currentKeyStage: data?.currentKeyStage,
+    expectedKeyStage: data?.expectedKeyStage,
+    attendance: data?.attendance,
+    schoolBusPhone: data?.schoolBusPhone,
+    teacherName: data?.teacherName,
+    teacherRole: data?.teacherRole,
+    teacherPhone: data?.teacherPhone,
+    teacherEmail: data?.teacherEmail,
+    designatedAuthority: data?.designatedAuthority,
+    educationStage: data?.educationStage,
+    specialEducationNeeds: data?.specialEducationNeeds,
+    arrangementSpecialEducation: data?.arrangementSpecialEducation,
+    achievements: data?.achievements,
+    awardsAndRewards: data?.awardsAndRewards,
+    notes: data?.notes,
+  };
+};

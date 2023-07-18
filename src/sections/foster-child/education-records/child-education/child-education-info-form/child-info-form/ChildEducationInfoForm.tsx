@@ -1,19 +1,27 @@
-import { useRouter } from "next/router";
 // @mui
-import { Grid, Box, Button, Typography, useTheme } from "@mui/material";
+import { Grid, Typography,} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // components
-import { FormProvider, RHFTextField } from "@root/components/hook-form";
-//
-import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
-import { useForm } from "react-hook-form";
+import { FormProvider } from "@root/components/hook-form";
 import { useChildEducationForm } from "./useChildEducationForm";
-import Link from "next/link";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const ChildEducationInfoForm = () => {
-  const { methods, isSubmitting, theme, handleSubmit, onSubmitHandler, childEducationInfoFormData } =
-    useChildEducationForm();
+  const {
+    methods,
+    isSubmitting,
+    theme,
+    handleSubmit,
+    onSubmitHandler,
+    childEducationInfoFormData,
+    isLoading,
+    router,
+    postEducationInfoDataStatus,
+    patchEducationInfoDataStatus,
+  } = useChildEducationForm();
 
+  if (isLoading) return <SkeletonFormdata />;
+  
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container columnSpacing={2}>
@@ -31,7 +39,7 @@ const ChildEducationInfoForm = () => {
               >
                 {form.title}
               </Typography>
-              <form.component size="small" {...form.otherOptions}>
+              <form.component size="small" {...form.otherOptions} fullWidth>
                 {form?.otherOptions?.select
                   ? form.options.map((option: any) => (
                       <option key={option.value} value={option.value}>
@@ -45,27 +53,42 @@ const ChildEducationInfoForm = () => {
         })}
 
         <Grid item xs={12} mt={3}>
-          {/* {!disabled && ( */}
-          <Grid item xs={12}>
-            <LoadingButton
-              type="submit"
-              variant="contained"
-              sx={{ mr: 2 }}
-              // loading={isSubmitting}
-              // color={isError ? "error" : isSuccess ? "success" : "primary"}
-            >
-              "Submit"
-            </LoadingButton>
-            <Link
-              href={"/foster-child/education-records/child-education"}
-              style={{ textDecoration: "none" }}
-            >
-              <Button type="button" variant="contained">
+          {router.query?.action !== "view" && (
+            <Grid item xs={12}>
+              <LoadingButton
+                type="submit"
+                variant="contained"
+                sx={{ mr: 2 }}
+                loading={
+                  postEducationInfoDataStatus.isLoading ||
+                  patchEducationInfoDataStatus.isLoading
+                }
+              >
+                Submit
+              </LoadingButton>
+              <LoadingButton
+                type="button"
+                variant="contained"
+                sx={{
+                  marginRight: "1rem",
+                  bgcolor: theme.palette.orange.main,
+                  "&:hover": { bgcolor: theme.palette.orange.dark },
+                }}
+                onClick={() =>
+                  router.push({
+                    pathname: `/foster-child/education-records/child-education`,
+                    query: {
+                      ...(!!router?.query?.fosterChildId && {
+                        fosterChildId: router?.query?.fosterChildId,
+                      }),
+                    },
+                  })
+                }
+              >
                 Back
-              </Button>
-            </Link>
-          </Grid>
-          {/* )} */}
+              </LoadingButton>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </FormProvider>

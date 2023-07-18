@@ -1,10 +1,6 @@
 import React from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
-import WorkFlowModal from "@root/components/modal/workFlowModal";
-// import { SELECT_FILTERS } from ".";
-// import { useReferralListTable } from "./useReferralListTable";
-import ShareModal from "@root/components/modal/shareModal";
 import { useChildEducationInfo } from "./useChildEducationInfo";
 import { Card } from "@mui/material";
 import DeleteModel from "@root/components/modal/DeleteModel";
@@ -16,23 +12,21 @@ const ChildEducationInfoList = () => {
     isSuccess,
     isError,
     isFetching,
-    setSearchValue,
     router,
     educationInfoTableColumns,
-    setPage,
-    theme,
     onDeleteConfirm,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
   } = useChildEducationInfo();
-  console.log(router?.query);
 
   return (
     <Card sx={{ p: 2 }}>
       <TableHeader
         title="Child Education Info"
         searchKey="search"
-        // selectFilters={SELECT_FILTERS}
         showAddBtn
         onAdd={() =>
           router.push({
@@ -45,9 +39,7 @@ const ChildEducationInfoList = () => {
             },
           })
         }
-        onChanged={(data: any) => {
-          setSearchValue(data?.search);
-        }}
+        onChanged={headerChangeHandler}
       />
       <CustomTable
         data={data?.data?.education_info}
@@ -58,11 +50,10 @@ const ChildEducationInfoList = () => {
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={data?.data?.meta?.page ?? 1}
-        totalPages={data?.data?.meta?.pages ?? 2}
-        onPageChange={(data: any) => {
-          setPage((page: any) => data - 1);
-        }}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
       {isRecordSetForDelete && (
         <DeleteModel

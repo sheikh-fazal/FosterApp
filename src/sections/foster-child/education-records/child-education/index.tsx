@@ -58,7 +58,6 @@ export const educationInfoTableColumnsFunction = (
                 },
               })
             }
-            // onClicked={() =>console.log(info,'info')}
           />
           <TableAction
             type="view"
@@ -74,7 +73,6 @@ export const educationInfoTableColumnsFunction = (
                 },
               })
             }
-            // onClicked={() =>console.log(info,'info')}
           />
         </Box>
       );

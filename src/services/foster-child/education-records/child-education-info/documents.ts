@@ -4,44 +4,37 @@ export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getChildEducationInfoDocumentData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: `foster-child/gp-info/docs/all/${apiDataParameter?.pathParams?.gpInfoId}`,
+        url: `education-records/education-info/document/list/${apiDataParameter?.pathParams?.educationInfoId}`,
         method: "GET",
         params: apiDataParameter?.params,
       }),
-      providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      providesTags: ["EDUCATION_INFO_DOCUMENTS"],
     }),
-    deleteGpDetailsInfoDocumentDataById: builder.mutation({
+    deleteEducationInfoDocumentDataById: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `foster-child/gp-info/docs/${apiDataParameter.pathParams.id}`,
+        url: `education-records/education-info/document/${apiDataParameter.pathParams.id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+      invalidatesTags: ["EDUCATION_INFO_DOCUMENTS"],
     }),
-    postGpDetailsInfoDocumentData: builder.mutation({
-      query: (apiDataParameter: any) => ({
-        url: `education-records/education-info/document/${apiDataParameter?.pathParams?.gpInfoId}`,
-        method: "POST",
-        body: apiDataParameter?.body,
-        // params: apiDataParameter?.params,
-      }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
-    }),
-    patchGpDetailsInfoDocumentData: builder.mutation({
-      query: (apiDataParameter: any) => ({
-        url: `foster-child/gp-info/docs/${apiDataParameter?.pathParams?.gpInfoId}/${apiDataParameter?.pathParams?.docId}`,
-        method: "POST",
-        body: apiDataParameter?.body,
-        params: apiDataParameter?.params,
-      }),
-      invalidatesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
+    postEducationInfoDocumentData: builder.mutation({
+      query: (apiDataParameter: any) => {
+        console.log(apiDataParameter);
+
+        return {
+          url: `education-records/education-info-document`,
+          method: "POST",
+          body: apiDataParameter?.body,
+          // params: apiDataParameter?.params,
+        };
+      },
+      invalidatesTags: ["EDUCATION_INFO_DOCUMENTS"],
     }),
   }),
 });
 
 export const {
-  useDeleteGpDetailsInfoDocumentDataByIdMutation,
-  useGetGpDetailsInfoDocumentDataQuery,
-  useLazyGetGpDetailsInfoDocumentDataQuery,
-  usePostGpDetailsInfoDocumentDataMutation,
-  usePatchGpDetailsInfoDocumentDataMutation,
+  useDeleteEducationInfoDocumentDataByIdMutation,
+  useGetChildEducationInfoDocumentDataQuery,
+  usePostEducationInfoDocumentDataMutation,
 } = gpDetailsInfoDocumentApi;
