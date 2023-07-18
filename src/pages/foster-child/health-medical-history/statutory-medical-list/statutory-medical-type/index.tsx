@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalTypeInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/statutory-medical-type-info/statutory-medical-type-info-tabs/StatutoryMedicalTypeInfoTabs";
 import { useRouter } from "next/router";
 import { headerHeading } from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
@@ -25,23 +26,21 @@ const PAGE_TITLE = "Statutory Medical List";
 // ----------------------------------------------------------------------
 
 StatutoryMedicalType.getLayout = function getLayout(page: any) {
-  const { query } = useRouter();
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(query)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function StatutoryMedicalType() {
+  const { query } = useRouter();
+
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(query)}
+      />
       <StatutoryMedicalTypeInfoTabs />
     </Page>
   );
