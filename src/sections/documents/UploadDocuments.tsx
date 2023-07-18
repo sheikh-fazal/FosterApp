@@ -20,6 +20,7 @@ const UploadDocuments = (props: any) => {
     totalPages,
     onPageChange,
     onDelete,
+    disabled=false
   } = props;
   const [openModal, setOpenModal] = useState(false);
 
@@ -33,6 +34,7 @@ const UploadDocuments = (props: any) => {
         onChanged={changeHandler}
         showAddBtn={!readOnly}
         onAdd={() => setOpenModal(true)}
+        disabled={disabled}
       />
       <UploadDocumentTable
         readOnly={readOnly}
@@ -51,7 +53,6 @@ const UploadDocuments = (props: any) => {
         closeModal={setOpenModal}
         openModal={openModal}
         formData={(data: any) => {
-          console.log("oooooooooooooooooooooi data", data);
           modalData(data);
         }}
       />

@@ -11,7 +11,7 @@ export const initialValues = {
   auditType: "",
   assigneeType: "",
   assignee: "",
-  dueDate: "",
+  dueDate: new Date(),
 };
 
 export const formSchema = Yup.object().shape({

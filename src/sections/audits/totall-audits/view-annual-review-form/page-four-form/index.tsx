@@ -1,24 +1,30 @@
-import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const formFields = [
   {
-    title: "Particular issues arising from placements:",
     gridLength: 12,
     otherOptions: {
+      label: "Particular issues arising from placements:",
       name: "particularIssues",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Training Issues:",
     gridLength: 12,
     otherOptions: {
+      label: "Training Issues:",
       name: "trainingIssues",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
@@ -27,148 +33,163 @@ export const formFields = [
     heading: "Safety Issues",
   },
   {
-    title: "Last Health and Safety Date:",
     gridLength: 6,
     otherOptions: {
+      label: "Last Health and Safety Date:",
       name: "safetyDate",
+      sx: { mb: 4}
     },
     component: RHFDatePicker,
   },
   {
-    title: "Equipment:",
     gridLength: 12,
     otherOptions: {
+      label: "Equipment:",
       name: "equipment",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "General Comments on Placements:",
     gridLength: 12,
     otherOptions: {
+      label: "General Comments on Placements:",
       name: "generalComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Supervising Social Worker Recommendations:",
     gridLength: 12,
     otherOptions: {
+      label: "Supervising Social Worker Recommendations:",
       name: "supervising",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Implications and descions for the future:",
     gridLength: 12,
     otherOptions: {
+      label: "Implications and descions for the future:",
       name: "descions",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Review Officer Comments:",
     gridLength: 12,
     otherOptions: {
+      label: "Review Officer Comments:",
       name: "officerComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Pannel Recommendation:",
     gridLength: 12,
     otherOptions: {
+      label: "Pannel Recommendation:",
       name: "pannelRecommendation",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Need for Change in Current Terms of Approval:",
     gridLength: 12,
     otherOptions: {
+      label: "Need for Change in Current Terms of Approval:",
       name: "termsApproval",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Target Date for considration by Agency Pannel:",
     gridLength: 6,
     otherOptions: {
+      label: "Target Date for considration by Agency Pannel:",
       name: "targetDate",
+      sx: { mb: 4}
     },
     component: RHFDatePicker,
   },
   {
-    title: "Birth Children Comments:",
     gridLength: 12,
     otherOptions: {
+      label: "Birth Children Comments:",
       name: "childrenComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "CLA Comments:",
     gridLength: 12,
     otherOptions: {
+      label: "CLA Comments:",
       name: "claComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Foster Carer Comments:",
     gridLength: 12,
     otherOptions: {
+      label: "Foster Carer Comments:",
       name: "carerComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "IRO Comments:",
     gridLength: 12,
     otherOptions: {
+      label: "IRO Comments:",
       name: "iroComments",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Final Outcome:",
     gridLength: 12,
     otherOptions: {
+      label: "Final Outcome:",
       name: "finalOutcome",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Category",
     gridLength: 6,
     otherOptions: {
+      label: "Category",
       name: "category",
       select: true,
       options: [{ value: "Diasabeled Choice", label: "Diasabeled Choice" }],
+      
     },
     component: RHFSelect,
   },
@@ -176,30 +197,33 @@ export const formFields = [
     tag: <br />,
   },
   {
-    title: "Home Visit Type",
     gridLength: 6,
     otherOptions: {
+      label: "Home Visit Type",
       name: "homeVisitType",
       select: true,
       options: [{ value: "Diasabeled Choice", label: "Diasabeled Choice" }],
+      sx: { mb: 4}
     },
     component: RHFSelect,
   },
   {
-    title: "Home Visit Status",
     gridLength: 6,
     otherOptions: {
+      label: "Home Visit Status",
       name: "homeVisitStatus",
       select: true,
       options: [{ value: "Diasabeled Choice", label: "Diasabeled Choice" }],
+      sx: { mb: 4}
     },
     component: RHFSelect,
   },
   {
-    title: "Date of Visit:",
     gridLength: 6,
     otherOptions: {
+      label: "Date of Visit:",
       name: "visitDate",
+      sx: { mb: 4}
     },
     component: RHFDatePicker,
   },
@@ -208,7 +232,7 @@ export const formFields = [
     otherOptions: {
       name: "fileSeen",
       label: "Home File Seen",
-      sx: { mt: "20px" },
+      sx: { mb: 4}
     },
     component: RHFCheckbox,
   },
@@ -217,7 +241,7 @@ export const formFields = [
     otherOptions: {
       name: "sheetChecked",
       label: "Medication Sheet Checked",
-      sx: { mt: "20px" },
+      sx: { mb: 4}
     },
     component: RHFCheckbox,
   },
@@ -226,17 +250,18 @@ export const formFields = [
     otherOptions: {
       name: "authorityFeedback",
       label: "Local Authority Feedback Required",
-      sx: { mt: "20px" },
+      sx: { mb: 4}
     },
     component: RHFCheckbox,
   },
   {
-    title: "Nature of Visit:",
     gridLength: 12,
     otherOptions: {
+      label: "Nature of Visit:",
       name: "natureOfVisit",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },

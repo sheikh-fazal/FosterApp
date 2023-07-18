@@ -10,7 +10,7 @@ import {
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
-  const { query } = useRouter();
+  const router = useRouter();
   const STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT = 10;
   // ----------------------------------------------------------------------
   const [
@@ -29,16 +29,20 @@ export const useDocuments = () => {
     search: searchValue,
   };
   const pathParams = {
-    id: query?.id,
+    id: router.query?.id,
   };
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
     useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter, {
-      skip: !!!query?.id,
+      skip: !!!router.query?.id,
       refetchOnMountOrArgChange: true,
     });
 
   const submitStatutoryMedicalListInfoDocumentData = async (data: any) => {
+    if (!!!router?.query?.id) {
+      enqueueSnackbar("Please submit the form first", { variant: "error" });
+      return;
+    }
     const documentFormData = new FormData();
 
     // documentFormData.append("documentType", data.documentType);
@@ -47,7 +51,7 @@ export const useDocuments = () => {
     documentFormData.append("file", data.chosenFile);
 
     const pathParams = {
-      id: query?.id,
+      id: router.query?.id,
     };
     const apiDataParameter = { params, pathParams, body: documentFormData };
     try {
@@ -93,8 +97,8 @@ export const useDocuments = () => {
     isSuccess,
     user,
     isFetching,
+    router,
     submitStatutoryMedicalListInfoDocumentData,
-    query,
     onDeleteConfirm,
     STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
   };

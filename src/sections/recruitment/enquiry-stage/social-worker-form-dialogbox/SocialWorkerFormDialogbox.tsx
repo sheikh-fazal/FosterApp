@@ -45,13 +45,6 @@ const SocialWorkerFormDialogbox = (props: any) => {
                   <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                     <>
                       <Grid>
-                        {/* <Typography
-                          color={theme.palette.primary.main}
-                          variant="body2"
-                        >
-                          {form.heading}
-                        </Typography> */}
-
                         <form.component
                           disabled={disabled}
                           size="small"

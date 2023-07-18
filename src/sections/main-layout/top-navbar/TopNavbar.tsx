@@ -89,7 +89,7 @@ export default function TopNavbar() {
               {NAVITEMS.map((item: any, index: any) => (
                 <Link
                   href={item.link}
-                  key={item}
+                  key={item.id}
                   style={{
                     textDecoration: "none",
                     marginRight: index !== item.length - 1 ? "20px" : "0",

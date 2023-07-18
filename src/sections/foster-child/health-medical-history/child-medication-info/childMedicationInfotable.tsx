@@ -5,12 +5,31 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
+import useChildMedicationInfotable from "./useChildMedicationInfotable";
+import useChildMedicationInfoForm from "./useChildMedicationInfoForm";
+import dayjs from "dayjs";
 
 const activepath =
   "/foster-child/health-medical-history/child-medication-info/actions";
 
-const ChildMedicationInfotable = () => {
+const ChildMedicationInfotable = (prop: any) => {
+  const { fosterChildId, ChildMedicationInfoId } = prop;
+  const {
+    childMedicationInfotabledata,
+    childMedicationInfotableIserror,
+    childMedicationInfotableisLoading,
+    childMedicationInfotableisFetching,
+    childMedicationInfotableSuccess,
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
+  } = useChildMedicationInfotable({
+    fosterChildId: fosterChildId,
+  });
+  console.log(childMedicationInfotabledata);
+  const { deleteHander } = useChildMedicationInfoForm({});
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -28,9 +47,9 @@ const ChildMedicationInfotable = () => {
     },
 
     {
-      accessorFn: (row: any) => row.dateIssued,
+      accessorFn: (row: any) => row.issuedDate,
       id: "dateIssued",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: () => <span>Date Issued</span>,
       isSortable: true,
     },
@@ -40,7 +59,9 @@ const ChildMedicationInfotable = () => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -48,7 +69,11 @@ const ChildMedicationInfotable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "edit", id: "" },
+                  query: {
+                    action: "edit",
+                    ChildMedicationInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -58,7 +83,11 @@ const ChildMedicationInfotable = () => {
               onClicked={() => {
                 router.push({
                   pathname: activepath,
-                  query: { action: "view", id: "" },
+                  query: {
+                    action: "view",
+                    ChildMedicationInfoId: info.row.original.id,
+                    fosterChildId: fosterChildId,
+                  },
                 });
               }}
             />
@@ -78,25 +107,27 @@ const ChildMedicationInfotable = () => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="hospitalization"
+                  title="Child Medication Info"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
-                      query: { action: "add", id: "" },
+                      query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={childMedicationInfotabledata?.data ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={childMedicationInfotableisLoading}
+                isFetching={childMedicationInfotableisFetching}
+                isError={childMedicationInfotableIserror}
+                isSuccess={childMedicationInfotableSuccess}
                 isPagination={true}
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}

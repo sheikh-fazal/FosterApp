@@ -4,9 +4,9 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     uploadDocumentList: builder.query({
       query: (search: any) => ({
-        url: "chronology-events/list-allegationDocuments",
+        url: `chronology-events/list-allegationDocuments/${search?.params.allegationId}`,
         method: "GET",
-        params: search,
+        params: search.params,
       }),
       providesTags: ["ALLEGATION_DOCUMENTS"],
     }),

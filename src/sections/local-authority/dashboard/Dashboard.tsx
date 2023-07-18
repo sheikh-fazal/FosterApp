@@ -11,7 +11,6 @@ import BarChart from "./charts/BarChart";
 
 const Dashboard = () => {
     const theme = useTheme();
-
     return (
         <>
             <LocalAuthorityTabs tabsDataArray={TABSDATAARRY}>

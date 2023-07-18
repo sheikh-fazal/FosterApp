@@ -10,8 +10,9 @@ import {
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
-  const { query } = useRouter();
+  const router = useRouter();
   const GPDETAILSDOCUMENTPAGELIMIT = 10;
+  const [searchValue, setSearchValue] = useState(undefined);
   // ----------------------------------------------------------------------
   const [
     postGpDetailsInfoDocumentDataTrigger,
@@ -23,23 +24,26 @@ export const useDocuments = () => {
   ] = useDeleteGpDetailsInfoDocumentDataByIdMutation();
 
   const [page, setPage] = useState(0);
-  const [searchValue, setSearchValue] = useState(undefined);
   const params = {
     offset: page,
     limit: GPDETAILSDOCUMENTPAGELIMIT,
     search: searchValue,
   };
   const pathParams = {
-    gpInfoId: query?.gpInfoId,
+    gpInfoId: router?.query?.gpInfoId,
   };
   const apiDataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
     useGetGpDetailsInfoDocumentDataQuery(apiDataParameter, {
-      skip: !!!query?.gpInfoId,
+      skip: !!!router?.query?.gpInfoId,
       refetchOnMountOrArgChange: true,
     });
 
   const submitGpDetailsInfoDocumentData = async (data: any) => {
+    if (!!!router?.query?.gpInfoId) {
+      enqueueSnackbar("Please submit the form first", { variant: "error" });
+      return;
+    }
     const documentFormData = new FormData();
 
     documentFormData.append("documentDate", data.documentDate);
@@ -47,7 +51,7 @@ export const useDocuments = () => {
     documentFormData.append("file", data.chosenFile);
 
     const pathParams = {
-      gpInfoId: query?.gpInfoId,
+      gpInfoId: router?.query?.gpInfoId,
     };
     const apiDataParameter = { params, pathParams, body: documentFormData };
     try {
@@ -93,7 +97,7 @@ export const useDocuments = () => {
     user,
     isFetching,
     submitGpDetailsInfoDocumentData,
-    query,
+    router,
     postGpDetailsInfoDocumentDataStatus,
     onDeleteConfirm,
     GPDETAILSDOCUMENTPAGELIMIT,

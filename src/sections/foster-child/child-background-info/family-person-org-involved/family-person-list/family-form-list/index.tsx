@@ -156,7 +156,7 @@ export const familyFormListValidation = Yup.object().shape({
   country: Yup.string().required("Required"),
   postCode: Yup.string().required("Required"),
   phone: Yup.string().required("Required"),
-  siblingRecord: Yup.boolean().required("Required"),
+  siblingRecord: Yup.boolean(),
 });
 
 export const defaultValuesFamilyList = {
@@ -172,5 +172,5 @@ export const defaultValuesFamilyList = {
   country: "",
   postCode: "",
   phone: "",
-  siblingRecord: true,
+  siblingRecord: false,
 };

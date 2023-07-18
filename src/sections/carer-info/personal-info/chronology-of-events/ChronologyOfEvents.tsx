@@ -1,5 +1,5 @@
 import * as React from "react";
-import { accordionData, sortingData } from "./ChronologyOfEventsData";
+import { accordionData, sortingData } from "./index";
 import { FormControl, Grid, InputLabel, MenuItem, Stack } from "@mui/material";
 import Select from "@mui/material/Select";
 import AccordianList from "@root/components/AccordianList";
@@ -22,6 +22,9 @@ const ChronologyOfEvents = () => {
             label="Sort"
             onChange={handleChange}
           >
+            <MenuItem value="">
+              <em>None</em>
+            </MenuItem>
             {sortingData.map((option) => (
               <MenuItem key={option.value} value={option.value}>
                 {option.value}

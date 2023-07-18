@@ -17,16 +17,24 @@ import {
   HospitalizationFromvalue,
   HospitalizationListValue,
 } from ".";
+import useHospitalizationForm from "./useHospitalizationForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const backPath = "/foster-child/health-medical-history/hospitalisation";
 
-const hospitalizationFrom = (props: any) => {
-  const { action, id } = props;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+const HospitalizationFrom = (props: any) => {
+  const { action, fosterChildId, hospitalizationId } = props;
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useHospitalizationForm({
+      action: action,
+      fosterChildId: fosterChildId,
+      hospitalizationId: hospitalizationId,
+    });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: HospitalizationListValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -37,18 +45,17 @@ const hospitalizationFrom = (props: any) => {
     reset,
     formState: { errors },
   } = methods;
-  const submitHander = (data: any) => {
-    console.log(data);
-  };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+
   const theme: any = useTheme();
-  console.log(errors);
+
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
+              <IsFetching isFetching={isFatching} />
               {HospitalizationFromvalue.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -121,7 +128,14 @@ const hospitalizationFrom = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`${backPath}`)}
+                  onClick={() =>
+                    router.push({
+                      pathname: `${backPath}`,
+                      query: {
+                        fosterChildId: fosterChildId,
+                      },
+                    })
+                  }
                 >
                   back
                 </Button>
@@ -134,4 +148,4 @@ const hospitalizationFrom = (props: any) => {
   );
 };
 
-export default hospitalizationFrom;
+export default HospitalizationFrom;

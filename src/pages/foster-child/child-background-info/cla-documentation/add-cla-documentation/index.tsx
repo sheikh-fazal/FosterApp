@@ -37,7 +37,6 @@ export default function AddClaDocumentationList() {
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
         <ClaDocumentationForm />
-
       </Paper>
     </Page>
   );

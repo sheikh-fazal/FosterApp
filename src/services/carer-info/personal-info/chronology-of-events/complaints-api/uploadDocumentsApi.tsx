@@ -4,11 +4,11 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     uploadDocumentList: builder.query<null, object>({
       query: (search: any) => ({
-        url: "chronology-events/list-complaintDocuments",
+        url: `chronology-events/list-complaintDocuments/${search?.params.complaintId}`,
         method: "GET",
-        params: search,
+        params: search.params,
       }),
-      providesTags: ["COMPLAINT_LIST"],
+      providesTags: ["COMPLAINT_DOCUMENTS"],
     }),
     postComplaintDocuments: builder.mutation({
       query: (list: any) => ({
@@ -16,7 +16,7 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
         method: "POST",
         body: list,
       }),
-      invalidatesTags: ["COMPLAINT_LIST"],
+      invalidatesTags: ["COMPLAINT_DOCUMENTS"],
     }),
     singleComplaintDocument: builder.query({
       query: (id: any) => `chronology-events/complaintDocuments/${id}`,
@@ -24,14 +24,14 @@ export const uploadDocumentsApi = baseAPI.injectEndpoints({
         parseDatesToTimeStampByKey(response.data);
         return response;
       },
-      providesTags: ["ALLEGATION_DOCUMENTS"],
+      providesTags: ["COMPLAINT_DOCUMENTS"],
     }),
     deleteComplaintDocumentList: builder.mutation({
       query: (id: any) => ({
         url: `chronology-events/complaintDocument/delete${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["ALLEGATION_DOCUMENTS"],
+      invalidatesTags: ["COMPLAINT_DOCUMENTS"],
     }),
   }),
 });

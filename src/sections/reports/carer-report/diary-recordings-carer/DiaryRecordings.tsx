@@ -9,6 +9,7 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 const DiaryRecordings = () => {
   const { columns, path, handleCloseDeleteModal, openDelete, router } =
     useDiaryRecordings();
+    
   return (
     <Card sx={{ py: 2, px: 1 }}>
       <TableHeader

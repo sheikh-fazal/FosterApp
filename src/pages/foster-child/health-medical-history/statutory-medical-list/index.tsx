@@ -1,15 +1,18 @@
 import Layout from "@root/layouts";
-import StatutoryChecksList from "@root/sections/carer-info/background-checks/statutory-checks-list/StatutoryChecksList";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalList from "@root/sections/foster-child/health-medical-history/statutory-medical-list/StatutoryMedicalList";
+import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import Page from "@root/components/Page";
 
-// Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/foster-child",
+    href: !!query?.fosterChildId
+      ? `/foster-child?fosterChildId=${query?.fosterChildId}`
+      : "/foster-child",
   },
   {
     name: "Statutory Medical List",
@@ -18,18 +21,21 @@ const BREADCRUMBS = [
 ];
 
 const PAGE_TITLE = "Statutory Medical List";
-StatutoryCheckList.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+StatutoryMedicalListPage.getLayout = function getLayout(page: any) {
+  return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
-export default function StatutoryCheckList() {
-  return <StatutoryMedicalList />;
+export default function StatutoryMedicalListPage() {
+  const { query } = useRouter();
+
+  return (
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(query)}
+      />
+      <StatutoryMedicalList />
+    </Page>
+  );
 }

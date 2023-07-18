@@ -1,69 +1,69 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
+  useDeleteDocumentMutation,
+  useGetDocumentsQuery,
+} from "@root/services/carer-info/personal-info/application-form/Documents";
+import {
   usePostAllegationDocumentsMutation,
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
-export const useUploadDocumentsTable = () => {
+export const useUploadDocumentsTable = ({ applicationFormid }: any) => {
   const router = useRouter();
-  const { id }: any = router.query;
-  const tableHeaderRefTwo = useRef<any>();
-  const theme: any = useTheme();
-  const [error, setError] = React.useState<any>(null);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  let theme: any = useTheme();
+  const tableHeaderRef = useRef<any>();
+  const [view, setView] = useState("");
+  const [open, setOpen] = useState(false);
+  const [docData, setDocData] = useState(null);
+
+  const changeView = (name: any) => {
+    setView(name);
+  };
+
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  const {
-    data,
-    isError,
-    isLoading: loadingList,
-    isFetching,
-    isSuccess,
-  }: any = useUploadDocumentListQuery({});
-  const [postAllegationDetails] = usePostAllegationDocumentsMutation();
-  const allegationDocuments = data?.data?.allegation_documents;
-  const meta = data?.meta;
-  const deleteList = (data: any) => {};
-  const onSubmit = async (data: any) => {
-    const formData = new FormData();
-    formData.append("type", data.type);
-    formData.append("documentDate", data.documentDate);
-    formData.append("password", data.password);
-    formData.append("file", data.file);
-    formData.append("allegationId", id);
-    try {
-      await postAllegationDetails(formData);
-      enqueueSnackbar("Documents Uploaded Successfully", {
-        variant: "success",
+
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetDocumentsQuery({ params, id: applicationFormid });
+  const meta = data?.data?.meta;
+
+  const [deleteDocument] = useDeleteDocumentMutation();
+
+  const listDeleteHandler = (id: any) => {
+    deleteDocument({ id })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Record Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    }
   };
   return {
-    router,
-    tableHeaderRefTwo,
+    data,
+    theme,
+    tableHeaderRef,
+    view,
+    open,
+    setOpen,
+    changeView,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
+    docData,
+    setDocData,
+    isLoading,
     isError,
-    onSubmit,
     isFetching,
     isSuccess,
-    loadingList,
-    allegationDocuments,
-    error,
-    meta,
-    setError,
-    isLoading,
-    setIsLoading,
-    deleteList,
-    postAllegationDetails,
-    theme,
+    listDeleteHandler,
+    meta
   };
 };

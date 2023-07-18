@@ -32,8 +32,9 @@ export default function EHCPForm(props: any) {
             </Grid>
           ))}
         </Grid>
-        {router.query.action !== "view" && (
-          <Box sx={{ display: "flex", mb: "1rem" }}>
+
+        <Box sx={{ display: "flex", mb: "1rem" }}>
+          {!disabled && (
             <LoadingButton
               sx={{ marginRight: "1rem" }}
               type="submit"
@@ -42,20 +43,20 @@ export default function EHCPForm(props: any) {
             >
               Submit
             </LoadingButton>
-            <LoadingButton
-              onClick={() => {
-                router.push(
-                  "/foster-child/child-background-info/cla-documentation"
-                );
-              }}
-              type="button"
-              sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
-              variant="contained"
-            >
-              back
-            </LoadingButton>
-          </Box>
-        )}
+          )}
+          <LoadingButton
+            onClick={() => {
+              router.push(
+                "/foster-child/child-background-info/cla-documentation"
+              );
+            }}
+            type="button"
+            sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
+            variant="contained"
+          >
+            back
+          </LoadingButton>
+        </Box>
       </FormProvider>
     </Paper>
   );

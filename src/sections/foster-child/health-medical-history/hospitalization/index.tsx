@@ -27,7 +27,7 @@ export const HospitalizationFromvalue = [
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "ReasonForHospitalization",
+      name: "reasonForHospitalisation",
       label: "Reason for hospitalisation",
       multiline: true,
       minRows: 3,
@@ -100,16 +100,16 @@ export const HospitalizationFromvalue = [
 
 export const HospitalizationListValue = {
   hospitalName: "",
-  ReasonForHospitalization: "",
-  admissionDate: "",
-  dischargeDate: "",
+  reasonForHospitalisation: "",
+  admissionDate: new Date(),
+  dischargeDate: new Date(),
   doctorName: "",
   dayToDayDetails: "",
-  followUpDate: "",
+  followUpDate: new Date(),
 };
 export const FormSchema = Yup.object().shape({
   hospitalName: Yup.string().required("required"),
-  ReasonForHospitalization: Yup.string().required("required"),
+  reasonForHospitalisation: Yup.string().required("required"),
   admissionDate: Yup.date().required("required"),
   dischargeDate: Yup.date().required("required"),
   doctorName: Yup.string().required("required"),

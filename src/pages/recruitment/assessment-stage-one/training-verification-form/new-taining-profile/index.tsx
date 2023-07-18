@@ -82,8 +82,6 @@ export default function AddTraingVerification() {
     isSuccess,
   } = useGetTrainingProfileAllDocumentQuery({ id: profileId, params });
 
-  console.log(uploadDocuments, "uploaded documents");
-
   const [postTrainingProfileData] = usePostTrainingProfileDocumentMutation();
 
   const uploadDocumentsHandler = async (postData: any) => {
