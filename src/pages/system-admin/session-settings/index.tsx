@@ -3,8 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
-import SessionSettings from "@root/sections/system-admin/session-settings/SessionSettings";
+// import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
+// import SessionSettings from "@root/sections/system-admin/session-settings/SessionSettings";
 
 // Constants
 
@@ -35,7 +35,7 @@ Settings.getLayout = function getLayout(page: any) {
 export default function Settings() {
   return (
     <Page title={PAGE_TITLE}>
-      <SessionSettings />
+      {/* <SessionSettings /> */}
     </Page>
   );
 }
