@@ -3,7 +3,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import ApiInventory from "@root/sections/system-admin/api-inventory/ApiInventory";
+
+import InventoryTableForm from "@root/sections/system-admin/api-inventory/api-inventory-table/inventory-table-form/InventoryTableForm";
 
 // Constants
 
@@ -19,8 +20,8 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "Api Inventory";
-Inventory.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Edit Api Inventory Form";
+InventoryForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +32,10 @@ Inventory.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function Inventory() {
+export default function InventoryForm() {
   return (
     <Page title={PAGE_TITLE}>
-      <ApiInventory />
+      <InventoryTableForm />
     </Page>
   );
 }
