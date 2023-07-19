@@ -6,13 +6,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import ActiveSocialWorkerForm from "@root/sections/foster-child/social-worker-details/la-social-worker/active-social-worker/ActiveSocialWorkerForm";
+import ActiveSocialWorkerForm from "@root/sections/foster-child/social-worker-details/la-social-worker/active-social-worker/SocialWorkerForm";
 
-ViewActiveSocialWorker.getLayout = function getLayout(page: any) {
+AddSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
-export default function ViewActiveSocialWorker() {
+export default function AddSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
@@ -20,7 +20,7 @@ export default function ViewActiveSocialWorker() {
       icon: <HomeIcon />,
       name: "LA Social Worker List",
       href: {
-        pathname: "/foster-child/education-records/study-support-info",
+        pathname: "/foster-child/social-worker-details/la-social-worker",
         query: { fosterChildId: fosterChildId },
       },
     },
@@ -38,7 +38,7 @@ export default function ViewActiveSocialWorker() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <ActiveSocialWorkerForm disabled />
+      <ActiveSocialWorkerForm />
     </Box>
   );
 }

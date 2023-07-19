@@ -20,26 +20,25 @@ export default function ActiveSocialWorkerTable(props: any) {
     isSuccess,
     meta,
     pageChangeHandler,
-    sortChangeHandler,
   } = useActiveSocialWorkerTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-      id: "name",
+      accessorFn: (row: any) => row?.socialWorkerName,
+      id: "socialWorkerName",
       cell: (info: any) => info.getValue(),
       header: "Social Worker Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.socialWorkerTitle,
+      id: "socialWorkerTitle",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Social Worker Title",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.phoneNumber,
+      id: "phoneNumber",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Contact",
       isSortable: true,
@@ -78,11 +77,12 @@ export default function ActiveSocialWorkerTable(props: any) {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/social-worker-details/la-social-worker/view-active-social-worker",
+                  "/foster-child/social-worker-details/la-social-worker/view-social-worker",
                 query: {
                   action: "view",
-                  schoolInfoId: info.row.original.id,
+                  id: info.row.original.id,
                   fosterChildId: fosterChildId,
+                  worker: "Active",
                 },
               })
             }
@@ -119,7 +119,6 @@ export default function ActiveSocialWorkerTable(props: any) {
         totalPages={meta?.pages}
         showSerialNo
         onPageChange={pageChangeHandler}
-        onSortByChange={sortChangeHandler}
       />
     </Card>
   );

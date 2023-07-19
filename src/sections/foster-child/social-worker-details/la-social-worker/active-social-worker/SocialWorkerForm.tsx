@@ -5,9 +5,9 @@ import React from "react";
 import { ActiveSocialWorkerFormData } from ".";
 import { LoadingButton } from "@mui/lab";
 import Link from "next/link";
-import { useActiveSocialWorkerForm } from "./useActiveSocialWorkerForm";
+import { useSocialWorkerForm } from "./useSocialWorkerForm";
 
-export default function ActiveSocialWorkerForm(props: any) {
+export default function SocialWorkerForm(props: any) {
   const router = useRouter();
   const theme: any = useTheme();
   const { disabled } = props;
@@ -19,7 +19,7 @@ export default function ActiveSocialWorkerForm(props: any) {
     isError,
     isSuccess,
     isLoading,
-  } = useActiveSocialWorkerForm();
+  } = useSocialWorkerForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -29,7 +29,7 @@ export default function ActiveSocialWorkerForm(props: any) {
           color={theme.palette.primary.main}
           sx={{ my: 2 }}
         >
-          Active LA Social Worker Contact Details
+          {router?.query?.worker} LA Social Worker Contact Details
         </Typography>
         <Grid container spacing={4}>
           {ActiveSocialWorkerFormData?.map((item) => (

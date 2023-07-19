@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useGetPreviousSocialWorkerByIdQuery, usePostPreviousSocialWorkerApiMutation, usePutPreviousSocialWorkerByIdMutation } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
-import { ActiveSocialWorkerFormSchema, defaultValues } from "../active-social-worker/index";
+import { useGetSocialWorkerByIdQuery, usePostSocialWorkerApiMutation, usePutSocialWorkerByIdMutation } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
+import { ActiveSocialWorkerFormSchema, defaultValues } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { enqueueSnackbar } from "notistack";
 
-export const usePreviousSocialWorkerForm = () => {
+export const useSocialWorkerForm = () => {
   const router = useRouter();
 
-  const { data } = useGetPreviousSocialWorkerByIdQuery(
-    router?.query?.schoolInfoId,
+  const { data } = useGetSocialWorkerByIdQuery(
+    router?.query?.id,
     { refetchOnMountOrArgChange: true }
   );
   const [postData, { isError, isSuccess, isLoading }] =
-  usePostPreviousSocialWorkerApiMutation();
+  usePostSocialWorkerApiMutation();
 
-  const [putData] = usePutPreviousSocialWorkerByIdMutation();
+  const [putData] = usePutSocialWorkerByIdMutation();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(ActiveSocialWorkerFormSchema),
@@ -32,6 +32,7 @@ export const usePreviousSocialWorkerForm = () => {
     reset((formValues: any) => ({
       ...formValues,
       ...data?.data,
+      startDateOfAssignment:new Date(data?.data?.startDateOfAssignment)
     }));
   }, [data, reset]);
 
@@ -51,7 +52,7 @@ export const usePreviousSocialWorkerForm = () => {
       } else if (router?.query?.action === "edit") {
         const res: any = await putData({
           body: data,
-          schoolInfoId: router?.query?.schoolInfoId,
+          id: router?.query?.id,
         }).unwrap();
         enqueueSnackbar(res?.message ?? `Update Successfully!`, {
           variant: "success",

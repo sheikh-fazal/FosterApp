@@ -42,7 +42,16 @@ export const ActiveSocialWorkerFormData = [
     componentProps: { name: "status", label: "Status:", select: true },
     component: RHFSelect,
     md: 6,
-    options: COUNTRIESDROPDOWN,
+    options:[{
+      id: 1,
+      label: "Active",
+      value: "Active",
+    },
+    {
+      id: 2,
+      label: "Inactive",
+      value: "Inactive",
+    }]
   },
   {
     id: 6,
@@ -62,6 +71,7 @@ export const defaultValues = {
   startDateOfAssignment: new Date(),
   status: "",
   reportingManager: "",
+  basicQualification:""
 };
 export const ActiveSocialWorkerFormSchema = Yup.object().shape({
   phoneNumber: Yup.string()
@@ -70,7 +80,7 @@ export const ActiveSocialWorkerFormSchema = Yup.object().shape({
     .matches(/^\+44\d{10}$/, "Invalid Mobile Number")
     .required("Mobile Number is Required"),
   email: Yup.string().required("Email is Required").email("Invalid Email"),
-  startDateOfAssignment: Yup.date().required("To Date is Required"),
+  startDateOfAssignment: Yup.date().required("Date is Required"),
   status: Yup.string().trim().required("Comments are Required"),
   reportingManager: Yup.string().trim().required("Comments are Required"),
 });
