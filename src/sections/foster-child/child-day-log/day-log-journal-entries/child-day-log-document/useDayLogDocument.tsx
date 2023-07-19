@@ -15,7 +15,7 @@ export const useDayLogDocument = () => {
   console.log(router?.asPath.split("/").pop());
 
   const childDayLogJournalId = {
-    childDayLogJournalId: router?.query?.daylog_journal_id || "",
+    childDayLogJournalId: router?.query?.daylog_journal_id,
     offset: page,
     limit: 10,
     search: searchValue,

@@ -1,7 +1,6 @@
 import React from "react";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useFamilyPersonDocument } from "./useFamilyPersonDocument";
-import { SearchSharp } from "@mui/icons-material";
 
 export const FamilyPersonDocument = () => {
   const {

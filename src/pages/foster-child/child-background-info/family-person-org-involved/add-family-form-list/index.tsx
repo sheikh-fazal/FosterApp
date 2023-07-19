@@ -49,7 +49,7 @@ export default function FamilyPersonList() {
       skip: !familyPersonId,
     });
 
-  console.log("Is loading: ", data);
+  // console.log("Is loading: ", data);
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
