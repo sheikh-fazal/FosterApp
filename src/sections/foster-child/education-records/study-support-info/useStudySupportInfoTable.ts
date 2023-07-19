@@ -1,5 +1,5 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import { useDeleteStudySupportInfoByIdMutation, useGetStudySupportInfoTableApiQuery } from "@root/services/foster-child/education-records/study-support-info/studySupportInfoAPI";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
@@ -13,8 +13,10 @@ export const useStudySupportInfoTable = () => {
     // ----------------------------------------------------------------------
   
     const { data, isLoading, isError, isFetching, isSuccess } =
-      useGetCarerFamilyTableApiQuery({ params });
-  
+      useGetStudySupportInfoTableApiQuery({ params });
+
+      const [postData] = useDeleteStudySupportInfoByIdMutation();
+
     const family = data?.faimly_details;
     const meta = data?.meta;
   
@@ -30,5 +32,6 @@ export const useStudySupportInfoTable = () => {
       meta,
       pageChangeHandler,
       sortChangeHandler,
+      postData
     };
 }
