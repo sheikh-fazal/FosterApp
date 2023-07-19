@@ -169,6 +169,24 @@ const CustomAccordian = (props: CUSTOMACCORDIAN) => {
                   onClick={() => handleAdd(item.title)}
                 />
               )}
+              {item.countValue && (
+                <Box
+                  sx={{
+                    marginRight: 1,
+                    bgcolor: theme.palette.primary.main,
+                    width:"30px",
+                    height:"30px",
+                    display:"flex",
+                    justifyContent:"center",
+                    alignItems: "center",
+                    color:'#fff',
+                    borderRadius: "50%",
+                    textAlign:'center'
+                  }}
+                >
+                  {item.countValue}
+                </Box>
+              )}
             </Box>
           </AccordionSummary>
           <AccordionDetails>{item.component}</AccordionDetails>

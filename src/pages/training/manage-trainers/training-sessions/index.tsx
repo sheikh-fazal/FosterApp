@@ -18,7 +18,7 @@ TrainingSessions.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Dashboard",
+          name: "Training",
           href: "/training",
         },
         {

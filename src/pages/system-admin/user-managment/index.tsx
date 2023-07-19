@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import UserManagment from "@root/sections/system-admin/user-managment/UserManagment";
+// import UserManagment from "@root/sections/system-admin/user-managment/UserManagment";
 
 // Constants
 
@@ -34,7 +34,7 @@ UserManagement.getLayout = function getLayout(page: any) {
 export default function UserManagement() {
   return (
     <Page title={PAGE_TITLE}>
-      <UserManagment />
+      {/* <UserManagment /> */}
     </Page>
   );
 }

@@ -247,7 +247,7 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Label",
+    title: "Date of Birth",
     otherOptions: { name: "childrenDateOne", fullWidth: true },
     component: RHFDatePicker,
   },
@@ -260,7 +260,7 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Label",
+    title: "Date of Birth",
     otherOptions: { name: "childrenDateTwo", fullWidth: true },
     component: RHFDatePicker,
   },
@@ -273,7 +273,7 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Label",
+    title: "Date of Birth",
     otherOptions: { name: "childrenDateThree", fullWidth: true },
     component: RHFDatePicker,
   },
@@ -323,7 +323,7 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Date",
+    title: "Date of Birth",
     otherOptions: { name: "dateOfBirth", fullWidth: true },
     component: RHFDatePicker,
   },

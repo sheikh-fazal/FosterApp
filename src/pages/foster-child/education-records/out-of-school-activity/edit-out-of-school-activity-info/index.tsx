@@ -4,7 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import EditOutSchoolActivityInfo from "@root/sections/foster-child/out-of-school-activity/edit-out-of-school-activity-info/EditOutSchoolActivityInfo";
+import EditOutSchoolActivityInfo from "@root/sections/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info/EditOutSchoolActivityInfo";
 
 const PAGE_TITLE = "Out of Shool Activity";
 

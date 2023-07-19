@@ -94,7 +94,7 @@ const CourseArchive = ({ name }: any) => {
   };
 
   return (
-    <>
+    <> 
       <Card sx={{ borderRadius: "5px", p: "18px" }}>
         <Grid container>
           <Grid item lg={4} xs={12} sx={{ mb: "20px" }}>

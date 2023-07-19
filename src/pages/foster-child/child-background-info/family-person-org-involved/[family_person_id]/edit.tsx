@@ -1,5 +1,4 @@
 import Layout from "@root/layouts";
-import { Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";

@@ -2,32 +2,35 @@ import { RHFTextField } from "@root/components/hook-form";
 
 export const formFields = [
   {
-    title: "Complaits or Allegation during period under review",
     gridLength: 12,
     otherOptions: {
+      label: "Complaits or Allegation during period under review",
       name: "allegation",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Significant changes/events for Carers since last review",
     gridLength: 12,
     otherOptions: {
+      label: "Significant changes/events for Carers since last review",
       name: "significantChanges",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Impact of Foresting On Family",
     gridLength: 12,
     otherOptions: {
+      label: "Impact of Foresting On Family",
       name: "impact",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
@@ -35,12 +38,13 @@ export const formFields = [
     heading: "Experience of working with birth parent(s)",
   },
   {
-    title: "Impact of Foresting On Family",
     gridLength: 12,
     otherOptions: {
+      label: "Impact of Foresting On Family",
       name: "impact2",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
@@ -48,23 +52,25 @@ export const formFields = [
     heading: "Working relationship with the Agency",
   },
   {
-    title:
-      "What specific prepration / training have the carer/s to assist them to become foster carers (First Review ONLY)?",
     gridLength: 12,
     otherOptions: {
+      label:
+        "What specific prepration / training have the carer/s to assist them to become foster carers (First Review ONLY)?",
       name: "prepration",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Support for Carers",
     gridLength: 12,
     otherOptions: {
+      label: "Support for Carers",
       name: "support",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
@@ -72,42 +78,46 @@ export const formFields = [
     heading: "Working relationship with professional",
   },
   {
-    title: "Supervising Social Workers",
     gridLength: 12,
     otherOptions: {
+      label: "Supervising Social Workers",
       name: "socialWorkers",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Other Professionals",
     gridLength: 12,
     otherOptions: {
+      label: "Other Professionals",
       name: "otherProfessionals",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Other Foster Carers",
     gridLength: 12,
     otherOptions: {
+      label: "Other Foster Carers",
       name: "otherFosterCarers",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
   {
-    title: "Procedures",
     gridLength: 12,
     otherOptions: {
+      label: "Procedures",
       name: "procedures",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4}
     },
     component: RHFTextField,
   },
