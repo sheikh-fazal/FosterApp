@@ -1,15 +1,15 @@
 import React from "react";
 import { tableData } from ".";
+import PhoneModal from "./phone-modal/PhoneModal";
 import ShareModal from "@root/components/modal/shareModal";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { useAdvocateDirectory } from "./useAdvocateDirectory";
+import CommonContactDirectory from "./CommonContactDirectory";
+import ContactInfoModal from "./contact-info-modal/ContactInfoModal";
 import AddTabModal from "@root/components/modal/add-tab-modal/AddTabModal";
+import { useAgencySafeguardingOfficer } from "./useAgencySafeguardingOfficer";
 import SendEmailModal from "@root/components/modal/SendEmailModal/SendEmailModal";
-import PhoneModal from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/phone-modal/PhoneModal";
-import CommonContactDirectory from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/CommonContactDirectory";
-import ContactInfoModal from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/contact-info-modal/ContactInfoModal";
 
-const AdvocateDirectory = () => {
+const AgencyContactDirectory = () => {
   const {
     columns,
     openModal,
@@ -24,7 +24,7 @@ const AdvocateDirectory = () => {
     handleDeleteModal,
     phoneModal,
     handlePhoneModal,
-  } = useAdvocateDirectory();
+  } = useAgencySafeguardingOfficer();
   return (
     <>
       <CommonContactDirectory
@@ -63,7 +63,7 @@ const AdvocateDirectory = () => {
           },
           
         ]}
-        defaultValue={0}
+        defaultValue={2}
         handleAddTab={handleOpenModal}
         tableProps={{
           isSuccess: true,
@@ -79,4 +79,4 @@ const AdvocateDirectory = () => {
   );
 };
 
-export default AdvocateDirectory;
+export default AgencyContactDirectory;
