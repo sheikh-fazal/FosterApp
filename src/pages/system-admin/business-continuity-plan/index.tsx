@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-// import ContinuityPlan from "@root/sections/system-admin/business-continuity-plan/ContinuityPlan";
+import ContinuityPlan from "@root/sections/system-admin/business-continuity-plan/ContinuityPlan";
 
 // Constants
 
@@ -34,7 +34,7 @@ BusinessContinuity.getLayout = function getLayout(page: any) {
 export default function BusinessContinuity() {
   return (
     <Page title={PAGE_TITLE}>
-      {/* <ContinuityPlan /> */}
+      <ContinuityPlan />
     </Page>
   );
 }
