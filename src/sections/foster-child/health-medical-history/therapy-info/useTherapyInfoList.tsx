@@ -20,8 +20,9 @@ export const useTherapyInfoList = () => {
   const columns = getColumns({ router });
 
   const dataParameter = { params };
+  console.log({ dataParameter });
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useSafeCarePolicyListQuery(dataParameter);
+    useSafeCarePolicyListQuery(params);
   return {
     tableHeaderRef,
     columns,

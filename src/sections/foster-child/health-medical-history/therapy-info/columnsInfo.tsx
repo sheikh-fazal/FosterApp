@@ -2,8 +2,11 @@ import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
   const { router } = parms;
+  const { query } = useRouter();
+  const { fosterChildId } = query;
   return [
     {
       accessorFn: (row: any) => row.a,
@@ -30,7 +33,7 @@ export const getColumns = (parms: any) => {
             type="edit"
             onClick={() =>
               router.push(
-                `/foster-child/other-information/safe-care-policy-list/safe-care-policy`
+                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info?fosterChildId=${fosterChildId}`
               )
             }
           />
