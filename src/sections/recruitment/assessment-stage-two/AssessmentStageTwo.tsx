@@ -22,7 +22,6 @@ export default function AssessmentStageTwo() {
     isError,
     isFetching,
     isSuccess,
-    assessmentStageTwoApiData,
   } = useAssessmentStageTwo();
   return (
     <div>

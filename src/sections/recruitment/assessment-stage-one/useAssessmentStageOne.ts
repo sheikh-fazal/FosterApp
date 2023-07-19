@@ -10,11 +10,10 @@ export const useAssessmentStageOne = () => {
   const [assessmentStageOneData, setAssessmentStageOneData] = React.useState(
     ASSESSMENTSTAGEONEDATA
   );
-  
+
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetStageOneStatusQuery(id);
-const assessmentStageOneApiData= data?.data
-console.log(data);
+  const assessmentStageOneApiData = data?.data;
 
   useEffect(() => {
     setAssessmentStageOneData(
@@ -23,7 +22,6 @@ console.log(data);
         status: assessmentStageOneApiData?.[item?.textForApi],
       }))
     );
-    
   }, [assessmentStageOneApiData]);
 
   const [openIdForInfo, setOpenIdForInfo] = React.useState<any>();

@@ -4,7 +4,7 @@ import { MANAGELOGINDATA } from ".";
 export const useManageLoginDropDown = () => {
   const [open, setOpen] = React.useState(false);
   const [manageLoginData, setManageLoginData] = React.useState(MANAGELOGINDATA);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState<any>(null);
   const anchorRef = React.useRef<HTMLDivElement>(null);
 
   const handleClick = () => {
