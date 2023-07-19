@@ -1,8 +1,5 @@
 import * as Yup from "yup";
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
 import { Typography } from "@mui/material";
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   RHFCheckbox,
   RHFSelect,
@@ -10,40 +7,37 @@ import {
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const DayLogJournalFormValidation = ({ initialValueProps }: any) => {
-  const router = useRouter();
-
-  console.log(initialValueProps, "");
-
-  const DayLogFormValidation = Yup.object().shape({
-    date: Yup.string().required("Required"),
-    correspondenceTo: Yup.string().required("Required"),
-    correspondenceFrom: Yup.string().required("Required"),
-    childSeen: Yup.string().required("Required"),
-    entryType: Yup.string().required("Required"),
-    subject: Yup.string().required("Required"),
-    daylogEntry: Yup.string().required("Required"),
-    actionNeeded: Yup.string().required("Required"),
-    notification: Yup.string().required("Required"),
-    carerRecorde: Yup.string().required("Required"),
-    AddorEditToSiblingsRecord: Yup.string().required("Required"),
-    notified: Yup.string().required("Required"),
-    email: Yup.string().required("Required"),
-  });
-
-  const methods: any = useForm({
-    resolver: yupResolver(DayLogFormValidation),
-    defaultValues: initialValueProps?.data,
-  });
-
-  const { handleSubmit } = methods;
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
-
-  return { methods, handleSubmit, onSubmit, router };
+export const defaultValuesDayLogForm = {
+  date: new Date(),
+  correspondenceTo: "",
+  correspondenceFrom: "",
+  childSeen: "",
+  entryType: "",
+  subject: "",
+  daylogEntry: "",
+  actionNeeded: "",
+  notificationDate: new Date(),
+  carerRecorde: "",
+  AddorEditToSiblingsRecord: "",
+  notified: "",
+  email: "",
 };
+
+export const DayLogFormValidation = Yup.object().shape({
+  date: Yup.date().required("Required"),
+  correspondenceTo: Yup.string().required("Required"),
+  correspondenceFrom: Yup.string().required("Required"),
+  childSeen: Yup.string().required("Required"),
+  entryType: Yup.string().required("Required"),
+  subject: Yup.string().required("Required"),
+  daylogEntry: Yup.string().required("Required"),
+  actionNeeded: Yup.string().required("Required"),
+  notificationDate: Yup.string().required("Required"),
+  carerRecorde: Yup.string().required("Required"),
+  AddorEditToSiblingsRecord: Yup.string().required("Required"),
+  notified: Yup.string().required("Required"),
+  email: Yup.string().required("Required"),
+});
 
 export const DayLogJournalFormData = [
   {
@@ -58,7 +52,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 2,
-
     componentProps: {
       name: "correspondenceTo",
       label: "If correspondence, to whom",
@@ -71,7 +64,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 3,
-
     componentProps: {
       name: "correspondenceFrom",
       label: "If correspondence, from whom",
@@ -104,7 +96,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 6,
-
     componentProps: {
       name: "subject",
       label: "Subject:",
@@ -117,7 +108,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 7,
-
     componentProps: {
       name: "daylogEntry",
       label: "Day log/journal Entry:",
@@ -130,7 +120,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 8,
-
     componentProps: {
       name: "actionNeeded",
       label: "Action Needed",
@@ -144,7 +133,7 @@ export const DayLogJournalFormData = [
   {
     id: 9,
     componentProps: {
-      name: "notification",
+      name: "notificationDate",
       label: "Notification Date",
       fullWidth: true,
     },
@@ -158,7 +147,7 @@ export const DayLogJournalFormData = [
     id: 10,
     componentProps: {
       label: "Add to Carer record",
-      name: "carerRecord",
+      name: "carerRecorde",
       fullWidth: true,
     },
     component: RHFSelect,
@@ -185,7 +174,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 13,
-
     componentProps: {
       label: "Select User to be Notified",
       name: "notified",
@@ -196,7 +184,6 @@ export const DayLogJournalFormData = [
   },
   {
     id: 14,
-
     componentProps: {
       name: "email",
       label:

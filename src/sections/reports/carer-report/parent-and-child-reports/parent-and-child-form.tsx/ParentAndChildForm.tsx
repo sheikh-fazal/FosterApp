@@ -11,6 +11,13 @@ const ParentAndChildForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, handleBack, onSubmit, handleSubmit } =
     useParentAndChildForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded Meeting Record";
+  } else {
+    label = "Upload Meeting Record";
+  }
+
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -22,6 +29,7 @@ const ParentAndChildForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -44,6 +52,7 @@ const ParentAndChildForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
                     {...methods}
                     required
@@ -84,6 +93,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "#212529",
+    color: theme.palette.primary.main,
   }),
 };

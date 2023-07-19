@@ -57,7 +57,7 @@ const AddAllegationForm = ({ disabled, action }: any) => {
 export default AddAllegationForm;
 
 const styles = {
-  label: (theme: any) => ({ fontWeight: 600, mb: 0.2, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }),
+  label: (theme: any) => ({ fontWeight: 600, mb: 0.2,  color: theme.palette.primary.main, }),
   title: (theme: any) => ({ fontSize: "16px", fontWeight: 700, margin: 0, color: theme.palette.primary.main }),
   submitButton: { backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F" }, }
 }

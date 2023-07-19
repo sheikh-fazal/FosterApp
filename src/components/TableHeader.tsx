@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useState } from "react";
 // @mui
 import {
+  Box,
   InputAdornment,
   MenuItem,
   Stack,
@@ -12,6 +13,7 @@ import {
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 import TableAction from "./TableAction";
+import Image from "next/image";
 
 // ----------------------------------------------------------------------
 // Variables
@@ -193,6 +195,7 @@ const TableHeader = forwardRef(function TableHeader(
       {showDiagramBtn && (
         <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
       )}
+
     </Stack>
   );
 });
@@ -208,7 +211,7 @@ const styles = {
   rootBoxStyles: (theme: any) => ({
     flexDirection: { xs: "column", sm: "row" },
     flexWrap: "wrap",
-    mb:2,
+    mb: 2,
     backgroundColor: alpha(theme.palette.primary.main, 0.8),
     padding: theme.spacing(1, 1.8),
     alignItems: "center",

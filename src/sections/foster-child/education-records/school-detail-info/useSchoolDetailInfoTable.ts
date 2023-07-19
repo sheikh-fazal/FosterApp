@@ -1,26 +1,38 @@
-import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import {
+  useGetSchoolDetailInfoTableApiQuery,
+  useDeleteSchoolDetailInfoByIdMutation,
+} from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
 import { useRouter } from "next/router";
-import { useRef } from "react";
+import { useState } from "react";
 
 export const useSchoolDetailInfoTable = () => {
-  const tableHeaderRef = useRef<any>();
   const router = useRouter();
-
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
+  const [searchHandle, setSearchHandle] = useState("");
+  const [pageHandle, setPageHandle] = useState(0);
 
   // ----------------------------------------------------------------------
+  const params = {
+    search: searchHandle,
+    limit: "10",
+    offset: pageHandle,
+  };
+  const { data, isLoading, isError, isFetching, isSuccess }: any =
+    useGetSchoolDetailInfoTableApiQuery({
+      params,
+      fosterChildId: router?.query?.fosterChildId,
+    });
+  const [postData] = useDeleteSchoolDetailInfoByIdMutation();
 
-  const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetCarerFamilyTableApiQuery({ params });
-
-  const family = data?.faimly_details;
+  const family = data?.data?.school_info;
   const meta = data?.meta;
-
+  const headerChangeHandler = (text: any) => {
+    setSearchHandle(text.search);
+  };
+  const pageChangeHandler = (page: any) => {
+    setPageHandle(page * 10);
+  };
   return {
     router,
-    tableHeaderRef,
     isLoading,
     headerChangeHandler,
     family,
@@ -29,6 +41,6 @@ export const useSchoolDetailInfoTable = () => {
     isSuccess,
     meta,
     pageChangeHandler,
-    sortChangeHandler,
+    postData,
   };
 };

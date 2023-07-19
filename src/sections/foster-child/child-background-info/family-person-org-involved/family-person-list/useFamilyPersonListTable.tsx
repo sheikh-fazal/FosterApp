@@ -1,4 +1,3 @@
-import React from "react";
 import {
   useDeleteFamilyPersonListMutation,
   useGetFamilyPersonListQuery,
@@ -40,6 +39,6 @@ export const useFamilyPersonListTable = () => {
     isFetching,
     listDeleteHandler,
     pageChangeHandler,
-    sortChangeHandler,
+    sortChangeHandler, 
   };
 };
