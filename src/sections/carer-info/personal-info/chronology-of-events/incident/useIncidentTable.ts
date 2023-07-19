@@ -9,7 +9,10 @@ import {
   useIncidentUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentUploadDocumentsApi";
 import React from "react";
+import { useRouter } from "next/router";
 const useIncidentTable = () => {
+  const Router: any = useRouter();
+  const { action, id } = Router.query;
   const [search, setsearch] = React.useState("");
   const {
     data: incidentlist,
@@ -25,7 +28,12 @@ const useIncidentTable = () => {
     isLoading: incidentUploadListIsloading,
     isFetching: incidentUploadlistIsfetching,
     isSuccess: incidentUploadListIsSuccess,
-  } = useIncidentUploadDocumentListQuery({ search: search });
+  } = useIncidentUploadDocumentListQuery({
+    params: {
+      incidentId: id,
+      search: search,
+    },
+  });
 
   const [deleteIncidentByID] = useDeleteIncidentByIdMutation({});
   const [deleteIncidentDocuments] = useDeleteIncidentDocumentsMutation({});

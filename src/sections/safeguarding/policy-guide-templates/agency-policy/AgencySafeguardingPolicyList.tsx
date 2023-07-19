@@ -16,7 +16,7 @@ const AgencySafeguardingPolicyList = () => {
         hideSearch={true}
         title="Agency Safeguarding Policy"
         showAddBtn
-        onAdd={() => router.push('/safeguarding/policy-guide-templates/agency-policy/add-safeguarding-policy')}
+        onAdd={() => router.push('/safeguarding/policy-guide-templates/agency-policy/form')}
       />
       <CustomTable
         data={data}

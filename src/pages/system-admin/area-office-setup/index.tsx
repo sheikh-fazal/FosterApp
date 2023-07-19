@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import AreaOfficeSetup from "@root/sections/system-admin/area-office-setup/AreaOfficeSetup";
+// import AreaOfficeSetup from "@root/sections/system-admin/area-office-setup/AreaOfficeSetup";
 
 // Constants
 
@@ -34,7 +34,7 @@ AreaOfficeSetups.getLayout = function getLayout(page: any) {
 export default function AreaOfficeSetups() {
   return (
     <Page title={PAGE_TITLE}>
-      <AreaOfficeSetup />
+      {/* <AreaOfficeSetup /> */}
     </Page>
   );
 }

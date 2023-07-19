@@ -1,27 +1,26 @@
 import React from "react";
-import { useSchoolDetailInfoForm } from "./useSchoolDetailInfoForm";
 import { FormProvider } from "../../../../components/hook-form";
-import { Button, Grid } from "@mui/material";
-import { SchoolDeatilInfoFormData, defaultValues } from ".";
+import { Button, Grid, useTheme } from "@mui/material";
+import { SchoolDeatilInfoFormData } from ".";
 import Link from "next/link";
 import { LoadingButton } from "@mui/lab";
-
+import { useSchoolDetailInfoForm } from "./useSchoolDetailInfoForm";
+import { useRouter } from "next/router";
 export default function SchoolDetailInfoForm(props: any) {
+  const router = useRouter();
+  const theme: any = useTheme();
+
+  const { disabled } = props;
   const {
-    disabled,
-    onSubmitHandler,
-    initialValueProps = defaultValues,
-    message,
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
     isError,
     isSuccess,
-  } = props;
+    isLoading,
+  } = useSchoolDetailInfoForm();
 
-  const { methods, handleSubmit, onSubmit, isSubmitting } =
-    useSchoolDetailInfoForm({
-      onSubmitHandler,
-      initialValueProps,
-      message,
-    });
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
@@ -31,6 +30,7 @@ export default function SchoolDetailInfoForm(props: any) {
               disabled={disabled}
               {...item.componentProps}
               size={"small"}
+              fullWidth
             >
               {item?.componentProps?.select
                 ? item?.options?.map((option: any) => (
@@ -42,27 +42,34 @@ export default function SchoolDetailInfoForm(props: any) {
             </item.component>
           </Grid>
         ))}
-        {!disabled && (
-          <Grid item xs={12}>
+        <Grid item xs={12}>
+          {!disabled && (
             <LoadingButton
               type="submit"
               variant="contained"
               sx={{ mr: 2 }}
-              loading={isSubmitting}
+              loading={isLoading}
               color={isError ? "error" : isSuccess ? "success" : "primary"}
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
-            <Link
-              href={"/carer-info/personal-info/carer-family-support-network"}
-              style={{ textDecoration: "none" }}
+          )}
+          <Link
+            href={`/foster-child/education-records/school-detail-info?fosterChildId=${router?.query?.fosterChildId}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              type="button"
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
             >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
-          </Grid>
-        )}
+              Back
+            </Button>
+          </Link>
+        </Grid>
       </Grid>
     </FormProvider>
   );

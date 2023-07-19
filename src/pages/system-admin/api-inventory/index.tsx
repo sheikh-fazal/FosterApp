@@ -3,7 +3,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Configuration from "@root/sections/system-admin/system-configuration/Configuration";
 import ApiInventory from "@root/sections/system-admin/api-inventory/ApiInventory";
 
 // Constants

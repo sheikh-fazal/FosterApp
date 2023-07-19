@@ -38,8 +38,9 @@ export default function FamilyOrgInvolvedForm(props: any) {
             );
           })}
 
-          {!disabled && (
+          
             <Grid item xs={12}>
+            {!disabled && (
               <LoadingButton
                 type="submit"
                 variant="contained"
@@ -47,6 +48,7 @@ export default function FamilyOrgInvolvedForm(props: any) {
               >
                 Submit
               </LoadingButton>
+              )}
               <Link
                 href={
                   "/foster-child/child-background-info/family-person-org-involved"
@@ -65,7 +67,7 @@ export default function FamilyOrgInvolvedForm(props: any) {
                 </LoadingButton>
               </Link>
             </Grid>
-          )}
+          
         </Grid>
       </FormProvider>
     </>

@@ -8,7 +8,6 @@ import { useState } from "react";
 
 export default function RHFSelect({ name, children, ...other }: any) {
   const { control } = useFormContext();
-  let [op, setOp] = useState(" ");
   return (
     <Controller
       name={name}

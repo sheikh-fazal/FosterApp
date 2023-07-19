@@ -12,14 +12,7 @@ const AddAdultHouseHoldMember = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
+      <Typography sx={(theme) => style.headerTitle(theme)}>
           FR-F2: ADULT HOUSEHOLD MEMBER/SUPPORT TO FOSTER CARER
         </Typography>
         <Typography
@@ -40,7 +33,7 @@ const AddAdultHouseHoldMember = ({ action, id }: any) => {
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
-              <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+                 <Typography sx={(theme)=>style.title(theme)}>
                 {form.title}
               </Typography>
               {form.otherOptions && (
@@ -88,3 +81,16 @@ const AddAdultHouseHoldMember = ({ action, id }: any) => {
 };
 
 export default AddAdultHouseHoldMember;
+const style = {
+  title: (theme: any) => ({
+    fontSize: "16px",
+    fontWeight: 600,
+    color: theme.palette.primary.main,
+  }),
+  headerTitle: (theme: any) => ({
+    fontWeight: 700,
+    mb: "20px",
+    fontSize: "17px",
+    color: theme.palette.primary.main,
+  }),
+};

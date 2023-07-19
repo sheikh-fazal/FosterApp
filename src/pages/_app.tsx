@@ -27,7 +27,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 // utils
 import { getSettings } from "@root/utils/settings";
- 
+
 //theme
 import ThemeProvider from "@root/theme";
 
@@ -42,7 +42,7 @@ import ThemeColorPresets from "@root/components/ThemeColorPresets";
 import ThemeLocalization from "@root/components/ThemeLocalization";
 import RtlLayout from "@root/components/RtlLayout";
 import ProgressBar from "@root/components/ProgressBar";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 function MyApp(props: any) {
   const { Component, pageProps, settings } = props;
