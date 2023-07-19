@@ -1,13 +1,7 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
-export const dummy = [
-  {
-    id: 1,
-    dateOfAppointmentVisit: "16 May 2021",
-    doctorName: "Robert Brown",
-  },
-];
+
 
 export const medicalAppointmentsFormValue = [
   {

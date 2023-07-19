@@ -1,12 +1,15 @@
 import { useForm } from "react-hook-form";
 import { defaultValues } from ".";
 import { useState } from "react";
+import useUploadImage from "@root/hooks/useUploadImage";
 
 export const useCrudFormTable = () => {
   const [tableData, setTableDate] = useState<any>(null);
   const methods: any = useForm({
     defaultValues,
   });
+
+  const { uploadImage } = useUploadImage();
 
   const {
     handleSubmit,
@@ -18,6 +21,7 @@ export const useCrudFormTable = () => {
   const onClear = () => {
     setTableDate(null);
   };
+
   const onSubmit = async (data: any) => {
     setTableDate(JSON.stringify(data));
   };
@@ -32,5 +36,6 @@ export const useCrudFormTable = () => {
     isSubmitting,
     tableData,
     onClear,
+    uploadImage,
   };
 };

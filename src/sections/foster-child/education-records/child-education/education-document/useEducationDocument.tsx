@@ -1,24 +1,27 @@
 import { useTheme } from "@mui/material";
-import {
-  useGetInitialHomeDocumentDataQuery,
-  usePostInitialHomeDocumentDataMutation,
-} from "@root/services/carer-info/personal-info/initial-home-visit/documents/documents";
-import { useRef, useState } from "react";
+import {  useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useGetGpDetailsInfoDocumentDataQuery } from "@root/services/foster-child/health-medical-history/gp-details/documents";
+import {
+  useGetChildEducationInfoDocumentDataQuery,
+  usePostEducationInfoDocumentDataMutation,
+  useDeleteEducationInfoDocumentDataByIdMutation
+} from "@root/services/foster-child/education-records/child-education-info/documents";
 
 export const useEducationDocument = () => {
   const theme: any = useTheme();
   const { user }: any = useAuth();
-  const { query } = useRouter();
+  const { query }: any = useRouter();
   // ----------------------------------------------------------------------
-  const tableHeaderRef = useRef<any>();
   const [
-    postInitialHomeDocumentDataTrigger,
-    postInitialHomeDocumentDataStatus,
-  ] = usePostInitialHomeDocumentDataMutation();
+    postEducationInfoDocumentDataTrigger,
+  ] = usePostEducationInfoDocumentDataMutation();
+
+  const [
+    deleteEducationInfoDocumentDataByIdTrigger,
+  ] = useDeleteEducationInfoDocumentDataByIdMutation();
+
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
   const params = {
@@ -27,31 +30,59 @@ export const useEducationDocument = () => {
     search: searchValue,
   };
   const pathParams = {
-    gpInfoId: query?.gpInfoId,
+    educationInfoId: query?.educationInfoId,
   };
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetGpDetailsInfoDocumentDataQuery(dataParameter);
+    useGetChildEducationInfoDocumentDataQuery(dataParameter, {
+      skip: !!!query?.educationInfoId,
+      refetchOnMountOrArgChange: true,
+    });
+  console.log("data", data);
 
   const submitInitialHomeVisitDocument = async (data: any) => {
+    if (!!!query?.educationInfoId) {
+      enqueueSnackbar("Please submit the Education Info form first", { variant: "error" });
+      return;
+    }
+
     const documentFormData = new FormData();
 
-    documentFormData.append("documentType", data.documentType);
+    documentFormData.append("type", data.documentType);
     documentFormData.append("documentDate", data.documentDate);
     documentFormData.append("password", data.password);
-    documentFormData.append("documentFile", data.chosenFile);
-    const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    documentFormData.append("file", data.chosenFile);
+    documentFormData.append("educationId", query?.educationInfoId);
+
+    const putDataParameter = {
+      body: documentFormData,
     };
-    const putDataParameter = { params: putParams, body: documentFormData };
     try {
-      const res: any = await postInitialHomeDocumentDataTrigger(
+      const res: any = await postEducationInfoDocumentDataTrigger(
         putDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+
+  const onDeleteConfirm = async (data: any) => {
+    const pathParams = {
+      id: data?.id,
+    };
+    const apiDataParameter = { pathParams };
+    try {
+      const res: any = await deleteEducationInfoDocumentDataByIdTrigger(
+        apiDataParameter
+      ).unwrap();
+      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+        variant: "success",
+      });
+      setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -69,5 +100,6 @@ export const useEducationDocument = () => {
     isFetching,
     submitInitialHomeVisitDocument,
     query,
+    onDeleteConfirm
   };
 };

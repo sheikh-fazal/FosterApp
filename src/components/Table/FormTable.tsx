@@ -1,29 +1,45 @@
-import { Box, Button, Grid, Modal, Stack } from "@mui/material";
+import { Box, Button, FormHelperText, Grid, Modal, Stack } from "@mui/material";
 import CustomTable from "./CustomTable";
 import TableAction from "../TableAction";
 
 // RHF
 import { useForm, useFormContext, useWatch } from "react-hook-form";
+import RHFMultiSelect from "../hook-form/RHFMultiSelect";
+import RHFDatePicker from "../hook-form/RHFDatePicker";
+import {
+  FormProvider,
+  RHFCheckbox,
+  RHFTextField,
+  RHFUploadFileWithView,
+} from "../hook-form";
 
-// Yub
+// Yup
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
+// react
+import { useState } from "react";
+
+// components
+import ShareModal from "../modal/shareModal";
+
+// nextjs
+import { useRouter } from "next/router";
+
 // @mui icons
 import AddIcon from "@mui/icons-material/Add";
-import { FormProvider, RHFTextField } from "../hook-form";
-import RHFDatePicker from "../hook-form/RHFDatePicker";
-import { useState } from "react";
-import { type } from "os";
-import ShareModal from "../modal/shareModal";
-import { useRouter } from "next/router";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
+import RHFSecondarySelect from "../hook-form/RHFSecondarySelect";
 
 const ANON_FUNC = () => {};
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
   datePicker: RHFDatePicker,
+  file: RHFUploadFileWithView,
+  checkbox: RHFCheckbox,
+  "multi-select": RHFMultiSelect,
+  select: RHFSecondarySelect,
 };
 
 // ----------------------------------------------------------------------
@@ -34,11 +50,15 @@ function TableFormModal(props: any) {
     onCancel = ANON_FUNC,
     onAdd = ANON_FUNC,
     onUpdate = ANON_FUNC,
+    beforeAdd,
+    beforeUpdate,
     columns = [],
     defaultValues = {},
     type: actionType = "Add",
     disabled = actionType === "View",
   } = props;
+
+  const [error, setError] = useState<any>(null);
 
   const schema: any = {};
 
@@ -57,12 +77,22 @@ function TableFormModal(props: any) {
 
   const {
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, isSubmitting },
   } = methods;
 
-  const onSubmit = (data: any) => {
-    if (actionType.toLowerCase() === "add") onAdd(data);
-    else if (actionType.toLowerCase() === "update") onUpdate(data);
+  const onSubmit = async (data: any) => {
+    if (error) setError(null);
+    try {
+      if (actionType.toLowerCase() === "add") {
+        beforeAdd && (await beforeAdd(methods));
+        onAdd(data);
+      } else if (actionType.toLowerCase() === "update") {
+        beforeUpdate && (await beforeUpdate(methods));
+        onUpdate(data);
+      }
+    } catch (error: any) {
+      setError(error);
+    }
   };
 
   const onAcceptHandler = (data: any) => {
@@ -73,7 +103,7 @@ function TableFormModal(props: any) {
   return (
     <Modal
       open
-      onClose={onCancel}
+      onClose={!isSubmitting ? onCancel : null}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       closeAfterTransition
@@ -81,30 +111,54 @@ function TableFormModal(props: any) {
       <Box sx={styles.root}>
         <FormProvider methods={methods}>
           <Grid container spacing={2}>
-            {columns.map(({ inputType, key, label, ...other }: any) => {
-              const Component = FIELDS_OBJ[inputType];
-              return (
-                <Grid key={key} item xs={12} md={6}>
-                  <Component name={key} label={label} disabled={disabled} />
-                </Grid>
-              );
-            })}
+            {columns.map(
+              ({
+                inputType,
+                key,
+                label,
+                size = { xs: 12, md: 6 },
+                options,
+                ...other
+              }: any) => {
+                const Component = FIELDS_OBJ[inputType];
+                return (
+                  <Grid key={key} item {...size}>
+                    <Component
+                      name={key}
+                      label={label}
+                      disabled={disabled || isSubmitting}
+                      options={options}
+                      fullWidth
+                    />
+                  </Grid>
+                );
+              }
+            )}
           </Grid>
           <Box sx={styles.actionBtnBox}>
             {!disabled && (
               <Button
                 onClick={onAcceptHandler}
-                disabled={!isValid}
+                disabled={!isValid || isSubmitting}
                 sx={styles.btnSuccess}
               >
                 {actionType}
               </Button>
             )}
 
-            <Button onClick={onCancel} sx={styles.btnError}>
+            <Button
+              disabled={isSubmitting}
+              onClick={onCancel}
+              sx={styles.btnError}
+            >
               Cancel
             </Button>
           </Box>
+          {error && (
+            <FormHelperText error sx={{ px: 2, textAlign: "center" }}>
+              {String(error?.message)}
+            </FormHelperText>
+          )}
         </FormProvider>
       </Box>
     </Modal>
@@ -121,15 +175,18 @@ export default function FormTable(props: any) {
     share,
     certificate,
     tableKey,
-    route = "view",
+    beforeAdd,
+    beforeUpdate,
     columns: tableColumns,
   } = props;
-  const { setValue, getValues } = useFormContext();
+  const methods = useFormContext();
   const tableData = useWatch({ name: tableKey }) ?? [];
   const [actionData, setActionData] = useState<any>(null);
   const [viewModal, setViewModal] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [certificateModal, setCertificateModal] = useState(false);
+
+  const { setValue, getValues } = methods;
 
   /* Set up formatters for updating the display data */
   const formatters: any = {};
@@ -141,7 +198,10 @@ export default function FormTable(props: any) {
   let columns = tableColumns.map(({ key, label }: any) => {
     return {
       accessorFn: (row: any) => {
-        if (formatters[key]) return formatters[key](row[key]);
+        if (formatters[key]) {
+          const formatterFunc = formatters[key];
+          return formatterFunc(row[key]);
+        }
 
         return row[key];
       },
@@ -152,23 +212,76 @@ export default function FormTable(props: any) {
   });
 
   if (certificate) {
-    columns.push({
-      id: "certificate",
-      cell: (info: any) => (
-        <Box>
-          {certificate && (
-            <Box
-              sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
-              onClick={() => setCertificateModal(true)}
-            >
-              Delegate certifacte
-            </Box>
-          )}
-        </Box>
-      ),
-      header: () => certificate && <span>Manage Certificate</span>,
-      isSortable: false,
-    });
+    columns.push(
+      {
+        id: "certificate",
+        cell: (info: any) => (
+          <Box
+            sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
+            onClick={() => {
+              setCertificateModal(true);
+            }}
+          >
+            Delegate Certificate
+          </Box>
+        ),
+        header: () => <span>Manage Certificate</span>,
+        isSortable: false,
+      },
+
+      {
+        id: "actions",
+        cell: (info: any) => (
+          <Box
+            sx={{
+              display: "flex",
+              gap: "12px",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {view && (
+              <TableAction
+                type="view"
+                onClicked={(id: number) => onViewHandler(info.row.index)}
+              />
+            )}
+            {print && (
+              <TableAction
+                type="print"
+                onClicked={(id: number) => window.print()}
+              />
+            )}
+            {share && (
+              <TableAction
+                type="share"
+                onClicked={() => setShareModal(!shareModal)}
+              />
+            )}
+
+            {showView === "view" ? (
+              ""
+            ) : (
+              <>
+                <TableAction
+                  type="edit"
+                  onClicked={(id: number) =>
+                    onViewHandler(info.row.index, "Update")
+                  }
+                />
+                <TableAction
+                  type="delete"
+                  onClicked={(id: number) => onDeleted(info.row.index)}
+                />
+              </>
+            )}
+          </Box>
+        ),
+
+        header: () => <span>actions</span>,
+        isSortable: false,
+      }
+    );
   }
 
   columns.push({
@@ -248,7 +361,7 @@ export default function FormTable(props: any) {
     });
   }
 
-  function onAdded(data: any) {
+  async function onAdded(data: any) {
     setValue(tableKey, [...getValues()[tableKey], data]);
     setActionData(null);
   }
@@ -262,7 +375,6 @@ export default function FormTable(props: any) {
   }
 
   /* UPDATE and VIEW HANDLER */
-
   function onViewHandler(index: any, actionType: string = "View") {
     const tableRowData = getValues()[tableKey][index];
 
@@ -321,6 +433,8 @@ export default function FormTable(props: any) {
           onAdd={onAdded}
           onUpdate={onUpdated}
           onCancel={onCancelHandler}
+          beforeAdd={beforeAdd}
+          beforeUpdate={beforeUpdate}
           {...actionData}
         />
       )}
@@ -366,6 +480,9 @@ const styles = {
     bgcolor: theme.palette.error.darker,
     color: theme.palette.primary.contrastText,
     "&:hover": { bgcolor: theme.palette.error.darker },
+    "&:disabled": {
+      backgroundColor: theme.palette.grey[400],
+    },
   }),
   btnSuccess: (theme: any) => ({
     bgcolor: theme.palette.primary.main,

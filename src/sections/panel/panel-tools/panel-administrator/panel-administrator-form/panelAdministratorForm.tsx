@@ -23,7 +23,7 @@ const PanelAdministratorForm = (props: any) => {
                 </Typography>
                 {form.requireFileUpload && (
                   <Box sx={{ position: "relative" }}>
-                    <RHFUploadFile disabled name="uploadPhoto" {...methods} require />
+                    <RHFUploadFile label = "Uploaded File" disabled name="uploadPhoto" {...methods} require />
                     <DownloadForOfflineIcon sx={styles.downloadIcon} onClick={() => alert("Icon clicked!")} />
                   </Box>
                 )}
