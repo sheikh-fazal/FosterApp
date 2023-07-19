@@ -7,6 +7,7 @@ import usePath from "@root/hooks/usePath";
 import { PersonalInfoForm } from "@root/sections/foster-child/referrals/child-referral/personalInfo";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import LaDetails from "@root/sections/foster-child/referrals/child-referral/laDetails/LaDetails";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
 const PAGE_TITLE = "View Child Referral";
 
@@ -43,7 +44,39 @@ export default function ViewChildReferral() {
         tabsDataArray={["Personal Info", "LA-Details", "Document(s)"]}
       >
         <PersonalInfoForm disabled />
-        <LaDetails />
+        <LaDetails disabled />
+        <UploadDocuments
+          readOnly={true}
+          searchParam={(searchedText: string) =>
+            console.log("searched Value", searchedText)
+          }
+          // tableData={tableData}
+          tableData={[
+            {
+              document: "bad.png",
+              documentType: "png",
+              date: "09/09/2009",
+              personName: "My name",
+              password: "password123",
+            },
+          ]}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isSuccess={true}
+          column={[
+            "document",
+            "documentType",
+            "date",
+            "personName",
+            "password",
+          ]}
+          modalData={() => {}}
+          onDelete={(data: any) => console.log("Deleting", data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          // currentPage={metaData?.page}
+          // totalPages={metaData?.pages}
+        />
       </HorizaontalTabs>
     </Page>
   );

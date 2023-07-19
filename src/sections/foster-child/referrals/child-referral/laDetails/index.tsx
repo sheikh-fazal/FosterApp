@@ -266,8 +266,8 @@ export const LaDetailsFormData = [
   {
     id: 23,
     componentProps: {
-      name: "carePlanPt1",
-      label: "Care Plan Pt 1",
+      name: "carePlanPt2",
+      label: "Care Plan Pt 2",
     },
     component: RHFCheckbox,
     md: 6,
@@ -275,8 +275,8 @@ export const LaDetailsFormData = [
   {
     id: 24,
     componentProps: {
-      name: "carePlanPt2",
-      label: "Care Plan Pt 2",
+      name: "furtherAction",
+      label: "No Further Action (Move to Closed Referral)",
     },
     component: RHFCheckbox,
     md: 6,
@@ -307,6 +307,7 @@ export const defaultValues = {
   laRiskAssessment: false, //21
   carePlanPt1: false, //22
   carePlanPt2: false, //23
+  furtherAction: false, //24
 };
 
 export const validationSchema = Yup.object().shape({
@@ -333,6 +334,7 @@ export const validationSchema = Yup.object().shape({
   laRiskAssessment: Yup.boolean(),
   carePlanPt1: Yup.boolean(),
   carePlanPt2: Yup.boolean(),
+  furtherAction: Yup.boolean(),
 });
 
 export { default as LaDetails } from "./LaDetails";
