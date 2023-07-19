@@ -8,6 +8,7 @@ import {
   useLazyGetHospitalisationInfoListQueryByIdQuery,
   useUpdateHospitalisationinfoListMutation,
 } from "@root/services/foster-child/health-medical-history/hospitalization/HospitalizationApi";
+import { useCreatehospitalizationDocumentMutation, useDeletehospitalizationDocumentMutation, useUpdatehospitalizationDocumentMutation } from "@root/services/foster-child/health-medical-history/hospitalization/hospitalizationDocuments";
 const useHospitalizationForm = (props: any) => {
   const { action, fosterChildId, hospitalizationId } = props;
   //STATES
@@ -23,13 +24,18 @@ const useHospitalizationForm = (props: any) => {
     useLazyGetHospitalisationInfoListQueryByIdQuery();
   const [deleteHospitalisationInfoList] =
     useDeleteHospitalisationInfoListMutation();
+  //UPLOAD API HANDLERS
+  const [createhospitalizationDocument] =
+    useCreatehospitalizationDocumentMutation();
+ const [deletehospitalizationDocument]=useDeletehospitalizationDocumentMutation()
+ const [updatehospitalizationDocument]=useUpdatehospitalizationDocumentMutation()
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
     const sendata: any = {};
     const keys = Object.keys(HospitalizationListValue);
     for (const key of keys) {
-      if (data[key]) {
+      if (data[key] !== undefined) {
         sendata[key] = data[key];
       }
     }
@@ -50,7 +56,7 @@ const useHospitalizationForm = (props: any) => {
             query: {
               action: "edit",
               fosterChildId: fosterChildId,
-              hospitalinfoId: data?.id,
+              hospitalinfoId: data?.data?.id,
             },
           });
         })
@@ -129,7 +135,80 @@ const useHospitalizationForm = (props: any) => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
+  //UPLOAD DOCUMENTS HANDLERS
+  const onUploadSubmit = (data: any) => {
+    setisFatching(true);
+    const formData = new FormData();
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("documentFile", data.documentFile);
+    createhospitalizationDocument({
+      hospitalInfoFormId: hospitalinfoId,
+      params: {
+        fosterCarerId: fosterChildId,
+        hospitalInfoFormId: hospitalinfoId,
+      },
+      body: formData,
+    })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Add Successfully", {
+          variant: "success",
+        });
+        setisFatching(false);
+        setModelOpen(false);
+      })
+      .catch((error: any) => {
+        setisFatching(false);
+        setModelOpen(false);
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+  const onUpdateSubmit = (data: any, id: any) => {
+    setisFatching(true);
+    const formData = new FormData();
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("documentFile", data.documentFile);
+    deletehospitalizationDocument({
+      id: id,
+
+      body: formData,
+    })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Edit Successfully", {
+          variant: "success",
+        });
+        setisFatching(false);
+        setModelOpen(false);
+      })
+      .catch((error: any) => {
+        setisFatching(false);
+        setModelOpen(false);
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+  const onDeleteHander = (id: any) => {
+    updatehospitalizationDocument({ id: id })
+      .then(() => {
+        enqueueSnackbar("Information Delete Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return {
+    onUploadSubmit,
+    onDeleteHander,
+    onUpdateSubmit,
     SubmitData,
     getDefaultValue,
     deleteHander,

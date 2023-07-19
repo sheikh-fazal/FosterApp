@@ -9,6 +9,9 @@ import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
 import { uploadDummyData } from ".";
 import ModelUploadDoc from "@root/components/modal/uploadDoc/modelUploadDoc";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { useGethospitalizationDocumentQuery } from "@root/services/foster-child/health-medical-history/hospitalization/hospitalizationDocuments";
+import useHospitalizationForm from "./useHospitalizationForm";
 
 const HospitalizationUploadTable = (props: any) => {
   const { action, fosterChildId, hospitalizationId } = props;
@@ -16,21 +19,14 @@ const HospitalizationUploadTable = (props: any) => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentName,
+      accessorFn: (row: any) => row.documentOriginalName,
       id: "documentName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.type,
+      accessorFn: (row: any) => row.documentType,
       id: "documentType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Type</span>,
@@ -46,14 +42,14 @@ const HospitalizationUploadTable = (props: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.incidentId,
+      accessorFn: (row: any) => row.personUploaded,
       id: "personUploaded",
       cell: (info: any) => info.getValue(),
       header: () => <span>Person Uploaded</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.password,
+      accessorFn: (row: any) => row.documentPassword,
       id: "password",
       cell: (info: any) => info.getValue(),
       header: () => <span>Password</span>,
@@ -67,12 +63,19 @@ const HospitalizationUploadTable = (props: any) => {
           <ModelUploadDoc
             showActions={true}
             isFetching={false}
+            names={Object.keys(info.row.original)}
+            defaultValues={info.row.original}
             action="edit"
             onSubmit={(data: any) => {
               console.log(data);
             }}
           />
-          <ModelUploadDoc showActions={true} action="view" isFetching={false} />
+          <ModelUploadDoc
+            defaultValues={info.row.original}
+            showActions={true}
+            action="view"
+            isFetching={false}
+          />
           <Link
             href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
             target="_blank"
@@ -85,6 +88,20 @@ const HospitalizationUploadTable = (props: any) => {
       isSortable: false,
     },
   ];
+  const [Search, setSearch] = React.useState("");
+  const { params, pageChangeHandler } = useTableParams();
+  const { data, isError, isFetching, isLoading, isSuccess } =
+    useGethospitalizationDocumentQuery({
+      params: {
+        ...params,
+        recordId: hospitalizationId,
+      },
+    });
+  const { onUploadSubmit, onDeleteHander, onUpdateSubmit } =
+    useHospitalizationForm({
+      hospitalizationId: hospitalizationId,
+      fosterChildId: fosterChildId,
+    });
   return (
     <>
       <Box sx={{ mb: 1 }}>
@@ -107,18 +124,18 @@ const HospitalizationUploadTable = (props: any) => {
         isFetching={false}
       />
       <CustomTable
-        data={uploadDummyData ?? []}
+        data={data?.data?.foster_child_document ?? []}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
         isPagination={true}
-        showSerialNo={false}
-        // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-        // currentPage={incidentlist?.data?.meta?.page ?? 1}
-        // onPageChange={pageChangeHandler}
-        // onSortByChange={sortChangeHandler}
+        showSerialNo={true}
+        totalPages={data?.data?.meta?.pages ?? 0}
+        currentPage={data?.data.meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        //  onSortByChange={sortChangeHandler}
       />
     </>
   );

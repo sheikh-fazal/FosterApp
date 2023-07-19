@@ -33,12 +33,7 @@ const useHospitalinfoListForms = (props: any) => {
     useUpdateHospitalInfoListDocumentMutation();
   const [deleteHospitalInfoListDocument] =
     useDeleteHospitalInfoListDocumentMutation();
-  //   useGetHospitalInfoListQuery,
-  // useGetHospitalInfoByIdQuery,
-  // useCreateHospitalInfoMutation,
-  // useUpdateHospitalInfoMutation,
-  // useDeleteHospitalInfoMutation,
-  // useLazyGetHospitalInfoByIdQuery,
+ 
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
