@@ -40,6 +40,7 @@ const PolicyVerticalAddNew = (props: any) => {
             </RHFSelect>
           ) : (
             <RHFTextField
+            fullWidth
               name="title"
               disabled={route.query.action === "view"}
               size="small"
@@ -49,7 +50,7 @@ const PolicyVerticalAddNew = (props: any) => {
         </Grid>
         {PolicyVerticalAddNewFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
+            <item.component fullWidth
               {...item.componentProps}
               disabled={route.query.action === "view"}
               size={"small"}

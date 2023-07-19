@@ -33,6 +33,7 @@ const EditPanelChecklist = () => {
                 <RHFTextField
                     name="otherInformation"
                     size="small"
+                    fullWidth
                     multiline={true}
                     minRows={3}
                 />

@@ -17,7 +17,7 @@ export const initialValues = {
   feelSupported: "",
   anythingElse: "",
   signature: "",
-  date: "",
+  date: null,
 };
 
 export const formSchema = Yup.object().shape({

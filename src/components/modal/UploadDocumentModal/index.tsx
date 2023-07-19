@@ -35,6 +35,7 @@ export const uploadDocument = [
       name: 'docDate',
       size: 'small',
       fullWidth: true,
+      value: new Date()
     },
     component: RHFDatePicker
   },

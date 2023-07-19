@@ -38,8 +38,9 @@ export default function PEPForm(props: any) {
           ))}
         </Grid>
 
-        {!disabled && (
+        
           <Box sx={{ display: "flex", mb: "1rem" }}>
+          {!disabled && (
             <LoadingButton
               sx={{ marginRight: "1rem" }}
               type="submit"
@@ -48,6 +49,7 @@ export default function PEPForm(props: any) {
             >
               Submit
             </LoadingButton>
+            )}
             <LoadingButton
               onClick={() => {
                 router.push(
@@ -61,7 +63,7 @@ export default function PEPForm(props: any) {
               back
             </LoadingButton>
           </Box>
-        )}
+        
       </FormProvider>
     </Paper>
   );
