@@ -27,8 +27,8 @@ export default function Layout({ variant = "dashboard", children, ...other }: an
   }
 
   return (
-    <AuthGuard>
+    // <AuthGuard>
       <DashboardLayout {...other}> {children} </DashboardLayout>
-    </AuthGuard>
+    // {/* </AuthGuard> */}
   );
 }
