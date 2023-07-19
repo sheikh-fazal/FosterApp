@@ -35,7 +35,7 @@ const SupervisingSocialWorkerReport = ({ action, id }: any) => {
                     justifyContent={"space-between"}
                     sx={{ my: 1 }}
                   >
-                    <Typography sx={styles.title}>{data.title}</Typography>
+                    <Typography sx={(theme)=>styles.title(theme)}>{data.title}</Typography>
                     <IconButton
                       size="small"
                       onClick={() =>
@@ -236,12 +236,12 @@ const CustomBox = ({ title, hideTitle }: any) => (
 );
 
 const styles = {
-  title: {
+  title:(theme:any)=>( {
     fontWeight: 600,
     fontSize: "16px",
-    color: "#0E918C",
+    color: theme.palette.primary.main,
     mt: 1,
-  },
+  }),
   notice: {
     "& > span": {
       fontWeight: 600,

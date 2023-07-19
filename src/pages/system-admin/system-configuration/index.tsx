@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import Configuration from "@root/sections/system-admin/system-configuration/Configuration";
+// import Configuration from "@root/sections/system-admin/system-configuration/Configuration";
 
 // Constants
 
@@ -34,7 +34,7 @@ SystemConfiguration.getLayout = function getLayout(page: any) {
 export default function SystemConfiguration() {
   return (
     <Page title={PAGE_TITLE}>
-      <Configuration />
+      {/* <Configuration /> */}
     </Page>
   );
 }

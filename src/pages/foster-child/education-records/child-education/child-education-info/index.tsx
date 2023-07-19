@@ -2,34 +2,39 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import ChildTherapyInfoTabs from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/child-therapy-info-tabs/ChildTherapyInfoTabs";
-import GPDetailsInfoTabs from "@root/sections/foster-child/health-medical-history/gp-details/gp-details-info/gp-details-info-tabs/GPDetailsInfoTabs";
 import ChildEducationInfoTabs from "@root/sections/foster-child/education-records/child-education/child-education-tabs/ChildEducationInfoTabs";
+import { NextRouter, useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "/Health",
-    href: "/foster-child/health-medical-history/therapy-info",
+    name: "Education Info List",
+    href: !!query?.fosterChildId
+      ? `/foster-child/education-records/child-education?fosterChildId=${query?.fosterChildId}`
+      : "/foster-child/education-records/child-education",
   },
   {
-    name: "GP Details Info List",
-    href: "#",
+    name: "Education Info",
+    href: "",
   },
 ];
 
-const PAGE_TITLE = "Edit GP Details Info List";
+
+const PAGE_TITLE = (action: any = "") =>
+  `${action?.[0]?.toUpperCase() ?? ""}${action?.slice?.(
+    1
+  )} Child Education Info List`;
 
 // ----------------------------------------------------------------------
 
-InitialHomeVisit.getLayout = function getLayout(page: any) {
+ChildEducationInfo.getLayout = function getLayout(page: any, { query }: NextRouter) {
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
+      breadcrumbs={BREADCRUMBS(query)}
+      title={PAGE_TITLE(query?.action)}
       variant="dashboard"
     >
       {page}
@@ -39,9 +44,10 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function InitialHomeVisit() {
+export default function ChildEducationInfo() {
+  const { query } = useRouter();
   return (
-    <Page title={PAGE_TITLE}>
+    <Page title={PAGE_TITLE(query?.action)}>
       <ChildEducationInfoTabs />
     </Page>
   );

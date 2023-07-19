@@ -8,6 +8,7 @@ const AddLaEmployee = () => {
   const { router, theme, handleSubmit, onSubmit, methods, isSubmitting } =
     useAddLaEmployee();
 
+    
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={3} py="30px">
@@ -36,7 +37,15 @@ const AddLaEmployee = () => {
 
         <Grid item xs={12}>
           <Box sx={{ display: "flex" }}>
-            <Button sx={styles.submitButton} type="button" variant="contained">
+            {router.query.action !== 'view-local-authority' &&
+              <LoadingButton sx={{ marginRight: "1rem" }} type="submit" variant="contained" loading={isSubmitting}>
+                Next
+              </LoadingButton>
+            }
+            <Button sx={styles.submitButton}
+              type="button"
+              variant="contained"
+            >
               Back
             </Button>
             {router.query.action !== "view-local-authority" && (

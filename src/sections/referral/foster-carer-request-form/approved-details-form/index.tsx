@@ -245,10 +245,10 @@ export const ApprovedDetailsFormData = [
 export const ApprovedDetailsFormValues = {
   carerCode: "",
   referredBy: "",
-  referralDate: "",
+  referralDate: null,
   approvedBy: "",
   carerGeography: "",
-  requestDateNotified: "",
+  requestDateNotified: null,
   branchManagerEmail: "",
   branchAddress: "",
   branchManagerName: "",

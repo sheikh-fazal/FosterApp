@@ -1,16 +1,14 @@
 import React from "react";
-import { Button, Grid } from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { DayLogJournalFormData, DayLogJournalFormValidation } from ".";
-import { useRouter } from "next/router";
+import { Grid } from "@mui/material";
+import { DayLogJournalFormData } from ".";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { FormProvider } from "@root/components/hook-form";
+import { useDayLogJournalForm } from "./useDayLogJournalForm";
 
 export default function DayLogJournalForm(props: any) {
-  const { query } = useRouter();
-
-  const { defaultValues, disabled } = props;
-
-  const { methods, handleSubmit, onSubmit } = DayLogJournalFormValidation({});
+  const { methods, handleSubmit, disabled, isSubmitting, onSubmit } =
+    useDayLogJournalForm(props);
 
   return (
     <>
@@ -20,7 +18,7 @@ export default function DayLogJournalForm(props: any) {
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <item.component
                 {...item.componentProps}
-                disabled={query.action === "view"}
+                disabled={disabled}
                 size={"small"}
               >
                 {item?.componentProps?.select
@@ -34,35 +32,30 @@ export default function DayLogJournalForm(props: any) {
               </item.component>
             </Grid>
           ))}
-          {query.action !== "view" && (
-            <Grid item xs={12}>
-              <Button
-                size="large"
+          <Grid item xs={12}>
+            {!disabled && (
+              <LoadingButton
                 type="submit"
                 variant="contained"
-                disabled={query.action === "view"}
+                loading={isSubmitting}
               >
                 Submit
-              </Button>
-              <Link
-                href={"/foster-child/child-day-log/day-log-journal-entries"}
+              </LoadingButton>
+            )}
+            <Link href={"/foster-child/child-day-log/day-log-journal-entries"}>
+              <LoadingButton
+                type="button"
+                sx={{
+                  color: "#fff",
+                  ml: 1,
+                  backgroundColor: "#F6830F",
+                }}
+                variant="contained"
               >
-                <Button
-                  disabled={query.action === "view"}
-                  type="button"
-                  sx={{
-                    color: "#fff",
-                    ml: 1,
-                    backgroundColor: "#F6830F",
-                  }}
-                  size="large"
-                  variant="contained"
-                >
-                  Back
-                </Button>
-              </Link>
-            </Grid>
-          )}
+                Back
+              </LoadingButton>
+            </Link>
+          </Grid>
         </Grid>
       </FormProvider>
     </>

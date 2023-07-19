@@ -5,10 +5,10 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   CaseID: "",
-  dateTimeOfOccurence: "",
+  dateTimeOfOccurence: null,
   childName: "",
   allegationType: "",
-  date: "",
+  date: null,
   allegationDescription: "",
 };
 

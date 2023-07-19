@@ -108,7 +108,6 @@ export const REPORTTABSDATAARRY = [
   },
   {
     index: 1,
-
     title: "Carer Reports",
 
     background: "linear-gradient(106.35deg, #F6830F 0%, #F6C30F 100%);",

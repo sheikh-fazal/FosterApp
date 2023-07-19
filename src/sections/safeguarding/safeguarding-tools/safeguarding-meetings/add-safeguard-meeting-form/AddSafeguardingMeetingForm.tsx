@@ -22,7 +22,7 @@ export default function AddSafeguardingMeetingForm() {
           {AddSafeguardingMeetingFormData?.map((item: any) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>
               <Typography sx={{ marginBottom: "5px", fontSize: "16px !important", fontWeight: "600" }} variant="h6" gutterBottom>{item.title}</Typography>
-              <item.component
+              <item.component fullWidth
                 {...item.componentProps}
                 //   disabled={disabled}
                 size={"small"}
