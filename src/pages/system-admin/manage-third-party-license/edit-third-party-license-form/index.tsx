@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import ApiInventory from "@root/sections/system-admin/api-inventory/ApiInventory";
+import ThirdPartyLicenceTableForm from "@root/sections/system-admin/manage-third-party-license/third-party-licence-table/third-party-licence-table-form/ThirdPartyLicenceTableForm";
 
 // Constants
 
@@ -14,13 +14,13 @@ const BREADCRUMBS = [
     href: "/system-admin",
   },
   {
-    name: "Api Inventory",
+    name: "Manage Third Party License",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Api Inventory";
-Inventory.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "Edit Manage Third Party License";
+ManageThirdParty.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -31,10 +31,10 @@ Inventory.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function Inventory() {
+export default function ManageThirdParty() {
   return (
     <Page title={PAGE_TITLE}>
-      <ApiInventory />
+      <ThirdPartyLicenceTableForm />
     </Page>
   );
 }
