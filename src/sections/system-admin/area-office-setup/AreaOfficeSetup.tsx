@@ -1,5 +1,5 @@
 import React from "react";
-import {Card,} from "@mui/material";
+import { Card } from "@mui/material";
 import { tableMockData } from ".";
 import { useAreaOfficeSetup } from "./useAreaOfficeSetup";
 import TableHeader from "@root/components/TableHeader";
@@ -8,13 +8,16 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 
 const AreaOfficeSetup = () => {
   const { handleAction, openDelete, handleCloseDeleteModal, columns } =
-  useAreaOfficeSetup();
-
+    useAreaOfficeSetup();
 
   return (
     <>
       <Card sx={{ py: 2, px: 1 }}>
-        <TableHeader title={"Area Office Name"} showAddBtn onAdd={() => handleAction("add")} />
+        <TableHeader
+          title={"Area Office Name"}
+          showAddBtn
+          onAdd={() => handleAction("add")}
+        />
         <CustomTable
           isError={false}
           isLoading={false}
@@ -34,4 +37,3 @@ const AreaOfficeSetup = () => {
 };
 
 export default AreaOfficeSetup;
- 
