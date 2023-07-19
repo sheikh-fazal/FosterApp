@@ -1,7 +1,7 @@
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useAbsenceInfoDocument } from "./useAbsenceInfoDocument";
 
-export const AbsenceInfoDocument = () => {
+export const AbsenceInfoDocument = (prop:any) => {
   const {
     data,
     router,

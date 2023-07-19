@@ -9,9 +9,10 @@ import TableAction from "@root/components/TableAction";
 import { useAbsenceInfoListTable } from "./useAbsenceInfoListTable";
 import dayjs from "dayjs";
 
-export default function AbsenceInfoListTable() {
+export default function AbsenceInfoListTable(prop:any) {
   const router = useRouter();
-  const { childInfoId } = router.query;
+  const { fosterChildId} = prop;
+  // const { fosterChildId } = router.query;
   const {
     data,
     headerChangeHandler,
@@ -70,7 +71,7 @@ export default function AbsenceInfoListTable() {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/edit`,
-                query: { childInfoId: childInfoId },
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
@@ -79,7 +80,7 @@ export default function AbsenceInfoListTable() {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/view`,
-                     query: { childInfoId: childInfoId },
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
@@ -99,7 +100,7 @@ export default function AbsenceInfoListTable() {
           onAdd={() => {
             router.push({
               pathname: `/foster-child/education-records/absence-info/add-absence-info`,
-              query: { childInfoId: childInfoId },
+              query: { fosterChildId: fosterChildId },
             });
           }}
         />

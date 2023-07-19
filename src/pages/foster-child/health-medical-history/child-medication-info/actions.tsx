@@ -17,7 +17,7 @@ import useAuth from "@root/hooks/useAuth";
 import dayjs from "dayjs";
 
 ChildMedicationInfoActions.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
@@ -30,27 +30,24 @@ export default function ChildMedicationInfoActions() {
   const Router: any = useRouter();
   const { action, fosterChildId, ChildMedicationInfoId } = Router.query;
   const PAGE_TITLE = "Child Medication Info";
-  console.log(Router);
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
+      href: "/",
     },
     {
-      name: "Medication Info",
+      name: "child Medication Info",
       href: {
         pathname: "/foster-child/health-medical-history/child-medication-info",
         query: { fosterChildId: fosterChildId },
       },
     },
     {
-      name: "Child Medication Info",
-      href: "/foster-child/health-medical-history/child-medication-info/",
+      name: "Medication Info",
+      href: "",
     },
   ];
 
-  // export default function CarInsurance() {
   const [params, setParams] = useState("");
 
   const {
@@ -99,19 +96,6 @@ export default function ChildMedicationInfoActions() {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  // const listDeleteHandler = (id: any) => {
-  //   deleteList(id)
-  //     .unwrap()
-  //     .then((res: any) => {
-  //       enqueueSnackbar("Information Deleted Successfully", {
-  //         variant: "success",
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       const errMsg = error?.data?.message;
-  //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-  //     });
-  // };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
