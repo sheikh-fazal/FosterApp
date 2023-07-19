@@ -1,32 +1,34 @@
+
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
-import { useVenuesTab } from "./useVenuesTab";
 import dayjs from "dayjs";
-import { Box, Button, Chip, Typography } from "@mui/material";
+import { Box, Chip } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
-import { HostedEventsOptions } from ".";
+import { useBusinessContinuityPlan } from "./useBusinessContinuityPlan";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 
+
+
 const COLUMNS = [
-  {
+    {
     inputType: "textField",
     type: "text",
-    key: "name",
-    defaultValue: "Cottingham Library",
-    label: "name",
+    key: "BCP_Type",
+    defaultValue: "Crisis Management Plan",
+    label: "BCP Type",
     validation: (Yup: any) => {
-      return Yup.string().required("Field is required")
+      return Yup.string().required("BCP_Type is required").min(3);
     },
   },
   {
     inputType: "file",
     type: "file",
-    key: "venuePhotos",
-    label: "Venue Photos",
+    key: "image",
+    label: "Image",
     size: { xs: 12, md: 6 },
     // Use this validation for images
     validation: (Yup: any) => {
@@ -65,70 +67,43 @@ const COLUMNS = [
       return "-";
     },
   },
-  {
-    inputType: "textField",
-    type: "text",
-    key: "address",
-    defaultValue: "Library and Customer Service Centre, Market Green, Cottingham HU16 5QG, United Kingdom",
-    label: "address",
-    validation: (Yup: any) => {
-      return Yup.string().required("Field is required")
-    },
-  },
-   {
-    inputType: "select",
-    key: "hostedEvents",
-    fullWidth:true,
-    label: "Hosted Events",
-    options: HostedEventsOptions,
-    validation: (Yup: any) => {
-      return Yup.object().shape({
-        label: Yup.string(),
-        value: Yup.number(),
-        bgColor: Yup.string(),
-        textColor: Yup.string(),
-      });
-    },
-    format: (selectedUserType: any) => {
-      console.log("selectedUserType", selectedUserType)
-      // return selectedUserType && selectedUserType.label;
-      return <Chip
-        sx={{
-          backgroundColor: selectedUserType.bgColor,
-          color: selectedUserType.textColor,
-          fontSize: "10px !important",
-          p: "5px 10px",
-          maxHeight: "22px",
 
-          "& .MuiChip-label": {
-            p: 0,
-          },
-        }}
-        // key={value}
-        label={selectedUserType.label}
-      />
-    },
-  },
-  {
+    {
     inputType: "textField",
     type: "text",
-    key: "mapCache",
-    defaultValue: "eyvkdSDIG;Kdygaosdigffjas;idf;",
-    label: "map cache",
+    key: "Approved_By",
+    defaultValue: "Jack Sparrow ( Director) ",
+    label: "Approved By",
     validation: (Yup: any) => {
-      return Yup.string().required("Field is required")
+      return Yup.string().required("Approved_By is required").min(3);
     },
   },
+
   {
+    inputType: "datePicker",
+    type: "dob",
+    key: "Approved_Date",
+    defaultValue: new Date(),
+    label: "Approved Date",
+    validation: (Yup: any) => {
+      return Yup.date()
+        .typeError("End date is required")
+        .required("End date is required");
+    },
+    format: (date: any) => {
+      return dayjs(date).format("DD/MM/YYYY");
+    },
+  },
+     {
     inputType: "textField",
     type: "text",
-    key: "notes",
-    defaultValue: "Jasmine suggested this restaurant and said it was great amiance for this type of event (though its potentially a little",
-    label: "notes",
+    key: "BCP_Manager",
+    defaultValue: "John Wick  (Registered Manager  ) ",
+    label: "BCP Manager (Role)",
     validation: (Yup: any) => {
-      return Yup.string().required("Field is required")
+      return Yup.string().required("BCP_Type is required").min(3);
     },
-  }
+  }, 
 ];
 
 ///---------------------------------
@@ -174,9 +149,9 @@ function DataChips({ options }: any) {
 
 ///---------------------------------
 
-export default function VenuesTab() {
+export default function BusinessContinuityPlan() {
   const { methods, handleSubmit, tableData, uploadImage, onSubmit, onClear } =
-  useVenuesTab();
+  useBusinessContinuityPlan();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -186,6 +161,7 @@ export default function VenuesTab() {
         beforeUpdate={(methods: any) => uploadImage("image", methods)}
         columns={COLUMNS}
       />
+      
     </FormProvider>
   );
 }
