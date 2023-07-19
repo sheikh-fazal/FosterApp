@@ -5,9 +5,12 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import { enqueueSnackbar } from "notistack";
 
-export const StudySupportInfoTable = () => {
+export default function StudySupportInfoTable(props: any) {
+  const { fosterChildId } = props;
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState<any>("");
   const {
     router,
     tableHeaderRef,
@@ -20,6 +23,7 @@ export const StudySupportInfoTable = () => {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    postData,
   } = useStudySupportInfoTable();
   const columns = [
     {
@@ -46,8 +50,8 @@ export const StudySupportInfoTable = () => {
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
               setOpen(true);
+              setId(info.row.original);
             }}
             size="small"
           />
@@ -55,9 +59,15 @@ export const StudySupportInfoTable = () => {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/edit-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/study-support-info/edit-study-support-info",
+                query: {
+                  action: "edit",
+                  schoolInfoId: info.row.original.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
             }
             size="small"
           />
@@ -65,9 +75,15 @@ export const StudySupportInfoTable = () => {
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/view-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/study-support-info/view-study-support-info",
+                query: {
+                  action: "view",
+                  schoolInfoId: info.row.original.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
             }
             size="small"
           />
@@ -77,12 +93,28 @@ export const StudySupportInfoTable = () => {
       isSortable: false,
     },
   ];
+
+  const onDelete = async (data: any) => {
+    try {
+      const res: any = await postData(data).unwrap();
+      setOpen(false);
+      enqueueSnackbar(res?.message ?? `Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      setOpen(false);
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
   return (
     <Card sx={{ p: 2 }}>
       <DeleteModel
         open={open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => {}}
+        onDeleteClick={() => {
+          onDelete(id);
+        }}
       />
       <TableHeader
         ref={tableHeaderRef}
@@ -91,9 +123,11 @@ export const StudySupportInfoTable = () => {
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push(
-            "/foster-child/education-records/school-detail-info/add-school-detail"
-          );
+          router.push({
+            pathname:
+              "/foster-child/education-records/study-support-info/add-study-support-info",
+            query: { action: "add", fosterChildId: fosterChildId },
+          });
         }}
         onChanged={headerChangeHandler}
       />
@@ -112,4 +146,4 @@ export const StudySupportInfoTable = () => {
       />
     </Card>
   );
-};
+}
