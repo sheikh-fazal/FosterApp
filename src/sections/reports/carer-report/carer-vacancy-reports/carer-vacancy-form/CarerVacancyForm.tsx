@@ -12,9 +12,9 @@ const CarerVacancyForm = ({ action }: any) => {
   const { methods, handleBack, onSubmit, handleSubmit } = useCarerVacancyForm();
   let label: any;
   if (action === "view") {
-    label = "Uploaded  Meeting Record";
+    label = "Uploaded Meeting Record";
   } else {
-    label = "Upload  Meeting Record";
+    label = "Upload Meeting Record";
   }
   return (
     <Card sx={{ p: 2 }}>

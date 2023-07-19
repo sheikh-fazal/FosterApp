@@ -1,13 +1,10 @@
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import { ChildExclusionInfoList } from "@root/sections/foster-child/child-exclusion-info/child-exclusion-info-list/ChildExclusionInfoList";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useState } from "react";
-import NewChildExclusionInfo from "@root/sections/foster-child/child-exclusion-info/new-child-exclusion-info/NewChildExclusionInfo";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import ViewChildExclusionInfo from "@root/sections/foster-child/child-exclusion-info/view-child-exclusion-info/ViewChildExclusionInfo";
-import ViewOutSchoolActivityInfo from "@root/sections/foster-child/out-of-school-activity/view-out-of-school-activity-info/ViewOutSchoolActivityInfo";
+import ViewOutSchoolActivityInfo from "@root/sections/foster-child/education-records/out-of-school-activity/view-out-of-school-activity-info/ViewOutSchoolActivityInfo";
 
 const PAGE_TITLE = "Child Exclusion Info";
 

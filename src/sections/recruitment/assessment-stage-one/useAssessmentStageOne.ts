@@ -13,7 +13,8 @@ export const useAssessmentStageOne = () => {
   
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetStageOneStatusQuery(id);
-  const assessmentStageOneApiData = data?.data;
+const assessmentStageOneApiData= data?.data
+console.log(data);
 
   useEffect(() => {
     setAssessmentStageOneData(
@@ -22,7 +23,8 @@ export const useAssessmentStageOne = () => {
         status: assessmentStageOneApiData?.[item?.textForApi],
       }))
     );
-  }, [data]);
+    
+  }, [assessmentStageOneApiData]);
 
   const [openIdForInfo, setOpenIdForInfo] = React.useState<any>();
   const [formDialogId, setFormDialogId] = React.useState<any>();

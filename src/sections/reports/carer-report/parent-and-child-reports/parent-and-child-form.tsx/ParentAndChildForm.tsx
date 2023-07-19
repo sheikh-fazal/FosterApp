@@ -13,9 +13,9 @@ const ParentAndChildForm = ({ action }: any) => {
     useParentAndChildForm();
   let label: any;
   if (action === "view") {
-    label = "Uploaded  Meeting Record";
+    label = "Uploaded Meeting Record";
   } else {
-    label = "Upload  Meeting Record";
+    label = "Upload Meeting Record";
   }
 
   return (
