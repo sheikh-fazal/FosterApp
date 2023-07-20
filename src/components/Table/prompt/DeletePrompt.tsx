@@ -6,9 +6,12 @@ import { Backdrop, Button, Grid, Typography } from "@mui/material";
 //---icons
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import TableAction from "@root/components/TableAction";
-const DeletePrompt = (props: any) => {
+interface IDeletePrompt{
+  onDeleteClick:()=>void
+}
+const DeletePrompt:React.FunctionComponent<IDeletePrompt> = ({onDeleteClick}) => {
   //---usestate handlers and themes
-  const { onDeleteClick } = props;
+ 
   const theme: any = useTheme();
 
   const [open, setOpen] = React.useState(false);

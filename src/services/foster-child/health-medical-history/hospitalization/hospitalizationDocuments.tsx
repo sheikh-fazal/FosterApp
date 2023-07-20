@@ -1,21 +1,20 @@
 import { baseAPI } from "@root/services/baseApi";
 
 const HospitalizationDocumentApi = baseAPI.injectEndpoints({
-  endpoints: (builder:any) => ({
+  endpoints: (builder: any) => ({
     createhospitalizationDocument: builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/add-child-hospitalization-info/document/${payload.hospitalInfoFormId}`,
+        url: `/child-chronology-of-events/uploaded-documents`,
         method: "Post",
-        params: payload.params,
         body: payload.body,
       }),
       invalidatesTags: ["hospitalzationDocuments"],
     }),
     deletehospitalizationDocument: builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/delete-child-hospitalization-info/document/${payload.id}`,
+        url: `/child-chronology-of-events/uploaded-document/${payload.id}`,
         method: "Delete",
-        params: payload.params,
+        params: payload,
       }),
       invalidatesTags: ["hospitalzationDocuments"],
     }),
@@ -43,5 +42,4 @@ export const {
   useUpdatehospitalizationDocumentMutation,
   useGethospitalizationDocumentQuery,
   useLazyGethospitalizationDocumentQuery,
-  
 } = HospitalizationDocumentApi;

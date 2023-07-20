@@ -16,7 +16,10 @@ import useHospitalizationForm from "./useHospitalizationForm";
 const HospitalizationUploadTable = (props: any) => {
   const { action, fosterChildId, hospitalizationId } = props;
   const [modelOpen, setModelOpen] = React.useState(false);
-
+  const { onUploadSubmit, onDeleteHander } = useHospitalizationForm({
+    hospitalizationId: hospitalizationId,
+    fosterChildId: fosterChildId,
+  });
   const columns = [
     {
       accessorFn: (row: any) => row.documentOriginalName,
@@ -59,17 +62,10 @@ const HospitalizationUploadTable = (props: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <DeletePrompt />
-          <ModelUploadDoc
-            showActions={true}
-            isFetching={false}
-            names={Object.keys(info.row.original)}
-            defaultValues={info.row.original}
-            action="edit"
-            onSubmit={(data: any) => {
-              console.log(data);
-            }}
+          <DeletePrompt
+            onDeleteClick={() => onDeleteHander(info.row.original.id)}
           />
+
           <ModelUploadDoc
             defaultValues={info.row.original}
             showActions={true}
@@ -97,11 +93,7 @@ const HospitalizationUploadTable = (props: any) => {
         recordId: hospitalizationId,
       },
     });
-  const { onUploadSubmit, onDeleteHander, onUpdateSubmit } =
-    useHospitalizationForm({
-      hospitalizationId: hospitalizationId,
-      fosterChildId: fosterChildId,
-    });
+
   return (
     <>
       <Box sx={{ mb: 1 }}>
@@ -122,6 +114,7 @@ const HospitalizationUploadTable = (props: any) => {
         modelOpen={modelOpen}
         setModelOpen={setModelOpen}
         isFetching={false}
+        onSubmit={(data: any) => onUploadSubmit(data)}
       />
       <CustomTable
         data={data?.data?.foster_child_document ?? []}
