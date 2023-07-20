@@ -26,10 +26,9 @@ const MedicalAppointmentsTable = (props: any) => {
     sortChangeHandler,
     setSearch,
   } = useMedicalAppointmentList({ fosterChildId: fosterChildId });
-  const { deleteHander} = useMedicalAppointmentForm({});
-  
+  const { deleteHander } = useMedicalAppointmentForm({});
+
   const columns = [
-   
     {
       accessorFn: (row: any) => row.appointmentDate,
       id: "appointmentDate",
@@ -52,9 +51,11 @@ const MedicalAppointmentsTable = (props: any) => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt onDeleteClick={()=>{
-              deleteHander(info.row.original.id)
-            }} />
+            <DeletePrompt
+              onDeleteClick={() => {
+                deleteHander(info.row.original.id);
+              }}
+            />
 
             <TableAction
               size="small"
@@ -115,7 +116,9 @@ const MedicalAppointmentsTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={MedicalAppointmentListdata?.data?.medicalappointmentlist ?? []}
+                data={
+                  MedicalAppointmentListdata?.data?.medicalappointmentlist ?? []
+                }
                 columns={columns}
                 isLoading={MedicalAppointmentListisLoading}
                 isFetching={MedicalAppointmentListisFetching}

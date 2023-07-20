@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { defaultValues, StudySupportInfoFormSchema } from ".";
 import { useForm } from "react-hook-form";
 import {
@@ -13,10 +13,9 @@ import { enqueueSnackbar } from "notistack";
 export const useStudySupportInfoForm = () => {
   const router = useRouter();
 
-  const { data } = useGetStudySupportInfoByIdQuery(
-    router?.query?.schoolInfoId,
-    { refetchOnMountOrArgChange: true }
-  );
+  const { data } = useGetStudySupportInfoByIdQuery(router?.query?.id, {
+    refetchOnMountOrArgChange: true,
+  });
   const [postData, { isError, isSuccess, isLoading }] =
     usePostStudySupportInfoApiMutation();
 
@@ -36,32 +35,33 @@ export const useStudySupportInfoForm = () => {
     reset((formValues: any) => ({
       ...formValues,
       ...data?.data,
+      fromDate: new Date(data?.data?.fromDate),
+      toDate: new Date(data?.data?.toDate),
     }));
   }, [data, reset]);
-  
+
   const onSubmit = async (data: any) => {
     try {
       if (router?.query?.action === "add") {
         const res: any = await postData({
-          body: data,
-          fosterChildId: router?.query?.fosterChildId,
+          body: { ...data, fosterChildId: router?.query?.fosterChildId },
         }).unwrap();
         enqueueSnackbar(res?.message ?? `Added Successfully!`, {
           variant: "success",
         });
         router.push(
-          `/foster-child/education-records/school-detail-info?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/education-records/study-support-info?fosterChildId=${router?.query?.fosterChildId}`
         );
       } else if (router?.query?.action === "edit") {
         const res: any = await putData({
           body: data,
-          schoolInfoId: router?.query?.schoolInfoId,
+          id: router?.query?.id,
         }).unwrap();
         enqueueSnackbar(res?.message ?? `Update Successfully!`, {
           variant: "success",
         });
         router.push(
-          `/foster-child/education-records/school-detail-info?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/education-records/study-support-info?fosterChildId=${router?.query?.fosterChildId}`
         );
       }
     } catch (error: any) {

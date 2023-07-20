@@ -5,7 +5,6 @@ import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
 import { uploadDummyData } from ".";
 import ModelUploadDoc from "@root/components/modal/uploadDoc/modelUploadDoc";

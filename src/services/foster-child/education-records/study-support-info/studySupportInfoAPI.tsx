@@ -6,28 +6,28 @@ const TAG = "CARER_FAMILY_NETWORK";
 export const contactApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getStudySupportInfoTableApi: builder.query({
-      query: ({ params, fosterChildId }: any) => ({
-        url: `school-info/foster-child/${fosterChildId}`,
+      query: ({ params }: any) => ({
+        url: `education-records/study-support-info/List`,
         method: "GET",
         params,
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     postStudySupportInfoApi: builder.mutation({
-      query: ({ body, fosterChildId }: any) => ({
-        url: `school-info/${fosterChildId}`,
+      query: ({ body }: any) => ({
+        url: `education-records/study-support-info`,
         method: "POST",
         body,
       }),
       invalidatesTags: [TAG],
     }),
     getStudySupportInfoById: builder.query({
-      query: (id) => `/school-info/${id}`,
+      query: (id) => `education-records/study-support-info/${id}`,
     }),
     putStudySupportInfoById: builder.mutation({
-      query: ({ body, schoolInfoId }: any) => {
+      query: ({ body, id }: any) => {
         return {
-          url: `/school-info/${schoolInfoId}`,
+          url: `education-records/study-support-info/${id}`,
           method: "PATCH",
           body,
         };
@@ -38,7 +38,7 @@ export const contactApi = baseAPI.injectEndpoints({
       query: (data: any) => {
         const { id } = data;
         return {
-          url: `/school-info/${id}`,
+          url: `education-records/study-support-info/${id}`,
           method: "DELETE",
         };
       },

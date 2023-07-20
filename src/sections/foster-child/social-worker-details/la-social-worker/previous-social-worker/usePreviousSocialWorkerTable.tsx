@@ -1,6 +1,6 @@
 import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useRouter } from "next/router";
-import  { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const usePreviousSocialWorkerTable = () => {
   const tableHeaderRef = useRef<any>();

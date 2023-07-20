@@ -1,7 +1,6 @@
-import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 export const useActiveSocialWorkerTable = () => {
   const tableHeaderRef = useRef<any>();
@@ -18,7 +17,7 @@ export const useActiveSocialWorkerTable = () => {
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-  useGetSocialWorkerTableApiQuery({
+    useGetSocialWorkerTableApiQuery({
       params,
       fosterChildId: router?.query?.fosterChildId,
     });

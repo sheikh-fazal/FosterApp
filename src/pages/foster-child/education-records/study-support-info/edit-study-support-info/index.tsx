@@ -11,18 +11,17 @@ import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
 
-
 EditStudySupportInfo.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function EditStudySupportInfo() {
-    const Router: any = useRouter();
+  const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Study Support Info Info List",
+      name: "Study Support Info List",
       href: {
         pathname: "/foster-child/education-records/study-support-info",
         query: { fosterChildId: fosterChildId },

@@ -42,16 +42,18 @@ export const ActiveSocialWorkerFormData = [
     componentProps: { name: "status", label: "Status:", select: true },
     component: RHFSelect,
     md: 6,
-    options:[{
-      id: 1,
-      label: "Active",
-      value: "Active",
-    },
-    {
-      id: 2,
-      label: "Inactive",
-      value: "Inactive",
-    }]
+    options: [
+      {
+        id: 1,
+        label: "Active",
+        value: "Active",
+      },
+      {
+        id: 2,
+        label: "Inactive",
+        value: "Inactive",
+      },
+    ],
   },
   {
     id: 6,
@@ -71,7 +73,7 @@ export const defaultValues = {
   startDateOfAssignment: new Date(),
   status: "",
   reportingManager: "",
-  basicQualification:""
+  basicQualification: "",
 };
 export const ActiveSocialWorkerFormSchema = Yup.object().shape({
   phoneNumber: Yup.string()

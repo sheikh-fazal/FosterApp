@@ -1,4 +1,3 @@
-import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
@@ -36,7 +35,7 @@ export default function StudySupportInfo() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <StudySupportInfoTable fosterChildId={fosterChildId}/>
+      <StudySupportInfoTable fosterChildId={fosterChildId} />
     </Box>
   );
 }

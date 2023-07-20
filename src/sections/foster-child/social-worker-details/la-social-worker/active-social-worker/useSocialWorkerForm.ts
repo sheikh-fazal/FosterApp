@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { useGetSocialWorkerByIdQuery, usePostSocialWorkerApiMutation, usePutSocialWorkerByIdMutation } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
+import {
+  useGetSocialWorkerByIdQuery,
+  usePostSocialWorkerApiMutation,
+  usePutSocialWorkerByIdMutation,
+} from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { ActiveSocialWorkerFormSchema, defaultValues } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,12 +13,11 @@ import { enqueueSnackbar } from "notistack";
 export const useSocialWorkerForm = () => {
   const router = useRouter();
 
-  const { data } = useGetSocialWorkerByIdQuery(
-    router?.query?.id,
-    { refetchOnMountOrArgChange: true }
-  );
+  const { data } = useGetSocialWorkerByIdQuery(router?.query?.id, {
+    refetchOnMountOrArgChange: true,
+  });
   const [postData, { isError, isSuccess, isLoading }] =
-  usePostSocialWorkerApiMutation();
+    usePostSocialWorkerApiMutation();
 
   const [putData] = usePutSocialWorkerByIdMutation();
   const methods: any = useForm({
@@ -32,7 +35,7 @@ export const useSocialWorkerForm = () => {
     reset((formValues: any) => ({
       ...formValues,
       ...data?.data,
-      startDateOfAssignment:new Date(data?.data?.startDateOfAssignment)
+      startDateOfAssignment: new Date(data?.data?.startDateOfAssignment),
     }));
   }, [data, reset]);
 

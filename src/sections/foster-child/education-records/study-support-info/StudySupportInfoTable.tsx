@@ -6,6 +6,7 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
 
 export default function StudySupportInfoTable(props: any) {
   const { fosterChildId } = props;
@@ -27,15 +28,17 @@ export default function StudySupportInfoTable(props: any) {
   } = useStudySupportInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-      id: "name",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.fromDate,
+      id: "fromDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: "From Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.studyType,
+      id: "studyType",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Study Type",
       isSortable: true,
@@ -64,7 +67,7 @@ export default function StudySupportInfoTable(props: any) {
                   "/foster-child/education-records/study-support-info/edit-study-support-info",
                 query: {
                   action: "edit",
-                  schoolInfoId: info.row.original.id,
+                  id: info.row.original.id,
                   fosterChildId: fosterChildId,
                 },
               })
@@ -80,7 +83,7 @@ export default function StudySupportInfoTable(props: any) {
                   "/foster-child/education-records/study-support-info/view-study-support-info",
                 query: {
                   action: "view",
-                  schoolInfoId: info.row.original.id,
+                  id: info.row.original.id,
                   fosterChildId: fosterChildId,
                 },
               })

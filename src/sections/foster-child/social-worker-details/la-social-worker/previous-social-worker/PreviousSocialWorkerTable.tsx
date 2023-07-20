@@ -82,7 +82,7 @@ export default function PreviousSocialWorkerTable(props: any) {
                   action: "view",
                   id: info.row.original.id,
                   fosterChildId: fosterChildId,
-                  worker:"Previous"
+                  worker: "Previous",
                 },
               })
             }
