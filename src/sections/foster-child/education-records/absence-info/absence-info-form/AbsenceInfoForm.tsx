@@ -11,7 +11,6 @@ export default function AbsenceInfoForm(props: any) {
     useAbsenceInfoForm(props);
   const { fosterChildId } = router.query;
 
-  // if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -72,25 +71,6 @@ export default function AbsenceInfoForm(props: any) {
           </Grid>
         </Grid>
       </FormProvider>
-      {/* 
-      {action === "view" && (
-        <Grid container>
-          <Grid xs={12} sx={{ mt: 2 }} item>
-            <LoadingButton
-              sx={{
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.main },
-              }}
-              variant="contained"
-              onClick={() =>
-                router.push("/foster-child/education-records/absence-info")
-              }
-            >
-              Back
-            </LoadingButton>
-          </Grid>
-        </Grid>
-      )} */}
     </>
   );
 }

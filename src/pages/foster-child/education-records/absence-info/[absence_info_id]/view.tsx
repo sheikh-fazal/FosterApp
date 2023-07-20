@@ -11,11 +11,11 @@ import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/",
+    href: `/foster-child/education-records/absence-info?fosterChildId=${query}`,
   },
   {
     name: "Absence Info List",
@@ -26,10 +26,11 @@ const BREADCRUMBS = [
 const PAGE_TITLE = "View Absence Info";
 
 ViewAbsenceInfoForm.getLayout = function getLayout(page: any) {
+  const router = useRouter();
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       title={PAGE_TITLE}
     >
       {page}
@@ -47,7 +48,7 @@ export default function ViewAbsenceInfoForm() {
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>
         {isLoading && <p>Loading...</p>}
-        {isSuccess && 
+        {isSuccess && (
           <AbsenceInfoForm
             disabled
             defaultValues={{
@@ -56,9 +57,8 @@ export default function ViewAbsenceInfoForm() {
               label: new Date(data?.[0]?.label),
             }}
           />
-        }
+        )}
         <AbsenceInfoDocument />
-        
       </HorizaontalTabs>
     </Page>
   );

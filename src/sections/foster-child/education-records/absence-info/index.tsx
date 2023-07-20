@@ -1,8 +1,3 @@
-import { Box, Checkbox } from "@mui/material";
-import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import router from "next/router";
-
 export const data = [
   {
     id: 1,

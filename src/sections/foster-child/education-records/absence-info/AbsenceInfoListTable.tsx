@@ -12,7 +12,6 @@ import dayjs from "dayjs";
 export default function AbsenceInfoListTable(prop:any) {
   const router = useRouter();
   const { fosterChildId} = prop;
-  // const { fosterChildId } = router.query;
   const {
     data,
     headerChangeHandler,

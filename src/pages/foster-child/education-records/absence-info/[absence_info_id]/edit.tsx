@@ -2,8 +2,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
-import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
 import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
@@ -11,25 +9,27 @@ import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/foster-child/education-records/absence-info",
+    href: `/foster-child/education-records/absence-info?fosterChildId=${query}`,
   },
   {
     name: "Absence Info List",
-    href: "/foster-child/education-records/absence-info",
+    href: "",
   },
 ];
 
 const PAGE_TITLE = "Edit Absence Info";
 
 EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       title={PAGE_TITLE}
     >
       {page}
@@ -58,13 +58,3 @@ export default function EditAbsenceInfoForm() {
     </Page>
   );
 }
-{/* <Page title={PAGE_TITLE}>
-  <HorizaontalTabs
-    tabsDataArray={["Family Org Involved", "Uploaded documents"]}
-  >
-    {isLoading && <p>Loading...</p>}
-    {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
-
-    <FamilyPersonDocument />
-  </HorizaontalTabs>
-</Page>; */}
