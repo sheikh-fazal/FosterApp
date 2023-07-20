@@ -82,12 +82,9 @@ export default function Configuration() {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <TableHeader
-          // ref={tableHeaderRef}
           title="System Configuration"
           searchKey="search"
-          // onAdd={() => {
-          //   setOpenAddAssessment(true); setActionType('Add')
-          // }}
+        
         />
       <FormTable
         tableKey="exampleTable"
