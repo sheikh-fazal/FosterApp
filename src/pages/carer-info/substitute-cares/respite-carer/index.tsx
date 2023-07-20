@@ -49,24 +49,22 @@ export default function RespiteCarer() {
 
   const columns = [
     {
-      accessorFn: (row: any) => row["name"],
-      id: "name",
-      cell: (info: any) =>
-        info.getValue()?.length > 20
-          ? ". . ." + info.getValue()?.slice(-15)
-          : info.getValue(),
+      accessorFn: (row: any) => row["firstName"],
+      id: "firstName",
+      cell: (info: any) => info.getValue(),
       header: () => <span>Name</span>,
     },
     {
-      accessorFn: (row: any) => row["phone"],
-      id: "phone",
+      accessorFn: (row: any) => row["telephone"],
+      id: "telephone",
       cell: (info: any) => info.getValue(),
       header: () => <span>Phone Number</span>,
     },
     {
       accessorFn: (row: any) => row["level"],
       id: "level",
-      cell: (info: any) => info.getValue(),
+      // to be changed later
+      cell: (info: any) => (info.getValue() ? "Level 1" : "Level 2"),
       header: () => <span>Level</span>,
     },
     {
@@ -85,13 +83,7 @@ export default function RespiteCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            type="edit"
-            onClicked={() => {
-              console.log(info);
-            }}
-            size="small"
-          />
+          <TableAction type="edit" onClicked={() => {}} size="small" />
           <TableAction
             type="delete"
             onClicked={() => {
@@ -102,7 +94,7 @@ export default function RespiteCarer() {
           />
           <TableAction
             type="view"
-            onClicked={() => viewDetailsHandler(info)}
+            onClicked={() => viewDetailsHandler(info.row.original)}
             size="small"
           />
         </Box>
@@ -132,7 +124,7 @@ export default function RespiteCarer() {
   };
 
   const viewDetailsHandler = (item: any) => {
-    console.log(item);
+    router.push(`${FORMROUTE}?carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);

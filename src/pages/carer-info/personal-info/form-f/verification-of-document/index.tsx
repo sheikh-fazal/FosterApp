@@ -67,7 +67,7 @@ export default function VerificationOfDocument() {
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      // router.push("/carer-info/personal-info/carer-family-support-network");
+      router.push(`/carer-info/personal-info/form-f?fosterCarerId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });

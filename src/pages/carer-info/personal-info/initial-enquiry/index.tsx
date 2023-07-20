@@ -1,5 +1,5 @@
 import React from "react";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import HorizontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //components import
@@ -92,7 +92,7 @@ export default function InitialEnquiry() {
   };
 
   const formEl = (
-    <HorizaontalTabs tabsDataArray={INITIALENQUIRYDATA}>
+    <HorizontalTabs tabsDataArray={INITIALENQUIRYDATA}>
       {/*---------------------- First Tab---------------------- */}
       <FirstApplicant
         disabled={true}
@@ -146,7 +146,7 @@ export default function InitialEnquiry() {
         currentPage={metaData?.page}
         totalPages={metaData?.pages}
       />
-    </HorizaontalTabs>
+    </HorizontalTabs>
   );
 
   if (isLoading)

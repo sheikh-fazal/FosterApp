@@ -49,24 +49,22 @@ export default function BackupCarer() {
     "/carer-info/substitute-cares/backup-carer/backup-carer-details";
   const columns = [
     {
-      accessorFn: (row: any) => row["name"],
-      id: "name",
-      cell: (info: any) =>
-        info.getValue()?.length > 20
-          ? ". . ." + info.getValue()?.slice(-15)
-          : info.getValue(),
+      accessorFn: (row: any) => row["firstName"],
+      id: "firstName",
+      cell: (info: any) => info.getValue(),
       header: () => <span>Name</span>,
     },
     {
-      accessorFn: (row: any) => row["phone"],
-      id: "phone",
+      accessorFn: (row: any) => row["telephone"],
+      id: "telephone",
       cell: (info: any) => info.getValue(),
       header: () => <span>Phone Number</span>,
     },
     {
       accessorFn: (row: any) => row["level"],
       id: "level",
-      cell: (info: any) => info.getValue(),
+      // to be changed later
+      cell: (info: any) => (info.getValue() ? "Level 1" : "Level 2"),
       header: () => <span>Level</span>,
     },
     {
@@ -96,7 +94,7 @@ export default function BackupCarer() {
           />
           <TableAction
             type="view"
-            onClicked={() => viewDetailsHandler(info)}
+            onClicked={() => viewDetailsHandler(info.row.original)}
             size="small"
           />
         </Box>
@@ -125,7 +123,7 @@ export default function BackupCarer() {
     pages: "1",
   };
   const viewDetailsHandler = (item: any) => {
-    console.log(item);
+    router.push(`${FORMROUTE}?carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);

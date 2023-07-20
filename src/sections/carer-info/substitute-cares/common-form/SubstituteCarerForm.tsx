@@ -33,7 +33,7 @@ export default function SubstituteCarerForm(props: any) {
   const onSubmitHandler = (data: any) => {
     onSubmit(data);
     onEdit({ ...data, id: params.query?.carerId });
-    reset();
+    // reset();
   };
   // updating defaultValues
 
@@ -116,7 +116,8 @@ export default function SubstituteCarerForm(props: any) {
     </FormProvider>
   );
   // if (status?.isError) return <Error />;
-  if (status?.isLoading || isLoading) return <SkeletonFormdata />;
+  // if (status?.isLoading || isLoading) return <SkeletonFormdata />;
   // if (status?.isSuccess)
-  else return formEl;
+  // else
+  return formEl;
 }
