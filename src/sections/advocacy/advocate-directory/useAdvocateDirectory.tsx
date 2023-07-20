@@ -1,33 +1,46 @@
-import React from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import { tableActionIcons } from ".";
-import { TableContainer } from "@mui/material";
-import PhoneModal from "../phone-modal/PhoneModal";
-import ShareModal from "@root/components/modal/shareModal";
-import { useContactDirectory } from "./useContactDirectory";
-import CustomTable from "@root/components/Table/CustomTable";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import ContactInfoModal from "../contact-info-modal/ContactInfoModal";
-import UkFlag from "../../../../../assets/svg/safeguarding/uk-flag.svg";
-import SendEmailModal from "@root/components/modal/SendEmailModal/SendEmailModal";
+import UkFlag from "../../../assets/svg/safeguarding/uk-flag.svg";
 
-// ===========================================================================================
+export const useAdvocateDirectory = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [shareModal, setShareModal] = useState(false);
+  const [emailModal, setEmailModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [phoneModal, setPhoneModal] = useState(false);
 
-const ContactDirectory = ({ data, id }: any) => {
-  const {
-    isShareModal,
-    handleShareClose,
-    isEmailModal,
-    handleEmailClose,
-    handleTableAction,
-    isDeleteModal,
-    handleDeleteClose,
-    isPhoneModal,
-    handlePhoneClose,
-    isEditModal,
-    handleEditClose,
-  } = useContactDirectory();
+  const handleOpenModal = () => setOpenModal(!openModal);
+  const handleEditModal = () => setEditModal(!editModal);
+  const handleShareModal = () => setShareModal(!shareModal);
+  const handleEmailModal = () => setEmailModal(!emailModal);
+  const handleDeleteModal = () => setDeleteModal(!deleteModal);
+  const handlePhoneModal = () => setPhoneModal(!phoneModal);
+
+  const handleTableAction = (type: string, id: string) => {
+    switch (type) {
+      case "edit":
+        handleEditModal();
+        break;
+      case "share":
+        handleShareModal();
+        break;
+      case "email":
+        handleEmailModal();
+        break;
+      case "delete":
+        handleDeleteModal();
+        break;
+      case "phone":
+        handlePhoneModal();
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const columns = [
     {
@@ -103,14 +116,14 @@ const ContactDirectory = ({ data, id }: any) => {
     {
       accessorFn: (row: any) => row.country,
       id: "country",
-      cell: (info: any) =>    <Box sx={{ display: "flex", justifyContent: "center" }}><Image src={UkFlag} alt="img" /></Box>,
+      cell: (info: any) => <Image src={UkFlag} alt="img" />,
       header: () => <span>Country</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.colorCode,
       id: "colorCode",
-      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" , margin:"auto" }} />,
+      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" }} />,
       header: () => <span>Color Code</span>,
       isSortable: true,
     },
@@ -125,7 +138,7 @@ const ContactDirectory = ({ data, id }: any) => {
                 style={{ cursor: "pointer" }}
                 id={id}
                 src={img}
-                onClick={() => handleTableAction(type, data.row.id)}
+                onClick={() => handleTableAction(type, data.row.original.id)}
                 alt={`UserProfile${id}`}
                 width={23}
                 height={23}
@@ -139,30 +152,19 @@ const ContactDirectory = ({ data, id }: any) => {
     },
   ];
 
-  return (
-    <Box >
-      <TableContainer id={id} >
-        <CustomTable
-        
-          data={data}
-          rootSX={{ overflowX: "scroll" }}
-          columns={columns}
-          isSuccess={true}
-          currentPage={1}
-          onPageChange={(data: any) => {
-            console.log("Current page data: ", data);
-          }}
-          onSortByChange={(data: any) => {
-            console.log("Sort by: ", data);
-          }}
-        />
-      </TableContainer>
-      {isShareModal && <ShareModal open={isShareModal} data={[{ email: "Adadsa@gmail.com" }]} handleClose={handleShareClose} />}
-      {isEmailModal && <SendEmailModal open={isEmailModal} handleClose={handleEmailClose} />}
-      {isDeleteModal && <DeleteModel open={isDeleteModal} handleClose={handleDeleteClose} />}
-      {isPhoneModal && <PhoneModal open={isPhoneModal} handleClose={handlePhoneClose} />}
-      {isEditModal && <ContactInfoModal open={isEditModal} onClose={handleEditClose} />}
-    </Box>
-  );
+  return {
+    columns,
+    openModal,
+    handleOpenModal,
+    editModal,
+    handleEditModal,
+    shareModal,
+    handleShareModal,
+    emailModal,
+    handleEmailModal,
+    deleteModal,
+    handleDeleteModal,
+    phoneModal,
+    handlePhoneModal,
+  };
 };
-export default ContactDirectory;
