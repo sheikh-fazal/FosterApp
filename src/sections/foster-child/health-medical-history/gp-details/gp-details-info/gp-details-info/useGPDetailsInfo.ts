@@ -9,7 +9,6 @@ import {
 } from ".";
 import {
   useGetSingleGpDetailsInfoDataQuery,
-  useLazyGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
   usePostGpDetailsInfoDataMutation,
 } from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
@@ -52,7 +51,7 @@ export const useGPDetailsInfo = () => {
 
   useEffect(() => {
     reset(() => defaultValueGpDetailsInfoForm(data?.data));
-  }, [data]);
+  }, [data, reset]);
 
   const submitGpDetailsInfoForm = async (data: any) => {
     const queryParams = {

@@ -1,5 +1,5 @@
 import { usePostInitialHomeAssessmentDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/assessment/assessment";
-import { useLazyGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import {
@@ -19,28 +19,19 @@ export const useAssesmentForm = () => {
     postInitialHomeAssessmentDataTrigger,
     postInitialHomeAssessmentDataStatus,
   ] = usePostInitialHomeAssessmentDataMutation();
-  const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
-    useLazyGetAllInitialHomeVisitDataQuery();
 
-  const params = {
+  const queryParams = {
     value: "assessment",
-    fosterCarerId:
-      query?.fosterCarerId,
+    fosterCarerId: query?.fosterCarerId,
   };
 
-  const dataParameter = { params };
-
-  const setAssesmentFormDefaultValue = async () => {
-    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
-      dataParameter
-    );
-    if (isError) {
-      return assesmentFormValues;
+  const apiDataParameter = { queryParams };
+  const { data, isLoading } = useGetAllInitialHomeVisitDataQuery(
+    apiDataParameter,
+    {
+      refetchOnMountOrArgChange: true,
     }
-    return defaultValuesAssesmentForm(
-      !!Object.keys(data)?.length ? data : undefined
-    );
-  };
+  );
 
   const submitAssesmentForm = async (data: any) => {
     const putParams = {
@@ -62,10 +53,10 @@ export const useAssesmentForm = () => {
 
   return {
     submitAssesmentForm,
-    setAssesmentFormDefaultValue,
-    getAllInitialHomeVisitDataStatus,
     postInitialHomeAssessmentDataStatus,
     assesmentFormFieldsInfo,
     user,
+    data,
+    isLoading,
   };
 };

@@ -54,7 +54,7 @@ export const useStatutoryMedicalTypeInfo = () => {
 
   useEffect(() => {
     reset(() => defaultValueEhcpInfoForm(data?.data));
-  }, [data]);
+  }, [data, reset]);
 
   const submitStatutoryMedicalTypeDataForm = async (data: any) => {
     if (!!router.query?.id) {
