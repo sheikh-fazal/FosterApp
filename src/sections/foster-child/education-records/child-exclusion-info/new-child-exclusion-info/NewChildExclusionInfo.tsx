@@ -65,4 +65,3 @@ const NewChildExclusionInfo = (props: any) => {
 };
 
 export default NewChildExclusionInfo;
-
