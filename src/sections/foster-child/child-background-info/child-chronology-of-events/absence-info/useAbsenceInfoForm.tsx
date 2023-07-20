@@ -1,15 +1,16 @@
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useState } from "react";
+import { useState } from "react";
 import { defaultValues, formSchema, formatters } from "./AbsenceInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useLazyGetChildChronologyOfEventsAbsenceInfoByIdQuery,
+  usePostChildChronologyOfEventsAbsenceInfoMutation,
+  usePatchChildChronologyOfEventsAbsenceInfoByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/AbsenceInfoAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useAbsenceInfoForm = () => {
   const router = useRouter();
@@ -17,13 +18,13 @@ export const useAbsenceInfoForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [getAbsenceInfoList] = useLazyGetChildChronologyOfEventsAbsenceInfoByIdQuery();
+  const [postAbsenceInfoData] = usePostChildChronologyOfEventsAbsenceInfoMutation({});
+  const [editAbsenceInfoList] = usePatchChildChronologyOfEventsAbsenceInfoByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getAbsenceInfoList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -35,6 +36,7 @@ export const useAbsenceInfoForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -55,7 +57,9 @@ export const useAbsenceInfoForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postAbsenceInfoData({
+        addAbsenceInfoRequestDto: { ...data, fosterChildId, status: "Pending" },
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -63,8 +67,7 @@ export const useAbsenceInfoForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/absence-info",
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
@@ -72,27 +75,25 @@ export const useAbsenceInfoForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
-        addDayLogRequestDto: { ...data },
+        addAbsenceInfoRequestDto: { ...data },
+        fosterChildId
       };
-      editDayLogList(formData)
+      editAbsenceInfoList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
@@ -111,6 +112,6 @@ export const useAbsenceInfoForm = () => {
     isSubmitting,
     action,
     id,
-    fosterChildId
+    fosterChildId,
   };
 };

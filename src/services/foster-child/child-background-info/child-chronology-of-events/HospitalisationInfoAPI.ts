@@ -95,6 +95,6 @@ export const {
   useGetChildChronologyOfEventsHospitalisationInfoListQuery,
   usePostChildChronologyOfEventsHospitalisationInfoMutation,
   usePatchChildChronologyOfEventsHospitalisationInfoByIdMutation,
-  useGetChildChronologyOfEventsHospitalisationInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsHospitalisationInfoByIdQuery,
   useDeleteChildChronologyOfEventsHospitalisationInfoByIdMutation,
 } = hospitalisationInfoApi;

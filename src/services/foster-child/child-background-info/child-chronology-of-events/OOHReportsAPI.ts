@@ -44,10 +44,7 @@ export const OOHReportsApi: any = baseAPI.injectEndpoints({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/ooh-reports/${queryArg}`,
       }),
-      // transformResponse: (response: any) => {
-      //   parseDatesToTimeStampByKey(response.data);
-      //   return response;
-      // },
+
       providesTags: [TAG],
     }),
     deleteChildChronologyOfEventsOohReportsById: build.mutation<

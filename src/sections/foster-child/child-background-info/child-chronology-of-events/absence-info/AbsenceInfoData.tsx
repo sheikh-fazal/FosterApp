@@ -8,7 +8,7 @@ export const absenceInfoFormFields = [
     gridLength: 6,
     otherOptions: {
       name: "dateOfAbsence",
-      label: "Date of Occurence",
+      label: "Date of Absence",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -18,7 +18,7 @@ export const absenceInfoFormFields = [
     gridLength: 6,
     otherOptions: {
       name: "dateOfReturnFromAbsence",
-      label: "Date of Occurence",
+      label: "Date of Return From Absence",
       fullWidth: true,
     },
     component: RHFDatePicker,

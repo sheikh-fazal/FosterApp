@@ -1,5 +1,4 @@
 import Layout from "@root/layouts";
-import DayLogForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogForm";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
@@ -63,7 +62,7 @@ export default function OHHReports() {
     formData.append("documentDate", postData.documentDate);
     formData.append("documentPassword", postData.password);
     formData.append("file", postData.chosenFile);
-    formData.append("formName", "day_log");
+    formData.append("formName", "ooh_reports");
     formData.append("recordId", id);
     try {
       const res: any = await postUploadedDocument({ addDocumentCcRequestDto: formData }).unwrap();

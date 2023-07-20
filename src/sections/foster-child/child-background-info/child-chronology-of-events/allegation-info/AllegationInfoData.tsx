@@ -256,10 +256,9 @@ export const AllegationInfoFormFields = [
       name: "ofstedNotifiedDate",
       label: "Ofsted Notified Date",
       fullWidth: true,
-      select: true,
+      
     },
-    options: [{ value: "nil", label: "nil" }],
-    component: RHFSelect,
+    component: RHFDatePicker,
   },
   {
     id: 24,

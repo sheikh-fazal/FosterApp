@@ -6,7 +6,7 @@ import { LoadingButton } from "@mui/lab";
 import { useExamGradeInfoForm } from "./useExamGradeInfoForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-const DayLogForm = () => {
+const ExamGradeInfoForm = () => {
   const {
     router,
     methods,
@@ -81,4 +81,4 @@ const DayLogForm = () => {
   );
 };
 
-export default DayLogForm;
+export default ExamGradeInfoForm;

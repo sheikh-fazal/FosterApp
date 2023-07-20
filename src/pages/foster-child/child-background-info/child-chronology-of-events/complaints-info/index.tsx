@@ -47,7 +47,6 @@ export default function ComplaintsInfo() {
       offset: page,
       id: id,
     });
-  console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data);
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
   const deleteDocument = async (queryArg: any) => {
@@ -67,14 +66,8 @@ export default function ComplaintsInfo() {
     formData.append("documentDate", postData.documentDate);
     formData.append("documentPassword", postData.password);
     formData.append("file", postData.chosenFile);
-    formData.append("formName", "day_log");
+    formData.append("formName", "complaints_info");
     formData.append("recordId", id);
-
-    // const updatedData = {
-    //   trainingProfileId: id,
-    //   data: formData,
-    // };
-
     try {
       const res: any = await postUploadedDocument({ addDocumentCcRequestDto: formData }).unwrap();
       enqueueSnackbar(res?.message ?? `Successfully!`, {
@@ -91,9 +84,7 @@ export default function ComplaintsInfo() {
       <ComplaintsInfoForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document?.filter(
-          (item: { formName: string }) => item?.formName === "day_log"
-        )}
+        tableData={data?.data?.foster_child_document}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}

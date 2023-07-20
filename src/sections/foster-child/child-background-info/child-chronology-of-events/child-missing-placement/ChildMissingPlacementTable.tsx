@@ -43,7 +43,7 @@ const ChildMissingPlacementTable = (props: any) => {
 
     {
       accessorFn: (row: any) => row?.missingReason,
-      id: "missingReason",
+      id: "childMissingReason",
       cell: (info: any) => info.getValue(),
       header: "Missing Reason",
       isSortable: true,

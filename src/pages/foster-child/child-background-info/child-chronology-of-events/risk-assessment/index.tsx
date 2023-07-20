@@ -1,26 +1,19 @@
 import Layout from "@root/layouts";
-import DayLogForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogForm";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
-  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery,
   useGetChildChronologyOfEventsUploadedDocumentsListQuery,
   usePostChildChronologyOfEventsUploadedDocumentsMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 import { useRouter } from "next/router";
-import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
-import { useState } from "react";
-import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
-import ExclusionInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exclusion-info/ExclusionInfoForm";
-import VocationalCourseInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/vocational-course-info/VocationalCourseInfoForm";
-import HospitalisationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info/HospitalisationInfoForm";
 import RAChildDetailsForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildDetailsForm";
 import RAChildInformationForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildInformationForm";
 import RAChildRiskDetailsForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RAChildRiskDetailsForm";
 import RADelegatedAuthorityForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RADelegatedAuthorityForm";
+import { useState } from "react";
 
 const BREADCRUMBS = [
   {
@@ -46,9 +39,13 @@ RiskAssessment.getLayout = function getLayout(page: any) {
 export default function RiskAssessment() {
   const router = useRouter();
   const { id, action }: any = router.query;
+  const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetChildChronologyOfEventsUploadedDocumentsByIdQuery();
-  console.log("🚀 ~ file: index.tsx:41 ~ DayLog ~ data:", data);
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+    });
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
   const deleteDocument = async (queryArg: any) => {
@@ -68,14 +65,8 @@ export default function RiskAssessment() {
     formData.append("documentDate", postData.documentDate);
     formData.append("documentPassword", postData.password);
     formData.append("file", postData.chosenFile);
-    formData.append("formName", "day_log");
+    formData.append("formName", "risk_assessment");
     formData.append("recordId", id);
-
-    // const updatedData = {
-    //   trainingProfileId: id,
-    //   data: formData,
-    // };
-
     try {
       const res: any = await postUploadedDocument({ addDocumentCcRequestDto: formData }).unwrap();
       enqueueSnackbar(res?.message ?? `Successfully!`, {
@@ -103,9 +94,7 @@ export default function RiskAssessment() {
       <RADelegatedAuthorityForm />
       <UploadDocuments
         searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document?.filter(
-          (item: { formName: string }) => item?.formName === "day_log"
-        )}
+        tableData={data?.data?.foster_child_document}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
@@ -122,9 +111,11 @@ export default function RiskAssessment() {
           deleteDocument(data.id);
         }}
         modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={data?.data?.page}
-        totalPages={data?.data?.pages}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
+        }}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
         disabled={!!id && (action === "add" || action === "edit") ? false : true}
       />
     </HorizaontalTabs>

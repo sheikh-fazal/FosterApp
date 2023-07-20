@@ -6,10 +6,11 @@ import { defaultValues, formSchema, formatters } from "./TherapyInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useLazyGetChildChronologyOfEventsTherapyInfoByIdQuery,
+  usePostChildChronologyOfEventsTherapyInfoMutation,
+  usePatchChildChronologyOfEventsTherapyInfoByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/TherapyInfoAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useTherapyInfoForm = () => {
   const router = useRouter();
@@ -17,13 +18,13 @@ export const useTherapyInfoForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [getTherapyInfoList] = useLazyGetChildChronologyOfEventsTherapyInfoByIdQuery();
+  const [postTherapyInfoData] = usePostChildChronologyOfEventsTherapyInfoMutation({});
+  const [editTherapyInfoList] = usePatchChildChronologyOfEventsTherapyInfoByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getTherapyInfoList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -35,6 +36,7 @@ export const useTherapyInfoForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -55,7 +57,9 @@ export const useTherapyInfoForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postTherapyInfoData({
+        addTherapyInfoRequestDto: { ...data, fosterChildId, status: "Pending" },
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -63,35 +67,33 @@ export const useTherapyInfoForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
-        addDayLogRequestDto: { ...data },
+        addTherapyInfoRequestDto: { ...data },
+        fosterChildId,
       };
-      editDayLogList(formData)
+      editTherapyInfoList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {

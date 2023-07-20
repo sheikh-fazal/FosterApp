@@ -59,7 +59,7 @@ export default function OfstedNotifications() {
     formData.append("documentDate", postData.documentDate);
     formData.append("documentPassword", postData.password);
     formData.append("file", postData.chosenFile);
-    formData.append("formName", "day_log");
+    formData.append("formName", "ofsted_notifications");
     formData.append("recordId", id);
     try {
       const res: any = await postUploadedDocument({ addDocumentCcRequestDto: formData }).unwrap();

@@ -6,10 +6,11 @@ import { defaultValues, formSchema, formatters } from "./ImmunisationInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+  useLazyGetChildChronologyOfEventsImmunisationInfoByIdQuery,
+  usePostChildChronologyOfEventsImmunisationInfoMutation,
+  usePatchChildChronologyOfEventsImmunisationInfoByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/ImmunisationInfo";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useImmunisationInfoForm = () => {
   const router = useRouter();
@@ -17,13 +18,14 @@ export const useImmunisationInfoForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+
+  const [getImmunisationInfoList] = useLazyGetChildChronologyOfEventsImmunisationInfoByIdQuery();
+  const [postImmunisationInfoData] = usePostChildChronologyOfEventsImmunisationInfoMutation({});
+  const [editImmunisationInfoList] = usePatchChildChronologyOfEventsImmunisationInfoByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getImmunisationInfoList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -35,6 +37,7 @@ export const useImmunisationInfoForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -55,7 +58,9 @@ export const useImmunisationInfoForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postDayLogData({ ...data, fosterChildId, status: "Pending" })
+      postImmunisationInfoData({
+        addImmunisationInfoRequestDto: { ...data, fosterChildId, status: "Pending" },
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -63,35 +68,34 @@ export const useImmunisationInfoForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
-        addDayLogRequestDto: { ...data },
+        addImmunisationInfoRequestDto: { ...data },
+        fosterChildId,
       };
-      editDayLogList(formData)
+      editImmunisationInfoList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {

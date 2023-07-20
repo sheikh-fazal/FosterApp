@@ -36,7 +36,7 @@ export const useDayLogForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
-     
+
       return responseData;
     } else {
       setIsLoading(false);
@@ -73,7 +73,6 @@ export const useDayLogForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
@@ -88,13 +87,11 @@ export const useDayLogForm = () => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
