@@ -23,11 +23,6 @@ export const useOohReportsForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  // useGetChildChronologyOfEventsOohReportsListQuery,
-  // usePostChildChronologyOfEventsOohReportsMutation,
-  // usePatchChildChronologyOfEventsOohReportsByIdMutation,
-  // useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
-  // useDeleteChildChronologyOfEventsOohReportsByIdMutation,
   const [getOohReportsList] = useLazyGetChildChronologyOfEventsOohReportsByIdQuery();
   const [postOohReportsData] = usePostChildChronologyOfEventsOohReportsMutation({});
   const [editOohReportsList] = usePatchChildChronologyOfEventsOohReportsByIdMutation();
@@ -47,10 +42,7 @@ export const useOohReportsForm = () => {
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
       parseDatesToTimeStampByKey(responseData);
-      console.log("🚀 ~ file: useOOHReportsForm.tsx:50 ~ getDefaultValue ~ responseData:", responseData)
-      // responseData.callDuration = new Date(responseData.callDuration);
-      // responseData.callEndTime = new Date(responseData.callEndTime);
-      // responseData.callStartTime = new Date(responseData.callStartTime);
+
       return responseData;
     } else {
       setIsLoading(false);

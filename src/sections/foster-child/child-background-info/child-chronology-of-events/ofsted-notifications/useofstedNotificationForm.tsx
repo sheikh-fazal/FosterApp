@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useState } from "react";
+import { useState } from "react";
 import { defaultValues, formSchema, formatters } from "./ofstedNotificationData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,11 +13,6 @@ import {
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/OfstedNotificationsAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
-// useGetChildChronologyOfEventsOfstedNotificationsListQuery,
-//   usePostChildChronologyOfEventsOfstedNotificationsMutation,
-//   usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation,
-//   useGetChildChronologyOfEventsOfstedNotificationsByIdQuery,
-//   useDeleteChildChronologyOfEventsOfstedNotificationsByIdMutation,
 export const useOfstedNotificationForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
@@ -36,7 +31,6 @@ export const useOfstedNotificationForm = () => {
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
       const { data, isError } = await getOfstedNotificatinData({ id });
-      console.log("🚀 ~ file: useofstedNotificationForm.tsx:38 ~ getDefaultValue ~ data:", data);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -48,7 +42,7 @@ export const useOfstedNotificationForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
-      parseDatesToTimeStampByKey(responseData)
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -88,13 +82,13 @@ export const useOfstedNotificationForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
-        addDayLogRequestDto: { ...data },
+        addOfstedNotificationsRequestDto: { ...data },
+        fosterChildId,
       };
       editOfstedNotificationList(formData)
         .unwrap()
@@ -102,13 +96,12 @@ export const useOfstedNotificationForm = () => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
+
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
