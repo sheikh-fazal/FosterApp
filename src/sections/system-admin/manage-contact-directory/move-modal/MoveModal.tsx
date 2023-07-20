@@ -1,26 +1,26 @@
 import React from "react";
-import { formData } from ".";
+import { moveModalData } from ".";
+import { useMoveModal } from "./useMoveModal";
 import { FormProvider } from "@root/components/hook-form";
-import { useContactInfoModal } from "./useContactInfoModal";
 import { Grid, Button, Box, Typography, Dialog, DialogContent } from "@mui/material";
 
 // ======================================================================================================
 
-const ContactInfoModal = (props: any) => {
-  const { open, onClose,disabled } = props;
-  const { methods, handleSubmit, onSubmit } = useContactInfoModal();
+const MoveModal = (props: any) => {
+  const { open, onClose } = props;
+  const { methods, handleSubmit, onSubmit } = useMoveModal();
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth={"lg"}>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth={"sm"}>
       <DialogContent>
-        <Box sx={Styles.mainTitle}>New Contact</Box>
+        <Box sx={Styles.mainTitle}>Move</Box>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={4} paddingY={2}>
-            {formData.map((form: any, i: any) => {
+            {moveModalData.map((form: any, i: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={i}>
                   <Typography>{form?.title}</Typography>
-                  <form.component fullWidth disabled={disabled} size="small" {...form.otherOptions}>
+                  <form.component fullWidth disabled={props.disabled} size="small" {...form.otherOptions}>
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -38,7 +38,7 @@ const ContactInfoModal = (props: any) => {
                   display: "flex",
                 }}
               >
-                {!disabled && <Button
+                <Button
                   sx={{
                     marginRight: "1rem",
                     backgroundColor: "#0E918C",
@@ -49,8 +49,8 @@ const ContactInfoModal = (props: any) => {
                   type="submit"
                   variant="contained"
                 >
-                  Create
-                </Button>}
+                  Move
+                </Button>
                 <Button
                   sx={{
                     backgroundColor: "#F6830F",
@@ -73,9 +73,8 @@ const ContactInfoModal = (props: any) => {
   );
 };
 
-export default ContactInfoModal;
+export default MoveModal;
 
-//-----------------------------------------------------------------------
 // styles
 const Styles = {
   mainTitle: {

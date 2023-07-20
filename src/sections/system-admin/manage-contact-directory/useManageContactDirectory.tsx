@@ -1,19 +1,30 @@
 import { useState } from "react";
 import Image from "next/image";
-import { Box } from "@mui/material";
-import { tableActionIcons } from ".";
-import UkFlag from "../../../../assets/svg/safeguarding/uk-flag.svg";
+import { Box, Checkbox } from "@mui/material";
+import { systemAdminWidgets, tableActionIcons } from ".";
+import UkFlag from "../../../assets/svg/safeguarding/uk-flag.svg";
 
-export const useAgencySafeguardingOfficer = () => {
+// =======================================================
+
+export const useManageContactDirectory = () => {
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
+  const [widgetsArray, setWidgetsArray] = useState<any[]>(systemAdminWidgets);
   const [openModal, setOpenModal] = useState(false);
-  const [editModal, setEditModal] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [emailModal, setEmailModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [phoneModal, setPhoneModal] = useState(false);
-  
+  const [disableModal, setDisableModal] = useState(false);
+
+  const [newContact, setNewContact] = useState(false);
+  const [newGroup, setNewGroup] = useState(false);
+  const [moveTo, setMoveTo] = useState(false);
+
+  const handleContactModal = () => setNewContact(!newContact);
+  const handleGroupModal = () => setNewGroup(!newGroup);
+  const handleMoveModal = () => setMoveTo(!moveTo);
+
   const handleOpenModal = () => setOpenModal(!openModal);
-  const handleEditModal = () => setEditModal(!editModal);
   const handleShareModal = () => setShareModal(!shareModal);
   const handleEmailModal = () => setEmailModal(!emailModal);
   const handleDeleteModal = () => setDeleteModal(!deleteModal);
@@ -22,7 +33,8 @@ export const useAgencySafeguardingOfficer = () => {
   const handleTableAction = (type: string, id: string) => {
     switch (type) {
       case "edit":
-        handleEditModal();
+        handleContactModal();
+        setDisableModal(false);
         break;
       case "share":
         handleShareModal();
@@ -36,13 +48,90 @@ export const useAgencySafeguardingOfficer = () => {
       case "phone":
         handlePhoneModal();
         break;
+      case "view":
+        handleContactModal();
+        setDisableModal(true);
+        break;
 
       default:
         break;
     }
   };
 
+  const updatedWidgets = (event: any, data: any) => {
+    if (event.target.checked) {
+      setSelectedRows([...selectedRows, data.id]);
+      if (selectedRows.length >= 1) {
+        const newData = systemAdminWidgets.map((widgets) => {
+          return {
+            id: widgets?.id,
+            subArray: [...widgets?.subArray].map((sub) => {
+              if (widgets?.id === "3") {
+                return {
+                  icon: sub?.icon,
+                  title: sub?.title,
+                  disabled: false,
+                };
+              }
+              return { ...sub };
+            }),
+            action: widgets?.action,
+          };
+        });
+        setWidgetsArray(newData);
+      }
+    } else {
+      setSelectedRows(selectedRows.filter((id) => id !== data?.id));
+      if (selectedRows.length <= 2) {
+        setWidgetsArray(systemAdminWidgets);
+      }
+    }
+  };
+
+  const handleOpenChange = (id: string, item: any) => {
+    switch (item.title) {
+      case "New Contact":
+        handleContactModal();
+        break;
+      case "New Group":
+        handleGroupModal();
+        break;
+      case "Move":
+        handleMoveModal();
+        break;
+      case "Delete":
+        handleDeleteModal();
+        break;
+      default:
+        break;
+    }
+  };
+
   const columns = [
+    {
+      id: "select",
+      // header: ({ table, row }: any) => {
+      //   console.log(table.getSelectedRowModel().flatRows);
+      //   return (
+      //     <Box>
+      //       <Checkbox checked={table.getIsAllRowsSelected()} onChange={table.getToggleAllRowsSelectedHandler()} />
+      //     </Box>
+      //   );
+      // },
+      cell: ({ row, table }: any) => (
+        <Box>
+          <Checkbox
+            disabled={row?.original?.Assigned}
+            checked={selectedRows.includes(row?.original?.id) ? true : false}
+            onChange={(e: any) => {
+              // row.getToggleSelectedHandler();
+              updatedWidgets(e, row?.original);
+            }}
+            // onClick={() => updatedWidgets(row?.original)}
+          />
+        </Box>
+      ),
+    },
     {
       accessorFn: (row: any) => row.name,
       id: "name",
@@ -153,11 +242,9 @@ export const useAgencySafeguardingOfficer = () => {
   ];
 
   return {
+    widgetsArray,
     columns,
     openModal,
-    handleOpenModal,
-    editModal,
-    handleEditModal,
     shareModal,
     handleShareModal,
     emailModal,
@@ -166,5 +253,14 @@ export const useAgencySafeguardingOfficer = () => {
     handleDeleteModal,
     phoneModal,
     handlePhoneModal,
+    handleOpenChange,
+    newContact,
+    handleContactModal,
+    newGroup,
+    moveTo,
+    handleMoveModal,
+    handleGroupModal,
+    handleOpenModal,
+    disableModal,
   };
 };
