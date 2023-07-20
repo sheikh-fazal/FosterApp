@@ -25,13 +25,6 @@ const AllegationTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row?.allegationDate ?? "-",
       id: "allegationDate",
       cell: (info: any) => {
@@ -120,6 +113,7 @@ const AllegationTable = () => {
         isFetching={allegationlistIsfetching}
         isError={allegationListError}
         isSuccess={allegationListIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

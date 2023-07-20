@@ -23,13 +23,6 @@ const EmployementReferenceOneTable = () => {
   } = useEmployementReferenceOneTable();
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.name ?? "-",
       id: "name",
       cell: (info: any) => info.getValue(),
@@ -124,6 +117,7 @@ const EmployementReferenceOneTable = () => {
         isFetching={employmentReferenceIsfetching}
         isError={employmentReferenceError}
         isSuccess={employmentReferenceIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

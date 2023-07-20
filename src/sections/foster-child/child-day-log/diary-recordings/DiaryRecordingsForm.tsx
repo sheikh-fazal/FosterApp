@@ -1,22 +1,25 @@
 import { Grid, useTheme, Button } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { carInsuranceData } from "./index";
+import { diaryRecordingData } from "./index";
 import { useDiaryRecordingsForm } from "./useDiaryRecordingsForm";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+
 const DiaryRecordingsForm = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
-  //Car Insurance  Custom Hook
+  //Diary Recordings  Custom Hook
   const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } =
     useDiaryRecordingsForm(action, id);
+  const { fosterChildId } = router.query;
   if (isLoading) return <SkeletonFormdata />;
+
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-          {carInsuranceData.map((form: any) => {
+          {diaryRecordingData.map((form: any) => {
             return (
               <Grid
                 item
@@ -37,7 +40,7 @@ const DiaryRecordingsForm = (props: any) => {
                   >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
-                          <option key={option.value} value={option.value}>
+                          <option key={option.id} value={option.value}>
                             {option.label}
                           </option>
                         ))
@@ -72,9 +75,12 @@ const DiaryRecordingsForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname: "/foster-child/child-day-log/diary-recordings",
+                  query: {
+                    fosterChildId: fosterChildId,
+                  },
+                })
               }
             >
               Back

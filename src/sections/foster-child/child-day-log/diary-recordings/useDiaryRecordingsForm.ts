@@ -12,14 +12,15 @@ import {
 } from "@root/services/foster-child/child-day-log/diary-recordings/DiaryRecordingsApi";
 export const useDiaryRecordingsForm = (action: any, id: any) => {
   const router = useRouter();
+  const { fosterChildId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
   const [getsingleDiaryRecording] = useLazySingleRecordingListQuery();
-  //API For Posting Car Insurance Form
+  //API For Posting Diary Recordings Form
   const [postDiaryRecordings] = usePostDiaryRecordingListMutation();
-  //API For Patch Car Insurance List
+  //API For Patch Diary Recordings List
   const [editDiaryRecording] = usePatchRecordingListMutation();
 
   //GET DEFAULT VALUE HANDLER
@@ -58,9 +59,23 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
+    const sendata: any = {};
+
+    const keys = Object.keys(defaultValues);
+
+    for (const key of keys) {
+      if (data[key] !== undefined) {
+        sendata[key] = data[key];
+      }
+    }
     if (action === "add") {
       setIsFetching(true);
-      postDiaryRecordings(data)
+      postDiaryRecordings({
+        params: {
+          fosterChildId: fosterChildId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -73,6 +88,7 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
             query: {
               action: "edit",
               id: `${res?.data.id}`,
+              fosterChildId: fosterChildId,
             },
           });
         })
@@ -80,13 +96,18 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/background-checks/statutory-checks-list");
+          router.push({
+            pathname: "/foster-child/child-day-log/diary-recordings",
+            query: {
+              fosterChildId: fosterChildId,
+            },
+          });
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      const formData = {
-        id,
-        ...data,
+      let formData = {
+        id: id,
+        ...sendata,
       };
       editDiaryRecording(formData)
         .unwrap()
@@ -94,17 +115,16 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/foster-child/child-day-log/diary-recordings/child-diary-recordings"
-          );
+          router.push("/foster-child/child-day-log/diary-recordings");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
-          );
+          router.push({
+            pathname: "/foster-child/child-day-log/diary-recordings",
+            query: { fosterChildId: fosterChildId },
+          });
           setIsFetching(false);
         });
     } else {
@@ -124,5 +144,6 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
+    fosterChildId,
   };
 };

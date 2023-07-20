@@ -16,6 +16,7 @@ const OtherInformation = () => {
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 1 }}
+        component={"p"}
       >
         Employment Status
       </Typography>
@@ -29,12 +30,14 @@ const OtherInformation = () => {
               }}
             >
               <Typography
+                component={"p"}
                 variant="subtitle2"
                 sx={{ color: theme.palette.grey[600], mb: 0.5 }}
               >
                 {item.label}
               </Typography>
               <Typography
+                component={"p"}
                 variant="body2"
                 sx={{
                   color: theme.palette.grey[600],
@@ -48,11 +51,12 @@ const OtherInformation = () => {
 
               {item.sublist?.map((title: any) => (
                 <Box
-                  key={title.id}
+                  key={title.title}
                   sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}
                 >
                   <Image src={title.icon} alt="icon" width={24} height={20} />
                   <Typography
+                    component={"p"}
                     variant="body2"
                     sx={{
                       color: theme.palette.grey[600],
@@ -70,6 +74,7 @@ const OtherInformation = () => {
       </Grid>
       {/* Additional Docs Section Started */}
       <Typography
+        component={"p"}
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 1, mt: 3 }}
@@ -86,12 +91,14 @@ const OtherInformation = () => {
               }}
             >
               <Typography
+                component={"p"}
                 variant="subtitle2"
                 sx={{ color: theme.palette.grey[600], mb: 0.5 }}
               >
                 {item.label}
               </Typography>
               <Typography
+                component={"p"}
                 variant="body2"
                 sx={{
                   color: theme.palette.grey[600],
@@ -110,6 +117,7 @@ const OtherInformation = () => {
                 >
                   <Image src={title.icon} alt="icon" width={24} height={20} />
                   <Typography
+                    component={"p"}
                     variant="body2"
                     sx={{
                       color: theme.palette.grey[600],
@@ -129,6 +137,7 @@ const OtherInformation = () => {
       <BankDetailsTable />
       {/* ID Upload Section Started */}
       <Typography
+        component={"p"}
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 1, mt: 4 }}
@@ -143,6 +152,7 @@ const OtherInformation = () => {
           }}
         >
           <Typography
+            component={"p"}
             variant="subtitle2"
             sx={{ color: theme.palette.grey[600], mb: 1 }}
           >
@@ -151,6 +161,7 @@ const OtherInformation = () => {
           <Box sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}>
             <Image src={item.icon} alt="icon" width={24} height={22} />
             <Typography
+              component={"p"}
               variant="body2"
               sx={{
                 color: theme.palette.grey[600],

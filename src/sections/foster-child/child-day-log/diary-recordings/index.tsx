@@ -6,7 +6,7 @@ import {
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const carInsuranceData = [
+export const diaryRecordingData = [
   {
     id: 1,
     gridLength: 6,
@@ -20,6 +20,7 @@ export const carInsuranceData = [
       return new Date(date);
     },
   },
+
   {
     id: 2,
     gridLength: 6,
@@ -30,8 +31,8 @@ export const carInsuranceData = [
       select: true,
     },
     options: [
-      { value: 0, label: 0 },
-      { value: 1, label: 1 },
+      { id: 1, value: "Select", label: "Select" },
+      { id: 2, value: "Select", label: "Select" },
     ],
     component: RHFSelect,
   },
@@ -45,8 +46,8 @@ export const carInsuranceData = [
       select: true,
     },
     options: [
-      { value: 0, label: 0 },
-      { value: 1, label: 1 },
+      { id: 1, value: "Select", label: "Select" },
+      { id: 2, value: "Select", label: "Select" },
     ],
     component: RHFSelect,
   },
@@ -88,7 +89,7 @@ export const carInsuranceData = [
 
 export const formatters: any = {};
 
-for (const formControl of carInsuranceData) {
+for (const formControl of diaryRecordingData) {
   if (formControl.format)
     formatters[formControl.otherOptions.name] = formControl.format;
 }
@@ -107,5 +108,5 @@ export const formSchema = Yup.object().shape({
   subject: Yup.string().required("Required"),
   notes: Yup.string().required("Required"),
   notificationDate: Yup.date().required("Required"),
-  addEditSiblings: Yup.boolean(),
+  addEditSiblings: Yup.boolean().required("Required"),
 });
