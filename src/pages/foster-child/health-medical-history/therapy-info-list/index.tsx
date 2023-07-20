@@ -30,7 +30,8 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 export default function InitialHomeVisit() {
   const router = useRouter();
-  if (!!!router?.query?.fosterChildId) {
+
+  if (!router?.query?.fosterChildId) {
     router.push({
       pathname: "/foster-child-lists",
     });

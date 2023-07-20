@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useTherapyInfoList } from "./useTherapyInfoList";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const TherapyInfoList = () => {
   // const [tabelData, setTabelData] = useState([
@@ -33,10 +34,12 @@ const TherapyInfoList = () => {
     isFetching,
     setSearchValue,
     setPage,
-    page,
-  } = useTherapyInfoList();
+    therapInfoCon,
+  }: any = useTherapyInfoList();
+  const { someAsyncAction } = therapInfoCon;
   return (
-    <Box>
+    <Grid sx={{ position: "relative" }}>
+      {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
         ref={tableHeaderRef}
         title="Child Therapy Info "
@@ -49,7 +52,7 @@ const TherapyInfoList = () => {
         }}
       />
       <CustomTable
-        data={data}
+        data={data?.data?.therapy_info}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
@@ -57,17 +60,20 @@ const TherapyInfoList = () => {
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={page}
-        totalPages={10}
-        onPageChange={(data: any) => {
-          setPage(() => data);
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages || 1}
+        // onPageChange={(data: any) => {
+        //   setPage(() => data);
+        // }}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
         }}
         onSortByChange={(data: any) => {
           // console.log("Sort by: ", data);
           return;
         }}
       />
-    </Box>
+    </Grid>
   );
 };
 

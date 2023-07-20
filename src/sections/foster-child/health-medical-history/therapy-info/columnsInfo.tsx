@@ -4,21 +4,21 @@ import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { router } = parms;
+  const { router, handleDeleteTherapy } = parms;
   const { query } = useRouter();
   const { fosterChildId } = query;
   return [
     {
-      accessorFn: (row: any) => row.a,
+      accessorFn: (row: any) => row.referralDate,
       id: "CAMHS Date",
-      cell: (info: any) => info.getValue().toUpperCase(),
+      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
       header: " CAMHS Date",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.b,
+      accessorFn: (row: any) => row.appointmentDate,
       id: "Appointment",
-      cell: (info: any) => "B",
+      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
       header: "Appointment",
       isSortable: false,
     },
@@ -33,12 +33,24 @@ export const getColumns = (parms: any) => {
             type="edit"
             onClick={() =>
               router.push(
-                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info?fosterChildId=${fosterChildId}`
+                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${info.row.original.id}`
               )
             }
           />
-          <TableAction size="small" type="view" />
-          <TableAction size="small" type="delete" />
+          <TableAction
+            size="small"
+            type="view"
+            onClick={() =>
+              router.push(
+                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=view&therapyInfoId=${info.row.original.id}`
+              )
+            }
+          />
+          <TableAction
+            size="small"
+            type="delete"
+            onClicked={() => handleDeleteTherapy(info.row.original.id)}
+          />
         </Box>
       ),
       header: "Action",
