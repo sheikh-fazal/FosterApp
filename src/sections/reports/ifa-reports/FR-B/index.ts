@@ -1,57 +1,62 @@
+import { TextField } from "@mui/material";
+
 export const FRBFilterData = [
   {
     gridlength: 6,
-    label: 'Foster Carer(s)',
     otherOptions: {
       label: 'Foster Carer(s)',
       name: 'fosterCarer',
       fullWidth: true,
       size: 'small',
+      select: true,
     },
     options: [
       { value: 'all', label: 'all' }
     ],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: 'Supervising Social Worker',
     otherOptions: {
       label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
       size: 'small',
-      default:"select"
+      select: true,
     },
     options: [
-     
+
       { value: 'all', label: 'all' }
     ],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: 'Date Type',
     otherOptions: {
       label: 'Date Type',
       name: 'dateType',
       fullWidth: true,
       size: 'small',
+      select: true,
     },
     options: [
       { value: 'today', label: 'today' }
     ],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: 'Select Search Date',
     otherOptions: {
       label: 'Select Search Date',
       name: 'searchDate',
       fullWidth: true,
       size: 'small',
+      select: true,
     },
     options: [
       { value: 'signed Date', label: 'signed Date' }
     ],
+    component: TextField
   },
 
 ];

@@ -41,10 +41,10 @@ const AddFormFieldModal = ({ open, onClose, data, schema }: any) => {
               field.subFields.map((sub: any, i: number) => (
                 <Grid item md={6} xs={12} key={i}>
                   {field.title && (
-                    <Typography sx={(theme)=>styles.title(theme)}>{field.title}</Typography>
+                    <Typography sx={styles.title}>{field.title}</Typography>
                   )}
                   {sub.title && (
-                    <Typography sx={(theme)=>styles.title(theme)}>{sub.title}</Typography>
+                    <Typography sx={styles.title}>{sub.title}</Typography>
                   )}
                   <sub.component size={"small"} {...sub.otherOptions}>
                     {sub.otherOptions.select
@@ -84,9 +84,9 @@ const AddFormFieldModal = ({ open, onClose, data, schema }: any) => {
 export default AddFormFieldModal;
 
 const styles = {
-  title: (theme:any)=> ({
+  title: {
     fontWeight: 500,
     fontSize: "16px",
-    color: theme.palette.primary.main
-  })
+    color: "#0E918C",
+  },
 };

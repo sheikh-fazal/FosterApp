@@ -8,7 +8,7 @@ export const initialValues = {
   carerName: "",
   childName: "",
   placementStatus: "",
-  date: null,
+  date: "",
 };
 
 export const formSchema = Yup.object().shape({

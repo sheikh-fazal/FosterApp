@@ -10,12 +10,6 @@ const DiaryRecordingsForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, handleBack, onSubmit, handleSubmit } =
     useDiaryRecordingsForm();
-    let label: any;
-    if (action === "view") {
-      label = "Uploaded Meeting Record";
-    } else {
-      label = "Upload Meeting Record";
-    }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -24,18 +18,18 @@ const DiaryRecordingsForm = ({ action }: any) => {
             <Grid item xs={12} md={form?.gridLength} key={i}>
               {form.component && (
                 <form.component
-                  fullWidth
                   disabled={disabled}
                   size="small"
+                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
                   {form.componentProps?.select
                     ? form.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
                     : null}
                 </form.component>
               )}
@@ -47,7 +41,6 @@ const DiaryRecordingsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                    label={label}
                     {...form.componentProps}
                     name={"updateMeetingRecord"}
                     {...methods}

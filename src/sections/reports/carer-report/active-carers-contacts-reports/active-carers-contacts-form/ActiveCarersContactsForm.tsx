@@ -1,4 +1,4 @@
-import { Box, Button, Card, Grid } from "@mui/material";
+import { Box, Button, Card, Grid, } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
@@ -8,14 +8,7 @@ import { LoadingButton } from "@mui/lab";
 
 const ActiveCarersContactForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit } =
-    useActiveCarersContactsForm();
-  let label: any;
-  if (action === "view") {
-    label = "Uploaded Meeting Record";
-  } else {
-    label = "Upload Meeting Record";
-  }
+  const { methods,handleBack , onSubmit, handleSubmit, } = useActiveCarersContactsForm();
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -24,9 +17,9 @@ const ActiveCarersContactForm = ({ action }: any) => {
             <Grid item xs={12} md={form?.gridLength} key={i}>
               {form.component && (
                 <form.component
-                  fullWidth
                   disabled={disabled}
                   size="small"
+                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
@@ -47,7 +40,6 @@ const ActiveCarersContactForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                    label={label}
                     name={"updateMeetingRecord"}
                     {...methods}
                     required
@@ -57,7 +49,7 @@ const ActiveCarersContactForm = ({ action }: any) => {
             </Grid>
           ))}
           <Grid item xs={12}>
-            <Box sx={{ display: "flex", gap: "1rem", mt: 4 }}>
+            <Box sx={{ display: "flex", gap: "1rem" , mt:4 }}>
               {!disabled && (
                 <LoadingButton type="submit" variant="contained">
                   Submit

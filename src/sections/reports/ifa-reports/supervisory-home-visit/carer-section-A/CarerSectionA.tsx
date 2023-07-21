@@ -1,10 +1,9 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { CarerSectionAFromDate } from ".";
 import { useCarerSectionA } from "./useCarerSectionA";
-import { LoadingButton } from "@mui/lab";
 
 const SuperVisoryCarerSectionA = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
@@ -19,9 +18,9 @@ const SuperVisoryCarerSectionA = ({ action }: any) => {
             </Typography>
             {form.component && (
               <form.component
-                fullWidth
                 disabled={disabled}
                 size="small"
+                fullWidth
                 {...form.componentProps}
               >
                 {form?.heading}
@@ -38,10 +37,10 @@ const SuperVisoryCarerSectionA = ({ action }: any) => {
         ))}
 
         <Grid item xs={12}>
-          <Box sx={{ display: "flex", gap: "1rem" }}>
-            <LoadingButton type="submit" variant="contained">
-              Submit
-            </LoadingButton>
+          <Link
+            href={"/reports/ifa-reports/supervisory-home-visit"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               type="button"
               variant="contained"
@@ -54,7 +53,7 @@ const SuperVisoryCarerSectionA = ({ action }: any) => {
             >
               back
             </Button>
-          </Box>
+          </Link>
         </Grid>
       </Grid>
     </FormProvider>
@@ -67,6 +66,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: theme.palette.primary.main,
+    color: disabled ? "#898989" : "black",
   }),
 };
