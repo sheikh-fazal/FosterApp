@@ -90,7 +90,7 @@ const OOHReportsForm = () => {
                   </Typography>
                   <RHFTextField
                     name={"additionalEmailAddresses"}
-                    disabled={action === "view" ? true : false}
+                    disabled={action === "view" ? true : false} fullWidth
                   />
                 </Grid>
               </Box>

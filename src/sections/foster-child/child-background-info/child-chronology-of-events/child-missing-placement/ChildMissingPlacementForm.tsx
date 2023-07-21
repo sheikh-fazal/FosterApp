@@ -81,6 +81,7 @@ const ChildMissingPlacementForm = () => {
                   <RHFTextField
                     name={"additionalEmailAddresses"}
                     disabled={action === "view" ? true : false}
+                    fullWidth
                   />
                 </Grid>
               </Box>

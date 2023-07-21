@@ -73,7 +73,6 @@ const RAChildDetailsForm = () => {
                       : null}
                   </form.component>
                 )}
-              
               </Grid>
             );
           })}
@@ -120,6 +119,7 @@ const RAChildDetailsForm = () => {
                   <RHFTextField
                     name={"additionalEmailAddresses"}
                     disabled={action === "view" ? true : false}
+                    fullWidth
                   />
                 </Grid>
               </Box>
