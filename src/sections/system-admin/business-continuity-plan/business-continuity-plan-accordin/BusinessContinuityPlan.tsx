@@ -1,4 +1,3 @@
-
 import FormTable from "@root/components/Table/FormTable";
 import { FormProvider } from "@root/components/hook-form";
 import dayjs from "dayjs";
@@ -6,15 +5,14 @@ import { Box, Chip } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
 import { useBusinessContinuityPlan } from "./useBusinessContinuityPlan";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { ApprovedByOPTIONS, BcpManagerOPTIONS } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-
-
-
 const COLUMNS = [
-    {
+  {
     inputType: "textField",
     type: "text",
     key: "BCP_Type",
@@ -28,7 +26,7 @@ const COLUMNS = [
     inputType: "file",
     type: "file",
     key: "image",
-    label: "Image",
+    label: "Marketing Plan",
     size: { xs: 12, md: 6 },
     // Use this validation for images
     validation: (Yup: any) => {
@@ -56,27 +54,36 @@ const COLUMNS = [
     format: (imgUrl: any) => {
       if (!!imgUrl)
         return (
-          <MyAvatar
-            src={String(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`)}
-            sx={{
-              mx: "auto",
-            }}
-          />
+          // <MyAvatar
+          //   src={String(`${process.env.NEXT_PUBLIC_IMG_URL}${imgUrl}`)}
+          //   sx={{
+          //     mx: "auto",
+          //   }}
+          // />
+          <Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}><PictureAsPdfIcon sx={{ color: "red", fontSize: "30px", }} /><span>Crisis Management Plan_12112021.pdf</span></Box>
         );
 
-      return "-";
+      return (<Box sx={{ display: "flex", alignItems: "center", gap: "8px" }}><PictureAsPdfIcon sx={{ color: "red", fontSize: "30px", }} /><span>Crisis Management Plan_12112021.pdf</span></Box>);
     },
   },
 
-    {
-    inputType: "textField",
-    type: "text",
+  {
+    inputType: "select",
     key: "Approved_By",
-    defaultValue: "Jack Sparrow ( Director) ",
     label: "Approved By",
+    options: ApprovedByOPTIONS,
     validation: (Yup: any) => {
-      return Yup.string().required("Approved_By is required").min(3);
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
+    format: (selectedUserType: any) => {
+      return selectedUserType && selectedUserType.label;
+    },
+
   },
 
   {
@@ -94,19 +101,27 @@ const COLUMNS = [
       return dayjs(date).format("DD/MM/YYYY");
     },
   },
-     {
-    inputType: "textField",
-    type: "text",
+
+  {
+    inputType: "select",
     key: "BCP_Manager",
-    defaultValue: "John Wick  (Registered Manager  ) ",
     label: "BCP Manager (Role)",
+    options: BcpManagerOPTIONS,
     validation: (Yup: any) => {
-      return Yup.string().required("BCP_Type is required").min(3);
+      return Yup.object().shape({
+        label: Yup.string(),
+        value: Yup.number(),
+        bgColor: Yup.string(),
+        textColor: Yup.string(),
+      });
     },
-  }, 
+    format: (selectedUserType: any) => {
+      console.log("selectedUserType", selectedUserType)
+      return selectedUserType && selectedUserType.label;
+    },
+  }
 ];
 
-///---------------------------------
 // This component is here for testing purposes only
 function DataChips({ options }: any) {
   return (
@@ -147,11 +162,9 @@ function DataChips({ options }: any) {
   );
 }
 
-///---------------------------------
-
 export default function BusinessContinuityPlan() {
-  const { methods, handleSubmit, tableData, uploadImage, onSubmit, onClear } =
-  useBusinessContinuityPlan();
+  const { methods, handleSubmit, uploadImage, onSubmit, onClear } =
+    useBusinessContinuityPlan();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -161,7 +174,6 @@ export default function BusinessContinuityPlan() {
         beforeUpdate={(methods: any) => uploadImage("image", methods)}
         columns={COLUMNS}
       />
-      
     </FormProvider>
   );
 }
