@@ -12,22 +12,29 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Day Log / Journal Entries",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Day Log / Journal Entries",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Day Log / Journal Entires";
 DayLog.getLayout = function getLayout(page: any) {
+  const router = useRouter();
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
@@ -38,11 +45,11 @@ export default function DayLog() {
   const { id, action }: any = router.query;
   const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-  useGetChildChronologyOfEventsUploadedDocumentsListQuery({
-    limit: 10,
-    offset: page,
-    id: id,
-  });
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+    });
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
   const deleteDocument = async (queryArg: any) => {

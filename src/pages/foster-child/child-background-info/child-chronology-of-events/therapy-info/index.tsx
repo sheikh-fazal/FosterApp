@@ -12,22 +12,30 @@ import { enqueueSnackbar } from "notistack";
 import TherapyInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/therapy-info/TherapyInfoForm";
 import { useState } from "react";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Therapy Info",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Therapy Info",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Therapy Info";
 HospitalisationInfo.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

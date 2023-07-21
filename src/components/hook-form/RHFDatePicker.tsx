@@ -12,8 +12,6 @@ export default function RHFDatePicker({ name, label, ...other }: any) {
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => {
-        console.log(name, field.value);
-
         return (
           <DatePicker
             {...field}

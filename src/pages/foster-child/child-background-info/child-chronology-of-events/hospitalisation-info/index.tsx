@@ -13,27 +13,33 @@ import { useRouter } from "next/router";
 import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
-import ExclusionInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exclusion-info/ExclusionInfoForm";
-import VocationalCourseInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/vocational-course-info/VocationalCourseInfoForm";
+
 import HospitalisationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/hospitalisation-info/HospitalisationInfoForm";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Hospitalisation Info",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Hospitalisation Info",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Hospitalisation Info";
 HospitalisationInfo.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

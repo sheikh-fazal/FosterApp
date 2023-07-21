@@ -1,38 +1,41 @@
 import Layout from "@root/layouts";
-import DayLogForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogForm";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
-  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery,
   useGetChildChronologyOfEventsUploadedDocumentsListQuery,
   usePostChildChronologyOfEventsUploadedDocumentsMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 import { useRouter } from "next/router";
-import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
-import ExclusionInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exclusion-info/ExclusionInfoForm";
 import ExamGradeInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exam-grade-info/ExamGradeInfoForm";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "SATS / Exam / Grades",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "SATS / Exam / Grades",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "SATS / Exam / Grades";
 ExamGradeInfo.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

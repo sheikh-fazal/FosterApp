@@ -1,36 +1,41 @@
 import Layout from "@root/layouts";
-import DayLogForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogForm";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
-  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery,
   useGetChildChronologyOfEventsUploadedDocumentsListQuery,
   usePostChildChronologyOfEventsUploadedDocumentsMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 import { useRouter } from "next/router";
-import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import ChildMissingPlacementForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/child-missing-placement/ChildMissingPlacementForm";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Child Missing Placement",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Child Missing Placement",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Child Missing Placement";
 ChildMissingPlacement.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
@@ -41,11 +46,11 @@ export default function ChildMissingPlacement() {
   const { id, action }: any = router.query;
   const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-  useGetChildChronologyOfEventsUploadedDocumentsListQuery({
-    limit: 10,
-    offset: page,
-    id: id,
-  });
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+    });
   const [deleteUploadedDocument] = useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
   const [postUploadedDocument] = usePostChildChronologyOfEventsUploadedDocumentsMutation();
   const deleteDocument = async (queryArg: any) => {

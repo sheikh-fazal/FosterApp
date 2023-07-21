@@ -12,22 +12,28 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import VocationalCourseInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/vocational-course-info/VocationalCourseInfoForm";
 
-const BREADCRUMBS = [
+const BREADCRUMBS = (fosterChildId: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
+    href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
   },
   {
-    name: "Vocational Course",
+    name: "Vocational Course Info",
     href: "",
   },
 ];
 
 const PAGE_TITLE = "Vocational Course Info";
 VocationalCourseInfo.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

@@ -1,38 +1,41 @@
 import Layout from "@root/layouts";
-import DayLogForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogForm";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
-  useGetChildChronologyOfEventsUploadedDocumentsByIdQuery,
   useGetChildChronologyOfEventsUploadedDocumentsListQuery,
   usePostChildChronologyOfEventsUploadedDocumentsMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 import { useRouter } from "next/router";
-import { useDeleteChildChronologyOfEventsDayLogByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import AllegationInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/allegation-info/AllegationInfoForm";
-import ComplaintsInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/complaints-info/ComplaintsInfoForm";
 import IncidentInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/incidents-info/IncidentsInfoForm";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Incident Info",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Incident Info",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Incident Info";
 IncidentsInfo.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );

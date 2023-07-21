@@ -15,22 +15,30 @@ import RAChildRiskDetailsForm from "@root/sections/foster-child/child-background
 import RADelegatedAuthorityForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/risk-assessment/RADelegatedAuthorityForm";
 import { useState } from "react";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Chronology of Events",
-    href: "/foster-child/child-background-info/child-chronology-of-events",
-  },
-  {
-    name: "Risk Assessment",
-    href: "",
-  },
-];
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
+    {
+      icon: <HomeIcon />,
+      name: "Child Chronology of Events",
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Risk Assessment",
+      href: "",
+    },
+  ];
+};
 
 const PAGE_TITLE = "Risk Assessment";
 RiskAssessment.getLayout = function getLayout(page: any) {
+  const router = useRouter();
+
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      title={PAGE_TITLE}
+    >
       {page}
     </Layout>
   );
