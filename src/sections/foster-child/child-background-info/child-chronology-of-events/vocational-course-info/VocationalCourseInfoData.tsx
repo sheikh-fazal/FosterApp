@@ -65,12 +65,12 @@ export const VocationalCourseInfoFormFields = [
   },
 ];
 export const defaultValues = {
-  courseType: null,
+  courseType: "Nil",
   duration: null,
   startDate: null,
   endDate: null,
-  expectedQualification: null,
-  qualification: null,
+  expectedQualification: "Nil",
+  qualification: "Nil",
 };
 export const formatters: any = {};
 

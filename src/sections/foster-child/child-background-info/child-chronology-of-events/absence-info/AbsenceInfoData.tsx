@@ -57,9 +57,9 @@ export const absenceInfoFormFields = [
 export const defaultValues = {
   dateOfAbsence: null,
   dateOfReturnFromAbsence: null,
-  schoolName: null,
-  reasonForAbsence: null,
-  comments: null,
+  schoolName: "Nil",
+  reasonForAbsence: "Nil",
+  comments: "Nil",
 };
 export const formatters: any = {};
 

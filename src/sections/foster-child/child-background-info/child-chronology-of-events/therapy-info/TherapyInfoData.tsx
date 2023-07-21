@@ -124,11 +124,11 @@ export const defaultValues = {
   appointmentDate: null,
   referralDate: null,
   anyOtherTherapy: false,
-  therapistNameAndAddress: null,
+  therapistNameAndAddress: "Nil",
   formalMentalHealth: false,
   strengthAndDifficulties: false,
-  therapyArrangements: null,
-  childEngagedInTherapy: null,
+  therapyArrangements: "Nil",
+  childEngagedInTherapy: "Nil",
 };
 export const formatters: any = {};
 

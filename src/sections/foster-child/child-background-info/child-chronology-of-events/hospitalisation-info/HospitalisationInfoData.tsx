@@ -79,12 +79,12 @@ export const HospitalisationInfoFormFields = [
   },
 ];
 export const defaultValues = {
-  hospitalName: null,
-  reasonForHospitalisation: null,
+  hospitalName: "Nil",
+  reasonForHospitalisation: "Nil",
   dischargeDate: null,
   admissionDate: null,
-  dayToDayDetails: null,
-  doctorName: null,
+  dayToDayDetails: "Nil",
+  doctorName: "Nil",
   followUpDate: null,
 };
 export const formatters: any = {};

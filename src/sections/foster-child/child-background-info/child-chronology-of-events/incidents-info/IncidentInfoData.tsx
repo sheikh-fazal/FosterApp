@@ -1,4 +1,4 @@
-import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
@@ -178,6 +178,7 @@ export const IncidentInfoFormFields = [
       name: "hasRegisteredManagerInformed",
       options: ["Yes", "No"],
     },
+    defaultValue: "Yes",
     component: RHFRadioGroupWithLabel,
   },
   {
@@ -439,27 +440,27 @@ export const defaultValues = {
   outcomeOfIncident: "Nil",
   actionTaken: "Nil",
   teamManagerComments: "Nil",
-  hasRegisteredManagerInformed: false,
+  hasRegisteredManagerInformed: "Yes",
   registeredManagerInformedDate: null,
   registeredManagerRecommendation: "Nil",
   schedule7Notification: "Nil",
-  hasOfstedInformed: false,
+  hasOfstedInformed: "Yes",
   ofstedOnlineFormDate: null,
   ofstedActionTaken: "Nil",
   closureDate: null,
   nextAlertDate: null,
   restraintCarer: "Nil",
   investigationRequiredBy: "Nil",
-  hasAcknowledgedBy: false,
-  werePoliceCalled: false,
+  hasAcknowledgedBy: "Yes",
+  werePoliceCalled: "Yes",
   reasonForConcern: "Nil",
-  hasOutcomeToOfsted: false,
+  hasOutcomeToOfsted: "Yes",
   hospitalAdmission: "Nil",
   section47Offences: "Nil",
   deathRecord: "Nil",
-  independentSupportOffered: false,
+  independentSupportOffered: "Yes",
   independentSupportOfferedInfo: "Nil",
-  discussionWithLado: false,
+  discussionWithLado: "Yes",
   ladoComments: "Nil",
   followPlan: "Nil",
 };

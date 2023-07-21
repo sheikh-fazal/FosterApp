@@ -169,13 +169,13 @@ export const defaultValues = {
   agencySocialWorkerInvolved: null,
   returnInterviewConducted: false,
   closureDate: null,
-  personNotifiedName: null,
-  personCompletingReportName: null,
-  missingDetails: null,
-  actionTakenByAgency: null,
-  actionTakenByCarer: null,
-  outcomeOfMissing: null,
-  actionTakenToPrevent: null,
+  personNotifiedName: "Nil",
+  personCompletingReportName: "Nil",
+  missingDetails: "Nil",
+  actionTakenByAgency: "Nil",
+  actionTakenByCarer: "Nil",
+  outcomeOfMissing: "Nil",
+  actionTakenToPrevent: "Nil",
 };
 export const formatters: any = {};
 

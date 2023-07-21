@@ -130,13 +130,13 @@ export const DayLogFormFields = [
 ];
 export const defaultValues = {
   dateOfOccurence: null,
-  correspondenceFrom: null,
-  correspondenceTo: null,
+  correspondenceFrom: 'Nil',
+  correspondenceTo: 'Nil',
   childSeen: false,
   entryType: null,
-  subject: null,
-  dayLogEntry: null,
-  actionNeeded: null,
+  subject: 'Nil',
+  dayLogEntry: 'Nil',
+  actionNeeded: 'Nil',
   notificationDate: null,
   addToCarerRecord: null,
   updateSiblingRecord: false,

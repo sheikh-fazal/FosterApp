@@ -114,14 +114,14 @@ export const RAChildDetailsFormFields = [
 export const childDetailsdefaultValues = {
   assessmentDate: null,
   nextAssessmentDate: null,
-  laOOHContactNumber: null,
-  height: null,
-  hairColor: null,
-  eyeColor: null,
-  distinguishingMarks: null,
-  knownSuspectedCSERisk: null,
-  knownNetworkOfChild: null,
-  circumstancesThatIncreaseRisk: null,
+  laOOHContactNumber: "Nil",
+  height: "Nil",
+  hairColor: "Nil",
+  eyeColor: "Nil",
+  distinguishingMarks: "Nil",
+  knownSuspectedCSERisk: "Yes",
+  knownNetworkOfChild: "Nil",
+  circumstancesThatIncreaseRisk: "Nil",
 };
 
 export const childDetailsformSchema = Yup.object().shape({
@@ -273,20 +273,20 @@ export const RAChildInformationFormFields = [
 ];
 
 export const childInformationDefaultValues = {
-  backgroundOfChild: null,
-  involvedPersonAndRole: null,
-  detailsOfGP: null,
-  circumstancesThatIncreaseRisk: null,
-  health: null,
-  education: null,
+  backgroundOfChild: "Nil",
+  involvedPersonAndRole: "Nil",
+  detailsOfGP: "Nil",
+  circumstancesThatIncreaseRisk: "Nil",
+  health: "Nil",
+  education: "Nil",
   telNumber: null,
-  photoPermission: null,
-  contact: null,
-  fosterHome: null,
-  teacher: null,
-  detailsOfPerson: null,
+  photoPermission: "Nil",
+  contact: "Nil",
+  fosterHome: "Nil",
+  teacher: "Nil",
+  detailsOfPerson: "Nil",
   date: null,
-  risk: null,
+  risk: "Nil",
 };
 //
 export const RAChildRiskDetailsFormFields = [
@@ -329,13 +329,13 @@ export const RAChildRiskDetailsFormFields = [
   },
 ];
 export const childRiskDetailsDefaultValues = {
-  involvedPersonAndRole2: null,
+  involvedPersonAndRole2: "Nil",
   categoryOfRisk: null,
   riskCausingConcern: null,
 };
 
 //
-export const delegatedAuthorityFormFields =[
+export const delegatedAuthorityFormFields = [
   {
     id: 2,
     gridLength: 6,
@@ -347,7 +347,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 3,
     gridLength: 6,
     otherOptions: {
@@ -358,18 +359,21 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 4,
     gridLength: 6,
     otherOptions: {
       name: "medicalProceduresCarriers",
-      label: "Medical procedures carries out in the home where the administering the procedure requires training (e.g. child with disabilities / illness",
+      label:
+        "Medical procedures carries out in the home where the administering the procedure requires training (e.g. child with disabilities / illness",
       fullWidth: true,
       select: true,
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 5,
     gridLength: 6,
     otherOptions: {
@@ -380,7 +384,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 6,
     gridLength: 6,
     otherOptions: {
@@ -391,7 +396,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 6,
     gridLength: 6,
     otherOptions: {
@@ -402,7 +408,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 7,
     gridLength: 6,
     otherOptions: {
@@ -413,7 +420,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 8,
     gridLength: 6,
     otherOptions: {
@@ -424,7 +432,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 9,
     gridLength: 6,
     otherOptions: {
@@ -435,7 +444,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 10,
     gridLength: 6,
     otherOptions: {
@@ -446,7 +456,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -457,7 +468,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -468,7 +480,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -479,7 +492,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -490,7 +504,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -501,7 +516,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -512,7 +528,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -523,7 +540,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -534,7 +552,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -545,7 +564,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -556,7 +576,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -567,7 +588,8 @@ export const delegatedAuthorityFormFields =[
     },
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
-  },{
+  },
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -579,31 +601,30 @@ export const delegatedAuthorityFormFields =[
     options: [{ value: "nil", label: "nil" }],
     component: RHFSelect,
   },
-  
-]
-export const delegatedAuthorityDefaultValues={
+];
+export const delegatedAuthorityDefaultValues = {
   consentToRoutine: null,
-    plannedMedicalProcedures: null,
-    medicalProceduresCarriers: null,
-    dentalSignedConsent: null,
-    dentalRoutineTreatment: null,
-    opticianAppointments: null,
-    consentToExamination: null,
-    signedConsentDaySchoolTrips: null,
-    signedConsentOvernightSchoolTrips: null,
-    schoolTripsAbroad: null,
-    changingRegisteringSchool: null,
-    lifeHistoryWork: null,
-    overnightWithFriends: null,
-    holidayInBritain: null,
-    holidayOutsideBritain: null,
-    sportsSocialClubs: null,
-    hairCutsColouring: null,
-    bodyPiercing: null,
-    mobilePhone: null,
-    accessingSocialMedia: null,
-    attendanceAtWorshipPlace: null,
-    provideReligiousItems: null
-}
+  plannedMedicalProcedures: null,
+  medicalProceduresCarriers: null,
+  dentalSignedConsent: null,
+  dentalRoutineTreatment: null,
+  opticianAppointments: null,
+  consentToExamination: null,
+  signedConsentDaySchoolTrips: null,
+  signedConsentOvernightSchoolTrips: null,
+  schoolTripsAbroad: null,
+  changingRegisteringSchool: null,
+  lifeHistoryWork: null,
+  overnightWithFriends: null,
+  holidayInBritain: null,
+  holidayOutsideBritain: null,
+  sportsSocialClubs: null,
+  hairCutsColouring: null,
+  bodyPiercing: null,
+  mobilePhone: null,
+  accessingSocialMedia: null,
+  attendanceAtWorshipPlace: null,
+  provideReligiousItems: null,
+};
 
 export const formatters: any = {};

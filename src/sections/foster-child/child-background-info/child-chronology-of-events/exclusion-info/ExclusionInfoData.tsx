@@ -18,10 +18,7 @@ export const DayLogFormFields = [
       { value: "3th Grade", label: "3th Grade" },
       { value: "4th Grade", label: "4th Grade" },
       { value: "5th Grade", label: "5th Grade" },
-      { value: "6th Grade", label: "6th Grade" },
-      { value: "7th Grade", label: "7th Grade" },
-      { value: "8th Grade", label: "8th Grade" },
-      { value: "9th Grade", label: "9th Grade" },
+     
     ],
     component: RHFSelect,
   },
@@ -100,9 +97,9 @@ export const defaultValues = {
   typeOfExclusion: null,
   exclusionDate: null,
   returnDate: null,
-  exclusionDetails: null,
-  actionTaken: null,
-  outcome: null,
+  exclusionDetails: "Nil",
+  actionTaken: "Nil",
+  outcome: "Nil",
 };
 export const formatters: any = {};
 

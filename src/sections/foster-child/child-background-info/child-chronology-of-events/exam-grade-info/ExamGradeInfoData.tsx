@@ -77,12 +77,12 @@ export const examGradeInfoFormFields = [
 ];
 export const defaultValues = {
   schoolYear: null,
-  formName: null,
-  term: null,
-  subject: null,
-  teacher: null,
-  target: null,
-  currentLevel: null,
+  formName: "Nil",
+  term: "Nil",
+  subject: "Nil",
+  teacher: "Nil",
+  target: "Nil",
+  currentLevel: "Nil",
 };
 export const formatters: any = {};
 
