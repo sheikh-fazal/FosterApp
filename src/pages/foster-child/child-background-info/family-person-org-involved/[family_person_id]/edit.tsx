@@ -8,11 +8,11 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
 
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/foster-child/child-background-info/family-person-org-involved",
+    href: `/foster-child/child-background-info/family-person-org-involved?fosterChildId=${query}`,
   },
   {
     name: "Family Persons & Org Involved List",
@@ -24,10 +24,11 @@ const PAGE_TITLE = "Edit Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 EditFamilyPersonForm.getLayout = function getLayout(page: any) {
+  const router = useRouter()
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       title={PAGE_TITLE}
     >
       {page}

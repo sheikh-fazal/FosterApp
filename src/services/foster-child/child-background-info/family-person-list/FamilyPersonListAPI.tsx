@@ -15,8 +15,7 @@ export const FamilyPersonListAPI = baseAPI.injectEndpoints({
 
     // Get API By Id of Family Person
     getFamilyPersonListById: builder.query({
-      query: (id: any) =>
-        `/foster-child/child-info/family-org-involved/get-fc-family-org-involved/${id}`,
+      query: (id: any) => `/foster-child/child-info/family-org-involved/get-fc-family-org-involved/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
