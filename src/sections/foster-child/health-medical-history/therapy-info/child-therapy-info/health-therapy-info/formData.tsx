@@ -1,19 +1,22 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  referraltoCAMHS: true,
-  CAMHSAppointment: false,
+  referalCAHMS: true,
+  CAHMSAppointment: false,
   referralDate: new Date(),
   appointmentDate: new Date(),
   anyOtherTherapy: false,
-  therapistNameAddress: "",
-  therapyArrangements: "",
-  isChildEng: "",
+  therapistName: "",
+  therapistArrangements: "",
+  isChildEngagedIndetifyInCarePlana: "",
+  uncheckOption1: false,
+  uncheckOption2: true,
+  uncheckOption3: false,
 };
 
 export const FormSchema = Yup.object().shape({
-  referraltoCAMHS: Yup.boolean(),
-  CAMHSAppointment: Yup.boolean(),
+  referalCAHMS: Yup.boolean(),
+  CAHMSAppointment: Yup.boolean(),
   referralDate: Yup.date()
     .typeError("date is required")
     .required("date is required"),
@@ -21,9 +24,12 @@ export const FormSchema = Yup.object().shape({
     .typeError("date is required")
     .required("date is required"),
   anyOtherTherapy: Yup.boolean(),
-  therapistNameAddress: Yup.string(),
-  therapyArrangements: Yup.string(),
-  isChildEng: Yup.string(),
+  therapistName: Yup.string(),
+  therapistArrangements: Yup.string(),
+  isChildEngagedIndetifyInCarePlana: Yup.string(),
+  uncheckOption1: Yup.boolean(),
+  uncheckOption2: Yup.boolean(),
+  uncheckOption3: Yup.boolean(),
 });
 
 export const fieldsInfo = [
@@ -46,38 +52,6 @@ export const fieldsInfo = [
       type: "CHECKBOX",
       name: "anyOtherTherapy",
       label: "Any Other Therapy",
-      fieldHeader: null,
-    },
-  ],
-  [
-    {
-      type: "TEXT_MULTILINE_TWO_LINES",
-      name: "therapistNameAddress",
-      label: "Therapist Name / Address",
-      fieldHeader: null,
-    },
-  ],
-  [
-    {
-      type: "TEXT_MULTILINE_TWO_LINES",
-      name: "therapyArrangements",
-      label: "Therapy Arrangements",
-      fieldHeader: null,
-    },
-  ],
-  [
-    {
-      type: "SELECT",
-      name: "isChildEng",
-      label:
-        "Is this Child Engaged in therapy as identified in the Care Plan ?",
-      fieldHeader: null,
-      options: ["YES", "NO"],
-    },
-    {
-      type: null,
-      name: "linkedin",
-      label: "LinkedIn ID",
       fieldHeader: null,
     },
   ],

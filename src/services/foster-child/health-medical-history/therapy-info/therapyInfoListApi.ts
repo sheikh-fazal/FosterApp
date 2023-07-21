@@ -6,7 +6,7 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/therapy-info/${payload.fosterChildId}`,
         method: "POST",
-        body: payload.formData,
+        body: payload.jsonData,
       }),
       invalidatesTags: [TAG],
     }),
@@ -42,7 +42,7 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/therapy-info/${payload.id}`,
         method: "PATCH",
-        body: payload.formData,
+        body: payload.jsonData,
       }),
       invalidatesTags: [TAG],
     }),

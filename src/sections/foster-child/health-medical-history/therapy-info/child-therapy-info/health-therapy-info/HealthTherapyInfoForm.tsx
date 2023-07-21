@@ -1,8 +1,13 @@
 import { useState, FC, Fragment } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import { Button, Grid, Typography } from "@mui/material";
-import { FormProvider, RHFCheckbox } from "@root/components/hook-form";
+import { useForm, useWatch } from "react-hook-form";
+import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  FormProvider,
+  RHFCheckbox,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 
 import { FormSchema, defaultValues, fieldsInfo } from "./formData";
 import { useTheme } from "@emotion/react";
@@ -19,66 +24,104 @@ import {
   displayErrorMessage,
   displaySuccessMessage,
 } from "@root/sections/edit-profile/util/Util";
+import TextFields from "@root/pages/components/textFields";
+import {
+  useAddAlltherapyDetailsListDataMutation,
+  useLazyGetTherapyInfoByidQuery,
+  useUpdateTherapyInfoByidMutation,
+} from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import { useRouter } from "next/router";
 
-const HealthTherapyInfoForm: FC<any> = ({ disabled = false }) => {
+const HealthTherapyInfoForm: FC<any> = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  const { query } = useRouter();
+  const { action = "", fosterChildId = "", therapyInfoId = "" } = query;
 
-  const [getProfileInfoQuery] = useLazyGetPersonalInfoQuery();
-  const [updatePersonalInfo] = useUpdatePersonalInfoMutation();
+  const [getProfileInfoQuery] = useLazyGetTherapyInfoByidQuery();
+
+  const [addAlltherapyDetailsListData] =
+    useAddAlltherapyDetailsListDataMutation();
+  const [updateTherapyInfoByid] = useUpdateTherapyInfoByidMutation();
+
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
-      const { data, isError, error } = await getProfileInfoQuery(null, false);
-      // console.log(data);
+      // if action is view or update
+      if (action === "view" || (action === "update" && therapyInfoId !== "")) {
+        setIsLoading(true);
+        const { data, isError, error } = await getProfileInfoQuery(
+          { id: therapyInfoId },
+          false
+        );
+        setIsLoading(false);
+        if (isError || !data?.data) {
+          displayErrorMessage(error, enqueueSnackbar);
+          return defaultValues;
+        }
+        return {
+          ...data?.data,
+          referralDate: new Date(data?.data?.referralDate),
+          appointmentDate: new Date(data?.data?.appointmentDate),
+          anyOtherTherapy: true,
+        };
+      }
       setIsLoading(false);
-      // if (isError || !data) {
-      //   displayErrorMessage(error, enqueueSnackbar);
-      //   return defaultValues;
-      // }
-      return {
-        ...defaultValues,
-      };
+      return defaultValues;
     },
   });
 
   const {
-    reset,
     control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = async (data: any) => {
-    console.log({ data });
+  const anyOtherTherapy = useWatch({ control, name: "anyOtherTherapy" });
 
+  const onSubmit = async (data: any) => {
     const jsonData = {
       ...data,
     };
     try {
-      const data = await updatePersonalInfo(jsonData);
+      const data =
+        action === "create"
+          ? await addAlltherapyDetailsListData({
+              jsonData,
+              fosterChildId: fosterChildId,
+            })
+          : await updateTherapyInfoByid({
+              jsonData,
+              id: therapyInfoId,
+            });
       displaySuccessMessage(data, enqueueSnackbar);
     } catch (error: any) {
+      console.log(error);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
+
   if (isLoading) return <FormSkeleton />;
   return (
     <>
       {isSubmitting && <IsFetching isFetching />}
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container justifyContent="center">
-          <Grid container item xs={12}>
-            <Grid item sm={12} container>
-              <Grid item sm={2} sx={{ padding: "0.5em" }}>
-                <RHFCheckbox name="referraltoCAMHS" label="Referral to CAMHS" />
+          <Grid container item sm={12}>
+            <Grid item md={12} container>
+              <Grid item xs={12} sm={2} sx={{ padding: "0.5em" }}>
+                <RHFCheckbox
+                  name="referalCAHMS"
+                  label="Referral to CAMHS"
+                  disabled={disabled || action === "view"}
+                />
               </Grid>
               <Grid item sx={{ padding: "0.5em" }}>
                 <RHFCheckbox
-                  name="CAMHSAppointment"
+                  name="CAHMSAppointment"
                   label="CAMHS Appointment"
+                  disabled={disabled || action === "view"}
                 />
               </Grid>
             </Grid>
@@ -92,7 +135,7 @@ const HealthTherapyInfoForm: FC<any> = ({ disabled = false }) => {
                       <FullWidthFormField
                         item={item}
                         isSubmitting={isSubmitting}
-                        disabled={disabled}
+                        disabled={disabled || action === "view"}
                       />
                     )}
                     {/* if there are two fields with 50% 50% width   */}
@@ -100,32 +143,101 @@ const HealthTherapyInfoForm: FC<any> = ({ disabled = false }) => {
                       <HalfWidthFormField
                         item={item}
                         isSubmitting={isSubmitting}
-                        disabled={disabled}
+                        disabled={disabled || action === "view"}
                       />
                     )}
                   </Fragment>
                 );
               })}
               {/* A Custom Field On Full Width  */}
-              {/* <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFTextField
-                  name="previousExpCustom"
-                  label="Previous Exp Custom"
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ padding: "0.5em" }}>
+                  <RHFTextField
+                    fullWidth
+                    multiline
+                    rows={2}
+                    name="therapistName"
+                    label="Therapist Name / Address"
+                    disabled={!anyOtherTherapy || action === "view"}
+                  />
+                </Grid>
+              </Grid>
+              <Grid item sm={12} container direction="column">
+                <Grid item sx={{ padding: "0.5em" }}>
+                  <RHFTextField
+                    fullWidth
+                    multiline
+                    rows={2}
+                    name="therapistArrangements"
+                    label="Therapy Arrangements"
+                    disabled={!anyOtherTherapy || action === "view"}
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+
+            {/* three uncheck options container  */}
+            <Grid item sm={12} container>
+              <Grid item sm={3} sx={{ padding: "0.5em" }}>
+                <RHFCheckbox
+                  name="uncheckOption1"
+                  label="Uncheck Option 1"
+                  disabled={disabled || action === "view"}
                 />
               </Grid>
-            </Grid> */}
+              <Grid item sm={3} sx={{ padding: "0.5em" }}>
+                <RHFCheckbox
+                  name="uncheckOption2"
+                  label="Uncheck Option 2"
+                  disabled={disabled || action === "view"}
+                />
+              </Grid>
+              <Grid item sm={3} sx={{ padding: "0.5em" }}>
+                <RHFCheckbox
+                  name="uncheckOption3"
+                  label="Uncheck Option 3"
+                  disabled={disabled || action === "view"}
+                />
+              </Grid>
+            </Grid>
+
+            {/* is child engaged in therapy as identified  */}
+            <Grid item sm={12} container direction="column">
+              <Grid item sx={{ padding: "0.5em" }}>
+                <RHFSelect
+                  name="isChildEngagedIndetifyInCarePlana"
+                  label="Is this Child Engaged in therapy as identified in the Care Plan ?"
+                  disabled={disabled || action === "view"}
+                >
+                  {["Yes", "No"].map((option: string) => {
+                    return (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    );
+                  })}
+                </RHFSelect>
+              </Grid>
             </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                   <Grid item>
-                    <Button variant="contained" type="submit">
+                    <Button
+                      disabled={disabled || action === "view"}
+                      variant="contained"
+                      type="submit"
+                    >
                       Save
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button variant="contained">Back</Button>
+                    <Button
+                      variant="contained"
+                      disabled={disabled || action === "view"}
+                    >
+                      Back
+                    </Button>
                   </Grid>
                 </Grid>
               </Grid>
