@@ -1,23 +1,23 @@
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import ReferenceDataManagement from "@root/sections/system-admin/reference-data-managment/ReferenceDataManagement";
+import AddReferenceDataManagement from "@root/sections/system-admin/reference-data-managment/add-reference-data-management/AddReferenceDataManagement";
 
 // Constants
 
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "System Admin",
-    href: "/system-admin",
+    name: "Reference Data Managment",
+    href: "/system-admin/reference-data-managment",
   },
   {
-    name: "Reference Data Managment",
+    name: "Dropdown Management",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Reference Data Managment";
+const PAGE_TITLE = "System Administration";
 DataManagment.getLayout = function getLayout(page: any) {
   return (
     <Layout
@@ -32,7 +32,7 @@ DataManagment.getLayout = function getLayout(page: any) {
 export default function DataManagment() {
   return (
     <Page title={PAGE_TITLE}>
-      <ReferenceDataManagement />
+      <AddReferenceDataManagement />
     </Page>
   );
 }
