@@ -1,25 +1,23 @@
-import { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import PerformanceMonitoring from "@root/sections/system-admin/system-performance-monitoring/PerformanceMonitoring";
-
+import ReferenceDropdownManagement from "@root/sections/system-admin/reference-data-managment/reference-dropdown-management/ReferenceDropdownManagement";
 // Constants
 
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
-    name: "System Admin",
+    name: "Dashboard",
     href: "/system-admin",
   },
   {
-    name: "System Performance Monitoring",
+    name: "Dropdown Management",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "System Performance Monitoring";
-SystemPerformanceMonitoring.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "System Administration";
+DataManagment.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -30,10 +28,10 @@ SystemPerformanceMonitoring.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function SystemPerformanceMonitoring() {
+export default function DataManagment() {
   return (
     <Page title={PAGE_TITLE}>
-      <PerformanceMonitoring />
+      <ReferenceDropdownManagement />
     </Page>
   );
 }
