@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import BulkOperationsTable from "@root/sections/system-admin/bulk-operations/BulkOperationsTable";
+import PersonalDetailsForm from "@root/sections/system-admin/bulk-operations/personal-details-form/PersonalDetailsForm";
 
 const PAGE_TITLE = "System Administration";
 
@@ -13,11 +13,11 @@ SafeguardingChildAdvocacy.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "System Admin",
-          href: "/safeguarding",
+          name: "Bulk Oerations",
+          href: "/bulk-operations",
         },
         {
-          name: "Bulk Operations",
+          name: "Day Log Journal",
         },
       ]}
       title={PAGE_TITLE}
@@ -30,7 +30,7 @@ SafeguardingChildAdvocacy.getLayout = function getLayout(page: any) {
 export default function SafeguardingChildAdvocacy() {
   return (
     <Page title={PAGE_TITLE}>
-      <BulkOperationsTable />
+      <PersonalDetailsForm />
     </Page>
   );
 }
