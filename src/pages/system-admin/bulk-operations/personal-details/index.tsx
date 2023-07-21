@@ -14,7 +14,7 @@ SafeguardingChildAdvocacy.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Bulk Oerations",
-          href: "/bulk-operations",
+          href: "/system-admin/bulk-operations/",
         },
         {
           name: "Day Log Journal",
