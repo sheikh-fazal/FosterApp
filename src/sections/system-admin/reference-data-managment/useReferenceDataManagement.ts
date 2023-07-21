@@ -28,10 +28,7 @@ export const useReferenceDataManagement = () => {
     setTableDate(JSON.stringify(data));
   };
 
-  const handlerAddRow = (row: any) => {
-    route.push({ pathname: `/system-admin/reference-data-managment/add-reference-management`, query: { name: row?.original?.refDataName } })
-    console.log('id', row)
-  }
+  const handlerAddRow = (row: any) => route.push({ pathname: `/system-admin/reference-data-managment/add-reference-management`, query: { name: row?.original?.refDataName } }) 
 
   return {
     methods,
