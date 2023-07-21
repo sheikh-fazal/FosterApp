@@ -92,12 +92,12 @@ export default function Configuration() {
         beforeUpdate={(methods: any) => uploadImage("image", methods)}
         columns={COLUMNS}
       />
-      <Button type="submit" variant="contained">
+      {/* <Button type="submit" variant="contained">
         Submit
       </Button>
       <Button variant="outlined" sx={{ ml: 2 }} onClick={onClear}>
         Clear
-      </Button>
+      </Button> */}
       
     </FormProvider>
   );
