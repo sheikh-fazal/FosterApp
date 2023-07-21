@@ -1,12 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { formSchema, initialValues } from ".";
-import { useRouter } from "next/router";
+import { formSchema, initialValues } from "."; 
 
-export const useareaOfficeSetupForm = () => {
-  const router = useRouter();
-
-  const handleBack = () => router.push('/system-admin/area-office-setup');
+export const useareaOfficeSetupForm = () => { 
 
 
   const methods: any = useForm({
@@ -14,11 +10,7 @@ export const useareaOfficeSetupForm = () => {
     defaultValues: initialValues,
   });
 
-  const {
-    reset,
-    control,
-    register,
-    setValue,
+  const { 
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
@@ -30,8 +22,7 @@ export const useareaOfficeSetupForm = () => {
 
   return {
     methods,
-    handleSubmit,
-    handleBack,
+    handleSubmit, 
     onSubmit
   }
 }

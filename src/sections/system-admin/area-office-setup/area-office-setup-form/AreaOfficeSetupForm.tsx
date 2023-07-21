@@ -4,11 +4,12 @@ import React from "react";
 import { LoadingButton } from "@mui/lab";
 import { useareaOfficeSetupForm } from "./useareaOfficeSetupForm";
 import { FRF1FormData } from ".";
+import { useRouter } from "next/router";
 
 const AreaOfficeSetupForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods, onSubmit, handleSubmit, handleBack } =
-    useareaOfficeSetupForm();
+  const { methods, onSubmit, handleSubmit } = useareaOfficeSetupForm();
+  const router = useRouter();
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +55,7 @@ const AreaOfficeSetupForm = ({ action, id }: any) => {
                 }}
                 type="button"
                 variant="contained"
-                onClick={handleBack}
+                onClick={() => router.push("/system-admin/area-office-setup")}
               >
                 Back
               </Button>
