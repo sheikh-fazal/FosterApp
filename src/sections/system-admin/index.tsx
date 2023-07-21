@@ -117,7 +117,7 @@ export const systemAdminData = [
     title: "Manage Contact Directory",
     bgColor: "#F6830F",
     image: image13,
-    link: "/system-admin/manage-content-directory",
+    link: "/system-admin/manage-contact-directory",
   },
   {
     id: 14,
