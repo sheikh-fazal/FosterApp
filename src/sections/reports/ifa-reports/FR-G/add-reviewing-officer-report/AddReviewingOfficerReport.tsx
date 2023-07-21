@@ -15,12 +15,14 @@ const AddReviewingOfficerReport = ({ action }: any) => {
         <Grid container spacing={4}>
           {FRD1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
-              <Typography sx={(theme) => style.title(theme)}>
+              <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
                 {form.title}
               </Typography>
 
               {form.head && (
-                <Typography sx={(theme) => style.title(theme)}>
+                <Typography
+                  sx={{ fontSize: "16px", fontWeight: 600, color: "#0E918C" }}
+                >
                   {form.head}
                 </Typography>
               )}
@@ -69,10 +71,3 @@ const AddReviewingOfficerReport = ({ action }: any) => {
 };
 
 export default AddReviewingOfficerReport;
-const style = {
-  title: (theme: any) => ({
-    fontSize: "16px",
-    fontWeight: 600,
-    color: theme.palette.primary.main,
-  }),
-};

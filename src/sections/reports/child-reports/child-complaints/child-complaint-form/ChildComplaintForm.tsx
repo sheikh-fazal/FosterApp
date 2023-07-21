@@ -8,11 +8,18 @@ import { FRF1FormData } from ".";
 const ChildComplaintForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit, handleBack } =
-  useChildComplaintForm();
+    useChildComplaintForm();
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-      <Typography sx={(theme)=>style.headerTitle(theme)}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            mb: "20px",
+            fontSize: "17px",
+            color: "#898989",
+          }}
+        >
           CHILD COMPLAINT FORM
         </Typography>
         <Typography
@@ -38,10 +45,10 @@ const ChildComplaintForm = ({ action, id }: any) => {
                 >
                   {form.otherOptions.select
                     ? form.otherOptions.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
                     : null}
                 </form.component>
               )}
@@ -75,11 +82,3 @@ const ChildComplaintForm = ({ action, id }: any) => {
 };
 
 export default ChildComplaintForm;
-const style = {
-  headerTitle: (theme: any) => ({
-    fontWeight: 700,
-    mb: "20px",
-    fontSize: "17px",
-    color: theme.palette.primary.main,
-  }),
-};

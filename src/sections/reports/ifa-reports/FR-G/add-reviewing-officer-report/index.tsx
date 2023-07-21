@@ -5,12 +5,11 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 import * as Yup from "yup";
 
 export const initialValues = {
   nameOfFosterCarer: "",
-  dateOfReviewMeeting: null,
+  dateOfReviewMeeting: "",
   reviewingOfficer: "",
   supervisingSocialWorker: "",
   fosterCarer: "",
@@ -47,10 +46,10 @@ export const initialValues = {
   summary: "",
   changesToApprovalTerms: "",
   recommendation: "",
-  date1: null,
-  time: null,
+  date1: "",
+  time: "",
   signature: "",
-  date2: null,
+  date2: "",
 };
 
 export const formSchema = Yup.object().shape({
@@ -595,9 +594,8 @@ export const FRD1FormData = [
       name: "time",
       fullWidth: true,
     },
-    component: RHFTimePicker,
+    component: RHFDatePicker,
   },
- 
   {
     gridLength: 6,
     otherOptions: {

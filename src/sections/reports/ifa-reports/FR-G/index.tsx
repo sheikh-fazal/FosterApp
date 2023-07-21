@@ -1,47 +1,54 @@
+import { TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+
 export const viewReportsFilterData = [
   {
     gridlength: 6,
-    label: "Child",
     otherOptions: {
       label: "Child",
       name: "child",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Supervising Social Worker",
     otherOptions: {
       label: "Supervising Social Worker",
       name: "supervisingSocialWorker",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Foster Carer(s)",
     otherOptions: {
       label: "Foster Carer(s)",
       name: "fosterCarer",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Date",
     otherOptions: {
       label: "Date",
       name: "dateType",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "Today", label: "Today" }],
+    component: TextField
   },
 ];
 

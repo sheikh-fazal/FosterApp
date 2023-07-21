@@ -5,11 +5,11 @@ import * as Yup from "yup";
 
 export const initialValues = {
   youngPersonName: "",
-  youngPersonDOB: null,
+  youngPersonDOB: "",
   supervisingSocialWorker: "",
   createdBy: "",
   nameOfFosterCarer: "",
-  date: null,
+  date: "",
   signature: "",
 };
 

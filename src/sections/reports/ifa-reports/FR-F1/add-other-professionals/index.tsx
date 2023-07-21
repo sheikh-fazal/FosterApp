@@ -19,7 +19,7 @@ export const initialValues = {
   fosterCarersCommunication: "",
   anythingElse: "",
   signature: "",
-  date: null,
+  date: "",
 };
 
 export const formSchema = Yup.object().shape({

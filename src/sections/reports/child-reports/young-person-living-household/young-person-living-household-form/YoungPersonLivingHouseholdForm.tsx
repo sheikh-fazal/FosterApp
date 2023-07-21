@@ -12,7 +12,14 @@ const YoungPersonLivingHouseholdForm = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-      <Typography sx={(theme)=>style.headerTitle(theme)}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            mb: "20px",
+            fontSize: "17px",
+            color: "#898989",
+          }}
+        >
           YOUNG PERSON LIVING IN THE HOUSEHOLDS COMMENTS
         </Typography>
         <Typography
@@ -75,10 +82,3 @@ const YoungPersonLivingHouseholdForm = ({ action, id }: any) => {
 };
 
 export default YoungPersonLivingHouseholdForm;
-const style = {
-  headerTitle: (theme: any) => ({
-    fontWeight: 700,
-    mb: "20px",
-    fontSize: "17px",
-    color: theme.palette.primary.main,
-  }),}

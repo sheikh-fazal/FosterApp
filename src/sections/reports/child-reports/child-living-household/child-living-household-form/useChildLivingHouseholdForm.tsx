@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { initialValues } from ".";
+import { formSchema, initialValues } from ".";
 import { useRouter } from "next/router";
 
 export const useChildLivingHouseholdForm = () => {
@@ -10,7 +10,7 @@ export const useChildLivingHouseholdForm = () => {
 
 
   const methods: any = useForm({
-    // resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema),
     defaultValues: initialValues,
   });
 
@@ -32,7 +32,6 @@ export const useChildLivingHouseholdForm = () => {
     methods,
     handleSubmit,
     handleBack,
-    onSubmit,
-
+    onSubmit
   }
 }

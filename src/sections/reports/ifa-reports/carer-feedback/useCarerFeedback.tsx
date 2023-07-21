@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useRouter } from "next/router";
 import { TableDemoData } from ".";
 import { Box, Checkbox } from "@mui/material";
@@ -6,17 +5,10 @@ import TableAction from "@root/components/TableAction";
 
 export const useCarerFeedback = () => {
   const path = "/reports/ifa-reports/carer-feedback/form";
-  const [filterValue, setFilterValue] = useState({
-    empolyeeName: "",
-    position: "",
-    lineManager: "",
-    dateTo: new Date(),
-  });
+
   const router = useRouter();
-  const HandlerSearch = () => {
-    var objString = JSON.stringify(filterValue);
-    alert(objString);
-  };
+
+  const handleSearch = () => { };
 
   const handleAction = (action?: string, id?: any) => {
     switch (action) {
@@ -32,7 +24,6 @@ export const useCarerFeedback = () => {
     {
       id: "select",
       header: ({ table, row }: any) => {
-        console.log(table);
         return (
           <Box>
             <Checkbox
@@ -93,11 +84,11 @@ export const useCarerFeedback = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction
-          type="view"
-          onClicked={() => handleAction("view", info.row.original.id)}
-        />
-      </Box>
+          <TableAction
+            type="view"
+            onClicked={() => handleAction("view", info.row.original.id)}
+          />
+        </Box>
       ),
       header: "Action",
       isSortable: false,
@@ -108,8 +99,6 @@ export const useCarerFeedback = () => {
     TableDemoData,
     router,
     columns,
-    setFilterValue,
-    filterValue,
-    HandlerSearch,
+    handleSearch,
   };
 };

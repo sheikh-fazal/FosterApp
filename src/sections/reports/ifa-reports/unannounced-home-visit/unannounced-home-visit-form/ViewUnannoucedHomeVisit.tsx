@@ -1,14 +1,13 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { UnannouncedHomeVisitFromDate } from ".";
 import { useViewUnannoucedHomeVisit } from "./useViewUnannoucedHomeVisit";
-import { LoadingButton } from "@mui/lab";
 
 const ViewUnannoucedHomeVisit = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods } = useViewUnannoucedHomeVisit();
+  const { methods} = useViewUnannoucedHomeVisit();
   return (
     <FormProvider methods={methods}>
       <Grid container columnSpacing={4}>
@@ -19,8 +18,8 @@ const ViewUnannoucedHomeVisit = ({ action }: any) => {
             </Typography>
             {form.component && (
               <form.component
-                fullWidth
                 disabled={disabled}
+                fullWidth
                 size="small"
                 {...form.componentProps}
               >
@@ -38,11 +37,10 @@ const ViewUnannoucedHomeVisit = ({ action }: any) => {
         ))}
 
         <Grid item xs={12}>
-          <Box sx={{ display: "flex", gap: "1rem" }}>
-            <LoadingButton type="submit" variant="contained">
-              Submit
-            </LoadingButton>
-
+          <Link
+            href={"/reports/ifa-reports/unannounced-home-visit"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               type="button"
               variant="contained"
@@ -55,7 +53,7 @@ const ViewUnannoucedHomeVisit = ({ action }: any) => {
             >
               back
             </Button>
-          </Box>
+          </Link>
         </Grid>
       </Grid>
     </FormProvider>
@@ -68,6 +66,7 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: theme.palette.primary.main,
+    color: disabled ? "#898989" : "black",
   }),
 };
+
