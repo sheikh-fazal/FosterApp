@@ -2,6 +2,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 // @mui
 import {
   Box,
+  Button,
   InputAdornment,
   MenuItem,
   Stack,
@@ -56,6 +57,8 @@ const TableHeader = forwardRef(function TableHeader(
     onPrint = () => { },
     onChanged = () => { },
     onDiagramBtn = () => { },
+    showGenerateLoginBtn = false,
+    onGenerateLogin = () => { },
   }: any,
   ref
 ) {
@@ -159,6 +162,10 @@ const TableHeader = forwardRef(function TableHeader(
             </TextField>
           ))}
         </Stack>
+      )}
+      {/* generate login button */}
+      {showGenerateLoginBtn && (
+        <Button variant="contained" sx={{ height: '40px' }} onClick={onGenerateLogin}>Generate Login</Button>
       )}
       {/* recording Icon */}
       {showRecordingBtn && (

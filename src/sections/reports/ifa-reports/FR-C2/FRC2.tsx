@@ -1,24 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Checkbox,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select, 
-} from "@mui/material";
-import Image from "next/image";
-import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
+import { Box, Checkbox, } from "@mui/material";
 import { useFRC2 } from "./useFRC2";
-import TableHeader from "@root/components/TableHeader";
-import TableSubHeader from "../../table-sub-header/TableSubHeader";
-import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import { FRC2FilterData, tableMockData, tableSubHeader } from ".";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
 const FRC2 = () => {
   const { handleSearch, handleAction, handleDeleteModal, deleteModal } =
@@ -84,6 +69,20 @@ const FRC2 = () => {
       isSortable: true,
     },
     {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
+      isSortable: true,
+    },
+    {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
@@ -102,67 +101,26 @@ const FRC2 = () => {
     },
   ];
   return (
-    <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
-        <Box display={"flex"} justifyContent={"end"} sx={{ px: 2 }}>
-          <Image src={automatedIcon} alt="icon" />
-        </Box>
-        <Card sx={{ p: 2, my: 2 }}>
-          <Grid container spacing={4}>
-            {FRC2FilterData.map((data: any, i: number) => (
-              <Grid item key={i} md={data.gridlength} xs={12}>
-               <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">{data.label}</InputLabel>
-                <Select {...data.otherOptions}>
-                  {data.options.map((item: any, j: number) => (
-                    <MenuItem key={j} value={item.value}>
-                      {item.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-                </FormControl>
-              </Grid>
-            ))}
-            <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
-              <Button variant="contained" onClick={handleSearch}>
-                Search
-              </Button>
-            </Grid>
-          </Grid>
-        </Card>
-        <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
-        <TableSubHeader data={tableSubHeader} />
-        <CustomTable
-          isError={false}
-          isLoading={false}
-          isFetching={false}
-          isSuccess={true}
-          data={tableMockData}
-          columns={columns}
-        />
-      </Card>
-      <DeleteModel
-        open={deleteModal}
-        handleClose={handleDeleteModal}
-        onDeleteClick={handleDeleteModal}
-      />
-    </>
+    <ReportsLayout
+      searchOnRight
+      handleFilterBtn={handleSearch}
+      tableHeaderProps={{ title: '', showAddBtn: true, onAdd: () => handleAction('add') }}
+      selectFilterArray={FRC2FilterData}
+      handleFilterChange={(event: any) => { }}
+      TableSubHeaderData={tableSubHeader}
+      tableProps={{
+        data: tableMockData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: deleteModal,
+        handleClose: handleDeleteModal,
+        onDeleteClick: handleDeleteModal
+      }}
+    />
   );
 };
 
 export default FRC2;
 
-const styles = {
-  title: {
-    fontWeight: 600,
-    fontSize: "16px",
-  },
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
-};

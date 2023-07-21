@@ -12,10 +12,7 @@ import { useForm } from "react-hook-form";
 import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  FormSchema,
-  medicalAppointmentsFormValue,
-} from ".";
+import { FormSchema, medicalAppointmentsFormValue } from ".";
 import useMedicalAppointmentForm from "./useMedicalAppointmentForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
@@ -23,11 +20,12 @@ import IsFetching from "@root/components/loaders/IsFetching";
 const backPath = "/foster-child/health-medical-history/medical-appointments";
 const MedicalAppointmentsFrom = (props: any) => {
   const { action, medicalAppointmentID, fosterChildId } = props;
-  const { SubmitData,getDefaultValue,isloading ,isFatching} = useMedicalAppointmentForm({
-    action,
-    medicalAppointmentID,
-    fosterChildId,
-  });
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useMedicalAppointmentForm({
+      action,
+      medicalAppointmentID,
+      fosterChildId,
+    });
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -55,7 +53,7 @@ const MedicalAppointmentsFrom = (props: any) => {
         <Grid item xs={12}>
           <FormProvider methods={methods} onSubmit={handleSubmit(submitHander)}>
             <Grid container>
-            <IsFetching isFetching={isFatching} />
+              <IsFetching isFetching={isFatching} />
               {medicalAppointmentsFormValue.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>

@@ -1,49 +1,30 @@
-import { Card } from "@mui/material";
-import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { TableDemoData } from ".";
-import CustomTable from "@root/components/Table/CustomTable";
 import { usePermanentFostering } from "./usePermanentFostering";
-import DeleteModel from "@root/components/modal/DeleteModel";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
- const PermanentFostering = () => {
-  const { columns, path, handleCloseDeleteModal, openDelete , router} = usePermanentFostering();
+const PermanentFostering = () => {
+  const { columns, handleCloseDeleteModal, openDelete, handleAction } = usePermanentFostering();
+
   return (
-    <Card sx={{ py: 2, px: 1 }}>
-      <TableHeader
-        title="PERMANENT FOSTERING REPORTS"
-        searchKey="search"
-        showAddBtn
-        onAdd={() => {
-           router.push({
-             pathname:path, query:{action:"add"}
-         });
-       }}
-        onChanged={(data: any) => {
-          console.log("Updated params: ", data);
-        }}
-      />
-      <CustomTable
-        data={TableDemoData}
-        columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
-      />
-       <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
-    </Card>
+    <ReportsLayout
+      hideFilterSection
+      tableHeaderProps={{
+        title: "PERMANENT FOSTERING REPORTS",
+        showAddBtn: true,
+        onAdd: () => handleAction("add")
+      }}
+      tableProps={{
+        data: TableDemoData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: openDelete,
+        handleClose: handleCloseDeleteModal,
+        onDeleteClick: handleCloseDeleteModal
+      }}
+    />
   );
 };
 

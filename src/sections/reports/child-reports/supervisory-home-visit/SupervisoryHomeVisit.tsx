@@ -1,35 +1,30 @@
 import React from "react";
-import {Card,} from "@mui/material";
 import { tableMockData } from ".";
 import { useSupervisoryHomeVisit } from "./useSupervisoryHomeVisit";
-import TableHeader from "@root/components/TableHeader";
-import CustomTable from "@root/components/Table/CustomTable";
-import DeleteModel from "@root/components/modal/DeleteModel";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
 const ReviewingOfficer = () => {
-  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
-  useSupervisoryHomeVisit();
-
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } = useSupervisoryHomeVisit();
 
   return (
-    <>
-      <Card sx={{ py: 2, px: 1 }}>
-        <TableHeader title={"SUPERVISORY HOME VISIT"} showAddBtn onAdd={() => handleAction("add")} />
-        <CustomTable
-          isError={false}
-          isLoading={false}
-          isFetching={false}
-          isSuccess={true}
-          data={tableMockData}
-          columns={columns}
-        />
-      </Card>
-      <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
-    </>
+    <ReportsLayout
+      hideFilterSection
+      tableHeaderProps={{
+        title: "SUPERVISORY HOME VISIT",
+        showAddBtn: true,
+        onAdd: () => handleAction("add")
+      }}
+      tableProps={{
+        data: tableMockData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: openDelete,
+        handleClose: handleCloseDeleteModal,
+        onDeleteClick: handleCloseDeleteModal
+      }}
+    />
   );
 };
 

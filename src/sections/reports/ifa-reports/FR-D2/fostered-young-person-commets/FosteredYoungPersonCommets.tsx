@@ -12,7 +12,14 @@ const FosteredYoungPersonCommets = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-        <Typography sx={(theme) => style.headerTitle(theme)}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            mb: "20px",
+            fontSize: "17px",
+            color: "#898989",
+          }}
+        >
           FR-D2: YOUNG PERSON LIVING IN THE HOUSEHOLD’S COMMENTS
         </Typography>
         <Typography
@@ -39,7 +46,7 @@ const FosteredYoungPersonCommets = ({ action, id }: any) => {
         <Grid container spacing={4}>
           {FRD2FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
-              <Typography sx={(theme) => style.title(theme)}>
+              <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
                 {form.title}
               </Typography>
               {form.otherOptions && (
@@ -87,16 +94,3 @@ const FosteredYoungPersonCommets = ({ action, id }: any) => {
 };
 
 export default FosteredYoungPersonCommets;
-const style = {
-  title: (theme: any) => ({
-    fontSize: "16px",
-    fontWeight: 600,
-    color: theme.palette.primary.main,
-  }),
-  headerTitle: (theme: any) => ({
-    fontWeight: 700,
-    mb: "20px",
-    fontSize: "17px",
-    color: theme.palette.primary.main,
-  }),
-};

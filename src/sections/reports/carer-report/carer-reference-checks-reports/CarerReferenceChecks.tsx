@@ -5,45 +5,30 @@ import { TableDemoData } from ".";
 import CustomTable from "@root/components/Table/CustomTable";
 import { useCarerReferenceChecks } from "./useCarerReferenceChecks";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
- const CarerReferenceChecks = () => {
-  const { columns, path, handleCloseDeleteModal, openDelete , router}  = useCarerReferenceChecks();
+const CarerReferenceChecks = () => {
+  const { columns, handleCloseDeleteModal, openDelete, handleAction } = useCarerReferenceChecks();
+
   return (
-    <Card sx={{ py: 2, px: 1 }}>
-      <TableHeader
-        title="CARER REFERENCE CHECKS REPORTS"
-        searchKey="search"
-        showAddBtn
-        onAdd={() => {
-           router.push({
-             pathname:path, query:{action:"add"}
-         });
-       }}
-        onChanged={(data: any) => {
-          console.log("Updated params: ", data);
-        }}
-      />
-      <CustomTable
-        data={TableDemoData}
-        columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        currentPage={1}
-        onPageChange={(data: any) => {
-          console.log("Current page data: ", data);
-        }}
-        onSortByChange={(data: any) => {
-          console.log("Sort by: ", data);
-        }}
-      />
-        <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
-    </Card>
+    <ReportsLayout
+      hideFilterSection
+      tableHeaderProps={{
+        title: "CARER REFERENCE CHECKS REPORTS",
+        showAddBtn: true,
+        onAdd: () => handleAction("add")
+      }}
+      tableProps={{
+        data: TableDemoData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: openDelete,
+        handleClose: handleCloseDeleteModal,
+        onDeleteClick: handleCloseDeleteModal
+      }}
+    />
   );
 };
 

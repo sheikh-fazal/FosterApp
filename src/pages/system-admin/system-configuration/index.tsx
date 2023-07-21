@@ -5,6 +5,7 @@ import { Card } from "@mui/material";
 import Page from "@root/components/Page";
 import Configuration from "@root/sections/system-admin/system-configuration/Configuration";
 
+
 // Constants
 
 const BREADCRUMBS = [
@@ -19,7 +20,7 @@ const BREADCRUMBS = [
   },
 ];
 
-const PAGE_TITLE = "System Configuration";
+const PAGE_TITLE = "System Administration";
 SystemConfiguration.getLayout = function getLayout(page: any) {
   return (
     <Layout
@@ -34,7 +35,7 @@ SystemConfiguration.getLayout = function getLayout(page: any) {
 export default function SystemConfiguration() {
   return (
     <Page title={PAGE_TITLE}>
-      <Configuration />
+      <Configuration/>
     </Page>
   );
 }

@@ -1,35 +1,30 @@
 import React from "react";
-import {Card,} from "@mui/material";
 import { tableMockData } from ".";
 import { useChildImmunisationDetails } from "./useChildImmunisationDetails";
-import TableHeader from "@root/components/TableHeader";
-import CustomTable from "@root/components/Table/CustomTable";
-import DeleteModel from "@root/components/modal/DeleteModel";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
 const ChildImmunisationDetails = () => {
-  const { handleAction, openDelete, handleCloseDeleteModal, columns } =
-  useChildImmunisationDetails();
-
+  const { handleAction, openDelete, handleCloseDeleteModal, columns } = useChildImmunisationDetails();
 
   return (
-    <>
-      <Card sx={{ py: 2, px: 1 }}>
-        <TableHeader title={"CHILD IMMUNISATION DETAILS REPORT"} showAddBtn onAdd={() => handleAction("add")} />
-        <CustomTable
-          isError={false}
-          isLoading={false}
-          isFetching={false}
-          isSuccess={true}
-          data={tableMockData}
-          columns={columns}
-        />
-      </Card>
-      <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
-    </>
+    <ReportsLayout
+      hideFilterSection
+      tableHeaderProps={{
+        title: "CHILD IMMUNISATION DETAILS REPORT",
+        showAddBtn: true,
+        onAdd: () => handleAction("add")
+      }}
+      tableProps={{
+        data: tableMockData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: openDelete,
+        handleClose: handleCloseDeleteModal,
+        onDeleteClick: handleCloseDeleteModal
+      }}
+    />
   );
 };
 

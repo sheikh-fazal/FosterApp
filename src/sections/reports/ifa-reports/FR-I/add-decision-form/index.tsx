@@ -9,8 +9,8 @@ import * as Yup from "yup";
 
 export const initialValues = {
   nameOfFosterCarer: "",
-  dateOfReview: null,
-  dateOfPanel: null,
+  dateOfReview: "",
+  dateOfPanel: "",
   relationshipToChild: "",
   nameOfDecisionMaker: "",
   fosterHomeReview: "",
@@ -24,7 +24,7 @@ export const initialValues = {
   reasonsOfDecision: "",
   adviceToFosteringService: "",
   signature: "",
-  date: null,
+  date: "",
 };
 
 export const formSchema = Yup.object().shape({

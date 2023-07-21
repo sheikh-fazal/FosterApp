@@ -6,8 +6,8 @@ export const initialValues = {
   fosterCarer:'',
   supervisingSocialWorker:'',
   childName:'',
-  childDOB1:null,
-  childDOB2:null,
+  childDOB1:'',
+  childDOB2:'',
   supervisingSocialWorkerName:'',
   likeAboutFostering:'',
   likeToChangeFamilyFostering:'',
@@ -18,7 +18,7 @@ export const initialValues = {
   additionalComments:'',
   name:'',
   position:'',
-  date:null
+  date:''
 };
 
 export const formSchema = Yup.object().shape({

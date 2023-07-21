@@ -31,7 +31,7 @@ import AddIcon from "@mui/icons-material/Add";
 import DelegateCertificateModal from "@root/sections/training/manage-trainees/delegate-certificates/delegate-certificates-table/delegate-certificate-modal/DelegateCertificateModal";
 import RHFSecondarySelect from "../hook-form/RHFSecondarySelect";
 
-const ANON_FUNC = () => { };
+const ANON_FUNC = () => {};
 
 const FIELDS_OBJ: any = {
   textField: RHFTextField,
@@ -176,7 +176,9 @@ export default function FormTable(props: any) {
     certificate,
     tableKey,
     beforeAdd,
+    add,
     beforeUpdate,
+    onAddRowHandler,
     columns: tableColumns,
   } = props;
   const methods = useFormContext();
@@ -212,21 +214,22 @@ export default function FormTable(props: any) {
   });
 
   if (certificate) {
-    columns.push({
-      id: "certificate",
-      cell: (info: any) => (
-        <Box
-          sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
-          onClick={() => {
-            setCertificateModal(true);
-          }}
-        >
-          Delegate Certificate
-        </Box>
-      ),
-      header: () => <span>Manage Certificate</span>,
-      isSortable: false,
-    },
+    columns.push(
+      {
+        id: "certificate",
+        cell: (info: any) => (
+          <Box
+            sx={{ cursor: "pointer", color: "#0563C1", fontWeight: "500" }}
+            onClick={() => {
+              setCertificateModal(true);
+            }}
+          >
+            Delegate Certificate
+          </Box>
+        ),
+        header: () => <span>Manage Certificate</span>,
+        isSortable: false,
+      },
 
       {
         id: "actions",
@@ -258,7 +261,11 @@ export default function FormTable(props: any) {
               />
             )}
 
-            {route === "view" ? (
+            <TableAction
+              type="download"
+            />
+
+            {showView === "view" ? (
               ""
             ) : (
               <>
@@ -279,7 +286,8 @@ export default function FormTable(props: any) {
 
         header: () => <span>actions</span>,
         isSortable: false,
-      });
+      }
+    );
   }
 
   columns.push({
@@ -297,6 +305,13 @@ export default function FormTable(props: any) {
           <TableAction
             type="view"
             onClicked={(id: number) => onViewHandler(info.row.index)}
+          />
+        )}
+
+        {add && (
+          <TableAction
+            type="add"
+            onClicked={(id: number) => onAddRowHandler(info.row)}
           />
         )}
         {print && (

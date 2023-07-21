@@ -1,40 +1,36 @@
-import { useState } from "react";
-import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import { Card } from "@mui/material";
+import React from "react";
+import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
-import BulkOperations from "@root/sections/system-admin/bulk-operations/BulkOperations";
+import BulkOperationsTable from "@root/sections/system-admin/bulk-operations/BulkOperationsTable";
 
-// Constants
+const PAGE_TITLE = "System Administration";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "System Admin",
-    href: "/system-admin",
-  },
-  {
-    name: "Bulk Operations",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Bulk Operations";
-BulkOperation.getLayout = function getLayout(page: any) {
+SafeguardingChildAdvocacy.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          name: "System Admin",
+          href: "/system-admin",
+        },
+        {
+          name: "Bulk Operations",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}
     </Layout>
   );
 };
-export default function BulkOperation() {
+
+export default function SafeguardingChildAdvocacy() {
   return (
     <Page title={PAGE_TITLE}>
-      <BulkOperations />
+      <BulkOperationsTable />
     </Page>
   );
 }

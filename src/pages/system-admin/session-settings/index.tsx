@@ -1,11 +1,7 @@
-import { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
 import SessionSettings from "@root/sections/system-admin/session-settings/SessionSettings";
-
 // Constants
 
 const BREADCRUMBS = [

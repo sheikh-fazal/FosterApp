@@ -1,26 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Checkbox,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from "@mui/material";
-import Image from "next/image";
-import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
+import { Box, Checkbox, } from "@mui/material";
 import { tableSubHeader, viewReportsFilterData, tableMockData } from ".";
 import { useFosteringServiceManagerReport } from "./useFosteringServiceManagerReport";
-import TableHeader from "@root/components/TableHeader";
-import TableSubHeader from "../../table-sub-header/TableSubHeader";
-import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import { DatePicker } from "@mui/x-date-pickers";
+import ReportsLayout from "../../reports-layout/ReportsLayout";
 
 const FosteringServiceManagerReport = () => {
   const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } =
@@ -111,77 +94,25 @@ const FosteringServiceManagerReport = () => {
     },
   ];
   return (
-    <>
-      <Card sx={{ ...styles.cardStyle, py: 2, px: 1 }}>
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"flex-end"}
-          sx={{ px: 2 }}
-        >
-          <Image src={automatedIcon} alt="icon" />
-        </Box>
-        <Card sx={{ p: 2, my: 2 }}>
-          <Grid container spacing={4}>
-            {viewReportsFilterData.map((data: any, i: number) => (
-              <Grid item key={i} md={data.gridlength} xs={12}>
-                {data.requireDatePicker ? (
-                  <DatePicker
-                  label={data.label}
-                    slotProps={{
-                      textField: { ...data.otherOptions },
-                    }}
-                  />
-                ) : (
-                  <FormControl fullWidth size="small">
-                  <InputLabel id="demo-simple-select-label">{data.label}</InputLabel>
-                  <Select {...data.otherOptions}>
-                    {data.options.map((item: any, j: number) => (
-                      <MenuItem key={j} value={item.value}>
-                        {item.label}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                  </FormControl>
-                )}
-              </Grid>
-            ))}
-            <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
-              <Button onClick={handleSearch} variant="contained">
-                Search
-              </Button>
-            </Grid>
-          </Grid>
-        </Card>
-        <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
-        <TableSubHeader data={tableSubHeader} />
-        <CustomTable
-          isError={false}
-          isLoading={false}
-          isFetching={false}
-          isSuccess={true}
-          data={tableMockData}
-          columns={columns}
-        />
-      </Card>
-      <DeleteModel
-        open={openDelete}
-        handleClose={handleCloseDeleteModal}
-        onDeleteClick={handleCloseDeleteModal}
-      />
-    </>
+    <ReportsLayout
+      searchOnRight
+      handleFilterBtn={handleSearch}
+      tableHeaderProps={{ title: '', showAddBtn: true, onAdd: () => handleAction('add') }}
+      selectFilterArray={viewReportsFilterData}
+      handleFilterChange={(event: any) => { }}
+      TableSubHeaderData={tableSubHeader}
+      tableProps={{
+        data: tableMockData,
+        columns,
+        isSuccess: true
+      }}
+      deleteModalProps={{
+        open: openDelete,
+        handleClose: handleCloseDeleteModal,
+        onDeleteClick: handleCloseDeleteModal
+      }}
+    />
   );
 };
 
 export default FosteringServiceManagerReport;
-
-const styles = {
-  cardStyle: {
-    "& .MuiStack-root": {
-      "& .MuiStack-root": {
-        marginLeft: "auto",
-        marginRight: "20px",
-      },
-    },
-  },
-};

@@ -227,7 +227,7 @@ function RolesAndPermissions() {
         });
       }
     },
-    [permissionIDs]
+    [postAssignPermissions, postRemovePermissions]
   );
 
   return (

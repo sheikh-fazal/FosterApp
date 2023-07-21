@@ -12,7 +12,14 @@ const FosteringServiceManagerForm = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-      <Typography sx={(theme)=>style.headerTitle(theme)}>
+        <Typography
+          sx={{
+            fontWeight: 700,
+            mb: "20px",
+            fontSize: "17px",
+            color: "#898989",
+          }}
+        >
           FOSTERING SERVICE MANAGER FORM
         </Typography>
         <Typography
@@ -75,11 +82,3 @@ const FosteringServiceManagerForm = ({ action, id }: any) => {
 };
 
 export default FosteringServiceManagerForm;
-const style = {
-  headerTitle: (theme: any) => ({
-    fontWeight: 700,
-    mb: "20px",
-    fontSize: "17px",
-    color: theme.palette.primary.main,
-  }),
-};
