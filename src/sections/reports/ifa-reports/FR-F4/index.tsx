@@ -1,47 +1,53 @@
+import { TextField } from "@mui/material";
+
 export const viewReportsFilterData = [
   {
     gridlength: 6,
-    label: "Foster Carer",
     otherOptions: {
       name: "fosterCarer",
       label: "Foster Carer",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Name",
     otherOptions: {
       label: "Name",
       name: "name",
       fullWidth: true,
+      select: true,
       size: "small",
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Select Search Date",
     otherOptions: {
       name: "selectSearchDate",
       label: "Select Search Date",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Date Type",
     otherOptions: {
       label: "Select Search Date",
       name: "dateType",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "Today", label: "Today" }],
+    component: TextField
   },
 ];
 

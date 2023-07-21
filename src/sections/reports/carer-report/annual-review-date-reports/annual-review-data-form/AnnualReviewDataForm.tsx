@@ -7,16 +7,9 @@ import { useAnnualReviewDataForm } from "./useAnnualReviewDataForm";
 import { LoadingButton } from "@mui/lab";
 
 const AnnualReviewDataForm = ({ action }: any) => {
-  console.log("action", action);
+  console.log("action", action)
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit } =
-    useAnnualReviewDataForm();
-  let label: any;
-  if (action === "view") {
-    label = "Uploaded Meeting Record";
-  } else {
-    label = "Upload Meeting Record";
-  }
+  const { methods, handleBack, onSubmit, handleSubmit, } = useAnnualReviewDataForm();
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -28,18 +21,18 @@ const AnnualReviewDataForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
-                  fullWidth
                   disabled={disabled}
                   size="small"
+                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
                   {form.componentProps?.select
                     ? form.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
                     : null}
                 </form.component>
               )}
@@ -51,7 +44,6 @@ const AnnualReviewDataForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                    label={label}
                     name={"updateMeetingRecord"}
                     {...methods}
                     required
@@ -92,6 +84,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: theme.palette.primary.main,
+    color: disabled ? "#898989" : "#212529",
   }),
 };

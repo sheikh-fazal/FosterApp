@@ -1,47 +1,50 @@
-import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { TextField } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
 
 export const viewReportsFilterData = [
   {
     gridlength: 6,
-    label: "Name of foster carer",
     otherOptions: {
       label: "Name of foster carer",
       name: "nameOfFosterCarer",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Name of fostering manager",
     otherOptions: {
       label: "Name of fostering manager",
       name: "nameOfFosterCarer",
       fullWidth: true,
       size: "small",
+      select: true,
     },
     options: [{ value: "all", label: "all" }],
+    component: TextField
   },
   {
     gridlength: 6,
-    label: "Date of review meeting",
     otherOptions: {
+      label: "Date of review meeting",
       name: "dateOfReviewMeeting",
       size: "small",
       fullWidth: true,
     },
-    requireDatePicker: true,
+    component: DatePicker
   },
   {
     gridlength: 6,
-    label: "Date",
     otherOptions: {
+      label: "Date",
       name: "dateType",
       fullWidth: true,
       size: "small",
     },
-    requireDatePicker: true,
+    component: DatePicker
   },
 ];
 

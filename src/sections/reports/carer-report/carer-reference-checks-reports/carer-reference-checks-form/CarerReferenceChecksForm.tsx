@@ -7,39 +7,33 @@ import { CarerReferenceCheckFormValues } from ".";
 import { LoadingButton } from "@mui/lab";
 
 const CarerReferenceChecksForm = ({ action }: any) => {
-  console.log("action", action);
+  console.log("action", action)
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit } =
-    useCarerReferenceChecksForm();
-  let label: any;
-  if (action === "view") {
-    label = "Uploaded Meeting Record";
-  } else {
-    label = "Upload Meeting Record";
-  }
+  const { methods, handleBack, onSubmit, handleSubmit, } = useCarerReferenceChecksForm();
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {CarerReferenceCheckFormValues?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.gridLength} key={i}>
-              <Typography>{form.title}</Typography>
+              <Typography>
+                {form.title}
+              </Typography>
               {form.component && (
                 <form.component
-                  fullWidth
                   disabled={disabled}
                   size="small"
+                  fullWidth
                   {...form.componentProps}
                 >
                   <Typography sx={(theme) => styles.heading(theme, disabled)}>
-                    {form?.heading}{" "}
-                  </Typography>
+                    {form?.heading} </Typography>
                   {form.componentProps?.select
                     ? form.options.map((option: any) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))
                     : null}
                 </form.component>
               )}
@@ -51,7 +45,6 @@ const CarerReferenceChecksForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                  label={label}
                     name={"updateMeetingRecord"}
                     {...methods}
                     required
@@ -92,6 +85,6 @@ const styles = {
   heading: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: theme.palette.primary.main,
+
   }),
 };

@@ -99,7 +99,7 @@ export const useSecondOpinin = () => {
       accessorFn: (row: any) => row.createdBy,
       id: "createdBy",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Created By</span>,
+      header: () => <span>Create By</span>,
       isSortable: true,
     },
     {

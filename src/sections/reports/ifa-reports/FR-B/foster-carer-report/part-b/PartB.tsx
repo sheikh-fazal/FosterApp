@@ -62,7 +62,7 @@ const CustomTypography = ({ isHead, title, theme }: any) => {
       sx={{
         fontWeight: 600,
         fontSize: '16px',
-      color: theme.palette.primary.main
+        color: textColor ?? '#343A40',
       }}
     >
       {title}
