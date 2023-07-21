@@ -8,6 +8,8 @@ import {
   useGetSubstituteCarerByIdQuery,
   usePostSubstituteCarerMutation,
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -46,10 +48,24 @@ SwapCarerDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function SwapCarerDetails() {
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
   const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
 
-  const formSubmitHandler = (formData: any) => {
+  const formSubmitHandler = async (formData: any) => {
     const body = { ...formData, carerType: "SC", status: " " };
+    try {
+      const res: any = await postSwapCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
     console.log(body);
 
     postSwapCarerData(body);

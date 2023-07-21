@@ -5,6 +5,8 @@ import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -43,13 +45,25 @@ BackupCarerDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function BackupCarerDetails() {
-  const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
+  const [postBackupCarerData, status] = usePostSubstituteCarerMutation();
 
-  const formSubmitHandler = (formData: any) => {
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const formSubmitHandler = async (formData: any) => {
     const body = { ...formData, carerType: "BC", status: " " };
-    console.log(body);
-
-    postSwapCarerData(body);
+    try {
+      const res: any = await postBackupCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
   };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>

@@ -44,8 +44,8 @@ export default function SwapCarer() {
       type: "SC",
     });
   const title = "Swap Carer List";
-  const FORMROUTE =
-    "/carer-info/substitute-cares/swap-carer/swap-carer-details";
+
+  const FORMROUTE = `/carer-info/substitute-cares/swap-carer/swap-carer-details?fosterCarerId=${id}`;
   const columns = [
     {
       accessorFn: (row: any) => row["firstName"],

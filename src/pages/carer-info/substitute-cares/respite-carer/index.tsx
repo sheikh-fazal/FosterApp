@@ -37,15 +37,15 @@ export default function RespiteCarer() {
       href: "/carer-info/substitute-cares/respite-carer",
     },
   ];
-  const { data } = useGetSelectedSubstituteCarerQuery({
-    limit: "10",
-    offset: "0",
-    type: "RC",
-  });
+  const { data, isSuccess, isLoading, isError } =
+    useGetSelectedSubstituteCarerQuery({
+      limit: "10",
+      offset: "0",
+      type: "RC",
+    });
 
   const title = "Respite Carer List";
-  const FORMROUTE =
-    "/carer-info/substitute-cares/respite-carer/respite-carer-details";
+  const FORMROUTE = `/carer-info/substitute-cares/respite-carer/respite-carer-details?fosterCarerId=${id}`;
 
   const columns = [
     {
@@ -141,11 +141,13 @@ export default function RespiteCarer() {
       />
       <SubstituteCarerTable
         columns={columns}
-        tableData={tableData}
-        meta={meta}
+        // tableData={tableData}
+        tableData={data?.backup_carer_details}
+        // meta={meta}
+        meta={data?.meta}
         title={title}
         searchedText={searchTextHandler}
-        apiStatus={status}
+        apiStatus={{ isSuccess, isLoading, isError }}
         onPageChange={pageChangeHandler}
         route={FORMROUTE}
       />

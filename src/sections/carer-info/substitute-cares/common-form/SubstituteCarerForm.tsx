@@ -79,7 +79,9 @@ export default function SubstituteCarerForm(props: any) {
             <LoadingButton
               loading={status?.isLoading}
               size="large"
-              disabled={status?.isLoading || params.query?.view}
+              disabled={
+                status?.isLoading || params.query?.view || status?.isSuccess
+              }
               type="submit"
               color={
                 status?.isError
@@ -90,7 +92,11 @@ export default function SubstituteCarerForm(props: any) {
               }
               variant="contained"
             >
-              {status?.isError ? "Try Again" : "Submit"}
+              {status?.isError
+                ? "Try Again"
+                : status?.isSuccess
+                ? "Submitted"
+                : "Submit"}
             </LoadingButton>
             <Button
               size="large"
