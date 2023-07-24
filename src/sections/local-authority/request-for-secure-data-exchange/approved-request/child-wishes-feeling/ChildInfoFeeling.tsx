@@ -1,10 +1,11 @@
 import React from "react";
 import { useChildInfoFeeling } from "./useChildInfoFeeling";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid, Tooltip } from "@mui/material";
+import { Box, Button, Grid, Tooltip, Typography } from "@mui/material";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import Link from "next/link";
 import ErrorIcon from "@mui/icons-material/Error";
+
 
 const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
   const {
@@ -50,7 +51,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "10px" }}
                   >
-                    <Box>{form?.heading}</Box>
+                    <Typography sx={(theme)=>style.title(theme)}>{form?.heading}</Typography>
                     <span>
                       {form?.tooltip && (
                         <StyledTooltip title={form?.disc}>
@@ -116,3 +117,12 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
 };
 
 export default ChildInfoFeeling;
+
+
+const style = ({
+  title :(theme:any)=> ({
+    color: theme.palette.primary.main,
+    fontSize:"16px",
+    fontWeight:600
+  })
+})

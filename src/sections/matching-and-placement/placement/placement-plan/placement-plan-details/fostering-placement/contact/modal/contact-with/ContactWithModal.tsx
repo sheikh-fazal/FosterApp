@@ -10,24 +10,16 @@ const ContactWithModal = ({ open, onClose, disabled }: any) => {
   const { methods, handleSubmit, onSubmit } = useContactWithModal();
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth={"md"} fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth={'md'} fullWidth>
       <DialogContent>
-        <Typography sx={styles.title}>
-          Details of any person whom the child/young person should not have
-          contact with:
-        </Typography>
+        <Typography sx={styles.title}>Details of any person whom the child/young person should not have contact with:</Typography>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             {formData.map((item, i) => (
-              <Grid
-                key={item.otherOptions.name}
-                item
-                md={item.gridLength}
-                xs={12}
-              >
+              <Grid item md={item.gridLength} xs={12}>
                 <item.component
                   disabled={disabled}
-                  size={"small"}
+                  size={'small'}
                   fullWidth
                   {...item.otherOptions}
                 />
@@ -52,7 +44,7 @@ const ContactWithModal = ({ open, onClose, disabled }: any) => {
         </FormProvider>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 export default ContactWithModal
 

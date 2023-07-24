@@ -70,8 +70,7 @@ export const BirthMotherViews = [
   },
 
   {
-    heading:
-      "(Any additional comments should be recorded separately and signed and dated)",
+    para: "(Any additional comments should be recorded separately and signed and dated)",
     componentProps: {
       variant: "",
       color: (theme: any) => theme.palette.primary.main,
@@ -102,8 +101,7 @@ export const BirthMotherViews = [
     md: 12,
   },
   {
-    heading:
-      "You may want to seek advice and support from somebody who is experienced in adoption matters and who can help you with this. It is also important for you to understand that, whilst the adoption agency must take into account your wishes or feelings, the agency and the adoptive parents cannot be required to follow them.",
+    para: "You may want to seek advice and support from somebody who is experienced in adoption matters and who can help you with this. It is also important for you to understand that, whilst the adoption agency must take into account your wishes or feelings, the agency and the adoptive parents cannot be required to follow them.",
     componentProps: {
       variant: "",
       color: (theme: any) => theme.palette.primary.main,

@@ -1,14 +1,11 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid } from "@mui/material";
-import { useChildBithFather } from './useChildBithFather';
+import { Box, Button, Grid, Typography } from "@mui/material";
+import { useChildBithFather } from "./useChildBithFather";
 
-const ChildBithFather = ({
-  handleNextTab,
-  handleBackTab,
-}: any) => {
+const ChildBithFather = ({ handleNextTab, handleBackTab }: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, childBirthFather } =
-  useChildBithFather();
+    useChildBithFather();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Box sx={{ padding: "0.8rem" }}>
@@ -17,7 +14,10 @@ const ChildBithFather = ({
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
                 <form.component size="small" fullWidth {...form.componentProps}>
-                  {form?.heading}
+                  <Typography sx={(theme) => style.title(theme)}>
+                    {form?.heading}
+                  </Typography>
+
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -45,16 +45,22 @@ const ChildBithFather = ({
               Save
             </Button>
 
-           
-              <Button type="button" variant="contained" onClick={handleNextTab}>
-                Next
-              </Button>
-           
+            <Button type="button" variant="contained" onClick={handleNextTab}>
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>
     </FormProvider>
-  )
-}
+  );
+};
 
-export default ChildBithFather
+export default ChildBithFather;
+
+const style = {
+  title: (theme: any) => ({
+    color: theme.palette.primary.main,
+    fontSize: "16px",
+    fontWeight: 600,
+  }),
+};

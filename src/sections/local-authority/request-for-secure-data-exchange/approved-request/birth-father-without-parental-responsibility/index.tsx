@@ -61,7 +61,7 @@ export const BirthWithoutFatherParental = [
     md: 12,
   },
   {
-    heading:
+    para:
       "If the birth father knows, set out what steps have been taken to offer counselling and advice . Are these continuing? If not and the agency knows the birth father’s identity, has the agency decided that it is appropriate to offer counselling and advice? Is there any ongoing contact with the birth father directly or through another agency?",
     componentProps: {
       variant: "",

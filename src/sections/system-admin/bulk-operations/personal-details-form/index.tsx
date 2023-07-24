@@ -26,7 +26,7 @@ export const formFields = [
   {
     gridLength: 12,
     gridSX: { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 1 },
-    title: "",
+    label: "",
     fontWeight: 500,
     otherOptions: {
       name: "fieldOfStudy",
@@ -36,9 +36,9 @@ export const formFields = [
     component: RHFRadioGroup,
   },
   {
-    title: "Status",
     gridLength: 6,
     otherOptions: {
+      label: "Status",
       name: "status",
       select: true,
       options: [{ value: "Selected Value", label: "Selected Value" }],
@@ -46,9 +46,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Select the Carer",
     gridLength: 6,
     otherOptions: {
+      label: "Select the Carer",
       name: "selectCarer",
       select: true,
       options: [{ value: "Selected Value", label: "Selected Value" }],
@@ -56,17 +56,17 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Date of Occurrence",
     gridLength: 6,
     otherOptions: {
+      label: "Date of Occurrence",
       name: "dateOfOccurrence",
     },
     component: RHFDatePicker,
   },
   {
-    title: "If Corrrespondence, to whome",
     gridLength: 12,
     otherOptions: {
+      label: "If Corrrespondence, to whom",
       name: "toWhome",
       multiLine: true,
       minRows: 3,
@@ -74,9 +74,9 @@ export const formFields = [
     component: RHFTextField,
   },
   {
-    title: "If Corrrespondence, from whome",
     gridLength: 12,
     otherOptions: {
+      label: "If Corrrespondence, from whom",
       name: "fromWhome",
       multiLine: true,
       minRows: 3,
@@ -84,9 +84,9 @@ export const formFields = [
     component: RHFTextField,
   },
   {
-    title: "Entry Type",
     gridLength: 6,
     otherOptions: {
+      label: "Entry Type",
       name: "entryType",
       select: true,
       options: [{ value: "Selected Value", label: "Selected Value" }],
@@ -94,9 +94,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Subject",
     gridLength: 12,
     otherOptions: {
+      label: "Subject",
       name: "subject",
       multiLine: true,
       minRows: 3,

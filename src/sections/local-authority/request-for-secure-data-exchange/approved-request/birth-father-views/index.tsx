@@ -69,7 +69,7 @@ export const BirthFatherViewsData = [
   },
 
   {
-    heading:
+    para:
       "(Any additional comments should be recorded separately and signed and dated)",
     componentProps: {
       variant: "",
@@ -101,7 +101,7 @@ export const BirthFatherViewsData = [
     md: 12,
   },
   {
-    heading:
+    para:
       "You may want to seek advice and support from somebody who is experienced in adoption matters and who can help you with this. It is also important for you to understand that, whilst the adoption agency must take into account your wishes or feelings, the agency and the adoptive parents cannot be required to follow them.",
     componentProps: {
       variant: "",
@@ -117,7 +117,7 @@ export const BirthFatherViewsData = [
     componentProps: {
       variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
-      sx: { mb: 0 },
+      sx: { mb: 0  , mt:2},
     },
     component: Typography,
     md: 12,
