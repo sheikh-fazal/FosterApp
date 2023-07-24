@@ -7,15 +7,14 @@ import { useAnnualReviewDataForm } from "./useAnnualReviewDataForm";
 import { LoadingButton } from "@mui/lab";
 
 const AnnualReviewDataForm = ({ action }: any) => {
-  console.log("action", action);
+  console.log("action" , action)
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit } =
-    useAnnualReviewDataForm();
+  const  { methods,handleBack , onSubmit, handleSubmit, } = useAnnualReviewDataForm();
   let label: any;
   if (action === "view") {
-    label = "Uploaded Meeting Record";
+    label = "Uploaded  Meeting Record";
   } else {
-    label = "Upload Meeting Record";
+    label = "Upload  Meeting Record";
   }
   return (
     <Card sx={{ p: 2 }}>
@@ -23,12 +22,12 @@ const AnnualReviewDataForm = ({ action }: any) => {
         <Grid container columnSpacing={4}>
           {AnnualReviewFormValues?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.gridLength} key={i}>
-              <Typography sx={(theme) => styles.title(theme, disabled)}>
+               <Typography sx={(theme) => styles.title(theme, disabled)}>
                 {form.title}
               </Typography>
               {form.component && (
                 <form.component
-                  fullWidth
+                fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -51,8 +50,9 @@ const AnnualReviewDataForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                    label={label}
+                  label={label}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />
@@ -60,8 +60,8 @@ const AnnualReviewDataForm = ({ action }: any) => {
               )}
             </Grid>
           ))}
-          <Grid item xs={12}>
-            <Box sx={{ display: "flex", gap: "1rem", mt: 4 }}>
+                     <Grid item xs={12}>
+            <Box sx={{ display: "flex", gap: "1rem" , mt:4 }}>
               {!disabled && (
                 <LoadingButton type="submit" variant="contained">
                   Submit

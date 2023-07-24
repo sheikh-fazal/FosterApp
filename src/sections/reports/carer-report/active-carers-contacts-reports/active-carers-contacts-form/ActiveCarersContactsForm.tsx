@@ -12,9 +12,9 @@ const ActiveCarersContactForm = ({ action }: any) => {
     useActiveCarersContactsForm();
   let label: any;
   if (action === "view") {
-    label = "Uploaded Meeting Record";
+    label = "Uploaded  Meeting Record";
   } else {
-    label = "Upload Meeting Record";
+    label = "Upload  Meeting Record";
   }
   return (
     <Card sx={{ p: 2 }}>
@@ -49,6 +49,7 @@ const ActiveCarersContactForm = ({ action }: any) => {
                   <RHFUploadFile
                     label={label}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />

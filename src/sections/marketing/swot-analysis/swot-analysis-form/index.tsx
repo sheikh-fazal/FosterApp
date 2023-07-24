@@ -46,8 +46,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "SWOT Report Date",
     componentProps: {
+      label: "SWOT Report Date",
       name: "reportDate",
       sx: { mb: 4 },
       fullWidth: true,
@@ -56,8 +56,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "SWOT Topic",
     componentProps: {
+      label: "SWOT Topic",
       name: "topic",
       sx: { mb: 4 },
     },
@@ -66,8 +66,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "SWOT Duration",
     componentProps: {
+      label: "SWOT Duration",
       name: "duration",
       sx: { mb: 4 },
       fullWidth: true,
@@ -76,14 +76,14 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "SWOT (Competitor)",
     componentProps: {},
+    label: "SWOT (Competitor)",
     uploadPhoto: true,
   },
   {
     gridLength: 6,
-    title: "Date",
     componentProps: {
+      label: "Date",
       name: "date",
       sx: { mb: 4 },
       fullWidth: true,
@@ -92,8 +92,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "Reviewer Role",
     componentProps: {
+      label: "Reviewer Role",
       name: "reviewerRole",
       fullWidth: true,
       select: true,
@@ -105,8 +105,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 6,
-    title: "Review Date",
     componentProps: {
+      label: "Review Date",
       name: "reviewerDate",
       sx: { mb: 4 },
       fullWidth: true,
@@ -115,8 +115,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 12,
-    title: "Strengths",
     componentProps: {
+      label: "Strengths",
       name: "strengths",
       multiline: true,
       minRows: 3,
@@ -127,8 +127,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 12,
-    title: "Weaknesses",
     componentProps: {
+      label: "Weaknesses",
       name: "weaknesses",
       multiline: true,
       minRows: 3,
@@ -139,8 +139,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 12,
-    title: "Opportunities",
     componentProps: {
+      label: "Opportunities",
       name: "opportunities",
       multiline: true,
       minRows: 3,
@@ -151,8 +151,8 @@ export const SwotAnalysisFormData = [
   },
   {
     gridLength: 12,
-    title: "Threats",
     componentProps: {
+      label: "Threats",
       name: "threats",
       multiline: true,
       minRows: 3,

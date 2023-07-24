@@ -13,7 +13,7 @@ const BirthFatherPartner = ({ handleNextTab, handleBackTab }: any) => {
           {BirthFatherPartnerData?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
-                <form.component size="small" {...form.componentProps}>
+                <form.component size="small" fullWidth {...form.componentProps}>
                   {form?.heading}
                   {form.componentProps.select
                     ? form.options.map((option: any) => (

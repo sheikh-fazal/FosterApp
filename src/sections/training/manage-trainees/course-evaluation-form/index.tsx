@@ -279,6 +279,7 @@ export const courseEvaluation = [
     title: "9. Overall, what are the strengths of this course?",
     otherOptions: {
       name: "desc1",
+      fullWidth:true,
       multiline: true,
       rows: 3,
     },
@@ -289,6 +290,7 @@ export const courseEvaluation = [
     title: "10. Are there any ways this course could be improved?",
     otherOptions: {
       name: "desc2",
+      fullWidth:true,
       multiline: true,
       rows: 3,
     },

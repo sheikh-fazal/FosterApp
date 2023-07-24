@@ -8,7 +8,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const ArchiveSettings = () => {
-  const { tableHeaderRefTwo, theme } = useArchiveSettings()
+  const { tableHeaderRefTwo, theme,router } = useArchiveSettings()
 
   // status function start here
   const checkStatus = (row:any) => {
@@ -100,7 +100,7 @@ const ArchiveSettings = () => {
           ref={tableHeaderRefTwo}
           title="Backup and Archive Settings"
           showAddBtn
-          // onAdd={() => router.push(`${router.pathname}/referral-scheme-add-form`)}
+          onAdd={() => router.push(`${router.pathname}/add-archive-settings`)}
           onChanged={(data: any) => {
             console.log("Updated params: ", data);
           }}

@@ -12,7 +12,7 @@ const ChildForm = () => {
       <Grid container columnSpacing={4}>
         {childAdvocacyFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
-            <item.component
+            <item.component fullWidth
               disabled={router.query.action === 'view-child-advocacy' && true}
               {...item.componentProps}
               size={"small"}

@@ -4,7 +4,6 @@ import { useDecember2021FosterMeetup } from "./useDecember2021FosterMeetup";
 import { Box, Button, Checkbox, Chip, Typography } from "@mui/material";
 import { PersonOptions } from ".";
 
-
 const COLUMNS = [
   {
     inputType: "textField",
@@ -30,33 +29,34 @@ const COLUMNS = [
       });
     },
     format: (selectedUserType: any) => {
-      console.log("selectedUserType", selectedUserType)
+      console.log("selectedUserType", selectedUserType);
       // return selectedUserType && selectedUserType.label;
-      return <Chip
-        sx={{
-          backgroundColor: selectedUserType.bgColor,
-          color: selectedUserType.textColor,
-          fontSize: "10px !important",
-          p: "5px 10px",
-          maxHeight: "22px",
+      return (
+        <Chip
+          sx={{
+            backgroundColor: selectedUserType.bgColor,
+            color: selectedUserType.textColor,
+            fontSize: "10px !important",
+            p: "5px 10px",
+            maxHeight: "22px",
 
-          "& .MuiChip-label": {
-            p: 0,
-          },
-        }}
-        // key={value}
-        label={selectedUserType.label}
-      />
+            "& .MuiChip-label": {
+              p: 0,
+            },
+          }}
+          // key={value}
+          label={selectedUserType.label}
+        />
+      );
     },
   },
- 
   {
     inputType: "checkbox",
     key: "showedUp",
     defaultValue: false,
     label: "Showed up?",
     format: (shouldContinue: boolean) => {
-      return <Checkbox  disabled checked={shouldContinue} />;
+      return <Checkbox disabled checked={shouldContinue} />;
     },
   },
   {
@@ -65,7 +65,7 @@ const COLUMNS = [
     defaultValue: false,
     label: "RSVPed",
     format: (shouldContinue: boolean) => {
-      return <Checkbox  disabled checked={shouldContinue} />;
+      return <Checkbox disabled checked={shouldContinue} />;
     },
   },
   {
@@ -74,10 +74,9 @@ const COLUMNS = [
     defaultValue: false,
     label: "Invited",
     format: (shouldContinue: boolean) => {
-      return <Checkbox  disabled checked={shouldContinue} />;
+      return <Checkbox disabled checked={shouldContinue} />;
     },
   },
-
   {
     inputType: "textField",
     type: "text",
