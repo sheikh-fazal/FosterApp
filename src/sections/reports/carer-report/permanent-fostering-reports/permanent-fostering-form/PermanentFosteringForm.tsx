@@ -8,7 +8,14 @@ import { LoadingButton } from "@mui/lab";
 
 const PermanentFosteringForm = ({ action }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit, } = usePermanentFosteringForm();
+  const { methods, handleBack, onSubmit, handleSubmit } =
+    usePermanentFosteringForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded  Meeting Record";
+  } else {
+    label = "Upload  Meeting Record";
+  }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -20,18 +27,18 @@ const PermanentFosteringForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
-                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
                   {form.componentProps?.select
                     ? form.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     : null}
                 </form.component>
               )}
@@ -43,7 +50,9 @@ const PermanentFosteringForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />
@@ -83,6 +92,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: "#898989",
+    color: theme.palette.primary.main,
   }),
 };

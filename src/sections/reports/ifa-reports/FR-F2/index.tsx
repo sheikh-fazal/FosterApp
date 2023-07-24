@@ -1,65 +1,58 @@
-import { TextField } from "@mui/material";
-
 export const viewReportsFilterData = [
   {
     gridlength: 6,
+   label: "Foster Carer",
     otherOptions: {
-      label: "Foster Carer",
+     label: "Foster Carer",
       name: "fosterCarer",
       fullWidth: true,
       size: "small",
-      select: true,
     },
     options: [{ value: "all", label: "all" }],
-    component: TextField
   },
   {
     gridlength: 6,
+   label: "Relationship to Foster Carer",
     otherOptions: {
-      label: "Relationship to Foster Carer",
+     label: "Relationship to Foster Carer",
       name: "relationshipToFosterCarer",
       fullWidth: true,
       size: "small",
-      select: true,
     },
     options: [{ value: "all", label: "all" }],
-    component: TextField
   },
   {
     gridlength: 6,
+   label: "Relative Name",
     otherOptions: {
-      label: "Relative Name",
+     label: "Relative Name",
       name: "relativeName",
       fullWidth: true,
       size: "small",
-      select: true,
     },
     options: [{ value: "all", label: "all" }],
-    component: TextField
   },
   {
     gridlength: 6,
+   label: "Select Search Date",
     otherOptions: {
-      label: "Select Search Date",
+     label: "Select Search Date",
       name: "selectSearchDate",
       fullWidth: true,
       size: "small",
-      select: true,
     },
     options: [{ value: "all", label: "all" }],
-    component: TextField
   },
   {
     gridlength: 6,
+   label: "Date Type",
     otherOptions: {
-      label: "Date Type",
+     label: "Date Type",
       name: "dateType",
       fullWidth: true,
       size: "small",
-      select: true,
     },
     options: [{ value: "Signed date", label: "Signed date" }],
-    component: TextField
   },
 ];
 

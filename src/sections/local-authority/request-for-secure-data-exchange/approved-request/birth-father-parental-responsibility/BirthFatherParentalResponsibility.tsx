@@ -23,10 +23,8 @@ const BirthFatherParentalResponsibility = ({
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
                 <form.component size="small" fullWidth {...form.componentProps}>
-                  <Typography sx={(theme) => style.title(theme)}>
-                    {form?.heading}
-                  </Typography>
-                  {form?.para}
+                  <Typography sx={style.heading}>{form?.heading}</Typography>
+
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -84,10 +82,10 @@ const BirthFatherParentalResponsibility = ({
 };
 
 export default BirthFatherParentalResponsibility;
-const style = {
-  title: (theme: any) => ({
-    color: theme.palette.primary.main,
-    fontSize: "16px",
-    fontWeight: 600,
-  }),
-};
+const style =({
+  heading :{
+    fontSize : "16px !important",
+    fontWeight:600
+
+  }
+})

@@ -1,9 +1,12 @@
 import { Box, Button, Card, Grid, Typography } from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import React from "react";
 import { LoadingButton } from "@mui/lab";
 import { useChildLivingHouseholdForm } from "./useChildLivingHouseholdForm";
+import childImg from "../../../../../assets/svg/reports/viewChild.svg";
 import { FRF1FormData } from ".";
+
+import Image from "next/image";
 
 const ChildLivingHouseholdForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
@@ -11,34 +14,16 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
     useChildLivingHouseholdForm();
   return (
     <Card sx={{ p: 2 }}>
-      <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
-          CHILD LIVING HOUSEHOLD
-        </Typography>
-        <Typography
-          sx={{
-            fontWeight: 500,
-            mb: "30px",
-            fontSize: "16px",
-            color: "#898989",
-          }}
-        >
-          Fill this form with relevent information.
-        </Typography>
-      </Box>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
           {FRF1FormData.map((form, i) => (
-            <Grid item key={i} md={form.gridLength} xs={12}>
-              {form.otherOptions && (
+            <Grid item xs={12} md={form?.gridLength} key={i}>
+              <Typography sx={(theme) => styles.title(theme, disabled)}>
+                {form.title}
+              </Typography>
+              {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.otherOptions}
@@ -50,11 +35,11 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
                         </option>
                       ))
                     : null}
+                  {form?.title}
                 </form.component>
               )}
             </Grid>
           ))}
-<<<<<<< HEAD
           <Grid container item xs={12} spacing={4}>
             <Grid item xs={12} md={6}>
               <Grid item xs={12}>
@@ -125,10 +110,26 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
               <Image src={childImg} alt="img" width={700} />
             </Grid>
           </Grid>
-=======
->>>>>>> morning-bugs
 
           <Grid item xs={12}>
+            <hr />
+            <Typography sx={(theme) => styles.title(theme, disabled)} p={1}>
+              ! Comments
+            </Typography>
+            <Typography sx={{ fontSize: "14px" }} p={1}>
+              This child needs attention John Cater
+            </Typography>
+            <Box gap={2} sx={{ display: "flex" }}>
+              <Typography sx={{ fontSize: "14px" }} p={1}>
+                Reply
+              </Typography>
+              <Typography sx={{ fontSize: "14px" }} p={1}>
+                Delete
+              </Typography>
+              <Typography sx={{ fontSize: "14px" }} p={1}>
+                Like
+              </Typography>
+            </Box>
             <Box sx={{ display: "flex", gap: "1rem" }}>
               {!disabled && (
                 <LoadingButton type="submit" variant="contained">
@@ -155,7 +156,6 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
 };
 
 export default ChildLivingHouseholdForm;
-<<<<<<< HEAD
 
 const styles = {
   title: (theme: any, disabled: any) => ({
@@ -169,5 +169,3 @@ const styles = {
     color: theme.palette.primary.main
   }),
 };
-=======
->>>>>>> morning-bugs

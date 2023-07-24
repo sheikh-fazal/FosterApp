@@ -10,6 +10,79 @@ import { HostedEventsOptions } from ".";
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
+///---------------------------------
+// Constants
+const OPTIONS = [
+  {
+    label: "Oliver Hansen",
+    value: "Oliver Hansen",
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Van Henry",
+    value: "Van Henry",
+
+    bgColor: "blue",
+    textColor: "white",
+  },
+  {
+    label: "April Tucker",
+    value: "April Tucker",
+
+    bgColor: "grey",
+    textColor: "white",
+  },
+  {
+    label: "Ralph Hubbard",
+    value: "Ralph Hubbard",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Omar Alexander",
+    value: "Omar Alexander",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Carlos Abbott",
+    value: "Carlos Abbott",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Miriam Wagner",
+    value: "Miriam Wagner",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Bradley Wilkerson",
+    value: "Bradley Wilkerson",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Virginia Andrews",
+    value: "Virginia Andrews",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+  {
+    label: "Kelly Snyder",
+    value: "Kelly Snyder",
+
+    bgColor: "green",
+    textColor: "white",
+  },
+];
 
 const COLUMNS = [
   {
@@ -27,7 +100,7 @@ const COLUMNS = [
     type: "file",
     key: "image",
     label: "Venue Photos",
-    size: { xs: 12, md: 6 },
+    size: { xs: 12, md: 12 },
     // Use this validation for images
     validation: (Yup: any) => {
       return Yup.mixed()

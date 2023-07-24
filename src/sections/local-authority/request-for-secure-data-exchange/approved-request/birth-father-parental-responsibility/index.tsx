@@ -19,7 +19,6 @@ export const BirthFatherParental = [
     heading:
       "Does the birth father know of the plan to place the child for adoption?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -27,7 +26,7 @@ export const BirthFatherParental = [
     md: 12,
   },
   {
-    para:
+    heading:
       "If yes, give details of any formal or advanced consent to the placement of the child for adoption and the making of the adoption order (witnessed by a CAFCASS officer) ",
     componentProps: {
       variant: "",
@@ -48,7 +47,7 @@ export const BirthFatherParental = [
     md: 12,
   },
   {
-    para:
+    heading:
       "If no, has the agency decided that it is appropriate to counsel and advise the birth father? Is there any ongoing contact with the birth father directly or through another agency?",
     componentProps: {
       variant: "",

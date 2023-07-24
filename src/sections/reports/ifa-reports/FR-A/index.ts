@@ -1,5 +1,3 @@
-import { TextField } from "@mui/material";
-
 export const viewReportsFilterData = [
   {
     gridlength: 6,
@@ -7,13 +5,11 @@ export const viewReportsFilterData = [
       label: 'Reference Number',
       name: 'referenceNumber',
       fullWidth: true,
-      select: true,
       size: 'small',
     },
     options: [
       { value: 'all', label: 'all' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
@@ -21,13 +17,11 @@ export const viewReportsFilterData = [
       label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
-      select: true,
       size: 'small',
     },
     options: [
       { value: 'all', label: 'all' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
@@ -36,12 +30,10 @@ export const viewReportsFilterData = [
       name: 'fosterCarer',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'all', label: 'all' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
@@ -49,13 +41,11 @@ export const viewReportsFilterData = [
       label: 'Select Search Date',
       name: 'searchDate',
       fullWidth: true,
-      select: true,
       size: 'small',
     },
     options: [
       { value: 'signed Date', label: 'signed Date' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
@@ -63,13 +53,11 @@ export const viewReportsFilterData = [
       label: 'Date Type',
       name: 'dateType',
       fullWidth: true,
-      select: true,
       size: 'small',
     },
     options: [
       { value: 'today', label: 'today' }
     ],
-    component: TextField
   },
 ];
 

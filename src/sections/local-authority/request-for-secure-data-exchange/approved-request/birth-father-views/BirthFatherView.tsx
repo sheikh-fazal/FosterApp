@@ -21,9 +21,7 @@ const BirthFatherView = ({ handleNextTab, handleBackTab }: any) => {
               {form.component && (
                 <form.component size="small" fullWidth {...form.componentProps}>
                   {form?.para}
-                  <Typography sx={(theme) => style.title(theme)}>
-                    {form?.heading}
-                  </Typography>
+                  <Typography  sx={style.heading}>{form?.heading}</Typography>
 
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
@@ -73,10 +71,11 @@ const BirthFatherView = ({ handleNextTab, handleBackTab }: any) => {
 };
 
 export default BirthFatherView;
-const style = {
-  title: (theme: any) => ({
-    color: theme.palette.primary.main,
-    fontSize: "16px",
-    fontWeight: 600,
-  }),
-};
+
+const style =({
+  heading :{
+    fontSize : "16px !important",
+    fontWeight:600
+
+  }
+})

@@ -8,7 +8,6 @@ export const BirthWithoutFatherParental = [
     heading:
       "Is the identity of the birth father without PR known to the agency?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -18,7 +17,6 @@ export const BirthWithoutFatherParental = [
   {
     heading: "Has the paternity of the child been confirmed?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 2 },
     },
@@ -53,7 +51,6 @@ export const BirthWithoutFatherParental = [
     heading:
       "Does the birth father know of the birth of the child and what contact has there been with the agency?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 0 },
     },
@@ -61,7 +58,7 @@ export const BirthWithoutFatherParental = [
     md: 12,
   },
   {
-    para:
+    heading:
       "If the birth father knows, set out what steps have been taken to offer counselling and advice . Are these continuing? If not and the agency knows the birth father’s identity, has the agency decided that it is appropriate to offer counselling and advice? Is there any ongoing contact with the birth father directly or through another agency?",
     componentProps: {
       variant: "",
@@ -85,7 +82,6 @@ export const BirthWithoutFatherParental = [
     heading:
       "Does the birth father intend to apply for parental responsibility for the child, or for a residence or contact order?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },

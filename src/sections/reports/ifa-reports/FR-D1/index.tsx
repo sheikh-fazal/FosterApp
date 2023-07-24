@@ -1,75 +1,68 @@
-import { TextField } from "@mui/material";
-
 export const FRD1FilterData = [
   {
     gridlength: 6,
+    label: "Name Fostered Child (DOB)",
     otherOptions: {
       label: "Name Fostered Child (DOB)",
       name: 'personName',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'all', label: 'all' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
+    label: 'Supervising Social Worker',
     otherOptions: {
       label: 'Supervising Social Worker',
       name: 'supervisingSocialWorker',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'all', label: 'all' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
+    label: 'Foster Carer(s)',
     otherOptions: {
       label: 'Foster Carer(s)',
       name: 'fosterCarer',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'today', label: 'today' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
+    label: 'Select Search Date',
     otherOptions: {
       label: 'Select Search Date',
       name: 'searchDate',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'created Date', label: 'created Date' }
     ],
-    component: TextField
   },
   {
     gridlength: 6,
+    label: 'Date Type',
     otherOptions: {
       label: 'Date Type',
       name: 'dateType',
       fullWidth: true,
       size: 'small',
-      select: true,
     },
     options: [
       { value: 'today', label: 'today' }
     ],
-    component: TextField
   },
 
 ];
@@ -108,7 +101,5 @@ export const tableMockData = [
     fosterCarer: 'Teri Dactyl',
     createdDate: '03/10/21',
     createdBy: 'john doe',
-    modifiedDate: '03/10/21',
-    modifiedBy: 'john doe',
   }
 ]

@@ -20,7 +20,7 @@ const COLUMNS = [
   {
     inputType: "select",
     key: "type",
-    label: "Type",
+    label: "type",
     options: TYPE,
     validation: (Yup: any) => {
       return Yup.object().shape({
@@ -105,13 +105,40 @@ const COLUMNS = [
       return Yup.string().required("Field is required")
     },
   },
+  // {
+  //   inputType: "multi-select",
+  //   type: "select",
+  //   key: "invites",
+  //   defaultValue: [],
+  //   label: "invites",
+  //   options: INVITES,
+  //   validation: (Yup: any) => {
+  //     return Yup.array()
+  //       .of(
+  //         Yup.object().shape({
+  //           label: Yup.string(),
+  //           value: Yup.string(),
+  //           bgColor: Yup.string(),
+  //           textColor: Yup.string(),
+  //         })
+  //       )
+  //       .test(
+  //         "required",
+  //         "Platform is required.",
+  //         (arr: any) => arr.length > 0
+  //       );
+  //   },
+  //   format: (selectedValues = []) => {
+  //     return <DataChips options={selectedValues} />;
+  //   },
+  // },
   {
     inputType: "multi-select",
     type: "select",
     key: "invites",
     fullWidth: true,
     defaultValue: [],
-    label: "Invites",
+    label: "invites",
     options: INVITES,
     validation: (Yup: any) => {
       return Yup.array()

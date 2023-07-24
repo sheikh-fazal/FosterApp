@@ -27,7 +27,6 @@ export const BirthFatherViewsData = [
     heading:
       "I have been shown the details about me as recorded in my child’s permanence report",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -37,7 +36,6 @@ export const BirthFatherViewsData = [
   {
     heading: "I agree with what has been written",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -80,9 +78,8 @@ export const BirthFatherViewsData = [
     md: 12,
   },
   {
-    heading: "I have been given written information about the adoption process",
+    para: "I have been given written information about the adoption process",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -93,7 +90,6 @@ export const BirthFatherViewsData = [
     heading:
       "I have been offered/had independent counselling to support me in understanding why adoption is the local authority’s preferred plan for my child",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },
@@ -106,7 +102,7 @@ export const BirthFatherViewsData = [
     componentProps: {
       variant: "",
       color: (theme: any) => theme.palette.primary.main,
-      sx: { mb: 0 },
+      sx: { mb: 2 },
     },
     component: Typography,
     md: 12,
@@ -115,9 +111,8 @@ export const BirthFatherViewsData = [
     heading:
       "What things would you like your child/children and the adopters to know about your childhood and the way that it has influenced you? In time, it will be very important for your child to have a better understanding of your life. This will be easier if your child has a picture of both the good things and the difficult experiences you may have had whilst growing up.",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
-      sx: { mb: 0  , mt:2},
+      sx: { mt: 2 },
     },
     component: Typography,
     md: 12,
@@ -137,7 +132,6 @@ export const BirthFatherViewsData = [
     heading:
       "Do You have any wishes or about your child/children in relation to the plan them for adoption ?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 0 },
     },
@@ -159,7 +153,6 @@ export const BirthFatherViewsData = [
     heading:
       "Do You have any wishes or about your child/children in relation to their future religious or cultural upbringing?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 0 },
     },
@@ -181,7 +174,6 @@ export const BirthFatherViewsData = [
     heading:
       "Are there any other comments you would like to make about the way in which you would like your child/children to be brought up in their adoptive family ?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 0 },
     },

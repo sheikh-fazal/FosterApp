@@ -4,6 +4,7 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useBirthMotherViews } from "./useBirthMotherViews";
 
+
 const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, BirthMotherViews } =
     useBirthMotherViews();
@@ -15,10 +16,7 @@ const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
                 <form.component size="small" fullWidth {...form.componentProps}>
-                  <Typography sx={(theme) => style.title(theme)}>
-                    {form?.heading}
-                  </Typography>
-                  {form?.para}
+                  <Typography sx={{fontSize:"16px", color:"red"}}>{form?.heading}</Typography>
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -67,11 +65,3 @@ const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
 };
 
 export default BirthMotherViews;
-
-const style = ({
-  title :(theme:any)=> ({
-    color: theme.palette.primary.main,
-    fontSize:"16px",
-    fontWeight:600
-  })
-})

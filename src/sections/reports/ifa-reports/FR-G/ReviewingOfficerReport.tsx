@@ -1,9 +1,25 @@
 import React from "react";
-import { Box, Checkbox, } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  Checkbox,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from "@mui/material";
+import Image from "next/image";
+import automatedIcon from "../../../../assets/svg/reports/automatedIcon.svg";
 import { tableSubHeader, viewReportsFilterData, tableMockData } from ".";
 import { useReviewingOfficerReport } from "./useReviewingOfficerReport";
+import TableHeader from "@root/components/TableHeader";
+import TableSubHeader from "../../table-sub-header/TableSubHeader";
+import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
-import ReportsLayout from "../../reports-layout/ReportsLayout";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 const ReviewingOfficerReport = () => {
   const { handleSearch, handleAction, openDelete, handleCloseDeleteModal } =
@@ -87,26 +103,62 @@ const ReviewingOfficerReport = () => {
     },
   ];
   return (
-    <ReportsLayout
-      icon=''
-      searchOnRight
-      handleFilterBtn={handleSearch}
-      tableHeaderProps={{ title: '', showAddBtn: true, onAdd: () => handleAction('add') }}
-      selectFilterArray={viewReportsFilterData}
-      handleFilterChange={(event: any) => { }}
-      TableSubHeaderData={tableSubHeader}
-      tableProps={{
-        data: tableMockData,
-        columns,
-        isSuccess: true
-      }}
-      deleteModalProps={{
-        open: openDelete,
-        handleClose: handleCloseDeleteModal,
-        onDeleteClick: handleCloseDeleteModal
-      }}
-    />
+    <> 
+      <Card sx={{ p: 2, my: 2 }}>
+        <Grid container spacing={4}>
+          {viewReportsFilterData.map((data: any, i: number) => (
+            <Grid item key={i} md={data.gridlength} xs={12}>
+              <FormControl fullWidth size="small">
+                <InputLabel id="demo-simple-select-label">
+                  {data.label}
+                </InputLabel>
+                <Select {...data.otherOptions}>
+                  {data.options.map((item: any, j: number) => (
+                    <MenuItem key={j} value={item.value}>
+                      {item.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          ))}
+          <Grid item xs={12} display={"flex"} justifyContent={"flex-end"}>
+            <Button onClick={handleSearch} variant="contained">
+              Search
+            </Button>
+          </Grid>
+        </Grid>
+      </Card>
+      <TableHeader title={""} showAddBtn onAdd={() => handleAction("add")} />
+      <TableSubHeader data={tableSubHeader} />
+      <CustomTable
+        isError={false}
+        isLoading={false}
+        isFetching={false}
+        isSuccess={true}
+        data={tableMockData}
+        columns={columns}
+      /> 
+      {openDelete && (
+        <DeleteModel
+          open={openDelete}
+          handleClose={handleCloseDeleteModal}
+          onDeleteClick={handleCloseDeleteModal}
+        />
+      )}
+    </>
   );
 };
 
 export default ReviewingOfficerReport;
+
+const styles = {
+  cardStyle: {
+    "& .MuiStack-root": {
+      "& .MuiStack-root": {
+        marginLeft: "auto",
+        marginRight: "20px",
+      },
+    },
+  },
+};

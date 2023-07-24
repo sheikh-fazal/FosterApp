@@ -46,7 +46,7 @@ const PartA = ({ disabled, handleNextTab }: any) => {
               type="submit"
               variant="contained"
             >
-              Next
+              Submit
             </LoadingButton>
             <Button
               sx={{ backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#F6830F", }, }}
@@ -70,7 +70,7 @@ const CustomTypography = ({ isHead, title, theme }: any) => {
       sx={{
         fontWeight: 600,
         fontSize: '16px',
-        color: theme.palette.primary.main,
+        color: theme.palette.primary.main
       }}
     >
       {title}

@@ -7,9 +7,16 @@ import { RecordCriiticalIncidentFormValues } from ".";
 import { LoadingButton } from "@mui/lab";
 
 const RecordCriticalIncidentsForm = ({ action }: any) => {
-  console.log("action", action)
+  console.log("action", action);
   const disabled = action === "view" ? true : false;
-  const { methods, handleBack, onSubmit, handleSubmit, } = useRecordCriticalIncidentsForm();
+  const { methods, handleBack, onSubmit, handleSubmit } =
+    useRecordCriticalIncidentsForm();
+  let label: any;
+  if (action === "view") {
+    label = "Uploaded  Meeting Record";
+  } else {
+    label = "Upload  Meeting Record";
+  }
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -21,18 +28,18 @@ const RecordCriticalIncidentsForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
+                  fullWidth
                   disabled={disabled}
                   size="small"
-                  fullWidth
                   {...form.componentProps}
                 >
                   {form?.heading}
                   {form.componentProps?.select
                     ? form.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     : null}
                 </form.component>
               )}
@@ -44,7 +51,9 @@ const RecordCriticalIncidentsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
+                    label={label}
                     name={"updateMeetingRecord"}
+                    label='Upload Meeting record'
                     {...methods}
                     required
                   />
@@ -84,6 +93,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "#212529",
+    color: theme.palette.primary.main,
   }),
 };

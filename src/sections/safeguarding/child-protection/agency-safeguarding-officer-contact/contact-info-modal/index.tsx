@@ -38,14 +38,15 @@ export const FormSchema = Yup.object().shape({
 export const formData = [
   {
     gridLength: 6,
+    title: "Name",
     fontWeight: 600,
-    otherOptions: { name: "name", fullWidth: true, label: "Name" },
+    otherOptions: { name: "name", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Role",
     otherOptions: {
-      label: "Role",
       name: "role",
       fullWidth: true,
       select: true,
@@ -61,13 +62,14 @@ export const formData = [
   },
   {
     gridLength: 6,
-    otherOptions: { name: "department", fullWidth: true, label: "Department" },
+    title: "Department",
+    otherOptions: { name: "department", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Branch",
     otherOptions: {
-      label: "Branch",
       name: "branch",
       fullWidth: true,
       select: true,
@@ -83,33 +85,37 @@ export const formData = [
   },
   {
     gridLength: 6,
+    title: "Business Phone",
     fontWeight: 600,
-    otherOptions: { name: "businessPhone", fullWidth: true, label: "Business Phone" },
+    otherOptions: { name: "businessPhone", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Email",
     fontWeight: 600,
-    otherOptions: { name: "email", fullWidth: true, label: "Email" },
+    otherOptions: { name: "email", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Mobile",
     fontWeight: 600,
-    otherOptions: { name: "mobile", fullWidth: true, label: "Mobile" },
+    otherOptions: { name: "mobile", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Company",
     fontWeight: 600,
-    otherOptions: { name: "company", fullWidth: true, label: "Company" },
+    otherOptions: { name: "company", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Address",
     fontWeight: 600,
     otherOptions: {
-      label: "Address",
       name: "address",
       multiline: true,
       minRows: 3,
@@ -119,14 +125,15 @@ export const formData = [
   },
   {
     gridLength: 6,
+    title: "Post Code",
     fontWeight: 600,
-    otherOptions: { name: "postCode", fullWidth: true, label: "Post Code" },
+    otherOptions: { name: "postCode", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
+    title: "Country",
     otherOptions: {
-      label: "Country",
       name: "country",
       fullWidth: true,
       select: true,
@@ -142,8 +149,9 @@ export const formData = [
   },
   {
     gridLength: 6,
+    title: "Color Code",
     fontWeight: 600,
-    otherOptions: { name: "colorCode", fullWidth: true, type: "color", label: "Color Code " },
+    otherOptions: { name: "colorCode", fullWidth: true, type: "color" },
     component: RHFTextField,
   },
   {

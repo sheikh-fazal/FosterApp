@@ -14,9 +14,7 @@ const ChildBirthMother = ({ handleNextTab, handleBackTab }: any) => {
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
                 <form.component size="small" fullWidth {...form.componentProps}>
-                  <Typography sx={(theme) => style.title(theme)}>
-                    {form?.heading}
-                  </Typography>
+                  <Typography sx={style.heading}>{form?.heading}</Typography>
 
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
@@ -56,11 +54,10 @@ const ChildBirthMother = ({ handleNextTab, handleBackTab }: any) => {
 };
 
 export default ChildBirthMother;
+const style =({
+  heading :{
+    fontSize : "16px !important",
+    fontWeight:600
 
-const style = {
-  title: (theme: any) => ({
-    color: theme.palette.primary.main,
-    fontSize: "16px",
-    fontWeight: 600,
-  }),
-};
+  }
+})

@@ -6,7 +6,6 @@ import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 import Link from "next/link";
 import ErrorIcon from "@mui/icons-material/Error";
 
-
 const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
   const {
     methods,
@@ -51,7 +50,7 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
                   <Box
                     sx={{ display: "flex", alignItems: "center", gap: "10px" }}
                   >
-                    <Typography sx={(theme)=>style.title(theme)}>{form?.heading}</Typography>
+                    <Typography sx={style.heading}>{form?.heading}</Typography>
                     <span>
                       {form?.tooltip && (
                         <StyledTooltip title={form?.disc}>
@@ -118,11 +117,10 @@ const ChildInfoFeeling = ({ handleNextTab, handleBackTab }: any) => {
 
 export default ChildInfoFeeling;
 
-
-const style = ({
-  title :(theme:any)=> ({
-    color: theme.palette.primary.main,
-    fontSize:"16px",
+const style =({
+  heading :{
+    fontSize : "16px !important",
     fontWeight:600
-  })
+
+  }
 })
