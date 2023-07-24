@@ -47,7 +47,7 @@ const DiaryRecordingsForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                  label={label}
+                  // label={label}
                     {...form.componentProps}
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'

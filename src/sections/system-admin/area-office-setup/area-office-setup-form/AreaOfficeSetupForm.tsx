@@ -5,10 +5,22 @@ import { LoadingButton } from "@mui/lab";
 import { useareaOfficeSetupForm } from "./useareaOfficeSetupForm";
 import { FRF1FormData } from ".";
 import { useRouter } from "next/router";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { formSchema, initialValues } from "."; 
 
 const AreaOfficeSetupForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
-  const { methods, onSubmit, handleSubmit } = useareaOfficeSetupForm();
+  const { onSubmit } = useareaOfficeSetupForm();
+  const methods: any = useForm({
+    resolver: yupResolver(formSchema),
+    defaultValues: initialValues,
+  });
+
+  const {
+    handleSubmit,
+    formState: { errors, isSubmitting, isDirty },
+  } = methods;
   const router = useRouter();
   return (
     <Card sx={{ p: 2 }}>
@@ -16,19 +28,9 @@ const AreaOfficeSetupForm = ({ action, id }: any) => {
         <Grid container spacing={4}>
           {FRF1FormData.map((form, i) => (
             <Grid item key={i} md={form.gridLength} xs={12}>
-              {form.head && (
-                <Typography
-                  sx={{ fontSize: "16px", fontWeight: 600, color: "#0E918C" }}
-                >
-                  {form.head}
-                </Typography>
-              )}
+              {form.head && <Typography sx={{ fontSize: "16px", fontWeight: 600, color: "#0E918C" }}>{form.head}</Typography>}
               {form.otherOptions && (
-                <form.component
-                  disabled={disabled}
-                  size="small"
-                  {...form.otherOptions}
-                >
+                <form.component disabled={disabled} size="small" {...form.otherOptions}>
                   {form.otherOptions.select
                     ? form.otherOptions.options.map((option: any) => (
                         <option key={option.value} value={option.value}>

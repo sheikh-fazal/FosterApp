@@ -16,7 +16,7 @@ const ActionSheetModal = ({ open, onClose, disabled }: any) => {
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
             {formData.map((item, i) => (
-              <Grid item md={item.gridLength} xs={12}>
+              <Grid key={i} item md={item.gridLength} xs={12}>
                 <item.component
                   disabled={disabled}
                   size={'small'}

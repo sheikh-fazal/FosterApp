@@ -5,15 +5,15 @@ import { formSchema, initialValues } from ".";
 export const useareaOfficeSetupForm = () => { 
 
 
-  const methods: any = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: initialValues,
-  });
+  // const methods: any = useForm({
+  //   resolver: yupResolver(formSchema),
+  //   defaultValues: initialValues,
+  // });
 
-  const { 
-    handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
-  } = methods;
+  // const { 
+  //   handleSubmit,
+  //   formState: { errors, isSubmitting, isDirty },
+  // } = methods;
 
 
   const onSubmit = (data: any) => {
@@ -21,8 +21,8 @@ export const useareaOfficeSetupForm = () => {
   };
 
   return {
-    methods,
-    handleSubmit, 
+    // methods,
+    // handleSubmit, 
     onSubmit
   }
 }
