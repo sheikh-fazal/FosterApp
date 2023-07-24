@@ -4,57 +4,57 @@ import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { router, handleDeleteTherapy } = parms;
+  const { router, handleDeleteChildTherapy } = parms;
   const { query } = useRouter();
   const { fosterChildId } = query;
   return [
     {
-      accessorFn: (row: any) => row.referralDate,
-      id: "CAMHS Date",
-      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-      header: " CAMHS Date",
+      accessorFn: (row: any) => row.documentName,
+      id: "Document Name",
+      cell: (info: any) => info.getValue(),
+      header: "Document Name",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.appointmentDate,
-      id: "Appointment",
-      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
+      accessorFn: (row: any) => row.documentType,
+      id: "Document Type",
+      cell: (info: any) => info.getValue(),
       header: "Appointment",
       isSortable: false,
     },
-
+    {
+      accessorFn: (row: any) => row.createdAt,
+      id: "Document Date",
+      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
+      header: " Document Date",
+      isSortable: false,
+    },
+    {
+      accessorFn: (row: any) => row.uploadBy,
+      id: "Person Uploaded",
+      cell: (info: any) => info.getValue(),
+      header: " Person Uploaded",
+      isSortable: false,
+    },
+    {
+      accessorFn: (row: any) => row.password,
+      id: "Password",
+      cell: (info: any) => info.getValue(),
+      header: " Password",
+      isSortable: false,
+    },
     {
       accessorFn: (row: any) => row.f,
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
-            size="small"
-            type="edit"
-            onClick={() =>
-              router.push(
-                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${info.row.original.id}`
-              )
-            }
-          />
-          <TableAction
-            size="small"
-            type="download"
-            onClicked={() => handleDeleteTherapy(info.row.original.id)}
-          />
-          <TableAction
-            size="small"
-            type="view"
-            onClick={() =>
-              router.push(
-                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=view&therapyInfoId=${info.row.original.id}`
-              )
-            }
-          />
+          <TableAction size="small" type="edit" />
+          <TableAction size="small" type="download" />
+          <TableAction size="small" type="view" />
           <TableAction
             size="small"
             type="delete"
-            onClicked={() => handleDeleteTherapy(info.row.original.id)}
+            onClicked={() => handleDeleteChildTherapy(info.row.original.id)}
           />
         </Box>
       ),

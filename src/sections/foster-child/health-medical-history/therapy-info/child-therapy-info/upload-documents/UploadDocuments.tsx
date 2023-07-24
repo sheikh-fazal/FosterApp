@@ -60,7 +60,7 @@ const UploadDocuments = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.therapy_info}
+        data={data?.data?.therapy_info_document}
         columns={columns}
         isLoading={isLoading}
         showSerialNo

@@ -2,8 +2,10 @@ import { useRef, useState } from "react";
 import { getColumns } from "./columnsInfo";
 import { useRouter } from "next/router";
 import {
+  useDelTherapyDetailsDocsListDataMutation,
   useDelTherapyDetailsListDataMutation,
   useGetAlltherapyDetailsListDataQuery,
+  useGetTherapyDetailsDocsListDataQuery,
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { displaySuccessMessage } from "@root/utils/mixedUtil";
@@ -25,14 +27,18 @@ export const useChildUploadDocuemntInfoList = () => {
   };
   const tableHeaderRef = useRef<any>();
 
-  const apiDataParameter = { params, id: query.fosterChildId };
+  const apiDataParameter = { params, id: query?.therapyInfoId };
+
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAlltherapyDetailsListDataQuery(apiDataParameter);
-  const [delTherapyDetailsListData] = useDelTherapyDetailsListDataMutation();
-  const handleDeleteTherapy = async (id: string) => {
+    useGetTherapyDetailsDocsListDataQuery(apiDataParameter);
+
+  const [delTherapyDetailsDocsListData] =
+    useDelTherapyDetailsDocsListDataMutation();
+
+  const handleDeleteChildTherapy = async (id: string) => {
     try {
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
-      const data = await delTherapyDetailsListData({ id });
+      const data = await delTherapyDetailsDocsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
@@ -41,15 +47,16 @@ export const useChildUploadDocuemntInfoList = () => {
       return false;
     }
   };
+
   const openAddModel = () => {
     setTherapInfo((pre) => ({ ...pre, addModel: true }));
   };
+
   const closeAddModel = () => {
     setTherapInfo((pre) => ({ ...pre, addModel: false }));
   };
-  // const { data, isLoading, isSuccess, isError, isFetching } =
-  //   useSafeCarePolicyListQuery(params);
-  const columns = getColumns({ router, handleDeleteTherapy });
+
+  const columns = getColumns({ router, handleDeleteChildTherapy });
   return {
     tableHeaderRef,
     columns,
@@ -62,7 +69,6 @@ export const useChildUploadDocuemntInfoList = () => {
     setPage,
     page,
     therapInfoCon,
-    handleDeleteTherapy,
     openAddModel,
     closeAddModel,
   };
