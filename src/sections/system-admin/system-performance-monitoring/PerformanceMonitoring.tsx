@@ -38,8 +38,8 @@ const PerformanceMonitoring = () => {
         </Grid>
         <Grid item xs={12} sx={styles.tabs(theme.palette.mode)}>
           <VericalTabs tabsDataArray={systemPerformanceTabs}>
-            {systemPerformanceTabs?.map((item: any) => (
-              <Box>{item?.innerData && item?.innerData}</Box>
+            {systemPerformanceTabs?.map((item: any,i:number) => (
+              <Box key={i}>{item?.innerData && item?.innerData}</Box>
             ))}
           </VericalTabs>
         </Grid>
