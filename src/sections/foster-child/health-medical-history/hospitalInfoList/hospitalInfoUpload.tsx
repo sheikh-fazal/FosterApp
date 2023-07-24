@@ -90,7 +90,9 @@ function HospitalInfoUpload(props: any) {
         id: "actions",
         cell: (info: any) => (
           <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-            <DeletePrompt onDeleteClick={onDeleteHander} />
+            <DeletePrompt
+              onDeleteClick={() => onDeleteHander(info.row.original.id)}
+            />
             <ModelUploadDoc
               showActions={true}
               isFetching={isFatching}

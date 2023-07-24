@@ -33,7 +33,7 @@ const useHospitalinfoListForms = (props: any) => {
     useUpdateHospitalInfoListDocumentMutation();
   const [deleteHospitalInfoListDocument] =
     useDeleteHospitalInfoListDocumentMutation();
- 
+
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
@@ -202,6 +202,7 @@ const useHospitalinfoListForms = (props: any) => {
   };
   const onDeleteHander = (id: any) => {
     deleteHospitalInfoListDocument({ id: id })
+      .unwrap()
       .then(() => {
         enqueueSnackbar("Information Delete Successfully", {
           variant: "success",
