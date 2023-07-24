@@ -17,10 +17,6 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
         params: apiDataParameter.params,
       }),
       providesTags: [TAG],
-      transformResponse: (res) => {
-        console.log({ res });
-        return res;
-      },
     }),
     delTherapyDetailsListData: builder.mutation({
       query: (payload: any) => ({

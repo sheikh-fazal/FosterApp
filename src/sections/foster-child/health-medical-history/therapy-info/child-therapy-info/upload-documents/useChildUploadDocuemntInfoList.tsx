@@ -12,9 +12,11 @@ export const useChildUploadDocuemntInfoList = () => {
   const router = useRouter();
   const { query } = useRouter();
   const [page, setPage] = useState(0);
+
   const [searchValue, setSearchValue] = useState(undefined);
   const [therapInfoCon, setTherapInfo] = useState({
     someAsyncAction: false,
+    addModel: false,
   });
   const params = {
     search: searchValue,
@@ -39,6 +41,12 @@ export const useChildUploadDocuemntInfoList = () => {
       return false;
     }
   };
+  const openAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, addModel: true }));
+  };
+  const closeAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, addModel: false }));
+  };
   // const { data, isLoading, isSuccess, isError, isFetching } =
   //   useSafeCarePolicyListQuery(params);
   const columns = getColumns({ router, handleDeleteTherapy });
@@ -55,5 +63,7 @@ export const useChildUploadDocuemntInfoList = () => {
     page,
     therapInfoCon,
     handleDeleteTherapy,
+    openAddModel,
+    closeAddModel,
   };
 };

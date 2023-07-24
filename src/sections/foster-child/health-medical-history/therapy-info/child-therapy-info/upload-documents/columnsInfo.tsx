@@ -39,6 +39,11 @@ export const getColumns = (parms: any) => {
           />
           <TableAction
             size="small"
+            type="download"
+            onClicked={() => handleDeleteTherapy(info.row.original.id)}
+          />
+          <TableAction
+            size="small"
             type="view"
             onClick={() =>
               router.push(
