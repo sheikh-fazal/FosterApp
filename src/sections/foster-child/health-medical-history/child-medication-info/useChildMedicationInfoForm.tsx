@@ -37,7 +37,6 @@ const useChildMedicationInfoForm = (props: any) => {
 
     for (const key of keys) {
       if (data[key] !== undefined) {
-        console.log(key);
         sendata[key] = data[key];
       }
     }
@@ -52,7 +51,6 @@ const useChildMedicationInfoForm = (props: any) => {
         .unwrap()
         .then((data) => {
           setisFatching(false);
-          console.log(data);
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
@@ -126,7 +124,6 @@ const useChildMedicationInfoForm = (props: any) => {
           responseData[key] = new Date(responseData[key]);
         }
       }
-      console.log(responseData, "response");
       return responseData;
     } else {
       setisloading(false);

@@ -28,7 +28,6 @@ const ChildMedicationInfotable = (prop: any) => {
   } = useChildMedicationInfotable({
     fosterChildId: fosterChildId,
   });
-  console.log(childMedicationInfotabledata);
   const { deleteHander } = useChildMedicationInfoForm({});
   const columns = [
     // {

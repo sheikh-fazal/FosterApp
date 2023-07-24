@@ -25,7 +25,6 @@ const ChildMedicationInfoForm = (props: any) => {
       ChildMedicationInfoId,
     });
   const methods: any = useForm({
-    // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: getDefaultValue,
   });

@@ -43,7 +43,6 @@ export default function ViewAbsenceInfoForm() {
   const absenceInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetAbsenceInfoByIdQuery(absenceInfoId);
-  console.log(data);
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>

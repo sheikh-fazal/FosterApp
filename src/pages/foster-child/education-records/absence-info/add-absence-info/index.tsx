@@ -39,7 +39,7 @@ export default function AbsenceInfoFormLayout() {
     useGetAbsenceInfoByIdQuery(childInfoId);
   return (
     <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm  defaultValues={data?.[0]}/>
+      <AbsenceInfoForm defaultValues={data?.[0]} />
       <AbsenceInfoDocument />
     </HorizaontalTabs>
   );

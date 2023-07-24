@@ -1,12 +1,12 @@
 import { baseAPI } from "@root/services/baseApi";
-import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of Abence Info Document
-    getAbsenceInfoDocument: builder.query<null, object>({
-      query: ({ childAbsenceInfoId }: any) => ({
+    getAbsenceInfoDocument: builder.query({
+      query: ({ childAbsenceInfoId, params }: any) => ({
         url: `/foster-child/child-absence-info/document/list/${childAbsenceInfoId}`,
+        params: params,
         method: "GET",
       }),
       providesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],

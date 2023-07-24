@@ -23,10 +23,6 @@ ChildMedicationInfoActions.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function ChildMedicationInfoActions() {
-  // const {
-  //   user: { firstName, defaultRole, lastName },
-  // }: any = useAuth();
-
   const Router: any = useRouter();
   const { action, fosterChildId, ChildMedicationInfoId } = Router?.query;
   const PAGE_TITLE = "Child Medication Info";
@@ -58,13 +54,9 @@ export default function ChildMedicationInfoActions() {
     setPage,
   }: any = useGetChildMedicationInfoDocumentQuery({
     ChildMedicationInfoId,
+    params,
   });
-  // const router = useRouter();
-  // const ChildMedicationInfoId = {
-  //   ChildMedicationInfoId: Router?.query,
-
-  // };
-  //Car Insurance Upload Modal API
+  //child medication Upload Modal API
   const [postDocuments] = useCreateChildMedicationInfoDocumentMutation();
 
   //API For Delete Document List
@@ -72,10 +64,6 @@ export default function ChildMedicationInfoActions() {
 
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
-    console.log(
-      "🚀 ~ file: actions.tsx:72 ~ documentUploadHandler ~ formData:",
-      formData
-    );
     formData.append("docName", data.docName);
     formData.append("docType", data.documentType);
     formData.append("date", dayjs(data.documentDate).format("DD/MM/YYYY"));
@@ -149,8 +137,8 @@ export default function ChildMedicationInfoActions() {
           onPageChange={(page: any) => {
             setPage(() => (page - 1) * 10);
           }}
-          currentPage={data?.data?.meta?.data}
-          totalPages={data?.data?.meta?.data}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
           onDelete={(data: any) => deleteDocument(data?.id)}
         />
       </HorizaontalTabs>

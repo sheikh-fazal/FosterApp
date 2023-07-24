@@ -38,7 +38,7 @@ const ChildMedicationInfoDocument = baseAPI.injectEndpoints({
       query: ({ ChildMedicationInfoId, params }: any) => ({
         url: `/foster-child/child-medication-info/document/list/${ChildMedicationInfoId}`,
         method: "Get",
-        params,
+        params: params,
       }),
       providesTags: ["child-medication-info-document"],
     }),

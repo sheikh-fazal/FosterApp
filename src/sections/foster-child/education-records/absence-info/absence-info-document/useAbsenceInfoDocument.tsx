@@ -12,17 +12,19 @@ export const useAbsenceInfoDocument = () => {
   const router = useRouter();
   const [searchValue, setSearchValue] = useState(undefined);
   const [page, setPage] = useState(0);
-  console.log(router?.asPath.split("/").pop());
+  const [search, setSearch] = useState("");
 
-  const childAbsenceInfoId = {
-    childAbsenceInfoId: router?.query?.absence_info_id,
+  const params = {
     offset: page,
     limit: 10,
     search: searchValue,
   };
 
   const { data, isLoading, isSuccess, isFetching, isError } =
-    useGetAbsenceInfoDocumentQuery(childAbsenceInfoId);
+    useGetAbsenceInfoDocumentQuery({
+      childAbsenceInfoId: router?.query?.absence_info_id,
+      params,
+    });
 
   const [postAbsenceInfoUploadDocument] =
     usePostAbsenceInfoUploadDocumentMutation();

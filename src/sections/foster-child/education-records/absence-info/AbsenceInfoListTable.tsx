@@ -23,10 +23,6 @@ export default function AbsenceInfoListTable(prop: any) {
     pageChangeHandler,
     sortChangeHandler,
   } = useAbsenceInfoListTable();
-  console.log(
-    "🚀 ~ file: AbsenceInfoListTable.tsx:23 ~ AbsenceInfoListTable ~ data:",
-    data
-  );
 
   const columns = [
     // {

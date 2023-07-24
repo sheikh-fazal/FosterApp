@@ -13,7 +13,6 @@ import { useEffect } from "react";
 export const useAbsenceInfoForm = (props: any) => {
   const router = useRouter();
   const childInfoId = router?.query["absence_info_id"];
-  console.log(router, "router?.query");
   const { disabled } = props;
 
   const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
@@ -40,7 +39,6 @@ export const useAbsenceInfoForm = (props: any) => {
   const [patchAbsenceInfoList] = usePatchAbsenceInfoMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     if (!!router?.query?.absence_info_id) {
       return patchAbsenceInfoFormHanlder(data);
     }
@@ -63,10 +61,8 @@ export const useAbsenceInfoForm = (props: any) => {
   // Patch API of Absence Info
   const patchAbsenceInfoFormHanlder = async (data: any) => {
     const patchData = { body: data, id: router?.query?.absence_info_id };
-    console.log(patchData);
     try {
       const res: any = await patchAbsenceInfoList(patchData).unwrap();
-      console.log(res);
       if (
         router?.asPath.split("/").pop() === "view" ||
         router?.asPath.split("/").pop() === "edit"

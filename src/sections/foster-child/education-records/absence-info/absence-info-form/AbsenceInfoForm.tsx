@@ -58,7 +58,7 @@ export default function AbsenceInfoForm(props: any) {
                     query: { fosterChildId: fosterChildId },
                   })
                 }
-              > 
+              >
                 Submit
               </LoadingButton>
             )}

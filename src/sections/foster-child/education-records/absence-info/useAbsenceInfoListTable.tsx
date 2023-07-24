@@ -6,13 +6,11 @@ import {
 import { enqueueSnackbar } from "notistack";
 
 export const useAbsenceInfoListTable = () => {
-
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-    
+
   const { data, isError, isLoading, isSuccess, isFetching } =
     useGetAbsenceInfoQuery<any>({ params });
-  console.log("🚀:", data?.data);
   const [deleteList] = useDeleteAbsenceInfoMutation();
 
   // DELETE API Absence Info
