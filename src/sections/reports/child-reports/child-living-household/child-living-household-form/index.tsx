@@ -34,9 +34,9 @@ export const initialValues = {
 export const FRF1FormData = [
   {
     gridLength: 12,
-    title: "Acknowledgment *",
     otherOptions: {
       name: "acknowledgment",
+      label: "Acknowledgment *",
       multiline: true,
       minRows: 3,
       sx: { mb: 4 },
@@ -46,8 +46,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: "Acknowledgment By *",
     otherOptions: {
+      label: "Acknowledgment By *",
       name: "acknowledgmentBy",
       fullWidth: true,
     },
@@ -55,8 +55,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: "Supervising Social Worker *",
     otherOptions: {
+      label: "Supervising Social Worker *",
       name: "supervisingSocialWorker",
       fullWidth: true,
       select: true,
@@ -70,8 +70,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 3,
-    title: "Child Name *",
     otherOptions: {
+      label: "Child Name *",
       name: "childName",
       fullWidth: true,
     },
@@ -79,8 +79,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 3,
-    title: "child's DOB and Age *",
     otherOptions: {
+      label: "child's DOB and Age *",
       name: "DOB",
       fullWidth: true,
     },
@@ -88,8 +88,8 @@ export const FRF1FormData = [
   },
   {
     gridLength: 6,
-    title: "foster Carer(s) *",
     otherOptions: {
+      label: "foster Carer(s) *",
       name: "fosterCarer",
       fullWidth: true,
       select: true,

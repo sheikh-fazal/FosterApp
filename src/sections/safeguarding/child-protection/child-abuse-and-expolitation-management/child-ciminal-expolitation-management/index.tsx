@@ -57,9 +57,9 @@ export const formSchema = Yup.object().shape({
 export const childCrimialExploitation = [
   {
     gridLength: 6,
-    title: 'Child Name',
     fontWeight: 600,
     otherOptions: {
+      label: 'Child Name',
       name: 'childName',
       fullWidth: true,
     },
@@ -67,9 +67,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 6,
-    title: 'Date of Reporting',
     fontWeight: 600,
     otherOptions: {
+      label: 'Date of Reporting',
       name: 'dateOfReporting',
       fullWidth: true
     },
@@ -77,9 +77,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 6,
-    title: 'Signs and Indicators',
     fontWeight: 600,
     otherOptions: {
+      label: 'Signs and Indicators',
       name: 'signsAndIndicators',
       fullWidth: true
     },
@@ -87,9 +87,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 12,
-    title: 'Who is Risk? Name and Role',
     fontWeight: 600,
     otherOptions: {
+      label: 'Who is Risk? Name and Role',
       name: 'whoIsRisk',
       multiline: true,
       minRows: 3,
@@ -283,9 +283,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 12,
-    title: 'Early information and intelligence gathering',
     fontWeight: 600,
     otherOptions: {
+      label: 'Early information and intelligence gathering',
       name: 'earlyInformation',
       fullWidth: true,
       multiline: true,
@@ -295,9 +295,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 12,
-    title: 'Working on Children',
     fontWeight: 600,
     otherOptions: {
+      label: 'Working on Children',
       name: 'workOnChildren',
       fullWidth: true,
       multiline: true,
@@ -307,9 +307,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 6,
-    title: 'Social Worker',
     fontWeight: 600,
     otherOptions: {
+      label: 'Social Worker',
       name: 'socialWorker',
       fullWidth: true,
       select: true,
@@ -323,9 +323,9 @@ export const childCrimialExploitation = [
   },
   {
     gridLength: 12,
-    title: 'Further Actions',
     fontWeight: 600,
     otherOptions: {
+      label: 'Further Actions',
       name: 'furtherActions',
       value: 'abc',
       fullWidth: true,
