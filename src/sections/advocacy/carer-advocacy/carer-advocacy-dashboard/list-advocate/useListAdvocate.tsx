@@ -2,16 +2,16 @@ import { useState } from "react";
 import Image from "next/image";
 import { Box } from "@mui/material";
 import { tableActionIcons } from ".";
-import UkFlag from "../../../../assets/svg/safeguarding/uk-flag.svg";
+import UkFlag from "../../../../../assets/svg/safeguarding/uk-flag.svg";
 
-export const useAgencySafeguardingOfficer = () => {
+export const useListAdvocate = () => {
   const [openModal, setOpenModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [shareModal, setShareModal] = useState(false);
   const [emailModal, setEmailModal] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [phoneModal, setPhoneModal] = useState(false);
-  
+
   const handleOpenModal = () => setOpenModal(!openModal);
   const handleEditModal = () => setEditModal(!editModal);
   const handleShareModal = () => setShareModal(!shareModal);
@@ -116,14 +116,14 @@ export const useAgencySafeguardingOfficer = () => {
     {
       accessorFn: (row: any) => row.country,
       id: "country",
-      cell: (info: any) => <Image src={UkFlag} alt="img" />,
+      cell: (info: any) =>    <Box sx={{ display: "flex", justifyContent: "center" }}><Image src={UkFlag} alt="img" /></Box>,
       header: () => <span>Country</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.colorCode,
       id: "colorCode",
-      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" }} />,
+      cell: (info: any) => <Box sx={{ backgroundColor: info.getValue() ? info.getValue() : "#b0d6e3", height: "1.5rem", width: "1.5rem" , margin:"auto" }} />,
       header: () => <span>Color Code</span>,
       isSortable: true,
     },

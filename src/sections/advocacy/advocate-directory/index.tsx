@@ -1,10 +1,10 @@
-import EditIcon from "../../../../../assets/svg/safeguarding/edit.svg";
-import ShareIcon from "../../../../../assets/svg/safeguarding/share.svg";
-import EmailIcon from "../../../../../assets/svg/safeguarding/Email.svg";
-import PhoneIcon from "../../../../../assets/svg/safeguarding/Phone.svg";
-import DeleteIcon from "../../../../../assets/svg/safeguarding/delete.svg";
-import WhatsApp from "../../../../../assets/svg/safeguarding/whatsapp.svg";
-import InactiveLock from "../../../../../assets/svg/safeguarding/inactiveLock.svg";
+import EditIcon from "../../../assets/svg/safeguarding/edit.svg";
+import ShareIcon from "../../../assets/svg/safeguarding/share.svg";
+import EmailIcon from "../../../assets/svg/safeguarding/Email.svg";
+import PhoneIcon from "../../../assets/svg/safeguarding/Phone.svg";
+import DeleteIcon from "../../../assets/svg/safeguarding/delete.svg";
+import WhatsApp from "../../../assets/svg/safeguarding/whatsapp.svg";
+import InactiveLock from "../../../assets/svg/safeguarding/inactiveLock.svg";
 
 // ============================================================================================
 
@@ -20,8 +20,7 @@ export const tableActionIcons = [
 
 // ==================================================================================================
 
-
-export const contactDirectoryTableData = [
+export const tableData = [
   {
     name: "Alberto Delrio",
     role: "Foster Carer",
@@ -37,7 +36,7 @@ export const contactDirectoryTableData = [
     colorCode: "#b0d6e3",
   },
   {
-    name: "Alberto Delrio",
+    name: "Bob Delrio",
     role: "Foster Carer",
     safeguardingRole: "Fostering",
     branch: "England",
