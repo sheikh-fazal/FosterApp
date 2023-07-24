@@ -28,57 +28,57 @@ export const formSchema = Yup.object().shape({
 
 export const formFields = [
   {
-    title: "Child Name",
     gridLength: 6,
     otherOptions: {
+      label: "Child Name",
       name: "childName",
     },
     component: RHFTextField,
   },
   {
-    title: "Carer Name(from)",
     gridLength: 6,
     otherOptions: {
+      label: "Carer Name(from)",
       name: "carerNameFrom",
     },
     component: RHFTextField,
   },
   {
-    title: "Carer Name(Transferred To)",
     gridLength: 6,
     otherOptions: {
+      label: "Carer Name(Transferred To)",
       name: "carerNameTo",
     },
     component: RHFTextField,
   },
   {
-    title: "Date of Transfer",
     gridLength: 6,
     otherOptions: {
+      label: "Date of Transfer",
       name: "dateOfTransfer",
     },
     component: RHFDatePicker,
   },
   {
-    title: "Transfer Report",
     gridLength: 6,
     otherOptions: {
+      label: "Transfer Report",
       name: "transferReport",
     },
     requireFileUpload: true,
   },
   {
-    title: "Approved by(Role)",
     gridLength: 6,
     otherOptions: {
+      label: "Approved by(Role)",
       name: "approvedBy",
     },
     component: RHFTextField,
   },
   {
-    title: "Local Authority",
     gridLength: 6,
     otherOptions: {
+      label: "Local Authority",
       name: "localAuthority",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -86,9 +86,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Local Authority SW",
     gridLength: 6,
     otherOptions: {
+      label: "Local Authority SW",
       name: "localAuthoritySw",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -96,9 +96,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Status",
     gridLength: 6,
     otherOptions: {
+    label: "Status",
       name: "status",
       select: true,
       options: [{ value: "Select", label: "Select" }],

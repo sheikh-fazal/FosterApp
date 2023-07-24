@@ -37,6 +37,7 @@ const OPTIONS = [
   },
 ];
 
+
 const COLUMNS = [
   {
     inputType: "select",
@@ -155,6 +156,9 @@ const COLUMNS = [
       return dayjs(date).format("DD/MM/YYYY");
     },
   },
+  
+
+
 ]
 
 function DataChips({ options }: any) {

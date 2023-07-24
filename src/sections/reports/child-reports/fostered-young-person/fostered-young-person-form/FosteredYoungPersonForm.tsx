@@ -13,14 +13,7 @@ const FosteredYoungPersonForm = ({ action, id }: any) => {
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
+      <Typography sx={(theme)=>style.headerTitle(theme)}>
           FOSTERED YOUNG PERSON FORM
         </Typography>
         <Typography
@@ -83,3 +76,11 @@ const FosteredYoungPersonForm = ({ action, id }: any) => {
 };
 
 export default FosteredYoungPersonForm;
+const style = {
+  headerTitle: (theme: any) => ({
+    fontWeight: 700,
+    mb: "20px",
+    fontSize: "17px",
+    color: theme.palette.primary.main,
+  }),
+};

@@ -1,6 +1,3 @@
-import { TextField } from "@mui/material";
-import { DatePicker } from "@mui/x-date-pickers";
-
 export const viewReportsFilterData = [
   {
     gridlength: 6,
@@ -10,7 +7,7 @@ export const viewReportsFilterData = [
       fullWidth: true,
       size: "small",
     },
-    component: DatePicker
+    requireDatePicker: true,
   },
   {
     gridlength: 6,
@@ -20,7 +17,7 @@ export const viewReportsFilterData = [
       fullWidth: true,
       size: "small",
     },
-    component: DatePicker
+    requireDatePicker: true,
   },
 
   {
@@ -30,11 +27,9 @@ export const viewReportsFilterData = [
       label: "Role",
       name: "role",
       fullWidth: true,
-      select: true,
       size: "small",
     },
     options: [{ value: "all", label: "all" }],
-    component: TextField
   },
 ];
 

@@ -20,7 +20,7 @@ export const defaultValues = {
             textColor: "#1D1D1D",
         },
         sendListName:"FotH ALL",
-        imageAssets: "uploads/images/4f7512fb-2916-451b-8240-97f529ded73d/d96f3bf5-5109-4179-9a6d-c82d94a142b1.png",
+        image: "uploads/images/4f7512fb-2916-451b-8240-97f529ded73d/d96f3bf5-5109-4179-9a6d-c82d94a142b1.png",
         landingPage: "link",
         facebookShareLink:"link",
         twitterShareLink: "link",
@@ -65,7 +65,7 @@ export const GoalOptions = [
   {
     label: "Provide Advice",
     value: "1",
-    bgColor: "#8FFBAD",
+    bgColor: "#59b369",
     textColor: "#1D1D1D",
   },
 ];

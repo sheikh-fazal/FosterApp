@@ -8,18 +8,11 @@ import { FRF1FormData } from ".";
 const ChildAdditionalForm = ({ action, id }: any) => {
   const disabled = action === "view" ? true : false;
   const { methods, onSubmit, handleSubmit, handleBack } =
-    useChildAdditionalForm();
+  useChildAdditionalForm();
   return (
     <Card sx={{ p: 2 }}>
       <Box textAlign={"center"}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            mb: "20px",
-            fontSize: "17px",
-            color: "#898989",
-          }}
-        >
+      <Typography sx={(theme)=>style.headerTitle(theme)}>
           CHILD ADDITIONAL FORM
         </Typography>
         <Typography
@@ -32,6 +25,7 @@ const ChildAdditionalForm = ({ action, id }: any) => {
         >
           Fill this form with relevent information.
         </Typography>
+        
       </Box>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={4}>
@@ -41,15 +35,14 @@ const ChildAdditionalForm = ({ action, id }: any) => {
                 <form.component
                   disabled={disabled}
                   size="small"
-                  fullWidth
                   {...form.otherOptions}
                 >
                   {form.otherOptions.select
                     ? form.otherOptions.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     : null}
                 </form.component>
               )}
@@ -83,3 +76,11 @@ const ChildAdditionalForm = ({ action, id }: any) => {
 };
 
 export default ChildAdditionalForm;
+const style = {
+  headerTitle: (theme: any) => ({
+    fontWeight: 700,
+    mb: "20px",
+    fontSize: "17px",
+    color: theme.palette.primary.main,
+  }),
+};

@@ -20,7 +20,7 @@ const RiskAssessmentViewForm = ({ action }: any) => {
               </Typography>
               {form.component && (
                 <form.component
-                  fullWidth
+                fullWidth
                   disabled={disabled}
                   size="small"
                   {...form.componentProps}
@@ -28,10 +28,10 @@ const RiskAssessmentViewForm = ({ action }: any) => {
                   {form?.heading}
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
-                      </option>
-                    ))
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))
                     : null}
                 </form.component>
               )}
@@ -72,6 +72,6 @@ const styles = {
   title: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 600,
-    color: disabled ? "#898989" : "black",
+    color: theme.palette.primary.main,
   }),
 };
