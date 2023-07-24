@@ -33,7 +33,7 @@ export const systemAdminData = [
     title: "User Management",
     bgColor: "#0E918C",
     image: image1,
-    link: "/system-admin/user-management/",
+    link: "/system-admin/user-management",
   },
   {
     id: 2,
