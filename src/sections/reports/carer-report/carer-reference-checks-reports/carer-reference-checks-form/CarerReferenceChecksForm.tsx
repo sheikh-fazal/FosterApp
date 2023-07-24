@@ -51,7 +51,7 @@ const CarerReferenceChecksForm = ({ action }: any) => {
               {form?.uploadPhoto && (
                 <>
                   <RHFUploadFile
-                  label={label}
+                  // label={label}
                     name={"updateMeetingRecord"}
                     label='Upload Meeting record'
                     {...methods}
