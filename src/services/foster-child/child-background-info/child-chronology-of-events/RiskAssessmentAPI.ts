@@ -85,6 +85,6 @@ export const {
   useGetChildChronologyOfEventsRiskAssessmentListQuery,
   usePostChildChronologyOfEventsRiskAssessmentMutation,
   usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
-  useGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
   useDeleteChildChronologyOfEventsRiskAssessmentByIdMutation,
 } = riskAssessmentApi;

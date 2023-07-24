@@ -55,6 +55,7 @@ export const useAllegationInfoForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
+    console.log("🚀 ~ file: useAllegationInfoForm.tsx:58 ~ onSubmit ~ data:", data);
     if (action === "add") {
       setIsFetching(true);
       postAllegationsInfoData({

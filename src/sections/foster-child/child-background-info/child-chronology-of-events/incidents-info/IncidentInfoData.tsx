@@ -1,6 +1,6 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
 
 export const IncidentInfoFormFields = [
@@ -176,10 +176,9 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Has Registered Manager Informed",
       name: "hasRegisteredManagerInformed",
-      options: ["Yes", "No"],
     },
     defaultValue: "Yes",
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 17,
@@ -221,9 +220,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Has Ofsted been Informed",
       name: "hasOfstedInformed",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 21,
@@ -295,9 +293,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Has Acknowledged by",
       name: "hasAcknowledgedBy",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 28,
@@ -305,9 +302,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Were Police Called to Home",
       name: "werePoliceCalled",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 29,
@@ -327,9 +323,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Has Outcome to OFSTED",
       name: "hasOutcomeToOfsted",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 31,
@@ -373,9 +368,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Was Independent support offered during investigation",
       name: "independentSupportOffered",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 35,
@@ -395,9 +389,8 @@ export const IncidentInfoFormFields = [
     otherOptions: {
       label: "Has Discussion with LADO taken Place",
       name: "discussionWithLado",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 37,
@@ -440,27 +433,27 @@ export const defaultValues = {
   outcomeOfIncident: "Nil",
   actionTaken: "Nil",
   teamManagerComments: "Nil",
-  hasRegisteredManagerInformed: "Yes",
+  hasRegisteredManagerInformed: true,
   registeredManagerInformedDate: null,
   registeredManagerRecommendation: "Nil",
   schedule7Notification: "Nil",
-  hasOfstedInformed: "Yes",
+  hasOfstedInformed: true,
   ofstedOnlineFormDate: null,
   ofstedActionTaken: "Nil",
   closureDate: null,
   nextAlertDate: null,
   restraintCarer: "Nil",
   investigationRequiredBy: "Nil",
-  hasAcknowledgedBy: "Yes",
-  werePoliceCalled: "Yes",
+  hasAcknowledgedBy: true,
+  werePoliceCalled: true,
   reasonForConcern: "Nil",
-  hasOutcomeToOfsted: "Yes",
+  hasOutcomeToOfsted: true,
   hospitalAdmission: "Nil",
   section47Offences: "Nil",
   deathRecord: "Nil",
-  independentSupportOffered: "Yes",
+  independentSupportOffered: true,
   independentSupportOfferedInfo: "Nil",
-  discussionWithLado: "Yes",
+  discussionWithLado: true,
   ladoComments: "Nil",
   followPlan: "Nil",
 };
@@ -482,27 +475,20 @@ export const formSchema = Yup.object().shape({
   outcomeOfIncident: Yup.string().required("Required"),
   actionTaken: Yup.string().required("Required"),
   teamManagerComments: Yup.string().required("Required"),
-  // hasRegisteredManagerInformed: false,
   registeredManagerInformedDate: Yup.date().required("Required"),
   registeredManagerRecommendation: Yup.string().required("Required"),
   schedule7Notification: Yup.string().required("Required"),
-  // hasOfstedInformed: false,
   ofstedOnlineFormDate: Yup.date().required("Required"),
   ofstedActionTaken: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),
   nextAlertDate: Yup.date().required("Required"),
   restraintCarer: Yup.string().required("Required"),
   investigationRequiredBy: Yup.string().required("Required"),
-  // hasAcknowledgedBy: false,
-  // werePoliceCalled: false,
   reasonForConcern: Yup.string().required("Required"),
-  // hasOutcomeToOfsted: false,
   hospitalAdmission: Yup.string().required("Required"),
   section47Offences: Yup.string().required("Required"),
   deathRecord: Yup.string().required("Required"),
-  // independentSupportOffered: false,
   independentSupportOfferedInfo: Yup.string().required("Required"),
-  // discussionWithLado: false,
   ladoComments: Yup.string().required("Required"),
   followPlan: Yup.string().required("Required"),
 });

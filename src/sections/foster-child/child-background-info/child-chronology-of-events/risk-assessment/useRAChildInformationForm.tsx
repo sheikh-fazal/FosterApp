@@ -5,12 +5,7 @@ import { useState } from "react";
 import { childInformationDefaultValues, formatters } from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
-import { usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import { useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery, usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 
 export const useRAChildInformationForm = () => {
   const router = useRouter();
@@ -18,13 +13,14 @@ export const useRAChildInformationForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [patchChildInformationData] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation({});
-  // const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
+  
+  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
+
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getRiskAssessmentList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -55,7 +51,7 @@ export const useRAChildInformationForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      patchChildInformationData({
+      editRiskAssessmentList({
         addRiskAssessmentRequestDto: {
           raChildInfo: { ...data },
           fosterChildId,
@@ -85,7 +81,7 @@ export const useRAChildInformationForm = () => {
     } else if (action === "edit") {
       setIsFetching(true);
       
-      patchChildInformationData({
+      editRiskAssessmentList({
         addRiskAssessmentRequestDto: {
           raChildInfo: { ...data },
           fosterChildId,

@@ -5,7 +5,13 @@ import { useState } from "react";
 import { defaultValues, formSchema, formatters } from "./ComplaintsInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useGetChildChronologyOfEventsComplaintsInfoListQuery, usePostChildChronologyOfEventsComplaintsInfoMutation, usePatchChildChronologyOfEventsComplaintsInfoByIdMutation, useLazyGetChildChronologyOfEventsComplaintsInfoByIdQuery, useDeleteChildChronologyOfEventsComplaintsInfoByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/ComplaintsInfoAPI";
+import {
+  useGetChildChronologyOfEventsComplaintsInfoListQuery,
+  usePostChildChronologyOfEventsComplaintsInfoMutation,
+  usePatchChildChronologyOfEventsComplaintsInfoByIdMutation,
+  useLazyGetChildChronologyOfEventsComplaintsInfoByIdQuery,
+  useDeleteChildChronologyOfEventsComplaintsInfoByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/ComplaintsInfoAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useComplaintsInfoForm = () => {
@@ -20,7 +26,7 @@ export const useComplaintsInfoForm = () => {
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getComplaintsInfoList({id});
+      const { data, isError } = await getComplaintsInfoList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -31,7 +37,8 @@ export const useComplaintsInfoForm = () => {
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
-      }parseDatesToTimeStampByKey(responseData);
+      }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -52,7 +59,9 @@ export const useComplaintsInfoForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postComplaintsInfoData({addComplaintsInfoRequestDto:{ ...data, fosterChildId, status: "Pending" }})
+      postComplaintsInfoData({
+        addComplaintsInfoRequestDto: { ...data, fosterChildId, status: "Pending" },
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -60,8 +69,9 @@ export const useComplaintsInfoForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}`,fosterChildId },
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {
@@ -74,7 +84,7 @@ export const useComplaintsInfoForm = () => {
       const formData = {
         id,
         addComplaintsInfoRequestDto: { ...data },
-        fosterChildId
+        fosterChildId,
       };
       editComplaintsInfoList(formData)
         .unwrap()

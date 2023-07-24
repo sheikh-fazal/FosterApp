@@ -5,12 +5,11 @@ import { useState } from "react";
 import { delegatedAuthorityDefaultValues, formatters } from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
-import { usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 
 export const useRADelegatedAuthorityForm = () => {
   const router = useRouter();
@@ -18,13 +17,12 @@ export const useRADelegatedAuthorityForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-  const [patchChildInformationData] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation({});
-  // const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
+  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getRiskAssessmentList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -55,7 +53,7 @@ export const useRADelegatedAuthorityForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      patchChildInformationData({
+      editRiskAssessmentList({
         addRiskAssessmentRequestDto: {
           raChildInfo: { ...data },
           fosterChildId,
@@ -80,14 +78,13 @@ export const useRADelegatedAuthorityForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
 
-      patchChildInformationData({
+      editRiskAssessmentList({
         addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
+          raDelegatedAuthority: { ...data },
           fosterChildId,
           childName: "child",
           gender: "male",

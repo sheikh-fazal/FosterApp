@@ -127,6 +127,7 @@ export const defaultValues = {
   therapistNameAndAddress: "Nil",
   formalMentalHealth: false,
   strengthAndDifficulties: false,
+  hasTherapyIdentified: false,
   therapyArrangements: "Nil",
   childEngagedInTherapy: "Nil",
 };

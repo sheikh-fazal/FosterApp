@@ -1,6 +1,6 @@
-import { RHFCheckbox, RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
 
 export const RAChildDetailsFormFields = [
@@ -80,9 +80,8 @@ export const RAChildDetailsFormFields = [
     otherOptions: {
       label: "Known / Suspected CSE Risk Y/N",
       name: "knownSuspectedCSERisk",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 5,
@@ -119,7 +118,7 @@ export const childDetailsdefaultValues = {
   hairColor: "Nil",
   eyeColor: "Nil",
   distinguishingMarks: "Nil",
-  knownSuspectedCSERisk: "Yes",
+  knownSuspectedCSERisk: true,
   knownNetworkOfChild: "Nil",
   circumstancesThatIncreaseRisk: "Nil",
 };
@@ -132,7 +131,6 @@ export const childDetailsformSchema = Yup.object().shape({
   hairColor: Yup.string().required("Required"),
   eyeColor: Yup.string().required("Required"),
   distinguishingMarks: Yup.string().required("Required"),
-  knownSuspectedCSERisk: Yup.string().required("Required"),
   knownNetworkOfChild: Yup.string().required("Required"),
   circumstancesThatIncreaseRisk: Yup.string().required("Required"),
 });

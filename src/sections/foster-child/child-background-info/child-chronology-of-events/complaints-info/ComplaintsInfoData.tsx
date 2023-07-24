@@ -1,6 +1,6 @@
-import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {  RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
 
 export const ComplaintsInfoFormFields = [
@@ -224,9 +224,8 @@ export const ComplaintsInfoFormFields = [
     otherOptions: {
       label: "Has Registered Manager Informed",
       name: "hasRegisteredManagerInformed",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 21,
@@ -245,9 +244,8 @@ export const ComplaintsInfoFormFields = [
     otherOptions: {
       label: "Has Ofsted been Informed",
       name: "hasOfstedBeenInformed",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 23,
@@ -266,9 +264,8 @@ export const ComplaintsInfoFormFields = [
     otherOptions: {
       label: "Is Schedule",
       name: "isSchedule",
-      options: ["Yes", "No"],
     },
-    component: RHFRadioGroupWithLabel,
+    component: RHFRadioGroupBoolean,
   },
   {
     id: 25,
@@ -335,11 +332,11 @@ export const defaultValues = {
   complaintOutcome: "Nil",
   isThisSubstained: null,
   teamManagerRecommendation: "Nil",
-  hasRegisteredManagerInformed: false,
+  hasRegisteredManagerInformed: true,
   registeredManagerInformedDate: null,
-  hasOfstedBeenInformed: false,
+  hasOfstedBeenInformed: true,
   ofstedNotifiedDate: null,
-  isSchedule: false,
+  isSchedule: true,
   reportedTo: "Nil",
   registeredManagerRecommendation: "Nil",
   closureDate: null,
@@ -368,11 +365,8 @@ export const formSchema = Yup.object().shape({
   complaintOutcome: Yup.string().required("Required"),
   isThisSubstained: Yup.string().required("Required"),
   teamManagerRecommendation: Yup.string().required("Required"),
-  hasRegisteredManagerInformed: Yup.string().required("Required"),
   registeredManagerInformedDate: Yup.date().required("Required"),
-  hasOfstedBeenInformed: Yup.string().required("Required"),
   ofstedNotifiedDate: Yup.date().required("Required"),
-  isSchedule: Yup.string().required("Required"),
   reportedTo: Yup.string().required("Required"),
   registeredManagerRecommendation: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),

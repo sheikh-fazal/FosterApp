@@ -2,15 +2,18 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { childDetailsdefaultValues, childDetailsformSchema, formatters } from "./RiskAssessmentData";
+import {
+  childDetailsdefaultValues,
+  childDetailsformSchema,
+  formatters,
+} from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsDayLogByIdQuery,
-  usePatchChildChronologyOfEventsDayLogByIdMutation,
-  usePostChildChronologyOfEventsDayLogMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
-import { usePostChildChronologyOfEventsRiskAssessmentMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
+  usePostChildChronologyOfEventsRiskAssessmentMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 
 export const useRAChildDetailsForm = () => {
   const router = useRouter();
@@ -18,13 +21,14 @@ export const useRAChildDetailsForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
+
+  const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
   const [postRiskAssessmentData] = usePostChildChronologyOfEventsRiskAssessmentMutation({});
-  const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
+  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getDayLogList(id);
+      const { data, isError } = await getRiskAssessmentList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -69,32 +73,34 @@ export const useRAChildDetailsForm = () => {
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
+          router.push({
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
+          });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
-        addDayLogRequestDto: { ...data },
+        addRiskAssessmentRequestDto: { ...data },
       };
-      editDayLogList(formData)
+      editRiskAssessmentList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
