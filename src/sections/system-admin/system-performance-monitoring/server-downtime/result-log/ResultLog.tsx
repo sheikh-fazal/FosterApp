@@ -32,7 +32,7 @@ export const ResultLog = () => {
     ]
 
     return (
-        <Card sx={{ p: 1, mt: '15px', background: theme.palette.mode === 'light' ? "white !important" : '#212B36 !important' }}>
+        <Card sx={{ py: 1, px: 0, mt: '15px', background: theme.palette.mode === 'light' ? "white !important" : '#212B36 !important' }}>
             <TableHeader
                 title={'Notifications'}
                 showSelectFilters
@@ -48,6 +48,7 @@ export const ResultLog = () => {
                 isSuccess
                 data={data}
                 columns={columns}
+                isPagination={false}
             />
         </Card>
     )
