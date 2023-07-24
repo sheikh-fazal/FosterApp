@@ -5,6 +5,12 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useState } from "react";
 import NewChildExclusionInfo from "@root/sections/foster-child/education-records/child-exclusion-info/new-child-exclusion-info/NewChildExclusionInfo";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import {
+  usePostExclusionInfoRecordMutation,
+  usePostFosterExclusionDocumentMutation,
+} from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
+import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Child Exclusion Info";
 
@@ -30,12 +36,54 @@ NewChildExclusionInfoPage.getLayout = function getLayout(page: any) {
 };
 
 export default function NewChildExclusionInfoPage() {
-  const [tabsArr, setTabsArr] = useState(["Exclusion info", "Upload Document"]);
+  const [tabsArr, setTabsArr] = useState(["Exclusion info"]);
+  
+  const [postChildInfoRecord] = usePostExclusionInfoRecordMutation();
+  const [postExclusionDocumentData] = usePostFosterExclusionDocumentMutation();
+  const router = useRouter();
+  const [id, setId] = useState();
+  const formData = new FormData();
+
+  const fosterChildId = Object.keys(router?.query)[0];
+
+  const postExclusionDocument = async (exclusionData: any) => {
+    formData.append("documentType", exclusionData.documentType);
+    formData.append("documentDate", exclusionData.documentDate);
+    formData.append("password", exclusionData.password);
+    formData.append("file", exclusionData.chosenFile);
+    
+    const exclusionDetails = {
+      data: formData,
+      id:id
+    }
+
+    console.log(exclusionDetails, id);
+    const res = await postExclusionDocumentData(exclusionDetails).unwrap();
+  };
+
+  const postExclusionInfo = async (data: any) => {
+    try {
+      const res = await postChildInfoRecord({ data, fosterChildId }).unwrap();
+      setId(res?.data?.data?.id);
+
+      if (res.data.data.id) {
+        setTabsArr(["Exclusion Info", "Upload Document"]);
+        return;
+      }
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (err) {
+      enqueueSnackbar(`Something went Wrong!`, {
+        variant: "error",
+      });
+    }
+  };
 
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={tabsArr}>
-        <NewChildExclusionInfo />
+        <NewChildExclusionInfo postExclusionInfo={postExclusionInfo} />
         <UploadDocuments
           readOnly={false}
           tableData={[]}
@@ -50,7 +98,7 @@ export default function NewChildExclusionInfoPage() {
             "password",
           ]}
           isSuccess={false}
-          modalData={(data: any) => console.log(data)}
+          modalData={(data: any) => postExclusionDocument(data)}
         />
       </HorizaontalTabs>
     </Page>
