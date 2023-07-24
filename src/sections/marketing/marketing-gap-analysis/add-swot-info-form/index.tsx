@@ -31,98 +31,109 @@ export const formSchema = Yup.object().shape({
 
 export const formFields = [
   {
-    title: "Competitor",
     gridLength: 6,
     otherOptions: {
+      label: "Competitor",
       name: "competitor",
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "Location",
     gridLength: 6,
     otherOptions: {
+      label: "Location",
       name: "location",
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "SWOT Topic",
     gridLength: 6,
     otherOptions: {
+      label: "SWOT Topic",
       name: "swotTopic",
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "SWOT Duration",
     gridLength: 6,
     otherOptions: {
+      label: "SWOT Duration",
       name: "swotDuration",
+      sx: { mb: 4 },
     },
     component: RHFDatePicker,
   },
   {
-    title: "SWOT (Competitor)",
     gridLength: 6,
     otherOptions: {
+      label: "SWOT (Competitor)",
       name: "swotCompetitor",
+      sx: { mb: 4 },
     },
     component: RHFDatePicker,
   },
   {
-    title: "Researcher (Role)",
     gridLength: 6,
     otherOptions: {
+      label: "Researcher (Role)",
       name: "researcherRole",
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "Date",
     gridLength: 6,
     otherOptions: {
+      label: "Date",
       name: "date",
+      sx: { mb: 4 },
     },
     component: RHFDatePicker,
   },
   {
-    title: "Strengths",
     gridLength: 12,
     otherOptions: {
+      label: "Strengths",
       name: "strengths",
       multiline: true,
+      sx: { mb: 4 },
       minRows: 3,
     },
     component: RHFTextField,
   },
   {
-    title: "Weaknesses",
     gridLength: 12,
     otherOptions: {
+      label: "Weaknesses",
       name: "weaknesses",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "Opportunities",
     gridLength: 12,
     otherOptions: {
+      label: "Opportunities",
       name: "opportunities",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },
   {
-    title: "Threats",
     gridLength: 12,
     otherOptions: {
+      label: "Threats",
       name: "threats",
       multiline: true,
       minRows: 3,
+      sx: { mb: 4 },
     },
     component: RHFTextField,
   },

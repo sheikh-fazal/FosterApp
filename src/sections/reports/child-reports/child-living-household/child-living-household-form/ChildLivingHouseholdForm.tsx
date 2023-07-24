@@ -49,6 +49,7 @@ const ChildLivingHouseholdForm = ({ action, id }: any) => {
                   fostering? *
                 </Typography>
                 <RHFTextField
+               
                   name={"familyFostering"}
                   multiline={true}
                   minRows={5}
@@ -165,6 +166,6 @@ const styles = {
   notice: (theme: any, disabled: any) => ({
     fontSize: "16px",
     fontWeight: 500,
-    color: disabled ? "#898989" : "black",
+    color: theme.palette.primary.main
   }),
 };

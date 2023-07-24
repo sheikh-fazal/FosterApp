@@ -56,13 +56,13 @@ export const SchoolDeatilInfoFormData = [
   },
   {
     id: 7,
-    componentProps: { name: "postalcode", label: "Postal Code:" },
+    componentProps: { name: "postalCode", label: "Postal Code:" },
     component: RHFTextField,
     md: 6,
   },
   {
     id: 8,
-    componentProps: { name: "telephone", label: "Phone:" },
+    componentProps: { name: "telephoneNumber", label: "Phone:" },
     component: RHFTextField,
     md: 6,
   },
@@ -99,8 +99,8 @@ export const defaultValues = {
   city: "",
   county: "",
   country: "",
-  postalcode: "",
-  telephone: "",
+  postalCode: "",
+  telephoneNumber: "",
   mobile: "",
   fax: "",
   email: "",
@@ -115,8 +115,8 @@ export const SchoolDetailInfoFormSchema = Yup.object().shape({
   city: Yup.string().trim().required("City is Required"),
   county: Yup.string().trim().required("County is Required"),
   country: Yup.string().trim().required("Country is Required"),
-  postalcode: Yup.string().required("Postal Code is Required"),
-  telephone: Yup.string()
+  postalCode: Yup.string().trim().required("Postal Code is Required"),
+  telephoneNumber: Yup.string()
     .typeError("Must be a number")
     .min(10, "Invalid Telephone Number")
     .matches(/^\+44\d{10}$/, "Invalid Telephone Number")

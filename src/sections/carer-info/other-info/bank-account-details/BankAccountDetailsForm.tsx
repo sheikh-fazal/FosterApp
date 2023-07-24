@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -49,12 +49,11 @@ export default function BankAccountDetailsForm(props: any) {
     modalStatus(true);
     setOpen(true);
   };
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     modalStatus(false);
     setOpen(false);
     !readOnly && closeModal(false);
-  }, [readOnly, modalStatus, closeModal]);
-  
+  };
   useEffect(() => {
     status?.isSuccess && handleClose();
   }, [status?.isSuccess, handleClose]);

@@ -13,7 +13,7 @@ export const cardsData = [
   {
     id: 2,
     icon: icon2,
-    title: "Totall Assigned Audits",
+    title: "Total Assigned Audits",
     link: "/audits/assigned-audits",
     bgColor: "#EB9411",
   },
