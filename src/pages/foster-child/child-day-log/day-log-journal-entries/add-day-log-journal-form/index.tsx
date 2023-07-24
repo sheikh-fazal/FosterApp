@@ -1,11 +1,3 @@
-import React from 'react'
-
-export const AdddayLog = () => {
-  return (
-    <div>AdddayLog</div>
-  )
-}
-
 // import React from "react";
 // //  @mui icons
 // import Layout from "@root/layouts";

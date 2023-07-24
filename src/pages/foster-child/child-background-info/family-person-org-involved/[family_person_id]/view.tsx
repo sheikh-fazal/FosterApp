@@ -51,7 +51,6 @@ export default function ViewFamilyPersonForm() {
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={["Family Org Involved", "Documents"]}>
 
-
         {/* Family Person Form */}
         {isLoading && <p>Loading...</p>}
         {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />}

@@ -1,8 +1,3 @@
-export const View = () => {
-  return (
-    <div>View</div>
-  )
-}
 // import Layout from "@root/layouts";
 // import { useRouter } from "next/router";
 // import Page from "@root/components/Page";

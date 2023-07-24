@@ -46,18 +46,16 @@ export default function EditFamilyPersonForm() {
 
   return (
     <Page title={PAGE_TITLE}>
+        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
 
-        <HorizaontalTabs
-          tabsDataArray={["Family Org Involved", "Uploaded documents"]}
-        >
           {/* Family Person Form */}
           {isLoading && <p>Loading...</p>}
           {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
 
           {/* Upload Document */}
           <FamilyPersonDocument />
-        </HorizaontalTabs>
 
+        </HorizaontalTabs>
     </Page>
   );
 }
