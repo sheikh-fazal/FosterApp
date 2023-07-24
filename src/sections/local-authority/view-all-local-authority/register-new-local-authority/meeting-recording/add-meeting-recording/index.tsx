@@ -30,8 +30,8 @@ export const addMeetingRecordingSchema = Yup.object().shape({
 export const addMeetingRecordingData = [
   {
     gridLength: 12,
-    title: 'Meeting Agenda',
     otherOptions: {
+      label: 'Meeting Agenda',
       size: 'small',
       name: 'meetingAgenda',
       fullWidth: true,
@@ -40,8 +40,8 @@ export const addMeetingRecordingData = [
   },
   {
     gridLength: 12,
-    title: 'Upload Date',
     otherOptions: {
+      label: 'Upload Date',
       name: 'uploadDate',
       size: 'small',
       fullWidth: true,
@@ -50,8 +50,8 @@ export const addMeetingRecordingData = [
   },
   {
     gridLength: 12,
-    title: 'Meeting Attendess',
     otherOptions: {
+      label: 'Meeting Attendess',
       size: 'small',
       name: 'meetingAttendess',
       fullWidth: true,
@@ -60,8 +60,8 @@ export const addMeetingRecordingData = [
   },
   {
     gridLength: 12,
-    title: 'Meeting Chair',
     otherOptions: {
+      label: 'Meeting Chair',
       size: 'small',
       name: 'meetingChair',
       fullWidth: true,
@@ -70,8 +70,8 @@ export const addMeetingRecordingData = [
   },
   {
     gridLength: 12,
-    title: 'Meeting Notes',
     otherOptions: {
+      label: 'Meeting Notes',
       size: 'small',
       name: 'meetingNotes',
       fullWidth: true,
@@ -80,8 +80,8 @@ export const addMeetingRecordingData = [
   },
   {
     gridLength: 12,
-    title: 'Meeting Actions',
     otherOptions: {
+      label: 'Meeting Actions',
       size: 'small',
       name: 'meetingActions',
       fullWidth: true,

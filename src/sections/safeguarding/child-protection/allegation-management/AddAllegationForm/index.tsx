@@ -1,4 +1,8 @@
-import { RHFRadioGroup, RHFSelect, RHFTextField } from "@root/components/hook-form";
+import {
+  RHFRadioGroup,
+  RHFSelect,
+  RHFTextField,
+} from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
@@ -45,28 +49,36 @@ export const defaultValues = {
   refferedTelNo: "",
   refferedEmail: "",
   immediateSafeguarding: "",
-  advise: ""
+  advise: "",
 };
 
 export const AddAllegationFormSchema = Yup.object().shape({
   name: Yup.string().required("Field is required"),
   agency: Yup.string().required("Field is required"),
   jobTitle: Yup.string().required("Field is required"),
-  telNo: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
+  telNo: Yup.string()
+    .required("Field is required")
+    .min(4, "Mininum 4 characters")
+    .max(15, "Maximum 15 characters"),
   email: Yup.string().required("Email is required").email("Invalid Email"),
   nameRole: Yup.string().required("Field is required"),
   familyName: Yup.string().required("Field is required"),
   givenName: Yup.string().required("Field is required"),
   homeAddress: Yup.string().required("Field is required"),
-  allegationTelNo: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
-  allegationEmail: Yup.string().required("Email is required").email("Invalid Email"),
+  allegationTelNo: Yup.string()
+    .required("Field is required")
+    .min(4, "Mininum 4 characters")
+    .max(15, "Maximum 15 characters"),
+  allegationEmail: Yup.string()
+    .required("Email is required")
+    .email("Invalid Email"),
   allegationJobTitle: Yup.string().required("Field is required"),
   ethnicity: Yup.string().required("Field is required"),
   allegationGender: Yup.string().required("Field is required"),
   workplaceAddress: Yup.string().required("Field is required"),
   employingAddress: Yup.string().required("Field is required"),
   childrenNameOne: Yup.string().required("Field is required"),
-  childrenDateOne: Yup.date().required('Field is required'),
+  childrenDateOne: Yup.date().required("Field is required"),
   childrenNameTwo: Yup.string(),
   childrenDateTwo: Yup.date(),
   childrenNameThree: Yup.string(),
@@ -75,19 +87,29 @@ export const AddAllegationFormSchema = Yup.object().shape({
   datesOutcome: Yup.string().required("Field is required"),
   personFamilyName: Yup.string().required("Field is required"),
   personGivenName: Yup.string().required("Field is required"),
-  dateOfBirth: Yup.date().required('Field is required'),
+  dateOfBirth: Yup.date().required("Field is required"),
   personGender: Yup.string().required("Field is required"),
   personHomeAddress: Yup.string().required("Field is required"),
-  dateOfIncident: Yup.date().required('Field is required'),
-  timeOfIncident: Yup.date().required('Field is required'),
+  dateOfIncident: Yup.date().required("Field is required"),
+  timeOfIncident: Yup.date().required("Field is required"),
   incidentAndAllegation: Yup.string().required("Field is required"),
   referralInformation: Yup.string(),
   nameOfPotential: Yup.string().required("Field is required"),
-  personTelNo: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
-  personEmail: Yup.string().required("Email is required").email("Invalid Email"),
+  personTelNo: Yup.string()
+    .required("Field is required")
+    .min(4, "Mininum 4 characters")
+    .max(15, "Maximum 15 characters"),
+  personEmail: Yup.string()
+    .required("Email is required")
+    .email("Invalid Email"),
   refferedFamilyName: Yup.string().required("Field is required"),
-  refferedTelNo: Yup.string().required("Field is required").min(4, "Mininum 4 characters").max(15, "Maximum 15 characters"),
-  refferedEmail: Yup.string().required("Email is required").email("Invalid Email"),
+  refferedTelNo: Yup.string()
+    .required("Field is required")
+    .min(4, "Mininum 4 characters")
+    .max(15, "Maximum 15 characters"),
+  refferedEmail: Yup.string()
+    .required("Email is required")
+    .email("Invalid Email"),
   immediateSafeguarding: Yup.string().required("Field is required"),
   advise: Yup.string().required("Field is required"),
 });
@@ -100,39 +122,45 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 12,
-    title: "Name",
-    otherOptions: { name: "name", fullWidth: true, sx: { width: { lg: "48.6%", md: "100%", xs: "100%", }, clear: "both" } },
-    component: RHFTextField,
-  },
-  {
-    gridLength: 6,
-    title: "Agency",
-    otherOptions: { name: "agency", fullWidth: true },
-    component: RHFTextField,
-  },
-  {
+    otherOptions: {
+      label: "Name",
+      name: "name",
+      fullWidth: true,
+      sx: { width: { lg: "48.6%", md: "100%", xs: "100%" }, clear: "both" },
+    },
 
-    gridLength: 6,
-    title: "Job Title / Role",
-    otherOptions: { name: "jobTitle", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Tel No",
-    otherOptions: { name: "telNo", fullWidth: true },
+    otherOptions: { label: "Agency", name: "agency", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Email",
-    otherOptions: { name: "email", fullWidth: true },
+    otherOptions: {
+      label: "Job Title / Role",
+      name: "jobTitle",
+      fullWidth: true,
+    },
+
+    component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: { label: "Tel No", name: "telNo", fullWidth: true },
+
+    component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: { label: "Email", name: "email", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: "Who is Risk? Name and Role",
     otherOptions: {
+      label: "Who is Risk? Name and Role",
       name: "nameRole",
       multiline: true,
       minRows: 3,
@@ -148,20 +176,18 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Family Name",
-    otherOptions: { name: "familyName", fullWidth: true },
+    otherOptions: { label: "Family Name", name: "familyName", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Given Name",
-    otherOptions: { name: "givenName", fullWidth: true },
+    otherOptions: { label: "Given Name", name: "givenName", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: "Home Address",
     otherOptions: {
+      label: "Home Address",
       name: "homeAddress",
       multiline: true,
       minRows: 3,
@@ -172,32 +198,32 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Tel No",
-    otherOptions: { name: "allegationTelNo", fullWidth: true },
+    otherOptions: { label: "Tel No", name: "allegationTelNo", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Email",
-    otherOptions: { name: "allegationEmail", fullWidth: true },
+    otherOptions: { label: "Email", name: "allegationEmail", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Job Title / Role",
-    otherOptions: { name: "allegationJobTitle", fullWidth: true },
-    component: RHFTextField,
-  },
-  {
-    gridLength: 6,
-    title: "Ethnicity",
-    otherOptions: { name: "ethnicity", fullWidth: true },
-    component: RHFTextField,
-  },
-  {
-    gridLength: 6,
-    title: "Gender",
     otherOptions: {
+      label: "Job Title / Role",
+      name: "allegationJobTitle",
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: { label: "Ethnicity", name: "ethnicity", fullWidth: true },
+    component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      label: "Gender",
       name: "allegationGender",
       fullWidth: true,
       select: true,
@@ -210,8 +236,8 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 12,
-    title: "Workplace Address",
     otherOptions: {
+      label: "Workplace Address",
       name: "workplaceAddress",
       multiline: true,
       minRows: 3,
@@ -222,8 +248,8 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 12,
-    title: "Employing Address",
     otherOptions: {
+      label: "Employing Address",
       name: "employingAddress",
       multiline: true,
       minRows: 3,
@@ -241,40 +267,46 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Name",
-    otherOptions: { name: "childrenNameOne", fullWidth: true },
+    otherOptions: { label: "Name", name: "childrenNameOne", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Date of Birth",
-    otherOptions: { name: "childrenDateOne", fullWidth: true },
+    otherOptions: {
+      label: "Date of Birth",
+      name: "childrenDateOne",
+      fullWidth: true,
+    },
     component: RHFDatePicker,
   },
   // Children Two
   {
     gridLength: 6,
-    title: "Name",
-    otherOptions: { name: "childrenNameTwo", fullWidth: true },
+    otherOptions: { label: "Name", name: "childrenNameTwo", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Date of Birth",
-    otherOptions: { name: "childrenDateTwo", fullWidth: true },
+    otherOptions: {
+      label: "Date of Birth",
+      name: "childrenDateTwo",
+      fullWidth: true,
+    },
     component: RHFDatePicker,
   },
   // Children Three
   {
     gridLength: 6,
-    title: "Name",
-    otherOptions: { name: "childrenNameThree", fullWidth: true },
+    otherOptions: { label: "Name", name: "childrenNameThree", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Date of Birth",
-    otherOptions: { name: "childrenDateThree", fullWidth: true },
+    otherOptions: {
+      label: "Date of Birth",
+      name: "childrenDateThree",
+      fullWidth: true,
+    },
     component: RHFDatePicker,
   },
   // switch
@@ -287,7 +319,7 @@ export const addAllegationFormData = [
       name: "redaringPerson",
       options: ["Yes", "No"],
       fullWidth: true,
-      sx: { marginLeft: "0 !important" }
+      sx: { marginLeft: "0 !important" },
     },
     component: RHFRadioGroup,
   },
@@ -311,26 +343,35 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Family Name",
-    otherOptions: { name: "personFamilyName", fullWidth: true },
+    otherOptions: {
+      label: "Family Name",
+      name: "personFamilyName",
+      fullWidth: true,
+    },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Given Name",
-    otherOptions: { name: "personGivenName", fullWidth: true },
+    otherOptions: {
+      label: "Given Name",
+      name: "personGivenName",
+      fullWidth: true,
+    },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Date of Birth",
-    otherOptions: { name: "dateOfBirth", fullWidth: true },
+    otherOptions: {
+      label: "Date of Birth",
+      name: "dateOfBirth",
+      fullWidth: true,
+    },
     component: RHFDatePicker,
   },
   {
     gridLength: 12,
-    title: "Home Address",
     otherOptions: {
+      label: "Home Address",
       name: "personHomeAddress",
       multiline: true,
       minRows: 3,
@@ -341,12 +382,12 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 12,
-    title: "Gender",
     otherOptions: {
+      label: "Gender",
       name: "personGender",
       fullWidth: true,
       select: true,
-      sx: { width: { lg: "48.6%", md: "100%", xs: "100%", }, clear: "both" }
+      sx: { width: { lg: "48.6%", md: "100%", xs: "100%" }, clear: "both" },
     },
     options: [
       { value: "Male", label: "Male" },
@@ -355,7 +396,6 @@ export const addAllegationFormData = [
     component: RHFSelect,
   },
 
-
   // Second Form => Name of Reffered Person
   {
     gridLength: 12,
@@ -363,20 +403,20 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 6,
-    title: "Date of incident / Allegation",
     otherOptions: { name: "dateOfIncident", fullWidth: true },
+    title: "Date of incident / Allegation",
     component: RHFDatePicker,
   },
   {
     gridLength: 6,
-    title: "Time of incident / Allegation",
     otherOptions: { name: "timeOfIncident", fullWidth: true },
+    title: "Time of incident / Allegation",
     component: RHFDatePicker,
   },
   {
     gridLength: 12,
-    title: "Location of incident / Allegation",
     otherOptions: {
+      label: "Location of incident / Allegation",
       name: "incidentAndAllegation",
       multiline: true,
       minRows: 3,
@@ -399,38 +439,43 @@ export const addAllegationFormData = [
   },
   {
     gridLength: 12,
-    title: "Name of Potential Witness(es)",
-    otherOptions: { name: "nameOfPotential", fullWidth: true, sx: { width: { lg: "48.6%", md: "100%", xs: "100%", }, clear: "both" } },
+    otherOptions: {
+      label: "Name of Potential Witness(es)",
+      name: "nameOfPotential",
+      fullWidth: true,
+      sx: { width: { lg: "48.6%", md: "100%", xs: "100%" }, clear: "both" },
+    },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Tel No",
-    otherOptions: { name: "personTelNo", fullWidth: true },
+    otherOptions: { label: "Tel No", name: "personTelNo", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Email",
-    otherOptions: { name: "personEmail", fullWidth: true },
+    otherOptions: { label: "Email", name: "personEmail", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 12,
-    title: "Family Name",
-    otherOptions: { name: "refferedFamilyName", fullWidth: true, sx: { width: { lg: "48.6%", md: "100%", xs: "100%", }, clear: "both" } },
+    otherOptions: {
+      label: "Family Name",
+      name: "refferedFamilyName",
+      fullWidth: true,
+      sx: { width: { lg: "48.6%", md: "100%", xs: "100%" }, clear: "both" },
+    },
+
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Tel No",
-    otherOptions: { name: "refferedTelNo", fullWidth: true },
+    otherOptions: { label: "Tel No", name: "refferedTelNo", fullWidth: true },
     component: RHFTextField,
   },
   {
     gridLength: 6,
-    title: "Email",
-    otherOptions: { name: "refferedEmail", fullWidth: true },
+    otherOptions: { label: "Email", name: "refferedEmail", fullWidth: true },
     component: RHFTextField,
   },
   {
@@ -441,14 +486,14 @@ export const addAllegationFormData = [
       name: "immediateSafeguarding",
       options: ["Yes", "No"],
       fullWidth: true,
-      sx: { marginLeft: "0 !important" }
+      sx: { marginLeft: "0 !important" },
     },
     component: RHFRadioGroup,
   },
   {
     gridLength: 12,
-    title: "If yes please advise",
     otherOptions: {
+      title: "If yes please advise",
       name: "advise",
       multiline: true,
       minRows: 3,
@@ -458,5 +503,3 @@ export const addAllegationFormData = [
     component: RHFTextField,
   },
 ];
-
-

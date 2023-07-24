@@ -12,12 +12,13 @@ export const useReadyForPlacement = () => {
   const id = "4f7512fb-2916-451b-8240-97f529ded73d";
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetReadyForPlacementStatusQuery(id);
+  const readyForPlacementApiData = data?.data;
 
   useEffect(() => {
     setReadyForPlacementData(
       READYFORPLACEMENT.map((item) => ({
         ...item,
-        status: data?.data?.[item.textForApi],
+        status: readyForPlacementApiData?.[item.textForApi],
       }))
     );
   }, [data]);
