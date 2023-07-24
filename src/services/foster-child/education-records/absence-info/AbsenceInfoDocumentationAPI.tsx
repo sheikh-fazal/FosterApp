@@ -5,7 +5,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Get API of Abence Info Document
     getAbsenceInfoDocument: builder.query<null, object>({
-      query: ({ childAbsenceInfoId}: any) => ({
+      query: ({ childAbsenceInfoId }: any) => ({
         url: `/foster-child/child-absence-info/document/list/${childAbsenceInfoId}`,
         method: "GET",
       }),
@@ -26,7 +26,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `/foster-child/add-child-absence-info/document/${apiDataParameter.childAbsenceInfoId}`,
         method: "POST",
-        param: apiDataParameter.childFamilyOrgInfoId,
+        param: apiDataParameter.childAbsenceInfoId,
         body: apiDataParameter.body,
       }),
       invalidatesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],
@@ -34,7 +34,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
 
     // Delete API of Abence Info Document
     deleteAbsenceInfoUploadDocument: builder.mutation({
-      query: (id : any) => ({
+      query: (id: any) => ({
         url: `/foster-child/child-absence-info/document/${id}`,
         method: "DELETE",
       }),

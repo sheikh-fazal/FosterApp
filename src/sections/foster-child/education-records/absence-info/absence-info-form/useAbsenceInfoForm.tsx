@@ -1,27 +1,44 @@
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { AbsenceInfodefaultValues, formSchema } from ".";
+import { defaultValues, formSchema } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
+  useGetAbsenceInfoByIdQuery,
   usePatchAbsenceInfoMutation,
   usePostAbsenceInfoMutation,
 } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
+import { useEffect } from "react";
+
 export const useAbsenceInfoForm = (props: any) => {
   const router = useRouter();
+  const childInfoId = router?.query["absence_info_id"];
   console.log(router, "router?.query");
-  const { disabled, defaultValues } = props;
-  console.log("defaultValues", defaultValues);
+  const { disabled } = props;
+
+  const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
+    refetchOnMountOrArgChange: true,
+  });
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues: defaultValues ?? AbsenceInfodefaultValues,
+    defaultValues,
   });
   const {
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    reset,
+    formState: { isSubmitting },
   } = methods;
+  useEffect(() => {
+    reset((formValues: any) => ({
+      ...formValues,
+      ...data?.[0],
+      dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+      label: new Date(data?.[0]?.label),
+    }));
+  }, [data, reset]);
   const [postAbsenceInfoList] = usePostAbsenceInfoMutation();
   const [patchAbsenceInfoList] = usePatchAbsenceInfoMutation();
+
   const onSubmit = async (data: any) => {
     console.log(data);
     if (!!router?.query?.absence_info_id) {
@@ -57,7 +74,7 @@ export const useAbsenceInfoForm = (props: any) => {
         router.push(`/foster-child/education-records/absence-info`);
       } else {
         router.push(
-          `/foster-child/education-records/absence-info/add-absence-info?absence_info_id=${router?.query?.absence_info_id}`
+          `/foster-child/education-records/absence-info?absence_info_id=${router?.query?.absence_info_id}`
         );
       }
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
@@ -69,11 +86,11 @@ export const useAbsenceInfoForm = (props: any) => {
     }
   };
   return {
-    router,
-    onSubmit,
-    disabled,
-    handleSubmit,
     methods,
+    handleSubmit,
+    onSubmit,
     isSubmitting,
+    router,
+    disabled,
   };
 };

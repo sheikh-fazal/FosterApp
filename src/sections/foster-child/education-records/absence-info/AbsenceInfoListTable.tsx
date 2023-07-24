@@ -9,9 +9,9 @@ import TableAction from "@root/components/TableAction";
 import { useAbsenceInfoListTable } from "./useAbsenceInfoListTable";
 import dayjs from "dayjs";
 
-export default function AbsenceInfoListTable(prop:any) {
+export default function AbsenceInfoListTable(prop: any) {
   const router = useRouter();
-  const { fosterChildId} = prop;
+  const { fosterChildId } = prop;
   const {
     data,
     headerChangeHandler,

@@ -72,7 +72,7 @@ export const absenceInfoFormData = [
 //     formatters[formControl.otherOptions.name] = formControl.format;
 // }
 
-export const AbsenceInfodefaultValues = {
+export const defaultValues = {
   schoolName: "",
   reasonOfAbsence: "",
   dateOfAbsence: new Date(),

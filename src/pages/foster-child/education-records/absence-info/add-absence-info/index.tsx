@@ -5,6 +5,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useRouter } from "next/router";
 import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
+import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 // Constants
 const BREADCRUMBS = (query: any) => [
   {
@@ -33,10 +34,12 @@ AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
 };
 export default function AbsenceInfoFormLayout() {
   const { query } = useRouter();
-
+  const childInfoId = query["absence_info_id"];
+  const { data, isLoading, isSuccess, isError } =
+    useGetAbsenceInfoByIdQuery(childInfoId);
   return (
     <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm />
+      <AbsenceInfoForm  defaultValues={data?.[0]}/>
       <AbsenceInfoDocument />
     </HorizaontalTabs>
   );

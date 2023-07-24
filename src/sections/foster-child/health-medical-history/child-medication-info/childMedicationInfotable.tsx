@@ -61,7 +61,7 @@ const ChildMedicationInfotable = (prop: any) => {
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
             <DeletePrompt
               onDeleteClick={() =>
-                deleteHander(info.row.original.id, fosterChildId)
+                deleteHander(info.row?.original?.id, fosterChildId)
               }
             />
 

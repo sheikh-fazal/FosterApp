@@ -12,6 +12,7 @@ import {
 import useChildMedicationInfoForm from "./useChildMedicationInfoForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { LoadingButton } from "@mui/lab";
 
 const backPath = "/foster-child/health-medical-history/child-medication-info";
 
@@ -130,7 +131,7 @@ const ChildMedicationInfoForm = (props: any) => {
                 xs={12}
               >
                 {action === "edit" || action === "add" ? (
-                  <Button
+                  <LoadingButton
                     sx={{
                       bgcolor: theme.palette.primary.main,
                       "&:hover": { bgcolor: theme.palette.primary.main },
@@ -139,10 +140,10 @@ const ChildMedicationInfoForm = (props: any) => {
                     type="submit"
                   >
                     Submit
-                  </Button>
+                  </LoadingButton>
                 ) : null}
 
-                <Button
+                <LoadingButton
                   sx={{
                     bgcolor: theme.palette.orange.main,
                     "&:hover": { bgcolor: theme.palette.orange.main },
@@ -158,7 +159,7 @@ const ChildMedicationInfoForm = (props: any) => {
                   }
                 >
                   back
-                </Button>
+                </LoadingButton>
               </Grid>
             </Grid>
           </FormProvider>

@@ -15,7 +15,7 @@ export const useAbsenceInfoDocument = () => {
   console.log(router?.asPath.split("/").pop());
 
   const childAbsenceInfoId = {
-    childAbsenceInfoId: router?.query?.absence_info_id || " ",
+    childAbsenceInfoId: router?.query?.absence_info_id,
     offset: page,
     limit: 10,
     search: searchValue,
@@ -23,10 +23,9 @@ export const useAbsenceInfoDocument = () => {
 
   const { data, isLoading, isSuccess, isFetching, isError } =
     useGetAbsenceInfoDocumentQuery(childAbsenceInfoId);
+
   const [postAbsenceInfoUploadDocument] =
     usePostAbsenceInfoUploadDocumentMutation();
-
-  console.log(data);
 
   const submitAbsenceInfoDocumentData = async (data: any) => {
     if (!router?.query?.absence_info_id) {
@@ -37,7 +36,7 @@ export const useAbsenceInfoDocument = () => {
     const documentFormData = new FormData();
     documentFormData.append("documentType", data.documentType);
     documentFormData.append(
-      "date",
+      "documentDate",
       dayjs(data.documentDate).format("DD/MM/YYYY")
     );
     documentFormData.append("password", data.password);

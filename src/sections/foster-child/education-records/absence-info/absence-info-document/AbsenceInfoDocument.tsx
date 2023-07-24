@@ -1,7 +1,7 @@
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useAbsenceInfoDocument } from "./useAbsenceInfoDocument";
 
-export const AbsenceInfoDocument = (prop:any) => {
+export const AbsenceInfoDocument = (prop: any) => {
   const {
     data,
     router,
@@ -22,7 +22,7 @@ export const AbsenceInfoDocument = (prop:any) => {
         searchParam={(data: any) => {
           return setSearchValue(data.search);
         }}
-        tableData={data?.data}
+        tableData={data?.data?.absence_info_document}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}

@@ -29,13 +29,6 @@ const useChildMedicationInfoForm = (props: any) => {
   const [deleteChildMedicationInfoById] =
     useDeleteChildMedicationInfoByIdMutation();
 
-  //UPLOAD DOCUMENT API HANDLERS
-  // const [createHospitalInfoListDocument] =
-  //   useCreateHospitalInfoListDocumentMutation();
-  // const [updateHospitalInfoListDocument] =
-  //   useUpdateHospitalInfoListDocumentMutation();
-  // const [deleteHospitalInfoListDocument] =
-  //   useDeleteHospitalInfoListDocumentMutation();
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
@@ -159,76 +152,7 @@ const useChildMedicationInfoForm = (props: any) => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  //UPLOAD DOCUMENTS HANDLERS
-  // const onUploadSubmit = (data: any) => {
-  //   setisFatching(true);
-  //   const formData = new FormData();
-  //   formData.append("documentType", data.documentType);
-  //   formData.append("documentDate", data.documentDate);
-  //   formData.append("password", data.password);
-  //   formData.append("documentFile", data.documentFile);
-  //   createHospitalInfoListDocument({
-  //     hospitalInfoFormId: hospitalinfoId,
-  //     params: {
-  //       fosterCarerId: fosterChildId,
-  //       hospitalInfoFormId: hospitalinfoId,
-  //     },
-  //     body: formData,
-  //   })
-  //     .unwrap()
-  //     .then((res: any) => {
-  //       enqueueSnackbar("Information Add Successfully", {
-  //         variant: "success",
-  //       });
-  //       setisFatching(false);
-  //       setModelOpen(false);
-  //     })
-  //     .catch((error: any) => {
-  //       setisFatching(false);
-  //       setModelOpen(false);
-  //       const errMsg = error?.data?.message;
-  //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-  //     });
-  // };
-  // const onUpdateSubmit = (data: any, id: any) => {
-  //   setisFatching(true);
-  //   const formData = new FormData();
-  //   formData.append("documentType", data.documentType);
-  //   formData.append("documentDate", data.documentDate);
-  //   formData.append("password", data.password);
-  //   formData.append("documentFile", data.documentFile);
-  //   updateHospitalInfoListDocument({
-  //     id: id,
 
-  //     body: formData,
-  //   })
-  //     .unwrap()
-  //     .then((res: any) => {
-  //       enqueueSnackbar("Information Edit Successfully", {
-  //         variant: "success",
-  //       });
-  //       setisFatching(false);
-  //       setModelOpen(false);
-  //     })
-  //     .catch((error: any) => {
-  //       setisFatching(false);
-  //       setModelOpen(false);
-  //       const errMsg = error?.data?.message;
-  //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-  //     });
-  // };
-  // const onDeleteHander = (id: any) => {
-  //   deleteHospitalInfoListDocument({ id: id })
-  //     .then(() => {
-  //       enqueueSnackbar("Information Delete Successfully", {
-  //         variant: "success",
-  //       });
-  //     })
-  //     .catch((error: any) => {
-  //       const errMsg = error?.data?.message;
-  //       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-  //     });
-  // };
   return {
     SubmitData,
     getDefaultValue,
