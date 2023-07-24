@@ -114,7 +114,7 @@ const RAChildDetailsForm = () => {
                     variant="subtitle2"
                   >
                     Enter Additional Email Addresses to be notified: (Email Addresses should be
-                    seprated by commas.For example john@domain.com, Pete@domain.com)
+                    separated by commas.For example john@domain.com, Pete@domain.com)
                   </Typography>
                   <RHFTextField
                     name={"additionalEmailAddresses"}
