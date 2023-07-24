@@ -1,9 +1,10 @@
 import { baseAPI } from "@root/services/baseApi";
 
 const TAG = "VOCATIONAL-INFO";
-
+const DOCTAG = "VOCATIONAL-INFO-DOCS";
 export const VocationalInfoListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
+    // Main Form
     vocationalInfoList: builder.query({
       query: (id) => ({
         url: `/vocationanl-info-list/info-list/${id}`,
@@ -35,7 +36,37 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
+
+    // Documents
+    vocationalInfoDocuments: builder.query({
+      query: ({ params }) => ({
+        url: `/vocationanl-info-list/all-documents/vocational-info-documents`,
+        method: "GET",
+        params,
+      }),
+      providesTags: [DOCTAG],
+    }),
+    addVocationalInfoDocument: builder.mutation({
+      query: (id) => ({
+        url: `vocationanl-info-list/documents?fosterCarerId=${id}`,
+        method: "POST",
+      }),
+      invalidatesTags: [DOCTAG],
+    }),
+    deleteVocationalInfoDocument: builder.mutation({
+      query: (id) => ({
+        url: `vocationanl-info-list/documents/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [DOCTAG],
+    }),
   }),
 });
 
-export const { useVocationalInfoListQuery } = VocationalInfoListApi;
+export const {
+  useVocationalInfoListQuery,
+  useAddVocationalInfoMutation,
+  useDeleteVocationalInfoMutation,
+  useEditVocationalInfoMutation,
+  useLazyVocationalInfoListQuery,
+} = VocationalInfoListApi;
