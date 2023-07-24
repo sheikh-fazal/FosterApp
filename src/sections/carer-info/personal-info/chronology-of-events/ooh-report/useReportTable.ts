@@ -1,16 +1,55 @@
-import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useDeleteReportByIdMutation,
+  useReportListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/OohReportApi";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import { enqueueSnackbar } from "notistack";
+import React from "react";
+import { useRef } from "react";
 
 export const useReportTable = () => {
+  const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const theme: any = useTheme();
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
+    useTableParams();
+  //GET API For Report List
+  const { data, isError, isLoading, isFetching, isSuccess }: any =
+    useReportListQuery({ search: search, ...params });
+  //API for Deleting Reports
+  const [deleteList] = useDeleteReportByIdMutation();
+  //DELETE API For Deleting Report List
+  const listDeleteHandler = (id: any) => {
+    deleteList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
+  const reportList = data?.data?.cce_ooh_report;
+  const meta = data?.meta;
 
   return {
     router,
     tableHeaderRefTwo,
-    theme,
-   
+    isLoading,
+    headerChangeHandler,
+    reportList,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
+    listDeleteHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch,
   };
 };

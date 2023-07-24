@@ -20,7 +20,7 @@ export const diaryRecordingUploadDocumentsApi = baseAPI.injectEndpoints({
       invalidatesTags: ["DIARY_RECORDING_DOCUMENTS"],
     }),
     singleDiaryUploadDocuments: builder.query({
-      query: (id: any) => `child-day-log/dairyRecordingDocuments/${id}`,
+      query: (id: any) => `child-day-log/diaryRecordingDocuments/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
@@ -29,7 +29,7 @@ export const diaryRecordingUploadDocumentsApi = baseAPI.injectEndpoints({
     }),
     deleteDiaryUploadDocuments: builder.mutation({
       query: (id: any) => ({
-        url: `child-log-log/dairyRecordingDocument/${id}`,
+        url: `child-day-log/diaryRecordingDocument/delete/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["DIARY_RECORDING_DOCUMENTS"],

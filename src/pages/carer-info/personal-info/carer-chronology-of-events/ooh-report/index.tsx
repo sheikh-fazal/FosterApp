@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-details/OhDetailsData";
+import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-report-form/OhDetailsData";
 import UploadDocuments from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/upload-documents/UploadDocuments";
 
 // Constants

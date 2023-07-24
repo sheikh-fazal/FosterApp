@@ -131,8 +131,8 @@ export default function ChildDiaryRecordings() {
         searchParam={(searchedText: string) => setParams(searchedText)}
         modalData={(data: any) => documentUploadHandler(data)}
         onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
+        currentPage={metaData?.page ?? 0}
+        totalPages={metaData?.pages ?? 1}
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
