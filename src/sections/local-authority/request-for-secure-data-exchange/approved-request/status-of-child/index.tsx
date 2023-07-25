@@ -54,7 +54,6 @@ export const StatusOfChildData = [
     heading:
       "Is the child provided with accommodation under section 20 or section 59(1) of the Children Act 1989?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 4 },
     },
@@ -62,7 +61,7 @@ export const StatusOfChildData = [
     md: 12,
   },
   {
-    heading:
+    para:
       "Give details and the date where the parent or guardian has made a statement under section 20(4)(a) of the 2002 Act that they do not wish to be informed of any application for an adoption order. If such statements were subsequently withdrawn, give the dates of these withdrawals",
     componentProps: {
       variant: "",
@@ -86,7 +85,6 @@ export const StatusOfChildData = [
     heading:
       "Has the child any rights/claims under section 30 of the Fatal Accidents Act 1976 or any other rights to or interest in property which they may lose or gain if an adoption order is made?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 4 },
     },

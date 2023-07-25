@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useSafeCarePolicyList } from "./useSafeCarePolicyList";
-import { Box } from "@mui/material";
+import { useChildUploadDocuemntInfoList } from "./useChildUploadDocuemntInfoList";
+import { Box, Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import IsFetching from "@root/components/loaders/IsFetching";
+import UploadDocsModel from "./upload-document-model/UploadDocsModel";
 
 const UploadDocuments = () => {
   // const [tabelData, setTabelData] = useState([
@@ -33,23 +35,32 @@ const UploadDocuments = () => {
     isFetching,
     setSearchValue,
     setPage,
-    page,
-  } = useSafeCarePolicyList();
+    therapInfoCon,
+    openAddModel,
+    closeAddModel,
+  }: any = useChildUploadDocuemntInfoList();
+  const { someAsyncAction, addModel } = therapInfoCon;
   return (
-    <Box>
+    <Grid sx={{ position: "relative" }}>
+      <UploadDocsModel
+        modelStatus={addModel}
+        openAddModel={openAddModel}
+        closeAddModel={closeAddModel}
+      />
+      {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
         ref={tableHeaderRef}
-        title="Uploaded Documents"
+        title="Uploaded Documents "
         searchKey="search"
         showAddBtn={true}
-        onAdd={() => console.log("Test")}
+        onAdd={openAddModel}
         onChanged={(data: any) => {
           setSearchValue(data?.search);
           console.log("Updated params: ", data);
         }}
       />
       <CustomTable
-        data={data}
+        data={data?.data?.therapy_info_document}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
@@ -57,17 +68,20 @@ const UploadDocuments = () => {
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={page}
-        totalPages={10}
-        onPageChange={(data: any) => {
-          setPage(() => data);
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages || 1}
+        // onPageChange={(data: any) => {
+        //   setPage(() => data);
+        // }}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
         }}
         onSortByChange={(data: any) => {
           // console.log("Sort by: ", data);
           return;
         }}
       />
-    </Box>
+    </Grid>
   );
 };
 

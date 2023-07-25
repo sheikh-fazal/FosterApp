@@ -1,8 +1,9 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Link from "next/link";
 import { useBirthMotherViews } from "./useBirthMotherViews";
+
 
 const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, BirthMotherViews } =
@@ -14,8 +15,8 @@ const BirthMotherViews = ({ handleNextTab, handleBackTab }: any) => {
           {BirthMotherViews?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
-                <form.component size="small" {...form.componentProps}>
-                  {form?.heading}
+                <form.component size="small" fullWidth {...form.componentProps}>
+                  <Typography sx={{fontSize:"16px", color:"red"}}>{form?.heading}</Typography>
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>

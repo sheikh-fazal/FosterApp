@@ -16,10 +16,10 @@ const SocialHistoryBirthMother = ({ handleNextTab, handleBackTab }: any) => {
         columns={[
           {
             inputType: "datePicker",
-            type: "date",
+            type: "dob",
             key: "date",
             defaultValue: new Date(),
-            label: "Date where known",
+            label: "Date",
             validation: (Yup: any) => {
               return Yup.date()
                 .typeError("End date is required")

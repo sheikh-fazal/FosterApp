@@ -20,7 +20,7 @@ const AddPoliciesAgreementForm = (props: any) => {
         <Grid container columnSpacing={4} sx={{ p: 3 }}>
           {LaPoliciesAgreementFormData?.map((item: any) => (
             <Grid item xs={12} md={item?.md} key={item?.id}>
-              <item.component
+              <item.component fullWidth
                 {...item.componentProps}
                 disabled={actionType === 'edit' && true}
                 size={"small"}
