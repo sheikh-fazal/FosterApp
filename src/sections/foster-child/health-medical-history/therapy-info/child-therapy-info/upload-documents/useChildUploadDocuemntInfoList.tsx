@@ -2,19 +2,23 @@ import { useRef, useState } from "react";
 import { getColumns } from "./columnsInfo";
 import { useRouter } from "next/router";
 import {
+  useDelTherapyDetailsDocsListDataMutation,
   useDelTherapyDetailsListDataMutation,
   useGetAlltherapyDetailsListDataQuery,
+  useGetTherapyDetailsDocsListDataQuery,
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { displaySuccessMessage } from "@root/utils/mixedUtil";
 
-export const useTherapyInfoList = () => {
+export const useChildUploadDocuemntInfoList = () => {
   const router = useRouter();
   const { query } = useRouter();
   const [page, setPage] = useState(0);
+
   const [searchValue, setSearchValue] = useState(undefined);
   const [therapInfoCon, setTherapInfo] = useState({
     someAsyncAction: false,
+    addModel: false,
   });
   const params = {
     search: searchValue,
@@ -23,14 +27,18 @@ export const useTherapyInfoList = () => {
   };
   const tableHeaderRef = useRef<any>();
 
-  const apiDataParameter = { params, id: query.fosterChildId };
+  const apiDataParameter = { params, id: query?.therapyInfoId };
+
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAlltherapyDetailsListDataQuery(apiDataParameter);
-  const [delTherapyDetailsListData] = useDelTherapyDetailsListDataMutation();
-  const handleDeleteTherapy = async (id: string) => {
+    useGetTherapyDetailsDocsListDataQuery(apiDataParameter);
+
+  const [delTherapyDetailsDocsListData] =
+    useDelTherapyDetailsDocsListDataMutation();
+
+  const handleDeleteChildTherapy = async (id: string) => {
     try {
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
-      const data = await delTherapyDetailsListData({ id });
+      const data = await delTherapyDetailsDocsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
@@ -39,9 +47,16 @@ export const useTherapyInfoList = () => {
       return false;
     }
   };
-  // const { data, isLoading, isSuccess, isError, isFetching } =
-  //   useSafeCarePolicyListQuery(params);
-  const columns = getColumns({ router, handleDeleteTherapy });
+
+  const openAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, addModel: true }));
+  };
+
+  const closeAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, addModel: false }));
+  };
+
+  const columns = getColumns({ router, handleDeleteChildTherapy });
   return {
     tableHeaderRef,
     columns,
@@ -54,6 +69,7 @@ export const useTherapyInfoList = () => {
     setPage,
     page,
     therapInfoCon,
-    handleDeleteTherapy,
+    openAddModel,
+    closeAddModel,
   };
 };
