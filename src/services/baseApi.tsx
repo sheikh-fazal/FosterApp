@@ -72,7 +72,7 @@ export const TAGS = [
   "hospitalization",
   "hospitalzationDocuments",
   "DIARY_RECORDINGS_LIST",
-  "foster-lists"
+  "foster-lists",
   "VOCATIONAL-INFO",
   "VOCATIONAL-INFO-DOCS",
   "THERAPY_INFO_LIST",
