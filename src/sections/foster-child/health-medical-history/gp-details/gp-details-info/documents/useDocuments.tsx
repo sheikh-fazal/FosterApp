@@ -24,7 +24,7 @@ export const useDocuments = () => {
   ] = useDeleteGpDetailsInfoDocumentDataByIdMutation();
 
   const [page, setPage] = useState(0);
-  const params = {
+  const queryParams = {
     offset: page,
     limit: GPDETAILSDOCUMENTPAGELIMIT,
     search: searchValue,
@@ -32,7 +32,7 @@ export const useDocuments = () => {
   const pathParams = {
     gpInfoId: router?.query?.gpInfoId,
   };
-  const apiDataParameter = { params, pathParams };
+  const apiDataParameter = { queryParams, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
     useGetGpDetailsInfoDocumentDataQuery(apiDataParameter, {
       skip: !!!router?.query?.gpInfoId,
@@ -53,7 +53,7 @@ export const useDocuments = () => {
     const pathParams = {
       gpInfoId: router?.query?.gpInfoId,
     };
-    const apiDataParameter = { params, pathParams, body: documentFormData };
+    const apiDataParameter = { queryParams, pathParams, body: documentFormData };
     try {
       const res: any = await postGpDetailsInfoDocumentDataTrigger(
         apiDataParameter

@@ -8,6 +8,8 @@ import {
   useGetSubstituteCarerByIdQuery,
   usePostSubstituteCarerMutation,
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -46,17 +48,31 @@ SwapCarerDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function SwapCarerDetails() {
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
   const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
 
-  const formSubmitHandler = (formData: any) => {
+  const formSubmitHandler = async (formData: any) => {
     const body = { ...formData, carerType: "SC", status: " " };
+    try {
+      const res: any = await postSwapCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
     console.log(body);
 
     postSwapCarerData(body);
   };
-  const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
-    "17210af4-a43c-40a8-bf70-c43d6cb45ea0"
-  );
+  // const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
+  //   "17210af4-a43c-40a8-bf70-c43d6cb45ea0"
+  // );
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm
@@ -64,7 +80,7 @@ export default function SwapCarerDetails() {
           formSubmitHandler(data);
         }}
         status={status}
-        data={data?.[0]}
+        onEdit={(data: any) => console.log(data)}
       />
 
       <UploadDocuments

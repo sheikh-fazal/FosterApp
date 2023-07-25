@@ -12,36 +12,6 @@ import { useGetImmunisationDetailQuery } from "@root/services/foster-child/healt
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
 const PAGE_TITLE = "Immunisation";
 
-AddImmunisation.getLayout = function GetLayout(page: any) {
-  const router: any = useRouter();
-  const { action, id } = router.query;
-
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
-    },
-    {
-      name: "Child Immunisation Info ",
-      href: "",
-    },
-    {
-      name: "Immunisation Info",
-      href: "",
-    },
-  ];
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
 // ----------------------------------------------------------------------
 
 export default function AddImmunisation() {
@@ -49,17 +19,37 @@ export default function AddImmunisation() {
   let { id } = router.query;
   let [immunisationId, setImmunisationId] = useState(null);
   return (
-    <Box>
-      <HorizaontalTabs
-        tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
-      >
-        <ImmunisationFrom
-          setImmunisationId={setImmunisationId}
-          id={id}
-          action="add"
-        />
-        <ImmunisationUploadTable immunisationId={immunisationId} />
-      </HorizaontalTabs>
-    </Box>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          // name: "",
+          href: `/`,
+        },
+        {
+          name: "Child Immunisation Info",
+          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${id}`,
+        },
+        {
+          name: "Immunisation info",
+          href: "",
+        },
+      ]}
+      title={PAGE_TITLE}
+    >
+      <Box>
+        <HorizaontalTabs
+          tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
+        >
+          <ImmunisationFrom
+            setImmunisationId={setImmunisationId}
+            id={id}
+            action="add"
+          />
+          <ImmunisationUploadTable immunisationId={immunisationId} />
+        </HorizaontalTabs>
+      </Box>
+    </Layout>
   );
 }

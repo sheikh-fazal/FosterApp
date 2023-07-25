@@ -43,7 +43,7 @@ const ChildMissingPlacementTable = (props: any) => {
 
     {
       accessorFn: (row: any) => row?.missingReason,
-      id: "missingReason",
+      id: "childMissingReason",
       cell: (info: any) => info.getValue(),
       header: "Missing Reason",
       isSortable: true,
@@ -95,7 +95,7 @@ const ChildMissingPlacementTable = (props: any) => {
           router.push({
             pathname:
               "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

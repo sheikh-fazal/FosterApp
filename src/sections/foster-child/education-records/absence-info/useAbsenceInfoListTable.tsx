@@ -1,30 +1,19 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useAllegationListQuery,
-  useDeleteAllegationListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
-import { useRouter } from "next/router";
+  useDeleteAbsenceInfoMutation,
+  useGetAbsenceInfoQuery,
+} from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
 import { enqueueSnackbar } from "notistack";
-import React, { useRef } from "react";
 
 export const useAbsenceInfoListTable = () => {
-  const router = useRouter();
-  const [search, setSearch] = React.useState("");
-  const tableHeaderRefTwo = useRef<any>();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  //GET API For Allegation List
-  const {
-    data: allegationlist,
-    isError: allegationListError,
-    isLoading: allegationListIsloading,
-    isFetching: allegationlistIsfetching,
-    isSuccess: allegationListIsSuccess,
-  }: any = useAllegationListQuery({ search: search });
-  const allegations = allegationlist?.data?.allegation;
-  const meta = allegationlist?.data?.meta;
-  const [deleteList] = useDeleteAllegationListMutation();
-  //DELETE API For Allegation List
+
+  const { data, isError, isLoading, isSuccess, isFetching } =
+    useGetAbsenceInfoQuery<any>({ params });
+  const [deleteList] = useDeleteAbsenceInfoMutation();
+
+  // DELETE API Absence Info
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()
@@ -40,18 +29,14 @@ export const useAbsenceInfoListTable = () => {
   };
 
   return {
-    router,
-    tableHeaderRefTwo,
-    allegationListIsloading,
-    allegations,
-    allegationlistIsfetching,
-    allegationListError,
-    allegationListIsSuccess,
-    meta,
+    data,
     headerChangeHandler,
+    isError,
+    isLoading,
+    isSuccess,
+    isFetching,
+    listDeleteHandler,
     pageChangeHandler,
     sortChangeHandler,
-    listDeleteHandler,
-    setSearch,
   };
 };

@@ -41,6 +41,7 @@ export default function ApplicantObservationOnReportForm(props: any) {
                       <form.component
                         {...form.componentProps}
                         disabled={disabled || isLoading}
+                        fullWidth
                         size="small"
                       >
                         {form?.componentProps.select

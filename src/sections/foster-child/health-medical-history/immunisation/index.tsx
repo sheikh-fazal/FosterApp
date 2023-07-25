@@ -167,24 +167,23 @@ export const uploadDocColumns = ({
           />
           {role !== "foster-carer" && (
             <>
-            {
-            action=='view' ?
-            null :
-             <>
-              <TableAction
-                type="edit"
-                onClicked={() => {
-                  setOpen(true);
-                  setDocData(info.row.original);
-                  changeView("edit");
-                }}
-              />
-              <DeletePrompt
-                onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
-              />
-             </>
-            }
-             
+              {action == "view" ? null : (
+                <>
+                  <TableAction
+                    type="edit"
+                    onClicked={() => {
+                      setOpen(true);
+                      setDocData(info.row.original);
+                      changeView("edit");
+                    }}
+                  />
+                  <DeletePrompt
+                    onDeleteClick={() =>
+                      listDeleteHandler(info?.row?.original?.id)
+                    }
+                  />
+                </>
+              )}
             </>
           )}
         </Box>
@@ -259,7 +258,7 @@ export const UploadViewDocFormData = [
     componentProps: {
       fullWidth: true,
       name: "type",
-      label: "Document Type", 
+      label: "Document Type",
       select: true,
       options: [
         {
@@ -314,12 +313,16 @@ export const uploadDummyData = [
     documentName: "zyz",
     type: "zyz",
     documentDate: "zyz",
-    incidentId: "zyz",  
+    incidentId: "zyz",
     password: "zyz",
   },
 ];
 
-export const immunisationColumns = ({ activepath, listDeleteHandler }: any) => {
+export const immunisationColumns = ({
+  activepath,
+  listDeleteHandler,
+  fosterChildId,
+}: any) => {
   return [
     {
       accessorFn: (row: any) => row.date,
@@ -351,7 +354,7 @@ export const immunisationColumns = ({ activepath, listDeleteHandler }: any) => {
               type="edit"
               onClicked={() => {
                 router.push(
-                  `${activepath}/edit-immunisation/${info?.row?.original?.id}`
+                  `${activepath}/edit-immunisation/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
                 );
               }}
             />
@@ -360,7 +363,7 @@ export const immunisationColumns = ({ activepath, listDeleteHandler }: any) => {
               type="view"
               onClicked={() => {
                 router.push(
-                  `${activepath}/view-immunisation/${info?.row?.original?.id}`
+                  `${activepath}/view-immunisation/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
                 );
               }}
             />

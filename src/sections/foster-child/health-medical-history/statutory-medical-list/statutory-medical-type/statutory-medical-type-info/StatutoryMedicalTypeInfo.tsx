@@ -10,12 +10,12 @@ const StatutoryMedicalTypeInfo = () => {
     methods,
     handleSubmit,
     submitStatutoryMedicalTypeDataForm,
-    getSingleStatutoryMedicalTypeDataStatus,
     postStatutoryMedicalTypeDataStatus,
     patchStatutoryMedicalTypeDataStatus,
     router,
+    isLoading
   } = useStatutoryMedicalTypeInfo();
-  if (getSingleStatutoryMedicalTypeDataStatus?.isLoading)
+  if (isLoading)
     return <SkeletonFormdata />;
   return (
     <FormProvider

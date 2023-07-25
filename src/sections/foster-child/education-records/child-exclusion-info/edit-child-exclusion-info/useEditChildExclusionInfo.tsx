@@ -20,7 +20,7 @@ const useEditChildExclusionInfo = ({ initialValueProps, id }: any) => {
     exclusionDetails: "",
     actionTaken: "",
     outcome: "",
-  };
+  }; 
 
   const editChildExclusionInfoSchema = Yup.object().shape({
     classStudying: Yup.string().required("Required"),

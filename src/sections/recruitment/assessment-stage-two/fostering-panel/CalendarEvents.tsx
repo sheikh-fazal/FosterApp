@@ -61,7 +61,7 @@ const NewCalender = styled(({ iconsStyles, ...props }: any) => (
     prev2Label={<SkipPreviousIcon sx={iconsStyles} />}
   />
 ))(({ theme }: any) => ({
-  height: "522px",
+  height: "auto",
   width: "100%",
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.grey[700],

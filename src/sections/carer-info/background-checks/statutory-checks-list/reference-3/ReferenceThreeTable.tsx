@@ -24,13 +24,6 @@ const ReferenceThreeTable = () => {
   } = useReferenceThreeTable();
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.name ?? "-",
       id: "name",
       cell: (info: any) => info.getValue(),
@@ -50,7 +43,7 @@ const ReferenceThreeTable = () => {
       accessorFn: (row: any) => row?.receivedDate ?? "-",
       id: "receivedDate",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>; 
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: () => <span>Received Date</span>,
       isSortable: true,
@@ -125,6 +118,7 @@ const ReferenceThreeTable = () => {
         isFetching={referenceThreeIsfetching}
         isError={referenceThreeError}
         isSuccess={referenceThreeIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

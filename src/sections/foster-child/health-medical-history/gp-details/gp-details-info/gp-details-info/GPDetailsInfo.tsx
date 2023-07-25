@@ -10,14 +10,14 @@ const GPDetailsInfo = () => {
     methods,
     handleSubmit,
     submitGpDetailsInfoForm,
-    getSingleGpDetailsInfoDataStatus,
-
+    isLoading,
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
     theme,
   } = useGPDetailsInfo();
-  if (getSingleGpDetailsInfoDataStatus?.isLoading) return <SkeletonFormdata />;
+
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <FormProvider
       methods={methods}

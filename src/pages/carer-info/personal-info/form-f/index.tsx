@@ -18,44 +18,48 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import { FormFDataArray } from "@root/sections/carer-info/personal-info/form-f/FormFDataArray";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Form F List",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Form F";
 
 // ----------------------------------------------------------------------
 
 FormF.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function FormF() {
   const theme: any = useTheme();
+  const { makePath } = usePath();
+  const router = useRouter();
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info",
+      }),
+    },
+    {
+      name: "Form F List",
+      href: "",
+    },
+  ];
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <Card sx={styles.tabPanelContainer(theme)}>
         <Typography
           variant="h5"
@@ -69,7 +73,9 @@ export default function FormF() {
           {FormFDataArray?.map((item) => (
             <List key={item?.id}>
               <Link
-                href={item?.link}
+                href={makePath({
+                  path: item?.link,
+                })}
                 style={{ textDecoration: "none", display: "block" }}
               >
                 <ListItem

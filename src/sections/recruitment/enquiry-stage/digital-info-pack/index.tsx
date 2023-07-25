@@ -6,44 +6,44 @@ export const digitalInfoPackData = [
     background: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
     innerDataArray: [
       {
-        id: 2,
+        id: 1,
         title: "Application Form",
-        link: "",
+        link: "/carer-info/personal-info/application-form",
+      },
+      {
+        id: 2,
+        title: "Form F",
+        link: "/carer-info/personal-info/form-f",
       },
       {
         id: 3,
-        title: "Form F",
-        link: "",
+        title: "Carer Chronology of Events",
+        link: "/carer-info/personal-info/carer-chronology-of-events",
+      },
+      {
+        id: 4,
+        title: "Carer Family / Support Network",
+        link: "/carer-info/personal-info/carer-family-support-network",
       },
       {
         id: 5,
-        title: "Carer Chronology of Events",
-        link: "",
+        title: "Address History",
+        link: "/carer-info/personal-info/carer-address-history",
       },
       {
         id: 6,
-        title: "Carer Family / Support Network",
-        link: "",
+        title: "Pet Questionnaire",
+        link: "/carer-info/personal-info/pet-questionnaire",
       },
       {
         id: 7,
-        title: "Address History",
-        link: "",
+        title: "Interview Record and Analysis",
+        link: "/carer-info/personal-info/interview-record-and-analysis",
       },
       {
         id: 8,
-        title: "Pet Questionnaire",
-        link: "",
-      },
-      {
-        id: 9,
-        title: "Interview Record and Analysis",
-        link: "",
-      },
-      {
-        id: 10,
         title: "Social Media Links",
-        link: "",
+        link: "/carer-info/personal-info/social-media-links",
       },
     ],
   },
@@ -56,7 +56,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Statutory Checks List",
-        link: "",
+        link: "/carer-info/background-checks/statutory-checks-list",
       },
     ],
   },
@@ -69,12 +69,12 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Health and Safety",
-        link: "",
+        link: "/carer-info/medical-history/health-and-safety",
       },
       {
         id: 2,
         title: "Immunisations",
-        link: "",
+        link: "/carer-info/medical-history/immunisations",
       },
     ],
   },
@@ -87,7 +87,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Employment Details",
-        link: "",
+        link: "/carer-info/employment-history/employment-details",
       },
     ],
   },
@@ -100,7 +100,7 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Training Profile",
-        link: "",
+        link: "/carer-info/training-profiles/trainings-list",
       },
     ],
   },
@@ -113,12 +113,12 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Next of Kin",
-        link: "",
+        link: "/carer-info/other-information/next-of-kin",
       },
       {
         id: 2,
         title: "Bank Account Details ",
-        link: "",
+        link: "/carer-info/other-information/bank-account-details",
       },
     ],
   },
@@ -131,17 +131,17 @@ export const digitalInfoPackData = [
       {
         id: 1,
         title: "Backup carer",
-        link: "",
+        link: "/carer-info/substitute-cares/backup-carer",
       },
       {
         id: 2,
         title: "Swap Carer",
-        link: "",
+        link: "/carer-info/substitute-cares/swap-carer",
       },
       {
         id: 3,
         title: "Respite Carer",
-        link: "",
+        link: "/carer-info/substitute-cares/respite-carer",
       },
     ],
   },
