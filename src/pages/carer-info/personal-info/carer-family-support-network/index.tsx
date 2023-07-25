@@ -24,7 +24,9 @@ export default function CarerFamilySupportNetwork() {
     {
       icon: <HomeIcon />,
       name: "Carer Info",
-      href: makePath({ path: "/carer-info" }),
+      href: makePath({
+        path: "/carer-info",
+      }),
     },
     {
       name: "Member Details",

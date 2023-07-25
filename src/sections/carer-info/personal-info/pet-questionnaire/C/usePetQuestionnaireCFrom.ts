@@ -1,8 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { CFormValidationSchema } from '.';
-import { useRouter } from 'next/router';
-import { enqueueSnackbar } from 'notistack';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { CFormValidationSchema } from ".";
+import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
+import usePath from "@root/hooks/usePath";
 
 export const usePetQuestionnaireCFrom = ({
     onSubmitHandler,
@@ -21,8 +22,9 @@ export const usePetQuestionnaireCFrom = ({
 
     // Get id from url
     const router = useRouter();
-    const query = router.query;
-    const id = Object.keys(query)[0];
+    const { petId } = router.query;
+
+    const { makePath } = usePath();
 
     const onSubmit = async (data: any) => {
         const formData = new FormData();
@@ -38,7 +40,7 @@ export const usePetQuestionnaireCFrom = ({
         );
 
         const updatedData = {
-            id,
+            petId,
             formData,
         };
 
@@ -55,5 +57,5 @@ export const usePetQuestionnaireCFrom = ({
             enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
         }
     };
-    return { methods, handleSubmit, isSubmitting, onSubmit }
-}
+    return { methods, handleSubmit, isSubmitting, onSubmit, router, makePath };
+};

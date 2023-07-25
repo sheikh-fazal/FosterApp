@@ -63,7 +63,7 @@ export default function CarerInfo() {
   const { makePath } = usePath();
 
   if (!fosterCarerId) {
-    router.push("/foster-carer-list");
+    router.push("/dashboard");
     enqueueSnackbar("Foster Carer Id Not Provided", { variant: "error" });
   } else {
     return (
