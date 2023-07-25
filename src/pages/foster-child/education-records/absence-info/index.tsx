@@ -1,46 +1,42 @@
 import React from "react";
-//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
-import { Paper } from "@mui/material";
-import Page from "@root/components/Page";
+import { Box } from "@mui/material";
 import AbsenceInfoListTable from "@root/sections/foster-child/education-records/absence-info/AbsenceInfoListTable";
-
-// ----------------------------------------------------------------------
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Info",
-    href: "/",
-  },
-  {
-    name: "Absence Info List",
-    href: "/foster-child/education-records/absence-info",
-  },
-];
-
-const PAGE_TITLE = "Absence Info";
-// ----------------------------------------------------------------------
+import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 AbsenceInfo.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function AbsenceInfo() {
+  const Router: any = useRouter();
+  const { fosterChildId } = Router.query;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Child Info",
+      href: {
+        pathname: "/foster-child",
+        query: { fosterChildId: fosterChildId },
+      },
+    },
+    {
+      name: "Absence Info List",
+      href: "/foster-child/education-records/absence-info",
+    },
+  ];
+
+  const PAGE_TITLE = "Absence Info";
   return (
-    <Page title={PAGE_TITLE}>
-      <Paper elevation={3}>
-        <AbsenceInfoListTable />
-      </Paper>
-    </Page>
+    <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <AbsenceInfoListTable fosterChildId={fosterChildId} />
+    </Box>
   );
 }

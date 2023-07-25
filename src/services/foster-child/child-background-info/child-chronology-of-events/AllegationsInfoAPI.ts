@@ -96,6 +96,6 @@ export const {
   useGetChildChronologyOfEventsAllegationsInfoListQuery,
   usePostChildChronologyOfEventsAllegationsInfoMutation,
   usePatchChildChronologyOfEventsAllegationsInfoByIdMutation,
-  useGetChildChronologyOfEventsAllegationsInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsAllegationsInfoByIdQuery,
   useDeleteChildChronologyOfEventsAllegationsInfoByIdMutation,
 } = allegationsInfoApi;

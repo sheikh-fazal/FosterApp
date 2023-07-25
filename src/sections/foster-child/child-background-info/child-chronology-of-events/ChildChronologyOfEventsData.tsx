@@ -1,6 +1,6 @@
 import DayLogTable from "./day-log/DayLogTable";
 import OOHReportsTable from "./ooh-reports/OOHReportsTable";
-import OfstedNotificationsTable from "./ofsted-notifications/OfstedNotificationsTable";
+import OfstedNotificationsTable from "./ofsted-notifications/ofstedNotificationsTable";
 import ChildMissingPlacementTable from "./child-missing-placement/ChildMissingPlacementTable";
 import AbsenceInfoTable from "./absence-info/AbsenceInfoTable";
 import ExclusiveInfoTable from "./exclusion-info/ExclusionInfoTable";
@@ -10,7 +10,7 @@ import HospitalisationInfoTable from "./hospitalisation-info/HospitalisationInfo
 import TherapyInfoTable from "./therapy-info/TherapyInfoTable";
 import RiskAssessmentTable from "./risk-assessment/RiskAssessmentTable";
 import ImmunisationInfoTable from "./immunisation-info/ImmunisationInfoTable";
-import AllegationsInfoTable from "./allegations-info/AllegationsInfoTable";
+import AllegationsInfoTable from "./allegation-info/AllegationInfoTable";
 import ComplaintsInfoTable from "./complaints-info/ComplaintsInfoTable";
 import IncidentsInfoTable from "./incidents-info/IncidentsInfoTable";
 

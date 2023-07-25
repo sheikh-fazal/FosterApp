@@ -4,7 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useAllegationsInfoTable } from "./useAllegationsInfoTable";
+import { useAllegationsInfoTable } from "./useAllegationInfoTable";
 
 const AllegationsInfoTable = (props: any) => {
   const { fosterChildId } = props;
@@ -50,8 +50,12 @@ const AllegationsInfoTable = (props: any) => {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
-                query: { action: "edit", id: info?.row?.original?.id },
+                  "/foster-child/child-background-info/child-chronology-of-events/allegation-info",
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -63,8 +67,12 @@ const AllegationsInfoTable = (props: any) => {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
-                query: { action: "view", id: info?.row?.original?.id },
+                  "/foster-child/child-background-info/child-chronology-of-events/allegation-info",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -85,8 +93,8 @@ const AllegationsInfoTable = (props: any) => {
         onAdd={() => {
           router.push({
             pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/allegations-info",
-            query: { action: "add", id: "" },
+              "/foster-child/child-background-info/child-chronology-of-events/allegation-info",
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

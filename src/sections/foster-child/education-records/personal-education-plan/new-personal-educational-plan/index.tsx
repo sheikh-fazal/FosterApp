@@ -4,13 +4,14 @@ import {
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-export const EditPersonalEducationPlanData = [
+export const NewPersonalEducationPlanData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
       name: "school",
       label: "School",
+      fullWidth: true,
     },
     component: RHFTextField,
   },
@@ -45,6 +46,7 @@ export const EditPersonalEducationPlanData = [
       name: "comments",
       multiline: true,
       minRows: 2,
+      fullWidth: true,
     },
     component: RHFTextField,
   },

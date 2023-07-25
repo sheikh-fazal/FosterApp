@@ -97,6 +97,6 @@ export const {
   useGetChildChronologyOfEventsImmunisationInfoListQuery,
   usePostChildChronologyOfEventsImmunisationInfoMutation,
   usePatchChildChronologyOfEventsImmunisationInfoByIdMutation,
-  useGetChildChronologyOfEventsImmunisationInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsImmunisationInfoByIdQuery,
   useDeleteChildChronologyOfEventsImmunisationInfoByIdMutation,
 } = immunisationInfoApi;

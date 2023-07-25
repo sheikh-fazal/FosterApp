@@ -4,7 +4,7 @@ const ChildMedicationInfo = baseAPI.injectEndpoints({
   endpoints: (Builder) => ({
     getChildMedicationInfo: Builder.query({
       query: (payload: any) => ({
-        url: `/foster-child/list-child-medication-info/${payload.fosterCarerId}`,
+        url: "/foster-child/child-medication/get-all",
         method: "GET",
         params: payload.params,
       }),

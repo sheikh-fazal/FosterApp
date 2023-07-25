@@ -8,6 +8,8 @@ const FosterApi = baseAPI.injectEndpoints({
         params: payload.params,
       }),
     }),
+    
   }),
 });
-const { useGetFostersListQuery } = FosterApi;
+const { useGetFostersListQuery } =
+  FosterApi;
