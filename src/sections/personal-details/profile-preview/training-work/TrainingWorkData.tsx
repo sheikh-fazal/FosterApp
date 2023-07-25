@@ -23,6 +23,7 @@ export const TRAINING_CERTIFICATE = [
     label: "Document",
     sublist: [
       {
+        id: 1,
         title: "doc.pdf",
         icon: pdfIcon,
       },

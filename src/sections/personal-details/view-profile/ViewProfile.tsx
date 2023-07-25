@@ -10,14 +10,14 @@ const ViewProfile = () => {
     <Card sx={styles.rootCard}>
       <Box sx={styles.profileDetailsWrapper}>
         <Box sx={styles.profileData}>
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle1" component={"p"}>
             {isLoading ? (
               <Skeleton variant="text" animation="wave" width={100} />
             ) : (
               `${data?.data?.firstName ?? "-"} ${data?.data?.lastName ?? "-"}`
             )}
           </Typography>
-          <Typography variant="caption">
+          <Typography variant="caption" component={"p"}>
             {isLoading ? (
               <Skeleton variant="text" animation="wave" width={100} />
             ) : (
@@ -37,21 +37,25 @@ const ViewProfile = () => {
           <MyAvatar sx={styles.avatar} />
         )}
       </Box>
-      <Typography variant="subtitle2" sx={styles.locationText}>
-        {isLoading ? (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              margin: "0 auto",
-            }}
-          >
-            <Skeleton animation="wave" variant="text" width={350} />
-          </Box>
-        ) : (
-          data?.data?.location ?? "-"
-        )}
-      </Typography>
+      {isLoading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            margin: "0 auto",
+          }}
+        >
+          <Skeleton animation="wave" variant="text" width={350} />
+        </Box>
+      ) : (
+        <Typography
+          variant="subtitle2"
+          sx={styles.locationText}
+          component={"p"}
+        >
+          {data?.data?.location ?? "-"}
+        </Typography>
+      )}
       <Box sx={styles.phoneWrapper}>
         {isLoading ? (
           <Skeleton variant="text" animation="wave" width={100} />
@@ -60,7 +64,7 @@ const ViewProfile = () => {
             <Icon>
               <PhoneIcon />
             </Icon>
-            <Typography variant="caption">
+            <Typography variant="caption" component={"p"}>
               {data?.data?.phoneNumber ?? "-"}
             </Typography>
           </>
@@ -80,6 +84,7 @@ const ViewProfile = () => {
             <Typography
               variant="subtitle2"
               sx={{ color: theme.palette.primary.main }}
+              component={"p"}
             >
               Edit Full Profile
             </Typography>
@@ -95,6 +100,7 @@ const ViewProfile = () => {
             <Typography
               variant="subtitle2"
               sx={{ color: theme.palette.primary.main }}
+              component={"p"}
             >
               View Profile
             </Typography>

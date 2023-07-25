@@ -6,27 +6,27 @@ import { defaultValues, formSchema, formatters } from "./index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazySingleRecordingListQuery,
-  usePatchRecordingListMutation,
-  usePostDiaryRecordingListMutation,
-} from "@root/services/foster-child/child-day-log/diary-recordings/DiaryRecordingsApi";
-export const useDiaryRecordingsForm = (action: any, id: any) => {
+  useLazyReportByIdQuery,
+  usePatchReportByIdMutation,
+  useReportAddPostMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportApi";
+export const useReportForm = (action: any, id: any) => {
   const router = useRouter();
-  const { fosterChildId } = router.query;
+  const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
-  const [getsingleDiaryRecording] = useLazySingleRecordingListQuery();
-  //API For Posting Diary Recordings Form
-  const [postDiaryRecordings] = usePostDiaryRecordingListMutation();
-  //API For Patch Diary Recordings List
-  const [editDiaryRecording] = usePatchRecordingListMutation();
+  const [getReportList] = useLazyReportByIdQuery();
+  //API For Posting OOH Report Form
+  const [postReportDetails] = useReportAddPostMutation();
+  //API For Patch OOH Report List
+  const [editReportList] = usePatchReportByIdMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getsingleDiaryRecording(id, true);
+      const { data, isError } = await getReportList(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -43,12 +43,10 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
       return defaultValues;
     }
   };
-
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
-
   const {
     setValue,
     trigger,
@@ -56,74 +54,58 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
     getValues,
     formState: { isSubmitting },
   } = methods;
-
-  //OnSubmit Function
   const onSubmit = async (data: any) => {
-    const sendata: any = {};
-
-    const keys = Object.keys(defaultValues);
-
-    for (const key of keys) {
-      if (data[key] !== undefined) {
-        sendata[key] = data[key];
-      }
-    }
     if (action === "add") {
       setIsFetching(true);
-      postDiaryRecordings({
-        params: {
-          fosterChildId: fosterChildId,
-        },
-        body: data,
-      })
+      postReportDetails(data)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
-          enqueueSnackbar("Information Added Successfully", {
+          enqueueSnackbar("Report Added Successfully", {
             variant: "success",
           });
           router.push({
             pathname:
-              "/foster-child/child-day-log/diary-recordings/child-diary-recordings",
+              "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
             query: {
               action: "edit",
               id: `${res?.data.id}`,
-              fosterChildId: fosterChildId,
+              fosterCarerId: fosterCarerId,
             },
           });
         })
-        .catch((error: any) => {
+        .catch((error) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
-            pathname: "/foster-child/child-day-log/diary-recordings",
-            query: {
-              fosterChildId: fosterChildId,
-            },
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
           });
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      let formData = {
+      const formData = {
         id: id,
-        ...sendata,
+        ...data,
       };
-      editDiaryRecording(formData)
+      editReportList(formData)
         .unwrap()
         .then((res: any) => {
-          enqueueSnackbar("Information Edited Successfully", {
+          enqueueSnackbar("Report Edited Successfully", {
             variant: "success",
           });
-          router.push("/foster-child/child-day-log/diary-recordings");
+          router.push(
+            "/carer-info/personal-info/carer-chronology-of-events/ooh-report"
+          );
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
-            pathname: "/foster-child/child-day-log/diary-recordings",
-            query: { fosterChildId: fosterChildId },
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
         });
@@ -144,6 +126,6 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
-    fosterChildId,
+    fosterCarerId,
   };
 };
