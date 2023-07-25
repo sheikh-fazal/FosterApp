@@ -54,7 +54,7 @@ export const ViewDeclaration = () => {
     <>
       <Card>
         <Grid container p={1}>
-          <Grid p={2} container direction={"column"} item md={7} xs={12}>
+          <Grid p={2} container direction={"column"} item md={10} xs={12}>
             <span
               style={{
                 fontSize: 24,
@@ -75,7 +75,7 @@ export const ViewDeclaration = () => {
             xs={12}
             sx={{ borderBottom: "1px solid", width: "100%" }}
           ></Grid>
-          <Grid container alignItems={"center"} p={1} my={1}>
+          <Grid container alignItems={"center"} px={2} py={1} my={1}>
             <Grid item md={3} xs={11}>
               <Button variant="contained" sx={{ backgroundColor: "#F06533" }}>
                 Activation & Settings
@@ -96,19 +96,29 @@ export const ViewDeclaration = () => {
             xs={12}
             sx={{ borderBottom: "1px solid", width: "100%" }}
           ></Grid>
-          <Grid container item md={9.5} xs={12} p={1} my={1}>
+          <Grid
+            container
+            direction={"column"}
+            item
+            md={9.5}
+            xs={12}
+            p={2}
+            // my={1}
+          >
             <span
               style={{
                 fontSize: 18,
                 fontWeight: 600,
+                marginBottom: 10,
                 color: theme?.palette?.primary?.main,
               }}
             >
               DECLARATION
             </span>
-            <p>
+            <span style={{ margin: "10px 0px 15px 0px" }}>
               The following declaration ststements are asked to candidates.
-              <br /> <br />
+            </span>
+            <p style={{ marginBottom: 5 }}>
               The information in this application form is true and complete, I
               agree that any deliberate omision, Falsification or
               mmisrepresentation in the application form will be grounds for
@@ -124,7 +134,10 @@ export const ViewDeclaration = () => {
               />
               {viewDeclarationData?.map((ele: any) => {
                 return (
-                  <Accordion sx={{ border: "1px solid", my: 2 }} key={ele?.id}>
+                  <Accordion
+                    sx={{ border: "1px solid #898989", my: 2 }}
+                    key={ele?.id}
+                  >
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
@@ -171,11 +184,22 @@ export const ViewDeclaration = () => {
                   </Accordion>
                 );
               })}
-              <button type="submit">132</button>
+              {/* <Grid container direction={'column'} md={6}> */}
+              <Button variant="contained" type="submit">
+                Submit Declaration
+              </Button>
+              <br />
+              <Button
+                sx={{ backgroundColor: "#F06533", my: 1 }}
+                variant="contained"
+              >
+                Not Audited: Click to mark as audited{" "}
+              </Button>
+              {/* </Grid> */}
             </FormProvider>
           </Grid>
         </Grid>
-      </Card>
+      </Card> 
     </>
   );
 };
