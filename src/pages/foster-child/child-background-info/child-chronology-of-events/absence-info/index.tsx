@@ -11,39 +11,30 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { Box } from "@mui/material";
 
-const BREADCRUMBS = (fosterChildId: any) => {
-  return [
+AbsenceInfo.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
+
+export default function AbsenceInfo() {
+  const router = useRouter();
+  const { id, action, fosterChildId }: any = router.query;
+  const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
       name: "Child Chronology of Events",
-      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
+      href: `/foster-child/child-background-info/child-chronology-of-events`,
+      query: { fosterChildId: fosterChildId },
     },
     {
       name: "Absence Info",
       href: "",
     },
   ];
-};
 
-const PAGE_TITLE = "Absence Info";
-AbsenceInfo.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
-export default function AbsenceInfo() {
-  const router = useRouter();
-  const { id, action }: any = router.query;
+  const PAGE_TITLE = "Absence Info";
   const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
     useGetChildChronologyOfEventsUploadedDocumentsListQuery({
@@ -84,34 +75,37 @@ export default function AbsenceInfo() {
     }
   };
   return (
-    <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm />
-      <UploadDocuments
-        searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        // onDelete={}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(pageNo: any) => {
-          setPage((pageNo - 1) * 10);
-        }}
-        currentPage={data?.data?.meta?.page}
-        totalPages={data?.data?.meta?.pages}
-        disabled={!!id && (action === "add" || action === "edit") ? false : true}
-      />
-    </HorizaontalTabs>
+    <Box>
+      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} title={PAGE_TITLE} />
+      <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
+        <AbsenceInfoForm />
+        <UploadDocuments
+          searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
+          tableData={data?.data?.foster_child_document}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          // onDelete={}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          modalData={(data: any) => uploadDocumentsHandler(data)}
+          onPageChange={(pageNo: any) => {
+            setPage((pageNo - 1) * 10);
+          }}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
+          disabled={!!id && (action === "add" || action === "edit") ? false : true}
+        />
+      </HorizaontalTabs>
+    </Box>
   );
 }

@@ -28,12 +28,12 @@ const BREADCRUMBS = (fosterChildId: any) => {
 
 const PAGE_TITLE = "Ofsted Notifications";
 OfstedNotifications.getLayout = function getLayout(page: any) {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
+      breadcrumbs={BREADCRUMBS}
       title={PAGE_TITLE}
     >
       {page}

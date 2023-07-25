@@ -1,30 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useChildUploadDocuemntInfoList } from "./useChildUploadDocuemntInfoList";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import IsFetching from "@root/components/loaders/IsFetching";
 import UploadDocsModel from "./upload-document-model/UploadDocsModel";
+import UploadDocsUpdateViewForm from "./upload-document-model/upload-docs-update-view-form/UploadDocsUpdateViewForm";
+import UploadDocsUpdateViewModel from "./upload-document-model/UploadDocsUpdateView";
 
 const UploadDocuments = () => {
-  // const [tabelData, setTabelData] = useState([
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -38,14 +22,23 @@ const UploadDocuments = () => {
     therapInfoCon,
     openAddModel,
     closeAddModel,
+    closeUpdateViewModel,
   }: any = useChildUploadDocuemntInfoList();
-  const { someAsyncAction, addModel } = therapInfoCon;
+  const {
+    someAsyncAction,
+    docsAddModel,
+    updateViewModel,
+    updateViewModelDisabled,
+    uploadFormDataHolder,
+  } = therapInfoCon;
   return (
     <Grid sx={{ position: "relative" }}>
-      <UploadDocsModel
-        modelStatus={addModel}
-        openAddModel={openAddModel}
-        closeAddModel={closeAddModel}
+      <UploadDocsModel modelStatus={docsAddModel} closeModel={closeAddModel} />
+      <UploadDocsUpdateViewModel
+        modelStatus={updateViewModel}
+        closeModel={closeUpdateViewModel}
+        disabled={updateViewModelDisabled}
+        defaultValue={uploadFormDataHolder}
       />
       {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
