@@ -25,7 +25,11 @@ export default function IndependencePackTable() {
     isSuccess,
     Independentpacks,
     meta,
+    listDeleteHandler,
   } = useIndependencePackTable();
+
+  let { fosterChildId } = router.query;
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -54,7 +58,7 @@ export default function IndependencePackTable() {
           />
           <CustomTable
             data={Independentpacks}
-            columns={columns}
+            columns={columns({ fosterChildId, listDeleteHandler })}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

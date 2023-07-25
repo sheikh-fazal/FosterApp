@@ -17,6 +17,13 @@ const IndependencePacks = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["INDEPENDENCE_PACKS_LIST"],
     }),
+    deleteIndependencePack: builder.mutation({
+      query: (id: any) => ({
+        url: `/education-records/independence-pack/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["INDEPENDENCE_PACKS_LIST"],
+    }),
     postUploadEvidence: builder.mutation({
       query: ({ formData }: any) => ({
         url: `/education-records/independence-pack/upload-evidence`,
@@ -31,4 +38,5 @@ export const {
   usePostUploadEvidenceMutation,
   useGetIndependencePacksQuery,
   usePostIndependencePacksMutation,
+  useDeleteIndependencePackMutation,
 } = IndependencePacks;
