@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { Box } from "@mui/material";
-import { StudySupportInfoTable } from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoTable";
+import { StudySupportInfoTable } from "@root/sections/foster-child/education-records/study-support-info";
 
 StudySupportInfo.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -36,7 +36,7 @@ export default function StudySupportInfo() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <StudySupportInfoTable/>
+      <StudySupportInfoTable fosterChildId={fosterChildId}/>
     </Box>
   );
 }

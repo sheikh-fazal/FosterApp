@@ -5,7 +5,7 @@ import { Box, Button, Chip, Typography } from "@mui/material";
 import { fData } from "@root/utils/formatNumber";
 import MyAvatar from "@root/components/MyAvatar";
 import { usePitchesAndRequests } from "./usePitchesAndRequests";
-import { TypeOfContent } from ".";
+import { TYPEOFCONTENT } from ".";
 
 const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
@@ -26,8 +26,8 @@ const COLUMNS = [
   {
     inputType: "select",
     key: "typeOfContent",
-    label: "Type of Content",
-    options: TypeOfContent,
+    label: "Type of Post",
+    options: TYPEOFCONTENT,
     validation: (Yup: any) => {
       return Yup.object().shape({
         label: Yup.string(),

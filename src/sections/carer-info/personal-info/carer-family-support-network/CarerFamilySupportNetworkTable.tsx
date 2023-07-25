@@ -33,7 +33,6 @@ export default function CarerFamilySupportNetworkTable() {
           router.push(
             makePath({
               path: "/carer-info/personal-info/carer-family-support-network/add-family-support",
-              passOldQuery: true,
             })
           );
         }}

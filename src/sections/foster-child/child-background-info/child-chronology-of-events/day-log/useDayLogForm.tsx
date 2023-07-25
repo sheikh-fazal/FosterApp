@@ -1,7 +1,7 @@
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import React, { useState } from "react";
+import { useState } from "react";
 import { defaultValues, formSchema, formatters } from "./DayLogData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,7 +18,6 @@ export const useDayLogForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const [getDayLogList] = useLazyGetChildChronologyOfEventsDayLogByIdQuery();
-
   const [postDayLogData] = usePostChildChronologyOfEventsDayLogMutation({});
   const [editDayLogList] = usePatchChildChronologyOfEventsDayLogByIdMutation();
 
@@ -28,6 +27,7 @@ export const useDayLogForm = () => {
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
+
         return defaultValues;
       }
       const responseData = { ...data.data };
@@ -36,6 +36,7 @@ export const useDayLogForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+
       return responseData;
     } else {
       setIsLoading(false);
@@ -48,10 +49,7 @@ export const useDayLogForm = () => {
   });
 
   const {
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     formState: { isSubmitting },
   } = methods;
 
@@ -67,8 +65,7 @@ export const useDayLogForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/day-log",
+            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
             query: { action: "edit", id: `${res?.data.id}` },
           });
         })
@@ -76,13 +73,13 @@ export const useDayLogForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
       const formData = {
         id,
         addDayLogRequestDto: { ...data },
+        fosterChildId,
       };
       editDayLogList(formData)
         .unwrap()
@@ -90,13 +87,11 @@ export const useDayLogForm = () => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
@@ -109,15 +104,12 @@ export const useDayLogForm = () => {
     isLoading,
     getDefaultValue,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     action,
     id,
-    fosterChildId
+    fosterChildId,
   };
 };

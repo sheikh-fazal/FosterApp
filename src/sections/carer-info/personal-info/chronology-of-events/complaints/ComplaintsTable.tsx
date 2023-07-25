@@ -25,13 +25,6 @@ const ComplaintsTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row?.complaintDate ?? "-",
       id: "complaintDate",
       cell: (info: any) => {
@@ -119,6 +112,7 @@ const ComplaintsTable = () => {
         isFetching={isFetching}
         isError={isError}
         isSuccess={isSuccess}
+        showSerialNo={true}
         isPagination={true}
         currentPage={meta?.page}
         totalPages={meta?.pages}

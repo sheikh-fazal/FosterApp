@@ -11,7 +11,7 @@ export const useDbsCheckTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For DBS Check List
   const {
@@ -20,7 +20,7 @@ export const useDbsCheckTable = () => {
     isLoading: dbsCheckListIsloading,
     isFetching: dbsCheckListIsfetching,
     isSuccess: dbsCheckListIsSuccess,
-  }: any = useDbsCheckListQuery({ search: search });
+  }: any = useDbsCheckListQuery({ search: search, ...params });
 
   //Getting API data and Meta
   const dbsCheckListData = dbsCheckList?.data?.dbs_check;

@@ -103,14 +103,17 @@ export const ADDRESS_DATA = [
     label: "Document",
     sublist: [
       {
+        id: 1,
         icon: pdfIcon,
         title: "Doc.pdf",
       },
       {
+        id: 2,
         icon: wordIcon,
         title: "Wrd.pdf",
       },
       {
+        id: 3,
         icon: excelIcon,
         title: "Doc.pdf",
       },

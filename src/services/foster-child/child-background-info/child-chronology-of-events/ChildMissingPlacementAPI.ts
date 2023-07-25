@@ -32,7 +32,7 @@ export const childMissingPlacementApi: any = baseAPI.injectEndpoints({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/child-missing-placement/${queryArg.id}`,
         method: "PATCH",
-        body: queryArg.addOfstedNotificationsRequestDto,
+        body: queryArg.addChildMissingPlacementRequestDto,
       }),
       invalidatesTags: [TAG],
     }),
@@ -73,7 +73,7 @@ export type PatchChildChronologyOfEventsChildMissingPlacementByIdApiResponse =
   /** status 201  */ AddChildMissingPlacementResponseDto;
 export type PatchChildChronologyOfEventsChildMissingPlacementByIdApiArg = {
   id: string;
-  addOfstedNotificationsRequestDto: AddOfstedNotificationsRequestDto;
+  addChildMissingPlacementRequestDto: AddChildMissingPlacementRequestDto;
 };
 export type GetChildChronologyOfEventsChildMissingPlacementByIdApiResponse =
   /** status 201  */ AddChildMissingPlacementResponseDto;
@@ -94,14 +94,11 @@ export type AddChildMissingPlacementRequestDto = {
   reportedDate: string;
   missingReason: string;
 };
-export type AddOfstedNotificationsRequestDto = {
-  dateOfIncidentAndTime: string;
-  status: string;
-};
+
 export const {
   useGetChildChronologyOfEventsChildMissingPlacementListQuery,
   usePostChildChronologyOfEventsChildMissingPlacementMutation,
   usePatchChildChronologyOfEventsChildMissingPlacementByIdMutation,
-  useGetChildChronologyOfEventsChildMissingPlacementByIdQuery,
+  useLazyGetChildChronologyOfEventsChildMissingPlacementByIdQuery,
   useDeleteChildChronologyOfEventsChildMissingPlacementByIdMutation,
 } = childMissingPlacementApi;

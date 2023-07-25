@@ -42,6 +42,7 @@ export default function HouseholdAccommodationForm(props: any) {
                     <form.component
                       {...form.componentProps}
                       size="small"
+                      fullWidth
                       disabled={disabled || isLoading}
                     >
                       {form.heading}

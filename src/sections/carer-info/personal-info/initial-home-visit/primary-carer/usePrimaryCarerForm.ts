@@ -1,10 +1,8 @@
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostPrimaryCarerDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/primary/primaryCarer";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { defaultValuesPrimaryCarer, primaryCarerFieldsInfoFunction } from ".";
+import { primaryCarerFieldsInfoFunction } from ".";
 import useAuth from "@root/hooks/useAuth";
 
 export const usePrimaryCarerForm = () => {
@@ -15,37 +13,24 @@ export const usePrimaryCarerForm = () => {
   );
   const [postPrimaryCarerDataTrigger, postPrimaryCarerDataStatus] =
     usePostPrimaryCarerDataMutation();
-  const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
-    useLazyGetAllInitialHomeVisitDataQuery();
   // get api params
-  const params = {
+  const queryParams = {
     value: "primaryCarer",
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
-  const dataParameter = { params };
-
-  const setPrimaryCarerDefaultValue = async () => {
-    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
-      dataParameter,
-      true
-    );
-    console.log(getAllInitialHomeVisitDataStatus);
-    if (isError) {
-      return defaultValuesPrimaryCarer(data);
+  const apiDataParameter = { queryParams };
+  const { data, isLoading } = useGetAllInitialHomeVisitDataQuery(
+    apiDataParameter,
+    {
+      refetchOnMountOrArgChange: true,
     }
-
-    return defaultValuesPrimaryCarer(data);
-  };
-
+  );
   const submitPrimaryCarerForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
-    // console.log(data);
     try {
       const res: any = await postPrimaryCarerDataTrigger(
         putDataParameter
@@ -61,10 +46,10 @@ export const usePrimaryCarerForm = () => {
 
   return {
     submitPrimaryCarerForm,
-    setPrimaryCarerDefaultValue,
-    getAllInitialHomeVisitDataStatus,
     postPrimaryCarerDataStatus,
     user,
     primaryCarerFieldsInfo,
+    data,
+    isLoading,
   };
 };

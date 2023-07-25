@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 import router from "next/router";
 
-export const columns = [
+export const petQuestionnaireTable = (makePath: any) => [
   {
     accessorFn: (row: any) => row.createdAt,
     id: "createdAt",
@@ -41,7 +41,10 @@ export const columns = [
           type="edit"
           onClicked={() =>
             router.push(
-              `/carer-info/personal-info/pet-questionnaire/edit-pet-questionnaire?${info.getValue()}`
+              makePath({
+                path: "/carer-info/personal-info/pet-questionnaire/edit-pet-questionnaire",
+                queryParams: { petId: info.getValue() },
+              })
             )
           }
         />
@@ -49,7 +52,10 @@ export const columns = [
           type="view"
           onClicked={() =>
             router.push(
-              `/carer-info/personal-info/pet-questionnaire/view-pet-questionnaire?${info.getValue()}`
+              makePath({
+                path: "/carer-info/personal-info/pet-questionnaire/view-pet-questionnaire",
+                queryParams: { petId: info.getValue() },
+              })
             )
           }
         />

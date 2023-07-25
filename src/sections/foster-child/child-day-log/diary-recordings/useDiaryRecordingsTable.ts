@@ -12,9 +12,9 @@ export const useDiaryRecordingsTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const { fosterChildId } = router.query;
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler,params } =
     useTableParams();
-  //GET API For Car Insurance List
+  //GET API For Diary List
   const {
     data: recordingList,
     isError: recordingsListError,
@@ -25,15 +25,16 @@ export const useDiaryRecordingsTable = () => {
     params: {
       fosterChildId: fosterChildId,
       search: search,
+      ...params,
     },
   });
 
   //Getting API data and Meta
-  const recordingListData = recordingList?.data?.child_diary_recordings;
+  const recordingListData = recordingList?.data?.childDiaryRecordings;
   const meta = recordingList?.data?.meta;
 
   const [deleteList] = useDeleteRecordingsListMutation();
-  //DELETE API For Allegation List
+  //DELETE API For Diary Recording List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()
@@ -62,5 +63,6 @@ export const useDiaryRecordingsTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterChildId,
   };
 };

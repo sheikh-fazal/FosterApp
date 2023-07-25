@@ -11,7 +11,7 @@ export const useLocalAuthorityTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Local Authority List
   const {
@@ -20,7 +20,7 @@ export const useLocalAuthorityTable = () => {
     isLoading: localAuthorityIsloading,
     isFetching: localAuthorityIsfetching,
     isSuccess: localAuthorityIsSuccess,
-  }: any = useLocalAuthorityListQuery({ search: search });
+  }: any = useLocalAuthorityListQuery({ search: search, ...params });
 
   //Getting API data and Meta
   const localAuthorityData = localAuthorityList?.data?.local_authority_ssd;

@@ -13,12 +13,13 @@ export const useAssessmentStageOne = () => {
   
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetStageOneStatusQuery(id);
+  const assessmentStageOneApiData = data?.data;
 
   useEffect(() => {
     setAssessmentStageOneData(
       ASSESSMENTSTAGEONEDATA?.map((item: any) => ({
         ...item,
-        status: data?.data?.[item?.textForApi],
+        status: assessmentStageOneApiData?.[item?.textForApi],
       }))
     );
   }, [data]);

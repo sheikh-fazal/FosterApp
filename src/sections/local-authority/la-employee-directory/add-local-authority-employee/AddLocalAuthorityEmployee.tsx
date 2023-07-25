@@ -15,7 +15,7 @@ const AddLocalAuthorityEmployee = ({ disabled, }: any) => {
                 {AddLocalAuthorityForm?.map((item: any) => (
                     <Grid item xs={12} md={item?.md} key={item?.id}>
 
-                        <item.component
+                        <item.component fullWidth
                             {...item.componentProps}
                             disabled={disabled}
                             size={"small"}

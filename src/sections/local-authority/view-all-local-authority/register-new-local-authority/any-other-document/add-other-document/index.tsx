@@ -16,8 +16,8 @@ export const addOtherDocumentFormSchema:any = Yup.object().shape({
 export const addOtherDocumentData = [
   {
     gridLength: 12,
-    title: 'Document Type',
     otherOptions: {
+      label: 'Document Type',
       size: 'small',
       name: 'docType',
       fullWidth: true,
@@ -28,8 +28,8 @@ export const addOtherDocumentData = [
   },
   {
     gridLength: 12,
-    title: 'Document Date',
     otherOptions: {
+      label: 'Document Date',
       name: 'docDate',
       size: 'small',
       fullWidth: true,

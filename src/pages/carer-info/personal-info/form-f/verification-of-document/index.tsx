@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { VerificationOfDocumentsForm } from "@root/sections/carer-info/personal-info/form-f/verification-of-document";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import HorizontalTabs from "@root/components/HorizaontalTabs";
 import {
   useVerificationApplication1Mutation,
   useVerificationApplication2Mutation,
@@ -11,32 +11,32 @@ import {
 import { enqueueSnackbar } from "notistack";
 import useAuth from "@root/hooks/useAuth";
 import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
+import usePath from "@root/hooks/usePath";
+import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
-const PAGE_TILE = "Form F";
+const PAGE_TITLE = "Form F";
 
 VerificationOfDocument.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          name: "Form F List",
-          href: "/carer-info/personal-info/form-f",
-        },
-        {
-          name: "Verification of Documents",
-        },
-      ]}
-      title={PAGE_TILE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function VerificationOfDocument() {
+  const { makePath } = usePath();
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Form F List",
+      href: makePath({
+        path: "/carer-info/personal-info/form-f",
+      }),
+    },
+    { name: "Verification of Documents" },
+  ];
+
   //---------------getting Form Data-----------------//
   const { user }: any = useAuth();
   const [skip, setSkip] = useState(true);
@@ -62,12 +62,12 @@ export default function VerificationOfDocument() {
     try {
       const res: any = await putHealthApplication1Data({
         formData,
-        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        params: `fosterCarerId=${id}`,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      // router.push("/carer-info/personal-info/carer-family-support-network");
+      router.push(`/carer-info/personal-info/form-f?fosterCarerId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -78,12 +78,12 @@ export default function VerificationOfDocument() {
     try {
       const res: any = await putHealthApplication2Data({
         formData,
-        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        params: `fosterCarerId=${id}`,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      // router.push("/carer-info/personal-info/carer-family-support-network");
+      router.push(`/carer-info/personal-info/form-f?fosterCarerId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -91,8 +91,13 @@ export default function VerificationOfDocument() {
   };
 
   return (
-    <Page title={PAGE_TILE}>
-      <HorizaontalTabs tabsDataArray={["Applicant 1", "Applicant 2"]}>
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <HorizontalTabs tabsDataArray={["Applicant 1", "Applicant 2"]}>
         <VerificationOfDocumentsForm
           formData={receiveDataHandlerApplicant1}
           isLoading={isLoading1}
@@ -105,7 +110,7 @@ export default function VerificationOfDocument() {
           isError={isError2}
           isSuccess={isSuccess2}
         />
-      </HorizaontalTabs>
+      </HorizontalTabs>
     </Page>
   );
 }

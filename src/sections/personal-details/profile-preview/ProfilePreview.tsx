@@ -21,11 +21,7 @@ function TabPanel(props: any) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -73,7 +69,7 @@ const ProfilePreview = () => {
                   mb: 0.5,
                 }}
                 label={
-                  <Typography variant="subtitle2" component="div">
+                  <Typography variant="subtitle2" component={"p"}>
                     {item?.title}
                   </Typography>
                 }

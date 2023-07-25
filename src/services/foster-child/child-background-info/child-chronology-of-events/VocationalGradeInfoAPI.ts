@@ -95,6 +95,6 @@ export const {
   useGetChildChronologyOfEventsVocationalCourseInfoListQuery,
   usePostChildChronologyOfEventsVocationalCourseInfoMutation,
   usePatchChildChronologyOfEventsVocationalCourseInfoByIdMutation,
-  useGetChildChronologyOfEventsVocationalCourseInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsVocationalCourseInfoByIdQuery,
   useDeleteChildChronologyOfEventsVocationalCourseInfoByIdMutation,
 } = vocationalCourseInfoApi;

@@ -11,7 +11,7 @@ export const useReferenceTwoTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
 
   //GET API For Reference Two List
@@ -21,7 +21,7 @@ export const useReferenceTwoTable = () => {
     isLoading: referenceTwoIsloading,
     isFetching: referenceTwoIsfetching,
     isSuccess: referenceTwoIsSuccess,
-  }: any = useReferenceTwoListQuery({ search: search });
+  }: any = useReferenceTwoListQuery({ search: search, ...params });
 
   //Getting API data and Meta
   const referenceTwoData = referenceTwoList?.data?.reference_two;

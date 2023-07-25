@@ -47,8 +47,9 @@ export const TAGS = [
   "NEXT-OF-KIN",
   "POST_CARER_ADDRESS",
   "CHILD_EDUCATION_INFO_LIST",
+  "EDUCATION_INFO_DOCUMENTS",
   "FAMILY_PERSON_LIST",
- "FAMILY_PERSON_UPLOAD_DOCUMENT",
+  "FAMILY_PERSON_UPLOAD_DOCUMENT",
   "POST_FAMILY",
   "EDIT_EMPLOYEE",
   "POST_EXPARTNER",
@@ -65,6 +66,12 @@ export const TAGS = [
   "medicalappointments",
   "hospitalization",
   "DIARY_RECORDINGS_LIST",
+  "VOCATIONAL-INFO",
+  "VOCATIONAL-INFO-DOCS",
+  "THERAPY_INFO_LIST",
+  "DIARY_RECORDING_DOCUMENTS",
+  "OOHREPORT_LIST_TABLE",
+  "REPORTS_DOCUMENTS",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
