@@ -66,6 +66,8 @@ export const TAGS = [
   "medicalappointments",
   "hospitalization",
   "DIARY_RECORDINGS_LIST",
+  "VOCATIONAL-INFO",
+  "VOCATIONAL-INFO-DOCS",
   "THERAPY_INFO_LIST",
 ];
 // Create our baseQuery instance

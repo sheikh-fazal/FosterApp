@@ -5,7 +5,7 @@ import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
-import { enqueueSnackbar } from "notistack";
+import VocationalCourseForm from "@root/sections/foster-child/vocational-course-info/vocational-course-form/VocationalCourseForm";
 import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
@@ -16,20 +16,20 @@ const BREADCRUMBS = [
     href: "/",
   },
   {
-    name: "Carer Info",
-    href: "/carer-info/substitute-cares/backup-carer",
+    name: "Vocational Course Info List",
+    href: "/foster-child/education-records/vocational-course-info",
   },
   {
-    name: "Backup Carer",
-    href: "/carer-info/substitute-cares/backup-carer/backup-carer-details",
+    name: "Course Info",
+    href: "/foster-child/education-records/vocational-course-info/details",
   },
 ];
 
-const PAGE_TITLE = "Backup Carer";
+const PAGE_TITLE = "Vocational Course Info";
 
-export const TABSDATA = ["Backup Carer", "Upload Documents"];
+export const TABSDATA = ["Course Info", "Upload Documents"];
 
-BackupCarerDetails.getLayout = function getLayout(page: any) {
+VocationalCourseInfoForm.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -44,30 +44,17 @@ BackupCarerDetails.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function BackupCarerDetails() {
-  const [postBackupCarerData, status] = usePostSubstituteCarerMutation();
-
+export default function VocationalCourseInfoForm() {
   const router = useRouter();
-  const id = router?.query?.fosterCarerId;
+  const id = router?.query?.fosterChildId;
 
-  const formSubmitHandler = async (formData: any) => {
+  const formSubmitHandler = (formData: any) => {
     const body = { ...formData, carerType: "BC", status: " " };
-    try {
-      const res: any = await postBackupCarerData(body).unwrap();
-      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
-        variant: "success",
-      });
-      router.push(
-        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
-      );
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-    }
+    console.log(body);
   };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
-      <SubstituteCarerForm
+      <VocationalCourseForm
         onSubmit={(data: any) => {
           formSubmitHandler(data);
         }}
