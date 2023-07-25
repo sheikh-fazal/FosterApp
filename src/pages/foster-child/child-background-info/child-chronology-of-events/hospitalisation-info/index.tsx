@@ -32,14 +32,10 @@ const BREADCRUMBS = (fosterChildId: any) => {
 
 const PAGE_TITLE = "Hospitalisation Info";
 HospitalisationInfo.getLayout = function getLayout(page: any) {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
+    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
       {page}
     </Layout>
   );
