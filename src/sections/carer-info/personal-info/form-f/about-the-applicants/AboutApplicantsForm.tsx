@@ -4,10 +4,10 @@ import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
-import { aboutAppicantsFormData, FormSchema, defaultValues } from ".";
+import { aboutApplicantsFormData, FormSchema, defaultValues } from ".";
 import { LoadingButton } from "@mui/lab";
 
-export default function AboutAppicantsForm(props: any) {
+export default function AboutApplicantsForm(props: any) {
   const { disabled, formData, isLoading, isError, isSuccess } = props;
   const theme = useTheme();
   const methods: any = useForm({
@@ -26,7 +26,7 @@ export default function AboutAppicantsForm(props: any) {
             <Grid item md={12}>
               <Typography variant="h6">About the Applicant(s)</Typography>
             </Grid>
-            {aboutAppicantsFormData?.map((form: any) => {
+            {aboutApplicantsFormData?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                   <>
@@ -34,6 +34,7 @@ export default function AboutAppicantsForm(props: any) {
                     {form.component ? (
                       <form.component
                         {...form.componentProps}
+                        fullWidth
                         disabled={disabled || isLoading}
                         size="small"
                       >

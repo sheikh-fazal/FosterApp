@@ -1,101 +1,153 @@
+import React from "react";
+import { Box, Badge } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import React, { useRef } from "react";
-import { useReportTable } from "./useReportTable";
 import TableHeader from "@root/components/TableHeader";
+import { useReportTable } from "./useReportTable";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
-import { Box } from "@mui/material";
 import dayjs from "dayjs";
 
-const ReportTable = () => {
-  const tableHeaderRef = useRef<any>();
-  //OOH Report Custom Hook
-  const { router } = useReportTable();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      reportingTime: "10/10/2021",
-      placementRequired: "Text",
-      status: "Text",
-    },
-    {
-      srNo: 2,
-      reportingTime: "10/10/2021",
-      placementRequired: "Text",
-      status: "Text",
-    },
-  ]);
+const reportTable = () => {
+  const {
+    router,
+    tableHeaderRefTwo,
+    isLoading,
+    reportList,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
+    setSearch,
+    listDeleteHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    fosterCarerId,
+  } = useReportTable();
+
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.reportingTime ?? "-",
-      id: "reportingTime",
+      accessorFn: (row: any) => row?.reportDate ?? "-",
+      id: "reportDate",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
-      header: () => <span>Reporting Date/Time</span>,
+      header: () => <span>Report Date/Time</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.placementRequired,
-      id: "placementRequired",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.emergencyPlacementRequired ?? "-",
+      id: "emergencyPlacementRequired",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Emergency Placement Required</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.status,
+      accessorFn: (row: any) => row.status ?? "-",
       id: "status",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => (
+        <Badge invisible={info.badge} color="secondary" sx={styles.badge}>
+          {info.getValue()}
+        </Badge>
+      ),
       header: () => <span>Status</span>,
       isSortable: true,
     },
     {
       id: "actions",
       cell: (info: any) => (
-        <TableAction
-          size="small"
-          type="view"
-          onClicked={() =>
-            router.push(
-              "/carer-info/personal-info/carer-chronology-of-events/ooh-report"
-            )
-          }
-        />
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
+              })
+            }
+          />
+          {/* Calling Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
+              })
+            }
+          />
+        </Box>
       ),
       header: () => <span>actions</span>,
       isSortable: false,
     },
   ];
-
   return (
     <>
-      <TableHeader
-        ref={tableHeaderRef}
-        title="OOH Report"
-        searchKey="search"
-        onChanged={(data: any) => {}}
-      />
+      <Box sx={{ mb: 1 }}>
+        <TableHeader
+          ref={tableHeaderRefTwo}
+          title="OOH Report"
+          searchKey="search"
+          showAddBtn
+          onChanged={(event: any) => {
+            setSearch(event.search);
+          }}
+          onAdd={() => {
+            router.push({
+              pathname:
+                "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
+              query: { action: "add", fosterCarerId: fosterCarerId },
+            });
+          }}
+        />
+      </Box>
       <CustomTable
-        data={data}
+        data={reportList}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        showSerialNo={true}
+        isPagination={true}
+        currentPage={meta?.page}
+        totalPages={meta?.pages}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );
 };
 
-export default ReportTable;
+export default reportTable;
+
+//Styling
+const styles: any = {
+  badge: (theme: any) => ({
+    "& .MuiBadge-badge": {
+      fontSize: 9,
+      top: 11,
+      right: -22,
+      height: 15,
+      background: theme.palette.primary.main,
+      cursor: "pointer",
+    },
+  }),
+};

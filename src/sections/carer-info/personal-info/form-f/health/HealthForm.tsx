@@ -37,6 +37,7 @@ export default function HealthForm(props: any) {
               <>
                 <form.component
                   {...form.componentProps}
+                  fullWidth
                   size="small"
                   disabled={disabled || isLoading}
                 >

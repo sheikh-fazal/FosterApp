@@ -11,7 +11,7 @@ export const usePartnerReferenceTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
 
   //GET API For Partner Reference List
@@ -21,7 +21,7 @@ export const usePartnerReferenceTable = () => {
     isLoading: partnerReferenceIsloading,
     isFetching: partnerReferenceIsfetching,
     isSuccess: partnerReferenceIsSuccess,
-  }: any = usePartnerReferenceListQuery({ search: search });
+  }: any = usePartnerReferenceListQuery({ search: search, ...params });
 
   //Getting API data and Meta
   const partnerReferenceData =
