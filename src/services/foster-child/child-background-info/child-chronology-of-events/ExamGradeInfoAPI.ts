@@ -94,6 +94,6 @@ export const {
   useGetChildChronologyOfEventsExamGradeInfoListQuery,
   usePostChildChronologyOfEventsExamGradeInfoMutation,
   usePatchChildChronologyOfEventsExamGradeInfoByIdMutation,
-  useGetChildChronologyOfEventsExamGradeInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsExamGradeInfoByIdQuery,
   useDeleteChildChronologyOfEventsExamGradeInfoByIdMutation,
 } = examGradeInfoApi;

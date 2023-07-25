@@ -34,6 +34,7 @@ export const EMPLOYEMENT_STATUS = [
     label: "Document",
     sublist: [
       {
+        id: 1,
         title: "doc.pdf",
         icon: wordIcon,
       },
@@ -64,6 +65,7 @@ export const ADDITIONAL_DOCS = [
     label: "DOCUMENT",
     sublist: [
       {
+        id: 1,
         title: "doc.pdf",
         icon: wordIcon,
       },

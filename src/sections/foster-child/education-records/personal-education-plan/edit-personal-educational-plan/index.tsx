@@ -8,6 +8,7 @@ export const EditPersonalEducationPlanData = [
     otherOptions: {
       name: "school",
       label: "School",
+      fullWidth: true,
     },
     component: RHFTextField,
   },
@@ -42,6 +43,7 @@ export const EditPersonalEducationPlanData = [
       name: "comments",
       multiline: true,
       minRows: 2,
+      fullWidth: true,
     },
     component: RHFTextField,
   },

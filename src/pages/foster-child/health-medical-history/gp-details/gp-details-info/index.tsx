@@ -3,6 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import GPDetailsInfoTabs from "@root/sections/foster-child/health-medical-history/gp-details/gp-details-info/gp-details-info-tabs/GPDetailsInfoTabs";
 import { NextRouter, useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
@@ -26,25 +27,27 @@ const PAGE_TITLE = (action: any = "") =>
 
 // ----------------------------------------------------------------------
 
-GPDetailsInfo.getLayout = function getLayout(page: any, { query }: NextRouter) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(query)}
-      title={PAGE_TITLE(query?.action)}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+GPDetailsInfo.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function GPDetailsInfo() {
-  const { query } = useRouter();
+  const router = useRouter();
+  if (!!!router?.query?.fosterChildId) {
+    router.push({
+      pathname: "/foster-child-lists",
+    });
+    return;
+  }
   return (
-    <Page title={PAGE_TITLE(query?.action)}>
+    <Page title={PAGE_TITLE(router?.query?.action)}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE(router?.query?.action)}
+        breadcrumbs={BREADCRUMBS(router?.query)}
+      />
       <GPDetailsInfoTabs />
     </Page>
   );

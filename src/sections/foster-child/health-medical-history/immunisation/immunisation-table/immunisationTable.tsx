@@ -50,6 +50,7 @@ const ImmunisationTable = (props: any) => {
                 columns={immunisationColumns({
                   activepath,
                   listDeleteHandler,
+                  fosterChildId,
                 })}
                 isLoading={isLoading}
                 isFetching={isFetching}

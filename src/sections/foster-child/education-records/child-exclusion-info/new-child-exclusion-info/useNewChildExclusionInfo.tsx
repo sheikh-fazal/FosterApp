@@ -6,13 +6,13 @@ import { useRouter } from "next/router";
 import { usePostExclusionInfoRecordMutation } from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
 import { enqueueSnackbar } from "notistack";
 
-const useNewChildExclusionInfo = () => {
+const useNewChildExclusionInfo = (postExclusionInfo:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   const fosterChildId = Object.keys(router?.query)[0];
 
-  const [postChildInfoRecord] = usePostExclusionInfoRecordMutation();
+  
 
   const defaultValues = {
     classStudying: "",
@@ -44,16 +44,8 @@ const useNewChildExclusionInfo = () => {
   console.log(methods);
 
   const onSubmit = (data: any) => {
-    try {
-      const res = postChildInfoRecord({ data, fosterChildId });
-      enqueueSnackbar(res?.message ?? `Successfully!`, {
-        variant: "success",
-      });
-    } catch (err) {
-      enqueueSnackbar(`Something went Wrong!`, {
-        variant: "error",
-      });
-    }
+    postExclusionInfo(data)
+   
     console.log(data);
   };
 

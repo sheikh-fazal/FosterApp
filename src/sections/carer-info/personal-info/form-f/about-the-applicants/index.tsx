@@ -95,7 +95,7 @@ export const FormSchema = Yup.object().shape({
   futureTraining: Yup.string().required("Required"),
   futureTrainingAnalysis: Yup.string().required("Required"),
 });
-export const aboutAppicantsFormData = [
+export const aboutApplicantsFormData = [
   {
     id: 1,
     componentProps: {
@@ -457,4 +457,4 @@ export const aboutAppicantsFormData = [
   },
 ];
 
-export { default as AboutAppicantsForm } from "./AboutAppicantsForm";
+export { default as AboutApplicantsForm } from "./AboutApplicantsForm";

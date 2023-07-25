@@ -11,7 +11,6 @@ const Documents = () => {
     isSuccess,
     isFetching,
     submitGpDetailsInfoDocumentData,
-    postGpDetailsInfoDocumentDataStatus,
     router,
     onDeleteConfirm,
     GPDETAILSDOCUMENTPAGELIMIT,

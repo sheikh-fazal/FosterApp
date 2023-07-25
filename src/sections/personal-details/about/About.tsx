@@ -24,16 +24,25 @@ const About = () => {
             .map(([key, val]: any, index: any) => (
               <div key={index}>
                 <Box sx={styles.keysWrapper}>
-                  <Typography variant="subtitle2" sx={styles.keysText}>
+                  <Typography
+                    variant="subtitle2"
+                    component={"p"}
+                    sx={styles.keysText}
+                  >
                     {key ?? "-"}
                   </Typography>
-                  <Typography variant="body2" sx={styles.keyValues}>
+                  <Typography
+                    variant="body2"
+                    component={"p"}
+                    sx={styles.keyValues}
+                  >
                     {Array.isArray(val) ? (
                       <>
                         {val.length === 0 && "-"}
                         {val.map((val: any, i: any) => (
                           <Typography
                             variant="body2"
+                            component={"span"}
                             sx={styles.keyValues}
                             key={i}
                           >
@@ -42,7 +51,11 @@ const About = () => {
                         ))}
                       </>
                     ) : (
-                      <Typography variant="body2" sx={styles.keyValues}>
+                      <Typography
+                        variant="body2"
+                        component={"span"}
+                        sx={styles.keyValues}
+                      >
                         {val ?? "-"}
                       </Typography>
                     )}
@@ -59,7 +72,7 @@ const About = () => {
           handleDropDown();
         }}
       >
-        <Typography component={"span"} variant="caption" sx={styles.toggleList}>
+        <Typography component={"p"} variant="caption" sx={styles.toggleList}>
           {toggleList ? "less" : "more"}
         </Typography>
         <Avatar alt="drop-down" src="" sx={styles.toggleButton}>

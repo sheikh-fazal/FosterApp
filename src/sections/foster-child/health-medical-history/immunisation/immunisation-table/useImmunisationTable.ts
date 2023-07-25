@@ -12,14 +12,9 @@ import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
 export const useImmunisationTable = (fosterChildId: any) => {
-  let [viewData, setViewData] = useState(null);
-  let [employerData, setEmployerData] = useState(null);
   const tableHeaderRef = useRef<any>();
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
-  const changeView = (val: any) => {
-    setViewData(val);
-  };
 
   const theme: any = useTheme();
 
@@ -46,12 +41,7 @@ export const useImmunisationTable = (fosterChildId: any) => {
   };
 
   return {
-    changeView,
-    viewData,
-    setViewData,
     theme,
-    employerData,
-    setEmployerData,
     data,
     isLoading,
     isError,

@@ -13,6 +13,7 @@ export default function PEPForm(props: any) {
   // Pep Form Custom Hook
   const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
     usePepFom(props);
+    const {fosterChildId} = router.query;
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -51,16 +52,20 @@ export default function PEPForm(props: any) {
             </LoadingButton>
             )}
             <LoadingButton
-              onClick={() => {
-                router.push(
-                  "/foster-child/child-background-info/cla-documentation"
-                );
-              }}
+              // onClick={() => {
+              //   router.push(
+              //     "/foster-child/child-background-info/cla-documentation"
+              //   );
+              // }}
+              onClick={() => router.push({
+                pathname:  "/foster-child/child-background-info/cla-documentation",
+                query: {fosterChildId: fosterChildId}
+              })}
               type="button"
               sx={{ marginRight: "1rem", backgroundColor: "#F6830F" }}
               variant="contained"
             >
-              back
+              Back
             </LoadingButton>
           </Box>
         

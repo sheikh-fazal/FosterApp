@@ -7,11 +7,11 @@ import { useGetClaDocumentationByIdQuery } from "@root/services/foster-child/chi
 import { useRouter } from "next/router";
 
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [ 
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/foster-child/child-background-info/cla-documentation",
+    href: `/foster-child/child-background-info/cla-documentation?fosterChildId=${query}`,
   },
   {
     name: "CLA Documentation List",
@@ -23,10 +23,11 @@ const PAGE_TITLE = "Edit CLA Documentation";
 // ----------------------------------------------------------------------
 
 EditClaDocumentationList.getLayout = function getLayout(page: any) {
+  const router = useRouter()
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       title={PAGE_TITLE}
     >
       {page}

@@ -3,7 +3,6 @@ import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
-import { columns } from "./";
 import { usePetQuestionnaireTable } from "./usePetQuestionnaireTable";
 
 export default function PetQuestionnaireTable() {
@@ -18,6 +17,8 @@ export default function PetQuestionnaireTable() {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    makePath,
+    columns,
   } = usePetQuestionnaireTable();
 
   return (
@@ -30,7 +31,9 @@ export default function PetQuestionnaireTable() {
         showAddBtn
         onAdd={() => {
           router.push(
-            "/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire"
+            makePath({
+              path: "/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire",
+            })
           );
         }}
         onChanged={headerChangeHandler}

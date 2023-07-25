@@ -98,6 +98,6 @@ export const {
   useGetChildChronologyOfEventsExclusionInfoListQuery,
   usePostChildChronologyOfEventsExclusionInfoMutation,
   usePatchChildChronologyOfEventsExclusionInfoByIdMutation,
-  useGetChildChronologyOfEventsExclusionInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsExclusionInfoByIdQuery,
   useDeleteChildChronologyOfEventsExclusionInfoByIdMutation,
 } = exclusionInfoApi;

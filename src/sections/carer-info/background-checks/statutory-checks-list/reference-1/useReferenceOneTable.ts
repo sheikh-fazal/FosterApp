@@ -11,7 +11,7 @@ export const useReferenceOneTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
 
   //GET API For Reference One List
@@ -21,7 +21,7 @@ export const useReferenceOneTable = () => {
     isLoading: referenceOneIsloading,
     isFetching: referenceOneIsfetching,
     isSuccess: referenceOneIsSuccess,
-  }: any = useReferenceOneListQuery({ search: search });
+  }: any = useReferenceOneListQuery({ search: search, ...params });
 
   //Getting API data and Meta
   const referenceOneData = referenceOneList?.data?.reference_one;

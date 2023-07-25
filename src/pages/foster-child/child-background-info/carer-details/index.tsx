@@ -6,6 +6,8 @@ import { Stack } from "@mui/material";
 import { CarerDetailsHeader } from "@root/sections/foster-child/child-background-info/carer-details/carer-details-header";
 import { CarerDetailsForm } from "@root/sections/foster-child/child-background-info/carer-details";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
 
@@ -13,35 +15,35 @@ const PAGE_TITLE = "Carer Details";
 
 // ----------------------------------------------------------------------
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Child Info",
-    href: "/",
-  },
-  {
-    name: PAGE_TITLE,
-    href: "",
-  },
-];
-
-// ----------------------------------------------------------------------
-
 CarerDetails.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function CarerDetails() {
+  const { makePath } = usePath();
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Child Info",
+      href: makePath({
+        path: "/foster-child",
+      }),
+    },
+    {
+      name: PAGE_TITLE,
+      href: "",
+    },
+  ];
+
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       <Stack direction={"column"} spacing={2}>
         <CarerDetailsHeader />
         <HorizaontalTabs

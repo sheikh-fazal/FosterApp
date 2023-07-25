@@ -1,7 +1,6 @@
 import { Button, Card, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import Link from "next/link";
 import { CarerFamilySupportNetworkFormData, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
 import { useCarerFamilySupportNetworkForm } from "./useCarerFamilySupportNetworkForm";
@@ -16,7 +15,7 @@ export default function CarerFamilySupportNetworkForm({
   isError,
   isSuccess,
 }: any) {
-  const { methods, handleSubmit, onSubmit, isSubmitting } =
+  const { methods, handleSubmit, onSubmit, isSubmitting, router, makePath } =
     useCarerFamilySupportNetworkForm({
       onSubmitHandler,
       initialValueProps,
@@ -32,6 +31,7 @@ export default function CarerFamilySupportNetworkForm({
               <item.component
                 disabled={disabled}
                 {...item.componentProps}
+                fullWidth
                 size={"small"}
               >
                 {item?.componentProps?.select
@@ -55,14 +55,20 @@ export default function CarerFamilySupportNetworkForm({
               >
                 {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
               </LoadingButton>
-              <Link
-                href={"/carer-info/personal-info/carer-family-support-network"}
-                style={{ textDecoration: "none" }}
+              <Button
+                type="button"
+                variant="contained"
+                onClick={() =>
+                  router.push(
+                    makePath({
+                      path: "/carer-info/personal-info/carer-family-support-network",
+                      skipQueries: ["familyId"],
+                    })
+                  )
+                }
               >
-                <Button type="button" variant="contained">
-                  Back
-                </Button>
-              </Link>
+                Back
+              </Button>
             </Grid>
           )}
         </Grid>

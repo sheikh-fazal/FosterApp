@@ -19,6 +19,12 @@ export default function IndependencePackTable() {
     pageChangeHandler,
     sortChangeHandler,
     theme,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    Independentpacks,
+    meta,
   } = useIndependencePackTable();
   const handleClose = () => {
     setOpen(false);
@@ -28,7 +34,7 @@ export default function IndependencePackTable() {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <LevelButtons />
         <Box sx={{ mt: 1 }}>
-          <SingleLevel isBadge={true} levelName="Bronze" bgColor={"#A46628"}>
+          <SingleLevel isBadge={true} levelName="Bronze">
             <BronzeLevel width="40" height="66" color={"#FFFFFF"} />
           </SingleLevel>
         </Box>
@@ -44,27 +50,20 @@ export default function IndependencePackTable() {
             onAdd={() => {
               setOpen(true);
             }}
-            onChanged={(data: any) => {
-              console.log("Updated params: ", data);
-            }}
+            onChanged={headerChangeHandler}
           />
           <CustomTable
-            data={IndependencePackData}
+            data={Independentpacks}
             columns={columns}
-            isLoading={false}
-            isFetching={false}
-            isError={false}
-            isSuccess={true}
+            isLoading={isLoading}
+            isFetching={isFetching}
+            isError={isError}
+            isSuccess={isSuccess}
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
             showSerialNo
-            // count={Math.ceil(data?.data?.meta?.total / limit)}
-            currentPage={1}
-            onPageChange={(data: any) => {
-              console.log("Current page data: ", data);
-            }}
-            onSortByChange={(data: any) => {
-              console.log("Sort by: ", data);
-            }}
-            rootSX={{ my: theme.spacing(2) }}
+            onPageChange={pageChangeHandler}
+            onSortByChange={sortChangeHandler}
           />
         </Grid>
       </Grid>

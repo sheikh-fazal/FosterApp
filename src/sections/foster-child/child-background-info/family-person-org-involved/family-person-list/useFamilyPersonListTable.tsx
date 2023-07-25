@@ -12,6 +12,7 @@ export const useFamilyPersonListTable = () => {
 
   const { data, isError, isLoading, isSuccess, isFetching } =
     useGetFamilyPersonListQuery<any>({ params });
+    console.log("pagination", params)
 
   const [deleteList] = useDeleteFamilyPersonListMutation();
 
