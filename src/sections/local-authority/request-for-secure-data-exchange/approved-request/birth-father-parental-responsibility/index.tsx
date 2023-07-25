@@ -19,7 +19,6 @@ export const BirthFatherParental = [
     heading:
       "Does the birth father know of the plan to place the child for adoption?",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },

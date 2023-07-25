@@ -7,32 +7,31 @@ import { useFrontSheetMutation } from "@root/services/carer-info/personal-info/f
 import { enqueueSnackbar } from "notistack";
 import useAuth from "@root/hooks/useAuth";
 import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
+import usePath from "@root/hooks/usePath";
+import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
 const PAGE_TITLE = "Form F";
 
 FrontSheet.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          name: "Form F List",
-          href: "/carer-info/personal-info/form-f",
-        },
-        {
-          name: "Front Sheet",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function FrontSheet() {
+  const { makePath } = usePath();
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Form F List",
+      href: makePath({
+        path: "/carer-info/personal-info/form-f",
+      }),
+    },
+    { name: "Front Sheet" },
+  ];
   const { user }: any = useAuth();
   const [skip, setSkip] = useState(true);
   const { data } = useFormFQuery("frontSheet", { skip });
@@ -46,12 +45,12 @@ export default function FrontSheet() {
     try {
       const res: any = await postFrontSheetData({
         formData,
-        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        params: `fosterCarerId=${id}`,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      // router.push("/carer-info/personal-info/carer-family-support-network");
+      router.push(`/carer-info/personal-info/form-f?fosterCarerId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -59,6 +58,11 @@ export default function FrontSheet() {
   };
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <FrontSheetForm
         formData={submitDataHandler}
         isLoading={isLoading}

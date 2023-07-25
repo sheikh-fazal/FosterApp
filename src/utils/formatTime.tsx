@@ -1,10 +1,4 @@
-import {
-  format,
-  getTime,
-  formatDistanceToNow,
-  parseISO,
-  differenceInYears,
-} from "date-fns";
+import { format, getTime, formatDistanceToNow, parseISO, differenceInYears } from "date-fns";
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +29,7 @@ export function calculateISOAge(dob: string) {
 }
 
 export function parseToTimeStamp(date: string) {
-  return new Date(date).getTime();
+  return new Date(date);
 }
 
 // export function parseDatesToTimeStamp(obj: any) {
@@ -50,10 +44,13 @@ export function parseToTimeStamp(date: string) {
 export function parseDatesToTimeStampByKey(obj: any) {
   for (const key in obj) {
     const item = obj[key];
-    if (typeof item === "object" && !Array.isArray(item))
-      parseDatesToTimeStampByKey(item);
+    if (typeof item === "object" && !Array.isArray(item)) parseDatesToTimeStampByKey(item);
     else if (typeof item === "string") {
-      if (key.toLowerCase().includes("date"))
+      if (
+        ["date", "time", "duration"].some((timeKey) => {
+          return key.toLowerCase().includes(timeKey);
+        })
+      )
         obj[key] = parseToTimeStamp(obj[key]);
     }
   }

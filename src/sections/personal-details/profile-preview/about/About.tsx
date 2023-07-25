@@ -25,6 +25,7 @@ const About = () => {
             >
               <Typography
                 variant="subtitle2"
+                component={"p"}
                 sx={{
                   color: theme.palette.grey[600],
                   textTransform: "capitalize",
@@ -34,6 +35,7 @@ const About = () => {
               </Typography>
               <Typography
                 variant="body2"
+                component={"p"}
                 sx={{
                   color: theme.palette.grey[600],
                   fontWeight: 400,
@@ -67,10 +69,12 @@ const About = () => {
               <Typography
                 variant="subtitle2"
                 sx={{ color: theme.palette.grey[600] }}
+                component={"p"}
               >
                 {item.label}
               </Typography>
               <Typography
+                component={"p"}
                 variant="body2"
                 sx={{
                   color: theme.palette.grey[600],
@@ -89,6 +93,7 @@ const About = () => {
                   >
                     <Image src={title.icon} alt="icon" width={24} height={20} />
                     <Typography
+                      component={"p"}
                       variant="body2"
                       sx={{
                         color: theme.palette.grey[600],
@@ -121,6 +126,7 @@ const About = () => {
           }}
         >
           <Typography
+            component={"p"}
             variant="subtitle2"
             sx={{ color: theme.palette.grey[600], mb: 1 }}
           >
@@ -129,6 +135,7 @@ const About = () => {
           <Box sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}>
             <Image src={item.icon} alt="icon" width={24} height={22} />
             <Typography
+              component={"p"}
               variant="body2"
               sx={{
                 color: theme.palette.grey[600],

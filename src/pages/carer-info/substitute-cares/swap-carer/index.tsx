@@ -6,67 +6,64 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
 import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import usePath from "@root/hooks/usePath";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Swap Carer",
-    href: "/carer-info/substitute-cares/swap-carer",
-  },
-];
 
 const PAGE_TITLE = "Swap Carer";
 SwapCarer.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function SwapCarer() {
-  const { data } = useGetSelectedSubstituteCarerQuery({
-    limit: "10",
-    offset: "0",
-    type: "SC",
-  });
-  console.log(data);
+  const { makePath } = usePath();
   const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info",
+      }),
+    },
+    {
+      name: "Swap Carer",
+      href: "/carer-info/substitute-cares/swap-carer",
+    },
+  ];
+
+  const { data, isSuccess, isLoading, isError } =
+    useGetSelectedSubstituteCarerQuery({
+      limit: "10",
+      offset: "0",
+      type: "SC",
+    });
   const title = "Swap Carer List";
-  const FORMROUTE =
-    "/carer-info/substitute-cares/swap-carer/swap-carer-details";
+
+  const FORMROUTE = `/carer-info/substitute-cares/swap-carer/swap-carer-details?fosterCarerId=${id}`;
   const columns = [
     {
-      accessorFn: (row: any) => row["name"],
-      id: "name",
-      cell: (info: any) =>
-        info.getValue()?.length > 20
-          ? ". . ." + info.getValue()?.slice(-15)
-          : info.getValue(),
+      accessorFn: (row: any) => row["firstName"],
+      id: "firstName",
+      cell: (info: any) => info.getValue(),
       header: () => <span>Name</span>,
     },
     {
-      accessorFn: (row: any) => row["phone"],
-      id: "phone",
+      accessorFn: (row: any) => row["telephone"],
+      id: "telephone",
       cell: (info: any) => info.getValue(),
       header: () => <span>Phone Number</span>,
     },
     {
       accessorFn: (row: any) => row["level"],
       id: "level",
-      cell: (info: any) => info.getValue(),
+      // to be changed later
+      cell: (info: any) => (info.getValue() ? "Level 1" : "Level 2"),
       header: () => <span>Level</span>,
     },
     {
@@ -96,7 +93,7 @@ export default function SwapCarer() {
           />
           <TableAction
             type="view"
-            onClicked={() => viewDetailsHandler(info)}
+            onClicked={() => viewDetailsHandler(info.row.original)}
             size="small"
           />
         </Box>
@@ -105,27 +102,27 @@ export default function SwapCarer() {
       isSortable: false,
     },
   ];
-  const tableData = [
-    {
-      name: "test Name",
-      phone: "090078601",
-      level: "Level 1",
-      status: "Living",
-      familyDetails: "18 siblings",
-    },
-  ];
-  const status = {
-    isLoading: false,
-    isFetching: false,
-    isError: false,
-    isSuccess: true,
-  };
-  const meta = {
-    page: "1",
-    pages: "1",
-  };
+  // const tableData = [
+  //   {
+  //     name: "test Name",
+  //     phone: "090078601",
+  //     level: "Level 1",
+  //     status: "Living",
+  //     familyDetails: "18 siblings",
+  //   },
+  // ];
+  // const status = {
+  //   isLoading: false,
+  //   isFetching: false,
+  //   isError: false,
+  //   isSuccess: true,
+  // };
+  // const meta = {
+  //   page: "1",
+  //   pages: "1",
+  // };
   const viewDetailsHandler = (item: any) => {
-    console.log(item);
+    router.push(`${FORMROUTE}?carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -134,15 +131,24 @@ export default function SwapCarer() {
     console.log(item);
   };
   return (
-    <SubstituteCarerTable
-      columns={columns}
-      tableData={tableData}
-      meta={meta}
-      title={title}
-      searchedText={searchTextHandler}
-      apiStatus={status}
-      onPageChange={pageChangeHandler}
-      route={FORMROUTE}
-    />
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <SubstituteCarerTable
+        columns={columns}
+        // tableData={tableData}
+        tableData={data?.backup_carer_details}
+        // meta={meta}
+        meta={data?.meta}
+        title={title}
+        searchedText={searchTextHandler}
+        apiStatus={{ isSuccess, isLoading, isError }}
+        onPageChange={pageChangeHandler}
+        route={FORMROUTE}
+      />
+    </>
   );
 }

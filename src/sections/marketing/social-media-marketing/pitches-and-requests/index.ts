@@ -38,7 +38,7 @@ export const defaultValues = {
 
 // Constants
 
-export const TypeOfContent = [
+export const TYPEOFCONTENT = [
   {
     label: "Request",
     value: "Request",

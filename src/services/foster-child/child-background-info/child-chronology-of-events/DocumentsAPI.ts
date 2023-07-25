@@ -21,7 +21,7 @@ export const documentsApi: any = baseAPI.injectEndpoints({
     >({
       query: (queryArg) => ({
         url: `/child-chronology-of-events/uploaded-documents/List`,
-        params: queryArg,
+        params: { limit: queryArg.limit, offset: queryArg.offset, recordId: queryArg.id },
       }),
       providesTags: [TAG],
     }),
@@ -62,6 +62,7 @@ export type GetChildChronologyOfEventsUploadedDocumentsListApiResponse = unknown
 export type GetChildChronologyOfEventsUploadedDocumentsListApiArg = {
   limit: number | null;
   offset: number | null;
+  id: string | null;
 };
 export type GetChildChronologyOfEventsUploadedDocumentsByIdApiResponse = unknown;
 export type GetChildChronologyOfEventsUploadedDocumentsByIdApiArg = {

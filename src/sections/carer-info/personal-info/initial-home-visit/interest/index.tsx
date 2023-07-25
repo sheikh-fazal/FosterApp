@@ -49,6 +49,7 @@ export const interestFormSchema = Yup.object().shape({
 export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
+    fullWidth: true,
     name: "previousExperience",
     label: "",
     title:
@@ -59,6 +60,7 @@ export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
 
   {
     type: "textarea",
+    fullWidth: true,
     name: "motivation",
     label: "",
     title:
@@ -68,6 +70,7 @@ export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "impactOfTheTask",
     label: "",
     title:
@@ -77,6 +80,7 @@ export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "skilledOffered",
     label: "",
     title:
@@ -86,6 +90,7 @@ export const interestFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "knowledgeOfTheReason",
     label: "",
     title:
