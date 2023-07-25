@@ -26,7 +26,7 @@ export const wishesData = [
   {
     heading: "What I think about being adopted",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -48,7 +48,7 @@ export const wishesData = [
   {
     heading: "What I think I want my adoptive family to be like",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -68,7 +68,7 @@ export const wishesData = [
   {
     heading: "Do you go to a church, temple or mosque or say prayers ?",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -90,7 +90,7 @@ export const wishesData = [
   {
     heading: "Do you want to say any more about this ?",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -110,7 +110,7 @@ export const wishesData = [
   {
     heading: "These are the important things I want people to know about me",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -132,7 +132,7 @@ export const wishesData = [
   {
     heading: "These are the people I want to stay in touch with",
     componentProps: {
-      variant: "h6",
+     
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 1 },
     },
@@ -155,7 +155,7 @@ export const wishesData = [
 
 export const wishesDataDataValues = {
   ChildsName: "",
-  dateCompleted: "",
+  dateCompleted: null,
   address: "",
   adoptive: "",
   mosque: "",

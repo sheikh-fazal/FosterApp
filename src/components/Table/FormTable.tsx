@@ -176,7 +176,9 @@ export default function FormTable(props: any) {
     certificate,
     tableKey,
     beforeAdd,
+    add,
     beforeUpdate,
+    onAddRowHandler,
     columns: tableColumns,
   } = props;
   const methods = useFormContext();
@@ -259,6 +261,10 @@ export default function FormTable(props: any) {
               />
             )}
 
+            <TableAction
+              type="download"
+            />
+
             {showView === "view" ? (
               ""
             ) : (
@@ -299,6 +305,13 @@ export default function FormTable(props: any) {
           <TableAction
             type="view"
             onClicked={(id: number) => onViewHandler(info.row.index)}
+          />
+        )}
+
+        {add && (
+          <TableAction
+            type="add"
+            onClicked={(id: number) => onAddRowHandler(info.row)}
           />
         )}
         {print && (

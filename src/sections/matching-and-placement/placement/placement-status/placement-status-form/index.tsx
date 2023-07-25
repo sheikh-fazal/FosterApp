@@ -34,25 +34,25 @@ export const formSchema = Yup.object().shape({
 
 export const formFields = [
   {
-    title: "Child Name",
     gridLength: 6,
     otherOptions: {
+      label: "Child Name",
       name: "childName",
     },
     component: RHFTextField,
   },
   {
-    title: "Carer Name",
     gridLength: 6,
     otherOptions: {
+      label: "Carer Name",
       name: "carerName",
     },
     component: RHFTextField,
   },
   {
-    title: "Type of Placement",
     gridLength: 6,
     otherOptions: {
+      label: "Type of Placement",
       name: "typeOfPlacement",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -60,25 +60,25 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Date of Placement",
     gridLength: 6,
     otherOptions: {
+      label: "Date of Placement",
       name: "dateOfPlacement",
     },
     component: RHFDatePicker,
   },
   {
-    title: "Placement End Date",
     gridLength: 6,
     otherOptions: {
+      label: "Placement End Date",
       name: "placementEndDate",
     },
     component: RHFDatePicker,
   },
   {
-    title: "Agency Social Worker",
     gridLength: 6,
     otherOptions: {
+      label: "Agency Social Worker",
       name: "agencySocialWorker",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -86,9 +86,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Local Authority",
     gridLength: 6,
     otherOptions: {
+      label: "Local Authority",
       name: "localAuthority",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -96,9 +96,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "LA Social Worker",
     gridLength: 6,
     otherOptions: {
+      label: "LA Social Worker",
       name: "laSocialWorker",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -106,9 +106,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Status",
     gridLength: 6,
     otherOptions: {
+      label: "Status",
       name: "status",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -117,25 +117,25 @@ export const formFields = [
   },
 
   {
-    title: "Placement Plan",
     gridLength: 6,
     otherOptions: {
+      label: "Placement Plan",
       name: "placementPlan",
     },
     requireFileUpload: true,
   },
   {
-    title: "Placement Agreements",
     gridLength: 6,
     otherOptions: {
+      label: "Placement Agreements",
       name: "respiteAgreements",
     },
     requireFileUpload: true,
   },
   {
-    title: "Approved by(Role)",
     gridLength: 6,
     otherOptions: {
+      label: "Approved by(Role)",
       name: "approvedBy",
       select: true,
       options: [{ value: "Select", label: "Select" }],

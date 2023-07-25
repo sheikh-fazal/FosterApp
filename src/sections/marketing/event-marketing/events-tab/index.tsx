@@ -1,36 +1,34 @@
 export const defaultValues = {
-    exampleTable: [
-      {
-        srNo: "1",
-        name: "November 2021 Foster Carers Meetup",
-        "type": {
-          label: "Meetup",
-            value: "1",
-            bgColor: "#59adb3",
-            textColor: "#1D1D1D",
-        },
-  
-        date: new Date(),
-        venues: "Cottingham Library",
-        details: "Our monthly Foster carer meetup for fostering networks campaign to raise the profile of fostering and show how foster care",
-        noAttendees: 3,
-        noInvites: 45,
-        invites: [
-          {
-            label: "marc jenkins",
-            value: "marc jenkins",
-            bgColor: "#59adb3",
-            textColor: "#1D1D1D",
-          },
-        ],
+  exampleTable: [
+    {
+      srNo: "1",
+      name: "November 2021 Foster Carers Meetup",
+      type: {
+        label: "Meetup",
+        value: "1",
+        bgColor: "#59adb3",
+        textColor: "#1D1D1D",
       },
-    ],
-  };
 
+      date: new Date(),
+      venues: "Cottingham Library",
+      details:
+        "Our monthly Foster carer meetup for fostering networks campaign to raise the profile of fostering and show how foster care",
+      noAttendees: 3,
+      noInvites: 45,
+      invites: [
+        {
+          label: "marc jenkins",
+          value: "marc jenkins",
+          bgColor: "#59adb3",
+          textColor: "#1D1D1D",
+        },
+      ],
+    },
+  ],
+};
 
-
-
-  // Constants
+// Constants
 export const TYPE = [
   {
     label: "Webinar",
@@ -65,7 +63,7 @@ export const INVITES = [
     bgColor: "#59adb3",
     textColor: "#1D1D1D",
   },
-  
+
   {
     label: "Knedrik Siv",
     value: "Knedrik Siv",
@@ -79,5 +77,3 @@ export const INVITES = [
     textColor: "#1D1D1D",
   },
 ];
-
-  
