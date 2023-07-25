@@ -77,6 +77,7 @@ export const useChildUploadDocuemntInfoList = () => {
   const columns = getColumns({
     handleDeleteChildTherapy,
     openUpdateViewModel,
+    router,
   });
   return {
     tableHeaderRef,
