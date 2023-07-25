@@ -18,7 +18,10 @@ export const useChildUploadDocuemntInfoList = () => {
   const [searchValue, setSearchValue] = useState(undefined);
   const [therapInfoCon, setTherapInfo] = useState({
     someAsyncAction: false,
-    docsModel: false,
+    docsAddModel: false,
+    updateViewModel: false,
+    updateViewModelDisabled: false,
+    uploadFormDataHolder: null,
   });
   const params = {
     search: searchValue,
@@ -48,15 +51,33 @@ export const useChildUploadDocuemntInfoList = () => {
     }
   };
 
-  const openDocsModel = () => {
-    setTherapInfo((pre) => ({ ...pre, docsModel: true }));
+  const openAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, docsAddModel: true }));
   };
 
-  const closeDocsModel = () => {
-    setTherapInfo((pre) => ({ ...pre, docsModel: false }));
+  const closeAddModel = () => {
+    setTherapInfo((pre) => ({ ...pre, docsAddModel: false }));
   };
 
-  const columns = getColumns({ router, handleDeleteChildTherapy });
+  const openUpdateViewModel = (viewId: string) => {
+    const uploadDocsFormData = data?.data?.therapy_info_document.find(
+      ({ id }: any) => id === viewId
+    );
+    setTherapInfo((pre) => ({
+      ...pre,
+      uploadFormDataHolder: uploadDocsFormData,
+    }));
+    setTherapInfo((pre) => ({ ...pre, updateViewModel: true }));
+  };
+
+  const closeUpdateViewModel = () => {
+    setTherapInfo((pre) => ({ ...pre, updateViewModel: false }));
+  };
+
+  const columns = getColumns({
+    handleDeleteChildTherapy,
+    openUpdateViewModel,
+  });
   return {
     tableHeaderRef,
     columns,
@@ -69,7 +90,8 @@ export const useChildUploadDocuemntInfoList = () => {
     setPage,
     page,
     therapInfoCon,
-    openDocsModel,
-    closeDocsModel,
+    openAddModel,
+    closeAddModel,
+    closeUpdateViewModel,
   };
 };
