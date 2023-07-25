@@ -2,7 +2,7 @@ import Layout from "@root/layouts";
 import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-report-form";
+import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/report-form";
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
