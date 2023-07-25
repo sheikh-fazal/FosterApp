@@ -14,7 +14,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
-import { RHFSwitch, FormProvider, RHFRadioGroup } from "@root/components/hook-form";
+import {
+  RHFSwitch,
+  FormProvider,
+  RHFRadioGroup,
+  RHFTextField,
+} from "@root/components/hook-form";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { defaultValues, FormSchema, viewDeclarationData } from ".";
@@ -49,7 +54,7 @@ export const ViewDeclaration = () => {
     <>
       <Card>
         <Grid container p={1}>
-          <Grid p={2} container direction={"column"}>
+          <Grid p={2} container direction={"column"} item md={7} xs={12}>
             <span
               style={{
                 fontSize: 24,
@@ -64,24 +69,34 @@ export const ViewDeclaration = () => {
             </span>
             <BorderLinearProgress variant="determinate" value={50} />
           </Grid>
-          <div style={{ borderBottom: "1px solid", width: "100%" }}></div>
+          <Grid
+            item
+            md={10}
+            xs={12}
+            sx={{ borderBottom: "1px solid", width: "100%" }}
+          ></Grid>
           <Grid container alignItems={"center"} p={1} my={1}>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={11}>
               <Button variant="contained" sx={{ backgroundColor: "#F06533" }}>
                 Activation & Settings
               </Button>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={11}>
               <span style={{ fontWeight: 600 }}>User Status</span>:{" "}
               <span>Active</span>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item md={3} xs={11}>
               <span style={{ fontWeight: 600 }}>User Type</span>:{" "}
               <span>Prospective Foster Carer</span>
             </Grid>
           </Grid>
-          <div style={{ borderBottom: "1px solid", width: "100%" }}></div>
-          <Grid container p={1} my={1}>
+          <Grid
+            item
+            md={10}
+            xs={12}
+            sx={{ borderBottom: "1px solid", width: "100%" }}
+          ></Grid>
+          <Grid container item md={9.5} xs={12} p={1} my={1}>
             <span
               style={{
                 fontSize: 18,
@@ -109,26 +124,46 @@ export const ViewDeclaration = () => {
               />
               {viewDeclarationData?.map((ele: any) => {
                 return (
-                  <Accordion>
+                  <Accordion sx={{ border: "1px solid", my: 2 }} key={ele?.id}>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
-                      <span>{ele?.accordianName}</span>
+                      <span style={{ fontWeight: 500, fontSize: 18 }}>
+                        {ele?.accordianName}
+                      </span>
                     </AccordionSummary>
                     <AccordionDetails>
-                      {/* <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse malesuada lacus ex, sit amet blandit leo
-                        lobortis eget.
-                      </span> */}
-                      <span>{ele?.heading}</span>
+                      {ele?.heading && <span>{ele?.heading}</span>} <br />{" "}
+                      <br />
+                      {ele?.heading2 && <span>{ele?.heading2}</span>}
                       {ele?.component === RHFRadioGroupWithLabel && (
                         <Grid container>
                           <RHFRadioGroup
                             name={ele?.otherOptions?.name}
                             options={ele?.otherOptions?.options}
+                          />
+                        </Grid>
+                      )}
+                      {ele?.textfield && (
+                        <Grid container item md={6} xs={12}>
+                          <RHFTextField
+                            minRows={ele?.textfield?.componentProps?.minRows}
+                            name={ele?.textfield?.componentProps?.name}
+                            label={ele?.textfield?.componentProps?.label}
+                            fullWidth={
+                              ele?.textfield?.componentProps?.fullWidth
+                            }
+                            multiline
+                          />
+                        </Grid>
+                      )}
+                      {ele?.component === RHFSwitch && (
+                        <Grid container>
+                          <RHFSwitch
+                            name={ele?.otherOptions?.name}
+                            label={ele?.otherOptions?.label}
                           />
                         </Grid>
                       )}
