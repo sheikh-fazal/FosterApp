@@ -94,7 +94,7 @@ const AbsenceInfoTable = (props: any) => {
         onAdd={() => {
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/absence-info",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

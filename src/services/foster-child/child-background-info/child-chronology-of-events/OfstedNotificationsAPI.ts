@@ -97,6 +97,6 @@ export const {
   useGetChildChronologyOfEventsOfstedNotificationsListQuery,
   usePostChildChronologyOfEventsOfstedNotificationsMutation,
   usePatchChildChronologyOfEventsOfstedNotificationsByIdMutation,
-  useGetChildChronologyOfEventsOfstedNotificationsByIdQuery,
+  useLazyGetChildChronologyOfEventsOfstedNotificationsByIdQuery,
   useDeleteChildChronologyOfEventsOfstedNotificationsByIdMutation,
 } = ofstedNotificationsApi;
