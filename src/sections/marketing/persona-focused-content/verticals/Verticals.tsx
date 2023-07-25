@@ -4,7 +4,7 @@ import FormTable from "@root/components/Table/FormTable";
 
 // form react hook
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Chip } from "@mui/material";
+import { Box, Checkbox, Chip } from "@mui/material";
 import { CONTENTIDEASOPTIONS, PERSONAOPTIONS } from ".";
 import { useVerticals } from "./useVerticals";
 import { fData } from "@root/utils/formatNumber";
@@ -86,6 +86,15 @@ const COLUMNS = [
     },
     format: (selectedValues = []) => {
       return <DataChips options={selectedValues} />;
+    },
+  },
+  {
+    inputType: "checkbox",
+    key: "priority",
+    defaultValue: false,
+    label: "Priority Q3",
+    format: (shouldContinue: boolean) => {
+      return <Checkbox   disabled checked={shouldContinue} />;
     },
   },
   {

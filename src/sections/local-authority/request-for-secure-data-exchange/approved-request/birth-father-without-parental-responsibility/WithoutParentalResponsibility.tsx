@@ -1,6 +1,6 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useWithoutParentalResponsibility } from "./useWithoutParentalResponsibility";
 
 const WithoutParentalResponsibility = ({
@@ -22,8 +22,9 @@ const WithoutParentalResponsibility = ({
           {BirthWithoutFatherParental?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
-                <form.component size="small" {...form.componentProps}>
-                  {form?.heading}
+                <form.component size="small" fullWidth {...form.componentProps}>
+                  <Typography sx={style.heading}>{form?.heading}</Typography>
+
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -65,7 +66,12 @@ const WithoutParentalResponsibility = ({
               Save
             </Button>
 
-            <Button sx={{m:1}} onClick={handleNextTab} type="button" variant="contained">
+            <Button
+              sx={{ m: 1 }}
+              onClick={handleNextTab}
+              type="button"
+              variant="contained"
+            >
               Next
             </Button>
           </Grid>
@@ -76,3 +82,10 @@ const WithoutParentalResponsibility = ({
 };
 
 export default WithoutParentalResponsibility;
+const style =({
+  heading :{
+    fontSize : "16px !important",
+    fontWeight:600
+
+  }
+})

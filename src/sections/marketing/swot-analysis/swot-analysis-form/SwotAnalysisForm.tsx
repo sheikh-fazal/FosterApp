@@ -38,7 +38,7 @@ const SwotAnalysisForm = ({ action }: any) => {
 
               {form?.uploadPhoto && (
                 <>
-                  <RHFUploadFile name={"competitor"} {...methods} required />
+                  <RHFUploadFile name={"competitor"} label={"Upload Swot (Competitor)"} {...methods} required />
                 </>
               )}
             </Grid>

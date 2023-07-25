@@ -1,41 +1,39 @@
-import { useState } from "react";
+import Layout from '@root/layouts';
+import React from 'react'
 import HomeIcon from "@mui/icons-material/Home";
-import Layout from "@root/layouts";
-import { Card } from "@mui/material";
-import Page from "@root/components/Page";
-// import ManageContentDirectory from "@root/sections/system-admin/manage-content-directory/ManageContentDirectory";
-// import NotificationManagement from "@root/sections/system-admin/notification-management/NotificationManagement";
+import Page from '@root/components/Page';
+import { Card } from '@mui/material';
+import ManageNotifications from '@root/sections/system-admin/manage-notifications/ManageNotifications';
 
-// Constants
+const PAGE_TITLE = "System Administration";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "System Admin",
-    href: "/system-admin",
-  },
-  {
-    name: "Notification Manage",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Notification Manage";
-Notification.getLayout = function getLayout(page: any) {
+ManageNotificationsLyout.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          name: "System Admin",
+          href: "/system-admin",
+        },
+        {
+          name: "Scheduler Notification",
+        },
+      ]}
       title={PAGE_TITLE}
     >
       {page}
     </Layout>
   );
 };
-export default function Notification() {
+
+export default function ManageNotificationsLyout() {
   return (
     <Page title={PAGE_TITLE}>
-      {/* <NotificationManagement /> */}
+      <Card>
+        <ManageNotifications />
+      </Card>
     </Page>
   );
 }
