@@ -1,34 +1,41 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import {
+  useDeleteStudySupportInfoByIdMutation,
+  useGetStudySupportInfoTableApiQuery,
+} from "@root/services/foster-child/education-records/study-support-info/studySupportInfoAPI";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
 export const useStudySupportInfoTable = () => {
-    const tableHeaderRef = useRef<any>();
-    const router = useRouter();
-  
-    const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-      useTableParams();
-  
-    // ----------------------------------------------------------------------
-  
-    const { data, isLoading, isError, isFetching, isSuccess } =
-      useGetCarerFamilyTableApiQuery({ params });
-  
-    const family = data?.faimly_details;
-    const meta = data?.meta;
-  
-    return {
-      router,
-      tableHeaderRef,
-      isLoading,
-      headerChangeHandler,
-      family,
-      isFetching,
-      isError,
-      isSuccess,
-      meta,
-      pageChangeHandler,
-      sortChangeHandler,
-    };
-}
+  const tableHeaderRef = useRef<any>();
+  const router = useRouter();
+
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+
+  // ----------------------------------------------------------------------
+
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetStudySupportInfoTableApiQuery({ params });
+
+  const [postData] = useDeleteStudySupportInfoByIdMutation();
+
+  const family = data?.data?.study_support_info;
+  const meta = data?.meta;
+
+  return {
+    router,
+    tableHeaderRef,
+    isLoading,
+    headerChangeHandler,
+    family,
+    isFetching,
+    isError,
+    isSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    postData,
+  };
+};
+

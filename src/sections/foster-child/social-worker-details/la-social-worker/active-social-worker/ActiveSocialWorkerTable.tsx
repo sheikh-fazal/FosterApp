@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { useStudySupportInfoTable } from "./useStudySupportInfoTable";
 import { Box, Card } from "@mui/material";
-import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { enqueueSnackbar } from "notistack";
-import dayjs from "dayjs";
-import { useRouter } from "next/router";
+import TableAction from "@root/components/TableAction";
+import TableHeader from "@root/components/TableHeader";
+import DeleteModel from "@root/components/modal/DeleteModel";
+import React, { useState } from "react";
+import { useActiveSocialWorkerTable } from "./useActiveSocialWorkerTable";
 
-export const StudySupportInfoTable = () => {
+export default function ActiveSocialWorkerTable(props: any) {
+  const { fosterChildId } = props;
   const [open, setOpen] = useState(false);
-
   const {
     router,
     tableHeaderRef,
@@ -23,33 +20,35 @@ export const StudySupportInfoTable = () => {
     isSuccess,
     meta,
     pageChangeHandler,
-    sortChangeHandler,
-  } = useStudySupportInfoTable();
+  } = useActiveSocialWorkerTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.fromDate,
-      id: "fromDate",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
-      header: "From Date",
+      accessorFn: (row: any) => row?.socialWorkerName,
+      id: "socialWorkerName",
+      cell: (info: any) => info.getValue(),
+      header: "Social Worker Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.studyType,
-      id: "studyType",
+      accessorFn: (row: any) => row?.socialWorkerTitle,
+      id: "socialWorkerTitle",
       cell: (info: any) => info.getValue() ?? "-",
-      header: "Study Type",
+      header: "Social Worker Title",
       isSortable: true,
     },
-
+    {
+      accessorFn: (row: any) => row?.phoneNumber,
+      id: "phoneNumber",
+      cell: (info: any) => info.getValue() ?? "-",
+      header: "Contact",
+      isSortable: true,
+    },
     {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           {/* Can move it outside of the table if need arises */}
-
-          <TableAction
+          {/* <TableAction
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
@@ -66,24 +65,24 @@ export const StudySupportInfoTable = () => {
                   "/foster-child/education-records/study-support-info/edit-study-support-info",
                 query: {
                   action: "edit",
-                  id: info.row.original.id,
-                  fosterChildId: router?.query?.fosterChildId,
+                  schoolInfoId: info.row.original.id,
+                  fosterChildId: fosterChildId,
                 },
               })
             }
             size="small"
-          />
-
+          /> */}
           <TableAction
             type="view"
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/education-records/study-support-info/view-study-support-info",
+                  "/foster-child/social-worker-details/la-social-worker/view-social-worker",
                 query: {
                   action: "view",
                   id: info.row.original.id,
-                  fosterChildId: router?.query?.fosterChildId,
+                  fosterChildId: fosterChildId,
+                  worker: "Active",
                 },
               })
             }
@@ -105,14 +104,8 @@ export const StudySupportInfoTable = () => {
       <TableHeader
         ref={tableHeaderRef}
         disabled={isLoading}
-        title="Study Support Info"
+        title="Active Social Worker"
         searchKey="search"
-        showAddBtn
-        onAdd={() => {
-          router.push(
-            "/foster-child/education-records/school-detail-info/add-school-detail"
-          );
-        }}
         onChanged={headerChangeHandler}
       />
       <CustomTable
@@ -126,8 +119,7 @@ export const StudySupportInfoTable = () => {
         totalPages={meta?.pages}
         showSerialNo
         onPageChange={pageChangeHandler}
-        onSortByChange={sortChangeHandler}
       />
     </Card>
   );
-};
+}

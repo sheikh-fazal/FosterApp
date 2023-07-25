@@ -6,13 +6,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import PreviousSocialWorkerForm from "@root/sections/foster-child/social-worker-details/la-social-worker/previous-social-worker/PreviousSocialWorkerForm";
+import ActiveSocialWorkerForm from "@root/sections/foster-child/social-worker-details/la-social-worker/active-social-worker/SocialWorkerForm";
 
-EditPreviousSocialWorker.getLayout = function getLayout(page: any) {
+ViewSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
-export default function EditPreviousSocialWorker() {
+export default function ViewSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
@@ -38,7 +38,7 @@ export default function EditPreviousSocialWorker() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <PreviousSocialWorkerForm  />
+      <ActiveSocialWorkerForm disabled />
     </Box>
   );
 }

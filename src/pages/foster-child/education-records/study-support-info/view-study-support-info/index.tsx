@@ -20,7 +20,7 @@ export default function ViewStudySupportInfo() {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Study Support Info Info List",
+      name: "Study Support Info List",
       href: {
         pathname: "/foster-child/education-records/study-support-info",
         query: { fosterChildId: fosterChildId },
