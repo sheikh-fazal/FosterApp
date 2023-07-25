@@ -44,7 +44,7 @@ export default function SubstituteCarerForm(props: any) {
       dateOfBirth: new Date(dayjs(data?.[0]?.dateOfBirth).format("MM/DD/YYYY")),
       dateOfVisit: new Date(dayjs(data?.[0]?.dateOfVisit).format("MM/DD/YYYY")),
     }));
-  }, [data]);
+  }, [data, reset]);
   console.log(!!params.query?.carerId);
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
