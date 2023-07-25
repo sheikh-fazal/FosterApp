@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  referalCAHMS: true,
+  referalCAHMS: false,
   CAHMSAppointment: false,
   referralDate: new Date(),
   appointmentDate: new Date(),
@@ -10,7 +10,7 @@ export const defaultValues = {
   therapistArrangements: "",
   isChildEngagedIndetifyInCarePlana: "",
   uncheckOption1: false,
-  uncheckOption2: true,
+  uncheckOption2: false,
   uncheckOption3: false,
 };
 

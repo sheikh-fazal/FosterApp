@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm, useWatch } from "react-hook-form";
 // @mui
 import { Button, Grid, IconButton, TextField, Typography } from "@mui/material";
+import { useRouter } from "next/router";
+
 // utils
 // components
 import { FormProvider } from "@root/components/hook-form";
@@ -23,15 +25,17 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
+import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 
 const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
-
+  const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [addReference] = useAddReferenceMutation();
+  const [addTherapyDetailsDocsListData] =
+    useAddTherapyDetailsDocsListDataMutation();
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -47,25 +51,26 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  const docsType = useWatch({ control, name: "docsType" });
+  const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
-    console.log({ data, file });
-    // reset({ keepIsSubmitted: true });
-    // const formData = {
-    //   ...data,
-    // };
-    // try {
-    //   setIsUpdating(true);
-    //   const data = await addReference(formData);
-    //   setIsUpdating(false);
-    //   displaySuccessMessage(data, enqueueSnackbar);
-    //   addRefModelClose();
-    //   // activateNextForm();
-    // } catch (error: any) {
-    //   setIsUpdating(false);
-    //   displayErrorMessage(error, enqueueSnackbar);
-    // }
+    const formData: any = new FormData();
+    formData.append("chooseFiles", file);
+    for (var key in data) {
+      formData.append(key, data[key]);
+    }
+
+    try {
+      setIsUpdating(true);
+      const data = await addTherapyDetailsDocsListData(formData);
+      setIsUpdating(false);
+      displaySuccessMessage(data, enqueueSnackbar);
+      closeModel();
+      // activateNextForm();
+    } catch (error: any) {
+      setIsUpdating(false);
+      displayErrorMessage(error, enqueueSnackbar);
+    }
   };
   const getDocType = (TYPE: String) => {
     switch (TYPE) {
@@ -129,29 +134,6 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
                     label="Selected File"
                     setFileHolder={setFileHolder}
                   />
-                  {/* <UploadFileWithView name="test" /> */}
-                  {/* <input
-                    onChange={onFileChange}
-                    type="file"
-                    style={{ display: "none" }}
-                    ref={fileRef}
-                    accept={getDocType(docsType)}
-                  />
-                  <TextField
-                    id="outlined-basic"
-                    label="Select document"
-                    fullWidth
-                    variant="outlined"
-                    disabled
-                    value={`${file ? file.name : ""}`}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <InsertDriveFileIcon />
-                        </InputAdornment>
-                      ),
-                    }}
-                  /> */}
                 </Grid>
               </Grid>
             </Grid>

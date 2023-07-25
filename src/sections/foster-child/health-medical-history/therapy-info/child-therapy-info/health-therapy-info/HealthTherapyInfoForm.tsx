@@ -36,7 +36,8 @@ const HealthTherapyInfoForm: FC<any> = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [disabled, setDisabled] = useState(false);
-  const { query } = useRouter();
+  const router = useRouter();
+  const { query } = router;
   const { action = "", fosterChildId = "", therapyInfoId = "" } = query;
 
   const [getProfileInfoQuery] = useLazyGetTherapyInfoByidQuery();
@@ -85,7 +86,8 @@ const HealthTherapyInfoForm: FC<any> = () => {
       ...data,
     };
     try {
-      const data =
+      // handling create and update based on action query parameter
+      const data: any =
         action === "create"
           ? await addAlltherapyDetailsListData({
               jsonData,
@@ -95,6 +97,13 @@ const HealthTherapyInfoForm: FC<any> = () => {
               jsonData,
               id: therapyInfoId,
             });
+      // getting id for the therapy if action is create and moving user to update route for data persistence
+      action === "create" &&
+        data?.data?.data?.id &&
+        router.push(
+          `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${data?.data?.data?.id}`
+        );
+
       displaySuccessMessage(data, enqueueSnackbar);
     } catch (error: any) {
       console.log(error);

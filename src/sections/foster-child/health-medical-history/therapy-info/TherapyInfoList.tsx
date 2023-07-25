@@ -4,26 +4,9 @@ import { Box, Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { useRouter } from "next/router";
 
 const TherapyInfoList = () => {
-  // const [tabelData, setTabelData] = useState([
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -37,6 +20,8 @@ const TherapyInfoList = () => {
     therapInfoCon,
   }: any = useTherapyInfoList();
   const { someAsyncAction } = therapInfoCon;
+  const router = useRouter();
+  const { query } = router;
   return (
     <Grid sx={{ position: "relative" }}>
       {someAsyncAction && <IsFetching isFetching />}
@@ -45,7 +30,11 @@ const TherapyInfoList = () => {
         title="Child Therapy Info "
         searchKey="search"
         showAddBtn={true}
-        onAdd={() => console.log("Test")}
+        onAdd={() =>
+          router.push(
+            `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${query?.fosterChildId}&action=create`
+          )
+        }
         onChanged={(data: any) => {
           setSearchValue(data?.search);
           console.log("Updated params: ", data);

@@ -43,6 +43,14 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
 
+    addTherapyDetailsDocsListData: builder.mutation({
+      query: (payload: any) => ({
+        url: `/therapy-info/therapy-info-doc/2f807f19-8591-46ee-ab97-dcb68de006ee`,
+        method: "POST",
+        body: payload.formData,
+      }),
+      invalidatesTags: [TAG],
+    }),
     getTherapyDetailsDocsListData: builder.query({
       query: (apiDataParameter: any) => ({
         url: `/therapy-info/document/list/${apiDataParameter.id}`,
@@ -67,6 +75,7 @@ export const {
   useGetAlltherapyDetailsListDataQuery,
   useDelTherapyDetailsListDataMutation,
   useUpdateTherapyInfoByidMutation,
+  useAddTherapyDetailsDocsListDataMutation,
   useGetTherapyDetailsDocsListDataQuery,
   useDelTherapyDetailsDocsListDataMutation,
   useLazyGetTherapyInfoByidQuery,
