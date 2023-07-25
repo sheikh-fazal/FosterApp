@@ -1,12 +1,12 @@
-import { Button, CircularProgress, Grid, Skeleton } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import React from "react";
-import arrowIcon from "../../../assets/img/recruitment/arrow.png";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
 import { RecruitmentStatusDropdown } from "../recruitment-status-dropdown/recruitment-status-dropdown";
 import { InformationDialogbox } from "../information-dialogbox/InformationDialogbox";
 import { AssignedFormDialogbox } from "../assigned-form-dialogbox/AssignedFormDialogbox";
 import { useAssessmentStageTwo } from "./useAssessmentStageTwo";
+import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import Link from "next/link";
 
 export default function AssessmentStageTwo() {
@@ -22,19 +22,28 @@ export default function AssessmentStageTwo() {
     isError,
     isFetching,
     isSuccess,
-    assessmentStageTwoApiData,
   } = useAssessmentStageTwo();
   return (
     <div>
-      <Grid container>
+      <Grid
+        container
+        px={2}
+        sx={{
+          bgcolor:
+            theme.palette.mode === "light" ? "white" : theme.palette.grey[800],
+        }}
+      >
         {assessmentStageTwoData?.map((ele: any) => (
           <Grid
             key={ele?.id}
             container
             p={1}
             sx={{
-              borderBottom: "1px solid black",
-              bgcolor: "white",
+              borderBottom: "1px solid",
+              bgcolor:
+                theme.palette.mode === "light"
+                  ? "white"
+                  : theme.palette.grey[800],
             }}
           >
             <Grid
@@ -56,7 +65,6 @@ export default function AssessmentStageTwo() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -74,7 +82,6 @@ export default function AssessmentStageTwo() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color: "black",
                 }}
               >
                 {ele?.text}
@@ -88,7 +95,7 @@ export default function AssessmentStageTwo() {
               lg={1.5}
               xs={12}
             >
-              <Image src={arrowIcon} alt={ele?.text} />
+              <ArrowLeftSharpIcon sx={{ fontSize: 35 }} />
             </Grid>
             <Grid
               container

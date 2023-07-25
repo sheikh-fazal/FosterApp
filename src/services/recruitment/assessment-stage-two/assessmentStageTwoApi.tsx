@@ -7,7 +7,7 @@ const assessmentStageTwoApi: any = baseAPI.injectEndpoints({
     }),
     patchStageTwoStatus: builder.mutation({
       query: ({ userId, body }: any) => ({
-        url: `assessment-stage-two/${userId}/status?${body?.point}&status=${body?.status}`,
+        url: `assessment-stage-two/${userId}/status?stageTwo=${body?.point}&status=${body?.status}`,
         method: "PATCH",
       }),
     }),
