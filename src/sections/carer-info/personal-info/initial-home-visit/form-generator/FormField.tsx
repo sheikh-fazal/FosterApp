@@ -22,7 +22,7 @@ const FormField: FC<any> = (props) => {
     case "textarea":
       return <RHFTextField multiline rows={3} {...prop} />;
     case "date":
-      return <RHFDatePicker {...prop} fullWidth={true} />;
+      return <RHFDatePicker {...prop} />;
     case "radio":
       return <RHFRadioGroupWithLabel {...prop} />;
     case "upload":

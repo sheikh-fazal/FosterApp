@@ -11,6 +11,7 @@ const BackgroundChecks = () => {
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 1 }}
+        component={"p"}
       >
         DBS
       </Typography>
@@ -24,12 +25,14 @@ const BackgroundChecks = () => {
               }}
             >
               <Typography
+                component={"p"}
                 variant="subtitle2"
                 sx={{ color: theme.palette.grey[600], mb: 0.5 }}
               >
                 {item.label}
               </Typography>
               <Typography
+                component={"p"}
                 variant="body2"
                 sx={{
                   color: theme.palette.grey[600],
@@ -43,11 +46,12 @@ const BackgroundChecks = () => {
 
               {item.sublist?.map((title: any) => (
                 <Box
-                  key={title.id}
+                  key={title.title}
                   sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}
                 >
                   <Image src={title.icon} alt="icon" width={24} height={20} />
                   <Typography
+                    component={"p"}
                     variant="body2"
                     sx={{
                       color: theme.palette.grey[600],
@@ -81,12 +85,14 @@ const BackgroundChecks = () => {
               }}
             >
               <Typography
+                component={"p"}
                 variant="subtitle2"
                 sx={{ color: theme.palette.grey[600], mb: 0.5 }}
               >
                 {item.label}
               </Typography>
               <Typography
+                component={"p"}
                 variant="body2"
                 sx={{
                   color: theme.palette.grey[600],
@@ -105,6 +111,7 @@ const BackgroundChecks = () => {
                 >
                   <Image src={title.icon} alt="icon" width={24} height={20} />
                   <Typography
+                    component={"p"}
                     variant="body2"
                     sx={{
                       color: theme.palette.grey[600],
@@ -136,6 +143,7 @@ const BackgroundChecks = () => {
           }}
         >
           <Typography
+            component={"p"}
             variant="subtitle2"
             sx={{ color: theme.palette.grey[600], mb: 1 }}
           >
@@ -144,6 +152,7 @@ const BackgroundChecks = () => {
           <Box sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}>
             <Image src={item.icon} alt="icon" width={24} height={22} />
             <Typography
+              component={"p"}
               variant="body2"
               sx={{
                 color: theme.palette.grey[600],

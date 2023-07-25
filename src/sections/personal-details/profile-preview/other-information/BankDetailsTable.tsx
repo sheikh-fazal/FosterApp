@@ -57,6 +57,7 @@ const BankDetailsTable = () => {
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 2, mt: 3 }}
+        component="div"
       >
         Bank Details
       </Typography>

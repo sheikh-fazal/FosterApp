@@ -17,24 +17,20 @@ const DiaryRecordingsTable = () => {
     recordingsListError,
     recordingsListIsSuccess,
     meta,
+    fosterChildId,
     pageChangeHandler,
-    sortChangeHandler, 
+    sortChangeHandler,
     setSearch,
     listDeleteHandler,
   } = useDiaryRecordingsTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.date ?? "-",
+      accessorFn: (row: any) => row?.date ?? "-",
       id: "date",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Date of Occurence/Time</span>,
       isSortable: true,
     },
@@ -64,7 +60,11 @@ const DiaryRecordingsTable = () => {
               router.push({
                 pathname:
                   "/foster-child/child-day-log/diary-recordings/child-diary-recordings",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -79,14 +79,18 @@ const DiaryRecordingsTable = () => {
               router.push({
                 pathname:
                   "/foster-child/child-day-log/diary-recordings/child-diary-recordings",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
         </Box>
       ),
       header: () => <span>actions</span>,
-      isSortable: false, 
+      isSortable: false,
     },
   ];
   return (
@@ -100,7 +104,7 @@ const DiaryRecordingsTable = () => {
           router.push({
             pathname:
               "/foster-child/child-day-log/diary-recordings/child-diary-recordings",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {
@@ -114,6 +118,8 @@ const DiaryRecordingsTable = () => {
         isFetching={recordingsListIsfetching}
         isError={recordingsListError}
         isSuccess={recordingsListIsSuccess}
+        showSerialNo={true}
+        isPagination={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

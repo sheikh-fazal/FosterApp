@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { DFormValidationSchema } from "./";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
+import usePath from "@root/hooks/usePath";
 
 export const usePetQuestionnaireDFrom = ({
   onSubmitHandler,
@@ -23,8 +24,9 @@ export const usePetQuestionnaireDFrom = ({
 
   // Get id from url
   const router = useRouter();
-  const query = router.query;
-  const id = Object.keys(query)[0];
+  const { petId } = router.query;
+
+  const { makePath } = usePath();
 
   const onSubmit = async (data: any) => {
     const formData = new FormData();
@@ -38,7 +40,7 @@ export const usePetQuestionnaireDFrom = ({
     formData.append("date2", data?.date2);
 
     const updatedData = {
-      id,
+      petId,
       formData,
     };
 
@@ -50,12 +52,17 @@ export const usePetQuestionnaireDFrom = ({
           variant: "success",
         }
       );
-      router.push("/carer-info/personal-info/pet-questionnaire");
+      router.push(
+        makePath({
+          path: "/carer-info/personal-info/pet-questionnaire",
+          skipQueries: ["petId"],
+        })
+      )
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     }
   };
 
-  return { methods, handleSubmit, isSubmitting, onSubmit }
+  return { methods, handleSubmit, isSubmitting, onSubmit, router, makePath }
 };

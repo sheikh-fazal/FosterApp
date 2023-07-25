@@ -7,43 +7,44 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 
-const todayDate = dayjs().format("MM/DD/YYYY");
-
 export const defaultValues = {
-  reportingDate: new Date(todayDate),
-  placementRequired: true,
-  callNature: "Text",
+  reportDate: new Date(),
+  emergencyPlacementRequired: null,
+  natureOfCall: "Text",
   actionTaken: "Text",
   actionNeeded: "Text",
-  personCompleting: "John Doe",
-  childRecord: "",
+  personCompletingReport: "",
+  addToChildRecord: "",
 };
 
-export const FormSchema = Yup.object().shape({
-  reportingDate: Yup.date().required("required"),
-  placementRequired: Yup.boolean().required("required"),
-  callNature: Yup.string().required("required"),
+export const formSchema = Yup.object().shape({
+  reportDate: Yup.date().required("required"),
+  emergencyPlacementRequired: Yup.boolean().required("required"),
+  natureOfCall: Yup.string().required("required"),
   actionTaken: Yup.string().required("required"),
   actionNeeded: Yup.string().required("required"),
-  personCompleting: Yup.string().required("required"),
-  childRecord: Yup.string().required("required"),
+  personCompletingReport: Yup.string().required("required"),
+  addToChildRecord: Yup.string().required("required"),
 });
 
-export const carerSectionAlphaData = [
+export const reportData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "reportingDate",
+      name: "reportDate",
       label: "Report Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 2,
     otherOptions: {
-      name: "placementRequired",
+      name: "emergencyPlacementRequired",
       label: "Emergency Placement Required?",
     },
     gridLength: 6,
@@ -53,7 +54,7 @@ export const carerSectionAlphaData = [
     id: 3,
     gridLength: 12,
     otherOptions: {
-      name: "callNature",
+      name: "natureOfCall",
       label: "Nature of Call/Reason:",
       multiline: true,
       minRows: 3,
@@ -76,7 +77,7 @@ export const carerSectionAlphaData = [
   {
     id: 5,
     otherOptions: {
-      name: "actionNeeded",
+      name: "actionTaken",
       label: "Action Needed:",
       multiline: true,
       minRows: 3,
@@ -89,7 +90,8 @@ export const carerSectionAlphaData = [
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "personCompleting",
+      fullWidth: true,
+      name: "personCompletingReport",
       label: "Person Completing the OOH Report:",
     },
     component: RHFTextField,
@@ -97,7 +99,7 @@ export const carerSectionAlphaData = [
   {
     id: 7,
     otherOptions: {
-      name: "childRecord",
+      name: "addToChildRecord",
       label: "Add to Child Record",
       select: true,
     },
@@ -115,7 +117,14 @@ export const carerSectionAlphaData = [
     ],
   },
 ];
-export { default as OhDetails } from "./OhDetails";
+
+export const formatters: any = {};
+
+for (const formControl of reportData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+export { default as OhDetails } from "./reportForm";
 
 export const personalDetails = [
   {
