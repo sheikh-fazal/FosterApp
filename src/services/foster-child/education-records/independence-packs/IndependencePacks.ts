@@ -23,7 +23,6 @@ const IndependencePacks = baseAPI.injectEndpoints({
         method: "POST",
         body: formData,
       }),
-      //   invalidatesTags: ["LEISURE_ACTIVITY_LIST"],
     }),
   }),
 });
