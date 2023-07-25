@@ -99,7 +99,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 3,
         title: "Child Education Info",
-        link: "/foster-child/education-records/child-education-info",
+        link: "/foster-child/education-records/child-education",
       },
       {
         id: 4,
