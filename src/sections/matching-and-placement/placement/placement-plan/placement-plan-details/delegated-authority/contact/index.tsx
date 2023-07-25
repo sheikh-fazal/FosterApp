@@ -4,31 +4,31 @@ import * as Yup from "yup";
 
 export const initailValue = {
   transportAuthority: '',
-  transportDate: new Date(),
+  transportDate: '',
   transportNotes: '',
   arrangingAuthority: '',
-  arrangingDate: new Date(),
+  arrangingDate: '',
   arrangingNotes: '',
   facilitationAuthority: '',
-  facilitationDate: new Date(),
+  facilitationDate: '',
   facilitationNotes: '',
   formalAuthority: '',
-  formalDate: new Date(),
+  formalDate: '',
   formalNotes: ''
 };
 
 export const validationSchema = Yup.object().shape({
   transportAuthority: Yup.string().required('Field is required'),
-  transportDate: Yup.date().required('Field is required'),
+  transportDate: Yup.string().required('Field is required'),
   transportNotes: Yup.string().required('Field is required'),
   arrangingAuthority: Yup.string().required('Field is required'),
-  arrangingDate: Yup.date().required('Field is required'),
+  arrangingDate: Yup.string().required('Field is required'),
   arrangingNotes: Yup.string().required('Field is required'),
   facilitationAuthority: Yup.string().required('Field is required'),
-  facilitationDate: Yup.date().required('Field is required'),
+  facilitationDate: Yup.string().required('Field is required'),
   facilitationNotes: Yup.string().required('Field is required'),
   formalAuthority: Yup.string().required('Field is required'),
-  formalDate: Yup.date().required('Field is required'),
+  formalDate: Yup.string().required('Field is required'),
   formalNotes: Yup.string().required('Field is required')
 })
 

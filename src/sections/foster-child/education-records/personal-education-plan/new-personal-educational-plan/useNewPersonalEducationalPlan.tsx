@@ -3,11 +3,15 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { usePostChildEducationPlanMutation } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 
 const useNewPersonalEducationalPlan = () => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
+  const fosterChildId = router?.query?.fosterChildId;
 
+  const [postData] = usePostChildEducationPlanMutation(fosterChildId);
+  
   const defaultValues = {
     school: "",
     pepDate: new Date(todayDate),

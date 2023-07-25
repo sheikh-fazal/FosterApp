@@ -7,7 +7,7 @@ import {
 import router from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
-import { MedicalAppointmentsInfoListValue, UploadViewDocFormData } from ".";
+import { MedicalAppointmentsInfoListValue } from ".";
 
 const useMedicalAppointmentForm = (props: any) => {
   const { action, fosterChildId, medicalAppointmentID } = props;
@@ -19,7 +19,7 @@ const useMedicalAppointmentForm = (props: any) => {
   const [createmedicalAppointments] = useCreatemedicalAppointmentsMutation();
   const [updatemedicalAppointments] = useUpdatemedicalAppointmentsMutation();
   const [medicalAppointmentsById] = useLazyMedicalAppointmentsByIdQuery();
- const [deletemedicalAppointments]  =useDeletemedicalAppointmentsMutation();
+  const [deletemedicalAppointments] = useDeletemedicalAppointmentsMutation();
   const SubmitData = (data: any) => {
     setisFatching(true);
     const senddata: any = {};
@@ -117,25 +117,24 @@ const useMedicalAppointmentForm = (props: any) => {
       return MedicalAppointmentsInfoListValue;
     }
   };
-  const deleteHander = (medicalAppointmentId:any ) => {
+  const deleteHander = (medicalAppointmentId: any) => {
     deletemedicalAppointments({
-      
-        params: {
-          medicalAppointmentId:medicalAppointmentId 
-        },
-      })
-        .unwrap()
-        .then(() => {
-          enqueueSnackbar("Information Delete Successfully", {
-            variant: "success",
-          });
-        })
-        .catch((error: { data: { message: any } }) => {
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      params: {
+        medicalAppointmentId: medicalAppointmentId,
+      },
+    })
+      .unwrap()
+      .then(() => {
+        enqueueSnackbar("Information Delete Successfully", {
+          variant: "success",
         });
-    };
-  
+      })
+      .catch((error: { data: { message: any } }) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
   return {
     SubmitData,
     isloading,

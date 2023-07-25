@@ -4,6 +4,7 @@ import { FormProvider } from "@root/components/hook-form";
 import { UploadDocFormData, defaultValues, formSchema } from "./index";
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsModal } from "./useUploadDocumentsModal";
+import useAuth from "@root/hooks/useAuth";
 
 function UploadDocumentsModel(props: any) {
   const { open, setOpen, view, changeView, docData, applicationFormid } = props;
@@ -13,7 +14,9 @@ function UploadDocumentsModel(props: any) {
     applicationFormid,
     setOpen,
   });
-
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
   return (
     <>
       <Modal
@@ -35,7 +38,10 @@ function UploadDocumentsModel(props: any) {
         <Box sx={Styles.root}>
           <Box sx={{ display: "flex", justifyContent: "space-between", mb: 3 }}>
             <Typography variant="subtitle1">
-              Person Uploaded: Name Xname
+              Person Uploaded:
+              {view == "add"
+                ? `${firstName ?? "-"} ${lastName ?? "-"}`
+                : docData?.uploadedBy}
             </Typography>
             <CloseIcon
               onClick={() => {

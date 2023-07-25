@@ -28,7 +28,6 @@ const ChildMedicationInfotable = (prop: any) => {
   } = useChildMedicationInfotable({
     fosterChildId: fosterChildId,
   });
-  console.log(childMedicationInfotabledata);
   const { deleteHander } = useChildMedicationInfoForm({});
   const columns = [
     // {
@@ -60,7 +59,9 @@ const ChildMedicationInfotable = (prop: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
             <DeletePrompt
-              onDeleteClick={() => deleteHander(info.row.original.id)}
+              onDeleteClick={() =>
+                deleteHander(info.row?.original?.id, fosterChildId)
+              }
             />
 
             <TableAction
@@ -122,7 +123,7 @@ const ChildMedicationInfotable = (prop: any) => {
                 />
               </Box>
               <CustomTable
-                data={childMedicationInfotabledata?.data ?? []}
+                data={childMedicationInfotabledata?.childmedicationreport ?? []}
                 columns={columns}
                 isLoading={childMedicationInfotableisLoading}
                 isFetching={childMedicationInfotableisFetching}
@@ -132,8 +133,8 @@ const ChildMedicationInfotable = (prop: any) => {
                 showSerialNo={true}
                 // totalPages={incidentlist?.data?.meta?.pages ?? 0}
                 // currentPage={incidentlist?.data?.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
             </Box>
           </Paper>

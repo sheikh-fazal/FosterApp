@@ -6,7 +6,7 @@ import {
   useDeleteFamilyPersonUploadDocumentMutation,
   useGetFamilyPersonUploadDocumentQuery,
   usePostFamilyPersonUploadDocumentMutation,
-} from "@root/services/foster-child/child-background-info/family-person-list/UploadDocumentsAPI";
+} from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonDocumentsAPI";
 
 export const useFamilyPersonDocument = () => {
   const router = useRouter();
@@ -14,16 +14,19 @@ export const useFamilyPersonDocument = () => {
   const [page, setPage] = useState(0);
   console.log(router?.asPath.split("/").pop());
 
-  const childFamilyOrgInfoId = {
-    childFamilyOrgInfoId:
-      router?.query?.family_person_id || "",
+  const params = {
     offset: page,
     limit: 10,
     search: searchValue,
   };
 
+  const paramData = {
+    params,
+    childFamilyOrgInfoId: router?.query?.family_person_id,
+  };
+
   const { data, isLoading, isSuccess, isFetching, isError } =
-    useGetFamilyPersonUploadDocumentQuery(childFamilyOrgInfoId, {
+    useGetFamilyPersonUploadDocumentQuery(paramData, {
       refetchOnMountOrArgChange: true,
     });
   const [postFamilyPersonUploadDocument] =

@@ -1,12 +1,14 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetCarerFamilyTableApiQuery } from "@root/services/carer-info/personal-info/carer-family-support-network/carerFamilyApi";
+import { useGetIndependencePacksQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useRef } from "react";
 
 export const useIndependencePackTable = () => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+  const { fosterChildId } = router.query;
   const theme: any = useTheme();
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
@@ -15,9 +17,10 @@ export const useIndependencePackTable = () => {
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetCarerFamilyTableApiQuery({ params });
-  const family = data?.faimly_details;
-  const meta = data?.meta;
+    useGetIndependencePacksQuery({ id: fosterChildId, params });
+  const Independentpacks = data?.data?.Independentpacks;
+  const meta = data?.data?.meta;
+
   return {
     router,
     tableHeaderRef,
@@ -25,5 +28,11 @@ export const useIndependencePackTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     theme,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    Independentpacks,
+    meta,
   };
 };

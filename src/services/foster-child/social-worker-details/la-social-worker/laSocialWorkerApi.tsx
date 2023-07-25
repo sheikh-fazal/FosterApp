@@ -5,79 +5,40 @@ const TAG = "CARER_FAMILY_NETWORK";
 
 export const contactApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    getActiveSocialWorkerTableApi: builder.query({
+    getSocialWorkerTableApi: builder.query({
       query: ({ params, fosterChildId }: any) => ({
-        url: `school-info/foster-child/${fosterChildId}`,
+        url: `social-worker-details/la-social-worker/list/?fosterChildId=${fosterChildId}`,
         method: "GET",
         params,
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
-    postActiveSocialWorkerApi: builder.mutation({
+    postSocialWorkerApi: builder.mutation({
       query: ({ body, fosterChildId }: any) => ({
-        url: `school-info/${fosterChildId}`,
+        url: `social-worker-details/la-social-worker`,
         method: "POST",
-        body,
+        body: { ...body, fosterChildId: fosterChildId },
       }),
       invalidatesTags: [TAG],
     }),
-    putActiveSocialWorkerById: builder.mutation({
-      query: ({ body, schoolInfoId }: any) => {
+    putSocialWorkerById: builder.mutation({
+      query: ({ body, id }: any) => {
         return {
-          url: `/school-info/${schoolInfoId}`,
+          url: `social-worker-details/la-social-worker/${id}`,
           method: "PATCH",
           body,
         };
       },
       invalidatesTags: [TAG],
     }),
-    getActiveSocialWorkerById: builder.query({
-      query: (id) => `/school-info/${id}`,
+    getSocialWorkerById: builder.query({
+      query: (id) => `social-worker-details/la-social-worker/${id}`,
     }),
-    deleteActiveSocialWorkerById: builder.mutation({
+    deleteSocialWorkerById: builder.mutation({
       query: (data: any) => {
         const { id } = data;
         return {
-          url: `/school-info/${id}`,
-          method: "DELETE",
-        };
-      },
-      invalidatesTags: [TAG],
-    }),
-    getPreviousSocialWorkerTableApi: builder.query({
-      query: ({ params, fosterChildId }: any) => ({
-        url: `school-info/foster-child/${fosterChildId}`,
-        method: "GET",
-        params,
-      }),
-      providesTags: (result) => generalTags(result?.faimly_details, TAG),
-    }),
-    postPreviousSocialWorkerApi: builder.mutation({
-      query: ({ body, fosterChildId }: any) => ({
-        url: `school-info/${fosterChildId}`,
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: [TAG],
-    }),
-    putPreviousSocialWorkerById: builder.mutation({
-      query: ({ body, schoolInfoId }: any) => {
-        return {
-          url: `/school-info/${schoolInfoId}`,
-          method: "PATCH",
-          body,
-        };
-      },
-      invalidatesTags: [TAG],
-    }),
-    getPreviousSocialWorkerById: builder.query({
-      query: (id) => `/school-info/${id}`,
-    }),
-    deletePreviousSocialWorkerById: builder.mutation({
-      query: (data: any) => {
-        const { id } = data;
-        return {
-          url: `/school-info/${id}`,
+          url: `social-worker-details/la-social-worker/${id}`,
           method: "DELETE",
         };
       },
@@ -87,14 +48,8 @@ export const contactApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetActiveSocialWorkerTableApiQuery,
-  usePostActiveSocialWorkerApiMutation,
-  usePutActiveSocialWorkerByIdMutation,
-  useGetActiveSocialWorkerByIdQuery,
-  useDeleteActiveSocialWorkerByIdMutation,
-  useGetPreviousSocialWorkerTableApiQuery,
-  usePostPreviousSocialWorkerApiMutation,
-  usePutPreviousSocialWorkerByIdMutation,
-  useGetPreviousSocialWorkerByIdQuery,
-  useDeletePreviousSocialWorkerByIdMutation,
+  useGetSocialWorkerTableApiQuery,
+  usePostSocialWorkerApiMutation,
+  useGetSocialWorkerByIdQuery,
+  usePutSocialWorkerByIdMutation,
 } = contactApi;

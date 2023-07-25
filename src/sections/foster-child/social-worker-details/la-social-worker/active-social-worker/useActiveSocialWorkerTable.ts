@@ -1,23 +1,35 @@
-import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetActiveSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
+import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import { useRef, useState } from "react";
 
 export const useActiveSocialWorkerTable = () => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
-
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
+  const [searchHandle, setSearchHandle] = useState("");
+  const [pageHandle, setPageHandle] = useState(0);
+  const params = {
+    search: searchHandle,
+    limit: "10",
+    offset: pageHandle,
+    status: "Active",
+  };
 
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetActiveSocialWorkerTableApiQuery({ params });
+    useGetSocialWorkerTableApiQuery({
+      params,
+      fosterChildId: router?.query?.fosterChildId,
+    });
 
-  const family = data?.faimly_details;
+  const family = data?.data?.social_workers;
   const meta = data?.meta;
-
+  const headerChangeHandler = (text: any) => {
+    setSearchHandle(text.search);
+  };
+  const pageChangeHandler = (page: any) => {
+    setPageHandle(page * 10);
+  };
   return {
     router,
     tableHeaderRef,
@@ -29,6 +41,5 @@ export const useActiveSocialWorkerTable = () => {
     isSuccess,
     meta,
     pageChangeHandler,
-    sortChangeHandler,
   };
 };

@@ -71,7 +71,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 8,
         title: "Therapy Info",
-        link: "/foster-child/health-medical-history/therapy-info",
+        link: "/foster-child/health-medical-history/therapy-info-list",
       },
       {
         id: 9,
@@ -99,7 +99,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 3,
         title: "Child Education Info",
-        link: "/foster-child/education-records/child-education",
+        link: "/foster-child/education-records/child-education-info",
       },
       {
         id: 4,

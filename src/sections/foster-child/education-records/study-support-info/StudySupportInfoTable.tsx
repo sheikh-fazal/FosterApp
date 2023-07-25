@@ -6,11 +6,12 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
 
-export default function StudySupportInfoTable(props: any) {
-  const { fosterChildId } = props;
+export const StudySupportInfoTable = () => {
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState<any>("");
+
   const {
     router,
     tableHeaderRef,
@@ -23,19 +24,20 @@ export default function StudySupportInfoTable(props: any) {
     meta,
     pageChangeHandler,
     sortChangeHandler,
-    postData,
   } = useStudySupportInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-      id: "name",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.fromDate,
+      id: "fromDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: "From Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.studyType,
+      id: "studyType",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Study Type",
       isSortable: true,
@@ -50,8 +52,8 @@ export default function StudySupportInfoTable(props: any) {
           <TableAction
             type="delete"
             onClicked={() => {
+              console.log("delete this", info.row.original);
               setOpen(true);
-              setId(info.row.original);
             }}
             size="small"
           />
@@ -64,8 +66,8 @@ export default function StudySupportInfoTable(props: any) {
                   "/foster-child/education-records/study-support-info/edit-study-support-info",
                 query: {
                   action: "edit",
-                  schoolInfoId: info.row.original.id,
-                  fosterChildId: fosterChildId,
+                  id: info.row.original.id,
+                  fosterChildId: router?.query?.fosterChildId,
                 },
               })
             }
@@ -80,8 +82,8 @@ export default function StudySupportInfoTable(props: any) {
                   "/foster-child/education-records/study-support-info/view-study-support-info",
                 query: {
                   action: "view",
-                  schoolInfoId: info.row.original.id,
-                  fosterChildId: fosterChildId,
+                  id: info.row.original.id,
+                  fosterChildId: router?.query?.fosterChildId,
                 },
               })
             }
@@ -93,28 +95,12 @@ export default function StudySupportInfoTable(props: any) {
       isSortable: false,
     },
   ];
-
-  const onDelete = async (data: any) => {
-    try {
-      const res: any = await postData(data).unwrap();
-      setOpen(false);
-      enqueueSnackbar(res?.message ?? `Delete Successfully!`, {
-        variant: "success",
-      });
-    } catch (error: any) {
-      setOpen(false);
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-    }
-  };
   return (
     <Card sx={{ p: 2 }}>
       <DeleteModel
         open={open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => {
-          onDelete(id);
-        }}
+        onDeleteClick={() => {}}
       />
       <TableHeader
         ref={tableHeaderRef}
@@ -123,11 +109,9 @@ export default function StudySupportInfoTable(props: any) {
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push({
-            pathname:
-              "/foster-child/education-records/study-support-info/add-study-support-info",
-            query: { action: "add", fosterChildId: fosterChildId },
-          });
+          router.push(
+            "/foster-child/education-records/school-detail-info/add-school-detail"
+          );
         }}
         onChanged={headerChangeHandler}
       />
@@ -146,4 +130,4 @@ export default function StudySupportInfoTable(props: any) {
       />
     </Card>
   );
-}
+};

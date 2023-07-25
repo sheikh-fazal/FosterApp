@@ -7,6 +7,10 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import HospitalizationFrom from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationFrom";
 import HospitalizationUploadTable from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationUploadTable";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { useGethospitalizationDocumentQuery } from "@root/services/foster-child/health-medical-history/hospitalization/hospitalizationDocuments";
+import { useTableParams } from "@root/hooks/useTableParams";
+import useHospitalizationForm from "@root/sections/foster-child/health-medical-history/hospitalization/useHospitalizationForm";
 
 Hospitalisation.getLayout = function GetLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -38,6 +42,20 @@ export default function Hospitalisation() {
       href: "",
     },
   ];
+  const [Search, setSearch] = React.useState("");
+  const { params, pageChangeHandler } = useTableParams();
+  const { data, isError, isFetching, isLoading, isSuccess } =
+    useGethospitalizationDocumentQuery({
+      params: {
+        ...params,
+        recordId: hospitalizationId,
+      },
+    });
+  const { onUploadSubmit, onDeleteHander, onUpdateSubmit } =
+    useHospitalizationForm({
+      hospitalizationId: hospitalizationId,
+      fosterChildId: fosterChildId,
+    });
   return (
     <Box>
       <TitleWithBreadcrumbLinks

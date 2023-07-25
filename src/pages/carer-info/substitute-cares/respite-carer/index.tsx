@@ -6,69 +6,65 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
 import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import usePath from "@root/hooks/usePath";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Respite Carer",
-    href: "/carer-info/substitute-cares/respite-carer",
-  },
-];
 
 const PAGE_TITLE = "Respite Carer";
 
 RespiteCarer.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function RespiteCarer() {
-  const { data } = useGetSelectedSubstituteCarerQuery({
-    limit: "10",
-    offset: "0",
-    type: "RC",
-  });
-
+  const { makePath } = usePath();
   const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info",
+      }),
+    },
+    {
+      name: "Respite Carer",
+      href: "/carer-info/substitute-cares/respite-carer",
+    },
+  ];
+  const { data, isSuccess, isLoading, isError } =
+    useGetSelectedSubstituteCarerQuery({
+      limit: "10",
+      offset: "0",
+      type: "RC",
+    });
+
   const title = "Respite Carer List";
-  const FORMROUTE =
-    "/carer-info/substitute-cares/respite-carer/respite-carer-details";
+  const FORMROUTE = `/carer-info/substitute-cares/respite-carer/respite-carer-details?fosterCarerId=${id}`;
 
   const columns = [
     {
-      accessorFn: (row: any) => row["name"],
-      id: "name",
-      cell: (info: any) =>
-        info.getValue()?.length > 20
-          ? ". . ." + info.getValue()?.slice(-15)
-          : info.getValue(),
+      accessorFn: (row: any) => row["firstName"],
+      id: "firstName",
+      cell: (info: any) => info.getValue(),
       header: () => <span>Name</span>,
     },
     {
-      accessorFn: (row: any) => row["phone"],
-      id: "phone",
+      accessorFn: (row: any) => row["telephone"],
+      id: "telephone",
       cell: (info: any) => info.getValue(),
       header: () => <span>Phone Number</span>,
     },
     {
       accessorFn: (row: any) => row["level"],
       id: "level",
-      cell: (info: any) => info.getValue(),
+      // to be changed later
+      cell: (info: any) => (info.getValue() ? "Level 1" : "Level 2"),
       header: () => <span>Level</span>,
     },
     {
@@ -87,13 +83,7 @@ export default function RespiteCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction
-            type="edit"
-            onClicked={() => {
-              console.log(info);
-            }}
-            size="small"
-          />
+          <TableAction type="edit" onClicked={() => {}} size="small" />
           <TableAction
             type="delete"
             onClicked={() => {
@@ -104,7 +94,7 @@ export default function RespiteCarer() {
           />
           <TableAction
             type="view"
-            onClicked={() => viewDetailsHandler(info)}
+            onClicked={() => viewDetailsHandler(info.row.original)}
             size="small"
           />
         </Box>
@@ -134,7 +124,7 @@ export default function RespiteCarer() {
   };
 
   const viewDetailsHandler = (item: any) => {
-    console.log(item);
+    router.push(`${FORMROUTE}?carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -143,15 +133,24 @@ export default function RespiteCarer() {
     console.log(item);
   };
   return (
-    <SubstituteCarerTable
-      columns={columns}
-      tableData={tableData}
-      meta={meta}
-      title={title}
-      searchedText={searchTextHandler}
-      apiStatus={status}
-      onPageChange={pageChangeHandler}
-      route={FORMROUTE}
-    />
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <SubstituteCarerTable
+        columns={columns}
+        // tableData={tableData}
+        tableData={data?.backup_carer_details}
+        // meta={meta}
+        meta={data?.meta}
+        title={title}
+        searchedText={searchTextHandler}
+        apiStatus={{ isSuccess, isLoading, isError }}
+        onPageChange={pageChangeHandler}
+        route={FORMROUTE}
+      />
+    </>
   );
 }

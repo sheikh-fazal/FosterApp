@@ -200,7 +200,6 @@ export const getColumnsCarerFamilySupportNetwork = (makePath: any) => {
               router.push(
                 makePath({
                   path: "/carer-info/personal-info/carer-family-support-network/edit-family-support",
-                  passOldQuery: true,
                   queryParams: { familyId: info.getValue() },
                 })
               )
@@ -212,7 +211,6 @@ export const getColumnsCarerFamilySupportNetwork = (makePath: any) => {
               router.push(
                 makePath({
                   path: "/carer-info/personal-info/carer-family-support-network/view-family-support",
-                  passOldQuery: true,
                   queryParams: { familyId: info.getValue() },
                 })
               )

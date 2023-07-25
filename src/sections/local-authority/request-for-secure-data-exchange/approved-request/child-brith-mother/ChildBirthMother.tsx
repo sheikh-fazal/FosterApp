@@ -1,9 +1,9 @@
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { useChildBirthMother } from "./useChildBirthMother";
 
-const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
+const ChildBirthMother = ({ handleNextTab, handleBackTab }: any) => {
   const { methods, onSubmit, handleSubmit, reset, setValue, childBirthMother } =
     useChildBirthMother();
   return (
@@ -13,8 +13,9 @@ const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
           {childBirthMother?.map((form: any, i: any) => (
             <Grid item xs={12} md={form?.md} key={i}>
               {form.component && (
-                <form.component size="small" {...form.componentProps}>
-                  {form?.heading}
+                <form.component size="small" fullWidth {...form.componentProps}>
+                  <Typography sx={style.heading}>{form?.heading}</Typography>
+
                   {form.componentProps.select
                     ? form.options.map((option: any) => (
                         <option key={option.value} value={option.value}>
@@ -42,11 +43,9 @@ const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
               Save
             </Button>
 
-            
-              <Button onClick={handleNextTab} type="button" variant="contained">
-                Next
-              </Button>
-            
+            <Button onClick={handleNextTab} type="button" variant="contained">
+              Next
+            </Button>
           </Grid>
         </Grid>
       </Box>
@@ -55,3 +54,10 @@ const ChildBirthMother = ({handleNextTab,handleBackTab}: any) => {
 };
 
 export default ChildBirthMother;
+const style =({
+  heading :{
+    fontSize : "16px !important",
+    fontWeight:600
+
+  }
+})

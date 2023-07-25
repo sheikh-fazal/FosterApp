@@ -12,7 +12,7 @@ export const ChildEducationInfoList: any = baseAPI.injectEndpoints({
     }),
     postExclusionInfoRecord: builder.mutation<null, void>({
       query: ({ data, fosterChildId }: any) => ({
-        url: `/education-records/exclusion-info?fosterChildId =${fosterChildId}`,
+        url: `/education-records/exclusion-info?fosterChildId=${fosterChildId}`,
         method: "POST",
         body: data,
       }),
@@ -36,6 +36,13 @@ export const ChildEducationInfoList: any = baseAPI.injectEndpoints({
         method: "DELETE",
       }),
     }),
+    postFosterExclusionDocument: builder.mutation<null, void>({
+      query: (formData: any) => ({
+        url: `/education-records/exclusionDocuments`,
+        method: "POST",
+        body: formData,
+      }),
+    }),
   }),
 });
 
@@ -45,4 +52,5 @@ export const {
   useGetSingleChildExclusionInfoRecordQuery,
   usePatchSingleChildExclusionInfoRecordMutation,
   useDeleteSingleChildExclusionInfoRecordMutation,
+  usePostFosterExclusionDocumentMutation
 } = ChildEducationInfoList;

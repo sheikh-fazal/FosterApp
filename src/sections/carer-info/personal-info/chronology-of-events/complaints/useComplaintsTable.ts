@@ -12,11 +12,11 @@ export const useComplaintsTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Complaint List
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useComplaintsListQuery({ search: search });
+    useComplaintsListQuery({ search: search, ...params });
   //API for Deleting Complaint
   const [deleteList] = useDeleteComplaintListMutation();
   //DELETE API For Deleting Complaint List

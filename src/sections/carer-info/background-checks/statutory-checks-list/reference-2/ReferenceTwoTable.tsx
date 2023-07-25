@@ -23,13 +23,6 @@ const ReferenceTwoTable = () => {
   } = useReferenceTwoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.name ?? "-",
       id: "name",
       cell: (info: any) => info.getValue(),
@@ -124,6 +117,7 @@ const ReferenceTwoTable = () => {
         isFetching={referenceTwoIsfetching}
         isError={referenceTwoError}
         isSuccess={referenceTwoIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

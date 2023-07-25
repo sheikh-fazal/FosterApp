@@ -1,14 +1,15 @@
 import React from "react";
 import { FormProvider } from "../../../../components/hook-form";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, useTheme } from "@mui/material";
 import Link from "next/link";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
-import { StudySupportInfoInfoFormData } from ".";
+import { StudySupportInfoInfoFormData } from "./index";
 import { useStudySupportInfoForm } from "./useStudySupportInfoForm";
 
 export default function StudySupportInfoForm(props: any) {
   const router = useRouter();
+  const theme: any = useTheme();
 
   const { disabled } = props;
   const {
@@ -42,8 +43,8 @@ export default function StudySupportInfoForm(props: any) {
             </item.component>
           </Grid>
         ))}
-        {!disabled && (
-          <Grid item xs={12}>
+        <Grid item xs={12}>
+          {!disabled && (
             <LoadingButton
               type="submit"
               variant="contained"
@@ -53,16 +54,23 @@ export default function StudySupportInfoForm(props: any) {
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
-            <Link
-              href={`/foster-child/education-records/study-support-info?fosterChildId=${router?.query?.fosterChildId}`}
-              style={{ textDecoration: "none" }}
+          )}
+          <Link
+            href={`/foster-child/education-records/study-support-info?fosterChildId=${router?.query?.fosterChildId}`}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              type="button"
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
             >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
-          </Grid>
-        )}
+              Back
+            </Button>
+          </Link>
+        </Grid>
       </Grid>
     </FormProvider>
   );

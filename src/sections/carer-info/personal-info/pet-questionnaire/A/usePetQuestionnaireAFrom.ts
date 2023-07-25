@@ -1,8 +1,9 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { AFormValidationSchema } from './';
-import { enqueueSnackbar } from 'notistack';
-import router from 'next/router';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { AFormValidationSchema } from "./";
+import { enqueueSnackbar } from "notistack";
+import router, { useRouter } from "next/router";
+import usePath from "@root/hooks/usePath";
 
 export const usePetQuestionnaireAFrom = ({
     onSubmitHandler,
@@ -14,6 +15,10 @@ export const usePetQuestionnaireAFrom = ({
         resolver: yupResolver(AFormValidationSchema),
         defaultValues: initialValueProps,
     });
+
+    const router = useRouter();
+
+    const { makePath } = usePath();
 
     const {
         handleSubmit,
@@ -32,7 +37,10 @@ export const usePetQuestionnaireAFrom = ({
             {
                 isAdding &&
                     router.push(
-                        `/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire?${res.id}`
+                        makePath({
+                            path: "/carer-info/personal-info/pet-questionnaire/add-pet-questionnaire",
+                            queryParams: { petId: res.id },
+                        })
                     );
             }
         } catch (error: any) {
@@ -41,5 +49,5 @@ export const usePetQuestionnaireAFrom = ({
         }
     };
 
-    return { methods, handleSubmit, isSubmitting, onSubmit }
-}
+    return { methods, handleSubmit, isSubmitting, onSubmit, router, makePath };
+};
