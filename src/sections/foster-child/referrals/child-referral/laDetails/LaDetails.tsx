@@ -1,12 +1,14 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { CarerDetailsFormData, defaultValues, validationSchema } from "./";
+import { LaDetailsFormData, defaultValues, validationSchema } from "./";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button, Grid } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { useRouter } from "next/router";
+import usePath from "@root/hooks/usePath";
 
-export default function CarerDetailsForm({
+export default function LaDetails({
   disabled,
   onSubmitHandler,
   initialValueProps = defaultValues,
@@ -18,6 +20,9 @@ export default function CarerDetailsForm({
     resolver: yupResolver(validationSchema),
     defaultValues: initialValueProps,
   });
+
+  const router = useRouter();
+  const { makePath } = usePath();
 
   const {
     handleSubmit,
@@ -37,10 +42,11 @@ export default function CarerDetailsForm({
     //   enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     // }
   };
+
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
-        {CarerDetailsFormData?.map((item: any) => (
+        {LaDetailsFormData?.map((item: any) => (
           <Grid item xs={12} md={item?.md} key={item?.id}>
             <item.component
               disabled={disabled}
@@ -58,8 +64,8 @@ export default function CarerDetailsForm({
             </item.component>
           </Grid>
         ))}
-        {!disabled && (
-          <Grid item xs={12}>
+        <Grid item xs={12}>
+          {!disabled && (
             <LoadingButton
               type="submit"
               variant="contained"
@@ -69,11 +75,22 @@ export default function CarerDetailsForm({
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
-            <Button type="button" variant="contained">
-              Back
-            </Button>
-          </Grid>
-        )}
+          )}
+          <Button
+            type="button"
+            variant="contained"
+            onClick={() =>
+              router.push(
+                makePath({
+                  path: "/foster-child/referrals/child-referral",
+                  skipQueries: ["childReferralId"],
+                })
+              )
+            }
+          >
+            Back
+          </Button>
+        </Grid>
       </Grid>
     </FormProvider>
   );
