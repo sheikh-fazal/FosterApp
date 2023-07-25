@@ -6,6 +6,7 @@ import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/chi
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
 const BREADCRUMBS = (query: any) => [
@@ -24,20 +25,12 @@ const PAGE_TITLE = "Edit Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 EditFamilyPersonForm.getLayout = function getLayout(page: any) {
-  const router = useRouter()
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
 };
 
 export default function EditFamilyPersonForm() {
   const { query } = useRouter();
+  const router = useRouter();
   const familyPersonId = query["family_person_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetFamilyPersonListByIdQuery(familyPersonId);
@@ -46,16 +39,21 @@ export default function EditFamilyPersonForm() {
 
   return (
     <Page title={PAGE_TITLE}>
-        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
+      <HorizaontalTabs
+        tabsDataArray={["Family Org Involved", "Uploaded documents"]}
+      >
+        {/* Family Person Form */}
+        {isLoading && <p>Loading...</p>}
+        {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
 
-          {/* Family Person Form */}
-          {isLoading && <p>Loading...</p>}
-          {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} />}
-
-          {/* Upload Document */}
-          <FamilyPersonDocument />
-
-        </HorizaontalTabs>
+        {/* Upload Document */}
+        <FamilyPersonDocument />
+      </HorizaontalTabs>
     </Page>
   );
 }

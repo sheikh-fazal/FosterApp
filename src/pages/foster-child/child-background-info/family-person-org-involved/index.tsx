@@ -6,6 +6,7 @@ import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import FamilyPersonListTable from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/FamilyPersonListTable";
 import { useRouter } from "next/router";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -25,16 +26,7 @@ const PAGE_TITLE = "Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 FamilyPersonList.getLayout = function getLayout(page: any) {
-  const router = useRouter()
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
 };
 
 export default function FamilyPersonList() {
@@ -42,6 +34,11 @@ export default function FamilyPersonList() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
       <Paper elevation={3}>
         <FamilyPersonListTable fosterChildId={router?.query?.fosterChildId} />
       </Paper>
