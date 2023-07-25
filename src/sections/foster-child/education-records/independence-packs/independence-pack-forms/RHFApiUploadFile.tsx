@@ -44,6 +44,8 @@ export const RHFApiUploadFile = (props: any) => {
                   sx={{
                     color: "#A3A6BB",
                     marginRight: "10px",
+                    width: "25px !important",
+                    height: "25px !important",
                   }}
                 />
               ) : (

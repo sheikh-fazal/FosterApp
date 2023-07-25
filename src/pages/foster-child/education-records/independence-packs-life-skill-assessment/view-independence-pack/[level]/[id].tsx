@@ -29,7 +29,7 @@ const BREADCRUMBS = [
 
 // ----------------------------------------------------------------------
 
-AddIndependencePack.getLayout = function getLayout(page: any) {
+ViewIndependencePack.getLayout = function getLayout(page: any) {
   // const router = useRouter();
   // const { level } = router.query;
   // Commenting out the hook
@@ -52,18 +52,18 @@ AddIndependencePack.getLayout = function getLayout(page: any) {
 
 // ----------------------------------------------------------------------
 
-export default function AddIndependencePack() {
+export default function ViewIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
   const { level } = router.query;
   return (
     <Page title={PAGE_TITLE}>
       {level == "Bronze" ? (
-        <IndependenceFormBronze action="add" level={level} />
+        <IndependenceFormBronze action="view" disabled level={level} />
       ) : level == "Silver" ? (
-        <IndependencePackFormSilver action="add" level={level} />
+        <IndependencePackFormSilver action="view" level={level} />
       ) : (
-        <IndependencePackFormGold action="add" level={level} />
+        <IndependencePackFormGold action="view" level={level} />
       )}
     </Page>
   );

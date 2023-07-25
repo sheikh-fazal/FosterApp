@@ -61,7 +61,7 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/education-records/leisure-activities-hobby/leisure-activity/edit-leisure-activity?id=123`
+                `/foster-child/education-records/independence-packs-life-skill-assessment/edit-independence-pack/${info?.row?.original?.medalLevel}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
               )
             }
           />
@@ -71,7 +71,9 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
           <TableAction
             type="view"
             onClicked={() =>
-              console.log("info", titleCase(info?.row?.original?.medalLevel))
+              router.push(
+                `/foster-child/education-records/independence-packs-life-skill-assessment/view-independence-pack/${info?.row?.original?.medalLevel}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
+              )
             }
           />
         </Box>
