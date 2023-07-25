@@ -241,7 +241,7 @@ export const personalInfoDataValues = {
   areaOffice: "",
   firstName: "",
   lastName: "",
-  dob: "",
+  dob: null,
   age: "",
   gender: "",
   ethnicity: "",

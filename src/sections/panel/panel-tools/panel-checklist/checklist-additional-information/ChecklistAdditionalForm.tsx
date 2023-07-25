@@ -29,7 +29,7 @@ const ChecklistAdditionalForm = (props: any) => {
             <DialogTitle sx={styles.title(theme.palette.mode)}>Category</DialogTitle>
             <DialogContent sx={styles.dialogContent}>
                 <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)} >
-                    <Typography component='label' sx={styles.heading(theme.palette.mode)}>Add other Information</Typography>
+                    <Typography component='label' sx={(theme)=>styles.heading(theme)}>Add other Information</Typography>
                     <RHFTextField
                         name="title"
                         size="small"
@@ -52,7 +52,7 @@ export default ChecklistAdditionalForm;
 ////////////////////////////
 const styles = {
     title: (mode: any) => ({ color: mode === 'light' ? '#14142B' : '#fff', fontSize: "16px !important", fontWeight: "600", p: "15px 30px", backgroundColor: mode === 'light' ? 'rgba(247, 136, 18, 0.05)' : 'rgba(247, 136, 18, 0.8)', borderRadius: "5px 5px 0px 0px" }),
-    heading: (mode: any) => ({ fontSize: "14px !important", fontWeight: "500", color: mode === 'light' ? '#14142B' : '#fffbfb' }),
+    heading: (theme: any) => ({ fontSize: "14px !important", fontWeight: "500", color:theme.palette.primary.main  }),
     dialogContent: { marginTop: "30px" },
     buttonWrap: { display: "flex", alignItems: "center", gap: "20px", mt: "40px", justifyContent: "flex-end" },
     submitButton: { backgroundColor: "#F78812", "&:hover": { backgroundColor: "#F6830F", }, padding: "11px 33px !important", boxShadow: "0px 2px 0px rgba(0, 0, 0, 0.043)" },

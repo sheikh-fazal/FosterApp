@@ -2,7 +2,7 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import StatutoryMedicalTypeInfoTabs from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type/statutory-medical-type-info/statutory-medical-type-info-tabs/StatutoryMedicalTypeInfoTabs";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { headerHeading } from "@root/sections/foster-child/health-medical-history/statutory-medical-list/statutory-medical-type";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
@@ -32,14 +32,20 @@ StatutoryMedicalType.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function StatutoryMedicalType() {
-  const { query } = useRouter();
+  const router = useRouter();
+  if (!!!router?.query?.fosterChildId) {
+    router.push({
+      pathname: "/foster-child-lists",
+    });
+    return;
+  }
 
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(query)}
+        breadcrumbs={BREADCRUMBS(router.query)}
       />
       <StatutoryMedicalTypeInfoTabs />
     </Page>

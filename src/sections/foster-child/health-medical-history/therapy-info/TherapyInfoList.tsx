@@ -1,28 +1,12 @@
 import React, { useState } from "react";
 import { useTherapyInfoList } from "./useTherapyInfoList";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import IsFetching from "@root/components/loaders/IsFetching";
+import { useRouter } from "next/router";
 
 const TherapyInfoList = () => {
-  // const [tabelData, setTabelData] = useState([
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -33,23 +17,31 @@ const TherapyInfoList = () => {
     isFetching,
     setSearchValue,
     setPage,
-    page,
-  } = useTherapyInfoList();
+    therapInfoCon,
+  }: any = useTherapyInfoList();
+  const { someAsyncAction } = therapInfoCon;
+  const router = useRouter();
+  const { query } = router;
   return (
-    <Box>
+    <Grid sx={{ position: "relative" }}>
+      {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
         ref={tableHeaderRef}
         title="Child Therapy Info "
         searchKey="search"
         showAddBtn={true}
-        onAdd={() => console.log("Test")}
+        onAdd={() =>
+          router.push(
+            `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${query?.fosterChildId}&action=create`
+          )
+        }
         onChanged={(data: any) => {
           setSearchValue(data?.search);
           console.log("Updated params: ", data);
         }}
       />
       <CustomTable
-        data={data}
+        data={data?.data?.therapy_info}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
@@ -57,17 +49,20 @@ const TherapyInfoList = () => {
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={page}
-        totalPages={10}
-        onPageChange={(data: any) => {
-          setPage(() => data);
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages || 1}
+        // onPageChange={(data: any) => {
+        //   setPage(() => data);
+        // }}
+        onPageChange={(pageNo: any) => {
+          setPage((pageNo - 1) * 10);
         }}
         onSortByChange={(data: any) => {
           // console.log("Sort by: ", data);
           return;
         }}
       />
-    </Box>
+    </Grid>
   );
 };
 

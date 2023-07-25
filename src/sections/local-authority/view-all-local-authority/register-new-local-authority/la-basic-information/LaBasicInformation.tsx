@@ -39,6 +39,7 @@ const LaBasicInformation = ({ handleNextTab }: any) => {
 
           <Grid item xs={12}>
             <Box sx={{ display: "flex", gap: "1rem" }}>
+              
               <Button sx={styles.submitButton}
                 type="button"
                 variant="contained"
