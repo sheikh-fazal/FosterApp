@@ -22,7 +22,7 @@ export const useAssessmentStageTwo = () => {
         status: assessmentStageTwoApiData?.[item?.textForApi],
       }))
     );
-  }, [data]);
+  }, [assessmentStageTwoApiData]);
   return {
     theme,
     openIdForInfo,

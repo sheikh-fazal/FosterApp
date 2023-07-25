@@ -6,6 +6,7 @@ import {
   StepLabel,
   Stepper,
   Button,
+  useTheme,
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -17,6 +18,7 @@ import { ManageLoginDropDown } from "./manage-login-dropdown/ManageLoginDropDown
 
 export default function Recruitment() {
   const { activeStep, handleStep } = useRecruitment();
+  const theme: any = useTheme();
   return (
     <Box sx={{ width: "100%" }}>
       <Grid item xs={12} container justifyContent={{ sm: "end", xs: "center" }}>
@@ -35,7 +37,10 @@ export default function Recruitment() {
 
       <Stepper nonLinear orientation="vertical" activeStep={activeStep}>
         {steps.map((ele, index) => (
-          <Step key={ele.id} sx={{ display: "flex" }}>
+          <Step
+            key={ele.id}
+            sx={{ display: "flex", my: 2.5 }}
+          >
             <Grid container justifyContent={"space-between"} direction={"row"}>
               <Grid item container xs={0.7}>
                 <StepLabel
@@ -97,7 +102,7 @@ export default function Recruitment() {
                     container
                     justifyContent={"end"}
                     item
-                    sm={11.25}
+                    sm={11.2}
                     xs={12}
                     sx={{
                       boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
@@ -107,13 +112,17 @@ export default function Recruitment() {
                   </Grid>
                   <Grid
                     item
-                    md={11.25}
+                    md={11.2}
                     xs={12}
                     py={4}
                     sx={{
                       boxShadow: "2px 4px 7px 2px rgba(14, 145, 140, 0.2)",
                     }}
-                    bgcolor={"white"}
+                    bgcolor={
+                      theme.palette.mode === "light"
+                        ? "white"
+                        : theme.palette.grey[800]
+                    }
                   ></Grid>
                 </Grid>
               </StepContent>

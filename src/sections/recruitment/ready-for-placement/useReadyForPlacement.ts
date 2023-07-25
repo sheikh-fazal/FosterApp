@@ -13,7 +13,6 @@ export const useReadyForPlacement = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetReadyForPlacementStatusQuery(id);
   const readyForPlacementApiData = data?.data;
-
   useEffect(() => {
     setReadyForPlacementData(
       READYFORPLACEMENT.map((item) => ({
@@ -21,7 +20,7 @@ export const useReadyForPlacement = () => {
         status: readyForPlacementApiData?.[item.textForApi],
       }))
     );
-  }, [data]);
+  }, [readyForPlacementApiData]);
   return {
     theme,
     openIdForInfo,

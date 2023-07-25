@@ -1,23 +1,28 @@
 import React from "react";
 import { Button, Card, Grid, Typography } from "@mui/material";
-import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 
 import { useChildPersonalGoalListView } from "./useChildPersonalGoalListView";
-export const ChildPersonalGoalsListView = (props: any) => {
-  // const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
-  //   props;
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import Error from "@root/components/Error";
 
-  const { defaultValues, router, theme, methods,childPersonalGoalViewData }: any =
-    useChildPersonalGoalListView();
+export const ChildPersonalGoalsListView = (disabled: any) => {
+  const {
+    router,
+    theme,
+    methods,
+    childPersonalGoalViewData,
+    isLoading1,
+    isSuccess1,
+    isError1,
+  }: any = useChildPersonalGoalListView();
+
   return (
-    <Page title="Child Personal Goals">
-      <Card sx={{ p: 2 }}>
-        <FormProvider
-          methods={methods}
-          disableForm={true}
-          //  onSubmit={handleSubmit(onSubmit)}
-        >
+    <Card sx={{ p: 2 }}>
+      {isLoading1 ? (
+        <SkeletonFormdata />
+      ) : isSuccess1 ? (
+        <FormProvider methods={methods} disableForm={disabled}>
           <Grid container spacing={3}>
             {childPersonalGoalViewData?.map((form: any) => {
               return (
@@ -26,19 +31,10 @@ export const ChildPersonalGoalsListView = (props: any) => {
                     {" "}
                     {form.component ? (
                       <form.component
-                        {...form.componentProps}
+                        {...form.componentProps(methods.getValues)}
                         disabled={true}
                         size="small"
-                      >
-                        {form?.componentProps.select
-                          ? form?.componentProps.options.map((option: any) => (
-                              <option key={option.value} value={option.value}>
-                                {" "}
-                                {option.label}{" "}
-                              </option>
-                            ))
-                          : null}
-                      </form.component>
+                      />
                     ) : (
                       <Typography
                         variant={form.variant}
@@ -68,7 +64,19 @@ export const ChildPersonalGoalsListView = (props: any) => {
             </Grid>
           </Grid>
         </FormProvider>
-      </Card>
-    </Page>
+      ) : (
+        isError1 && (
+          <div
+            style={{
+              textAlign: "center",
+              padding: "20px 0px 20px 0px",
+              color: "red",
+            }}
+          >
+            <h3>Server Not Respoonding</h3>
+          </div>
+        )
+      )}
+    </Card>
   );
 };
