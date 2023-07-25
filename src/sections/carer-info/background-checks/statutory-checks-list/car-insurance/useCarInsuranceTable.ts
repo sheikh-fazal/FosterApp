@@ -11,7 +11,7 @@ export const useCarInsuranceTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Car Insurance List
   const {
@@ -20,8 +20,8 @@ export const useCarInsuranceTable = () => {
     isLoading: carInsuranceListIsloading,
     isFetching: carInsuranceListIsfetching,
     isSuccess: carInsuranceListIsSuccess,
-  }: any = useCarInsuranceListQuery({ search: search });
-  
+  }: any = useCarInsuranceListQuery({ search: search, ...params });
+
   //Getting API data and Meta
   const carInsuranceData = carInsuranceList?.data?.car_insurance;
   const meta = carInsuranceList?.data?.meta;

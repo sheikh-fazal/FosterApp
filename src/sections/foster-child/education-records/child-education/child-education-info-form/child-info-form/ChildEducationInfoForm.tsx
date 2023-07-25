@@ -1,31 +1,40 @@
+import { useRouter } from "next/router";
 // @mui
-import { Grid, Typography,} from "@mui/material";
+import { Grid, Box, Button, Typography, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // components
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
+//
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
+import { defaultValues, educationInfoFormData } from ".";
+import { useForm } from "react-hook-form";
 import { useChildEducationForm } from "./useChildEducationForm";
-import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import Link from "next/link";
 
-const ChildEducationInfoForm = () => {
+const ChildEducationInfoForm = (props: any) => {
   const {
-    methods,
-    isSubmitting,
-    theme,
-    handleSubmit,
+    disabled,
     onSubmitHandler,
-    childEducationInfoFormData,
-    isLoading,
-    router,
-    postEducationInfoDataStatus,
-    patchEducationInfoDataStatus,
-  } = useChildEducationForm();
-
-  if (isLoading) return <SkeletonFormdata />;
-  
+    initialValueProps = defaultValues,
+    message,
+    isError,
+    isSuccess,
+  } = props;
+  const { methods, handleSubmit, onSubmit, isSubmitting, theme } =
+    useChildEducationForm({
+      onSubmitHandler,
+      initialValueProps,
+      message,
+    });
+  // const router = useRouter();
+  // const theme = useTheme();
+  // const methods: any = useForm({
+  //   defaultValues,
+  // });
   return (
-    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={2}>
-        {childEducationInfoFormData.map((form: any, i: any) => {
+        {educationInfoFormData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
               <Typography
@@ -39,7 +48,11 @@ const ChildEducationInfoForm = () => {
               >
                 {form.title}
               </Typography>
-              <form.component size="small" {...form.otherOptions} fullWidth>
+              <form.component
+                disabled={disabled}
+                size="small"
+                {...form.otherOptions}
+              >
                 {form?.otherOptions?.select
                   ? form.options.map((option: any) => (
                       <option key={option.value} value={option.value}>
@@ -53,40 +66,25 @@ const ChildEducationInfoForm = () => {
         })}
 
         <Grid item xs={12} mt={3}>
-          {router.query?.action !== "view" && (
+          {!disabled && (
             <Grid item xs={12}>
               <LoadingButton
                 type="submit"
                 variant="contained"
                 sx={{ mr: 2 }}
-                loading={
-                  postEducationInfoDataStatus.isLoading ||
-                  patchEducationInfoDataStatus.isLoading
-                }
+                loading={isSubmitting}
+                color={isError ? "error" : isSuccess ? "success" : "primary"}
               >
-                Submit
+                {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
               </LoadingButton>
-              <LoadingButton
-                type="button"
-                variant="contained"
-                sx={{
-                  marginRight: "1rem",
-                  bgcolor: theme.palette.orange.main,
-                  "&:hover": { bgcolor: theme.palette.orange.dark },
-                }}
-                onClick={() =>
-                  router.push({
-                    pathname: `/foster-child/education-records/child-education`,
-                    query: {
-                      ...(!!router?.query?.fosterChildId && {
-                        fosterChildId: router?.query?.fosterChildId,
-                      }),
-                    },
-                  })
-                }
+              <Link
+                href={"/foster-child/education-records/child-education"}
+                style={{ textDecoration: "none" }}
               >
-                Back
-              </LoadingButton>
+                <Button type="button" variant="contained">
+                  Back
+                </Button>
+              </Link>
             </Grid>
           )}
         </Grid>

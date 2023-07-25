@@ -15,6 +15,7 @@ import {
   TableWithActionBtns,
   TableWithNoData,
   EditableTable,
+  DynamicEditTable,
 } from "@root/sections/overview/table/TableBodies";
 
 // ----------------------------------------------------------------------
@@ -44,6 +45,7 @@ export default function Tables() {
           <TableWithPagenation />
           <TableWithNoData />
           <EditableTable />
+          <DynamicEditTable />
         </ComponentsBox>
       </Grid>
     </Page>

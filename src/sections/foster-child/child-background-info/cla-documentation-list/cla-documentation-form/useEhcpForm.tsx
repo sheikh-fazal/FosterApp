@@ -32,7 +32,7 @@ export const useEhcpForm = (props: any) => {
     if (!!router?.query?.cla_document_id) {
       return patchEHCPHanlder(data);
     }
-    const updatedData = { ...data, document: "Educaton, Health, Care Plan Document" };
+    const updatedData = { ...data, document: "Education, Health, Care Plan Document" };
     
     // Post EHCP API of CLA Documentation
     try {

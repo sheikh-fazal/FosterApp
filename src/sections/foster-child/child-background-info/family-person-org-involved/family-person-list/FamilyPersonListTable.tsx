@@ -1,5 +1,5 @@
 import React from "react";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
@@ -7,7 +7,9 @@ import { useFamilyPersonListTable } from "./useFamilyPersonListTable";
 import TableAction from "@root/components/TableAction";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
-export default function FamilyPersonListTable() {
+export default function FamilyPersonListTable(prop: any) {
+  const router = useRouter();
+  const { fosterChildId } = prop;
   const {
     data,
     headerChangeHandler,
@@ -43,17 +45,19 @@ export default function FamilyPersonListTable() {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/edit`
-              )
+              router.push({
+                pathname: `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/edit`,
+                query: { fosterChildId: fosterChildId},
+              })
             }
           />
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/view`
-              )
+              router.push({
+                pathname: `/foster-child/child-background-info/family-person-org-involved/${info.getValue()}/view`,
+                query: { fosterChildId: fosterChildId},
+              })
             }
           />
           <DeletePrompt

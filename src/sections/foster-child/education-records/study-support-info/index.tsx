@@ -55,4 +55,3 @@ export const StudySupportInfoFormSchema = Yup.object().shape({
   toDate: Yup.date().required("To Date is Required"),
   comments: Yup.string().trim().required("Comments are Required"),
 });
-export { default as StudySupportInfoTable } from "./StudySupportInfoTable";

@@ -25,13 +25,6 @@ const CarInsuranceTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.registrationNumber ?? "-",
       id: "registrationNumber",
       cell: (info: any) => info.getValue(),
@@ -122,6 +115,7 @@ const CarInsuranceTable = () => {
         isFetching={carInsuranceListIsfetching}
         isError={carInsuranceListError}
         isSuccess={carInsuranceListIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

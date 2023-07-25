@@ -24,8 +24,9 @@ export const FamilyPersonDocument = () => {
         readOnly={router?.asPath.split("/").pop() === "view"}
         searchParam={(data: any) => {
           setSearchValue(data.search);
+          console.log(data, "search");
         }}
-        tableData={data?.data}
+        tableData={data?.data?.family_org_info_document}
         isLoading={isLoading}
         isFetching={isFetching}
         isError={isError}
@@ -34,14 +35,22 @@ export const FamilyPersonDocument = () => {
           console.log("data all the way here", data);
           submitFamilyPersonDocumentData(data);
         }}
-        column={["documentName", "documentType", "documentDate", "personName", "password"]}
+        column={[
+          "documentName",
+          "documentType",
+          "documentDate",
+          "personName",
+          "password",
+        ]}
         onPageChange={(pageNo: any) => {
           setPage(() => (pageNo - 1) * 10);
         }}
         currentPage={data?.data?.meta?.page}
         totalPages={data?.data?.meta?.pages}
-        onDelete={(data: any) =>{listDeleteHandler(data?.id);  console.log("Deleting", data);}
-      }
+        onDelete={(data: any) => {
+          listDeleteHandler(data?.id);
+          console.log("Deleting", data);
+        }}
       />
     </>
   );

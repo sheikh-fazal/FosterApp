@@ -30,6 +30,7 @@ interface model {
   isFetching?: boolean;
   defaultValuesdef?: any;
   defaultValues?: any;
+  names?: any;
 }
 function ModelUploadDoc(props: model) {
   const {
@@ -41,7 +42,9 @@ function ModelUploadDoc(props: model) {
     isFetching,
     isloading,
     defaultValues,
+    names,
   } = props;
+
   const [model, setModel] = React.useState(false);
   return (
     <Box>
@@ -70,13 +73,21 @@ const Form = (props: any) => {
   const defevalue = async () => {
     setIsloading(true);
     let resdata = { ...defaultValues };
+
     if (action === "edit" || action === "view") {
       for (const key in resdata) {
-        const value = resdata[key];
-        if (Formet[key]) resdata[key] = Formet[key](value);
+        if (key.includes("Date")) {
+          resdata["documentDate"] = new Date(resdata[key]);
+        } else if (key.includes("documentType")) {
+          resdata["documentType"] = resdata[key];
+        } else if (key.includes("Password")) {
+          resdata["password"] = resdata[key];
+        } else if (key.includes("Name")) {
+          resdata["documentName"] = resdata[key];
+        }
       }
       setIsloading(false);
-
+      console.log(resdata);
       return resdata;
     } else {
       setIsloading(false);

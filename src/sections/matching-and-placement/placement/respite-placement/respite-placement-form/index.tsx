@@ -30,57 +30,57 @@ export const formSchema = Yup.object().shape({
 
 export const formFields = [
   {
-    title: "Child Name",
     gridLength: 6,
     otherOptions: {
+      label: "Child Name",
       name: "childName",
     },
     component: RHFTextField,
   },
   {
-    title: "Primary Carer",
     gridLength: 6,
     otherOptions: {
+      label: "Primary Carer",
       name: "primaryCarer",
     },
     component: RHFTextField,
   },
   {
-    title: "Respite Carer Name",
     gridLength: 6,
     otherOptions: {
+    label: "Respite Carer Name",
       name: "respiteCarerName",
     },
     component: RHFTextField,
   },
   {
-    title: "Respite(Start Date)",
     gridLength: 6,
     otherOptions: {
+      label: "Respite(Start Date)",
       name: "startDate",
     },
     component: RHFDatePicker,
   },
   {
-    title: "Respite(End Date)",
     gridLength: 6,
     otherOptions: {
+      label: "Respite(End Date)",
       name: "endDate",
     },
     component: RHFDatePicker,
   },
   {
-    title: "Respite Plan",
     gridLength: 6,
     otherOptions: {
+      label: "Respite Plan",
       name: "respitePlan",
     },
     requireFileUpload: true,
   },
   {
-    title: "Approved by(Role)",
     gridLength: 6,
     otherOptions: {
+      label: "Approved by(Role)",
       name: "approvedBy",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -88,9 +88,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Local Authority",
     gridLength: 6,
     otherOptions: {
+      label: "Local Authority",
       name: "localAuthority",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -98,9 +98,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Local Authority SW",
     gridLength: 6,
     otherOptions: {
+      label: "Local Authority SW",
       name: "localAuthoritySw",
       select: true,
       options: [{ value: "Select", label: "Select" }],
@@ -108,9 +108,9 @@ export const formFields = [
     component: RHFSelect,
   },
   {
-    title: "Status",
     gridLength: 6,
     otherOptions: {
+      label: "Status",
       name: "status",
       select: true,
       options: [{ value: "Select", label: "Select" }],

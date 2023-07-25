@@ -3,18 +3,22 @@ import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import InitialHomeVisitTab from "@root/sections/carer-info/personal-info/initial-home-visit/initial-home-visit-tab/InitialHomeVisitTab";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Carer Info",
-    href: "/carer-info",
+    href: !!query?.fosterCarerId
+      ? `/carer-info?fosterCarerId=${query?.fosterCarerId}`
+      : "/carer-info",
   },
   {
     name: "Initial Home Visit",
-    href: "/carer-info/personal-info/initial-home-visit",
+    href: "",
   },
 ];
 
@@ -23,23 +27,26 @@ const PAGE_TITLE = "Initial Home Visit";
 // ----------------------------------------------------------------------
 
 InitialHomeVisit.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function InitialHomeVisit() {
+  const router = useRouter();
+  if (!!!router?.query?.fosterCarerId) {
+    router.push({
+      pathname: "/foster-carer-list",
+    });
+    return;
+  }
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(router?.query)}
+      />
       <InitialHomeVisitTab />
     </Page>
   );

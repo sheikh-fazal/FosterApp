@@ -29,7 +29,7 @@ export const defaultValues = {
   dateOfBirth: new Date(),
   gender: "",
   nationalInsuranceNo: "",
-  ethnicity: "",
+  ethincity: "",
   ostedEthincity: "",
   religion: "",
   mobileNo: "",
@@ -59,7 +59,7 @@ export const FormSchema = Yup.object().shape({
   nationalInsuranceNo: Yup.string().required(
     "National Insurance Number is required"
   ),
-  ethnicity: Yup.string().trim().required("Ethnicity is required"),
+  ethincity: Yup.string().trim().required("Ethnicity is required"),
   ostedEthincity: Yup.string().trim().required("Ofsted Ethnicity is required"),
   religion: Yup.string().trim().required("religion is required"),
   mobileNo: Yup.string()
@@ -218,7 +218,7 @@ export const formDataAreaPersonalInfo = [
   {
     gridLength: 6,
     componentProps: {
-      name: "ethnicity",
+      name: "ethincity",
       label: "Ethnicity",
       fullWidth: true,
       select: true,

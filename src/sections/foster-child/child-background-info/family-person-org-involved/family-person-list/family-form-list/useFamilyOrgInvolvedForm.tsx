@@ -63,7 +63,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
         router?.asPath.split("/").pop() === "view" ||
         router?.asPath.split("/").pop() === "edit"
       ) {
-        router.push( 
+        router.push(
           `/foster-child/child-background-info/family-person-org-involved`
         );
       } else {

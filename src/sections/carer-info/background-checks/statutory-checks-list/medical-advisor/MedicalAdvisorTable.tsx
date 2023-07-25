@@ -25,13 +25,6 @@ const MedicalAdvisorTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row?.medicalAppoinmentDate ?? "-",
       id: "medicalAppoinmentDate",
       cell: (info: any) => {
@@ -128,6 +121,7 @@ const MedicalAdvisorTable = () => {
         isFetching={medicalAdvisorIsfetching}
         isError={medicalAdvisorError}
         isSuccess={medicalAdvisorIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

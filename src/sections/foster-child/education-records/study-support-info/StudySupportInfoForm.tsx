@@ -4,7 +4,7 @@ import { Button, Grid, useTheme } from "@mui/material";
 import Link from "next/link";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/router";
-import { StudySupportInfoInfoFormData } from ".";
+import { StudySupportInfoInfoFormData } from "./index";
 import { useStudySupportInfoForm } from "./useStudySupportInfoForm";
 
 export default function StudySupportInfoForm(props: any) {

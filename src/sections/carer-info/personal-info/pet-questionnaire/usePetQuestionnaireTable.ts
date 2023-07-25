@@ -1,12 +1,18 @@
+import usePath from "@root/hooks/usePath";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetPetQuestionnaireTableApiQuery } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
 import { useRef } from "react";
+import { petQuestionnaireTable } from "./";
 
 export const usePetQuestionnaireTable = () => {
   const tableHeaderRef = useRef<any>();
 
+  const { makePath } = usePath()
+
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
+
+  const columns = petQuestionnaireTable(makePath)
 
   // ----------------------------------------------------------------------
 
@@ -26,5 +32,7 @@ export const usePetQuestionnaireTable = () => {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    makePath,
+    columns
   };
 };

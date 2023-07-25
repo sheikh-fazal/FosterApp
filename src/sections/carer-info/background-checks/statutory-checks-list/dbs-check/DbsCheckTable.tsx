@@ -25,13 +25,6 @@ const DbsCheckTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row?.sentToCarerDate ?? "-",
       id: "sentToCarerDate",
       cell: (info: any) => {
@@ -126,6 +119,7 @@ const DbsCheckTable = () => {
         isFetching={dbsCheckListIsfetching}
         isError={dbsCheckListError}
         isSuccess={dbsCheckListIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

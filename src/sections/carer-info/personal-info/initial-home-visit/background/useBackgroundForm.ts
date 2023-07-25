@@ -1,7 +1,5 @@
 import { usePostInitialHomeBackgroundDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/background/background";
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { enqueueSnackbar } from "notistack";
 import {
   backgroundFormFieldsInfoFunction,
@@ -21,31 +19,22 @@ export const useBackgroundForm = () => {
     postInitialHomeBackgroundDataTrigger,
     postInitialHomeBackgroundDataStatus,
   ] = usePostInitialHomeBackgroundDataMutation();
-  const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
-    useLazyGetAllInitialHomeVisitDataQuery();
-  const params = {
+
+  const queryParams = {
     value: "backGround",
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
-  const dataParameter = { params };
-
-  const setBackgroundFormDefaultValue = async () => {
-    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
-      dataParameter
-    );
-    if (isError) {
-      return backgroundFormValues;
+  const apiDataParameter = { queryParams };
+  const { data, isLoading } = useGetAllInitialHomeVisitDataQuery(
+    apiDataParameter,
+    {
+      refetchOnMountOrArgChange: true,
     }
-    return defaultValuesBackgroundForm(
-      !!Object.keys(data)?.length ? data : undefined
-    );
-  };
+  );
   const submitBackgroundForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
     try {
@@ -63,10 +52,10 @@ export const useBackgroundForm = () => {
 
   return {
     submitBackgroundForm,
-    setBackgroundFormDefaultValue,
-    getAllInitialHomeVisitDataStatus,
     postInitialHomeBackgroundDataStatus,
     backgroundFormFieldsInfo,
     user,
+    data,
+    isLoading,
   };
 };

@@ -49,18 +49,19 @@ export default function FamilyPersonList() {
       skip: !familyPersonId,
     });
 
-  console.log("Is loading: ", data);
+  // console.log("Is loading: ", data);
   return (
     <Page title={PAGE_TITLE}>
       <Paper elevation={3}>
-        <HorizaontalTabs
-          tabsDataArray={["Family Org Involved", "Uploaded documents"]}
-        >
-          {/* Family Person Form */}
-          <FamilyOrgInvolvedForm defaultValues={data?.[0]} />
+        <HorizaontalTabs tabsDataArray={["Family Org Involved", "Uploaded documents"]}>
 
+          {/* Family Person Form */}
+          {isLoading && <p>.. Loading</p> }
+          {isSuccess && <FamilyOrgInvolvedForm defaultValues={data?.[0]} />}
+          
           {/* Upload Document */}
           <FamilyPersonDocument />
+          
         </HorizaontalTabs>
       </Paper>
     </Page>

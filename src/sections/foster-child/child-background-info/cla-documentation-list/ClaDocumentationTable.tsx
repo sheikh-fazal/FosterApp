@@ -7,7 +7,9 @@ import { useDocumentationTable } from "./useDocumentationTable";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 
-export default function ClaDocumentationListTable() {
+export default function ClaDocumentationListTable(prop: any) {
+  const { fosterChildId } = prop;
+  console.log(fosterChildId, "my Data");
   const {
     router,
     headerChangeHandler,
@@ -59,10 +61,16 @@ export default function ClaDocumentationListTable() {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/child-background-info/cla-documentation/${info.getValue()}/edit`
-              )
+              router.push({
+                pathname: `/foster-child/child-background-info/cla-documentation/${info.getValue()}/edit`,
+                query: { fosterChildId: fosterChildId },
+              })
             }
+            // onClicked={() =>
+            //   router.push(
+            //     `/foster-child/child-background-info/cla-documentation/${info.getValue()}/edit`
+            //   )
+            // }
           />
           <DeletePrompt
             onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
@@ -70,10 +78,16 @@ export default function ClaDocumentationListTable() {
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/child-background-info/cla-documentation/${info.getValue()}`
-              )
+              router.push({
+                pathname: `/foster-child/child-background-info/cla-documentation/${info.getValue()}`,
+                query: { fosterChildId: fosterChildId },
+              })
             }
+            // onClicked={() =>
+            //   router.push(
+            //     `/foster-child/child-background-info/cla-documentation/${info.getValue()}`
+            //   )
+            // }
           />
           <TableAction
             type="share"
@@ -100,6 +114,7 @@ export default function ClaDocumentationListTable() {
         }}
       />
       <CustomTable
+        showSerialNo
         data={data?.data}
         columns={columns}
         isSuccess={isSuccess}
@@ -107,7 +122,7 @@ export default function ClaDocumentationListTable() {
         isFetching={isFetching}
         isError={isError}
         currentPage={data?.meta?.page}
-          totalPages={data?.meta?.pages}
+        totalPages={data?.meta?.pages}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

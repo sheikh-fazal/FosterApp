@@ -54,7 +54,11 @@ const RiskAssessmentTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -67,7 +71,11 @@ const RiskAssessmentTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -89,7 +97,7 @@ const RiskAssessmentTable = (props: any) => {
           router.push({
             pathname:
               "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
         onChanged={(event: any) => {

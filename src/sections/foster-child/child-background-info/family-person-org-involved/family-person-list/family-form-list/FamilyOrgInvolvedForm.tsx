@@ -7,8 +7,9 @@ import { useFamilyOrgInvolvedForm } from "./useFamilyOrgInvolvedForm";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 export default function FamilyOrgInvolvedForm(props: any) {
-  const { methods, handleSubmit, disabled, isSubmitting, onSubmit } =
+  const { router, methods, handleSubmit, disabled, isSubmitting, onSubmit } =
     useFamilyOrgInvolvedForm(props);
+    const {fosterChildId} = router.query;
 
   return (
     <>
@@ -49,11 +50,6 @@ export default function FamilyOrgInvolvedForm(props: any) {
                 Submit
               </LoadingButton>
               )}
-              <Link
-                href={
-                  "/foster-child/child-background-info/family-person-org-involved"
-                }
-              >
                 <LoadingButton
                   type="button"
                   sx={{
@@ -62,10 +58,13 @@ export default function FamilyOrgInvolvedForm(props: any) {
                     backgroundColor: "#F6830F",
                   }}
                   variant="contained"
+                  onClick={() => router.push({
+                    pathname: "/foster-child/child-background-info/family-person-org-involved",
+                    query: {fosterChildId: fosterChildId}
+                  })}
                 >
                   Back
                 </LoadingButton>
-              </Link>
             </Grid>
           
         </Grid>

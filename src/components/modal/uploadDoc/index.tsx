@@ -31,6 +31,10 @@ export const UploadDocFormData = [
           value: "WORD",
           label: "WORD",
         },
+        {
+          value: "DOC",
+          label: "DOC",
+        },
       ],
     },
     component: RHFSelect,
@@ -67,6 +71,7 @@ export const defvalue = {
   documentDate: new Date(),
   password: "",
   documentFile: "",
+  documentOriginalName: "",
 };
 export const Formet: any = {};
 

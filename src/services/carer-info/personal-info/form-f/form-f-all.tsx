@@ -22,7 +22,11 @@ export const formFAll = baseAPI.injectEndpoints({
     formF: builder.query({
       query: (param: IPARAM) => `/carer-Info/From-f/get-all?value=${param}`,
     }),
+    formFOtherInfo: builder.query({
+      query: (formFId) => `/carer-Info/get-other-materials/${formFId}`,
+    }),
   }),
 });
 
-export const { useFormFQuery, useLazyFormFQuery } = formFAll;
+export const { useFormFQuery, useLazyFormFQuery, useFormFOtherInfoQuery } =
+  formFAll;
