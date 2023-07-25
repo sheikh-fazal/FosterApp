@@ -1,30 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useChildUploadDocuemntInfoList } from "./useChildUploadDocuemntInfoList";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import IsFetching from "@root/components/loaders/IsFetching";
 import UploadDocsModel from "./upload-document-model/UploadDocsModel";
 
 const UploadDocuments = () => {
-  // const [tabelData, setTabelData] = useState([
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  //   {
-  //     a: "a",
-  //     b: "b",
-  //     c: "c",
-  //     d: "d",
-  //     e: "e",
-  //     f: "f",
-  //   },
-  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -36,24 +18,20 @@ const UploadDocuments = () => {
     setSearchValue,
     setPage,
     therapInfoCon,
-    openAddModel,
-    closeAddModel,
+    openDocsModel,
+    closeDocsModel,
   }: any = useChildUploadDocuemntInfoList();
-  const { someAsyncAction, addModel } = therapInfoCon;
+  const { someAsyncAction, docsModel } = therapInfoCon;
   return (
     <Grid sx={{ position: "relative" }}>
-      <UploadDocsModel
-        modelStatus={addModel}
-        openAddModel={openAddModel}
-        closeAddModel={closeAddModel}
-      />
+      <UploadDocsModel modelStatus={docsModel} closeModel={closeDocsModel} />
       {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
         ref={tableHeaderRef}
         title="Uploaded Documents "
         searchKey="search"
         showAddBtn={true}
-        onAdd={openAddModel}
+        onAdd={openDocsModel}
         onChanged={(data: any) => {
           setSearchValue(data?.search);
           console.log("Updated params: ", data);

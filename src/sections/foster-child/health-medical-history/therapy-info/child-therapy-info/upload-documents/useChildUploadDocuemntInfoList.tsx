@@ -18,7 +18,7 @@ export const useChildUploadDocuemntInfoList = () => {
   const [searchValue, setSearchValue] = useState(undefined);
   const [therapInfoCon, setTherapInfo] = useState({
     someAsyncAction: false,
-    addModel: false,
+    docsModel: false,
   });
   const params = {
     search: searchValue,
@@ -48,12 +48,12 @@ export const useChildUploadDocuemntInfoList = () => {
     }
   };
 
-  const openAddModel = () => {
-    setTherapInfo((pre) => ({ ...pre, addModel: true }));
+  const openDocsModel = () => {
+    setTherapInfo((pre) => ({ ...pre, docsModel: true }));
   };
 
-  const closeAddModel = () => {
-    setTherapInfo((pre) => ({ ...pre, addModel: false }));
+  const closeDocsModel = () => {
+    setTherapInfo((pre) => ({ ...pre, docsModel: false }));
   };
 
   const columns = getColumns({ router, handleDeleteChildTherapy });
@@ -69,7 +69,7 @@ export const useChildUploadDocuemntInfoList = () => {
     setPage,
     page,
     therapInfoCon,
-    openAddModel,
-    closeAddModel,
+    openDocsModel,
+    closeDocsModel,
   };
 };

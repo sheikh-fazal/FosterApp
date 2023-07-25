@@ -4,11 +4,10 @@ import UploadDocsForm from "./upload-docs-form/UploadDocsForm";
 
 const UploadDocsModel: FC<{
   modelStatus: boolean;
-  closeAddModel: () => void;
-  openAddModel: () => void;
-}> = ({ modelStatus, closeAddModel, openAddModel }) => {
+  closeModel: () => void;
+}> = ({ modelStatus, closeModel }) => {
   return (
-    <Modal open={modelStatus} onClose={closeAddModel}>
+    <Modal open={modelStatus} onClose={closeModel}>
       <Grid
         container
         sx={{
@@ -22,7 +21,7 @@ const UploadDocsModel: FC<{
         sm={5}
         xs={10}
       >
-        <UploadDocsForm closeModel={closeAddModel} />
+        <UploadDocsForm closeModel={closeModel} />
       </Grid>
     </Modal>
   );

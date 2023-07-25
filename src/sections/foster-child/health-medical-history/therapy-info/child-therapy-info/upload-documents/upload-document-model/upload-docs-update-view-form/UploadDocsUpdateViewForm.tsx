@@ -27,7 +27,7 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
 import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 
-const UploadDocsForm: FC<any> = ({ closeModel }) => {
+const UploadDocsUpdateViewForm: FC<any> = ({ closeModel }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
@@ -167,4 +167,4 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
   );
 };
 
-export default UploadDocsForm;
+export default UploadDocsUpdateViewForm;
