@@ -9,11 +9,11 @@ import { useRouter } from "next/router";
 // ----------------------------------------------------------------------
 
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (fosterChildId: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: "/",
+    href: `/foster-child?fosterChildId=${fosterChildId}`,
   },
   {
     name: "Day Log/Journal Entries List",
@@ -25,10 +25,11 @@ const PAGE_TITLE = "Day Log/Journal Entries";
 // ----------------------------------------------------------------------
 
 DayLogJournalEntries.getLayout = function getLayout(page: any) {
+  const router = useRouter()
   return (
     <Layout
       showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
+      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       title={PAGE_TITLE}>
       {page}
     </Layout>
