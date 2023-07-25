@@ -23,14 +23,14 @@ export const LeisureActivityDefaultValues = {
   date: new Date(),
   media: null,
   time: "",
-  stars: "",
+  stars: Number,
 };
 
 export const FormSchema = Yup.object().shape({
   hobby: Yup.string().required("Field is required"),
   description: Yup.string().required("Field is required"),
   time: Yup.string().required("Field is required"),
-  stars: Yup.string().required("Field is required"),
+  stars: Yup.number().required("Field is required"),
   date: Yup.date().required("Date of Interview is required"),
 });
 export const formData = [
@@ -93,7 +93,6 @@ export const formData = [
     otherOptions: {
       name: "stars",
       label: "Rewards / Stars / Stickers",
-      fullWidth: true,
       sx: {
         "& .MuiRating-iconFilled": {
           color: "#0E918C",

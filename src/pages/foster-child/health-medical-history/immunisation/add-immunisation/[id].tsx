@@ -12,9 +12,12 @@ import { useGetImmunisationDetailQuery } from "@root/services/foster-child/healt
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
 const PAGE_TITLE = "Immunisation";
 
-AddImmunisation.getLayout = function GetLayout(page: any) {
+// ----------------------------------------------------------------------
+
+export default function AddImmunisation() {
   const router: any = useRouter();
   let { id } = router.query;
+  let [immunisationId, setImmunisationId] = useState(null);
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -35,29 +38,18 @@ AddImmunisation.getLayout = function GetLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
+      <Box>
+        <HorizaontalTabs
+          tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
+        >
+          <ImmunisationFrom
+            setImmunisationId={setImmunisationId}
+            id={id}
+            action="add"
+          />
+          <ImmunisationUploadTable immunisationId={immunisationId} />
+        </HorizaontalTabs>
+      </Box>
     </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function AddImmunisation() {
-  const router: any = useRouter();
-  let { id } = router.query;
-  let [immunisationId, setImmunisationId] = useState(null);
-  return (
-    <Box>
-      <HorizaontalTabs
-        tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
-      >
-        <ImmunisationFrom
-          setImmunisationId={setImmunisationId}
-          id={id}
-          action="add"
-        />
-        <ImmunisationUploadTable immunisationId={immunisationId} />
-      </HorizaontalTabs>
-    </Box>
   );
 }

@@ -7,21 +7,234 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
 import SignaturePad from "@root/components/hook-form/SignaturePad";
+import { RHFApiUploadFile } from "../RHFApiUploadFile";
 
 export const defaultValues = {
+  medalLevel: "gold",
   name: "",
-  toDate: "",
-  fromDate: "",
-  certificateAwarded: "",
-  travelByBus: "",
+  fromDate: new Date(),
+  certificateAwarded: null,
+  toDate: new Date(),
+  outcome: "",
+  outcomeNotes: "",
+  assessmentBy: "",
+  assessmentDate: new Date(),
+  videoOrAudioEvidence: null,
+  assessorDigitalSign: null,
+  travelByBus: false,
   travelByBusEvidence: "",
+  planJourneyByBus: false,
+  planJourneyByBusEvidence: "",
+  planJouknowAdultDailyNeedsrneyByBus: false,
+  knowAdultDailyNeedsEvidence: "",
+  contactAdultForEmergency: false,
+  contactAdultForEmergencyEvidence: "",
+  communicateWithFamily: false,
+  communicateWithFamilyEvidence: "",
+  savePocketMoney: false,
+  savePocketMoneyEvidence: "",
+  sendLetter: false,
+  sendLetterEvidence: "",
+  setupEmailAddress: false,
+  setupEmailAddressEvidence: "",
+  userComputerForHW: false,
+  userComputerForHWEvidence: "",
+  personalSafetyUsingComputer: false,
+  personalSafetyUsingComputerEvidence: "",
+  personalHygiene: false,
+  personalHygieneEvidence: "",
+  washHair: false,
+  washHairEvidence: "",
+  changeClothes: false,
+  changeClothesEvidence: "",
+  changeBedding: false,
+  changeBeddingEvidence: "",
+  useTumbleDryer: false,
+  useTumbleDryerEvidence: "",
+  useVacuumCleaner: false,
+  useVacuumCleanerEvidence: "",
+  canMakeSandwich: false,
+  canMakeSandwichEvidence: "",
+  canUseMircowave: false,
+  canUseMircowaveEvidence: "",
+  whereLocalBusStop: false,
+  whereLocalBusStopEvidence: "",
+  whereLocalShop: false,
+  whereLocalShopEvidence: "",
+  communicateWithSchoolTeachers: false,
+  communicateWithSchoolTeachersEvidence: "",
+  openedBankAccount: false,
+  openedBankAccountEvidence: "",
+  sendText: false,
+  sendTextEvidence: "",
+  protectFromCyberBullying: false,
+  protectFromCyberBullyingEvidence: "",
+  dangersOfSharingPersonalDetail: false,
+  dangersOfSharingPersonalDetailEvidence: "",
+  canHaveBath: false,
+  canHaveBathEvidence: "",
+  canCleanTeeth: false,
+  canCleanTeethEvidence: "",
+  canMakeBed: false,
+  canMakeBedEvidence: "",
+  useWashingMachine: false,
+  useWashingMachineEvidence: "",
+  canHangWashing: false,
+  canHangWashingEvidence: "",
+  cleaningAfterMakingDrinks: false,
+  cleaningAfterMakingDrinksEvidence: "",
+  canMakeCupOfTea: false,
+  canMakeCupOfTeaEvidence: "",
+  canUseGoodManners: false,
+  canUseGoodMannersEvidence: "",
+  commWithFriend: false,
+  commWithFriendEvidence: "",
+  // silver
+  useTrain: false,
+  useTrainEvidence: "",
+  planJourneyByTrain: false,
+  planJourneyByTrainEvidence: "",
+  orderTaxi: false,
+  orderTaxiEvidence: "",
+  backToShop: false,
+  backToShopEvidence: "",
+  useOvenWithStaff: false,
+  useOvenWithStaffEvidence: "",
+  cookWithInstruction: false,
+  cookWithInstructionEvidence: "",
+  orderMealPay: false,
+  orderMealPayEvidence: "",
+  whyCleanKitchen: false,
+  whyCleanKitchenEvidence: "",
+  brushMopFloor: false,
+  brushMopFloorEvidence: "",
+  ironMyClothing: false,
+  ironMyClothingEvidence: "",
+  makeMedicalApp: false,
+  makeMedicalAppEvidence: "",
+  basicFirstAid: false,
+  basicFirstAidEvidence: "",
+  changeBulb: false,
+  changeBulbEvidence: "",
+  bookTicketAlone: false,
+  bookTicketAloneEvidence: "",
+  stayHealthyImportance: false,
+  stayHealthyImportanceEvidence: "",
+  understandDiffSexuality: false,
+  understandDiffSexualityEvidence: "",
+  commWithOtherPeople: false,
+  commWithOtherPeopleEvidence: "",
+  safeInRelationship: false,
+  safeInRelationshipEvidence: "",
+  studyForExam: false,
+  studyForExamEvidence: "",
+  whereToLookJob: false,
+  whereToLookJobEvidence: "",
+  interviewPreparation: false,
+  interviewPreparationEvidence: "",
+  purchaseTrainTicket: false,
+  purchaseTrainTicketEvidence: "",
+  renewBusPass: false,
+  renewBusPassEvidence: "",
+  saveUpForNeed: false,
+  saveUpForNeedEvidence: "",
+  planShoppingList: false,
+  planShoppingListEvidence: "",
+  prepFoodCorrectly: false,
+  prepFoodCorrectlyEvidence: "",
+  readFollowRecipe: false,
+  readFollowRecipeEvidence: "",
+  storeLeftOverSafely: false,
+  storeLeftOverSafelyEvidence: "",
+  cleanBathroomWithStaff: false,
+  cleanBathroomWithStaffEvidence: "",
+  understandMedicalNeeds: false,
+  understandMedicalNeedsEvidence: "",
+  selfAdministerBasicMed: false,
+  selfAdministerBasicMedEvidence: "",
+  canSeekMedicalEmergency: false,
+  canSeekMedicalEmergencyEvidence: "",
+  canChangePlug: false,
+  canChangePlugEvidence: "",
+  planJourneyWithComputer: false,
+  planJourneyWithComputerEvidence: "",
+  canLookForActivities: false,
+  canLookForActivitiesEvidence: "",
+  canUserSocialSite: false,
+  canUserSocialSiteEvidence: "",
+  adviceOnDrugsAndAlcohol: false,
+  adviceOnDrugsAndAlcoholEvidence: "",
+  seekHelpRegardingSexual: false,
+  seekHelpRegardingSexualEvidence: "",
+  goodRelationIs: false,
+  goodRelationIsEvidence: "",
+  understandDiffCulture: false,
+  understandDiffCultureEvidence: "",
+  shopWithinBudget: false,
+  shopWithinBudgetEvidence: "",
+  careerCollegAdvice: false,
+  careerCollegAdviceEvidence: "",
+  visitJobCentre: false,
+  visitJobCentreEvidence: "",
+  toDoAfterLeaveSchool: false,
+  toDoAfterLeaveSchoolEvidence: "",
+  ableToSaveUp: false,
+  ableToSaveUpEvidence: "",
+  completeCV: false,
+  completeCVEvidence: "",
+  renewBusTicket: false,
+  renewBusTicketEvidence: "",
+  basicLoanKnowledge: false,
+  basicLoanKnowledgeEvidence: "",
+
+  // gold
+  getDriverLicense: false,
+  getDriverLicenseEvidence: "",
+  minorIllnessInjury: false,
+  minorIllnessInjuryEvidence: "",
+  useCookerAlone: false,
+  useCookerAloneEvidence: "",
+  organiseCleaningRoutine: false,
+  organiseCleaningRoutineEvidence: "",
+  differentHousingOptions: false,
+  differentHousingOptionsEvidence: "",
+  adultHelpWithHousing: false,
+  adultHelpWithHousingEvidence: "",
+  understandSavingMoney: false,
+  understandSavingMoneyEvidence: "",
+  knowCitizenAdviceInWarrington: false,
+  knowCitizenAdviceInWarringtonEvidence: "",
+  getPassport: false,
+  getPassportEvidence: "",
+  prepareSeveralBalancedMeal: false,
+  prepareSeveralBalancedMealEvidence: "",
+  houseHoldFireHazards: false,
+  houseHoldFireHazardsEvidence: "",
+  healthyRelationshipWithFriend: false,
+  healthyRelationshipWithFriendEvidence: "",
+  tenancyAgreement: false,
+  tenancyAgreementEvidence: "",
+  housingAndOtherBenefitForms: false,
+  housingAndOtherBenefitFormsEvidence: "",
+  leavingCareAllowance: false,
+  leavingCareAllowanceEvidence: "",
+  experienceFinancialDifficulties: false,
+  experienceFinancialDifficultiesEvidence: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  assessmentDate: Yup.date().required("Date of Interview is required"),
-  assessmentLevel: Yup.string().required("Field is required"),
-  duration: Yup.string().required("Field is required"),
+  name: Yup.string().required("Field is required"),
+  fromDate: Yup.date().required("Date of Interview is required"),
+  certificateAwarded: Yup.mixed().nullable().required("Field is required"),
+  toDate: Yup.date()
+    .min(Yup.ref("fromDate"), "to date can't be before from date")
+    .required("Date of Interview is required"),
   outcome: Yup.string().required("Field is required"),
+  outcomeNotes: Yup.string().required("Field is required"),
+  assessmentBy: Yup.string().required("Field is required"),
+  assessmentDate: Yup.date().required("Field of Interview is required"),
+  videoOrAudioEvidence: Yup.mixed().nullable().required("Field is required"),
+  assessorDigitalSign: Yup.mixed().nullable().required("Field is required"),
 });
 export const formData1 = [
   {
@@ -48,8 +261,8 @@ export const formData2 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "areaOffice",
-      label: "Area Office",
+      name: "outcome",
+      label: "Outcome",
       fullWidth: true,
       select: true,
     },
@@ -63,9 +276,8 @@ export const formData2 = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "medicalConditionsTreatment",
-      label:
-        "Provide details of any current or pending medical conditions, treatment or appointment below",
+      name: "outcomeNotes",
+      label: "Outcome Notes/Comments",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -75,7 +287,7 @@ export const formData2 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "Accessment done by",
+      name: "assessmentBy",
       label: "Accessment done by",
       fullWidth: true,
     },
@@ -84,8 +296,8 @@ export const formData2 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "Accessment Date",
-      label: "To Date",
+      name: "assessmentDate",
+      label: "Accessment Date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -93,17 +305,16 @@ export const formData2 = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "accessorSignature",
+      name: "assessorDigitalSign",
       label: "Signature Of Accessor",
       sx: { marginTop: "-20px" },
     },
-
     component: SignaturePad,
   },
   {
     gridLength: 6,
     otherOptions: {
-      name: "certificateAwarded",
+      name: "videoOrAudioEvidence",
       label: "Attach Video/Audio Evidence",
       fullWidth: true,
       size: "small",
@@ -115,7 +326,7 @@ export const ListOfSkills = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "travelBus",
+      name: "orderTaxi",
       label: "I can travel alone on train, bus and taxi.",
     },
     component: RHFCheckbox,
@@ -123,17 +334,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "travelBusEveidence",
+      name: "orderTaxiEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "getDriverLicense",
       label: "I know how to get a driver’s licence.",
     },
     component: RHFCheckbox,
@@ -141,17 +353,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "getDriverLicenseEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "makeMedicalApp",
       label:
         "I can attend all my medical appointments alone and know how to collect prescriptions from the chemist.",
     },
@@ -160,17 +373,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "makeMedicalAppEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "minorIllnessInjury ",
       label: "I know how to take care of minor illness and injuries.",
     },
     component: RHFCheckbox,
@@ -178,17 +392,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "minorIllnessInjuryEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "useCookerAlone",
       label: "I can use the cooker alone.",
     },
     component: RHFCheckbox,
@@ -196,17 +411,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "useCookerAloneEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "organiseCleaningRoutine",
       label:
         "I can organise a cleaning routine and evidence I can stick to it.",
     },
@@ -215,7 +431,7 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "organiseCleaningRoutineEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
@@ -225,7 +441,7 @@ export const ListOfSkills = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "differentHousingOptions",
       label: "I understand the different housing options open to me. ",
     },
     component: RHFCheckbox,
@@ -233,17 +449,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "differentHousingOptionsEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "adultHelpWithHousing",
       label:
         "I know an adult who can help and advise me with housing or other benefits I may need to claim.",
     },
@@ -252,17 +469,18 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "adultHelpWithHousingEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "understandSavingMoney",
       label: "I understand ways of saving money.",
     },
     component: RHFCheckbox,
@@ -270,18 +488,19 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "understandSavingMoneyEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
 
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "knowCitizenAdviceInWarrington",
       label:
         "I know what citizens advice is for and where it is located in Warrington.",
     },
@@ -290,19 +509,20 @@ export const ListOfSkills = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "knowCitizenAdviceInWarringtonEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
 ];
 export const ListOfSkillsWithEvidence = [
   {
     gridLength: 12,
     otherOptions: {
-      name: "travelBus",
+      name: "renewBusPass",
       label: "I can renew my bus pass alone.",
     },
     component: RHFCheckbox,
@@ -310,17 +530,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "travelBusEveidence",
+      name: "renewBusPassEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "getPassport",
       label: "I know how to get a passport.",
     },
     component: RHFCheckbox,
@@ -328,17 +549,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "getPassportEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "understandMedicalNeeds",
       label:
         "I understand my medical needs and take all my own medication correctly without help.",
     },
@@ -347,17 +569,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "understandMedicalNeedsEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "prepareSeveralBalancedMeal",
       label:
         "I am able to prepare several well balanced meals from fresh ingredients on my own.",
     },
@@ -366,17 +589,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "prepareSeveralBalancedMealEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "houseHoldFireHazards",
       label:
         "I understand the importance of household safety eg fire hazards, gas, and electrical.",
     },
@@ -385,17 +609,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "houseHoldFireHazardsEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "healthyRelationshipWithFriend",
       label:
         "I can evidence I have healthy relationships with friends and can maintain them.",
     },
@@ -404,17 +629,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "healthyRelationshipWithFriendEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "tenancyAgreement",
       label: "I have seen a tenancy agreement.",
     },
     component: RHFCheckbox,
@@ -422,17 +648,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "tenancyAgreementEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "housingAndOtherBenefitForms",
       label:
         "I have seen the housing and other benefit forms I may need to complete.",
     },
@@ -441,17 +668,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "housingAndOtherBenefitFormsEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "leavingCareAllowance",
       label:
         "I understand my leaving care allowance, and what it is to be used for.",
     },
@@ -460,17 +688,18 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "leavingCareAllowanceEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
   {
     gridLength: 12,
     otherOptions: {
-      name: "busPlan",
+      name: "experienceFinancialDifficulties",
       label: "I know where to go if I experience financial difficulties.",
     },
     component: RHFCheckbox,
@@ -478,11 +707,12 @@ export const ListOfSkillsWithEvidence = [
   {
     gridLength: 6,
     otherOptions: {
-      name: "busPlanEveidence",
+      name: "experienceFinancialDifficultiesEvidence",
       label: "My Evidence",
       fullWidth: true,
       size: "small",
+      file: true,
     },
-    component: RHFUploadFile,
+    component: RHFApiUploadFile,
   },
 ];

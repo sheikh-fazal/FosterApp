@@ -12,22 +12,18 @@ import { LeisureActivityDefaultValues } from "@root/sections/foster-child/educat
 import dayjs from "dayjs";
 
 // Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Leisure Activities List",
-    href: "/foster-child/education-records/leisure-activities-hobby",
-  },
-  {
-    name: "Leisure Activity",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Leisure Activities";
-LeisureActivity.getLayout = function getLayout(page: any) {
+
+export default function LeisureActivity() {
   const router: any = useRouter();
-  let { fosterChildId } = router.query;
+  const { id, fosterChildId } = router.query;
+
+  const { data, isLoading, isError }: any = useGetLeisureActivityDetailQuery({
+    id,
+  });
+  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -47,42 +43,27 @@ LeisureActivity.getLayout = function getLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
-    </Layout>
-  );
-};
-export default function LeisureActivity() {
-  const router: any = useRouter();
-  const { id } = router.query;
-
-  const { data, isLoading, isError }: any = useGetLeisureActivityDetailQuery({
-    id,
-  });
-  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
-
-  if (isLoading) {
-    return (
-      <Page title={PAGE_TITLE}>
+      {isLoading ? (
         <SkeletonFormdata />
-      </Page>
-    );
-  }
-
-  return (
-    <HorizaontalTabs tabsDataArray={["Leisure Activities", "Upload document"]}>
-      <LeisureActivitiesForm
-        LeisureAcitivityData={{
-          ...LeisureActivityDefaultValues,
-          ...(data?.data && {
-            ...data?.data,
-            date: new Date(data?.data?.date),
-            time: $d,
-          }),
-        }}
-        action="view"
-        id={id}
-      />
-      <UploadedDocumentsTable action="view" leisureActivityId={id} />
-    </HorizaontalTabs>
+      ) : (
+        <HorizaontalTabs
+          tabsDataArray={["Leisure Activities", "Upload document"]}
+        >
+          <LeisureActivitiesForm
+            LeisureAcitivityData={{
+              ...LeisureActivityDefaultValues,
+              ...(data?.data && {
+                ...data?.data,
+                date: new Date(data?.data?.date),
+                time: $d,
+              }),
+            }}
+            action="view"
+            id={id}
+          />
+          <UploadedDocumentsTable action="view" leisureActivityId={id} />
+        </HorizaontalTabs>
+      )}
+    </Layout>
   );
 }

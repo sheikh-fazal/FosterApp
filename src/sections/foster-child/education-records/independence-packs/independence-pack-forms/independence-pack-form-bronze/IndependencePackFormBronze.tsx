@@ -43,7 +43,7 @@ export default function IndependencePackFormBronze(props: any) {
             <RHFTextField
               disabled={props.disabled}
               size="small"
-              name="Name"
+              name="name"
               label="Name"
               fullWidth
             />
@@ -132,6 +132,7 @@ export default function IndependencePackFormBronze(props: any) {
                   <form.component
                     disabled={props.disabled}
                     size="small"
+                    apiCall={form.otherOptions.file ? postUploadEvidence : null}
                     {...form.otherOptions}
                   >
                     {form.otherOptions.select

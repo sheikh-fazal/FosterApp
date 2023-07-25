@@ -14,7 +14,9 @@ const PAGE_TITLE = "Leisure Activities List";
 
 // ----------------------------------------------------------------------
 
-LeisureActivitiesHobby.getLayout = function getLayout(page: any) {
+// ----------------------------------------------------------------------
+
+export default function LeisureActivitiesHobby() {
   const router: any = useRouter();
   const { fosterChildId } = router.query;
   return (
@@ -36,20 +38,8 @@ LeisureActivitiesHobby.getLayout = function getLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function LeisureActivitiesHobby() {
-  const router: any = useRouter();
-  const { fosterChildId } = router.query;
-  return (
-    <Page title={PAGE_TITLE}>
       <LeisureActivitiesTable fosterChildId={fosterChildId} />
-    </Page>
+    </Layout>
   );
 }
 

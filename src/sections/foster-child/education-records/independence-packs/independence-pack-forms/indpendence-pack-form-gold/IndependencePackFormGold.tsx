@@ -20,6 +20,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SingleLevel from "../../Levels/SingleLevel";
 import BronzeLevel from "@root/assets/svg/bronze-level";
 import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
+import { usePostUploadEvidenceMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 
 export default function IndependencePackFormGold(props: any) {
   const { formType, level } = props;
@@ -33,6 +34,9 @@ export default function IndependencePackFormGold(props: any) {
     router,
   } = useIndependencePackFormGold();
 
+  let [postUploadEvidence, { isLoading: isLoadingPost }] =
+    usePostUploadEvidenceMutation();
+
   return (
     <Card sx={{ p: 2 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -41,7 +45,7 @@ export default function IndependencePackFormGold(props: any) {
             <RHFTextField
               disabled={props.disabled}
               size="small"
-              name="Name"
+              name="name"
               label="Name"
               fullWidth
             />
@@ -98,6 +102,7 @@ export default function IndependencePackFormGold(props: any) {
                   <form.component
                     disabled={props.disabled}
                     size="small"
+                    apiCall={form.otherOptions.file ? postUploadEvidence : null}
                     {...form.otherOptions}
                   >
                     {form.otherOptions.select
@@ -129,6 +134,7 @@ export default function IndependencePackFormGold(props: any) {
                   <form.component
                     disabled={props.disabled}
                     size="small"
+                    apiCall={form.otherOptions.file ? postUploadEvidence : null}
                     {...form.otherOptions}
                   >
                     {form.otherOptions.select

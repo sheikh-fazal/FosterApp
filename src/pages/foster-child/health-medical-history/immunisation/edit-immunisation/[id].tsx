@@ -12,9 +12,16 @@ import { useGetImmunisationDetailQuery } from "@root/services/foster-child/healt
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
 const PAGE_TITLE = "Immunisation";
 
-EditImmunisation.getLayout = function GetLayout(page: any) {
+// ----------------------------------------------------------------------
+
+export default function EditImmunisation() {
   const router: any = useRouter();
-  let { fosterChildId } = router.query;
+  const { id, fosterChildId } = router.query;
+
+  const { data, isLoading, isError }: any = useGetImmunisationDetailQuery({
+    id,
+  });
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -35,46 +42,29 @@ EditImmunisation.getLayout = function GetLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
-    </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function EditImmunisation() {
-  const router: any = useRouter();
-  const { id } = router.query;
-
-  const { data, isLoading, isError }: any = useGetImmunisationDetailQuery({
-    id,
-  });
-  if (isLoading) {
-    return (
-      <Page title={PAGE_TITLE}>
+      {isLoading ? (
         <SkeletonFormdata />
-      </Page>
-    );
-  }
-  return (
-    <Box>
-      <HorizaontalTabs
-        tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
-      >
-        <ImmunisationFrom
-          immunisationData={{
-            ...immunisationInfoListValue,
-            ...(data?.data && {
-              ...data?.data,
-              date: new Date(data?.data?.date),
-              dueDate: new Date(data?.data?.dueDate),
-            }),
-          }}
-          action="edit"
-          id={id}
-        />
-        <ImmunisationUploadTable action="edit" immunisationId={id} />
-      </HorizaontalTabs>
-    </Box>
+      ) : (
+        <Box>
+          <HorizaontalTabs
+            tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
+          >
+            <ImmunisationFrom
+              immunisationData={{
+                ...immunisationInfoListValue,
+                ...(data?.data && {
+                  ...data?.data,
+                  date: new Date(data?.data?.date),
+                  dueDate: new Date(data?.data?.dueDate),
+                }),
+              }}
+              action="edit"
+              id={id}
+            />
+            <ImmunisationUploadTable action="edit" immunisationId={id} />
+          </HorizaontalTabs>
+        </Box>
+      )}
+    </Layout>
   );
 }

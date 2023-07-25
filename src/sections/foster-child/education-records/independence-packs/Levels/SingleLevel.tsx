@@ -9,6 +9,8 @@ let Gold = "#FFBA01";
 export default function SingleLevel({ levelName, children, isBadge }: any) {
   const theme = useTheme();
   const router = useRouter();
+  let { fosterChildId } = router.query;
+
   const el = (
     <Box
       sx={{
@@ -50,7 +52,7 @@ export default function SingleLevel({ levelName, children, isBadge }: any) {
         <Box
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/${levelName}`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/${levelName}?fosterChildId=${fosterChildId}`
             );
           }}
           sx={{

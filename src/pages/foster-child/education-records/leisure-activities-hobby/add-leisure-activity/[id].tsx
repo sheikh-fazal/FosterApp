@@ -9,47 +9,46 @@ import LeisureActivitiesForm from "@root/sections/foster-child/education-records
 // Constants
 
 const PAGE_TITLE = "Leisure Activities";
-LeisureActivity.getLayout = function getLayout(page: any) {
+
+export default function LeisureActivity() {
   const router: any = useRouter();
   let { id } = router.query;
+  let [leisureActivityId, setLeisureActivityId] = useState(null);
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
+          id: 1,
           icon: <HomeIcon />,
           href: "/",
         },
         {
+          id: 2,
           name: "Leisure Activities List",
           href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${id}`,
         },
         {
+          id: 3,
           name: "Leisure Activity",
           href: "",
         },
       ]}
       title={PAGE_TITLE}
     >
-      {page}
+      <HorizaontalTabs
+        tabsDataArray={["Leisure Activities", "Upload document"]}
+      >
+        <LeisureActivitiesForm
+          setLeisureActivityId={setLeisureActivityId}
+          id={id}
+          action="add"
+        />
+        <UploadedDocumentsTable
+          action="add"
+          leisureActivityId={leisureActivityId}
+        />
+      </HorizaontalTabs>
     </Layout>
-  );
-};
-export default function LeisureActivity() {
-  const router: any = useRouter();
-  let { id } = router.query;
-  let [leisureActivityId, setLeisureActivityId] = useState(null);
-  return (
-    <HorizaontalTabs tabsDataArray={["Leisure Activities", "Upload document"]}>
-      <LeisureActivitiesForm
-        setLeisureActivityId={setLeisureActivityId}
-        id={id}
-        action="add"
-      />
-      <UploadedDocumentsTable
-        action="add"
-        leisureActivityId={leisureActivityId}
-      />
-    </HorizaontalTabs>
   );
 }

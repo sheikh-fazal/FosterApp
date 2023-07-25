@@ -11,9 +11,12 @@ import { useGetImmunisationListQuery } from "@root/services/foster-child/health-
 const PAGE_TITLE = "Immunisation";
 // ----------------------------------------------------------------------
 
-Immunisation.getLayout = function getLayout(page: any) {
+// ----------------------------------------------------------------------
+
+export default function Immunisation() {
   const router: any = useRouter();
   const { fosterChildId } = router.query;
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -34,20 +37,9 @@ Immunisation.getLayout = function getLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
+      <Box>
+        <ImmunisationTable fosterChildId={fosterChildId} />
+      </Box>
     </Layout>
-  );
-};
-
-// ----------------------------------------------------------------------
-
-export default function Immunisation() {
-  const router: any = useRouter();
-  const { fosterChildId } = router.query;
-
-  return (
-    <Box>
-      <ImmunisationTable fosterChildId={fosterChildId} />
-    </Box>
   );
 }

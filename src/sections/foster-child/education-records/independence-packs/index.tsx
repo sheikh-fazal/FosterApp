@@ -14,9 +14,13 @@ import Image from "next/image";
 import documentIcon from "../../../../assets/img/ifaAvatar.png";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
+import dayjs from "dayjs";
 // utils
 
 // ----------------------------------------------------------------------
+let titleCase = (string: any) => {
+  return string?.charAt(0).toUpperCase() + string?.slice(1).toLowerCase();
+};
 
 export const columns = [
   {
@@ -26,15 +30,22 @@ export const columns = [
     header: () => <span>Assessment Date</span>,
   },
   {
-    accessorFn: (row: any) => row.assessmentLevel,
-    id: "assessmentLevel",
-    cell: (info: any) => info.getValue(),
+    accessorFn: (row: any) => row.medalLevel,
+    id: "medalLevel",
+    cell: (info: any) => titleCase(info.getValue()),
     header: () => <span>Assessment Level</span>,
   },
   {
     accessorFn: (row: any) => row.duration,
     id: "duration",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => {
+      return `${dayjs(
+        dayjs(info.row.original.toDate).format("YYYY-DD-MM")
+      ).diff(
+        dayjs(info.row.original.fromDate).format("YYYY-DD-MM"),
+        "days"
+      )} Days`;
+    },
     header: () => <span>Duration</span>,
   },
   {
@@ -59,9 +70,7 @@ export const columns = [
         <TableAction
           type="view"
           onClicked={() =>
-            router.push(
-              `/foster-child/education-records/leisure-activities-hobby/leisure-activity/edit-leisure-activity?id=123`
-            )
+            console.log("info", titleCase(info?.row?.original?.medalLevel))
           }
         />
       </Box>

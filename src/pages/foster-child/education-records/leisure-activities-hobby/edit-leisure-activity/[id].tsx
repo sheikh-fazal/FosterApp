@@ -16,9 +16,16 @@ dayjs.extend(customParseFormat);
 // Constants
 
 const PAGE_TITLE = "Leisure Activities";
-EditLeisureActivity.getLayout = function getLayout(page: any) {
+
+export default function EditLeisureActivity() {
   const router: any = useRouter();
-  let { fosterChildId } = router.query;
+  const { id, fosterChildId } = router.query;
+
+  const { data, isLoading, isError }: any = useGetLeisureActivityDetailQuery({
+    id,
+  });
+
+  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -38,40 +45,27 @@ EditLeisureActivity.getLayout = function getLayout(page: any) {
       ]}
       title={PAGE_TITLE}
     >
-      {page}
-    </Layout>
-  );
-};
-export default function EditLeisureActivity() {
-  const router: any = useRouter();
-  const { id } = router.query;
-
-  const { data, isLoading, isError }: any = useGetLeisureActivityDetailQuery({
-    id,
-  });
-  if (isLoading) {
-    return (
-      <Page title={PAGE_TITLE}>
+      {isLoading ? (
         <SkeletonFormdata />
-      </Page>
-    );
-  }
-  let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
-  return (
-    <HorizaontalTabs tabsDataArray={["Leisure Activities", "Upload document"]}>
-      <LeisureActivitiesForm
-        LeisureAcitivityData={{
-          ...LeisureActivityDefaultValues,
-          ...(data?.data && {
-            ...data?.data,
-            date: new Date(data?.data?.date),
-            time: $d,
-          }),
-        }}
-        action="edit"
-        id={id}
-      />
-      <UploadedDocumentsTable action="edit" leisureActivityId={id} />
-    </HorizaontalTabs>
+      ) : (
+        <HorizaontalTabs
+          tabsDataArray={["Leisure Activities", "Upload document"]}
+        >
+          <LeisureActivitiesForm
+            LeisureAcitivityData={{
+              ...LeisureActivityDefaultValues,
+              ...(data?.data && {
+                ...data?.data,
+                date: new Date(data?.data?.date),
+                time: $d,
+              }),
+            }}
+            action="edit"
+            id={id}
+          />
+          <UploadedDocumentsTable action="edit" leisureActivityId={id} />
+        </HorizaontalTabs>
+      )}
+    </Layout>
   );
 }
