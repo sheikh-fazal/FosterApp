@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { EditPersonalEducationPlanData } from ".";
+import { NewPersonalEducationPlanData } from ".";
 import useEditPersonalEducationalPlan from "./useNewPersonalEducationalPlan";
 
 const NewPersonalEducationPlan = (props: any) => {
@@ -15,7 +15,7 @@ const NewPersonalEducationPlan = (props: any) => {
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {EditPersonalEducationPlanData?.map((form: any) => {
+          {NewPersonalEducationPlanData?.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>

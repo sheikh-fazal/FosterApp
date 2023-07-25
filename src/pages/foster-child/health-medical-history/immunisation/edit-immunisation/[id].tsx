@@ -12,73 +12,59 @@ import { useGetImmunisationDetailQuery } from "@root/services/foster-child/healt
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
 const PAGE_TITLE = "Immunisation";
 
-EditImmunisation.getLayout = function GetLayout(page: any) {
-  const router: any = useRouter();
-  const { action, id } = router.query;
-
-  const BREADCRUMBS = [
-    {
-      icon: <HomeIcon />,
-      name: PAGE_TITLE,
-      href: "",
-    },
-    {
-      name: "Child Immunisation Info ",
-      href: "",
-    },
-    {
-      name: "Immunisation Info",
-      href: "",
-    },
-  ];
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
-};
-
 // ----------------------------------------------------------------------
 
 export default function EditImmunisation() {
   const router: any = useRouter();
-  const { id } = router.query;
+  const { id, fosterChildId } = router.query;
 
   const { data, isLoading, isError }: any = useGetImmunisationDetailQuery({
     id,
   });
-  if (isLoading) {
-    return (
-      <Page title={PAGE_TITLE}>
-        <SkeletonFormdata />
-      </Page>
-    );
-  }
+
   return (
-    <Box>
-      <HorizaontalTabs
-        tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
-      >
-        <ImmunisationFrom
-          immunisationData={{
-            ...immunisationInfoListValue,
-            ...(data?.data && {
-              ...data?.data,
-              date: new Date(data?.data?.date),
-              dueDate: new Date(data?.data?.dueDate),
-            }),
-          }}
-          action="edit"
-          id={id}
-        />
-        <ImmunisationUploadTable
-        action="edit"
-        immunisationId={id} />
-      </HorizaontalTabs>
-    </Box>
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={[
+        {
+          icon: <HomeIcon />,
+          // name: "",
+          href: `/`,
+        },
+        {
+          name: "Child Immunisation Info",
+          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${fosterChildId}`,
+        },
+        {
+          name: "Immunisation info",
+          href: "",
+        },
+      ]}
+      title={PAGE_TITLE}
+    >
+      {isLoading ? (
+        <SkeletonFormdata />
+      ) : (
+        <Box>
+          <HorizaontalTabs
+            tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
+          >
+            <ImmunisationFrom
+              immunisationData={{
+                ...immunisationInfoListValue,
+                ...(data?.data && {
+                  ...data?.data,
+                  date: new Date(data?.data?.date),
+                  dueDate: new Date(data?.data?.dueDate),
+                }),
+              }}
+              action="edit"
+              id={id}
+            />
+            <ImmunisationUploadTable action="edit" immunisationId={id} />
+          </HorizaontalTabs>
+        </Box>
+      )}
+    </Layout>
   );
 }

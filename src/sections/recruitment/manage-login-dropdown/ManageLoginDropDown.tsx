@@ -33,10 +33,16 @@ export const ManageLoginDropDown = () => {
         ref={anchorRef}
         aria-label="split button"
       >
-        <Button startIcon={<LockIcon />} onClick={handleToggle}>
-          {manageLoginData[selectedIndex]?.buttonText}
-        </Button>
         <Button
+          startIcon={<LockIcon />}
+          endIcon={<ArrowDropDownIcon />}
+          onClick={handleToggle}
+        >
+          {selectedIndex !== null
+            ? manageLoginData[selectedIndex]?.buttonText
+            : "Manage Login"}
+        </Button>
+        {/* <Button
           size="small"
           aria-controls={open ? "split-button-menu" : undefined}
           aria-expanded={open ? "true" : undefined}
@@ -45,7 +51,7 @@ export const ManageLoginDropDown = () => {
           onClick={handleToggle}
         >
           <ArrowDropDownIcon />
-        </Button>
+        </Button> */}
       </ButtonGroup>
       <Popper
         sx={{
@@ -67,7 +73,7 @@ export const ManageLoginDropDown = () => {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu">
+                <MenuList id="split-button-menu" autoFocusItem>
                   {manageLoginData.map((option: any, index: any) => (
                     <MenuItem
                       key={option?.id}
@@ -78,6 +84,12 @@ export const ManageLoginDropDown = () => {
                         fontWeight: 600,
                         color: "white",
                         borderRadius: 1,
+                        "&:hover": {
+                          // color: "black",
+                          opacity: 0.8,
+                          background: option?.backgroundColors,
+                        },
+                        "&:focus": { background: option?.backgroundColors,opacity: 0.7 },
                       }}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}

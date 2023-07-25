@@ -7,32 +7,35 @@ import { usePutCourtProceedingMutation } from "@root/services/carer-info/persona
 import { enqueueSnackbar } from "notistack";
 import useAuth from "@root/hooks/useAuth";
 import { useFormFQuery } from "@root/services/carer-info/personal-info/form-f/form-f-all";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
+import { useRouter } from "next/router";
 
 // Constants
 const PAGE_TITLE = "Form F";
 
 CourtProceedings.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          name: "Form F List",
-          href: "/carer-info/personal-info/form-f",
-        },
-        {
-          name: "Court Proceedings",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function CourtProceedings() {
+  const { makePath } = usePath();
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Form F List",
+      href: makePath({
+        path: "/carer-info/personal-info/form-f",
+      }),
+    },
+    {
+      name: "Court Proceedings",
+    },
+  ];
+
   //---------------getting Form Data-----------------//
   const { user }: any = useAuth();
   const [skip, setSkip] = useState(true);
@@ -45,12 +48,12 @@ export default function CourtProceedings() {
     try {
       const res: any = await putData({
         formData,
-        params: "fosterCarerId=1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        params: `fosterCarerId=${id}`,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      // router.push("/carer-info/personal-info/carer-family-support-network");
+      router.push(`/carer-info/personal-info/form-f?fosterCarerId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -59,6 +62,11 @@ export default function CourtProceedings() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <CourtProceedingsForm
         formData={receiveDataHandler}
         isLoading={isLoading}

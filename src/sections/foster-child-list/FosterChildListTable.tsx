@@ -5,9 +5,20 @@ import React from "react";
 import { dummy } from ".";
 import Image from "next/image";
 import router from "next/router";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { useGetFosterListsQuery } from "@root/services/foster-child/FosterChildApi";
 
 const activepath = "/foster-child";
 const FosterChildListTable = () => {
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+  const { data, isError, isFetching, isLoading, isSuccess } =
+    useGetFosterListsQuery({
+      params: { ...params },
+    });
+  console.log(data?.data?.users);
+  const tabledata = {};
+
   const columns = [
     // {
     //   accessorFn: (row: any) => row?.id,
@@ -26,54 +37,56 @@ const FosterChildListTable = () => {
           justifyContent={"center"}
           gap={1}
         >
-          <Image
-            src={info.row.original.img}
-            height={40}
-            width={40}
-            alt="icon"
-          />
+          {info?.row?.original?.profileImage ? (
+            <Image
+              src={info?.row?.original?.profileImage}
+              height={40}
+              width={40}
+              alt="icon"
+            />
+          ):"-"}
         </Box>
       ),
       header: () => <span>img</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.childName,
+      accessorFn: (row: any) => `${row?.firstName} ${row?.lastName} `,
       id: "ChildName",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Child Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.fosterCarar,
+      accessorFn: (row: any) => row?.fosterCarar,
       id: "fosterCarar",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Foster Carar</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.Area_locality,
+      accessorFn: (row: any) => row?.aboutCandidate?.addressDetail?.county,
       id: "Area_locality",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Area/Locality</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.gender,
+      accessorFn: (row: any) => row?.gender,
       id: "gender",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Gender</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.areaOffice,
+      accessorFn: (row: any) => row?.areaOffice,
       id: "areaOffice",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Area Office</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.details,
+      accessorFn: (row: any) => row?.details,
       id: "details",
       cell: (info: any) => (
         <Box>
@@ -81,7 +94,7 @@ const FosterChildListTable = () => {
             onClick={() => {
               router.push({
                 pathname: activepath,
-                query: { fosterChildId: "63e5eefe677b0d581e40682a" },
+                query: { fosterChildId: info?.row?.original?.id },
               });
             }}
             variant="contained"
@@ -120,16 +133,16 @@ const FosterChildListTable = () => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={data?.data?.users ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isError={isError}
+                isSuccess={isSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
+                // totalPages={data?.data?.pages ?? 0}
+                // currentPage={data?.data?.meta?.page ?? 1}
                 // onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />

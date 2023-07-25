@@ -98,6 +98,6 @@ export const {
   useGetChildChronologyOfEventsIncidentsInfoListQuery,
   usePostChildChronologyOfEventsIncidentsInfoMutation,
   usePatchChildChronologyOfEventsIncidentsInfoByIdMutation,
-  useGetChildChronologyOfEventsIncidentsInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery,
   useDeleteChildChronologyOfEventsIncidentsInfoByIdMutation,
 } = incidentsInfoApi;

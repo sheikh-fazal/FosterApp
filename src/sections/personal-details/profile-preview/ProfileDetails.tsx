@@ -33,6 +33,7 @@ const ProfileDetails = () => {
           />
         )}
         <Typography
+          component={"p"}
           variant="subtitle1"
           sx={{
             mt: 2,
@@ -59,7 +60,11 @@ const ProfileDetails = () => {
               sx={{ fontSize: "14px", color: theme.palette.grey[0] }}
             />
           </Avatar>
-          <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+          <Typography
+            component={"p"}
+            variant="body2"
+            sx={{ color: theme.palette.grey[600] }}
+          >
             {isLoading ? (
               <Skeleton variant="text" animation="wave" width={100} />
             ) : (
@@ -79,7 +84,11 @@ const ProfileDetails = () => {
               sx={{ fontSize: "11px", color: theme.palette.grey[0] }}
             />
           </Avatar>
-          <Typography variant="body2" sx={{ color: theme.palette.grey[600] }}>
+          <Typography
+            component={"p"}
+            variant="body2"
+            sx={{ color: theme.palette.grey[600] }}
+          >
             {isLoading ? (
               <Skeleton variant="text" animation="wave" width={100} />
             ) : (

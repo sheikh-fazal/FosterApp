@@ -5,9 +5,13 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
+import { enqueueSnackbar } from "notistack";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
 
 export const StudySupportInfoTable = () => {
   const [open, setOpen] = useState(false);
+
   const {
     router,
     tableHeaderRef,
@@ -23,15 +27,17 @@ export const StudySupportInfoTable = () => {
   } = useStudySupportInfoTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.firstName + " " + row?.lastName,
-      id: "name",
-      cell: (info: any) => info.getValue(),
+      accessorFn: (row: any) => row?.fromDate,
+      id: "fromDate",
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: "From Date",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.relation,
-      id: "relation",
+      accessorFn: (row: any) => row?.studyType,
+      id: "studyType",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Study Type",
       isSortable: true,
@@ -55,9 +61,15 @@ export const StudySupportInfoTable = () => {
           <TableAction
             type="edit"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/edit-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/study-support-info/edit-study-support-info",
+                query: {
+                  action: "edit",
+                  id: info.row.original.id,
+                  fosterChildId: router?.query?.fosterChildId,
+                },
+              })
             }
             size="small"
           />
@@ -65,9 +77,15 @@ export const StudySupportInfoTable = () => {
           <TableAction
             type="view"
             onClicked={() =>
-              router.push(
-                `/foster-child/education-records/school-detail-info/view-school-detail?${info.getValue()}`
-              )
+              router.push({
+                pathname:
+                  "/foster-child/education-records/study-support-info/view-study-support-info",
+                query: {
+                  action: "view",
+                  id: info.row.original.id,
+                  fosterChildId: router?.query?.fosterChildId,
+                },
+              })
             }
             size="small"
           />

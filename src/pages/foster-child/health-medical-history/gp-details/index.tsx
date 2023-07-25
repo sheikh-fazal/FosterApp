@@ -31,14 +31,19 @@ GPDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function GPDetails() {
-  const { query } = useRouter();
-
+  const router = useRouter();
+  if (!!!router?.query?.fosterChildId) {
+    router.push({
+      pathname: "/foster-child-lists",
+    });
+    return;
+  }
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(query)}
+        breadcrumbs={BREADCRUMBS(router?.query)}
       />
       <GPDetailsList />
     </Page>

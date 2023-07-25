@@ -37,7 +37,7 @@ export const NAV_LINKS = [
     id: 2,
     text: "Carer Info",
     img: <PermIdentityOutlinedIcon />,
-    link: "/foster-carer-list",
+    link: "/carer-info",
   },
   {
     id: 3,
@@ -49,13 +49,13 @@ export const NAV_LINKS = [
     id: 4,
     text: "Foster Carer",
     img: <EscalatorWarningOutlinedIcon />,
-    link: "",
+    link: "/foster-carer-list",
   },
   {
     id: 5,
     text: "Foster Carer Recruitment",
     img: <PersonSearchOutlinedIcon />,
-    link: "/recruitment",
+    link: "/foster-carer-recruitment",
   },
   {
     id: 6,

@@ -24,13 +24,6 @@ const PartnerReferenceTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
       accessorFn: (row: any) => row.name ?? "-",
       id: "name",
       cell: (info: any) => info.getValue(),
@@ -125,6 +118,7 @@ const PartnerReferenceTable = () => {
         isFetching={partnerReferenceIsfetching}
         isError={partnerReferenceError}
         isSuccess={partnerReferenceIsSuccess}
+        showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

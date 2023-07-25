@@ -2,7 +2,6 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
-
 export const medicalAppointmentsFormValue = [
   {
     id: 1,
@@ -71,10 +70,10 @@ export const medicalAppointmentsFormValue = [
     },
   },
 ];
-export const medialFormets:any = {}
+export const medialFormets: any = {};
 for (const formControl of medicalAppointmentsFormValue) {
   if (formControl.format)
-  medialFormets[formControl.otherOptions.name] = formControl.format;
+    medialFormets[formControl.otherOptions.name] = formControl.format;
 }
 export const MedicalAppointmentsInfoListValue = {
   appointmentDate: new Date(),

@@ -10,7 +10,7 @@ import Link from "next/link";
 import { uploadDummyData, uploadDocColumns } from "..";
 import UploadDocumentsModel from "./uploadDocumentModal";
 import { useUploadDocumentsTable } from "./useImmunisationTable";
-const ImmunisationUploadTable = ({ immunisationId,action }: any) => {
+const ImmunisationUploadTable = ({ immunisationId, action }: any) => {
   const {
     data,
     theme,
@@ -38,7 +38,7 @@ const ImmunisationUploadTable = ({ immunisationId,action }: any) => {
           <TableHeader
             ref={tableHeaderRef}
             title="Uploaded Documents"
-            showAddBtn={action=='view'?false:true}
+            showAddBtn={action == "view" ? false : true}
             onAdd={() => {
               setOpen(true);
               changeView("add");
@@ -60,6 +60,8 @@ const ImmunisationUploadTable = ({ immunisationId,action }: any) => {
             isError={isError}
             isSuccess={isSuccess}
             showSerialNo
+            currentPage={meta?.page}
+            totalPages={meta?.pages}
             onPageChange={pageChangeHandler}
             onSortByChange={sortChangeHandler}
           />

@@ -11,7 +11,7 @@ import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 // ----------------------------------------------------------------------
 
 ChildMedicationInfo.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+  return <Layout >{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
@@ -22,12 +22,6 @@ export default function ChildMedicationInfo() {
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      // name: "Child Medication Info",
-      // href: "/carer-info/other-information/next-of-kin",
-      name: "child Info",
-      href: "/foster-child",
-    },
-    {
       name: "child Info",
       href: {
         pathname: "/foster-child",
@@ -37,7 +31,6 @@ export default function ChildMedicationInfo() {
     {
       name: "Child Medication Info",
       href: "",
-      // /foster-child/health-medical-history/child-medication-info
     },
   ];
   const PAGE_TITLE = "Child Medication Info";

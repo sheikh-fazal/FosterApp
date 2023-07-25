@@ -56,6 +56,7 @@ export const backgroundFormSchema = Yup.object().shape({
 export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
+    fullWidth: true,
     name: "knowledgeOfSexualHarmful",
     label: "",
     title:
@@ -65,6 +66,7 @@ export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "availability",
     label: "",
     title:
@@ -74,6 +76,7 @@ export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "supportNetwork",
     label: "",
     title:
@@ -83,6 +86,7 @@ export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "interestAndHobby",
     label: "",
     title:
@@ -92,6 +96,7 @@ export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "health",
     label: "",
     title:
@@ -101,6 +106,7 @@ export const backgroundFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "conviction",
     label: "",
     title:
