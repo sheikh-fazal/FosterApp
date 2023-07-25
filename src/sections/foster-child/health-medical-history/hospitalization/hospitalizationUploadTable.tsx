@@ -89,8 +89,9 @@ const HospitalizationUploadTable = (props: any) => {
   const { data, isError, isFetching, isLoading, isSuccess } =
     useGethospitalizationDocumentQuery({
       params: {
-        ...params,
         recordId: hospitalizationId,
+        limit: 10,
+        offset: params?.offset,
       },
     });
 
@@ -105,7 +106,13 @@ const HospitalizationUploadTable = (props: any) => {
           }}
           showAddBtn
           onAdd={() => {
-            setModelOpen(true);
+            if (hospitalizationId) {
+              setModelOpen(true);
+            } else {
+              enqueueSnackbar("Fill Hospital Info Form first ", {
+                variant: "error",
+              });
+            }
           }}
         />
       </Box>

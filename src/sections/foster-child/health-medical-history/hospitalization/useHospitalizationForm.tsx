@@ -62,7 +62,7 @@ const useHospitalizationForm = (props: any) => {
             query: {
               action: "edit",
               fosterChildId: fosterChildId,
-              hospitalinfoId: data?.data?.id,
+              hospitalizationId: data?.data?.id,
             },
           });
         })
