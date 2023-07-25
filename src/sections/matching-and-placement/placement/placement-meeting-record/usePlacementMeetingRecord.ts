@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export const usePlacementMeetingRecord = () => {
   const [actionType, setActionType] = useState("");
-  const [IsDeleteModal, setIsDeleteModal] = useState(false);
   const route = useRouter();
   console.log("actionType", actionType);
 
@@ -16,6 +15,6 @@ export const usePlacementMeetingRecord = () => {
     actionType,
     setActionType,
     route,
-    handleAdd,IsDeleteModal, setIsDeleteModal
+    handleAdd,
   };
 };

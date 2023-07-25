@@ -1,3 +1,4 @@
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
 import { COUNTYDROPDOWN } from "@root/dropdown-data/county";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
@@ -157,12 +158,14 @@ export const primaryCarerFormSchema = Yup.object().shape({
 export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "date",
+    fullWidth: true,
     name: "dateOfVisit",
     label: "Date Of Visit",
     disabled: isFieldDisable,
   },
   {
     type: "text",
+    fullWidth: true,
     name: "nameOfAgencyWorkingVisiting",
     label: "Name of Agency working visitng",
     disabled: isFieldDisable,
@@ -172,6 +175,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "title",
     label: "Title",
     select: true,
@@ -190,24 +194,28 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "text",
+    fullWidth: true,
     name: "firstName",
     label: "First Name",
     disabled: isFieldDisable,
   },
   {
     type: "text",
+    fullWidth: true,
     name: "middleName",
     label: "Middle Name",
     disabled: isFieldDisable,
   },
   {
     type: "text",
+    fullWidth: true,
     name: "lastName",
     label: "Last Name",
     disabled: isFieldDisable,
   },
   {
     type: "date",
+    fullWidth: true,
     name: "dateOfBirth",
     label: "Date Of Birth",
     disableFuture: true,
@@ -216,6 +224,8 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+
+    fullWidth: true,
     name: "gender",
     label: "Gender",
     select: true,
@@ -227,6 +237,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "address",
     label: "Address",
     gridSize: { xs: 12 },
@@ -234,6 +245,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "addressLine2",
     label: "Address Line 2",
     disabled: isFieldDisable,
@@ -241,24 +253,28 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "text",
+    fullWidth: true,
     name: "city",
     label: "Town/City",
     disabled: isFieldDisable,
   },
   {
     type: "text",
+    fullWidth: true,
     name: "mobilePhone",
     label: "Mobile Phone",
     disabled: isFieldDisable,
   },
   {
     type: "email",
+    fullWidth: true,
     name: "email",
     label: "Email",
     disabled: isFieldDisable,
   },
   {
     type: "select",
+    fullWidth: true,
     name: "county",
     label: "County",
     disabled: isFieldDisable,
@@ -267,6 +283,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "country",
     label: "Country",
     disabled: isFieldDisable,
@@ -275,12 +292,14 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "text",
+    fullWidth: true,
     name: "postalCode",
     label: "Postal Code",
     disabled: isFieldDisable,
   },
   {
     type: "select",
+    fullWidth: true,
     name: "maritalStatus",
     label: "Marital Status",
     disabled: isFieldDisable,
@@ -289,6 +308,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "ethnicity",
     label: "Ethnicity",
     disabled: isFieldDisable,
@@ -297,6 +317,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "offSetEthnicity",
     label: "Offset Ethnicity",
     disabled: isFieldDisable,
@@ -305,6 +326,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "religion",
     label: "Religion",
     select: true,
@@ -313,6 +335,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "text",
+    fullWidth: true,
     name: "nationalInsuranceNo",
     label: "National Insurance NO",
     disabled: isFieldDisable,
@@ -328,6 +351,7 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "select",
+    fullWidth: true,
     name: "countryWhereBorn",
     label: "What Country was Primary Carer Born in?",
     select: true,
@@ -336,12 +360,14 @@ export const primaryCarerFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "text",
+    fullWidth: true,
     name: "howLongLiveInLocalArea",
     label: "How Long have they lived in the local area?",
     disabled: isFieldDisable,
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "detailsOfPreviousMarriages",
     label:
       "Detail of previous marriages/civil partnerships/relationships where you have lives together?",

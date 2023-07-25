@@ -73,6 +73,7 @@ const Rerefences = () => {
         variant="h5"
         color={theme.palette.primary.main}
         sx={{ mb: 2 }}
+        component="div"
       >
         About
       </Typography>

@@ -30,7 +30,7 @@ const ChildDetails = ({ disabled, handleNextBtn, handlePrevoiusBtn }: any) => {
             <Grid item xs={12} md={form.gridLength} key={i}>
               <Typography
                 sx={{
-                  fontWeight: 600, mb: 0.3, color: theme.palette.grey[600]
+                  fontWeight: 600, mb: 0.3, color: theme.palette.primary.main
                 }}
               >{form.title}
               </Typography>

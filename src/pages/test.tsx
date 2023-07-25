@@ -17,6 +17,7 @@ import { SignOffApproval } from "@root/sections/recruitment/assessment-stage-two
 import PanelCaseListTable from "@root/sections/recruitment/assessment-stage-two/agency-decision/PanelCaseListTable";
 import BankAccountDetailsSection from "@root/sections/carer-info/other-info/bank-account-details/BankAccountDetailsSection";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
+import VocationalCourseInfoTable from "@root/sections/foster-child/vocational-course-info/vocational-course-info-table/VocationalCourseInfoTable";
 
 // -----------------------------------------------------------------------
 // Constants
@@ -97,7 +98,7 @@ export default function FosteringPanelRecommendation() {
   // );
   return (
     <Page title={PAGE_TITLE}>
-      <SubstituteCarerForm />
+      <VocationalCourseInfoTable />
     </Page>
   );
 }

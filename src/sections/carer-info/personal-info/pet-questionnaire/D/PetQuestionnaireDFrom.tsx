@@ -1,7 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import Link from "next/link";
 import { DForm, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
 import { usePetQuestionnaireDFrom } from "./usePetQuestionnaireDFrom";
@@ -14,7 +13,7 @@ export default function PetQuestionnaireD({
   isError,
   isSuccess,
 }: any) {
-  const { methods, handleSubmit, onSubmit, isSubmitting } =
+  const { methods, handleSubmit, onSubmit, isSubmitting, router, makePath } =
     usePetQuestionnaireDFrom({
       onSubmitHandler,
       initialValueProps,
@@ -30,6 +29,7 @@ export default function PetQuestionnaireD({
               {...item.componentProps}
               disabled={disabled}
               size={"small"}
+              fullWidth
             >
               {item?.heading}
             </item.component>
@@ -46,14 +46,20 @@ export default function PetQuestionnaireD({
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
-            <Link
-              href={"/carer-info/personal-info/pet-questionnaire"}
-              style={{ textDecoration: "none" }}
+            <Button
+              type="button"
+              variant="contained"
+              onClick={() =>
+                router.push(
+                  makePath({
+                    path: "/carer-info/personal-info/pet-questionnaire",
+                    skipQueries: ["petId"],
+                  })
+                )
+              }
             >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
+              Back
+            </Button>
           </Grid>
         )}
       </Grid>

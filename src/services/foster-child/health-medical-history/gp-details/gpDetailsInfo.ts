@@ -6,7 +6,7 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: "foster-child/gp-info/all",
         method: "GET",
-        params: apiDataParameter.params,
+        params: apiDataParameter.queryParams,
       }),
       providesTags: ["GP_DETAILS_INFO"],
     }),
@@ -14,14 +14,14 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
         method: "GET",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
       }),
     }),
     postGpDetailsInfoData: builder.mutation({
       query: (apiDataParameter: any) => ({
         url: "foster-child/gp-info",
         method: "POST",
-        params: apiDataParameter.params,
+        params: apiDataParameter.queryParams,
         body: apiDataParameter.body,
       }),
       invalidatesTags: ["GP_DETAILS_INFO"],
@@ -30,7 +30,7 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
         method: "PATCH",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
         body: apiDataParameter?.body,
       }),
       invalidatesTags: ["GP_DETAILS_INFO"],
@@ -39,7 +39,7 @@ export const gpDetailsInfoApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/gp-info/${apiDataParameter?.pathParams?.id}`,
         method: "DELETE",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
       }),
       invalidatesTags: ["GP_DETAILS_INFO"],
     }),

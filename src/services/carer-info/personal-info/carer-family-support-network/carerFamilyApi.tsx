@@ -22,7 +22,7 @@ export const contactApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     getCarerFamilyById: builder.query({
-      query: (id) => `/carer-Info/personal-info/carer-family/${id}`,
+      query: (familyId) => `/carer-Info/personal-info/carer-family/${familyId}`,
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     putCarerFamilyById: builder.mutation<null, void>({

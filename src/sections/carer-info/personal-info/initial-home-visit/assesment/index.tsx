@@ -69,6 +69,7 @@ export const assessmentFormSchema = Yup.object().shape({
 export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   {
     type: "textarea",
+    fullWidth: true,
     name: "familyBackground",
     label: "",
     title: "Family background",
@@ -77,6 +78,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "theFamilyHouse",
     label: "",
     title: "The family Home (is the accomodation suitable for fostering?):",
@@ -85,6 +87,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "pets",
     label: "",
     title:
@@ -94,6 +97,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "finance",
     label: "",
     title:
@@ -103,6 +107,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "assesment",
     label: "",
     title: "Assesment (By the officer undertaking the initial visit):",
@@ -111,6 +116,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "outcome",
     label: "",
     title:
@@ -120,6 +126,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "managerComments",
     label: "",
     title: "Manager Comment",
@@ -128,6 +135,7 @@ export const assesmentFormFieldsInfoFunction = (isFieldDisable = false) => [
   },
   {
     type: "textarea",
+    fullWidth: true,
     name: "managerRecommendation",
     label: "",
     title: "Manager Recommendation",

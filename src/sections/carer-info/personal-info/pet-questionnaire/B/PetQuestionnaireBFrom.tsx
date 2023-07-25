@@ -1,7 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import Link from "next/link";
 import { BForm, defaultValues } from "./";
 import { LoadingButton } from "@mui/lab";
 import { usePetQuestionnaireBFrom } from "./usePetQuestionnaireBFrom";
@@ -14,12 +13,19 @@ export default function PetQuestionnaireB({
   isError,
   isSuccess,
 }: any) {
-  const { methods, handleSubmit, onSubmit, isSubmitting, registeredAVet } =
-    usePetQuestionnaireBFrom({
-      onSubmitHandler,
-      initialValueProps,
-      message,
-    });
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    isSubmitting,
+    registeredAVet,
+    router,
+    makePath,
+  } = usePetQuestionnaireBFrom({
+    onSubmitHandler,
+    initialValueProps,
+    message,
+  });
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container>
@@ -30,6 +36,7 @@ export default function PetQuestionnaireB({
                 {...item.componentProps}
                 disabled={disabled}
                 size={"small"}
+                fullWidth
               >
                 {item?.heading}
               </item.component>
@@ -47,14 +54,20 @@ export default function PetQuestionnaireB({
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Next"}
             </LoadingButton>
-            <Link
-              href={"/carer-info/personal-info/pet-questionnaire"}
-              style={{ textDecoration: "none" }}
+            <Button
+              type="button"
+              variant="contained"
+              onClick={() =>
+                router.push(
+                  makePath({
+                    path: "/carer-info/personal-info/pet-questionnaire",
+                    skipQueries: ["petId"],
+                  })
+                )
+              }
             >
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
+              Back
+            </Button>
           </Grid>
         )}
       </Grid>

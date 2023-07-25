@@ -33,6 +33,7 @@ export const BACKGROUND_CHECKS = [
     label: "Document",
     sublist: [
       {
+        id: 1,
         title: "doc.pdf",
         icon: wordIcon,
       },
@@ -72,6 +73,7 @@ export const RIGHT_WORD = [
     label: "Document",
     sublist: [
       {
+        id: 1,
         title: "doc.pdf",
         icon: wordIcon,
       },

@@ -7,6 +7,7 @@ import {
   forwardRef,
 } from "react";
 import { Tabs, Tab, Typography, useTheme, Box, Card } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 // ----------------------------------------------------------------------
 
@@ -22,7 +23,9 @@ const HorizaontalTabs = forwardRef(
       spacing,
       defaultValue = 0,
       disableBoxShadow = false,
-      disabled = false
+      disabled = false,
+      addIcon = false,
+      handleAddTab,
     }: any,
     ref
   ) => {
@@ -79,6 +82,9 @@ const HorizaontalTabs = forwardRef(
               }
             />
           ))}
+          {addIcon && (
+            <AddCircleIcon sx={{ ml: "auto", mt: 0.5, cursor: "pointer" }} onClick={handleAddTab} />
+          )}
         </Tabs>
         <Box sx={{ py: 2 }}>
           {arrayChildren?.map((child, index) => (

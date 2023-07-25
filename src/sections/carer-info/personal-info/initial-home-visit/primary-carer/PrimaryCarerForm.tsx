@@ -1,24 +1,29 @@
 import FormGenerator from "../form-generator/FormGenerator";
-import { primaryCarerFormSchema } from ".";
+import {
+  defaultValuesPrimaryCarer,
+  primaryCarerFormSchema,
+  primaryCarerFormValues,
+} from ".";
 import { usePrimaryCarerForm } from "./usePrimaryCarerForm";
 
 const PrimaryCarerForm = () => {
   const {
     submitPrimaryCarerForm,
-    setPrimaryCarerDefaultValue,
-    getAllInitialHomeVisitDataStatus,
     postPrimaryCarerDataStatus,
     user,
     primaryCarerFieldsInfo,
+    data,
+    isLoading,
   } = usePrimaryCarerForm();
   return (
     <FormGenerator
       FormSchema={primaryCarerFormSchema}
-      defaultValues={setPrimaryCarerDefaultValue}
+      defaultValues={defaultValuesPrimaryCarer(primaryCarerFormValues)}
+      resetDefaultValues={defaultValuesPrimaryCarer(data)}
       fieldsInfo={primaryCarerFieldsInfo}
       submitClickHand={submitPrimaryCarerForm}
       isFormSubmitting={postPrimaryCarerDataStatus.isLoading}
-      isSkeletonVisible={getAllInitialHomeVisitDataStatus.isLoading}
+      isSkeletonVisible={isLoading}
       defaultRole={user?.defaultRole}
     />
   );

@@ -1,6 +1,5 @@
 import Layout from "@root/layouts";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import DiaryRecordingsTable from "@root/sections/foster-child/child-day-log/diary-recordings/DiaryRecordingsTable";
 
@@ -31,9 +30,5 @@ DiaryRecordings.getLayout = function getLayout(page: any) {
 };
 
 export default function DiaryRecordings() {
-  const [params, setParams] = useState("");
-  const router: any = useRouter();
-  const { action, id } = router.query;
-
   return <DiaryRecordingsTable />;
 }
