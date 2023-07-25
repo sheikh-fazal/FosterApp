@@ -37,10 +37,10 @@ export const ChildEducationInfoList: any = baseAPI.injectEndpoints({
       }),
     }),
     postFosterExclusionDocument: builder.mutation<null, void>({
-      query: ({data, id}: any) => ({
-        url: `/education-records/exclusionDocuments/?exclusionId=${id}`,
+      query: (formData: any) => ({
+        url: `/education-records/exclusionDocuments`,
         method: "POST",
-        body: data,
+        body: formData,
       }),
     }),
   }),

@@ -41,34 +41,27 @@ export default function NewChildExclusionInfoPage() {
   const [postChildInfoRecord] = usePostExclusionInfoRecordMutation();
   const [postExclusionDocumentData] = usePostFosterExclusionDocumentMutation();
   const router = useRouter();
-  const [id, setId] = useState();
+  const [id, setId] = useState<string>("");
   const formData = new FormData();
 
   const fosterChildId = Object.keys(router?.query)[0];
 
   const postExclusionDocument = async (exclusionData: any) => {
-    formData.append("documentType", exclusionData.documentType);
+    formData.append("type", exclusionData.documentType);
     formData.append("documentDate", exclusionData.documentDate);
     formData.append("password", exclusionData.password);
     formData.append("file", exclusionData.chosenFile);
-    
-    const exclusionDetails = {
-      data: formData,
-      id:id
-    }
-
-    console.log(exclusionDetails, id);
-    const res = await postExclusionDocumentData(exclusionDetails).unwrap();
+    formData.append("exclusionId", id);
+    const res = await postExclusionDocumentData(formData);
   };
 
   const postExclusionInfo = async (data: any) => {
     try {
-      const res = await postChildInfoRecord({ data, fosterChildId }).unwrap();
+      const res = await postChildInfoRecord({ data, fosterChildId })
       setId(res?.data?.data?.id);
 
       if (res.data.data.id) {
         setTabsArr(["Exclusion Info", "Upload Document"]);
-        return;
       }
       enqueueSnackbar(res?.message ?? `Successfully!`, {
         variant: "success",
