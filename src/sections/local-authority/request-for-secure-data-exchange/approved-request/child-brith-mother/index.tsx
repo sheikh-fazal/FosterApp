@@ -26,7 +26,6 @@ export const childBirthMother = [
   {
     heading: "Are these the names used at the time of the child’s birth ? ",
     componentProps: {
-      variant: "h6",
       color: (theme: any) => theme.palette.primary.main,
       sx: { mb: 3 },
     },

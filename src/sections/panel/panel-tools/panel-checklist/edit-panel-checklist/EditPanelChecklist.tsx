@@ -18,7 +18,7 @@ const EditPanelChecklist = () => {
         <Card sx={{ p: 2 }}>
             <Box sx={styles.checkListWrapper}>
                 <Typography component="h2" sx={styles.heading(theme)}>Checklist of additional information which may be provided by the agency</Typography>
-                <Typography component="h6" sx={styles.paragraph(theme.palette.mode)}>Please tick if included</Typography>
+                <Typography component="h6" sx={styles.paragraph(theme)}>Please tick if included</Typography>
             </Box>
             <Box sx={{ pt: "25px" }}>
                 {editPanelChecklist.map((item) => (
@@ -29,7 +29,7 @@ const EditPanelChecklist = () => {
                 ))}
             </Box>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)} >
-                <Typography sx={styles.label(theme.palette.mode)}>Any Other Information:</Typography>
+                <Typography sx={styles.label(theme)}>Any Other Information:</Typography>
                 <RHFTextField
                     name="otherInformation"
                     size="small"
@@ -48,9 +48,9 @@ export default EditPanelChecklist;
 const styles = {
     checkListWrapper: {},
     heading: (theme: any) => ({ fontSize: "16px !important", fontWeight: "600", lineHeight: "19px", color: theme.palette.primary.main }),
-    paragraph: (mode: any) => ({ fontSize: "16px !important", fontWeight: "600", lineHeight: "19px", color: mode === 'light' ? '#000' : "#fff", pt: "18px" }),
+    paragraph: (theme:any) => ({ fontSize: "16px !important", fontWeight: "600", lineHeight: "19px", color:theme.palette.primary.main}),
     title: (mode: any) => ({ fontSize: "14px !important", fontWeight: "400", lineHeight: "16px", color: mode === 'light' ? '#1D1D1D' : '#e1dede',  }),
-    label: (mode: any) => ({ fontSize: "16px !important", fontWeight: "600", lineHeight: "19px", pt: "10px", color: mode === 'light' ? '#343A40' : '#e2e4e7' }),
+    label: (theme: any) => ({ fontSize: "16px !important", fontWeight: "600", lineHeight: "19px", pt: "10px", color:theme.palette.primary.main }),
     cancelBtn: { backgroundColor: "#F6830F", "&:hover": { backgroundColor: "#f19333", }, padding: "9px 28px !important", color: "#fff", boxShadow: "0px 2px 0px rgba(0, 0, 0, 0.043)", mt: "40px", borderRadius: "4px", fontSize: "16px", fontWeight: "600" },
     lists: { display: 'flex', alignItems: "center", justifyContent: "space-between", borderTop: "1px solid #DBDBDB", padding: "15px 0" }
 }
