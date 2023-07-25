@@ -23,9 +23,9 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
     }),
     patchPetQuestionnaireAApi: builder.mutation<null, void>({
       query: (data: any) => {
-        const { id, ...body } = data;
+        const { petId, ...body } = data;
         return {
-          url: `pet-questionnaire/questionnaire1/${id}`,
+          url: `pet-questionnaire/questionnaire1/${petId}`,
           method: "PATCH",
           body,
         };
@@ -34,9 +34,9 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
     }),
     patchPetQuestionnaireBApi: builder.mutation<null, void>({
       query: (data: any) => {
-        const { id, ...body } = data;
+        const { petId, ...body } = data;
         return {
-          url: `pet-questionnaire/questionnaire2/${id}`,
+          url: `pet-questionnaire/questionnaire2/${petId}`,
           method: "PATCH",
           body,
         };
@@ -45,9 +45,9 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
     }),
     patchPetQuestionnaireCApi: builder.mutation<null, void>({
       query: (data: any) => {
-        const { id, formData } = data;
+        const { petId, formData } = data;
         return {
-          url: `pet-questionnaire/questionnaire3/${id}`,
+          url: `pet-questionnaire/questionnaire3/${petId}`,
           method: "PATCH",
           body: formData,
         };
@@ -56,9 +56,9 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
     }),
     patchPetQuestionnaireDApi: builder.mutation<null, void>({
       query: (data: any) => {
-        const { id, formData } = data;
+        const { petId, formData } = data;
         return {
-          url: `pet-questionnaire/questionnaire4/${id}`,
+          url: `pet-questionnaire/questionnaire4/${petId}`,
           method: "PATCH",
           body: formData,
         };
@@ -66,7 +66,7 @@ export const petQuestionnaireApi = baseAPI.injectEndpoints({
       invalidatesTags: [TAG],
     }),
     getPetQuestionnaireById: builder.query({
-      query: (id) => `/pet-questionnaire/getquestionnaire/${id}`,
+      query: (petId) => `/pet-questionnaire/getquestionnaire/${petId}`,
       providesTags: [TAG],
     }),
   }),

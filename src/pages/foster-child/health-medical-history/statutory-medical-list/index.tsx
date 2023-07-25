@@ -21,19 +21,26 @@ const BREADCRUMBS = (query: any) => [
 ];
 
 const PAGE_TITLE = "Statutory Medical List";
+
 StatutoryMedicalListPage.getLayout = function getLayout(page: any) {
   return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };
 
 export default function StatutoryMedicalListPage() {
-  const { query } = useRouter();
+  const router = useRouter();
+  if (!!!router?.query?.fosterChildId) {
+    router.push({
+      pathname: "/foster-child-lists",
+    });
+    return;
+  }
 
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(query)}
+        breadcrumbs={BREADCRUMBS(router.query)}
       />
       <StatutoryMedicalList />
     </Page>

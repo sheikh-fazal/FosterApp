@@ -17,13 +17,16 @@ export const useGPDetailsList = () => {
   const [deleteGpDetailsInfoDataTrigger, deleteGpDetailsInfoDataStatus] =
     useDeleteGpDetailsInfoDataMutation();
 
-  const params = {
+  const queryParams = {
     search: searchValue,
     offset: page,
     limit: GPDETAILSLISTPAGELIMIT,
+    ...(router?.query?.fosterChildId && {
+      fosterChildId: router?.query?.fosterChildId,
+    }),
   };
-
-  const apiDataParameter = { params };
+  console.log(queryParams);
+  const apiDataParameter = { queryParams };
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetAllGpDetailsListDataQuery(apiDataParameter, {
       refetchOnMountOrArgChange: true,

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 // form
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ const FormGenerator: FC<any> = ({
   isFormSubmitting,
   isSkeletonVisible,
   defaultRole,
+  resetDefaultValues,
 }) => {
   const theme: any = useTheme();
   const methods: any = useForm({
@@ -30,11 +31,17 @@ const FormGenerator: FC<any> = ({
   const {
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = methods;
 
   const onSubmit = async (data: any) => {
     submitClickHand(data);
   };
+
+  useEffect(() => {
+    reset(() => resetDefaultValues);
+  }, [resetDefaultValues, reset]);
+
   if (isSkeletonVisible) return <SkeletonFormdata />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +55,6 @@ const FormGenerator: FC<any> = ({
             options,
             gridSize = { xs: 12, md: 6 },
             heading,
-            getOptionLabel,
             ...other
           } = data;
           const titleIndex = title?.indexOf("(");
@@ -81,13 +87,10 @@ const FormGenerator: FC<any> = ({
                 fieldType={type}
                 name={name}
                 label={label}
-                fullWidth={true}
                 disabled={isSubmitting || disabled}
                 options={options}
                 size="small"
-                getOptionLabel={getOptionLabel}
                 {...other}
-                {...methods}
               />
             </Grid>
           );

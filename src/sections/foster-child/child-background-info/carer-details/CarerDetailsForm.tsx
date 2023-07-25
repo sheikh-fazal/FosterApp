@@ -5,7 +5,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { CarerDetailsFormData, defaultValues, validationSchema } from "./";
 import { LoadingButton } from "@mui/lab";
-import Link from "next/link";
 
 export default function CarerDetailsForm({
   disabled,
@@ -47,6 +46,7 @@ export default function CarerDetailsForm({
               disabled={disabled}
               {...item.componentProps}
               size={"small"}
+              fullWidth
             >
               {item?.componentProps?.select
                 ? item?.options?.map((option: any) => (
@@ -69,11 +69,9 @@ export default function CarerDetailsForm({
             >
               {isError ? "Try Again!" : isSuccess ? "Success" : "Submit"}
             </LoadingButton>
-            <Link href={"#"} style={{ textDecoration: "none" }}>
-              <Button type="button" variant="contained">
-                Back
-              </Button>
-            </Link>
+            <Button type="button" variant="contained">
+              Back
+            </Button>
           </Grid>
         )}
       </Grid>
