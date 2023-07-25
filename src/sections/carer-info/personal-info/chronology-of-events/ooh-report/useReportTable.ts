@@ -12,6 +12,7 @@ export const useReportTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Report List
@@ -28,7 +29,7 @@ export const useReportTable = () => {
           variant: "success",
         });
       })
-      .catch((error) => {
+      .catch((error: any) => {
         const errMsg = error?.data?.message;
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
@@ -51,5 +52,6 @@ export const useReportTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
+    fosterCarerId,
   };
 };

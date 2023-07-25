@@ -32,7 +32,6 @@ export const DiaryRecordingsApi = baseAPI.injectEndpoints({
       query: ({ id, ...formData }: any) => ({
         url: `child-day-log/diary-recording/${id}`,
         method: "PATCH",
-        // params: payload.params,
         body: formData,
       }),
       invalidatesTags: ["DIARY_RECORDINGS_LIST"],

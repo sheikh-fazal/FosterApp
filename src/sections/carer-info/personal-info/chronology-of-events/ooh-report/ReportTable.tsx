@@ -21,6 +21,7 @@ const reportTable = () => {
     listDeleteHandler,
     pageChangeHandler,
     sortChangeHandler,
+    fosterCarerId,
   } = useReportTable();
 
   const columns = [
@@ -64,7 +65,11 @@ const reportTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -79,7 +84,11 @@ const reportTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -104,7 +113,7 @@ const reportTable = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/ooh-report",
-              query: { action: "add", id: "" },
+              query: { action: "add", fosterCarerId: fosterCarerId },
             });
           }}
         />

@@ -4,10 +4,10 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const oohReportApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     reportList: builder.query({
-      query: (payload: any) => ({
+      query: (search: any) => ({
         url: "/chronology-events/ooh-report/list",
         method: "GET",
-        params: payload,
+        params: search,
       }),
       providesTags: ["OOHREPORT_LIST_TABLE"],
     }),

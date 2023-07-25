@@ -2,8 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-report-form/OhDetailsData";
+import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-report-form";
 import UploadDocuments from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/upload-documents/UploadDocuments";
+import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = [
@@ -31,11 +32,15 @@ oohReport.getLayout = function getLayout(page: any) {
   );
 };
 export default function oohReport() {
-  // -------
+  const router: any = useRouter();
+  const { action, id } = router.query;
+  if (!action && !id) {
+    router.push("/carer-info/personal-info/carer-chronology-of-events");
+  }
   return (
     <HorizaontalTabs tabsDataArray={["OOH Details", "Upload Documents"]}>
       {/* Oh Details Component */}
-      <OhDetails />
+      <OhDetails id={id} action={action} />
       {/* Upload Documents Component */}
       <UploadDocuments />
     </HorizaontalTabs>
