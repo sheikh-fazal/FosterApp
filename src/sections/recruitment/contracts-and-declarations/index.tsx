@@ -94,7 +94,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Declarations",
     informationText: "Declarations",
     viewForms: `View Declaration`,
-    href: "#",
+    href: "/recruitment/contracts-and-declaration/view-declaration",
     isSigned: true,
   },
 ];

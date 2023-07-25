@@ -9,47 +9,58 @@ export const childPersonalGoalListViewData = [
   },
   {
     id: 1,
-    componentProps: {
+    componentProps: (value:any) => ({
       name: "goalName",
       fullWidth: true,
       label: "Goal Name",
       multiline: true,
-    //   minRows: 3,
-    },
+      InputLabelProps:{ shrink: value("goalName")?.length > 0 }
+      //   minRows: 3,
+    }),
     gridLength: 6,
 
     component: RHFTextField,
   },
   {
     id: 2,
-    componentProps: {
+    componentProps: (value:any) => ({
       name: "status",
       label: "Status",
       multiline: true,
       fullWidth: true,
-    //   minRows: 3,
-    },
+      InputLabelProps:{ shrink: value("status")?.length > 0 }
+      //   minRows: 3,
+    }),
     gridLength: 6,
     component: RHFTextField,
   },
   {
     id: 3,
     gridLength: 6,
-    componentProps: {
+    componentProps: (value:any) => ({
       fullWidth: true,
       name: "date",
       label: "Date",
-    },
+      InputLabelProps:{ shrink: value("date")?.length > 0 }
+    }),
     component: RHFDatePicker,
   },
   {
     id: 4,
     gridLength: 12,
-    componentProps: {
+    componentProps: (value:any) => ({
       fullWidth: true,
       name: "comments",
       label: "Comments",
-    },
+      InputLabelProps:{ shrink: value("comments")?.length > 0 }
+    }),
     component: RHFTextField,
   },
 ];
+
+// export const defaultValues = {
+//   goalName: "",
+//   status: "",
+//   date: new Date(),
+//   comments: "",
+// };
