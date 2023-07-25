@@ -1,7 +1,7 @@
 import { baseAPI } from "@root/services/baseApi";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
-export const oohReportApi = baseAPI.injectEndpoints({
+export const reportApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     reportList: builder.query({
       query: (search: any) => ({
@@ -50,4 +50,4 @@ export const {
   useLazyReportByIdQuery,
   usePatchReportByIdMutation,
   useDeleteReportByIdMutation,
-} = oohReportApi;
+} = reportApi;

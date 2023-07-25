@@ -2,7 +2,7 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useDeleteReportByIdMutation,
   useReportListQuery,
-} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/OohReportApi";
+} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React from "react";

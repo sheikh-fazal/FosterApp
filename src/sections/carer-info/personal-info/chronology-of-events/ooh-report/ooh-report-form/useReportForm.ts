@@ -9,7 +9,7 @@ import {
   useLazyReportByIdQuery,
   usePatchReportByIdMutation,
   useReportAddPostMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/OohReportApi";
+} from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportApi";
 export const useReportForm = (action: any, id: any) => {
   const router = useRouter();
   const { fosterCarerId } = router.query;
