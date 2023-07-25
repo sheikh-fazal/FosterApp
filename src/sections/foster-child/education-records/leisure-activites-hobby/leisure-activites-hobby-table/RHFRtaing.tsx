@@ -23,9 +23,8 @@ export default function RHFRating({ name, ...other }: any) {
 
           <Rating
             {...field}
-            fullWidth
-            error={!!error}
-            helperText={error?.message}
+            // error={!!error}
+            // helperText={error?.message}
             {...other}
           />
         </>

@@ -9,7 +9,7 @@ import { formData } from ".";
 import { useLeisureActivitiesForm } from "./useLeisureActivitiesForm";
 
 export default function LeisureActivitiesForm(props: any) {
-  const { formType } = props;
+  const { action, LeisureAcitivityData, id, setLeisureActivityId } = props;
   const {
     methods,
     handleSubmit,
@@ -18,28 +18,20 @@ export default function LeisureActivitiesForm(props: any) {
     isDirty,
     theme,
     router,
-  } = useLeisureActivitiesForm(formType);
-
+  } = useLeisureActivitiesForm(
+    action,
+    LeisureAcitivityData,
+    id,
+    setLeisureActivityId
+  );
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <Typography
-            variant="body2"
-            sx={{
-              color: theme.palette.primary.main,
-              fontWeight: "600",
-              fontSize: "16px",
-            }}
-          >
-            Carer Address History
-          </Typography>
-        </Grid>
         {formData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
               <form.component
-                disabled={props.disabled}
+                disabled={action == "view" ? true : false}
                 size="small"
                 {...form.otherOptions}
               >
@@ -61,7 +53,7 @@ export default function LeisureActivitiesForm(props: any) {
               display: "flex",
             }}
           >
-            {formType == "view" ? (
+            {action == "view" ? (
               ""
             ) : (
               <LoadingButton
