@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, Skeleton } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import React from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Image from "@root/components/Image";
@@ -29,15 +29,25 @@ export default function EnquiryStage() {
 
   return (
     <div>
-      <Grid container>
+      <Grid
+        container
+        px={2}
+        sx={{
+          bgcolor:
+            theme.palette.mode === "light" ? "white" : theme.palette.grey[800],
+        }}
+      >
         {enquiryStageData?.map((ele: any, ind: any) => (
           <Grid
             key={ele?.id}
             container
             p={1}
             sx={{
-              borderBottom: "1px solid black",
-              bgcolor: theme.palette.mode === "light" ? "white" : "silver",
+              borderBottom: "1px solid",
+              bgcolor:
+                theme.palette.mode === "light"
+                  ? "white"
+                  : theme.palette.grey[800],
             }}
           >
             <Grid
@@ -59,7 +69,6 @@ export default function EnquiryStage() {
                   right: "22px",
                   fontSize: 18,
                   cursor: "pointer",
-                  color: "black",
                 }}
               />
               <InformationDialogbox
@@ -77,7 +86,6 @@ export default function EnquiryStage() {
                   fontWeight: 600,
                   paddingTop: 7,
                   textAlign: "center",
-                  color: theme.palette.mode === "dark" ? "white" : "black",
                 }}
               >
                 {ele?.text}

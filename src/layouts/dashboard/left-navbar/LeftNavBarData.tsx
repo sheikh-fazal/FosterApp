@@ -55,7 +55,7 @@ export const NAV_LINKS = [
     id: 5,
     text: "Foster Carer Recruitment",
     img: <PersonSearchOutlinedIcon />,
-    link: "/recruitment",
+    link: "/foster-carer-recruitment",
   },
   {
     id: 6,

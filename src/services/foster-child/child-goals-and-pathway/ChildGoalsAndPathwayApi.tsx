@@ -1,4 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const childGoalsAndPathwayApi = baseAPI.injectEndpoints({
   endpoints: (builder: any) => ({
@@ -13,6 +14,10 @@ export const childGoalsAndPathwayApi = baseAPI.injectEndpoints({
     getChildPersonalViewData: builder.query({
       query: ({ id, fosterChildId }: any) => ({
         url: `foster-child/personalGoal/get-personal-goal/${id}?fosterChildId=${fosterChildId}`,
+        transformResponse: (response: any) => {
+          parseDatesToTimeStampByKey(response.data);
+          return response;
+        },
       }),
     }),
   }),
@@ -20,5 +25,5 @@ export const childGoalsAndPathwayApi = baseAPI.injectEndpoints({
 
 export const {
   useGetChildPersonalGoalsListQuery,
-  useGetChildPersonalViewDataQuery,
+  useLazyGetChildPersonalViewDataQuery,
 } = childGoalsAndPathwayApi;
