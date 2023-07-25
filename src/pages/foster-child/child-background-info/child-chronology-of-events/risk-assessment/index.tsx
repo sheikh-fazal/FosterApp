@@ -88,6 +88,9 @@ export default function RiskAssessment() {
   };
   return (
     <HorizaontalTabs
+      disabled={
+        !id && ["RA-Child Information", "RA-Child Risk Details", "RA-Delegated Authority Details"]
+      }
       tabsDataArray={[
         "RA-Child Details",
         "RA-Child Information",

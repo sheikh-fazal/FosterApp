@@ -5,7 +5,11 @@ import { useState } from "react";
 import { childInformationDefaultValues, formatters } from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery, usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import {
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useRAChildInformationForm = () => {
   const router = useRouter();
@@ -14,24 +18,28 @@ export const useRAChildInformationForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
-  
-  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
+  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getRiskAssessmentList(id);
+      const { data, isError } = await getRiskAssessmentList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return childInformationDefaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data.raChildInfo };
+      console.log(
+        "🚀 ~ file: useRAChildInformationForm.tsx:31 ~ getDefaultValue ~ responseData:",
+        responseData
+      );
 
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -39,6 +47,7 @@ export const useRAChildInformationForm = () => {
     }
   };
   const methods: any = useForm({
+    // resolver: yupResolver(childDetailsformSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -49,38 +58,9 @@ export const useRAChildInformationForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
-    if (action === "add") {
+    if (action === "edit") {
       setIsFetching(true);
-      editRiskAssessmentList({
-        addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
-          fosterChildId,
-          childName: "child",
-          gender: "male",
-          notes: "notes",
-        },
-        id: id,
-      })
-        .unwrap()
-        .then((res: any) => {
-          setIsFetching(false);
-          enqueueSnackbar("Information Added Successfully", {
-            variant: "success",
-          });
-          router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
-          });
-        })
-        .catch((error: any) => {
-          setIsFetching(false);
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
-        });
-    } else if (action === "edit") {
-      setIsFetching(true);
-      
+
       editRiskAssessmentList({
         addRiskAssessmentRequestDto: {
           raChildInfo: { ...data },
@@ -96,13 +76,11 @@ export const useRAChildInformationForm = () => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {

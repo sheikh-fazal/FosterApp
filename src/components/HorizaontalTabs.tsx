@@ -22,6 +22,7 @@ const HorizaontalTabs = forwardRef(
       spacing,
       defaultValue = 0,
       disableBoxShadow = false,
+      disabled = false
     }: any,
     ref
   ) => {
@@ -66,16 +67,13 @@ const HorizaontalTabs = forwardRef(
           {tabsDataArray?.map((title: string) => (
             <Tab
               wrapped
+              disabled={!Array.isArray(disabled) ? disabled : disabled.includes(title)}
               key={title}
               onClick={() => {
                 setActiveTab ? setActiveTab(title) : console.log(title);
               }}
               label={
-                <Typography
-                  variant="subtitle2"
-                  component="span"
-                  color={theme.palette.grey[600]}
-                >
+                <Typography variant="subtitle2" component="span" color={theme.palette.grey[600]}>
                   {title}
                 </Typography>
               }

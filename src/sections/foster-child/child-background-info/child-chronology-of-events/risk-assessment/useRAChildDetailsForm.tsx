@@ -14,6 +14,7 @@ import {
   usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
   usePostChildChronologyOfEventsRiskAssessmentMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useRAChildDetailsForm = () => {
   const router = useRouter();
@@ -34,12 +35,13 @@ export const useRAChildDetailsForm = () => {
         enqueueSnackbar("Error occured", { variant: "error" });
         return childDetailsdefaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data.raChildDetails };
 
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -86,11 +88,17 @@ export const useRAChildDetailsForm = () => {
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      const formData = {
-        id,
-        addRiskAssessmentRequestDto: { ...data },
-      };
-      editRiskAssessmentList(formData)
+
+      editRiskAssessmentList({
+        addRiskAssessmentRequestDto: {
+          raChildDetails: { ...data },
+          fosterChildId,
+          childName: "child",
+          gender: "male",
+          notes: "notes",
+        },
+        id: id,
+      })
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {

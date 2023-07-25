@@ -6,7 +6,11 @@ import { childRiskDetailsDefaultValues, formatters } from "./RiskAssessmentData"
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery, usePatchChildChronologyOfEventsRiskAssessmentByIdMutation } from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import {
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useRAChildRiskDetailsForm = () => {
   const router = useRouter();
@@ -15,23 +19,24 @@ export const useRAChildRiskDetailsForm = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
   const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
-  
+
   const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getRiskAssessmentList(id);
+      const { data, isError } = await getRiskAssessmentList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return childRiskDetailsDefaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data.raChildRiskDetails };
 
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
@@ -49,35 +54,7 @@ export const useRAChildRiskDetailsForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
-    if (action === "add") {
-      setIsFetching(true);
-      editRiskAssessmentList({
-        addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
-          fosterChildId,
-          childName: "child",
-          gender: "male",
-          notes: "notes",
-        },
-        id: id,
-      })
-        .unwrap()
-        .then((res: any) => {
-          setIsFetching(false);
-          enqueueSnackbar("Information Added Successfully", {
-            variant: "success",
-          });
-          router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
-            query: { action: "edit", id: `${res?.data.id}`,fosterChildId },
-          });
-        })
-        .catch((error: any) => {
-          setIsFetching(false);
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-        });
-    } else if (action === "edit") {
+    if (action === "edit") {
       setIsFetching(true);
 
       editRiskAssessmentList({
