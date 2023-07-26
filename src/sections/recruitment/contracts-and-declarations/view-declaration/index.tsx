@@ -1,28 +1,19 @@
 import {
-  RHFCheckbox,
   RHFSwitch,
   RHFTextField,
 } from "@root/components/hook-form";
-import dayjs from "dayjs";
 import * as Yup from "yup";
-import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import { DefaultValues } from "./viewDeclarationInterface";
 
-const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+export const declarationParagraph = `The information in this application form is true and complete, I
+agree that any deliberate omision, Falsification or
+mmisrepresentation in the application form will be grounds for
+rejecting this appliacation or subsequent dismissal if employed by
+the Oraganisation. Where applicable, I consent that the
+Organisation can seek clarification regarding professional
+registration details.`;
 
-interface DefaultValues {
-  agreeToAboveDeclaration: boolean;
-  criminalOffence: string;
-  ifCriminalOffenceProvideDetails: string;
-  areYouWillingToUndergoFullEnhancedDBACheckAtPrice55: string;
-  workingTimeDirectives: boolean;
-  challengingBehaviour: boolean;
-  confidentialityAgreement: boolean;
-  dataPrivacyPolicy: boolean;
-}
 export const defaultValues: DefaultValues = {
   agreeToAboveDeclaration: false,
 
@@ -41,8 +32,11 @@ export const defaultValues: DefaultValues = {
 };
 
 export const FormSchema = Yup.object().shape({
-  agreeToAboveDeclaration: Yup.boolean().oneOf([true],"Must agree to abovedeclaration"),
-  ifCriminalOffenceProvideDetails:Yup.string().required("Required"),
+  agreeToAboveDeclaration: Yup.boolean().oneOf(
+    [true],
+    "Must agree to abovedeclaration"
+  ),
+  ifCriminalOffenceProvideDetails: Yup.string().required("Required"),
 });
 
 export const viewDeclarationData = [
@@ -50,7 +44,6 @@ export const viewDeclarationData = [
     id: 1,
     accordianName: `Have you ever been convicted of a criminal offence?`,
     heading: `Have you ever been convicted of a criminal offence?`,
-    gridLength: 3,
     otherOptions: {
       label: `Have you ever been convicted of a criminal offence?`,
       name: `criminalOffence`,
@@ -66,7 +59,6 @@ export const viewDeclarationData = [
         minRows: 3,
         fullWidth: true,
       },
-      gridLength: 12,
       component: RHFTextField,
     },
   },
@@ -75,7 +67,6 @@ export const viewDeclarationData = [
     id: 2,
     accordianName: `Are you willing to undergo a full enhanced DBA check at a price of  55?`,
     heading: `Are you willing to undergo a full enhanced DBA check at a price of  55?`,
-    gridLength: 6,
     otherOptions: {
       name: `areYouWillingToUndergoFullEnhancedDBACheckAtPrice55`,
       label: `Are you willing to undergo a full enhanced DBA check at a price of  55?`,
@@ -88,7 +79,6 @@ export const viewDeclarationData = [
     accordianName: `Working Time Directives`,
     heading: `Working Time Directives`,
     heading2: `I understand that I am under no obligation to work than the average of 48 Hours in any week - These hours include hours worked with any other company as well as our services. I further understand that I may work more than 48 Hours per week if I wish. Under the terms of engagement, I realise that I may turn down any assignment at any time without any reason, without detriment. By signing this declaration, I am signifying that any hours in excess of an average of 48 hours per week are worked by my choice, But also make it clear that this Declaration does not mean I will work more than 48 hours every week. I undertake to inform the total number of hours I work in a week from all form of employment exceeds 48, in order that we may take this into consideration before offering work to me.`,
-    gridLength: 6,
     otherOptions: {
       name: `workingTimeDirectives`,
       label: `I agree to the above Declaration`,
@@ -100,7 +90,6 @@ export const viewDeclarationData = [
     accordianName: `Challenging Behaviour`,
     heading: `Challenging Behaviour`,
     heading2: `When working in this Industry there are hazards associated with the Industry. I appreciate and accept that one of these hazards is possible aggressive behaviour from challenging service users. Service users may present challenging and aggressive behaviour and this is out of control of us. I understand and accept that I am under no obligation as an agency worker to accept assignments. I accept that there is this risk and accept that this risk is a result of the Industry and not our services. I understand if I am unhappy with any assignment I can withdraw my submission at any time with reasonable notice dictated in my contract for service, and as a result I will not hold our services liable for any injury or loss of earnings as an agency worker. I understand that if I am injured or affected in any other way whilst on an assignment that this is not my fault or of our services`,
-    gridLength: 6,
     otherOptions: {
       name: `challengingBehaviour`,
       label: `I agree to the above Declaration`,
@@ -113,7 +102,6 @@ export const viewDeclarationData = [
     heading: `Confidentiality Agreement`,
     heading2: `I can confirm that during every assignment and afterwards:- To hold information relating to the client in the strictest confidence, ensure that it is kept safely and securely when not in use. I acknowledge that no information is to be removed from the client's premises without permission of the client.
     `,
-    gridLength: 6,
     otherOptions: {
       name: `confidentialityAgreement`,
       label: `I agree to the above Declaration`,
@@ -153,7 +141,6 @@ export const viewDeclarationData = [
      in particular to the processing of any sensitive personal data (as defined in the Data Protection Act 1998) relating to
      you including, as appropriate information about your physical or mental health or condition, and information relating to any criminal proceedings in which you have been involved for insurance purposes and in order to comply with legal requirements and obligations to third parties.
     `,
-    gridLength: 6,
     otherOptions: {
       name: `dataPrivacyPolicy`,
       label: `I agree to the above Declaration`,
