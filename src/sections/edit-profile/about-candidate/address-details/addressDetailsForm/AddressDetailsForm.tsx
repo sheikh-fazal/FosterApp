@@ -133,12 +133,12 @@ const AddressDetailsForm: FC<any> = ({ activateNextForm }) => {
               </Grid>
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFDatePicker name="from" label="From" />
+                  <RHFDatePicker fullWidth name="from" label="From" />
                 </Grid>
               </Grid>
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFDatePicker name="to" label="To" />
+                  <RHFDatePicker fullWidth name="to" label="To" />
                 </Grid>
               </Grid>
               <Grid item sm={6} container direction="column">

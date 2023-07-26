@@ -121,6 +121,7 @@ const WriteToWork: FC<any> = ({ activateNextForm }) => {
                 <RHFRadioGroupWithLabel
                   name="rightToWork"
                   options={["Yes", "No"]}
+                  fullWidth
                 ></RHFRadioGroupWithLabel>
               </Grid>
             </Grid>
@@ -142,7 +143,11 @@ const WriteToWork: FC<any> = ({ activateNextForm }) => {
                 {/* Issue Date */}
                 <Grid item sm={6} container direction="column">
                   <Grid item sx={{ padding: "0.5em" }}>
-                    <RHFTextField name="BRP" label="Visa /BRP Number" />
+                    <RHFTextField
+                      fullWidth
+                      name="BRP"
+                      label="Visa /BRP Number"
+                    />
                   </Grid>
                 </Grid>
                 {/* DBS Online  */}
@@ -158,7 +163,7 @@ const WriteToWork: FC<any> = ({ activateNextForm }) => {
                 {/* DBS Service No  */}
                 <Grid item sm={6} container direction="column">
                   <Grid item sx={{ padding: "0.5em" }}>
-                    <RHFTextField name="code" label="Share Code" />
+                    <RHFTextField fullWidth name="code" label="Share Code" />
                   </Grid>
                 </Grid>
                 {/* Upload Certidicates  */}
