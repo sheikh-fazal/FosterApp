@@ -142,9 +142,9 @@ export default function RespiteCarer() {
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
-        tableData={data?.backup_carer_details}
         // meta={meta}
-        meta={data?.meta}
+        tableData={data?.data?.carers}
+        meta={data?.data?.meta}
         title={title}
         searchedText={searchTextHandler}
         apiStatus={{ isSuccess, isLoading, isError }}
