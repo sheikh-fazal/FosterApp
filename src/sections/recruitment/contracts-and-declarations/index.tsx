@@ -24,14 +24,14 @@ export const CONTRACTSANDDECLARATIONDATA = [
     informationText: "Agency Policy",
     viewForms: `View Policy`,
     href: "#",
-    isSigned: true,
+    isSigned: true, 
   },
   {
     id: 2,
     informationIcon: [
       {
         content: `Finance Agreement  sets out the terms and conditions under which it is prepared to make a payment available to the Foster Carer.
-    `,
+    `, 
       },
     ],
     imgIcon: financeAgreementImg,
@@ -94,7 +94,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Declarations",
     informationText: "Declarations",
     viewForms: `View Declaration`,
-    href: "#",
+    href: "/recruitment/contracts-and-declaration/view-declaration",
     isSigned: true,
   },
 ];

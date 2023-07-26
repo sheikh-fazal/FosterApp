@@ -8,6 +8,7 @@ export const RHFInputWithLabel = (props: any) => {
       <Typography
         variant={typographyProps?.variant || "body2"}
         {...typographyProps}
+        color={other?.disabled && "gray"}
       >
         {text || "Label"}
       </Typography>

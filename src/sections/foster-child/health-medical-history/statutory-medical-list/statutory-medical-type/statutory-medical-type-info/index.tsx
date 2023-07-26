@@ -78,13 +78,13 @@ export const ehcpInfoFormDataFunction = (isFieldDisable = false) => [
       options: [
         {
           id: 1,
-          label: "Eye",
-          text: "Eye",
+          label: "Option 1",
+          text: "Option 1",
         },
         {
           id: 2,
-          label: "Physician",
-          text: "Physician",
+          label: "Option 2",
+          text: "Option 2",
         },
       ],
     },

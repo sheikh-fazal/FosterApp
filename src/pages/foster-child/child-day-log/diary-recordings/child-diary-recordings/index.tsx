@@ -2,24 +2,22 @@ import Layout from "@root/layouts";
 import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import CarInsuranceForm from "@root/sections/carer-info/background-checks/statutory-checks-list/car-insurance/CarInsuranceForm";
 import { useRouter } from "next/router";
-
-import {
-  useDeleteStatutoryUploadDocumentsMutation,
-  usePostStatutoryUploadDocumentsMutation,
-  useStatutoryUploadDocumentListQuery,
-} from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
 import DiaryRecordingsForm from "@root/sections/foster-child/child-day-log/diary-recordings/DiaryRecordingsForm";
+import {
+  useDeleteDiaryUploadDocumentsMutation,
+  useDiaryUploadDocumentListQuery,
+  usePostDiaryUploadDocumentsMutation,
+} from "@root/services/foster-child/child-day-log/diary-recordings/UploadDocumentsApi";
 
 // Constants
 const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
     name: "Diary Recordings List",
-    href: "/foster-child",
+    href: "/foster-child-lists",
   },
   {
     name: "Child Diary Recordings",
@@ -43,10 +41,14 @@ ChildDiaryRecordings.getLayout = function getLayout(page: any) {
 export default function ChildDiaryRecordings() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
-  const { action, id } = router.query;
-
+  const { action, id, fosterChildId } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/background-checks/statutory-checks-list");
+    router.push({
+      pathname: "/foster-child/child-day-log/diary-recordings",
+      query: {
+        fosterChildId: fosterChildId,
+      },
+    });
   }
   const {
     data: documentData,
@@ -54,33 +56,36 @@ export default function ChildDiaryRecordings() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useStatutoryUploadDocumentListQuery({
+  }: any = useDiaryUploadDocumentListQuery({
     params: {
-      recordId: id,
+      diaryRecordingId: id,
       params: params,
     },
   });
 
   //Car Insurance Upload Modal API
-  const [postDocuments] = usePostStatutoryUploadDocumentsMutation();
+  const [postDocuments] = usePostDiaryUploadDocumentsMutation();
 
   //API For Delete Document List
-  const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
+  const [deleteDocumentList] = useDeleteDiaryUploadDocumentsMutation();
 
-  const tableData: any = documentData?.data?.as_statutory_checks_list_document;
+  const tableData: any = documentData?.data?.diary_recordings_documents;
   const metaData: any = documentData?.data?.meta;
 
   //Handling POST API
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
-    formData.append("formName", "CAR_INSURANCE");
-    formData.append("recordId", id);
-    formData.append("documentType", data.documentType);
+    formData.append("type", data.documentType);
     formData.append("documentDate", data.documentDate);
-    formData.append("documentPassword", data.password);
+    formData.append("password", data.password);
     formData.append("file", data.chosenFile);
     try {
-      await postDocuments(formData).unwrap();
+      await postDocuments({
+        params: {
+          diaryRecordingId: id,
+        },
+        body: formData,
+      }).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {
         variant: "success",
       });
@@ -108,8 +113,8 @@ export default function ChildDiaryRecordings() {
     <HorizaontalTabs
       tabsDataArray={["Child Diary Recording", "Upload Documents"]}
     >
-      <DiaryRecordingsForm />
-      {/* <UploadDocuments
+      <DiaryRecordingsForm action={action} id={id} />
+      <UploadDocuments
         readOnly={action === "view" ? true : false}
         tableData={tableData}
         isLoading={isDocumentLoading}
@@ -117,24 +122,24 @@ export default function ChildDiaryRecordings() {
         isError={hasDocumentError}
         isSuccess={isSuccess}
         column={[
-          "documentOriginalName",
-          "documentType",
+          "documentName",
+          "type",
           "documentDate",
-          "personUploaded",
-          "documentPassword",
+          "uploadBy",
+          "password",
         ]}
         searchParam={(searchedText: string) => setParams(searchedText)}
         modalData={(data: any) => documentUploadHandler(data)}
         onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
+        currentPage={metaData?.page ?? 0}
+        totalPages={metaData?.pages ?? 1}
         onDelete={(data: any) => {
           deleteDocument(data.id);
         }}
         disabled={
           !!id && (action === "add" || action === "edit") ? false : true
         }
-      /> */}
+      />
     </HorizaontalTabs>
   );
 }

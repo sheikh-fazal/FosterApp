@@ -99,6 +99,6 @@ export const {
   useGetChildChronologyOfEventsTherapyInfoListQuery,
   usePostChildChronologyOfEventsTherapyInfoMutation,
   usePatchChildChronologyOfEventsTherapyInfoByIdMutation,
-  useGetChildChronologyOfEventsTherapyInfoByIdQuery,
+  useLazyGetChildChronologyOfEventsTherapyInfoByIdQuery,
   useDeleteChildChronologyOfEventsTherapyInfoByIdMutation,
 } = therapyInfoApi;

@@ -5,6 +5,8 @@ import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = [
@@ -43,13 +45,31 @@ RespiteCarerDetails.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function RespiteCarerDetails() {
+  const router = useRouter();
+  const id = router?.query?.fosterCarerId;
+
   const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
 
-  const formSubmitHandler = (formData: any) => {
-    const body = { ...formData, carerType: "RC", status: " " };
-    console.log(body);
+  // const formSubmitHandler = (formData: any) => {
+  // const body = { ...formData, carerType: "RC", status: " " };
+  //   console.log(body);
 
-    postSwapCarerData(body);
+  //   postSwapCarerData(body);
+  // };
+  const formSubmitHandler = async (formData: any) => {
+    const body = { ...formData, carerType: "RC", status: " " };
+    try {
+      const res: any = await postSwapCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
   };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
@@ -58,6 +78,7 @@ export default function RespiteCarerDetails() {
           formSubmitHandler(data);
         }}
         status={status}
+        onEdit={(data: any) => console.log(data)}
       />
 
       <UploadDocuments

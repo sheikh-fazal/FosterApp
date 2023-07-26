@@ -6,10 +6,10 @@ import { NewTrainingProfileData } from ".";
 import useNewChildExclusionInfo from "./useNewChildExclusionInfo";
 
 const NewChildExclusionInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
+  const { disabled, onSubmitHandler, handleCloseForm, router, formState,postExclusionInfo } =
     props;
 
-  const { methods, handleSubmit, onSubmit } = useNewChildExclusionInfo();
+  const { methods, handleSubmit, onSubmit } = useNewChildExclusionInfo(postExclusionInfo);
 
   return (
     <>
@@ -65,4 +65,3 @@ const NewChildExclusionInfo = (props: any) => {
 };
 
 export default NewChildExclusionInfo;
-

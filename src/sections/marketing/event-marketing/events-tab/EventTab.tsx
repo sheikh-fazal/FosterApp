@@ -213,8 +213,6 @@ export default function EventTab() {
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <FormTable
         tableKey="exampleTable"
-        beforeAdd={(methods: any) => uploadImage("image", methods)}
-        beforeUpdate={(methods: any) => uploadImage("image", methods)}
         columns={COLUMNS}
       />
     </FormProvider>

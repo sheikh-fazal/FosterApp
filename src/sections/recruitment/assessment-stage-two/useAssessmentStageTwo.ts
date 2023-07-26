@@ -19,10 +19,10 @@ export const useAssessmentStageTwo = () => {
     setAssessmentStageTwoData(
       ASSESSMENTSTAGETWODATA?.map((item: any) => ({
         ...item,
-        status: data?.data?.[item?.textForApi],
+        status: assessmentStageTwoApiData?.[item?.textForApi],
       }))
     );
-  }, [data]);
+  }, [assessmentStageTwoApiData]);
   return {
     theme,
     openIdForInfo,

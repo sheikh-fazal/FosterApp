@@ -17,38 +17,36 @@ import {
   usePatchPetQuestionnaireDApiMutation,
   usePostPetQuestionnaireAApiMutation,
 } from "@root/services/carer-info/personal-info/pet-questionnaire/petQuestionnaireApi";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Pet Questionnaire List",
-    href: "/carer-info/personal-info/pet-questionnaire",
-  },
-  {
-    name: "Add Pet Questionnaire",
-    href: "",
-  },
-];
 
 const PAGE_TITLE = "Pet Questionnaire";
 
-// ----------------------------------------------------------------------
-
 AddPetQuestionnaire.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
+// ----------------------------------------------------------------------
 export default function AddPetQuestionnaire() {
+  const { makePath } = usePath();
+
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Pet Questionnaire List",
+      href: makePath({
+        path: "/carer-info/personal-info/pet-questionnaire",
+        skipQueries: ["petId"],
+      }),
+    },
+    {
+      name: "Add Pet Questionnaire",
+      href: "",
+    },
+  ];
+
   const [postDataA] = usePostPetQuestionnaireAApiMutation();
   const [postDataB] = usePatchPetQuestionnaireBApiMutation();
   const [postDataC] = usePatchPetQuestionnaireCApiMutation();
@@ -56,6 +54,11 @@ export default function AddPetQuestionnaire() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs
         tabsDataArray={[
           "Pet Questionnaire A",

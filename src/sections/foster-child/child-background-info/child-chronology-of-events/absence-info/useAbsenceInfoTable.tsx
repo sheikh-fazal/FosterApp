@@ -1,7 +1,7 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useGetAbsenceInfoListQuery,
-  useDeleteAbsenceInfoListMutation,
+  useGetChildChronologyOfEventsAbsenceInfoListQuery,
+  useDeleteChildChronologyOfEventsAbsenceInfoByIdMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/AbsenceInfoAPI";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -11,12 +11,12 @@ export const useAbsenceInfoTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetAbsenceInfoListQuery({
+  const { data, isError, isLoading, isFetching, isSuccess }: any = useGetChildChronologyOfEventsAbsenceInfoListQuery({
     search: search,
   });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteAbsenceInfoListMutation();
+  const [deleteList] = useDeleteChildChronologyOfEventsAbsenceInfoByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
     deleteList(id)

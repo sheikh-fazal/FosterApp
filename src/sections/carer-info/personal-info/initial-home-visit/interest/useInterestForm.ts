@@ -1,6 +1,4 @@
-import {
-  useLazyGetAllInitialHomeVisitDataQuery,
-} from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
+import { useGetAllInitialHomeVisitDataQuery } from "@root/services/carer-info/personal-info/initial-home-visit/initialHomeVisit";
 import { usePostInitialHomeInterestDataMutation } from "@root/services/carer-info/personal-info/initial-home-visit/interest/interest";
 import { enqueueSnackbar } from "notistack";
 import {
@@ -21,31 +19,23 @@ export const useInterestForm = () => {
     postInitialHomeInterestDataTrigger,
     postInitialHomeInterestDataStatus,
   ] = usePostInitialHomeInterestDataMutation();
-  const [getAllInitialHomeVisitDataTrigger, getAllInitialHomeVisitDataStatus] =
-    useLazyGetAllInitialHomeVisitDataQuery();
-  const params = {
+
+  const queryParams = {
     value: "interest",
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
-  const dataParameter = { params };
-
-  const setInterestDefaultValue = async () => {
-    const { data, isError } = await getAllInitialHomeVisitDataTrigger(
-      dataParameter
-    );
-    if (isError) {
-      return interestFormValues;
+  const apiDataParameter = { queryParams };
+  const { data, isLoading } = useGetAllInitialHomeVisitDataQuery(
+    apiDataParameter,
+    {
+      refetchOnMountOrArgChange: true,
     }
-    return defaultValueInterestForm(
-      !!Object.keys(data)?.length ? data : undefined
-    );
-  };
+  );
+
   const submitInterestForm = async (data: any) => {
     const putParams = {
-      fosterCarerId:
-        query?.fosterCarerId,
+      fosterCarerId: query?.fosterCarerId,
     };
     const putDataParameter = { params: putParams, body: data };
     try {
@@ -62,10 +52,10 @@ export const useInterestForm = () => {
   };
   return {
     submitInterestForm,
-    setInterestDefaultValue,
-    getAllInitialHomeVisitDataStatus,
     postInitialHomeInterestDataStatus,
     interestFormFieldsInfo,
     user,
+    data,
+    isLoading,
   };
 };

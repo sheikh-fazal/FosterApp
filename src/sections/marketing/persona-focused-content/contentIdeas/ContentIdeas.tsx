@@ -56,7 +56,7 @@ const COLUMNS = [
       return Yup.string().required("Name is required").min(3);
     },
   },
-  
+
   {
     inputType: "select",
     key: "article",
@@ -71,27 +71,27 @@ const COLUMNS = [
       });
     },
     format: (selectedUserType: any) => {
-      console.log("selectedUserType", selectedUserType)
+      console.log("selectedUserType", selectedUserType);
       // return selectedUserType && selectedUserType.label;
-      return <Chip
-        sx={{
-          backgroundColor: selectedUserType.bgColor,
-          color: selectedUserType.textColor,
-          fontSize: "10px !important",
-          p: "5px 10px",
-          maxHeight: "22px",
+      return (
+        <Chip
+          sx={{
+            backgroundColor: selectedUserType.bgColor,
+            color: selectedUserType.textColor,
+            fontSize: "10px !important",
+            p: "5px 10px",
+            maxHeight: "22px",
 
-          "& .MuiChip-label": {
-            p: 0,
-          },
-        }}
-        // key={value}
-        label={selectedUserType.label}
-      />
+            "& .MuiChip-label": {
+              p: 0,
+            },
+          }}
+          // key={value}
+          label={selectedUserType.label}
+        />
+      );
     },
   },
-
-
 
   {
     inputType: "datePicker",
@@ -108,7 +108,7 @@ const COLUMNS = [
       return dayjs(date).format("DD/MM/YYYY");
     },
   },
- 
+
   {
     inputType: "select",
     key: "persona",
@@ -123,23 +123,25 @@ const COLUMNS = [
       });
     },
     format: (selectedUserType: any) => {
-      console.log("selectedUserType", selectedUserType)
+      console.log("selectedUserType", selectedUserType);
       // return selectedUserType && selectedUserType.label;
-      return <Chip
-        sx={{
-          backgroundColor: selectedUserType.bgColor,
-          color: selectedUserType.textColor,
-          fontSize: "10px !important",
-          p: "5px 10px",
-          maxHeight: "22px",
+      return (
+        <Chip
+          sx={{
+            backgroundColor: selectedUserType.bgColor,
+            color: selectedUserType.textColor,
+            fontSize: "10px !important",
+            p: "5px 10px",
+            maxHeight: "22px",
 
-          "& .MuiChip-label": {
-            p: 0,
-          },
-        }}
-        // key={value}
-        label={selectedUserType.label}
-      />
+            "& .MuiChip-label": {
+              p: 0,
+            },
+          }}
+          // key={value}
+          label={selectedUserType.label}
+        />
+      );
     },
   },
   {
@@ -156,35 +158,35 @@ const COLUMNS = [
       });
     },
     format: (selectedUserType: any) => {
-      console.log("selectedUserType", selectedUserType)
+      console.log("selectedUserType", selectedUserType);
       // return selectedUserType && selectedUserType.label;
-      return <Chip
-        sx={{
-          backgroundColor: selectedUserType.bgColor,
-          color: selectedUserType.textColor,
-          fontSize: "10px !important",
-          p: "5px 10px",
-          maxHeight: "22px",
+      return (
+        <Chip
+          sx={{
+            backgroundColor: selectedUserType.bgColor,
+            color: selectedUserType.textColor,
+            fontSize: "10px !important",
+            p: "5px 10px",
+            maxHeight: "22px",
 
-          "& .MuiChip-label": {
-            p: 0,
-          },
-        }}
-        // key={value}
-        label={selectedUserType.label}
-      />
+            "& .MuiChip-label": {
+              p: 0,
+            },
+          }}
+          // key={value}
+          label={selectedUserType.label}
+        />
+      );
     },
   },
-
-
 ];
 
 const ContentIdeas = () => {
   const { methods, handleSubmit, onSubmit, onClear } = useContentIdeas();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-    <FormTable tableKey="exampleTable" columns={COLUMNS} />
-  </FormProvider>
+      <FormTable tableKey="exampleTable" columns={COLUMNS} />
+    </FormProvider>
   );
 };
 

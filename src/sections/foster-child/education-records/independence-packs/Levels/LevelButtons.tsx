@@ -7,13 +7,14 @@ import { useRouter } from "next/router";
 
 export default function LevelButtons() {
   const router = useRouter();
+  let { fosterChildId } = router.query;
   return (
     <div>
       <Box sx={{ mt: 6, mb: 4 }}>
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Bronze`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Bronze?fosterChildId=${fosterChildId}`
             );
           }}
           sx={{
@@ -40,7 +41,7 @@ export default function LevelButtons() {
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Silver`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Silver?fosterChildId=${fosterChildId}`
             );
           }}
           sx={{
@@ -67,7 +68,7 @@ export default function LevelButtons() {
         <Button
           onClick={() => {
             router.push(
-              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/?level=Gold`
+              `/foster-child/education-records/independence-packs-life-skill-assessment/add-independence-pack/Gold?fosterChildId=${fosterChildId}`
             );
           }}
           sx={{

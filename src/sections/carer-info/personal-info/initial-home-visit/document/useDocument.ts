@@ -3,7 +3,7 @@ import {
   useGetInitialHomeDocumentDataQuery,
   usePostInitialHomeDocumentDataMutation,
 } from "@root/services/carer-info/personal-info/initial-home-visit/documents/documents";
-import {useState } from "react";
+import { useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
@@ -28,8 +28,7 @@ export const useDocument = () => {
     offset: page,
     limit: 10,
     search: searchValue,
-    fosterCarerId:
-      query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+    fosterCarerId: query?.fosterCarerId,
   };
 
   const dataParameter = { params };
@@ -45,14 +44,14 @@ export const useDocument = () => {
     documentFormData.append("documentFile", data.chosenFile);
     const putParams = {
       fosterCarerId:
-        query?.fosterCarerId  || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
+        query?.fosterCarerId || "1dde6136-d2d7-11ed-9cf8-02752d2cfcf8",
     };
     const putDataParameter = { params: putParams, body: documentFormData };
     try {
       const res: any = await postInitialHomeDocumentDataTrigger(
         putDataParameter
       ).unwrap();
-        enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
     } catch (error: any) {
@@ -61,25 +60,23 @@ export const useDocument = () => {
     }
   };
 
-  const onDeleteConfirm = async (data:any ) =>{ 
-    console.log(data.id)
+  const onDeleteConfirm = async (data: any) => {
     const params = {
-      id:
-        data?.id,
+      id: data?.id,
     };
     const apiParameter = { params };
     try {
       const res: any = await deleteInitialHomeDocumentDataByIdTrigger(
         apiParameter
       ).unwrap();
-        enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
         variant: "success",
       });
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
-  }
+  };
 
   return {
     setPage,
@@ -91,6 +88,6 @@ export const useDocument = () => {
     user,
     isFetching,
     submitInitialHomeVisitDocument,
-    onDeleteConfirm
+    onDeleteConfirm,
   };
 };

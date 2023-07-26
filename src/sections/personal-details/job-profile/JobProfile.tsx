@@ -12,10 +12,10 @@ const JobProfile = () => {
     >
       {JOBPROFILE_DATA.map((item: any) => (
         <Box key={item.id} sx={styles.rootWrapper}>
-          <Typography variant="subtitle2" sx={styles.labels}>
+          <Typography variant="subtitle2" component={"p"} sx={styles.labels}>
             {item.label}
           </Typography>
-          <Typography variant="subtitle2" sx={styles.title}>
+          <Typography variant="subtitle2" component={"p"} sx={styles.title}>
             {item.title}
           </Typography>
           <Divider sx={styles.divider} />
