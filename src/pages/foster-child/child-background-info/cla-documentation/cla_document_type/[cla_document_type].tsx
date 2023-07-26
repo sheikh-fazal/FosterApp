@@ -6,14 +6,15 @@ import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import { useRouter } from "next/router";
 import { ClaDocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // ----------------------------------------------------------------------
 // Constants
-const BREADCRUMBS = [
+const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "CLA Documentation List",
-    href: "/foster-child/child-background-info/cla-documentation",
+    href: `/foster-child/child-background-info/cla-documentation?fosterChildId=${query}`,
   },
   {
     name: "CLA Document",
@@ -26,15 +27,7 @@ let PAGE_TITLE: any;
 
 ClaDocumentation.getLayout = function getLayout(page: any) {
   PAGE_TITLE = `View Document`;
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function ClaDocumentation() {
@@ -43,6 +36,11 @@ export default function ClaDocumentation() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
       <Paper elevation={3}>
         <ClaDocumentationForm />
       </Paper>

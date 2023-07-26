@@ -26,7 +26,7 @@ const PAGE_TITLE = "Day Log/Journal Entries";
 // ----------------------------------------------------------------------
 
 DayLogJournalEntries.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function DayLogJournalEntries() {

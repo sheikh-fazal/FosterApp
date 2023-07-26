@@ -26,7 +26,7 @@ const PAGE_TITLE = "View Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 ViewFamilyPersonForm.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function ViewFamilyPersonForm() {
@@ -48,6 +48,7 @@ export default function ViewFamilyPersonForm() {
         sx={{ mb: 2 }}
       />
       <HorizaontalTabs tabsDataArray={["Family Org Involved", "Documents"]}>
+
         {/* Family Person Form */}
         {isLoading && <p>Loading...</p>}
         {isSuccess && (
@@ -56,6 +57,7 @@ export default function ViewFamilyPersonForm() {
 
         {/* Upload Document */}
         <FamilyPersonDocument />
+        
       </HorizaontalTabs>
     </Page>
   );
