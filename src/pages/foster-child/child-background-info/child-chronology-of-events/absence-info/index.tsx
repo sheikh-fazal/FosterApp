@@ -12,29 +12,31 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import { Box } from "@mui/material";
 
-AbsenceInfo.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
-};
 
-export default function AbsenceInfo() {
-  const router = useRouter();
-  const { id, action, fosterChildId }: any = router.query;
-  const BREADCRUMBS = [
+const BREADCRUMBS = (fosterChildId: any) => {
+  return [
     {
       icon: <HomeIcon />,
       name: "Child Chronology of Events",
-      href: `/foster-child/child-background-info/child-chronology-of-events`,
-      query: { fosterChildId: fosterChildId },
+      href: `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`,
     },
     {
       name: "Absence Info",
       href: "",
     },
   ];
+};
 
-  const PAGE_TITLE = "Absence Info";
+const PAGE_TITLE = "Absence Info";
+AbsenceInfo.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
+};
+
+export default function AbsenceInfo() {
+  const router = useRouter();
+  const { id, action, fosterChildId }: any = router.query;
+
   const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
     useGetChildChronologyOfEventsUploadedDocumentsListQuery({
@@ -75,8 +77,12 @@ export default function AbsenceInfo() {
     }
   };
   return (
-    <Box>
-      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} title={PAGE_TITLE} />
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+      />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm />
         <UploadDocuments
@@ -106,6 +112,6 @@ export default function AbsenceInfo() {
           disabled={!!id && (action === "add" || action === "edit") ? false : true}
         />
       </HorizaontalTabs>
-    </Box>
+    </>
   );
 }
