@@ -10,9 +10,9 @@ import dayjs from "dayjs";
 export const defaultValues = {
   reportDate: new Date(),
   emergencyPlacementRequired: null,
-  natureOfCall: "Text",
-  actionTaken: "Text",
-  actionNeeded: "Text",
+  natureOfCall: "",
+  actionTaken: "",
+  actionNeeded: "",
   personCompletingReport: "",
   addToChildRecord: "",
 };

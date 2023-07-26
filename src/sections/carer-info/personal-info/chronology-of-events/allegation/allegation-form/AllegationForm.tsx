@@ -57,7 +57,7 @@ function AllegationForm(props: any) {
                       {...form.otherOptions}
                       disabled={action === "view" ? true : false}
                       InputLabelProps={{
-                        shrink: action === "view" ? true : undefined,
+                        shrink: action === "view" || "edit" ? true : undefined,
                         disabled: action === "view" ? true : undefined,
                       }}
                     >

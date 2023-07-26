@@ -1,14 +1,14 @@
-import { Box, Grid, Typography, Button } from "@mui/material";
-import React from "react";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { reportData, personalDetails } from "./index";
-import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-import { useReportForm } from "./useReportForm";
-import { LoadingButton } from "@mui/lab";
+import React from "react";
+import { unannouncedhomeVisitData } from "./index";
 import IsFetching from "@root/components/loaders/IsFetching";
-function ReportForm(props: any) {
+import { useUnannouncedHomeVisitForm } from "./useUnannouncedHomeVisitForm";
+import { LoadingButton } from "@mui/lab";
+
+export default function UnannouncedHomeVisitForm(props: any) {
   const { action, id } = props;
-  //OOH Report Custom Hook
+  //UnannouncedHomeVisit Custom Hook
   const {
     router,
     onSubmit,
@@ -19,36 +19,21 @@ function ReportForm(props: any) {
     isFetching,
     isSubmitting,
     fosterCarerId,
-  } = useReportForm(action, id);
+  } = useUnannouncedHomeVisitForm(action, id);
 
-  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
-      <Grid container sx={{ mb: 3 }}>
-        {personalDetails.map((item: any) => (
-          <Grid item xs={12} md={6} key={item.id}>
-            <Box sx={{ display: "flex", gap: 1, mb: 1, alignItems: "center" }}>
-              <Typography
-                variant="subtitle2"
-                sx={{ color: theme.palette.grey[600] }}
-              >
-                {item.label}:
-              </Typography>
-              <Typography
-                variant="subtitle2"
-                sx={{ color: theme.palette.grey[600] }}
-              >
-                {item.name}
-              </Typography>
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
+      <Typography
+        variant="subtitle2"
+        sx={{ mb: 4, color: theme.palette.grey[600] }}
+      >
+        Supervising Social Worker: Not Assigned
+      </Typography>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
-          {reportData.map((form: any) => {
+          {unannouncedhomeVisitData.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id}>
                 <Box sx={{ px: 0.9, py: 1 }}>
@@ -147,5 +132,3 @@ function ReportForm(props: any) {
     </>
   );
 }
-
-export default ReportForm;
