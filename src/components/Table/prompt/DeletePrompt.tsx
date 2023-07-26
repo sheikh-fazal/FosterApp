@@ -7,7 +7,7 @@ import { Backdrop, Button, Grid, Typography } from "@mui/material";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import TableAction from "@root/components/TableAction";
 interface IDeletePrompt {
-  onDeleteClick: any;
+  onDeleteClick?: any;
 }
 const DeletePrompt: React.FunctionComponent<IDeletePrompt> = ({
   onDeleteClick,

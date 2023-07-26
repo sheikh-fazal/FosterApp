@@ -124,7 +124,7 @@ for (const formControl of reportData) {
   if (formControl.format)
     formatters[formControl.otherOptions.name] = formControl.format;
 }
-export { default as OhDetails } from "./reportForm";
+export { default as ReportForm } from "./ReportForm";
 
 export const personalDetails = [
   {

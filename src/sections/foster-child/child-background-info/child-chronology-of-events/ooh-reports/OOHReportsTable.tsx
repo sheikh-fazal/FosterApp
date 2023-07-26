@@ -32,7 +32,7 @@ const OOHReportsTable = (props: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.emergencyPlacementRequired,
+      accessorFn: (row: any) => (row?.emergencyPlacementRequired ? "Yes" : "No"),
       id: "emergencyPlacementRequired",
       cell: (info: any) => info.getValue(),
       header: "Emergency Placement Required",

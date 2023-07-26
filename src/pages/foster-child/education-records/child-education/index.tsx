@@ -25,7 +25,7 @@ const PAGE_TITLE = "Child Education Info";
 ////-----------------------------------------
 ChildEducationList.getLayout = function getLayout(page: any) {
   return (
-    <Layout showTitleWithBreadcrumbs title={PAGE_TITLE}>
+    <Layout title={PAGE_TITLE}>
       {page}
     </Layout>
   );
@@ -38,7 +38,7 @@ export default function ChildEducationList() {
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS(query)}
+        breadcrumbs={BREADCRUMBS(query)} title={PAGE_TITLE}
       />
 
       <ChildEducationInfoList />

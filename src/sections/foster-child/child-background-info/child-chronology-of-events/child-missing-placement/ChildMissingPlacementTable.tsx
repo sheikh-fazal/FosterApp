@@ -42,7 +42,7 @@ const ChildMissingPlacementTable = (props: any) => {
     },
 
     {
-      accessorFn: (row: any) => row?.missingReason,
+      accessorFn: (row: any) => row?.childMissingReason,
       id: "childMissingReason",
       cell: (info: any) => info.getValue(),
       header: "Missing Reason",
@@ -60,7 +60,11 @@ const ChildMissingPlacementTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />
@@ -73,7 +77,11 @@ const ChildMissingPlacementTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
               })
             }
           />

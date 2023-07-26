@@ -6,6 +6,7 @@ import AbsenceInfoForm from "@root/sections/foster-child/education-records/absen
 import { useRouter } from "next/router";
 import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 // Constants
 const BREADCRUMBS = (query: any) => [
   {
@@ -21,16 +22,7 @@ const BREADCRUMBS = (query: any) => [
 
 const PAGE_TITLE = "Absence Info";
 AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 export default function AbsenceInfoFormLayout() {
   const { query } = useRouter();
@@ -38,9 +30,16 @@ export default function AbsenceInfoFormLayout() {
   const { data, isLoading, isSuccess, isError } =
     useGetAbsenceInfoByIdQuery(childInfoId);
   return (
-    <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm defaultValues={data?.[0]} />
-      <AbsenceInfoDocument />
-    </HorizaontalTabs>
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
+        <AbsenceInfoForm defaultValues={data?.[0]} />
+        <AbsenceInfoDocument />
+      </HorizaontalTabs>
+    </>
   );
 }

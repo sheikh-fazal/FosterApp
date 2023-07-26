@@ -13,13 +13,23 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-export const defaultValues = {
+interface DefaultValues {
+  agreeToAboveDeclaration: boolean;
+  criminalOffence: string;
+  ifCriminalOffenceProvideDetails: string;
+  areYouWillingToUndergoFullEnhancedDBACheckAtPrice55: string;
+  workingTimeDirectives: boolean;
+  challengingBehaviour: boolean;
+  confidentialityAgreement: boolean;
+  dataPrivacyPolicy: boolean;
+}
+export const defaultValues: DefaultValues = {
   agreeToAboveDeclaration: false,
 
-  criminalOffence: false,
+  criminalOffence: "",
   ifCriminalOffenceProvideDetails: "",
 
-  areYouWillingToUndergoFullEnhancedDBACheckAtPrice55: false,
+  areYouWillingToUndergoFullEnhancedDBACheckAtPrice55: "",
 
   workingTimeDirectives: false,
 
@@ -30,7 +40,10 @@ export const defaultValues = {
   dataPrivacyPolicy: false,
 };
 
-export const FormSchema = Yup.object().shape({});
+export const FormSchema = Yup.object().shape({
+  agreeToAboveDeclaration: Yup.boolean().oneOf([true],"Must agree to abovedeclaration"),
+  ifCriminalOffenceProvideDetails:Yup.string().required("Required"),
+});
 
 export const viewDeclarationData = [
   {
