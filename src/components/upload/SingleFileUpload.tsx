@@ -40,7 +40,8 @@ const SingleFileUpload: FC<{
         fullWidth
         variant="outlined"
         disabled
-        value={`${availableFile ? availableFile : file ? file.name : ""} `}
+        // value={`${availableFile ? availableFile : file ? file.name : ""} `}
+        value={`${file ? file.name : availableFile ? availableFile : ""} `}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

@@ -138,8 +138,9 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 <Grid item sx={{ padding: "0.5em" }}>
                   <SingleFileUpload
                     accept={getDocType(docsType)}
-                    label="Selected File"
+                    label="File"
                     setFileHolder={setFileHolder}
+                    availableFile={defaultValue?.documentName}
                   />
                 </Grid>
               </Grid>

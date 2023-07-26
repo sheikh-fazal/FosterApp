@@ -20,7 +20,7 @@ export const useChildUploadDocuemntInfoList = () => {
     someAsyncAction: false,
     docsAddModel: false,
     updateViewModel: false,
-    updateViewModelDisabled: false,
+    updateViewModelDisabled: true,
     uploadFormDataHolder: null,
   });
   const params = {
@@ -59,7 +59,7 @@ export const useChildUploadDocuemntInfoList = () => {
     setTherapInfo((pre) => ({ ...pre, docsAddModel: false }));
   };
 
-  const openUpdateViewModel = (viewId: string) => {
+  const openUpdateViewModel = (viewId: string, isViewModel: boolean = true) => {
     const uploadDocsFormData = data?.data?.therapy_info_document.find(
       ({ id }: any) => id === viewId
     );
@@ -67,7 +67,11 @@ export const useChildUploadDocuemntInfoList = () => {
       ...pre,
       uploadFormDataHolder: uploadDocsFormData,
     }));
-    setTherapInfo((pre) => ({ ...pre, updateViewModel: true }));
+    setTherapInfo((pre) => ({
+      ...pre,
+      updateViewModel: true,
+      updateViewModelDisabled: isViewModel,
+    }));
   };
 
   const closeUpdateViewModel = () => {
