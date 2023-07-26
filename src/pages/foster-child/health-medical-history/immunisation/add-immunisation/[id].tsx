@@ -10,46 +10,51 @@ import Page from "@root/components/Page";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useGetImmunisationDetailQuery } from "@root/services/foster-child/health-medical-history/immunisation/ImmunisationApi";
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 const PAGE_TITLE = "Immunisation";
 
 // ----------------------------------------------------------------------
+AddImmunisation.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
 
 export default function AddImmunisation() {
   const router: any = useRouter();
   let { id } = router.query;
   let [immunisationId, setImmunisationId] = useState(null);
+
+  let BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      // name: "",
+      href: `/`,
+    },
+    {
+      name: "Child Immunisation Info",
+      href: `/foster-child/health-medical-history/immunisation?fosterChildId=${id}`,
+    },
+    {
+      name: "Immunisation info",
+      href: "",
+    },
+  ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          // name: "",
-          href: `/`,
-        },
-        {
-          name: "Child Immunisation Info",
-          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${id}`,
-        },
-        {
-          name: "Immunisation info",
-          href: "",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
-      <Box>
-        <HorizaontalTabs
-          tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
-        >
-          <ImmunisationFrom
-            setImmunisationId={setImmunisationId}
-            id={id}
-            action="add"
-          />
-          <ImmunisationUploadTable immunisationId={immunisationId} />
-        </HorizaontalTabs>
-      </Box>
-    </Layout>
+    <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <HorizaontalTabs
+        tabsDataArray={["Immunisations Info", "Uploaded Documents"]}
+      >
+        <ImmunisationFrom
+          setImmunisationId={setImmunisationId}
+          id={id}
+          action="add"
+        />
+        <ImmunisationUploadTable immunisationId={immunisationId} />
+      </HorizaontalTabs>
+    </Box>
   );
 }

@@ -10,12 +10,17 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import Page from "@root/components/Page";
 import { LeisureActivityDefaultValues } from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table";
 import dayjs from "dayjs";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
 
 const PAGE_TITLE = "Leisure Activities";
 
-export default function LeisureActivity() {
+ViewLeisureActivity.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
+
+export default function ViewLeisureActivity() {
   const router: any = useRouter();
   const { id, fosterChildId } = router.query;
 
@@ -24,25 +29,29 @@ export default function LeisureActivity() {
   });
   let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
 
+  let BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      href: "/",
+    },
+    {
+      name: "Leisure Activities List",
+      href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Leisure Activity",
+      href: "",
+    },
+  ];
+
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          href: "/",
-        },
-        {
-          name: "Leisure Activities List",
-          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
-        },
-        {
-          name: "Leisure Activity",
-          href: "",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       {isLoading ? (
         <SkeletonFormdata />
       ) : (
@@ -64,6 +73,6 @@ export default function LeisureActivity() {
           <UploadedDocumentsTable action="view" leisureActivityId={id} />
         </HorizaontalTabs>
       )}
-    </Layout>
+    </>
   );
 }

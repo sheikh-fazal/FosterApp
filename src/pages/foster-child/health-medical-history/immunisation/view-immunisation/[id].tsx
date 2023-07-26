@@ -10,9 +10,13 @@ import Page from "@root/components/Page";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useGetImmunisationDetailQuery } from "@root/services/foster-child/health-medical-history/immunisation/ImmunisationApi";
 import { immunisationInfoListValue } from "@root/sections/foster-child/health-medical-history/immunisation";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 const PAGE_TITLE = "Immunisation";
 
 // ----------------------------------------------------------------------
+ViewImmunisation.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
 
 export default function ViewImmunisation() {
   const router: any = useRouter();
@@ -21,27 +25,29 @@ export default function ViewImmunisation() {
   const { data, isLoading, isError }: any = useGetImmunisationDetailQuery({
     id,
   });
-
+  let BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      // name: "",
+      href: `/`,
+    },
+    {
+      name: "Child Immunisation Info",
+      href: `/foster-child/health-medical-history/immunisation?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Immunisation info",
+      href: "",
+    },
+  ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          // name: "",
-          href: `/`,
-        },
-        {
-          name: "Child Immunisation Info",
-          href: `/foster-child/health-medical-history/immunisation?fosterChildId=${fosterChildId}`,
-        },
-        {
-          name: "Immunisation info",
-          href: "",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       {isLoading ? (
         <SkeletonFormdata />
       ) : (
@@ -65,6 +71,6 @@ export default function ViewImmunisation() {
           </HorizaontalTabs>
         </Box>
       )}
-    </Layout>
+    </>
   );
 }
