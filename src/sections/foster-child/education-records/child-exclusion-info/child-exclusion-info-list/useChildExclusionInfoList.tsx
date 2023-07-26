@@ -28,6 +28,9 @@ const useChildExclusionInfoList = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetChildExclusionInfoListQuery(queryParams);
 
+    console.log(data);
+    
+
   const [deleteChildRecord] = useDeleteSingleChildExclusionInfoRecordMutation();
 
   const deleteTrainingProfile = async () => {
