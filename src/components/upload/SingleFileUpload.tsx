@@ -26,7 +26,7 @@ const SingleFileUpload: FC<{
   };
 
   return (
-    <Grid onClick={selectFile}>
+    <Grid onClick={selectFile} container>
       <input
         onChange={onFileChange}
         type="file"
@@ -34,7 +34,25 @@ const SingleFileUpload: FC<{
         ref={fileRef}
         accept={accept}
       />
-      <TextField
+      <Grid
+        item
+        xs={12}
+        sx={{
+          border: "1px solid #00000021",
+          padding: 1,
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+        container
+      >
+        <Grid item>
+          <InsertDriveFileIcon sx={{ opacity: "0.5" }} />
+        </Grid>
+        <Grid item>
+          {`${file ? file.name : availableFile ? availableFile : ""} `}
+        </Grid>
+      </Grid>
+      {/* <TextField
         id={label}
         label={label}
         fullWidth
@@ -49,7 +67,7 @@ const SingleFileUpload: FC<{
             </InputAdornment>
           ),
         }}
-      />
+      /> */}
     </Grid>
   );
 };
