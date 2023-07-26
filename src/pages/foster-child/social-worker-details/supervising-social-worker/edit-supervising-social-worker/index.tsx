@@ -5,16 +5,13 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import ActiveSocialWorkerTable from "@root/sections/foster-child/social-worker-details/la-social-worker/active-social-worker/ActiveSocialWorkerTable";
-import PreviousSocialWorkerTable from "@root/sections/foster-child/social-worker-details/la-social-worker/previous-social-worker/PreviousSocialWorkerTable";
-import ActiveSupervisingSocialWorkerTable from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/ActiveSupervisingSocialWorkerTable";
-import SupervisingPreviousSocialWorkerTable from "@root/sections/foster-child/social-worker-details/supervising-social-worker/previous-social-worker/SupervisingPreviousSocialWorkerTable";
+import SupervisingSocialWorkerForm from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/SupervisingSocialWorkerForm";
 
-supervisingSocialWorker.getLayout = function getLayout(page: any) {
+EditSupervisingSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 // export default function LaSocialWorker() {
-  export default function supervisingSocialWorker() {
+export default function EditSupervisingSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
 
@@ -45,22 +42,8 @@ supervisingSocialWorker.getLayout = function getLayout(page: any) {
       <HorizaontalTabs
         tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
       >
-        {/* <ActiveSocialWorkerTable fosterChildId={fosterChildId} />
-        <PreviousSocialWorkerTable fosterChildId={fosterChildId} /> */}
-        <ActiveSupervisingSocialWorkerTable />
-        <SupervisingPreviousSocialWorkerTable />
+        <SupervisingSocialWorkerForm />
       </HorizaontalTabs>
     </Box>
   );
 }
-
-
-
-
-
-
-// import React from "react";
-
-// export default function SupervisingSocialWorker() {
-//   return <div>SupervisingSocialWorker</div>;
-// }
