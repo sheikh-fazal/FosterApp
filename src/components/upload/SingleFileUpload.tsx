@@ -9,7 +9,8 @@ const SingleFileUpload: FC<{
   availableFile?: string;
   label: string;
   setFileHolder: Dispatch<SetStateAction<File | undefined>>;
-}> = ({ accept, label, availableFile, setFileHolder }) => {
+  readOnly?: boolean;
+}> = ({ accept, label, availableFile, setFileHolder, readOnly = false }) => {
   const [file, setFile] = useState<File>();
   const fileRef = useRef<HTMLInputElement>(null);
   const onFileChange = (event: any) => {
@@ -26,7 +27,7 @@ const SingleFileUpload: FC<{
   };
 
   return (
-    <Grid onClick={selectFile} container>
+    <Grid onClick={() => !readOnly && selectFile()} container>
       <input
         onChange={onFileChange}
         type="file"
