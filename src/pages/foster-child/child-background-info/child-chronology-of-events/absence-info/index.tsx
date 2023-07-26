@@ -11,6 +11,8 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import AbsenceInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/absence-info/AbsenceInfoForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+
 
 const BREADCRUMBS = (fosterChildId: any) => {
   return [
@@ -28,22 +30,13 @@ const BREADCRUMBS = (fosterChildId: any) => {
 
 const PAGE_TITLE = "Absence Info";
 AbsenceInfo.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function AbsenceInfo() {
   const router = useRouter();
-  const { id, action }: any = router.query;
+  const { id, action, fosterChildId }: any = router.query;
+
   const [page, setPage] = useState(0);
   const { data, isError, isLoading, isFetching, isSuccess }: any =
     useGetChildChronologyOfEventsUploadedDocumentsListQuery({
@@ -84,34 +77,41 @@ export default function AbsenceInfo() {
     }
   };
   return (
-    <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
-      <AbsenceInfoForm />
-      <UploadDocuments
-        searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        // onDelete={}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(pageNo: any) => {
-          setPage((pageNo - 1) * 10);
-        }}
-        currentPage={data?.data?.meta?.page}
-        totalPages={data?.data?.meta?.pages}
-        disabled={!!id && (action === "add" || action === "edit") ? false : true}
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
+        <AbsenceInfoForm />
+        <UploadDocuments
+          searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
+          tableData={data?.data?.foster_child_document}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          // onDelete={}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          modalData={(data: any) => uploadDocumentsHandler(data)}
+          onPageChange={(pageNo: any) => {
+            setPage((pageNo - 1) * 10);
+          }}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
+          disabled={!!id && (action === "add" || action === "edit") ? false : true}
+        />
+      </HorizaontalTabs>
+    </>
   );
 }

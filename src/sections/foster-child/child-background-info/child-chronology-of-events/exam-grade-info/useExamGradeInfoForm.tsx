@@ -17,10 +17,6 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const useExamGradeInfoForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
-  console.log(
-    "🚀 ~ file: useExamGradeInfoForm.tsx:20 ~ useExamGradeInfoForm ~ fosterChildId:",
-    fosterChildId
-  );
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);

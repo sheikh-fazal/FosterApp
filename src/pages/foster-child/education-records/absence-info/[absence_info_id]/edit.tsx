@@ -1,6 +1,7 @@
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
 import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
@@ -24,17 +25,7 @@ const BREADCRUMBS = (query: any) => [
 const PAGE_TITLE = "Edit Absence Info";
 
 EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function EditAbsenceInfoForm() {
@@ -49,6 +40,11 @@ export default function EditAbsenceInfoForm() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>
         {isLoading && <p>Loading...</p>}
         {isSuccess && (

@@ -135,8 +135,9 @@ export default function ChildMedicationInfoActions() {
           searchParam={(searchedText: string) => setParams(searchedText)}
           modalData={(data: any) => documentUploadHandler(data)}
           onPageChange={(page: any) => {
-            setPage(() => (page - 1) * 10);
+            setPage((page - 1) * 10);
           }}
+          
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onDelete={(data: any) => deleteDocument(data?.id)}

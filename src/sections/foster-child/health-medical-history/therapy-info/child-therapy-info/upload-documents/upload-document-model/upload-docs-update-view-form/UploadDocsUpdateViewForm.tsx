@@ -27,9 +27,13 @@ import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
 import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 
-const UploadDocsForm: FC<any> = ({ closeModel }) => {
+const UploadDocsUpdateViewForm: FC<any> = ({
+  closeModel,
+  disabled,
+  defaultValue,
+}) => {
   const theme: any = useTheme();
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
@@ -40,7 +44,7 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: defaultValue,
   });
 
   const {
@@ -134,8 +138,10 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
                 <Grid item sx={{ padding: "0.5em" }}>
                   <SingleFileUpload
                     accept={getDocType(docsType)}
-                    label="Selected File"
+                    label="File"
                     setFileHolder={setFileHolder}
+                    availableFile={defaultValue?.documentName}
+                    readOnly={disabled}
                   />
                 </Grid>
               </Grid>
@@ -167,4 +173,4 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
   );
 };
 
-export default UploadDocsForm;
+export default UploadDocsUpdateViewForm;

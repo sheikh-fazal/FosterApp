@@ -9,7 +9,8 @@ const SingleFileUpload: FC<{
   availableFile?: string;
   label: string;
   setFileHolder: Dispatch<SetStateAction<File | undefined>>;
-}> = ({ accept, label, availableFile, setFileHolder }) => {
+  readOnly?: boolean;
+}> = ({ accept, label, availableFile, setFileHolder, readOnly = false }) => {
   const [file, setFile] = useState<File>();
   const fileRef = useRef<HTMLInputElement>(null);
   const onFileChange = (event: any) => {
@@ -26,7 +27,7 @@ const SingleFileUpload: FC<{
   };
 
   return (
-    <Grid onClick={selectFile}>
+    <Grid onClick={() => !readOnly && selectFile()} container>
       <input
         onChange={onFileChange}
         type="file"
@@ -34,13 +35,32 @@ const SingleFileUpload: FC<{
         ref={fileRef}
         accept={accept}
       />
-      <TextField
+      <Grid
+        item
+        xs={12}
+        sx={{
+          border: "1px solid #00000021",
+          padding: 1,
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+        container
+      >
+        <Grid item>
+          <InsertDriveFileIcon sx={{ opacity: "0.5" }} />
+        </Grid>
+        <Grid item>
+          {`${file ? file.name : availableFile ? availableFile : ""} `}
+        </Grid>
+      </Grid>
+      {/* <TextField
         id={label}
         label={label}
         fullWidth
         variant="outlined"
         disabled
-        value={`${availableFile ? availableFile : file ? file.name : ""} `}
+        // value={`${availableFile ? availableFile : file ? file.name : ""} `}
+        value={`${file ? file.name : availableFile ? availableFile : ""} `}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
@@ -48,7 +68,7 @@ const SingleFileUpload: FC<{
             </InputAdornment>
           ),
         }}
-      />
+      /> */}
     </Grid>
   );
 };
