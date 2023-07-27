@@ -32,7 +32,7 @@ const SatsExamGradeList = () => {
         showAddBtn={true}
         onAdd={() =>
           router.push(
-            `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${query?.fosterChildId}&action=create`
+            `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${query?.fosterChildId}&action=create`
           )
         }
         onChanged={(data: any) => {

@@ -40,7 +40,7 @@ export const getColumns = (parms: any) => {
             type="edit"
             onClick={() =>
               router.push(
-                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${info.row.original.id}`
+                `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${fosterChildId}&action=update&id=${info.row.original.id}`
               )
             }
           />
@@ -49,7 +49,7 @@ export const getColumns = (parms: any) => {
             type="view"
             onClick={() =>
               router.push(
-                `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=view&therapyInfoId=${info.row.original.id}`
+                `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${fosterChildId}&action=view&id=${info.row.original.id}`
               )
             }
           />

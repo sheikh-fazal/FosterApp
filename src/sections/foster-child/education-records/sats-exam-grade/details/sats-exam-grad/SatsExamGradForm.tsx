@@ -31,6 +31,11 @@ import {
   useUpdateTherapyInfoByidMutation,
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { useRouter } from "next/router";
+import {
+  useAddSatsExamGradeListDataMutation,
+  useLazyGetSatsExamGradeInfoByIdQuery,
+  useUpdateSatsExamGradeInfoByidMutation,
+} from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 const SatsExamGradForm: FC<any> = () => {
   const theme: any = useTheme();
@@ -38,34 +43,46 @@ const SatsExamGradForm: FC<any> = () => {
   const [disabled, setDisabled] = useState(false);
   const router = useRouter();
   const { query } = router;
-  const { action = "", fosterChildId = "", therapyInfoId = "" } = query;
+  const { action = "", fosterChildId = "", id = "" } = query;
+  // console.log({ action, fosterChildId, therapyInfoId });
+  const [getSatsExamGradeInfoById] = useLazyGetSatsExamGradeInfoByIdQuery();
 
-  const [getProfileInfoQuery] = useLazyGetTherapyInfoByidQuery();
-
-  const [addAlltherapyDetailsListData] =
-    useAddAlltherapyDetailsListDataMutation();
-  const [updateTherapyInfoByid] = useUpdateTherapyInfoByidMutation();
+  const [addSatsExamGradeListData] = useAddSatsExamGradeListDataMutation();
+  const [updateSatsExamGradeInfoByid] =
+    useUpdateSatsExamGradeInfoByidMutation();
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       // if action is view or update
-      if (action === "view" || (action === "update" && therapyInfoId !== "")) {
+      if (action === "view" || (action === "update" && id !== "")) {
         setIsLoading(true);
-        const { data, isError, error } = await getProfileInfoQuery(
-          { id: therapyInfoId },
+        const { data, isError, error } = await getSatsExamGradeInfoById(
+          { id },
           false
         );
+        const {
+          schoolYear,
+          formName,
+          term,
+          subject,
+          teacher,
+          target,
+          currentLevel,
+        } = data?.data;
         setIsLoading(false);
         if (isError || !data?.data) {
           displayErrorMessage(error, enqueueSnackbar);
           return defaultValues;
         }
         return {
-          ...data?.data,
-          referralDate: new Date(data?.data?.referralDate),
-          appointmentDate: new Date(data?.data?.appointmentDate),
-          anyOtherTherapy: true,
+          schoolYear,
+          formName,
+          term,
+          subject,
+          teacher,
+          target,
+          currentLevel,
         };
       }
       setIsLoading(false);
@@ -79,31 +96,29 @@ const SatsExamGradForm: FC<any> = () => {
     formState: { isSubmitting },
   } = methods;
 
-  const anyOtherTherapy = useWatch({ control, name: "anyOtherTherapy" });
-
   const onSubmit = async (data: any) => {
-    console.log(data);
-    return;
+    // console.log(data);
+    // return;
     const jsonData = {
       ...data,
+      fosterChildId,
     };
     try {
       // handling create and update based on action query parameter
       const data: any =
         action === "create"
-          ? await addAlltherapyDetailsListData({
+          ? await addSatsExamGradeListData({
               jsonData,
-              fosterChildId: fosterChildId,
             })
-          : await updateTherapyInfoByid({
+          : await updateSatsExamGradeInfoByid({
               jsonData,
-              id: therapyInfoId,
+              id,
             });
       // getting id for the therapy if action is create and moving user to update route for data persistence
       action === "create" &&
         data?.data?.data?.id &&
         router.push(
-          `/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${data?.data?.data?.id}`
+          `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${fosterChildId}&action=update&id=${data?.data?.data?.id}`
         );
 
       displaySuccessMessage(data, enqueueSnackbar);

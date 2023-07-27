@@ -4,7 +4,7 @@ export const satsExamGradeListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     addSatsExamGradeListData: builder.mutation({
       query: (payload: any) => ({
-        url: `/education-records/sats-exam-grade-details${payload.fosterChildId}`,
+        url: `/education-records/sats-exam-grade-details`,
         method: "POST",
         body: payload.jsonData,
       }),
@@ -38,7 +38,7 @@ export const satsExamGradeListApi = baseAPI.injectEndpoints({
 
     updateSatsExamGradeInfoByid: builder.mutation({
       query: (payload: any) => ({
-        url: `/sats-exam-grade-details/${payload.id}`,
+        url: `/education-records/sats-exam-grade-details/${payload.id}`,
         method: "PATCH",
         body: payload.jsonData,
       }),

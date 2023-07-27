@@ -70,5 +70,11 @@ export const fieldsInfo = [
       label: "Current Level",
       fieldHeader: null,
     },
+    {
+      type: null,
+      name: "",
+      label: "",
+      fieldHeader: null,
+    },
   ],
 ];
