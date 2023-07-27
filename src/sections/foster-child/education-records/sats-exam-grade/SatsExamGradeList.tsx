@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSatsExamGradeList } from "./useTherapyInfoList";
+import { useSatsExamGradeList } from "./useSatsExamGradeList";
 import { Box, Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -41,7 +41,7 @@ const SatsExamGradeList = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.therapy_info}
+        data={data?.data?.cc_exam_grade}
         columns={columns}
         isLoading={isLoading}
         showSerialNo

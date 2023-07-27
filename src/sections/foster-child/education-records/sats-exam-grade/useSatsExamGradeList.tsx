@@ -7,6 +7,10 @@ import {
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { displaySuccessMessage } from "@root/utils/mixedUtil";
+import {
+  useDelSatsExamGradeListDataMutation,
+  useGetSatsExamGradeListDataQuery,
+} from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 export const useSatsExamGradeList = () => {
   const router = useRouter();
@@ -25,12 +29,14 @@ export const useSatsExamGradeList = () => {
 
   const apiDataParameter = { params, id: query.fosterChildId };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAlltherapyDetailsListDataQuery(apiDataParameter);
-  const [delTherapyDetailsListData] = useDelTherapyDetailsListDataMutation();
-  const handleDeleteTherapy = async (id: string) => {
+    useGetSatsExamGradeListDataQuery(apiDataParameter);
+  // console.log("Data", data);
+  const [delStasEcamGradeListData] = useDelSatsExamGradeListDataMutation();
+
+  const handleDeleteSats = async (id: string) => {
     try {
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
-      const data = await delTherapyDetailsListData({ id });
+      const data = await delStasEcamGradeListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
@@ -39,9 +45,9 @@ export const useSatsExamGradeList = () => {
       return false;
     }
   };
-  // const { data, isLoading, isSuccess, isError, isFetching } =
-  //   useSafeCarePolicyListQuery(params);
-  const columns = getColumns({ router, handleDeleteTherapy });
+
+  const columns = getColumns({ router, handleDeleteSats });
+
   return {
     tableHeaderRef,
     columns,
@@ -54,6 +60,5 @@ export const useSatsExamGradeList = () => {
     setPage,
     page,
     therapInfoCon,
-    handleDeleteTherapy,
   };
 };

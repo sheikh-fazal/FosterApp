@@ -4,25 +4,32 @@ import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { router, handleDeleteTherapy } = parms;
+  const { router, handleDeleteSats } = parms;
   const { query } = router;
   const { fosterChildId } = query;
   return [
     {
-      accessorFn: (row: any) => row.referralDate,
-      id: "CAMHS Date",
-      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-      header: " CAMHS Date",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.appointmentDate,
-      id: "Appointment",
-      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-      header: "Appointment",
+      accessorFn: (row: any) => row.schoolYear,
+      id: "School Year",
+      cell: (info: any) => info.getValue(),
+      header: "School Year",
       isSortable: false,
     },
 
+    {
+      accessorFn: (row: any) => row.term,
+      id: "Term",
+      cell: (info: any) => info.getValue(),
+      header: "Term",
+      isSortable: false,
+    },
+    {
+      accessorFn: (row: any) => row.subject,
+      id: "subject",
+      cell: (info: any) => info.getValue(),
+      header: "subject",
+      isSortable: false,
+    },
     {
       accessorFn: (row: any) => row.f,
       id: "actions",
@@ -49,7 +56,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="delete"
-            onClicked={() => handleDeleteTherapy(info.row.original.id)}
+            onClicked={() => handleDeleteSats(info.row.original.id)}
           />
         </Box>
       ),

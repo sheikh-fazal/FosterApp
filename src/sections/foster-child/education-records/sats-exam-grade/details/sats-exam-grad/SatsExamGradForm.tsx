@@ -32,7 +32,7 @@ import {
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { useRouter } from "next/router";
 
-const HealthTherapyInfoForm: FC<any> = () => {
+const SatsExamGradForm: FC<any> = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [disabled, setDisabled] = useState(false);
@@ -258,4 +258,4 @@ const HealthTherapyInfoForm: FC<any> = () => {
   );
 };
 
-export default HealthTherapyInfoForm;
+export default SatsExamGradForm;

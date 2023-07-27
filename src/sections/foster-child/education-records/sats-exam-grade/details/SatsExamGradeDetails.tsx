@@ -1,20 +1,18 @@
 import React from "react";
 import { Box } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import HealthTherapyInfoForm from "./health-therapy-info/HealthTherapyInfoForm";
+import SatsExamGradForm from "./sats-exam-grad/SatsExamGradForm";
 import UploadDocuments from "./upload-documents/UploadDocuments";
 
-const ChildTherapyInfo = () => {
+const SatsExamGradeDetails = () => {
   return (
     <Box>
-      <HorizaontalTabs
-        tabsDataArray={["Health Therapy Info", "Upload documents"]}
-      >
-        <HealthTherapyInfoForm />
+      <HorizaontalTabs tabsDataArray={["SATS/Exam/Grades", "Document(s)"]}>
+        <SatsExamGradForm />
         <UploadDocuments />
       </HorizaontalTabs>
     </Box>
   );
 };
 
-export default ChildTherapyInfo;
+export default SatsExamGradeDetails;

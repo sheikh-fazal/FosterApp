@@ -1,19 +1,20 @@
-import { useRouter } from "next/router";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
+import ChildTherapyInfo from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/ChildTherapyInfo";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import SatsExamGradeList from "@root/sections/foster-child/education-records/sats-exam-grade/SatsExamGradeList";
+import { useRouter } from "next/router";
+import SatsExamGradeDetails from "@root/sections/foster-child/education-records/sats-exam-grade/details/SatsExamGradeDetails";
 
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "/ Child Info",
-    href: `/foster-child/?fosterChildId=${query.fosterChildId}`,
+    name: "/ SATS/Exam/Grade Details List",
+    href: `/foster-child/education-records/sats-exam-grade-details-list?fosterChildId=${query.fosterChildId}`,
   },
   {
-    name: "SATS/Exam/Grade Details List",
+    name: "SATS/Exam/Grade Details ",
     href: "/",
   },
 ];
@@ -30,8 +31,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 export default function InitialHomeVisit() {
   const router = useRouter();
-
-  if (!router?.query?.fosterChildId) {
+  if (!!!router?.query?.fosterChildId) {
     router.push({
       pathname: "/foster-child-lists",
     });
@@ -44,7 +44,7 @@ export default function InitialHomeVisit() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <SatsExamGradeList />
+      <SatsExamGradeDetails />
     </Page>
   );
 }
