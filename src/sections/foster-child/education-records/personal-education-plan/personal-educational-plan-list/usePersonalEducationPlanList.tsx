@@ -9,7 +9,6 @@ const usePersonalEducationPlanList = () => {
   const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
-
   const fosterChildId = router?.query?.fosterChildId;
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
@@ -53,7 +52,10 @@ const usePersonalEducationPlanList = () => {
     deleteTrainingProfile,
     router,
     data,
-    isSuccess
+    isSuccess,
+    isError,
+    isLoading,
+    fosterChildId
   };
 };
 

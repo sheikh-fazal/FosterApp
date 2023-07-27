@@ -10,12 +10,24 @@ export const ChildEducationPlan: any = baseAPI.injectEndpoints({
       providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     postChildEducationPlan: builder.mutation({
-      query: (fosterChildId: any) => ({
+      query: ({ data, fosterChildId }: any) => ({
         url: `/education-records/education-plan/${fosterChildId}`,
         method: "POST",
+        body: data,
       }),
+    }),
+    getSingleChildEducationPlan: builder.query({
+      query: (id: any) => ({
+        url: `/education-records/education-plan/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["CHILD_EDUCATION_PLAN"],
     }),
   }),
 });
 
-export const { useGetChildEducationPlanListQuery, usePostChildEducationPlanMutation } = ChildEducationPlan;
+export const {
+  useGetChildEducationPlanListQuery,
+  usePostChildEducationPlanMutation,
+  useGetSingleChildEducationPlanQuery,
+} = ChildEducationPlan;

@@ -3,15 +3,15 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { DummyChildExclusionData } from ".";
 import useOutSchoolActivityList from "./usePersonalEducationPlanList";
 
 export const PersonalEducationPlanList = () => {
   const {
     columnsChildExclusionInfoTableFuntion,
-    // trainingPRofileData,
     data,
     router,
+    isError,
+    isLoading,
     headerChangeHandler,
     tableHeaderRef,
     pageChangeHandler,
@@ -19,7 +19,8 @@ export const PersonalEducationPlanList = () => {
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
-    isSuccess
+    isSuccess,
+    fosterChildId
   } = useOutSchoolActivityList();
   return (
     <>
@@ -37,7 +38,7 @@ export const PersonalEducationPlanList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/personal-education-plan/new-personal-education-plan"
+              `/foster-child/education-records/personal-education-plan/new-personal-education-plan?fosterChildId=${fosterChildId}`
             );
           }}
           onChanged={headerChangeHandler}
@@ -48,6 +49,8 @@ export const PersonalEducationPlanList = () => {
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}
+          isError={isError}
+          isLoading={isLoading}
           isPagination={true}
         />
       </Card>

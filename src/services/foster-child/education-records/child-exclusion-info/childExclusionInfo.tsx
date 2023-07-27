@@ -3,10 +3,10 @@ import { baseAPI } from "@root/services/baseApi";
 export const ChildEducationInfoList: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getChildExclusionInfoList: builder.query({
-      query: (queryParams: any) => ({
+      query: ({ params }: any) => ({
         url: "/education-records/exclusion-info/List",
         method: "GET",
-        param: queryParams,
+        params,
       }),
       providesTags: ["CHILD_EXCLUSION_INFO_LIST"],
     }),
@@ -43,6 +43,12 @@ export const ChildEducationInfoList: any = baseAPI.injectEndpoints({
         body: formData,
       }),
     }),
+    getChildExclusionDocumentList: builder.query({
+      query: (id: any) => ({
+        url: `/education-records/list-exclusionDocuments/${id}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -52,5 +58,6 @@ export const {
   useGetSingleChildExclusionInfoRecordQuery,
   usePatchSingleChildExclusionInfoRecordMutation,
   useDeleteSingleChildExclusionInfoRecordMutation,
-  usePostFosterExclusionDocumentMutation
+  usePostFosterExclusionDocumentMutation,
+  useGetChildExclusionDocumentListQuery,
 } = ChildEducationInfoList;

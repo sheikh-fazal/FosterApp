@@ -19,17 +19,8 @@ const useChildExclusionInfoList = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  const queryParams = {
-    search: params.search,
-    offset: params.page,
-    limit: params.offset,
-  };
-
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetChildExclusionInfoListQuery(queryParams);
-
-    console.log(data);
-    
+    useGetChildExclusionInfoListQuery({ params });
 
   const [deleteChildRecord] = useDeleteSingleChildExclusionInfoRecordMutation();
 

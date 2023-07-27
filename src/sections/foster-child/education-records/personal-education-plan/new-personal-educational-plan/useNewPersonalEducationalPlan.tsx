@@ -10,22 +10,22 @@ const useNewPersonalEducationalPlan = () => {
   const router = useRouter();
   const fosterChildId = router?.query?.fosterChildId;
 
-  const [postData] = usePostChildEducationPlanMutation(fosterChildId);
-  
+  const [postData] = usePostChildEducationPlanMutation();
+
   const defaultValues = {
     school: "",
-    pepDate: new Date(todayDate),
+    date: new Date(todayDate),
     onFile: "",
     comments: "",
-    
+    principalName: "",
   };
 
   const tainingProfileSchema = Yup.object().shape({
     school: Yup.string().required("Required"),
-    pepDate: Yup.date().required("Required"),
+    date: Yup.date().required("Required"),
     onFile: Yup.string().required("Required"),
     comments: Yup.string().required("Required"),
-   
+    principalName: Yup.string().required("Required"),
   });
 
   const methods: any = useForm({
@@ -35,8 +35,8 @@ const useNewPersonalEducationalPlan = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    const res = await postData({ data, fosterChildId });
   };
 
   return { methods, handleSubmit, onSubmit, router };
