@@ -48,7 +48,11 @@ export const getColumns = (parms: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction size="small" type="edit" />
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() => openUpdateViewModel(info.row.original.id, false)}
+          />
           <TableAction size="small" type="download" />
           <TableAction
             size="small"
