@@ -15,7 +15,7 @@ const usePersonalEducationPlanList = () => {
     useTableParams();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    useGetChildEducationPlanListQuery(fosterChildId);
+    useGetChildEducationPlanListQuery({ fosterChildId, params });
 
   const deleteTrainingProfile = async () => {
     console.log(trainingProfileId);
@@ -55,7 +55,8 @@ const usePersonalEducationPlanList = () => {
     isSuccess,
     isError,
     isLoading,
-    fosterChildId
+    fosterChildId,
+    isFetching,
   };
 };
 

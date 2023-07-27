@@ -20,7 +20,8 @@ export const PersonalEducationPlanList = () => {
     closeDeleteProfile,
     deleteTrainingProfile,
     isSuccess,
-    fosterChildId
+    fosterChildId,
+    isFetching
   } = useOutSchoolActivityList();
   return (
     <>
@@ -51,6 +52,7 @@ export const PersonalEducationPlanList = () => {
           isSuccess={isSuccess}
           isError={isError}
           isLoading={isLoading}
+          isFetching={isFetching}
           isPagination={true}
         />
       </Card>

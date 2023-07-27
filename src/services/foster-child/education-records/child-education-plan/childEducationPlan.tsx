@@ -3,9 +3,10 @@ import { baseAPI } from "@root/services/baseApi";
 export const ChildEducationPlan: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getChildEducationPlanList: builder.query({
-      query: (fosterChildId: any) => ({
+      query: ({ fosterChildId, params }: any) => ({
         url: `/education-records/education-plan/list-education-plan?${fosterChildId}`,
         method: "GET",
+        params,
       }),
       providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
