@@ -19,6 +19,7 @@ export const HealthAndSafetyTable = () => {
     isLoading,
     isError,
     isSuccess,
+    // arryBE
   } = useHealthAndSafetyTable();
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =

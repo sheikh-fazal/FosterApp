@@ -7,9 +7,11 @@ export const useHealthAndSafetyTable = () => {
   const [open, setOpen] = React.useState(false);
   const { data, isLoading, isError, isSuccess } =
     useGetHealthAndSafetyListDataQuery({});
-    const le = data.data.length
-    
-  const healthAndSafetyApiData =data.data[0];
+  // const le = data.data.length
+
+  const healthAndSafetyApiData = data?.data[0]?.houseHoldConditionA;
+  // const arryBE = [];
+  // arryBE?.push(healthAndSafetyApiData);
   console.log(healthAndSafetyApiData);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -28,5 +30,6 @@ export const useHealthAndSafetyTable = () => {
     isLoading,
     isError,
     isSuccess,
+    // arryBE
   };
 };
