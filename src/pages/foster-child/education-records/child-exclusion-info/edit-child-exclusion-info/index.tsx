@@ -88,6 +88,7 @@ export default function EditChildExclusionInfoPage() {
           </>
         )}
 
+
         <UploadDocuments
           readOnly={false}
           tableData={exclusionDocumentList?.data?.exclusion_documents}
