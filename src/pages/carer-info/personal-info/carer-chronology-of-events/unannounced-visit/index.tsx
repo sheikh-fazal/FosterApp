@@ -5,11 +5,17 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UnannouncedHomeVisitForm from "@root/sections/carer-info/personal-info/chronology-of-events/unannounced-visit/unannounced-home-form/UnannouncedHomeVisitForm";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { enqueueSnackbar } from "notistack";
+import {
+  usePostUnannouncedDocumentsMutation,
+  useDeleteDocumentListMutation,
+  useUploadDocumentListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/unannounced-visit-api/unannouncedVisitDocumentsApi";
 
 UnannouncedVisit.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-
 export default function UnannouncedVisit() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
@@ -22,7 +28,6 @@ export default function UnannouncedVisit() {
       },
     });
   }
-
   // BREADCRUMBS
   const BREADCRUMBS = [
     {
@@ -39,7 +44,57 @@ export default function UnannouncedVisit() {
     },
   ];
   const PAGE_TITLE = "Unannounced Home Visit";
+  const {
+    data: documentData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isError: hasDocumentError,
+    isSuccess,
+  }: any = useUploadDocumentListQuery({
+    params: {
+      recordId: id,
+      params: params,
+    },
+  });
+  //unannounced-visit Upload Modal API
+  const [postDocuments] = usePostUnannouncedDocumentsMutation();
+  //API For Delete Document List
+  const [deleteDocumentList] = useDeleteDocumentListMutation();
+  const tableData: any = documentData?.data?.carer_chronology_document;
+  const metaData: any = documentData?.data?.meta;
 
+  const documentUploadHandler = async (data: any) => {
+    const formData = new FormData();
+    formData.append("formName", "UNANNOUNCED_HOME_VISIT");
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("documentPassword", data.password);
+    formData.append("file", data.chosenFile);
+    formData.append("recordId", id);
+    try {
+      await postDocuments(formData).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+  //Delete API
+  const deleteDocument = async (id: any) => {
+    deleteDocumentList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted  Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -53,7 +108,7 @@ export default function UnannouncedVisit() {
         {/* Unannounced Home Visit Component */}
         <UnannouncedHomeVisitForm id={id} action={action} />
         {/* Upload Documents Components */}
-        {/* <UploadDocuments
+        <UploadDocuments
           readOnly={action === "view" ? true : false}
           tableData={tableData}
           isLoading={isDocumentLoading}
@@ -78,7 +133,7 @@ export default function UnannouncedVisit() {
           disabled={
             !!id && (action === "add" || action === "edit") ? false : true
           }
-        /> */}
+        />
       </HorizaontalTabs>
     </>
   );

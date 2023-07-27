@@ -81,6 +81,7 @@ export const TAGS = [
   "OOHREPORT_LIST_TABLE",
   "REPORTS_DOCUMENTS",
   "UNANNOUNCED_VISIT_LIST",
+  "UNANNOUNCED_UPLOAD_DOCUMENTS",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
