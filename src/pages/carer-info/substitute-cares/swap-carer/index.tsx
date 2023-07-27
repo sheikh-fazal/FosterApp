@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
@@ -43,6 +46,7 @@ export default function SwapCarer() {
       offset: "0",
       type: "SC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
   const title = "Swap Carer List";
 
   const FORMROUTE = `/carer-info/substitute-cares/swap-carer/swap-carer-details?fosterCarerId=${id}`;
@@ -87,6 +91,7 @@ export default function SwapCarer() {
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
+              deleteHandler(info.row.original);
               alert("delete");
             }}
             size="small"
@@ -122,7 +127,7 @@ export default function SwapCarer() {
   //   pages: "1",
   // };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);

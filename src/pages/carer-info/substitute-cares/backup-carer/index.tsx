@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import usePath from "@root/hooks/usePath";
 
@@ -44,6 +47,7 @@ export default function BackupCarer() {
       offset: "0",
       type: "BC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
 
   const title = "Backup Carer List";
 
@@ -89,6 +93,7 @@ export default function BackupCarer() {
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
+              deleteHandler(info.row.original);
               alert("delete");
             }}
             size="small"
@@ -113,18 +118,18 @@ export default function BackupCarer() {
       familyDetails: "18 siblings",
     },
   ];
-  const status = {
-    isLoading: false,
-    isFetching: false,
-    isError: false,
-    isSuccess: true,
-  };
+  // const status = {
+  //   isLoading: false,
+  //   isFetching: false,
+  //   isError: false,
+  //   isSuccess: true,
+  // };
   const meta = {
     page: "1",
     pages: "1",
   };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);

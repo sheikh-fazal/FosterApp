@@ -114,6 +114,7 @@ export const SUBSTITUTECARERFORMDATA = [
     componentProps: {
       name: "firstName",
       label: "First Name",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -123,6 +124,7 @@ export const SUBSTITUTECARERFORMDATA = [
     componentProps: {
       name: "middleName",
       label: "Middle Name",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -131,6 +133,8 @@ export const SUBSTITUTECARERFORMDATA = [
     id: 4,
     componentProps: {
       name: "lastName",
+      fullWidth: true,
+
       label: "Last Name",
     },
     gridLength: 6,
@@ -185,6 +189,7 @@ export const SUBSTITUTECARERFORMDATA = [
     componentProps: {
       name: "telephone",
       label: "Telephone",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -194,6 +199,7 @@ export const SUBSTITUTECARERFORMDATA = [
     componentProps: {
       name: "email",
       label: "Email",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -216,6 +222,7 @@ export const SUBSTITUTECARERFORMDATA = [
     componentProps: {
       name: "languageSpoken",
       label: "languageSpoken Spoken",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -323,6 +330,8 @@ export const SUBSTITUTECARERFORMDATA = [
       name: "supporttheFosterCarer",
       text: "Why do you want to support the Foster Carer?",
       label: "Field Value",
+      fullWidth: true,
+
       Component: RHFTextField,
       typographyProps: {
         variant: "body2",
@@ -338,6 +347,8 @@ export const SUBSTITUTECARERFORMDATA = [
       name: "currentlyInPlacement",
       text: "Do you know the CHildren Currently in placement?",
       label: "Field Value",
+      fullWidth: true,
+
       Component: RHFTextField,
       typographyProps: {
         variant: "body2",

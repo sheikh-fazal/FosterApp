@@ -31,8 +31,9 @@ export default function SubstituteCarerForm(props: any) {
   const { reset, handleSubmit } = methods;
 
   const onSubmitHandler = (data: any) => {
-    onSubmit(data);
-    onEdit({ ...data, id: params.query?.carerId });
+    params.query?.carerId
+      ? onEdit({ body: data, id: params.query?.carerId })
+      : onSubmit(data);
     // reset();
   };
   // updating defaultValues

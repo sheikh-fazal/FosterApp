@@ -5,7 +5,10 @@ import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
@@ -43,6 +46,7 @@ export default function RespiteCarer() {
       offset: "0",
       type: "RC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
 
   const title = "Respite Carer List";
   const FORMROUTE = `/carer-info/substitute-cares/respite-carer/respite-carer-details?fosterCarerId=${id}`;
@@ -88,6 +92,7 @@ export default function RespiteCarer() {
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
+              deleteHandler(info.row.original);
               alert("delete");
             }}
             size="small"
@@ -112,19 +117,19 @@ export default function RespiteCarer() {
       familyDetails: "18 siblings",
     },
   ];
-  const status = {
-    isLoading: false,
-    isFetching: false,
-    isError: false,
-    isSuccess: true,
-  };
+  // const status = {
+  //   isLoading: false,
+  //   isFetching: false,
+  //   isError: false,
+  //   isSuccess: true,
+  // };
   const meta = {
     page: "1",
     pages: "1",
   };
 
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
