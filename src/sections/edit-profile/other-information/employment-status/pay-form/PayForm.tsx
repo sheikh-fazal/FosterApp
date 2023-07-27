@@ -107,13 +107,18 @@ const DBS: FC<any> = ({ setEmploymentStatus }) => {
               {/* Issue Date */}
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFTextField name="taxCode" label="Pay Tax Code*" />
+                  <RHFTextField
+                    fullWidth
+                    name="taxCode"
+                    label="Pay Tax Code*"
+                  />
                 </Grid>
               </Grid>
               {/* DBS Online  */}
               <Grid item sm={6} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
                   <RHFTextField
+                    fullWidth
                     name="insuranceNo"
                     label="National Insurance No.*"
                   />

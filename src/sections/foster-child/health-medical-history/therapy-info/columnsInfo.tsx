@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
   const { router, handleDeleteTherapy } = parms;
-  const query = router;
+  const { query } = router;
   const { fosterChildId } = query;
   return [
     {
