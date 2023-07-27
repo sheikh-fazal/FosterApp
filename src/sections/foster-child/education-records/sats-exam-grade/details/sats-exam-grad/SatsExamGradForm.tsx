@@ -82,6 +82,8 @@ const SatsExamGradForm: FC<any> = () => {
   const anyOtherTherapy = useWatch({ control, name: "anyOtherTherapy" });
 
   const onSubmit = async (data: any) => {
+    console.log(data);
+    return;
     const jsonData = {
       ...data,
     };
@@ -118,22 +120,6 @@ const SatsExamGradForm: FC<any> = () => {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container justifyContent="center">
           <Grid container item sm={12}>
-            <Grid item md={12} container>
-              <Grid item xs={12} sm={2} sx={{ padding: "0.5em" }}>
-                <RHFCheckbox
-                  name="referalCAHMS"
-                  label="Referral to CAMHS"
-                  disabled={disabled || action === "view"}
-                />
-              </Grid>
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFCheckbox
-                  name="CAHMSAppointment"
-                  label="CAMHS Appointment"
-                  disabled={disabled || action === "view"}
-                />
-              </Grid>
-            </Grid>
             <Grid item sm={12} container>
               {/* Dynamically Generated Fields  */}
               {fieldsInfo.map((item: any, index: number) => {
@@ -159,7 +145,7 @@ const SatsExamGradForm: FC<any> = () => {
                 );
               })}
               {/* A Custom Field On Full Width  */}
-              <Grid item sm={12} container direction="column">
+              {/* <Grid item sm={12} container direction="column">
                 <Grid item sx={{ padding: "0.5em" }}>
                   <RHFTextField
                     fullWidth
@@ -170,64 +156,9 @@ const SatsExamGradForm: FC<any> = () => {
                     disabled={!anyOtherTherapy || action === "view"}
                   />
                 </Grid>
-              </Grid>
-              <Grid item sm={12} container direction="column">
-                <Grid item sx={{ padding: "0.5em" }}>
-                  <RHFTextField
-                    fullWidth
-                    multiline
-                    rows={2}
-                    name="therapistArrangements"
-                    label="Therapy Arrangements"
-                    disabled={!anyOtherTherapy || action === "view"}
-                  />
-                </Grid>
-              </Grid>
+              </Grid> */}
             </Grid>
 
-            {/* three uncheck options container  */}
-            <Grid item sm={12} container>
-              <Grid item sm={3} sx={{ padding: "0.5em" }}>
-                <RHFCheckbox
-                  name="uncheckOption1"
-                  label="Uncheck Option 1"
-                  disabled={disabled || action === "view"}
-                />
-              </Grid>
-              <Grid item sm={3} sx={{ padding: "0.5em" }}>
-                <RHFCheckbox
-                  name="uncheckOption2"
-                  label="Uncheck Option 2"
-                  disabled={disabled || action === "view"}
-                />
-              </Grid>
-              <Grid item sm={3} sx={{ padding: "0.5em" }}>
-                <RHFCheckbox
-                  name="uncheckOption3"
-                  label="Uncheck Option 3"
-                  disabled={disabled || action === "view"}
-                />
-              </Grid>
-            </Grid>
-
-            {/* is child engaged in therapy as identified  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item sx={{ padding: "0.5em" }}>
-                <RHFSelect
-                  name="isChildEngagedIndetifyInCarePlana"
-                  label="Is this Child Engaged in therapy as identified in the Care Plan ?"
-                  disabled={disabled || action === "view"}
-                >
-                  {["Yes", "No"].map((option: string) => {
-                    return (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    );
-                  })}
-                </RHFSelect>
-              </Grid>
-            </Grid>
             {!disabled && (
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>

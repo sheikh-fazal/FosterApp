@@ -1,57 +1,73 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  referalCAHMS: false,
-  CAHMSAppointment: false,
-  referralDate: new Date(),
-  appointmentDate: new Date(),
-  anyOtherTherapy: false,
-  therapistName: "",
-  therapistArrangements: "",
-  isChildEngagedIndetifyInCarePlana: "",
-  uncheckOption1: false,
-  uncheckOption2: false,
-  uncheckOption3: false,
+  schoolYear: "",
+  formName: "",
+  term: "",
+  subject: "",
+  teacher: "",
+  target: "",
+  currentLevel: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  referalCAHMS: Yup.boolean(),
-  CAHMSAppointment: Yup.boolean(),
-  referralDate: Yup.date()
-    .typeError("date is required")
-    .required("date is required"),
-  appointmentDate: Yup.date()
-    .typeError("date is required")
-    .required("date is required"),
-  anyOtherTherapy: Yup.boolean(),
-  therapistName: Yup.string(),
-  therapistArrangements: Yup.string(),
-  isChildEngagedIndetifyInCarePlana: Yup.string(),
-  uncheckOption1: Yup.boolean(),
-  uncheckOption2: Yup.boolean(),
-  uncheckOption3: Yup.boolean(),
+  schoolYear: Yup.string(),
+  formName: Yup.string(),
+  term: Yup.string(),
+  subject: Yup.string(),
+  teacher: Yup.string(),
+  target: Yup.string(),
+  currentLevel: Yup.string(),
 });
 
 export const fieldsInfo = [
   [
     {
-      type: "DATE_PICKER",
-      name: "referralDate",
-      label: "Referral Date",
+      type: "TEXT",
+      name: "schoolYear",
+      label: "School Year",
       fieldHeader: null,
     },
     {
-      type: "DATE_PICKER",
-      name: "appointmentDate",
-      label: "Appointment Date",
+      type: "TEXT",
+      name: "formName",
+      label: "Form Name",
       fieldHeader: null,
     },
   ],
   [
     {
-      type: "CHECKBOX",
-      name: "anyOtherTherapy",
-      label: "Any Other Therapy",
+      type: "TEXT",
+      name: "term",
+      label: "Term",
+      fieldHeader: null,
+    },
+    {
+      type: "TEXT",
+      name: "subject",
+      label: "Subject",
+      fieldHeader: null,
+    },
+  ],
+  [
+    {
+      type: "TEXT",
+      name: "teacher",
+      label: "Teacher",
+      fieldHeader: null,
+    },
+    {
+      type: "TEXT",
+      name: "target",
+      label: "Target",
+      fieldHeader: null,
+    },
+  ],
+  [
+    {
+      type: "TEXT",
+      name: "currentLevel",
+      label: "Current Level",
       fieldHeader: null,
     },
   ],
