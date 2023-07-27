@@ -127,6 +127,7 @@ const DBS: FC<any> = ({ activateNextForm }) => {
                   <RHFTextField
                     name="certificateName"
                     label="DBS (PVG) Certificate Number"
+                    fullWidth
                   />
                 </Grid>
               </Grid>
@@ -160,6 +161,7 @@ const DBS: FC<any> = ({ activateNextForm }) => {
                     <RHFTextField
                       name="updateService"
                       label="DBS (PVG) Update Service No."
+                      fullWidth
                     />
                   </Grid>
                 </Grid>

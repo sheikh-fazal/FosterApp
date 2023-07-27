@@ -1,6 +1,6 @@
 import DayLogTable from "./day-log/DayLogTable";
 import OOHReportsTable from "./ooh-reports/OOHReportsTable";
-import OfstedNotificationsTable from "./ofsted-notifications/ofstedNotificationsTable";
+import OfstedNotificationsTable from "./ofsted-notifications/OfstedNotificationsTable";
 import ChildMissingPlacementTable from "./child-missing-placement/ChildMissingPlacementTable";
 import AbsenceInfoTable from "./absence-info/AbsenceInfoTable";
 import ExclusiveInfoTable from "./exclusion-info/ExclusionInfoTable";

@@ -34,7 +34,8 @@ export default function AddPlacementForm() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TILE}>
-      <PlacementStatusForm action={action} id={id} />
+      <PlacementStatusForm 
+      />
     </Page>
   );
 }

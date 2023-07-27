@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import ExamGradeInfoForm from "@root/sections/foster-child/child-background-info/child-chronology-of-events/exam-grade-info/ExamGradeInfoForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 const BREADCRUMBS = (fosterChildId: any) => {
   return [
@@ -28,14 +29,8 @@ const BREADCRUMBS = (fosterChildId: any) => {
 
 const PAGE_TITLE = "SATS / Exam / Grades";
 ExamGradeInfo.getLayout = function getLayout(page: any) {
-  const router = useRouter();
-
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
+    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
       {page}
     </Layout>
   );
@@ -84,34 +79,41 @@ export default function ExamGradeInfo() {
     }
   };
   return (
-    <HorizaontalTabs tabsDataArray={["SATS / Exam / Grades", "Documents"]}>
-      <ExamGradeInfoForm />
-      <UploadDocuments
-        searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
-        tableData={data?.data?.foster_child_document}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        // onDelete={}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        modalData={(data: any) => uploadDocumentsHandler(data)}
-        onPageChange={(pageNo: any) => {
-          setPage((pageNo - 1) * 10);
-        }}
-        currentPage={data?.data?.meta?.page}
-        totalPages={data?.data?.meta?.pages}
-        disabled={!!id && (action === "add" || action === "edit") ? false : true}
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        title={PAGE_TITLE}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["SATS / Exam / Grades", "Documents"]}>
+        <ExamGradeInfoForm />
+        <UploadDocuments
+          searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
+          tableData={data?.data?.foster_child_document}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          // onDelete={}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          modalData={(data: any) => uploadDocumentsHandler(data)}
+          onPageChange={(pageNo: any) => {
+            setPage((pageNo - 1) * 10);
+          }}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
+          disabled={!!id && (action === "add" || action === "edit") ? false : true}
+        />
+      </HorizaontalTabs>
+    </>
   );
 }
