@@ -2,7 +2,11 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { childRiskDetailsDefaultValues, formatters } from "./RiskAssessmentData";
+import {
+  childRiskDetailsDefaultValues,
+  childRiskDetailsSchema,
+  formatters,
+} from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -38,12 +42,13 @@ export const useRAChildRiskDetailsForm = () => {
       }
       parseDatesToTimeStampByKey(responseData);
       return responseData;
-    } else {
+    } else if (action === "add") {
       setIsLoading(false);
       return childRiskDetailsDefaultValues;
     }
   };
   const methods: any = useForm({
+    resolver: yupResolver(childRiskDetailsSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -54,6 +59,7 @@ export const useRAChildRiskDetailsForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
+    console.log("🚀 ~ file: useRAChildRiskDetailsForm.tsx:62 ~ onSubmit ~ data:", data);
     if (action === "edit") {
       setIsFetching(true);
 
