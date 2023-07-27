@@ -20,7 +20,7 @@ AddImmunisation.getLayout = function getLayout(page: any) {
 
 export default function AddImmunisation() {
   const router: any = useRouter();
-  let { id } = router.query;
+  let { fosterChildId } = router.query;
   let [immunisationId, setImmunisationId] = useState(null);
 
   let BREADCRUMBS = [
@@ -31,7 +31,7 @@ export default function AddImmunisation() {
     },
     {
       name: "Child Immunisation Info",
-      href: `/foster-child/health-medical-history/immunisation?fosterChildId=${id}`,
+      href: `/foster-child/health-medical-history/immunisation?fosterChildId=${fosterChildId}`,
     },
     {
       name: "Immunisation info",
@@ -50,7 +50,7 @@ export default function AddImmunisation() {
       >
         <ImmunisationFrom
           setImmunisationId={setImmunisationId}
-          id={id}
+          id={fosterChildId}
           action="add"
         />
         <ImmunisationUploadTable immunisationId={immunisationId} />

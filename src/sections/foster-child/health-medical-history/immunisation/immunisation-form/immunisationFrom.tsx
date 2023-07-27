@@ -12,12 +12,13 @@ import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
 import { immunisationInfoFormValue } from "..";
 import { useImmunisationForm } from "./useImmunisationForm";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const backPath = "/foster-child/health-medical-history/immunisation";
 
 const ImmunisationFrom = (props: any) => {
   const { action, id, immunisationData, setImmunisationId } = props;
-  const { methods, onSubmit, handleSubmit, theme } = useImmunisationForm({
+  const { methods, onSubmit, handleSubmit, theme,isFetching } = useImmunisationForm({
     action,
     id,
     immunisationData,
@@ -28,6 +29,7 @@ const ImmunisationFrom = (props: any) => {
       <Grid container>
         <Grid item xs={12}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <IsFetching isFetching={isFetching} />
             <Grid container>
               {immunisationInfoFormValue.map((form: any, index) => {
                 return (
@@ -88,7 +90,7 @@ const ImmunisationFrom = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.back()}
+                  onClick={() => router.push(`/foster-child/health-medical-history/immunisation?fosterChildId=${router.query.fosterChildId}`)}
                 >
                   back
                 </Button>

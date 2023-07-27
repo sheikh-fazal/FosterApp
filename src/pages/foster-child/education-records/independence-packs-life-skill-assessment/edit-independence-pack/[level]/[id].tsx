@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { Breadcrumbs } from "@root/components/PageBreadcrumbs";
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
+import { useGetIndependencePackQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -55,7 +56,11 @@ EditIndependencePack.getLayout = function getLayout(page: any) {
 export default function EditIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
-  const { level } = router.query;
+  const { level,id } = router.query;
+  const { data, isLoading, isError }: any = useGetIndependencePackQuery({
+    id,
+  });
+console.log('data',data)
   return (
     <Page title={PAGE_TITLE}>
       {level == "Bronze" ? (

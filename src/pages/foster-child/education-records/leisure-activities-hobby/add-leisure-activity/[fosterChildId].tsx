@@ -17,7 +17,7 @@ AddLeisureActivity.getLayout = function getLayout(page: any) {
 
 export default function AddLeisureActivity() {
   const router: any = useRouter();
-  let { id } = router.query;
+  let { fosterChildId } = router.query;
   let [leisureActivityId, setLeisureActivityId] = useState(null);
   let BREADCRUMBS = [
     {
@@ -28,7 +28,7 @@ export default function AddLeisureActivity() {
     {
       id: 2,
       name: "Leisure Activities List",
-      href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${id}`,
+      href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ export default function AddLeisureActivity() {
       >
         <LeisureActivitiesForm
           setLeisureActivityId={setLeisureActivityId}
-          id={id}
+          id={fosterChildId}
           action="add"
         />
         <UploadedDocumentsTable

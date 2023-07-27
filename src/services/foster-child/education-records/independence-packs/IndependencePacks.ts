@@ -9,6 +9,12 @@ const IndependencePacks = baseAPI.injectEndpoints({
       }),
       providesTags: ["INDEPENDENCE_PACKS_LIST"],
     }),
+    getIndependencePack: builder.query({
+      query: ({ id }: any) => ({
+        url: `/education-records/independence-pack/${id}`,
+        method: "GET",
+      }),
+    }),
     postIndependencePacks: builder.mutation({
       query: ({ id, formData }: any) => ({
         url: `/education-records/independence-pack?fosterChildId=${id}`,
@@ -37,6 +43,7 @@ const IndependencePacks = baseAPI.injectEndpoints({
 export const {
   usePostUploadEvidenceMutation,
   useGetIndependencePacksQuery,
+  useGetIndependencePackQuery,
   usePostIndependencePacksMutation,
   useDeleteIndependencePackMutation,
 } = IndependencePacks;

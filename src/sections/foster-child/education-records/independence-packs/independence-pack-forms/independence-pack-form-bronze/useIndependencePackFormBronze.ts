@@ -8,7 +8,7 @@ import { enqueueSnackbar } from "notistack";
 import { usePostIndependencePacksMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 import dayjs from "dayjs";
 
-export const useIndependencePackFormBronze = () => {
+export const useIndependencePackFormBronze = ({action,inedependencePackData}:any) => {
   let theme = useTheme();
   let router = useRouter();
   let { fosterChildId } = router.query;
@@ -16,7 +16,7 @@ export const useIndependencePackFormBronze = () => {
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues:action=='add'?defaultValues:inedependencePackData,
   });
 
   const {
@@ -34,13 +34,9 @@ export const useIndependencePackFormBronze = () => {
     let form_data: any = new FormData();
 
     for (var key in data) {
-      if (key !== "fromDate" && key !== "toDate" && key !== "assessmentDate")
         form_data.append(key, data[key]);
     }
-    for (var key in data) {
-      if (key == "fromDate" || key == "toDate" || key == "assessmentDate")
-        form_data.append(key, dayjs(data[key]).format("DD/MM/YYYY"));
-    }
+   
 
     try {
       const res: any = await postIndependencePacks({
