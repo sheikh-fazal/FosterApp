@@ -30,7 +30,7 @@ const BREADCRUMBS = (fosterChildId: any) => {
 const PAGE_TITLE = "SATS / Exam / Grades";
 ExamGradeInfo.getLayout = function getLayout(page: any) {
   return (
-    <Layout showTitleWithBreadcrumbs breadcrumbs={BREADCRUMBS} title={PAGE_TITLE}>
+    <Layout >
       {page}
     </Layout>
   );
