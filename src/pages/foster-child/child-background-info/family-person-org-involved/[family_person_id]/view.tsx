@@ -1,5 +1,4 @@
 import HomeIcon from "@mui/icons-material/Home";
-import { Paper } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";

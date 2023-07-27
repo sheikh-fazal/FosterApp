@@ -1,10 +1,10 @@
 import HomeIcon from "@mui/icons-material/Home";
 import { Paper } from "@mui/material";
+import { useRouter } from "next/router";
+import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import Layout from "@root/layouts";
 import { ClaDocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
-import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = (query: any) => [
@@ -27,7 +27,6 @@ AddClaDocumentationList.getLayout = function getLayout(page: any) {
 };
 
 export default function AddClaDocumentationList() {
-  // const { query } = useRouter();
   const router = useRouter();
   return (
     <Page title={PAGE_TITLE}>

@@ -1,5 +1,5 @@
 import React from "react";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";

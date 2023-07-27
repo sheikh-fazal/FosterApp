@@ -7,7 +7,6 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
-// import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
@@ -34,16 +33,6 @@ FamilyPersonList.getLayout = function getLayout(page: any) {
 
 export default function FamilyPersonList() {
   const router = useRouter();
-  // const { query } = useRouter();
-  // console.log(query);
-
-  // const familyPersonId = query["family_person_id"];
-  // const { data, isLoading, isSuccess, isError } =
-  //   useGetFamilyPersonListByIdQuery(familyPersonId, {
-  //     skip: !familyPersonId,
-  //   });
-
-  // console.log("Is loading: ", data);
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
