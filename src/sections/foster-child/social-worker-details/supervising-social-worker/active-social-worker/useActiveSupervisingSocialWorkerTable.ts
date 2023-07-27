@@ -23,8 +23,10 @@ export const useActiveSupervisingSocialWorkerTable = () => {
       params,
       fosterChildId: router?.query?.fosterChildId,
     });
-
-  const family = data?.data?.social_workers;
+    // console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", data)
+  // const family = data?.data?.social_workers;
+  const family = data?.data?.getSupervisingSocialWorker;
+  console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", family)
   const meta = data?.meta;
   const headerChangeHandler = (text: any) => {
     setSearchHandle(text.search);
