@@ -107,7 +107,7 @@ export default function AbsenceInfo() {
           onPageChange={(pageNo: any) => {
             setPage((pageNo - 1) * 10);
           }}
-          currentPage={data?.data?.meta?.page}
+          currentPage={data?.data?.meta?.pag be}
           totalPages={data?.data?.meta?.pages}
           disabled={!!id && (action === "add" || action === "edit") ? false : true}
         />
