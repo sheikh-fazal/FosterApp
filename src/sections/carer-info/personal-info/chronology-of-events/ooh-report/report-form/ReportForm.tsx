@@ -58,7 +58,7 @@ function ReportForm(props: any) {
                       {...form.otherOptions}
                       disabled={action === "view" ? true : false}
                       InputLabelProps={{
-                        shrink: action === "view" || "edit" ? true : undefined,
+                        shrink: action === "view" ? true : undefined,
                         disabled: action === "view" ? true : undefined,
                       }}
                     >

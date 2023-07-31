@@ -11,9 +11,9 @@ StatutoryCheckList.getLayout = function getLayout(page: any) {
 export default function StatutoryCheckList() {
   const router: any = useRouter();
   const { fosterCarerId } = router.query;
-  // if (!fosterCarerId) {
-  //   router.push("/foster-carer-list");
-  // }
+  if (!fosterCarerId) {
+    router.push("/foster-carer-list");
+  }
   // BREADCRUMBS
   const BREADCRUMBS = [
     {

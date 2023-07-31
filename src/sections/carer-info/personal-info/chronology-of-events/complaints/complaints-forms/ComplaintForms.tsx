@@ -29,6 +29,7 @@ function ComplaintForms(props: any) {
     getValues,
     methods,
     isSubmitting,
+    fosterCarerId,
   } = useComplaintsForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
@@ -142,9 +143,11 @@ function ComplaintForms(props: any) {
                 }}
                 variant="contained"
                 onClick={() =>
-                  router.push(
-                    "/carer-info/personal-info/carer-chronology-of-events"
-                  )
+                  router.push({
+                    pathname:
+                      "/carer-info/personal-info/carer-chronology-of-events",
+                    query: { fosterCarerId: fosterCarerId },
+                  })
                 }
               >
                 Back
@@ -164,9 +167,11 @@ function ComplaintForms(props: any) {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/personal-info/carer-chronology-of-events"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/personal-info/carer-chronology-of-events",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

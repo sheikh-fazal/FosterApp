@@ -10,8 +10,9 @@ import { useRef } from "react";
 
 export const useComplaintsTable = () => {
   const [search, setSearch] = React.useState("");
-  const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
+  const tableHeaderRefTwo = useRef<any>();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Complaint List
@@ -51,5 +52,6 @@ export const useComplaintsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
+    fosterCarerId,
   };
 };

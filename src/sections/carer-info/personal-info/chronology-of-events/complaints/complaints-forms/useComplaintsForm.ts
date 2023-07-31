@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 export const useComplaintsForm = (action: any, id: any) => {
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = React.useState(false);
@@ -68,16 +69,21 @@ export const useComplaintsForm = (action: any, id: any) => {
             .push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/complaints",
-              query: { action: "edit", id: `${res?.data.id}` },
+              query: {
+                action: "edit",
+                id: `${res?.data.id}`,
+                fosterCarerId: fosterCarerId,
+              },
             })
-
             .catch((error) => {
               setIsFetching(false);
               const errMsg = error?.data?.message;
               enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-              router.push(
-                "/carer-info/personal-info/carer-chronology-of-events"
-              );
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events",
+                query: { fosterCarerId: fosterCarerId },
+              });
             });
         });
     } else if (action === "edit") {
@@ -92,15 +98,19 @@ export const useComplaintsForm = (action: any, id: any) => {
           enqueueSnackbar("Complaint Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/personal-info/carer-chronology-of-events/complaints"
-          );
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/personal-info/carer-chronology-of-events");
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         });
     } else {
@@ -120,5 +130,6 @@ export const useComplaintsForm = (action: any, id: any) => {
     getValues,
     methods,
     isSubmitting,
+    fosterCarerId,
   };
 };

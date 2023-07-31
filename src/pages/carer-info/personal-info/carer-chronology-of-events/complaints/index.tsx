@@ -11,40 +11,41 @@ import {
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/complaints-api/uploadDocumentsApi";
 import { enqueueSnackbar } from "notistack";
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Complaints list",
-    href: "/carer-info/personal-info/carer-chronology-of-events/",
-  },
-  {
-    name: "Complaints",
-    href: "",
-  },
-];
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-const PAGE_TITLE = "Complaints";
 Complaints.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
+
 export default function Complaints() {
   const [params, setParams] = useState("");
   // -------
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { action, id, fosterCarerId } = Router.query;
   if (!action && !id) {
-    Router.push("/carer-info/personal-info/carer-chronology-of-events/");
+    Router.push({
+      pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+      query: { fosterCarerId: fosterCarerId },
+    });
   }
 
+  // Constants
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Complaints list",
+      href: {
+        pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "Complaints",
+      href: "",
+    },
+  ];
+
+  const PAGE_TITLE = "Complaints";
   const {
     data: documentData,
     isLoading: isDocumentLoading,
@@ -102,6 +103,11 @@ export default function Complaints() {
 
   return (
     <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs tabsDataArray={["Complaints", "Uploaded Documents"]}>
         <ComplaintsForm action={action} id={id} />
         <UploadDocuments

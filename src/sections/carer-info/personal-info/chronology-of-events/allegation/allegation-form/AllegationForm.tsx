@@ -29,6 +29,7 @@ function AllegationForm(props: any) {
     methods,
     isFetching,
     isSubmitting,
+    fosterCarerId,
   } = useAllegationForm(action, id);
 
   if (isLoading) return <SkeletonFormdata />;
@@ -143,9 +144,11 @@ function AllegationForm(props: any) {
                 }}
                 variant="contained"
                 onClick={() =>
-                  router.push(
-                    "/carer-info/personal-info/carer-chronology-of-events"
-                  )
+                  router.push({
+                    pathname:
+                      "/carer-info/personal-info/carer-chronology-of-events",
+                    query: { fosterCarerId: fosterCarerId },
+                  })
                 }
               >
                 Back
@@ -165,9 +168,11 @@ function AllegationForm(props: any) {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/personal-info/carer-chronology-of-events"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/personal-info/carer-chronology-of-events",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

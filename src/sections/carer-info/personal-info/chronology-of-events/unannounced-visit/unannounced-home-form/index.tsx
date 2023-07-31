@@ -158,10 +158,10 @@ for (const formControl of unannouncedhomeVisitData) {
     formatters[formControl.otherOptions.name] = formControl.format;
 }
 
-export { default as UnannouncedHomeVisit } from "./UnannouncedHomeVisitForm";
+export { default as UnannouncedHomeVisitForm } from "./UnannouncedHomeVisitForm";
 
 export const defaultValues = {
-  personVisite: "",
+  personVisited: "",
   dateOfVisit: new Date(),
   purposeOfUnannouncedVisit: "",
   whoWasPresent: "",
@@ -176,7 +176,7 @@ export const defaultValues = {
 };
 
 export const formSchema = Yup.object().shape({
-  personVisite: Yup.string().required("required"),
+  personVisited: Yup.string().required("required"),
   dateOfVisit: Yup.date().required("required"),
   purposeOfUnannouncedVisit: Yup.string().required("required"),
   whoWasPresent: Yup.string().required("required"),

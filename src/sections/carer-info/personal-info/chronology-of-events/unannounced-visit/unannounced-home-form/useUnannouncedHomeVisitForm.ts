@@ -12,7 +12,7 @@ import {
 } from "@root/services/carer-info/personal-info/chronology-of-events/unannounced-visit-api/unannouncedVisitApi";
 export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
   const router = useRouter();
-  const { fosterCarerId } = router.query;
+  const { fosterCarerId }: any = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -44,7 +44,7 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
     }
   };
   const methods: any = useForm({
-    resolver: yupResolver(formSchema),
+    // resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
   const {
@@ -55,9 +55,14 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
+    const formData = new FormData();
+    formData.append("fosterCarerId", fosterCarerId);
+    for (let [key, val] of Object.entries(data)) {
+      formData.append(key, JSON.stringify(val));
+    }
     if (action === "add") {
       setIsFetching(true);
-      postUnAnnouncedVisitDetails(data)
+      postUnAnnouncedVisitDetails(formData)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -95,9 +100,10 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
           enqueueSnackbar("Report Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/personal-info/carer-chronology-of-events/unannounced-visit"
-          );
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {

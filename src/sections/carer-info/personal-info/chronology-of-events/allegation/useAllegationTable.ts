@@ -11,6 +11,7 @@ export const useAllegationTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Allegation List
@@ -53,5 +54,6 @@ export const useAllegationTable = () => {
     sortChangeHandler,
     listDeleteHandler,
     setSearch,
+    fosterCarerId,
   };
 };

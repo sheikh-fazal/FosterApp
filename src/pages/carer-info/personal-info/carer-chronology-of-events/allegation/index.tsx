@@ -11,39 +11,40 @@ import {
   useUploadDocumentListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
 import { enqueueSnackbar } from "notistack";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Allegation list",
-    href: "/carer-info/personal-info/carer-chronology-of-events/",
-  },
-  {
-    name: "Allegation",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Allegation";
 Allegation.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
+
 export default function Allegation() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
-  const { action, id } = router.query;
+  const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/personal-info/carer-chronology-of-events");
+    router.push({
+      pathname: "/carer-info/personal-info/carer-chronology-of-events",
+      query: { fosterCarerId: fosterCarerId },
+    });
   }
+
+  // Constants
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Allegation list",
+      href: {
+        pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "Allegation",
+      href: "",
+    },
+  ];
+
+  const PAGE_TITLE = "Allegation";
 
   const {
     data: documentData,
@@ -99,34 +100,41 @@ export default function Allegation() {
       });
   };
   return (
-    <HorizaontalTabs tabsDataArray={["Allegation", "Uploaded Documents"]}>
-      <AllegationForm action={action} id={id} />
-      <UploadDocuments
-        readOnly={action === "view" ? true : false}
-        tableData={tableData}
-        isLoading={isDocumentLoading}
-        isFetching={isFetching}
-        isError={hasDocumentError}
-        isSuccess={isSuccess}
-        column={[
-          "documentName",
-          "type",
-          "documentDate",
-          "uploadBy",
-          "password",
-        ]}
-        searchParam={(searchedText: string) => setParams(searchedText)}
-        modalData={(data: any) => documentUploadHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        disabled={
-          !!id && (action === "add" || action === "edit") ? false : true
-        }
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["Allegation", "Uploaded Documents"]}>
+        <AllegationForm action={action} id={id} />
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "documentName",
+            "type",
+            "documentDate",
+            "uploadBy",
+            "password",
+          ]}
+          searchParam={(searchedText: string) => setParams(searchedText)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
+      </HorizaontalTabs>
+    </>
   );
 }
