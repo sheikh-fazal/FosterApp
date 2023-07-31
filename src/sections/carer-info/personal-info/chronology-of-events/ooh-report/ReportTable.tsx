@@ -7,7 +7,7 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 
-const reportTable = () => {
+const ReportTable = () => {
   const {
     router,
     tableHeaderRefTwo,
@@ -136,7 +136,7 @@ const reportTable = () => {
   );
 };
 
-export default reportTable;
+export default ReportTable;
 
 //Styling
 const styles: any = {

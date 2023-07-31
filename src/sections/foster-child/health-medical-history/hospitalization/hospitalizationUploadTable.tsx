@@ -12,7 +12,7 @@ import ModelUploadDoc from "@root/components/modal/uploadDoc/modelUploadDoc";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useGethospitalizationDocumentQuery } from "@root/services/foster-child/health-medical-history/hospitalization/hospitalizationDocuments";
 import useHospitalizationForm from "./useHospitalizationForm";
-
+const EmptyAarry: any = [];
 const HospitalizationUploadTable = (props: any) => {
   const { action, fosterChildId, hospitalizationId } = props;
   const [modelOpen, setModelOpen] = React.useState(false);
@@ -86,7 +86,7 @@ const HospitalizationUploadTable = (props: any) => {
   ];
   const [Search, setSearch] = React.useState("");
   const { params, pageChangeHandler } = useTableParams();
-  const { data, isError, isFetching, isLoading, isSuccess } =
+  const { data, isError, isFetching, isLoading, isSuccess }: any =
     useGethospitalizationDocumentQuery({
       params: {
         recordId: hospitalizationId,
@@ -124,7 +124,7 @@ const HospitalizationUploadTable = (props: any) => {
         onSubmit={(data: any) => onUploadSubmit(data)}
       />
       <CustomTable
-        data={data?.data?.foster_child_document ?? []}
+        data={data?.data?.foster_child_document ?? EmptyAarry}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

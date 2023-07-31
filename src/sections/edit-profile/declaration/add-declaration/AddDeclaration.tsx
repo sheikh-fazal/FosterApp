@@ -152,6 +152,7 @@ const AddDeclaration: FC<any> = ({ MoveTo }) => {
                 rows={4}
                 name="detail"
                 label="If Yes, please provide more details"
+                fullWidth
                 disabled
               />
             </Grid>

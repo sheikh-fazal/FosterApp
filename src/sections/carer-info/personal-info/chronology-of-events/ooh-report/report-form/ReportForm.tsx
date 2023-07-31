@@ -6,7 +6,7 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useReportForm } from "./useReportForm";
 import { LoadingButton } from "@mui/lab";
 import IsFetching from "@root/components/loaders/IsFetching";
-function reportForm(props: any) {
+function ReportForm(props: any) {
   const { action, id } = props;
   //OOH Report Custom Hook
   const {
@@ -148,4 +148,4 @@ function reportForm(props: any) {
   );
 }
 
-export default reportForm;
+export default ReportForm;

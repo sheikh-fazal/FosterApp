@@ -1,7 +1,7 @@
 import HomeIcon from "@mui/icons-material/Home";
-import { Paper } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
 import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
@@ -25,20 +25,12 @@ const PAGE_TITLE = "View Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 ViewFamilyPersonForm.getLayout = function getLayout(page: any) {
-  const router = useRouter()
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function ViewFamilyPersonForm() {
   const { query } = useRouter();
+  const router = useRouter();
   console.log(query);
 
   const familyPersonId = query["family_person_id"];
@@ -49,14 +41,21 @@ export default function ViewFamilyPersonForm() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+        sx={{ mb: 2 }}
+      />
       <HorizaontalTabs tabsDataArray={["Family Org Involved", "Documents"]}>
 
         {/* Family Person Form */}
         {isLoading && <p>Loading...</p>}
-        {isSuccess && <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />}
+        {isSuccess && (
+          <FamilyOrgInvolvedForm defaultValues={data[0]} disabled />
+        )}
 
         {/* Upload Document */}
-        <FamilyPersonDocument  />
+        <FamilyPersonDocument />
         
       </HorizaontalTabs>
     </Page>

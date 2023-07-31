@@ -10,6 +10,7 @@ import {
   usePatchChildChronologyOfEventsDayLogByIdMutation,
   usePostChildChronologyOfEventsDayLogMutation,
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
+import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const useDayLogForm = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ export const useDayLogForm = () => {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
       }
-
+      parseDatesToTimeStampByKey(responseData);
       return responseData;
     } else {
       setIsLoading(false);
