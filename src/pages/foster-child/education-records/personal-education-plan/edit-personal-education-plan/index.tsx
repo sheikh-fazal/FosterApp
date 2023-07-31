@@ -46,7 +46,15 @@ export default function EditChildExclusionInfoPage() {
           <IsFetching isFetching={isLoading} />
         ) : (
           <>
-            <EditPersonalEducationPlan />
+            <EditPersonalEducationPlan
+              initialValueProps={{
+                school: data?.school,
+                date: new Date(data?.date),
+                onFile: data?.onFile,
+                comments: data?.comments,
+                principalName: data?.principalName,
+              }}
+            />
           </>
         )}
         <UploadDocuments
@@ -62,7 +70,6 @@ export default function EditChildExclusionInfoPage() {
             "uploadBy",
             "password",
           ]}
-          
           isSuccess={false}
           modalData={(data: any) => console.log(data)}
         />

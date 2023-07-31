@@ -48,7 +48,7 @@ export const NewPersonalEducationPlanData = [
     component: RHFTextField,
   },
   {
-    id: 4,
+    id: 5,
     gridLength: 12,
     otherOptions: {
       label: "Comments",

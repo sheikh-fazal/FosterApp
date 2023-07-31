@@ -4,28 +4,30 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useEditPersonalEducationalPlan = () => {
+const useEditPersonalEducationalPlan = (initialValueProps:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   
   const defaultValues = {
-    activityType: "",
-    fromDate: new Date(todayDate),
-    toDate: new Date(todayDate),
+    school: "",
+    date: new Date(todayDate),
+    onFile: "",
     comments: "",
+    principalName:""
   };
 
   const tainingProfileSchema = Yup.object().shape({
-    activityType: Yup.string().required("Required"),
-    fromDate: Yup.date().required("Required"),
-    toDate: Yup.date().required("Required"),
+    school: Yup.string().required("Required"),
+    date: Yup.date().required("Required"),
+    onFile: Yup.string().required("Required"),
     comments: Yup.string().required("Required"),
+    principalName: Yup.string().required("Required"),
   });
 
   const methods: any = useForm({
     resolver: yupResolver(tainingProfileSchema),
-    defaultValues,
+    defaultValues:initialValueProps,
   });
 
   const { handleSubmit } = methods;
@@ -34,7 +36,7 @@ const useEditPersonalEducationalPlan = () => {
     console.log(data);
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router,defaultValues };
 };
 
 export default useEditPersonalEducationalPlan;
