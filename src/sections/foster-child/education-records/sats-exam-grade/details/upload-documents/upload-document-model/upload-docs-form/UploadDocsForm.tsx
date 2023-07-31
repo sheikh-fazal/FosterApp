@@ -26,6 +26,7 @@ import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
 import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import { useAddSatsExamGradeDocsListDataMutation } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const theme: any = useTheme();
@@ -34,8 +35,8 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [addTherapyDetailsDocsListData] =
-    useAddTherapyDetailsDocsListDataMutation();
+  const [addSatsExamGradeDocsListData] =
+    useAddSatsExamGradeDocsListDataMutation();
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -54,17 +55,22 @@ const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
+    // console.log({ data });
+    // return;
     const formData: any = new FormData();
-    formData.append("chooseFiles", file);
+    formData.append("formName", "SATS_EXAM_GRADE_DETAILS");
+    formData.append("recordId", router?.query?.id);
+    formData.append("fosterChildId", router?.query?.fosterChildId);
+    formData.append("file", file);
     for (var key in data) {
       formData.append(key, data[key]);
     }
 
     try {
       setIsUpdating(true);
-      const data = await addTherapyDetailsDocsListData({
+      const data = await addSatsExamGradeDocsListData({
         formData,
-        id: router?.query?.therapyInfoId,
+        id: router?.query?.id,
       });
       setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);

@@ -26,6 +26,10 @@ import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
 import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import {
+  useAddSatsExamGradeDocsListDataMutation,
+  useUpdateSatsExamGradeDocsListDataMutation,
+} from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 const UploadDocsUpdateViewForm: FC<any> = ({
   closeModel,
@@ -38,13 +42,19 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const router = useRouter();
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const [addTherapyDetailsDocsListData] =
-    useAddTherapyDetailsDocsListDataMutation();
+  const [updateSatsExamGradeDocsListData] =
+    useUpdateSatsExamGradeDocsListDataMutation();
   console.log({ defaultValue });
+  const { documentType, updatedAt, documentPassword } = defaultValue;
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: defaultValue,
+    defaultValues: {
+      documentType,
+      documentDate: updatedAt && new Date(updatedAt),
+      documentPassword,
+    },
   });
 
   const {
@@ -58,6 +68,9 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
+    console.log({ data });
+    alert("did not found any update api on swagger");
+    return;
     const formData: any = new FormData();
     formData.append("chooseFiles", file);
     for (var key in data) {
@@ -66,7 +79,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
 
     try {
       setIsUpdating(true);
-      const data = await addTherapyDetailsDocsListData({
+      const data = await updateSatsExamGradeDocsListData({
         formData,
         id: router?.query?.therapyInfoId,
       });
@@ -146,26 +159,26 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 </Grid>
               </Grid>
             </Grid>
-            {!disabled && (
-              <Grid item sm={12} container direction="column">
-                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      onClick={closeModel}
-                    >
-                      Cancel
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" type="submit">
-                      Save
-                    </Button>
-                  </Grid>
+            {/* Btn conianer  */}
+            <Grid item sm={12} container direction="column">
+              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    onClick={closeModel}
+                    disabled={disabled}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" type="submit" disabled={disabled}>
+                    Save
+                  </Button>
                 </Grid>
               </Grid>
-            )}
+            </Grid>
           </Grid>
         </Grid>
       </FormProvider>

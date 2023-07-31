@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const defaultValues = {
   documentType: "PDF",
   documentDate: new Date(),
-  password: "",
+  documentPassword: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -11,7 +11,7 @@ export const FormSchema = Yup.object().shape({
   documentDate: Yup.date()
     .typeError("date is required")
     .required("date is required"),
-  password: Yup.string().required("docsPass is required"),
+  documentPassword: Yup.string().required("docsPass is required"),
 });
 
 export const fieldsInfo = [
@@ -34,7 +34,7 @@ export const fieldsInfo = [
     },
     {
       type: "TEXT",
-      name: "password",
+      name: "documentPassword",
       label: "Password to Open Document",
       fieldHeader: null,
     },
