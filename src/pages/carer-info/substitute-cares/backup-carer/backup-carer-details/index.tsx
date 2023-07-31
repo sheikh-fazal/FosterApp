@@ -4,7 +4,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { usePostSubstituteCarerMutation } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useEditSubstituteCarerMutation,
+  usePostSubstituteCarerMutation,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
 
@@ -46,7 +49,7 @@ BackupCarerDetails.getLayout = function getLayout(page: any) {
 
 export default function BackupCarerDetails() {
   const [postBackupCarerData, status] = usePostSubstituteCarerMutation();
-
+  const [editCarerData, editingStatus] = useEditSubstituteCarerMutation();
   const router = useRouter();
   const id = router?.query?.fosterCarerId;
 
@@ -65,14 +68,27 @@ export default function BackupCarerDetails() {
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     }
   };
+  const formEditHandler = async (body: any) => {
+    // const body = { ...formData, carerType: "BC", status: " " };
+    try {
+      const res: any = await editCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Edited Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm
-        onSubmit={(data: any) => {
-          formSubmitHandler(data);
-        }}
+        onSubmit={formSubmitHandler}
         status={status}
-        onEdit={(data: any) => console.log(data)}
+        onEdit={formEditHandler}
       />
       <UploadDocuments
         searchParam={(searchedText: string) =>
