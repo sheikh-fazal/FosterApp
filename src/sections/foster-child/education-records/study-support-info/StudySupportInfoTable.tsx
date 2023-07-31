@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 
-export const StudySupportInfoTable = () => {
+export const StudySupportInfoTable = ({fosterChildId}:any) => {
   const [open, setOpen] = useState(false);
 
   const {
@@ -67,7 +67,7 @@ export const StudySupportInfoTable = () => {
                 query: {
                   action: "edit",
                   id: info.row.original.id,
-                  fosterChildId: router?.query?.fosterChildId,
+                  fosterChildId: fosterChildId,
                 },
               })
             }
@@ -83,7 +83,7 @@ export const StudySupportInfoTable = () => {
                 query: {
                   action: "view",
                   id: info.row.original.id,
-                  fosterChildId: router?.query?.fosterChildId,
+                  fosterChildId: fosterChildId,
                 },
               })
             }

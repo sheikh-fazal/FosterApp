@@ -51,7 +51,7 @@ export default function Hospitalisation() {
         recordId: hospitalizationId,
       },
     });
-  const { onUploadSubmit, onDeleteHander, onUpdateSubmit } =
+  const { onUploadSubmit, onDeleteHander } =
     useHospitalizationForm({
       hospitalizationId: hospitalizationId,
       fosterChildId: fosterChildId,

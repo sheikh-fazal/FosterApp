@@ -4,8 +4,8 @@ import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { router, handleDeleteChildTherapy } = parms;
-  const { query } = useRouter();
+  const { handleDeleteChildTherapy, openUpdateViewModel, router } = parms;
+  const query = router;
   const { fosterChildId } = query;
   return [
     {
@@ -48,9 +48,17 @@ export const getColumns = (parms: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction size="small" type="edit" />
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() => openUpdateViewModel(info.row.original.id, false)}
+          />
           <TableAction size="small" type="download" />
-          <TableAction size="small" type="view" />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() => openUpdateViewModel(info.row.original.id)}
+          />
           <TableAction
             size="small"
             type="delete"

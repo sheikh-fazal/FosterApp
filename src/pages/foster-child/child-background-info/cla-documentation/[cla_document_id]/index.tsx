@@ -1,6 +1,7 @@
 import HomeIcon from "@mui/icons-material/Home";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
 import { ClaDocumentationForm } from "@root/sections/foster-child/child-background-info/cla-documentation-list/cla-documentation-form/CLADocumentationForm";
 import { useGetClaDocumentationByIdQuery } from "@root/services/foster-child/child-background-info/cla-documentation-list/CLADocumentationListAPI";
@@ -23,22 +24,12 @@ const PAGE_TITLE = "View CLA Documentation";
 // ----------------------------------------------------------------------
 
 ViewClaDocumentationList.getLayout = function getLayout(page: any) {
-  const router = useRouter()
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout>{page}</Layout>;
 };
 
 export default function ViewClaDocumentationList() {
   const { query } = useRouter();
-  console.log(query);
-
+  const router = useRouter();
   const documentId = query["cla_document_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetClaDocumentationByIdQuery(documentId);
@@ -48,6 +39,11 @@ export default function ViewClaDocumentationList() {
 
   return (
     <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
       <Paper elevation={3}>
         {isLoading && <p>Loading...</p>}
         {isSuccess && (

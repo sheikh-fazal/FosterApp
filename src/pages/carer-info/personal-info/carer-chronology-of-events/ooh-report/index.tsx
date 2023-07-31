@@ -2,7 +2,6 @@ import Layout from "@root/layouts";
 import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import { OhDetails } from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/ooh-report-form";
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
@@ -11,6 +10,7 @@ import {
   useUploadDocumentListQuery,
   useDeleteDocumentListMutation,
 } from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportDocumentsApi";
+import ReportForm from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/report-form/ReportForm";
 
 // Constants
 const BREADCRUMBS = [
@@ -26,7 +26,7 @@ const BREADCRUMBS = [
 ];
 
 const PAGE_TITLE = "OOH Report";
-oohReport.getLayout = function getLayout(page: any) {
+OohReport.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -37,7 +37,7 @@ oohReport.getLayout = function getLayout(page: any) {
     </Layout>
   );
 };
-export default function oohReport() {
+export default function OohReport() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
   const { action, id } = router.query;
@@ -102,7 +102,7 @@ export default function oohReport() {
   return (
     <HorizaontalTabs tabsDataArray={["OOH Details", "Upload Documents"]}>
       {/* Oh Details Component */}
-      <OhDetails id={id} action={action} />
+      <ReportForm id={id} action={action} />
       {/* Upload Documents Component */}
       <UploadDocuments
         readOnly={action === "view" ? true : false}

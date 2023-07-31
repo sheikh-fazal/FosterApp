@@ -26,12 +26,12 @@ export default function ClaDocumentationListTable(prop: any) {
   console.log("data", data);
 
   const columns = [
-    {
-      accessorFn: (row: any) => row,
-      id: "srNo",
-      cell: (info: any) => Number(info?.row?.id) + 1,
-      header: "Sr. No",
-    },
+    // {
+    //   accessorFn: (row: any) => row,
+    //   id: "srNo",
+    //   cell: (info: any) => Number(info?.row?.id) + 1,
+    //   header: "Sr. No",
+    // },
     {
       accessorFn: (row: any) => row.createdAt,
       id: "createdAt",
@@ -107,11 +107,12 @@ export default function ClaDocumentationListTable(prop: any) {
         title="CLA Documentation"
         searchKey="search"
         onChanged={headerChangeHandler}
-        onAdd={() => {
-          router.push(
-            "/foster-child/child-background-info/cla-documentation/add-cla-documentation"
-          );
-        }}
+        onAdd={() =>
+          router.push({
+            pathname: `/foster-child/child-background-info/cla-documentation/add-cla-documentation`,
+            query: { fosterChildId: fosterChildId },
+          })
+        }
       />
       <CustomTable
         showSerialNo
