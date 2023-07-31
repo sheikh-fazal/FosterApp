@@ -88,7 +88,7 @@ const OfstedNotificationsTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        hideSearch
         showAddBtn
         onAdd={() => {
           router.push({
@@ -96,9 +96,6 @@ const OfstedNotificationsTable = (props: any) => {
               "/foster-child/child-background-info/child-chronology-of-events/ofsted-notifications",
             query: { action: "add", fosterChildId: fosterChildId },
           });
-        }}
-        onChanged={(event: any) => {
-          setSearch(event.search);
         }}
       />
       <CustomTable
