@@ -24,7 +24,7 @@ const PAGE_TITLE = "Edit CLA Documentation";
 // ----------------------------------------------------------------------
 
 EditClaDocumentationList.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function EditClaDocumentationList() {
