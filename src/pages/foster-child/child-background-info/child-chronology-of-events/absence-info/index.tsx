@@ -81,7 +81,7 @@ export default function AbsenceInfo() {
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        breadcrumbs={BREADCRUMBS(fosterChildId)}
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm />
@@ -99,7 +99,6 @@ export default function AbsenceInfo() {
             "personUploaded",
             "documentPassword",
           ]}
-          // onDelete={}
           onDelete={(data: any) => {
             deleteDocument(data.id);
           }}
@@ -107,7 +106,7 @@ export default function AbsenceInfo() {
           onPageChange={(pageNo: any) => {
             setPage((pageNo - 1) * 10);
           }}
-          currentPage={data?.data?.meta?.pag be}
+          currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           disabled={!!id && (action === "add" || action === "edit") ? false : true}
         />

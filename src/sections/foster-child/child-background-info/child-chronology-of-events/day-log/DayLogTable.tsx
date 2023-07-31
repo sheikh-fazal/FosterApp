@@ -99,7 +99,7 @@ const DayLogTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        // searchKey="search"
         showAddBtn
         onAdd={() => {
           router.push({
