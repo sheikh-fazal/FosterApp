@@ -2,9 +2,9 @@ import Layout from "@root/layouts";
 import { Paper } from "@mui/material";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
-import DayLogTable from "@root/sections/foster-child/child-background-info/child-chronology-of-events/day-log/DayLogTable";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import DayLogTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogTable";
 
 // ----------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ export default function DayLogJournalEntries() {
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        breadcrumbs={BREADCRUMBS(fosterChildId)}
         title={PAGE_TITLE}
       />
       <Paper elevation={3}>

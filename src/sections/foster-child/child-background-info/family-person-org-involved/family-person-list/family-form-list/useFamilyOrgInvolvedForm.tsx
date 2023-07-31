@@ -38,8 +38,10 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
     // Post API of Family Person List
     try {
       const res: any = await postFamilyPersonList(data).unwrap();
+      console.log(res);
+      
       router.push(
-        `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?fosterChildId=${router?.query?.fosterChildId}`
+        `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?fosterChildId=${router?.query?.fosterChildId}&family_person_id=${res?.id}`
       );
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -67,7 +69,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
         );
       } else {
         router.push(
-          `/foster-child/child-background-info/family-person-org-involved?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?fosterChildId=${router?.query?.fosterChildId}&family_person_id=${router?.query?.family_person_id}`
         );
       }
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
