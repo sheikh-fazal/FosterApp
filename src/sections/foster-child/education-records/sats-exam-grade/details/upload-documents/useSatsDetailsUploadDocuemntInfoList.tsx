@@ -9,14 +9,15 @@ import {
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { displaySuccessMessage } from "@root/utils/mixedUtil";
+import { useGetSatsExamGradeDocsListDataQuery } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
-export const useChildUploadDocuemntInfoList = () => {
+export const useSatsDetailsUploadDocuemntInfoList = () => {
   const router = useRouter();
   const { query } = useRouter();
   const [page, setPage] = useState(0);
 
   const [searchValue, setSearchValue] = useState(undefined);
-  const [therapInfoCon, setTherapInfo] = useState({
+  const [listInfoCon, setListInfoCon] = useState({
     someAsyncAction: false,
     docsAddModel: false,
     updateViewModel: false,
@@ -33,17 +34,17 @@ export const useChildUploadDocuemntInfoList = () => {
   const apiDataParameter = { params, id: query?.therapyInfoId };
 
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetTherapyDetailsDocsListDataQuery(apiDataParameter);
+    useGetSatsExamGradeDocsListDataQuery(apiDataParameter);
 
   const [delTherapyDetailsDocsListData] =
     useDelTherapyDetailsDocsListDataMutation();
 
   const handleDeleteChildTherapy = async (id: string) => {
     try {
-      setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
+      setListInfoCon((pre) => ({ ...pre, someAsyncAction: true }));
       const data = await delTherapyDetailsDocsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
-      setTherapInfo((pre) => ({ ...pre, someAsyncAction: false }));
+      setListInfoCon((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
     } catch (error) {
       displaySuccessMessage(error, enqueueSnackbar);
@@ -52,22 +53,22 @@ export const useChildUploadDocuemntInfoList = () => {
   };
 
   const openAddModel = () => {
-    setTherapInfo((pre) => ({ ...pre, docsAddModel: true }));
+    setListInfoCon((pre) => ({ ...pre, docsAddModel: true }));
   };
 
   const closeAddModel = () => {
-    setTherapInfo((pre) => ({ ...pre, docsAddModel: false }));
+    setListInfoCon((pre) => ({ ...pre, docsAddModel: false }));
   };
 
   const openUpdateViewModel = (viewId: string, isViewModel: boolean = true) => {
     const uploadDocsFormData = data?.data?.therapy_info_document.find(
       ({ id }: any) => id === viewId
     );
-    setTherapInfo((pre) => ({
+    setListInfoCon((pre) => ({
       ...pre,
       uploadFormDataHolder: uploadDocsFormData,
     }));
-    setTherapInfo((pre) => ({
+    setListInfoCon((pre) => ({
       ...pre,
       updateViewModel: true,
       updateViewModelDisabled: isViewModel,
@@ -75,7 +76,7 @@ export const useChildUploadDocuemntInfoList = () => {
   };
 
   const closeUpdateViewModel = () => {
-    setTherapInfo((pre) => ({ ...pre, updateViewModel: false }));
+    setListInfoCon((pre) => ({ ...pre, updateViewModel: false }));
   };
 
   const columns = getColumns({
@@ -94,7 +95,7 @@ export const useChildUploadDocuemntInfoList = () => {
     setSearchValue,
     setPage,
     page,
-    therapInfoCon,
+    listInfoCon,
     openAddModel,
     closeAddModel,
     closeUpdateViewModel,

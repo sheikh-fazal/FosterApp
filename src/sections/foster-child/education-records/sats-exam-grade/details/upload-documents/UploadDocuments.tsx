@@ -1,5 +1,5 @@
 import React from "react";
-import { useChildUploadDocuemntInfoList } from "./useChildUploadDocuemntInfoList";
+import { useSatsDetailsUploadDocuemntInfoList } from "./useSatsDetailsUploadDocuemntInfoList";
 import { Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -19,18 +19,18 @@ const UploadDocuments = () => {
     isFetching,
     setSearchValue,
     setPage,
-    therapInfoCon,
+    listInfoCon,
     openAddModel,
     closeAddModel,
     closeUpdateViewModel,
-  }: any = useChildUploadDocuemntInfoList();
+  }: any = useSatsDetailsUploadDocuemntInfoList();
   const {
     someAsyncAction,
     docsAddModel,
     updateViewModel,
     updateViewModelDisabled,
     uploadFormDataHolder,
-  } = therapInfoCon;
+  } = listInfoCon;
   return (
     <Grid sx={{ position: "relative" }}>
       <UploadDocsModel modelStatus={docsAddModel} closeModel={closeAddModel} />
@@ -53,7 +53,7 @@ const UploadDocuments = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.therapy_info_document}
+        data={data?.data?.["education-records-document"]}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
