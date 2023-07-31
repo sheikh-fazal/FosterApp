@@ -14,10 +14,11 @@ const EditPersonalEducationPlan = (props: any) => {
     formState,
     defaultValues,
     initialValueProps = defaultValues,
+    id
   } = props;
 
   const { methods, handleSubmit, onSubmit } =
-    useEditPersonalEducationalPlan(initialValueProps);
+    useEditPersonalEducationalPlan(initialValueProps,id);
 
   return (
     <>

@@ -54,6 +54,8 @@ export default function EditChildExclusionInfoPage() {
                 comments: data?.comments,
                 principalName: data?.principalName,
               }}
+
+              id={id}
             />
           </>
         )}

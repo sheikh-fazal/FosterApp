@@ -3,10 +3,14 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { usePatchSingleChildEducationPlanMutation } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
+import { enqueueSnackbar } from "notistack";
 
-const useEditPersonalEducationalPlan = (initialValueProps:any) => {
+const useEditPersonalEducationalPlan = (initialValueProps:any, id:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
+
+  const [patchData] = usePatchSingleChildEducationPlanMutation(id)
 
   
   const defaultValues = {
@@ -32,8 +36,19 @@ const useEditPersonalEducationalPlan = (initialValueProps:any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    
+    try {
+      const res = await patchData({data,id}) 
+
+      enqueueSnackbar(res?.data?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong!`, {
+        variant: "error",
+      });
+    }
   };
 
   return { methods, handleSubmit, onSubmit, router,defaultValues };
