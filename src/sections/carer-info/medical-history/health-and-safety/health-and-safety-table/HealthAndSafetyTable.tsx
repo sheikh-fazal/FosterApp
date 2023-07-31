@@ -15,6 +15,11 @@ export const HealthAndSafetyTable = () => {
     theme,
     router,
     tableHeaderRef,
+    healthAndSafetyApiData,
+    isLoading,
+    isError,
+    isSuccess,
+    // arryBE
   } = useHealthAndSafetyTable();
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
@@ -30,17 +35,23 @@ export const HealthAndSafetyTable = () => {
           title="Health & Safety"
           searchKey="search"
           showAddBtn
-          onAdd={()=>router.push('/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs')}
+          onAdd={() =>
+            router.push(
+              "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs"
+            )
+          }
           onChanged={headerChangeHandler}
           // selectFilters={SELECT_FILTERS}
         />
         <CustomTable
-          data={HEALTH_AND_SAFETYDATA}
+          data={healthAndSafetyApiData}
           columns={columns}
           // showSerialNo
+          isError={isError}
+          isLoading={isLoading}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={true}
+          isSuccess={isSuccess}
           isPagination={false}
         />
       </Card>
