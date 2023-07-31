@@ -25,59 +25,59 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
-import {
-  useAddTherapyDetailsDocsListDataMutation,
-  useUpdateSingleTherapyDetailsDocsMutation,
-} from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import { useAddSatsExamGradeDocsListDataMutation } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
-const UploadDocsUpdateViewForm: FC<any> = ({
-  closeModel,
-  disabled,
-  defaultValue,
-}) => {
+const UploadDocsForm: FC<any> = ({ closeModel }) => {
   const theme: any = useTheme();
-  // const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
+  const router = useRouter();
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  const [updateSingleTherapyDetailsDocs] =
-    useUpdateSingleTherapyDetailsDocsMutation();
-
-  const { documentType, updatedAt, password } = defaultValue;
+  const [addSatsExamGradeDocsListData] =
+    useAddSatsExamGradeDocsListDataMutation();
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: {
-      documentType,
-      documentDate: updatedAt && new Date(updatedAt),
-      password,
-    },
+    defaultValues,
   });
 
   const {
+    reset,
     control,
+    register,
+    setValue,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = methods;
-
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
+    // console.log({ data });
+    // return;
     const formData: any = new FormData();
-    formData.append("chooseFiles", file);
+    formData.append("formName", "SATS_EXAM_GRADE_DETAILS");
+    formData.append("recordId", router?.query?.id);
+    formData.append("fosterChildId", router?.query?.fosterChildId);
+    formData.append("file", file);
     for (var key in data) {
       formData.append(key, data[key]);
     }
 
     try {
-      const data = await updateSingleTherapyDetailsDocs({
+      setIsUpdating(true);
+      const data = await addSatsExamGradeDocsListData({
         formData,
-        id: defaultValue?.id,
+        id: router?.query?.id,
       });
+      setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);
       closeModel();
       // activateNextForm();
     } catch (error: any) {
+      setIsUpdating(false);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
@@ -140,34 +140,32 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 <Grid item sx={{ padding: "0.5em" }}>
                   <SingleFileUpload
                     accept={getDocType(docsType)}
-                    label="File"
+                    label="Selected File"
                     setFileHolder={setFileHolder}
-                    availableFile={defaultValue?.documentName}
-                    readOnly={disabled}
                   />
                 </Grid>
               </Grid>
             </Grid>
-            {/* Submit btn conatiner  */}
-            <Grid item sm={12} container direction="column">
-              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    onClick={closeModel}
-                    disabled={disabled}
-                  >
-                    Cancel
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit" disabled={disabled}>
-                    Save
-                  </Button>
+            {!disabled && (
+              <Grid item sm={12} container direction="column">
+                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      type="submit"
+                      onClick={closeModel}
+                    >
+                      Cancel
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button variant="contained" type="submit">
+                      Save
+                    </Button>
+                  </Grid>
                 </Grid>
               </Grid>
-            </Grid>
+            )}
           </Grid>
         </Grid>
       </FormProvider>
@@ -175,4 +173,4 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   );
 };
 
-export default UploadDocsUpdateViewForm;
+export default UploadDocsForm;

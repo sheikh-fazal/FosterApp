@@ -25,10 +25,11 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
+import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import {
-  useAddTherapyDetailsDocsListDataMutation,
-  useUpdateSingleTherapyDetailsDocsMutation,
-} from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+  useAddSatsExamGradeDocsListDataMutation,
+  useUpdateSatsExamGradeDocsListDataMutation,
+} from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 const UploadDocsUpdateViewForm: FC<any> = ({
   closeModel,
@@ -38,11 +39,13 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const theme: any = useTheme();
   // const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
+  const router = useRouter();
+  const [isUpdating, setIsUpdating] = useState(false);
 
-  const [updateSingleTherapyDetailsDocs] =
-    useUpdateSingleTherapyDetailsDocsMutation();
-
-  const { documentType, updatedAt, password } = defaultValue;
+  const [updateSatsExamGradeDocsListData] =
+    useUpdateSatsExamGradeDocsListDataMutation();
+  console.log({ defaultValue });
+  const { documentType, updatedAt, documentPassword } = defaultValue;
 
   const methods: any = useForm({
     // mode: "onTouched",
@@ -50,19 +53,24 @@ const UploadDocsUpdateViewForm: FC<any> = ({
     defaultValues: {
       documentType,
       documentDate: updatedAt && new Date(updatedAt),
-      password,
+      documentPassword,
     },
   });
 
   const {
+    reset,
     control,
+    register,
+    setValue,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = methods;
-
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
+    console.log({ data });
+    alert("did not found any update api on swagger");
+    return;
     const formData: any = new FormData();
     formData.append("chooseFiles", file);
     for (var key in data) {
@@ -70,14 +78,17 @@ const UploadDocsUpdateViewForm: FC<any> = ({
     }
 
     try {
-      const data = await updateSingleTherapyDetailsDocs({
+      setIsUpdating(true);
+      const data = await updateSatsExamGradeDocsListData({
         formData,
-        id: defaultValue?.id,
+        id: router?.query?.therapyInfoId,
       });
+      setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);
       closeModel();
       // activateNextForm();
     } catch (error: any) {
+      setIsUpdating(false);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
@@ -148,7 +159,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 </Grid>
               </Grid>
             </Grid>
-            {/* Submit btn conatiner  */}
+            {/* Btn conianer  */}
             <Grid item sm={12} container direction="column">
               <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                 <Grid item>
