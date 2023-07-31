@@ -4,7 +4,7 @@ import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { handleDeleteChildTherapy, openUpdateViewModel, router } = parms;
+  const { handleDeleteListItem, openUpdateViewModel, router } = parms;
   const query = router;
   const { fosterChildId } = query;
   return [
@@ -62,7 +62,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="delete"
-            onClicked={() => handleDeleteChildTherapy(info.row.original.id)}
+            onClicked={() => handleDeleteListItem(info.row.original.id)}
           />
         </Box>
       ),

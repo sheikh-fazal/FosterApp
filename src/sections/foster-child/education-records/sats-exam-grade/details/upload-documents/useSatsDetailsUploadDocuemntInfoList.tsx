@@ -9,7 +9,10 @@ import {
 } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { displaySuccessMessage } from "@root/utils/mixedUtil";
-import { useGetSatsExamGradeDocsListDataQuery } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
+import {
+  useDelSatsExamGradeDocsListDataMutation,
+  useGetSatsExamGradeDocsListDataQuery,
+} from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
 
 export const useSatsDetailsUploadDocuemntInfoList = () => {
   const router = useRouter();
@@ -36,13 +39,13 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetSatsExamGradeDocsListDataQuery(apiDataParameter);
 
-  const [delTherapyDetailsDocsListData] =
-    useDelTherapyDetailsDocsListDataMutation();
+  const [delSatsExamGradeDocsListData] =
+    useDelSatsExamGradeDocsListDataMutation();
 
-  const handleDeleteChildTherapy = async (id: string) => {
+  const handleDeleteListItem = async (id: string) => {
     try {
       setListInfoCon((pre) => ({ ...pre, someAsyncAction: true }));
-      const data = await delTherapyDetailsDocsListData({ id });
+      const data = await delSatsExamGradeDocsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setListInfoCon((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
@@ -61,9 +64,11 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
   };
 
   const openUpdateViewModel = (viewId: string, isViewModel: boolean = true) => {
-    const uploadDocsFormData = data?.data?.therapy_info_document.find(
+    const uploadDocsFormData = data?.data?.["education-records-document"].find(
       ({ id }: any) => id === viewId
     );
+    // console.log({ uploadDocsFormData });
+    // return;
     setListInfoCon((pre) => ({
       ...pre,
       uploadFormDataHolder: uploadDocsFormData,
@@ -80,7 +85,7 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
   };
 
   const columns = getColumns({
-    handleDeleteChildTherapy,
+    handleDeleteListItem,
     openUpdateViewModel,
     router,
   });

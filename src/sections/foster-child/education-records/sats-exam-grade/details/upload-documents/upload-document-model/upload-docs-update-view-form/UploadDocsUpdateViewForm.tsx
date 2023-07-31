@@ -40,7 +40,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
 
   const [addTherapyDetailsDocsListData] =
     useAddTherapyDetailsDocsListDataMutation();
-
+  console.log({ defaultValue });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
