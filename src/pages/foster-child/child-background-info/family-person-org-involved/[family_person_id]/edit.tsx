@@ -25,7 +25,7 @@ const PAGE_TITLE = "Edit Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 EditFamilyPersonForm.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function EditFamilyPersonForm() {
