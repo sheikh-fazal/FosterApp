@@ -13,7 +13,7 @@ const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "Child Info",
-    href: `/foster-child/child-background-info/cla-documentation?foster?fosterChildId=${query}`,
+    href: `/foster-child/child-background-info/cla-documentation?fosterChildId=${query}`,
   },
   {
     name: "CLA Documentation List",
@@ -25,11 +25,12 @@ const PAGE_TITLE = "CLA Documentation";
 // ----------------------------------------------------------------------
 
 ClaDocumentationList.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function ClaDocumentationList() {
   const router = useRouter();
+  console.log(router, "sadfsadfasdfsadfasdf")
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
