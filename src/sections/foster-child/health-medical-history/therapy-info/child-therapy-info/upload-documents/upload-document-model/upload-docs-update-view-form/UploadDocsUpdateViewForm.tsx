@@ -40,7 +40,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
 
   const [addTherapyDetailsDocsListData] =
     useAddTherapyDetailsDocsListDataMutation();
-  console.log({ defaultValue });
+
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -138,8 +138,10 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 <Grid item sx={{ padding: "0.5em" }}>
                   <SingleFileUpload
                     accept={getDocType(docsType)}
-                    label="Selected File"
+                    label="File"
                     setFileHolder={setFileHolder}
+                    availableFile={defaultValue?.documentName}
+                    readOnly={disabled}
                   />
                 </Grid>
               </Grid>

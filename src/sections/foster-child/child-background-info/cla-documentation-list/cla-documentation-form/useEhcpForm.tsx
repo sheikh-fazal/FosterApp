@@ -10,6 +10,7 @@ import { EHCPFormValidation } from "..";
 
 export const useEhcpForm = (props: any) => {
   const router = useRouter();
+  console.log(router, "my router dfssgdfgdsgsdfg")
   const { disabled, defaultValues } = props;
 
   const methods: any = useForm({
@@ -28,7 +29,7 @@ export const useEhcpForm = (props: any) => {
     usePatchEHCPClaDocumentationListMutation();
 
   const onSubmit = async (data: any) => {
-
+    console.log(data)
     if (!!router?.query?.cla_document_id) {
       return patchEHCPHanlder(data);
     }
@@ -38,7 +39,7 @@ export const useEhcpForm = (props: any) => {
     try {
       const res: any = await postEhcpClaDocumentationList(updatedData).unwrap();
       console.log(res);
-      router.push(`/foster-child/child-background-info/cla-documentation`);
+      router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -55,7 +56,7 @@ export const useEhcpForm = (props: any) => {
     try {
       const res: any = await patchEhcpClaDocumentationList(patchData).unwrap();
       console.log(res);
-      router.push(`/foster-child/child-background-info/cla-documentation`);
+      router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
         variant: "success",
       });
