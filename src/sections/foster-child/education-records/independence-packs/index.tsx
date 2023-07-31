@@ -25,7 +25,9 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
     {
       accessorFn: (row: any) => row.assessmentDate,
       id: "assessmentDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => (
+        <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>
+      ),
       header: () => <span>Assessment Date</span>,
     },
     {
@@ -39,9 +41,9 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
       id: "duration",
       cell: (info: any) => {
         return `${dayjs(
-          dayjs(info.row.original.toDate).format("YYYY-DD-MM")
+          dayjs(info.row.original.toDate).format("YYYY-MM-DD")
         ).diff(
-          dayjs(info.row.original.fromDate).format("YYYY-DD-MM"),
+          dayjs(info.row.original.fromDate).format("YYYY-MM-DD"),
           "days"
         )} Days`;
       },

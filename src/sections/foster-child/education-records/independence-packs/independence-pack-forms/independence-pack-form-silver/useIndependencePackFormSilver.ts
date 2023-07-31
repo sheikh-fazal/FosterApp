@@ -32,14 +32,8 @@ export const useIndependencePackFormSilver = () => {
 
   const onSubmit = async (data: any) => {
     let form_data: any = new FormData();
-
     for (var key in data) {
-      if (key !== "fromDate" && key !== "toDate" && key !== "assessmentDate")
-        form_data.append(key, data[key]);
-    }
-    for (var key in data) {
-      if (key == "fromDate" || key == "toDate" || key == "assessmentDate")
-        form_data.append(key, dayjs(data[key]).format("DD/MM/YYYY"));
+      form_data.append(key, data[key]);
     }
 
     try {

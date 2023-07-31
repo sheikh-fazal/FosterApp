@@ -14,7 +14,7 @@ import BronzeLevel from "@root/assets/svg/bronze-level";
 import { usePostUploadEvidenceMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 
 export default function IndependencePackFormSilver(props: any) {
-  const { formType, level, action } = props;
+  const { level, action } = props;
   const {
     methods,
     handleSubmit,

@@ -34,14 +34,8 @@ export const useIndependencePackFormGold = () => {
     let form_data: any = new FormData();
 
     for (var key in data) {
-      if (key !== "fromDate" && key !== "toDate" && key !== "assessmentDate")
-        form_data.append(key, data[key]);
+      form_data.append(key, data[key]);
     }
-    for (var key in data) {
-      if (key == "fromDate" || key == "toDate" || key == "assessmentDate")
-        form_data.append(key, dayjs(data[key]).format("DD/MM/YYYY"));
-    }
-
     try {
       const res: any = await postIndependencePacks({
         formData: form_data,
