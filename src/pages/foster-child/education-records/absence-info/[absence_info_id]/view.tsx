@@ -32,6 +32,7 @@ ViewAbsenceInfoForm.getLayout = function getLayout(page: any) {
 
 export default function ViewAbsenceInfoForm() {
   const { query } = useRouter();
+  const router = useRouter();
   const absenceInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetAbsenceInfoByIdQuery(absenceInfoId);
@@ -39,7 +40,7 @@ export default function ViewAbsenceInfoForm() {
     <Page title={PAGE_TITLE}>
        <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
         title={PAGE_TITLE}
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Upload Documents"]}>

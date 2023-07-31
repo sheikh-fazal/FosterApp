@@ -22,10 +22,11 @@ const BREADCRUMBS = (query: any) => [
 
 const PAGE_TITLE = "Absence Info";
 AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 export default function AbsenceInfoFormLayout() {
   const { query } = useRouter();
+  const router = useRouter();
   const childInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } =
     useGetAbsenceInfoByIdQuery(childInfoId);
@@ -33,7 +34,7 @@ export default function AbsenceInfoFormLayout() {
     <>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
         title={PAGE_TITLE}
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>

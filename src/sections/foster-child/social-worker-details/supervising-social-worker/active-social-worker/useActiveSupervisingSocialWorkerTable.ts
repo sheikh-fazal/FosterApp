@@ -25,7 +25,7 @@ export const useActiveSupervisingSocialWorkerTable = () => {
     });
     // console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", data)
   // const family = data?.data?.social_workers;
-  const family = data?.data?.getSupervisingSocialWorker;
+  const family = data?.data;
   console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", family)
   const meta = data?.meta;
   const headerChangeHandler = (text: any) => {

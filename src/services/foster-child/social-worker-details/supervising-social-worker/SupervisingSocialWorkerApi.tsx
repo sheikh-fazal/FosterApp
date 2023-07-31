@@ -6,20 +6,20 @@ const TAG = "SUPERVISING_CARER_FAMILY_NETWORK";
 export const SupervisingcontactApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getSupervisingSocialWorkerTableApi: builder.query({
-      query: ({ params, fosterChildId, status }: any) => ({
+      query: ({ params, fosterChildId }: any) => ({
         // url: `social-worker-details/la-social-worker/list/?fosterChildId=${fosterChildId}`,
-        url: `foster-child/list-supervising-social-worker/?fosterChildId=${fosterChildId}/${status}`,
+        url: `foster-child/list-supervising-social-worker/${fosterChildId}/${params?.status}`,
         method: "GET",
-        params,
+        // params,
       }),
-      providesTags: (result) => generalTags(result?.getSupervisingSocialWorker, TAG),
-      
+      // providesTags: (result) => generalTags(result?.faimly_details, TAG),
+
       // providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     postSupervisingSocialWorkerApi: builder.mutation({
       query: ({ body, fosterChildId }: any) => ({
         // url: `social-worker-details/la-social-worker`,
-        url: `foster-child/add-supervising-social-worker/?fosterChildId=${fosterChildId}`,
+        url: `foster-child/add-supervising-social-worker/fosterChildId=${fosterChildId}`,
         method: "POST",
         body: { ...body, fosterChildId: fosterChildId },
       }),
@@ -36,7 +36,8 @@ export const SupervisingcontactApi = baseAPI.injectEndpoints({
     //   invalidatesTags: [TAG],
     // }),
     getSupervisingSocialWorkerById: builder.query({
-      query: (supervisingSocialWorkerId) => `foster-child/get-supervising-social-worker/${supervisingSocialWorkerId}`,
+      query: (supervisingSocialWorkerId) =>
+        `foster-child/get-supervising-social-worker/${supervisingSocialWorkerId}`,
       // query: (id) => `social-worker-details/la-social-worker/${id}`,
     }),
     // deleteSupervisingSocialWorkerById: builder.mutation({
