@@ -1,6 +1,5 @@
 import DayLogTable from "./day-log/DayLogTable";
 import OOHReportsTable from "./ooh-reports/OOHReportsTable";
-import OfstedNotificationsTable from "./ofsted-notifications/ofstedNotificationsTable";
 import ChildMissingPlacementTable from "./child-missing-placement/ChildMissingPlacementTable";
 import AbsenceInfoTable from "./absence-info/AbsenceInfoTable";
 import ExclusiveInfoTable from "./exclusion-info/ExclusionInfoTable";
@@ -13,6 +12,7 @@ import ImmunisationInfoTable from "./immunisation-info/ImmunisationInfoTable";
 import AllegationsInfoTable from "./allegation-info/AllegationInfoTable";
 import ComplaintsInfoTable from "./complaints-info/ComplaintsInfoTable";
 import IncidentsInfoTable from "./incidents-info/IncidentsInfoTable";
+import OfstedNotificationsTable from "./ofsted-notifications/OfstedNotificationsTable";
 
 export const childChronologyListData = (fosterChildId: any) => [
   {
