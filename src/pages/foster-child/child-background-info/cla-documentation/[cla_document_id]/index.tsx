@@ -24,12 +24,11 @@ const PAGE_TITLE = "View CLA Documentation";
 // ----------------------------------------------------------------------
 
 ViewClaDocumentationList.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function ViewClaDocumentationList() {
   const { query } = useRouter();
-  console.log(query);
   const router = useRouter();
   const documentId = query["cla_document_id"];
   const { data, isLoading, isSuccess, isError } =
