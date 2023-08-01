@@ -121,8 +121,8 @@ export const TherapyInfoFormFields = [
 export const defaultValues = {
   referralToCAMHS: false,
   CAMHSAppointment: false,
-  appointmentDate: null,
-  referralDate: null,
+  appointmentDate: new Date(),
+  referralDate: new Date(),
   anyOtherTherapy: false,
   therapistNameAndAddress: "Nil",
   formalMentalHealth: false,

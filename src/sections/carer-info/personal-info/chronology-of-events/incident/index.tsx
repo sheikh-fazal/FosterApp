@@ -773,7 +773,7 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   personNotifiedAgency: Yup.string().required("required"),
   incidentDate: Yup.date().required("required"),
-  agencyReportedDate: Yup.string().required("required"),
+  agencyReportedDate: Yup.date().required("required"),
   reviewDate: Yup.date().required("required"),
   natureOfIncident: Yup.string().required("required"),
   personCompletedReport: Yup.string().required("required"),

@@ -245,10 +245,10 @@ export const ApprovedDetailsFormData = [
 export const ApprovedDetailsFormValues = {
   carerCode: "",
   referredBy: "",
-  referralDate: null,
+  referralDate: new Date(),
   approvedBy: "",
   carerGeography: "",
-  requestDateNotified: null,
+  requestDateNotified: '',
   branchManagerEmail: "",
   branchAddress: "",
   branchManagerName: "",
@@ -267,7 +267,7 @@ export const ApprovedDetailsFormValues = {
 export const ApprovedDetailsFormValidationSchema = Yup.object().shape({
   carerCode: Yup.string().trim().required("Field is Required"),
   referredBy: Yup.string().trim().required("Field is Required"),
-  referralDate: Yup.string().trim().required("Field is Required"),
+  referralDate: Yup.date().required("Field is Required"),
   approvedBy: Yup.string().trim().required("Field is Required"),
   carerGeography: Yup.string().trim().required("Field is Required"),
   requestDateNotified: Yup.string().trim().required("Field is Required"),

@@ -137,7 +137,7 @@ export const defaultValues = {
   subject: 'Nil',
   dayLogEntry: 'Nil',
   actionNeeded: 'Nil',
-  notificationDate: null,
+  notificationDate: new Date(),
   addToCarerRecord: null,
   updateSiblingRecord: false,
   additionalEmailAddresses: null,

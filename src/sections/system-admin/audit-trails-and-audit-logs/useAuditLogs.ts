@@ -5,10 +5,10 @@ export const useAuditLogs = () => {
   const theme = useTheme();
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [fosterCarerFilter, setFosterCarerFilter] = useState({
-    selectTime: '',
-    selectDate: '',
-    selectEventTime: '',
-    selectAccountType: '',
+    selectTime: null,
+    selectDate: new Date(),
+    selectEventTime: null,
+    selectAccountType: undefined,
   });
 
   const handleFosterCarerFilter = (name: string, e: any) => {

@@ -6,7 +6,7 @@ import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 // =====================================================
 export const defaultValues = {
   panelDate: new Date(),
-  timeSelection: new Date(),
+  timeSelection: '',
   caseSelection: "",
   carerSelection: "",
   socailWorker: "",
@@ -18,14 +18,14 @@ export const defaultValues = {
 
 // ======================================================
 export const FormSchema = Yup.object().shape({
-  panelDate: Yup.string().required("Field is required"),
+  panelDate: Yup.date().required("Field is required"),
   timeSelection: Yup.string().required("Field is required"),
   caseSelection: Yup.string().required("Field is required"),
   carerSelection: Yup.string().required("Field is required"),
   socailWorker: Yup.string().required("Field is required"),
   comments: Yup.string().required("Field is required"),
   assignee: Yup.string().required("Field is required"),
-  dueDate: Yup.string().required("Field is required"),
+  dueDate: Yup.date().required("Field is required"),
   actions: Yup.string().required("Field is required"),
 });
 

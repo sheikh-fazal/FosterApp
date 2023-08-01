@@ -6,14 +6,14 @@ export const initialValues = {
   localAuthorityNumber: "",
   requestedPerson: "",
   role: "",
-  date: null,
+  date: new Date(),
   dataType: "",
 };
 export const formSchema = Yup.object().shape({
   localAuthorityNumber: Yup.string().required("Field is required"),
   requestedPerson: Yup.string().required("Field is required"),
   role: Yup.string().required("Field is required"),
-  date: Yup.string().required("Field is required"),
+  date: Yup.date().required("Field is required"),
   dataType: Yup.string().required("Field is required"),
 });
 export const SecureDataExchange = [

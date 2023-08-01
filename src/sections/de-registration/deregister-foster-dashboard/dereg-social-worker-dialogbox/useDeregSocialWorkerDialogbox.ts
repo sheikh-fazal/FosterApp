@@ -22,7 +22,7 @@ const useDeregSocialWorkerDialogbox = () => {
   const socialWorkerFormSchema = Yup.object().shape({
     socialWorkerName: Yup.string().required("Required"),
     socialWorkerRole: Yup.string().required("Required"),
-    assessmentDate: Yup.string().required("Required"),
+    assessmentDate: Yup.date().required("Required"),
     fosterCarerName: Yup.string().required("Required"),
     assessmentOutcome: Yup.string().required("Required"),
   });
