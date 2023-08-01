@@ -2,11 +2,9 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box, Button, Grid, Paper } from "@mui/material";
-import HospitalizationTable from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationTable";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { useRouter } from "next/router";
 import backGround from "../../../../assets/img/background.png";
-import Image from "next/image";
 import { FormProvider, RHFSelect } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import ChildActivityDirectory from "@root/sections/foster-child/education-records/childs-activity-directory/ChildActivityDirectory";
@@ -15,6 +13,8 @@ ChildsActivityDirectory.getLayout = function getLayout(page: any) {
 };
 
 export default function ChildsActivityDirectory() {
+  const Router: any = useRouter();
+  const { fosterChildId } = Router.query;
   // Constants
   const BREADCRUMBS = [
     {
@@ -24,7 +24,10 @@ export default function ChildsActivityDirectory() {
     },
     {
       name: "child Info",
-      href: "",
+      href: {
+        pathname: "/foster-child",
+        query: { fosterChildId: fosterChildId },
+      },
     },
   ];
   const PAGE_TITLE = "Child’s Activity Directory";
