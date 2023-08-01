@@ -20,7 +20,7 @@ export default function AbsenceInfoListTable(prop: any) {
     isSuccess,
     isFetching,
     listDeleteHandler,
-    pageChangeHandler,
+    pageChangeHandler,  
     sortChangeHandler,
   } = useAbsenceInfoListTable();
 
@@ -108,8 +108,9 @@ export default function AbsenceInfoListTable(prop: any) {
           isError={isError}
           isSuccess={isSuccess}
           currentPage={data?.meta?.page}
+          totalPages={data?.meta?.pages}
           onPageChange={pageChangeHandler}
-          onSortByChange={sortChangeHandler}
+          onSortByChange={sortChangeHandler}          
         />
       </Card>
     </>
