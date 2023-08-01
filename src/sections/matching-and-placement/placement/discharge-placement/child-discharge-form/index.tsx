@@ -51,7 +51,7 @@ export const childDischargeData = [
   {
     gridLength: 6,
     otherOptions: {
-      label: "Date ofDischarge",
+      label: "Date of Discharge",
       name: "dateDischarge",
       fullWidth: true,
     },
