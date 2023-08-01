@@ -113,7 +113,7 @@ export const defaultValues = {
 
 export const BFormValidationSchema = Yup.object().shape({
   title: Yup.string().trim().required("Field is Required"),
-  date: Yup.string().trim().required("Field is Required"),
+  Date: Yup.date().required("Field is Required"),
   time: Yup.string().trim().required("Field is Required"),
   duration: Yup.string().trim().required("Field is Required"),
   timeZone: Yup.string().trim().required("Field is Required"),

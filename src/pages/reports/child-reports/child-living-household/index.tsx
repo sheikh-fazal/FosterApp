@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import ChildLivingHousehold from "@root/sections/reports/child-reports/child-living-household/ChildLivingHousehold";
 
-const PAGE_TITLE = "Child Living in the household's comments";
+const PAGE_TITLE = "Child Living in the Household's Comments";
 
 ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
   return (

@@ -1,11 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import DiaryRecordingsForm from "@root/sections/reports/carer-report/diary-recordings-carer/diary-recordings-form/DiaryRecordingsForm";
 
-const PAGE_TITLE = "Diary Recordings Carer";
+const PAGE_TITLE = "View Diary Recordings By Carer Reports";
 
 DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
   return (
@@ -22,9 +22,8 @@ DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name:"Diary Recordings By Reports List"
-        }
-      
+          name: "Diary Recordings By Reports List",
+        },
       ]}
       title={PAGE_TITLE}
     >
@@ -39,7 +38,7 @@ export default function DiaryRecordingsFormLayout() {
   const { action, id } = router.query;
   return (
     <Page title={PAGE_TITLE}>
-     <DiaryRecordingsForm action={action} id={id}/>
+      <DiaryRecordingsForm action={action} id={id} />
     </Page>
   );
 }

@@ -12,8 +12,8 @@ const TransferPlacementsTable = () => {
       ethnicity: "",
       legalStatus: "",
       placementType: "",
-      placementDate: "",
-      dischangeDate: "",
+      placementDate: new Date(),
+      dischangeDate: new Date(),
     },
   ]);
 

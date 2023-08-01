@@ -83,6 +83,7 @@ export const TAGS = [
   "LEISURE_ACTIVITY_DETAIL",
   "POST_CARER_ADDRESS_LIST",
   "INDEPENDENCE_PACK",
+  "SATS_EXAM_GRADE_LIST",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

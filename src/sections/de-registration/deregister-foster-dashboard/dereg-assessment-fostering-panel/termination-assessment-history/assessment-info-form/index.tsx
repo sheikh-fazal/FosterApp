@@ -98,10 +98,10 @@ export const formDataValues = {
 };
 
 export const formValidationSchema = Yup.object().shape({
-  assessmentMeetingDate: Yup.string().trim().required("Field is Required"),
+  assessmentMeetingDate: Yup.date().required("Field is Required"),
   assessmentByRole: Yup.string().trim().required("Field is Required"),
   finalDecision: Yup.string().trim().required("Field is Required"),
   writtenNoticeIssued: Yup.string().trim().required("Field is Required"),
-  noticeIssuedDate: Yup.string().trim().required("Field is Required"),
+  noticeIssuedDate: Yup.date().required("Field is Required"),
   responseToWrittenNotice: Yup.string().trim().required("Field is Required"),
 });

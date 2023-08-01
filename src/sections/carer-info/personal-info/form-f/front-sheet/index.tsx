@@ -14,7 +14,7 @@ const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  updatePhoto: null,
+  updatePhoto: '',
   nameOfApplicants: "name",
   socialWorkerRecommendation: "recommended",
   fosteringServiceRefrenceNumber: "fosteringServiceRefrenceNumber  ",

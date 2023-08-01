@@ -7,7 +7,7 @@ export const defaultValues = {
         refDataName: "Ethnicity",
         refDataValue: "",
         description: "categorize groups of people according to their cultural expression and identification",
-        lastUpdatedDate: "Certificate Pending",
+        lastUpdatedDate: new Date(),
       },
   
     ],

@@ -6,7 +6,7 @@ export const initialValues = {
   childName: "",
   carerNameFrom: "",
   carerNameTo: "",
-  dateOfTransfer: null,
+  dateOfTransfer: new Date(),
   transferReport: "",
   approvedBy: "",
   localAuthority: "",
@@ -18,7 +18,7 @@ export const formSchema = Yup.object().shape({
   childName: Yup.string().required("Field is required"),
   carerNameFrom: Yup.string().required("Field is required"),
   carerNameTo: Yup.string().required("Field is required"),
-  dateOfTransfer: Yup.string().required("Field is required"),
+  dateOfTransfer: Yup.date().required("Field is required"),
   transferReport: Yup.string().required("Field is required"),
   approvedBy: Yup.string().required("Field is required"),
   localAuthority: Yup.string().required("Field is required"),
@@ -98,7 +98,7 @@ export const formFields = [
   {
     gridLength: 6,
     otherOptions: {
-    label: "Status",
+      label: "Status",
       name: "status",
       select: true,
       options: [{ value: "Select", label: "Select" }],

@@ -27,7 +27,7 @@ export default function VocationalCourseForm(props: any) {
       ...formValues,
       ...data,
     }));
-  }, [data]);
+  }, [data, reset]);
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>

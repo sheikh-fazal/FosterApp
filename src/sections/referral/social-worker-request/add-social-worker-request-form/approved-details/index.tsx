@@ -203,7 +203,7 @@ export const BForm = [
 export const defaultValues = {
   userCode: "",
   referredBy: "",
-  referralDate: null,
+  referralDate: new Date(),
   approvedBy: "",
   userGeography: "",
   localAuthority: "",
@@ -223,7 +223,7 @@ export const defaultValues = {
 export const BFormValidationSchema = Yup.object().shape({
   userCode: Yup.string().trim().required("Field is Required"),
   referredBy: Yup.string().trim().required("Field is Required"),
-  referralDate: Yup.string().trim().required("Field is Required"),
+  referralDate: Yup.date().required("Field is Required"),
   approvedBy: Yup.string().trim().required("Field is Required"),
   userGeography: Yup.string().trim().required("Field is Required"),
   localAuthority: Yup.string().trim().required("Field is Required"),

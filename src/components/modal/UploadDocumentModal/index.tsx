@@ -5,13 +5,13 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   docType: '',
-  docDate: '',
+  docDate: new Date(),
   password: '',
   updatePhoto: ''
 }
 export const formSchema = Yup.object().shape({
   docType: Yup.string().required('Field is required'),
-  docDate: Yup.string().required('Field is required'),
+  docDate: Yup.date().required('Field is required'),
   password: Yup.string().required('Field is required'),
   updatePhoto: Yup.string().required('Field is required')
 })
