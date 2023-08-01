@@ -8,7 +8,8 @@ import CustomTable from "@root/components/Table/CustomTable";
 // ============================================================================================
 
 const RespitePlacementTable = () => {
-  const { respitePlacementColumns, theme, router, SELECT_FILTERS } = useRespitePlacementTable();
+  const { respitePlacementColumns, theme, router, SELECT_FILTERS } =
+    useRespitePlacementTable();
   return (
     <Card sx={styles.card}>
       <TableHeader
@@ -27,7 +28,6 @@ const RespitePlacementTable = () => {
         data={fosterCarerData}
         columns={respitePlacementColumns}
         isLoading={false}
-        showSerialNo={true}
         isFetching={false}
         isError={false}
         isSuccess={true}

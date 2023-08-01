@@ -12,11 +12,11 @@ const useDeregSocialWorkerDialogbox = () => {
   const [viewCheckList, setViewCheckList] = useState(false);
 
   const defaultValues = {
-    socialWorkerName: "",
-    socialWorkerRole: "",
+    socialWorkerName: "Sangeeta",
+    socialWorkerRole: "BA",
     assessmentDate: new Date(todayDate),
-    fosterCarerName: "",
-    assessmentOutcome: "",
+    fosterCarerName: "Alex",
+    assessmentOutcome: "Passed",
   };
 
   const socialWorkerFormSchema = Yup.object().shape({

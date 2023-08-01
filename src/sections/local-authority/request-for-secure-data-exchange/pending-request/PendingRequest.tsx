@@ -4,6 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { usePendingRequest } from "./usePendingRequest";
 import SecureDataExchangeModal from "./secure-data-exchange-modal/SecureDataExchangeModal";
 import { Box } from "@mui/material";
+import { SELECT_FILTERS } from "../approved-request";
 
 const PendingRequest = () => {
   const {
@@ -18,6 +19,8 @@ const PendingRequest = () => {
     <Box>
       <TableHeader
         ref={tableHeaderRefTwo}
+        selectFilters= {SELECT_FILTERS}
+        showSelectFilters={true}
         title="Secure Data Exhange Requests"
         searchKey="search"
         showAddBtn
