@@ -86,24 +86,4 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
   ];
 };
 
-export const IndependencePackData = [
-  {
-    assessmentDate: "06/12/2023",
-    assessmentLevel: "Brozone",
-    duration: "10 Days",
-    outcome: "extra",
-  },
-  {
-    assessmentDate: "06/12/2023",
-    assessmentLevel: "Silver",
-    duration: "10 Days",
-    outcome: "extra",
-  },
-  {
-    assessmentDate: "06/12/2023",
-    assessmentLevel: "Gold",
-    duration: "10 Days",
-    outcome: "extra",
-  },
-];
 export { default as IndependencePackTable } from "./independence-pack-table/IndependencePackTable";

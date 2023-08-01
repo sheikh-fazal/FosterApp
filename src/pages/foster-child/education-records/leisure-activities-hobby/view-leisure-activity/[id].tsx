@@ -8,11 +8,14 @@ import LeisureActivitiesForm from "@root/sections/foster-child/education-records
 import { useGetLeisureActivityDetailQuery } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivitiesHobby";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import Page from "@root/components/Page";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
 import { LeisureActivityDefaultValues } from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table";
-import dayjs from "dayjs";
+import { default as dayjs } from "dayjs";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
+dayjs.extend(customParseFormat);
 
 const PAGE_TITLE = "Leisure Activities";
 
