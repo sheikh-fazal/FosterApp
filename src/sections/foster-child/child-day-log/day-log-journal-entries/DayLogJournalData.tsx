@@ -2,7 +2,7 @@ import { RHFCheckbox, RHFSelect, RHFTextField } from "@root/components/hook-form
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
-export const DayLogFormFields = [
+export const DayLogJournalFormFields = [
   {
     id: 1,
     gridLength: 6,

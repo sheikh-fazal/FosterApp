@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import DayLogForm from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogForm";
+import DayLogJournalForm from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogJournalForm";
 
 const BREADCRUMBS = (fosterChildId: any) => {
   return [
@@ -82,7 +82,7 @@ export default function DayLog() {
         breadcrumbs={BREADCRUMBS(fosterChildId)}
       />
       <HorizaontalTabs tabsDataArray={["Day Log / Journal Entries", "Documents"]}>
-        <DayLogForm />
+        <DayLogJournalForm />
         <UploadDocuments
           searchParam={(searchedText: string) => console.log("searched Value", searchedText)}
           tableData={data?.data?.foster_child_document}

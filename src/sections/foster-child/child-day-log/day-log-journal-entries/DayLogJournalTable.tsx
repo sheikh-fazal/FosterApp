@@ -4,9 +4,10 @@ import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { useDayLogTable } from "./useDayLogTable";
+import { useDayLogJournalTable } from "./useDayLogJournalTable";
 
-const DayLogTable = (props: any) => {
+
+const DayLogJournalTable = (props: any) => {
   const { fosterChildId } = props;
   const {
     listDeleteHandler,
@@ -20,7 +21,7 @@ const DayLogTable = (props: any) => {
     isFetching,
     isError,
     isLoading,
-  } = useDayLogTable();
+  } = useDayLogJournalTable();
   const columns = [
     {
       accessorFn: (row: any) => row?.dateOfOccurence,
@@ -134,4 +135,4 @@ const DayLogTable = (props: any) => {
   );
 };
 
-export default DayLogTable;
+export default DayLogJournalTable;

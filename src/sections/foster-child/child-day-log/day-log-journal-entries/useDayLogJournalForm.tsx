@@ -2,7 +2,7 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { defaultValues, formSchema, formatters } from "./DayLogData";
+import { defaultValues, formSchema, formatters } from "./DayLogJournalData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/DayLogAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
-export const useDayLogForm = () => {
+export const useDayLogJournalForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();

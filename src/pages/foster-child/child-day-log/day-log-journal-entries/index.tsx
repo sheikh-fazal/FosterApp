@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import DayLogTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogTable";
+import DayLogTable from "@root/sections/foster-child/child-day-log/day-log-journal-entries/DayLogJournalTable";
 
 // ----------------------------------------------------------------------
 

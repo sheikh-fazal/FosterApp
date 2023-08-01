@@ -1,14 +1,22 @@
 import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
-import { DayLogFormFields } from "./DayLogData";
+import { DayLogJournalFormFields } from "./DayLogJournalData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
-import { useDayLogForm } from "./useDayLogForm";
+import { useDayLogJournalForm } from "./useDayLogJournalForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-const DayLogForm = () => {
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading, action,fosterChildId } =
-    useDayLogForm();
+const DayLogJournalForm = () => {
+  const {
+    router,
+    methods,
+    onSubmit,
+    handleSubmit,
+    isSubmitting,
+    isLoading,
+    action,
+    fosterChildId,
+  } = useDayLogJournalForm();
 
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
@@ -27,9 +35,15 @@ const DayLogForm = () => {
           </Grid>
         </Grid>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-          {DayLogFormFields.map((form: any) => {
+          {DayLogJournalFormFields.map((form: any) => {
             return (
-              <Grid item xs={12} md={form?.gridLength} key={form.id} sx={{ mt: 1 }}>
+              <Grid
+                item
+                xs={12}
+                md={form?.gridLength}
+                key={form.id}
+                sx={{ mt: 1 }}
+              >
                 {form.component !== "RadioGroup" && (
                   <form.component
                     size="small"
@@ -85,18 +99,24 @@ const DayLogForm = () => {
                     }}
                     variant="subtitle2"
                   >
-                    Enter Additional Email Addresses to be notified: (Email Addresses should be
-                    seprated by commas.For example john@domain.com, Pete@domain.com)
+                    Enter Additional Email Addresses to be notified: (Email
+                    Addresses should be seprated by commas.For example
+                    john@domain.com, Pete@domain.com)
                   </Typography>
                   <RHFTextField
                     name={"additionalEmailAddresses"}
-                    disabled={action === "view" ? true : false} fullWidth
+                    disabled={action === "view" ? true : false}
+                    fullWidth
                   />
                 </Grid>
               </Box>
             </Paper>
           </Grid>
-          <Grid xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }} item>
+          <Grid
+            xs={12}
+            sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
+            item
+          >
             {action !== "view" && (
               <LoadingButton
                 type="submit"
@@ -117,7 +137,9 @@ const DayLogForm = () => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(`/foster-child/child-day-log/day-log-journal-entries?fosterChildId=${fosterChildId}`)
+                router.push(
+                  `/foster-child/child-day-log/day-log-journal-entries?fosterChildId=${fosterChildId}`
+                )
               }
             >
               Back
@@ -129,4 +151,4 @@ const DayLogForm = () => {
   );
 };
 
-export default DayLogForm;
+export default DayLogJournalForm;

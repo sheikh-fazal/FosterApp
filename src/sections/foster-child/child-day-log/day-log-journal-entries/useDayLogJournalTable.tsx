@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useRef, useState } from "react";
 
-export const useDayLogTable = () => {
+export const useDayLogJournalTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
