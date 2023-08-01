@@ -15,7 +15,8 @@ type IPARAM =
   | "aboutApplicants"
   | "specialistReports"
   | "summaryAndRecommendation"
-  | "applicantsObservation";
+  | "applicantsObservation"
+  | "verificaitonApplication2";
 
 export const formFAll = baseAPI.injectEndpoints({
   endpoints: (builder) => ({

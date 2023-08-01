@@ -81,11 +81,11 @@ export const HospitalisationInfoFormFields = [
 export const defaultValues = {
   hospitalName: "Nil",
   reasonForHospitalisation: "Nil",
-  dischargeDate: null,
-  admissionDate: null,
+  dischargeDate: new Date(),
+  admissionDate: new Date(),
   dayToDayDetails: "Nil",
   doctorName: "Nil",
-  followUpDate: null,
+  followUpDate: new Date(),
 };
 export const formatters: any = {};
 
@@ -96,5 +96,5 @@ export const formSchema = Yup.object().shape({
   admissionDate: Yup.date().required("Required"),
   dayToDayDetails: Yup.string().required("Required"),
   doctorName: Yup.string().required("Required"),
-  followUpDate: Yup.string().required("Required"),
+  followUpDate: Yup.date().required("Required"),
 });

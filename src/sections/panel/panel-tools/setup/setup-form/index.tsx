@@ -17,8 +17,8 @@ export const formSchema = Yup.object().shape({
   carer: Yup.string().required('Field is required'),
   status: Yup.string().required('Field is required'),
   case: Yup.string().required('Field is required'),
-  time: Yup.string().required('Field is required'),
-  date: Yup.string().required('Field is required'),
+  time: Yup.date().required('Field is required'),
+  date: Yup.date().required('Field is required'),
   socialWorker: Yup.string().required('Field is required'),
   member: Yup.string().required('Field is required')
 });

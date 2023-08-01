@@ -17,7 +17,7 @@ export const data = [{
 },]
 export const defaultValues = {
   updatePhoto: null,
-  // uploadDate: "",
+  // uploadDate: new Date(),
   description: "",
   version: "",
   creatorRole: "",
@@ -27,15 +27,15 @@ export const defaultValues = {
   approverRole: "",
   lastModfifiedTime: "",
   lastModfifiedBy: "",
-  // authorSignatureDate: "",
-  // approverSignatureDate: "",
+  // authorSignatureDate: new Date(),
+  // approverSignatureDate: new Date(),
   authorSignature: "",
   approverSignature: ""
 };
 
 export const FormSchema = Yup.object().shape({
   updatePhoto: Yup.mixed().required("Required"),
-  uploadDate: Yup.string().required("Field is required"),
+  uploadDate: Yup.date().required("Field is required"),
   description: Yup.string().required("Field is required"),
   version: Yup.string().required("Field is required"),
   creatorRole: Yup.string().required("Field is required"),
@@ -45,8 +45,8 @@ export const FormSchema = Yup.object().shape({
   approverRole: Yup.string().required("Field is required"),
   lastModfifiedTime: Yup.string().required("Field is required"),
   lastModfifiedBy: Yup.string().required("Field is required"),
-  authorSignatureDate: Yup.string().required("Field is required"),
-  approverSignatureDate: Yup.string().required("Field is required"),
+  authorSignatureDate: Yup.date().required("Field is required"),
+  approverSignatureDate: Yup.date().required("Field is required"),
   authorSignature: Yup.mixed()
     .nullable()
     .required("Signature of Author is required"),

@@ -13,7 +13,7 @@ export const defaultValues = {
 // =======================================================================
 export const FormSchema = Yup.object().shape({
   admDecision: Yup.string().required("Field is required"),
-  decisionDate: Yup.string().required("Field is required"),
+  decisionDate: Yup.date().required("Field is required"),
   status: Yup.string().required("Field is required"),
 });
 

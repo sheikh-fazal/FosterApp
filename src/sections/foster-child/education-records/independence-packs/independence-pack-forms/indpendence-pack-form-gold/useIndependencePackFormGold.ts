@@ -15,7 +15,7 @@ export const useIndependencePackFormGold = () => {
 
   const methods: any = useForm({
     // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
+    // resolver: yupResolver(FormSchema),
     defaultValues,
   });
 
