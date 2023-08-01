@@ -59,7 +59,6 @@ export const useReportForm = (action: any, id: any) => {
       setIsFetching(true);
       const formData = {
         fosterCarerId,
-        status: "",
         ...data,
       };
       postReportDetails(formData)

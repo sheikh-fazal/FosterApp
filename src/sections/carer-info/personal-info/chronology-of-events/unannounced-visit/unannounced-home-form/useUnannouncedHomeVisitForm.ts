@@ -20,7 +20,7 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
   const [getUnannouncedList] = useLazySingleUnAnnouncedVisitListQuery();
   //API For Posting UnAnnouncedVisit Form
   const [postUnAnnouncedVisitDetails] = usePostUnAnnouncedVisitListMutation();
-  //API For Patch UnAnnouncedVisit List
+  //API For Patch UnAnnouncedVisit List0
   const [editUnAnnouncedVisitList] = usePatchUnAnnouncedVisitListMutation();
 
   //GET DEFAULT VALUE HANDLER
@@ -44,7 +44,7 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
     }
   };
   const methods: any = useForm({
-    // resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
   const {
@@ -57,8 +57,11 @@ export const useUnannouncedHomeVisitForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     const formData = new FormData();
     formData.append("fosterCarerId", fosterCarerId);
-    for (let [key, val] of Object.entries(data)) {
-      formData.append(key, JSON.stringify(val));
+    formData.append("homeVisitStatus", "");
+    formData.append("status", "");
+    // formData.append("fcSignature", "");
+    for (let key in data) {
+      formData.append(key, data[key]);
     }
     if (action === "add") {
       setIsFetching(true);

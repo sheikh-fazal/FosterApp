@@ -83,7 +83,7 @@ export const useEmploymentReferenceOneForm = (action: any, id: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/employment-reference-1",
+              "/carer-info/background-checks/statutory-checks-list",
             query: { fosterChildId: fosterCarerId },
           });
         });
@@ -99,9 +99,11 @@ export const useEmploymentReferenceOneForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/employment-reference-1"
-          );
+          router.push({
+            pathname:
+              "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {
@@ -109,7 +111,7 @@ export const useEmploymentReferenceOneForm = (action: any, id: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/employment-reference-1",
+              "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);

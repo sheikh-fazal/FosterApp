@@ -86,7 +86,7 @@ export const useDbsCheckForm = (action: any, id: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/dbs-check",
+              "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
         });
@@ -102,9 +102,11 @@ export const useDbsCheckForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/dbs-check"
-          );
+          router.push({
+            pathname:
+              "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {
@@ -112,7 +114,7 @@ export const useDbsCheckForm = (action: any, id: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
             pathname:
-              "/carer-info/background-checks/statutory-checks-list/dbs-check",
+              "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);

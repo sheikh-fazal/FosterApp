@@ -4,7 +4,6 @@ import { useRef } from "react";
 
 export const usePetQuestionnaireTable = () => {
   const tableHeaderRef = useRef<any>();
-
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
   // ----------------------------------------------------------------------
