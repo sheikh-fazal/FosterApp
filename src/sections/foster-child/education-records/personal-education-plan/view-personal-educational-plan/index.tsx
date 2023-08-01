@@ -8,6 +8,7 @@ export const EditPersonalEducationPlanData = [
     otherOptions: {
       name: "school",
       label: "School",
+      fullWidth: true,
     },
     component: RHFTextField,
   },
