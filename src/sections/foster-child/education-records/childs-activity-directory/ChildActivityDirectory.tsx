@@ -38,7 +38,13 @@ const ChildActivityDirectory = () => {
             <TuneIcon sx={(theme) => Styles.iconButton(theme)} />
           </IconButton>
         </Box>
-        <Grid p={2} gap={1.2} container>
+        <Grid
+          p={2}
+          gap={1.2}
+          container
+          justifyContent={{ xs: "center", md: "flex-start" }}
+          alignItems={"center"}
+        >
           {cardData.map((items, index) => (
             <Grid key={index} item>
               <Box sx={Styles.MainWapper(items.bgcolor)}>
