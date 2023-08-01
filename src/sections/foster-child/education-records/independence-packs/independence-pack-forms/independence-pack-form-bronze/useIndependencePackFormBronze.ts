@@ -5,10 +5,16 @@ import { fTimestamp } from "@root/utils/formatTime";
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { usePostIndependencePacksMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import {
+  usePostIndependencePacksMutation,
+  useUpdateIndependencePackMutation,
+} from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 import dayjs from "dayjs";
 
-export const useIndependencePackFormBronze = ({action,inedependencePackData}:any) => {
+export const useIndependencePackFormBronze = ({
+  action,
+  inedependencePackData,
+}: any) => {
   let theme = useTheme();
   let router = useRouter();
   let { fosterChildId } = router.query;
@@ -16,9 +22,8 @@ export const useIndependencePackFormBronze = ({action,inedependencePackData}:any
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues:action=='add'?defaultValues:inedependencePackData,
+    defaultValues: action == "add" ? defaultValues : inedependencePackData,
   });
-
   const {
     reset,
     control,
@@ -30,25 +35,43 @@ export const useIndependencePackFormBronze = ({action,inedependencePackData}:any
   const [postIndependencePacks, { isLoading }] =
     usePostIndependencePacksMutation();
 
+  const [updateIndependencePack, { isLoading: isLoadingUpdate }] =
+    useUpdateIndependencePackMutation();
+
   const onSubmit = async (data: any) => {
     let form_data: any = new FormData();
 
     for (var key in data) {
-        form_data.append(key, data[key]);
+      form_data.append(key, data[key]);
     }
-   
-
-    try {
-      const res: any = await postIndependencePacks({
-        formData: form_data,
-        id: fosterChildId,
-      }).unwrap();
-      if (res.data) {
-        enqueueSnackbar("Record Added Successfully", { variant: "success" });
+    if (action == "add") {
+      try {
+        const res: any = await postIndependencePacks({
+          formData: form_data,
+          id: fosterChildId,
+        }).unwrap();
+        if (res.data) {
+          enqueueSnackbar("Record Added Successfully", { variant: "success" });
+        }
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       }
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    } else if (action == "edit") {
+      try {
+        const res: any = await updateIndependencePack({
+          formData: form_data,
+          id: router?.query?.id,
+        }).unwrap();
+        if (res.data) {
+          enqueueSnackbar("Record Updated Successfully", {
+            variant: "success",
+          });
+        }
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
     }
   };
 

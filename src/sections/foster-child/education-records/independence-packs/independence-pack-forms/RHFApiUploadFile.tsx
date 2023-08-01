@@ -3,6 +3,7 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useFormContext, Controller } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
 import CircularProgress from "@mui/material/CircularProgress";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
 
 export const RHFApiUploadFile = (props: any) => {
@@ -39,7 +40,21 @@ export const RHFApiUploadFile = (props: any) => {
                   : field.value.name) ||
                   (other.label ? other?.label : "Upload Image")}
               </div>
-              {loading ? (
+              {field.value ? (
+                <ClearIcon
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    field.onChange({
+                      target: { value: "" },
+                    });
+                  }}
+                  sx={{
+                    color: "#A3A6BB",
+                    marginRight: "10px",
+                  }}
+                />
+              ) : loading ? (
                 <CircularProgress
                   sx={{
                     color: "#A3A6BB",

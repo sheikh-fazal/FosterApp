@@ -16,7 +16,7 @@ import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 // utils
 
 // ----------------------------------------------------------------------
-let titleCase = (string: any) => {
+export const titleCase = (string: any) => {
   return string?.charAt(0).toUpperCase() + string?.slice(1).toLowerCase();
 };
 
@@ -63,7 +63,9 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
             type="edit"
             onClicked={() =>
               router.push(
-                `/foster-child/education-records/independence-packs-life-skill-assessment/edit-independence-pack/${info?.row?.original?.medalLevel}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
+                `/foster-child/education-records/independence-packs-life-skill-assessment/edit-independence-pack/${titleCase(
+                  info?.row?.original?.medalLevel
+                )}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
               )
             }
           />
@@ -74,7 +76,9 @@ export const columns = ({ fosterChildId, listDeleteHandler }: any) => {
             type="view"
             onClicked={() =>
               router.push(
-                `/foster-child/education-records/independence-packs-life-skill-assessment/view-independence-pack/${info?.row?.original?.medalLevel}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
+                `/foster-child/education-records/independence-packs-life-skill-assessment/view-independence-pack/${titleCase(
+                  info?.row?.original?.medalLevel
+                )}/${info?.row?.original?.id}?fosterChildId=${fosterChildId}`
               )
             }
           />

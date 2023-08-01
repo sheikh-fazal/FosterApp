@@ -14,7 +14,7 @@ import BronzeLevel from "@root/assets/svg/bronze-level";
 import { usePostUploadEvidenceMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 
 export default function IndependencePackFormSilver(props: any) {
-  const { level, action } = props;
+  const { level, action, inedependencePackData } = props;
   const {
     methods,
     handleSubmit,
@@ -23,7 +23,7 @@ export default function IndependencePackFormSilver(props: any) {
     isDirty,
     theme,
     router,
-  } = useIndependencePackFormSilver();
+  } = useIndependencePackFormSilver({ action, inedependencePackData });
   let [postUploadEvidence, { isLoading: isLoadingPost }] =
     usePostUploadEvidenceMutation();
   return (

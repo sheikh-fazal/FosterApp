@@ -82,6 +82,7 @@ export const TAGS = [
   "REPORTS_DOCUMENTS",
   "LEISURE_ACTIVITY_DETAIL",
   "POST_CARER_ADDRESS_LIST",
+  "INDEPENDENCE_PACK",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

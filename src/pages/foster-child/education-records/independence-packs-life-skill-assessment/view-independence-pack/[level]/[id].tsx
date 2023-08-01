@@ -11,6 +11,9 @@ import { useRouter } from "next/router";
 import { Breadcrumbs } from "@root/components/PageBreadcrumbs";
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
+import { useGetIndependencePackQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { defaultValues as bronzeDefaultValues } from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-bronze/index";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -55,15 +58,58 @@ ViewIndependencePack.getLayout = function getLayout(page: any) {
 export default function ViewIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
-  const { level } = router.query;
+  const { level, id } = router.query;
+  const { data, isLoading, isError } = useGetIndependencePackQuery({
+    id,
+  });
+  if (isLoading) {
+    return <SkeletonFormdata />;
+  }
   return (
     <Page title={PAGE_TITLE}>
       {level == "Bronze" ? (
-        <IndependenceFormBronze action="view" disabled level={level} />
+        <IndependenceFormBronze
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+            ...(data?.data && {
+              ...data?.data,
+              assessmentDate: new Date(data?.data?.assessmentDate),
+              fromDate: new Date(data?.data?.fromDate),
+              toDate: new Date(data?.data?.toDate),
+            }),
+          }}
+          action="view"
+          disabled
+          level={level}
+        />
       ) : level == "Silver" ? (
-        <IndependencePackFormSilver action="view" level={level} />
+        <IndependencePackFormSilver
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+            ...(data?.data && {
+              ...data?.data,
+              assessmentDate: new Date(data?.data?.assessmentDate),
+              fromDate: new Date(data?.data?.fromDate),
+              toDate: new Date(data?.data?.toDate),
+            }),
+          }}
+          action="view"
+          level={level}
+        />
       ) : (
-        <IndependencePackFormGold action="view" level={level} />
+        <IndependencePackFormGold
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+            ...(data?.data && {
+              ...data?.data,
+              assessmentDate: new Date(data?.data?.assessmentDate),
+              fromDate: new Date(data?.data?.fromDate),
+              toDate: new Date(data?.data?.toDate),
+            }),
+          }}
+          action="view"
+          level={level}
+        />
       )}
     </Page>
   );
