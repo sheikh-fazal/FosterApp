@@ -4,39 +4,38 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import { ClaReviewTable } from "@root/sections/foster-child/other-information/cla-review";
 
-const PAGE_TITLE = "CLA Review";
+const PAGE_TITLE = "View CLA Review";
 
-ClaReview.getLayout = function getLayout(page: any) {
+ViewClaReview.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
 
-export default function ClaReview() {
+export default function ViewClaReview() {
   const { makePath } = usePath();
 
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      name: "Child Info",
+      name: "CLA Review List",
       href: makePath({
-        path: "/foster-child",
+        path: "/foster-child/other-information/cla-review",
+        skipQueries: ["claReviewId"],
       }),
     },
     {
-      name: "CLA Reviews List",
+      name: "CLA Review Details",
       href: "",
     },
   ];
+
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         breadcrumbs={BREADCRUMBS}
-        title={PAGE_TITLE}
+        title={"CLA Review"}
       />
-
-      <ClaReviewTable />
     </Page>
   );
 }
