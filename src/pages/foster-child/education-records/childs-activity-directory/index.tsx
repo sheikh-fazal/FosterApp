@@ -67,7 +67,7 @@ export default function ChildsActivityDirectory() {
         />
         <Box
           sx={{
-            mt: { xs: 0, sm: 15 },
+            mt: { xs: 0, sm: 16 },
           }}
         >
           <FormProvider methods={methods} onSubmit={handleSubmit()}>
@@ -84,6 +84,7 @@ export default function ChildsActivityDirectory() {
                     name={"location"}
                     label={"Location / Postcode"}
                     fullWidth={true}
+                    size={"small"}
                   />
                 </Paper>
               </Grid>
@@ -93,6 +94,7 @@ export default function ChildsActivityDirectory() {
                     name={"location"}
                     label={"Child’s Age"}
                     fullWidth={true}
+                    size={"small"}
                   />
                 </Paper>
               </Grid>
@@ -102,6 +104,7 @@ export default function ChildsActivityDirectory() {
                     name={"location"}
                     label={"Child’s Interest"}
                     fullWidth={true}
+                    size={"small"}
                   />
                 </Paper>
               </Grid>
