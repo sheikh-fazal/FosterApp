@@ -96,7 +96,7 @@ export const AddSafeguardingMeetingFormValidationSchema = Yup.object().shape({
   signedOffBy: Yup.string().trim().required("Field is Required"),
   nameInPrint: Yup.string().trim().required("Field is Required"),
   positionInorganization: Yup.string().trim().required("Field is Required"),
-  date: Yup.string().trim().required("Field is Required"),
+  Date: Yup.date().required("Field is Required"),
   dateToReview: Yup.string().trim().required("Field is Required"),
 });
 

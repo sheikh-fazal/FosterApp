@@ -6,25 +6,27 @@ import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
+import { useHouseholdConditionA } from "./useHouseholdConditionA";
 
 export const HouseholdConditionA = (props: any) => {
   const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
     props;
-  const theme: any = useTheme();
-  const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
-    formData(data);
-  };
-  useEffect(() => {
-    breadCrumbData("Household Condition - A");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const router = useRouter();
+  // const theme: any = useTheme();
+  // const methods: any = useForm({
+  //   resolver: yupResolver(FormSchema),
+  //   defaultValues,
+  // });
+  // const { handleSubmit } = methods;
+  // const onSubmit = (data: any) => {
+  //   formData(data);
+  // };
+  // useEffect(() => {
+  //   breadCrumbData("Household Condition - A");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+  const { theme, handleSubmit, onSubmit, methods, router }: any =
+    useHouseholdConditionA({breadCrumbData, formData});
+  // const router = useRouter();
   return (
     <Page title="Household Condition - A">
       <Card sx={{ p: 2 }}>

@@ -7,20 +7,20 @@ export const initialValues = {
   swotOn: "Marketing Strategy of Agency",
   researcher: "Draco Malfoy",
   researcherRole: "Draco Malfoy",
-  researcherReportDate: "",
+  researcherReportDate: new Date(),
   reviewer: "Albus Dumbldore",
   reviewerRole: "Marketing Head",
-  reviewDate: "",
+  reviewDate: new Date(),
 };
 export const formSchema = Yup.object().shape({
   swotPeriod: Yup.string().required("Field is required"),
   swotOn: Yup.string().required("Field is required"),
   researcher: Yup.string().required("Field is required"),
   researcherRole: Yup.string().required("Field is required"),
-  researcherReportDate: Yup.string().required("Field is required"),
+  researcherReportDate: Yup.date().required("Field is required"),
   reviewer: Yup.string().required("Field is required"),
   reviewerRole: Yup.string().required("Field is required"),
-  reviewDate: Yup.string().required("Field is required"),
+  reviewDate: Yup.date().required("Field is required"),
 });
 export const auditInfoData = [
   {

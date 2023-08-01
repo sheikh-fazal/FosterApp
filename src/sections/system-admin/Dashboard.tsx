@@ -99,7 +99,8 @@ const styles = {
     borderRadius: "10px",
     padding: "15px",
     with: "248px",
-    height: "130px",
+    height: "150px",
+    // maxHeight: "auto",
   }),
   moreFeatureCard: () => ({
     background: "#E9E9E9",
@@ -114,16 +115,15 @@ const styles = {
   }),
   cardText: (theme: any) => ({
     [theme.breakpoints.up("xs")]: {
-      display: "flex",
-      fontSize: "18px",
+      fontSize: "14px",
       fontWeight: "600",
-      marginTop: "25px",
-      alignItems: "center",
-      width: "188px",
       color:
         theme.palette.mode === "light"
           ? theme.palette.common.white
           : theme.palette.grey[800],
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "16px",
     },
   }),
 };

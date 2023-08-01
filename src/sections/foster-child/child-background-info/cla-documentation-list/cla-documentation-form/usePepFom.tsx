@@ -10,6 +10,8 @@ import {
 
 export const usePepFom = (props: any) => {
   const router = useRouter();
+  console.log(router, "my router dfssgdfgdsgsdfg")
+
   const { disabled, defaultValues } = props;
 
 
@@ -40,7 +42,7 @@ export const usePepFom = (props: any) => {
     try {
       const res: any = await postPepClaDocumentationList(updatedData).unwrap();
       console.log(res);
-      router.push(`/foster-child/child-background-info/cla-documentation`);
+      router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
@@ -58,7 +60,7 @@ export const usePepFom = (props: any) => {
     try {
       const res: any = await patchPepClaDocumentationList(patchData).unwrap();
       console.log(res);
-      router.push(`/foster-child/child-background-info/cla-documentation`);
+      router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
       enqueueSnackbar(res?.message ?? `Details UPdated Successfully`, {
         variant: "success",
       });

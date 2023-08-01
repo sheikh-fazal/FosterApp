@@ -296,11 +296,11 @@ export const LADetailsFormFormData = [
 export const LADetailsFormFormValues = {
     childCode: "",
     referrerName: "",
-    referralDate: null,
+    referralDate: new Date(),
     lASocialWorkerName: "",
     childGeography: "",
     childPlacingAuthority:"",
-    dateLANotified: null,
+    dateLANotified: '',
     localAuthority: "",
     lAAddress: "",
     lAManagerName: "",
@@ -324,7 +324,7 @@ export const LADetailsFormFormValues = {
 export const LADetailsFormValidationSchema = Yup.object().shape({
     childCode: Yup.string().trim().required("Field is Required"),
     referrerName: Yup.string().trim().required("Field is Required"),
-    referralDate: Yup.string().trim().required("Field is Required"),
+    referralDate: Yup.date().required("Field is Required"),
     lASocialWorkerName: Yup.string().trim().required("Field is Required"),
     childGeography: Yup.string().trim().required("Field is Required"),
     childPlacingAuthority:Yup.string().trim().required("Field is Required"),

@@ -6,7 +6,7 @@ import CompletedAuditTable from "@root/sections/audits/completed-audits/Complete
 
 // =======================================================================================================
 
-const PAGE_TILE = "Assigned Audits";
+const PAGE_TILE = "Completed Audits";
 
 AuditorsList.getLayout = function getLayout(page: any) {
   return (

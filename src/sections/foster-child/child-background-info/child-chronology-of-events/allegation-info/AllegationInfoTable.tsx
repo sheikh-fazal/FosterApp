@@ -88,7 +88,7 @@ const AllegationsInfoTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        hideSearch
         showAddBtn
         onAdd={() => {
           router.push({
@@ -96,9 +96,6 @@ const AllegationsInfoTable = (props: any) => {
               "/foster-child/child-background-info/child-chronology-of-events/allegation-info",
             query: { action: "add", fosterChildId: fosterChildId },
           });
-        }}
-        onChanged={(event: any) => {
-          setSearch(event.search);
         }}
       />
       <CustomTable

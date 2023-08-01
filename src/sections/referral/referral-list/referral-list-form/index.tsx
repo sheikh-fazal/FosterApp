@@ -17,7 +17,7 @@ export const ReferralListFormDefaultValues = {
   areaOffice: "",
   localAuthority: "",
   reason: "",
-  updatePhoto: null,
+  updatePhoto: '',
   firstName: "",
   middleName: "",
   lastName: "",
@@ -35,7 +35,7 @@ export const ReferralListFormDefaultValues = {
 };
 
 export const ReferralListFormSchema = Yup.object().shape({
-  referralDate: Yup.string().trim().required("Field is Required"),
+  referralDate: Yup.date().required("Field is Required"),
   status: Yup.string().required("Field is Required"),
   referredBy: Yup.string().trim().required("Field is Required"),
   referrerRole: Yup.string().trim().required("Field is Required"),
@@ -47,7 +47,7 @@ export const ReferralListFormSchema = Yup.object().shape({
   middleName: Yup.string().trim().required("Field is Required"),
   lastName: Yup.string().trim().required("Field is Required"),
   gender: Yup.string().trim().required("Field is Required"),
-  DOB: Yup.string().trim().required("Field is Required"),
+  DOB: Yup.date().required("Field is Required"),
   age: Yup.string().trim().required("Field is Required"),
   ethnicity: Yup.string().trim().required("Field is Required"),
   ofstedEthnicity: Yup.string().trim().required("Field is Required"),
