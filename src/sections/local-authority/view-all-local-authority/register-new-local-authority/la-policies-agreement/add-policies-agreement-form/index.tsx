@@ -10,17 +10,17 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const LaPoliciesAgreementDefaultValues = {
     title: "",
-    dateUploaded: null,
+    dateUploaded: new Date(),
     description: "",
     version: "",
     createdBy: "",
     approvedBy: "",
     eSignatureofAuthor: "",
     eSignatureofApprover: "",
-    dateESignatureofAuthor: null,
-    dateESignatureofApprover: null,
-    creationTime: null,
-    lastModifiedTime: null,
+    dateESignatureofAuthor: new Date(),
+    dateESignatureofApprover: new Date(),
+    creationTime: '',
+    lastModifiedTime: '',
     modifiedBy: "",
 };
 

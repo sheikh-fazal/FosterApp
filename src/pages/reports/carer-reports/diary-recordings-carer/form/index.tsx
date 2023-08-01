@@ -4,7 +4,7 @@ import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import DiaryRecordingsForm from "@root/sections/reports/carer-report/diary-recordings-carer/diary-recordings-form/DiaryRecordingsForm";
-const PAGE_TITLE = "Recordings Carer";
+const PAGE_TITLE = "Add Diary Recordings By Carer Reports";
 
 DiaryRecordingsFormLayout.getLayout = function getLayout(page: any) {
   return (

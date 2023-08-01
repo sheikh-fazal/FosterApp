@@ -97,12 +97,12 @@ export const advocacyFormDefaultValues = {
 
 export const advocacyFormSchema = Yup.object().shape({
     // advocacyType: Yup.string().required('This field is required'),
-    referralDate: Yup.string().required('This field is required'),
+    referralDate: Yup.date().required('This field is required'),
     nameChildYoungPerson: Yup.string().required('This field is required'),
     selfReferral: Yup.string().required('This field is required'),
     gender: Yup.string().required('This field is required'),
     uniqueIdentifier: Yup.string().required('This field is required'),
-    dob: Yup.string().required('This field is required'),
+    dob: Yup.date().required('This field is required'),
     addressWithPostcode: Yup.string().required('This field is required'),
     currentAddress: Yup.string().required('This field is required'),
     clientResideWithParentCarer: Yup.string().required('This field is required'),
@@ -535,13 +535,13 @@ export const advocacyHistoryFormData = [
 ///  ////
 export const uploadMeetingRecordingInitialValues = {
     meetingAgenda: '',
-    uploadDate: null,
+    uploadDate: new Date(),
     meetingAttendess: "",
     meetingChair: "",
     meetingNotes: "",
     meetingActions: "",
     report: "",
-    attachFile: null
+    attachFile: ''
 }
 
 const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB

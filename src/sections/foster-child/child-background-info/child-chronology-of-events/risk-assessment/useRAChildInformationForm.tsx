@@ -2,7 +2,11 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { childInformationDefaultValues, formatters } from "./RiskAssessmentData";
+import {
+  childInformationDefaultValues,
+  childInformationFormSchema,
+  formatters,
+} from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -14,6 +18,7 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const useRAChildInformationForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
+
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -30,10 +35,6 @@ export const useRAChildInformationForm = () => {
         return childInformationDefaultValues;
       }
       const responseData = { ...data.data.raChildInfo };
-      console.log(
-        "🚀 ~ file: useRAChildInformationForm.tsx:31 ~ getDefaultValue ~ responseData:",
-        responseData
-      );
 
       for (const key in responseData) {
         const value = responseData[key];
@@ -47,7 +48,7 @@ export const useRAChildInformationForm = () => {
     }
   };
   const methods: any = useForm({
-    // resolver: yupResolver(childDetailsformSchema),
+    resolver: yupResolver(childInformationFormSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -58,34 +59,30 @@ export const useRAChildInformationForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
-    if (action === "edit") {
-      setIsFetching(true);
+    setIsFetching(true);
 
-      editRiskAssessmentList({
-        addRiskAssessmentRequestDto: {
-          raChildInfo: { ...data },
-          fosterChildId,
-          childName: "child",
-          gender: "male",
-          notes: "notes",
-        },
-        id: id,
-      })
-        .unwrap()
-        .then((res: any) => {
-          enqueueSnackbar("Information Edited Successfully", {
-            variant: "success",
-          });
-          setIsFetching(false);
-        })
-        .catch((error: any) => {
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          setIsFetching(false);
+    editRiskAssessmentList({
+      addRiskAssessmentRequestDto: {
+        raChildInfo: { ...data },
+        fosterChildId,
+        childName: "child",
+        gender: "male",
+        notes: "notes",
+      },
+      id,
+    })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Edited Successfully", {
+          variant: "success",
         });
-    } else {
-      return null;
-    }
+        setIsFetching(false);
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+        setIsFetching(false);
+      });
   };
   return {
     router,

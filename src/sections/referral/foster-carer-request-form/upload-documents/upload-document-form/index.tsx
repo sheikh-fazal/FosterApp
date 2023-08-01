@@ -58,14 +58,14 @@ export const UploadDocoment = [
 
 export const UploadDocomentValues = {
   documentType: "",
-  documentDate: "03-03-2000",
+  documentDate: new Date("03-03-2000"),
   passwordtoOpenDocument: "",
   uploadImage: "",
 };
 
 export const UploadDocomentValidationSchema = Yup.object().shape({
   documentType: Yup.string().trim().required("Field is Required"),
-  documentDate: Yup.string().trim().required("Field is Required"),
+  documentDate: Yup.date().required("Field is Required"),
   passwordtoOpenDocument: Yup.string().trim().required("Field is Required"),
   uploadImage: Yup.string().trim().required("Field is Required"),
 });
@@ -90,8 +90,9 @@ function RHFUploadFile(props: any) {
                 height: "40px",
                 borderRadius: "4px",
                 // border: `1px solid #A3A6BB`,
-                border: `1px solid ${other?.formState?.errors?.[`${name}`] ? "red" : "#E5E8EB"
-                  }`,
+                border: `1px solid ${
+                  other?.formState?.errors?.[`${name}`] ? "red" : "#E5E8EB"
+                }`,
                 width: "100% !important",
                 display: "flex",
                 justifyContent: "space-between",

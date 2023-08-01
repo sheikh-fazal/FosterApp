@@ -328,6 +328,7 @@ export const ReferralSchemeForm = (route: any) => {
 
 export const defaultValues = {
     checklistDate: new Date(),
+    referralType:'',
     recommendedCarer: "",
     recommendedChild: "",
     ethnicity: "",

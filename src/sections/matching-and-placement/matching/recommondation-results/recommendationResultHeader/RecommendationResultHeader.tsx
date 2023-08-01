@@ -8,9 +8,9 @@ import useRecommendationResultHeader from "./useRecommendationResultHeader";
 import { useRouter } from "next/router";
 
 const RecommendationResultHeader = () => {
-  const { handleExpand, expand, methods, onSubmit, handleSubmit,queryValue } =
-  useRecommendationResultHeader();
-  const route =useRouter();
+  const { handleExpand, expand, methods, onSubmit, handleSubmit, queryValue } =
+    useRecommendationResultHeader();
+  const route = useRouter();
   return (
     <Card
       sx={{
@@ -26,6 +26,8 @@ const RecommendationResultHeader = () => {
           justifyContent: "space-between",
           alignItems: "center",
           width: "100%",
+          flexWrap: "wrap",
+          rowGap: "2rem",
         }}
       >
         <Box
@@ -33,29 +35,53 @@ const RecommendationResultHeader = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            flexWrap: "wrap",
+            rowGap: "1rem",
           }}
         >
-          <Typography
-            sx={{ color: "#000", paddingRight: "10px", marginTop: "8px" }}
-            onClick={handleExpand}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
           >
-            {expand ? <ExpandLess /> : <ExpandMore />}
-          </Typography>
-          <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
-            List of Children recommended for Carer
-          </Typography>
+            <Typography
+              sx={{
+                color: "#000",
+                paddingRight: "10px",
+                cursor: "pointer",
+                marginTop: "8px",
+              }}
+              onClick={handleExpand}
+            >
+              {expand ? <ExpandLess /> : <ExpandMore />}
+            </Typography>
+            <Typography sx={{ fontSize: "14px", fontWeight: 500 }}>
+              List of {queryValue == "view carer" ? "Children" : "Carer"}
+              recommended for
+              {queryValue == "view carer" ? "Carer" : "Children"}
+            </Typography>
+          </Box>
           <Typography sx={(theme) => styles.title(theme)}>
-            Gloria Bell
+            {queryValue == "view carer" ? "Gloria Bell" : "John Doe"}
           </Typography>
         </Box>
         <Box>
           <Button
             sx={(theme) => styles.button(theme)}
-            onClick={() => route.push(queryValue == "view carer"  ?'/matching/carer-details':'/matching/recommondations-result/child-details')}
+            onClick={() =>
+              route.push(
+                queryValue == "view carer"
+                  ? "/matching/carer-details"
+                  : "/matching/recommondations-result/child-details"
+              )
+            }
             variant="contained"
           >
-          {queryValue == "view carer"  ? "View Carer Details":"View Child Details"}
-            
+            {queryValue == "view carer"
+              ? "View Carer Details"
+              : "View Child Details"}
           </Button>
         </Box>
       </Box>
