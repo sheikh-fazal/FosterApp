@@ -286,7 +286,7 @@ export const LaDetailsFormData = [
 export const defaultValues = {
   childCode: "", //1
   referrerName: "", //2
-  referralDate: null, //3
+  referralDate: new Date(), //3
   socialWorkerName: "", //4
   childGeography: "", //5
   childPlacingAuthority: "", //6

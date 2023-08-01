@@ -104,26 +104,26 @@ export const FormalReviewModalMockData = [
 ];
 
 export const FormalReviewInitialValues = {
-    meetingdate: "",
+    meetingDate: new Date(),
     meetingTime: "",
     sWName: "",
     meetingAttendees: "",
     meetingOutcomes: "",
     meetingAction: "",
-    nextReviewDate: "",
+    nextReviewDate: new Date(),
     nextReviewTime: "",
     updatePhoto: '',
   };
   
 
 export const FormalReviewValidationSchema = Yup.object().shape({
-    meetingdate: Yup.string().trim().required("Field is Required"),
+    meetingDate: Yup.date().required("Field is Required"),
     meetingTime: Yup.string().trim().required("Field is Required"),
     sWName: Yup.string().trim().required("Field is Required"),
     meetingAttendees: Yup.string().trim().required("Field is Required"),
     meetingOutcomes: Yup.string().trim().required("Field is Required"),
     meetingAction: Yup.string().trim().required("Field is Required"),
-    nextReviewDate: Yup.string().trim().required("Field is Required"),
+    nextReviewDate: Yup.date().required("Field is Required"),
     nextReviewTime: Yup.string().trim().required("Field is Required"),
     updatePhoto: Yup.string().required("Field is Required"),
 

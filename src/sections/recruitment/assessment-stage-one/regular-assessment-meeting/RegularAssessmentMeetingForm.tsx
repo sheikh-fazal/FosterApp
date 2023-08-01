@@ -131,26 +131,26 @@ const RegularAssessmentMeetingForm = (props: any) => {
   console.log("actionType", actionType);
 
   const defaultValues = {
-    meetingDate: null,
+    meetingDate: new Date(),
     meetingTime: null,
 
     meetingAgenda: "Nil",
     meetingAttendees: "Nil",
     meetingOutcomes: "Nil",
     meetingAction: "Nil",
-    nextAssessmentDate: null,
+    nextAssessmentDate: new Date(),
     nextAssessmentTime: null,
     uploadMeetingRecording: null,
   };
 
   const FormSchema = Yup.object().shape({
-    meetingDate: Yup.string().required("Required Field"),
+    meetingDate: Yup.date().required("Required Field"),
     meetingTime: Yup.string().required("Required Field"),
     meetingAgenda: Yup.string().required("Required Field"),
     meetingAttendees: Yup.string().required("Required Field"),
     meetingOutcomes: Yup.string().required("Required Field"),
     meetingAction: Yup.string().required("Required Field"),
-    nextAssessmentDate: Yup.string().required("Required Field"),
+    nextAssessmentDate: Yup.date().required("Required Field"),
     nextAssessmentTime: Yup.string().required("Required Field"),
     uploadMeetingRecording: Yup.mixed().required("Please upload a valid document"),
   });

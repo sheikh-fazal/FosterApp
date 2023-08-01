@@ -1,19 +1,12 @@
-import { yupResolver } from "@hookform/resolvers/yup";
 import {
   Card,
   Grid,
-  useTheme,
-  styled,
-  Typography,
   Button,
   AccordionDetails,
   Accordion,
   AccordionSummary,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LinearProgress, {
-  linearProgressClasses,
-} from "@mui/material/LinearProgress";
+
 import {
   RHFSwitch,
   FormProvider,
@@ -21,35 +14,22 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { defaultValues, FormSchema, viewDeclarationData } from ".";
+import { declarationParagraph, viewDeclarationData } from ".";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { useViewDeclaration } from "./useViewDeclaration";
 
 export const ViewDeclaration = () => {
-  const theme = useTheme();
-  const methods = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-    height: 15,
-    marginBottom: 10,
-    borderRadius: 8,
-    [`&.${linearProgressClasses.colorPrimary}`]: {
-      backgroundColor: "silver",
-    },
-    [`& .${linearProgressClasses.bar}`]: {
-      borderRadius: 0,
-      //   backgroundColor: theme.palette.primary,
-    },
-  }));
   const {
+    theme,
+    expanded,
+    BorderLinearProgress,
     handleSubmit,
-    formState: { isSubmitting, isDirty },
-  } = methods;
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+    onSubmit,
+    methods,
+    handleChange,
+  }: any = useViewDeclaration();
   return (
     <>
       <Card>
@@ -77,7 +57,10 @@ export const ViewDeclaration = () => {
           ></Grid>
           <Grid container alignItems={"center"} px={2} py={1} my={1}>
             <Grid item md={3} xs={11}>
-              <Button variant="contained" sx={{ backgroundColor: "#F06533" }}>
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: "#F06533", marginY: { md: 0, xs: 1 } }}
+              >
                 Activation & Settings
               </Button>
             </Grid>
@@ -96,15 +79,7 @@ export const ViewDeclaration = () => {
             xs={12}
             sx={{ borderBottom: "1px solid", width: "100%" }}
           ></Grid>
-          <Grid
-            container
-            direction={"column"}
-            item
-            md={9.5}
-            xs={12}
-            p={2}
-            // my={1}
-          >
+          <Grid container direction={"column"} item md={9.5} xs={12} p={2}>
             <span
               style={{
                 fontSize: 18,
@@ -118,15 +93,7 @@ export const ViewDeclaration = () => {
             <span style={{ margin: "10px 0px 15px 0px" }}>
               The following declaration ststements are asked to candidates.
             </span>
-            <p style={{ marginBottom: 5 }}>
-              The information in this application form is true and complete, I
-              agree that any deliberate omision, Falsification or
-              mmisrepresentation in the application form will be grounds for
-              rejecting this appliacation or subsequent dismissal if employed by
-              the Oraganisation. Where applicable, I consent that the
-              Organisation can seek clarification regarding professional
-              registration details.
-            </p>
+            <p style={{ marginBottom: 5 }}>{declarationParagraph}</p>
             <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
               <RHFSwitch
                 name="agreeToAboveDeclaration"
@@ -137,9 +104,13 @@ export const ViewDeclaration = () => {
                   <Accordion
                     sx={{ border: "1px solid #898989", my: 2 }}
                     key={ele?.id}
+                    onChange={handleChange(ele?.id)}
+                    expanded={expanded === ele?.id}
                   >
                     <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
+                      expandIcon={
+                        expanded === ele?.id ? <RemoveIcon /> : <AddIcon />
+                      }
                       aria-controls="panel1a-content"
                       id="panel1a-header"
                     >
@@ -184,8 +155,11 @@ export const ViewDeclaration = () => {
                   </Accordion>
                 );
               })}
-              {/* <Grid container direction={'column'} md={6}> */}
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                type="submit"
+                sx={{ my: 1, width: { sm: "auto", xs: "100%" } }}
+              >
                 Submit Declaration
               </Button>
               <br />
@@ -195,11 +169,10 @@ export const ViewDeclaration = () => {
               >
                 Not Audited: Click to mark as audited{" "}
               </Button>
-              {/* </Grid> */}
             </FormProvider>
           </Grid>
         </Grid>
-      </Card> 
+      </Card>
     </>
   );
 };

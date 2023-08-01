@@ -5,7 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import ChildLivingHouseholdForm from "@root/sections/reports/child-reports/child-living-household/child-living-household-form/ChildLivingHouseholdForm";
 import { useRouter } from "next/router";
 
-const PAGE_TITLE = "Child Living in the household's comments";
+const PAGE_TITLE = "View Report";
 
 ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
   return (
@@ -13,8 +13,7 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
-          icon: <HomeIcon />,
-          name: "Dashboard",
+          icon: <HomeIcon />, 
           href: "/dashboard",
         },
         {
@@ -22,7 +21,7 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
           href: "/reports",
         },
         {
-          name: "Child Reports",
+          name: "Child Living in the Household's Comments",
         },
       ]}
       title={PAGE_TITLE}

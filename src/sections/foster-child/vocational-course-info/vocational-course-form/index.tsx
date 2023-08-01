@@ -8,6 +8,7 @@ export const VOCATIONALCOURSEINFODATA = [
     componentProps: {
       name: "courseType",
       label: "Course Type",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -17,6 +18,7 @@ export const VOCATIONALCOURSEINFODATA = [
     componentProps: {
       name: "duration",
       label: "Duration",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -46,6 +48,7 @@ export const VOCATIONALCOURSEINFODATA = [
     componentProps: {
       name: "expectedQualification",
       label: "Expected Qualification",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -55,6 +58,7 @@ export const VOCATIONALCOURSEINFODATA = [
     componentProps: {
       name: "qualification",
       label: "Qualification",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
