@@ -30,6 +30,7 @@ export const useTherapyInfoList = () => {
   const handleDeleteTherapy = async (id: string) => {
     try {
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
+      console.log({id})
       const data = await delTherapyDetailsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: false }));

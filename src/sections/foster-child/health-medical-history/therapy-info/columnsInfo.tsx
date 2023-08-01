@@ -49,7 +49,7 @@ export const getColumns = (parms: any) => {
           <TableAction
             size="small"
             type="delete"
-            onClicked={() => handleDeleteTherapy(info.row.original.id)}
+            onClick={() => handleDeleteTherapy(info.row.original.id)}
           />
         </Box>
       ),
