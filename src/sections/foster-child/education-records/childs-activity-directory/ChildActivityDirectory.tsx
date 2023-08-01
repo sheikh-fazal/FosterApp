@@ -13,7 +13,6 @@ import TuneIcon from "@mui/icons-material/Tune";
 import { cardData } from ".";
 
 const ChildActivityDirectory = () => {
- 
   return (
     <Box mt={2}>
       <Paper variant="elevation" elevation={1} sx={{ borderRadius: 2.5 }}>
@@ -24,7 +23,7 @@ const ChildActivityDirectory = () => {
           px={1}
           pt={1.5}
         >
-          <IconButton>
+          <IconButton disableRipple>
             <InfoIcon sx={(theme) => Styles.iconButton(theme)} />
           </IconButton>
           <Typography
@@ -35,7 +34,7 @@ const ChildActivityDirectory = () => {
           >
             Hand picked Kids Activities & Things To Do With Kids
           </Typography>
-          <IconButton>
+          <IconButton disableRipple>
             <TuneIcon sx={(theme) => Styles.iconButton(theme)} />
           </IconButton>
         </Box>
