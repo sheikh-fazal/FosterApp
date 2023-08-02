@@ -28,7 +28,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
     }),
     updatemedicalAppointments: Builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/update-medical-appointment/${payload?.params.medicalAppointmentId }`,
+        url: `/foster-child/update-medical-appointment/${payload?.params.medicalAppointmentId}`,
         method: "PATCH",
         body: payload.body,
       }),
@@ -44,24 +44,24 @@ const medicalAppointments = baseAPI.injectEndpoints({
     //documents
     //get
     getMedicalInfoDocs: Builder.query({
-      query: ({id,params}: any) => ({
+      query: ({ id, params }: any) => ({
         url: `/foster-child/child-medication-info/document/list/${id}`,
         method: "GET",
-        params
+        params,
       }),
       providesTags: ["medicalappointmentsDocs"],
     }),
     //post
     postmedicalAppointmentsDocs: Builder.mutation({
-      query: ({id,body}: any) => ({
+      query: ({ id, body }: any) => ({
         url: `/foster-child/add-child-medication-info/document/${id}`,
         method: "POST",
-        body
+        body,
       }),
       invalidatesTags: ["medicalappointments"],
     }),
     //edit
-   editmedicalAppointmentsDocs: Builder.mutation({
+    editmedicalAppointmentsDocs: Builder.mutation({
       query: (id: any) => ({
         url: `/foster-child/child-medication-info/document/${id}`,
         method: "PATCH",
@@ -90,5 +90,5 @@ export const {
   useDeletemedicalAppointmentsDocsMutation,
   useEditmedicalAppointmentsDocsMutation,
   useGetMedicalInfoDocsQuery,
-  usePostmedicalAppointmentsDocsMutation
+  usePostmedicalAppointmentsDocsMutation,
 } = medicalAppointments;

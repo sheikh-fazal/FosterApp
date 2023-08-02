@@ -27,7 +27,6 @@ export default function AddSchoolDetail() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
 
-
   const params = {
     search: searchHandle,
     limit: "10",
