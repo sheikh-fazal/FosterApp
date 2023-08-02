@@ -6,36 +6,34 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const AllegationInfo = () => {
   const {
-    gpDetailsInfoFormData,
+    allegationInfoFormData,
     methods,
     handleSubmit,
-    submitGpDetailsInfoForm,
+    submitAllegationInfoForm,
     isLoading,
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
     theme,
-  } = useAllegationInfo();
+  }: any = useAllegationInfo();
 
   if (isLoading) return <SkeletonFormdata />;
   return (
     <FormProvider
       methods={methods}
-      onSubmit={handleSubmit(submitGpDetailsInfoForm)}
+      onSubmit={handleSubmit(submitAllegationInfoForm)}
     >
       <Grid container spacing={5}>
-        {gpDetailsInfoFormData.map((form: any, index: number) => {
+        {allegationInfoFormData.map((form: any, index: number) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form.id + index}>
               <form.component {...form.componentProps} size="small">
                 {form.componentProps.select
-                  ? form.componentProps.options.map((option: any) => (
+                  ? form.componentProps?.options?.map((option: any) => (
                       <option key={option.id} value={option.value}>
                         {option.label}
                       </option>
                     ))
-                  : form?.heading
-                  ? form?.heading
                   : null}
               </form.component>
             </Grid>

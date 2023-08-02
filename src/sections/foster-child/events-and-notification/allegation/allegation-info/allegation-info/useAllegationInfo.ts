@@ -1,12 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
-import {
-  defaultValueGpDetailsInfoForm,
-  gpDetailsInfoFormDataFunction,
-  gpDetailsInfoFormSchema,
-  gpDetailsInfoFormValues,
-} from ".";
+
 import {
   useGetSingleGpDetailsInfoDataQuery,
   usePatchGpDetailsInfoDataMutation,
@@ -15,11 +10,17 @@ import {
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
+import {
+  allegationInfoFormDataFunction,
+  allegationInfoFormSchema,
+  allegationInfoFormValues,
+  defaultValueAllegationInfoForm,
+} from ".";
 
 export const useAllegationInfo = () => {
   const router = useRouter();
   const theme: any = useTheme();
-  const gpDetailsInfoFormData = gpDetailsInfoFormDataFunction(
+  const allegationInfoFormData = allegationInfoFormDataFunction(
     router?.query?.action === "view"
   );
 
@@ -44,16 +45,17 @@ export const useAllegationInfo = () => {
   );
 
   const methods: any = useForm({
-    resolver: yupResolver(gpDetailsInfoFormSchema),
-    defaultValues: defaultValueGpDetailsInfoForm(gpDetailsInfoFormValues),
+    resolver: yupResolver(allegationInfoFormSchema),
+    defaultValues: defaultValueAllegationInfoForm(allegationInfoFormValues),
   });
   const { handleSubmit, reset } = methods;
 
   useEffect(() => {
-    reset(() => defaultValueGpDetailsInfoForm(data?.data));
+    reset(() => defaultValueAllegationInfoForm(data?.data));
   }, [data, reset]);
 
-  const submitGpDetailsInfoForm = async (data: any) => {
+  const submitAllegationInfoForm = async (data: any) => {
+    console.log(data);
     const queryParams = {
       fosterChildId: router.query.fosterChildId,
     };
@@ -113,10 +115,10 @@ export const useAllegationInfo = () => {
   };
 
   return {
-    gpDetailsInfoFormData,
+    allegationInfoFormData,
     methods,
     handleSubmit,
-    submitGpDetailsInfoForm,
+    submitAllegationInfoForm,
     router,
     postGpDetailsInfoDataStatus,
     patchGpDetailsInfoDataStatus,
