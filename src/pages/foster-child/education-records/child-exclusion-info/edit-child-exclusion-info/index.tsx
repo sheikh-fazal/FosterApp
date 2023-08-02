@@ -6,6 +6,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditChildExclusionInfo from "@root/sections/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info/EditChildExclusionInfo";
 import {
+  useDeleteDocumentExclusionInfoRecordMutation,
   useGetChildExclusionDocumentListQuery,
   useGetSingleChildExclusionInfoRecordQuery,
   usePostFosterExclusionDocumentMutation,
@@ -52,6 +53,7 @@ export default function EditChildExclusionInfoPage() {
     isFetching: exclusionDocumentFetching,
   } = useGetChildExclusionDocumentListQuery(id);
   const [postExclusionDocumentData] = usePostFosterExclusionDocumentMutation();
+  const [deleteDocument] = useDeleteDocumentExclusionInfoRecordMutation();
 
   console.log(exclusionDocumentList);
 
@@ -88,7 +90,6 @@ export default function EditChildExclusionInfoPage() {
           </>
         )}
 
-
         <UploadDocuments
           readOnly={false}
           tableData={exclusionDocumentList?.data?.exclusion_documents}
@@ -97,7 +98,9 @@ export default function EditChildExclusionInfoPage() {
           isFetching={exclusionDocumentFetching}
           column={["documentName", "type", "date", "uploadBy", "password"]}
           isSuccess={exclusionDocumentSuccess}
-          
+          onDelete={async (data: any) => {
+            await deleteDocument(data?.id);
+          }}
           modalData={(data: any) => postExclusionDocument(data)}
         />
       </HorizaontalTabs>

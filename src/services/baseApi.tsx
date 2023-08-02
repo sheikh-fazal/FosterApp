@@ -80,6 +80,7 @@ export const TAGS = [
   "DIARY_RECORDING_DOCUMENTS",
   "OOHREPORT_LIST_TABLE",
   "REPORTS_DOCUMENTS",
+  "CHILD_EXCLUSION_INFO_LIST"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
