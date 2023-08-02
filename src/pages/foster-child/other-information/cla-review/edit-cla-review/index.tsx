@@ -4,6 +4,16 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import HorizaontalTabs from "@root/components/HorizaontalTabs";
+import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla-review/form";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import {
+  useGetClaReviewIdQuery,
+  usePatchClaReviewByIdMutation,
+} from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
+import { useRouter } from "next/router";
+import Error from "@root/components/Error";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const PAGE_TITLE = "Edit CLA Review";
 
@@ -13,6 +23,13 @@ EditClaReview.getLayout = function getLayout(page: any) {
 
 export default function EditClaReview() {
   const { makePath } = usePath();
+  const router: any = useRouter();
+  const { claReviewId } = router.query;
+
+  const { data, isLoading, isError } = useGetClaReviewIdQuery(claReviewId);
+
+  const [updateData, { isSuccess, isError: isErrorPatch }] =
+    usePatchClaReviewByIdMutation();
 
   const BREADCRUMBS = [
     {
@@ -29,6 +46,8 @@ export default function EditClaReview() {
     },
   ];
 
+  if (isError) return <Error />;
+
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
@@ -36,6 +55,56 @@ export default function EditClaReview() {
         breadcrumbs={BREADCRUMBS}
         title={"CLA Review"}
       />
+
+      <HorizaontalTabs tabsDataArray={["CLA Review", "Upload Document"]}>
+        {isLoading ? (
+          <SkeletonFormdata />
+        ) : (
+          <ClaReviewForm
+            initialValueProps={{
+              ...data[0],
+              dateOfReview: new Date(data[0]?.dateOfReview),
+              dueDate: new Date(data[0]?.dueDate),
+            }}
+            onSubmitHandler={updateData}
+            message={"Updated"}
+            isError={isErrorPatch}
+            isSuccess={isSuccess}
+          />
+        )}
+        <UploadDocuments
+          readOnly={false}
+          searchParam={(searchedText: string) =>
+            console.log("searched Value", searchedText)
+          }
+          // tableData={tableData}
+          tableData={[
+            {
+              document: "bad.png",
+              documentType: "png",
+              date: "09/09/2009",
+              personName: "My name",
+              password: "password123",
+            },
+          ]}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isSuccess={true}
+          column={[
+            "document",
+            "documentType",
+            "date",
+            "personName",
+            "password",
+          ]}
+          modalData={() => {}}
+          onDelete={(data: any) => console.log("Deleting", data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          // currentPage={metaData?.page}
+          // totalPages={metaData?.pages}
+        />
+      </HorizaontalTabs>
     </Page>
   );
 }

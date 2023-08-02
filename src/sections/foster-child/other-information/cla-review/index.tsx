@@ -3,19 +3,6 @@ import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 import router from "next/router";
 
-export const data = [
-  {
-    dateOfReview: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    reviewType: "A",
-    id: "7835q47834659034",
-  },
-  {
-    dateOfReview: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    reviewType: "B",
-    id: "578834659063490563490856",
-  },
-];
-
 export const getColumnsClaReview = (makePath: any, setOpen: any) => {
   return [
     {

@@ -5,8 +5,13 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import React, { useRef, useState } from "react";
 import CustomTable from "@root/components/Table/CustomTable";
 import { useRouter } from "next/router";
-import { data, getColumnsClaReview } from "./";
+import { getColumnsClaReview } from "./";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import {
+  useDeleteClaReviewByIdMutation,
+  useGetClaReviewListQuery,
+} from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
+import { enqueueSnackbar } from "notistack";
 
 export default function ClaReviewTable() {
   const tableHeaderRef = useRef<any>();
@@ -20,11 +25,19 @@ export default function ClaReviewTable() {
 
   const columnsClaReview = getColumnsClaReview(makePath, setOpen);
 
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetClaReviewListQuery({ params });
+
+  const claData = data?.cla_review_details;
+  const meta = data?.meta;
+
+  const [deleteReview] = useDeleteClaReviewByIdMutation();
+
   return (
     <Card sx={{ p: 2 }}>
       <TableHeader
         ref={tableHeaderRef}
-        disabled={false}
+        disabled={isLoading}
         title="CLA Reviews"
         searchKey="search"
         onChanged={headerChangeHandler}
@@ -39,15 +52,15 @@ export default function ClaReviewTable() {
       />
 
       <CustomTable
-        data={data}
+        data={claData}
         columns={columnsClaReview}
         showSerialNo
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        // currentPage={meta?.page}
-        // totalPages={meta?.pages}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        currentPage={meta?.page}
+        totalPages={meta?.pages}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />
@@ -55,7 +68,13 @@ export default function ClaReviewTable() {
       <DeleteModel
         open={!!open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => console.log(open)}
+        onDeleteClick={() => {
+          deleteReview(open);
+          enqueueSnackbar("CLA Review info deleted successfully!", {
+            variant: "success",
+          });
+          setOpen(false);
+        }}
       />
     </Card>
   );
