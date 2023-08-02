@@ -5,7 +5,7 @@ import iitialHomeVisitImg from "../../../assets/img/recruitment/initialHomeVisit
 import socialAssessmentImg from "../../../assets/img/recruitment/socialWorkAssesmment.png";
 import SocialWorkerFormDialogbox from "./social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 
-export const ENQUIRYSTAGEDATA = [
+export const ENQUIRYSTAGEDATA = (_id: any) => [
   {
     id: 1,
     informationIcon: [
@@ -63,7 +63,7 @@ export const ENQUIRYSTAGEDATA = [
     text: "Initial Enquiry Stage",
     informationText: "Initial Enquiry",
     viewForms: "View Form",
-    href: "#",
+    href: `carer-info/personal-info/initial-enquiry?fosterCarerId=${_id}`,
   },
   {
     id: 3,
@@ -102,7 +102,7 @@ export const ENQUIRYSTAGEDATA = [
     text: "Digital Info Pack",
     informationText: "Digital Application Pack/ info Pack",
     viewForms: "View Form",
-    href: "", 
+    href: `/carer-info?fosterCarerId=${_id}`,
   },
   {
     id: 4,
@@ -160,7 +160,7 @@ export const ENQUIRYSTAGEDATA = [
     text: "Initial Home Visit",
     informationText: "Initial Home Visit",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-home-visit",
+    href: `/recruitment/enquiry-stage/initial-home-visit?fosterCarerId=${_id}`,
     status: "Passed",
   },
   {

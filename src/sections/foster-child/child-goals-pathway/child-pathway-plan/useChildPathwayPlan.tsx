@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, useTheme } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useTableParams } from "@root/hooks/useTableParams";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import { CHILD_PATHWAYL_PLAN_MOCK_DATA } from ".";
 export const useChildPathwayPlan = () => {
+  const theme = useTheme();
   const route = useRouter();
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
@@ -76,19 +78,12 @@ export const useChildPathwayPlan = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.Author,
-      id: "Author",
+      accessorFn: (row: any) => row.author,
+      id: "author",
       cell: (info: any) => info.getValue(),
       header: () => <span>Author</span>,
       isSortable: true,
     },
-    // {
-    //   accessorFn: (row: any) => row.date,
-    //   id: "date",
-    //   cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
-    //   header: () => <span>Date</span>,
-    //   isSortable: true,
-    // },
     {
       accessorFn: (row: any) => row.consultationTeam,
       id: "consultationTeam",
@@ -100,11 +95,12 @@ export const useChildPathwayPlan = () => {
       id: "actions",
       cell: (info: any) => (
         <Box display={"flex"} gap={0.5}>
+          <TableAction type="edit" />
           <TableAction
             type="view"
             onClicked={() =>
               route.push({
-                pathname: `child-personal-goals/personal-goals-list-view`,
+                // pathname: `child-personal-goals/personal-goals-list-view`,
                 // query: {
                 //   id: info?.row?.original?.id,
                 //   childId: info?.row?.original?.fosterChildId,
@@ -118,7 +114,20 @@ export const useChildPathwayPlan = () => {
             onClicked={() => console.log(info.row.original.id)}
           />
           <TableAction type="download" />
-          <TableAction type="edit" />
+          <div
+            style={{
+              border: "1px solid ",
+              borderRadius: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "34px",
+              width: "34px",
+              backgroundColor: theme.palette.grey[500],
+            }}
+          >
+            <NotificationsActiveIcon sx={{ color: "white" }} />
+          </div>
         </Box>
       ),
       header: () => <span>actions</span>,
