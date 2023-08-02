@@ -6,6 +6,7 @@ import { LoadingButton } from "@mui/lab";
 import { useRAChildInformationForm } from "./useRAChildInformationForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { useRAChildRiskDetailsForm } from "./useRAChildRiskDetailsForm";
 
 const RAChildRiskDetailsForm = () => {
   const {
@@ -17,10 +18,11 @@ const RAChildRiskDetailsForm = () => {
     isLoading,
     action,
     fosterChildId,
-  } = useRAChildInformationForm();
+  } = useRAChildRiskDetailsForm();
 
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
+
   return (
     <Grid>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

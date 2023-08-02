@@ -72,7 +72,7 @@ export const useChildMissingPlacementForm = () => {
           router.push({
             pathname:
               "/foster-child/child-background-info/child-chronology-of-events/child-missing-placement",
-            query: { action: "edit", id: `${res?.data.id}` },
+            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
         .catch((error: any) => {

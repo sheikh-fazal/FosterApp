@@ -33,7 +33,7 @@ export const data = [
 ]
 export const defaultValues = {
   templateName: "",
-  // uploadDate: "",
+  // uploadDate: new Date(),
   description: "",
   authorRole: "",
   approverRole: "",
@@ -41,7 +41,7 @@ export const defaultValues = {
 
 export const FormSchema = Yup.object().shape({
   templateName: Yup.string().required("Field is required"),
-  uploadDate: Yup.string().required("Field is required"),
+  uploadDate: Yup.date().required("Field is required"),
   description: Yup.string().required("Field is required"),
   authorRole: Yup.string().required("Field is required"),
   approverRole: Yup.string().required("Field is required"),

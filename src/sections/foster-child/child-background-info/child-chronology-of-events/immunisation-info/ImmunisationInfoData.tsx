@@ -40,7 +40,7 @@ export const ImmunisationInfoFormFields = [
 export const defaultValues = {
   dateOfImmunisation: null,
   immunisationType: "Nil",
-  dueDate: null,
+  dueDate: new Date(),
 };
 export const formatters: any = {};
 
