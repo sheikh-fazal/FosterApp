@@ -1,7 +1,3 @@
-import { Box } from "@mui/material";
-import CustomTable from "@root/components/Table/CustomTable";
-import TableHeader from "@root/components/TableHeader";
-
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useEducationDocument } from "./useEducationDocument";
 
@@ -13,20 +9,20 @@ const EducationDocument = () => {
     isLoading,
     isError,
     isSuccess,
-    user,
     isFetching,
     submitInitialHomeVisitDocument,
-    query
+    query,
+    onDeleteConfirm
   } = useEducationDocument();
 
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data}
+      tableData={data?.data?.education_documents}
       isLoading={isLoading}
       column={[
         "documentName",
-        "documentType",
+        "type",
         "documentDate",
         "uploadBy",
         "password",
@@ -42,11 +38,12 @@ const EducationDocument = () => {
         setSearchValue(data.search);
         console.log("Updated params: ", data);
       }}
-      currentPage={data?.meta?.page}
-      totalPages={data?.meta?.pages}
-      onPageChange={(data: any) => {
-        setPage((page) => data - 1);
+      currentPage={data?.data?.meta?.page}
+      totalPages={data?.data?.meta?.pages}
+      onPageChange={(pageNo: any) => {
+        setPage((pageNo - 1) * 10);
       }}
+      onDelete={(data: any) => onDeleteConfirm(data)}
     />
   );
 };
