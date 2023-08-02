@@ -10,7 +10,10 @@ import { defaultValues as bronzeDefaultValues } from "@root/sections/foster-chil
 
 import IndependenceFormBronze from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-bronze/IndependencePackFormBronze";
 import { useRouter } from "next/router";
-import { Breadcrumbs } from "@root/components/PageBreadcrumbs";
+import {
+  Breadcrumbs,
+  TitleWithBreadcrumbLinks,
+} from "@root/components/PageBreadcrumbs";
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
 import { useGetIndependencePackQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
@@ -20,38 +23,13 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 // Constants
 const PAGE_TITLE = "Independence Pack";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    href: "/",
-  },
-  {
-    name: "IndependencePack-Life Skill Assessment",
-    href: "/child-info",
-  },
-];
-
 // ----------------------------------------------------------------------
 
 EditIndependencePack.getLayout = function getLayout(page: any) {
   // const router = useRouter();
   // const { level } = router.query;
   // Commenting out the hook
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        ...BREADCRUMBS,
-        // {
-        //   name: '',
-        //   href: "",
-        // },
-      ]}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
@@ -59,7 +37,22 @@ EditIndependencePack.getLayout = function getLayout(page: any) {
 export default function EditIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
-  const { level, id } = router.query;
+  const { level, id, fosterChildId } = router.query;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      href: "/",
+    },
+    {
+      name: "IndependencePack-Life Skill Assessment",
+      href: `/foster-child/education-records/independence-packs-life-skill-assessment?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: `${level} Level`,
+      href: "",
+    },
+  ];
+
   const { data, isLoading, isError } = useGetIndependencePackQuery({
     id,
   });
@@ -68,7 +61,12 @@ export default function EditIndependencePack() {
   }
 
   return (
-    <Page title={PAGE_TITLE}>
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       {level == "Bronze" ? (
         <IndependenceFormBronze
           inedependencePackData={{
@@ -112,7 +110,7 @@ export default function EditIndependencePack() {
           level={level}
         />
       )}
-    </Page>
+    </>
   );
 }
 

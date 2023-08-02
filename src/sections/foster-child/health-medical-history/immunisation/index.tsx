@@ -331,14 +331,12 @@ export const immunisationColumns = ({
         <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>
       ),
       header: () => <span>Date Of Immunisation</span>,
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.type,
       id: "type",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Immunisation type</span>,
-      isSortable: true,
     },
 
     {

@@ -10,6 +10,15 @@ export const RHFApiUploadFile = (props: any) => {
   const { disabled, name, apiCall, ...other } = props;
   const { control } = useFormContext();
   let [loading, setLoading] = useState(false);
+
+  let subString = (str: any) => {
+    if (str.length > 55) {
+      return `${str.slice(0, 55)}....`;
+    } else {
+      str;
+    }
+  };
+
   return (
     <Controller
       name={name}
@@ -36,8 +45,8 @@ export const RHFApiUploadFile = (props: any) => {
             >
               <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
                 {(field?.value?.name == undefined
-                  ? field.value
-                  : field.value.name) ||
+                  ? subString(field.value)
+                  : subString(field.value.name)) ||
                   (other.label ? other?.label : "Upload Image")}
               </div>
               {field.value ? (
