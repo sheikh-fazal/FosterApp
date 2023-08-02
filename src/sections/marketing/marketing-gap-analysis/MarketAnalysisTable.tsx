@@ -29,6 +29,7 @@ const MarketAnalysisTable = () => {
           columns={columns}
           isLoading={false}
           isFetching={false}
+          showSerialNo={true}
           isError={false}
           isSuccess={true}
           currentPage={1}

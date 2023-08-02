@@ -41,7 +41,7 @@ const DBS: FC<any> = ({ activateNextForm }) => {
   const [updateDbsInfo] = useUpdateDbsInfoMutation();
 
   const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
+    // resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, isError, error } = await getDbsInfo(null, true);
       setAvailableFiles(data?.data?.certificate);

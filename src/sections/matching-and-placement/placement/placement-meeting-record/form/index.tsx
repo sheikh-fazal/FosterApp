@@ -20,7 +20,7 @@ export const initialValues = {
 export const formSchema = Yup.object().shape({
   childName: Yup.string().required("Field is required"),
   carerName: Yup.string().required("Field is required"),
-  meetingDate: Yup.string().required("Field is required"),
+  meetingDate: Yup.date().required("Field is required"),
   meetingAttendees: Yup.string().required("Field is required"),
   meetingAgenda: Yup.string().required("Field is required"),
   meetingActions: Yup.string().required("Field is required"),

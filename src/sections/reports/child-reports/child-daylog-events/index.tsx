@@ -7,6 +7,8 @@ export const tableMockData = [
     childStatus: "ABC",
     createdDate: "03/10/21",
     createdBy: "john doe",
+    modifiedDate:'03/10/23',
+    modifiedBy:'John Doe'
   },
   {
     id: "2",
@@ -16,6 +18,8 @@ export const tableMockData = [
     childStatus: "XZY",
     createdDate: "03/10/21",
     createdBy: "john doe",
+    modifiedDate:'03/10/23',
+    modifiedBy:'John Doe'
   },
   {
     id: "3",
@@ -25,5 +29,7 @@ export const tableMockData = [
     childStatus: "ABCXYZ",
     createdDate: "03/10/21",
     createdBy: "JamesWatt",
+    modifiedDate:'03/10/23',
+    modifiedBy:'John Doe'
   },
 ];

@@ -16,7 +16,7 @@ AddPlacementForm.getLayout = function getLayout(page: any) {
         {
           icon: <HomeIcon />,
           name: "Child Respite List",
-          href: "/respite-placement",
+          href: "/placement/respite",
         },
         {
           name: "Child Respite",

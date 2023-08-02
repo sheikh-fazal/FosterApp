@@ -111,8 +111,8 @@ export const RAChildDetailsFormFields = [
   },
 ];
 export const childDetailsdefaultValues = {
-  assessmentDate: null,
-  nextAssessmentDate: null,
+  assessmentDate: new Date(),
+  nextAssessmentDate: new Date(),
   laOOHContactNumber: "Nil",
   height: "Nil",
   hairColor: "Nil",

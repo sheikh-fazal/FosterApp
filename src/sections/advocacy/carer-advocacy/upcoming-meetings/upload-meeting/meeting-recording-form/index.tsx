@@ -5,13 +5,13 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const meetingRecordingInitialValues = {
   meetingAgenda: '',
-  uploadDate: null,
+  uploadDate: new Date(),
   meetingAttendess: "",
   meetingChair: "",
   meetingNotes: "",
   meetingActions: "",
   report: "",
-  attachFile: null,
+  attachFile: '',
 }
 
 const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB
@@ -28,6 +28,7 @@ export const meetingRecordingSchema = Yup.object().shape({
     .required("Field is required")
     .test("fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
 })
+
 export const meetingRecordingData = [
   {
     gridLength: 12,

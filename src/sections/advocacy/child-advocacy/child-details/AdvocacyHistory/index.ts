@@ -454,13 +454,13 @@ export const advocacyHistoryFormData = [
 ///  ////
 export const uploadMeetingRecordingInitialValues = {
     meetingAgenda: '',
-    uploadDate: null,
+    uploadDate: new Date(),
     meetingAttendess: "",
     meetingChair: "",
     meetingNotes: "",
     meetingActions: "",
     report: "",
-    attachFile: null
+    attachFile: ''
 }
 const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB
 

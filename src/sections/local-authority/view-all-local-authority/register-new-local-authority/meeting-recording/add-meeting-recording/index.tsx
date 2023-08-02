@@ -7,13 +7,13 @@ const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB
 
 export const addMeetingRecordingInitialValues = {
   meetingAgenda: '',
-  uploadDate: null,
+  uploadDate: new Date(),
   meetingAttendess: "",
   meetingChair: "",
   meetingNotes: "",
   meetingActions: "",
   report: "",
-  attachFile: null
+  attachFile: ''
 }
 export const addMeetingRecordingSchema = Yup.object().shape({
   meetingAgenda: Yup.string().required('Field is required'),

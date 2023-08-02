@@ -101,9 +101,7 @@ export const formValidationSchema = Yup.object().shape({
   revisionAssessmentByRole: Yup.string().trim().required("Field is Required"),
   finalDecision: Yup.string().trim().required("Field is Required"),
   writtenNoticeIssued: Yup.string().trim().required("Field is Required"),
-  noticeIssuedDate: Yup.string().trim().required("Field is Required"),
+  noticeIssuedDate: Yup.date().required("Field is Required"),
   responseToWrittenNotice: Yup.string().trim().required("Field is Required"),
-  revisionAssessmentMeetingDate: Yup.string()
-    .trim()
-    .required("Field is Required"),
+  revisionAssessmentMeetingDate: Yup.date().required("Field is Required"), 
 });

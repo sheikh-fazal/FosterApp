@@ -41,9 +41,9 @@ const UpdateUnemploymentForm: FC<any> = ({ close, defValues, disabled }) => {
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      employerName,
-      position,
-      experience,
+      // employerName,
+      // position,
+      // experience,
       leavingReason,
       startDate: new Date(),
       endDate: new Date(),

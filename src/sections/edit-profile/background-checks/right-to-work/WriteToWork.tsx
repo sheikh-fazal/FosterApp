@@ -44,7 +44,7 @@ const WriteToWork: FC<any> = ({ activateNextForm }) => {
   const [updateWriteToWorkInfo] = useUpdateWriteToWorkInfoMutation();
 
   const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
+    // resolver: yupResolver(FormSchema),
     defaultValues: async () => {
       const { data, error, isError } = await getWriteToWorkInfo(null, false);
       setAvailableFiles(data?.data?.certificate);
