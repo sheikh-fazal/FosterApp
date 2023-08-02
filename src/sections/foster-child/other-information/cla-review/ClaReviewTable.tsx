@@ -7,11 +7,11 @@ import CustomTable from "@root/components/Table/CustomTable";
 import { useRouter } from "next/router";
 import { getColumnsClaReview } from "./";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { enqueueSnackbar } from "notistack";
 import {
   useDeleteClaReviewByIdMutation,
   useGetClaReviewListQuery,
-} from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
-import { enqueueSnackbar } from "notistack";
+} from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 
 export default function ClaReviewTable() {
   const tableHeaderRef = useRef<any>();

@@ -8,7 +8,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla-review/form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { useRouter } from "next/router";
-import { useGetClaReviewIdQuery } from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
+import { useGetClaReviewIdQuery } from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 

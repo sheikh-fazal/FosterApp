@@ -10,7 +10,7 @@ import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useGetClaReviewIdQuery,
   usePatchClaReviewByIdMutation,
-} from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
+} from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 import { useRouter } from "next/router";
 import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";

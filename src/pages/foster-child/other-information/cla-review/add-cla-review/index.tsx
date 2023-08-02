@@ -7,7 +7,7 @@ import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla-review/form";
-import { usePostClaReviewMutation } from "@root/services/foster-child/other-information/cla-review/ClaReviewApi";
+import { usePostClaReviewMutation } from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 
 const PAGE_TITLE = "Add CLA Review";
 
