@@ -10,44 +10,42 @@ import {
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
+import Page from "@root/components/Page";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import usePath from "@root/hooks/usePath";
 
 // ----------------------------------------------------------------------
-const BREADCRUMBS = [
-  {
-    name: "",
-    icon: <HomeIcon />,
-    href: "/",
-  },
-  {
-    name: "Carer Info",
-    href: "/carer-info/substitute-cares/backup-carer",
-  },
-  {
-    name: "Backup Carer",
-    href: "/carer-info/substitute-cares/backup-carer/backup-carer-details",
-  },
-];
 
 const PAGE_TITLE = "Backup Carer";
 
 export const TABSDATA = ["Backup Carer", "Upload Documents"];
 
 BackupCarerDetails.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout variant="dashboard">{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function BackupCarerDetails() {
+  const { makePath } = usePath();
+
+  const BREADCRUMBS = [
+    {
+      name: "",
+      icon: <HomeIcon />,
+      href: "/",
+    },
+    {
+      name: "Carer Info",
+      href: makePath({
+        path: "/carer-info/substitute-cares/backup-carer",
+      }),
+    },
+    {
+      name: "Backup Carer",
+      href: "/carer-info/substitute-cares/backup-carer/backup-carer-details",
+    },
+  ];
   const [postBackupCarerData, status] = usePostSubstituteCarerMutation();
   const [editCarerData, editingStatus] = useEditSubstituteCarerMutation();
   const router = useRouter();
@@ -84,27 +82,36 @@ export default function BackupCarerDetails() {
     }
   };
   return (
-    <HorizontalTabs tabsDataArray={TABSDATA}>
-      <SubstituteCarerForm
-        onSubmit={formSubmitHandler}
-        status={status}
-        onEdit={formEditHandler}
-      />
-      <UploadDocuments
-        searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
-        }
-        tableData={[]}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        column={["document", "documentType", "date", "personName", "password"]}
-        modalData={() => {}}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={"1"}
-        totalPages={"1"}
-      />
-    </HorizontalTabs>
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} />
+      <HorizontalTabs tabsDataArray={TABSDATA}>
+        <SubstituteCarerForm
+          onSubmit={formSubmitHandler}
+          status={status}
+          onEdit={formEditHandler}
+        />
+        <UploadDocuments
+          searchParam={(searchedText: string) =>
+            console.log("searched Value", searchedText)
+          }
+          tableData={[]}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isSuccess={true}
+          column={[
+            "document",
+            "documentType",
+            "date",
+            "personName",
+            "password",
+          ]}
+          modalData={() => {}}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={"1"}
+          totalPages={"1"}
+        />
+      </HorizontalTabs>
+    </Page>
   );
 }

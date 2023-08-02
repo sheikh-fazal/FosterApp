@@ -11,6 +11,7 @@ import {
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import Page from "@root/components/Page";
 
 // ----------------------------------------------------------------------
 
@@ -136,12 +137,8 @@ export default function SwapCarer() {
     console.log(item);
   };
   return (
-    <>
-      <TitleWithBreadcrumbLinks
-        sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS}
-        title={PAGE_TITLE}
-      />
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} />
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
@@ -154,6 +151,6 @@ export default function SwapCarer() {
         onPageChange={pageChangeHandler}
         route={FORMROUTE}
       />
-    </>
+    </Page>
   );
 }
