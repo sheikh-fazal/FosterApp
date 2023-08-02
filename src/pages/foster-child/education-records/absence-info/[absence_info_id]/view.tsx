@@ -38,7 +38,7 @@ export default function ViewAbsenceInfoForm() {
     useGetAbsenceInfoByIdQuery(absenceInfoId);
   return (
     <Page title={PAGE_TITLE}>
-       <TitleWithBreadcrumbLinks
+      <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
         title={PAGE_TITLE}

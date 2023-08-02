@@ -47,8 +47,7 @@ export const useAbsenceInfoForm = (props: any) => {
     try {
       const res: any = await postAbsenceInfoList(data).unwrap();
       router.push(
-        // `/foster-child/education-records/absence-info/add-absence-info?fosterChildId=${router?.query?.fosterChildId}`
-        `/foster-child/education-records/absence-info/add-absence-info?absence_info_id=${res?.id}`
+        `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${res?.id}`
       );
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -71,8 +70,7 @@ export const useAbsenceInfoForm = (props: any) => {
         router.push(`/foster-child/education-records/absence-info`);
       } else {
         router.push(
-          // `/foster-child/education-records/absence-info??fosterChildId=${router?.query?.fosterChildId}`
-          `/foster-child/education-records/absence-info?absence_info_id=${router?.query?.absence_info_id}`
+          `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${router?.query?.absence_info_id}`
         );
       }
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
