@@ -42,13 +42,6 @@ export default function EditIndependencePack() {
     },
   ];
 
-  const { data, isLoading, isError } = useGetIndependencePackQuery({
-    id,
-  });
-  if (isLoading) {
-    return <SkeletonFormdata />;
-  }
-
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -60,12 +53,6 @@ export default function EditIndependencePack() {
         <IndependenceFormBronze
           inedependencePackData={{
             ...bronzeDefaultValues,
-            ...(data?.data && {
-              ...data?.data,
-              assessmentDate: new Date(data?.data?.assessmentDate),
-              fromDate: new Date(data?.data?.fromDate),
-              toDate: new Date(data?.data?.toDate),
-            }),
           }}
           action="edit"
           level={level}
@@ -74,12 +61,6 @@ export default function EditIndependencePack() {
         <IndependencePackFormSilver
           inedependencePackData={{
             ...bronzeDefaultValues,
-            ...(data?.data && {
-              ...data?.data,
-              assessmentDate: new Date(data?.data?.assessmentDate),
-              fromDate: new Date(data?.data?.fromDate),
-              toDate: new Date(data?.data?.toDate),
-            }),
           }}
           action="edit"
           level={level}
@@ -88,12 +69,6 @@ export default function EditIndependencePack() {
         <IndependencePackFormGold
           inedependencePackData={{
             ...bronzeDefaultValues,
-            ...(data?.data && {
-              ...data?.data,
-              assessmentDate: new Date(data?.data?.assessmentDate),
-              fromDate: new Date(data?.data?.fromDate),
-              toDate: new Date(data?.data?.toDate),
-            }),
           }}
           action="edit"
           level={level}
