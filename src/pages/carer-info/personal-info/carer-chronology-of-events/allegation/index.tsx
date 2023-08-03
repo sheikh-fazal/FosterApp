@@ -34,7 +34,7 @@ export default function Allegation() {
       icon: <HomeIcon />,
       name: "Allegation list",
       href: {
-        pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+        pathname: "/carer-info/personal-info/carer-chronology-of-events",
         query: { fosterCarerId: fosterCarerId },
       },
     },

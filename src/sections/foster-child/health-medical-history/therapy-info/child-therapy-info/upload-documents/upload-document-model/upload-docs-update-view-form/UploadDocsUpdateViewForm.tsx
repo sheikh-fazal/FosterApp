@@ -25,7 +25,10 @@ import {
 import { enqueueSnackbar } from "notistack";
 import IsFetching from "@root/components/loaders/IsFetching";
 import SingleFileUpload from "@root/components/upload/SingleFileUpload";
-import { useAddTherapyDetailsDocsListDataMutation } from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
+import {
+  useAddTherapyDetailsDocsListDataMutation,
+  useUpdateSingleTherapyDetailsDocsMutation,
+} from "@root/services/foster-child/health-medical-history/therapy-info/therapyInfoListApi";
 
 const UploadDocsUpdateViewForm: FC<any> = ({
   closeModel,
@@ -35,26 +38,28 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const theme: any = useTheme();
   // const [disabled, setDisabled] = useState(false);
   const [file, setFileHolder] = useState<File>();
-  const router = useRouter();
-  const [isUpdating, setIsUpdating] = useState(false);
 
-  const [addTherapyDetailsDocsListData] =
-    useAddTherapyDetailsDocsListDataMutation();
+  const [updateSingleTherapyDetailsDocs] =
+    useUpdateSingleTherapyDetailsDocsMutation();
+
+  const { documentType, updatedAt, password } = defaultValue;
 
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: defaultValue,
+    defaultValues: {
+      documentType,
+      documentDate: updatedAt && new Date(updatedAt),
+      password,
+    },
   });
 
   const {
-    reset,
     control,
-    register,
-    setValue,
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { isSubmitting },
   } = methods;
+
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
@@ -65,17 +70,14 @@ const UploadDocsUpdateViewForm: FC<any> = ({
     }
 
     try {
-      setIsUpdating(true);
-      const data = await addTherapyDetailsDocsListData({
+      const data = await updateSingleTherapyDetailsDocs({
         formData,
-        id: router?.query?.therapyInfoId,
+        id: defaultValue?.id,
       });
-      setIsUpdating(false);
       displaySuccessMessage(data, enqueueSnackbar);
       closeModel();
       // activateNextForm();
     } catch (error: any) {
-      setIsUpdating(false);
       displayErrorMessage(error, enqueueSnackbar);
     }
   };
@@ -146,26 +148,26 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                 </Grid>
               </Grid>
             </Grid>
-            {!disabled && (
-              <Grid item sm={12} container direction="column">
-                <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                  <Grid item>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      onClick={closeModel}
-                    >
-                      Cancel
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" type="submit">
-                      Save
-                    </Button>
-                  </Grid>
+            {/* Submit btn conatiner  */}
+            <Grid item sm={12} container direction="column">
+              <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    onClick={closeModel}
+                    disabled={disabled}
+                  >
+                    Cancel
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button variant="contained" type="submit" disabled={disabled}>
+                    Save
+                  </Button>
                 </Grid>
               </Grid>
-            )}
+            </Grid>
           </Grid>
         </Grid>
       </FormProvider>

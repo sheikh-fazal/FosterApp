@@ -179,7 +179,7 @@ export const defaultValues = {
   gender: "",
   areaLocality: "",
   areaOffice: "",
-  img: null,
+  img: '',
 };
 
 export const FosterCarerRecruitmentFormSchema = Yup.object().shape({

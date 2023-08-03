@@ -58,7 +58,12 @@ export const useComplaintsForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postComplaintDetails(data)
+      postComplaintDetails({
+        params: {
+          fosterCarerId: fosterCarerId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -98,20 +103,20 @@ export const useComplaintsForm = (action: any, id: any) => {
           enqueueSnackbar("Complaint Edited Successfully", {
             variant: "success",
           });
+          setIsFetching(false);
           router.push({
             pathname: "/carer-info/personal-info/carer-chronology-of-events",
             query: { fosterCarerId: fosterCarerId },
           });
-          setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+          setIsFetching(false);
           router.push({
             pathname: "/carer-info/personal-info/carer-chronology-of-events",
             query: { fosterCarerId: fosterCarerId },
           });
-          setIsFetching(false);
         });
     } else {
       return null;

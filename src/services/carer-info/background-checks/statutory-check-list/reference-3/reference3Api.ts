@@ -4,18 +4,18 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const referenceThreeApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     referenceThreeList: builder.query<null, object>({
-      query: (search: any) => ({
-        url: "assessment-stage-one/reference-three-list",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/reference-three-list/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: search,
+        params: payload.params,
       }),
       providesTags: ["REFERENCE_THREE"],
     }),
     postReferenceThreeList: builder.mutation({
-      query: (formData: any) => ({
-        url: "assessment-stage-one/add-reference-three",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/add-reference-three/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: formData,
+        body: payload.body,
       }),
       invalidatesTags: ["REFERENCE_THREE"],
     }),

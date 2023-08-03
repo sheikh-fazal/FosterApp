@@ -123,7 +123,7 @@ export const formDataFeildData = [
 export const formDataValues = {
   fosterCarerName: "",
   placementType: "",
-  terminationDate: "",
+  terminationDate: new Date(),
   underThisCarer: "",
   terminationAssessment: "",
   responseToWrittenNotice: "",
@@ -135,7 +135,7 @@ export const formDataValues = {
 export const formValidationSchema = Yup.object().shape({
   fosterCarerName: Yup.string().trim().required("Field is Required"),
   placementType: Yup.string().trim().required("Field is Required"),
-  terminationDate: Yup.string().trim().required("Field is Required"),
+  terminationDate: Yup.date().required("Field is Required"),
   underThisCarer: Yup.string().trim().required("Field is Required"),
   terminationAssessment: Yup.string().trim().required("Field is Required"),
   responseToWrittenNotice: Yup.string().trim().required("Field is Required"),

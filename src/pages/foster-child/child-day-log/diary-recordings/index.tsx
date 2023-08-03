@@ -36,7 +36,7 @@ export default function DiaryRecordings() {
         title={PAGE_TITLE}
       />
       {/* Diary Recording Table Component */}
-      <DiaryRecordingsTable />;
+      <DiaryRecordingsTable />
     </>
   );
 }

@@ -57,7 +57,12 @@ export const useAllegationForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postAllegationDetails(data)
+      postAllegationDetails({
+        params: {
+          fosterCarerId: fosterCarerId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);

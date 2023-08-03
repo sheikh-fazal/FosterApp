@@ -56,7 +56,12 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postPartnerReferenceList(data)
+      postPartnerReferenceList({
+        params: {
+          fosterCarerId: fosterCarerId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -66,7 +71,11 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/partner-reference",
-            query: { action: "edit", id: `${res?.data.id}`,fosterCarerId: fosterCarerId },
+            query: {
+              action: "edit",
+              id: `${res?.data.id}`,
+              fosterCarerId: fosterCarerId,
+            },
           });
         })
         .catch((error: any) => {
@@ -74,8 +83,7 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
-            pathname:
-              "/carer-info/background-checks/statutory-checks-list",
+            pathname: "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
         });
@@ -92,8 +100,7 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/carer-info/background-checks/statutory-checks-list",
+            pathname: "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
@@ -102,8 +109,7 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
-            pathname:
-              "/carer-info/background-checks/statutory-checks-list",
+            pathname: "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
@@ -122,5 +128,6 @@ export const usePartnerReferenceForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
+    fosterCarerId,
   };
 };

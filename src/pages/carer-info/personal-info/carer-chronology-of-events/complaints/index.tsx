@@ -24,7 +24,7 @@ export default function Complaints() {
   const { action, id, fosterCarerId } = Router.query;
   if (!action && !id) {
     Router.push({
-      pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+      pathname: "/carer-info/personal-info/carer-chronology-of-events",
       query: { fosterCarerId: fosterCarerId },
     });
   }
@@ -35,7 +35,7 @@ export default function Complaints() {
       icon: <HomeIcon />,
       name: "Complaints list",
       href: {
-        pathname: "/carer-info/personal-info/carer-chronology-of-events/",
+        pathname: "/carer-info/personal-info/carer-chronology-of-events",
         query: { fosterCarerId: fosterCarerId },
       },
     },

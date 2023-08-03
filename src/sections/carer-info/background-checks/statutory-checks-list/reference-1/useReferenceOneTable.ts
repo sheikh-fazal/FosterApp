@@ -11,6 +11,7 @@ export const useReferenceOneTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
 
@@ -21,7 +22,13 @@ export const useReferenceOneTable = () => {
     isLoading: referenceOneIsloading,
     isFetching: referenceOneIsfetching,
     isSuccess: referenceOneIsSuccess,
-  }: any = useReferenceOneListQuery({ search: search, ...params });
+  }: any = useReferenceOneListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
+    },
+  });
 
   //Getting API data and Meta
   const referenceOneData = referenceOneList?.data?.reference_one;
@@ -58,5 +65,6 @@ export const useReferenceOneTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

@@ -62,7 +62,7 @@ export const data = [
 
 export const defaultValues = {
   templateName: "",
-  // uploadDate: "",
+  // uploadDate: new Date(),
   description: "",
   authorRole: "",
   approverRole: "",

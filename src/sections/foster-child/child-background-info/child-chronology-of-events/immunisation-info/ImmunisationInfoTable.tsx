@@ -88,7 +88,7 @@ const ImmunisationInfoTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        hideSearch
         showAddBtn
         onAdd={() => {
           router.push({
@@ -96,9 +96,6 @@ const ImmunisationInfoTable = (props: any) => {
               "/foster-child/child-background-info/child-chronology-of-events/immunisation-info",
             query: { action: "add", fosterChildId: fosterChildId },
           });
-        }}
-        onChanged={(event: any) => {
-          setSearch(event.search);
         }}
       />
       <CustomTable

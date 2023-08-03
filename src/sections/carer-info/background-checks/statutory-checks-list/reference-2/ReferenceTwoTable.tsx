@@ -20,6 +20,7 @@ const ReferenceTwoTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useReferenceTwoTable();
   const columns = [
     {
@@ -67,7 +68,11 @@ const ReferenceTwoTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/reference-2",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -82,7 +87,11 @@ const ReferenceTwoTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/reference-2",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -103,7 +112,7 @@ const ReferenceTwoTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/reference-2",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

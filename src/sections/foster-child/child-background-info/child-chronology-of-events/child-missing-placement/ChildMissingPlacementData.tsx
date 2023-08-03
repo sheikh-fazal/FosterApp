@@ -162,13 +162,13 @@ export const ChildMissingPlacementFormFields = [
   },
 ];
 export const defaultValues = {
-  reportDate: null,
-  childMissingDate: null,
-  childReturnDate: null,
+  reportDate: new Date(),
+  childMissingDate: new Date(),
+  childReturnDate: new Date(),
   childMissingReason: null,
   agencySocialWorkerInvolved: null,
   returnInterviewConducted: false,
-  closureDate: null,
+  closureDate: new Date(),
   personNotifiedName: "Nil",
   personCompletingReportName: "Nil",
   missingDetails: "Nil",

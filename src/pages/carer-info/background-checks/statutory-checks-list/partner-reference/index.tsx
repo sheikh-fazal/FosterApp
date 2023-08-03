@@ -61,7 +61,6 @@ export default function PartnerReference() {
 
   //API For Post Documents
   const [postDocuments]: any = usePostStatutoryUploadDocumentsMutation();
-
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 

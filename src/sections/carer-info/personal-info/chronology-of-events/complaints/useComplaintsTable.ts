@@ -17,7 +17,13 @@ export const useComplaintsTable = () => {
     useTableParams();
   //GET API For Complaint List
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useComplaintsListQuery({ search: search, ...params });
+    useComplaintsListQuery({
+      params: {
+        fosterCarerId: fosterCarerId,
+        search: search,
+        ...params,
+      },
+    });
   //API for Deleting Complaint
   const [deleteList] = useDeleteComplaintListMutation();
   //DELETE API For Deleting Complaint List
