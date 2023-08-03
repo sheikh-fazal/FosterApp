@@ -12,7 +12,7 @@ export const defaultValues = {
   inspectionDate: new Date(todayDate),
   nextInspectedDate: new Date(todayDate),
 
-  hasFile: false,
+  onFile: false,
   HasPetQuestionnaireCompleted: true,
 
   isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt:
@@ -31,10 +31,21 @@ export const defaultValues = {
 
   improvementsRequireThree: "text",
 
-  willChildOrYoungPersonHisOrHerOwnBedCot: false,
+  doAllRoomsHaveAnOpeningWindows: false,
   dateToBeCarriedOutFour: new Date(todayDate),
 
   improvementsRequireFour: "text",
+
+  areAllRoomsMaintainableAtReasonableTemprature: false,
+  dateToBeCarriedOutFive: new Date(todayDate),
+
+  improvementsRequireFive: "text",
+
+  isChildOwnBed: false,
+
+  dateToBeCarriedOutSix: new Date(todayDate),
+
+  improvementsRequireSix: "text",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -56,6 +67,14 @@ export const FormSchema = Yup.object().shape({
   dateToBeCarriedOutFour: Yup.date().required("Required"),
 
   improvementsRequireFour: Yup.string().required("Required"),
+
+  dateToBeCarriedOutFive: Yup.date().required("Required"),
+
+  improvementsRequireFive: Yup.string().required("Required"),
+
+  dateToBeCarriedOutSix: Yup.date().required("Required"),
+
+  improvementsRequireSix: Yup.string().required("Required"),
 });
 
 export const householdConditionA_Data = [
@@ -89,8 +108,8 @@ export const householdConditionA_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "hasFile",
-      label: "Has File",
+      name: "onFile",
+      label: "On File",
     },
     component: RHFCheckbox,
   },
@@ -211,9 +230,8 @@ export const householdConditionA_Data = [
     id: 14,
     gridLength: 6,
     componentProps: {
-      name: "willChildOrYoungPersonHisOrHerOwnBedCot",
-      label:
-        "Will the child/young person his/her own bed/cot ? (Note, top bunks not suitable for under 5s)",
+      name: "doAllRoomsHaveAnOpeningWindows",
+      label: "Do all rooms have an opening windows?",
     },
     component: RHFCheckbox,
   },
@@ -230,6 +248,66 @@ export const householdConditionA_Data = [
     id: 16,
     componentProps: {
       name: "improvementsRequireFour",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 17,
+    gridLength: 6,
+    componentProps: {
+      name: "areAllRoomsMaintainableAtReasonableTemprature",
+      label: "Are all rooms maintainable at reasonable temprature ?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 18,
+    componentProps: {
+      name: "dateToBeCarriedOutFive",
+      label: "Date to be carried out",
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 19,
+    componentProps: {
+      name: "improvementsRequireFive",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 20,
+    gridLength: 6,
+    componentProps: {
+      name: "isChildOwnBed",
+      label: "Will the child/young person his/her own bed/cot ?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 21,
+    componentProps: {
+      name: "dateToBeCarriedOutSix",
+      label: "Date to be carried out",
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 22,
+    componentProps: {
+      name: "improvementsRequireSix",
       label: "Improvements required",
       multiline: true,
       minRows: 3,

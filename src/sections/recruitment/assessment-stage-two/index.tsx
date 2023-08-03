@@ -3,7 +3,7 @@ import fosteringPanelRecommendationImg from "../../../assets/img/recruitment/fos
 import agencyDecisionImg from "../../../assets/img/recruitment/agencyDecision.png";
 import signOnApproval from "../../../assets/img/recruitment/signOnApproval.png";
 
-export const ASSESSMENTSTAGETWODATA = [
+export const ASSESSMENTSTAGETWODATA = (fosterCarerId: any) => [
   {
     id: 1,
     informationIcon: [
@@ -44,7 +44,7 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Fostering Panel Assessment/ Interview`,
     informationText: `Fostering Panel  Assessment/ interview`,
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-two/fostering-panel-assessment",
+    href: `/recruitment/assessment-stage-two/fostering-panel-assessment?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 2,
@@ -70,7 +70,7 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Fostering Panel Recomendation`,
     informationText: "Fostering Panel Recomendation",
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-two/fostering-panel-recommendation",
+    href: `/recruitment/assessment-stage-two/fostering-panel-recommendation?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 3,
@@ -103,7 +103,7 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Agency Decision`,
     informationText: "Agency Decision Maker Reviews the Panel assessment",
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-two/agency-decision",
+    href: `/recruitment/assessment-stage-two/agency-decision?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 4,
@@ -120,6 +120,6 @@ export const ASSESSMENTSTAGETWODATA = [
     text: `Sign off Approval`,
     informationText: "Sign-off  and Approval",
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-two/sign-off-approval",
+    href: `/recruitment/assessment-stage-two/sign-off-approval?fosterCarerId=${fosterCarerId}`,
   },
 ];
