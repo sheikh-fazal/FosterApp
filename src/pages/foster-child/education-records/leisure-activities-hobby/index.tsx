@@ -1,16 +1,12 @@
 import React, { Fragment } from "react";
 import { useTheme } from "@mui/material";
-// layout
 import Layout from "@root/layouts";
-// components
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { LeisureActivitiesTable } from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// ----------------------------------------------------------------------
-// Constants
 const PAGE_TITLE = "Leisure Activities List";
 
 LeisureActivitiesHobby.getLayout = function getLayout(page: any) {
@@ -46,5 +42,3 @@ export default function LeisureActivitiesHobby() {
     </>
   );
 }
-
-// ----------------------------------------------------------------------

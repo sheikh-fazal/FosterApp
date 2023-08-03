@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
 import { useTheme } from "@mui/material";
-// layout
 import Layout from "@root/layouts";
-// components
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { IndependencePackTable } from "@root/sections/foster-child/education-records/independence-packs";
@@ -15,8 +13,6 @@ import {
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
 
-// ----------------------------------------------------------------------
-// Constants
 const PAGE_TITLE = "Independence Pack";
 
 const BREADCRUMBS = [
@@ -30,16 +26,9 @@ const BREADCRUMBS = [
   },
 ];
 
-// ----------------------------------------------------------------------
-
 AddIndependencePack.getLayout = function getLayout(page: any) {
-  // const router = useRouter();
-  // const { level } = router.query;
-  // Commenting out the hook
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-
-// ----------------------------------------------------------------------
 
 export default function AddIndependencePack() {
   const theme: any = useTheme();
@@ -77,5 +66,3 @@ export default function AddIndependencePack() {
     </>
   );
 }
-
-// ----------------------------------------------------------------------

@@ -13,7 +13,6 @@ import { immunisationInfoListValue } from "@root/sections/foster-child/health-me
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 const PAGE_TITLE = "Immunisation";
 
-// ----------------------------------------------------------------------
 EditImmunisation.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
@@ -29,7 +28,6 @@ export default function EditImmunisation() {
   let BREADCRUMBS = [
     {
       icon: <HomeIcon />,
-      // name: "",
       href: `/`,
     },
     {
