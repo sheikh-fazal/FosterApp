@@ -30,7 +30,6 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/therapy-info/${payload?.id}`,
         method: "GET",
-        params: payload,
       }),
       providesTags: [TAG],
     }),
