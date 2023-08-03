@@ -1,58 +1,40 @@
+import React from "react";
 import { Box, Grid, Paper } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
+
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import useHospitalizationTable from "./useHospitalizationTable";
-import useHospitalizationForm from "./useHospitalizationForm";
-
-const activepath =
-  "/foster-child/health-medical-history/hospitalisation/actions";
-
-const HospitalizationTable = (props: any) => {
-  const { fosterChildId, hospitalizationId } = props;
-  const { deleteHander } = useHospitalizationForm({});
+import { Dummy } from ".";
+const activepath = "/foster-child/events-and-notification/complaints/actions";
+interface IComplaintsProps {
+  fosterChildId: string;
+}
+const ComplaintsTable = (props: IComplaintsProps) => {
+  const { fosterChildId } = props;
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
     {
-      accessorFn: (row: any) => row.hospitalName,
-      id: "hospitalName",
-      cell: (info: any) => info.getValue() ?? "-",
-      header: () => <span>Hospital Name</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.admissionDate,
-      id: "AdmissionDate",
+      accessorFn: (row: any) => row.dateofComplaints,
+      id: "dateofComplaints",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
-      header: () => <span>Admission Date</span>,
+      header: () => <span>Date of Complaints</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dischargeDate,
-      id: "DischargeDate",
-      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
-      header: () => <span>Discharge Date</span>,
+      accessorFn: (row: any) => row.Status,
+      id: "Status",
+      cell: (info: any) => <Box>{info.getValue() ?? "-"}</Box>,
+      header: () => <span>Status</span>,
       isSortable: true,
     },
-
     {
       id: "actions",
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt
-              onDeleteClick={() => deleteHander(info.row.original.id)}
-            />
+            <DeletePrompt onDeleteClick={() => {}} />
 
             <TableAction
               size="small"
@@ -62,7 +44,7 @@ const HospitalizationTable = (props: any) => {
                   pathname: activepath,
                   query: {
                     action: "edit",
-                    hospitalizationId: info.row.original.id,
+                    childHolidayPrefrence: info.row.original.id,
                     fosterChildId: fosterChildId,
                   },
                 });
@@ -76,7 +58,7 @@ const HospitalizationTable = (props: any) => {
                   pathname: activepath,
                   query: {
                     action: "view",
-                    hospitalizationId: info.row.original.id,
+                    childHolidayPrefrence: info.row.original.id,
                     fosterChildId: fosterChildId,
                   },
                 });
@@ -89,15 +71,6 @@ const HospitalizationTable = (props: any) => {
       isSortable: false,
     },
   ];
-  const {
-    hospitalizationdata,
-    hospitalizationIserror,
-    hospitalizationisLoading,
-    hospitalizationisFetching,
-    hospitalizationisSuccess,
-    pageChangeHandler,
-    setSearch,
-  } = useHospitalizationTable();
   return (
     <Box>
       <Grid container>
@@ -107,12 +80,10 @@ const HospitalizationTable = (props: any) => {
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
                   // ref={tableHeaderRefTwo}
-                  title="hospitalization"
+                  title="Complaints"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {
-                    setSearch(e.search);
-                  }}
+                  onChanged={(e: any) => {}}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
@@ -122,17 +93,17 @@ const HospitalizationTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={hospitalizationdata?.data?.cc_hospitalisation_info ?? []}
+                data={Dummy ?? []}
                 columns={columns}
-                isLoading={hospitalizationisLoading}
-                isFetching={hospitalizationisFetching}
-                isError={hospitalizationIserror}
-                isSuccess={hospitalizationisSuccess}
+                isLoading={false}
+                isFetching={false}
+                isError={false}
+                isSuccess={true}
                 isPagination={true}
                 showSerialNo={true}
-                totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
-                currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
-                onPageChange={pageChangeHandler}
+                //   totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
+                //   currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
+                //   onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>
@@ -143,4 +114,4 @@ const HospitalizationTable = (props: any) => {
   );
 };
 
-export default HospitalizationTable;
+export default ComplaintsTable;
