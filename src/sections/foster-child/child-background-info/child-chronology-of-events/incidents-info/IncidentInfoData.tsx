@@ -478,7 +478,7 @@ export const formSchema = Yup.object().shape({
   registeredManagerInformedDate: Yup.date().required("Required"),
   registeredManagerRecommendation: Yup.string().required("Required"),
   schedule7Notification: Yup.string().required("Required"),
-  ofstedOnlineFormDate: Yup.date().required("Required"),
+  // ofstedOnlineFormDate: Yup.date().required("Required"),
   ofstedActionTaken: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),
   nextAlertDate: Yup.date().required("Required"),
