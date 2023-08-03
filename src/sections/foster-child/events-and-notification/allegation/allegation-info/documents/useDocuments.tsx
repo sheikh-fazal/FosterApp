@@ -3,68 +3,75 @@ import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import {
-  useDeleteGpDetailsInfoDocumentDataByIdMutation,
-  useGetGpDetailsInfoDocumentDataQuery,
-  usePostGpDetailsInfoDocumentDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/documents";
+  useDeleteAllegationInfoDocumentDataByIdMutation,
+  useGetAllegationInfoDocumentDataQuery,
+  usePostAllegationInfoDocumentDataMutation,
+} from "@root/services/foster-child/events-and-notification/allegation/documents";
 
 export const useDocuments = () => {
   const { user }: any = useAuth();
   const router = useRouter();
-  const GPDETAILSDOCUMENTPAGELIMIT = 10;
+  const ALLEGATIONDOCUMENTPAGELIMIT = 10;
   const [searchValue, setSearchValue] = useState(undefined);
   // ----------------------------------------------------------------------
   const [
-    postGpDetailsInfoDocumentDataTrigger,
-    postGpDetailsInfoDocumentDataStatus,
-  ] = usePostGpDetailsInfoDocumentDataMutation();
+    postAllegationInfoDocumentDataTrigger,
+    postAllegationInfoDocumentDataStatus,
+  ] = usePostAllegationInfoDocumentDataMutation();
   const [
-    deleteGpDetailsInfoDocumentDataByIdTrigger,
-    deleteGpDetailsInfoDocumentDataByIdStatus,
-  ] = useDeleteGpDetailsInfoDocumentDataByIdMutation();
+    deleteAllegationInfoDocumentDataByIdTrigger,
+    deleteAllegationInfoDocumentDataByIdStatus,
+  ] = useDeleteAllegationInfoDocumentDataByIdMutation();
 
   const [page, setPage] = useState(0);
   const queryParams = {
     offset: page,
-    limit: GPDETAILSDOCUMENTPAGELIMIT,
+    limit: ALLEGATIONDOCUMENTPAGELIMIT,
     search: searchValue,
   };
   const pathParams = {
-    gpInfoId: router?.query?.gpInfoId,
+    id: router?.query?.id,
   };
   const apiDataParameter = { queryParams, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetGpDetailsInfoDocumentDataQuery(apiDataParameter, {
-      skip: !!!router?.query?.gpInfoId,
+    useGetAllegationInfoDocumentDataQuery(apiDataParameter, {
+      skip: !!!router?.query?.id,
       refetchOnMountOrArgChange: true,
     });
 
-  const submitGpDetailsInfoDocumentData = async (data: any) => {
-    if (!!!router?.query?.gpInfoId) {
+  const submitAllegationInfoDocumentData = async (data: any) => {
+    if (!!!router?.query?.id) {
       enqueueSnackbar("Please submit the form first", { variant: "error" });
       return;
     }
     const documentFormData = new FormData();
-
+    documentFormData.append("fosterChildId", router?.query?.fosterChildId + "");
+    documentFormData.append("formName", "ALLEGATION");
+    documentFormData.append("recordId", router?.query?.id + "");
+    documentFormData.append("documentType", data.documentType);
     documentFormData.append("documentDate", data.documentDate);
-    documentFormData.append("password", data.password);
+    documentFormData.append("documentPassword", data.password);
     documentFormData.append("file", data.chosenFile);
 
-    const pathParams = {
-      gpInfoId: router?.query?.gpInfoId,
+    // const pathParams = {
+    //   id: router?.query?.id,
+    // };
+    const apiDataParameter = {
+      // queryParams,
+      pathParams,
+      body: documentFormData,
     };
-    const apiDataParameter = { queryParams, pathParams, body: documentFormData };
     try {
-      const res: any = await postGpDetailsInfoDocumentDataTrigger(
+      const res: any = await postAllegationInfoDocumentDataTrigger(
         apiDataParameter
       ).unwrap();
-      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+      enqueueSnackbar(res?.message || `Details Submitted Successfully`, {
         variant: "success",
       });
       setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      enqueueSnackbar(errMsg || "Error occured", { variant: "error" });
     }
   };
 
@@ -74,7 +81,7 @@ export const useDocuments = () => {
     };
     const apiDataParameter = { pathParams };
     try {
-      const res: any = await deleteGpDetailsInfoDocumentDataByIdTrigger(
+      const res: any = await deleteAllegationInfoDocumentDataByIdTrigger(
         apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
@@ -96,10 +103,10 @@ export const useDocuments = () => {
     isSuccess,
     user,
     isFetching,
-    submitGpDetailsInfoDocumentData,
+    submitAllegationInfoDocumentData,
     router,
-    postGpDetailsInfoDocumentDataStatus,
+    postAllegationInfoDocumentDataStatus,
     onDeleteConfirm,
-    GPDETAILSDOCUMENTPAGELIMIT,
+    ALLEGATIONDOCUMENTPAGELIMIT,
   };
 };

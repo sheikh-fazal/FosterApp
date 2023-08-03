@@ -10,29 +10,29 @@ const Documents = () => {
     isError,
     isSuccess,
     isFetching,
-    submitGpDetailsInfoDocumentData,
+    submitAllegationInfoDocumentData,
     router,
     onDeleteConfirm,
-    GPDETAILSDOCUMENTPAGELIMIT,
+    ALLEGATIONDOCUMENTPAGELIMIT,
   } = useDocuments();
 
   return (
     <UploadDocuments
       readOnly={router?.query?.action === "view"}
-      tableData={data?.data?.gp_info_docs}
+      tableData={data?.data?.en_document}
       isLoading={isLoading}
       column={[
-        "documentName",
+        "documentOriginalName",
         "documentType",
         "documentDate",
-        "uploadBy",
-        "password",
+        "personUploaded",
+        "documentPassword",
       ]}
       isFetching={isFetching}
       isError={isError}
       isSuccess={isSuccess}
       modalData={(data: any) => {
-        submitGpDetailsInfoDocumentData(data);
+        submitAllegationInfoDocumentData(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
@@ -40,7 +40,7 @@ const Documents = () => {
       currentPage={data?.data?.meta?.page}
       totalPages={data?.data?.meta?.pages}
       onPageChange={(pageNo: any) => {
-        setPage((pageNo - 1) * GPDETAILSDOCUMENTPAGELIMIT);
+        setPage((pageNo - 1) * ALLEGATIONDOCUMENTPAGELIMIT);
       }}
       onDelete={(data: any) => onDeleteConfirm(data)}
     />

@@ -5,7 +5,7 @@ import { useAllegationList } from "./useAllegationList";
 import DeleteModel from "@root/components/modal/DeleteModel";
 const AllegationList = () => {
   const {
-    gpDetailsInfoTableColumns,
+    allegationInfoTableColumns,
     data,
     isLoading,
     isSuccess,
@@ -14,7 +14,7 @@ const AllegationList = () => {
     setSearchValue,
     router,
     setPage,
-    GPDETAILSLISTPAGELIMIT,
+    ALLEGATIONLISTPAGELIMIT,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,
@@ -42,8 +42,8 @@ const AllegationList = () => {
         />
 
         <CustomTable
-          data={data?.data?.gp_info}
-          columns={gpDetailsInfoTableColumns}
+          data={data?.data?.en_allegation}
+          columns={allegationInfoTableColumns}
           isLoading={isLoading}
           showSerialNo
           isFetching={isFetching}
@@ -53,7 +53,7 @@ const AllegationList = () => {
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onPageChange={(pageNo: any) => {
-            setPage((pageNo - 1) * GPDETAILSLISTPAGELIMIT);
+            setPage((pageNo - 1) * ALLEGATIONLISTPAGELIMIT);
           }}
         />
       </Box>

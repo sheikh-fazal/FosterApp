@@ -2,11 +2,6 @@ import { useForm } from "react-hook-form";
 import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 
-import {
-  useGetSingleGpDetailsInfoDataQuery,
-  usePatchGpDetailsInfoDataMutation,
-  usePostGpDetailsInfoDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
@@ -16,6 +11,11 @@ import {
   allegationInfoFormValues,
   defaultValueAllegationInfoForm,
 } from ".";
+import {
+  useGetSingleAllegationInfoDataQuery,
+  usePatchAllegationInfoDataMutation,
+  usePostAllegationInfoDataMutation,
+} from "@root/services/foster-child/events-and-notification/allegation/allegationInfo";
 
 export const useAllegationInfo = () => {
   const router = useRouter();
@@ -24,22 +24,22 @@ export const useAllegationInfo = () => {
     router?.query?.action === "view"
   );
 
-  const [postGpDetailsInfoDataTrigger, postGpDetailsInfoDataStatus] =
-    usePostGpDetailsInfoDataMutation();
+  const [postAllegationInfoDataTrigger, postAllegationInfoDataStatus] =
+    usePostAllegationInfoDataMutation();
 
-  const [patchGpDetailsInfoDataTrigger, patchGpDetailsInfoDataStatus] =
-    usePatchGpDetailsInfoDataMutation();
+  const [patchAllegationInfoDataTrigger, patchAllegationInfoDataStatus] =
+    usePatchAllegationInfoDataMutation();
 
   // get api params
   const pathParams = {
-    id: router.query?.gpInfoId,
+    id: router.query?.id,
   };
 
   const apiDataParameter = { pathParams };
-  const { data, isLoading } = useGetSingleGpDetailsInfoDataQuery(
+  const { data, isLoading } = useGetSingleAllegationInfoDataQuery(
     apiDataParameter,
     {
-      skip: !!!router.query?.gpInfoId,
+      skip: !!!router.query?.id,
       refetchOnMountOrArgChange: true,
     }
   );
@@ -55,62 +55,67 @@ export const useAllegationInfo = () => {
   }, [data, reset]);
 
   const submitAllegationInfoForm = async (data: any) => {
-    console.log(data);
+    const body = {
+      fosterChildId: router.query.fosterChildId,
+      urnNumber: "CH001",
+      ...data,
+      status: "Pending",
+    };
     const queryParams = {
       fosterChildId: router.query.fosterChildId,
     };
-    const apiDataParameter = { body: data, queryParams };
-    if (!!router.query?.gpInfoId) {
-      patchGpDetailsInfoForm(data);
+    const apiDataParameter = { body, queryParams };
+    if (!!router.query?.id) {
+      patchAllegationInfoForm(data);
       return;
     }
     try {
-      const res: any = await postGpDetailsInfoDataTrigger(
+      const res: any = await postAllegationInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       router.push({
-        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
         query: {
-          gpInfoId: res?.data?.id,
+          id: res?.data?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
         },
       });
 
-      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+      enqueueSnackbar(res?.message || `Details Submitted Successfully`, {
         variant: "success",
       });
     } catch (error: any) {
       const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      enqueueSnackbar(errMsg || "Error occured", { variant: "error" });
     }
   };
 
-  const patchGpDetailsInfoForm = async (data: any) => {
+  const patchAllegationInfoForm = async (data: any) => {
     const pathParams = {
-      id: router.query?.gpInfoId,
+      id: router.query?.id,
     };
     const apiDataParameter = { body: data, pathParams };
     try {
-      const res: any = await patchGpDetailsInfoDataTrigger(
+      const res: any = await patchAllegationInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       router.push({
-        pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+        pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
         query: {
-          gpInfoId: router.query?.gpInfoId,
+          id: router.query?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
         },
       });
-      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+      enqueueSnackbar(res?.message || `Details Submitted Successfully`, {
         variant: "success",
       });
     } catch (error: any) {
       const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      enqueueSnackbar(errMsg || "Error occured", { variant: "error" });
     }
   };
 
@@ -120,8 +125,8 @@ export const useAllegationInfo = () => {
     handleSubmit,
     submitAllegationInfoForm,
     router,
-    postGpDetailsInfoDataStatus,
-    patchGpDetailsInfoDataStatus,
+    postAllegationInfoDataStatus,
+    patchAllegationInfoDataStatus,
     theme,
     isLoading,
   };

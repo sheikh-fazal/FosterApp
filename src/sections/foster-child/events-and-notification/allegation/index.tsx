@@ -1,27 +1,22 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import dayjs from "dayjs";
 
-export const gpDetailsInfoTableColumnsFunction = (
+export const allegationInfoTableColumnsFunction = (
   router?: any,
   prepareRecordForDelete?: any
 ) => [
   {
-    accessorFn: (row: any) => row?.physicianName,
-    id: "physicianName",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Physician Name</span>,
+    accessorFn: (row: any) => row?.allegationDate,
+    id: "allegationDate",
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
+    header: () => <span>Date of Allegation</span>,
   },
   {
-    accessorFn: (row: any) => row.physicianType,
-    id: "physicianType",
+    accessorFn: (row: any) => row.status,
+    id: "status",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Physician Type</span>,
-  },
-  {
-    accessorFn: (row: any) => row.telephone,
-    id: "telephone",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Telephone</span>,
+    header: () => <span>Status</span>,
   },
   {
     accessorFn: (row: any) => row?.id,
@@ -37,9 +32,9 @@ export const gpDetailsInfoTableColumnsFunction = (
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
                 query: {
-                  gpInfoId: info?.getValue(),
+                  id: info?.getValue(),
                   action: "edit",
                   ...(!!router?.query?.fosterChildId && {
                     fosterChildId: router?.query?.fosterChildId,
@@ -52,9 +47,9 @@ export const gpDetailsInfoTableColumnsFunction = (
             type="view"
             onClicked={() =>
               router.push({
-                pathname: `/foster-child/health-medical-history/gp-details/gp-details-info`,
+                pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
                 query: {
-                  gpInfoId: info.getValue(),
+                  id: info.getValue(),
                   action: "view",
                   ...(!!router?.query?.fosterChildId && {
                     fosterChildId: router?.query?.fosterChildId,
@@ -70,4 +65,4 @@ export const gpDetailsInfoTableColumnsFunction = (
   },
 ];
 
-export const GPDETAILSLISTPAGELIMIT = 10;
+export const ALLEGATIONLISTPAGELIMIT = 10;

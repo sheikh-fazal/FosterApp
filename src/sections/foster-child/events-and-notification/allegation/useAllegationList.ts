@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { gpDetailsInfoTableColumnsFunction, GPDETAILSLISTPAGELIMIT } from ".";
-import {
-  useGetAllGpDetailsListDataQuery,
-  useDeleteGpDetailsInfoDataMutation,
-} from "@root/services/foster-child/health-medical-history/gp-details/gpDetailsInfo";
+import { allegationInfoTableColumnsFunction, ALLEGATIONLISTPAGELIMIT } from ".";
 import { enqueueSnackbar } from "notistack";
+import {
+  useDeleteAllegationInfoDataMutation,
+  useGetAllAllegationListDataQuery,
+} from "@root/services/foster-child/events-and-notification/allegation/allegationInfo";
 
 export const useAllegationList = () => {
   const router = useRouter();
@@ -14,21 +14,20 @@ export const useAllegationList = () => {
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
 
-  const [deleteGpDetailsInfoDataTrigger, deleteGpDetailsInfoDataStatus] =
-    useDeleteGpDetailsInfoDataMutation();
+  const [deleteAllegationInfoDataTrigger, deleteAllegationInfoDataStatus] =
+    useDeleteAllegationInfoDataMutation();
 
   const queryParams = {
     search: searchValue,
     offset: page,
-    limit: GPDETAILSLISTPAGELIMIT,
+    limit: ALLEGATIONLISTPAGELIMIT,
     ...(router?.query?.fosterChildId && {
       fosterChildId: router?.query?.fosterChildId,
     }),
   };
-  console.log(queryParams);
   const apiDataParameter = { queryParams };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAllGpDetailsListDataQuery(apiDataParameter, {
+    useGetAllAllegationListDataQuery(apiDataParameter, {
       refetchOnMountOrArgChange: true,
     });
 
@@ -38,31 +37,31 @@ export const useAllegationList = () => {
     };
     const apiDataParameter = { pathParams };
     try {
-      const res: any = await deleteGpDetailsInfoDataTrigger(
+      const res: any = await deleteAllegationInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       setIsRecordSetForDelete(false);
 
-      enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
+      enqueueSnackbar(res?.message || `Deleted Successfully`, {
         variant: "success",
       });
       setPage(0);
     } catch (error: any) {
       const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      enqueueSnackbar(errMsg || "Error occured", { variant: "error" });
     }
   };
   const prepareRecordForDelete = (data: any) => {
     setIsRecordSetForDelete(true);
     setDeleteData(data);
   };
-  const gpDetailsInfoTableColumns = gpDetailsInfoTableColumnsFunction(
+  const allegationInfoTableColumns = allegationInfoTableColumnsFunction(
     router,
     prepareRecordForDelete
   );
 
   return {
-    gpDetailsInfoTableColumns,
+    allegationInfoTableColumns,
     data,
     isLoading,
     isSuccess,
@@ -71,7 +70,7 @@ export const useAllegationList = () => {
     setSearchValue,
     router,
     setPage,
-    GPDETAILSLISTPAGELIMIT,
+    ALLEGATIONLISTPAGELIMIT,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,
