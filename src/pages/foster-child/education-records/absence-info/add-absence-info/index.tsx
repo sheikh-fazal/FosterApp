@@ -39,11 +39,11 @@ export default function AbsenceInfoFormLayout() {
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm
-          defaultValues={{
-            ...data?.[0],
-            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-            label: new Date(data?.[0]?.label),
-          }}
+          // defaultValues={{
+          //   ...data?.[0],
+          //   dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+          //   label: new Date(data?.[0]?.label),
+          // }}
         />
         <AbsenceInfoDocument />
       </HorizaontalTabs>

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { defaultValues, formSchema } from ".";
+import { absenceInfoDefaultValues, formSchema } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -13,14 +13,15 @@ import { useEffect } from "react";
 export const useAbsenceInfoForm = (props: any) => {
   const router = useRouter();
   const childInfoId = router?.query["absence_info_id"];
-  const { disabled } = props;
+  const { disabled, defaultValues } = props;
 
   const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
     refetchOnMountOrArgChange: true,
   });
+
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
-    defaultValues,
+    defaultValues: defaultValues ?? absenceInfoDefaultValues,
   });
   const {
     handleSubmit,
