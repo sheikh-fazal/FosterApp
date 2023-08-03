@@ -1,5 +1,5 @@
 import React from "react";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
@@ -78,11 +78,12 @@ export default function FamilyPersonListTable(prop: any) {
           title="Child Family / Persons & Org. Involved"
           searchKey="search"
           onChanged={headerChangeHandler}
-          onAdd={() => {
-            router.push(
-              `/foster-child/child-background-info/family-person-org-involved/add-family-form-list`
-            );
-          }}
+          onAdd={() =>
+            router.push({
+              pathname: `/foster-child/child-background-info/family-person-org-involved/add-family-form-list`,
+              query: { fosterChildId: fosterChildId },
+            })
+          }
         />
         <CustomTable
           data={data?.family_details}

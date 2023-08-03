@@ -8,10 +8,10 @@ import { HEALTH_AND_SAFETYDATA, columns } from ".";
 
 export const HealthAndSafetyTable = () => {
   const {
-    open,
-    setOpen,
-    handleOpen,
-    handleClose,
+    // open,
+    // setOpen,
+    // handleOpen,
+    // handleClose,
     theme,
     router,
     tableHeaderRef,
@@ -45,7 +45,7 @@ export const HealthAndSafetyTable = () => {
         <CustomTable
           data={healthAndSafetyApiData}
           columns={columns}
-          // showSerialNo
+          showSerialNo
           isError={isError}
           isLoading={isLoading}
           onPageChange={pageChangeHandler}
