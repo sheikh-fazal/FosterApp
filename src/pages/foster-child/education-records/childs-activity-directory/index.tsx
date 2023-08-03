@@ -51,6 +51,13 @@ export default function ChildsActivityDirectory() {
   } = methods;
   return (
     <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{
+          mb: 2,
+        }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <Box
         sx={(theme) => ({
           background: `url(${backGround.src})`,
@@ -63,11 +70,6 @@ export default function ChildsActivityDirectory() {
           mt: { xs: 2, sm: 0 },
         })}
       >
-        <TitleWithBreadcrumbLinks
-          sx={{ mb: 2 }}
-          breadcrumbs={BREADCRUMBS}
-          title={PAGE_TITLE}
-        />
         <Box
           sx={{
             mt: { xs: 0, sm: 16 },
