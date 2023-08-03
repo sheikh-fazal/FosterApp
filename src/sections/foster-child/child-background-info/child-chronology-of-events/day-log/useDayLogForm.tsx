@@ -67,7 +67,7 @@ export const useDayLogForm = () => {
           });
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/day-log",
-            query: { action: "edit", id: `${res?.data.id}` },
+            query: { action: "edit", id: `${res?.data.id}` ,fosterChildId},
           });
         })
         .catch((error: any) => {

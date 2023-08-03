@@ -81,7 +81,7 @@ export default function AbsenceInfo() {
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
         title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        breadcrumbs={BREADCRUMBS(fosterChildId)}
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm />
@@ -99,7 +99,6 @@ export default function AbsenceInfo() {
             "personUploaded",
             "documentPassword",
           ]}
-          // onDelete={}
           onDelete={(data: any) => {
             deleteDocument(data.id);
           }}

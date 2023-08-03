@@ -5,6 +5,7 @@ import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
+  useEditSubstituteCarerMutation,
   useGetSubstituteCarerByIdQuery,
   usePostSubstituteCarerMutation,
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
@@ -51,6 +52,7 @@ export default function SwapCarerDetails() {
   const router = useRouter();
   const id = router?.query?.fosterCarerId;
   const [postSwapCarerData, status] = usePostSubstituteCarerMutation();
+  const [editCarerData, editingStatus] = useEditSubstituteCarerMutation();
 
   const formSubmitHandler = async (formData: any) => {
     const body = { ...formData, carerType: "SC", status: " " };
@@ -73,14 +75,27 @@ export default function SwapCarerDetails() {
   // const { data, isSuccess, isError } = useGetSubstituteCarerByIdQuery(
   //   "17210af4-a43c-40a8-bf70-c43d6cb45ea0"
   // );
+  const formEditHandler = async (body: any) => {
+    // const body = { ...formData, carerType: "BC", status: " " };
+    try {
+      const res: any = await editCarerData(body).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Edited Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/substitute-cares/respite-carer?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
   return (
     <HorizontalTabs tabsDataArray={TABSDATA}>
       <SubstituteCarerForm
-        onSubmit={(data: any) => {
-          formSubmitHandler(data);
-        }}
+        onSubmit={formSubmitHandler}
         status={status}
-        onEdit={(data: any) => console.log(data)}
+        onEdit={formEditHandler}
       />
 
       <UploadDocuments

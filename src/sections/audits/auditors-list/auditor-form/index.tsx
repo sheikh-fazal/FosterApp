@@ -22,7 +22,7 @@ export const formSchema = Yup.object().shape({
   auditType: Yup.string().required("Field is required"),
   assigneeType: Yup.string().required("Field is required"),
   assignee: Yup.string().required("Field is required"),
-  dueDate: Yup.string().required("Field is required"),
+  dueDate: Yup.date().required("Field is required"),
 });
 
 export const setupFormData = [

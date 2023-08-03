@@ -7,13 +7,13 @@ import { fData } from "@root/utils/formatNumber";
 export const defaultValues = {
   fullName: "",
   email: "",
-  age: "",
-  startDate: null,
-  endDate: null,
+  age: 18,
+  startDate: new Date(),
+  endDate: new Date(),
   password: "",
   confirmPassword: "",
   editor: "",
-  photo: null,
+  photo: '',
   terms: false,
 };
 

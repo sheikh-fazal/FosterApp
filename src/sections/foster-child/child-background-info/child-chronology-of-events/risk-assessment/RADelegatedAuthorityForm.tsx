@@ -4,6 +4,7 @@ import FormProvider from "@root/components/hook-form/FormProvider";
 import { LoadingButton } from "@mui/lab";
 import { useRAChildInformationForm } from "./useRAChildInformationForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { useRADelegatedAuthorityForm } from "./useRADelegatedAuthorityForm";
 
 const RADelegatedAuthorityForm = () => {
   const {
@@ -15,7 +16,7 @@ const RADelegatedAuthorityForm = () => {
     isLoading,
     action,
     fosterChildId,
-  } = useRAChildInformationForm();
+  } = useRADelegatedAuthorityForm();
 
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;

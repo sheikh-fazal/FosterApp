@@ -12,8 +12,8 @@ export const defaultValues = {
   versions: "",
   createdBy: "",
   approvedBy: "",
-  eSignatureAuthor: null,
-  eSignatureApprover: null,
+  eSignatureAuthor: '',
+  eSignatureApprover: '',
   dateAuthor: new Date(),
   dateApprover: new Date(),
   creationTime: new Date(),
@@ -23,17 +23,17 @@ export const defaultValues = {
 // ======================================================
 export const FormSchema = Yup.object().shape({
   title: Yup.string().required("Field is required"),
-  dateUploaded: Yup.string().required("Field is required"),
+  dateUploaded: Yup.date().required("Field is required"),
   description: Yup.string().required("Field is required"),
   versions: Yup.string().required("Field is required"),
   createdBy: Yup.string().required("Field is required"),
   approvedBy: Yup.string().required("Field is required"),
   eSignatureAuthor: Yup.string().required("Field is required"),
   eSignatureApprover: Yup.string().required("Field is required"),
-  dateAuthor: Yup.string().required("Field is required"),
-  dateApprover: Yup.string().required("Field is required"),
-  creationTime: Yup.string().required("Field is required"),
-  lastModified: Yup.string().required("Field is required"),
+  dateAuthor: Yup.date().required("Field is required"),
+  dateApprover: Yup.date().required("Field is required"),
+  creationTime: Yup.date().required("Field is required"),
+  lastModified: Yup.date().required("Field is required"),
   modifiedBy: Yup.string().required("Field is required"),
 });
 

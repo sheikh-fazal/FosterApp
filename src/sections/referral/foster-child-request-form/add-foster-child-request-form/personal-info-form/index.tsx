@@ -337,7 +337,7 @@ export const PersonalInfoFormValues = {
   firstName: "",
   middleName: "",
   lastName: "",
-  dateOfBirth: null,
+  dateOfBirth: '',
   age: "",
   gender: "",
   ethnicity: "",

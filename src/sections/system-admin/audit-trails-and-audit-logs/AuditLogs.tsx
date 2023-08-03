@@ -8,7 +8,13 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 
 const AuditLogs = () => {
-  const { theme, fosterCarerFilter, handleFosterCarerFilter, isDeleteModalOpen, setIsDeleteModalOpen } = useAuditLogs();
+  const {
+    theme,
+    fosterCarerFilter,
+    handleFosterCarerFilter,
+    isDeleteModalOpen,
+    setIsDeleteModalOpen,
+  } = useAuditLogs();
 
   const columns = [
     {
@@ -63,25 +69,29 @@ const AuditLogs = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <TableAction type="delete" size="small" onClicked={() => setIsDeleteModalOpen(true)} />
+        <TableAction
+          type="delete"
+          size="small"
+          onClicked={() => setIsDeleteModalOpen(true)}
+        />
       ),
       header: "Actions",
       isSortable: false,
     },
   ];
-
+  console.log(fosterCarerFilter.selectTime);
   return (
     <>
       <Card sx={{ px: 3, py: 4 }}>
-        <Grid container spacing={3} justifyContent={'center'}>
+        <Grid container spacing={3} justifyContent={"center"}>
           <Grid item lg={3} md={4} sm={6} xs={12}>
             <Select
               name="selectTime"
               placeholder="Select Time"
-              value={fosterCarerFilter.selectTime}
+              value={fosterCarerFilter.selectTime?fosterCarerFilter.selectTime:'Select Time'}
               size="small"
               sx={{ width: "100%" }}
-              onChange={(e: any) => handleFosterCarerFilter('selectTime', e)}
+              onChange={(e: any) => handleFosterCarerFilter("selectTime", e)}
             >
               <MenuItem value="Select Time">Select Time</MenuItem>
             </Select>
@@ -89,11 +99,11 @@ const AuditLogs = () => {
           <Grid item lg={3} md={4} sm={6} xs={12}>
             <Select
               name="selectDate"
-              value={fosterCarerFilter.selectDate}
+              value={fosterCarerFilter.selectDate?fosterCarerFilter.selectDate:'Select Date'}
               placeholder="Select Date"
               size="small"
               sx={{ width: "100%" }}
-              onChange={(e: any) => handleFosterCarerFilter('selectDate', e)}
+              onChange={(e: any) => handleFosterCarerFilter("selectDate", e)}
             >
               <MenuItem value="Select Date">Select Date</MenuItem>
             </Select>
@@ -101,11 +111,13 @@ const AuditLogs = () => {
           <Grid item lg={3} md={4} sm={6} xs={12}>
             <Select
               name="selectEventTime"
-              value={fosterCarerFilter.selectEventTime}
+              value={fosterCarerFilter.selectEventTime?fosterCarerFilter.selectEventTime:'Select Event Name'}
               placeholder="Select Event Name"
               size="small"
               sx={{ width: "100%" }}
-              onChange={(e: any) => handleFosterCarerFilter('selectEventTime', e)}
+              onChange={(e: any) =>
+                handleFosterCarerFilter("selectEventTime", e)
+              }
             >
               <MenuItem value="Select Event Name">Select Event Name</MenuItem>
             </Select>
@@ -113,19 +125,23 @@ const AuditLogs = () => {
           <Grid item lg={3} md={4} sm={6} xs={12}>
             <Select
               name="selectAccountType"
-              value={fosterCarerFilter.selectAccountType}
+              value={fosterCarerFilter.selectAccountType?fosterCarerFilter.selectAccountType:'Select Account Type'}
               placeholder="Select Account Type"
               size="small"
               sx={{ width: "100%" }}
-              onChange={(e: any) => handleFosterCarerFilter('selectAccountType', e)}
+              onChange={(e: any) =>
+                handleFosterCarerFilter("selectAccountType", e)
+              }
             >
-              <MenuItem value="Select Account Type">Select Account Type</MenuItem>
+              <MenuItem value="Select Account Type">
+                Select Account Type
+              </MenuItem>
             </Select>
           </Grid>
         </Grid>
       </Card>
       {/* Table */}
-      <Card sx={{ p: 2, mt: 2 }} >
+      <Card sx={{ p: 2, mt: 2 }}>
         <TableHeader title="Foster Carer(s)" />
         <CustomTable
           data={auditTrialsData}
@@ -144,7 +160,10 @@ const AuditLogs = () => {
           rootSX={{ my: theme.spacing(2) }}
         />
       </Card>
-      <DeleteModel open={isDeleteModalOpen} handleClose={() => setIsDeleteModalOpen(false)} />
+      <DeleteModel
+        open={isDeleteModalOpen}
+        handleClose={() => setIsDeleteModalOpen(false)}
+      />
     </>
   );
 };

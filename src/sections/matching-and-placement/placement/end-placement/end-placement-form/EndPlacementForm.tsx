@@ -10,7 +10,8 @@ import { useEndPlacementForm } from "./useEndPlacementForm";
 // ================================================================================
 
 const EndPlacementForm = (props: any) => {
-  const { theme, router, methods, onSubmit, handleSubmit, isSubmitting } = useEndPlacementForm();
+  const { theme, router, methods, onSubmit, handleSubmit, isSubmitting } =
+    useEndPlacementForm();
 
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
@@ -19,12 +20,32 @@ const EndPlacementForm = (props: any) => {
           {endPlacementData.map((form: any, i: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={i}>
-                <Typography sx={{ fontWeight: 600, mb: 0.3, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }}>
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    mb: 0.3,
+                    color:
+                      theme.palette.mode === "light"
+                        ? "#343A40"
+                        : theme.palette.mode,
+                  }}
+                >
                   {form.title}
                 </Typography>
-                {form.requireFileUpload && <RHFUploadFile name="uploadPhoto" {...methods} require />}
+                {form.requireFileUpload && (
+                  <RHFUploadFile
+                    name="uploadPhoto"
+                    label="Discharge report"
+                    {...methods}
+                    require
+                  />
+                )}
                 {form.component ? (
-                  <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
+                  <form.component
+                    disabled={props.disabled}
+                    size="small"
+                    {...form.otherOptions}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -34,7 +55,15 @@ const EndPlacementForm = (props: any) => {
                       : null}
                   </form.component>
                 ) : (
-                  <Typography sx={{ fontSize: "16px", fontWeight: 700, color: theme.palette.primary.main }}>{form.head}</Typography>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 700,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    {form.head}
+                  </Typography>
                 )}
               </Grid>
             );
@@ -48,7 +77,12 @@ const EndPlacementForm = (props: any) => {
               }}
             >
               {!props?.disabled && (
-                <LoadingButton sx={{ marginLeft: "0.3rem" }} type="submit" variant="contained" loading={isSubmitting}>
+                <LoadingButton
+                  sx={{ marginLeft: "0.3rem" }}
+                  type="submit"
+                  variant="contained"
+                  loading={isSubmitting}
+                >
                   Submit
                 </LoadingButton>
               )}
