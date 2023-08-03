@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
@@ -48,22 +49,25 @@ export const getColumns = (parms: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <TableAction
+          {/* <TableAction
             size="small"
             type="edit"
             onClicked={() => openUpdateViewModel(info.row.original.id, false)}
-          />
+          /> */}
           <TableAction size="small" type="download" />
           <TableAction
             size="small"
             type="view"
             onClicked={() => openUpdateViewModel(info.row.original.id)}
           />
-          <TableAction
+          <DeletePrompt
+            onDeleteClick={() => handleDeleteListItem(info?.row?.original?.id)}
+          />
+          {/* <TableAction
             size="small"
             type="delete"
             onClicked={() => handleDeleteListItem(info.row.original.id)}
-          />
+          /> */}
         </Box>
       ),
       header: "Action",
