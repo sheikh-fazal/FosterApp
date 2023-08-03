@@ -28,6 +28,15 @@ const useOrignalChildReferral = () => {
     childInEducation: "",
     otherSiblings: "",
     address: "",
+    refferalName: "",
+    refferalDate: new Date(todayDate),
+    reason: "",
+    childPlacingAuthority: "",
+    laWorkerName: "",
+    localAuthority: "",
+    dateLaNotified: new Date(todayDate),
+    becomeFosterChld: "",
+    otherDetails: "",
   };
 
   const viewOriginalChild = Yup.object().shape({
@@ -52,6 +61,15 @@ const useOrignalChildReferral = () => {
     childInEducation: Yup.string().required("Required"),
     otherSiblings: Yup.string().required("Required"),
     address: Yup.string().required("Required"),
+    refferalName: Yup.string().required("Required"),
+    refferalDate: Yup.date().required("Required"),
+    reason: Yup.string().required("Required"),
+    childPlacingAuthority: Yup.string().required("Required"),
+    laWorkerName: Yup.string().required("Required"),
+    localAuthority: Yup.string().required("Required"),
+    dateLaNotified: Yup.date().required("Required"),
+    becomeFosterChld: Yup.string().required("Required"),
+    otherDetails: Yup.string().required("Required"),
   });
   const methods: any = useForm({
     resolver: yupResolver(viewOriginalChild),
