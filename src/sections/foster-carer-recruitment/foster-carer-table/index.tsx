@@ -38,7 +38,7 @@ export const dataFosterCarerRecruitment = [
   },
 ];
 
-export const columnsFosterCarerRecruitment = [
+export const columnsFosterCarerRecruitment = (makePath: any) => [
   {
     accessorFn: (row: any) => row?.img,
     id: "img",
@@ -70,7 +70,14 @@ export const columnsFosterCarerRecruitment = [
         color={(theme: any) => theme.palette.primary.main}
         sx={{ cursor: "pointer" }}
         onClick={() => {
-          router.push(`/recruitment/?${info?.row?.original?.detailsId}`);
+          router.push(
+            makePath({
+              path: `/recruitment`,
+              queryParams: {
+                fosterCarerId: `${info?.row?.original?.detailsId}`,
+              },
+            })
+          );
         }}
       >
         {info.getValue() ?? "-"}
@@ -179,7 +186,7 @@ export const defaultValues = {
   gender: "",
   areaLocality: "",
   areaOffice: "",
-  img: '',
+  img: "",
 };
 
 export const FosterCarerRecruitmentFormSchema = Yup.object().shape({
