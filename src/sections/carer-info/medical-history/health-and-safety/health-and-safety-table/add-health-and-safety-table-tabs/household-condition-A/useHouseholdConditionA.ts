@@ -6,19 +6,23 @@ import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
-import { useGetHealthAndSafetyListDataQuery } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import {
+  useGetHealthAndSafetyListDataQuery,
+  // useHouseHoldConditionAPostMutation,
+} from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 
 export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
   const theme: any = useTheme();
-  
 
+  // const [HOUSEHOLD_A] = useHouseHoldConditionAPostMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
-  const { handleSubmit } = methods; 
+  const { handleSubmit } = methods;
   const onSubmit = (data: any) => {
     formData(data);
+    // HOUSEHOLD_A(formData);
   };
   useEffect(() => {
     breadCrumbData("Household Condition - A");

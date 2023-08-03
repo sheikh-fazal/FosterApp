@@ -10,71 +10,71 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 
 export const defaultValues = {
   inspectionDate: new Date(todayDate),
-  nextInspectedDate: new Date(todayDate),
+  nestInspectionDate: new Date(todayDate),
 
   onFile: false,
-  HasPetQuestionnaireCompleted: true,
+  isQuestionCompleted: true,
 
-  isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt:
+  isAccomodationSuitable:
     true,
-  dateToBeCarriedOutOne: new Date(todayDate),
+  dateToBeCarriedOut: new Date(todayDate),
 
-  improvementsRequireOne: "Text",
+  improvementsReq: "Text",
 
-  isThereSufficientSpaceForChildrenToPursueTheirHomework: false,
-  dateToBeCarriedOutTwo: new Date(todayDate),
+  isSufficentSpaceForChilds: false,
+  dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsRequireTwo: "text",
+  improvementsReq1: "text",
 
-  doRoomsHaveSufficientLightToReadAndPlayBy: false,
-  dateToBeCarriedOutThree: new Date(todayDate),
+  isRoomsSufficientLight: false,
+  dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsRequireThree: "text",
+  improvementsReq2: "text",
 
-  doAllRoomsHaveAnOpeningWindows: false,
-  dateToBeCarriedOutFour: new Date(todayDate),
+  isRoomsOpenWindows: false,
+  dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsRequireFour: "text",
+  improvementsReq3: "text",
 
-  areAllRoomsMaintainableAtReasonableTemprature: false,
-  dateToBeCarriedOutFive: new Date(todayDate),
+  isRoomsMaintainedTemp: false,
+  dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsRequireFive: "text",
+  improvementsReq4: "text",
 
   isChildOwnBed: false,
 
-  dateToBeCarriedOutSix: new Date(todayDate),
+  dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsRequireSix: "text",
+  improvementsReq5: "text",
 };
 
 export const FormSchema = Yup.object().shape({
   inspectionDate: Yup.date().required("Required"),
-  nextInspectedDate: Yup.date().required("Date is required"),
+  nestInspectionDate: Yup.date().required("Date is required"),
 
-  dateToBeCarriedOutOne: Yup.date().required("Required"),
+  dateToBeCarriedOut: Yup.date().required("Required"),
 
-  improvementsRequireOne: Yup.string().required("Required"),
+  improvementsReq: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsRequireTwo: Yup.string().required("Required"),
+  improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOutThree: Yup.date().required("Required"),
+  dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsRequireThree: Yup.string().required("Required"),
+  improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFour: Yup.date().required("Required"),
+  dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsRequireFour: Yup.string().required("Required"),
+  improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFive: Yup.date().required("Required"),
+  dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsRequireFive: Yup.string().required("Required"),
+  improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSix: Yup.date().required("Required"),
+  dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsRequireSix: Yup.string().required("Required"),
+  improvementsReq5: Yup.string().required("Required"),
 });
 
 export const householdConditionA_Data = [
@@ -94,7 +94,7 @@ export const householdConditionA_Data = [
   {
     id: 2,
     componentProps: {
-      name: "nextInspectedDate",
+      name: "nestInspectionDate",
       label: "Next Inspection Date",
       multiline: true,
       fullWidth: true,
@@ -118,7 +118,7 @@ export const householdConditionA_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "HasPetQuestionnaireCompleted",
+      name: "isQuestionCompleted",
       label: "Has pet questionnaire completed ?",
     },
     component: RHFCheckbox,
@@ -133,7 +133,7 @@ export const householdConditionA_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isLivingAccomodationSuitableForChildrenOryoungLivingOrProposedToLiveInIt",
+      name: "isAccomodationSuitable",
       label:
         "Is the accomodation suitable for the number of children/young people living or proposed to live in it ?",
     },
@@ -143,7 +143,7 @@ export const householdConditionA_Data = [
     id: 6,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutOne",
+      name: "dateToBeCarriedOut",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -152,7 +152,7 @@ export const householdConditionA_Data = [
   {
     id: 7,
     componentProps: {
-      name: "improvementsRequireOne",
+      name: "improvementsReq",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -166,7 +166,7 @@ export const householdConditionA_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isThereSufficientSpaceForChildrenToPursueTheirHomework",
+      name: "isSufficentSpaceForChilds",
       label:
         "Is there sufficient space for the children to pursue their homework ?",
     },
@@ -176,7 +176,7 @@ export const householdConditionA_Data = [
     id: 9,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTwo",
+      name: "dateToBeCarriedOut1",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -186,7 +186,7 @@ export const householdConditionA_Data = [
   {
     id: 10,
     componentProps: {
-      name: "improvementsRequireTwo",
+      name: "improvementsReq1",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -200,7 +200,7 @@ export const householdConditionA_Data = [
     id: 11,
     gridLength: 6,
     componentProps: {
-      name: "doRoomsHaveSufficientLightToReadAndPlayBy",
+      name: "isRoomsSufficientLight",
       label: "Do rooms have sufficient light to read and play by ?",
     },
     component: RHFCheckbox,
@@ -208,7 +208,7 @@ export const householdConditionA_Data = [
   {
     id: 12,
     componentProps: {
-      name: "dateToBeCarriedOutThree",
+      name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -217,7 +217,7 @@ export const householdConditionA_Data = [
   {
     id: 13,
     componentProps: {
-      name: "improvementsRequireThree",
+      name: "improvementsReq2",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -230,7 +230,7 @@ export const householdConditionA_Data = [
     id: 14,
     gridLength: 6,
     componentProps: {
-      name: "doAllRoomsHaveAnOpeningWindows",
+      name: "isRoomsOpenWindows",
       label: "Do all rooms have an opening windows?",
     },
     component: RHFCheckbox,
@@ -238,7 +238,7 @@ export const householdConditionA_Data = [
   {
     id: 15,
     componentProps: {
-      name: "dateToBeCarriedOutFour",
+      name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -247,7 +247,7 @@ export const householdConditionA_Data = [
   {
     id: 16,
     componentProps: {
-      name: "improvementsRequireFour",
+      name: "improvementsReq3",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -260,7 +260,7 @@ export const householdConditionA_Data = [
     id: 17,
     gridLength: 6,
     componentProps: {
-      name: "areAllRoomsMaintainableAtReasonableTemprature",
+      name: "isRoomsMaintainedTemp",
       label: "Are all rooms maintainable at reasonable temprature ?",
     },
     component: RHFCheckbox,
@@ -268,7 +268,7 @@ export const householdConditionA_Data = [
   {
     id: 18,
     componentProps: {
-      name: "dateToBeCarriedOutFive",
+      name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -277,7 +277,7 @@ export const householdConditionA_Data = [
   {
     id: 19,
     componentProps: {
-      name: "improvementsRequireFive",
+      name: "improvementsReq4",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -298,7 +298,7 @@ export const householdConditionA_Data = [
   {
     id: 21,
     componentProps: {
-      name: "dateToBeCarriedOutSix",
+      name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -307,7 +307,7 @@ export const householdConditionA_Data = [
   {
     id: 22,
     componentProps: {
-      name: "improvementsRequireSix",
+      name: "improvementsReq5",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
