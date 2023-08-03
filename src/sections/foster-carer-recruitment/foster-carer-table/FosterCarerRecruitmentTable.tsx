@@ -9,13 +9,19 @@ import {
   dataFosterCarerRecruitment,
 } from "./";
 import AddFosterCarerRecruitment from "./AddFosterCarerRecruitment";
+import usePath from "@root/hooks/usePath";
 
 export default function FosterCarerRecruitmentTable() {
   const tableHeaderRef = useRef<any>();
+
+  const { makePath } = usePath();
+
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
   const [open, setOpen] = useState(false);
+
+  const columns = columnsFosterCarerRecruitment(makePath);
 
   return (
     <Card sx={{ p: 2 }}>
@@ -33,7 +39,7 @@ export default function FosterCarerRecruitmentTable() {
       />
       <CustomTable
         data={dataFosterCarerRecruitment}
-        columns={columnsFosterCarerRecruitment}
+        columns={columns}
         isLoading={false}
         isFetching={false}
         isError={false}

@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import { Grid } from "@mui/material";
 import { FamilyOrgInvolvedFormData } from ".";
 import { FormProvider } from "@root/components/hook-form";
@@ -9,7 +8,7 @@ import LoadingButton from "@mui/lab/LoadingButton";
 export default function FamilyOrgInvolvedForm(props: any) {
   const { router, methods, handleSubmit, disabled, isSubmitting, onSubmit } =
     useFamilyOrgInvolvedForm(props);
-    const {fosterChildId} = router.query;
+  const { fosterChildId } = router.query;
 
   return (
     <>
@@ -39,8 +38,7 @@ export default function FamilyOrgInvolvedForm(props: any) {
             );
           })}
 
-          
-            <Grid item xs={12}>
+          <Grid item xs={12}>
             {!disabled && (
               <LoadingButton
                 type="submit"
@@ -49,24 +47,22 @@ export default function FamilyOrgInvolvedForm(props: any) {
               >
                 Submit
               </LoadingButton>
-              )}
-                <LoadingButton
-                  type="button"
-                  sx={{
-                    color: "#fff",
-                    ml: 1,
-                    backgroundColor: "#F6830F",
-                  }}
-                  variant="contained"
-                  onClick={() => router.push({
-                    pathname: "/foster-child/child-background-info/family-person-org-involved",
-                    query: {fosterChildId: fosterChildId}
-                  })}
-                >
-                  Back
-                </LoadingButton>
-            </Grid>
-          
+            )}
+            <LoadingButton
+              onClick={() =>
+                router.push({
+                  pathname:
+                    "/foster-child/child-background-info/family-person-org-involved",
+                  query: { fosterChildId: fosterChildId },
+                })
+              }
+              type="button"
+              sx={{ ml: 1, backgroundColor: "#F6830F" }}
+              variant="contained"
+            >
+              Back
+            </LoadingButton>
+          </Grid>
         </Grid>
       </FormProvider>
     </>

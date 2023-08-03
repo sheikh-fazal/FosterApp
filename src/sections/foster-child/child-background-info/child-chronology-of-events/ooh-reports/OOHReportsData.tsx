@@ -118,7 +118,7 @@ export const oohReportsFormFields = [
   },
 ];
 export const defaultValues = {
-  reportDate: null,
+  reportDate: new Date(),
   callStartTime: null,
   callEndTime: null,
   callDuration: null,

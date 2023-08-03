@@ -9,7 +9,7 @@ const TrainingDetailsTable = () => {
     {
       courseAttendedCarer: "",
       coursesAttended: "",
-      attendenceDate: "",
+      attendenceDate: new Date(),
       courseStatus: "",
     },
   ]);

@@ -5,6 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import { Box, Card } from "@mui/material";
 import RefData from "../../../assets/svg/ref-data.svg";
 import Image from "next/image";
+import dayjs from "dayjs";
 
 const ReferenceDataManagement = () => {
   const { methods, handleSubmit, onSubmit, handlerAddRow } =
@@ -12,7 +13,7 @@ const ReferenceDataManagement = () => {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Card sx={{ p: 2 }}>
-        <TableHeader title={"Dropdown Management"} />
+        <TableHeader title={"Reference Data Management"} />
         <FormTable
           tableKey="exampleTable"
           add
@@ -87,13 +88,18 @@ const ReferenceDataManagement = () => {
               },
             },
             {
-              inputType: "textField",
-              type: "text",
+              inputType: "datePicker",
+              type: "lastUpdatedDate",
               key: "lastUpdatedDate",
-              defaultValue: "Certificate Pending ",
+              defaultValue: new Date(),
               label: "Last Updated Date ",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required");
+                return Yup.date()
+                  .typeError("Last updated date is required")
+                  .required("Last updated date is required");
+              },
+              format: (date: any) => {
+                return dayjs(date).format("DD/MM/YYYY");
               },
             },
           ]}

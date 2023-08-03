@@ -90,7 +90,7 @@ export const FormDataValues = {
 export const FormValidationSchema = Yup.object().shape({
   apiName: Yup.string().trim().required("Field is Required"),
   apiKey: Yup.string().trim().required("Field is Required"),
-  expiryDate: Yup.string().trim().required("Field is Required"),
+  expiryDate: Yup.date().required("Field is Required"),
   apiLink: Yup.string().trim().required("Field is Required"),
   status: Yup.string().trim().required("Field is Required"),
   hitsPerMinute: Yup.string().trim().required("Field is Required"),

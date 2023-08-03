@@ -25,7 +25,7 @@ export default function DateWhenInfoReceivedForm(props: any) {
   };
 
   const FormSchema = Yup.object().shape({
-    dateinformationReceived: Yup.string().required("Required"), //1
+    dateinformationReceived: Yup.date().required("Required"), //1
   });
 
   const methods: any = useForm({

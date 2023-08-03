@@ -2,13 +2,16 @@ import { useTheme } from "@mui/material";
 import React, { useEffect } from "react";
 import { ASSESSMENTSTAGEONEDATA } from ".";
 import { useGetStageOneStatusQuery } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
+import { useRouter } from "next/router";
 
 export const useAssessmentStageOne = () => {
+  const router = useRouter();
+  const _id  = Object.keys(router.query)[0];
   const id = "4f7512fb-2916-451b-8240-97f529ded73d";
-
+  const ASSESSMENTSTAGEONEDATAFUNCTION = ASSESSMENTSTAGEONEDATA(_id);
   const theme: any = useTheme();
   const [assessmentStageOneData, setAssessmentStageOneData] = React.useState(
-    ASSESSMENTSTAGEONEDATA
+    ASSESSMENTSTAGEONEDATAFUNCTION
   );
 
   const { data, isLoading, isError, isFetching, isSuccess } =
@@ -17,7 +20,7 @@ export const useAssessmentStageOne = () => {
 
   useEffect(() => {
     setAssessmentStageOneData(
-      ASSESSMENTSTAGEONEDATA?.map((item: any) => ({
+      ASSESSMENTSTAGEONEDATAFUNCTION?.map((item: any) => ({
         ...item,
         status: assessmentStageOneApiData?.[item?.textForApi],
       }))

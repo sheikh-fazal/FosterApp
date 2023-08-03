@@ -1,5 +1,4 @@
 import HomeIcon from "@mui/icons-material/Home";
-import { Paper } from "@mui/material";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
@@ -26,7 +25,7 @@ const PAGE_TITLE = "View Family Persons & Org Involved";
 // ----------------------------------------------------------------------
 
 ViewFamilyPersonForm.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function ViewFamilyPersonForm() {
@@ -48,6 +47,7 @@ export default function ViewFamilyPersonForm() {
         sx={{ mb: 2 }}
       />
       <HorizaontalTabs tabsDataArray={["Family Org Involved", "Documents"]}>
+
         {/* Family Person Form */}
         {isLoading && <p>Loading...</p>}
         {isSuccess && (
@@ -56,6 +56,7 @@ export default function ViewFamilyPersonForm() {
 
         {/* Upload Document */}
         <FamilyPersonDocument />
+        
       </HorizaontalTabs>
     </Page>
   );

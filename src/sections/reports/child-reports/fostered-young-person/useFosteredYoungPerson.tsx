@@ -15,10 +15,10 @@ export const useFosteredYoungPerson = () => {
         router.push({ pathname: path });
         break;
       case "edit":
-        router.push({ pathname: path+"/edit" });
+        router.push({ pathname: path + "/edit" });
         break;
       case "view":
-        router.push({ pathname: path+"/view" });
+        router.push({ pathname: path + "/view" });
         break;
       case "delete":
         setOpenDelete(true);
@@ -29,7 +29,6 @@ export const useFosteredYoungPerson = () => {
         break;
     }
   };
-
 
   const columns = [
     {
@@ -59,7 +58,14 @@ export const useFosteredYoungPerson = () => {
       accessorFn: (row: any) => row.nameFosteredYoungPerson,
       id: "nameFosteredYoungPerson",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Name Fostered Young Person(DOB)</span>,
+      header: () => <span>{`Child's Name`}</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.dob,
+      id: "dob",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>{`DOB`}</span>,
       isSortable: true,
     },
     {
@@ -88,6 +94,20 @@ export const useFosteredYoungPerson = () => {
       id: "createdBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Created By</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
       isSortable: true,
     },
     {

@@ -20,7 +20,7 @@ export const substituteCarerApi = baseAPI.injectEndpoints({
         body,
       }),
     }),
-    patchSubstituteCarer: builder.mutation({
+    editSubstituteCarer: builder.mutation({
       query: ({ body, id }) => ({
         url: `/carer-Info/carer-info/substitute-cares/update-carer/${id}`,
         method: "PATCH",
@@ -28,7 +28,7 @@ export const substituteCarerApi = baseAPI.injectEndpoints({
       }),
     }),
     deleteSubstituteCarer: builder.mutation({
-      query: ({ id }) => ({
+      query: (id) => ({
         url: `/carer-Info/carer-info/substitute-cares/delete-carer/${id}`,
         method: "DELETE",
       }),
@@ -42,5 +42,5 @@ export const {
   useGetSubstituteCarerByIdQuery,
   useLazyGetSubstituteCarerByIdQuery,
   useDeleteSubstituteCarerMutation,
-  usePatchSubstituteCarerMutation,
+  useEditSubstituteCarerMutation,
 } = substituteCarerApi;

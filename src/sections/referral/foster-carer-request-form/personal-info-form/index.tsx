@@ -330,7 +330,7 @@ export const PersonalInfoFormValues = {
   firstName: "",
   middleName: "",
   lastName: "",
-  dob: null,
+  dob: new Date(),
   age: "",
   gender: "",
   ethnicity: "",
@@ -356,7 +356,7 @@ export const PersonalInfoFormValidationSchema = Yup.object().shape({
   firstName: Yup.string().trim().required("Field is Required"),
   middleName: Yup.string().trim().required("Field is Required"),
   lastName: Yup.string().trim().required("Field is Required"),
-  dob: Yup.string().trim().required("Field is Required"),
+  dob: Yup.date().required("Field is Required"),
   age: Yup.string().trim().required("Field is Required"),
   gender: Yup.string().trim().required("Field is Required"),
   ethnicity: Yup.string().trim().required("Field is Required"),
@@ -407,7 +407,7 @@ function RHFUploadFile(props: any) {
                 <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
                   {field?.value?.name || "Upload Image"}
                 </div>
-                <FileUploadIcon 
+                <FileUploadIcon
                   sx={{
                     color: "#A3A6BB",
                     marginRight: "10px",
