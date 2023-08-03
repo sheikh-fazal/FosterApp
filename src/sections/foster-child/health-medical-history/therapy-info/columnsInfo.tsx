@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
@@ -46,10 +47,9 @@ export const getColumns = (parms: any) => {
               )
             }
           />
-          <TableAction
-            size="small"
-            type="delete"
-            onClick={() => handleDeleteTherapy(info.row.original.id)}
+
+          <DeletePrompt
+            onDeleteClick={() => handleDeleteTherapy(info?.row?.original?.id)}
           />
         </Box>
       ),
