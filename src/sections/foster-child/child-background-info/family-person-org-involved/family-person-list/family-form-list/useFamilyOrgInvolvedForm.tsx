@@ -39,7 +39,7 @@ export const useFamilyOrgInvolvedForm = (props: any) => {
     try {
       const res: any = await postFamilyPersonList(data).unwrap();
       console.log(res);
-      
+
       router.push(
         `/foster-child/child-background-info/family-person-org-involved/add-family-form-list?fosterChildId=${router?.query?.fosterChildId}&family_person_id=${res?.id}`
       );
