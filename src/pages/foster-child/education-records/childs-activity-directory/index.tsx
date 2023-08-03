@@ -72,7 +72,7 @@ export default function ChildsActivityDirectory() {
       >
         <Box
           sx={{
-            mt: { xs: 0, sm: 16 },
+            mt: { xs: 0, sm: 19 },
           }}
         >
           <FormProvider methods={methods} onSubmit={handleSubmit()}>
