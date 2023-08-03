@@ -23,7 +23,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Agency Policy",
     informationText: "Agency Policy",
     viewForms: `View Policy`,
-    href: "#",
+    href: "/recruitment/contracts-and-declaration/view-policies",
     isSigned: true, 
   },
   {
