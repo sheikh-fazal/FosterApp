@@ -3,7 +3,7 @@ import statustoryChecksImg from "../../../assets/img/recruitment/statustoryCheck
 import trainingVerificationImg from "../../../assets/img/recruitment/trainingVerification.png";
 import stageOneApproval from "../../../assets/img/recruitment/stageOneApproval.png";
 
-export const ASSESSMENTSTAGEONEDATA = [
+export const ASSESSMENTSTAGEONEDATA = (_id: any) => [
   {
     id: 1,
     informationIcon: [
@@ -29,7 +29,7 @@ export const ASSESSMENTSTAGEONEDATA = [
     text: "Regular Assessment meeting",
     informationText: "Regular Assessment meetings with the applicant",
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-one/regular-assessment-meeting",
+    href: `/recruitment/assessment-stage-one/regular-assessment-meeting?fosterCarerId=${_id}`,
   },
   {
     id: 2,
@@ -72,7 +72,7 @@ export const ASSESSMENTSTAGEONEDATA = [
     text: "Statutory Checks Verification",
     informationText: "Statutory Checks Verification",
     viewForms: "View Form",
-    href: "#",
+    href: `/carer-info/background-checks/statutory-checks-list?fosterCarerId=${_id}`,
   },
   {
     id: 3,
@@ -115,7 +115,7 @@ export const ASSESSMENTSTAGEONEDATA = [
     text: "Training Verification",
     informationText: "Digital Application Pack/ info Pack",
     viewForms: "View Form",
-    href: "/recruitment/assessment-stage-one/training-verification-form",
+    href: `/recruitment/assessment-stage-one/training-verification-form?fosterCarerId=${_id}`,
   },
   {
     id: 4,
