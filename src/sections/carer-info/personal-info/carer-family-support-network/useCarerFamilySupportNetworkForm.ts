@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { CarerFamilySupportNetworkFormSchema } from "./";
 import { enqueueSnackbar } from "notistack";
@@ -12,7 +12,7 @@ export const useCarerFamilySupportNetworkForm = ({
 }: any) => {
   const router = useRouter();
 
-  const { makePath } = usePath()
+  const { makePath } = usePath();
 
   const methods: any = useForm({
     resolver: yupResolver(CarerFamilySupportNetworkFormSchema),
@@ -30,10 +30,12 @@ export const useCarerFamilySupportNetworkForm = ({
       enqueueSnackbar(res?.message ?? `Carer Family ${message} Successfully!`, {
         variant: "success",
       });
-      router.push(makePath({
-        path: "/carer-info/personal-info/carer-family-support-network",
-        skipQueries: ["familyId"],
-      }));
+      router.push(
+        makePath({
+          path: "/carer-info/personal-info/carer-family-support-network",
+          skipQueries: ["familyId"],
+        })
+      );
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });

@@ -68,8 +68,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const docsType = useWatch({ control, name: "documentType" });
 
   const onSubmit = async (data: any) => {
-    console.log({ data });
-    alert("did not found any update api on swagger");
+    console.log("API IS NOT AVAILABLE");
     return;
     const formData: any = new FormData();
     formData.append("chooseFiles", file);
