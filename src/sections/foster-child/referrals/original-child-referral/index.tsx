@@ -3,26 +3,6 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const OriginalChildReferralData = [
   {
-    id: 1,
-    gridLength: 6,
-    otherOptions: {
-      label: "Child Code",
-      name: "childCode",
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
-    id: 2,
-    gridLength: 6,
-    otherOptions: {
-      label: "Upload Image",
-      name: "uploadImage",
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
-  {
     id: 3,
     gridLength: 6,
     otherOptions: {
