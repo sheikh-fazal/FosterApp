@@ -10,7 +10,7 @@ import {
 import React from "react";
 import InfoIcon from "@mui/icons-material/Info";
 import TuneIcon from "@mui/icons-material/Tune";
-import { cardData } from ".";
+import { ActivityBaseCards, AgeGroupCards, cardData } from ".";
 import Link from "next/link";
 import ChildPoper from "./ChildPoper";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -20,7 +20,6 @@ import Switch from "@mui/material/Switch";
 
 const ChildActivityDirectory = () => {
   const [filter, setFilter] = React.useState(0);
-  const [renderData, setrenderData] = React.useState([]);
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const [anchorElTwo, setAnchorElTwo] = React.useState<HTMLElement | null>(
     null
@@ -35,34 +34,6 @@ const ChildActivityDirectory = () => {
   const openTwo = Boolean(anchorElTwo);
   const ID = open ? "simple-popper" : undefined;
   const IdTwo = openTwo ? "simple-popper-2" : undefined;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const showBasedOnAgeGroup = [
-    "Online Classes",
-    "Arts & Crafts",
-    "Pre-School Classes",
-    "Pre-School Signing",
-    "Children’s Center",
-    "Christmas",
-    "Holiday Activities",
-    "Drawing",
-    "Sketching",
-  ];
-  let index = 0;
-  if (filter === 1) {
-    for (const keys of cardData) {
-      if (index < showBasedOnAgeGroup.length) {
-        if (keys.text === showBasedOnAgeGroup[index]) {
-          // setrenderData((old: any) => [...old, keys]);
-          index++;
-        }
-      }
-    }
-  } else if (filter === 2) {
-    console.log("i am here");
-  } else {
-    console.log("i am here else");
-  }
-  console.log(filter);
 
   return (
     <Box mt={2}>
@@ -101,23 +72,75 @@ const ChildActivityDirectory = () => {
             },
           }}
         >
-          {cardData.map((items: any, index: any) => (
-            <Grid key={index} item>
-              <Link href={items.link}>
-                <Box sx={Styles.MainWapper(items.bgcolor)}>
-                  <Typography
-                    variant="body1"
-                    fontSize={14}
-                    color={"white"}
-                    fontWeight={700}
-                  >
-                    {items.text}
-                  </Typography>
-                  <Box sx={Styles.iconWapper(items.bgcolor)}>{items.icon}</Box>
-                </Box>
-              </Link>
-            </Grid>
-          ))}
+          {filter === 0 && (
+            <>
+              {cardData.map((items: any, index: any) => (
+                <Grid key={index} item>
+                  <Link href={items.link}>
+                    <Box sx={Styles.MainWapper(items.bgcolor)}>
+                      <Typography
+                        variant="body1"
+                        fontSize={14}
+                        color={"white"}
+                        fontWeight={700}
+                      >
+                        {items.text}
+                      </Typography>
+                      <Box sx={Styles.iconWapper(items.bgcolor)}>
+                        {items.icon}
+                      </Box>
+                    </Box>
+                  </Link>
+                </Grid>
+              ))}
+            </>
+          )}
+          {filter === 1 && (
+            <>
+              {AgeGroupCards.map((items: any, index: any) => (
+                <Grid key={index} item>
+                  <Link href={items.link}>
+                    <Box sx={Styles.MainWapper(items.bgcolor)}>
+                      <Typography
+                        variant="body1"
+                        fontSize={14}
+                        color={"white"}
+                        fontWeight={700}
+                      >
+                        {items.text}
+                      </Typography>
+                      <Box sx={Styles.iconWapper(items.bgcolor)}>
+                        {items.icon}
+                      </Box>
+                    </Box>
+                  </Link>
+                </Grid>
+              ))}
+            </>
+          )}
+          {filter === 2 && (
+            <>
+              {ActivityBaseCards.map((items: any, index: any) => (
+                <Grid key={index} item>
+                  <Link href={items.link}>
+                    <Box sx={Styles.MainWapper(items.bgcolor)}>
+                      <Typography
+                        variant="body1"
+                        fontSize={14}
+                        color={"white"}
+                        fontWeight={700}
+                      >
+                        {items.text}
+                      </Typography>
+                      <Box sx={Styles.iconWapper(items.bgcolor)}>
+                        {items.icon}
+                      </Box>
+                    </Box>
+                  </Link>
+                </Grid>
+              ))}
+            </>
+          )}
         </Grid>
         <ChildPoper
           BoxProps={{ sx: (theme) => Styles.informationStyles(theme) }}

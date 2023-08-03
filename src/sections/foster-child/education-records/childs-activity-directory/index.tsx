@@ -120,3 +120,45 @@ export const cardData = [
     link: "",
   },
 ];
+const showBasedOnAgeGroup = [
+  "Online Classes",
+  "Arts & Crafts",
+  "Pre-School Classes",
+  "Pre-School Signing",
+  "Children’s Center",
+  "Christmas",
+  "Holiday Activities",
+  "Drawing",
+  "Sketching",
+];
+let index = 0;
+export const AgeGroupCards:any = [];
+for (const keys of cardData) {
+  if (index < showBasedOnAgeGroup.length) {
+    if (keys.text === showBasedOnAgeGroup[index]) {
+      AgeGroupCards.push(keys);
+      index++;
+    }
+  }
+}
+const showBasedOnActivityType = [
+  "Arts & Crafts",
+  "Drawing",
+  "Sketching",
+  "Painting",
+  "Digital Art",
+  "Calligraphy",
+  "Animation",
+  "Visual Art",
+  "Editing",
+];
+let indexTwo = 0;
+export const ActivityBaseCards:any = [];
+for (const keystwo of cardData) {
+  if (indexTwo < showBasedOnActivityType.length) {
+    if (keystwo.text === showBasedOnActivityType[indexTwo]) {
+      ActivityBaseCards.push(keystwo);
+      indexTwo++;
+    }
+  }
+}
