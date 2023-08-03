@@ -12,26 +12,6 @@ const ViewOriginalChild = (props: any) => {
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        {/* <Grid container columnSpacing={4} pb={3}>
-          <Grid item xs={12} md={6}>
-            <RHFTextField
-              label="CHC-2"
-              size="small"
-              fullWidth
-              name="childCode"
-              {...methods}
-              disabled={props.disabled}
-            />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <RHFUploadFile
-              name="uploadImage"
-              {...methods}
-              required
-              disabled={props.disabled}
-            />
-          </Grid>
-        </Grid> */}
         <Grid container spacing={3}>
           {OriginalChildReferralData?.map((form: any) => {
             return (

@@ -5,7 +5,12 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditPersonalEducationPlan from "@root/sections/foster-child/education-records/personal-education-plan/edit-personal-educational-plan/EditPersonalEducationPlan";
-import { useGetDocumentChildEducationPlanQuery, useGetSingleChildEducationPlanQuery } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
+import {
+  useDeleteDocumentChildEducationPlanMutation,
+  useGetDocumentChildEducationPlanQuery,
+  useGetSingleChildEducationPlanQuery,
+  usePostDocumentChildEducationPlanMutation,
+} from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
 
@@ -35,11 +40,35 @@ EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
 export default function EditChildExclusionInfoPage() {
   const [tabsArr, setTabsArr] = useState(["PEP info", "Upload Document"]);
   const router = useRouter();
-  const id = Object.keys(router?.query)[0];
-  const { data, isLoading } = useGetSingleChildEducationPlanQuery(id);
+  const fosterChildId = Object.keys(router?.query)[0];
+  const formData = new FormData();
+  const { data, isLoading } = useGetSingleChildEducationPlanQuery(fosterChildId);
+  const [postDocument] = usePostDocumentChildEducationPlanMutation();
 
-  const {data:documentData, isLoading:documentLoading} = useGetDocumentChildEducationPlanQuery(id)
-  console.log(documentData) 
+  const [deleteDocument] = useDeleteDocumentChildEducationPlanMutation();
+
+  const {
+    data: documentData,
+    isLoading: documentLoading,
+    isFetching: documentFetching,
+    isSuccess: documentSuccess,
+  } = useGetDocumentChildEducationPlanQuery(fosterChildId);
+
+  const postDocumentData = async (data: any) => {
+    formData.append("type", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("file", data.chosenFile);
+
+    console.log(documentData);
+
+    const res = await postDocument({ formData, fosterChildId });
+  };
+
+  const deleteDocumentData = async (data: any) => {
+    const res = await deleteDocument(data?.id);
+  };
+
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={tabsArr}>
@@ -55,27 +84,33 @@ export default function EditChildExclusionInfoPage() {
                 comments: data?.comments,
                 principalName: data?.principalName,
               }}
-
-              id={id}
+              id={fosterChildId}
             />
           </>
         )}
-        <UploadDocuments
-          readOnly={false}
-          tableData={[]}
-          searchParam={() => {}}
-          isLoading={false}
-          isFetching={false}
-          column={[
-            "documentType",
-            "documentType",
-            "date",
-            "uploadBy",
-            "password",
-          ]}
-          isSuccess={false}
-          modalData={(data: any) => console.log(data)}
-        />
+        {documentLoading ? (
+          <IsFetching isFetching={documentLoading} />
+        ) : (
+          <>
+            <UploadDocuments
+              readOnly={false}
+              tableData={documentData?.data?.educationPlanDocuments}
+              searchParam={() => {}}
+              isLoading={documentLoading}
+              isFetching={documentFetching}
+              onDelete={async (data: any) => deleteDocumentData(data)}
+              column={[
+                "documentName",
+                "type",
+                "documentDate",
+                "uploadBy",
+                "password",
+              ]}
+              isSuccess={documentSuccess}
+              modalData={(data: any) => postDocumentData(data)}
+            />
+          </>
+        )}
       </HorizaontalTabs>
     </Page>
   );

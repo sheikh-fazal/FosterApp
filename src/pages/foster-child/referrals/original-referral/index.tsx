@@ -30,7 +30,7 @@ EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
 };
 
 export default function EditChildExclusionInfoPage() {
-  const [tabsArr, setTabsArr] = useState(["Personal Details"]);
+  const [tabsArr, setTabsArr] = useState(["Personal Info"]);
   
   return (
     <Page title={PAGE_TITLE}>

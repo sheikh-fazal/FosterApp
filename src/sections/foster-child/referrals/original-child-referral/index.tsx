@@ -12,7 +12,7 @@ export const OriginalChildReferralData = [
     },
     component: RHFTextField,
   },
-  {
+   {
     id: 2,
     gridLength: 6,
     otherOptions: {

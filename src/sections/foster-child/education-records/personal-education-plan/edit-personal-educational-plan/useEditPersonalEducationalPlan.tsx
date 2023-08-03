@@ -6,11 +6,11 @@ import { useRouter } from "next/router";
 import { usePatchSingleChildEducationPlanMutation } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 import { enqueueSnackbar } from "notistack";
 
-const useEditPersonalEducationalPlan = (initialValueProps:any, id:any) => {
+const useEditPersonalEducationalPlan = (initialValueProps:any, fosterChildId:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
-  const [patchData] = usePatchSingleChildEducationPlanMutation(id)
+  const [patchData] = usePatchSingleChildEducationPlanMutation(fosterChildId)
 
   
   const defaultValues = {
@@ -39,7 +39,7 @@ const useEditPersonalEducationalPlan = (initialValueProps:any, id:any) => {
   const onSubmit = async (data: any) => {
     
     try {
-      const res = await patchData({data,id}) 
+      const res = await patchData({data,fosterChildId}) 
 
       enqueueSnackbar(res?.data?.message ?? `Successfully!`, {
         variant: "success",

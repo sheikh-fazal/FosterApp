@@ -5,13 +5,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { usePostChildEducationPlanMutation } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 
-const useNewPersonalEducationalPlan = () => {
+const useNewPersonalEducationalPlan = (postEducationPlanData:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
   const fosterChildId = router?.query?.fosterChildId;
 
-  const [postData] = usePostChildEducationPlanMutation();
-
+  
   const defaultValues = {
     school: "",
     date: new Date(todayDate),
@@ -36,7 +35,8 @@ const useNewPersonalEducationalPlan = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data: any) => {
-    const res = await postData({ data, fosterChildId });
+    postEducationPlanData(data)
+   
   };
 
   return { methods, handleSubmit, onSubmit, router };

@@ -6,6 +6,11 @@ export const FOSTERCHILDTABSDATAARRAY = [
     background: "linear-gradient(106.35deg, #F6460F 0%, #FE2B5E 100%)",
     innerDataArray: [
       {
+        id: 5,
+        title: "Child Personal Info",
+        link: "/foster-child/referrals/original-referral",
+      },
+      {
         id: 1,
         title: "Child Chronology of Events",
         link: "/foster-child/child-background-info/child-chronology-of-events",
@@ -24,11 +29,6 @@ export const FOSTERCHILDTABSDATAARRAY = [
         id: 4,
         title: "Carer Details",
         link: "/foster-child/child-background-info/carer-details",
-      },
-      {
-        id: 5,
-        title: "Child Personal Info",
-        link: "/foster-child/referrals/original-referral",
       },
     ],
   },
