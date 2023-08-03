@@ -12,7 +12,7 @@ const ViewOriginalChild = (props: any) => {
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Grid container columnSpacing={4} pb={3}>
+        {/* <Grid container columnSpacing={4} pb={3}>
           <Grid item xs={12} md={6}>
             <RHFTextField
               label="CHC-2"
@@ -31,7 +31,7 @@ const ViewOriginalChild = (props: any) => {
               disabled={props.disabled}
             />
           </Grid>
-        </Grid>
+        </Grid> */}
         <Grid container spacing={3}>
           {OriginalChildReferralData?.map((form: any) => {
             return (
@@ -58,10 +58,7 @@ const ViewOriginalChild = (props: any) => {
           })}
 
           <Grid item xs={12}>
-            <Button size="large" type="submit" variant="contained">
-              Update
-            </Button>
-            <Link href={"/recruitment"}>
+            <Link href={"/recruitment"}> 
               <Button
                 type="button"
                 sx={{
@@ -72,7 +69,7 @@ const ViewOriginalChild = (props: any) => {
                 size="large"
                 variant="contained"
               >
-                Back
+                Submit
               </Button>
             </Link>
           </Grid>

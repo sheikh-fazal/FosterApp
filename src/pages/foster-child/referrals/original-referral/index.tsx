@@ -6,7 +6,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import OrifinalChildReferral from "@root/sections/foster-child/referrals/original-child-referral/OriginalChildReferral";
 import ViewOriginalChild from "@root/sections/foster-child/referrals/original-child-referral/OriginalChildReferral";
 
-const PAGE_TITLE = "Original Child Referral";
+const PAGE_TITLE = "Child Personal Info";
 
 EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
   return (
@@ -35,7 +35,7 @@ export default function EditChildExclusionInfoPage() {
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={tabsArr}>
-        <ViewOriginalChild disabled={true} />
+        <ViewOriginalChild disabled={false} />
       </HorizaontalTabs>
     </Page>
   );

@@ -16,13 +16,14 @@ export const ChildEducationPlan: any = baseAPI.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     getSingleChildEducationPlan: builder.query({
       query: (id: any) => ({
         url: `/education-records/education-plan/${id}`,
         method: "GET",
       }),
-      providesTags: ["CHILD_EDUCATION_PLAN"],
+      providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     patchSingleChildEducationPlan: builder.mutation({
       query: ({ data, id }: any) => ({
@@ -30,12 +31,21 @@ export const ChildEducationPlan: any = baseAPI.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     deleteSingleChildEducationPlan: builder.mutation({
       query: (trainingProfileId: any) => ({
         url: `/education-records/education-plan/${trainingProfileId}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["CHILD_EDUCATION_PLAN_LIST"],
+    }),
+    getDocumentChildEducationPlan: builder.query({
+      query: (id: any) => ({
+        url: `/education-records/education-plan/document/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
   }),
 });
@@ -45,5 +55,6 @@ export const {
   usePostChildEducationPlanMutation,
   useGetSingleChildEducationPlanQuery,
   usePatchSingleChildEducationPlanMutation,
-  useDeleteSingleChildEducationPlanMutation
+  useDeleteSingleChildEducationPlanMutation,
+  useGetDocumentChildEducationPlanQuery
 } = ChildEducationPlan;

@@ -25,6 +25,11 @@ export const FOSTERCHILDTABSDATAARRAY = [
         title: "Carer Details",
         link: "/foster-child/child-background-info/carer-details",
       },
+      {
+        id: 5,
+        title: "Child Personal Info",
+        link: "/foster-child/referrals/original-referral",
+      },
     ],
   },
   {

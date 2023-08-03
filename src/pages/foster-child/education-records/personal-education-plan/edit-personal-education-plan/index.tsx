@@ -5,7 +5,7 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditPersonalEducationPlan from "@root/sections/foster-child/education-records/personal-education-plan/edit-personal-educational-plan/EditPersonalEducationPlan";
-import { useGetSingleChildEducationPlanQuery } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
+import { useGetDocumentChildEducationPlanQuery, useGetSingleChildEducationPlanQuery } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
 
@@ -37,8 +37,9 @@ export default function EditChildExclusionInfoPage() {
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
   const { data, isLoading } = useGetSingleChildEducationPlanQuery(id);
-  console.log(data);
 
+  const {data:documentData, isLoading:documentLoading} = useGetDocumentChildEducationPlanQuery(id)
+  console.log(documentData) 
   return (
     <Page title={PAGE_TITLE}>
       <HorizaontalTabs tabsDataArray={tabsArr}>
