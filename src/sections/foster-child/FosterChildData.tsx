@@ -249,7 +249,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 4,
         title: "Sanction Details",
-        link: "/foster-child/other-information/sanction-details",
+        link: "/foster-child/other-information/sanction-details-list",
       },
       {
         id: 5,

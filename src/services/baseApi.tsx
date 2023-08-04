@@ -81,6 +81,7 @@ export const TAGS = [
   "OOHREPORT_LIST_TABLE",
   "REPORTS_DOCUMENTS",
   "SATS_EXAM_GRADE_LIST",
+  "SANCTION_DETAILS_LIST"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
