@@ -5,14 +5,13 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import ActiveSupervisingSocialWorkerTable from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/ActiveSupervisingSocialWorkerTable";
-import SupervisingPreviousSocialWorkerTable from "@root/sections/foster-child/social-worker-details/supervising-social-worker/previous-social-worker/SupervisingPreviousSocialWorkerTable";
+import SupervisingSocialWorkerForm from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/SupervisingSocialWorkerForm";
 
-SupervisingSocialWorker.getLayout = function getLayout(page: any) {
+AddSupervisingSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 // export default function LaSocialWorker() {
-  export default function SupervisingSocialWorker() {
+export default function AddSupervisingSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
 
@@ -43,8 +42,7 @@ SupervisingSocialWorker.getLayout = function getLayout(page: any) {
       <HorizaontalTabs
         tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
       >
-        <ActiveSupervisingSocialWorkerTable />
-        <SupervisingPreviousSocialWorkerTable />
+        <SupervisingSocialWorkerForm />
       </HorizaontalTabs>
     </Box>
   );

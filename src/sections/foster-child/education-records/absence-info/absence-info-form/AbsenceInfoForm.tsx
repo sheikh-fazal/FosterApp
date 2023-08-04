@@ -50,14 +50,14 @@ export default function AbsenceInfoForm(props: any) {
             {!disabled && (
               <LoadingButton
                 type="submit"
-                // loading={isSubmitting}
+                loading={isSubmitting}
                 variant="contained"
-                onClick={() =>
-                  router.push({
-                    pathname: "/foster-child/education-records/absence-info",
-                    query: { fosterChildId: fosterChildId },
-                  })
-                }
+                // onClick={() =>
+                //   router.push({
+                //     pathname: "/foster-child/education-records/absence-info",
+                //     query: { fosterChildId: fosterChildId },
+                //   })
+                // }
               >
                 Submit
               </LoadingButton>
