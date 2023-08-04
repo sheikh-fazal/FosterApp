@@ -27,18 +27,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { DocumentTable } from "@root/sections/carer-info/personal-info/application-form/documents/DocumentTable";
 import { useGetApplicationFormDataQuery } from "@root/services/carer-info/personal-info/application-form/ApplicationFormAllApi";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Application Form",
-    href: "/carer-info/personal-info/appliation-form",
-  },
-];
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Application Form";
 
@@ -57,22 +47,26 @@ export const ApplicationTabsData = [
 // ----------------------------------------------------------------------
 
 ApplicationForm.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function ApplicationForm() {
   let role = "ifa";
+  let router = useRouter();
+  let { fosterCarerId } = router.query;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Carer Info",
+      href: `/carer-info?fosterCarerId=${fosterCarerId}`,
+    },
+    {
+      name: "Application Form",
+      href: ``,
+    },
+  ];
   const { data, isLoading, isError }: any = useGetApplicationFormDataQuery({});
   if (isLoading) {
     return (
@@ -83,7 +77,12 @@ export default function ApplicationForm() {
   }
   const applicationFormid = data?.data?.id;
   return (
-    <Page title={PAGE_TITLE}>
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <HorizaontalTabs tabsDataArray={ApplicationTabsData}>
         <BasicInformationForm
           role={role}
@@ -149,6 +148,6 @@ export default function ApplicationForm() {
         />
         <DocumentTable applicationFormid={applicationFormid} role={role} />
       </HorizaontalTabs>
-    </Page>
+    </>
   );
 }

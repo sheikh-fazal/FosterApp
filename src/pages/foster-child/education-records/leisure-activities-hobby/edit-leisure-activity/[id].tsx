@@ -11,11 +11,16 @@ import Page from "@root/components/Page";
 import { LeisureActivityDefaultValues } from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { default as dayjs } from "dayjs";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 dayjs.extend(customParseFormat);
 // Constants
 
 const PAGE_TITLE = "Leisure Activities";
+
+EditLeisureActivity.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
 
 export default function EditLeisureActivity() {
   const router: any = useRouter();
@@ -26,25 +31,29 @@ export default function EditLeisureActivity() {
   });
 
   let { $d }: any = dayjs(data?.data?.time, "HH:mm:ss");
+
+  let BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      href: "/",
+    },
+    {
+      name: "Leisure Activities List",
+      href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
+    },
+    {
+      name: "Leisure Activity",
+      href: "",
+    },
+  ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          icon: <HomeIcon />,
-          href: "/",
-        },
-        {
-          name: "Leisure Activities List",
-          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
-        },
-        {
-          name: "Leisure Activity",
-          href: "",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       {isLoading ? (
         <SkeletonFormdata />
       ) : (
@@ -66,6 +75,6 @@ export default function EditLeisureActivity() {
           <UploadedDocumentsTable action="edit" leisureActivityId={id} />
         </HorizaontalTabs>
       )}
-    </Layout>
+    </>
   );
 }

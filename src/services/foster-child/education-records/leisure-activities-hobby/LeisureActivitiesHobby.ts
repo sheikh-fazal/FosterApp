@@ -11,7 +11,7 @@ const LeisureActivitiesApi = baseAPI.injectEndpoints({
     }),
     getLeisureActivityDetail: builder.query({
       query: ({ id }: any) => `/education-records/leisure-activity/${id}`,
-      //   providesTags: ["IMMUNISATION_DETAIL"],
+      providesTags: ["LEISURE_ACTIVITY_DETAIL"],
     }),
     updateLeisureActivity: builder.mutation({
       query: ({ id, formData }: any) => ({
@@ -19,7 +19,7 @@ const LeisureActivitiesApi = baseAPI.injectEndpoints({
         method: "PATCH",
         body: formData,
       }),
-      invalidatesTags: ["LEISURE_ACTIVITY_LIST"],
+      invalidatesTags: ["LEISURE_ACTIVITY_LIST", "LEISURE_ACTIVITY_DETAIL"],
     }),
     postLeisureActivity: builder.mutation({
       query: ({ id, formData }: any) => ({

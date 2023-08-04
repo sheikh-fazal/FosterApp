@@ -4,6 +4,8 @@ import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import HomeIcon from "@mui/icons-material/Home";
 import { IndependencePackTable } from "@root/sections/foster-child/education-records/independence-packs";
+import { defaultValues as bronzeDefaultValues } from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-bronze/index";
+
 import IndependenceFormBronze from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-bronze/IndependencePackFormBronze";
 import { useRouter } from "next/router";
 import {
@@ -12,29 +14,19 @@ import {
 } from "@root/components/PageBreadcrumbs";
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
+import { useGetIndependencePackQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const PAGE_TITLE = "Independence Pack";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    href: "/",
-  },
-  {
-    name: "IndependencePack-Life Skill Assessment",
-    href: "/child-info",
-  },
-];
-
-AddIndependencePack.getLayout = function getLayout(page: any) {
+EditIndependencePack.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
-export default function AddIndependencePack() {
+export default function EditIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
-  const { level, fosterChildId } = router.query;
-
+  const { level, id, fosterChildId } = router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -49,6 +41,7 @@ export default function AddIndependencePack() {
       href: "",
     },
   ];
+
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -57,11 +50,29 @@ export default function AddIndependencePack() {
         title={PAGE_TITLE}
       />
       {level == "Bronze" ? (
-        <IndependenceFormBronze action="add" level={level} />
+        <IndependenceFormBronze
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="edit"
+          level={level}
+        />
       ) : level == "Silver" ? (
-        <IndependencePackFormSilver action="add" level={level} />
+        <IndependencePackFormSilver
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="edit"
+          level={level}
+        />
       ) : (
-        <IndependencePackFormGold action="add" level={level} />
+        <IndependencePackFormGold
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="edit"
+          level={level}
+        />
       )}
     </>
   );

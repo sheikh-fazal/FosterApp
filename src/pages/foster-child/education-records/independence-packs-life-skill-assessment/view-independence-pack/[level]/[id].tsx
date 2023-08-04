@@ -12,6 +12,9 @@ import {
 } from "@root/components/PageBreadcrumbs";
 import IndependencePackFormSilver from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-silver/IndependencePackFormSilver";
 import IndependencePackFormGold from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/indpendence-pack-form-gold/IndependencePackFormGold";
+import { useGetIndependencePackQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { defaultValues as bronzeDefaultValues } from "@root/sections/foster-child/education-records/independence-packs/independence-pack-forms/independence-pack-form-bronze/index";
 
 const PAGE_TITLE = "Independence Pack";
 
@@ -26,15 +29,14 @@ const BREADCRUMBS = [
   },
 ];
 
-AddIndependencePack.getLayout = function getLayout(page: any) {
+ViewIndependencePack.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
-export default function AddIndependencePack() {
+export default function ViewIndependencePack() {
   const theme: any = useTheme();
   const router = useRouter();
-  const { level, fosterChildId } = router.query;
-
+  const { level, id, fosterChildId } = router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -49,6 +51,7 @@ export default function AddIndependencePack() {
       href: "",
     },
   ];
+
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -57,11 +60,30 @@ export default function AddIndependencePack() {
         title={PAGE_TITLE}
       />
       {level == "Bronze" ? (
-        <IndependenceFormBronze action="add" level={level} />
+        <IndependenceFormBronze
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="view"
+          disabled
+          level={level}
+        />
       ) : level == "Silver" ? (
-        <IndependencePackFormSilver action="add" level={level} />
+        <IndependencePackFormSilver
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="view"
+          level={level}
+        />
       ) : (
-        <IndependencePackFormGold action="add" level={level} />
+        <IndependencePackFormGold
+          inedependencePackData={{
+            ...bronzeDefaultValues,
+          }}
+          action="view"
+          level={level}
+        />
       )}
     </>
   );
