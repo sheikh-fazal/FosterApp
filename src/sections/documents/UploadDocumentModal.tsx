@@ -96,8 +96,8 @@ export default function UploadDocumentModal(props: any) {
                 variant="contained"
                 sx={{
                   mt: 1,
-                  bgcolor: theme.palette.orange.main,
-                  "&:hover": { bgcolor: theme.palette.orange.dark },
+                  bgcolor: theme.palette.error.main,
+                  "&:hover": { bgcolor: theme.palette.error.dark },
                 }}
                 onClick={handleClose}
               >
@@ -187,8 +187,8 @@ const DocumentModalForm = (props: any) => {
               variant="contained"
               sx={{
                 mt: 1,
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.dark },
+                bgcolor: theme.palette.primary.main,
+                "&:hover": { bgcolor: theme.palette.primary.dark },
               }}
             >
               Submit

@@ -82,7 +82,7 @@ export const useIncidentInfoForm = () => {
       setIsFetching(true);
       const formData = {
         id,
-        addIncidentsInfoRequestDto: { ...data },
+        addIncidentsInfoRequestDto: { ...data, fosterChildId, status: "Pending" },
       };
       editIncidentsInfoList(formData)
         .unwrap()

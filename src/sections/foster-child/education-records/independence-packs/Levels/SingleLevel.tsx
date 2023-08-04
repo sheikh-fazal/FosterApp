@@ -17,8 +17,8 @@ export default function SingleLevel({ levelName, children, isBadge }: any) {
         borderRadius: "50%",
         border: "1px solid transparent",
         textAlign: "center",
-        width: "110px",
-        height: "110px",
+        width: "120px",
+        height: "120px",
         backgroundColor:
           levelName == "Silver"
             ? Silver
@@ -31,7 +31,7 @@ export default function SingleLevel({ levelName, children, isBadge }: any) {
       {children}
       <Typography
         sx={{
-          fontSize: "10px",
+          fontSize: "12px",
           marginTop: "0px",
           marginBottom: "2px",
           color: "#FFFFFF",
