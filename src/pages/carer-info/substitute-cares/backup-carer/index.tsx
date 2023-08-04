@@ -88,7 +88,13 @@ export default function BackupCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
@@ -129,7 +135,7 @@ export default function BackupCarer() {
     pages: "1",
   };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}&carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
