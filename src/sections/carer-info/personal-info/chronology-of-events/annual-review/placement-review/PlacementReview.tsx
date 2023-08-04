@@ -7,7 +7,7 @@ import {
   FormSchema,
   defaultValues,
   placementReviewData,
-} from "./PlacementReviewData";
+} from ".";
 
 export default function PlacementReview(props: any) {
   const theme: any = useTheme();

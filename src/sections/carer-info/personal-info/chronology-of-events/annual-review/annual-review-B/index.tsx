@@ -4,16 +4,14 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 
-const todayDate = dayjs().format("MM/DD/YYYY");
-
 export const defaultValues = {
-  reviewDate: new Date(todayDate),
-  currentMedicalIssue: "Text",
+  reviewDate: new Date(),
+  haveAnyCurrentMedicalIssues: "Text",
 };
 
 export const FormSchema = Yup.object().shape({
   reviewDate: Yup.date().required("required"),
-  currentMedicalIssue: Yup.string().required("required"),
+  haveAnyCurrentMedicalIssues: Yup.string().required("required"),
 });
 
 export const annualReviewBData = [
@@ -32,7 +30,7 @@ export const annualReviewBData = [
     id: 9,
     gridLength: 12,
     otherOptions: {
-      name: "currentMedicalIssue",
+      name: "haveAnyCurrentMedicalIssues",
       label:
         "Do the carers have any current medical issues that have not been noted since the last Review/Medical?",
       multiline: true,

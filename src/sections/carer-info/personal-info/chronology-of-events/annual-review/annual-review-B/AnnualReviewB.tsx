@@ -3,11 +3,7 @@ import { Box, Grid, Typography, useTheme } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  FormSchema,
-  defaultValues,
-  annualReviewBData,
-} from "./AnnualReviewBData";
+import { FormSchema, defaultValues, annualReviewBData } from ".";
 
 export default function AnnualReviewA(props: any) {
   const theme: any = useTheme();

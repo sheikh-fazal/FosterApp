@@ -83,6 +83,7 @@ export const TAGS = [
   "SATS_EXAM_GRADE_LIST",
   "UNANNOUNCED_VISIT_LIST",
   "UNANNOUNCED_UPLOAD_DOCUMENTS",
+  "FOSTER_CARER_ANNUAL_LIST"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

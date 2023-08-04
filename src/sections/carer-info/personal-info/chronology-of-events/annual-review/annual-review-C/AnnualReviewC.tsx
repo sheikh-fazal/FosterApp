@@ -7,7 +7,7 @@ import {
   FormSchema,
   defaultValues,
   annualReviewCData,
-} from "./AnnualReviewCData";
+} from ".";
 
 export default function AnnualReviewC(props: any) {
   const theme: any = useTheme();

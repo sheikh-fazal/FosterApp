@@ -5,82 +5,22 @@ import {
 } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import dayjs from "dayjs";
-
-const todayDate = dayjs().format("MM/DD/YYYY");
-
-export const defaultValues = {
-  writternReview: "",
-  reviewType: "",
-  onFire: true,
-  reviewDate: new Date(todayDate),
-  nextReview: new Date(todayDate),
-  previousDate: new Date(todayDate),
-  confirmDate: new Date(todayDate),
-  hasReview: true,
-  purposeReview: "Text",
-  independentReview: "Text",
-  nextPanel: new Date(todayDate),
-  previousPanelDate: new Date(todayDate),
-  currentApprovalDate: new Date(todayDate),
-  approvalTerms: "Text",
-  petsInfo: "Text",
-  previousReviewOfficer: "Text",
-  previousPanelRecommendation: "Text",
-  discussionIssues: "Text",
-  supervisingDate: new Date(),
-  announcedVisit: "Text",
-  safeCaring: true,
-  meetings: "Text",
-  numberOfRooms: "",
-  currentPlacement: "Text",
-  sleepingArrangements: "Text",
-  registerChildMinder: true,
-};
-
-export const FormSchema = Yup.object().shape({
-  writternReview: Yup.string().required("required"),
-  reviewType: Yup.string().required("required"),
-  onFire: Yup.boolean().required("required"),
-  reviewDate: Yup.date().required("required"),
-  nextReview: Yup.date().required("required"),
-  previousDate: Yup.date().required("required"),
-  confirmDate: Yup.date().required("required"),
-  hasReview: Yup.boolean().required("required"),
-  purposeReview: Yup.string().required("required"),
-  independentReview: Yup.string().required("required"),
-  nextPanel: Yup.date().required("required"),
-  previousPanelDate: Yup.date().required("required"),
-  currentApprovalDate: Yup.date().required("required"),
-  approvalTerms: Yup.string().required("required"),
-  petsInfo: Yup.string().required("required"),
-  previousReviewOfficer: Yup.string().required("required"),
-  previousPanelRecommendation: Yup.string().required("required"),
-  discussionIssues: Yup.string().required("required"),
-  supervisingDate: Yup.date().required("required"),
-  announcedVisit: Yup.string().required("required"),
-  safeCaring: Yup.boolean().required("required"),
-  meetings: Yup.string().required("required"),
-  numberOfRooms: Yup.string().required("required"),
-  currentPlacement: Yup.string().required("required"),
-  sleepingArrangements: Yup.string().required("required"),
-  registerChildMinder: Yup.boolean().required("required"),
-});
 
 export const annualReviewAData = [
   {
     id: 1,
     gridLength: 6,
     otherOptions: {
-      name: "writternReview:",
+      name: "reviewWrittenBy",
       label: "Review Writtern by (if other than the Supervising Social Worker)",
+      fullWidth: true,
     },
     component: RHFTextField,
   },
   {
     id: 2,
     otherOptions: {
-      name: "reviewType:",
+      name: "reviewType",
       label: "Review Type",
       select: true,
     },
@@ -100,7 +40,7 @@ export const annualReviewAData = [
   {
     id: 3,
     otherOptions: {
-      name: "onFire",
+      name: "onFile",
       label: "On Fire:",
     },
     gridLength: 12,
@@ -115,41 +55,53 @@ export const annualReviewAData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 5,
     gridLength: 6,
     otherOptions: {
-      name: "nextReview",
+      name: "nextReviewDate",
       label: "Next Review Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 6,
     gridLength: 6,
     otherOptions: {
-      name: "previousDate",
+      name: "previousReviewDate",
       label: "Previous Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 7,
     gridLength: 6,
     otherOptions: {
-      name: "confirmDate",
+      name: "confirmationReviewDate",
       label: "Confirmation of Review Held Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 8,
     otherOptions: {
-      name: "hasReview",
+      name: "isReviewTakenPlace",
       label: "Has Review Taken Place:",
     },
     gridLength: 12,
@@ -159,7 +111,7 @@ export const annualReviewAData = [
     id: 9,
     gridLength: 12,
     otherOptions: {
-      name: "purposeReview",
+      name: "purposeOfReview",
       label: "Purpose Of Review:",
       multiline: true,
       minRows: 3,
@@ -171,7 +123,7 @@ export const annualReviewAData = [
     id: 10,
     gridLength: 12,
     otherOptions: {
-      name: "independentReview",
+      name: "independentReviewOffer",
       label: "Independent Review Offer:",
       multiline: true,
       minRows: 3,
@@ -183,11 +135,14 @@ export const annualReviewAData = [
     id: 11,
     gridLength: 6,
     otherOptions: {
-      name: "nextPanel",
+      name: "nextPanelDate",
       label: "Next Panel Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 12,
@@ -198,6 +153,9 @@ export const annualReviewAData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 13,
@@ -208,11 +166,14 @@ export const annualReviewAData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 14,
     otherOptions: {
-      name: "approvalTerms",
+      name: "termOfApproval",
       label: "Terms Of Approval:",
       multiline: true,
       minRows: 3,
@@ -237,7 +198,7 @@ export const annualReviewAData = [
     id: 16,
     gridLength: 12,
     otherOptions: {
-      name: "previousReviewOfficer",
+      name: "previousReviewOfficerRecom",
       label: "Previous Panel Recommendation:",
       multiline: true,
       minRows: 3,
@@ -249,7 +210,7 @@ export const annualReviewAData = [
     id: 17,
     gridLength: 12,
     otherOptions: {
-      name: "previousPanelRecommendation",
+      name: "previousPanelRecom",
       label: "Previous Panel Recommendation:",
       multiline: true,
       minRows: 3,
@@ -261,7 +222,7 @@ export const annualReviewAData = [
     id: 18,
     gridLength: 12,
     otherOptions: {
-      name: "discussionIssues",
+      name: "issuesForDiscussionAtReviewTime",
       label: "Issues for Discussion at Review Time:",
       multiline: true,
       minRows: 3,
@@ -273,7 +234,7 @@ export const annualReviewAData = [
     id: 19,
     gridLength: 12,
     otherOptions: {
-      name: "supervisingDate",
+      name: "datesOfSupervisingSocialWorkerVisits",
       label: "Dates of supervising Social Worker Visits:",
       multiline: true,
       minRows: 3,
@@ -285,7 +246,7 @@ export const annualReviewAData = [
     id: 20,
     gridLength: 12,
     otherOptions: {
-      name: "announcedVisit",
+      name: "datesOfUnannouncedVisit",
       label: "Dates of Unannounced Visit:",
       multiline: true,
       minRows: 3,
@@ -296,7 +257,7 @@ export const annualReviewAData = [
   {
     id: 21,
     otherOptions: {
-      name: "safeCaring",
+      name: "isSafeCaringPolicyUpToDate",
       label: "Safe Caring Policy is Up to Date?",
     },
     gridLength: 12,
@@ -307,7 +268,7 @@ export const annualReviewAData = [
     gridLength: 12,
     otherOptions: {
       name: "meetings",
-      label: "Meettings:",
+      label: "Meetings:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -318,8 +279,9 @@ export const annualReviewAData = [
     id: 23,
     gridLength: 6,
     otherOptions: {
-      name: "numberOfRooms",
+      name: "roomsUsedForPurposeOfFostering",
       label: "Number of rooms currently used for the purpose of fostering?",
+      fullWidth: true,
     },
     component: RHFTextField,
   },
@@ -327,7 +289,7 @@ export const annualReviewAData = [
     id: 24,
     gridLength: 12,
     otherOptions: {
-      name: "currentPlacement",
+      name: "fosterCarerCurrentPlacement",
       label: "Foster Carer Current Placement:",
       multiline: true,
       minRows: 3,
@@ -339,7 +301,7 @@ export const annualReviewAData = [
     id: 25,
     gridLength: 12,
     otherOptions: {
-      name: "sleepingArrangements",
+      name: "sleepingArrangments",
       label: "Sleeping Arragements:",
       multiline: true,
       minRows: 3,
@@ -350,7 +312,7 @@ export const annualReviewAData = [
   {
     id: 26,
     otherOptions: {
-      name: "registerChildMinder",
+      name: "isCarerRegisteredChildminder",
       label: "Is Carer a Regsitered Childminder?",
     },
     gridLength: 12,
@@ -358,6 +320,71 @@ export const annualReviewAData = [
   },
 ];
 export { default as AnnualReviewA } from "./AnnualReviewA";
+
+export const formatters: any = {};
+
+for (const formControl of annualReviewAData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
+export const defaultValues = {
+  reviewWrittenBy: "",
+  reviewType: "",
+  onFile: null,
+  reviewDate: new Date(),
+  nextReviewDate: new Date(),
+  previousReviewDate: new Date(),
+  confirmationReviewDate: new Date(),
+  isReviewTakenPlace: null,
+  purposeOfReview: "",
+  independentReviewOffer: "",
+  nextPanelDate: new Date(),
+  previousPanelDate: new Date(),
+  currentApprovalDate: new Date(),
+  termOfApproval: "",
+  petsInfo: "",
+  previousReviewOfficerRecom: "",
+  previousPanelRecom: "",
+  issuesForDiscussionAtReviewTime: "",
+  datesOfSupervisingSocialWorkerVisits: new Date(),
+  datesOfUnannouncedVisit: "",
+  isSafeCaringPolicyUpToDate: null,
+  meetings: "",
+  roomsUsedForPurposeOfFostering: "",
+  fosterCarerCurrentPlacement: "",
+  sleepingArrangments: "",
+  isCarerRegisteredChildminder: null,
+};
+
+export const formSchema = Yup.object().shape({
+  reviewWrittenBy: Yup.string().required("required"),
+  reviewType: Yup.string().required("required"),
+  onFile: Yup.boolean().required("required"),
+  reviewDate: Yup.date().required("required"),
+  nextReviewDate: Yup.date().required("required"),
+  previousReviewDate: Yup.date().required("required"),
+  confirmationReviewDate: Yup.date().required("required"),
+  isReviewTakenPlace: Yup.boolean().required("required"),
+  purposeOfReview: Yup.string().required("required"),
+  independentReviewOffer: Yup.string().required("required"),
+  nextPanelDate: Yup.date().required("required"),
+  previousPanelDate: Yup.date().required("required"),
+  currentApprovalDate: Yup.date().required("required"),
+  termOfApproval: Yup.string().required("required"),
+  petsInfo: Yup.string().required("required"),
+  previousReviewOfficerRecom: Yup.string().required("required"),
+  previousPanelRecom: Yup.string().required("required"),
+  issuesForDiscussionAtReviewTime: Yup.string().required("required"),
+  datesOfSupervisingSocialWorkerVisits: Yup.date().required("required"),
+  datesOfUnannouncedVisit: Yup.string().required("required"),
+  isSafeCaringPolicyUpToDate: Yup.boolean().required("required"),
+  meetings: Yup.string().required("required"),
+  roomsUsedForPurposeOfFostering: Yup.string().required("required"),
+  fosterCarerCurrentPlacement: Yup.string().required("required"),
+  sleepingArrangments: Yup.string().required("required"),
+  isCarerRegisteredChildminder: Yup.boolean().required("required"),
+});
 
 export const personalDetails = [
   {
