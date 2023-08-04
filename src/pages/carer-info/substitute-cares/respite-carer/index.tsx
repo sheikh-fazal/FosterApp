@@ -87,13 +87,17 @@ export default function RespiteCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
               deleteHandler(info.row.original);
-              alert("delete");
             }}
             size="small"
           />
@@ -129,7 +133,7 @@ export default function RespiteCarer() {
   };
 
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}&carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
