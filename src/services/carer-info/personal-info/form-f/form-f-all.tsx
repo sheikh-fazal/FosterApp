@@ -9,24 +9,25 @@ type IPARAM =
   | "houseHoldAccommodation"
   | "informationDate"
   | "verificationApplication1"
-  | "verificaitonApplication2"
+  | "verificationApplication2"
   | "courtProceedings"
   | "householdFinance"
   | "aboutApplicants"
   | "specialistReports"
   | "summaryAndRecommendation"
-  | "applicantsObservation";
+  | "applicantsObservation"
+  | "verificaitonApplication2";
 
 export const formFAll = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     formF: builder.query({
-      query: (param: IPARAM) => `/carer-Info/From-f/get-all?value=${param}`,
+      query: (param: IPARAM) => `/carer-Info/Form-f/get-all?value=${param}`,
     }),
-    formFOtherInfo: builder.query({
-      query: (formFId) => `/carer-Info/get-other-materials/${formFId}`,
+    formFAll: builder.query({
+      query: () => `/carer-Info/personal-info/form-f`,
     }),
   }),
 });
 
-export const { useFormFQuery, useLazyFormFQuery, useFormFOtherInfoQuery } =
+export const { useFormFQuery, useLazyFormFQuery, useLazyFormFAllQuery } =
   formFAll;

@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 
 export const initialValues = {
   docType: '',
-  docDate: null,
+  docDate: new Date(),
   updatePhoto: null
 }
 export const addOtherDocumentFormSchema:any = Yup.object().shape({

@@ -23,7 +23,7 @@ export const useSchoolDetailInfoTable = () => {
     });
   const [postData] = useDeleteSchoolDetailInfoByIdMutation();
 
-  const family = data?.data;
+  const family = data?.data?.school_info;
   const meta = data?.meta;
   const headerChangeHandler = (text: any) => {
     setSearchHandle(text.search);

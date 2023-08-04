@@ -83,6 +83,7 @@ export const TAGS = [
   "CHILD_EXCLUSION_INFO_LIST",
   "CHILD_EDUCATION_PLAN_LIST",
   "OUT-SCHOOL-ACTIVITY",
+  "SATS_EXAM_GRADE_LIST",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

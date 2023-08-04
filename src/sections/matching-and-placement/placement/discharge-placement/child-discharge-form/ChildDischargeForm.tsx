@@ -22,7 +22,7 @@ const ChildDischargeForm = (props: any) => {
                 <Typography sx={{ fontWeight: 600, mb: 0.3, color: theme.palette.mode === "light" ? "#343A40" : theme.palette.mode }}>
                   {form.title}
                 </Typography>
-                {form.requireFileUpload && <RHFUploadFile name="uploadPhoto" {...methods} require />}
+                {form.requireFileUpload && <RHFUploadFile name="uploadPhoto"label='Discharge report' {...methods} require />}
                 {form.component ? (
                   <form.component disabled={props.disabled} size="small" {...form.otherOptions}>
                     {form.otherOptions.select

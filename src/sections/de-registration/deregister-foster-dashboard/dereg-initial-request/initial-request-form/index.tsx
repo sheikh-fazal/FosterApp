@@ -15,7 +15,7 @@ export const defaultValues = {
 export const FormSchema = Yup.object().shape({
   methods: Yup.string().required('Field is required'),
   fosterCarerName: Yup.string().required('Field is required'),
-  dateOfRequest: Yup.string().required('Field is required'),
+  dateOfRequest: Yup.date().required('Field is required'),
   socialWorker: Yup.string().required('Field is required'),
   deRegType: Yup.string().required('Field is required'),
   reasonForDeRegistration: Yup.string().required('Field is required'),

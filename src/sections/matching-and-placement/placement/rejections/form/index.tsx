@@ -22,7 +22,7 @@ export const formSchema = Yup.object().shape({
   childName: Yup.string().required("Field is required"),
   carerName: Yup.string().required("Field is required"),
   whoRejected: Yup.string().required("Field is required"),
-  rejectionDate: Yup.string().required("Field is required"),
+  rejectionDate: Yup.date().required("Field is required"),
   placementType: Yup.string().required("Field is required"),
   rejectionReason: Yup.string().required("Field is required"),
   agencySocialWorker: Yup.string().required("Field is required"),
