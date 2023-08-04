@@ -11,6 +11,7 @@ import {
 } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import Page from "@root/components/Page";
 
 // ----------------------------------------------------------------------
 
@@ -86,7 +87,13 @@ export default function SwapCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
@@ -127,7 +134,7 @@ export default function SwapCarer() {
   //   pages: "1",
   // };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}&carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -136,12 +143,8 @@ export default function SwapCarer() {
     console.log(item);
   };
   return (
-    <>
-      <TitleWithBreadcrumbLinks
-        sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS}
-        title={PAGE_TITLE}
-      />
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} />
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
@@ -154,6 +157,6 @@ export default function SwapCarer() {
         onPageChange={pageChangeHandler}
         route={FORMROUTE}
       />
-    </>
+    </Page>
   );
 }
