@@ -21,9 +21,9 @@ export const useImmunisationForm = ({
   immunisationData,
   setImmunisationId,
 }: any) => {
-  let[isFetching,setIsFetching]=useState(false)
+  let [isFetching, setIsFetching] = useState(false);
   const theme: any = useTheme();
-  let router=useRouter()
+  let router = useRouter();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -37,7 +37,7 @@ export const useImmunisationForm = ({
     getValues,
     watch,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting, isDirty },
   } = methods;
   let [postImmunisation, { isLoading: isLoadingPost }] =
     usePostImmunisationMutation();
@@ -67,7 +67,7 @@ export const useImmunisationForm = ({
         .unwrap()
         .then((res: any) => {
           setImmunisationId(res?.data?.id);
-          setIsFetching(true)
+          setIsFetching(true);
           router.push(
             `/foster-child/health-medical-history/immunisation/edit-immunisation/${res?.data?.id}?fosterChildId=${router?.query?.fosterChildId}`
           );
@@ -87,6 +87,7 @@ export const useImmunisationForm = ({
     onSubmit,
     handleSubmit,
     theme,
-    isFetching
+    isFetching,
+    isSubmitting,
   };
 };
