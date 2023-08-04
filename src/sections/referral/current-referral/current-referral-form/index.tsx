@@ -24,7 +24,7 @@ export const initialValues = {
   siblings: ''
 };
 export const formSchema = Yup.object().shape({
-  refferalDate: Yup.string().required('Field is required'),
+  refferalDate: Yup.date().required('Field is required'),
   status: Yup.string().required('Field is required'),
   childIdentifier: Yup.string().required('Field is required'),
   parentChild: Yup.string().required('Field is required'),
@@ -34,7 +34,7 @@ export const formSchema = Yup.object().shape({
   firstName: Yup.string().required('Field is required'),
   middleName: Yup.string().required('Field is required'),
   lastName: Yup.string().required('Field is required'),
-  DOB: Yup.string().required('Field is required'),
+  DOB: Yup.date().required('Field is required'),
   age: Yup.string().required('Field is required'),
   gender: Yup.string().required('Field is required'),
   ethnicity: Yup.string().required('Field is required'),

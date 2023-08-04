@@ -67,8 +67,8 @@ export const VocationalCourseInfoFormFields = [
 export const defaultValues = {
   courseType: "Nil",
   duration: null,
-  startDate: null,
-  endDate: null,
+  startDate: new Date(),
+  endDate: new Date(),
   expectedQualification: "Nil",
   qualification: "Nil",
 };

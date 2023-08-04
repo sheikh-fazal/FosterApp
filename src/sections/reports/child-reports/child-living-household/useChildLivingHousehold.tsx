@@ -53,9 +53,16 @@ export const useChildLivingHousehold = () => {
       accessorFn: (row: any) => row.nameOfChild,
       id: "nameOfChild",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Name of CHild(DOB)</span>,
+      header: () => <span>{`Child's Name`}</span>,
       isSortable: true,
     },
+    {
+      accessorFn: (row: any) => row.dob,
+      id: "dob",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>{`DOB`}</span>,
+      isSortable: true,
+    }, 
     {
       accessorFn: (row: any) => row.supervisingSocialWorker,
       id: "supervisingSocialWorker",
@@ -82,6 +89,20 @@ export const useChildLivingHousehold = () => {
       id: "createdBy",
       cell: (info: any) => info.getValue(),
       header: () => <span>Created By</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedDate,
+      id: "modifiedDate",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified Date</span>,
+      isSortable: true,
+    },
+    {
+      accessorFn: (row: any) => row.modifiedBy,
+      id: "modifiedBy",
+      cell: (info: any) => info.getValue(),
+      header: () => <span>Modified By</span>,
       isSortable: true,
     },
     {

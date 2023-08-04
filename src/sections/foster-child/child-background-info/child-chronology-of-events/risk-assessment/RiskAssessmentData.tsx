@@ -111,8 +111,8 @@ export const RAChildDetailsFormFields = [
   },
 ];
 export const childDetailsdefaultValues = {
-  assessmentDate: null,
-  nextAssessmentDate: null,
+  assessmentDate: new Date(),
+  nextAssessmentDate: new Date(),
   laOOHContactNumber: "Nil",
   height: "Nil",
   hairColor: "Nil",
@@ -262,7 +262,7 @@ export const RAChildInformationFormFields = [
     id: 11,
     gridLength: 6,
     otherOptions: {
-      name: "circumstancesThatIncreaseRisk",
+      name: "detailsOfPerson",
       label: "Details of person who has / can give permission for photos to be taken",
       fullWidth: true,
     },
@@ -274,7 +274,6 @@ export const childInformationDefaultValues = {
   backgroundOfChild: "Nil",
   involvedPersonAndRole: "Nil",
   detailsOfGP: "Nil",
-  circumstancesThatIncreaseRisk: "Nil",
   health: "Nil",
   education: "Nil",
   telNumber: null,
@@ -286,6 +285,21 @@ export const childInformationDefaultValues = {
   date: null,
   risk: "Nil",
 };
+export const childInformationFormSchema = Yup.object().shape({
+  backgroundOfChild: Yup.string().required("Required"),
+  involvedPersonAndRole: Yup.string().required("Required"),
+  detailsOfGP: Yup.string().required("Required"),
+  health: Yup.string().required("Required"),
+  education: Yup.string().required("Required"),
+  telNumber: Yup.number().required("Required"),
+  photoPermission: Yup.string().required("Required"),
+  contact: Yup.string().required("Required"),
+  fosterHome: Yup.string().required("Required"),
+  teacher: Yup.string().required("Required"),
+  detailsOfPerson: Yup.string().required("Required"),
+  date: Yup.date().required("Required"),
+  risk: Yup.string().required("Required"),
+});
 //
 export const RAChildRiskDetailsFormFields = [
   {
@@ -305,7 +319,7 @@ export const RAChildRiskDetailsFormFields = [
     gridLength: 6,
     otherOptions: {
       name: "categoryOfRisk",
-      label: "",
+      label: "Category of Risk",
       fullWidth: true,
       select: true,
     },
@@ -331,6 +345,11 @@ export const childRiskDetailsDefaultValues = {
   categoryOfRisk: null,
   riskCausingConcern: null,
 };
+export const childRiskDetailsSchema = Yup.object().shape({
+  involvedPersonAndRole2: Yup.string().required("Required"),
+  categoryOfRisk: Yup.string().required("Required"),
+  riskCausingConcern: Yup.string().required("Required"),
+});
 
 //
 export const delegatedAuthorityFormFields = [

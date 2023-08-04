@@ -119,7 +119,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 7,
         title: "SATS / Exam / Grade Details",
-        link: "/foster-child/education-records/sats-exam-grade-details",
+        link: "/foster-child/education-records/sats-exam-grade-details-list",
       },
       {
         id: 8,
@@ -249,7 +249,7 @@ export const FOSTERCHILDTABSDATAARRAY = [
       {
         id: 4,
         title: "Sanction Details",
-        link: "/foster-child/other-information/sanction-details",
+        link: "/foster-child/other-information/sanction-details-list",
       },
       {
         id: 5,

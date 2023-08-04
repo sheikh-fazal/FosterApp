@@ -151,7 +151,7 @@ export const uploadDocColumns = ({
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
           <Link
-            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.documentFile}`}
+            href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
             target="_blank"
           >
             <TableAction size="small" type="download" />
@@ -331,14 +331,12 @@ export const immunisationColumns = ({
         <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>
       ),
       header: () => <span>Date Of Immunisation</span>,
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row.type,
       id: "type",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Immunisation type</span>,
-      isSortable: true,
     },
 
     {

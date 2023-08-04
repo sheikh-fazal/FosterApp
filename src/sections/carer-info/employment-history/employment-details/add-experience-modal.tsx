@@ -73,13 +73,19 @@ function AddExperiencesModal({ open, setOpen }: any) {
                   name="companyName"
                   label="Company Name"
                   size="small"
+                  fullWidth
                 />
               </Grid>
               <Grid item xs={6}>
-                <RHFTextField name="location" label="Location" size="small" />
+                <RHFTextField
+                  name="location"
+                  label="Location"
+                  size="small"
+                  fullWidth
+                />
               </Grid>
               <Grid item xs={6}>
-                <RHFUploadFile name="media" {...methods} required />
+                <RHFUploadFile name="media" {...methods} required fullWidth />
               </Grid>
               <Grid item xs={6}></Grid>
               {fields?.map((field, index) => (
@@ -114,6 +120,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.title`}
                           label="Title"
                           size="small"
+                          fullWidth
                         />
                       </Grid>
                       <Grid item xs={6}>
@@ -121,6 +128,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.employmentType`}
                           label="Employment Type"
                           size="small"
+                          fullWidth
                         >
                           {EmploymentType?.map((option: any) => (
                             <option key={option?.value} value={option?.value}>
@@ -134,6 +142,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.currentlyWorking`}
                           label="I am currently working in this role"
                           size="small"
+                          fullWidth
                         />
                       </Grid>
                       <Grid item xs={6}>
@@ -159,6 +168,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.headline`}
                           label="HeadLine"
                           size="small"
+                          fullWidth
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -168,6 +178,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.industry`}
                           label="Industry"
                           size="small"
+                          fullWidth
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -177,6 +188,7 @@ function AddExperiencesModal({ open, setOpen }: any) {
                           name={`experiences.${index}.description`}
                           label="Description"
                           size="small"
+                          fullWidth
                         />
                       </Grid>
                     </>

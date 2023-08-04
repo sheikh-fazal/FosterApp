@@ -52,7 +52,8 @@ const TherapyInfoTable = (props: any) => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
                 query: {
                   action: "edit",
                   id: info?.row?.original?.id,
@@ -68,7 +69,8 @@ const TherapyInfoTable = (props: any) => {
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
+                pathname:
+                  "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
                 query: {
                   action: "view",
                   id: info?.row?.original?.id,
@@ -89,16 +91,13 @@ const TherapyInfoTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        hideSearch
         showAddBtn
         onAdd={() => {
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/therapy-info",
             query: { action: "add", fosterChildId: fosterChildId },
           });
-        }}
-        onChanged={(event: any) => {
-          setSearch(event.search);
         }}
       />
       <CustomTable

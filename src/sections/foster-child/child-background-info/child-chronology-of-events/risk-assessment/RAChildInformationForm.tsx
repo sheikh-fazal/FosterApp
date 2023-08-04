@@ -62,7 +62,8 @@ const RAChildInformationForm = () => {
                   }}
                   variant="subtitle2"
                 >
-                  Significant events during the Child&apos;s Local Authority care episode (include date and risk - keep this updated)
+                  Significant events during the Child&apos;s Local Authority care episode (include
+                  date and risk - keep this updated)
                 </Typography>
                 <Grid container spacing={4}>
                   <Grid item md={6}>

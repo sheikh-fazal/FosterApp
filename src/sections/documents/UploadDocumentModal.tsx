@@ -132,7 +132,7 @@ const DocumentModalForm = (props: any) => {
   });
 
   const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
+    // resolver: yupResolver(FormSchema),//
     defaultValues,
   });
 

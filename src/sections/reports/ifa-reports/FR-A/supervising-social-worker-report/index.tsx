@@ -410,9 +410,9 @@ export const validationSchema = {
   complaintsSummaryOfOutcome2: Yup.string().required("Field is required"),
   TDSAchieved: Yup.string().required("Field is required"),
   dateSignedOff: Yup.string().required("Field is required"),
-  completionDate: Yup.string().required("Field is required"),
+  completionDate: Yup.date().required("Field is required"),
   saferCaringTraining: Yup.string().required("Field is required"),
-  outstandingActionsCompletionDate: Yup.string().required("Field is required"),
+  outstandingActionsCompletionDate: Yup.date().required("Field is required"),
   personalDevelopmentPlan: Yup.string().required("Field is required"),
   fosteringHistoryCarers: Yup.string().required("Field is required"),
   recommendationOfLastFosterhomeReview:

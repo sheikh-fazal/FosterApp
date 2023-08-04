@@ -82,6 +82,11 @@ export const TAGS = [
   "REPORTS_DOCUMENTS",
   "SUBSTITUTE_CARER_DOCUMENTS",
   "SUBSTITUTE_CARER",
+  "LEISURE_ACTIVITY_DETAIL",
+  "POST_CARER_ADDRESS_LIST",
+  "INDEPENDENCE_PACK",
+  "SATS_EXAM_GRADE_LIST",
+  "SANCTION_DETAILS_LIST",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

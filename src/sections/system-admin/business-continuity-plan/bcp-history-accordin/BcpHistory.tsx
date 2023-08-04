@@ -36,13 +36,13 @@ const BcpHistory = () => {
             ),
           },
   
-      {
-        accessorFn: (row: any) => row.Sr_No,
-        id: "Sr_No",
-        cell: (info: any) => info.getValue(),
-        header: () => <span>S.NO</span>,
-        isSortable: true,
-      },
+      // {
+      //   accessorFn: (row: any) => row.Sr_No,
+      //   id: "Sr_No",
+      //   cell: (info: any) => info.getValue(),
+      //   header: () => <span>S.NO</span>,
+      //   isSortable: true,
+      // },
       {
         accessorFn: (row: any) => row.Date_Invoked,
         id: "Date_Invoked",
