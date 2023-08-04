@@ -8,12 +8,15 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla-review/form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
+  useClaReviewDocListQuery,
   useGetClaReviewIdQuery,
   usePatchClaReviewByIdMutation,
+  usePostClaReviewDocMutation,
 } from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 import { useRouter } from "next/router";
 import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Edit CLA Review";
 
@@ -24,12 +27,21 @@ EditClaReview.getLayout = function getLayout(page: any) {
 export default function EditClaReview() {
   const { makePath } = usePath();
   const router: any = useRouter();
-  const { claReviewId } = router.query;
+  const { claReviewId }: any = router.query;
 
   const { data, isLoading, isError } = useGetClaReviewIdQuery(claReviewId);
-
   const [updateData, { isSuccess, isError: isErrorPatch }] =
     usePatchClaReviewByIdMutation();
+
+  const {
+    data: docData,
+    isLoading: docLoading,
+    isFetching: docFetching,
+    isError: docError,
+    isSuccess: docSuccess,
+  }: any = useClaReviewDocListQuery(claReviewId);
+
+  const [postDocs] = usePostClaReviewDocMutation();
 
   const BREADCRUMBS = [
     {
@@ -60,7 +72,7 @@ export default function EditClaReview() {
         {isLoading ? (
           <SkeletonFormdata />
         ) : (
-          <ClaReviewForm
+          <ClaReviewForm 
             initialValueProps={{
               ...data[0],
               dateOfReview: new Date(data[0]?.dateOfReview),
@@ -98,7 +110,33 @@ export default function EditClaReview() {
             "personName",
             "password",
           ]}
-          modalData={() => {}}
+          modalData={async (data: any) => {
+            const formData = new FormData();
+            formData.append("personName", data?.personName);
+            formData.append("documentName", data?.documentName);
+            formData.append("documentType", data?.documentType);
+            formData.append("documentDate", data?.documentDate);
+            formData.append("password", data?.password);
+            formData.append("chooseFiles", data?.chooseFiles);
+            const updatedData: any = {
+              claReviewId,
+              formData,
+            };
+            try {
+              const res: any = await postDocs(updatedData).unwrap();
+              enqueueSnackbar(
+                res?.message ?? `CLA Review Document Added Successfully!`,
+                {
+                  variant: "success",
+                }
+              );
+            } catch (error: any) {
+              const errMsg = error?.data?.message;
+              enqueueSnackbar(errMsg ?? "Something Went Wrong!", {
+                variant: "error",
+              });
+            }
+          }}
           onDelete={(data: any) => console.log("Deleting", data)}
           onPageChange={(page: any) => console.log("parent log", page)}
           // currentPage={metaData?.page}
@@ -108,3 +146,4 @@ export default function EditClaReview() {
     </Page>
   );
 }
+ 
