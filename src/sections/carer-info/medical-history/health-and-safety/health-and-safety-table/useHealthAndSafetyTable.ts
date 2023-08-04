@@ -5,6 +5,7 @@ import React, { useRef } from "react";
 
 export const useHealthAndSafetyTable = () => {
   const [open, setOpen] = React.useState(false);
+  const [deleteModal, setDeleteModal] = React.useState(false);
   const { data, isLoading, isError, isSuccess } =
     useGetHealthAndSafetyListDataQuery({});
   const healthAndSafetyApiData = data?.data;
@@ -18,6 +19,8 @@ export const useHealthAndSafetyTable = () => {
     setOpen,
     handleOpen,
     handleClose,
+    deleteModal,
+    setDeleteModal,
     theme,
     router,
     tableHeaderRef,

@@ -64,7 +64,6 @@ export const columns = [
         <TableAction type="delete" onClicked={() => alert("Delete")} />
         {/* <DeleteModel onDeleteClick={() => {}} /> */}
         <TableAction type="view" onClicked={() => alert("View")} />
-        {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
       </Box>
     ),
     header: () => <span>actions</span>,
