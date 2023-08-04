@@ -7,27 +7,45 @@ import { useForm } from "react-hook-form";
 import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
 import { useHouseHoldConditionAPostMutation } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import { enqueueSnackbar } from "notistack";
 
 export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
   const theme: any = useTheme();
 
-  const [resetTrigger, { isLoading }] = useHouseHoldConditionAPostMutation();
+  const [resetTrigger, { data, isLoading, isSuccess }] =
+    useHouseHoldConditionAPostMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
   const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     formData(data);
-    resetTrigger(data)
-    // HOUSEHOLD_A(formData);
+    try {
+      const res: any = await resetTrigger(data);
+      enqueueSnackbar(res?.data?.message, { variant: "success" });
+    } catch (error: any) {
+      console.log(error?.message);
+
+      const errMsg = error?.data?.message;
+      console.log(errMsg);
+
+      enqueueSnackbar(error?.message, { variant: "error" });
+    }
   };
-  console.log(resetTrigger,"ddddddd")
   useEffect(() => {
     breadCrumbData("Household Condition - A");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const router = useRouter();
-  return { theme, handleSubmit, onSubmit, breadCrumbData, methods, router ,isLoading};
+  return {
+    theme,
+    handleSubmit,
+    onSubmit,
+    breadCrumbData,
+    methods,
+    router,
+    isLoading,
+  };
 };

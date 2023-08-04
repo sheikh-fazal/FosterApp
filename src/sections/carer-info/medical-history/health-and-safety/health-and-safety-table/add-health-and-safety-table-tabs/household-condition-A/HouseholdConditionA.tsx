@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
@@ -79,8 +86,13 @@ export const HouseholdConditionA = (props: any) => {
                 variant="contained"
                 disabled={isLoading}
               >
-                
-                {isLoading ? <CircularProgress/> : "Submit"}
+                {isLoading ? (
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    Loading &nbsp; <CircularProgress size={20} />
+                  </span>
+                ) : (
+                  "Submit"
+                )}
               </Button>
 
               <Button
