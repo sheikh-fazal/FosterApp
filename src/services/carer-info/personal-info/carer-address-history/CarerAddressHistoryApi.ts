@@ -8,7 +8,7 @@ export const carerAddressHistoryApi = baseAPI.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["POST_CARER_ADDRESS"],
+      providesTags: ["POST_CARER_ADDRESS_LIST"],
     }),
     getHistory: builder.query({
       query: ({ id }: any) => ({
@@ -23,7 +23,7 @@ export const carerAddressHistoryApi = baseAPI.injectEndpoints({
         method: "Post",
         body: formData,
       }),
-      invalidatesTags: ["POST_CARER_ADDRESS"],
+      invalidatesTags: ["POST_CARER_ADDRESS_LIST"],
     }),
     updateAddressHistory: builder.mutation({
       query: ({ id, formData }: any) => ({
@@ -31,14 +31,14 @@ export const carerAddressHistoryApi = baseAPI.injectEndpoints({
         method: "Put",
         body: formData,
       }),
-      invalidatesTags: ["POST_CARER_ADDRESS"],
+      invalidatesTags: ["POST_CARER_ADDRESS_LIST", "POST_CARER_ADDRESS"],
     }),
     deleteAddressHistory: builder.mutation({
       query: (id: any) => ({
         url: `/carer-address-history/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["POST_CARER_ADDRESS"],
+      invalidatesTags: ["POST_CARER_ADDRESS_LIST"],
     }),
   }),
 });

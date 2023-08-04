@@ -3,12 +3,6 @@ import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
 import { ChildMedicationInfoListValue } from ".";
 import {
-  useCreateHospitalInfoListDocumentMutation,
-  useDeleteHospitalInfoListDocumentMutation,
-  useLazyGetHospitalInfoListDocumentBYIDQuery,
-  useUpdateHospitalInfoListDocumentMutation,
-} from "@root/services/foster-child/health-medical-history/hospital-info-list/hospitalInfoListDocument";
-import {
   useCreateChildMedicationInfoMutation,
   useDeleteChildMedicationInfoByIdMutation,
   useLazyGetChildMedicationInfoByIdQuery,

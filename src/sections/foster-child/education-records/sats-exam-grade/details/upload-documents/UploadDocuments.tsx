@@ -53,7 +53,7 @@ const UploadDocuments = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.["education-records-document"]}
+        data={data?.data?.documents}
         columns={columns}
         isLoading={isLoading}
         showSerialNo

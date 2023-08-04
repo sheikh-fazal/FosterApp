@@ -5,10 +5,10 @@ const TAG = "hospitalization";
 export const hospitalisationInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getHospitalisationInfoList: builder.query({
-      query: ({ params }: any) => ({
+      query: (payload: any) => ({
         url: `/child-chronology-of-events/hospitalisation-info/List`,
         method: "GET",
-        params,
+        params: payload.params,
       }),
       providesTags: [TAG],
     }),

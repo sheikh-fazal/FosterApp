@@ -64,7 +64,7 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
   };
 
   const openUpdateViewModel = (viewId: string, isViewModel: boolean = true) => {
-    const uploadDocsFormData = data?.data?.["education-records-document"].find(
+    const uploadDocsFormData = data?.data?.documents.find(
       ({ id }: any) => id === viewId
     );
     // console.log({ uploadDocsFormData });
