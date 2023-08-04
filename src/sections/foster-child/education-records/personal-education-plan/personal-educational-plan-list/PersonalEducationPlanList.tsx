@@ -54,6 +54,8 @@ export const PersonalEducationPlanList = () => {
           isLoading={isLoading}
           isFetching={isFetching}
           isPagination={true}
+          totalPages={data?.data?.meta?.pages}
+          currentPage={data?.data?.meta?.page}
         />
       </Card>
     </>

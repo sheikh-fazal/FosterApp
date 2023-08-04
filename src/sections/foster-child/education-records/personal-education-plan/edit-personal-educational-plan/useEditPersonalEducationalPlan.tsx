@@ -10,7 +10,9 @@ const useEditPersonalEducationalPlan = (initialValueProps:any, fosterChildId:any
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
-  const [patchData] = usePatchSingleChildEducationPlanMutation(fosterChildId)
+  console.log(fosterChildId);
+  
+  const [patchData] = usePatchSingleChildEducationPlanMutation()
 
   
   const defaultValues = {

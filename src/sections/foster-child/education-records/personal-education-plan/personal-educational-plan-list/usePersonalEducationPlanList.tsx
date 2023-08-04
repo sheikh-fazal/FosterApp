@@ -18,6 +18,9 @@ const usePersonalEducationPlanList = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetChildEducationPlanListQuery({ fosterChildId, params });
 
+    console.log(data?.data?.meta);
+    
+
     const [deleteUser] = useDeleteSingleChildEducationPlanMutation()
 
   const deleteTrainingProfile = async () => {

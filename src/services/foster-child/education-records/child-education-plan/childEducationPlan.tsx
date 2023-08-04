@@ -26,8 +26,8 @@ export const ChildEducationPlan: any = baseAPI.injectEndpoints({
       providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     patchSingleChildEducationPlan: builder.mutation({
-      query: ({ data, id }: any) => ({
-        url: `/education-records/education-plan/${id}`,
+      query: ({ data, fosterChildId }: any) => ({
+        url: `/education-records/education-plan/${fosterChildId}`,
         method: "PATCH",
         body: data,
       }),
@@ -41,15 +41,16 @@ export const ChildEducationPlan: any = baseAPI.injectEndpoints({
       invalidatesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     getDocumentChildEducationPlan: builder.query({
-      query: (fosterChildId: any) => ({
+      query: ({fosterChildId, params}: any) => ({
         url: `/education-records/education-plan/documents/${fosterChildId}`,
         method: "GET",
+        params
       }),
       providesTags: ["CHILD_EDUCATION_PLAN_LIST"],
     }),
     postDocumentChildEducationPlan: builder.mutation({
-      query: ({ formData, id}: any) => ({
-        url: `/education-records/education-plan/document/${id}`,
+      query: ({ formData, fosterChildId}: any) => ({
+        url: `/education-records/education-plan/document/${fosterChildId}`,
         method: "POST",
         body: formData,
       }),

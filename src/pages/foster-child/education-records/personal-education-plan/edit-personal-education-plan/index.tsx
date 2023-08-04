@@ -13,6 +13,7 @@ import {
 } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { useTableParams } from "@root/hooks/useTableParams";
 
 const PAGE_TITLE = "Personal Education Plan";
 
@@ -42,17 +43,20 @@ export default function EditChildExclusionInfoPage() {
   const router = useRouter();
   const fosterChildId = Object.keys(router?.query)[0];
   const formData = new FormData();
-  const { data, isLoading } = useGetSingleChildEducationPlanQuery(fosterChildId);
+  const { data, isLoading } =
+    useGetSingleChildEducationPlanQuery(fosterChildId);
   const [postDocument] = usePostDocumentChildEducationPlanMutation();
 
   const [deleteDocument] = useDeleteDocumentChildEducationPlanMutation();
-
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+    
   const {
     data: documentData,
     isLoading: documentLoading,
     isFetching: documentFetching,
     isSuccess: documentSuccess,
-  } = useGetDocumentChildEducationPlanQuery(fosterChildId);
+  } = useGetDocumentChildEducationPlanQuery({ fosterChildId, params });
 
   const postDocumentData = async (data: any) => {
     formData.append("type", data.documentType);
@@ -84,7 +88,7 @@ export default function EditChildExclusionInfoPage() {
                 comments: data?.comments,
                 principalName: data?.principalName,
               }}
-              id={fosterChildId}
+              fosterChildId={fosterChildId}
             />
           </>
         )}
@@ -94,6 +98,7 @@ export default function EditChildExclusionInfoPage() {
           <>
             <UploadDocuments
               readOnly={false}
+              searchKey="search"
               tableData={documentData?.data?.educationPlanDocuments}
               searchParam={() => {}}
               isLoading={documentLoading}
@@ -107,7 +112,11 @@ export default function EditChildExclusionInfoPage() {
                 "password",
               ]}
               isSuccess={documentSuccess}
+              onPageChange={pageChangeHandler}
+              onSortByChange={sortChangeHandler}
               modalData={(data: any) => postDocumentData(data)}
+              totalPages={documentData?.data?.meta?.pages}
+              currentPage={documentData?.data?.meta?.page}
             />
           </>
         )}

@@ -10,6 +10,7 @@ import {
   usePostDocumentChildEducationPlanMutation,
 } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Personal Education Plan";
 
@@ -46,10 +47,18 @@ export default function EditChildExclusionInfoPage() {
   console.log(fosterChildId);
 
   const postEducationPlanData = async (data: any) => {
-    const res = await postData({ data, fosterChildId });
-    setId(res.data.data.id);
-    if (id !== "") {
+    try {
+      const res = await postData({ data, fosterChildId });
+
+      if (res?.error) return;
+
+      setId(res.data.data.id);
+      enqueueSnackbar(res?.data?.data?.message ?? `Successfully!`, {
+        variant: "success",
+      });
       setTabsArr(["PEP info", "Upload Document"]);
+    } catch (error: any) {
+      enqueueSnackbar("Something Went Wrong!", { variant: "error" });
     }
   };
 
