@@ -5,41 +5,43 @@ import Page from "@root/components/Page";
 
 // icons
 import HomeIcon from "@mui/icons-material/Home";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
 const PAGE_TITLE = "Social Media Links";
 
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Carer Info",
-    href: "/carer-info",
-  },
-  {
-    name: "Personal Info",
-    href: "/carer-info/personal-info",
-  },
-];
-
 SocialMediaLinks.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
 export default function SocialMediaLinks() {
+  let router = useRouter();
+  let { fosterCarerId } = router.query;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      href: `/`,
+    },
+    {
+      name: "Carer Info",
+      href: `/carer-info?fosterCarerId=${fosterCarerId}`,
+    },
+    {
+      name: "Personal Info",
+      href: ``,
+    },
+  ];
   return (
-    <Page title={PAGE_TITLE}>
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       <SocialMediaLinksSection />
-    </Page>
+    </>
   );
 }

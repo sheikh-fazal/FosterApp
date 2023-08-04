@@ -10,8 +10,6 @@ import {
 import React from "react";
 import Error from "@root/components/Error";
 
-// ----------------------------------------------------------------------
-
 import HomeIcon from "@mui/icons-material/Home";
 
 import { Box, Card } from "@mui/material";
@@ -20,42 +18,34 @@ import { useGetInterviewRecordAnalysisQuery } from "@root/services/carer-info/pe
 
 import IsFetching from "@root/components/loaders/IsFetching";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-
-    name: "Carer Info",
-
-    href: "/carer-info",
-  },
-
-  {
-    name: "Interview Record and Analysis",
-
-    href: "",
-  },
-];
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useRouter } from "next/router";
 
 const PAGE_TITLE = "Interview Record and Analysis";
 
 InterviewRecordAndAnalysis.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-      variant="dashboard"
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-
-// ----------------------------------------------------------------------
 
 export default function InterviewRecordAndAnalysis() {
   let role = "ifa";
+  let router = useRouter();
+  let { fosterCarerId } = router.query;
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      href: `/`,
+    },
+    {
+      name: "Carer Info",
+      href: `/carer-info?fosterCarerId=${fosterCarerId}`,
+    },
+    {
+      name: "Interview Record And Analysis",
+      href: ``,
+    },
+  ];
+
   const {
     data: fetchData,
     isLoading,
@@ -67,7 +57,12 @@ export default function InterviewRecordAndAnalysis() {
   }
 
   return (
-    <Page title={PAGE_TITLE}>
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
       {isLoading ? (
         <SkeletonFormdata />
       ) : (
@@ -89,6 +84,6 @@ export default function InterviewRecordAndAnalysis() {
           />
         </Card>
       )}
-    </Page>
+    </>
   );
 }

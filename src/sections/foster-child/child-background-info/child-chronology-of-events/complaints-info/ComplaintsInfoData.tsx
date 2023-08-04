@@ -1,4 +1,4 @@
-import {  RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
@@ -365,8 +365,8 @@ export const formSchema = Yup.object().shape({
   complaintOutcome: Yup.string().required("Required"),
   isThisSubstained: Yup.string().required("Required"),
   teamManagerRecommendation: Yup.string().required("Required"),
-  registeredManagerInformedDate: Yup.date().required("Required"),
-  ofstedNotifiedDate: Yup.date().required("Required"),
+  // registeredManagerInformedDate: Yup.date().required("Required"),
+  // ofstedNotifiedDate: Yup.date().required("Required"),
   reportedTo: Yup.string().required("Required"),
   registeredManagerRecommendation: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),
