@@ -62,7 +62,7 @@ export default function AnnualReview() {
         {/* Annual Review A Component */}
         <AnnualReviewA action={action} id={id} />
         {/* Annual Review B Component */}
-        <AnnualReviewB />
+        <AnnualReviewB action={action} id={id} />
         {/* Annual Review C Component */}
         <AnnualReviewC />
         {/* Annual Review D Component */}

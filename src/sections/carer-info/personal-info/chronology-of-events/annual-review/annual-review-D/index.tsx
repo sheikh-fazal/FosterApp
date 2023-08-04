@@ -2,44 +2,6 @@ import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 
-export const defaultValues = {
-  particularIssues: "Text",
-  trainingIssues: "Text",
-  lastHealthAndSafetyDate: new Date(),
-  equipment: "Text",
-  generalCommentsOnPlacements: "Text",
-  supervisingSocialWorkerRecom: "",
-  implications: "Text",
-  reviewOfficerComments: "Text",
-  panelRecommendation: "Text",
-  needForChangeInCurrentTerms: "Text",
-  targetDateForConsideration: new Date(),
-  birthChildrenComments: "Text",
-  CLAComments: "Text",
-  fosterCarerComments: "Text",
-  IROComments: "Text",
-  finalOutcome: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  particularIssues: Yup.string().required("required"),
-  trainingIssues: Yup.string().required("required"),
-  lastHealthAndSafetyDate: Yup.date().required("required"),
-  equipment: Yup.string().required("required"),
-  generalCommentsOnPlacements: Yup.string().required("required"),
-  supervisingSocialWorkerRecom: Yup.string().required("required"),
-  implications: Yup.string().required("required"),
-  reviewOfficerComments: Yup.string().required("required"),
-  panelRecommendation: Yup.string().required("required"),
-  needForChangeInCurrentTerms: Yup.string().required("required"),
-  targetDateForConsideration: Yup.date().required("required"),
-  birthChildrenComments: Yup.string().required("required"),
-  CLAComments: Yup.string().required("required"),
-  fosterCarerComments: Yup.string().required("required"),
-  IROComments: Yup.string().required("required"),
-  finalOutcome: Yup.string().required("required"),
-});
-
 export const annualReviewD = [
   {
     id: 1,
@@ -75,6 +37,9 @@ export const annualReviewD = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -169,6 +134,9 @@ export const annualReviewD = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 12,
@@ -232,3 +200,48 @@ export const annualReviewD = [
   },
 ];
 export { default as AnnualReviewD } from "./AnnualReviewD";
+
+export const formatters: any = {};
+
+for (const formControl of annualReviewD) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
+export const defaultValues = {
+  particularIssues: "Text",
+  trainingIssues: "Text",
+  lastHealthAndSafetyDate: new Date(),
+  equipment: "Text",
+  generalCommentsOnPlacements: "Text",
+  supervisingSocialWorkerRecom: "",
+  implications: "Text",
+  reviewOfficerComments: "Text",
+  panelRecommendation: "Text",
+  needForChangeInCurrentTerms: "Text",
+  targetDateForConsideration: new Date(),
+  birthChildrenComments: "Text",
+  CLAComments: "Text",
+  fosterCarerComments: "Text",
+  IROComments: "Text",
+  finalOutcome: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  particularIssues: Yup.string().required("required"),
+  trainingIssues: Yup.string().required("required"),
+  lastHealthAndSafetyDate: Yup.date().required("required"),
+  equipment: Yup.string().required("required"),
+  generalCommentsOnPlacements: Yup.string().required("required"),
+  supervisingSocialWorkerRecom: Yup.string().required("required"),
+  implications: Yup.string().required("required"),
+  reviewOfficerComments: Yup.string().required("required"),
+  panelRecommendation: Yup.string().required("required"),
+  needForChangeInCurrentTerms: Yup.string().required("required"),
+  targetDateForConsideration: Yup.date().required("required"),
+  birthChildrenComments: Yup.string().required("required"),
+  CLAComments: Yup.string().required("required"),
+  fosterCarerComments: Yup.string().required("required"),
+  IROComments: Yup.string().required("required"),
+  finalOutcome: Yup.string().required("required"),
+});

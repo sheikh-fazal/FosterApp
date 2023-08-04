@@ -1,32 +1,6 @@
 import { RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 
-export const defaultValues = {
-  allegationDuringPeriodUnderReview: "Text",
-  eventsForCarersSinceLastReview: "Text",
-  importOfFosteringOnFamily: "Text",
-  experienceOfWorkingWithBirthParents: "Text",
-  workingRelationshipWithTheAgency: "Text",
-  supportForCarers: "Text",
-  supervisingSocialWorker: "Text",
-  otherProfessionals: "Text",
-  otherFosterCarers: "Text",
-  procedures: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  allegationDuringPeriodUnderReview: Yup.string().required("required"),
-  eventsForCarersSinceLastReview: Yup.string().required("required"),
-  importOfFosteringOnFamily: Yup.string().required("required"),
-  experienceOfWorkingWithBirthParents: Yup.string().required("required"),
-  workingRelationshipWithTheAgency: Yup.string().required("required"),
-  supportForCarers: Yup.string().required("required"),
-  supervisingSocialWorker: Yup.string().required("required"),
-  otherProfessionals: Yup.string().required("required"),
-  otherFosterCarers: Yup.string().required("required"),
-  procedures: Yup.string().required("required"),
-});
-
 export const annualReviewCData = [
   {
     id: 1,
@@ -154,3 +128,29 @@ export const annualReviewCData = [
   },
 ];
 export { default as AnnualReviewC } from "./AnnualReviewC";
+
+export const defaultValues = {
+  allegationDuringPeriodUnderReview: "Text",
+  eventsForCarersSinceLastReview: "Text",
+  importOfFosteringOnFamily: "Text",
+  experienceOfWorkingWithBirthParents: "Text",
+  workingRelationshipWithTheAgency: "Text",
+  supportForCarers: "Text",
+  supervisingSocialWorker: "Text",
+  otherProfessionals: "Text",
+  otherFosterCarers: "Text",
+  procedures: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  allegationDuringPeriodUnderReview: Yup.string().required("required"),
+  eventsForCarersSinceLastReview: Yup.string().required("required"),
+  importOfFosteringOnFamily: Yup.string().required("required"),
+  experienceOfWorkingWithBirthParents: Yup.string().required("required"),
+  workingRelationshipWithTheAgency: Yup.string().required("required"),
+  supportForCarers: Yup.string().required("required"),
+  supervisingSocialWorker: Yup.string().required("required"),
+  otherProfessionals: Yup.string().required("required"),
+  otherFosterCarers: Yup.string().required("required"),
+  procedures: Yup.string().required("required"),
+});

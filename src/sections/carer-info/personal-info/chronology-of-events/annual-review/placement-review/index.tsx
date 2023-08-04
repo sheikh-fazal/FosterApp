@@ -1,24 +1,5 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-export const defaultValues = {
-  childCode: "",
-  identityReligion: "Text",
-  independenceSeldCareSkills: "Text",
-  socialPresentationLeisureSkills: "Text",
-  contact: "Text",
-  otherIssuesOrConcerns: "Text",
-  statementFromChild: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  childCode: Yup.string().required("required"),
-  identityReligion: Yup.string().required("required"),
-  independenceSeldCareSkills: Yup.string().required("required"),
-  socialPresentationLeisureSkills: Yup.string().required("required"),
-  contact: Yup.string().required("required"),
-  otherIssuesOrConcerns: Yup.string().required("required"),
-  statementFromChild: Yup.string().required("required"),
-});
 
 export const placementReviewData = [
   {
@@ -117,3 +98,23 @@ export const placementReviewData = [
   },
 ];
 export { default as PlacementReview } from "./PlacementReview";
+
+export const defaultValues = {
+  childCode: "",
+  identityReligion: "Text",
+  independenceSeldCareSkills: "Text",
+  socialPresentationLeisureSkills: "Text",
+  contact: "Text",
+  otherIssuesOrConcerns: "Text",
+  statementFromChild: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  childCode: Yup.string().required("required"),
+  identityReligion: Yup.string().required("required"),
+  independenceSeldCareSkills: Yup.string().required("required"),
+  socialPresentationLeisureSkills: Yup.string().required("required"),
+  contact: Yup.string().required("required"),
+  otherIssuesOrConcerns: Yup.string().required("required"),
+  statementFromChild: Yup.string().required("required"),
+});

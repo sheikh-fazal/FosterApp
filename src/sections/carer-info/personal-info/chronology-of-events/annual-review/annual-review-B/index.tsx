@@ -2,17 +2,6 @@
 import { RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import dayjs from "dayjs";
-
-export const defaultValues = {
-  reviewDate: new Date(),
-  haveAnyCurrentMedicalIssues: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  reviewDate: Yup.date().required("required"),
-  haveAnyCurrentMedicalIssues: Yup.string().required("required"),
-});
 
 export const annualReviewBData = [
   {
@@ -24,6 +13,9 @@ export const annualReviewBData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
 
   {
@@ -41,3 +33,20 @@ export const annualReviewBData = [
   },
 ];
 export { default as AnnualReviewB } from "./AnnualReviewB";
+
+export const formatters: any = {};
+
+for (const formControl of annualReviewBData) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
+export const defaultValues = {
+  reviewDate: new Date(),
+  haveAnyCurrentMedicalIssues: "",
+};
+
+export const formSchema = Yup.object().shape({
+  reviewDate: Yup.date().required("required"),
+  haveAnyCurrentMedicalIssues: Yup.string().required("required"),
+});
