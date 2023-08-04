@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 
-export const StudySupportInfoTable = ({fosterChildId}:any) => {
+export const StudySupportInfoTable = ({ fosterChildId }: any) => {
   const [open, setOpen] = useState(false);
 
   const {
@@ -109,9 +109,11 @@ export const StudySupportInfoTable = ({fosterChildId}:any) => {
         searchKey="search"
         showAddBtn
         onAdd={() => {
-          router.push(
-            "/foster-child/education-records/school-detail-info/add-school-detail"
-          );
+          router.push({
+            pathname:
+              "/foster-child/education-records/study-support-info/add-study-support-info",
+            query: { action: "add", fosterChildId: fosterChildId },
+          });
         }}
         onChanged={headerChangeHandler}
       />
