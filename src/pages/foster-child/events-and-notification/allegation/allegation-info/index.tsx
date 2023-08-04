@@ -3,19 +3,19 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import AllegationList from "@root/sections/foster-child/events-and-notification/allegation/AllegationList";
+import AllegationInfoTabs from "@root/sections/foster-child/events-and-notification/allegation/allegation-info/allegation-info-tabs/AllegationInfoTabs";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "Child Info",
+    name: "Allegation List",
     href: !!query?.fosterChildId
-      ? `/foster-child?fosterChildId=${query?.fosterChildId}`
+      ? `/foster-child/events-and-notification/allegation?fosterChildId=${query?.fosterChildId}`
       : "/foster-child",
   },
   {
-    name: "Allegation List",
+    name: "Allegation",
     href: "",
   },
 ];
@@ -24,13 +24,13 @@ const PAGE_TITLE = "Allegation";
 
 // ----------------------------------------------------------------------
 
-AllegationPage.getLayout = function getLayout(page: any) {
-  return <Layout title={PAGE_TITLE}>{page}</Layout>;
+AllegationInfoPage.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function AllegationPage() {
+export default function AllegationInfoPage() {
   const router = useRouter();
   if (!!!router?.query?.fosterChildId) {
     router.push({
@@ -45,7 +45,7 @@ export default function AllegationPage() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <AllegationList />
+      <AllegationInfoTabs />
     </Page>
   );
 }
