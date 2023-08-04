@@ -96,7 +96,13 @@ export const useAllegationInfo = () => {
     const pathParams = {
       id: router.query?.id,
     };
-    const apiDataParameter = { body: data, pathParams };
+    const body = {
+      fosterChildId: router.query.fosterChildId,
+      urnNumber: "CH001",
+      ...data,
+      status: "Pending",
+    };
+    const apiDataParameter = { body, pathParams };
     try {
       const res: any = await patchAllegationInfoDataTrigger(
         apiDataParameter

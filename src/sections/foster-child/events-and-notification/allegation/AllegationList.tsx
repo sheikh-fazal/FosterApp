@@ -42,7 +42,7 @@ const AllegationList = () => {
         />
 
         <CustomTable
-          data={data?.data?.en_allegation}
+          data={data?.data?.alegation}
           columns={allegationInfoTableColumns}
           isLoading={isLoading}
           showSerialNo

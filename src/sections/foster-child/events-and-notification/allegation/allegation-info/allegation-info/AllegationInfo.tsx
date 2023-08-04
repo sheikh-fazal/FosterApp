@@ -62,12 +62,14 @@ const AllegationInfo = () => {
             </LoadingButton>
             <LoadingButton
               sx={{ marginRight: "1rem" }}
-              type="submit"
-              variant="contained"
               disabled={
                 patchAllegationInfoDataStatus?.isLoading ||
                 postAllegationInfoDataStatus?.isLoading
               }
+              size="large"
+              type="button"
+              variant="contained"
+              color="secondary"
             >
               Save as Draft
             </LoadingButton>
@@ -80,7 +82,7 @@ const AllegationInfo = () => {
               }}
               onClick={() =>
                 router.push({
-                  pathname: `/foster-child/health-medical-history/gp-details`,
+                  pathname: `/foster-child/events-and-notification/allegation`,
                   query: {
                     ...(!!router?.query?.fosterChildId && {
                       fosterChildId: router?.query?.fosterChildId,
