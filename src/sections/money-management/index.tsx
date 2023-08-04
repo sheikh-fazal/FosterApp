@@ -32,7 +32,7 @@ export const managementCardData = [
   {
     id: 4,
     icon: image4,
-    path: "",
+    path: "/money-management/saving-account",
     bgColor: "#523C87",
     gridLength: 3,
     title: "Savings Account for Minors",

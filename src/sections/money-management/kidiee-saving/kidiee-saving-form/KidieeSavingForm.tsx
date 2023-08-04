@@ -51,7 +51,7 @@ export const KidieeSavingForm = (props: any) => {
             variant="contained"
             onClick={() =>
               router.push({
-                pathname:"/money-management/kidiee-saving",
+                pathname: "/money-management/kidiee-saving",
                 // query: { fosterChildId: fosterChildId },
               })
             }
