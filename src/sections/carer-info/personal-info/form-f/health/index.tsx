@@ -9,12 +9,12 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
 
 export const defaultValues = {
-  nameOfGenaralPractitioner: "practitioner name here",
-  nameOfGpPractice: "recommended",
-  medicalAdvisorComments: "medicalAdvisorComments",
+  nameOfGenaralPractitioner: "",
+  nameOfGpPractice: "",
+  medicalAdvisorComments: "",
   dateOfMedicalAdvisor: new Date(todayDate),
-  nameOfForteringServiceMedicalAdvisor: "fostering service name here",
-  details: "details, a lot of details",
+  nameOfForteringServiceMedicalAdvisor: "",
+  details: "",
 };
 
 export const FormSchema = Yup.object().shape({
