@@ -6,25 +6,25 @@ import * as Yup from "yup";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 export const SwotAnalysisFormDefaultValues = {
-  reportDate: null,
+  reportDate: new Date(),
   topic: "",
-  duration: null,
-  competitor: null,
-  date: null,
+  duration: '',
+  competitor: '',
+  date: new Date(),
   reviewerRole: "",
-  reviewerDate: null,
+  reviewerDate: new Date(),
   strengths: "",
   weaknesses: "",
   opportunities: "",
   threats: "",
 };
 export const formSchema = Yup.object().shape({
-  reportDate: Yup.string().required("Field is required"),
+  reportDate: Yup.date().required("Field is required"),
   topic: Yup.string().required("Field is required"),
   duration: Yup.string().required("Field is required"),
   competitor: Yup.string().required("Field is required"),
-  date: Yup.string().required("Field is required"),
-  reviewerRole: Yup.string().required("Field is required"),
+  date: Yup.date().required("Field is required"),
+  reviewerRole: Yup.string().required("Field is required"), 
   strengths: Yup.string().required("Field is required"),
   weaknesses: Yup.string().required("Field is required"),
   opportunities: Yup.string().required("Field is required"),

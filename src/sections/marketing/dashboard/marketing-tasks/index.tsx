@@ -4,9 +4,8 @@ export const MarketingTask = [
   { id: 3, title: "Email marketing approved" },
   { id: 4, title: "Social Media Marketing pending content for Feb Month" },
   { id: 5, title: "Content to be reviewed fo Campaigns on 12.20.2021" },
-  { id: 6, title: "Email marketing approved" },
-  { id: 7, title: "Email marketing approved" },
-  { id: 8, title: "Social Media Marketing pending content for Feb Month" },
-  { id: 9, title: "Content to be reviewed fo Campaigns on 12.20.2021" },
+  { id: 6, title: "Email marketing approved" }, 
+  { id: 7, title: "Social Media Marketing pending content for Feb Month" },
+  { id: 8, title: "Content to be reviewed fo Campaigns on 12.20.2021" },
  
 ];

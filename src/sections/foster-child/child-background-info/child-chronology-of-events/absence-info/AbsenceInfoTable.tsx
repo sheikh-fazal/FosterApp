@@ -60,7 +60,7 @@ const AbsenceInfoTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/absence-info",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: { action: "edit", id: info?.row?.original?.id, fosterChildId },
               })
             }
           />
@@ -73,7 +73,7 @@ const AbsenceInfoTable = (props: any) => {
               router.push({
                 pathname:
                   "/foster-child/child-background-info/child-chronology-of-events/absence-info",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: { action: "view", id: info?.row?.original?.id, fosterChildId },
               })
             }
           />
@@ -89,16 +89,13 @@ const AbsenceInfoTable = (props: any) => {
       <TableHeader
         ref={tableHeaderRefTwo}
         title=""
-        searchKey="search"
+        hideSearch
         showAddBtn
         onAdd={() => {
           router.push({
             pathname: "/foster-child/child-background-info/child-chronology-of-events/absence-info",
             query: { action: "add", fosterChildId: fosterChildId },
           });
-        }}
-        onChanged={(event: any) => {
-          setSearch(event.search);
         }}
       />
       <CustomTable

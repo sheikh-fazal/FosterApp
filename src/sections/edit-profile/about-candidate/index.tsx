@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export const defaultValues = {
   fullName: "",
   email: "",
-  age: "",
+  age: 3,
   terms: false,
   areaOffice: 3,
   areaOffice2: 2,

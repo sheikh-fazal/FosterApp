@@ -1,30 +1,38 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
+import { useHouseholdConditionA } from "./useHouseholdConditionA";
 
 export const HouseholdConditionA = (props: any) => {
-  const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
-    props;
-  const theme: any = useTheme();
-  const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
-    formData(data);
-  };
-  useEffect(() => {
-    breadCrumbData("Household Condition - A");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const router = useRouter();
+  const { disabled, formData, isError, isSuccess, breadCrumbData } = props;
+  // const theme: any = useTheme();
+  // const methods: any = useForm({
+  //   resolver: yupResolver(FormSchema),
+  //   defaultValues,
+  // });
+  // const { handleSubmit } = methods;
+  // const onSubmit = (data: any) => {
+  //   formData(data);
+  // };
+  // useEffect(() => {
+  //   breadCrumbData("Household Condition - A");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+  const { theme, handleSubmit, onSubmit, methods, router, isLoading }: any =
+    useHouseholdConditionA({ breadCrumbData, formData });
+  // const router = useRouter();
   return (
     <Page title="Household Condition - A">
       <Card sx={{ p: 2 }}>
@@ -76,8 +84,15 @@ export const HouseholdConditionA = (props: any) => {
                   "&:hover": { bgcolor: theme.palette.primary.main },
                 }}
                 variant="contained"
+                disabled={isLoading}
               >
-                Submit
+                {isLoading ? (
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    Loading &nbsp; <CircularProgress size={20} />
+                  </span>
+                ) : (
+                  "Submit"
+                )}
               </Button>
 
               <Button

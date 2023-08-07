@@ -3,53 +3,54 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
-export const columns = [
+export const columns = (deleteList: any) => [
+  // {
+  //   id: "select",
+  //   header: ({ table, row }: any) => {
+  //     console.log(table.getSelectedRowModel().flatRows);
+  //     return (
+  //       <Box>
+  //         <Checkbox
+  //           checked={table.getIsAllRowsSelected()}
+  //           onChange={table.getToggleAllRowsSelectedHandler()}
+  //         />
+  //       </Box>
+  //     );
+  //   },
+  //   cell: ({ row, table }: any) => (
+  //     <Box>
+  //       <Checkbox
+  //         disabled={row?.original?.Assigned}
+  //         checked={row?.original?.Assigned ? false : row.getIsSelected()}
+  //         onChange={row.getToggleSelectedHandler()}
+  //       />
+  //     </Box>
+  //   ),
+  // },
+  // {
+  //   accessorFn: (row: any) => row?.srNo,
+  //   id: "srNo",
+  //   cell: (info: any) => info.getValue(),
+  //   header: () => <span>Sr.No</span>,
+  //   isSortable: true,
+  // },
   {
-    id: "select",
-    header: ({ table, row }: any) => {
-      console.log(table.getSelectedRowModel().flatRows);
-      return (
-        <Box>
-          <Checkbox
-            checked={table.getIsAllRowsSelected()}
-            onChange={table.getToggleAllRowsSelectedHandler()}
-          />
-        </Box>
-      );
-    },
-    cell: ({ row, table }: any) => (
-      <Box>
-        <Checkbox
-          disabled={row?.original?.Assigned}
-          checked={row?.original?.Assigned ? false : row.getIsSelected()}
-          onChange={row.getToggleSelectedHandler()}
-        />
-      </Box>
-    ),
-  },
-  {
-    accessorFn: (row: any) => row.srNo,
-    id: "srNo",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Sr.No</span>,
-    isSortable: true,
-  },
-  {
-    accessorFn: (row: any) => row.createdAt,
-    id: "createdAt",
+    accessorFn: (row: any) => row?.inspectionDate,
+
+    id: "inspectionDate",
     cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: "Inspection Date",
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.nextInspectionDate,
-    id: "nextInspectionDate",
+    accessorFn: (row: any) => row?.nestInspectionDate,
+    id: "nestInspectionDate",
     cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: "Next Inspection Date",
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.status,
+    accessorFn: (row: any) => row?.status,
     id: "status",
     cell: (info: any) => info.getValue(),
     header: "Status",
@@ -60,10 +61,9 @@ export const columns = [
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction type="edit" onClicked={() => alert("Edit")} />
-        <TableAction type="delete" onClicked={() => alert("Delete")} />
-        {/* <DeleteModel onDeleteClick={() => {}} /> */}
+        <TableAction type="delete" onClicked={() => deleteList(info)} />
+
         <TableAction type="view" onClicked={() => alert("View")} />
-        {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
       </Box>
     ),
     header: () => <span>actions</span>,

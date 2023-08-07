@@ -104,26 +104,26 @@ export const FosterCarerAddModalMockData = [
 ];
 
 export const RegAssessmentModalValues = {
-    consultationdate: "",
+    consultationDate: new Date(),
     consultationTime: "",
     sWName: "",
     meetingAttendees: "",
     meetingOutcomes: "",
     meetingAction: "",
-    nextConsultationDate: "",
+    nextConsultationDate: new Date(),
     nextConsultationTime: "",
     updatePhoto: '',
   };
   
 
 export const RegAssessmentModalValidationSchema = Yup.object().shape({
-    consultationdate: Yup.string().trim().required("Field is Required"),
+    consultationDate: Yup.date().required("Field is Required"),
     consultationTime: Yup.string().trim().required("Field is Required"),
     sWName: Yup.string().trim().required("Field is Required"),
     meetingAttendees: Yup.string().trim().required("Field is Required"),
     meetingOutcomes: Yup.string().trim().required("Field is Required"),
     meetingAction: Yup.string().trim().required("Field is Required"),
-    nextConsultationDate: Yup.string().trim().required("Field is Required"),
+    nextConsultationDate: Yup.date().required("Field is Required"),
     nextConsultationTime: Yup.string().trim().required("Field is Required"),
     updatePhoto: Yup.string().required("Field is Required"),
 

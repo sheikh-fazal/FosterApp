@@ -6,7 +6,7 @@ import riskAssessmentImg from "@root/assets/img/recruitment/riskAssessment.png";
 import placementPreferenceImg from "@root/assets/img/recruitment/placementPreference.png";
 import awaitingPlacementImg from "@root/assets/img/recruitment/awaitingPlacement.png";
 
-export const READYFORPLACEMENT = [
+export const READYFORPLACEMENT = (fosterCarerId: any) => [
   {
     id: 1,
     informationIcon: [
@@ -15,7 +15,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: movedStatusApprovedImg,
-    textForApi:"movedToStatusApproved",
+    textForApi: "movedToStatusApproved",
     text: `Moved to Status "Approved" `,
     informationText: "Agency Policy",
     viewForms: `Applicant Approved`,
@@ -38,7 +38,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: policyReceiptImg,
-    textForApi:"policyReceipts",
+    textForApi: "policyReceipts",
     text: "Policy Receipts",
     informationText: "Receipts Policy",
     viewForms: `View Document`,
@@ -61,7 +61,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: safeguardMeasuresImg,
-    textForApi:"safegaurdingMeasureBCP",
+    textForApi: "safegaurdingMeasureBCP",
     text: "Safeguarding Measures (Before Child Placement)",
     informationText: "Safeguarding Measures",
     viewForms: `View Document`,
@@ -114,7 +114,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: mandatoryTrainingImg,
-    textForApi:"mandatoryTraining",
+    textForApi: "mandatoryTraining",
     text: "Mandatory Training",
     informationText: "Mandatory Training",
     viewForms: `View Policy`,
@@ -128,7 +128,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: riskAssessmentImg,
-    textForApi:"riskAssessments",
+    textForApi: "riskAssessments",
     text: "Risk Assessments",
     informationText: "Risk Assessments",
     viewForms: `View Document`,
@@ -159,11 +159,11 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: placementPreferenceImg,
-    textForApi:"placementPreference",
+    textForApi: "placementPreference",
     text: "Placement Preference",
     informationText: "Placement Preference",
     viewForms: `View Document`,
-    href: "/recruitment/ready-for-placement/placement-preference",
+    href: `/recruitment/ready-for-placement/placement-preference?fosterCarerId=${fosterCarerId}`,
     status: "Passed",
   },
   {
@@ -174,7 +174,7 @@ export const READYFORPLACEMENT = [
       },
     ],
     imgIcon: awaitingPlacementImg,
-    textForApi:"awaitingPlacement",
+    textForApi: "awaitingPlacement",
     text: "Awaiting Placement",
     informationText: "Moved to Status “Awaiting Placement”   ",
     viewForms: `Approved`,

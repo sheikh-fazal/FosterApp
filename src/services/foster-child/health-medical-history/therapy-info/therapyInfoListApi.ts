@@ -30,7 +30,6 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/therapy-info/${payload?.id}`,
         method: "GET",
-        params: payload,
       }),
       providesTags: [TAG],
     }),
@@ -80,7 +79,7 @@ export const therapyDetailsListApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `/therapy-info/document/${payload.id}`,
         method: "PATCH",
-        body: payload.jsonData,
+        body: payload.formData,
       }),
       invalidatesTags: [TAG],
     }),
@@ -95,5 +94,6 @@ export const {
   useAddTherapyDetailsDocsListDataMutation,
   useGetTherapyDetailsDocsListDataQuery,
   useDelTherapyDetailsDocsListDataMutation,
+  useUpdateSingleTherapyDetailsDocsMutation,
   useLazyGetTherapyInfoByidQuery,
 } = therapyDetailsListApi;

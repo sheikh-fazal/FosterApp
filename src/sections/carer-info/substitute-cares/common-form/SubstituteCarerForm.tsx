@@ -13,12 +13,14 @@ import dayjs from "dayjs";
 
 //component function
 export default function SubstituteCarerForm(props: any) {
-  const { disabled, onSubmit, status, onEdit }: any = props;
+  const { onSubmit, status, onEdit }: any = props;
 
   const params = useRouter();
+  const id = params?.query?.carerId;
+
   const { data, isSuccess, isError, isLoading } =
-    useGetSubstituteCarerByIdQuery(params.query?.carerId, {
-      skip: !!!params.query?.carerId,
+    useGetSubstituteCarerByIdQuery(id, {
+      skip: !!!id,
     });
 
   const methods: any = useForm({
@@ -31,8 +33,7 @@ export default function SubstituteCarerForm(props: any) {
   const { reset, handleSubmit } = methods;
 
   const onSubmitHandler = (data: any) => {
-    onSubmit(data);
-    onEdit({ ...data, id: params.query?.carerId });
+    id ? onEdit({ body: data, id: id }) : onSubmit(data);
     // reset();
   };
   // updating defaultValues
@@ -40,12 +41,12 @@ export default function SubstituteCarerForm(props: any) {
   useEffect(() => {
     reset((formValues: any) => ({
       ...formValues,
-      ...data?.[0],
-      dateOfBirth: new Date(dayjs(data?.[0]?.dateOfBirth).format("MM/DD/YYYY")),
-      dateOfVisit: new Date(dayjs(data?.[0]?.dateOfVisit).format("MM/DD/YYYY")),
+      ...data?.data,
+      dateOfBirth: new Date(data?.data?.dateOfBirth),
+      dateOfVisit: new Date(data?.data?.dateOfVisit),
     }));
-  }, [data]);
-  console.log(!!params.query?.carerId);
+  }, [data, reset]);
+
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>
@@ -74,7 +75,7 @@ export default function SubstituteCarerForm(props: any) {
             </Grid>
           );
         })}
-        {!disabled && (
+        {!params.query?.view && (
           <Grid item xs={12} container gap={3}>
             <LoadingButton
               loading={status?.isLoading}
@@ -96,6 +97,8 @@ export default function SubstituteCarerForm(props: any) {
                 ? "Try Again"
                 : status?.isSuccess
                 ? "Submitted"
+                : !!data?.data
+                ? "Edit"
                 : "Submit"}
             </LoadingButton>
             <Button
@@ -122,7 +125,7 @@ export default function SubstituteCarerForm(props: any) {
     </FormProvider>
   );
   // if (status?.isError) return <Error />;
-  // if (status?.isLoading || isLoading) return <SkeletonFormdata />;
+  if (isLoading) return <SkeletonFormdata />;
   // if (status?.isSuccess)
   // else
   return formEl;

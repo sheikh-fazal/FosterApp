@@ -5,7 +5,10 @@ import { useRouter } from "next/router";
 import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import usePath from "@root/hooks/usePath";
 
@@ -44,6 +47,7 @@ export default function BackupCarer() {
       offset: "0",
       type: "BC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
 
   const title = "Backup Carer List";
 
@@ -84,11 +88,18 @@ export default function BackupCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
+              deleteHandler(info.row.original);
               alert("delete");
             }}
             size="small"
@@ -113,18 +124,18 @@ export default function BackupCarer() {
       familyDetails: "18 siblings",
     },
   ];
-  const status = {
-    isLoading: false,
-    isFetching: false,
-    isError: false,
-    isSuccess: true,
-  };
+  // const status = {
+  //   isLoading: false,
+  //   isFetching: false,
+  //   isError: false,
+  //   isSuccess: true,
+  // };
   const meta = {
     page: "1",
     pages: "1",
   };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -143,9 +154,9 @@ export default function BackupCarer() {
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
-        tableData={data?.backup_carer_details}
         // meta={meta}
-        meta={data?.meta}
+        tableData={data?.data?.carers}
+        meta={data?.data?.meta}
         title={title}
         searchedText={searchTextHandler}
         apiStatus={{ isSuccess, isLoading, isError }}

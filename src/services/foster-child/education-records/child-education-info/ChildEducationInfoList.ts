@@ -1,5 +1,4 @@
 import { baseAPI } from "@root/services/baseApi";
-
 export const ChildEducationInfoList = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllEducationInfoListData: builder.query({
@@ -43,7 +42,6 @@ export const ChildEducationInfoList = baseAPI.injectEndpoints({
     }),
   }),
 });
-
 export const {
   useGetAllEducationInfoListDataQuery,
   useLazyGetAllEducationInfoListDataQuery,

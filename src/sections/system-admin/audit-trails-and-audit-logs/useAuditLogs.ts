@@ -6,7 +6,7 @@ export const useAuditLogs = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
   const [fosterCarerFilter, setFosterCarerFilter] = useState({
     selectTime: null,
-    selectDate: null,
+    selectDate: new Date(),
     selectEventTime: null,
     selectAccountType: undefined,
   });

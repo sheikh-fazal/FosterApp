@@ -5,9 +5,13 @@ import { useRouter } from "next/router";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import Page from "@root/components/Page";
 
 // ----------------------------------------------------------------------
 
@@ -43,6 +47,7 @@ export default function SwapCarer() {
       offset: "0",
       type: "SC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
   const title = "Swap Carer List";
 
   const FORMROUTE = `/carer-info/substitute-cares/swap-carer/swap-carer-details?fosterCarerId=${id}`;
@@ -82,11 +87,18 @@ export default function SwapCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
               console.log("delete this", info.row.original);
+              deleteHandler(info.row.original);
               alert("delete");
             }}
             size="small"
@@ -122,7 +134,7 @@ export default function SwapCarer() {
   //   pages: "1",
   // };
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -131,24 +143,20 @@ export default function SwapCarer() {
     console.log(item);
   };
   return (
-    <>
-      <TitleWithBreadcrumbLinks
-        sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS}
-        title={PAGE_TITLE}
-      />
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks sx={{ mb: 2 }} breadcrumbs={BREADCRUMBS} />
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
-        tableData={data?.backup_carer_details}
         // meta={meta}
-        meta={data?.meta}
+        tableData={data?.data?.carers}
+        meta={data?.data?.meta}
         title={title}
         searchedText={searchTextHandler}
         apiStatus={{ isSuccess, isLoading, isError }}
         onPageChange={pageChangeHandler}
         route={FORMROUTE}
       />
-    </>
+    </Page>
   );
 }

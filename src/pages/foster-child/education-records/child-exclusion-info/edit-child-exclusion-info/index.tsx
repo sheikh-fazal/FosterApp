@@ -5,7 +5,12 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditChildExclusionInfo from "@root/sections/foster-child/education-records/child-exclusion-info/edit-child-exclusion-info/EditChildExclusionInfo";
-import { useGetSingleChildExclusionInfoRecordQuery } from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
+import {
+  useDeleteDocumentExclusionInfoRecordMutation,
+  useGetChildExclusionDocumentListQuery,
+  useGetSingleChildExclusionInfoRecordQuery,
+  usePostFosterExclusionDocumentMutation,
+} from "@root/services/foster-child/education-records/child-exclusion-info/childExclusionInfo";
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
 
@@ -36,9 +41,30 @@ export default function EditChildExclusionInfoPage() {
   const [tabsArr, setTabsArr] = useState(["Exclusion info", "Upload Document"]);
   const router = useRouter();
   const id = Object.keys(router?.query)[0];
+  const formData = new FormData();
 
   const { data, isError, isSuccess, isLoading } =
     useGetSingleChildExclusionInfoRecordQuery(id);
+  const {
+    data: exclusionDocumentList,
+    isError: exclusionDocumentError,
+    isSuccess: exclusionDocumentSuccess,
+    isLoading: exclusionDocumentLoading,
+    isFetching: exclusionDocumentFetching,
+  } = useGetChildExclusionDocumentListQuery(id);
+  const [postExclusionDocumentData] = usePostFosterExclusionDocumentMutation();
+  const [deleteDocument] = useDeleteDocumentExclusionInfoRecordMutation();
+
+  console.log(exclusionDocumentList);
+
+  const postExclusionDocument = async (exclusionData: any) => {
+    formData.append("type", exclusionData.documentType);
+    formData.append("documentDate", exclusionData.documentDate);
+    formData.append("password", exclusionData.password);
+    formData.append("file", exclusionData.chosenFile);
+    formData.append("exclusionId", id);
+    const res = await postExclusionDocumentData(formData);
+  };
 
   return (
     <Page title={PAGE_TITLE}>
@@ -66,19 +92,16 @@ export default function EditChildExclusionInfoPage() {
 
         <UploadDocuments
           readOnly={false}
-          tableData={[]}
+          tableData={exclusionDocumentList?.data?.exclusion_documents}
           searchParam={() => {}}
-          isLoading={false}
-          isFetching={false}
-          column={[
-            "documentType",
-            "documentType",
-            "date",
-            "uploadBy",
-            "password",
-          ]}
-          isSuccess={false}
-          modalData={(data: any) => console.log(data)}
+          isLoading={exclusionDocumentLoading}
+          isFetching={exclusionDocumentFetching}
+          column={["documentName", "type", "date", "uploadBy", "password"]}
+          isSuccess={exclusionDocumentSuccess}
+          onDelete={async (data: any) => {
+            await deleteDocument(data?.id);
+          }}
+          modalData={(data: any) => postExclusionDocument(data)}
         />
       </HorizaontalTabs>
     </Page>

@@ -2,7 +2,11 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-import { childInformationDefaultValues, formatters } from "./RiskAssessmentData";
+import {
+  childInformationDefaultValues,
+  childInformationFormSchema,
+  formatters,
+} from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -14,6 +18,7 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const useRAChildInformationForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
+
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -30,10 +35,6 @@ export const useRAChildInformationForm = () => {
         return childInformationDefaultValues;
       }
       const responseData = { ...data.data.raChildInfo };
-      console.log(
-        "🚀 ~ file: useRAChildInformationForm.tsx:31 ~ getDefaultValue ~ responseData:",
-        responseData
-      );
 
       for (const key in responseData) {
         const value = responseData[key];
@@ -47,7 +48,7 @@ export const useRAChildInformationForm = () => {
     }
   };
   const methods: any = useForm({
-    // resolver: yupResolver(childDetailsformSchema),
+    resolver: yupResolver(childInformationFormSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -57,7 +58,7 @@ export const useRAChildInformationForm = () => {
   } = methods;
 
   //OnSubmit Function
-  const onSubmit = async (data: any) => {
+   const onSubmit = async (data: any) => {
     if (action === "edit") {
       setIsFetching(true);
 

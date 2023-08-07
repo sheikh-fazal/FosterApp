@@ -15,16 +15,16 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 export const defaultValues = {
   dateOfApplication: new Date(todayDate),
   dateOfAssessmentCompleted: new Date(todayDate),
-  anyComments: "This is a test",
-  summaryOfKeyFactor: "summary key factor",
-  recommendation: "This is a test",
+  anyComments: "",
+  summaryOfKeyFactor: "",
+  recommendation: "",
 
-  nameOfSocialWorker: "Name",
+  nameOfSocialWorker: "",
   dateOfSocialWorker: new Date(todayDate),
-  signatureOfSocialWorker: "Signature",
+  signatureOfSocialWorker: "",
 
-  nameOfTeamManager: "Brown Cater",
-  signatureOfTeamManager: "signature",
+  nameOfTeamManager: "",
+  signatureOfTeamManager: "",
   dateOfTeamManager: new Date(todayDate),
 };
 

@@ -104,7 +104,7 @@ export const useApiInventoryTable = () => {
               })
             }
           />
-          <TableAction
+          {/* <TableAction
             size="small"
             type="view"
             onClicked={() =>
@@ -113,7 +113,7 @@ export const useApiInventoryTable = () => {
                 query: { action: "view", id: "" },
               })
             }
-          />
+          /> */}
           <TableAction
             size="small"
             type="delete"

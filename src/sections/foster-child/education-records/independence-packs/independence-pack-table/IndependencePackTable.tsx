@@ -7,7 +7,7 @@ import LevelButtons from "../Levels/LevelButtons";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import { useIndependencePackTable } from "./useIndependencePackTable";
-import { IndependencePackData, columns } from "..";
+import { columns } from "..";
 import LevelButtonsModal from "../Levels/LevelButtonsModal";
 import SingleLevel from "../Levels/SingleLevel";
 export default function IndependencePackTable() {
@@ -25,7 +25,11 @@ export default function IndependencePackTable() {
     isSuccess,
     Independentpacks,
     meta,
+    listDeleteHandler,
   } = useIndependencePackTable();
+
+  let { fosterChildId } = router.query;
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -54,7 +58,7 @@ export default function IndependencePackTable() {
           />
           <CustomTable
             data={Independentpacks}
-            columns={columns}
+            columns={columns({ fosterChildId, listDeleteHandler })}
             isLoading={isLoading}
             isFetching={isFetching}
             isError={isError}

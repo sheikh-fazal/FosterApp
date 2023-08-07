@@ -1,4 +1,4 @@
-import {  RHFSelect, RHFTextField } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
@@ -316,9 +316,9 @@ export const defaultValues = {
   urnNumber: "Nil",
   complaintAgainstPersonCategory: null,
   complaintAgainstPerson: null,
-  complaintDate: null,
-  agencyReportedDate: null,
-  reviewDate: null,
+  complaintDate: new Date(),
+  agencyReportedDate: new Date(),
+  reviewDate: new Date(),
   natureOfComplaint: "Nil",
   personNotifiedAgency: "Nil",
   personCompletingReport: "Nil",
@@ -333,14 +333,14 @@ export const defaultValues = {
   isThisSubstained: null,
   teamManagerRecommendation: "Nil",
   hasRegisteredManagerInformed: true,
-  registeredManagerInformedDate: null,
+  registeredManagerInformedDate: new Date(),
   hasOfstedBeenInformed: true,
-  ofstedNotifiedDate: null,
+  ofstedNotifiedDate: new Date(),
   isSchedule: true,
   reportedTo: "Nil",
   registeredManagerRecommendation: "Nil",
-  closureDate: null,
-  nextAlertDate: null,
+  closureDate: new Date(),
+  nextAlertDate: new Date(),
   status: null,
 };
 export const formatters: any = {};
@@ -365,8 +365,8 @@ export const formSchema = Yup.object().shape({
   complaintOutcome: Yup.string().required("Required"),
   isThisSubstained: Yup.string().required("Required"),
   teamManagerRecommendation: Yup.string().required("Required"),
-  registeredManagerInformedDate: Yup.date().required("Required"),
-  ofstedNotifiedDate: Yup.date().required("Required"),
+  // registeredManagerInformedDate: Yup.date().required("Required"),
+  // ofstedNotifiedDate: Yup.date().required("Required"),
   reportedTo: Yup.string().required("Required"),
   registeredManagerRecommendation: Yup.string().required("Required"),
   closureDate: Yup.date().required("Required"),

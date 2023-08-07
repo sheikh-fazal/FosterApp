@@ -49,7 +49,7 @@ export default function AddHealthAndSafetyTableTabs() {
 
       {/* return ( */}
       <HorizaontalTabs tabsDataArray={tabsData}>
-        <HouseholdConditionA
+        <HouseholdConditionA 
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
         />

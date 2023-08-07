@@ -1,10 +1,16 @@
 import { SOCIALWORKERFORMDATA } from ".";
 import { FormProvider } from "@root/components/hook-form";
-import { Box, Button, Dialog, DialogContent, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import useDeregSocialWorkerDialogbox from "./useDeregSocialWorkerDialogbox";
-import SocialWorkerIcon from "../../../../assets/svg/de-register/social-worker-icon.svg"
+import SocialWorkerIcon from "../../../../assets/svg/de-register/social-worker-icon.svg";
 import Image from "next/image";
-import { useState } from "react";
 
 const DeregSocialWorkerDialogbox = (props: any) => {
   const {
@@ -16,10 +22,13 @@ const DeregSocialWorkerDialogbox = (props: any) => {
     isEdit = false,
     handleEdit,
     disabled = false,
-    handleViewChecklist
+    handleViewChecklist,
   } = props;
 
-  const { methods, handleSubmit, onSubmit, viewCheckList } = useDeregSocialWorkerDialogbox();
+  const { methods, handleSubmit, onSubmit, viewCheckList } =
+    useDeregSocialWorkerDialogbox();
+
+  console.log(viewCheckList);
 
   return (
     <>
@@ -37,11 +46,20 @@ const DeregSocialWorkerDialogbox = (props: any) => {
             color: "white",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center"
+            alignItems: "center",
           }}
         >
-          <Typography component="h2" sx={{ fontSize: 20, fontWeight: 700 }}>Social Worker Info</Typography>
-          {isEdit && <Image src={SocialWorkerIcon} alt="" onClick={handleEdit} style={{ cursor: 'pointer' }} />}
+          <Typography component="h2" sx={{ fontSize: 20, fontWeight: 700 }}>
+            Social Worker Info
+          </Typography>
+          {isEdit && (
+            <Image
+              src={SocialWorkerIcon}
+              alt=""
+              onClick={handleEdit}
+              style={{ cursor: "pointer" }}
+            />
+          )}
         </Box>
 
         <DialogContent>
@@ -52,13 +70,6 @@ const DeregSocialWorkerDialogbox = (props: any) => {
                   <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                     <>
                       <Grid>
-                        {/* <Typography
-                          color={theme.palette.primary.main}
-                          variant="body2"
-                        >
-                          {form.heading}
-                        </Typography> */}
-
                         <form.component
                           disabled={disabled}
                           size="small"
@@ -66,10 +77,10 @@ const DeregSocialWorkerDialogbox = (props: any) => {
                         >
                           {form.otherOptions
                             ? form.options?.map((option: any) => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))
                             : null}
                         </form.component>
                       </Grid>
@@ -92,7 +103,9 @@ const DeregSocialWorkerDialogbox = (props: any) => {
                   Cancel
                 </Button>
                 <Button
-                  onClick={viewCheckList ? handleViewChecklist : handleSubmitForm}
+                  onClick={
+                    disabled ? handleViewChecklist : handleSubmitForm
+                  }
                   type="submit"
                   sx={{
                     color: "#fff",
@@ -101,7 +114,7 @@ const DeregSocialWorkerDialogbox = (props: any) => {
                   size="large"
                   variant="contained"
                 >
-                  {viewCheckList ? 'View Checklist' : 'Save'}
+                  {disabled ? "View Checklist" : "Save"}
                 </Button>
               </Grid>
             </Grid>
