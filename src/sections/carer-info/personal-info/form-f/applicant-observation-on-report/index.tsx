@@ -13,12 +13,12 @@ const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  nameOfApplicant: "Name",
+  nameOfApplicant: "",
   dateReceiveReport: new Date(todayDate),
-  reportComment: "This is a test",
-  signature: "signature",
+  reportComment: "",
+  signature: "",
   date: new Date(todayDate),
-  signature1: "signature",
+  signature1: "",
   date1: new Date(todayDate),
 };
 

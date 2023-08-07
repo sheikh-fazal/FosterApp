@@ -3,50 +3,50 @@ import { RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 
 export const defaultValues = {
-  familyBackground: "This is a test",
-  familyBackgroundAnalysis: "Analysis",
+  familyBackground: "",
+  familyBackgroundAnalysis: "",
 
-  adultLife: "This is a test",
-  adultLifeAnalysis: "Analysis",
+  adultLife: "",
+  adultLifeAnalysis: "",
 
-  personalityAndRelationship: "This is a test",
-  personalityAndRelationshipAnalysis: "Analysis",
+  personalityAndRelationship: "",
+  personalityAndRelationshipAnalysis: "",
 
-  houseHoldMembers: "This is a test",
-  houseHoldMemberAnalysis: "Analysis",
+  houseHoldMembers: "",
+  houseHoldMemberAnalysis: "",
 
-  otherChildren: "This is a test",
-  otherChildrenAnalysis: "Analysis",
+  otherChildren: "",
+  otherChildrenAnalysis: "",
 
-  careforChildren: "This is a test",
-  careforChildrenAnalysis: "Analysis",
+  careforChildren: "",
+  careforChildrenAnalysis: "",
 
-  careForChildrenProvideStructure: "This is a test",
-  careForchildrenProvideStructureAnalysis: "Analysis",
+  careForChildrenProvideStructure: "",
+  careForchildrenProvideStructureAnalysis: "",
 
-  careForChildrenProvideDurability: "This is a test",
-  careForChildrenProvideDurabilityAnalysis: "Analysis",
+  careForChildrenProvideDurability: "",
+  careForChildrenProvideDurabilityAnalysis: "",
 
-  workEffectively: "This is a test",
-  workEffectivelyAnalysis: "Analysis",
+  workEffectively: "",
+  workEffectivelyAnalysis: "",
 
-  understandingIdentity: "This is a test",
-  understandingIdentityAnalysis: "Analysis",
+  understandingIdentity: "",
+  understandingIdentityAnalysis: "",
 
-  motivationAndTiming: "This is a test",
-  motivationAndTimingAnalysis: "Analysis",
+  motivationAndTiming: "",
+  motivationAndTimingAnalysis: "",
 
-  preparationAndTraining: "This is a test",
-  preparationAndTrainingAnalysis: "Analysis",
+  preparationAndTraining: "",
+  preparationAndTrainingAnalysis: "",
 
-  Anticipated: "This is a test",
-  AnticipatedAnalysis: "Analysis",
+  Anticipated: "",
+  AnticipatedAnalysis: "",
 
-  understandingOfSafer: "This is a test",
-  understandingOfSaferAnalysis: "Analysis",
+  understandingOfSafer: "",
+  understandingOfSaferAnalysis: "",
 
-  futureTraining: "This is a test",
-  futureTrainingAnalysis: "Analysis",
+  futureTraining: "",
+  futureTrainingAnalysis: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -111,7 +111,7 @@ export const aboutApplicantsFormData = [
     id: 2,
     componentProps: {
       name: "familyBackgroundAnalysis",
-      label: "Analysis",
+      label: "",
       multiline: true,
       minRows: 3,
     },

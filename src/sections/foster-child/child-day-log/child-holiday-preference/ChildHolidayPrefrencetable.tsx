@@ -8,19 +8,30 @@ import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import { dummy } from ".";
+import useChildholidayPrefrenceTable from "./useChildholidayPrefrenceTable";
+import useChildholidayPrefrenceFrom from "./useChildholidayPrefrenceFrom";
 const activepath =
   "/foster-child/child-day-log/child-holiday-preference/actions";
 
 const ChildHolidayPrefrencetable = (props: any) => {
-  const { fosterChildId, childHolidayPrefrence } = props;
+  // PROPS
+  const { fosterChildId } = props;
+  //Api handler
+  const {
+    childHolidayList,
+    childHolidayListIsLoading,
+    childHolidayListIsSuccess,
+    childHolidayListIsError,
+    childHolidayListIsFetching,
+    setSearch,
+    headerChangeHandler,
+    pageChangeHandler,
+  } = useChildholidayPrefrenceTable({
+    fosterChildId: fosterChildId,
+  });
+  const { deleteHander } = useChildholidayPrefrenceFrom({});
+  //TABLE COLUMNS
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
     {
       accessorFn: (row: any) => row.fromdate,
       id: "fromdate",
@@ -32,18 +43,18 @@ const ChildHolidayPrefrencetable = (props: any) => {
       accessorFn: (row: any) => row.todate,
       id: "todate",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
-      header: () => <span>Admission Date</span>,
+      header: () => <span>To Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.reason,
+      accessorFn: (row: any) => row.reasonForHolidays,
       id: "reason",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Reason</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.comment,
+      accessorFn: (row: any) => row.comments,
       id: "comment",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Comments</span>,
@@ -55,7 +66,9 @@ const ChildHolidayPrefrencetable = (props: any) => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt onDeleteClick={() => {}} />
+            <DeletePrompt
+              onDeleteClick={() =>deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -104,7 +117,9 @@ const ChildHolidayPrefrencetable = (props: any) => {
                   title="Holiday Ideas"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
@@ -114,17 +129,17 @@ const ChildHolidayPrefrencetable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={childHolidayList?.data?.child_holiday_prefrences ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={childHolidayListIsLoading}
+                isFetching={childHolidayListIsFetching}
+                isError={childHolidayListIsError}
+                isSuccess={childHolidayListIsSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                //   totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
-                //   currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
-                //   onPageChange={pageChangeHandler}
+                totalPages={childHolidayList?.data?.meta?.pages ?? 0}
+                currentPage={childHolidayList?.data?.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>
