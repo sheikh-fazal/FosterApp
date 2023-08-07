@@ -7,14 +7,16 @@ import { LeisureActivitiesTable } from "@root/sections/foster-child/education-re
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import PlacementAndDischargeHistoryList from "@root/sections/foster-child/other-information/placement-and-discharge-history/PlacementAndDischargeHistoryList";
+import PlacementDischargeForm from "@root/sections/foster-child/other-information/placement-and-discharge-history/placement-discharge/PlacementDischargeForm";
+import BackupCarerPlacementForm from "@root/sections/foster-child/other-information/placement-and-discharge-history/backup-carer-placement-discharge/BackupCarerPlacementForm";
 
 const PAGE_TITLE = "Placement and Discharge History";
 
-PlacementAndDischargeHistory.getLayout = function getLayout(page: any) {
+BackupCarerPlacement.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
-export default function PlacementAndDischargeHistory() {
+export default function BackupCarerPlacement() {
   const router: any = useRouter();
   const { fosterChildId } = router.query;
   let BREADCRUMBS = [
@@ -38,7 +40,7 @@ export default function PlacementAndDischargeHistory() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <PlacementAndDischargeHistoryList fosterChildId={fosterChildId} />
+      <BackupCarerPlacementForm />
     </>
   );
 }
