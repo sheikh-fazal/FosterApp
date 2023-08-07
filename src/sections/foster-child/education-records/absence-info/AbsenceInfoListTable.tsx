@@ -1,5 +1,4 @@
 import React from "react";
-import { data } from ".";
 import router, { useRouter } from "next/router";
 import { Box, Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -108,6 +107,7 @@ export default function AbsenceInfoListTable(prop: any) {
           isError={isError}
           isSuccess={isSuccess}
           currentPage={data?.meta?.page}
+          totalPages={data?.meta?.pages}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
         />

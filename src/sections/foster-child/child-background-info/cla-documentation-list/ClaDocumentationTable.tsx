@@ -66,11 +66,6 @@ export default function ClaDocumentationListTable(prop: any) {
                 query: { fosterChildId: fosterChildId },
               })
             }
-            // onClicked={() =>
-            //   router.push(
-            //     `/foster-child/child-background-info/cla-documentation/${info.getValue()}/edit`
-            //   )
-            // }
           />
           <DeletePrompt
             onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}

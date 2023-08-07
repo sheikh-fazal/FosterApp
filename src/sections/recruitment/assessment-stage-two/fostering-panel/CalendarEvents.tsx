@@ -12,15 +12,15 @@ export default function CalendarEvents() {
 
   let dateArray: any = [
     {
-      date: "2023-06-10T09:47:17.456000Z",
+      date: "2023-08-05T09:47:17.456000Z",
       colorName: "highlight",
     },
     {
-      date: "2023-06-13T09:47:17.456000Z",
+      date: "2023-08-13T09:47:17.456000Z",
       colorName: "highlight",
     },
     {
-      date: "2023-06-29T09:47:17.456000Z",
+      date: "2023-08-14T09:47:17.456000Z",
       colorName: "highlight",
     },
   ];

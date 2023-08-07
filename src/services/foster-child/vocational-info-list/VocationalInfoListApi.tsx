@@ -18,9 +18,10 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
     }),
     addVocationalInfo: builder.mutation({
       //2
-      query: (id) => ({
-        url: `/vocational-info-list/add?fosterCarerId=${id}`,
+      query: ({ body, id }) => ({
+        url: `/vocational-info-list/add?fosterChildId=${id}`,
         method: "POST",
+        body,
       }),
       invalidatesTags: [TAG],
     }),
@@ -53,9 +54,10 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
     }),
     addVocationalInfoDocument: builder.mutation({
       //6
-      query: (id) => ({
+      query: ({ id, body }) => ({
         url: `vocational-info-list/documents?fosterCarerId=${id}`,
         method: "POST",
+        body,
       }),
       invalidatesTags: [DOCTAG],
     }),
@@ -75,7 +77,7 @@ export const {
   useAddVocationalInfoMutation, //2
   useDeleteVocationalInfoMutation, //3
   useEditVocationalInfoMutation, //4
-  useLazyVocationalInfoListQuery, //5
+  useVocationalInfoDocumentsQuery, //5
   useAddVocationalInfoDocumentMutation, //6
   useDeleteVocationalInfoDocumentMutation, //7
 } = VocationalInfoListApi;
