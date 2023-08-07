@@ -50,7 +50,7 @@ export default function ViewStudySupportInfo() {
     isSuccess: isDocumentSuccess,
   } = useGetUploadDocumentsStudySupportInfoQuery(params);
 
-  const tableData: any = documentData?.data?.["education-records-document"];
+  const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   const pageChangeHandler = (page: any) => {
