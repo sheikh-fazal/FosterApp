@@ -32,7 +32,7 @@ const SafeCarePolicyList = () => {
         showAddBtn={true}
         onAdd={() =>
           router.push(
-            `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${query?.fosterChildId}&action=create`
+            `/foster-child/other-information/safe-care-policy-list/details?fosterChildId=${query?.fosterChildId}&action=create`
           )
         }
         onChanged={(data: any) => {
@@ -41,7 +41,7 @@ const SafeCarePolicyList = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.safe_care_policy}
+        data={data?.data?.safeCarePolicy}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
