@@ -2,13 +2,13 @@ import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 
 export const defaultValues = {
-  address: "address 1",
-  addressLine2: "address 2",
-  townCity: "city",
-  Telephone: "phone",
-  county: "USD",
-  country: "USD",
-  postalCode: "123",
+  address: "",
+  addressLine2: "",
+  townCity: "",
+  Telephone: "",
+  county: "",
+  country: "",
+  postalCode: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -27,6 +27,8 @@ export const personalDetails = [
     componentProps: {
       name: "address",
       label: "Address",
+      fullWidth: true,
+
       multiline: true,
       minRows: 3,
     },
@@ -38,6 +40,8 @@ export const personalDetails = [
     componentProps: {
       name: "addressLine2",
       label: "Address Line 2",
+      fullWidth: true,
+
       multiline: true,
       minRows: 3,
     },
@@ -49,6 +53,7 @@ export const personalDetails = [
     componentProps: {
       name: "townCity",
       label: "Town City",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -58,6 +63,7 @@ export const personalDetails = [
     componentProps: {
       name: "Telephone",
       label: "Telephone",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -124,6 +130,7 @@ export const personalDetails = [
     componentProps: {
       name: "postalCode",
       label: "postalCode",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
