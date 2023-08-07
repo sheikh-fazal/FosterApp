@@ -12,7 +12,7 @@ const useHospitalizationTable = () => {
     isLoading: hospitalizationisLoading,
     isFetching: hospitalizationisFetching,
     isSuccess: hospitalizationisSuccess,
-  } = useGetHospitalisationInfoListQuery({ params });
+  } = useGetHospitalisationInfoListQuery({ params: { params, search } });
   return {
     hospitalizationdata,
     hospitalizationIserror,
@@ -21,6 +21,7 @@ const useHospitalizationTable = () => {
     hospitalizationisSuccess,
     headerChangeHandler,
     pageChangeHandler,
+    setSearch,
     sortChangeHandler,
   };
 };

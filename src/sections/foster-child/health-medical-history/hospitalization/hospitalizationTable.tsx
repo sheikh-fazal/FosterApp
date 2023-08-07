@@ -96,6 +96,7 @@ const HospitalizationTable = (props: any) => {
     hospitalizationisFetching,
     hospitalizationisSuccess,
     pageChangeHandler,
+    setSearch,
   } = useHospitalizationTable();
   return (
     <Box>
@@ -109,7 +110,9 @@ const HospitalizationTable = (props: any) => {
                   title="hospitalization"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,

@@ -39,7 +39,7 @@ export const ChildHolidayPreferenceData = [
     id: 3,
     gridLength: 12,
     otherOptions: {
-      name: "reasonForHoliday",
+      name: "reasonForHolidays",
       label: "Reason for Holiday",
       multiline: true,
       minRows: 3,
@@ -51,7 +51,7 @@ export const ChildHolidayPreferenceData = [
     id: 4,
     gridLength: 12,
     otherOptions: {
-      name: "contactDetailsDuringHoliday",
+      name: "contactDetails",
       label: "Contact Details during Holidays",
       multiline: true,
       minRows: 3,
@@ -62,9 +62,9 @@ export const ChildHolidayPreferenceData = [
 
   {
     id: 6,
-    gridLength: 6,
+    gridLength: 12,
     otherOptions: {
-      name: "anycomments",
+      name: "comments",
       label: "Any Comments",
       multiline: true,
       minRows: 3,
@@ -76,14 +76,14 @@ export const ChildHolidayPreferenceData = [
 export const ChildHolidayPreferenceValue = {
   fromDate: new Date(),
   toDate: new Date(),
-  reasonForHoliday: "",
-  contactDetailsDuringHoliday: "",
-  anycomments: "",
+  reasonForHolidays: "",
+  contactDetails: "",
+  comments: "",
 };
 export const FormSchema = Yup.object().shape({
   fromDate: Yup.date().required("required"),
   toDate: Yup.date().required("required"),
-  reasonForHoliday: Yup.string().required("required"),
-  contactDetailsDuringHoliday: Yup.string().required("required"),
-  anycomments: Yup.string().required("required"),
+  reasonForHolidays: Yup.string().required("required"),
+  contactDetails: Yup.string().required("required"),
+  comments: Yup.string().required("required"),
 });

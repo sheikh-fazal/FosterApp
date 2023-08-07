@@ -1,14 +1,6 @@
-// @mui
 import { Grid, Box, Button, Typography, Card } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
-import {
-  FormProvider,
-  RHFCheckbox,
-  RHFTextField,
-} from "@root/components/hook-form";
-//
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import {
   formData1,
   ListOfSkills,
@@ -19,11 +11,10 @@ import { useIndependencePackFormSilver } from "./useIndependencePackFormSilver";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import SingleLevel from "../../Levels/SingleLevel";
 import BronzeLevel from "@root/assets/svg/bronze-level";
-import { RHFUploadFile } from "@root/sections/carer-info/personal-info/application-form/basic-information/RHFUploadFile";
 import { usePostUploadEvidenceMutation } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 
 export default function IndependencePackFormSilver(props: any) {
-  const { formType, level } = props;
+  const { level, action, inedependencePackData } = props;
   const {
     methods,
     handleSubmit,
@@ -32,7 +23,7 @@ export default function IndependencePackFormSilver(props: any) {
     isDirty,
     theme,
     router,
-  } = useIndependencePackFormSilver();
+  } = useIndependencePackFormSilver({ action, inedependencePackData });
   let [postUploadEvidence, { isLoading: isLoadingPost }] =
     usePostUploadEvidenceMutation();
   return (
@@ -41,7 +32,7 @@ export default function IndependencePackFormSilver(props: any) {
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>
             <RHFTextField
-              disabled={props.disabled}
+              disabled={action == "view" ? true : false}
               size="small"
               name="name"
               label="Name"
@@ -49,7 +40,7 @@ export default function IndependencePackFormSilver(props: any) {
             />
             <Box sx={{ mt: 4 }}>
               <RHFDatePicker
-                disabled={props.disabled}
+                disabled={action == "view" ? true : false}
                 size="small"
                 name="fromDate"
                 label="From Date"
@@ -68,7 +59,7 @@ export default function IndependencePackFormSilver(props: any) {
             return (
               <Grid item xs={12} md={form?.gridLength} key={i}>
                 <form.component
-                  disabled={props.disabled}
+                  disabled={action == "view" ? true : false}
                   size="small"
                   {...form.otherOptions}
                 >
@@ -98,7 +89,7 @@ export default function IndependencePackFormSilver(props: any) {
               return (
                 <Grid item xl={12} xs={12} key={i}>
                   <form.component
-                    disabled={props.disabled}
+                    disabled={action == "view" ? true : false}
                     size="small"
                     apiCall={form.otherOptions.file ? postUploadEvidence : null}
                     {...form.otherOptions}
@@ -130,7 +121,7 @@ export default function IndependencePackFormSilver(props: any) {
               return (
                 <Grid item xl={12} xs={12} key={i}>
                   <form.component
-                    disabled={props.disabled}
+                    disabled={action == "view" ? true : false}
                     size="small"
                     apiCall={form.otherOptions.file ? postUploadEvidence : null}
                     {...form.otherOptions}
@@ -153,7 +144,7 @@ export default function IndependencePackFormSilver(props: any) {
               <Grid item xs={12} md={form?.gridLength} key={i}>
                 <form.component
                   {...form.otherOptions}
-                  disabled={props.disabled}
+                  disabled={action == "view" ? true : false}
                   size="small"
                 >
                   {form.otherOptions?.select
@@ -174,7 +165,7 @@ export default function IndependencePackFormSilver(props: any) {
                 display: "flex",
               }}
             >
-              {formType == "view" ? (
+              {action == "view" ? (
                 ""
               ) : (
                 <LoadingButton
@@ -182,7 +173,7 @@ export default function IndependencePackFormSilver(props: any) {
                   type="submit"
                   variant="contained"
                   loading={isSubmitting}
-                  disabled={!isDirty}
+                  disabled={action == "view" ? true : false}
                 >
                   Submit
                 </LoadingButton>

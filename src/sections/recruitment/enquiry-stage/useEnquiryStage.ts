@@ -7,9 +7,9 @@ import React, { useEffect } from "react";
 
 export const useEnquiryStage: any = () => {
   const router = useRouter();
-  const _id  = Object.keys(router.query)[0];
+  const { fosterCarerId } = router.query;
 
-  const ENQUIRYSTAGEDATAFunction = ENQUIRYSTAGEDATA(_id);
+  const ENQUIRYSTAGEDATAFunction = ENQUIRYSTAGEDATA(fosterCarerId);
   const [enquiryStageData, setEnquiryStageData] = React.useState(
     ENQUIRYSTAGEDATAFunction
   );

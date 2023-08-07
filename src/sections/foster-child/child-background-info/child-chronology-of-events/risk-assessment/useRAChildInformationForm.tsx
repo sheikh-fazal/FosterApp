@@ -58,31 +58,35 @@ export const useRAChildInformationForm = () => {
   } = methods;
 
   //OnSubmit Function
-  const onSubmit = async (data: any) => {
-    setIsFetching(true);
+   const onSubmit = async (data: any) => {
+    if (action === "edit") {
+      setIsFetching(true);
 
-    editRiskAssessmentList({
-      addRiskAssessmentRequestDto: {
-        raChildInfo: { ...data },
-        fosterChildId,
-        childName: "child",
-        gender: "male",
-        notes: "notes",
-      },
-      id,
-    })
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Edited Successfully", {
-          variant: "success",
-        });
-        setIsFetching(false);
+      editRiskAssessmentList({
+        addRiskAssessmentRequestDto: {
+          raChildInfo: { ...data },
+          fosterChildId,
+          childName: "child",
+          gender: "male",
+          notes: "notes",
+        },
+        id: id,
       })
-      .catch((error: any) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-        setIsFetching(false);
-      });
+        .unwrap()
+        .then((res: any) => {
+          enqueueSnackbar("Information Edited Successfully", {
+            variant: "success",
+          });
+          setIsFetching(false);
+        })
+        .catch((error: any) => {
+          const errMsg = error?.data?.message;
+          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+          setIsFetching(false);
+        });
+    } else {
+      return null;
+    }
   };
   return {
     router,

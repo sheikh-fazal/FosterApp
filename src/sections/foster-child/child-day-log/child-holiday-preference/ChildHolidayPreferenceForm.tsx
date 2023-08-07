@@ -20,14 +20,21 @@ import {
   ChildHolidayPreferenceValue,
   FormSchema,
 } from ".";
+import useChildholidayPrefrenceFrom from "./useChildholidayPrefrenceFrom";
 const backPath = "/foster-child/child-day-log/child-holiday-preference";
 const ChildHolidayPreferenceForm = (props: any) => {
-  const { action, fosterChildId, childHolidayPreferenceId } = props;
+  const { action, fosterChildId, childHolidayPrefrence } = props;
   const theme: any = useTheme();
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useChildholidayPrefrenceFrom({
+      action: action,
+      fosterChildId: fosterChildId,
+      childHolidayPrefrence: childHolidayPrefrence,
+    });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: ChildHolidayPreferenceValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -38,13 +45,14 @@ const ChildHolidayPreferenceForm = (props: any) => {
     reset,
     formState: { errors },
   } = methods;
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit()}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
-              {/* <IsFetching isFetching={isFatching} /> */}
+              <IsFetching isFetching={isFatching} />
               {ChildHolidayPreferenceData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -63,12 +71,7 @@ const ChildHolidayPreferenceForm = (props: any) => {
                         <form.component
                           size="small"
                           {...form.otherOptions}
-                          disabled={
-                            action === "view" ||
-                            (action === "edit" && form.id === 1)
-                              ? true
-                              : false
-                          }
+                          disabled={action === "view"}
                           InputLabelProps={{
                             shrink:
                               action === "view" ||

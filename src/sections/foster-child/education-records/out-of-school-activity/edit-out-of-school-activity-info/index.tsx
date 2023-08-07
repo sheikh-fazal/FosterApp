@@ -1,7 +1,4 @@
-import {
-  RHFSelect,
-  RHFTextField,
-} from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 export const EditOutSchoolActivityInfoData = [
@@ -11,6 +8,7 @@ export const EditOutSchoolActivityInfoData = [
     otherOptions: {
       name: "activityType",
       label: "Activity Type",
+      fullWidth:true
     },
     component: RHFTextField,
   },
@@ -29,7 +27,7 @@ export const EditOutSchoolActivityInfoData = [
     gridLength: 6,
     otherOptions: {
       label: "To Date",
-      name: "toDate",
+      name: "outOfDate",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -41,6 +39,7 @@ export const EditOutSchoolActivityInfoData = [
       label: "Comments",
       name: "comments",
       multiline: true,
+      fullWidth:true,
       minRows: 2,
     },
     component: RHFTextField,

@@ -3,7 +3,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 
-export const columns = [
+export const columns = (deleteList: any) => [
   // {
   //   id: "select",
   //   header: ({ table, row }: any) => {
@@ -36,7 +36,7 @@ export const columns = [
   // },
   {
     accessorFn: (row: any) => row?.inspectionDate,
-    
+
     id: "inspectionDate",
     cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
     header: "Inspection Date",
@@ -61,10 +61,9 @@ export const columns = [
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction type="edit" onClicked={() => alert("Edit")} />
-        <TableAction type="delete" onClicked={() => alert("Delete")} />
-        {/* <DeleteModel onDeleteClick={() => {}} /> */}
+        <TableAction type="delete" onClicked={() => deleteList(info)} />
+
         <TableAction type="view" onClicked={() => alert("View")} />
-        {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
       </Box>
     ),
     header: () => <span>actions</span>,

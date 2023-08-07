@@ -59,7 +59,6 @@ export const useRAChildRiskDetailsForm = () => {
 
   //OnSubmit Function
   const onSubmit = async (data: any) => {
-    console.log("🚀 ~ file: useRAChildRiskDetailsForm.tsx:62 ~ onSubmit ~ data:", data);
     if (action === "edit") {
       setIsFetching(true);
 

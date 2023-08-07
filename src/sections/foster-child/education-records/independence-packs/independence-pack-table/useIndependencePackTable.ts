@@ -1,8 +1,12 @@
 import { useTheme } from "@mui/material";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useGetIndependencePacksQuery } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
+import {
+  useDeleteIndependencePackMutation,
+  useGetIndependencePacksQuery,
+} from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import { useRef } from "react";
 
 export const useIndependencePackTable = () => {
@@ -21,6 +25,22 @@ export const useIndependencePackTable = () => {
   const Independentpacks = data?.data?.Independentpacks;
   const meta = data?.data?.meta;
 
+  const [deleteIndependencePack] = useDeleteIndependencePackMutation();
+
+  const listDeleteHandler = (id: any) => {
+    deleteIndependencePack(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Record Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
   return {
     router,
     tableHeaderRef,
@@ -34,5 +54,6 @@ export const useIndependencePackTable = () => {
     isSuccess,
     Independentpacks,
     meta,
+    listDeleteHandler,
   };
 };

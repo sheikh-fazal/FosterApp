@@ -6,13 +6,24 @@ export const healthAndSafetyApi = baseAPI.injectEndpoints({
       query: () => ({
         url: `carer-Info/list-health-and-safety`,
       }),
-      // postHouseHoldConditionAData: builder.mutation({
-      //   query: (body: any) => ({
-      //     url: ``,
-      //     method: "POST",
-      //   }),
-      // }),
+    }),
+    deleteHealthAndSafetyListData: builder.mutation({
+      query: (id: any) => ({
+        url: `carer-Info/delete-health-and-safety${id}`,
+        method: "DELETE",
+      }),
+    }),
+    houseHoldConditionAPost: builder.mutation({
+      query: (payload: any) => ({
+        url: `carer-Info/add-health-and-safety`,
+        method: "POST",
+        body: payload,
+      }),
     }),
   }),
 });
-export const { useGetHealthAndSafetyListDataQuery } = healthAndSafetyApi;
+export const {
+  useGetHealthAndSafetyListDataQuery,
+  useDeleteHealthAndSafetyListDataMutation,
+  useHouseHoldConditionAPostMutation,
+} = healthAndSafetyApi;
