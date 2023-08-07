@@ -4,7 +4,7 @@ export const safeCarePolicyApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     addSafeCarePolicyListData: builder.mutation({
       query: (payload: any) => ({
-        url: `/foster-child/add-safe-care-policy/`,
+        url: `/foster-child/add-safe-care-policy/${payload.id}`,
         method: "POST",
         body: payload.jsonData,
       }),
@@ -12,7 +12,7 @@ export const safeCarePolicyApi = baseAPI.injectEndpoints({
     }),
     getSafeCarePolicyListData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: `/foster-child/list-safe-care-policy/`,
+        url: `/foster-child/list-safe-care-policy/${apiDataParameter.id}`,
         method: "GET",
         params: apiDataParameter.params,
       }),

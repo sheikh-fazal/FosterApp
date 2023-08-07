@@ -4,7 +4,7 @@ import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import SatsExamGradeList from "@root/sections/foster-child/education-records/sats-exam-grade/SatsExamGradeList";
+import SafeCarePolicyList from "@root/sections/foster-child/other-information/safe-care-policy-list/SafeCarePolicyList";
 
 const BREADCRUMBS = (query: any) => [
   {
@@ -44,7 +44,7 @@ export default function InitialHomeVisit() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <SatsExamGradeList />
+      <SafeCarePolicyList />
     </Page>
   );
 }

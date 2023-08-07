@@ -2,10 +2,9 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import ChildTherapyInfo from "@root/sections/foster-child/health-medical-history/therapy-info/child-therapy-info/ChildTherapyInfo";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { useRouter } from "next/router";
-import SatsExamGradeDetails from "@root/sections/foster-child/education-records/sats-exam-grade/details/SatsExamGradeDetails";
+import SafeCarePolicyDetails from "@root/sections/foster-child/other-information/safe-care-policy-list/details/SafeCarePolicyDetails";
 
 const BREADCRUMBS = (query: any) => [
   {
@@ -44,7 +43,7 @@ export default function InitialHomeVisit() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <SatsExamGradeDetails />
+      <SafeCarePolicyDetails />
     </Page>
   );
 }

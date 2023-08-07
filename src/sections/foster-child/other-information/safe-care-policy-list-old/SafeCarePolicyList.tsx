@@ -1,12 +1,28 @@
 import React, { useState } from "react";
 import { useSafeCarePolicyList } from "./useSafeCarePolicyList";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import IsFetching from "@root/components/loaders/IsFetching";
-import { useRouter } from "next/router";
 
 const SafeCarePolicyList = () => {
+  // const [tabelData, setTabelData] = useState([
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  //   {
+  //     a: "a",
+  //     b: "b",
+  //     c: "c",
+  //     d: "d",
+  //     e: "e",
+  //     f: "f",
+  //   },
+  // ]);
   const {
     tableHeaderRef,
     columns,
@@ -17,52 +33,41 @@ const SafeCarePolicyList = () => {
     isFetching,
     setSearchValue,
     setPage,
-    safeCarePolicyCon,
-  }: any = useSafeCarePolicyList();
-  const { someAsyncAction } = safeCarePolicyCon;
-  const router = useRouter();
-  const { query } = router;
+    page,
+  } = useSafeCarePolicyList();
   return (
-    <Grid sx={{ position: "relative" }}>
-      {someAsyncAction && <IsFetching isFetching />}
+    <Box>
       <TableHeader
         ref={tableHeaderRef}
         title="Safe Care Policy"
         searchKey="search"
         showAddBtn={true}
-        onAdd={() =>
-          router.push(
-            `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${query?.fosterChildId}&action=create`
-          )
-        }
+        onAdd={() => console.log("Test")}
         onChanged={(data: any) => {
           setSearchValue(data?.search);
-          // console.log("Updated params: ", data);
+          console.log("Updated params: ", data);
         }}
       />
       <CustomTable
-        data={data?.data?.safe_care_policy}
+        data={data}
         columns={columns}
         isLoading={isLoading}
-        showSerialNo
+        // showSerialNo
         isFetching={isFetching}
         isError={isError}
         isPagination={true}
         isSuccess={isSuccess}
-        currentPage={data?.data?.meta?.page}
-        totalPages={data?.data?.meta?.pages || 1}
-        // onPageChange={(data: any) => {
-        //   setPage(() => data);
-        // }}
-        onPageChange={(pageNo: any) => {
-          setPage((pageNo - 1) * 10);
+        currentPage={page}
+        totalPages={10}
+        onPageChange={(data: any) => {
+          setPage(() => data);
         }}
         onSortByChange={(data: any) => {
           // console.log("Sort by: ", data);
           return;
         }}
       />
-    </Grid>
+    </Box>
   );
 };
 

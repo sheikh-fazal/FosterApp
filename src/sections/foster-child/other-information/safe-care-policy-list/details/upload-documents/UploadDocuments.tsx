@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { useSafeCarePolicyList } from "./useSafeCarePolicyList";
-import { Box, Grid } from "@mui/material";
+import React from "react";
+import { useSatsDetailsUploadDocuemntInfoList } from "./useSatsDetailsUploadDocuemntInfoList";
+import { Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { useRouter } from "next/router";
+import UploadDocsModel from "./upload-document-model/UploadDocsModel";
+import UploadDocsUpdateViewForm from "./upload-document-model/upload-docs-update-view-form/UploadDocsUpdateViewForm";
+import UploadDocsUpdateViewModel from "./upload-document-model/UploadDocsUpdateView";
 
-const SafeCarePolicyList = () => {
+const UploadDocuments = () => {
   const {
     tableHeaderRef,
     columns,
@@ -17,31 +19,41 @@ const SafeCarePolicyList = () => {
     isFetching,
     setSearchValue,
     setPage,
-    safeCarePolicyCon,
-  }: any = useSafeCarePolicyList();
-  const { someAsyncAction } = safeCarePolicyCon;
-  const router = useRouter();
-  const { query } = router;
+    listInfoCon,
+    openAddModel,
+    closeAddModel,
+    closeUpdateViewModel,
+  }: any = useSatsDetailsUploadDocuemntInfoList();
+  const {
+    someAsyncAction,
+    docsAddModel,
+    updateViewModel,
+    updateViewModelDisabled,
+    uploadFormDataHolder,
+  } = listInfoCon;
   return (
     <Grid sx={{ position: "relative" }}>
+      <UploadDocsModel modelStatus={docsAddModel} closeModel={closeAddModel} />
+      <UploadDocsUpdateViewModel
+        modelStatus={updateViewModel}
+        closeModel={closeUpdateViewModel}
+        disabled={updateViewModelDisabled}
+        defaultValue={uploadFormDataHolder}
+      />
       {someAsyncAction && <IsFetching isFetching />}
       <TableHeader
         ref={tableHeaderRef}
-        title="Safe Care Policy"
+        title="Uploaded Documents "
         searchKey="search"
         showAddBtn={true}
-        onAdd={() =>
-          router.push(
-            `/foster-child/education-records/sats-exam-grade-details-list/details?fosterChildId=${query?.fosterChildId}&action=create`
-          )
-        }
+        onAdd={openAddModel}
         onChanged={(data: any) => {
           setSearchValue(data?.search);
-          // console.log("Updated params: ", data);
+          console.log("Updated params: ", data);
         }}
       />
       <CustomTable
-        data={data?.data?.safe_care_policy}
+        data={data?.data?.documents}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
@@ -66,4 +78,4 @@ const SafeCarePolicyList = () => {
   );
 };
 
-export default SafeCarePolicyList;
+export default UploadDocuments;
