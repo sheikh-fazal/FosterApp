@@ -2,27 +2,33 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-// Couldn't find this. Please fix this
-// import { NewTrainingProfileData } from ".";
-import useViewChildExclusionInfo from "./useEditChildExclusionInfo";
+import { IfaParticipationPolicyData } from ".";
+import useNewIfaParticipationPolicyChild from "./useNewIfaParticipationPolicyChild";
 
-const EditChildExclusionInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+const NewIfaParticipationPolicyChild = (props: any) => {
+  const {
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    postExclusionInfo,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useViewChildExclusionInfo();
+  const { methods, handleSubmit, onSubmit } =
+    useNewIfaParticipationPolicyChild();
 
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {/* {NewTrainingProfileData?.map((form: any) => {
+          {IfaParticipationPolicyData?.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
                   <Grid>
                     <form.component
-                      disabled={false}
+                      disabled={disabled}
                       size="small"
                       {...form.otherOptions}
                     >
@@ -38,11 +44,11 @@ const EditChildExclusionInfo = (props: any) => {
                 </>
               </Grid>
             );
-          })} */}
+          })}
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
+              Submit
             </Button>
             <Link href={"/recruitment"}>
               <Button
@@ -65,4 +71,4 @@ const EditChildExclusionInfo = (props: any) => {
   );
 };
 
-export default EditChildExclusionInfo;
+export default NewIfaParticipationPolicyChild;

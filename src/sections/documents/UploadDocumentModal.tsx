@@ -172,6 +172,25 @@ const DocumentModalForm = (props: any) => {
             {...methods}
             disabled={disableForm}
           />
+          {!!selectedRow?.[column[0]] && (
+            <Grid container alignItems={"center"}>
+              <iframe
+                style={{ marginTop: "10px" }}
+                src={
+                  "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
+                  selectedRow?.[column[0]]
+                }
+                width={50}
+                height={50}
+              />
+              <IframeModal
+                src={
+                  "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
+                  selectedRow?.[column[0]]
+                }
+              />
+            </Grid>
+          )}
         </Grid>
         <Grid
           item
@@ -201,6 +220,38 @@ const DocumentModalForm = (props: any) => {
   );
 };
 
+function IframeModal(props: any) {
+  const { src, children } = props;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={handleOpen}>View</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <iframe
+            style={{ marginTop: "10px" }}
+            src={src}
+            width={350}
+            height={350}
+          />
+          <Button onClick={handleClose}>Close </Button>
+        </Box>
+      </Modal>
+    </>
+  );
+}
 export const formDataArray = [
   {
     id: 1,

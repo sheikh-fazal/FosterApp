@@ -2,13 +2,14 @@ import * as Yup from "yup";
 import { RHFRadioGroup } from "@root/components/hook-form";
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+
 export const defaultValues = {
-  applicationInvolve: "Yes",
-  nameOfCourt: "Baby Court",
+  applicationInvolve: "",
+  nameOfCourt: "",
   dateOfCourt: new Date(),
-  typeOfOrder: "Court Order",
-  nameOfChildern: "Don Roberts Julia Roberts",
-  alternativeNote: "Don Roberts Julia Roberts",
+  typeOfOrder: "",
+  nameOfChildern: "",
+  alternativeNote: "",
 };
 
 export const FormSchema = Yup.object().shape({
