@@ -31,9 +31,9 @@ EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
 export default function EditAbsenceInfoForm() {
   const { query } = useRouter();
   const router = useRouter();
-  const childInfoId = query["absence_info_id"];
+  const absenceInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } = useGetAbsenceInfoByIdQuery(
-    childInfoId,
+    absenceInfoId,
     {
       refetchOnMountOrArgChange: true,
     }

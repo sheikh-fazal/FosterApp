@@ -28,14 +28,14 @@ export const useAbsenceInfoForm = (props: any) => {
     reset,
     formState: { isSubmitting },
   } = methods;
-  useEffect(() => {
-    reset((formValues: any) => ({
-      ...formValues,
-      ...data?.[0],
-      dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-      label: new Date(data?.[0]?.label),
-    }));
-  }, [data, reset]);
+  // useEffect(() => {
+  //   reset((formValues: any) => ({
+  //     ...formValues,
+  //     ...data?.[0],
+  //     dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+  //     label: new Date(data?.[0]?.label),
+  //   }));
+  // }, [data, reset]);
   const [postAbsenceInfoList] = usePostAbsenceInfoMutation();
   const [patchAbsenceInfoList] = usePatchAbsenceInfoMutation();
 
