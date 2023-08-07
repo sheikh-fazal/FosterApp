@@ -80,6 +80,8 @@ export const TAGS = [
   "DIARY_RECORDING_DOCUMENTS",
   "OOHREPORT_LIST_TABLE",
   "REPORTS_DOCUMENTS",
+  "Child-holiday-prefrence",
+  "Child-holiday-prefrence-document",
   "CHILD_EXCLUSION_INFO_LIST",
   "CHILD_EDUCATION_PLAN_LIST",
   "OUT-SCHOOL-ACTIVITY",
