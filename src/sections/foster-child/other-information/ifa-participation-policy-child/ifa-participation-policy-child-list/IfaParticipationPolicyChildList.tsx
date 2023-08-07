@@ -15,7 +15,7 @@ const IfaParticipationPolicyChildList = () => {
     columnsIfaParticipationPolicyFunction,
     fosterChildId,
     deleteFosterChild,
-    closeDeleteModal
+    closeDeleteModal,
   } = useIfaParticipationPolicyChildList();
   return (
     <>
@@ -30,7 +30,9 @@ const IfaParticipationPolicyChildList = () => {
         title="IFA Participation Policy"
         searchKey="search"
         onAdd={() => {
-          router.push("");
+          router.push(
+            "/foster-child/other-information/ifa-participation-policy-for-child/new-ifa-participation-policy-for-child"
+          );
         }}
         onChanged={headerChangeHandler}
       />

@@ -78,15 +78,14 @@ export const columnsIfaParticipationPolicyTable = (
         <TableAction
           type="edit"
           onClicked={() =>
-            router
-              .push
-              //   `/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`
-              ()
+            router.push(
+              `/foster-child/other-information/ifa-participation-policy-for-child/edit-ifa-participation-policy-for-child?${info.getValue()}`
+            )
           }
         />
         <TableAction
           type="delete"
-          onClicked={()=>openDeleteModel(info.getValue())}
+          onClicked={() => openDeleteModel(info.getValue())}
           size="small"
         />
 
