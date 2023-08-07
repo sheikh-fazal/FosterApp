@@ -2,21 +2,22 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import IfaParticipationPolicyChildList from "@root/sections/foster-child/other-information/ifa-participation-policy-child/ifa-participation-policy-child-list/IfaParticipationPolicyChildList";
+import NewIfaParticipationPolicyChild from "@root/sections/foster-child/other-information/ifa-participation-policy-child/new-ifa-participation-policy-child/NewIfaParticipationPolicyChild";
 
 const PAGE_TITLE = "IFA Participation Policy for Child";
 
-IfaParticationChild.getLayout = function getLayout(page: any) {
+EditIfaParticationChild.getLayout = function getLayout(page: any) {
   return (
     <Layout
       showTitleWithBreadcrumbs
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "Child Info",
-          href: "/child-info",
+          name: "IFA Participation Policy List",
+          href: "",
         },
         {
-          name: "IFA Participation Policy List",
+          name: "IFA Participation Policy for Child",
         },
       ]}
       title={PAGE_TITLE}
@@ -26,10 +27,10 @@ IfaParticationChild.getLayout = function getLayout(page: any) {
   );
 };
 
-export default function IfaParticationChild() {
+export default function EditIfaParticationChild() {
   return (
     <Page title={PAGE_TITLE}>
-      <IfaParticipationPolicyChildList />
+      <NewIfaParticipationPolicyChild />
     </Page>
   );
 }

@@ -47,15 +47,15 @@ export const ChildExclusionInfoList = () => {
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
           data={data?.data?.exclusion_info}
-          onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}
           isError={isError}
           isFetching={isFetching}
           isLoading={isLoading}
           isPagination={true}
-          currentPage={1}
-          totalPages={1}
+          currentPage={data?.data?.meta?.page}
+          totalPages={data?.data?.meta?.pages}
+          onPageChange={pageChangeHandler}
         />
       </Card>
     </>

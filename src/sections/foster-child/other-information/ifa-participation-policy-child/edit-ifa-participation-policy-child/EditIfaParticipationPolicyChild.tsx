@@ -2,39 +2,40 @@ import { Button, Grid } from "@mui/material";
 import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
-import { NewPersonalEducationPlanData } from ".";
-import useEditPersonalEducationalPlan from "./useNewPersonalEducationalPlan";
+import { IfaParticipationPolicyData } from ".";
+import useNewIfaParticipationPolicyChild from "./useEditIfaParticipationPolicyChild";
 
-const NewPersonalEducationPlan = (props: any) => {
+const NewIfaParticipationPolicyChild = (props: any) => {
   const {
     disabled,
     onSubmitHandler,
     handleCloseForm,
     router,
     formState,
-    postEducationPlanData,
+    postExclusionInfo,
   } = props;
 
-  const { methods, handleSubmit, onSubmit } = useEditPersonalEducationalPlan(postEducationPlanData);
+  const { methods, handleSubmit, onSubmit } =
+    useNewIfaParticipationPolicyChild();
 
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {NewPersonalEducationPlanData?.map((form: any) => {
+          {IfaParticipationPolicyData?.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
                   <Grid>
                     <form.component
-                      disabled={false}
+                      disabled={disabled}
                       size="small"
-                      {...form?.otherOptions}
+                      {...form.otherOptions}
                     >
-                      {form?.otherOptions
-                        ? form?.options?.map((option: any) => (
-                            <option key={option?.value} value={option?.value}>
-                              {option?.label}
+                      {form.otherOptions
+                        ? form.options?.map((option: any) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
                             </option>
                           ))
                         : null}
@@ -47,7 +48,7 @@ const NewPersonalEducationPlan = (props: any) => {
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
+              Submit
             </Button>
             <Link href={"/recruitment"}>
               <Button
@@ -70,4 +71,4 @@ const NewPersonalEducationPlan = (props: any) => {
   );
 };
 
-export default NewPersonalEducationPlan;
+export default NewIfaParticipationPolicyChild;

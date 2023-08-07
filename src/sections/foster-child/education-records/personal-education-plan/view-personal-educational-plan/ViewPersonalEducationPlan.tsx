@@ -6,10 +6,21 @@ import { EditPersonalEducationPlanData } from ".";
 import useViewPersonalEducationalPlan from "./useViewPersonalEducationalPlan";
 
 const ViewPersonalEducationPlan = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const {
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    initialValueProps,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useViewPersonalEducationalPlan();
+  const {
+    methods,
+    handleSubmit,
+    onSubmit,
+    defaultValues = initialValueProps,
+  } = useViewPersonalEducationalPlan(initialValueProps);
 
   return (
     <>

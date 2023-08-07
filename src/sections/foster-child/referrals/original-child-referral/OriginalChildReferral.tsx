@@ -1,40 +1,32 @@
 import { Button, Grid } from "@mui/material";
 import React from "react";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import Link from "next/link";
-import { NewPersonalEducationPlanData } from ".";
-import useEditPersonalEducationalPlan from "./useNewPersonalEducationalPlan";
+import { OriginalChildReferralData } from ".";
+import useOrignalChildReferral from "./useOrignalChildReferral";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
-const NewPersonalEducationPlan = (props: any) => {
-  const {
-    disabled,
-    onSubmitHandler,
-    handleCloseForm,
-    router,
-    formState,
-    postEducationPlanData,
-  } = props;
-
-  const { methods, handleSubmit, onSubmit } = useEditPersonalEducationalPlan(postEducationPlanData);
+const ViewOriginalChild = (props: any) => {
+  const { methods, onSubmit, handleSubmit } = useOrignalChildReferral();
 
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {NewPersonalEducationPlanData?.map((form: any) => {
+          {OriginalChildReferralData?.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
                   <Grid>
                     <form.component
-                      disabled={false}
+                      disabled={props.disabled}
                       size="small"
-                      {...form?.otherOptions}
+                      {...form.otherOptions}
                     >
-                      {form?.otherOptions
-                        ? form?.options?.map((option: any) => (
-                            <option key={option?.value} value={option?.value}>
-                              {option?.label}
+                      {form.otherOptions
+                        ? form.options?.map((option: any) => (
+                            <option key={option.value} value={option.value}>
+                              {option.label}
                             </option>
                           ))
                         : null}
@@ -46,10 +38,7 @@ const NewPersonalEducationPlan = (props: any) => {
           })}
 
           <Grid item xs={12}>
-            <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
-            </Button>
-            <Link href={"/recruitment"}>
+            <Link href={"/recruitment"}> 
               <Button
                 type="button"
                 sx={{
@@ -60,7 +49,7 @@ const NewPersonalEducationPlan = (props: any) => {
                 size="large"
                 variant="contained"
               >
-                Back
+                Submit
               </Button>
             </Link>
           </Grid>
@@ -70,4 +59,4 @@ const NewPersonalEducationPlan = (props: any) => {
   );
 };
 
-export default NewPersonalEducationPlan;
+export default ViewOriginalChild;

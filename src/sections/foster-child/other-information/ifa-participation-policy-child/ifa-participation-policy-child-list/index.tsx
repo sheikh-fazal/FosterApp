@@ -1,11 +1,8 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
-export const columnsOutSchoolActivityTable = (
-  handleDelete: any,
+export const columnsIfaParticipationPolicyTable = (
   router: any,
-  cancelDelete: any,
-  setCancelDelete: any,
   openDeleteModel: any
 ) => [
   {
@@ -39,24 +36,38 @@ export const columnsOutSchoolActivityTable = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.fromDate,
-    id: "fromDate",
+    accessorFn: (row: any) => row.date,
+    id: "date",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Form Date</span>,
+    header: () => <span>Date</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.outOfDate,
-    id: "outOfDate",
+    accessorFn: (row: any) => row.participationActivity,
+    id: "participationActivity",
     cell: (info: any) => info.getValue(),
-    header: () => <span>To Date</span>,
+    header: () => <span>Participation Activity</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.activityType,
-    id: "activityType",
+    accessorFn: (row: any) => row.filesRecording,
+    id: "filesRecording",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Activity Type</span>,
+    header: () => <span>Files / Recording</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.achievement,
+    id: "achievement",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Achievement</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.rating,
+    id: "rating",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Rating</span>,
     isSortable: true,
   },
   {
@@ -66,7 +77,11 @@ export const columnsOutSchoolActivityTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`)}
+          onClicked={() =>
+            router.push(
+              `/foster-child/other-information/ifa-participation-policy-for-child/edit-ifa-participation-policy-for-child?${info.getValue()}`
+            )
+          }
         />
         <TableAction
           type="delete"
@@ -85,12 +100,14 @@ export const columnsOutSchoolActivityTable = (
   },
 ];
 
-export const DummyChildExclusionData = [
+export const DummyData = [
   {
-    id: 1,
+    id: "1",
     srNo: "1",
-    formDate: new Date().toDateString(),
-    toDate: new Date().toDateString(),
-    activityType: "abc",
+    date: new Date().toDateString(),
+    participationActivity: "Half Term Events",
+    filesRecording: "abc.mp3",
+    achievement: "Medal on Sport Event",
+    rating: "",
   },
 ];
