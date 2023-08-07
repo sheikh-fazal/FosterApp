@@ -1,12 +1,12 @@
-import { useRouter } from "next/router";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import SatsExamGradeList from "@root/sections/foster-child/education-records/sats-exam-grade/SatsExamGradeList";
+import SafeCarePolicyList from "../../../../sections/foster-child/other-information/safe-care-policy-list/SafeCarePolicyList";
 
-const BREADCRUMBS = (query: any) => [
+// ----------------------------------------------------------------------
+// Constants
+const BREADCRUMBS = [
   {
     icon: <HomeIcon />,
     name: "/ Child Info",
@@ -23,28 +23,24 @@ const PAGE_TITLE = "Safe Care Policy";
 // ----------------------------------------------------------------------
 
 InitialHomeVisit.getLayout = function getLayout(page: any) {
-  return <Layout title={PAGE_TITLE}>{page}</Layout>;
+  return (
+    <Layout
+      showTitleWithBreadcrumbs
+      breadcrumbs={BREADCRUMBS}
+      title={PAGE_TITLE}
+      variant="dashboard"
+    >
+      {page}
+    </Layout>
+  );
 };
 
 // ----------------------------------------------------------------------
 
 export default function InitialHomeVisit() {
-  const router = useRouter();
-
-  if (!router?.query?.fosterChildId) {
-    router.push({
-      pathname: "/foster-child-lists",
-    });
-    return;
-  }
   return (
     <Page title={PAGE_TITLE}>
-      <TitleWithBreadcrumbLinks
-        sx={{ mb: 2 }}
-        title={PAGE_TITLE}
-        breadcrumbs={BREADCRUMBS(router?.query)}
-      />
-      <SatsExamGradeList />
+      <SafeCarePolicyList />
     </Page>
   );
 }
