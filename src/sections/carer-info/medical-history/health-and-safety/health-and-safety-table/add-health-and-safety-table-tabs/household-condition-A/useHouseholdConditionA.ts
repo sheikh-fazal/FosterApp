@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
-import Page from "@root/components/Page";
-import { FormProvider } from "@root/components/hook-form";
+import { useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { householdConditionA_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
@@ -11,6 +9,9 @@ import { enqueueSnackbar } from "notistack";
 
 export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
   const theme: any = useTheme();
+  const router = useRouter();
+  // const action = router.query;
+  // console.log(router.query);
 
   const [resetTrigger, { data, isLoading, isSuccess }] =
     useHouseHoldConditionAPostMutation();
@@ -38,7 +39,6 @@ export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const router = useRouter();
   return {
     theme,
     handleSubmit,

@@ -9,52 +9,46 @@ import React, { useRef } from "react";
 import { columns } from ".";
 
 export const useHealthAndSafetyTable = () => {
-  const [open, setOpen] = React.useState(false);
-  const [deleteModal, setDeleteModal] = React.useState(false);
+  const [healthAndSafetyId, setHealthAndSafetyId] = React.useState<any>(null);
   const { data, isLoading, isError, isSuccess } =
     useGetHealthAndSafetyListDataQuery({});
   const healthAndSafetyApiData = data?.data;
-  // console.log(healthAndSafetyApiData);
 
-  // const [deleteListItem, { isLoading: deleteLoading }] =
-  //   useDeleteHealthAndSafetyListDataMutation({});
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const theme: any = useTheme();
+  const [deleteListItem] = useDeleteHealthAndSafetyListDataMutation({});
 
-  const deleteList = async (info: any) => {
-    // console.log(info.cell.row.original.id);
-    // const id = info.cell.row.original.id;
-    // setDeleteModal(true);
-    // try {
-    //   const res: any = await deleteListItem(id);
-    //   enqueueSnackbar(res?.data?.message, { variant: "success" });
-    // } catch (error: any) {
-    //   console.log(error?.message);
-    //   const errMsg = error?.data?.message;
-    //   console.log(errMsg);
-    //   enqueueSnackbar(error?.message, { variant: "error" });
-    // }
+  const deleteList = async () => {
+    const res: any = deleteListItem(healthAndSafetyId)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Training Profile deleted  Successfully", {
+          variant: "success",
+        });
+        setHealthAndSafetyId(null);
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
   const router = useRouter();
   const tableHeaderRef = useRef<any>();
+  const openDeleteModel = (id: any) => {
+    setHealthAndSafetyId(id);
+  };
 
-  const columnsFunction = columns(deleteList);
+  const columnsFunction = columns({
+    openDeleteModel,
+  });
   return {
-    open,
-    setOpen,
-    handleOpen,
-    handleClose,
-    deleteModal,
-    setDeleteModal,
-    theme,
+    deleteList,
     router,
     tableHeaderRef,
     healthAndSafetyApiData,
     isLoading,
     isError,
-    isSuccess,
-    deleteList,
     columnsFunction,
+    isSuccess,
+    healthAndSafetyId,
+    setHealthAndSafetyId,
   };
 };

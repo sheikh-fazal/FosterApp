@@ -18,6 +18,7 @@ export default function AddHealthAndSafetyTableTabs() {
   const [breadCrumbData, setBreadCrumbData] = useState(
     "Household Condition - A"
   );
+  const [] = useState("")
   const tabsData = [
     "Household Condition-A",
     "B",
