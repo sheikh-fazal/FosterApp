@@ -5,43 +5,51 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { useRouter } from "next/router";
 import UploadedDocumentsTable from "@root/sections/foster-child/education-records/leisure-activites-hobby/upload-documents/UploadDocumentsTable";
 import LeisureActivitiesForm from "@root/sections/foster-child/education-records/leisure-activites-hobby/leisure-activites-hobby-table/LeisureActivitiesForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
 // Constants
 
 const PAGE_TITLE = "Leisure Activities";
 
-export default function LeisureActivity() {
+AddLeisureActivity.getLayout = function getLayout(page: any) {
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+};
+
+export default function AddLeisureActivity() {
   const router: any = useRouter();
-  let { id } = router.query;
+  let { fosterChildId } = router.query;
   let [leisureActivityId, setLeisureActivityId] = useState(null);
+  let BREADCRUMBS = [
+    {
+      id: 1,
+      icon: <HomeIcon />,
+      href: "/",
+    },
+    {
+      id: 2,
+      name: "Leisure Activities List",
+      href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${fosterChildId}`,
+    },
+    {
+      id: 3,
+      name: "Leisure Activity",
+      href: "",
+    },
+  ];
   return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={[
-        {
-          id: 1,
-          icon: <HomeIcon />,
-          href: "/",
-        },
-        {
-          id: 2,
-          name: "Leisure Activities List",
-          href: `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${id}`,
-        },
-        {
-          id: 3,
-          name: "Leisure Activity",
-          href: "",
-        },
-      ]}
-      title={PAGE_TITLE}
-    >
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+
       <HorizaontalTabs
         tabsDataArray={["Leisure Activities", "Upload document"]}
       >
         <LeisureActivitiesForm
           setLeisureActivityId={setLeisureActivityId}
-          id={id}
+          id={fosterChildId}
           action="add"
         />
         <UploadedDocumentsTable
@@ -49,6 +57,6 @@ export default function LeisureActivity() {
           leisureActivityId={leisureActivityId}
         />
       </HorizaontalTabs>
-    </Layout>
+    </>
   );
 }

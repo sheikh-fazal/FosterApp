@@ -20,6 +20,7 @@ export default function ContractsAndDeclarations() {
   const {
     theme,
     openIdForInfo,
+    contractsAndDeclarationData,
     setOpenIdForInfo,
     formDialogId,
     setFormDialogId,
@@ -42,7 +43,7 @@ export default function ContractsAndDeclarations() {
                 : theme.palette.grey[800],
           }}
         >
-          {CONTRACTSANDDECLARATIONDATA?.map((ele: any) => (
+          {contractsAndDeclarationData?.map((ele: any) => (
             <Grid
               key={ele?.id}
               container
