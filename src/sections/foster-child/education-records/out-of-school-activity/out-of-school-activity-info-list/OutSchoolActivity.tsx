@@ -22,6 +22,7 @@ export const OutSchoolActivityList = () => {
     isLoading,
     isFetching,
     isError,
+    fosterChildId,
   } = useOutSchoolActivityList();
   return (
     <>
@@ -39,7 +40,7 @@ export const OutSchoolActivityList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info"
+              `/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info?${fosterChildId}`
             );
           }}
           onChanged={headerChangeHandler}

@@ -61,6 +61,7 @@ const useOutSchoolActivityList = () => {
     isLoading,
     isFetching,
     isError,
+    fosterChildId
   };
 };
 

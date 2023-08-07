@@ -6,10 +6,10 @@ import { NewOutSchoolActivityInfoData } from ".";
 import useNewChildExclusionInfo from "./useNewOutSchoolActivityInfo";
 
 const NewOutSchoolActivityInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
+  const { disabled, formState,postSchoolActivityData } =
     props;
 
-  const { methods, handleSubmit, onSubmit } = useNewChildExclusionInfo();
+  const { methods, handleSubmit, onSubmit, } = useNewChildExclusionInfo(postSchoolActivityData);
 
   return (
     <>
@@ -65,4 +65,3 @@ const NewOutSchoolActivityInfo = (props: any) => {
 };
 
 export default NewOutSchoolActivityInfo;
-
