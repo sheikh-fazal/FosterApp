@@ -45,7 +45,7 @@ export default function VerificationOfDocument() {
     { skip }
   );
   const { data: verificationDocuments2 } = useFormFQuery(
-    "verificaitonApplication2",
+    "verificationApplication2",
     { skip }
   );
   //---------------=================-----------------//

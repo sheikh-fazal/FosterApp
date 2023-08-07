@@ -12,9 +12,6 @@ export const absenceInfoFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
-    format: (date: any) => {
-      return new Date(date);
-    },
   },
   {
     id: 2,
@@ -25,9 +22,6 @@ export const absenceInfoFormData = [
       fullWidth: true,
     },
     component: RHFDatePicker,
-    format: (date: any) => {
-      return new Date(date);
-    },
   },
   {
     id: 3,
@@ -72,7 +66,7 @@ export const absenceInfoFormData = [
 //     formatters[formControl.otherOptions.name] = formControl.format;
 // }
 
-export const defaultValues = {
+export const absenceInfoDefaultValues = {
   schoolName: "",
   reasonOfAbsence: "",
   dateOfAbsence: new Date(),
@@ -82,7 +76,7 @@ export const defaultValues = {
 export const formSchema = Yup.object().shape({
   schoolName: Yup.string().required("School Name Required"),
   reasonOfAbsence: Yup.string().required("Absence Reason Required"),
-  dateOfAbsence: Yup.date().required("Absence Date Required"),
-  label: Yup.date().required("Agency Reported Date Required"),
+  dateOfAbsence: Yup.date(),
+  label: Yup.date(),
   comments: Yup.string(),
 });

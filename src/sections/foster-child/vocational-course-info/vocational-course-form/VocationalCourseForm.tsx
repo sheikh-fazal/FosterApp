@@ -20,7 +20,7 @@ export default function VocationalCourseForm(props: any) {
 
   const onSubmitHandler = (data: any) => {
     onSubmit(data);
-    reset();
+    // reset();
   };
   useEffect(() => {
     reset((formValues: any) => ({
@@ -82,7 +82,8 @@ export default function VocationalCourseForm(props: any) {
     </FormProvider>
   );
   // if (status?.isError) return <Error />;
-  if (status?.isLoading) return <SkeletonFormdata />;
+  // if (status?.isLoading) return <SkeletonFormdata />;
   // if (status?.isSuccess)
-  else return formEl;
+  // else
+  return formEl;
 }

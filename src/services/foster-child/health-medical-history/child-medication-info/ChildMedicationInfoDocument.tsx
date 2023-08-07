@@ -13,7 +13,7 @@ const ChildMedicationInfoDocument = baseAPI.injectEndpoints({
     deleteChildMedicationInfoDocument: builder.mutation({
       query: (payload) => ({
         url: `/foster-child/child-medication-info/document/${payload?.params.childMedicationInfoDocId}`,
-        method: "Delete",
+        method: "DELETE",
         params: payload.params,
       }),
       invalidatesTags: ["child-medication-info-document"],
