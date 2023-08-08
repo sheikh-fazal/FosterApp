@@ -60,7 +60,7 @@ export default function EditStudySupportInfo() {
 
   const [postDocs] = usePostUploadDocumentsStudySupportInfoApiMutation();
   const [deleteData] = useDeleteUploadDocumentsStudySupportInfoByIdMutation();
-  const tableData: any = documentData?.data?.["education-records-document"];
+  const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {

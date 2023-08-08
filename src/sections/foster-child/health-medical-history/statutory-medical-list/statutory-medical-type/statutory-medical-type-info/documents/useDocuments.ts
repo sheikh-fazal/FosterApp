@@ -23,7 +23,7 @@ export const useDocuments = () => {
   ] = useDeleteStatutoryMedicalListInfoDocumentDataByIdMutation();
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
-  const params = {
+  const queryParams = {
     offset: page,
     limit: STATUTORYMEDICALLISTTYPEINFODOCUMENTPAGELIMIT,
     search: searchValue,
@@ -31,7 +31,7 @@ export const useDocuments = () => {
   const pathParams = {
     id: router.query?.id,
   };
-  const dataParameter = { params, pathParams };
+  const dataParameter = { queryParams, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
     useGetStatutoryMedicalListInfoDocumentDataQuery(dataParameter, {
       skip: !!!router.query?.id,
@@ -53,7 +53,10 @@ export const useDocuments = () => {
     const pathParams = {
       id: router.query?.id,
     };
-    const apiDataParameter = { params, pathParams, body: documentFormData };
+    const apiDataParameter = {
+      pathParams,
+      body: documentFormData,
+    };
     try {
       const res: any = await postStatutoryMedicalListInfoDocumentDataTrigger(
         apiDataParameter

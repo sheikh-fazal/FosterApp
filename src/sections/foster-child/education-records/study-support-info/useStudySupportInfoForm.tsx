@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { defaultValues, StudySupportInfoFormSchema } from ".";
 import { useForm } from "react-hook-form";
 import {
@@ -49,9 +49,14 @@ export const useStudySupportInfoForm = () => {
         enqueueSnackbar(res?.message ?? `Added Successfully!`, {
           variant: "success",
         });
-        router.push(
-          `/foster-child/education-records/study-support-info?fosterChildId=${router?.query?.fosterChildId}`
-        );
+        router.push({
+          pathname: `/foster-child/education-records/study-support-info/edit-study-support-info`,
+          query: {
+            fosterChildId: router?.query?.fosterChildId,
+            id: res?.data?.id,
+            action: "edit",
+          },
+        });
       } else if (router?.query?.action === "edit") {
         const res: any = await putData({
           body: data,

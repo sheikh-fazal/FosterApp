@@ -220,6 +220,7 @@ const Form = (props: any) => {
                         <RHFTextField
                           name="documentName"
                           disabled={true}
+                          fullWidth={true}
                           InputLabelProps={{
                             shrink: true,
                             disabled: true,
