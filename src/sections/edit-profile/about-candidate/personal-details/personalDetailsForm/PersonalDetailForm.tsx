@@ -105,11 +105,11 @@ const PersonalDetailForm: FC<any> = ({ activateNextForm }) => {
             {!disabled && (
               <Grid item sm={12} container direction="column">
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
-                  <Grid item>
+                  {/* <Grid item>
                     <Button variant="contained" type="submit">
                       Save
                     </Button>
-                  </Grid>
+                  </Grid> */}
                   <Grid item>
                     <Button variant="contained" type="submit">
                       Continue
