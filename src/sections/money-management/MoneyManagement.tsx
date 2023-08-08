@@ -6,7 +6,7 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { managementCardData } from ".";
 import Link from "next/link";
 import Image from "next/image";
@@ -18,12 +18,32 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 });
 
 export const MoneyManagement = () => {
+  const [selectedMonth, setSelectedMonth] = useState(1);
+  const year = new Date().getFullYear(); // Get the current year
+  const daysInSelectedMonth = new Date(year, selectedMonth, 0).getDate();
+
   const theme: any = useTheme();
 
   const series = [
     {
+      name: "January",
+      data: [
+        100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5,
+        // ... and so on, values for each day of January
+      ],
+    },
+    {
+      name: "February",
+      data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 110, 120, 130],
+      // ... and so on, values for each day of February
+    },
+  ];
+
+  const selectedData = series[selectedMonth - 1].data;
+  const filteredSeries = [
+    {
       name: "Net Profit",
-      data: [5, 10, 15, 20, 25, 30, 35, 40],
+      data: selectedData,
     },
   ];
 
@@ -46,7 +66,28 @@ export const MoneyManagement = () => {
     colors: theme.palette.primary.main,
 
     xaxis: {
-      categories: ["1", "2", "3", "4", "5", "6", "7", "8"],
+      categories: [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+      ],
       labels: {
         show: true,
         style: {
@@ -99,34 +140,53 @@ export const MoneyManagement = () => {
           );
         })}
       </Grid>
-      <Paper sx={{ padding: 3, my: 5 }}>
-        <FormControl sx={{ minWidth: 120, display: "block" }}>
-          <Typography
-            component="span"
-            sx={{ color: "#0E918C", fontWeight: "600", mr: 2 }}
-          >
-            Saving this Month
-          </Typography>
-          <NativeSelect
-            sx={{ fontWeight: "600" }}
-            defaultValue={10}
-            inputProps={{
-              name: "month",
-              id: "month",
-            }}
-          >
-            <option value={10}>January</option>
-            <option value={20}>February</option>
-            <option value={30}>March</option>
-          </NativeSelect>
-        </FormControl>
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="bar"
-          height={325}
-        />
-      </Paper>
+      <FormControl sx={{ minWidth: 120, display: "block", mt: 5 }}>
+        <Typography
+          component="span"
+          sx={{ color: "#0E918C", fontWeight: "600", mr: 2 }}
+        >
+          Saving this Month
+        </Typography>
+        <NativeSelect
+          sx={{ fontWeight: "600" }}
+          value={selectedMonth}
+          onChange={(event: any) => setSelectedMonth(event?.target?.value)}
+          inputProps={{
+            name: "month",
+            id: "month",
+          }}
+        >
+          <option value={1}>January</option>
+          <option value={2}>February</option>
+          {/* <option value={3}>March</option>
+          <option value={4}>April</option>
+          <option value={5}>May</option>
+          <option value={6}>June</option>
+          <option value={7}>July</option>
+          <option value={8}>Auguest</option>
+          <option value={9}>September</option>
+          <option value={10}>October</option>
+          <option value={10}>November</option>
+          <option value={10}>December</option> */}
+        </NativeSelect>
+        <Paper sx={{ padding: 3 }}>
+          {filteredSeries.map((monthData: any) => (
+            <div key={monthData.month}>
+              <ReactApexChart
+                options={options}
+                series={[
+                  {
+                    name: monthData?.name,
+                    data: monthData.data,
+                  },
+                ]}
+                type="bar"
+                height={450}
+              />
+            </div>
+          ))}
+        </Paper>
+      </FormControl>
     </>
   );
 };
@@ -138,7 +198,7 @@ const styles = {
     boxShadow: "0px 0px 7px 3px rgba(14, 145, 140, 0.20)",
     borderRadius: "10px",
     padding: "15px",
-    // with: "248px",
+    // width: "248px",
     height: "130px",
   }),
   marketingCardContent: (theme: any) => ({
