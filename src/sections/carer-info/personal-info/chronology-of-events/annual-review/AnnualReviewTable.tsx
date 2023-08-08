@@ -66,8 +66,8 @@ const AnnualReviewTable = () => {
           />
 
           {/* Calling Delete Modal */}
-          {/* <DeletePrompt
-            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          {/* <DeletePromptn
+            onDeleteClick={() => listDeleteHandler(info?.row?.origial?.id)}
           /> */}
           <TableAction
             size="small"
