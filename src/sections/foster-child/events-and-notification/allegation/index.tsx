@@ -4,7 +4,8 @@ import dayjs from "dayjs";
 
 export const allegationInfoTableColumnsFunction = (
   router?: any,
-  prepareRecordForDelete?: any
+  prepareRecordForDelete?: any,
+  theme?: any
 ) => [
   {
     accessorFn: (row: any) => row?.allegationDate,
@@ -15,13 +16,24 @@ export const allegationInfoTableColumnsFunction = (
   {
     accessorFn: (row: any) => row.status,
     id: "status",
-    cell: (info: any) => {
-      return (
-        <>
-          {info.getValue()} <small>draft</small>
-        </>
-      );
-    },
+    cell: (info: any) => (
+      <>
+        {info.getValue()}{" "}
+        {info?.row?.original?.isSavedAsDraft && (
+          <small
+            style={{
+              color: "white",
+              marginRight: "1rem",
+              padding: ".25rem .35rem",
+              borderRadius: "50%",
+              backgroundColor: "black",
+            }}
+          >
+            draft
+          </small>
+        )}
+      </>
+    ),
     header: () => <span>Status</span>,
   },
   {
