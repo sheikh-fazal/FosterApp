@@ -208,6 +208,7 @@ export const householdConditionA_Data = [
   {
     id: 12,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
@@ -238,6 +239,7 @@ export const householdConditionA_Data = [
   {
     id: 15,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
@@ -268,6 +270,7 @@ export const householdConditionA_Data = [
   {
     id: 18,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
@@ -298,6 +301,7 @@ export const householdConditionA_Data = [
   {
     id: 21,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },

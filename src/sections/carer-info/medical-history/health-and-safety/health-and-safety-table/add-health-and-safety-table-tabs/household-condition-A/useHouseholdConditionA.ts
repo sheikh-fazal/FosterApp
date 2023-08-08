@@ -7,7 +7,11 @@ import { useRouter } from "next/router";
 import { useHouseHoldConditionAPostMutation } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 import { enqueueSnackbar } from "notistack";
 
-export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
+export const useHouseholdConditionA = ({
+  breadCrumbData,
+  formData,
+  submitFunction,
+}: any) => {
   const theme: any = useTheme();
   const router = useRouter();
   // const action = router.query;
@@ -22,17 +26,18 @@ export const useHouseholdConditionA = ({ breadCrumbData, formData }: any) => {
   const { handleSubmit } = methods;
   const onSubmit = async (data: any) => {
     formData(data);
-    try {
-      const res: any = await resetTrigger(data);
-      enqueueSnackbar(res?.data?.message, { variant: "success" });
-    } catch (error: any) {
-      console.log(error?.message);
+    submitFunction();
+    // try {
+    //   const res: any = await resetTrigger(data);
+    //   enqueueSnackbar(res?.data?.message, { variant: "success" });
+    // } catch (error: any) {
+    //   console.log(error?.message);
 
-      const errMsg = error?.data?.message;
-      console.log(errMsg);
+    //   const errMsg = error?.data?.message;
+    //   console.log(errMsg);
 
-      enqueueSnackbar(error?.message, { variant: "error" });
-    }
+    //   enqueueSnackbar(error?.message, { variant: "error" });
+    // }
   };
   useEffect(() => {
     breadCrumbData("Household Condition - A");

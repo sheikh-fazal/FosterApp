@@ -10,6 +10,8 @@ import { SafetyFactorsIndoorsD } from "@root/sections/carer-info/medical-history
 import { SafetyFactorsIndoorsE } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-indoors-E/SafetyFactorsIndoorsE";
 import { SafetyFactorsOutdoors } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-outdoors/SafetyFactorsOutdoors";
 import { UploadDocument } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/upload-document/UploadDocument";
+import { useHouseHoldConditionAPostMutation } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import { enqueueSnackbar } from "notistack";
 
 import React, { useState } from "react";
 
@@ -18,18 +20,37 @@ export default function AddHealthAndSafetyTableTabs() {
   const [breadCrumbData, setBreadCrumbData] = useState(
     "Household Condition - A"
   );
-  const [] = useState("")
-  const tabsData = [
-    "Household Condition-A",
-    "B",
-    "Safety Factors - Indoors A",
-    "B \u00a0\u00a0",
-    "C",
-    "D",
-    "E",
-    "Safety Factors - Outdoor",
-    "Upload Documents",
-  ];
+  const [formData, setFormData] = useState({});
+  console.log(formData);
+  
+  const [tabArray, setTabArray] = useState(["Household Condition-A"]);
+  const [resetTrigger, { data, isLoading, isSuccess }] =
+    useHouseHoldConditionAPostMutation();
+
+  const submitt = async () => {
+    try {
+      const res: any = await resetTrigger(formData);
+      enqueueSnackbar(res?.data?.message, { variant: "success" });
+    } catch (error: any) {
+      // console.log(error?.message);
+
+      const errMsg = error?.data?.message;
+      // console.log(errMsg);
+
+      enqueueSnackbar(error?.message, { variant: "error" });
+    }
+  };
+  // const tabsData = [
+  //   // "Household Condition-A",
+  //   // "B",
+  //   // "Safety Factors - Indoors A",
+  //   // "B \u00a0\u00a0",
+  //   // "C",
+  //   // "D",
+  //   // "E",
+  //   // "Safety Factors - Outdoor",
+  //   // "Upload Documents",
+  // ];
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -49,10 +70,12 @@ export default function AddHealthAndSafetyTableTabs() {
       {/* {page} */}
 
       {/* return ( */}
-      <HorizaontalTabs tabsDataArray={tabsData}>
-        <HouseholdConditionA 
-          formData={(data: any) => console.log(data)}
+      <HorizaontalTabs tabsDataArray={tabArray}>
+        <HouseholdConditionA
+          formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
+          submitFunction={submitt}
+          isLoading={isLoading}
         />
         <HouseholdConditionB
           formData={(data: any) => console.log(data)}
