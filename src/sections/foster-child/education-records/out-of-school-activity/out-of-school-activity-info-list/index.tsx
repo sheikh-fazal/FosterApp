@@ -1,5 +1,6 @@
 import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import dayjs from "dayjs";
 
 export const columnsOutSchoolActivityTable = (
   handleDelete: any,
@@ -41,14 +42,14 @@ export const columnsOutSchoolActivityTable = (
   {
     accessorFn: (row: any) => row.fromDate,
     id: "fromDate",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: () => <span>Form Date</span>,
     isSortable: true,
   },
   {
     accessorFn: (row: any) => row.outOfDate,
     id: "outOfDate",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: () => <span>To Date</span>,
     isSortable: true,
   },
@@ -66,7 +67,11 @@ export const columnsOutSchoolActivityTable = (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction
           type="edit"
-          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`)}
+          onClicked={() =>
+            router.push(
+              `/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`
+            )
+          }
         />
         <TableAction
           type="delete"
@@ -82,15 +87,5 @@ export const columnsOutSchoolActivityTable = (
     ),
     header: () => <span>Actions</span>,
     isSortable: false,
-  },
-];
-
-export const DummyChildExclusionData = [
-  {
-    id: 1,
-    srNo: "1",
-    formDate: new Date().toDateString(),
-    toDate: new Date().toDateString(),
-    activityType: "abc",
   },
 ];

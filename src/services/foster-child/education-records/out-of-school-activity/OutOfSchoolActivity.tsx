@@ -17,18 +17,18 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       }),
       providesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
-    deleteSingleSchoolActivityData: builder.mutation({
-      query: (OutOfSchoolActivityId: any) => ({
-        url: `/school-info/out-of-school-activity/${OutOfSchoolActivityId}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
-    }),
     postSingleSchoolActivityData: builder.mutation({
       query: ({ data, fosterChildId }: any) => ({
         url: `/school-info/out-of-school-activity/${fosterChildId}`,
         method: "POST",
         body: data,
+      }),
+      invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
+    }),
+    deleteSchoolActivityData: builder.mutation({
+      query: (OutOfSchoolActivityId: string) => ({
+        url: `/school-info/out-of-school-activity/${OutOfSchoolActivityId}`,
+        method: "DELETE",
       }),
       invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
@@ -38,6 +38,6 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
 export const {
   useGetOutSchoolActivityListQuery,
   useGetSingleSchoolActivityDataQuery,
-  useDeleteSingleSchoolActivityDataMutation,
   usePostSingleSchoolActivityDataMutation,
+  useDeleteSchoolActivityDataMutation,
 } = OutOfSchoolActivity;

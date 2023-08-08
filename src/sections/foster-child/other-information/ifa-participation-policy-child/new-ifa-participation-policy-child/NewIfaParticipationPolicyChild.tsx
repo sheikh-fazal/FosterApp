@@ -1,9 +1,10 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Rating, Typography } from "@mui/material";
 import React from "react";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import Link from "next/link";
 import { IfaParticipationPolicyData } from ".";
 import useNewIfaParticipationPolicyChild from "./useNewIfaParticipationPolicyChild";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const NewIfaParticipationPolicyChild = (props: any) => {
   const {
@@ -13,6 +14,8 @@ const NewIfaParticipationPolicyChild = (props: any) => {
     router,
     formState,
     postExclusionInfo,
+    value,
+    setValue,
   } = props;
 
   const { methods, handleSubmit, onSubmit } =
@@ -45,6 +48,32 @@ const NewIfaParticipationPolicyChild = (props: any) => {
               </Grid>
             );
           })}
+
+          <Grid container columnSpacing={4} mt={3}>
+            <Grid item xs={12} md={6} ml={3}>
+              <RHFTextField
+                label="Would you like to go again next time?"
+                size="small"
+                fullWidth
+                name=""
+                {...methods}
+                disabled={props.disabled}
+              />
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Typography component="legend">
+                Whats your rating on this event?
+              </Typography>
+              <Rating
+                name="simple-controlled"
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                {...methods}
+              />
+            </Grid>
+          </Grid>
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">

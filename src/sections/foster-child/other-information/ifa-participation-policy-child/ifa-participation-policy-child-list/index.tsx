@@ -69,6 +69,7 @@ export const columnsIfaParticipationPolicyTable = (
     cell: (info: any) => info.getValue(),
     header: () => <span>Rating</span>,
     isSortable: true,
+    
   },
   {
     accessorFn: (row: any) => row?.id,

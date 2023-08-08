@@ -3,7 +3,6 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { DummyChildExclusionData } from ".";
 import useOutSchoolActivityList from "./useOutSchoolActivityList";
 
 export const OutSchoolActivityList = () => {
@@ -15,9 +14,9 @@ export const OutSchoolActivityList = () => {
     tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
-    trainingProfileId,
+    outOfSchoolActivityId,
     closeDeleteProfile,
-    deleteTrainingProfile,
+    deleteOutOfSchoolActivityId,
     isSuccess,
     isLoading,
     isFetching,
@@ -27,8 +26,8 @@ export const OutSchoolActivityList = () => {
   return (
     <>
       <DeleteModel
-        open={trainingProfileId}
-        onDeleteClick={deleteTrainingProfile}
+        open={outOfSchoolActivityId}
+        onDeleteClick={deleteOutOfSchoolActivityId}
         handleClose={closeDeleteProfile}
       />
 

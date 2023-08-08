@@ -4,13 +4,13 @@ import { columnsOutSchoolActivityTable } from ".";
 import { useRouter } from "next/router";
 import { data } from "@root/sections/advocacy/carer-advocacy/carer-advocacy-dashboard/self-advocacy-toolkit";
 import {
-  useDeleteSingleSchoolActivityDataMutation,
+  useDeleteSchoolActivityDataMutation,
   useGetOutSchoolActivityListQuery,
 } from "@root/services/foster-child/education-records/out-of-school-activity/OutOfSchoolActivity";
 
 const useOutSchoolActivityList = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
-  const [trainingProfileId, setTrainingProfileId] = useState<any>(null);
+  const [outOfSchoolActivityId, setOutOfSchoolActivityId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
   const fosterChildId = router?.query?.fosterChildId;
@@ -20,25 +20,23 @@ const useOutSchoolActivityList = () => {
 
   const { data, isSuccess, isLoading, isFetching, isError } =
     useGetOutSchoolActivityListQuery({ fosterChildId, params });
-  const [delteActivity] = useDeleteSingleSchoolActivityDataMutation();
-  console.log(data);
+  const [delteActivity] = useDeleteSchoolActivityDataMutation();
 
-  const deleteTrainingProfile = async () => {
-    console.log(trainingProfileId);
-    setTrainingProfileId(null);
+  const deleteOutOfSchoolActivityId = async () => {
+    setOutOfSchoolActivityId(null);
+    const res = await delteActivity(outOfSchoolActivityId);
   };
 
   const openDeleteModel = (id: string) => {
-    console.log("ProfileID: ", id);
-    setTrainingProfileId(id);
+    setOutOfSchoolActivityId(id);
   };
 
   const closeDeleteProfile = (id: string) => {
-    setTrainingProfileId(null);
+    setOutOfSchoolActivityId(null);
   };
 
   const columnsChildExclusionInfoTableFuntion = columnsOutSchoolActivityTable(
-    deleteTrainingProfile,
+    deleteOutOfSchoolActivityId,
     router,
     cancelDelete,
     setCancelDelete,
@@ -47,21 +45,21 @@ const useOutSchoolActivityList = () => {
 
   return {
     tableHeaderRef,
-    trainingProfileId,
+    outOfSchoolActivityId,
     params,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
     columnsChildExclusionInfoTableFuntion,
     closeDeleteProfile,
-    deleteTrainingProfile,
+    deleteOutOfSchoolActivityId,
     router,
     data,
     isSuccess,
     isLoading,
     isFetching,
     isError,
-    fosterChildId
+    fosterChildId,
   };
 };
 

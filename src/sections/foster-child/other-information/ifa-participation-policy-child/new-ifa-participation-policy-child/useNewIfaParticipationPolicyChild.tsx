@@ -6,17 +6,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
 const useNewIfaParticipationPolicyChild = () => {
+  const [value, setValue] = React.useState<number | null>(2);
+
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   const defaultValues = {
     classStudying: "",
- 
   };
 
   const childExclusionSchema = Yup.object().shape({
     classStudying: Yup.string().required("Required"),
-   
   });
 
   const methods: any = useForm({
@@ -29,11 +29,10 @@ const useNewIfaParticipationPolicyChild = () => {
   console.log(methods);
 
   const onSubmit = (data: any) => {
-
     console.log(data);
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router,value,setValue };
 };
 
 export default useNewIfaParticipationPolicyChild;

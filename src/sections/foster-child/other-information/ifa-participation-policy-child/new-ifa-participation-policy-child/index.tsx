@@ -49,17 +49,6 @@ export const IfaParticipationPolicyData = [
     },
     component: RHFTextField,
   },
-  {
-    id: 5,
-    gridLength: 6,
-    otherOptions: {
-      name: "Would you like to go again next time?",
-      label: "Achievement",
-      fullWidth: true,
-      multiline: true,
-      minRows: 2,
-    },
-    component: RHFTextField,
-  },
+  
   
 ];

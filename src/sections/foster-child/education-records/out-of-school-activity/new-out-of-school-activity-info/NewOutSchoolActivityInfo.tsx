@@ -6,10 +6,11 @@ import { NewOutSchoolActivityInfoData } from ".";
 import useNewOutSchoolActivityInfo from "./useNewOutSchoolActivityInfo";
 
 const NewOutSchoolActivityInfo = (props: any) => {
-  const { disabled, formState,postSchoolActivityData } =
-    props;
+  const { disabled, formState, postSchoolActivityData } = props;
 
-  const { methods, handleSubmit, onSubmit, } = useNewOutSchoolActivityInfo(postSchoolActivityData);
+  const { methods, handleSubmit, onSubmit } = useNewOutSchoolActivityInfo(
+    postSchoolActivityData
+  );
 
   return (
     <>
@@ -41,7 +42,7 @@ const NewOutSchoolActivityInfo = (props: any) => {
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
+              Submit
             </Button>
             <Link href={"/recruitment"}>
               <Button
