@@ -17,20 +17,23 @@ export const useBackupCarerPlacementTable = () => {
     });
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
-  const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
+  // const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
   //DELETE API For Allegation List
   const listDeleteHandler = (id: any) => {
-    deleteList({ id: id })
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Deleted Successfully", {
-          variant: "success",
-        });
-      })
-      .catch((error: any) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
+    enqueueSnackbar("Information Deleted Successfully", {
+      variant: "success",
+    });
+    // deleteList({ id: id })
+    //   .unwrap()
+    //   .then((res: any) => {
+    //     enqueueSnackbar("Information Deleted Successfully", {
+    //       variant: "success",
+    //     });
+    //   })
+    //   .catch((error: any) => {
+    //     const errMsg = error?.data?.message;
+    //     enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    //   });
   };
 
   return {

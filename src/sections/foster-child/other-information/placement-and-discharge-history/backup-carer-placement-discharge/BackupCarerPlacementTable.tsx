@@ -1,9 +1,6 @@
 import CustomTable from "@root/components/Table/CustomTable";
-import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
 import { Box } from "@mui/material";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import dayjs from "dayjs";
 import { useBackupCarerPlacementTable } from "./useBackupCarerPlacementTable";
 import { columns } from "./BackupCarerPlacementData";
 

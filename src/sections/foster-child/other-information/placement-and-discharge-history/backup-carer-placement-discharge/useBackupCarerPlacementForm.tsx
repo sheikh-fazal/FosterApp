@@ -25,6 +25,8 @@ export const useBackupCarerPlacementForm = () => {
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
+      setIsLoading(false);
+
       return defaultValues;
     } else {
       setIsLoading(false);

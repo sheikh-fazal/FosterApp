@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
 import { formData } from "./PlacementTransferData";
 import FormProvider from "@root/components/hook-form/FormProvider";
-import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
 import { usePlacementTransferForm } from "./usePlacementTransferForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
