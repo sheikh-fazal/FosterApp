@@ -6,10 +6,16 @@ import { NewPersonalEducationPlanData } from ".";
 import useEditPersonalEducationalPlan from "./useNewPersonalEducationalPlan";
 
 const NewPersonalEducationPlan = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const {
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    postEducationPlanData,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useEditPersonalEducationalPlan();
+  const { methods, handleSubmit, onSubmit } = useEditPersonalEducationalPlan(postEducationPlanData);
 
   return (
     <>

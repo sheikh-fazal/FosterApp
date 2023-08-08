@@ -4,33 +4,27 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useEditOutSchoolActivityInfo = () => {
+const useEditOutSchoolActivityInfo = (initialValueProps: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   const defaultValues = {
-    classStudying: "",
-    typeExclusion: "",
-    dateExclusion: new Date(todayDate),
-    returnDate: new Date(todayDate),
-    exclusionDetails: "",
-    actionTaken: "",
-    outcome: "",
+    activityType: "",
+    comments: "",
+    fromDate: new Date(todayDate),
+    outOfDate: new Date(todayDate),
   };
 
   const tainingProfileSchema = Yup.object().shape({
-    classStudying: Yup.string().required("Required"),
-    typeExclusion: Yup.string().required("Required"),
-    returnDate: Yup.date().required("Required"),
-    dateExclusion: Yup.date().required("Required"),
-    exclusionDetails: Yup.string().required("Required"),
-    actionTaken: Yup.string().required("Required"),
-    outcome: Yup.string().required("Required"),
+    activityType: Yup.string().required("Required"),
+    comments: Yup.string().required("Required"),
+    fromDate: Yup.date().required("Required"),
+    outOfDate: Yup.date().required("Required"),
   });
 
   const methods: any = useForm({
     resolver: yupResolver(tainingProfileSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
 
   const { handleSubmit } = methods;
@@ -39,7 +33,7 @@ const useEditOutSchoolActivityInfo = () => {
     console.log(data);
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router, defaultValues };
 };
 
 export default useEditOutSchoolActivityInfo;

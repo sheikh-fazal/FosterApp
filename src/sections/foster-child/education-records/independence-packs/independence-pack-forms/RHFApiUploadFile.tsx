@@ -3,12 +3,22 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import { useFormContext, Controller } from "react-hook-form";
 import { enqueueSnackbar } from "notistack";
 import CircularProgress from "@mui/material/CircularProgress";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState } from "react";
 
 export const RHFApiUploadFile = (props: any) => {
   const { disabled, name, apiCall, ...other } = props;
   const { control } = useFormContext();
   let [loading, setLoading] = useState(false);
+
+  let subString = (str: any) => {
+    if (str.length > 55) {
+      return `${str.slice(0, 55)}....`;
+    } else {
+      str;
+    }
+  };
+
   return (
     <Controller
       name={name}
@@ -35,15 +45,31 @@ export const RHFApiUploadFile = (props: any) => {
             >
               <div style={{ paddingLeft: "10px", color: "#A3A6BB" }}>
                 {(field?.value?.name == undefined
-                  ? field.value
-                  : field.value.name) ||
+                  ? subString(field.value)
+                  : subString(field.value.name)) ||
                   (other.label ? other?.label : "Upload Image")}
               </div>
-              {loading ? (
+              {field.value ? (
+                <ClearIcon
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    field.onChange({
+                      target: { value: "" },
+                    });
+                  }}
+                  sx={{
+                    color: "#A3A6BB",
+                    marginRight: "10px",
+                  }}
+                />
+              ) : loading ? (
                 <CircularProgress
                   sx={{
                     color: "#A3A6BB",
                     marginRight: "10px",
+                    width: "25px !important",
+                    height: "25px !important",
                   }}
                 />
               ) : (

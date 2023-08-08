@@ -26,15 +26,11 @@ export const statutoryMedicalListAccordionData = [
 
 export const sortTypeData = [
   {
-    value: "Option 1",
+    title: "Ascending",
+    value: false,
   },
   {
-    value: "Option 2",
-  },
-  {
-    value: "Option 3",
-  },
-  {
-    value: "Option 4",
+    title: "Descending",
+    value: true,
   },
 ];

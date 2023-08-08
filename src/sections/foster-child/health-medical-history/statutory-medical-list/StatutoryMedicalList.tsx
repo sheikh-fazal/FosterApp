@@ -9,8 +9,16 @@ import { sortTypeData, statutoryMedicalListAccordionData } from ".";
 import { useStatutoryMedicalList } from "./useStatutoryMedicalList";
 
 const StatutoryMedicalList = () => {
-  const { open, sortType, setSortType, handleSortType, sortTypeMenuItemClick } =
-    useStatutoryMedicalList();
+  const {
+    open,
+    sortType,
+    setSortType,
+    handleSortType,
+    sortTypeMenuItemClick,
+    sortArray,
+    sortOrder,
+    setSortOrder,
+  } = useStatutoryMedicalList();
   return (
     <>
       <Stack
@@ -18,12 +26,16 @@ const StatutoryMedicalList = () => {
         justifyContent="end"
         gap={2}
       >
-        <Button variant="contained" sx={{ px: 0 }}>
+        {/* <Button
+          variant="contained"
+          sx={{ px: 0 }}
+          onClick={() => window.print()}
+        >
           <LocalPrintshopIcon />
         </Button>
         <Button variant="contained" sx={{ px: 0 }}>
           <OpenInNewIcon />
-        </Button>
+        </Button> */}
         <Button
           id="basic-button"
           aria-controls={open ? "basic-menu" : undefined}
@@ -56,25 +68,27 @@ const StatutoryMedicalList = () => {
         >
           {sortTypeData.map((item: any) => (
             <MenuItem
-              key={item?.value}
-              onClick={() => sortTypeMenuItemClick(item)}
+              key={item?.title}
+              onClick={() => sortTypeMenuItemClick(item?.value)}
               sx={{
                 borderRadius: "4px",
                 fontSize: "14px",
               }}
             >
-              {item?.value}
+              {item?.title}
             </MenuItem>
           ))}
         </Menu>
       </Stack>
       {/* Global Accordian Component */}
       <Grid container>
-        {statutoryMedicalListAccordionData.map((item: any) => (
-          <Grid item xs={12} key={item?.id}>
-            <AccordianList title={item?.title} component={item?.component} />
-          </Grid>
-        ))}
+        {sortArray(statutoryMedicalListAccordionData, "title", sortOrder).map(
+          (item: any) => (
+            <Grid item xs={12} key={item?.id}>
+              <AccordianList title={item?.title} component={item?.component} />
+            </Grid>
+          )
+        )}
       </Grid>
     </>
   );

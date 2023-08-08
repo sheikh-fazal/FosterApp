@@ -5,7 +5,7 @@ import iitialHomeVisitImg from "../../../assets/img/recruitment/initialHomeVisit
 import socialAssessmentImg from "../../../assets/img/recruitment/socialWorkAssesmment.png";
 import SocialWorkerFormDialogbox from "./social-worker-form-dialogbox/SocialWorkerFormDialogbox";
 
-export const ENQUIRYSTAGEDATA = (_id: any) => [
+export const ENQUIRYSTAGEDATA = (fosterCarerId: any) => [
   {
     id: 1,
     informationIcon: [
@@ -20,7 +20,7 @@ export const ENQUIRYSTAGEDATA = (_id: any) => [
     text: "Initial Contact",
     informationText: "Initial Contact",
     viewForms: "View Form",
-    href: "/recruitment/enquiry-stage/initial-contact",
+    href: `/recruitment/enquiry-stage/initial-contact?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 2,
@@ -63,7 +63,7 @@ export const ENQUIRYSTAGEDATA = (_id: any) => [
     text: "Initial Enquiry Stage",
     informationText: "Initial Enquiry",
     viewForms: "View Form",
-    href: `carer-info/personal-info/initial-enquiry?fosterCarerId=${_id}`,
+    href: `carer-info/personal-info/initial-enquiry?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 3,
@@ -102,7 +102,7 @@ export const ENQUIRYSTAGEDATA = (_id: any) => [
     text: "Digital Info Pack",
     informationText: "Digital Application Pack/ info Pack",
     viewForms: "View Form",
-    href: `/carer-info?fosterCarerId=${_id}`,
+    href: `/carer-info?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 4,
@@ -160,7 +160,7 @@ export const ENQUIRYSTAGEDATA = (_id: any) => [
     text: "Initial Home Visit",
     informationText: "Initial Home Visit",
     viewForms: "View Form",
-    href: `/recruitment/enquiry-stage/initial-home-visit?fosterCarerId=${_id}`,
+    href: `/carer-info/personal-info/initial-home-visit?fosterCarerId=${fosterCarerId}`,
     status: "Passed",
   },
   {

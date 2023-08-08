@@ -1,17 +1,10 @@
 import * as React from "react";
-
-// form
-// @mui
 import { Grid, Box, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-// utils
-
-// components
 import { FormProvider } from "@root/components/hook-form";
 import SingleLevel from "./SingleLevel";
-//
 import BronzeLevel from "@root/assets/svg/bronze-level";
 
 const style = {

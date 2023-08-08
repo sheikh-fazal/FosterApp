@@ -10,6 +10,7 @@ import {
   useUpdateLeisureActivityMutation,
 } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivitiesHobby";
 import dayjs from "dayjs";
+import { useState } from "react";
 const formet = (data: any) => {
   for (const key of data) {
     if (key.includes("time")) {
@@ -24,6 +25,7 @@ export const useLeisureActivitiesForm = (
   id: any,
   setLeisureActivityId: any
 ) => {
+  let [isFetching, setIsFetching] = useState(false);
   let theme = useTheme();
   let router = useRouter();
   const methods: any = useForm({
@@ -48,12 +50,13 @@ export const useLeisureActivitiesForm = (
     useUpdateLeisureActivityMutation();
   const onSubmit = async (data: any) => {
     let { hobby, description, stars, date, time, media } = data;
+    console.log(time);
     let formData: any = new FormData();
     formData.append("hobby", hobby);
     formData.append("description", description);
     formData.append("stars", stars);
     formData.append("date", new Date(date).toISOString());
-    formData.append("time", dayjs(time).format("hh:mm:ss"));
+    formData.append("time", dayjs(time).format("HH:mm:ss"));
     formData.append("media", media);
 
     if (action == "edit") {
@@ -73,6 +76,10 @@ export const useLeisureActivitiesForm = (
         .unwrap()
         .then((res: any) => {
           setLeisureActivityId(res?.data?.id);
+          setIsFetching(true);
+          router.push(
+            `/foster-child/education-records/leisure-activities-hobby/edit-leisure-activity/${res?.data?.id}?fosterChildId=${router?.query?.fosterChildId}`
+          );
           enqueueSnackbar("Record Added Successfully", {
             variant: "success",
           });
@@ -91,5 +98,6 @@ export const useLeisureActivitiesForm = (
     isDirty,
     theme,
     router,
+    isFetching,
   };
 };
