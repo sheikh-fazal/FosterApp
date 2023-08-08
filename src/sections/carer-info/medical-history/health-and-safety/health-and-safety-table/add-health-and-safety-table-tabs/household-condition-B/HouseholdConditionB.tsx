@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
@@ -8,16 +15,24 @@ import { householdConditionB_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
 
 export const HouseholdConditionB = (props: any) => {
-  const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
-    props;
+  const {
+    disabled,
+    submitFunction,
+    formData,
+    isLoading,
+    isError,
+    isSuccess,
+    breadCrumbData,
+  } = props;
   const theme: any = useTheme();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues,
   });
   const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     formData(data);
+    await submitFunction();
     // console.log(data);
   };
   useEffect(() => {
@@ -77,8 +92,15 @@ export const HouseholdConditionB = (props: any) => {
                   "&:hover": { bgcolor: theme.palette.primary.main },
                 }}
                 variant="contained"
+                disabled={isLoading}
               >
-                Submit
+                {isLoading ? (
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    Loading &nbsp; <CircularProgress size={20} />
+                  </span>
+                ) : (
+                  "Submit"
+                )}
               </Button>
 
               <Button

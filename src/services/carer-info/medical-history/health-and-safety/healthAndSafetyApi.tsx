@@ -23,9 +23,9 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
-    patchHealthAndsafetyData: builder.mutation({
-      query: ({ id, payload }: any) => ({
-        url: `carer-Info/update-health-and-safety/${id}`,
+    healthAndSafetyDataPatch: builder.mutation({
+      query: ({ healthAndSafetyId, payload }: any) => ({
+        url: `carer-Info/update-health-and-safety/${healthAndSafetyId}`,
         method: "PATCH",
         body: payload,
       }),
@@ -37,4 +37,7 @@ export const {
   useGetHealthAndSafetyListDataQuery,
   useDeleteHealthAndSafetyListDataMutation,
   useHouseHoldConditionAPostMutation,
+  // usePatchHealthAndSafe
+  // usePa
+  useHealthAndSafetyDataPatchMutation
 } = healthAndSafetyApi;

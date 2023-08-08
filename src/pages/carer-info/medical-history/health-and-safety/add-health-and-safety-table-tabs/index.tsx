@@ -10,7 +10,10 @@ import { SafetyFactorsIndoorsD } from "@root/sections/carer-info/medical-history
 import { SafetyFactorsIndoorsE } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-indoors-E/SafetyFactorsIndoorsE";
 import { SafetyFactorsOutdoors } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-outdoors/SafetyFactorsOutdoors";
 import { UploadDocument } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/upload-document/UploadDocument";
-import { useHouseHoldConditionAPostMutation } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import {
+  useHealthAndSafetyDataPatchMutation,
+  useHouseHoldConditionAPostMutation,
+} from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 import { enqueueSnackbar } from "notistack";
 
 import React, { useState } from "react";
@@ -20,23 +23,41 @@ export default function AddHealthAndSafetyTableTabs() {
   const [breadCrumbData, setBreadCrumbData] = useState(
     "Household Condition - A"
   );
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState();
   console.log(formData);
-  
+  const [idd, setIdd] = useState();
   const [tabArray, setTabArray] = useState(["Household Condition-A"]);
-  const [resetTrigger, { data, isLoading, isSuccess }] =
-    useHouseHoldConditionAPostMutation();
+  const [
+    resetTrigger,
+    { data, isLoading: loadinghouseholdAPostData, isSuccess },
+  ] = useHouseHoldConditionAPostMutation();
 
+  const [trigger, { isLoading: loadingAllConditions }] =
+    useHealthAndSafetyDataPatchMutation();
   const submitt = async () => {
     try {
       const res: any = await resetTrigger(formData);
+      setIdd(res?.data?.data?.id);
       enqueueSnackbar(res?.data?.message, { variant: "success" });
+      setTabArray(["Household Condition-A", "B"]);
     } catch (error: any) {
-      // console.log(error?.message);
+      enqueueSnackbar(error?.message, { variant: "error" });
+    }
+  };
 
+  const submit2 = async () => {
+    try {
+      const res: any = await trigger({
+        healthAndSafetyId: idd,
+        payload: formData,
+      });
+
+      enqueueSnackbar(res?.data?.message, { variant: "success" });
+      console.log(res?.data);
+
+      setTabArray(["Household Condition-A", "B", "Safety Factors - Indoors A"]);
+    } catch (error: any) {
       const errMsg = error?.data?.message;
-      // console.log(errMsg);
-
       enqueueSnackbar(error?.message, { variant: "error" });
     }
   };
@@ -75,11 +96,13 @@ export default function AddHealthAndSafetyTableTabs() {
           formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
           submitFunction={submitt}
-          isLoading={isLoading}
+          isLoading={loadinghouseholdAPostData}
         />
         <HouseholdConditionB
-          formData={(data: any) => console.log(data)}
+          formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
+          submitFunction={submit2}
+          isLoading={loadingAllConditions}
         />
         <SafetyFactorsIndoorsA
           formData={(data: any) => console.log(data)}
