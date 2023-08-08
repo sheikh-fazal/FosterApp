@@ -63,7 +63,7 @@ export default function EditSchoolDetail() {
 
   const [postDocs] = usePostUploadDocumentsSchoolDetailInfoApiMutation();
   const [deleteData] = useDeleteUploadDocumentsSchoolDetailInfoByIdMutation();
-  const tableData: any = documentData?.data?.["education-records-document"];
+  const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {

@@ -9,6 +9,7 @@ import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-
 import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -32,11 +33,16 @@ FamilyPersonList.getLayout = function getLayout(page: any) {
 };
 
 export default function FamilyPersonList() {
-  const router = useRouter();
+  const { query } = useRouter();
+  const familyPersonId = query["family_person_id"];
+  const { data, isLoading, isSuccess, isError } =
+    useGetFamilyPersonListByIdQuery(familyPersonId, {
+      skip: !!!query?.family_person_id,
+    });
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
-        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        breadcrumbs={BREADCRUMBS(query?.fosterChildId)}
         title={PAGE_TITLE}
         sx={{ mb: 2 }}
       />
@@ -46,7 +52,7 @@ export default function FamilyPersonList() {
         >
           {/* Family Person Form */}
 
-          <FamilyOrgInvolvedForm />
+          <FamilyOrgInvolvedForm defaultValues={data?.[0]} />
 
           {/* Upload Document */}
           <FamilyPersonDocument />

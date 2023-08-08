@@ -9,7 +9,7 @@ import useOutSchoolActivityList from "./useOutSchoolActivityList";
 export const OutSchoolActivityList = () => {
   const {
     columnsChildExclusionInfoTableFuntion,
-    // trainingPRofileData,
+    data,
     router,
     headerChangeHandler,
     tableHeaderRef,
@@ -18,6 +18,10 @@ export const OutSchoolActivityList = () => {
     trainingProfileId,
     closeDeleteProfile,
     deleteTrainingProfile,
+    isSuccess,
+    isLoading,
+    isFetching,
+    isError,
   } = useOutSchoolActivityList();
   return (
     <>
@@ -42,10 +46,13 @@ export const OutSchoolActivityList = () => {
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={DummyChildExclusionData}
+          data={data?.data}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={true}
+          isSuccess={isSuccess}
+          isError={isError}
+          isFetching={isFetching}
+          isLoading={isLoading}
           isPagination={false}
         />
       </Card>

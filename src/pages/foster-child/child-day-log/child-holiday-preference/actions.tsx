@@ -7,15 +7,15 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import ChildHolidayPreferenceForm from "@root/sections/foster-child/child-day-log/child-holiday-preference/ChildHolidayPreferenceForm";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import ChildHolidaypreferenceDocuments from "@root/sections/foster-child/child-day-log/child-holiday-preference/ChildHolidaypreferenceDocuments";
 
 ChildHolidayPreferenceActions.getLayout = function GetLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 export default function ChildHolidayPreferenceActions() {
   const Router: any = useRouter();
-  const { action, fosterChildId, childHolidayPreferenceId } = Router.query;
+  const { action, fosterChildId, childHolidayPrefrence } = Router.query;
   // Constants
-
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -46,36 +46,12 @@ export default function ChildHolidayPreferenceActions() {
         <ChildHolidayPreferenceForm
           action={action}
           fosterChildId={fosterChildId}
-          childHolidayPreferenceId={childHolidayPreferenceId}
+          childHolidayPrefrence={childHolidayPrefrence}
         />
-        <UploadDocuments
-          //readOnly={true}
-
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={{}}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "document",
-
-            "documentType",
-
-            "date",
-
-            "personName",
-
-            "password",
-          ]}
-          modalData={(data: any) => {
-            console.log("searched Value", data);
-          }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
+        <ChildHolidaypreferenceDocuments
+          action={action}
+          fosterChildId={fosterChildId}
+          childHolidayPrefrence={childHolidayPrefrence}
         />
       </HorizaontalTabs>
     </Box>

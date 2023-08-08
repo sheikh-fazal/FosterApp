@@ -88,6 +88,14 @@ export const aboutTheCandidateApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
+    deletePhotoForIdBadge: builder.mutation<null, any>({
+      query: (body) => ({
+        url: "/user-profile/bagde-Id-image",
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
     getPhotoForIdUpload: builder.query({
       query: () => ({
         url: "user-profile/all-profile?infoToget=aboutCandidate.passport",
@@ -116,6 +124,7 @@ export const {
   useDeleteAddressDetailsDocuMutation,
   useGetPhotoForIdBadgeQuery,
   useUpdatePhotoForIdBadgeMutation,
+  useDeletePhotoForIdBadgeMutation,
   useGetPhotoForIdUploadQuery,
   useUpdatePhotoForIdUploadMutation,
 } = aboutTheCandidateApi;
