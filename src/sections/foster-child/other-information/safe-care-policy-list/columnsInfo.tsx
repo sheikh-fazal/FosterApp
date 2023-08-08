@@ -1,47 +1,43 @@
 import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import TableAction from "@root/components/TableAction";
 import { shortName } from "@root/sections/edit-profile/util/Util";
 import dayjs from "dayjs";
+import { useRouter } from "next/router";
 export const getColumns = (parms: any) => {
-  const { router } = parms;
+  const { router, handleDeleteDocs } = parms;
+  const { query } = router;
+  const { fosterChildId } = query;
   return [
     {
-      accessorFn: (row: any) => row.a,
-      id: "Sr. Noaaa",
-      cell: (info: any) => info.getValue().toUpperCase(),
-      header: "Sr. Noaaa",
-      isSortable: false,
-    },
-    {
-      accessorFn: (row: any) => row.b,
+      accessorFn: (row: any) => row.CarerName,
       id: "Carer Name",
-      cell: (info: any) => "B",
+      cell: (info: any) => info.getValue(),
       header: "Carer Name",
       isSortable: false,
     },
+
     {
-      accessorFn: (row: any) => row.c,
+      accessorFn: (row: any) => row.sectionA.inspectionDate,
       id: "Inspection Date",
-      cell: (info: any) => "C",
+      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
       header: "Inspection Date",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.d,
-      id: "Next Inspection Date",
-      cell: (info: any) => "Not Avialable",
+      accessorFn: (row: any) => row.sectionA?.nextInspectionDate,
+      id: "subject",
+      cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
       header: "Next Inspection Date",
       isSortable: false,
     },
-
     {
-      accessorFn: (row: any) => row.e,
+      accessorFn: (row: any) => row.status,
       id: "Status",
-      cell: (info: any) => "D",
+      cell: (info: any) => info.getValue(),
       header: "Status",
       isSortable: false,
     },
-
     {
       accessorFn: (row: any) => row.f,
       id: "actions",
@@ -52,12 +48,22 @@ export const getColumns = (parms: any) => {
             type="edit"
             onClick={() =>
               router.push(
-                `/foster-child/other-information/safe-care-policy-list/safe-care-policy`
+                `/foster-child/other-information/safe-care-policy-list/details?fosterChildId=${fosterChildId}&action=update&id=${info.row.original.id}`
               )
             }
           />
-          <TableAction size="small" type="view" />
-          <TableAction size="small" type="delete" />
+          <TableAction
+            size="small"
+            type="view"
+            onClick={() =>
+              router.push(
+                `/foster-child/other-information/safe-care-policy-list/details?fosterChildId=${fosterChildId}&action=view&id=${info.row.original.id}`
+              )
+            }
+          />
+          <DeletePrompt
+            onDeleteClick={() => handleDeleteDocs(info?.row?.original?.id)}
+          />
         </Box>
       ),
       header: "Action",

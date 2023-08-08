@@ -53,9 +53,9 @@ export const useDocuments = () => {
     documentFormData.append("documentPassword", data.password);
     documentFormData.append("file", data.chosenFile);
 
-    // const pathParams = {
-    //   id: router?.query?.id,
-    // };
+    const pathParams = {
+      id: router?.query?.id,
+    };
     const apiDataParameter = {
       // queryParams,
       pathParams,

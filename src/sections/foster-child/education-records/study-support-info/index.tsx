@@ -13,7 +13,7 @@ export const StudySupportInfoInfoFormData = [
   },
   {
     id: 2,
-    componentProps: { name: "fromDate", label: "From Date:" },
+    componentProps: { name: "fromDate", label: "From Date:", multiline: false },
     component: RHFDatePicker,
     format: (date: any) => {
       return new Date(date);
@@ -22,7 +22,7 @@ export const StudySupportInfoInfoFormData = [
   },
   {
     id: 3,
-    componentProps: { name: "toDate", label: "To Date:" },
+    componentProps: { name: "toDate", label: "To Date:", multiline: false },
     component: RHFDatePicker,
     format: (date: any) => {
       return new Date(date);
