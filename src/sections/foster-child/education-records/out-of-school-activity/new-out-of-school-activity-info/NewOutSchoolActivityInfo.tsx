@@ -3,13 +3,13 @@ import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
 import { NewOutSchoolActivityInfoData } from ".";
-import useNewChildExclusionInfo from "./useNewOutSchoolActivityInfo";
+import useNewOutSchoolActivityInfo from "./useNewOutSchoolActivityInfo";
 
 const NewOutSchoolActivityInfo = (props: any) => {
   const { disabled, formState,postSchoolActivityData } =
     props;
 
-  const { methods, handleSubmit, onSubmit, } = useNewChildExclusionInfo(postSchoolActivityData);
+  const { methods, handleSubmit, onSubmit, } = useNewOutSchoolActivityInfo(postSchoolActivityData);
 
   return (
     <>

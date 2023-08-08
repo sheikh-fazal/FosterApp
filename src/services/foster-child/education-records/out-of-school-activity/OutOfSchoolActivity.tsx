@@ -28,7 +28,7 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       query: ({ data, fosterChildId }: any) => ({
         url: `/school-info/out-of-school-activity/${fosterChildId}`,
         method: "POST",
-        data,
+        body: data,
       }),
       invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),

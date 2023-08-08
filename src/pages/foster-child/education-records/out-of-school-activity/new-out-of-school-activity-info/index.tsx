@@ -43,7 +43,7 @@ export default function NewChildExclusionInfoPage() {
 
   const postSchoolActivityData = async (data: any) => {
     try {
-      console.log( typeof data.activityType);
+  
       const res = await postActivityData({ data, fosterChildId });
       console.log(res);
 
@@ -52,7 +52,7 @@ export default function NewChildExclusionInfoPage() {
       });
     } catch (err) {
       console.log(err);
-      
+
       // enqueueSnackbar(`${err?.error.data.message}!`, {
       //   variant: "error",
       // });
