@@ -9,6 +9,7 @@ import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
   useClaReviewDocListQuery,
+  useDeleteClaReviewDocMutation,
   useGetClaReviewIdQuery,
   usePatchClaReviewByIdMutation,
   usePostClaReviewDocMutation,
@@ -41,7 +42,12 @@ export default function EditClaReview() {
     isSuccess: docSuccess,
   }: any = useClaReviewDocListQuery(claReviewId);
 
+  const tableData: any = docData?.data;
+  const metaData: any = docData?.data?.meta;
+
   const [postDocs] = usePostClaReviewDocMutation();
+
+  const [deleteDoc] = useDeleteClaReviewDocMutation();
 
   const BREADCRUMBS = [
     {
@@ -72,7 +78,7 @@ export default function EditClaReview() {
         {isLoading ? (
           <SkeletonFormdata />
         ) : (
-          <ClaReviewForm 
+          <ClaReviewForm
             initialValueProps={{
               ...data[0],
               dateOfReview: new Date(data[0]?.dateOfReview),
@@ -85,34 +91,24 @@ export default function EditClaReview() {
           />
         )}
         <UploadDocuments
-          readOnly={false}
           searchParam={(searchedText: string) =>
             console.log("searched Value", searchedText)
           }
-          // tableData={tableData}
-          tableData={[
-            {
-              document: "bad.png",
-              documentType: "png",
-              date: "09/09/2009",
-              personName: "My name",
-              password: "password123",
-            },
-          ]}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          tableData={tableData}
+          isLoading={docLoading}
+          isFetching={docFetching}
+          isError={docError}
+          isSuccess={docSuccess}
           column={[
-            "document",
+            "documentName",
             "documentType",
-            "date",
+            "documentDate",
             "personName",
             "password",
           ]}
           modalData={async (data: any) => {
             const formData = new FormData();
-            formData.append("personName", data?.personName);
+            formData.append("personName", data?.personName || "Name");
             formData.append("documentName", data?.documentName);
             formData.append("documentType", data?.documentType);
             formData.append("documentDate", data?.documentDate);
@@ -137,7 +133,12 @@ export default function EditClaReview() {
               });
             }
           }}
-          onDelete={(data: any) => console.log("Deleting", data)}
+          onDelete={(data: any) => {
+            deleteDoc(data?.id);
+            enqueueSnackbar("CLA Review info deleted successfully!", {
+              variant: "success",
+            });
+          }}
           onPageChange={(page: any) => console.log("parent log", page)}
           // currentPage={metaData?.page}
           // totalPages={metaData?.pages}
@@ -146,4 +147,3 @@ export default function EditClaReview() {
     </Page>
   );
 }
- 

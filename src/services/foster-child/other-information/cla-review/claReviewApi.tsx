@@ -1,4 +1,4 @@
-import { baseAPI, TAGS } from "@root/services/baseApi";
+import { baseAPI } from "@root/services/baseApi";
 
 const TAG = "CLA_REVIEW";
 const DOCTAG = "CLA_REVIEW_DOCUMNET";
@@ -63,6 +63,15 @@ export const claReviewApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [DOCTAG],
     }),
+    deleteClaReviewDoc: builder.mutation<null, void>({
+      query: (id) => {
+        return {
+          url: `DELETE/foster-child/child-CLAReview-info/document/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [DOCTAG],
+    }),
   }),
 });
 
@@ -74,4 +83,5 @@ export const {
   useDeleteClaReviewByIdMutation,
   useClaReviewDocListQuery,
   usePostClaReviewDocMutation,
+  useDeleteClaReviewDocMutation,
 } = claReviewApi;
