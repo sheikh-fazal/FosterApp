@@ -1,20 +1,20 @@
-import { useRouter } from "next/router";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import SafeCarePolicyList from "@root/sections/foster-child/other-information/safe-care-policy-list/SafeCarePolicyList";
+import { useRouter } from "next/router";
+import SafeCarePolicyDetails from "@root/sections/foster-child/other-information/safe-care-policy-list/details/SafeCarePolicyDetails";
 
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "/ Child Info",
-    href: `/foster-child/?fosterChildId=${query.fosterChildId}`,
+    name: "/ Safe Care Policies List",
+    href: `/foster-child/other-information/safe-care-policy-list//?fosterChildId=${query.fosterChildId}`,
   },
   {
-    name: "Safe Care Policies List",
-    href: "/foster-child",
+    name: "Safe Care Policy",
+    href: "/foster-child/other-information/safe-care-policy",
   },
 ];
 
@@ -30,8 +30,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 export default function InitialHomeVisit() {
   const router = useRouter();
-
-  if (!router?.query?.fosterChildId) {
+  if (!!!router?.query?.fosterChildId) {
     router.push({
       pathname: "/foster-child-lists",
     });
@@ -44,7 +43,7 @@ export default function InitialHomeVisit() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <SafeCarePolicyList />
+      <SafeCarePolicyDetails />
     </Page>
   );
 }

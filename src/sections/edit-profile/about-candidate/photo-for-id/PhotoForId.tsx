@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
 import PersonIcon from "@mui/icons-material/Person";
 import {
+  useDeletePhotoForIdBadgeMutation,
   useGetPhotoForIdBadgeQuery,
   useUpdatePhotoForIdBadgeMutation,
 } from "@root/services/update-profile/about-the-candidate/aboutTheCandidateApi";
@@ -23,6 +24,7 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
 
   const { data, isSuccess, isLoading } = useGetPhotoForIdBadgeQuery({});
   const [updatePhotoForIdBadge] = useUpdatePhotoForIdBadgeMutation();
+  const [deletePhotoForIdBadge] = useDeletePhotoForIdBadgeMutation();
   // try to find best alternative
   useEffect(() => {
     if (isSuccess) {
@@ -49,8 +51,18 @@ const PhotoForId: FC<any> = ({ activateNextForm }) => {
     selectFile();
   };
 
-  const delFileHand = () => {
-    setFile(null);
+  const delFileHand = async () => {
+    try {
+      setUpdating(true);
+      const data = await deletePhotoForIdBadge({});
+      displaySuccessMessage(data, enqueueSnackbar);
+      setFile(null);
+      setUpdating(false);
+      return true;
+    } catch (error) {
+      displayErrorMessage(error, enqueueSnackbar);
+      return false;
+    }
   };
 
   const updatePhoto = async () => {

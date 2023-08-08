@@ -136,11 +136,6 @@ const SelfEmployed: FC<any> = ({ setEmploymentStatus }) => {
                 <Grid item container sx={{ padding: "0.5em" }} spacing={1}>
                   <Grid item>
                     <Button variant="contained" type="submit">
-                      Save
-                    </Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" type="submit">
                       Continue
                     </Button>
                   </Grid>
