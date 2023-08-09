@@ -1,36 +1,13 @@
 import { RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-export const defaultValues = {
-  complaintsReview: "Text",
-  significantChanges: "Text",
-  forestingImpact: "Text",
-  specificPreparation: "Text",
-  carerSupport: "Text",
-  socialWorkers: "Text",
-  otherProfessionals: "Text",
-  otherFosterCarers: "Text",
-  procedures: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  complaintsReview: Yup.string().required("required"),
-  significantChanges: Yup.string().required("required"),
-  forestingImpact: Yup.string().required("required"),
-  specificPreparation: Yup.string().required("required"),
-  carerSupport: Yup.string().required("required"),
-  socialWorkers: Yup.string().required("required"),
-  otherProfessionals: Yup.string().required("required"),
-  otherFosterCarers: Yup.string().required("required"),
-  procedures: Yup.string().required("required"),
-});
 
 export const annualReviewCData = [
   {
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "complaintsReview",
-      label: "Complaints or Allegation during period under review:",
+      name: "allegationDuringPeriodUnderReview",
+      label: "Complaints or Allegation during period under review",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -41,8 +18,8 @@ export const annualReviewCData = [
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "significantChanges",
-      label: "Significant changes/events for Carers since last review:",
+      name: "eventsForCarersSinceLastReview",
+      label: "Significant changes/events for Carers since last review",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -51,10 +28,9 @@ export const annualReviewCData = [
   },
   {
     id: 3,
-    title: "Experience of working with birth parents",
     gridLength: 12,
     otherOptions: {
-      name: "forestingImpact",
+      name: "importOfFosteringOnFamily",
       label: "Impact of Foresting On Family:",
       multiline: true,
       minRows: 3,
@@ -64,10 +40,23 @@ export const annualReviewCData = [
   },
   {
     id: 4,
+    title: "Impact of Foresting On Family",
+    gridLength: 12,
+    otherOptions: {
+      name: "experienceOfWorkingWithBirthParents",
+      label: "Impact of Fostering On Family",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 5,
     title: "Working relationship with the Agency",
     gridLength: 12,
     otherOptions: {
-      name: "specificPreparation",
+      name: "workingRelationshipWithTheAgency",
       label:
         "What specific preparation/training have the carer to assist them to become foster carers (First Review Only)?",
       multiline: true,
@@ -77,10 +66,10 @@ export const annualReviewCData = [
     component: RHFTextField,
   },
   {
-    id: 5,
+    id: 6,
     gridLength: 12,
     otherOptions: {
-      name: "carerSupport",
+      name: "supportForCarers",
       label: "Support for Carers:",
       multiline: true,
       minRows: 3,
@@ -89,11 +78,11 @@ export const annualReviewCData = [
     component: RHFTextField,
   },
   {
-    id: 6,
+    id: 7,
     title: "Working relationship with professionals",
     gridLength: 12,
     otherOptions: {
-      name: "socialWorkers",
+      name: "supervisingSocialWorker",
       label: "Supervising Social Workers:",
       multiline: true,
       minRows: 3,
@@ -102,7 +91,7 @@ export const annualReviewCData = [
     component: RHFTextField,
   },
   {
-    id: 7,
+    id: 8,
     gridLength: 12,
     otherOptions: {
       name: "otherProfessionals",
@@ -114,7 +103,7 @@ export const annualReviewCData = [
     component: RHFTextField,
   },
   {
-    id: 8,
+    id: 9,
     gridLength: 12,
     otherOptions: {
       name: "otherFosterCarers",
@@ -126,11 +115,11 @@ export const annualReviewCData = [
     component: RHFTextField,
   },
   {
-    id: 9,
+    id: 10,
     gridLength: 12,
     otherOptions: {
       name: "procedures",
-      label: "Procedures:",
+      label: "procedures:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -139,3 +128,29 @@ export const annualReviewCData = [
   },
 ];
 export { default as AnnualReviewC } from "./AnnualReviewC";
+
+export const defaultValues = {
+  allegationDuringPeriodUnderReview: "Text",
+  eventsForCarersSinceLastReview: "Text",
+  importOfFosteringOnFamily: "Text",
+  experienceOfWorkingWithBirthParents: "Text",
+  workingRelationshipWithTheAgency: "Text",
+  supportForCarers: "Text",
+  supervisingSocialWorker: "Text",
+  otherProfessionals: "Text",
+  otherFosterCarers: "Text",
+  procedures: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  allegationDuringPeriodUnderReview: Yup.string().required("required"),
+  eventsForCarersSinceLastReview: Yup.string().required("required"),
+  importOfFosteringOnFamily: Yup.string().required("required"),
+  experienceOfWorkingWithBirthParents: Yup.string().required("required"),
+  workingRelationshipWithTheAgency: Yup.string().required("required"),
+  supportForCarers: Yup.string().required("required"),
+  supervisingSocialWorker: Yup.string().required("required"),
+  otherProfessionals: Yup.string().required("required"),
+  otherFosterCarers: Yup.string().required("required"),
+  procedures: Yup.string().required("required"),
+});

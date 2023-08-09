@@ -9,8 +9,15 @@ const CarInsuranceForm = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
   //Car Insurance  Custom Hook
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } =
-    useCarInsuranceForm(action, id);
+  const {
+    router,
+    methods,
+    onSubmit,
+    handleSubmit,
+    isSubmitting,
+    isLoading,
+    fosterCarerId,
+  } = useCarInsuranceForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
@@ -72,9 +79,11 @@ const CarInsuranceForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

@@ -19,6 +19,7 @@ export default function PetQuestionnaireTable() {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    makePath,
   } = usePetQuestionnaireTable();
 
   const columns = [
@@ -59,7 +60,10 @@ export default function PetQuestionnaireTable() {
             type="view"
             onClicked={() =>
               router.push(
-                `/carer-info/personal-info/carer-chronology-of-events/pet-questionnaire?${info.getValue()}`
+                makePath({
+                  path: "/carer-info/personal-info/carer-chronology-of-events/pet-questionnaire",
+                  queryParams: { petId: info.getValue() },
+                })
               )
             }
           />

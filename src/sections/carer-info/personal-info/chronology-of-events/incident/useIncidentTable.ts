@@ -12,7 +12,9 @@ import React from "react";
 import { useRouter } from "next/router";
 const useIncidentTable = () => {
   const Router: any = useRouter();
-  const { action, id } = Router.query;
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
+    useTableParams();
+  const { action, id, fosterCarerId } = Router.query;
   const [search, setsearch] = React.useState("");
   const {
     data: incidentlist,
@@ -20,7 +22,13 @@ const useIncidentTable = () => {
     isLoading: incidentListIsloading,
     isFetching: incidentlistIsfetching,
     isSuccess: incidentListIsSuccess,
-  } = useIncidentListQuery({ search: search });
+  } = useIncidentListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
+    },
+  });
 
   const {
     data: incidentUploadlist,
@@ -37,8 +45,7 @@ const useIncidentTable = () => {
 
   const [deleteIncidentByID] = useDeleteIncidentByIdMutation({});
   const [deleteIncidentDocuments] = useDeleteIncidentDocumentsMutation({});
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
+
   const deleteHander = (id: any) => {
     deleteIncidentByID(id)
       .unwrap()
@@ -84,6 +91,7 @@ const useIncidentTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     uploadDeleteHandler,
+    fosterCarerId,
   };
 };
 

@@ -10,13 +10,20 @@ import { useRef } from "react";
 
 export const useComplaintsTable = () => {
   const [search, setSearch] = React.useState("");
-  const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
+  const tableHeaderRefTwo = useRef<any>();
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Complaint List
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useComplaintsListQuery({ search: search, ...params });
+    useComplaintsListQuery({
+      params: {
+        fosterCarerId: fosterCarerId,
+        search: search,
+        ...params,
+      },
+    });
   //API for Deleting Complaint
   const [deleteList] = useDeleteComplaintListMutation();
   //DELETE API For Deleting Complaint List
@@ -51,5 +58,6 @@ export const useComplaintsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
+    fosterCarerId,
   };
 };

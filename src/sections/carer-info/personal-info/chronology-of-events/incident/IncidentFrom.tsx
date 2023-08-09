@@ -32,6 +32,7 @@ const IncFrom = (props: any) => {
     getDefaultValue,
     isLoading,
     isfatching,
+    fosterCarerId,
   } = useIncidentFrom(action, id);
 
   const methods: any = useForm({
@@ -209,9 +210,11 @@ const IncFrom = (props: any) => {
                   }}
                   variant="contained"
                   onClick={() =>
-                    router.push(
-                      "/carer-info/personal-info/carer-chronology-of-events"
-                    )
+                    router.push({
+                      pathname:
+                        "/carer-info/personal-info/carer-chronology-of-events",
+                      query: { fosterCarerId: fosterCarerId },
+                    })
                   }
                 >
                   back
@@ -232,9 +235,11 @@ const IncFrom = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/personal-info/carer-chronology-of-events"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/personal-info/carer-chronology-of-events",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               back

@@ -21,6 +21,7 @@ const AllegationTable = () => {
     sortChangeHandler,
     listDeleteHandler,
     setSearch,
+    fosterCarerId,
   } = useAllegationTable();
 
   const columns = [
@@ -60,7 +61,11 @@ const AllegationTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/allegation",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -76,7 +81,11 @@ const AllegationTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/allegation",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -101,7 +110,7 @@ const AllegationTable = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/allegation",
-              query: { action: "add", id: "" },
+              query: { action: "add", fosterCarerId: fosterCarerId },
             });
           }}
         />
