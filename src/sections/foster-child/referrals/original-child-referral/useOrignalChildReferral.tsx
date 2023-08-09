@@ -10,16 +10,16 @@ const useOrignalChildReferral = () => {
     firstName: "",
     middleName:"",
     lastName: "",
-    dateOfBirth: new Date(todayDate),
+    dob: new Date(todayDate),
     gender: "",
     ethnicity: "",
-    ofSteadEthnicity: "",
+    ofsteadEthnicity: "",
     religion: "",
     nationality: "",
     immigrationStatus: "",
     language: "",
     childPhysicalDisability:"",
-    childMentalHealthStatus:"",
+    mentalHealthStatus:"",
     sibling:"",
     adoptionConsideration:""
   };
@@ -28,16 +28,16 @@ const useOrignalChildReferral = () => {
     firstName: Yup.string().required("Required"), 
     middleName: Yup.string().required("Required"), 
     lastName: Yup.string().required("Required"),
-    dateOfBirth: Yup.date().required("Required"),
+    dob: Yup.date().required("Required"),
     gender: Yup.string().required("Required"),
     ethnicity: Yup.string().required("Required"),
-    ofSteadEthnicity: Yup.string().required("Required"),
+    ofsteadEthnicity: Yup.string().required("Required"),
     religion: Yup.string().required("Required"),
     nationality: Yup.string().required("Required"),
     immigrationStatus: Yup.string().required("Required"),
     language: Yup.string().required("Required"),
     childPhysicalDisability: Yup.string().required("Required"),
-    childMentalHealthStatus: Yup.string().required("Required"),
+    mentalHealthStatus: Yup.string().required("Required"),
     sibling: Yup.string().required("Required"),
     adoptionConsideration: Yup.string().required("Required"),
   });
@@ -48,7 +48,10 @@ const useOrignalChildReferral = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = () => {};
+  const onSubmit = (data:any) => {
+    console.log(data);
+    
+  };
 
   return { methods, onSubmit, handleSubmit };
 };

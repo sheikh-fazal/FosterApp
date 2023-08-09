@@ -12,7 +12,7 @@ export const OriginalChildReferralData = [
     },
     component: RHFTextField,
   },
-   {
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -37,7 +37,7 @@ export const OriginalChildReferralData = [
     gridLength: 6,
     otherOptions: {
       label: "Date of Birth",
-      name: "dateOfBirth",
+      name: "dob",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -64,7 +64,10 @@ export const OriginalChildReferralData = [
       name: "ethnicity",
       fullWidth: true,
     },
-    options: [],
+    options: [
+      { value: "hispanicorlatino", label: "Hispanic or Latino" },
+      { value: "nothispanicorlatino", label: "Not Hispanic or Latino" },
+    ],
     component: RHFSelect,
   },
   {
@@ -72,10 +75,13 @@ export const OriginalChildReferralData = [
     gridLength: 6,
     otherOptions: {
       label: "Ofstead Ethnicity",
-      name: "ofSteadEthnicity",
+      name: "ofsteadEthnicity",
       fullWidth: true,
     },
-    options: [],
+    options: [
+      { value: "hispanicorlatino", label: "Hispanic or Latino" },
+      { value: "nothispanicorlatino", label: "Not Hispanic or Latino" },
+    ],
     component: RHFSelect,
   },
   {
@@ -141,7 +147,7 @@ export const OriginalChildReferralData = [
     gridLength: 6,
     otherOptions: {
       label: "Child Mental Health Status",
-      name: "childMentalHealthStatus",
+      name: "mentalHealthStatus",
       fullWidth: true,
     },
     options: [

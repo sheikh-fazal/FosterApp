@@ -1,4 +1,4 @@
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, Rating } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 
 export const columnsIfaParticipationPolicyTable = (
@@ -66,10 +66,13 @@ export const columnsIfaParticipationPolicyTable = (
   {
     accessorFn: (row: any) => row.rating,
     id: "rating",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => (
+      <Box>
+        <Rating readOnly name="simple-controlled" value={info.getValue()} />
+      </Box>
+    ),
     header: () => <span>Rating</span>,
     isSortable: true,
-    
   },
   {
     accessorFn: (row: any) => row?.id,
