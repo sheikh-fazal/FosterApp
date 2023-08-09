@@ -10,7 +10,11 @@ import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/su
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Page from "@root/components/Page";
 import usePath from "@root/hooks/usePath";
-import { useVocationalInfoListQuery } from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
+import {
+  useDeleteVocationalInfoMutation,
+  useVocationalInfoAllListQuery,
+} from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
+import { enqueueSnackbar } from "notistack";
 
 // ----------------------------------------------------------------------
 
@@ -27,8 +31,23 @@ export default function VocationalCourseInfo() {
   const router = useRouter();
   const id = router?.query?.fosterChildId;
 
-  const { data } = useVocationalInfoListQuery(id, { skip: !!!id });
+  const { data, isLoading, isFetching, isSuccess, isError } =
+    useVocationalInfoAllListQuery({
+      params: { search: "", limit: "10", offset: "0", fosterChildId: id },
+    });
+  const [deleteEntry] = useDeleteVocationalInfoMutation();
 
+  const deleteEntryHandler = async (data: any) => {
+    try {
+      const res: any = await deleteEntry(data?.id).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Deleted Successfully`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -50,14 +69,15 @@ export default function VocationalCourseInfo() {
         title={PAGE_TITLE}
       />
       <VocationalCourseInfoTable
-        tableData={{}}
-        meta={{}}
+        tableData={data?.vocationalInfoList}
+        meta={data?.meta}
         searchedText={(text: any) => console.log(text)}
-        apiStatus={{}}
+        apiStatus={{ isLoading, isFetching, isSuccess, isError }}
         onPageChange={(page: any) => console.log(page)}
         route={`/foster-child/education-records/vocational-course-info/details${
           id ? "?fosterChildId=" + id : ""
         }`}
+        onDelete={deleteEntryHandler}
       />
     </Page>
   );

@@ -5,13 +5,21 @@ const DOCTAG = "VOCATIONAL-INFO-DOCS";
 export const VocationalInfoListApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     // Main Form
-    vocationalInfoList: builder.query({
+    vocationalInfoAllList: builder.query({
+      //0
+      query: ({ params }) => ({
+        url: `/vocational-info-list/get-all/info-list`,
+        method: "GET",
+        params,
+      }),
+      providesTags: [TAG],
+    }),
+    vocationalInfoById: builder.query({
       //1
       query: (id) => ({
         url: `/vocational-info-list/info-list/${id}`,
         method: "GET",
       }),
-      providesTags: [TAG],
       // transformResponse: (res) => {
       // return [...mockSafeCarePolicyList].sort((a, b) => 0.5 - Math.random());
       // },
@@ -54,8 +62,8 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
     }),
     addVocationalInfoDocument: builder.mutation({
       //6
-      query: ({ id, body }) => ({
-        url: `vocational-info-list/documents?fosterCarerId=${id}`,
+      query: ({ fosterChildId, recordId, body }) => ({
+        url: `vocational-info-list/documents/${recordId}?fosterChildId=${fosterChildId}`,
         method: "POST",
         body,
       }),
@@ -73,7 +81,8 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
 });
 
 export const {
-  useVocationalInfoListQuery, //1
+  useVocationalInfoAllListQuery, //0
+  useVocationalInfoByIdQuery, //1
   useAddVocationalInfoMutation, //2
   useDeleteVocationalInfoMutation, //3
   useEditVocationalInfoMutation, //4

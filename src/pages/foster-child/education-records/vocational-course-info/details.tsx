@@ -14,6 +14,8 @@ import {
   useAddVocationalInfoDocumentMutation,
   useAddVocationalInfoMutation,
   useDeleteVocationalInfoDocumentMutation,
+  useEditVocationalInfoMutation,
+  useVocationalInfoByIdQuery,
   useVocationalInfoDocumentsQuery,
 } from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
 import { enqueueSnackbar } from "notistack";
@@ -36,15 +38,32 @@ export default function VocationalCourseInfoForm() {
   const router = useRouter();
   const formData = new FormData();
   const id = router?.query?.fosterChildId;
+  const recordId = router?.query?.recordId;
+  const viewMode = router?.query?.view;
 
   const [postVocationalInfo, status] = useAddVocationalInfoMutation();
   const [postVocationalDoc] = useAddVocationalInfoDocumentMutation();
   const [deleteVocationalDoc] = useDeleteVocationalInfoDocumentMutation();
-  const { data } = useVocationalInfoDocumentsQuery({
+  const [editVocationalDoc] = useEditVocationalInfoMutation();
+
+  const {
+    data: docData,
+    isLoading: isDocLoading,
+    isFetching: isDocFetching,
+    isError: hasDocError,
+    isSuccess: isDocSuccess,
+  } = useVocationalInfoDocumentsQuery({
     search: undefined,
     limit: "10",
     offset: "0",
     fosterCarerId: id,
+  });
+  const {
+    data: formValues,
+    isLoading,
+    isSuccess,
+  } = useVocationalInfoByIdQuery(recordId, {
+    skip: !!!recordId,
   });
   const BREADCRUMBS = [
     {
@@ -89,8 +108,9 @@ export default function VocationalCourseInfoForm() {
     formData.append("documentFile", data.chosenFile);
     try {
       const res: any = await postVocationalDoc({
+        fosterChildId: id,
+        recordId,
         body: formData,
-        id,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -119,36 +139,46 @@ export default function VocationalCourseInfoForm() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <HorizontalTabs tabsDataArray={TABSDATA}>
+      <HorizontalTabs tabsDataArray={!!recordId ? TABSDATA : ["Course Info"]}>
         <VocationalCourseForm
           onSubmit={(data: any) => {
             formSubmitHandler(data);
           }}
           status={status}
+          gettingStatus={{ isLoading }}
           onEdit={(data: any) => console.log(data)}
+          data={{
+            ...formValues,
+            startDate: new Date(formValues?.startDate),
+            endDate: new Date(formValues?.endDate),
+          }}
+          disabled={viewMode}
         />
-        <UploadDocuments
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={data?.data ?? []}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "documentFile",
-            "documentType",
-            "documentDate",
-            "personName",
-            "password",
-          ]}
-          modalData={documentSubmitHandler}
-          onDelete={documentDeleteHandler}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
-        />
+        {!!recordId && (
+          <UploadDocuments
+            disabled={viewMode}
+            searchParam={(searchedText: string) =>
+              console.log("searched Value", searchedText)
+            }
+            tableData={docData?.data ?? []}
+            isLoading={isDocLoading}
+            isFetching={isDocFetching}
+            isError={hasDocError}
+            isSuccess={isDocSuccess}
+            column={[
+              "documentFile",
+              "documentType",
+              "documentDate",
+              "personName",
+              "password",
+            ]}
+            modalData={documentSubmitHandler}
+            onDelete={documentDeleteHandler}
+            onPageChange={(page: any) => console.log("parent log", page)}
+            currentPage={"1"}
+            totalPages={"1"}
+          />
+        )}
       </HorizontalTabs>
     </Page>
   );

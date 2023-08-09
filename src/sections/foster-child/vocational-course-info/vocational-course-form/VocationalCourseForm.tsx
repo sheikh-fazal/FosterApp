@@ -9,7 +9,8 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 //component function
 export default function VocationalCourseForm(props: any) {
-  const { disabled, onSubmit, status, onEdit, data }: any = props;
+  const { disabled, onSubmit, status, onEdit, data, gettingStatus }: any =
+    props;
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
@@ -82,8 +83,7 @@ export default function VocationalCourseForm(props: any) {
     </FormProvider>
   );
   // if (status?.isError) return <Error />;
-  // if (status?.isLoading) return <SkeletonFormdata />;
+  if (gettingStatus?.isLoading) return <SkeletonFormdata />;
   // if (status?.isSuccess)
-  // else
-  return formEl;
+  else return formEl;
 }
