@@ -27,6 +27,7 @@ export const useChLivingInHousholdCommentsList = () => {
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetAlltherapyDetailsListDataQuery(apiDataParameter);
   const [delTherapyDetailsListData] = useDelTherapyDetailsListDataMutation();
+
   const handleDeleteTherapy = async (id: string) => {
     try {
       setTherapInfo((pre) => ({ ...pre, someAsyncAction: true }));
@@ -40,8 +41,7 @@ export const useChLivingInHousholdCommentsList = () => {
       return false;
     }
   };
-  // const { data, isLoading, isSuccess, isError, isFetching } =
-  //   useSafeCarePolicyListQuery(params);
+
   const columns = getColumns({ router, handleDeleteTherapy });
   return {
     tableHeaderRef,

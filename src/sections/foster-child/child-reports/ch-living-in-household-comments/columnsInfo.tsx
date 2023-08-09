@@ -30,19 +30,20 @@ export const getColumns = (parms: any) => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <Link
-            href={`/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=update&therapyInfoId=${info.row.original.id}`}
-          >
-            <TableAction size="small" type="edit" />
-          </Link>
+          <TableAction size="small" type="print" />
           <Link
             href={`/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=view&therapyInfoId=${info.row.original.id}`}
           >
             <TableAction size="small" type="view" />
           </Link>
-          <DeletePrompt
+          <Link
+            href={`/foster-child/health-medical-history/therapy-info-list/child-therapy-info/?fosterChildId=${fosterChildId}&action=view&therapyInfoId=${info.row.original.id}`}
+          >
+            <TableAction size="small" type="share" />
+          </Link>
+          {/* <DeletePrompt
             onDeleteClick={() => handleDeleteTherapy(info?.row?.original?.id)}
-          />
+          /> */}
         </Box>
       ),
       header: "Action",
