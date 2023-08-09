@@ -100,7 +100,7 @@ export default function EditClaReview() {
           isError={docError}
           isSuccess={docSuccess}
           column={[
-            "documentName",
+            "chooseFiles",
             "documentType",
             "documentDate",
             "personName",
@@ -109,11 +109,11 @@ export default function EditClaReview() {
           modalData={async (data: any) => {
             const formData = new FormData();
             formData.append("personName", data?.personName || "Name");
-            formData.append("documentName", data?.documentName);
+            formData.append("documentName", data?.documentName || "Name");
             formData.append("documentType", data?.documentType);
             formData.append("documentDate", data?.documentDate);
             formData.append("password", data?.password);
-            formData.append("chooseFiles", data?.chooseFiles);
+            formData.append("chooseFiles", data?.chosenFile);
             const updatedData: any = {
               claReviewId,
               formData,
