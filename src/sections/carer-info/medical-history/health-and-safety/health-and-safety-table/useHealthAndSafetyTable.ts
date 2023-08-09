@@ -7,8 +7,11 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 import { columns } from ".";
+import usePath from "@root/hooks/usePath";
 
 export const useHealthAndSafetyTable = () => {
+  const { makePath } = usePath()
+
   const [healthAndSafetyId, setHealthAndSafetyId] = React.useState<any>(null);
   const { data, isLoading, isError, isSuccess } =
     useGetHealthAndSafetyListDataQuery({});
@@ -38,6 +41,8 @@ export const useHealthAndSafetyTable = () => {
 
   const columnsFunction = columns({
     openDeleteModel,
+    makePath,
+    router
   });
   return {
     deleteList,

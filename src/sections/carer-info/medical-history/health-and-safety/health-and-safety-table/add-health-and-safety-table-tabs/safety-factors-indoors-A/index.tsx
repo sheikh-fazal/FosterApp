@@ -4,9 +4,6 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
   isElecticalEquitmentGood: false,
@@ -88,6 +85,10 @@ export const FormSchema = Yup.object().shape({
   dateToBeCarriedOut8: Yup.date().required("Required"),
 
   improvementsReq8: Yup.string().required("Required"),
+
+  dateToBeCarriedOut9: Yup.date().required("Required"),
+
+  improvementsReq9: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsA_Data = [
@@ -350,6 +351,39 @@ export const safetyFactorsIndoorsA_Data = [
     id: 24,
     componentProps: {
       name: "improvementsReq8",
+      label: "Improvements required",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    gridLength: 12,
+    component: RHFTextField,
+  },
+  {
+    id: 25,
+    gridLength: 6,
+    componentProps: {
+      fullWidth: true,
+      name: "hasAnElectricianCheckWiringAndSafetyReportIssued",
+      label:
+        "Has an electrician checked the wiring and a safety report issued?",
+    },
+    component: RHFCheckbox,
+  },
+  {
+    id: 26,
+    componentProps: {
+      fullWidth: true,
+      name: "dateToBeCarriedOut9",
+      label: "Date to be carried out",
+    },
+    gridLength: 6,
+    component: RHFDatePicker,
+  },
+  {
+    id: 27,
+    componentProps: {
+      name: "improvementsReq9",
       label: "Improvements required",
       multiline: true,
       minRows: 3,

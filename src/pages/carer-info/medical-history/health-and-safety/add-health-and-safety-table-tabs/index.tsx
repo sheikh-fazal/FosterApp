@@ -24,7 +24,6 @@ export default function AddHealthAndSafetyTableTabs() {
     "Household Condition - A"
   );
   const [formData, setFormData] = useState();
-  console.log(formData);
   const [idd, setIdd] = useState();
   const [tabArray, setTabArray] = useState(["Household Condition-A"]);
   const [
@@ -53,7 +52,6 @@ export default function AddHealthAndSafetyTableTabs() {
       });
 
       enqueueSnackbar(res?.data?.message, { variant: "success" });
-      console.log(res?.data);
 
       setTabArray(["Household Condition-A", "B", "Safety Factors - Indoors A"]);
     } catch (error: any) {

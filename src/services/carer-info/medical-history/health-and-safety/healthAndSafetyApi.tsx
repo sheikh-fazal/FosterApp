@@ -31,13 +31,18 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
+    getHealthAndSafetyDataById: builder.query({
+      query: (healthAndSafetyId: any) => ({
+        url: `carer-Info/get-health-and-safety/${healthAndSafetyId}`,
+      }),
+      providesTags: ["HEALTH_AND_SAFETY"],
+    }),
   }),
 });
 export const {
   useGetHealthAndSafetyListDataQuery,
   useDeleteHealthAndSafetyListDataMutation,
   useHouseHoldConditionAPostMutation,
-  // usePatchHealthAndSafe
-  // usePa
-  useHealthAndSafetyDataPatchMutation
+  useHealthAndSafetyDataPatchMutation,
+  useGetHealthAndSafetyDataByIdQuery,
 } = healthAndSafetyApi;

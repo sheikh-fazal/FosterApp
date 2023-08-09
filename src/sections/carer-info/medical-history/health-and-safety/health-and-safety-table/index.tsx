@@ -2,9 +2,11 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
+import Router from "next/router";
 
 export const columns = ({
   openDeleteModel,
+  makePath
 }: any) => [
   {
     accessorFn: (row: any) => row?.inspectionDate,
@@ -38,7 +40,14 @@ export const columns = ({
           onClicked={() => openDeleteModel(info?.row?.original?.id)}
         />
 
-        <TableAction type="view" onClicked={() => alert("View")} />
+        <TableAction type="view" onClicked={() =>
+            Router.push(
+              makePath({
+                path: "/carer-info/medical-history/health-and-safety/view-health-and-safety-table-tabs",
+                queryParams: { healthAndSafetyId: info?.row?.original?.id },
+              })
+            )
+          } />
       </Box>
     ),
     header: () => <span>actions</span>,
