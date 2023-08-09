@@ -25,7 +25,7 @@ const BREADCRUMBS = (query: any) => [
 const PAGE_TITLE = "Edit Absence Info";
 
 EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function EditAbsenceInfoForm() {

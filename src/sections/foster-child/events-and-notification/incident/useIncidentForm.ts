@@ -12,6 +12,7 @@ import {
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/IncidentsInfoAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { defaultValues, formSchema, formatters } from ".";
+import { usePostChildIncidentMutation } from "@root/services/foster-child/event-and-notification/incident/IncidentApi";
 
 export const useIncidentForm = () => {
   const router = useRouter();
@@ -22,10 +23,13 @@ export const useIncidentForm = () => {
 
   const [getIncidentsInfoList] =
     useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
+    // useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
   const [postIncidentsInfoData] =
-    usePostChildChronologyOfEventsIncidentsInfoMutation({});
+  usePostChildIncidentMutation({});
+    // usePostChildChronologyOfEventsIncidentsInfoMutation({});
   const [editIncidentsInfoList] =
     usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
+    // usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {

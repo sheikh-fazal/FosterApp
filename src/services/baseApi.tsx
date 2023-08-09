@@ -95,6 +95,7 @@ export const TAGS = [
   "ALLEGATION_INFO",
   "ALLEGATION_INFO_DOCUMENTS",
   "SANCTION_DETAILS_LIST",
+  "CHILD_INCIDENT",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

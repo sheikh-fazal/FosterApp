@@ -24,6 +24,7 @@ const IncidentTable = (props: any) => {
     isError,
     isLoading,
   } = useIncidentTable();
+    console.log("🚀 ~ file: incidentTable.tsx:27 ~ IncidentTable ~ data:", data)
   const columns = [
     {
       accessorFn: (row: any) => row?.nameOfIncident,
@@ -115,7 +116,8 @@ const IncidentTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={Dummy ?? []}
+              data={data?.data?.cc_incident_info}
+                // data={Dummy ?? []}
                 columns={columns}
                 isLoading={false}
                 isFetching={false}
@@ -123,10 +125,10 @@ const IncidentTable = (props: any) => {
                 isSuccess={true}
                 isPagination={true}
                 showSerialNo={true}
-                //   totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
-                //   currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
-                //   onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                  totalPages={data?.meta?.pages ?? 0}
+                  currentPage={data?.meta?.page ?? 1}
+                  onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
               {/* <CustomTable
         // data={data?.data?.cc_incident_info}

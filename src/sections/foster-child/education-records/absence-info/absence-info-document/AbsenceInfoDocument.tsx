@@ -3,7 +3,7 @@ import { useAbsenceInfoDocument } from "./useAbsenceInfoDocument";
 import { useState } from "react";
 
 export const AbsenceInfoDocument = (prop: any) => {
-  const [params, setParams] = useState("");
+  // const [params, setParams] = useState("");
   const {
     data,
     router,
