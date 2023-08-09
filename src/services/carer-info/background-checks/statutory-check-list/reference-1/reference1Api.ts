@@ -4,18 +4,18 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const referenceOneApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     referenceOneList: builder.query<null, object>({
-      query: (search: any) => ({
-        url: "assessment-stage-one/reference-one-list",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/reference-one-list/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: search,
+        params: payload.params,
       }),
       providesTags: ["REFERENCE_ONE"],
     }),
     postReferenceOneList: builder.mutation({
-      query: (formData: any) => ({
-        url: "assessment-stage-one/add-reference-one",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/add-reference-one/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: formData,
+        body: payload.body,
       }),
       invalidatesTags: ["REFERENCE_ONE"],
     }),

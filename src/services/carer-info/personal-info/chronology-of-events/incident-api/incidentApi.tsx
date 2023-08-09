@@ -5,17 +5,17 @@ export const incidentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     incidentList: builder.query({
       query: (payload: any) => ({
-        url: "chronology-events/incident/List",
+        url: `chronology-events/incident/List/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: payload,
+        params: payload.params,
       }),
       providesTags: ["INCIDENT_LIST"],
     }),
     incidentAddPost: builder.mutation({
       query: (payload: any) => ({
-        url: "/chronology-events/incidents",
+        url: `chronology-events/incidents/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: payload,
+        body: payload.body,
       }),
       invalidatesTags: ["INCIDENT_LIST"],
     }),
