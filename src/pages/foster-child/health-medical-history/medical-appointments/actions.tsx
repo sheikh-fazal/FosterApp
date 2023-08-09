@@ -8,6 +8,7 @@ import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import MedicalAppointmentsFrom from "@root/sections/foster-child/health-medical-history/medicalAppointments/medicalAppointmentsFrom";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
+  useDeletemedicalAppointmentsDocsMutation,
   useGetMedicalInfoDocsQuery,
   usePostmedicalAppointmentsDocsMutation,
 } from "@root/services/foster-child/health-medical-history/medicalAppointments/medicalAppointments";
@@ -20,10 +21,19 @@ MedicalAppointments.getLayout = function getLayout(page: any) {
 
 export default function MedicalAppointments() {
   const Router: any = useRouter();
+  const [searchHandle, setSearchHandle] = useState("");
+  const [pageHandle, setPageHandle] = useState(0);
   const [uploadDocuments, setUploadDocuments] = useState(true);
   const { action, medicalAppointmentID, fosterChildId } = Router.query;
   const PAGE_TITLE = "Medical Appointments";
   const formData = new FormData();
+
+  const params = {
+    search: searchHandle,
+    limit: "10",
+    offset: pageHandle,
+  };
+
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -59,23 +69,23 @@ export default function MedicalAppointments() {
     params: { search: "", limit: "10", offset: "0" },
   });
   const [postDocs] = usePostmedicalAppointmentsDocsMutation();
-
+  const [deleteData] = useDeletemedicalAppointmentsDocsMutation();
   //extracting Data
-  const tableData: any = documentData?.data?.documents;
+  const tableData: any = documentData?.data;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {
-    console.log(data);
     formData.append("docType", data.documentType);
     // formData.append("date", data.documentDate);
     formData.append("date", "12/12/2000");
     formData.append("password", data.password);
     formData.append("docFile", data.chosenFile);
-    formData.append("uploadedBy", "Mughal");
-    formData.append("docName", "Child Medication Info");
+    formData.append("docName", "medcial appointment");
     postDocs({ id: medicalAppointmentID, body: formData });
   };
-
+  const pageChangeHandler = (page: any) => {
+    setPageHandle(page * 10);
+  };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -93,9 +103,10 @@ export default function MedicalAppointments() {
         />
         <UploadDocuments
           readOnly={uploadDocuments}
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
+          onDelete={(row: any) => {
+            deleteData(row?.id);
+          }}
+          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}
@@ -103,7 +114,7 @@ export default function MedicalAppointments() {
           isSuccess={isDocumentSuccess}
           column={["docFile", "docType", "date", "uploadedBy", "password"]}
           modalData={documentUploadHandler}
-          onPageChange={(page: any) => console.log("parent log", page)}
+          onPageChange={(page: any) => pageChangeHandler(page)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
         />

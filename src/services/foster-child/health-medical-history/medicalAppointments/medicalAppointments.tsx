@@ -45,7 +45,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
     //get
     getMedicalInfoDocs: Builder.query({
       query: ({ id, params }: any) => ({
-        url: `/foster-child/child-medication-info/document/list/${id}`,
+        url: `/foster-child/medical-appointment/document/list/${id}`,
         method: "GET",
         params,
       }),
@@ -54,7 +54,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
     //post
     postmedicalAppointmentsDocs: Builder.mutation({
       query: ({ id, body }: any) => ({
-        url: `/foster-child/add-child-medication-info/document/${id}`,
+        url: `/foster-child/add-medical-appointment/document/${id}`,
         method: "POST",
         body,
       }),
@@ -63,7 +63,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
     //edit
     editmedicalAppointmentsDocs: Builder.mutation({
       query: (id: any) => ({
-        url: `/foster-child/child-medication-info/document/${id}`,
+        url: `/foster-child/medical-appointment/document/${id}`,
         method: "PATCH",
       }),
       invalidatesTags: ["medicalappointments"],
@@ -71,7 +71,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
     //delete
     deletemedicalAppointmentsDocs: Builder.mutation({
       query: (id: any) => ({
-        url: `/foster-child/child-medication-info/document/${id}`,
+        url: `/foster-child/medical-appointment/document/${id}`,
         method: "Delete",
       }),
       invalidatesTags: ["medicalappointmentsDocs"],
