@@ -98,7 +98,7 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
       id: "subject",
       cell: (info: any) => info.getValue(),
       header: "Child Name(Code)",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.dateOfOccurence,
@@ -107,14 +107,14 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: "Placement Date/Time",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.entryType,
       id: "entryType",
       cell: (info: any) => info.getValue(),
       header: "Place Type",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.dateOfOccurence,
@@ -123,21 +123,21 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: "Discharge Date/Time",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.entryType,
       id: "entryType",
       cell: (info: any) => info.getValue(),
       header: "Discharge Reason",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.entryType,
       id: "entryType",
       cell: (info: any) => info.getValue(),
       header: "Is Respite",
-      isSortable: true,
+      isSortable: false,
     },
     {
       accessorFn: (row: any) => row?.id,

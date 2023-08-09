@@ -73,7 +73,6 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
       id: "subject",
       cell: (info: any) => info.getValue(),
       header: "Child Name(Code)",
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row?.dateOfOccurence,
@@ -82,14 +81,12 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: "Placement Date/Time",
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row?.entryType,
       id: "entryType",
       cell: (info: any) => info.getValue(),
       header: "Place Type",
-      isSortable: true,
     },
     {
       accessorFn: (row: any) => row?.dateOfOccurence,
@@ -98,7 +95,6 @@ export const columns = ({ router, fosterChildId, listDeleteHandler }: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: "Transfer Date",
-      isSortable: true,
     },
 
     {
