@@ -11,6 +11,7 @@ export const useLocalAuthorityTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Local Authority List
@@ -57,5 +58,6 @@ export const useLocalAuthorityTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

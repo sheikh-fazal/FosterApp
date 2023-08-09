@@ -21,6 +21,7 @@ const EmployementReferenceTwoTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useEmploymentReferenceTwoTable();
 
   const columns = [
@@ -69,7 +70,11 @@ const EmployementReferenceTwoTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/employment-reference-2",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -84,7 +89,11 @@ const EmployementReferenceTwoTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/employment-reference-2",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -105,7 +114,7 @@ const EmployementReferenceTwoTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/employment-reference-2",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

@@ -11,9 +11,9 @@ export const usePartnerReferenceTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-
   //GET API For Partner Reference List
   const {
     data: partnerReferenceList,
@@ -21,8 +21,13 @@ export const usePartnerReferenceTable = () => {
     isLoading: partnerReferenceIsloading,
     isFetching: partnerReferenceIsfetching,
     isSuccess: partnerReferenceIsSuccess,
-  }: any = usePartnerReferenceListQuery({ search: search, ...params });
-
+  }: any = usePartnerReferenceListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
+    },
+  });
   //Getting API data and Meta
   const partnerReferenceData =
     partnerReferenceList?.data?.former_partner_references;
@@ -59,5 +64,6 @@ export const usePartnerReferenceTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

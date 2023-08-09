@@ -5,14 +5,13 @@ import {
 } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import dayjs from "dayjs";
 
 export const defaultValues = {
   reportDate: new Date(),
   emergencyPlacementRequired: null,
-  natureOfCall: "Text",
-  actionTaken: "Text",
-  actionNeeded: "Text",
+  natureOfCall: "",
+  actionTaken: "",
+  actionNeeded: "",
   personCompletingReport: "",
   addToChildRecord: "",
 };
@@ -77,7 +76,7 @@ export const reportData = [
   {
     id: 5,
     otherOptions: {
-      name: "actionTaken",
+      name: "actionNeeded",
       label: "Action Needed:",
       multiline: true,
       minRows: 3,

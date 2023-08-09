@@ -4,18 +4,18 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const medicalAdvisorApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     medicalAdvisorList: builder.query<null, object>({
-      query: (search: any) => ({
-        url: "assessment-stage-one/medical-advisor-list",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/medical-advisor-list/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: search,
+        params: payload.params,
       }),
       providesTags: ["MEDICAL_ADVISOR"],
     }),
     postMedicalAdvisorList: builder.mutation({
-      query: (formData: any) => ({
-        url: "assessment-stage-one/add-medical-advisor",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/add-medical-advisor/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: formData,
+        body: payload.body,
       }),
       invalidatesTags: ["MEDICAL_ADVISOR"],
     }),

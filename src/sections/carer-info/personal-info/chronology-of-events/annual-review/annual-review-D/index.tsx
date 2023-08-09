@@ -1,52 +1,13 @@
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
-import dayjs from "dayjs";
-
-const todayDate = dayjs().format("MM/DD/YYYY");
-
-export const defaultValues = {
-  placementIssues: "Text",
-  trainingIssues: "Text",
-  safetyDate: new Date(todayDate),
-  equipment: "Text",
-  generalPlacements: "Text",
-  implications: "Text",
-  reviewOfficer: "Text",
-  recommendation: "Text",
-  termsApproval: "Text",
-  agencyPanel: new Date(todayDate),
-  childrenComments: "Text",
-  claComments: "Text",
-  carerComments: "Text",
-  iroComments: "Text",
-  finalOutcome: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  placementIssues: Yup.string().required("required"),
-  trainingIssues: Yup.string().required("required"),
-  safetyDate: Yup.date().required("required"),
-  equipment: Yup.string().required("required"),
-  generalPlacements: Yup.string().required("required"),
-  implications: Yup.string().required("required"),
-  reviewOfficer: Yup.string().required("required"),
-  recommendation: Yup.string().required("required"),
-  termsApproval: Yup.string().required("required"),
-  agencyPanel: Yup.date().required("required"),
-  childrenComments: Yup.string().required("required"),
-  claComments: Yup.string().required("required"),
-  carerComments: Yup.string().required("required"),
-  iroComments: Yup.string().required("required"),
-  finalOutcome: Yup.string().required("required"),
-});
 
 export const annualReviewD = [
   {
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "placementIssues",
+      name: "particularIssues",
       label: "Particular issues arising from placements:",
       multiline: true,
       minRows: 3,
@@ -71,11 +32,14 @@ export const annualReviewD = [
     title: "Safety Issues",
     gridLength: 6,
     otherOptions: {
-      name: "safetyDate",
+      name: "lastHealthAndSafetyDate",
       label: "Last Health and Safety Date:",
       fullWidth: true,
     },
     component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
   },
   {
     id: 4,
@@ -93,7 +57,7 @@ export const annualReviewD = [
     id: 5,
     gridLength: 12,
     otherOptions: {
-      name: "generalPlacements",
+      name: "generalCommentsOnPlacements",
       label: "General Comments on Placements:",
       multiline: true,
       minRows: 3,
@@ -105,8 +69,8 @@ export const annualReviewD = [
     id: 6,
     gridLength: 12,
     otherOptions: {
-      name: "implications",
-      label: "Implications and decisions for the future:",
+      name: "supervisingSocialWorkerRecom",
+      label: "Supervising Social Worker Recommendation",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -117,8 +81,8 @@ export const annualReviewD = [
     id: 7,
     gridLength: 12,
     otherOptions: {
-      name: "reviewOfficer",
-      label: "Review Officer Comments:",
+      name: "implications",
+      label: "Implications and decisions for the future:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -129,8 +93,8 @@ export const annualReviewD = [
     id: 8,
     gridLength: 12,
     otherOptions: {
-      name: "recommendation",
-      label: "Panel Recommendation:",
+      name: "reviewOfficerComments",
+      label: "Review Officer Comments:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -141,8 +105,8 @@ export const annualReviewD = [
     id: 9,
     gridLength: 12,
     otherOptions: {
-      name: "termsApproval",
-      label: "Need for change in Current Terms of Approval:",
+      name: "panelRecommendation",
+      label: "Panel panelRecommendation:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -151,20 +115,10 @@ export const annualReviewD = [
   },
   {
     id: 10,
-    gridLength: 6,
-    otherOptions: {
-      name: "agencyPanel",
-      label: "Target Date for consideration by Agency Panel:",
-      fullWidth: true,
-    },
-    component: RHFDatePicker,
-  },
-  {
-    id: 11,
     gridLength: 12,
     otherOptions: {
-      name: "childrenComments",
-      label: "Birth Children Comments:",
+      name: "needForChangeInCurrentTerms",
+      label: "Need for change in Current Terms of Approval:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -172,11 +126,24 @@ export const annualReviewD = [
     component: RHFTextField,
   },
   {
+    id: 11,
+    gridLength: 6,
+    otherOptions: {
+      name: "targetDateForConsideration",
+      label: "Target Date for consideration by Agency Panel:",
+      fullWidth: true,
+    },
+    component: RHFDatePicker,
+    format: (date: any) => {
+      return new Date(date);
+    },
+  },
+  {
     id: 12,
     gridLength: 12,
     otherOptions: {
-      name: "claComments",
-      label: "CLA Comments:",
+      name: "birthChildrenComments",
+      label: "Birth Children Comments:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -187,8 +154,8 @@ export const annualReviewD = [
     id: 13,
     gridLength: 12,
     otherOptions: {
-      name: "carerComments",
-      label: "Foster Carer Comments:",
+      name: "CLAComments",
+      label: "CLA Comments:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -199,8 +166,8 @@ export const annualReviewD = [
     id: 14,
     gridLength: 12,
     otherOptions: {
-      name: "iroComments",
-      label: "IRO Comments:",
+      name: "fosterCarerComments",
+      label: "Foster Carer Comments:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -209,6 +176,18 @@ export const annualReviewD = [
   },
   {
     id: 15,
+    gridLength: 12,
+    otherOptions: {
+      name: "IROComments",
+      label: "IRO Comments:",
+      multiline: true,
+      minRows: 3,
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 16,
     gridLength: 12,
     otherOptions: {
       name: "finalOutcome",
@@ -221,3 +200,48 @@ export const annualReviewD = [
   },
 ];
 export { default as AnnualReviewD } from "./AnnualReviewD";
+
+export const formatters: any = {};
+
+for (const formControl of annualReviewD) {
+  if (formControl.format)
+    formatters[formControl.otherOptions.name] = formControl.format;
+}
+
+export const defaultValues = {
+  particularIssues: "Text",
+  trainingIssues: "Text",
+  lastHealthAndSafetyDate: new Date(),
+  equipment: "Text",
+  generalCommentsOnPlacements: "Text",
+  supervisingSocialWorkerRecom: "",
+  implications: "Text",
+  reviewOfficerComments: "Text",
+  panelRecommendation: "Text",
+  needForChangeInCurrentTerms: "Text",
+  targetDateForConsideration: new Date(),
+  birthChildrenComments: "Text",
+  CLAComments: "Text",
+  fosterCarerComments: "Text",
+  IROComments: "Text",
+  finalOutcome: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  particularIssues: Yup.string().required("required"),
+  trainingIssues: Yup.string().required("required"),
+  lastHealthAndSafetyDate: Yup.date().required("required"),
+  equipment: Yup.string().required("required"),
+  generalCommentsOnPlacements: Yup.string().required("required"),
+  supervisingSocialWorkerRecom: Yup.string().required("required"),
+  implications: Yup.string().required("required"),
+  reviewOfficerComments: Yup.string().required("required"),
+  panelRecommendation: Yup.string().required("required"),
+  needForChangeInCurrentTerms: Yup.string().required("required"),
+  targetDateForConsideration: Yup.date().required("required"),
+  birthChildrenComments: Yup.string().required("required"),
+  CLAComments: Yup.string().required("required"),
+  fosterCarerComments: Yup.string().required("required"),
+  IROComments: Yup.string().required("required"),
+  finalOutcome: Yup.string().required("required"),
+});
