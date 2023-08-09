@@ -4,22 +4,22 @@ export const allegationInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllegationInfoDocumentData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: `events-and-notification/uploaded-documents/List`,
+        url: `events-and-notification/uploaded-documents/List/${apiDataParameter.pathParams.id}`,
         method: "GET",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
       }),
       providesTags: ["ALLEGATION_INFO_DOCUMENTS"],
     }),
     deleteAllegationInfoDocumentDataById: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `events-and-notification/uploaded-documents/${apiDataParameter.pathParams.id}`,
+        url: `events-and-notification/uploaded-document/${apiDataParameter.pathParams.id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["ALLEGATION_INFO_DOCUMENTS"],
     }),
     postAllegationInfoDocumentData: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `events-and-notification/uploaded-documents`,
+        url: `events-and-notification/uploaded-documents/${apiDataParameter.pathParams.id}`,
         method: "POST",
         body: apiDataParameter?.body,
         // params: apiDataParameter?.params,

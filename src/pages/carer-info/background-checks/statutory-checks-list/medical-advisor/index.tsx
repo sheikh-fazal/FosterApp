@@ -11,41 +11,40 @@ import {
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 import { enqueueSnackbar } from "notistack";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Statutory Check List",
-    href: "/carer-info/background-checks/statutory-checks-list",
-  },
-  {
-    name: "Medical Advisor",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Medical Advisor";
 MedicalAdvisor.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function MedicalAdvisor() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
-  const { action, id } = router.query;
+  const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/background-checks/statutory-checks-list");
+    router.push({
+      pathname: "/carer-info/background-checks/statutory-checks-list",
+      query: { fosterCarerId: fosterCarerId },
+    });
   }
 
+  // Constants
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Statutory Check List",
+      href: {
+        pathname: "/carer-info/background-checks/statutory-checks-list",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "Medical Advisor",
+      href: "",
+    },
+  ];
+
+  const PAGE_TITLE = "Medical Advisor";
   const {
     data: documentData,
     isLoading: isDocumentLoading,
@@ -103,34 +102,41 @@ export default function MedicalAdvisor() {
   };
 
   return (
-    <HorizaontalTabs tabsDataArray={["Medical Advisor", "Upload Documents"]}>
-      <MedicalAdvisorForm action={action} id={id} />
-      <UploadDocuments
-        readOnly={action === "view" ? true : false}
-        tableData={tableData}
-        isLoading={isDocumentLoading}
-        isFetching={isFetching}
-        isError={hasDocumentError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        searchParam={(searchedText: string) => setParams(searchedText)}
-        modalData={(data: any) => documentUploadHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        disabled={
-          !!id && (action === "add" || action === "edit") ? false : true
-        }
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["Medical Advisor", "Upload Documents"]}>
+        <MedicalAdvisorForm action={action} id={id} />
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          searchParam={(searchedText: string) => setParams(searchedText)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
+      </HorizaontalTabs>
+    </>
   );
 }

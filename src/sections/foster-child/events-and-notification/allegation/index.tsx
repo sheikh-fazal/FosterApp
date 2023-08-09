@@ -15,7 +15,13 @@ export const allegationInfoTableColumnsFunction = (
   {
     accessorFn: (row: any) => row.status,
     id: "status",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => {
+      return (
+        <>
+          {info.getValue()} <small>draft</small>
+        </>
+      );
+    },
     header: () => <span>Status</span>,
   },
   {

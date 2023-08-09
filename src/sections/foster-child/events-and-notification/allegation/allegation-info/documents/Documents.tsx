@@ -19,7 +19,7 @@ const Documents = () => {
   return (
     <UploadDocuments
       readOnly={router?.query?.action === "view"}
-      tableData={data?.data?.en_document}
+      tableData={data?.data?.alegationDocuments}
       isLoading={isLoading}
       column={[
         "documentOriginalName",

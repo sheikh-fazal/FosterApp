@@ -46,7 +46,7 @@ export default function UploadDocumentModal(props: any) {
     column,
   } = props;
   const selectedRow = content?.row?.original;
-  console.log(selectedRow);
+  // console.log(selectedRow);
 
   const handleOpen = () => {
     setOpen(true);

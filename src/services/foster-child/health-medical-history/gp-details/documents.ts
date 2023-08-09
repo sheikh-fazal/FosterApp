@@ -6,7 +6,7 @@ export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/gp-info/docs/all/${apiDataParameter?.pathParams?.gpInfoId}`,
         method: "GET",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
       }),
       providesTags: ["GP_DETAILS_INFO_DOCUMENTS"],
     }),
