@@ -6,7 +6,7 @@ export const statutoryMedicalListInfoDocumentApi = baseAPI.injectEndpoints({
       query: (apiDataParameter: any) => ({
         url: `foster-child/statutory-medical/docs/all/${apiDataParameter?.pathParams?.id}`,
         method: "GET",
-        params: apiDataParameter?.params,
+        params: apiDataParameter?.queryParams,
       }),
       providesTags: ["STATUTORY_MEDICAL_TYPE_INFO_DOCUMENTS"],
     }),

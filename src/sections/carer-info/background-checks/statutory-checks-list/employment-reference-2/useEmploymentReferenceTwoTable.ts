@@ -12,6 +12,7 @@ export const useEmploymentReferenceTwoTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Employment Reference Two List
@@ -59,5 +60,6 @@ export const useEmploymentReferenceTwoTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

@@ -25,19 +25,19 @@ const SOCIAL_LINKS = [
 const GENERAL_PAGES = [
   {
     title: "Cookie Policy",
-    link: "/auth/login",
+    link: "/cookie-policy",
   },
   {
     title: "Privacy Policy",
-    link: "/auth/login",
+    link: "/privacy-policy",
   },
   {
     title: "Terms & Conditions",
-    link: "/auth/login",
+    link: "/terms-conditions",
   },
   {
     title: "Data Security",
-    link: "/auth/login",
+    link: "/data-security",
   },
 ];
 

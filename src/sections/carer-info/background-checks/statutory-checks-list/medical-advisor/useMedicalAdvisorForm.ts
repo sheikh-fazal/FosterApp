@@ -12,6 +12,7 @@ import {
 } from "@root/services/carer-info/background-checks/statutory-check-list/medical-advisor/medicalAdvisorApi";
 export const useMedicalAdvisorForm = (action: any, id: any) => {
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
@@ -55,7 +56,12 @@ export const useMedicalAdvisorForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postMedicalMedicalList(data)
+      postMedicalMedicalList({
+        params: {
+          fosterCarerId: fosterCarerId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -65,16 +71,21 @@ export const useMedicalAdvisorForm = (action: any, id: any) => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-            query: { action: "edit", id: `${res?.data.id}` },
+            query: {
+              action: "edit",
+              id: `${res?.data.id}`,
+              fosterCarerId: fosterCarerId,
+            },
           });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/medical-advisor"
-          );
+          router.push({
+            pathname: "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
         });
     } else if (action === "edit") {
       setIsFetching(true);
@@ -88,17 +99,19 @@ export const useMedicalAdvisorForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/medical-advisor"
-          );
+          router.push({
+            pathname: "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/medical-advisor"
-          );
+          router.push({
+            pathname: "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         });
     } else {
@@ -115,5 +128,6 @@ export const useMedicalAdvisorForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
+    fosterCarerId,
   };
 };

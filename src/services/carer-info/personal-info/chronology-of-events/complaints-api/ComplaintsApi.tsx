@@ -4,18 +4,18 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const complaintsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     complaintsList: builder.query<null, object>({
-      query: (search: any) => ({
-        url: "chronology-events/List-complaint",
+      query: (payload: any) => ({
+        url: `chronology-events/List-complaint/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: search,
+        params: payload.params,
       }),
       providesTags: ["COMPLAINT_LIST"],
     }),
     postComplaintList: builder.mutation({
-      query: (list: any) => ({
-        url: "chronology-events/complaints",
+      query: (payload: any) => ({
+        url: `chronology-events/complaints/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: list,
+        body: payload.body,
       }),
       invalidatesTags: ["COMPLAINT_LIST"],
     }),
