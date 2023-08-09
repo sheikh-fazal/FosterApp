@@ -2,24 +2,22 @@ import Page from "@root/components/Page";
 import Layout from "@root/layouts";
 //  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
-import TherapyInfoList from "@root/sections/foster-child/health-medical-history/therapy-info/TherapyInfoList";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { useRouter } from "next/router";
-import ChLivingInHousholdCommentsList from "@root/sections/foster-child/child-reports/ch-living-in-household-comments/ChLivingInHousholdCommentsList";
 
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "/ Child Info",
-    href: `/foster-child/?fosterChildId=${query.fosterChildId}`,
+    name: "/ Child Reports List",
+    href: `/foster-child/child-reports/child-living-in-households-comments?fosterChildId=${query.fosterChildId}`,
   },
   {
-    name: "Child Reports List",
+    name: "Child Report ",
     href: "/",
   },
 ];
 
-const PAGE_TITLE = "FOSTERED CHILD’S COMMENTS";
+const PAGE_TITLE = "VIEW FOSTERED CHILD’S COMMENTS";
 
 // ----------------------------------------------------------------------
 
@@ -31,8 +29,7 @@ InitialHomeVisit.getLayout = function getLayout(page: any) {
 
 export default function InitialHomeVisit() {
   const router = useRouter();
-
-  if (!router?.query?.fosterChildId) {
+  if (!!!router?.query?.fosterChildId) {
     router.push({
       pathname: "/foster-child-lists",
     });
@@ -45,7 +42,7 @@ export default function InitialHomeVisit() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <ChLivingInHousholdCommentsList />
+      Here will be the details
     </Page>
   );
 }
