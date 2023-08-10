@@ -4,15 +4,15 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import ChildPlacementsReportTable from "@root/sections/foster-child/child-reports/child-placements-report/ChildPlacementsReportTable";
+import { ChildPlacementsReportForm } from "@root/sections/foster-child/child-reports/child-placements-report/form";
 
-const PAGE_TITLE = "Child Placement Reports";
+const PAGE_TITLE = "View Child Placement Reports";
 
-ChildPlacementsReport.getLayout = function getLayout(page: any) {
+ViewChildPlacementsReport.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
 
-export default function ChildPlacementsReport() {
+export default function ViewChildPlacementsReport() {
   const { makePath } = usePath();
 
   const BREADCRUMBS = [
@@ -20,11 +20,12 @@ export default function ChildPlacementsReport() {
       icon: <HomeIcon />,
       name: "Child Info",
       href: makePath({
-        path: "/foster-child",
+        path: "/foster-child/child-reports/child-placements-report",
+        skipQueries: ["childReportsId"],
       }),
     },
     {
-      name: "Child Reports",
+      name: "View Child Report",
       href: "",
     },
   ];
@@ -35,8 +36,7 @@ export default function ChildPlacementsReport() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-
-      <ChildPlacementsReportTable />
+      <ChildPlacementsReportForm disabled />
     </Page>
   );
 }
