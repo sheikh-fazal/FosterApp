@@ -16,10 +16,19 @@ import { useRouter } from "next/router";
 import { useHouseholdConditionA } from "./useHouseholdConditionA";
 
 export const HouseholdConditionA = (props: any) => {
-  const { disabled, formData, isError, isSuccess, isLoading, breadCrumbData, submitFunction } = props;
+  const {
+    disabled,
+    formData,
+    isError,
+    isSuccess,
+    isLoading,
+    breadCrumbData,
+    initialValueProps = defaultValues,
+    submitFunction,
+  } = props;
 
   const { theme, handleSubmit, onSubmit, methods, router }: any =
-    useHouseholdConditionA({ breadCrumbData, formData, submitFunction });
+    useHouseholdConditionA({ breadCrumbData, formData, submitFunction ,initialValueProps});
   return (
     <Page title="Household Condition - A">
       <Card sx={{ p: 2 }}>

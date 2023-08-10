@@ -12,27 +12,27 @@ export const defaultValues = {
   isLightControlledByPullCord: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsReq1: "Text",
+  improvementsReq1: "",
 
   isMedicinesEtcLockedAwayOutOfReach: false,
   dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsReq2: "Text",
+  improvementsReq2: "",
 
   isThermostatOnHotWater: false,
   dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsReq3: "text",
+  improvementsReq3: "",
 
   isDoorOutOfReach: false,
   dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsReq4: "text",
+  improvementsReq4: "",
 
   isBedroomLocked: false,
   dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsReq5: "text",
+  improvementsReq5: "",
 };
 
 export const FormSchema = Yup.object().shape({

@@ -9,48 +9,48 @@ export const defaultValues = {
   isElecticalEquitmentGood: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsReq1: "Text",
+  improvementsReq1: "",
 
   isAccessiblePowerfitted: false,
   dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsReq2: "Text",
+  improvementsReq2: "",
 
   isAllHeatingApplancesFixed: false,
   dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsReq3: "text",
+  improvementsReq3: "",
 
   isFireguardsUsed: false,
   dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsReq4: "text",
+  improvementsReq4: "",
 
   isEasilyAccessibleAndWorkingFire: false,
   dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsReq5: "text",
+  improvementsReq5: "",
 
   isSmokeDetectorsFittedAndUsed: false,
 
   dateToBeCarriedOut6: new Date(todayDate),
 
-  improvementsReq6: "text",
+  improvementsReq6: "",
   isCarbonMonoxideDetectors: false,
   dateToBeCarriedOut7: new Date(todayDate),
 
-  improvementsReq7: "text",
+  improvementsReq7: "",
 
   isSocketsOverloaded: false,
   dateToBeCarriedOut8: new Date(todayDate),
 
-  improvementsReq8: "text",
+  improvementsReq8: "",
 
   hasAnElectricianCheckWiringAndSafetyReportIssued: false,
 
   dateToBeCarriedOut9: new Date(todayDate),
 
-  improvementsReq9: "text",
+  improvementsReq9: "",
 };
 
 export const FormSchema = Yup.object().shape({

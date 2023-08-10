@@ -4,10 +4,7 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
 import Router from "next/router";
 
-export const columns = ({
-  openDeleteModel,
-  makePath
-}: any) => [
+export const columns = ({ openDeleteModel, makePath }: any) => [
   {
     accessorFn: (row: any) => row?.inspectionDate,
 
@@ -34,24 +31,36 @@ export const columns = ({
     id: "actions",
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction type="edit" onClicked={() => alert("Edit")} />
+        <TableAction
+          type="edit"
+          onClicked={() =>
+            Router.push(
+              makePath({
+                path: "/carer-info/medical-history/health-and-safety/edit-health-and-safety-table-tabs",
+                queryParams: { healthAndSafetyId: info?.row?.original?.id },
+              })
+            )
+          }
+        />
         <TableAction
           type="delete"
           onClicked={() => openDeleteModel(info?.row?.original?.id)}
         />
 
-        <TableAction type="view" onClicked={() =>
+        <TableAction
+          type="view"
+          onClicked={() =>
             Router.push(
               makePath({
                 path: "/carer-info/medical-history/health-and-safety/view-health-and-safety-table-tabs",
                 queryParams: { healthAndSafetyId: info?.row?.original?.id },
               })
             )
-          } />
+          }
+        />
       </Box>
     ),
     header: () => <span>actions</span>,
     isSortable: false,
   },
 ];
-

@@ -19,33 +19,33 @@ export const defaultValues = {
     true,
   dateToBeCarriedOut: new Date(todayDate),
 
-  improvementsReq: "Text",
+  improvementsReq: "",
 
   isSufficentSpaceForChilds: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsReq1: "text",
+  improvementsReq1: "",
 
   isRoomsSufficientLight: false,
   dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsReq2: "text",
+  improvementsReq2: "",
 
   isRoomsOpenWindows: false,
   dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsReq3: "text",
+  improvementsReq3: "",
 
   isRoomsMaintainedTemp: false,
   dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsReq4: "text",
+  improvementsReq4: "",
 
   isChildOwnBed: false,
 
   dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsReq5: "text",
+  improvementsReq5: "",
 };
 
 export const FormSchema = Yup.object().shape({

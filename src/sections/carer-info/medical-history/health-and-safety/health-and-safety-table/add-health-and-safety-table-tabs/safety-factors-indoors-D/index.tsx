@@ -12,38 +12,38 @@ export const defaultValues = {
   isFlexesShortOutOfReach: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsReq1: "Text",
+  improvementsReq1: "",
 
   isChestFreezersKeptLocked: false,
   dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsReq2: "Text",
+  improvementsReq2: "",
 
   isKnivesOutOfReach: false,
   dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsReq3: "text",
+  improvementsReq3: "",
 
   isCookerGuardFitted: false,
   dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsReq4: "text",
+  improvementsReq4: "",
 
   isKitchenWorkSurfacesKeptClean: false,
   dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsReq5: "text",
+  improvementsReq5: "",
 
   isFoodsAppropriatelyStored: false,
 
   dateToBeCarriedOut6: new Date(todayDate),
 
-  improvementsReq6: "text",
+  improvementsReq6: "",
 
   isBleachEtcStoredInContainer: false,
   dateToBeCarriedOut7: new Date(todayDate),
 
-  improvementsReq7: "text",
+  improvementsReq7: "",
 };
 
 export const FormSchema = Yup.object().shape({

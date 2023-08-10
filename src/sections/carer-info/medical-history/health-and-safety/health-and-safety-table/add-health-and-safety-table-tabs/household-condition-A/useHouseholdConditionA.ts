@@ -11,6 +11,7 @@ export const useHouseholdConditionA = ({
   breadCrumbData,
   formData,
   submitFunction,
+  initialValueProps,
 }: any) => {
   const theme: any = useTheme();
   const router = useRouter();
@@ -21,7 +22,7 @@ export const useHouseholdConditionA = ({
     useHouseHoldConditionAPostMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
   const { handleSubmit } = methods;
   const onSubmit = async (data: any) => {
