@@ -32,6 +32,29 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
+    patchSchoolActivityData: builder.mutation({
+      query: ({ data, fosterChildId }: any) => ({
+        url: `/school-info/out-of-school-activity/${fosterChildId}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
+    }),
+    postDocumentSchoolActivity: builder.mutation({
+      query: ({ formData, fosterChildId }: any) => ({
+        url: `/education-records/uploaded-documents?fosterChildId=${fosterChildId}`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
+    }),
+    getSchoolActivityDocumentData: builder.query({
+      query: (fosterChildId: any) => ({
+        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}&formName=${"OUT_OF_SCHOOL_ACTIVITY"}`,
+        method: "GET",
+      }),
+      providesTags: ["OUT-SCHOOL-ACTIVITY"],
+    }),
   }),
 });
 
@@ -40,4 +63,7 @@ export const {
   useGetSingleSchoolActivityDataQuery,
   usePostSingleSchoolActivityDataMutation,
   useDeleteSchoolActivityDataMutation,
+  usePatchSchoolActivityDataMutation,
+  usePostDocumentSchoolActivityMutation,
+  useGetSchoolActivityDocumentDataQuery,
 } = OutOfSchoolActivity;

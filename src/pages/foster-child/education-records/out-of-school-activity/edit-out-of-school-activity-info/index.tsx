@@ -5,9 +5,15 @@ import Page from "@root/components/Page";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditOutSchoolActivityInfo from "@root/sections/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info/EditOutSchoolActivityInfo";
-import { useGetSingleSchoolActivityDataQuery } from "@root/services/foster-child/education-records/out-of-school-activity/OutOfSchoolActivity";
+import {
+  useGetSchoolActivityDocumentDataQuery,
+  useGetSingleSchoolActivityDataQuery,
+  usePatchSchoolActivityDataMutation,
+  usePostDocumentSchoolActivityMutation,
+} from "@root/services/foster-child/education-records/out-of-school-activity/OutOfSchoolActivity";
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Out of Shool Activity";
 
@@ -35,12 +41,35 @@ EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
 export default function EditChildExclusionInfoPage() {
   const [tabsArr, setTabsArr] = useState(["Activity info", "Upload Document"]);
   const router = useRouter();
-  const fosterChildId = Object.keys(router?.query)[0];
+  const fosterChildId: any = router?.query?.fosterChildId;
+  const recordID: any = router?.query?.recordId;
 
   const { data, isError, isFetching, isLoading, isSuccess } =
     useGetSingleSchoolActivityDataQuery(fosterChildId);
 
-  console.log(data);
+  const [postActivityDocument] = usePostDocumentSchoolActivityMutation();
+  const {
+    data: documentData,
+    idFetching: documentFetching,
+    isLoading: documentLoading,
+    isSuccess: documentSuccess,
+  } = useGetSchoolActivityDocumentDataQuery(fosterChildId);
+  console.log(documentData?.data?.documents);
+
+  const postDocumentData = async (data: any) => {
+    const formData = new FormData();
+    formData.append("formName", "OUT_OF_SCHOOL_ACTIVITY");
+    formData.append("recordId", recordID);
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("documentPassword", data.password);
+    formData.append("file", data.chosenFile);
+
+    try {
+      const res = await postActivityDocument({ formData, fosterChildId });
+      console.log(res);
+    } catch (error) {}
+  };
 
   return (
     <Page title={PAGE_TITLE}>
@@ -62,22 +91,29 @@ export default function EditChildExclusionInfoPage() {
             />
           </>
         )}
-        <UploadDocuments
-          readOnly={false}
-          tableData={[]}
-          searchParam={() => {}}
-          isLoading={false}
-          isFetching={false}
-          column={[
-            "documentType",
-            "documentType",
-            "date",
-            "uploadBy",
-            "password",
-          ]}
-          isSuccess={false}
-          modalData={(data: any) => console.log(data)}
-        />
+
+        {documentLoading ? (
+          <IsFetching isFetching={documentLoading} />
+        ) : (
+          <>
+            <UploadDocuments
+              readOnly={false}
+              tableData={documentData?.data?.documents}
+              searchParam={() => {}}
+              isLoading={documentLoading}
+              isFetching={documentFetching}
+              column={[
+                "documentOriginalName",
+                "documentType",
+                "documentDate",
+                "personUploaded",
+                "documentPassword",
+              ]}
+              isSuccess={documentSuccess}
+              modalData={(data: any) => postDocumentData(data)}
+            />
+          </>
+        )}
       </HorizaontalTabs>
     </Page>
   );

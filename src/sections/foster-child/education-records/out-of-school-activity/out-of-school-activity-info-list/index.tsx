@@ -7,7 +7,8 @@ export const columnsOutSchoolActivityTable = (
   router: any,
   cancelDelete: any,
   setCancelDelete: any,
-  openDeleteModel: any
+  openDeleteModel: any,
+  fosterChildId: any
 ) => [
   {
     id: "select",
@@ -69,7 +70,7 @@ export const columnsOutSchoolActivityTable = (
           type="edit"
           onClicked={() =>
             router.push(
-              `/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?${info.getValue()}`
+              `/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?recordId=${info.getValue()}&fosterChildId=${fosterChildId}`
             )
           }
         />

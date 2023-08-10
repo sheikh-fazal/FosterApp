@@ -3,10 +3,15 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { usePatchSchoolActivityDataMutation } from "@root/services/foster-child/education-records/out-of-school-activity/OutOfSchoolActivity";
+import { enqueueSnackbar } from "notistack";
 
 const useEditOutSchoolActivityInfo = (initialValueProps: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
+  const fosterChildId = Object.keys(router?.query)[0];
+
+  const [patchData] = usePatchSchoolActivityDataMutation();
 
   const defaultValues = {
     activityType: "",
@@ -29,8 +34,13 @@ const useEditOutSchoolActivityInfo = (initialValueProps: any) => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await patchData({ data, fosterChildId });
+      console.log(res);
+      
+      enqueueSnackbar(`Patch Successfully`, { variant: "success" });
+    } catch (error) {}
   };
 
   return { methods, handleSubmit, onSubmit, router, defaultValues };

@@ -46,14 +46,16 @@ export const OutSchoolActivityList = () => {
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={data?.data}
+          data={data?.data?.outOfSchoolActivity}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}
           isError={isError}
           isFetching={isFetching}
           isLoading={isLoading}
-          isPagination={false}
+          isPagination={true}
+          totalPages={data?.data?.meta?.pages}
+          currentPage={data?.data?.meta?.page}
         />
       </Card>
     </>

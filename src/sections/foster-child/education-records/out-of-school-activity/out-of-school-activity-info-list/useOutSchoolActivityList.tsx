@@ -21,6 +21,7 @@ const useOutSchoolActivityList = () => {
   const { data, isSuccess, isLoading, isFetching, isError } =
     useGetOutSchoolActivityListQuery({ fosterChildId, params });
   const [delteActivity] = useDeleteSchoolActivityDataMutation();
+  
 
   const deleteOutOfSchoolActivityId = async () => {
     setOutOfSchoolActivityId(null);
@@ -40,7 +41,8 @@ const useOutSchoolActivityList = () => {
     router,
     cancelDelete,
     setCancelDelete,
-    openDeleteModel
+    openDeleteModel,
+    fosterChildId
   );
 
   return {
