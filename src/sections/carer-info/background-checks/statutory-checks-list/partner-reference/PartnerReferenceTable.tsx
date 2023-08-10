@@ -20,6 +20,7 @@ const PartnerReferenceTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = usePartnerReferenceTable();
 
   const columns = [
@@ -68,7 +69,11 @@ const PartnerReferenceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/partner-reference",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -83,7 +88,11 @@ const PartnerReferenceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/partner-reference",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -104,7 +113,7 @@ const PartnerReferenceTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/partner-reference",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

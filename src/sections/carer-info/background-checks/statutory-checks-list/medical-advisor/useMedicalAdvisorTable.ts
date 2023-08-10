@@ -11,16 +11,24 @@ export const useMedicalAdvisorTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Medical Advisor List
+
   const {
     data: medicalAdvisorList,
     isError: medicalAdvisorError,
     isLoading: medicalAdvisorIsloading,
     isFetching: medicalAdvisorIsfetching,
     isSuccess: medicalAdvisorIsSuccess,
-  }: any = useMedicalAdvisorListQuery({ search: search, ...params });
+  }: any = useMedicalAdvisorListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
+    },
+  });
 
   //Getting API data and Meta
   const medicalAdvisorData = medicalAdvisorList?.data?.medical_advisor;
@@ -57,5 +65,6 @@ export const useMedicalAdvisorTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

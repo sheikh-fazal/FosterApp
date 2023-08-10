@@ -8,12 +8,16 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import { ClaReviewForm } from "@root/sections/foster-child/other-information/cla-review/form";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import {
+  useClaReviewDocListQuery,
+  useDeleteClaReviewDocMutation,
   useGetClaReviewIdQuery,
   usePatchClaReviewByIdMutation,
+  usePostClaReviewDocMutation,
 } from "@root/services/foster-child/other-information/cla-review/claReviewApi";
 import { useRouter } from "next/router";
 import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE = "Edit CLA Review";
 
@@ -24,12 +28,26 @@ EditClaReview.getLayout = function getLayout(page: any) {
 export default function EditClaReview() {
   const { makePath } = usePath();
   const router: any = useRouter();
-  const { claReviewId } = router.query;
+  const { claReviewId }: any = router.query;
 
   const { data, isLoading, isError } = useGetClaReviewIdQuery(claReviewId);
-
   const [updateData, { isSuccess, isError: isErrorPatch }] =
     usePatchClaReviewByIdMutation();
+
+  const {
+    data: docData,
+    isLoading: docLoading,
+    isFetching: docFetching,
+    isError: docError,
+    isSuccess: docSuccess,
+  }: any = useClaReviewDocListQuery(claReviewId);
+
+  const tableData: any = docData?.data;
+  const metaData: any = docData?.data?.meta;
+
+  const [postDocs] = usePostClaReviewDocMutation();
+
+  const [deleteDoc] = useDeleteClaReviewDocMutation();
 
   const BREADCRUMBS = [
     {
@@ -73,33 +91,54 @@ export default function EditClaReview() {
           />
         )}
         <UploadDocuments
-          readOnly={false}
           searchParam={(searchedText: string) =>
             console.log("searched Value", searchedText)
           }
-          // tableData={tableData}
-          tableData={[
-            {
-              document: "bad.png",
-              documentType: "png",
-              date: "09/09/2009",
-              personName: "My name",
-              password: "password123",
-            },
-          ]}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          tableData={tableData}
+          isLoading={docLoading}
+          isFetching={docFetching}
+          isError={docError}
+          isSuccess={docSuccess}
           column={[
-            "document",
+            "documentName",
             "documentType",
-            "date",
+            "documentDate",
             "personName",
             "password",
           ]}
-          modalData={() => {}}
-          onDelete={(data: any) => console.log("Deleting", data)}
+          modalData={async (data: any) => {
+            const formData = new FormData();
+            formData.append("personName", data?.personName || "Name");
+            formData.append("documentName", data?.documentName);
+            formData.append("documentType", data?.documentType);
+            formData.append("documentDate", data?.documentDate);
+            formData.append("password", data?.password);
+            formData.append("chooseFiles", data?.chooseFiles);
+            const updatedData: any = {
+              claReviewId,
+              formData,
+            };
+            try {
+              const res: any = await postDocs(updatedData).unwrap();
+              enqueueSnackbar(
+                res?.message ?? `CLA Review Document Added Successfully!`,
+                {
+                  variant: "success",
+                }
+              );
+            } catch (error: any) {
+              const errMsg = error?.data?.message;
+              enqueueSnackbar(errMsg ?? "Something Went Wrong!", {
+                variant: "error",
+              });
+            }
+          }}
+          onDelete={(data: any) => {
+            deleteDoc(data?.id);
+            enqueueSnackbar("CLA Review info deleted successfully!", {
+              variant: "success",
+            });
+          }}
           onPageChange={(page: any) => console.log("parent log", page)}
           // currentPage={metaData?.page}
           // totalPages={metaData?.pages}

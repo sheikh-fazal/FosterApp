@@ -1,31 +1,12 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
-export const defaultValues = {
-  childCode: "",
-  childNeeds: "Text",
-  selfCareSkill: "Text",
-  socialPresentation: "Text",
-  contact: "Text",
-  otherIssues: "Text",
-  childStatement: "Text",
-};
-
-export const FormSchema = Yup.object().shape({
-  childCode: Yup.string().required("required"),
-  childNeeds: Yup.string().required("required"),
-  selfCareSkill: Yup.string().required("required"),
-  socialPresentation: Yup.string().required("required"),
-  contact: Yup.string().required("required"),
-  otherIssues: Yup.string().required("required"),
-  childStatement: Yup.string().required("required"),
-});
 
 export const placementReviewData = [
   {
     id: 2,
     otherOptions: {
       name: "childCode",
-      label: "Child Code:",
+      label: "Child Code",
       select: true,
     },
     component: RHFSelect,
@@ -46,9 +27,9 @@ export const placementReviewData = [
     title: "Identity Religion",
     gridLength: 12,
     otherOptions: {
-      name: "childNeeds",
+      name: "identityReligion",
       label:
-        "(If a trans-racial placement, how is the child's needs being met):",
+        "(If a trans-racial placement, how is the child's needs being met)",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -59,8 +40,8 @@ export const placementReviewData = [
     id: 3,
     gridLength: 12,
     otherOptions: {
-      name: "selfCareSkill",
-      label: "Independence Self-Care Skills:",
+      name: "independenceSeldCareSkills",
+      label: "Independence Self-Care Skills",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -71,8 +52,8 @@ export const placementReviewData = [
     id: 4,
     gridLength: 12,
     otherOptions: {
-      name: "socialPresentation",
-      label: "Social Presentation Leisure Skills:",
+      name: "socialPresentationLeisureSkills",
+      label: "Social Presentation Leisure Skills",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -95,8 +76,8 @@ export const placementReviewData = [
     id: 6,
     gridLength: 12,
     otherOptions: {
-      name: "otherIssues",
-      label: "Other issues or Concerns:",
+      name: "otherIssuesOrConcerns",
+      label: "Other issues or Concerns",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -107,8 +88,8 @@ export const placementReviewData = [
     id: 7,
     gridLength: 12,
     otherOptions: {
-      name: "childStatement",
-      label: "Statement from Child/Young Person:",
+      name: "statementFromChild",
+      label: "Statement from Child/Young Person",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -117,3 +98,23 @@ export const placementReviewData = [
   },
 ];
 export { default as PlacementReview } from "./PlacementReview";
+
+export const defaultValues = {
+  childCode: "",
+  identityReligion: "Text",
+  independenceSeldCareSkills: "Text",
+  socialPresentationLeisureSkills: "Text",
+  contact: "Text",
+  otherIssuesOrConcerns: "Text",
+  statementFromChild: "Text",
+};
+
+export const formSchema = Yup.object().shape({
+  childCode: Yup.string().required("required"),
+  identityReligion: Yup.string().required("required"),
+  independenceSeldCareSkills: Yup.string().required("required"),
+  socialPresentationLeisureSkills: Yup.string().required("required"),
+  contact: Yup.string().required("required"),
+  otherIssuesOrConcerns: Yup.string().required("required"),
+  statementFromChild: Yup.string().required("required"),
+});

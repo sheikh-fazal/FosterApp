@@ -17,6 +17,7 @@ const PartnerReferenceForm = (props: any) => {
     isSubmitting,
     theme,
     isLoading,
+    fosterCarerId,
   } = useReferenceOneForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
@@ -77,9 +78,11 @@ const PartnerReferenceForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back
