@@ -11,13 +11,8 @@ const BackupCarerPlacementTable = (props: any) => {
     router,
     tableHeaderRefTwo,
     setSearch,
-    data,
     sortChangeHandler,
     pageChangeHandler,
-    isSuccess,
-    isFetching,
-    isError,
-    isLoading,
   } = useBackupCarerPlacementTable();
 
   return (
@@ -36,14 +31,14 @@ const BackupCarerPlacementTable = (props: any) => {
         }}
       />
       <CustomTable
-        data={data?.data?.cc_day_log}
+        data={[]}
         columns={columns({ router, fosterChildId, listDeleteHandler })}
-        isLoading={isLoading}
-        isFetching={isFetching}
-        isError={isError}
-        isSuccess={isSuccess}
-        currentPage={data?.data?.metameta?.page}
-        totalPages={data?.data?.metameta?.pages}
+        isLoading={false}
+        isFetching={false}
+        isError={false}
+        isSuccess={false}
+        // currentPage={data?.data?.metameta?.page}
+        // totalPages={data?.data?.metameta?.pages}
         showSerialNo
         isPagination
         onPageChange={pageChangeHandler}

@@ -11,10 +11,7 @@ export const usePlacementDischargeTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const [search, setSearch] = useState("");
-  const { data, isError, isLoading, isFetching, isSuccess }: any =
-    useGetChildChronologyOfEventsDayLogListQuery({
-      search: search,
-    });
+
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
   // const [deleteList] = useDeleteChildChronologyOfEventsDayLogByIdMutation();
@@ -40,13 +37,8 @@ export const usePlacementDischargeTable = () => {
     tableHeaderRefTwo,
     router,
     setSearch,
-    data,
     sortChangeHandler,
     pageChangeHandler,
-    isSuccess,
-    isFetching,
-    isError,
-    isLoading,
     listDeleteHandler,
   };
 };
