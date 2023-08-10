@@ -48,7 +48,7 @@ export default function ViewStudySupportInfo() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsStudySupportInfoQuery(params);
+  } = useGetUploadDocumentsStudySupportInfoQuery({ fosterChildId, params });
 
   const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
@@ -67,7 +67,9 @@ export default function ViewStudySupportInfo() {
         <StudySupportInfoForm disabled />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}

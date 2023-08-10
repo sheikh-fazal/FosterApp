@@ -66,7 +66,7 @@ export default function MedicalAppointments() {
     isSuccess: isDocumentSuccess,
   } = useGetMedicalInfoDocsQuery({
     id: medicalAppointmentID,
-    params: { search: "", limit: "10", offset: "0" },
+    params,
   });
   const [postDocs] = usePostmedicalAppointmentsDocsMutation();
   const [deleteData] = useDeletemedicalAppointmentsDocsMutation();
@@ -106,7 +106,9 @@ export default function MedicalAppointments() {
           onDelete={(row: any) => {
             deleteData(row?.id);
           }}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}

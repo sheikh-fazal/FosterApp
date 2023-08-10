@@ -3,10 +3,13 @@ import { baseAPI } from "@root/services/baseApi";
 const medicalAppointments = baseAPI.injectEndpoints({
   endpoints: (Builder) => ({
     medicalAppointmentsList: Builder.query({
-      query: (payload: any) => ({
-        url: `/foster-child/list-medical-appointments/${payload.params.fosterCarerId}`,
+      query: ({ search, params, fosterChildId }: any) => ({
+        url: `/foster-child/list-medical-appointments/${fosterChildId}`,
         method: "GET",
-        params: payload.params,
+        params: {
+          ...params,
+          search,
+        },
       }),
       providesTags: ["medicalappointments"],
     }),

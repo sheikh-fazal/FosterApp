@@ -56,7 +56,7 @@ export default function EditStudySupportInfo() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsStudySupportInfoQuery(params);
+  } = useGetUploadDocumentsStudySupportInfoQuery({ fosterChildId, params });
 
   const [postDocs] = usePostUploadDocumentsStudySupportInfoApiMutation();
   const [deleteData] = useDeleteUploadDocumentsStudySupportInfoByIdMutation();
@@ -96,7 +96,9 @@ export default function EditStudySupportInfo() {
             deleteData(row.id);
           }}
           // readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}
