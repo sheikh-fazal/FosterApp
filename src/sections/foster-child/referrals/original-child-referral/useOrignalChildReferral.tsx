@@ -10,17 +10,29 @@ const useOrignalChildReferral = () => {
 
   const { handleSubmit, watch } = methods;
 
-  const { mentalHealthStatus } = watch({ name: "mentalHealthStatus" });
+  const { mentalHealthStatus } = watch({
+    name: "mentalHealthStatus",
+  });
+  const { childPhysicalDisability } = watch({
+    name: "childPhysicalDisability",
+  });
 
   const onSubmit = (data: any) => {
     const updatedData = {
       ...data,
       mentalHealthStatus: mentalHealthStatus === "Yes" ? true : false,
+      childPhysicalDisability: childPhysicalDisability === "Yes" ? true : false,
     };
     console.log(updatedData);
   };
 
-  return { methods, onSubmit, handleSubmit, mentalHealthStatus };
+  return {
+    methods,
+    onSubmit,
+    handleSubmit,
+    mentalHealthStatus,
+    childPhysicalDisability,
+  };
 };
 
 export default useOrignalChildReferral;
