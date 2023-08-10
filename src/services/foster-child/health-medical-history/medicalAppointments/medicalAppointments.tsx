@@ -52,7 +52,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
         method: "GET",
         params,
       }),
-      providesTags: ["medicalappointmentsDocs"],
+      providesTags: ["MEDICAL_APPOINTMENTS_DOCS"],
     }),
     //post
     postmedicalAppointmentsDocs: Builder.mutation({
@@ -61,7 +61,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
-      invalidatesTags: ["medicalappointments"],
+      invalidatesTags: ["MEDICAL_APPOINTMENTS_DOCS"],
     }),
     //edit
     editmedicalAppointmentsDocs: Builder.mutation({
@@ -69,7 +69,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
         url: `/foster-child/medical-appointment/document/${id}`,
         method: "PATCH",
       }),
-      invalidatesTags: ["medicalappointments"],
+      invalidatesTags: ["MEDICAL_APPOINTMENTS_DOCS"],
     }),
     //delete
     deletemedicalAppointmentsDocs: Builder.mutation({
@@ -77,7 +77,7 @@ const medicalAppointments = baseAPI.injectEndpoints({
         url: `/foster-child/medical-appointment/document/${id}`,
         method: "Delete",
       }),
-      invalidatesTags: ["medicalappointmentsDocs"],
+      invalidatesTags: ["MEDICAL_APPOINTMENTS_DOCS"],
     }),
   }),
 });
