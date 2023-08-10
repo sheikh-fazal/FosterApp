@@ -1,5 +1,5 @@
 import VocationalCourseInfoTable from "@root/sections/foster-child/vocational-course-info/vocational-course-info-table/VocationalCourseInfoTable";
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
@@ -31,9 +31,16 @@ export default function VocationalCourseInfo() {
   const router = useRouter();
   const id = router?.query?.fosterChildId;
 
+  const [params, setParams] = useState({
+    search: undefined,
+    limit: "10",
+    offset: "0",
+    fosterChildId: id,
+  });
+
   const { data, isLoading, isFetching, isSuccess, isError } =
     useVocationalInfoAllListQuery({
-      params: { search: "", limit: "10", offset: "0", fosterChildId: id },
+      params,
     });
   const [deleteEntry] = useDeleteVocationalInfoMutation();
 
@@ -71,9 +78,17 @@ export default function VocationalCourseInfo() {
       <VocationalCourseInfoTable
         tableData={data?.vocationalInfoList}
         meta={data?.meta}
-        searchedText={(text: any) => console.log(text)}
+        searchedText={(searchedText: any) =>
+          setParams((prev: any) => {
+            return { ...prev, search: searchedText.search };
+          })
+        }
         apiStatus={{ isLoading, isFetching, isSuccess, isError }}
-        onPageChange={(page: any) => console.log(page)}
+        onPageChange={(page: any) =>
+          setParams((prev: any) => {
+            return { ...prev, offset: page };
+          })
+        }
         route={`/foster-child/education-records/vocational-course-info/details${
           id ? "?fosterChildId=" + id : ""
         }`}

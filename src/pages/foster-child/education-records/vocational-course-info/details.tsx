@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
@@ -20,6 +20,7 @@ import {
 } from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { formData } from "@root/sections/carer-info/personal-info/carer-address-history";
+import dayjs from "dayjs";
 
 // ----------------------------------------------------------------------
 
@@ -40,6 +41,14 @@ export default function VocationalCourseInfoForm() {
   const id = router?.query?.fosterChildId;
   const recordId = router?.query?.recordId;
   const viewMode = router?.query?.view;
+  const todayDate = dayjs().format("MM/DD/YYYY");
+
+  const [docParams, setDocParams] = useState({
+    search: undefined,
+    limit: "10",
+    offset: "0",
+    fosterChildId: id,
+  });
 
   const [postVocationalInfo, status] = useAddVocationalInfoMutation();
   const [postVocationalDoc] = useAddVocationalInfoDocumentMutation();
@@ -52,12 +61,7 @@ export default function VocationalCourseInfoForm() {
     isFetching: isDocFetching,
     isError: hasDocError,
     isSuccess: isDocSuccess,
-  } = useVocationalInfoDocumentsQuery({
-    search: undefined,
-    limit: "10",
-    offset: "0",
-    fosterCarerId: id,
-  });
+  } = useVocationalInfoDocumentsQuery(docParams);
   const {
     data: formValues,
     isLoading,
@@ -132,6 +136,9 @@ export default function VocationalCourseInfoForm() {
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     }
   };
+
+  console.log("searching", docParams);
+
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
@@ -149,18 +156,23 @@ export default function VocationalCourseInfoForm() {
           onEdit={(data: any) => console.log(data)}
           data={{
             ...formValues,
-            startDate: new Date(formValues?.startDate),
-            endDate: new Date(formValues?.endDate),
+            startDate: new Date(formValues?.startDate || todayDate),
+            endDate: new Date(formValues?.endDate || todayDate),
           }}
           disabled={viewMode}
+          prevPath={`/foster-child/education-records/vocational-course-info?fosterChildId=${id}`}
         />
+
+        {/* --------------------------------------//------------------------------------------ */}
         {!!recordId && (
           <UploadDocuments
             disabled={viewMode}
             searchParam={(searchedText: string) =>
-              console.log("searched Value", searchedText)
+              setDocParams((prev: any) => {
+                return { ...prev, search: searchedText.search };
+              })
             }
-            tableData={docData?.data ?? []}
+            tableData={docData?.vocationalInfoDocuments ?? []}
             isLoading={isDocLoading}
             isFetching={isDocFetching}
             isError={hasDocError}
@@ -175,8 +187,8 @@ export default function VocationalCourseInfoForm() {
             modalData={documentSubmitHandler}
             onDelete={documentDeleteHandler}
             onPageChange={(page: any) => console.log("parent log", page)}
-            currentPage={"1"}
-            totalPages={"1"}
+            currentPage={docData?.meta?.page || "1"}
+            totalPages={docData?.meta?.pages || "1"}
           />
         )}
       </HorizontalTabs>

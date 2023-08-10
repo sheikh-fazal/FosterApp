@@ -53,7 +53,7 @@ export const VocationalInfoListApi = baseAPI.injectEndpoints({
 
     vocationalInfoDocuments: builder.query({
       //5
-      query: ({ params }) => ({
+      query: (params) => ({
         url: `/vocational-info-list/all-documents/vocational-info-documents`,
         method: "GET",
         params,

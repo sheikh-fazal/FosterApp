@@ -6,11 +6,21 @@ import { useForm } from "react-hook-form";
 import { FormSchema, defaultValues, VOCATIONALCOURSEINFODATA } from ".";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import { useRouter } from "next/router";
 
 //component function
 export default function VocationalCourseForm(props: any) {
-  const { disabled, onSubmit, status, onEdit, data, gettingStatus }: any =
-    props;
+  const {
+    disabled,
+    onSubmit,
+    status,
+    onEdit,
+    data,
+    gettingStatus,
+    prevPath,
+  }: any = props;
+
+  const router = useRouter();
 
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
@@ -29,6 +39,7 @@ export default function VocationalCourseForm(props: any) {
       ...data,
     }));
   }, [data, reset]);
+
   const formEl = (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container spacing={3}>
@@ -74,6 +85,7 @@ export default function VocationalCourseForm(props: any) {
               type="button"
               variant="contained"
               color="warning"
+              onClick={() => router.push(prevPath)}
             >
               Back
             </Button>
