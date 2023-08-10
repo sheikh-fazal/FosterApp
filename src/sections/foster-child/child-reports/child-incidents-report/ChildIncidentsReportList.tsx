@@ -118,15 +118,14 @@ const ChildIncidentsReportList = () => {
     },
   ];
   return (
-    <Paper>
+    <Paper elevation={3}>
       <TableHeader
         ref={tableHeaderRefTwo}
         title="CHILD INCIDENTS REPORTS"
         showAddBtn
         onAdd={() => {
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
+            pathname: "/foster-child/child-reports/child-incidents-report/form",
             query: { action: "add", fosterChildId: fosterChildId },
           });
         }}

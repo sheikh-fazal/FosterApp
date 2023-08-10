@@ -18,11 +18,11 @@ const BREADCRUMBS = (fosterChildId: any) => {
 };
 
 const PAGE_TITLE = "CHILD INCIDENTS REPORTS";
-ChildIncidentsReport.getLayout = function getLayout(page: any) {
+ChildIncidentsReportTable.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
 
-export default function ChildIncidentsReport() {
+export default function ChildIncidentsReportTable() {
   const router = useRouter();
   const { fosterChildId }: any = router.query;
   return (
