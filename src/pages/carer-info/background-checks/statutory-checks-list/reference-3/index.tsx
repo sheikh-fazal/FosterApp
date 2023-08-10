@@ -63,7 +63,7 @@ export default function Reference3() {
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 
-  const tableData: any = documentData?.data?.as_statutory_checks_list_document;
+  const tableData: any = documentData?.data?.statutoryCheckList;
   const metaData: any = documentData?.data?.meta;
 
   //Handling POST API

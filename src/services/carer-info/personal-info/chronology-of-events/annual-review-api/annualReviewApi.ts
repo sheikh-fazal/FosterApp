@@ -13,9 +13,9 @@ export const annualReviewApi = baseAPI.injectEndpoints({
     }),
     postAnnualReviewList: builder.mutation({
       query: (payload: any) => ({
-        url: `carer-Info/add-annual-review/${payload.params.fosterCarerId}`,
+        url: `carer-Info/add-annual-review`,
         method: "POST",
-        body: payload.body,
+        body: payload,
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
@@ -46,7 +46,7 @@ export const annualReviewApi = baseAPI.injectEndpoints({
 });
 export const {
   useAnnualReviewListQuery,
-  useLazyAnnualReviewListQuery,
+  useLazySingleAnnualReviewListQuery,
   usePostAnnualReviewListMutation,
   usePatchAnnualReviewListMutation,
   useDeleteAnnualReviewListMutation,

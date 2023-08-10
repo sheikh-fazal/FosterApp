@@ -31,7 +31,10 @@ export default function AnnualReview() {
     {
       icon: <HomeIcon />,
       name: "Review List",
-      href: "/carer-info/personal-info/carer-chronology-of-events",
+      href: {
+        pathname: "/carer-info/personal-info/carer-chronology-of-events",
+        query: { fosterCarerId: fosterCarerId },
+      },
     },
     {
       name: "Annual Review",
