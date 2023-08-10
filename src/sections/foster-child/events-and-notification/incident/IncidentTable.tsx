@@ -116,34 +116,31 @@ const IncidentTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-              data={data?.data?.cc_incident_info}
+              data={data?.absence_details}
                 // data={Dummy ?? []}
+                // columns={columns}
+                // isLoading={false}
+                // isFetching={false}
+                // isError={false}
+                // isSuccess={true}
+                // isPagination={true}
+                // showSerialNo={true}
+                //   totalPages={data?.meta?.pages ?? 0}
+                //   currentPage={data?.meta?.page ?? 1}
+                //   onPageChange={pageChangeHandler}
+                // onSortByChange={sortChangeHandler}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
-                isPagination={true}
-                showSerialNo={true}
-                  totalPages={data?.meta?.pages ?? 0}
-                  currentPage={data?.meta?.page ?? 1}
-                  onPageChange={pageChangeHandler}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isError={isError}
+                isSuccess={isSuccess}
+                currentPage={data?.data?.metameta?.page}
+                totalPages={data?.data?.metameta?.pages}
+                showSerialNo
+                isPagination
+                onPageChange={pageChangeHandler}
                 onSortByChange={sortChangeHandler}
               />
-              {/* <CustomTable
-        // data={data?.data?.cc_incident_info}
-        columns={columns}
-        // isLoading={isLoading}
-        // isFetching={isFetching}
-        // isError={isError}
-        // isSuccess={isSuccess}
-        // currentPage={data?.data?.metameta?.page}
-        // totalPages={data?.data?.metameta?.pages}
-        showSerialNo
-        isPagination
-        // onPageChange={pageChangeHandler}
-        // onSortByChange={sortChangeHandler}
-      /> */}
             </Box>
           </Paper>
         </Grid>

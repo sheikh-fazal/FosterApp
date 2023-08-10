@@ -7,7 +7,7 @@ export const Dummy = [
   {
     nameOfIncident: "ash",
     dateOfIncident: "4/24/2002",
-    status: "panding",
+    status: "pandiiiiiiiiiiiiiiiiiiiiing",
   },
 ];
 
