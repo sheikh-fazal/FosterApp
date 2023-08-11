@@ -44,8 +44,8 @@ export const ManagePocketMoney = () => {
           </TableCell>
 
           <TableBody>
-            {managePocketMoneyData.map((data: any) => (
-              <TableRow>
+            {managePocketMoneyData.map((data: any, i: number) => (
+              <TableRow key={i}>
                 <TableCell sx={{ border: "1px solid #000" }} align="center">
                   {data.ageRange}
                 </TableCell>

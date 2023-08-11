@@ -6,10 +6,18 @@ import { EditOutSchoolActivityInfoData } from ".";
 import useEditOutSchoolActivityInfo from "./useEditOutSchoolActivityInfo";
 
 const EditOutSchoolActivityInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const {
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    defaultValues,
+    initialValueProps = defaultValues,
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useEditOutSchoolActivityInfo();
+  const { methods, handleSubmit, onSubmit } =
+    useEditOutSchoolActivityInfo(initialValueProps);
 
   return (
     <>

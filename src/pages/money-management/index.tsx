@@ -39,9 +39,9 @@ const BREADCRUMBS = (query: any) => [
           breadcrumbs={BREADCRUMBS(router?.query)}
           title={PAGE_TITLE}
         />
-        <Paper elevation={3}>
+        {/* <Paper elevation={3}> */}
             <MoneyManagement />
-        </Paper>
+        {/* </Paper> */}
       </Page>
     );
   }

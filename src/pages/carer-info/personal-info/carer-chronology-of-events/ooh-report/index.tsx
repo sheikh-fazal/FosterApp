@@ -11,39 +11,40 @@ import {
   useDeleteDocumentListMutation,
 } from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportDocumentsApi";
 import ReportForm from "@root/sections/carer-info/personal-info/chronology-of-events/ooh-report/report-form/ReportForm";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "OOH Report List",
-    href: "/carer-info/personal-info/carer-chronology-of-events",
-  },
-  {
-    name: "OOH Report",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "OOH Report";
 OohReport.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
+
 export default function OohReport() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
-  const { action, id } = router.query;
+  const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/personal-info/carer-chronology-of-events");
+    router.push({
+      pathname: "/carer-info/personal-info/carer-chronology-of-events",
+      query: {
+        fosterCarerId: fosterCarerId,
+      },
+    });
   }
+  // BREADCRUMBS
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "OOH Report List",
+      href: {
+        pathname: "/carer-info/personal-info/carer-chronology-of-events",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "OOH Report",
+      href: "",
+    },
+  ];
+  const PAGE_TITLE = "OOH Report";
 
   const {
     data: documentData,
@@ -58,7 +59,7 @@ export default function OohReport() {
     },
   });
 
-  //Car Insurance Upload Modal API
+  //OOH ReportUpload Modal API
   const [postDocuments] = usePostReportDocumentsMutation();
 
   //API For Delete Document List
@@ -100,36 +101,43 @@ export default function OohReport() {
       });
   };
   return (
-    <HorizaontalTabs tabsDataArray={["OOH Details", "Upload Documents"]}>
-      {/* Oh Details Component */}
-      <ReportForm id={id} action={action} />
-      {/* Upload Documents Component */}
-      <UploadDocuments
-        readOnly={action === "view" ? true : false}
-        tableData={tableData}
-        isLoading={isDocumentLoading}
-        isFetching={isFetching}
-        isError={hasDocumentError}
-        isSuccess={isSuccess}
-        column={[
-          "formName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        searchParam={(searchedText: string) => setParams(searchedText)}
-        modalData={(data: any) => documentUploadHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        disabled={
-          !!id && (action === "add" || action === "edit") ? false : true
-        }
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["OOH Details", "Upload Documents"]}>
+        {/* Oh Details Component */}
+        <ReportForm id={id} action={action} />
+        {/* Upload Documents Component */}
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "formName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          searchParam={(searchedText: string) => setParams(searchedText)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
+      </HorizaontalTabs>
+    </>
   );
 }

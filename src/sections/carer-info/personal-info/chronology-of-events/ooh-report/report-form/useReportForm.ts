@@ -57,7 +57,11 @@ export const useReportForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postReportDetails(data)
+      const formData = {
+        fosterCarerId,
+        ...data,
+      };
+      postReportDetails(formData)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -95,9 +99,10 @@ export const useReportForm = (action: any, id: any) => {
           enqueueSnackbar("Report Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/personal-info/carer-chronology-of-events/ooh-report"
-          );
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {

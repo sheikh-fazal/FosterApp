@@ -3,7 +3,7 @@ import {
   useLazyIncidentByIdQuery,
   usePatchIncidentByIdMutation,
 } from "@root/services/carer-info/personal-info/chronology-of-events/incident-api/incidentApi";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 
@@ -12,7 +12,8 @@ import { defaultValues, formatters } from ".";
 
 const useIncidentFrom = (action: any, id: any) => {
   // API,STATES,API,HANDERS
-
+  const router = useRouter();
+  const { fosterCarerId } = router.query;
   // FORM GLOBAL ISLOADING HANDER STATE
   const [isLoading, setIsLoading] = useState(true);
   const [modelOpen, setmodelOpen] = useState(false);
@@ -63,7 +64,12 @@ const useIncidentFrom = (action: any, id: any) => {
   const onSubmitHandler = (data: any) => {
     if (action === "add") {
       setisfatching(true);
-      incidentAddPostById(data)
+      incidentAddPostById({
+        params: {
+          fosterCarerId: fosterCarerId,
+        },
+        body: data,
+      })
         .unwrap()
         .then((res: any) => {
           setisfatching(false);
@@ -73,13 +79,21 @@ const useIncidentFrom = (action: any, id: any) => {
           router.push({
             pathname:
               "/carer-info/personal-info/carer-chronology-of-events/incident",
-            query: { action: "edit", id: `${res?.data.id}` },
+            query: {
+              action: "edit",
+              id: `${res?.data.id}`,
+              fosterCarerId: fosterCarerId,
+            },
           });
         })
         .catch((error: { data: { message: any } }) => {
           setisfatching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
         });
     } else if (action === "edit") {
       setisfatching(true);
@@ -94,11 +108,19 @@ const useIncidentFrom = (action: any, id: any) => {
             variant: "success",
           });
           setisfatching(false);
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           setisfatching(false);
+          router.push({
+            pathname: "/carer-info/personal-info/carer-chronology-of-events",
+            query: { fosterCarerId: fosterCarerId },
+          });
         });
     } else {
       return null;
@@ -137,6 +159,7 @@ const useIncidentFrom = (action: any, id: any) => {
     isLoading,
     uploadingDocumentisSuccess,
     uploadingDocumentisLoading,
+    fosterCarerId,
   };
 };
 

@@ -20,7 +20,7 @@ export const NewPersonalEducationPlanData = [
     gridLength: 6,
     otherOptions: {
       label: "PEP Date",
-      name: "pepDate",
+      name: "date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -28,18 +28,27 @@ export const NewPersonalEducationPlanData = [
   {
     id: 3,
     gridLength: 6,
-    title: 'On File',
     otherOptions: {
-      size: 'small',
-      name: 'docType',
+      name: "onFile",
+      label: "On File",
       fullWidth: true,
       select: true,
-      options: [{ value: 'value', label: 'label' }]
     },
-    component: RHFSelect
+    options: [{value: 'o level', label:"O Level"}],
+    component: RHFSelect,
   },
   {
     id: 4,
+    gridLength: 6,
+    otherOptions: {
+      label: "Principal Name",
+      name: "principalName",
+      fullWidth: true,
+    },
+    component: RHFTextField,
+  },
+  {
+    id: 5,
     gridLength: 12,
     otherOptions: {
       label: "Comments",

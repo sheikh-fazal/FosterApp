@@ -5,7 +5,7 @@ export const reportApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     reportList: builder.query({
       query: (search: any) => ({
-        url: "/chronology-events/ooh-report/list",
+        url: "chronology-events/ooh-report/list",
         method: "GET",
         params: search,
       }),
@@ -13,22 +13,23 @@ export const reportApi = baseAPI.injectEndpoints({
     }),
     reportAddPost: builder.mutation({
       query: (payload: any) => ({
-        url: "/chronology-events/ooh-report",
+        url: "chronology-events/ooh-report",
         method: "POST",
         body: payload,
       }),
       invalidatesTags: ["OOHREPORT_LIST_TABLE"],
     }),
     reportById: builder.query({
-      query: (id: any) => `/chronology-events/ooh-report/${id}`,
+      query: (id: any) => `chronology-events/ooh-report/${id}`,
       transformResponse: (response: any) => {
+        parseDatesToTimeStampByKey(response.data);
         return response;
       },
       providesTags: ["OOHREPORT_LIST_TABLE"],
     }),
     patchReportById: builder.mutation({
       query: ({ id, ...formData }: any) => ({
-        url: `/chronology-events/ooh-report/${id}`,
+        url: `chronology-events/ooh-report/${id}`,
         method: "PATCH",
         body: formData,
       }),
@@ -36,7 +37,7 @@ export const reportApi = baseAPI.injectEndpoints({
     }),
     deleteReportById: builder.mutation({
       query: (id: any) => ({
-        url: `/chronology-events/ooh-report/${id}`,
+        url: `chronology-events/ooh-report/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["OOHREPORT_LIST_TABLE"],
