@@ -21,7 +21,6 @@ const dashboard = () => {
           rowSpacing={2}
           columnSpacing={{ xs: 2, md: 2 }}
           minHeight={"100px"}
-          alignItems={"center"}
         >
           {systemAdminData.map((item: any, i: any) => {
             return (
@@ -63,7 +62,6 @@ const dashboard = () => {
           rowSpacing={2}
           columnSpacing={{ xs: 2, md: 2 }}
           minHeight={"100px"}
-          alignItems={"center"}
         >
           {moreSystemAdminFeature.map((item: any, i: any) => {
             return (
@@ -98,16 +96,13 @@ const styles = {
     background: background,
     borderRadius: "10px",
     padding: "15px",
-    with: "248px",
-    height: "150px",
-    // maxHeight: "auto",
+    height: "100%",
   }),
   moreFeatureCard: () => ({
     background: "#E9E9E9",
     borderRadius: "10px",
     padding: "15px",
-    with: "248px",
-    height: "130px",
+    height: "100%",
   }),
   marketingCardContent: (theme: any) => ({
     display: "flex",
