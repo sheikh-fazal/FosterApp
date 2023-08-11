@@ -65,7 +65,7 @@ export const READYFORPLACEMENT = (fosterCarerId: any) => [
     text: "Safeguarding Measures (Before Child Placement)",
     informationText: "Safeguarding Measures",
     viewForms: `View Document`,
-    href: "#",
+    href: `safeguarding?fosterChildId=${fosterCarerId}`,
   },
   {
     id: 4,
@@ -118,7 +118,7 @@ export const READYFORPLACEMENT = (fosterCarerId: any) => [
     text: "Mandatory Training",
     informationText: "Mandatory Training",
     viewForms: `View Policy`,
-    href: "#",
+    href: `training/manage-courses/course-resource-pool/category?fosterCarerId=${fosterCarerId}`,
   },
   {
     id: 5,
@@ -132,7 +132,7 @@ export const READYFORPLACEMENT = (fosterCarerId: any) => [
     text: "Risk Assessments",
     informationText: "Risk Assessments",
     viewForms: `View Document`,
-    href: "#",
+    href: `foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterCarerId}`,
   },
   {
     id: 6,
