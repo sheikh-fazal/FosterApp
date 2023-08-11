@@ -30,14 +30,14 @@ export default function EditSchoolDetail() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
   const formData = new FormData();
+  const Router: any = useRouter();
+  const { fosterChildId, schoolInfoId } = Router.query;
 
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
   };
-  const Router: any = useRouter();
-  const { fosterChildId, schoolInfoId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -59,7 +59,10 @@ export default function EditSchoolDetail() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsSchoolDetailInfoQuery(params);
+  } = useGetUploadDocumentsSchoolDetailInfoQuery({
+    fosterChildId,
+    params,
+  });
 
   const [postDocs] = usePostUploadDocumentsSchoolDetailInfoApiMutation();
   const [deleteData] = useDeleteUploadDocumentsSchoolDetailInfoByIdMutation();
@@ -95,11 +98,12 @@ export default function EditSchoolDetail() {
         <SchoolDetailInfoForm />
         <UploadDocuments
           onDelete={(row: any) => {
-            console.log(row.id);
             deleteData(row.id);
           }}
           // readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}

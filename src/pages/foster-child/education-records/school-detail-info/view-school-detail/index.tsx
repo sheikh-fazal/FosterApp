@@ -52,7 +52,7 @@ export default function ViewSchoolDetail() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsSchoolDetailInfoQuery(params);
+  } = useGetUploadDocumentsSchoolDetailInfoQuery({ fosterChildId, params });
 
   const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
@@ -71,7 +71,9 @@ export default function ViewSchoolDetail() {
         <SchoolDetailInfoForm disabled />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}
