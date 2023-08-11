@@ -36,7 +36,15 @@ export default function AnnualReviewD(props: any) {
                   {form?.title}
                 </Typography>
                 {form.id !== 7.5 && (
-                  <form.component size="small" {...form.otherOptions} disabled>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

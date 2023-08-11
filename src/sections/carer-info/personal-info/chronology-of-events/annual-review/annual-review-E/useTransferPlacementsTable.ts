@@ -7,19 +7,19 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 
-export const useAnnualReviewTable = () => {
+export const useTransferPlacementsTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-  //GET API For Annual Review List
+  //GET API For Car Insurance List
   const {
-    data: annualReviewlist,
+    data: annualReviewList,
     isError: annualReviewListError,
     isLoading: annualReviewListIsloading,
-    isFetching: annualReviewlistIsfetching,
+    isFetching: annualReviewListIsfetching,
     isSuccess: annualReviewListIsSuccess,
   }: any = useAnnualReviewListQuery({
     params: {
@@ -28,12 +28,14 @@ export const useAnnualReviewTable = () => {
       ...params,
     },
   });
-  const annualReviewList = annualReviewlist?.data?.annual_review;
-  const meta = annualReviewlist?.data?.meta;
+
+  //Getting API data and Meta
+  const annualReviewData =
+    annualReviewList?.data?.annual_review?.annualReviewE?.transferPlacements;
+  const meta = annualReviewList?.data?.meta;
+
   const [deleteList] = useDeleteAnnualReviewListMutation();
   //DELETE API For Allegation List
-  console.log("annualReviewList", annualReviewList);
-
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()
@@ -51,17 +53,17 @@ export const useAnnualReviewTable = () => {
   return {
     router,
     tableHeaderRefTwo,
-    annualReviewList,
     annualReviewListIsloading,
-    annualReviewlistIsfetching,
+    annualReviewData,
+    annualReviewListIsfetching,
     annualReviewListError,
     annualReviewListIsSuccess,
     meta,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-    listDeleteHandler,
     setSearch,
+    listDeleteHandler,
     fosterCarerId,
   };
 };
