@@ -9,7 +9,7 @@ import { useKidieeSavingTable } from "./useKidieeSavingTable";
 
 export const KidieeSavingTable = (props: any) => {
   const router = useRouter();
-  // const { fosterChildId } = props;
+  const { fosterChildId } = props;
   const {
     //   data,
       // isError,
@@ -109,6 +109,8 @@ const TableData = [
       isSortable: false,
     },
   ];
+
+
 
   return (
     <>
