@@ -1,32 +1,30 @@
 import { useTheme } from "@mui/material";
-import {
-  useLazySingleAllegetionListQuery,
-  usePatchAllegationListMutation,
-  usePostAllegationListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
 import { defaultValues, formSchema } from "./index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  useLazySingleAnnualReviewListQuery,
+  usePatchAnnualReviewListMutation,
+  usePostAnnualReviewListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewApi";
 export const useAnnualReviewCForm = (action: any, id: any) => {
   const router = useRouter();
   const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  //API For Getting Single Details
-  const [getAllegationList] = useLazySingleAllegetionListQuery();
-  //API For Posting Allegation Form
-  const [postAllegationDetails] = usePostAllegationListMutation();
-  //API For Patch Allegation List
-  const [editAllegationList] = usePatchAllegationListMutation();
+  
+  const [getReviewList] = useLazySingleAnnualReviewListQuery();
+  const [postReviewDetails] = usePostAnnualReviewListMutation();
+  const [editReviewList] = usePatchAnnualReviewListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getAllegationList(id, true);
+      const { data, isError } = await getReviewList(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -53,7 +51,7 @@ export const useAnnualReviewCForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postAllegationDetails({
+      postReviewDetails({
         params: {
           fosterCarerId: fosterCarerId,
         },
@@ -90,7 +88,7 @@ export const useAnnualReviewCForm = (action: any, id: any) => {
         id,
         ...data,
       };
-      editAllegationList(formData)
+      editReviewList(formData)
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Allegation Edited Successfully", {

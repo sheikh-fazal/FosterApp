@@ -130,16 +130,16 @@ export const annualReviewCData = [
 export { default as AnnualReviewC } from "./AnnualReviewC";
 
 export const defaultValues = {
-  allegationDuringPeriodUnderReview: "Text",
-  eventsForCarersSinceLastReview: "Text",
-  importOfFosteringOnFamily: "Text",
-  experienceOfWorkingWithBirthParents: "Text",
-  workingRelationshipWithTheAgency: "Text",
-  supportForCarers: "Text",
-  supervisingSocialWorker: "Text",
-  otherProfessionals: "Text",
-  otherFosterCarers: "Text",
-  procedures: "Text",
+  allegationDuringPeriodUnderReview: "",
+  eventsForCarersSinceLastReview: "",
+  importOfFosteringOnFamily: "",
+  experienceOfWorkingWithBirthParents: "",
+  workingRelationshipWithTheAgency: "",
+  supportForCarers: "",
+  supervisingSocialWorker: "",
+  otherProfessionals: "",
+  otherFosterCarers: "",
+  procedures: "",
 };
 
 export const formSchema = Yup.object().shape({
