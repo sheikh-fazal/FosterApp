@@ -1,35 +1,29 @@
-// @mui
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
+import { formData } from "./PlacementDischargeData";
+import FormProvider from "@root/components/hook-form/FormProvider";
 import { LoadingButton } from "@mui/lab";
-// utils
-// components
-import { FormProvider } from "@root/components/hook-form";
-//
-import { formData } from ".";
-import { useLeisureActivitiesForm } from "./useLeisureActivitiesForm";
+import { usePlacementDischargeForm } from "./usePlacementDischargeForm";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-export default function LeisureActivitiesForm(props: any) {
-  const { action, LeisureAcitivityData, id, setLeisureActivityId } = props;
+const PlacementDischargeForm = () => {
   const {
-    methods,
-    handleSubmit,
-    onSubmit,
-    isSubmitting,
-    isDirty,
-    theme,
     router,
-    isFetching,
-  } = useLeisureActivitiesForm(
+    methods,
+    onSubmit,
+    handleSubmit,
+    isSubmitting,
+    isLoading,
     action,
-    LeisureAcitivityData,
-    id,
-    setLeisureActivityId
-  );
+    fosterChildId,
+  } = usePlacementDischargeForm();
+
+  const theme: any = useTheme();
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
-        <IsFetching isFetching={isFetching} />
+        <IsFetching isFetching={false} />
         {formData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
@@ -77,9 +71,7 @@ export default function LeisureActivitiesForm(props: any) {
                 },
               }}
               onClick={() => {
-                router.push(
-                  `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${router?.query?.fosterChildId}`
-                );
+                router.back();
               }}
               type="button"
               variant="contained"
@@ -91,4 +83,6 @@ export default function LeisureActivitiesForm(props: any) {
       </Grid>
     </FormProvider>
   );
-}
+};
+
+export default PlacementDischargeForm;
