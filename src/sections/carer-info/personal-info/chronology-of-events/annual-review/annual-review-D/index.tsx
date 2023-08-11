@@ -209,22 +209,22 @@ for (const formControl of annualReviewD) {
 }
 
 export const defaultValues = {
-  particularIssues: "Text",
-  trainingIssues: "Text",
+  particularIssues: "",
+  trainingIssues: "",
   lastHealthAndSafetyDate: new Date(),
-  equipment: "Text",
-  generalCommentsOnPlacements: "Text",
+  equipment: "",
+  generalCommentsOnPlacements: "",
   supervisingSocialWorkerRecom: "",
-  implications: "Text",
-  reviewOfficerComments: "Text",
-  panelRecommendation: "Text",
-  needForChangeInCurrentTerms: "Text",
+  implications: "",
+  reviewOfficerComments: "",
+  panelRecommendation: "",
+  needForChangeInCurrentTerms: "",
   targetDateForConsideration: new Date(),
-  birthChildrenComments: "Text",
-  CLAComments: "Text",
-  fosterCarerComments: "Text",
-  IROComments: "Text",
-  finalOutcome: "Text",
+  birthChildrenComments: "",
+  CLAComments: "",
+  fosterCarerComments: "",
+  IROComments: "",
+  finalOutcome: "",
 };
 
 export const formSchema = Yup.object().shape({

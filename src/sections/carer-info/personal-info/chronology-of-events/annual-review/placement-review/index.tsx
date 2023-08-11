@@ -101,12 +101,12 @@ export { default as PlacementReview } from "./PlacementReview";
 
 export const defaultValues = {
   childCode: "",
-  identityReligion: "Text",
-  independenceSeldCareSkills: "Text",
-  socialPresentationLeisureSkills: "Text",
-  contact: "Text",
-  otherIssuesOrConcerns: "Text",
-  statementFromChild: "Text",
+  identityReligion: "",
+  independenceSeldCareSkills: "",
+  socialPresentationLeisureSkills: "",
+  contact: "",
+  otherIssuesOrConcerns: "",
+  statementFromChild: "",
 };
 
 export const formSchema = Yup.object().shape({

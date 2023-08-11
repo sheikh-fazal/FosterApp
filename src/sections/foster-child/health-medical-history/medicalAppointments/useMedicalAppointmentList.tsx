@@ -14,11 +14,9 @@ const useMedicalAppointmentList = (props: any) => {
     isFetching: MedicalAppointmentListisFetching,
     isSuccess: MedicalAppointmentListisSuccess,
   } = useMedicalAppointmentsListQuery({
-    params: {
-      ...params,
-      search: search,
-      fosterCarerId: fosterChildId,
-    },
+    params,
+    search,
+    fosterChildId,
   });
   return {
     MedicalAppointmentListdata,

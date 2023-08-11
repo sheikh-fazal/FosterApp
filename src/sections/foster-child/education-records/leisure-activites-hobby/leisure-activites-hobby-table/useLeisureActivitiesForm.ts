@@ -11,14 +11,7 @@ import {
 } from "@root/services/foster-child/education-records/leisure-activities-hobby/LeisureActivitiesHobby";
 import dayjs from "dayjs";
 import { useState } from "react";
-const formet = (data: any) => {
-  for (const key of data) {
-    if (key.includes("time")) {
-      data[key] = new Date(data[key]);
-    }
-  }
-  return data;
-};
+
 export const useLeisureActivitiesForm = (
   action: any,
   LeisureAcitivityData: any,
@@ -50,7 +43,6 @@ export const useLeisureActivitiesForm = (
     useUpdateLeisureActivityMutation();
   const onSubmit = async (data: any) => {
     let { hobby, description, stars, date, time, media } = data;
-    console.log(time);
     let formData: any = new FormData();
     formData.append("hobby", hobby);
     formData.append("description", description);
