@@ -101,6 +101,7 @@ export const TAGS = [
   "UNANNOUNCED_UPLOAD_DOCUMENTS",
   "FOSTER_CARER_ANNUAL_LIST",
   "POST_PLACEMENT_REFERENCES",
+  "MEDICAL_APPOINTMENTS_DOCS"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
