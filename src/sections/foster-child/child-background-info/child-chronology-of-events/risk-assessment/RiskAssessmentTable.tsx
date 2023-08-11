@@ -63,7 +63,9 @@ const RiskAssessmentTable = (props: any) => {
             }
           />
           {/* Delete Modal */}
-          <DeletePrompt onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)} />
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
           <TableAction
             size="small"
             type="view"

@@ -13,6 +13,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
 import { HospitalizationFromvalue } from ".";
+import AccordianList from "@root/components/AccordianList";
 
 export const ReviewOfficerReportsForm = (props: any) => {
   const { action, fosterChildId, hospitalizationId } = props;
@@ -42,22 +43,10 @@ export const ReviewOfficerReportsForm = (props: any) => {
   // if (isloading) return <SkeletonFormdata />;
 
   const currencies = [
-    {
-      value: "USD",
-      label: "$",
-    },
-    {
-      value: "EUR",
-      label: "€",
-    },
-    {
-      value: "BTC",
-      label: "฿",
-    },
-    {
-      value: "JPY",
-      label: "¥",
-    },
+    { id: 1, value: "a", label: "A" },
+    { id: 2, value: "b", label: "B" },
+    { id: 3, value: "c", label: "C" },
+    { id: 4, value: "d", label: "D" },
   ];
   return (
     <Box sx={{ px: 1, py: 2 }}>
@@ -71,8 +60,7 @@ export const ReviewOfficerReportsForm = (props: any) => {
                   id="name"
                   select
                   label="Name of foster carer"
-                  // defaultValue="EUR"
-                  helperText="Please select your currency"
+                  defaultValue="a"
                 >
                   {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -92,48 +80,16 @@ export const ReviewOfficerReportsForm = (props: any) => {
               </Grid>
             </Grid>
             {/* <IsFetching isFetching={isFatching} /> */}
-            {HospitalizationFromvalue.map((form: any, index) => {
-              return (
-                <Grid item xs={12} md={form?.gridLength} key={index}>
-                  <Box sx={{ px: 0.5, py: 1 }}>
-                    {form.component === "label" ? (
-                      <Typography
-                        variant="h6"
-                        sx={{
-                          color: theme.palette.grey[600],
-                          fontWeight: theme.typography.fontWeightMedium,
-                        }}
-                      >
-                        {form.label}
-                      </Typography>
-                    ) : (
-                      <form.component
-                        size="small"
-                        {...form.otherOptions}
-                        disabled={
-                          action === "view" ||
-                          (action === "edit" && form.id === 1)
-                            ? true
-                            : false
-                        }
-                        InputLabelProps={{
-                          shrink:
-                            action === "view" ||
-                            (action === "edit" && form.id === 1)
-                              ? true
-                              : undefined,
-                          disabled:
-                            action === "view" ||
-                            (action === "edit" && form.id === 1)
-                              ? true
-                              : undefined,
-                        }}
-                      />
-                    )}
-                  </Box>
-                </Grid>
-              );
-            })}
+            <Grid container>
+                    {HospitalizationFromvalue.map((item: any) => (
+                      <Grid item xs={12} key={item.title}>
+                        <AccordianList
+                          title={item.title}
+                          component={item.component}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
           </FormProvider>
         </Grid>
       </Grid>

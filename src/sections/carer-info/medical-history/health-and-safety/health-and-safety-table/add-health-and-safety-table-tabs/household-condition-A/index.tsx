@@ -19,33 +19,33 @@ export const defaultValues = {
     true,
   dateToBeCarriedOut: new Date(todayDate),
 
-  improvementsReq: "Text",
+  improvementsReq: "",
 
   isSufficentSpaceForChilds: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsReq1: "text",
+  improvementsReq1: "",
 
   isRoomsSufficientLight: false,
   dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsReq2: "text",
+  improvementsReq2: "",
 
   isRoomsOpenWindows: false,
   dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsReq3: "text",
+  improvementsReq3: "",
 
   isRoomsMaintainedTemp: false,
   dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsReq4: "text",
+  improvementsReq4: "",
 
   isChildOwnBed: false,
 
   dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsReq5: "text",
+  improvementsReq5: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -208,6 +208,7 @@ export const householdConditionA_Data = [
   {
     id: 12,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
@@ -238,6 +239,7 @@ export const householdConditionA_Data = [
   {
     id: 15,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
@@ -268,6 +270,7 @@ export const householdConditionA_Data = [
   {
     id: 18,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
@@ -298,6 +301,7 @@ export const householdConditionA_Data = [
   {
     id: 21,
     componentProps: {
+      fullWidth: true,
       name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
