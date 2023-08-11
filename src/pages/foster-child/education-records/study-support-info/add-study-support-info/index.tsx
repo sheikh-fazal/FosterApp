@@ -7,6 +7,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 
+
 AddStudySupportInfo.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
@@ -29,6 +30,7 @@ export default function AddStudySupportInfo() {
   ];
 
   const PAGE_TITLE = "Study Support Info";
+
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -41,28 +43,23 @@ export default function AddStudySupportInfo() {
       >
         <StudySupportInfoForm />
         <UploadDocuments
-          // readOnly={true}
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={{}}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          readOnly={true}
+          // searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          // tableData={tableData}
+          // isLoading={isDocumentLoading}
+          // isFetching={isDocumentFetching}
+          // isError={hasDocumentError}
+          // isSuccess={isDocumentSuccess}
           column={[
-            "document",
+            "documentOriginalName",
             "documentType",
-            "date",
-            "personName",
-            "password",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
           ]}
-          modalData={(data: any) => {
-            console.log("searched Value", data);
-          }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
+          // onPageChange={(page: any) => pageChangeHandler(page)}
+          // currentPage={metaData?.page}
+          // totalPages={metaData?.pages}
         />
       </HorizaontalTabs>
     </Box>

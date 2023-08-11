@@ -4,7 +4,7 @@ import * as Yup from "yup";
 export const initailValue = {
   reasonForlookedAfter: '',
   detailsOfPreviousPlacement: '',
-  currentPlacementDate: '',
+  currentPlacementDate: new Date(),
   permanencePlanning: '',
   placementFitWithPlan: '',
   anticipatedPlacement: '',
@@ -18,7 +18,7 @@ export const initailValue = {
 export const validationSchema = Yup.object().shape({
   reasonForlookedAfter: Yup.string().required('Field is required'),
   detailsOfPreviousPlacement: Yup.string().required('Field is required'),
-  currentPlacementDate: Yup.string().required('Field is required'),
+  currentPlacementDate: Yup.date().required('Field is required'),
   permanencePlanning: Yup.string().required('Field is required'),
   placementFitWithPlan: Yup.string().required('Field is required'),
   anticipatedPlacement: Yup.string().required('Field is required'),

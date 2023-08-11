@@ -7,6 +7,7 @@ import { FormProvider } from "@root/components/hook-form";
 //
 import { formData } from ".";
 import { useLeisureActivitiesForm } from "./useLeisureActivitiesForm";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function LeisureActivitiesForm(props: any) {
   const { action, LeisureAcitivityData, id, setLeisureActivityId } = props;
@@ -18,6 +19,7 @@ export default function LeisureActivitiesForm(props: any) {
     isDirty,
     theme,
     router,
+    isFetching,
   } = useLeisureActivitiesForm(
     action,
     LeisureAcitivityData,
@@ -27,6 +29,7 @@ export default function LeisureActivitiesForm(props: any) {
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
+        <IsFetching isFetching={isFetching} />
         {formData.map((form: any, i: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={i}>
@@ -61,7 +64,6 @@ export default function LeisureActivitiesForm(props: any) {
                 type="submit"
                 variant="contained"
                 loading={isSubmitting}
-                disabled={!isDirty}
               >
                 Submit
               </LoadingButton>
@@ -75,7 +77,9 @@ export default function LeisureActivitiesForm(props: any) {
                 },
               }}
               onClick={() => {
-                router.back();
+                router.push(
+                  `/foster-child/education-records/leisure-activities-hobby?fosterChildId=${router?.query?.fosterChildId}`
+                );
               }}
               type="button"
               variant="contained"

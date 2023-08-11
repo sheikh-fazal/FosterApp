@@ -1,17 +1,10 @@
 import * as React from "react";
-
-// form
-// @mui
 import { Grid, Box, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-// utils
-
-// components
 import { FormProvider } from "@root/components/hook-form";
 import SingleLevel from "./SingleLevel";
-//
 import BronzeLevel from "@root/assets/svg/bronze-level";
 
 const style = {
@@ -19,7 +12,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: { xs: "95%", sm: "35%" },
+  width: { xs: "95%", sm: "65%", lg: "55%", xl: "40%" },
   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
   borderRadius: "4px",
   pl: 2,

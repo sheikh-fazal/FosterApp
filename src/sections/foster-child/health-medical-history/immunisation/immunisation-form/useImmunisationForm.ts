@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import dayjs from "dayjs";
@@ -13,6 +13,7 @@ import {
   usePostImmunisationMutation,
   useUpdateImmunisationMutation,
 } from "@root/services/foster-child/health-medical-history/immunisation/ImmunisationApi";
+import { useRouter } from "next/router";
 
 export const useImmunisationForm = ({
   action,
@@ -20,7 +21,9 @@ export const useImmunisationForm = ({
   immunisationData,
   setImmunisationId,
 }: any) => {
+  let [isFetching, setIsFetching] = useState(false);
   const theme: any = useTheme();
+  let router = useRouter();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
@@ -34,7 +37,7 @@ export const useImmunisationForm = ({
     getValues,
     watch,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting, isDirty },
   } = methods;
   let [postImmunisation, { isLoading: isLoadingPost }] =
     usePostImmunisationMutation();
@@ -64,6 +67,10 @@ export const useImmunisationForm = ({
         .unwrap()
         .then((res: any) => {
           setImmunisationId(res?.data?.id);
+          setIsFetching(true);
+          router.push(
+            `/foster-child/health-medical-history/immunisation/edit-immunisation/${res?.data?.id}?fosterChildId=${router?.query?.fosterChildId}`
+          );
           enqueueSnackbar("Record Added Successfully", {
             variant: "success",
           });
@@ -80,5 +87,7 @@ export const useImmunisationForm = ({
     onSubmit,
     handleSubmit,
     theme,
+    isFetching,
+    isSubmitting,
   };
 };

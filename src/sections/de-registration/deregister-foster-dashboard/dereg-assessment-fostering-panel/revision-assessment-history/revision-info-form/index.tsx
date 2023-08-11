@@ -165,7 +165,7 @@ export const formValidationSchema = Yup.object().shape({
   fosterCarerApproval: Yup.string().trim().required("Field is Required"),
   fosterCarerName: Yup.string().trim().required("Field is Required"),
   placementType: Yup.string().trim().required("Field is Required"),
-  terminationDate: Yup.string().trim().required("Field is Required"),
+  terminationDate: Yup.date().required("Field is Required"),
   underThisCarer: Yup.string().trim().required("Field is Required"),
   terminationAssessment: Yup.string().trim().required("Field is Required"),
   responseToWrittenNotice: Yup.string().trim().required("Field is Required"),

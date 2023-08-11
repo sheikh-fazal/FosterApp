@@ -6,7 +6,7 @@ export const AbsenceInfoUploadDocumentsAPI = baseAPI.injectEndpoints({
     getAbsenceInfoDocument: builder.query({
       query: ({ childAbsenceInfoId, params }: any) => ({
         url: `/foster-child/child-absence-info/document/list/${childAbsenceInfoId}`,
-        params: params,
+        params,
         method: "GET",
       }),
       providesTags: ["ABSENCE_INFO_UPLOAD_DOCUMENTS"],

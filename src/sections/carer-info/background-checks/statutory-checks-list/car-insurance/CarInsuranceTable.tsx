@@ -21,6 +21,7 @@ const CarInsuranceTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useCarInsuranceTable();
 
   const columns = [
@@ -65,7 +66,11 @@ const CarInsuranceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/car-insurance",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -80,7 +85,11 @@ const CarInsuranceTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/car-insurance",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -101,7 +110,7 @@ const CarInsuranceTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/car-insurance",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

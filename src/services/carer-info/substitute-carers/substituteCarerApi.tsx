@@ -1,5 +1,8 @@
 import { baseAPI, TAGS } from "@root/services/baseApi";
 
+const TAG = "SUBSTITUTE_CARER";
+const DOCTAG = "SUBSTITUTE_CARER_DOCUMENTS";
+
 export const substituteCarerApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getSelectedSubstituteCarer: builder.query({
@@ -7,6 +10,7 @@ export const substituteCarerApi = baseAPI.injectEndpoints({
         url: "/carer-Info/substitute-cares/list-carer", // BC, SC,RC
         params,
       }),
+      providesTags: [TAG],
     }),
     getSubstituteCarerById: builder.query({
       query: (carerId) => ({
@@ -19,19 +23,44 @@ export const substituteCarerApi = baseAPI.injectEndpoints({
         method: "POST",
         body,
       }),
+      invalidatesTags: [TAG],
     }),
-    patchSubstituteCarer: builder.mutation({
+    editSubstituteCarer: builder.mutation({
       query: ({ body, id }) => ({
         url: `/carer-Info/carer-info/substitute-cares/update-carer/${id}`,
         method: "PATCH",
         body,
       }),
+      invalidatesTags: [TAG],
     }),
     deleteSubstituteCarer: builder.mutation({
-      query: ({ id }) => ({
+      query: (id) => ({
         url: `/carer-Info/carer-info/substitute-cares/delete-carer/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: [TAG],
+    }),
+    // Documents
+    getSubstituteCarerDocs: builder.query({
+      query: (recordId) => ({
+        url: `/foster-child/child-carer-info/document/list/${recordId}`,
+      }),
+      providesTags: [DOCTAG],
+    }),
+    postSubstituteCarerDocs: builder.mutation({
+      query: ({ body, recordId }) => ({
+        url: `/foster-child/add-child-carer-info/document/${recordId}`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [DOCTAG],
+    }),
+    deleteSubstituteCarerDoc: builder.mutation({
+      query: (id) => ({
+        url: `/foster-child/child-Carer-info/document/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [DOCTAG],
     }),
   }),
 });
@@ -42,5 +71,9 @@ export const {
   useGetSubstituteCarerByIdQuery,
   useLazyGetSubstituteCarerByIdQuery,
   useDeleteSubstituteCarerMutation,
-  usePatchSubstituteCarerMutation,
+  useEditSubstituteCarerMutation,
+  //Documents
+  useGetSubstituteCarerDocsQuery,
+  usePostSubstituteCarerDocsMutation,
+  useDeleteSubstituteCarerDocMutation,
 } = substituteCarerApi;

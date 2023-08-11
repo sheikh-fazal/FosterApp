@@ -1,5 +1,4 @@
 import { baseAPI } from "@root/services/baseApi";
-
 export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getChildEducationInfoDocumentData: builder.query({
@@ -20,7 +19,6 @@ export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
     postEducationInfoDocumentData: builder.mutation({
       query: (apiDataParameter: any) => {
         console.log(apiDataParameter);
-
         return {
           url: `education-records/education-info-document`,
           method: "POST",
@@ -32,7 +30,6 @@ export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
     }),
   }),
 });
-
 export const {
   useDeleteEducationInfoDocumentDataByIdMutation,
   useGetChildEducationInfoDocumentDataQuery,

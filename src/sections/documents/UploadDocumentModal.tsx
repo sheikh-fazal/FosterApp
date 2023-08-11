@@ -46,7 +46,7 @@ export default function UploadDocumentModal(props: any) {
     column,
   } = props;
   const selectedRow = content?.row?.original;
-  console.log(selectedRow);
+  // console.log(selectedRow);
 
   const handleOpen = () => {
     setOpen(true);
@@ -96,8 +96,8 @@ export default function UploadDocumentModal(props: any) {
                 variant="contained"
                 sx={{
                   mt: 1,
-                  bgcolor: theme.palette.orange.main,
-                  "&:hover": { bgcolor: theme.palette.orange.dark },
+                  bgcolor: theme.palette.error.main,
+                  "&:hover": { bgcolor: theme.palette.error.dark },
                 }}
                 onClick={handleClose}
               >
@@ -132,7 +132,7 @@ const DocumentModalForm = (props: any) => {
   });
 
   const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
+    // resolver: yupResolver(FormSchema),//
     defaultValues,
   });
 
@@ -172,6 +172,25 @@ const DocumentModalForm = (props: any) => {
             {...methods}
             disabled={disableForm}
           />
+          {!!selectedRow?.[column[0]] && (
+            <Grid container alignItems={"center"}>
+              <iframe
+                style={{ marginTop: "10px" }}
+                src={
+                  "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
+                  selectedRow?.[column[0]]
+                }
+                width={50}
+                height={50}
+              />
+              <IframeModal
+                src={
+                  "https://ifa-s3-public-dev-001.s3.eu-west-2.amazonaws.com/" +
+                  selectedRow?.[column[0]]
+                }
+              />
+            </Grid>
+          )}
         </Grid>
         <Grid
           item
@@ -187,8 +206,8 @@ const DocumentModalForm = (props: any) => {
               variant="contained"
               sx={{
                 mt: 1,
-                bgcolor: theme.palette.orange.main,
-                "&:hover": { bgcolor: theme.palette.orange.dark },
+                bgcolor: theme.palette.primary.main,
+                "&:hover": { bgcolor: theme.palette.primary.dark },
               }}
             >
               Submit
@@ -201,6 +220,38 @@ const DocumentModalForm = (props: any) => {
   );
 };
 
+function IframeModal(props: any) {
+  const { src, children } = props;
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <Button onClick={handleOpen}>View</Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="child-modal-title"
+        aria-describedby="child-modal-description"
+      >
+        <Box sx={{ ...style, width: 400 }}>
+          <iframe
+            style={{ marginTop: "10px" }}
+            src={src}
+            width={350}
+            height={350}
+          />
+          <Button onClick={handleClose}>Close </Button>
+        </Box>
+      </Modal>
+    </>
+  );
+}
 export const formDataArray = [
   {
     id: 1,

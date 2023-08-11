@@ -44,6 +44,32 @@ export const contactApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
+    //documents upload
+    getUploadDocumentsStudySupportInfo: builder.query({
+      query: ({ fosterChildId, params }: any) => ({
+        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}`,
+        method: "GET",
+        params: { ...params, formName: "STUDY_SUPPORT_INFO" }
+      }),
+      providesTags: (result) => generalTags(result?.faimly_details, TAG),
+    }),
+    postUploadDocumentsStudySupportInfoApi: builder.mutation({
+      query: (body: any) => ({
+        url: `/education-records/uploaded-documents`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    deleteUploadDocumentsStudySupportInfoById: builder.mutation<null, void>({
+      query: (id: any) => {
+        return {
+          url: `education-records/uploaded-document/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [TAG],
+    }),
   }),
 });
 
@@ -53,4 +79,8 @@ export const {
   useGetStudySupportInfoByIdQuery,
   usePutStudySupportInfoByIdMutation,
   useDeleteStudySupportInfoByIdMutation,
+  //documentUpload
+  useGetUploadDocumentsStudySupportInfoQuery,
+  usePostUploadDocumentsStudySupportInfoApiMutation,
+  useDeleteUploadDocumentsStudySupportInfoByIdMutation,
 } = contactApi;

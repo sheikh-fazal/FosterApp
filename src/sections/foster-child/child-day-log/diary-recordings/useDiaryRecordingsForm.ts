@@ -115,7 +115,10 @@ export const useDiaryRecordingsForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push("/foster-child/child-day-log/diary-recordings");
+          router.push({
+            pathname: "/foster-child/child-day-log/diary-recordings",
+            query: { fosterChildId: fosterChildId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {

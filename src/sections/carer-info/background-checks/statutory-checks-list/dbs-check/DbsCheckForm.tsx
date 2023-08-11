@@ -27,6 +27,7 @@ const DbsCheckForm = (props: any) => {
     trigger,
     getValues,
     isLoading,
+    fosterCarerId,
   } = useDbsCheckForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
@@ -123,9 +124,11 @@ const DbsCheckForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

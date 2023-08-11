@@ -1,9 +1,3 @@
-// import phoneImg from "../../../assets/img/recruitment/phoneMsg.png";
-// import initialStageImg from "../../../assets/img/recruitment/initialStage.png";
-// import agencySafeguardingImg from "../../../assets/img/recruitment/digitalInfo.png";
-// import recruitmentAndAssessmentPolicyImg from "../../../assets/img/recruitment/initialHomeVisit.png";
-// import recordingKeepingImg from "../../../assets/img/recruitment/socialWorkAssesmment.png";
-
 import agencyPolicyImg from "../../../assets/img/recruitment/agencyPolicy.png";
 import financeAgreementImg from "../../../assets/img/recruitment/financeAgreement.png";
 import agencySafeguardingImg from "../../../assets/img/recruitment/agencySafeguarding .png";
@@ -11,7 +5,7 @@ import recruitmentAndAssessmentPolicyImg from "../../../assets/img/recruitment/r
 import recordingKeepingImg from "../../../assets/img/recruitment/recordingKeeping.png";
 import declarationsImg from "../../../assets/img/recruitment/declarations.png";
 
-export const CONTRACTSANDDECLARATIONDATA = [
+export const CONTRACTSANDDECLARATIONDATA = (fosterCarerId: any) => [
   {
     id: 1,
     informationIcon: [
@@ -23,15 +17,15 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Agency Policy",
     informationText: "Agency Policy",
     viewForms: `View Policy`,
-    href: "#",
-    isSigned: true, 
+    href: `/de-registration/deregister-foster-carer/policy-agreements?fosterCarerId=${fosterCarerId}`,
+    isSigned: true,
   },
   {
     id: 2,
     informationIcon: [
       {
         content: `Finance Agreement  sets out the terms and conditions under which it is prepared to make a payment available to the Foster Carer.
-    `, 
+    `,
       },
     ],
     imgIcon: financeAgreementImg,
@@ -52,7 +46,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Agency Safeguard Policy",
     informationText: "Agency Safeguard Policy",
     viewForms: `View Policy`,
-    href: "#",
+    href: `/de-registration/deregister-foster-carer/policy-agreements?fosterCarerId=${fosterCarerId}`,
     isSigned: false,
   },
   {
@@ -66,7 +60,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Recruitment and Assessment Policy",
     informationText: "Recruitment and Assessment Policy",
     viewForms: `View Policy`,
-    href: "#",
+    href: `/de-registration/deregister-foster-carer/policy-agreements?fosterCarerId=${fosterCarerId}`,
     isSigned: false,
   },
   {
@@ -80,7 +74,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Recording Keeping Policy",
     informationText: "Recording Keeping Policy",
     viewForms: `View Policy`,
-    href: "#",
+    href: `/de-registration/deregister-foster-carer/policy-agreements?fosterCarerId=${fosterCarerId}`,
     isSigned: true,
   },
   {
@@ -94,7 +88,7 @@ export const CONTRACTSANDDECLARATIONDATA = [
     text: "Declarations",
     informationText: "Declarations",
     viewForms: `View Declaration`,
-    href: "/recruitment/contracts-and-declaration/view-declaration",
+    href: `/recruitment/contracts-and-declaration/view-declaration?fosterCarerId=${fosterCarerId}`,
     isSigned: true,
   },
 ];

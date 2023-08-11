@@ -11,40 +11,41 @@ import {
   useStatutoryUploadDocumentListQuery,
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 import { enqueueSnackbar } from "notistack";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Statutory Check List",
-    href: "/carer-info/background-checks/statutory-checks-list",
-  },
-  {
-    name: "Employment Reference 2",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Employment Reference 2";
 EmployementReference2.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function EmployementReference2() {
   const [params, setParams] = useState("");
   const router: any = useRouter();
-  const { action, id } = router.query;
+  const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
-    router.push("/carer-info/background-checks/statutory-checks-list");
+    router.push({
+      pathname: "/carer-info/background-checks/statutory-checks-list",
+      query: { fosterCarerId: fosterCarerId },
+    });
   }
+
+  // Constants
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Statutory Check List",
+      href: {
+        pathname: "/carer-info/background-checks/statutory-checks-list",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "Employment Reference 2",
+      href: "",
+    },
+  ];
+
+  const PAGE_TITLE = "Employment Reference 2";
+
   const {
     data: documentData,
     isLoading: isDocumentLoading,
@@ -64,7 +65,7 @@ export default function EmployementReference2() {
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 
-  const tableData: any = documentData?.data?.as_statutory_checks_list_document;
+  const tableData: any = documentData?.data?.statutoryCheckList;
   const metaData: any = documentData?.data?.meta;
 
   //Handling POST API
@@ -102,36 +103,43 @@ export default function EmployementReference2() {
   };
 
   return (
-    <HorizaontalTabs
-      tabsDataArray={["Employment Reference 2", "Upload Documents"]}
-    >
-      <EmploymentReferenceTwoForm action={action} id={id} />
-      <UploadDocuments
-        readOnly={action === "view" ? true : false}
-        tableData={tableData}
-        isLoading={isDocumentLoading}
-        isFetching={isFetching}
-        isError={hasDocumentError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        searchParam={(searchedText: string) => setParams(searchedText)}
-        modalData={(data: any) => documentUploadHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        disabled={
-          !!id && (action === "add" || action === "edit") ? false : true
-        }
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs
+        tabsDataArray={["Employment Reference 2", "Upload Documents"]}
+      >
+        <EmploymentReferenceTwoForm action={action} id={id} />
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          searchParam={(searchedText: string) => setParams(searchedText)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          onPageChange={(page: any) => console.log("parent log", page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
+      </HorizaontalTabs>
+    </>
   );
 }

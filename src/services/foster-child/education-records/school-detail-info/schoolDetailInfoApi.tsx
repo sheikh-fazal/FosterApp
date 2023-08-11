@@ -44,6 +44,32 @@ export const contactApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
+    //documents upload
+    getUploadDocumentsSchoolDetailInfo: builder.query({
+      query: ({ fosterChildId, params }: any) => ({
+        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}`,
+        method: "GET",
+        params: { ...params, formName: "SCHOOL_DETAIL_INFO" },
+      }),
+      providesTags: (result) => generalTags(result?.faimly_details, TAG),
+    }),
+    postUploadDocumentsSchoolDetailInfoApi: builder.mutation({
+      query: (body: any) => ({
+        url: `/education-records/uploaded-documents`,
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [TAG],
+    }),
+    deleteUploadDocumentsSchoolDetailInfoById: builder.mutation<null, void>({
+      query: (id: any) => {
+        return {
+          url: `education-records/uploaded-document/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: [TAG],
+    }),
   }),
 });
 
@@ -53,4 +79,8 @@ export const {
   useGetSchoolDetailInfoByIdQuery,
   usePutSchoolDetailInfoByIdMutation,
   useDeleteSchoolDetailInfoByIdMutation,
+  //documentUpload
+  useGetUploadDocumentsSchoolDetailInfoQuery,
+  usePostUploadDocumentsSchoolDetailInfoApiMutation,
+  useDeleteUploadDocumentsSchoolDetailInfoByIdMutation,
 } = contactApi;

@@ -5,7 +5,10 @@ import TableAction from "@root/components/TableAction";
 import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import SubstituteCarerTable from "@root/sections/carer-info/substitute-cares/SubstituteCarerTable";
-import { useGetSelectedSubstituteCarerQuery } from "@root/services/carer-info/substitute-carers/substituteCarerApi";
+import {
+  useDeleteSubstituteCarerMutation,
+  useGetSelectedSubstituteCarerQuery,
+} from "@root/services/carer-info/substitute-carers/substituteCarerApi";
 import usePath from "@root/hooks/usePath";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
@@ -43,6 +46,7 @@ export default function RespiteCarer() {
       offset: "0",
       type: "RC",
     });
+  const [deleteHandler, status] = useDeleteSubstituteCarerMutation();
 
   const title = "Respite Carer List";
   const FORMROUTE = `/carer-info/substitute-cares/respite-carer/respite-carer-details?fosterCarerId=${id}`;
@@ -83,12 +87,17 @@ export default function RespiteCarer() {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(`${FORMROUTE}&carerId=${info.row.original.id}`);
+            }}
+            size="small"
+          />
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
-              alert("delete");
+              deleteHandler(info.row.original);
             }}
             size="small"
           />
@@ -112,19 +121,19 @@ export default function RespiteCarer() {
       familyDetails: "18 siblings",
     },
   ];
-  const status = {
-    isLoading: false,
-    isFetching: false,
-    isError: false,
-    isSuccess: true,
-  };
+  // const status = {
+  //   isLoading: false,
+  //   isFetching: false,
+  //   isError: false,
+  //   isSuccess: true,
+  // };
   const meta = {
     page: "1",
     pages: "1",
   };
 
   const viewDetailsHandler = (item: any) => {
-    router.push(`${FORMROUTE}?carerId=${item.id}`);
+    router.push(`${FORMROUTE}&carerId=${item.id}&view=true`);
   };
   const searchTextHandler = (item: any) => {
     console.log(item);
@@ -142,9 +151,9 @@ export default function RespiteCarer() {
       <SubstituteCarerTable
         columns={columns}
         // tableData={tableData}
-        tableData={data?.backup_carer_details}
         // meta={meta}
-        meta={data?.meta}
+        tableData={data?.data?.carers}
+        meta={data?.data?.meta}
         title={title}
         searchedText={searchTextHandler}
         apiStatus={{ isSuccess, isLoading, isError }}

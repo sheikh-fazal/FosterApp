@@ -95,8 +95,8 @@ export const DayLogFormFields = [
 export const defaultValues = {
   classStudying: null,
   typeOfExclusion: null,
-  exclusionDate: null,
-  returnDate: null,
+  exclusionDate: new Date(),
+  returnDate: new Date(),
   exclusionDetails: "Nil",
   actionTaken: "Nil",
   outcome: "Nil",

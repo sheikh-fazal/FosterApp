@@ -9,13 +9,13 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
 
 export const defaultValues = {
-  bedRooms: "bedRooms are 1",
-  sleeping: "A lot",
-  playArea: "only corridor",
-  gardenSpace: "1 gamla",
+  bedRooms: "",
+  sleeping: "",
+  playArea: "",
+  gardenSpace: "",
   dateOfHealth: new Date(todayDate),
-  description: "great",
-  detailsOfHealthAndSafety: "this is a test",
+  description: "",
+  detailsOfHealthAndSafety: "",
 };
 
 export const FormSchema = Yup.object().shape({

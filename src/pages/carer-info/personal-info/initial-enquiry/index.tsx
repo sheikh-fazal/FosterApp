@@ -121,7 +121,7 @@ export default function InitialEnquiry() {
 
       {/*---------------------- Fourth Tab---------------------- */}
       <UploadDocuments
-        // readOnly={true}
+        readOnly={true}
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
         }

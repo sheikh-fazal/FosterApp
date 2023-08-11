@@ -11,11 +11,12 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export const useSchoolDetailInfoForm = () => {
-  const router = useRouter();
-  const { data } = useGetSchoolDetailInfoByIdQuery(
-    router?.query?.schoolInfoId,
-    { refetchOnMountOrArgChange: true }
-  );
+  const router: any = useRouter();
+  const { action, schoolInfoId, fosterChildId } = router.query;
+
+  const { data } = useGetSchoolDetailInfoByIdQuery(schoolInfoId, {
+    refetchOnMountOrArgChange: true,
+  });
   const [postData, { isError, isSuccess, isLoading }] =
     usePostSchoolDetailInfoApiMutation();
 
@@ -41,27 +42,33 @@ export const useSchoolDetailInfoForm = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      if (router?.query?.action === "add") {
+      if (action === "add") {
         const res: any = await postData({
           body: data,
-          fosterChildId: router?.query?.fosterChildId,
+          fosterChildId: fosterChildId,
         }).unwrap();
+        console.log(res);
         enqueueSnackbar(res?.message ?? `Added Successfully!`, {
           variant: "success",
         });
-        router.push(
-          `/foster-child/education-records/school-detail-info?fosterChildId=${router?.query?.fosterChildId}`
-        );
-      } else if (router?.query?.action === "edit") {
+        router.push({
+          pathname: `/foster-child/education-records/school-detail-info/edit-school-detail`,
+          query: {
+            action: "edit",
+            fosterChildId: fosterChildId,
+            schoolInfoId: res?.data?.id,
+          },
+        });
+      } else if (action === "edit") {
         const res: any = await putData({
           body: data,
-          schoolInfoId: router?.query?.schoolInfoId,
+          schoolInfoId: schoolInfoId,
         }).unwrap();
         enqueueSnackbar(res?.message ?? `Update Successfully!`, {
           variant: "success",
         });
         router.push(
-          `/foster-child/education-records/school-detail-info?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/education-records/school-detail-info?fosterChildId=${fosterChildId}`
         );
       }
     } catch (error: any) {

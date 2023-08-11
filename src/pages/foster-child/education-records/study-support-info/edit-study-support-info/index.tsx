@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // layout
 import Layout from "@root/layouts";
@@ -10,14 +10,29 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
+import {
+  useDeleteUploadDocumentsStudySupportInfoByIdMutation,
+  useGetUploadDocumentsStudySupportInfoQuery,
+  usePostUploadDocumentsStudySupportInfoApiMutation,
+} from "@root/services/foster-child/education-records/study-support-info/studySupportInfoAPI";
 
 EditStudySupportInfo.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function EditStudySupportInfo() {
+  const [searchHandle, setSearchHandle] = useState("");
+  const [pageHandle, setPageHandle] = useState(0);
+  const formData = new FormData();
+
+  const params = {
+    search: searchHandle,
+    limit: "10",
+    offset: pageHandle,
+  };
+
   const Router: any = useRouter();
-  const { fosterChildId } = Router.query;
+  const { fosterChildId, id } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -34,6 +49,36 @@ export default function EditStudySupportInfo() {
   ];
 
   const PAGE_TITLE = "Study Support Info";
+
+  const {
+    data: documentData,
+    isLoading: isDocumentLoading,
+    isFetching: isDocumentFetching,
+    isError: hasDocumentError,
+    isSuccess: isDocumentSuccess,
+  } = useGetUploadDocumentsStudySupportInfoQuery({ fosterChildId, params });
+
+  const [postDocs] = usePostUploadDocumentsStudySupportInfoApiMutation();
+  const [deleteData] = useDeleteUploadDocumentsStudySupportInfoByIdMutation();
+  const tableData: any = documentData?.data?.documents;
+  const metaData: any = documentData?.data?.meta;
+
+  const documentUploadHandler = (data: any) => {
+    // formData.append("date", '12/12/2000');
+    // formData.append("uploadedBy", "Mughal");
+    formData.append("fosterChildId", fosterChildId);
+    formData.append("formName", "STUDY_SUPPORT_INFO");
+    formData.append("recordId", id);
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("documentPassword", data.password);
+    formData.append("file", data.chosenFile);
+    postDocs(formData);
+  };
+
+  const pageChangeHandler = (page: any) => {
+    setPageHandle(page * 10);
+  };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -46,28 +91,30 @@ export default function EditStudySupportInfo() {
       >
         <StudySupportInfoForm />
         <UploadDocuments
-          // readOnly={true}
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={{}}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "document",
-            "documentType",
-            "date",
-            "personName",
-            "password",
-          ]}
-          modalData={(data: any) => {
-            console.log("searched Value", data);
+          onDelete={(row: any) => {
+            console.log(row.id);
+            deleteData(row.id);
           }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
+          // readOnly={true}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isDocumentFetching}
+          isError={hasDocumentError}
+          isSuccess={isDocumentSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          modalData={documentUploadHandler}
+          onPageChange={(page: any) => pageChangeHandler(page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
         />
       </HorizaontalTabs>
     </Box>

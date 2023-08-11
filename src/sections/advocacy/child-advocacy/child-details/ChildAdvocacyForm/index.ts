@@ -46,9 +46,9 @@ export const meetingRecordingsData = [
 
 export const childAdvocacyFormDefaultValues = {
     nameChildYoungPerson: "",
-    dateofBirth: null,
+    dateofBirth: new Date(),
     age: "",
-    gender: false,
+    gender: 'false',
     schoolPerson: "",
     TelNo: "",
     email: "",
@@ -63,7 +63,7 @@ export const childAdvocacyFormDefaultValues = {
     nameSocialWorker: "",
     parentCarerEmail: "",
     youngPersonOrProfessional: "",
-    dateReferral: null,
+    dateReferral: new Date(),
     referrerName: "",
     contactDetails: "",
     referralReceived: "",
@@ -392,13 +392,13 @@ export const childAdvocacyFormData = [
 ///  ////
 export const uploadMeetingRecordingInitialValues = {
     meetingAgenda: '',
-    uploadDate: null,
+    uploadDate: new Date(),
     meetingAttendess: "",
     meetingChair: "",
     meetingNotes: "",
     meetingActions: "",
     report: "",
-    attachFile: null
+    attachFile: ''
 }
 const MAX_FILE_SIZE = 1 * 1000 * 1000 * 1000; // 1 GB
 
@@ -411,8 +411,8 @@ export const uploadMeetingRecordingSchema = Yup.object().shape({
     meetingActions: Yup.string().required('Field is required'),
     report: Yup.string().required('Field is required'),
     attachFile: Yup.mixed()
-    .required("Field is required")
-    .test("fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
+        .required("Field is required")
+        .test("fileSize", `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`, (value: any) => value && value.size <= MAX_FILE_SIZE),
 });
 export const uploadMeetingRecordingData = [
     {

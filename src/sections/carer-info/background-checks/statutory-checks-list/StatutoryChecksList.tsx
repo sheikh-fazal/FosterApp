@@ -1,10 +1,6 @@
 import React from "react";
 import { Button, Grid, Menu, MenuItem, Stack } from "@mui/material";
-import {
-  carerTypeData,
-  statutoryAccordionData,
-  carerNameData,
-} from "./StatutoryChecksListData";
+import { carerTypeData, statutoryAccordionData, carerNameData } from "./index";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AccordianList from "@root/components/AccordianList";

@@ -2,10 +2,10 @@ import { Card } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import usePath from "@root/hooks/usePath";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useRouter } from "next/router";
 import React, { useRef } from "react";
-import { SELECTFILTERS, data, getColumnsChildReferral } from "./";
+import { SELECTFILTERS, getColumnsChildReferral } from "./";
 import CustomTable from "@root/components/Table/CustomTable";
+import { useGetChildReferralTableApiQuery } from "@root/services/foster-child/referrals/child-referral/childReferralApi";
 
 export default function ChildReferralTable() {
   const tableHeaderRef = useRef<any>();
@@ -16,12 +16,17 @@ export default function ChildReferralTable() {
 
   const columnsChildReferral = getColumnsChildReferral(makePath);
 
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetChildReferralTableApiQuery({ params });
+
+  const childData = data?.data?.child_referral;
+  const meta = data?.data?.meta;
+
   return (
     <Card sx={{ p: 2 }}>
       <TableHeader
         ref={tableHeaderRef}
-        // disabled={isLoading}
-        disabled={false}
+        disabled={isLoading}
         title="Child Referrals"
         searchKey="search"
         onChanged={headerChangeHandler}
@@ -30,19 +35,15 @@ export default function ChildReferralTable() {
       />
 
       <CustomTable
-        data={data}
+        data={childData}
         columns={columnsChildReferral}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
         showSerialNo
-        //   isLoading={isLoading}
-        //   isFetching={isFetching}
-        //   isError={isError}
-        //   isSuccess={isSuccess}
-        //   currentPage={meta?.page}
-        //   totalPages={meta?.pages}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        currentPage={meta?.page}
+        totalPages={meta?.pages}
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />

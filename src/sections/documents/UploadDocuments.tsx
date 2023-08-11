@@ -20,7 +20,7 @@ const UploadDocuments = (props: any) => {
     totalPages,
     onPageChange,
     onDelete,
-    disabled=false
+    disabled = false,
   } = props;
   const [openModal, setOpenModal] = useState(false);
 
@@ -54,6 +54,7 @@ const UploadDocuments = (props: any) => {
         openModal={openModal}
         formData={(data: any) => {
           modalData(data);
+          setOpenModal(false);
         }}
       />
     </div>

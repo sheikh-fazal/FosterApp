@@ -25,7 +25,7 @@ const SupervisoryVisitTable = () => {
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
-      header: () => <span>DSupervising Social Worker</span>,
+      header: () => <span>Supervising Social Worker</span>,
       isSortable: true,
     },
     {

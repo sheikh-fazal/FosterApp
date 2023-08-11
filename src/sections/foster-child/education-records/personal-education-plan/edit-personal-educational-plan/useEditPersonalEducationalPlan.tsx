@@ -3,37 +3,57 @@ import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
+import { usePatchSingleChildEducationPlanMutation } from "@root/services/foster-child/education-records/child-education-plan/childEducationPlan";
+import { enqueueSnackbar } from "notistack";
 
-const useEditPersonalEducationalPlan = () => {
+const useEditPersonalEducationalPlan = (initialValueProps:any, fosterChildId:any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
+  console.log(fosterChildId);
+  
+  const [patchData] = usePatchSingleChildEducationPlanMutation()
+
+  
   const defaultValues = {
-    activityType: "",
-    fromDate: new Date(todayDate),
-    toDate: new Date(todayDate),
+    school: "",
+    date: new Date(todayDate),
+    onFile: "",
     comments: "",
+    principalName:""
   };
 
   const tainingProfileSchema = Yup.object().shape({
-    activityType: Yup.string().required("Required"),
-    fromDate: Yup.date().required("Required"),
-    toDate: Yup.date().required("Required"),
+    school: Yup.string().required("Required"),
+    date: Yup.date().required("Required"),
+    onFile: Yup.string().required("Required"),
     comments: Yup.string().required("Required"),
+    principalName: Yup.string().required("Required"),
   });
 
   const methods: any = useForm({
     resolver: yupResolver(tainingProfileSchema),
-    defaultValues,
+    defaultValues:initialValueProps,
   });
 
   const { handleSubmit } = methods;
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    
+    try {
+      const res = await patchData({data,fosterChildId}) 
+
+      enqueueSnackbar(res?.data?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong!`, {
+        variant: "error",
+      });
+    }
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router,defaultValues };
 };
 
 export default useEditPersonalEducationalPlan;

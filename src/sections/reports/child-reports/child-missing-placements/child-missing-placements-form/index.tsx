@@ -5,7 +5,7 @@ import * as Yup from "yup";
 
 export const initialValues = {
   nameOfChild: "",
-  MissingDate: null,
+  MissingDate: new Date(),
   duration: "",
   notification: "",
   missingType: "",
@@ -14,7 +14,7 @@ export const initialValues = {
 
 export const formSchema = Yup.object().shape({
   nameOfChild: Yup.string().required("Field is required."),
-  MissingDate: Yup.string().required("Field is required."),
+  MissingDate: Yup.date().required("Field is required."),
   duration: Yup.string().required("Field is required."),
   notification: Yup.string().required("Field is required."),
   missingType: Yup.string().required("Field is required."),

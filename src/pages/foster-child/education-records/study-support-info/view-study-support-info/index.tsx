@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // layout
 import Layout from "@root/layouts";
 //  @mui icons
@@ -9,12 +9,21 @@ import { Box } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import StudySupportInfoForm from "@root/sections/foster-child/education-records/study-support-info/StudySupportInfoForm";
+import { useGetUploadDocumentsStudySupportInfoQuery } from "@root/services/foster-child/education-records/study-support-info/studySupportInfoAPI";
 
 ViewStudySupportInfo.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function ViewStudySupportInfo() {
+  const [searchHandle, setSearchHandle] = useState("");
+  const [pageHandle, setPageHandle] = useState(0);
+
+  const params = {
+    search: searchHandle,
+    limit: "10",
+    offset: pageHandle,
+  };
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
@@ -33,6 +42,20 @@ export default function ViewStudySupportInfo() {
   ];
 
   const PAGE_TITLE = "Study Support Info";
+  const {
+    data: documentData,
+    isLoading: isDocumentLoading,
+    isFetching: isDocumentFetching,
+    isError: hasDocumentError,
+    isSuccess: isDocumentSuccess,
+  } = useGetUploadDocumentsStudySupportInfoQuery({ fosterChildId, params });
+
+  const tableData: any = documentData?.data?.documents;
+  const metaData: any = documentData?.data?.meta;
+
+  const pageChangeHandler = (page: any) => {
+    setPageHandle(page * 10);
+  };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -44,27 +67,24 @@ export default function ViewStudySupportInfo() {
         <StudySupportInfoForm disabled />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
           }
-          tableData={{}}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isDocumentFetching}
+          isError={hasDocumentError}
+          isSuccess={isDocumentSuccess}
           column={[
-            "document",
+            "documentOriginalName",
             "documentType",
-            "date",
-            "personName",
-            "password",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
           ]}
-          modalData={(data: any) => {
-            console.log("searched Value", data);
-          }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
+          onPageChange={(page: any) => pageChangeHandler(page)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
         />
       </HorizaontalTabs>
     </Box>
