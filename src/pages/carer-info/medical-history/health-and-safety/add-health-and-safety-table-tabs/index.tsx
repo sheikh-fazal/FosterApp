@@ -25,51 +25,45 @@ export default function AddHealthAndSafetyTableTabs() {
   );
   const [formData, setFormData] = useState();
   const [idd, setIdd] = useState();
-  const [tabArray, setTabArray] = useState(["Household Condition-A"]);
-  const [
-    resetTrigger,
-    { data, isLoading: loadinghouseholdAPostData, isSuccess },
-  ] = useHouseHoldConditionAPostMutation();
+  // const [tabArray, setTabArray] = useState(["Household Condition-A"]);
+  const [householdA] = useHouseHoldConditionAPostMutation();
 
-  const [trigger, { isLoading: loadingAllConditions }] =
-    useHealthAndSafetyDataPatchMutation();
-  const submitt = async () => {
-    try {
-      const res: any = await resetTrigger(formData);
-      setIdd(res?.data?.data?.id);
-      enqueueSnackbar(res?.data?.message, { variant: "success" });
-      setTabArray(["Household Condition-A", "B"]);
-    } catch (error: any) {
-      enqueueSnackbar(error?.message, { variant: "error" });
-    }
-  };
+  const [postAllApi] = useHealthAndSafetyDataPatchMutation();
+  // const submitt = async () => {
+  //   try {
+  //     const res: any = await resetTrigger(formData);
+  //     setIdd(res?.data?.data?.id);
+  //     enqueueSnackbar(res?.data?.message, { variant: "success" });
+  //     setTabArray(["Household Condition-A", "B"]);
+  //   } catch (error: any) {
+  //     enqueueSnackbar(error?.message, { variant: "error" });
+  //   }
+  // };
 
-  const submit2 = async () => {
-    try {
-      const res: any = await trigger({
-        healthAndSafetyId: idd,
-        payload: formData,
-      });
-
-      enqueueSnackbar(res?.data?.message, { variant: "success" });
-
-      setTabArray(["Household Condition-A", "B", "Safety Factors - Indoors A"]);
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(error?.message, { variant: "error" });
-    }
-  };
-  // const tabsData = [
-  //   // "Household Condition-A",
-  //   // "B",
-  //   // "Safety Factors - Indoors A",
-  //   // "B \u00a0\u00a0",
-  //   // "C",
-  //   // "D",
-  //   // "E",
-  //   // "Safety Factors - Outdoor",
-  //   // "Upload Documents",
-  // ];
+  // const submit2 = async () => {
+  //   try {
+  //     const res: any = await trigger({
+  //       healthAndSafetyId: idd,
+  //       payload: formData,
+  //     });
+  //     enqueueSnackbar(res?.data?.message, { variant: "success" });
+  //     setTabArray(["Household Condition-A", "B", "Safety Factors - Indoors A"]);
+  //   } catch (error: any) {
+  //     const errMsg = error?.data?.message;
+  //     enqueueSnackbar(error?.message, { variant: "error" });
+  //   }
+  // };
+  const tabsData = [
+    "Household Condition-A",
+    "B",
+    "Safety Factors - Indoors A",
+    "B \u00a0\u00a0",
+    "C",
+    "D",
+    "E",
+    "Safety Factors - Outdoor",
+    "Upload Documents",
+  ];
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -89,42 +83,59 @@ export default function AddHealthAndSafetyTableTabs() {
       {/* {page} */}
 
       {/* return ( */}
-      <HorizaontalTabs tabsDataArray={tabArray}>
+      <HorizaontalTabs tabsDataArray={tabsData}>
         <HouseholdConditionA
           formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
-          submitFunction={submitt}
-          isLoading={loadinghouseholdAPostData}
+          onSubmitHandler={householdA}
+          message="Added"
+          isAdding
+          // submitFunction={submitt}
+          // isLoading={loadinghouseholdAPostData}
         />
         <HouseholdConditionB
           formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
-          submitFunction={submit2}
-          isLoading={loadingAllConditions}
+          onSubmitHandler={postAllApi}
+          message="Added"
+          // submitFunction={submit2}
+          // isLoading={loadingAllConditions}
         />
         <SafetyFactorsIndoorsA
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <SafetyFactorsIndoorsB
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <SafetyFactorsIndoorsC
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <SafetyFactorsIndoorsD
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <SafetyFactorsIndoorsE
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <SafetyFactorsOutdoors
           formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
+          onSubmitHandler={postAllApi}
+          message="Added"
         />
         <UploadDocument breadCrumbData={setBreadCrumbData} />
       </HorizaontalTabs>

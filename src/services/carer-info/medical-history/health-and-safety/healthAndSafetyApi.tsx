@@ -32,10 +32,10 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
     getHealthAndSafetyDataById: builder.query({
-      query: (healthAndSafetyId: any) => ({
-        url: `carer-Info/get-health-and-safety/${healthAndSafetyId}`,
-      }),
-      providesTags: ["HEALTH_AND_SAFETY"],
+      query: (healthAndSafetyId: any) => 
+        `carer-Info/get-health-and-safety/${healthAndSafetyId}`,
+        providesTags: ["HEALTH_AND_SAFETY"],
+      
     }),
   }),
 });

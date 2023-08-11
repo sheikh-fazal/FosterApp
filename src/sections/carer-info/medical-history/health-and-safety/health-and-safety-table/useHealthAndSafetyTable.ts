@@ -55,5 +55,6 @@ export const useHealthAndSafetyTable = () => {
     isSuccess,
     healthAndSafetyId,
     setHealthAndSafetyId,
+    makePath
   };
 };

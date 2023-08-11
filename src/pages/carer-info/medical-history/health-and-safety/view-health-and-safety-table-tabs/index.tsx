@@ -56,9 +56,9 @@ const viewHealthAndSafetyTableTabs = () => {
       breadcrumbs={BREADCRUMBS}
       title={breadCrumbData}
     >
-      {isLoading && <SkeletonFormdata />}
-
-      {isSuccess && (
+      {isLoading ? (
+        <SkeletonFormdata />
+      ) : (
         <HorizaontalTabs tabsDataArray={tabsData}>
           <HouseholdConditionA
             breadCrumbData={setBreadCrumbData}

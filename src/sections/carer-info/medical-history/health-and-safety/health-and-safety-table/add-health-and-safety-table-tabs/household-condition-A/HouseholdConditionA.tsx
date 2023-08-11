@@ -24,11 +24,27 @@ export const HouseholdConditionA = (props: any) => {
     isLoading,
     breadCrumbData,
     initialValueProps = defaultValues,
-    submitFunction,
+    onSubmitHandler,
+    message,
+    isAdding = false,
   } = props;
 
-  const { theme, handleSubmit, onSubmit, methods, router }: any =
-    useHouseholdConditionA({ breadCrumbData, formData, submitFunction ,initialValueProps});
+  const {
+    theme,
+    handleSubmit,
+    onSubmit,
+    methods,
+    router,
+    makePath,
+    isSubmitting,
+  }: any = useHouseholdConditionA({
+    breadCrumbData,
+    formData,
+    onSubmitHandler,
+    initialValueProps,
+    message,
+    isAdding,
+  });
   return (
     <Page title="Household Condition - A">
       <Card sx={{ p: 2 }}>
@@ -76,9 +92,9 @@ export const HouseholdConditionA = (props: any) => {
                   "&:hover": { bgcolor: theme.palette.primary.main },
                 }}
                 variant="contained"
-                disabled={isLoading}
+                disabled={isSubmitting}
               >
-                {isLoading ? (
+                {isSubmitting ? (
                   <span style={{ display: "flex", alignItems: "center" }}>
                     Loading &nbsp; <CircularProgress size={20} />
                   </span>
@@ -94,7 +110,14 @@ export const HouseholdConditionA = (props: any) => {
                   ml: 1,
                 }}
                 variant="contained"
-                onClick={() => router.back()}
+                onClick={() =>
+                  router.push(
+                    makePath({
+                      path: "/carer-info/medical-history/health-and-safety",
+                      skipQueries: ["healthAndSafetyId"],
+                    })
+                  )
+                }
               >
                 Back
               </Button>

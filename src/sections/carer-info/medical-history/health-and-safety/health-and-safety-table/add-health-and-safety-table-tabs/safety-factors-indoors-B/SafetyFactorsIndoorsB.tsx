@@ -1,31 +1,48 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
 import { safetyFactorsIndoorsB_Data, FormSchema, defaultValues } from ".";
 import { useRouter } from "next/router";
+import { useSafetyFactorsInoorsB } from "./useSafetyFactorsInoorsB";
 
 export const SafetyFactorsIndoorsB = (props: any) => {
-  const { disabled, formData, isLoading, isError, isSuccess, breadCrumbData } =
-    props;
-  const theme: any = useTheme();
-  const methods: any = useForm({
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-  const { handleSubmit } = methods;
-  const onSubmit = (data: any) => {
-    formData(data);
-    // console.log(data);
-  };
-  useEffect(() => {
-    breadCrumbData("Safety Factors - Indoors B");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const {
+    disabled,
+    formData,
+    isLoading,
+    isError,
+    isSuccess,
+    breadCrumbData,
+    onSubmitHandler,
+    initialValueProps,
+    message,
+  } = props;
 
-  const router = useRouter();
+  const {
+    theme,
+    handleSubmit,
+    isSubmitting,
+    router,
+    methods,
+    makePath,
+    onSubmit,
+  }: any = useSafetyFactorsInoorsB({
+    breadCrumbData,
+    formData,
+    onSubmitHandler,
+    initialValueProps,
+    message,
+  });
   return (
     <Page title="Safety Factors - Indoors B">
       <Card sx={{ p: 2 }}>
@@ -77,8 +94,15 @@ export const SafetyFactorsIndoorsB = (props: any) => {
                   "&:hover": { bgcolor: theme.palette.primary.main },
                 }}
                 variant="contained"
+                disabled={isSubmitting}
               >
-                Submit
+                {isSubmitting ? (
+                  <span style={{ display: "flex", alignItems: "center" }}>
+                    Loading &nbsp; <CircularProgress size={20} />
+                  </span>
+                ) : (
+                  "Submit"
+                )}
               </Button>
 
               <Button
@@ -88,7 +112,14 @@ export const SafetyFactorsIndoorsB = (props: any) => {
                   ml: 1,
                 }}
                 variant="contained"
-                onClick={() => router.back()}
+                onClick={() =>
+                  router.push(
+                    makePath({
+                      path: "/carer-info/medical-history/health-and-safety",
+                      skipQueries: ["healthAndSafetyId"],
+                    })
+                  )
+                }
               >
                 Back
               </Button>

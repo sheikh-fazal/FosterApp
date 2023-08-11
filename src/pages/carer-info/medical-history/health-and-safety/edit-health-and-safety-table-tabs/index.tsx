@@ -4,7 +4,10 @@ import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Error from "@root/components/Error";
-import { useGetHealthAndSafetyDataByIdQuery } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import {
+  useGetHealthAndSafetyDataByIdQuery,
+  useHealthAndSafetyDataPatchMutation,
+} from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 import { HouseholdConditionA } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/household-condition-A/HouseholdConditionA";
 import { HouseholdConditionB } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/household-condition-B/HouseholdConditionB";
 import { SafetyFactorsIndoorsA } from "@root/sections/carer-info/medical-history/health-and-safety/health-and-safety-table/add-health-and-safety-table-tabs/safety-factors-indoors-A/SafetyFactorsIndoorsA";
@@ -22,8 +25,9 @@ const EditHealthAndSafetyTabs = () => {
   const { healthAndSafetyId } = router.query;
 
   const { makePath } = usePath();
-  const { data, isLoading, isError, isSuccess } =
+  const { data, isLoading, isError } =
     useGetHealthAndSafetyDataByIdQuery(healthAndSafetyId);
+  const [postAllApi, { isSuccess }] = useHealthAndSafetyDataPatchMutation();
   if (isError) return <Error />;
   const BREADCRUMBS = [
     {
@@ -55,13 +59,17 @@ const EditHealthAndSafetyTabs = () => {
       breadcrumbs={BREADCRUMBS}
       title={breadCrumbData}
     >
-      {isLoading && <SkeletonFormdata />}
-
-      {isSuccess && (
+      {isLoading ? (
+        <SkeletonFormdata />
+      ) : (
         <HorizaontalTabs tabsDataArray={tabsData}>
           <HouseholdConditionA
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.houseHoldConditionA,
               inspectionDate: new Date(
@@ -93,6 +101,10 @@ const EditHealthAndSafetyTabs = () => {
           <HouseholdConditionB
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.houseHoldConditionB,
               dateToBeCarriedOut1: new Date(
@@ -121,6 +133,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsIndoorsA
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsIndoorsA,
               dateToBeCarriedOut1: new Date(
@@ -155,6 +171,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsIndoorsB
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsIndoorsB,
               dateToBeCarriedOut1: new Date(
@@ -186,6 +206,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsIndoorsC
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsIndoorsC,
               dateToBeCarriedOut1: new Date(
@@ -214,6 +238,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsIndoorsD
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsIndoorsD,
               dateToBeCarriedOut1: new Date(
@@ -242,6 +270,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsIndoorsE
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsIndoorsE,
               dateToBeCarriedOut1: new Date(
@@ -264,6 +296,10 @@ const EditHealthAndSafetyTabs = () => {
           <SafetyFactorsOutdoors
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={{
               ...data?.data?.getHealthAndSafety?.safetyFactorsOutdoors,
               dateToBeCarriedOut1: new Date(
@@ -301,6 +337,10 @@ const EditHealthAndSafetyTabs = () => {
           <UploadDocument
             breadCrumbData={setBreadCrumbData}
             // disabled
+            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            message={"Updated"}
+            isError={isError}
+            isSuccess={isSuccess}
             initialValueProps={
               data?.data?.getHealthAndSafety?.healthAndSafetyDocs
             }
