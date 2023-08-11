@@ -1,12 +1,21 @@
+import { CarerDevelopmentOne } from "./carers-own-development-one/CarerDevelopmentOne";
+import { CarerDevelopmentTwo } from "./carers-own-development-two/CarerDevelopmentTwo";
+import { ChangeApprovalTerm } from "./change-approval-term/ChangeApprovalTerm";
 import { CheckMedicals } from "./check-medicals/CheckMedicals";
 import { Exemptions } from "./exemptions/Exemptions";
+import { ImpactFostring } from "./impact-fostering/ImpactFostering";
+import { NeedsOfChildren } from "./needs-of-children/NeedsOfChildren";
 import { OtherDocuments } from "./other-documents/OtherDocuments";
+import { PartOfTeam } from "./part-of-team/PartOfTeam";
 import { PresenrForm } from "./present-form/PresenrForm";
-import { Recommendations } from "./recommendations/Recommendations";
+import { LastReviewMeeting } from "./last-review-meeting/LastReviewMeeting";
 import { ReviewMeeting } from "./review-meeting/ReviewMeeting";
+import { Summery } from "./summary/Summery";
+import { Recommendation } from "./recommendation/Recommendation";
+import { NextReviewMeeting } from "./next-review-meeting/NextReviewMeeting";
 
 
-export const HospitalizationFromvalue = [
+export const ReviewOfficerReportFromData = [
   // {
   //   title: "Expand All",
   //   // component: <AnnualReview />,
@@ -29,57 +38,61 @@ export const HospitalizationFromvalue = [
   },
   {
     title: "Recommendations of last review meeting",
-    component: <Recommendations />,
+    component: <LastReviewMeeting />,
   },
   {
     title: "Exemptions/placements outside terms of approval",
     component: <Exemptions />,
   },
   {
-    title: "Impact of fostering",
+    title: "SUMMARY AND DISCUSSION",
     // component: <Complaints />,
   },
   {
+    title: "Impact of fostering",
+    component: <ImpactFostring />,
+  },
+  {
     title: "Needs of children",
-    // component: <Incident />,
+    component: <NeedsOfChildren />,
   },
   {
     title: "Working as part of a team",
-    // component: <Incident />,
+    component: <PartOfTeam />,
   },
   {
     title: "Carer’s own development (carer 1)",
-    // component: <Incident />,
+    component: <CarerDevelopmentOne />,
   },
   {
     title: "Carer’s own development (carer 2)",
-    // component: <Incident />,
+    component: <CarerDevelopmentTwo />,
   },
   {
     title: "Summary",
-    // component: <Incident />,
+    component: <Summery />,
   },
   {
     title: "Changes to approval terms",
-    // component: <Incident />,
+    component: <ChangeApprovalTerm />,
   },
   {
-    title: "Changes to approval terms",
-    // component: <Incident />,
+    title: "Recommendation",
+    component: <Recommendation />,
   },
   {
     title: "Next Review meeting",
-    // component: <Incident />,
+    component: <NextReviewMeeting />,
   },
 ];
 
 //Sorting Mock Data
 
-export const sortingData = [
-  {
-    value: "Ascending",
-  },
-  {
-    value: "Decending",
-  },
-];
+// export const sortingData = [
+//   {
+//     value: "Ascending",
+//   },
+//   {
+//     value: "Decending",
+//   },
+// ];

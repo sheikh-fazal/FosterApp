@@ -1,22 +1,18 @@
 import { Typography } from "@mui/material";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 
-export const exemptionsFormData = [
+export const changeApprovalTermFormData = [
   {
     id: 0,
     gridLength: 12,
-    heading:
-    "Were there any exemptions or placements outside the carer's terms of approval (unlawful placements)",
-    otherOptions: {
-      sx: { mt: 2 },
-    },
+    heading: "Are the carer's current terms of approval appropriate? *",
     component: Typography,
   },
   {
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "exemptions",
+      name: "terms",
       sx: { mt: -2 },
     },
     options: [
@@ -26,24 +22,21 @@ export const exemptionsFormData = [
     component: RHFSelect,
   },
   {
-    id: 3,
+    id: 2,
     gridLength: 12,
     heading:
-    "If yes, please provide details and any action required *",
-    otherOptions: {
-      sx: { mb: -2 },
-    },
+      "If a change to the carer's terms of approval is being recommended, there should be evidence in the reports to justify that change. Please confirm that changes to approval terms were considered within the review meeting",
     component: Typography,
   },
   {
-    id: 11,
+    id: 3,
     gridLength: 12,
     otherOptions: {
       name: "required",
       fullWidth: true,
       multiline: true,
       minRows: 3,
-      sx: { mb: 2 },
+      sx: { mt: -2 },
     },
     component: RHFTextField,
   },

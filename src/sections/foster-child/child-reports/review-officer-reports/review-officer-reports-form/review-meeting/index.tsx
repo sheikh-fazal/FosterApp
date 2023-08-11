@@ -114,12 +114,18 @@ export const ReviewFormData = [
   {
     id: 11,
     gridLength: 12,
+    heading: "if any required reports are not available, please comment:",
+    component: Typography,
+  },
+  {
+    id: 12,
+    gridLength: 12,
     componentProps: {
       name: "comments",
-      label: "if any required reports are not available, please comment:",
       fullWidth: true,
       multiline: true,
       minRows: 3,
+      sx: { mt: -2 },
     },
     component: RHFTextField,
   },

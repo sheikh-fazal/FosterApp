@@ -1,18 +1,11 @@
-import {
-  Box,
-  Grid,
-  MenuItem,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, MenuItem, TextField, useTheme } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { HospitalizationFromvalue } from ".";
+import { ReviewOfficerReportFromData } from ".";
 import AccordianList from "@root/components/AccordianList";
 
 export const ReviewOfficerReportsForm = (props: any) => {
@@ -60,7 +53,8 @@ export const ReviewOfficerReportsForm = (props: any) => {
                   id="name"
                   select
                   label="Name of foster carer"
-                  defaultValue="a"
+                  // defaultValue="a"
+                  disabled
                 >
                   {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -76,20 +70,21 @@ export const ReviewOfficerReportsForm = (props: any) => {
                   label="Date of review meeting"
                   // placeholder="Placeholder"
                   multiline
+                  disabled
                 />
               </Grid>
             </Grid>
             {/* <IsFetching isFetching={isFatching} /> */}
             <Grid container>
-                    {HospitalizationFromvalue.map((item: any) => (
-                      <Grid item xs={12} key={item.title}>
-                        <AccordianList
-                          title={item.title}
-                          component={item.component}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
+              {ReviewOfficerReportFromData.map((item: any) => (
+                <Grid item xs={12} key={item.title}>
+                  <AccordianList
+                    title={item.title}
+                    component={item.component}
+                  />
+                </Grid>
+              ))}
+            </Grid>
           </FormProvider>
         </Grid>
       </Grid>

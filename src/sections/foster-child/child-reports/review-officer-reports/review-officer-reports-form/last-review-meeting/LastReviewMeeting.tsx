@@ -1,13 +1,12 @@
 import React from 'react'
-import { recommendationFormData } from '.';
+import { lastReviewMeetingFormData } from '.';
 import { Grid } from '@mui/material';
 
-export const Recommendations = () => {
+export const LastReviewMeeting = () => {
   return (
     <>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}> */}
       <Grid container spacing={3}>
-        {recommendationFormData?.map((form: any) => {
+        {lastReviewMeetingFormData?.map((form: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form?.id}>
               <>
@@ -32,7 +31,6 @@ export const Recommendations = () => {
           );
         })}
       </Grid>
-      {/* </FormProvider> */}
     </>
   )
 }
