@@ -1,37 +1,69 @@
-import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useAllegationListQuery,
+  useDeleteAllegationListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
+import {
+  useDeleteSupervisingVisitListMutation,
+  useSupervisingVisitListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitApi";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 
 export const useSupervisoryVisit = () => {
+  const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
-  const theme: any = useTheme();
-  const [data, setData] = React.useState([
-    {
-      srNo: 1,
-      socialWorker: "10/10/2021",
-      dateVisit: "10/10/2021",
-      visitType: "Text",
-      status: "Text",
-      locked: "Text",
-      childOutcome: "Text",
-      fcSignature: "File",
+  const { fosterCarerId } = router.query;
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
+    useTableParams();
+  //GET API For Supervisory  List
+  const {
+    data: supervisoryVisit,
+    isError: supervisoryVisitError,
+    isLoading: supervisoryVisitIsloading,
+    isFetching: supervisoryVisitIsfetching,
+    isSuccess: supervisoryVisitIsSuccess,
+  }: any = useSupervisingVisitListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
     },
-    {
-      srNo: 2,
-      socialWorker: "10/10/2021",
-      dateVisit: "11/10/2021",
-      visitType: "Text",
-      status: "Text",
-      locked: "Text",
-      childOutcome: "Text",
-      fcSignature: "File",
-    },
-  ]);
+  });
+  const supervisoryVisits = `supervisoryVisit?.data?.supervisory-home-visit`;
+  const meta = supervisoryVisit?.data?.meta;
+  const [deleteList] = useDeleteSupervisingVisitListMutation();
+  //DELETE API For Allegation List
+  const listDeleteHandler = (id: any) => {
+    deleteList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
+
   return {
     router,
     tableHeaderRefTwo,
-    theme,
-    data,
+    supervisoryVisitIsloading,
+    supervisoryVisits,
+    supervisoryVisitIsfetching,
+    supervisoryVisitError,
+    supervisoryVisitIsSuccess,
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    listDeleteHandler,
+    setSearch,
+    fosterCarerId,
   };
 };

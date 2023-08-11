@@ -6,24 +6,23 @@ import { defaultValues, formSchema } from "./index";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazySingleAnnualReviewListQuery,
-  usePatchAnnualReviewListMutation,
-  usePostAnnualReviewListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewApi";
-export const usePlacementReview = (action: any, id: any) => {
+  useLazySingleSupervisingVisitListQuery,
+  usePatchSupervisingVisitListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitApi";
+export const useCarerSectionB = (action: any, id: any) => {
   const router = useRouter();
   const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
 
-  const [getReviewList] = useLazySingleAnnualReviewListQuery();
-  const [editReviewList] = usePatchAnnualReviewListMutation();
+  const [getVisitList] = useLazySingleSupervisingVisitListQuery();
+  const [editVisitList] = usePatchSupervisingVisitListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getVisitList(id, true);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -50,10 +49,10 @@ export const usePlacementReview = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "edit") {
       setIsFetching(true);
-      editReviewList({
+      editVisitList({
         formData: {
           annualReviewId: id,
-          annualReviewD: { ...data },
+          annualReviewA: { ...data },
         },
       })
         .unwrap()

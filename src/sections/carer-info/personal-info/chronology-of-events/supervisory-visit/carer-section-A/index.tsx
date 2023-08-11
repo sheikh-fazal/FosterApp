@@ -5,33 +5,6 @@ import {
 } from "@root/components/hook-form";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import dayjs from "dayjs";
-
-const todayDate = dayjs().format("MM/DD/YYYY");
-
-export const defaultValues = {
-  visitNature: "Text",
-  category: "",
-  visitType: "",
-  visitDate: new Date(todayDate),
-  visitStatus: "",
-  fileSeen: true,
-  medicationSheet: true,
-  localAuthority: true,
-  presentInMeeting: "text",
-};
-
-export const FormSchema = Yup.object().shape({
-  visitNature: Yup.string().required("required"),
-  category: Yup.string().required("required"),
-  visitType: Yup.string().required("required"),
-  visitDate: Yup.date().required("required"),
-  visitStatus: Yup.string().required("required"),
-  fileSeen: Yup.boolean().required("required"),
-  medicationSheet: Yup.boolean().required("required"),
-  localAuthority: Yup.boolean().required("required"),
-  presentInMeeting: Yup.string().required("required"),
-});
 
 export const carerSectionAlphaData = [
   {
@@ -58,7 +31,7 @@ export const carerSectionAlphaData = [
   {
     id: 2,
     otherOptions: {
-      name: "visitType",
+      name: "homeVisitType",
       label: "Home Visit Type",
       select: true,
       fullWidth: true,
@@ -79,7 +52,7 @@ export const carerSectionAlphaData = [
   {
     id: 3,
     otherOptions: {
-      name: "visitStatus",
+      name: "homeVisitStatus",
       label: "Home Visit Status",
       select: true,
       fullWidth: true,
@@ -101,7 +74,7 @@ export const carerSectionAlphaData = [
     id: 4,
     gridLength: 6,
     otherOptions: {
-      name: "visitDate",
+      name: "dateOfVisit",
       label: "Date of Visit",
       fullWidth: true,
     },
@@ -138,7 +111,7 @@ export const carerSectionAlphaData = [
     id: 8,
     gridLength: 12,
     otherOptions: {
-      name: "visitNature",
+      name: "natureOfVisit",
       label: "Nature of Visit",
       multiline: true,
       minRows: 3,
@@ -161,3 +134,27 @@ export const carerSectionAlphaData = [
   },
 ];
 export { default as CarerSectionAlpha } from "./CarerSectionA";
+
+export const defaultValues = {
+  natureOfVisit: "",
+  category: "",
+  homeVisitType: "",
+  dateOfVisit: new Date(),
+  homeVisitStatus: "",
+  fileSeen: null,
+  medicationSheet: null,
+  localAuthority: null,
+  presentInMeeting: "",
+};
+
+export const formSchema = Yup.object().shape({
+  natureOfVisit: Yup.string().required("required"),
+  category: Yup.string().required("required"),
+  homeVisitType: Yup.string().required("required"),
+  dateOfVisit: Yup.date().required("required"),
+  homeVisitStatus: Yup.string().required("required"),
+  fileSeen: Yup.boolean().required("required"),
+  medicationSheet: Yup.boolean().required("required"),
+  localAuthority: Yup.boolean().required("required"),
+  presentInMeeting: Yup.string().required("required"),
+});

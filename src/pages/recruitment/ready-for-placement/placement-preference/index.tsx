@@ -48,7 +48,7 @@ export default function PlacementPreference() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <PlacementReference fosterCarerId={fosterCarerId} />
+      <PlacementReference />
     </Page>
   );
 }

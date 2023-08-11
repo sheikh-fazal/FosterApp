@@ -1,30 +1,26 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import React from "react";
-import { useForm } from "react-hook-form";
-import {
-  FormSchema,
-  defaultValues,
-  carerSectionAlphaData,
-} from "./CarerSectionData";
+import { carerSectionAlphaData } from ".";
+import { useCarerSectionA } from "./useCarerSectionA";
+import { LoadingButton } from "@mui/lab";
 
 export default function CarerSectionA(props: any) {
-  const theme: any = useTheme();
-  const { onSubmit } = props;
-  const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
-    defaultValues,
-  });
-
-  const { reset, handleSubmit } = methods;
-
-  const onSubmitHandler = (data: any) => {
-    onSubmit(data);
-    reset();
-  };
-
+  const { action, id } = props;
+  const {
+    router,
+    onSubmit,
+    isLoading,
+    theme,
+    setValue,
+    trigger,
+    handleSubmit,
+    getValues,
+    methods,
+    isFetching,
+    isSubmitting,
+    fosterCarerId,
+  } = useCarerSectionA(action, id);
   return (
     <>
       <Typography
@@ -33,13 +29,21 @@ export default function CarerSectionA(props: any) {
       >
         Supervising Social Worker: Not Assigned
       </Typography>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
+      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {carerSectionAlphaData.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id}>
                 {form.id !== 7.5 && (
-                  <form.component size="small" {...form.otherOptions} disabled>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" || "edit" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>
@@ -52,8 +56,70 @@ export default function CarerSectionA(props: any) {
               </Grid>
             );
           })}
+          {action === "add" || action === "edit" ? (
+            <Grid
+              xs={12}
+              sx={{
+                mt: 2,
+                display: "flex",
+                gap: "15px",
+                flexWrap: "wrap",
+              }}
+              item
+            >
+              <LoadingButton
+                type="submit"
+                loading={isSubmitting}
+                sx={{
+                  bgcolor: theme.palette.primary.main,
+                  "&:hover": { bgcolor: theme.palette.primary.main },
+                }}
+                variant="contained"
+              >
+                Submit
+              </LoadingButton>
+              <Button
+                sx={{
+                  bgcolor: theme.palette.orange.main,
+                  "&:hover": { bgcolor: theme.palette.orange.main },
+                }}
+                variant="contained"
+                onClick={() =>
+                  router.push({
+                    pathname:
+                      "/carer-info/personal-info/carer-chronology-of-events",
+                    query: { fosterCarerId: fosterCarerId },
+                  })
+                }
+              >
+                Back
+              </Button>
+            </Grid>
+          ) : null}
         </Grid>
       </FormProvider>
+      {action === "view" && (
+        <Grid container>
+          <Grid xs={12} sx={{ mt: 2 }} item>
+            <LoadingButton
+              sx={{
+                bgcolor: theme.palette.orange.main,
+                "&:hover": { bgcolor: theme.palette.orange.main },
+              }}
+              variant="contained"
+              onClick={() =>
+                router.push({
+                  pathname:
+                    "/carer-info/personal-info/carer-chronology-of-events",
+                  query: { fosterCarerId: fosterCarerId },
+                })
+              }
+            >
+              Back
+            </LoadingButton>
+          </Grid>
+        </Grid>
+      )}
     </>
   );
 }

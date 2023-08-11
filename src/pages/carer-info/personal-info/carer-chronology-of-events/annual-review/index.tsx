@@ -52,6 +52,14 @@ export default function AnnualReview() {
         title={PAGE_TITLE}
       />
       <HorizaontalTabs
+        disabled={
+          !id && [
+            "Annual Review B",
+            "Annual Review C",
+            "Annual Review D",
+            "Placement Review",
+          ]
+        }
         tabsDataArray={[
           "Annual Review A",
           "Annual Review B",
@@ -67,13 +75,13 @@ export default function AnnualReview() {
         {/* Annual Review B Component */}
         <AnnualReviewB action={action} id={id} />
         {/* Annual Review C Component */}
-        <AnnualReviewC />
+        <AnnualReviewC action={action} id={id} />
         {/* Annual Review D Component */}
-        <AnnualReviewD />
+        <AnnualReviewD action={action} id={id} />
         {/* Annual Review E Component */}
         <AnnualReviewE />
         {/* Placement Review Component */}
-        <PlacementReview />
+        <PlacementReview action={action} id={id} />
         {/* Documents Component */}
         <Documents />
       </HorizaontalTabs>

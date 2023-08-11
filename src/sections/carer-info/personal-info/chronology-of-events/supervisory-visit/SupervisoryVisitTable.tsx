@@ -1,27 +1,33 @@
+import React from "react";
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
-import React, { useRef } from "react";
-import { useSupervisoryVisit } from "./useSupervisoryVisit";
 import TableHeader from "@root/components/TableHeader";
 import TableAction from "@root/components/TableAction";
-import { Box } from "@mui/material";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
+import { useSupervisoryVisit } from "./useSupervisoryVisit";
 
-const SupervisoryVisitTable = () => {
-  const tableHeaderRef = useRef<any>();
-  //OOH Report Custom Hook
-  const { data, router } = useSupervisoryVisit();
+const AllegationTable = () => {
+  const {
+    router,
+    tableHeaderRefTwo,
+    supervisoryVisits,
+    supervisoryVisitIsloading,
+    supervisoryVisitIsfetching,
+    supervisoryVisitError,
+    supervisoryVisitIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    listDeleteHandler,
+    setSearch,
+    fosterCarerId,
+  } = useSupervisoryVisit();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.srNo,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row?.socialWorker ?? "-",
-      id: "socialWorker",
+      accessorFn: (row: any) => row?.supervisingSocialWorker ?? "-",
+      id: "supervisingSocialWorker",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
@@ -29,8 +35,8 @@ const SupervisoryVisitTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.dateVisit ?? "-",
-      id: "dateVisit",
+      accessorFn: (row: any) => row?.dateOfVisit ?? "-",
+      id: "dateOfVisit",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
@@ -38,35 +44,35 @@ const SupervisoryVisitTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.visitType,
+      accessorFn: (row: any) => row?.visitType ?? "-",
       id: "visitType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Visit Type</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.status,
+      accessorFn: (row: any) => row?.status ?? "-",
       id: "status",
       cell: (info: any) => info.getValue(),
       header: () => <span>Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.locked,
+      accessorFn: (row: any) => row?.locked ?? "-",
       id: "locked",
       cell: (info: any) => info.getValue(),
       header: () => <span>Locked</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.childOutcome,
-      id: "childOutcome",
+      accessorFn: (row: any) => row?.childOutCome ?? "-",
+      id: "childOutCome",
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Outcome</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.fcSignature,
+      accessorFn: (row: any) => row?.fcSignature ?? "-",
       id: "fcSignature",
       cell: (info: any) => info.getValue(),
       header: () => <span>Fc Signature</span>,
@@ -75,44 +81,97 @@ const SupervisoryVisitTable = () => {
     {
       id: "actions",
       cell: (info: any) => (
-        <TableAction
-          size="small"
-          type="view"
-          onClicked={() =>
-            router.push(
-              "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit"
-            )
-          }
-        />
+        <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit",
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
+              })
+            }
+          />
+
+          {/* Calling Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+          <TableAction
+            size="small"
+            type="view"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
+              })
+            }
+          />
+        </Box>
       ),
       header: () => <span>actions</span>,
       isSortable: false,
     },
   ];
-
   return (
     <>
-      <TableHeader
-        ref={tableHeaderRef}
-        title="Supervisory Home Visit"
-        searchKey="search"
-        onChanged={(data: any) => {}}
-      />
+      <Box sx={{ mb: 1 }}>
+        <TableHeader
+          ref={tableHeaderRefTwo}
+          title="Supervisory Home Visit"
+          searchKey="search"
+          showAddBtn
+          onChanged={(event: any) => {
+            setSearch(event.search);
+          }}
+          onAdd={() => {
+            router.push({
+              pathname:
+                "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit",
+              query: { action: "add", fosterCarerId: fosterCarerId },
+            });
+          }}
+        />
+      </Box>
       <CustomTable
-        data={data}
+        data={supervisoryVisits}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={supervisoryVisitIsloading}
+        isFetching={supervisoryVisitIsfetching}
+        isError={supervisoryVisitError}
+        isSuccess={supervisoryVisitIsSuccess}
+        showSerialNo={true}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );
 };
 
-export default SupervisoryVisitTable;
+export default AllegationTable;
+
+//Styling
+const styles: any = {
+  badge: (theme: any) => ({
+    "& .MuiBadge-badge": {
+      fontSize: 9,
+      top: 11,
+      right: -22,
+      height: 15,
+      background: theme.palette.primary.main,
+      cursor: "pointer",
+    },
+  }),
+};
