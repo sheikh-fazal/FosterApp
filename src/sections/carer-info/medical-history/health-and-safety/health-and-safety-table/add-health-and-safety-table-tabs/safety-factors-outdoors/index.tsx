@@ -4,112 +4,108 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  hasTripDeviceFittedToElectricalCircuitToPreventShock: false,
-  dateToBeCarriedOutOne: new Date(todayDate),
+  isDeviceBeenFitted: false,
+  dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsRequireOne: "Text",
+  improvementsReq1: "",
 
-  areGardenDiyChemicalsLockedAwayOutOfReach: false,
-  dateToBeCarriedOutTwo: new Date(todayDate),
+  isGardenEquipmentLocked: false,
+  dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsRequireTwo: "Text",
+  improvementsReq2: "",
 
-  areGardenFencesAndGatesSecureInGoodCondition: false,
-  dateToBeCarriedOutThree: new Date(todayDate),
+  isGardenFencesGatesSecure: false,
+  dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsRequireThree: "text",
+  improvementsReq3: "",
 
-  areSwingsSlidersSecurityFixedAndKEptInGoodCondition: false,
-  dateToBeCarriedOutFour: new Date(todayDate),
+  isSwingsSlidersSecurityFixed: false,
+  dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsRequireFour: "text",
+  improvementsReq4: "",
 
-  areGarageAndShedsLocked: false,
-  dateToBeCarriedOutFive: new Date(todayDate),
+  isGarageAndShedsLocked: false,
+  dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsRequireFive: "text",
+  improvementsReq5: "",
 
-  areGreenhousesPondsWaterTanksCovered: false,
+  isGreenhousesWaterTanksCovered: false,
 
-  dateToBeCarriedOutSix: new Date(todayDate),
+  dateToBeCarriedOut6: new Date(todayDate),
 
-  improvementsRequireSix: "text",
+  improvementsReq6: "",
 
-  areSandptsHygienicAndCoveredWhenNotInUse: false,
-  dateToBeCarriedOutSeven: new Date(todayDate),
+  isSandPitsHygienicCovered: false,
+  dateToBeCarriedOut7: new Date(todayDate),
 
-  improvementsRequireSeven: "text",
+  improvementsReq7: "",
 
-  areThereAnyPossiblePlantsInPropertyOrGarden: false,
-  dateToBeCarriedOutEight: new Date(todayDate),
+  isAnyPossiblePlantsInGarden: false,
+  dateToBeCarriedOut8: new Date(todayDate),
 
-  improvementsRequireEight: "text",
+  improvementsReq8: "",
 
-  areCarsFittedWithBBsApprovedRestraints: false,
-  dateToBeCarriedOutNine: new Date(todayDate),
+  iiCarsFittedWithBBSApproved: false,
+  dateToBeCarriedOut9: new Date(todayDate),
 
-  improvementsRequireNine: "text",
+  improvementsReq9: "",
 
-  isMotAndInsuranceOnCarUpToDate: false,
-  dateToBeCarriedOutTen: new Date(todayDate),
+  isMOTInsuranceOnCarUpToDate: false,
+  dateToBeCarriedOut10: new Date(todayDate),
 
-  improvementsRequireTen: "text",
+  improvementsReq10: "",
 
-  areCordsHangingFromBlindsWhichCauseHazards: false,
-  areYouOrAnyoneInYourHouseholdInPossessionOfGun: false,
-  ifYesIsItLicensedToYou: false,
+  isCordsHangingBlinds: false,
+  isAnyoneHouseeholdInPossessionOfAGun: false,
+  isYouLicensed: false,
 
-  IfYesWriteLicensedNumberWhereTheGunIsStored: "Text",
+  licenseAndGunDetails: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOutOne: Yup.date().required("Required"),
+  dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsRequireOne: Yup.string().required("Required"),
+  improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsRequireTwo: Yup.string().required("Required"),
+  improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOutThree: Yup.date().required("Required"),
+  dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsRequireThree: Yup.string().required("Required"),
+  improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFour: Yup.date().required("Required"),
+  dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsRequireFour: Yup.string().required("Required"),
+  improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFive: Yup.date().required("Required"),
+  dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsRequireFive: Yup.string().required("Required"),
+  improvementsReq5: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSix: Yup.date().required("Required"),
+  dateToBeCarriedOut6: Yup.date().required("Required"),
 
-  improvementsRequireSix: Yup.string().required("Required"),
+  improvementsReq6: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSeven: Yup.date().required("Required"),
+  dateToBeCarriedOut7: Yup.date().required("Required"),
 
-  improvementsRequireSeven: Yup.string().required("Required"),
+  improvementsReq7: Yup.string().required("Required"),
 
-  dateToBeCarriedOutEight: Yup.date().required("Required"),
+  dateToBeCarriedOut8: Yup.date().required("Required"),
 
-  improvementsRequireEight: Yup.string().required("Required"),
+  improvementsReq8: Yup.string().required("Required"),
 
-  dateToBeCarriedOutNine: Yup.date().required("Required"),
+  dateToBeCarriedOut9: Yup.date().required("Required"),
 
-  improvementsRequireNine: Yup.string().required("Required"),
+  improvementsReq9: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTen: Yup.date().required("Required"),
+  dateToBeCarriedOut10: Yup.date().required("Required"),
 
-  improvementsRequireTen: Yup.string().required("Required"),
+  improvementsReq10: Yup.string().required("Required"),
 
-  IfYesWriteLicensedNumberWhereTheGunIsStored:
-    Yup.string().required("Required"),
+  licenseAndGunDetails: Yup.string().required("Required"),
 });
 
 export const safetyFactorsOutdoors_Data = [
@@ -124,7 +120,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "hasTripDeviceFittedToElectricalCircuitToPreventShock",
+      name: "isDeviceBeenFitted",
       label:
         "Has a trip device been fitted to the electrical circuit to prevent fatal shock?",
     },
@@ -134,7 +130,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 2,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutOne",
+      name: "dateToBeCarriedOut1",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -143,7 +139,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 3,
     componentProps: {
-      name: "improvementsRequireOne",
+      name: "improvementsReq1",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -157,7 +153,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areGardenDiyChemicalsLockedAwayOutOfReach",
+      name: "isGardenEquipmentLocked",
       label:
         "Are garden/DIY equipment/chemicals locked away out of sight and reach?",
     },
@@ -167,7 +163,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTwo",
+      name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -176,7 +172,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 6,
     componentProps: {
-      name: "improvementsRequireTwo",
+      name: "improvementsReq2",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -190,7 +186,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areGardenFencesAndGatesSecureInGoodCondition",
+      name: "isGardenFencesGatesSecure",
       label: "Are garden fences and gates secure and in good condition?",
     },
     component: RHFCheckbox,
@@ -199,7 +195,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 8,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutThree",
+      name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -208,7 +204,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 9,
     componentProps: {
-      name: "improvementsRequireThree",
+      name: "improvementsReq3",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -222,7 +218,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSwingsSlidersSecurityFixedAndKEptInGoodCondition",
+      name: "isSwingsSlidersSecurityFixed",
       label:
         "Are swings, sliders etc security fixed and kept in good condition?",
     },
@@ -232,7 +228,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 11,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFour",
+      name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -241,7 +237,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 12,
     componentProps: {
-      name: "improvementsRequireFour",
+      name: "improvementsReq4",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -255,7 +251,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areGarageAndShedsLocked",
+      name: "isGarageAndShedsLocked",
       label: "Are garage and sheds locked?",
     },
     component: RHFCheckbox,
@@ -264,7 +260,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 14,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFive",
+      name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -273,7 +269,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 15,
     componentProps: {
-      name: "improvementsRequireFive",
+      name: "improvementsReq5",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -287,7 +283,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areGreenhousesPondsWaterTanksCovered",
+      name: "isGreenhousesWaterTanksCovered",
       label: "Are greenhouses, ponds, water tanks etc covered or fenced off?",
     },
     component: RHFCheckbox,
@@ -297,7 +293,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 17,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSix",
+      name: "dateToBeCarriedOut6",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -307,7 +303,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 18,
     componentProps: {
-      name: "improvementsRequireSix",
+      name: "improvementsReq6",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -321,7 +317,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSandptsHygienicAndCoveredWhenNotInUse",
+      name: "isSandPitsHygienicCovered",
       label: "Are sandpits hygienic and covered when not in use?",
     },
     component: RHFCheckbox,
@@ -330,7 +326,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 20,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSeven",
+      name: "dateToBeCarriedOut7",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -339,7 +335,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 21,
     componentProps: {
-      name: "improvementsRequireSeven",
+      name: "improvementsReq7",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -353,7 +349,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areThereAnyPossiblePlantsInPropertyOrGarden",
+      name: "isAnyPossiblePlantsInGarden",
       label: "Are there any possible plants in the property or garden?",
     },
     component: RHFCheckbox,
@@ -362,7 +358,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 23,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutEight",
+      name: "dateToBeCarriedOut8",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -371,7 +367,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 24,
     componentProps: {
-      name: "improvementsRequireEight",
+      name: "improvementsReq8",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -386,7 +382,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areCarsFittedWithBBsApprovedRestraints",
+      name: "iiCarsFittedWithBBSApproved",
       label:
         "Are cars fitted with BBS approved restraints and carrycot restraints?",
     },
@@ -396,7 +392,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 26,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutNine",
+      name: "dateToBeCarriedOut9",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -405,7 +401,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 27,
     componentProps: {
-      name: "improvementsRequireNine",
+      name: "improvementsReq9",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -420,7 +416,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isMotAndInsuranceOnCarUpToDate",
+      name: "isMOTInsuranceOnCarUpToDate",
       label: "Is MOT and insurance on car up to date",
     },
     component: RHFCheckbox,
@@ -429,7 +425,7 @@ export const safetyFactorsOutdoors_Data = [
     id: 29,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTen",
+      name: "dateToBeCarriedOut10",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -438,7 +434,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 30,
     componentProps: {
-      name: "improvementsRequireTen",
+      name: "improvementsReq10",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -452,7 +448,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areCordsHangingFromBlindsWhichCauseHazards",
+      name: "isCordsHangingBlinds",
       label: "Are Cords hanging from blinds which could cause a hazards",
     },
     component: RHFCheckbox,
@@ -462,7 +458,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areYouOrAnyoneInYourHouseholdInPossessionOfGun",
+      name: "isAnyoneHouseeholdInPossessionOfAGun",
       label: "Are you or anyone in your household in possession of a gun?",
     },
     component: RHFCheckbox,
@@ -472,7 +468,7 @@ export const safetyFactorsOutdoors_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "ifYesIsItLicensedToYou",
+      name: "isYouLicensed",
       label: "If yes, is it licensed to you?",
     },
     component: RHFCheckbox,
@@ -480,7 +476,7 @@ export const safetyFactorsOutdoors_Data = [
   {
     id: 34,
     componentProps: {
-      name: "IfYesWriteLicensedNumberWhereTheGunIsStored",
+      name: "licenseAndGunDetails",
       label:
         "If yes, please write below licensed number and where the gun is stored",
       multiline: true,
