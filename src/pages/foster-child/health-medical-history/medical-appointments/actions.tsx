@@ -76,7 +76,6 @@ export default function MedicalAppointments() {
 
   const documentUploadHandler = (data: any) => {
     formData.append("docType", data.documentType);
-    // formData.append("date", data.documentDate);
     formData.append("date", "12/12/2000");
     formData.append("password", data.password);
     formData.append("docFile", data.chosenFile);

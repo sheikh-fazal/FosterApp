@@ -5,9 +5,7 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { enqueueSnackbar } from "notistack";
 import dayjs from "dayjs";
-import { useRouter } from "next/router";
 
 export const StudySupportInfoTable = ({ fosterChildId }: any) => {
   const [open, setOpen] = useState(false);
@@ -52,7 +50,6 @@ export const StudySupportInfoTable = ({ fosterChildId }: any) => {
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
               setOpen(true);
             }}
             size="small"
