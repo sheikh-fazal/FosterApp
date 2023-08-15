@@ -1,15 +1,21 @@
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFTimePicker from "@root/components/hook-form/RHFTimePicker";
 
 export const clearBtn = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: { xs: "right", md: "center" },
+        marginLeft: { xs: 0, md: -9 },
+      }}
+    >
       <Button variant="outlined" disabled>
         Clear
       </Button>
-    </div>
+    </Box>
   );
 };
 
@@ -50,12 +56,12 @@ export const nextReviewMeetingFormData = [
     id: 4,
     gridLength: 6,
     componentProps: {
-      name: "",
-      label: "",
+      name: "dated",
+      label: "Dated",
       fullWidth: true,
-      sx: { display: "none" },
+      sx: { marginTop: { xs: 0, md: 7 } },
     },
-    component: RHFTextField,
+    component: RHFDatePicker,
   },
   {
     id: 5,
@@ -66,20 +72,22 @@ export const nextReviewMeetingFormData = [
       fullWidth: true,
       multiline: true,
       minRows: 3,
+      sx: { marginTop: { xs: 0, md: -7 } },
     },
     component: RHFTextField,
+    clearBtn,
   },
-  {
-    id: 6,
-    gridLength: 6,
-    componentProps: {
-      name: "dated",
-      label: "Dated",
-      fullWidth: true,
-      // sx: { mt: 0 },
-    },
-    component: RHFDatePicker,
-  },
+  // {
+  //   id: 6,
+  //   gridLength: 6,
+  //   componentProps: {
+  //     name: "dated",
+  //     label: "Dated",
+  //     fullWidth: true,
+  //     // sx: { mt: 0 },
+  //   },
+  //   component: RHFDatePicker,
+  // },
   {
     id: 7,
     gridLength: 12,

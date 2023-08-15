@@ -14,7 +14,7 @@ export const CarerDevelopmentTwo = () => {
                   <form.component
                     size="small"
                     {...form.otherOptions}
-                    //   disabled={disabled}
+                    disabled
                   >
                     {form.otherOptions
                       ? form.options?.map((option: any) => (

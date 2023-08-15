@@ -14,7 +14,7 @@ export const LastReviewMeeting = () => {
                   <form.component
                     size="small"
                     {...form.otherOptions}
-                    //   disabled={disabled}
+                    disabled
                   >
                     {form.otherOptions
                       ? form.options?.map((option: any) => (

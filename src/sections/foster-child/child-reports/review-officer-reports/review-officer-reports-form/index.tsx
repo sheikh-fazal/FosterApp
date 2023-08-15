@@ -61,12 +61,16 @@ export const ReviewOfficerReportFromData = [
     component: <PartOfTeam />,
   },
   {
-    title: "Carer’s own development (carer 1)",
+    title: "Carer's own development (carer 1)",
     component: <CarerDevelopmentOne />,
   },
   {
-    title: "Carer’s own development (carer 2)",
+    title: "Carer's own development (carer 2)",
     component: <CarerDevelopmentTwo />,
+  },
+  {
+    title: "SUMMARY AND RECOMMENDATION",
+    // component: <Complaints />,
   },
   {
     title: "Summary",
