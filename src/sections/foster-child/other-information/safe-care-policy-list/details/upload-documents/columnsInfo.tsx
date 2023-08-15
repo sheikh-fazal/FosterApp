@@ -10,14 +10,14 @@ export const getColumns = (parms: any) => {
   const { fosterChildId } = query;
   return [
     {
-      accessorFn: (row: any) => row.documentName,
+      accessorFn: (row: any) => row.docName,
       id: "Document Name",
       cell: (info: any) => info.getValue(),
       header: "Document Name",
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.documentType,
+      accessorFn: (row: any) => row.docType,
       id: "Document Type",
       cell: (info: any) => info.getValue(),
       header: "Document Type",
@@ -31,7 +31,7 @@ export const getColumns = (parms: any) => {
       isSortable: false,
     },
     {
-      accessorFn: (row: any) => row.uploadBy,
+      accessorFn: (row: any) => row.uploadedBy,
       id: "Person Uploaded",
       cell: (info: any) => info.getValue(),
       header: " Person Uploaded",

@@ -13,7 +13,10 @@ import {
   useDelSatsExamGradeDocsListDataMutation,
   useGetSatsExamGradeDocsListDataQuery,
 } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
-import { useGetSafeCarePolicyDocsListDataQuery } from "@root/services/foster-child/other-information/safe-care-policy/safeCarePolicyApi";
+import {
+  useDelSafeCarePolicyDocsListDataMutation,
+  useGetSafeCarePolicyDocsListDataQuery,
+} from "@root/services/foster-child/other-information/safe-care-policy/safeCarePolicyApi";
 
 export const useSafeCarePolicyDocuemntInfoList = () => {
   const router = useRouter();
@@ -40,13 +43,13 @@ export const useSafeCarePolicyDocuemntInfoList = () => {
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetSafeCarePolicyDocsListDataQuery(apiDataParameter);
 
-  const [delSatsExamGradeDocsListData] =
-    useDelSatsExamGradeDocsListDataMutation();
+  const [delSafeCarePolicyDocsListData] =
+    useDelSafeCarePolicyDocsListDataMutation();
 
   const handleDeleteListItem = async (id: string) => {
     try {
       setListInfoCon((pre) => ({ ...pre, someAsyncAction: true }));
-      const data = await delSatsExamGradeDocsListData({ id });
+      const data = await delSafeCarePolicyDocsListData({ id });
       displaySuccessMessage(data, enqueueSnackbar);
       setListInfoCon((pre) => ({ ...pre, someAsyncAction: false }));
       return true;
@@ -65,7 +68,7 @@ export const useSafeCarePolicyDocuemntInfoList = () => {
   };
 
   const openUpdateViewModel = (viewId: string, isViewModel: boolean = true) => {
-    const uploadDocsFormData = data?.data?.documents.find(
+    const uploadDocsFormData = data?.data?.[`safe_care-policy_doc`].find(
       ({ id }: any) => id === viewId
     );
     // console.log({ uploadDocsFormData });
@@ -90,7 +93,6 @@ export const useSafeCarePolicyDocuemntInfoList = () => {
     openUpdateViewModel,
     router,
   });
-  console.log({ data });
   return {
     tableHeaderRef,
     columns,
