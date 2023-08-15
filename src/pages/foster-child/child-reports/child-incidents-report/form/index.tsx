@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import HomeIcon from "@mui/icons-material/Home";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import ChildIncidentsReportList from "@root/sections/foster-child/child-reports/child-incidents-report/ChildIncidentsReportList";
+import UpsertChildIncidentsReport from "@root/sections/foster-child/child-reports/child-incidents-report/ChildIncidentsReportForm";
 
 const BREADCRUMBS = (fosterChildId: any) => {
   return [
@@ -12,17 +13,17 @@ const BREADCRUMBS = (fosterChildId: any) => {
       href: `/foster-child?fosterChildId=${fosterChildId}`,
     },
     {
-      name: "Child Reports",
+      name: "Child Reports List",
     },
   ];
 };
 
-const PAGE_TITLE = "CHILD INCIDENTS REPORTS";
-ChildIncidentsReportTable.getLayout = function getLayout(page: any) {
+const PAGE_TITLE = "VIEW CHILD INCIDENTS REPORTS";
+ChildIncidentsReportForm.getLayout = function getLayout(page: any) {
   return <Layout>{page}</Layout>;
 };
 
-export default function ChildIncidentsReportTable() {
+export default function ChildIncidentsReportForm() {
   const router = useRouter();
   const { fosterChildId }: any = router.query;
   return (
@@ -32,7 +33,7 @@ export default function ChildIncidentsReportTable() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(fosterChildId)}
       />
-      <ChildIncidentsReportList />
+      <UpsertChildIncidentsReport />
     </>
   );
 }
