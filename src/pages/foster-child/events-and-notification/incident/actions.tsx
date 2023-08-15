@@ -73,7 +73,7 @@ export default function ChildIncidentInfoActions() {
     try {
       const res: any = await postDocuments({
         params: {
-          childMedicationInfoId: ChildMedicationInfoId,
+          // childMedicationInfoId: ChildMedicationInfoId,
         },
         body: formData,
       });
@@ -89,7 +89,7 @@ export default function ChildIncidentInfoActions() {
   const deleteDocument = (id: any) => {
     deleteDocumentList({
       params: {
-        childMedicationInfoDocId: id,
+        // childMedicationInfoDocId: id,
       },
     })
       .unwrap()
