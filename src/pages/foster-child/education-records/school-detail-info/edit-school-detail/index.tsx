@@ -70,8 +70,6 @@ export default function EditSchoolDetail() {
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {
-    // formData.append("date", '12/12/2000');
-    // formData.append("uploadedBy", "Mughal");
     formData.append("fosterChildId", fosterChildId);
     formData.append("formName", "SCHOOL_DETAIL_INFO");
     formData.append("recordId", schoolInfoId);
