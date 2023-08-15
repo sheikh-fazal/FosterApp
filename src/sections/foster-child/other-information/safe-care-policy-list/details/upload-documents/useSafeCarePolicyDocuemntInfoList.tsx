@@ -13,8 +13,9 @@ import {
   useDelSatsExamGradeDocsListDataMutation,
   useGetSatsExamGradeDocsListDataQuery,
 } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
+import { useGetSafeCarePolicyDocsListDataQuery } from "@root/services/foster-child/other-information/safe-care-policy/safeCarePolicyApi";
 
-export const useSatsDetailsUploadDocuemntInfoList = () => {
+export const useSafeCarePolicyDocuemntInfoList = () => {
   const router = useRouter();
   const { query } = useRouter();
   const [page, setPage] = useState(0);
@@ -34,10 +35,10 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
   };
   const tableHeaderRef = useRef<any>();
 
-  const apiDataParameter = { params, id: query?.therapyInfoId };
+  const apiDataParameter = { params, id: query.id };
 
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetSatsExamGradeDocsListDataQuery(apiDataParameter);
+    useGetSafeCarePolicyDocsListDataQuery(apiDataParameter);
 
   const [delSatsExamGradeDocsListData] =
     useDelSatsExamGradeDocsListDataMutation();
@@ -89,6 +90,7 @@ export const useSatsDetailsUploadDocuemntInfoList = () => {
     openUpdateViewModel,
     router,
   });
+  console.log({ data });
   return {
     tableHeaderRef,
     columns,

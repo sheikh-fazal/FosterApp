@@ -46,10 +46,10 @@ export const safeCarePolicyApi = baseAPI.injectEndpoints({
     }),
 
     getSafeCarePolicyDocsListData: builder.query({
-      query: (apiDataParameter: any) => ({
-        url: `/list-safe-care-policy/doc/list/`,
+      query: (payload: any) => ({
+        url: `/foster-child/list-safe-care-policy/doc/list/${payload?.id}`,
         method: "GET",
-        params: apiDataParameter.params,
+        params: payload?.params,
       }),
       providesTags: [TAG],
     }),

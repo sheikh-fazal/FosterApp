@@ -20,7 +20,7 @@ export const getColumns = (parms: any) => {
       accessorFn: (row: any) => row.documentType,
       id: "Document Type",
       cell: (info: any) => info.getValue(),
-      header: "Appointment",
+      header: "Document Type",
       isSortable: false,
     },
     {
