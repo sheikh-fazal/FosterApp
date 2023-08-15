@@ -98,13 +98,7 @@ export const systemAdminData = [
     image: image10,
     link: "/system-admin/system-performance-monitoring",
   },
-  {
-    id: 11,
-    title: "Bulk Operations",
-    bgColor: "#F6830F",
-    image: image11,
-    link: "/system-admin/bulk-operations",
-  },
+
   {
     id: 12,
     title: "Manage FAQs",
@@ -214,5 +208,12 @@ export const moreSystemAdminFeature = [
     bgColor: "#F6830F",
     image: Setting,
     link: "",
+  },
+  {
+    id: 12,
+    title: "Bulk Operations",
+    bgColor: "#DEBC0A",
+    image: image11,
+    link: "/system-admin/bulk-operations",
   },
 ];

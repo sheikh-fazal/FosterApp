@@ -64,8 +64,6 @@ export default function EditStudySupportInfo() {
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {
-    // formData.append("date", '12/12/2000');
-    // formData.append("uploadedBy", "Mughal");
     formData.append("fosterChildId", fosterChildId);
     formData.append("formName", "STUDY_SUPPORT_INFO");
     formData.append("recordId", id);
@@ -92,10 +90,8 @@ export default function EditStudySupportInfo() {
         <StudySupportInfoForm />
         <UploadDocuments
           onDelete={(row: any) => {
-            console.log(row.id);
             deleteData(row.id);
           }}
-          // readOnly={true}
           searchParam={(searchedText: any) =>
             setSearchHandle(searchedText.search)
           }

@@ -16,32 +16,24 @@ import { useRouter } from "next/router";
 import { useHouseholdConditionA } from "./useHouseholdConditionA";
 
 export const HouseholdConditionA = (props: any) => {
-  const { disabled, formData, isError, isSuccess, breadCrumbData } = props;
-  // const theme: any = useTheme();
-  // const methods: any = useForm({
-  //   resolver: yupResolver(FormSchema),
-  //   defaultValues,
-  // });
-  // const { handleSubmit } = methods;
-  // const onSubmit = (data: any) => {
-  //   formData(data);
-  // };
-  // useEffect(() => {
-  //   breadCrumbData("Household Condition - A");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-  const { theme, handleSubmit, onSubmit, methods, router, isLoading }: any =
-    useHouseholdConditionA({ breadCrumbData, formData });
-  // const router = useRouter();
+  const {
+    disabled,
+    formData,
+    isError,
+    isSuccess,
+    isLoading,
+    breadCrumbData,
+    initialValueProps = defaultValues,
+    submitFunction,
+  } = props;
+
+  const { theme, handleSubmit, onSubmit, methods, router }: any =
+    useHouseholdConditionA({ breadCrumbData, formData, submitFunction ,initialValueProps});
   return (
     <Page title="Household Condition - A">
       <Card sx={{ p: 2 }}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            {/* <Grid item md={12}>
-              <Typography variant="h6">Summary And Recommendation</Typography>
-            </Grid> */}
-
             {householdConditionA_Data?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>

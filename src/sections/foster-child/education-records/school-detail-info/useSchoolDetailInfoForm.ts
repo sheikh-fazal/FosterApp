@@ -47,7 +47,6 @@ export const useSchoolDetailInfoForm = () => {
           body: data,
           fosterChildId: fosterChildId,
         }).unwrap();
-        console.log(res);
         enqueueSnackbar(res?.message ?? `Added Successfully!`, {
           variant: "success",
         });
