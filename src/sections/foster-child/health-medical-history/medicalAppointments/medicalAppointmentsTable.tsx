@@ -100,7 +100,6 @@ const MedicalAppointmentsTable = (props: any) => {
             <Box sx={{ p: 1 }}>
               <Box sx={{ mb: 0.5 }}>
                 <TableHeader
-                  // ref={tableHeaderRefTwo}
                   title="Medical Appointments"
                   searchKey="search"
                   showAddBtn
