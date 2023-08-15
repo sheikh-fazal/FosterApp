@@ -11,7 +11,6 @@ export const ChildIncidentsReportFormFields = [
       name: "urnNumber",
       label: "URN Number",
       fullWidth: true,
-      type: "number",
     },
     component: RHFTextField,
   },
@@ -81,16 +80,16 @@ export const ChildIncidentsReportFormFields = [
     },
     component: RHFTextField,
   },
-  {
-    id: 8,
-    gridLength: 6,
-    otherOptions: {
-      name: "personNotifiedToAgency",
-      label: "Person Notified to Agency",
-      fullWidth: true,
-    },
-    component: RHFTextField,
-  },
+  // {
+  //   id: 8,
+  //   gridLength: 6,
+  //   otherOptions: {
+  //     name: "personNotifiedToAgency",
+  //     label: "Person Notified to Agency",
+  //     fullWidth: true,
+  //   },
+  //   component: RHFTextField,
+  // },
   {
     id: 9,
     gridLength: 6,
@@ -118,8 +117,10 @@ export const ChildIncidentsReportFormFields = [
       name: "childLA",
       label: "Child Local Authority",
       fullWidth: true,
+      select: true,
     },
-    component: RHFTextField,
+    options: [{ value: "nil", label: "nil" }],
+    component: RHFSelect,
   },
   {
     id: 12,
@@ -128,8 +129,10 @@ export const ChildIncidentsReportFormFields = [
       name: "carerLA",
       label: "Carer Local Authority",
       fullWidth: true,
+      select: true,
     },
-    component: RHFTextField,
+    options: [{ value: "nil", label: "nil" }],
+    component: RHFSelect,
   },
   {
     id: 13,
@@ -251,7 +254,7 @@ export const ChildIncidentsReportFormFields = [
     gridLength: 6,
     otherOptions: {
       label: "Has Ofsted Manager Informed",
-      name: "hasRegManagInformed",
+      name: "hasOfstedInformed",
     },
     component: RHFRadioGroupBoolean,
   },
@@ -346,7 +349,7 @@ export const ChildIncidentsReportFormFields = [
   },
   {
     id: 32,
-    gridLength: 6,
+    gridLength: 12,
     otherOptions: {
       label: "Was Independent support offered during investigation?",
       name: "independentSupportOffered",
@@ -400,7 +403,7 @@ export const ChildIncidentsReportFormFields = [
   },
 ];
 export const defaultValues = {
-  urnNumber: null,
+  urnNumber: "Nil",
   children: null,
   incidentDate: null,
   agencyReportedDate: null,
@@ -439,8 +442,6 @@ export const defaultValues = {
 export const formatters: any = {};
 
 export const formSchema = Yup.object().shape({
-  dateOfOccurence: Yup.date().required("Required"),
-  correspondenceTo: Yup.string().required("Required"),
   urnNumber: Yup.string().required("Required"),
   children: Yup.string().required("Required"),
   incidentDate: Yup.date().required("Required"),
@@ -450,8 +451,8 @@ export const formSchema = Yup.object().shape({
   personNotifiedToAgency: Yup.string().required("Required"),
   personCompletingReport: Yup.string().required("Required"),
   agencySocialWorkerInvolved: Yup.string().required("Required"),
-  childLA: Yup.date().required("Required"),
-  carerLA: Yup.date().required("Required"),
+  childLA: Yup.string().required("Required"),
+  carerLA: Yup.string().required("Required"),
   incidentDetails: Yup.string().required("Required"),
   agencyActionTaken: Yup.string().required("Required"),
   carerActionTaken: Yup.string().required("Required"),

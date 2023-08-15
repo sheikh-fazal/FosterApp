@@ -4,6 +4,7 @@ import TableHeader from "@root/components/TableHeader";
 import { Box, Paper } from "@mui/material";
 import dayjs from "dayjs";
 import { useChildIncidentsReportList } from "./useChildIncidentsReportList";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 const ChildIncidentsReportList = () => {
   const {
@@ -67,48 +68,32 @@ const ChildIncidentsReportList = () => {
           <TableAction
             size="small"
             type="edit"
-            // onClicked={() =>
-            //   router.push({
-            //     pathname:
-            //       "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
-            //     query: {
-            //       action: "view",
-            //       id: info?.row?.original?.id,
-            //       fosterChildId: fosterChildId,
-            //     },
-            //   })
-            // }
+            onClicked={() =>
+              router.push({
+                pathname: "/foster-child/child-reports/child-incidents-report/form",
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
+            }
           />
           <TableAction
             size="small"
             type="view"
-            // onClicked={() =>
-            //   router.push({
-            //     pathname:
-            //       "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
-            //     query: {
-            //       action: "view",
-            //       id: info?.row?.original?.id,
-            //       fosterChildId: fosterChildId,
-            //     },
-            //   })
-            // }
+            onClicked={() =>
+              router.push({
+                pathname: "/foster-child/child-reports/child-incidents-report/form",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
+            }
           />
-          <TableAction
-            size="small"
-            type="delete"
-            // onClicked={() =>
-            //   router.push({
-            //     pathname:
-            //       "/foster-child/child-background-info/child-chronology-of-events/complaints-info",
-            //     query: {
-            //       action: "view",
-            //       id: info?.row?.original?.id,
-            //       fosterChildId: fosterChildId,
-            //     },
-            //   })
-            // }
-          />
+          <DeletePrompt onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)} />
           {/* <TableAction size="small" type="print" onClicked={() => console.log("")} />
           <TableAction size="small" type="share" onClicked={() => console.log("")} /> */}
         </Box>

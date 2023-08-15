@@ -2,7 +2,6 @@ import Layout from "@root/layouts";
 import { useRouter } from "next/router";
 import HomeIcon from "@mui/icons-material/Home";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import ChildIncidentsReportList from "@root/sections/foster-child/child-reports/child-incidents-report/ChildIncidentsReportList";
 import UpsertChildIncidentsReport from "@root/sections/foster-child/child-reports/child-incidents-report/ChildIncidentsReportForm";
 
 const BREADCRUMBS = (fosterChildId: any) => {
@@ -10,7 +9,7 @@ const BREADCRUMBS = (fosterChildId: any) => {
     {
       icon: <HomeIcon />,
       name: "Child Info",
-      href: `/foster-child?fosterChildId=${fosterChildId}`,
+      href: `/foster-child/child-reports/child-incidents-report?fosterChildId=${fosterChildId}`,
     },
     {
       name: "Child Reports List",

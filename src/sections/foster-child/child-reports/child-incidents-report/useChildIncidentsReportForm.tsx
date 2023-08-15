@@ -4,13 +4,13 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  useLazyGetChildChronologyOfEventsOohReportsByIdQuery,
-  usePostChildChronologyOfEventsOohReportsMutation,
-  usePatchChildChronologyOfEventsOohReportsByIdMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/OOHReportsAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { defaultValues, formSchema, formatters } from "./ChildIncidentsReportData";
+import {
+  useLazyGetChildIncidentsReportQuery,
+  usePatchChildIncidentsReportMutation,
+  usePostChildIncidentsReportMutation,
+} from "@root/services/foster-child/child-records/ChildIncidentsReportsAPI";
 
 export const useChildIncidentsReportForm = () => {
   const router = useRouter();
@@ -18,13 +18,14 @@ export const useChildIncidentsReportForm = () => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
-  const [getOohReportsList] = useLazyGetChildChronologyOfEventsOohReportsByIdQuery();
-  const [postOohReportsData] = usePostChildChronologyOfEventsOohReportsMutation({});
-  const [editOohReportsList] = usePatchChildChronologyOfEventsOohReportsByIdMutation();
+
+  const [getChildIncidentReport] = useLazyGetChildIncidentsReportQuery();
+  const [postChildIncidentReport] = usePostChildIncidentsReportMutation({});
+  const [editChildIncidentReport] = usePatchChildIncidentsReportMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getOohReportsList(id);
+      const { data, isError } = await getChildIncidentReport({ incidentId: id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -58,7 +59,7 @@ export const useChildIncidentsReportForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postOohReportsData({ addOohReportsRequestDto: { ...data, fosterChildId, status: "Pending" } })
+      postChildIncidentReport({ formData: { ...data }, fosterChildId })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -66,7 +67,7 @@ export const useChildIncidentsReportForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-background-info/child-chronology-of-events/ooh-reports",
+            pathname: "/foster-child/child-reports/child-incidents-report/form",
             query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
@@ -74,27 +75,21 @@ export const useChildIncidentsReportForm = () => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list");
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      const formData = {
-        id,
-        addDayLogRequestDto: { ...data },
-      };
-      editOohReportsList(formData)
+
+      editChildIncidentReport({ formData: { ...data }, incidentId: id })
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          // router.push("/carer-info/background-checks/statutory-checks-list/car-insurance");
           setIsFetching(false);
         });
     } else {
