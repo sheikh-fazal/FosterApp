@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useTheme } from "@mui/material";
 import { allegationInfoTableColumnsFunction, ALLEGATIONLISTPAGELIMIT } from ".";
 import { enqueueSnackbar } from "notistack";
 import {
@@ -9,6 +10,7 @@ import {
 
 export const useAllegationList = () => {
   const router = useRouter();
+  const theme: any = useTheme();
   const [isRecordSetForDelete, setIsRecordSetForDelete] = useState(false);
   const [deleteData, setDeleteData] = useState("");
   const [page, setPage] = useState(0);
@@ -57,7 +59,8 @@ export const useAllegationList = () => {
   };
   const allegationInfoTableColumns = allegationInfoTableColumnsFunction(
     router,
-    prepareRecordForDelete
+    prepareRecordForDelete,
+    theme
   );
 
   return {
