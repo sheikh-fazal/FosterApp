@@ -11,8 +11,8 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       providesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
     getSingleSchoolActivityData: builder.query({
-      query: (fosterChildId: any) => ({
-        url: `/school-info/out-of-school-activity/${fosterChildId}`,
+      query: (recordID: any) => ({
+        url: `/school-info/out-of-school-activity/${recordID}`,
         method: "GET",
       }),
       providesTags: ["OUT-SCHOOL-ACTIVITY"],

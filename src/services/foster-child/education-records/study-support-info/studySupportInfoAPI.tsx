@@ -46,10 +46,10 @@ export const contactApi = baseAPI.injectEndpoints({
     }),
     //documents upload
     getUploadDocumentsStudySupportInfo: builder.query({
-      query: ({ params }: any) => ({
-        url: `/education-records/uploaded-documents/List`,
+      query: ({ fosterChildId, params }: any) => ({
+        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}`,
         method: "GET",
-        params,
+        params: { ...params, formName: "STUDY_SUPPORT_INFO" }
       }),
       providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),

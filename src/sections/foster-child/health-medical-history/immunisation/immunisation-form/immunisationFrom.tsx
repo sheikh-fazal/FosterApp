@@ -13,23 +13,25 @@ import router from "next/router";
 import { immunisationInfoFormValue } from "..";
 import { useImmunisationForm } from "./useImmunisationForm";
 import IsFetching from "@root/components/loaders/IsFetching";
+import { LoadingButton } from "@mui/lab";
 
 const backPath = "/foster-child/health-medical-history/immunisation";
 
 const ImmunisationFrom = (props: any) => {
   const { action, id, immunisationData, setImmunisationId } = props;
-  const { methods, onSubmit, handleSubmit, theme,isFetching } = useImmunisationForm({
-    action,
-    id,
-    immunisationData,
-    setImmunisationId,
-  });
+  const { methods, onSubmit, handleSubmit, theme, isFetching, isSubmitting } =
+    useImmunisationForm({
+      action,
+      id,
+      immunisationData,
+      setImmunisationId,
+    });
   return (
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
           <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-          <IsFetching isFetching={isFetching} />
+            <IsFetching isFetching={isFetching} />
             <Grid container>
               {immunisationInfoFormValue.map((form: any, index) => {
                 return (
@@ -72,16 +74,14 @@ const ImmunisationFrom = (props: any) => {
                 xs={12}
               >
                 {action === "edit" || action === "add" ? (
-                  <Button
-                    sx={{
-                      bgcolor: theme.palette.primary.main,
-                      "&:hover": { bgcolor: theme.palette.primary.main },
-                    }}
-                    variant="contained"
+                  <LoadingButton
+                    sx={{ marginRight: "1rem" }}
                     type="submit"
+                    variant="contained"
+                    loading={isSubmitting}
                   >
                     Submit
-                  </Button>
+                  </LoadingButton>
                 ) : null}
 
                 <Button
@@ -90,7 +90,11 @@ const ImmunisationFrom = (props: any) => {
                     "&:hover": { bgcolor: theme.palette.orange.main },
                   }}
                   variant="contained"
-                  onClick={() => router.push(`/foster-child/health-medical-history/immunisation?fosterChildId=${router.query.fosterChildId}`)}
+                  onClick={() =>
+                    router.push(
+                      `/foster-child/health-medical-history/immunisation?fosterChildId=${router.query.fosterChildId}`
+                    )
+                  }
                 >
                   back
                 </Button>

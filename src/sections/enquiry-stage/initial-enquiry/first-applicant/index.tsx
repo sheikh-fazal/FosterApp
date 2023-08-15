@@ -23,48 +23,34 @@ const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
   isJointApplicant: true, //1
-  areaOffice: "USD", //2
+  areaOffice: "", //2
   dateOfEnquiry: new Date(todayDate), //3
-  whereHearAboutOutAgency: "USD", //4
-  additionalSourceInformation: "additional Info", //5
+  whereHearAboutOutAgency: "", //4
+  additionalSourceInformation: "", //5
   image: null, //6
-  title: "USD", //7
-  firstName: "Ahmed", //8
-  middleName: "MAC", //9
-  lastName: "Afzal", //10
+  title: "", //7
+  firstName: "", //8
+  middleName: "", //9
+  lastName: "", //10
   dateOfBirth: new Date(ageOf18Years), //11
-  age: "30", //12
-  gender: "USD", //13
-  ethnicity: "USD", //14
-  religion: "USD", //15
-  practicingStatus: "USD", //16
-  mobileNo: "0011", //17
-  email: "abc@yopmail.com", //18
-  spareBedrooms: "USD", //19
+  age: "", //12
+  gender: "", //13
+  ethnicity: "", //14
+  religion: "", //15
+  practicingStatus: "", //16
+  mobileNo: "", //17
+  email: "", //18
+  spareBedrooms: "", //19
   permanentResidencyInUk: false, //20
   outStandingCourtOrders: true, //21
 };
 
 export const FormSchema = Yup.object().shape({
-  // isJointApplicant: Yup.boolean().oneOf(
-  //   [true],
-  //   "Must Accept Joint Application"
-  // ),
   areaOffice: Yup.string().required("Area office is required"),
   dateOfEnquiry: Yup.date().required("Date of Enquiry is required"),
   whereHearAboutOutAgency: Yup.string().trim().required("Field is required"),
   additionalSourceInformation: Yup.string().required("Field is required"),
   image: Yup.mixed().required("Photo is is required"),
-  // .test(
-  //   "fileFormat",
-  //   "Unsupported Format",
-  //   (value: any) => value && FILE_FORMATS.includes(value.type)
-  // )
-  // .test(
-  //   "fileSize",
-  //   `File must be less than or equal to ${fData(MAX_FILE_SIZE)}`,
-  //   (value: any) => value && value.size <= MAX_FILE_SIZE
-  // ),
   title: Yup.string().required("Field is required"),
   firstName: Yup.string().required("First name is required"),
   middleName: Yup.string().required("Middle name is required"),
@@ -195,6 +181,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "firstName",
       label: "First Name",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -204,6 +191,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "middleName",
       label: "Middle Name",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -213,6 +201,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "lastName",
       label: "Last Name",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -233,6 +222,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "age",
       label: "Age",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -304,6 +294,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "mobileNo",
       label: "MobileNo",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,
@@ -313,6 +304,7 @@ export const FIRSTAPPLICANTFORMDATA = [
     componentProps: {
       name: "email",
       label: "Email",
+      fullWidth: true,
     },
     gridLength: 6,
     component: RHFTextField,

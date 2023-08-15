@@ -13,6 +13,7 @@ import {
 export const useCarInsuranceForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
+  const { fosterCarerId } = router.query;
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
@@ -60,7 +61,11 @@ export const useCarInsuranceForm = (action: any, id: any) => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postCarInsuranceDetails(data)
+      const formData = {
+        fosterCarerId,
+        ...data,
+      };
+      postCarInsuranceDetails(formData)
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
@@ -70,14 +75,21 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/car-insurance",
-            query: { action: "edit", id: `${res?.data.id}` },
+            query: {
+              action: "edit",
+              id: `${res?.data.id}`,
+              fosterCarerId: fosterCarerId,
+            },
           });
         })
         .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push("/carer-info/background-checks/statutory-checks-list");
+          router.push({
+            pathname: "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
         });
     } else if (action === "edit") {
       setIsFetching(true);
@@ -91,17 +103,21 @@ export const useCarInsuranceForm = (action: any, id: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
-          );
+          router.push({
+            pathname:
+              "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push(
-            "/carer-info/background-checks/statutory-checks-list/car-insurance"
-          );
+          router.push({
+            pathname:
+              "/carer-info/background-checks/statutory-checks-list",
+            query: { fosterCarerId: fosterCarerId },
+          });
           setIsFetching(false);
         });
     } else {
@@ -121,5 +137,6 @@ export const useCarInsuranceForm = (action: any, id: any) => {
     methods,
     isFetching,
     isSubmitting,
+    fosterCarerId,
   };
 };

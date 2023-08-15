@@ -9,7 +9,6 @@ import {
   usePostIndependencePacksMutation,
   useUpdateIndependencePackMutation,
 } from "@root/services/foster-child/education-records/independence-packs/IndependencePacks";
-import dayjs from "dayjs";
 
 export const useIndependencePackFormGold = ({
   action,

@@ -11,8 +11,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export const useSchoolDetailInfoForm = () => {
-  const Router: any = useRouter();
-  const { action, schoolInfoId, fosterChildId } = Router.query;
+  const router: any = useRouter();
+  const { action, schoolInfoId, fosterChildId } = router.query;
+
   const { data } = useGetSchoolDetailInfoByIdQuery(schoolInfoId, {
     refetchOnMountOrArgChange: true,
   });
@@ -49,9 +50,14 @@ export const useSchoolDetailInfoForm = () => {
         enqueueSnackbar(res?.message ?? `Added Successfully!`, {
           variant: "success",
         });
-        Router.push(
-          `/foster-child/education-records/school-detail-info?fosterChildId=${fosterChildId}`
-        );
+        router.push({
+          pathname: `/foster-child/education-records/school-detail-info/edit-school-detail`,
+          query: {
+            action: "edit",
+            fosterChildId: fosterChildId,
+            schoolInfoId: res?.data?.id,
+          },
+        });
       } else if (action === "edit") {
         const res: any = await putData({
           body: data,
@@ -60,7 +66,7 @@ export const useSchoolDetailInfoForm = () => {
         enqueueSnackbar(res?.message ?? `Update Successfully!`, {
           variant: "success",
         });
-        Router.push(
+        router.push(
           `/foster-child/education-records/school-detail-info?fosterChildId=${fosterChildId}`
         );
       }

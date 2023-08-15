@@ -61,15 +61,20 @@ export const systemAdminWidgets = [
     ],
     action: "Actions",
   },
-  {
-    id: "5",
-    subArray: [{ icon: Categorize, title: "Categorize", disable: true }],
-    action: "",
-  },
+  // {
+  //   id: "5",
+  //   subArray: [{ icon: Categorize, title: "Categorize", disable: true }],
+  //   action: "",
+  // },
 ];
 // ==========================================================================================
 
-export const SearchPeopleData = [{ title: "By Role" }, { title: "By Postcode" }, { title: "By People" }, { title: "By Category" }];
+export const SearchPeopleData = [
+  { title: "By Role" },
+  { title: "By Postcode" },
+  { title: "By People" },
+  { title: "By Category" },
+];
 
 // ============================================================================================
 

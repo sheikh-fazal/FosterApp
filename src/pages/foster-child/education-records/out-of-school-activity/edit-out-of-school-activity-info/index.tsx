@@ -45,8 +45,10 @@ export default function EditChildExclusionInfoPage() {
   const recordID: any = router?.query?.recordId;
 
   const { data, isError, isFetching, isLoading, isSuccess } =
-    useGetSingleSchoolActivityDataQuery(fosterChildId);
+    useGetSingleSchoolActivityDataQuery(recordID);
 
+    console.log(data);
+    
   const [postActivityDocument] = usePostDocumentSchoolActivityMutation();
   const {
     data: documentData,
@@ -54,7 +56,6 @@ export default function EditChildExclusionInfoPage() {
     isLoading: documentLoading,
     isSuccess: documentSuccess,
   } = useGetSchoolActivityDocumentDataQuery(fosterChildId);
-  console.log(documentData?.data?.documents);
 
   const postDocumentData = async (data: any) => {
     const formData = new FormData();
