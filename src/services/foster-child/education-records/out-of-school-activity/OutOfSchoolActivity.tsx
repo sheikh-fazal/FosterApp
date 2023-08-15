@@ -55,6 +55,13 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       }),
       providesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
+    deleteSchoolActivityDocumentData: builder.mutation({
+      query: (recordId: any) => ({
+        url: `/education-records/uploaded-document/${recordId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
+    }),
   }),
 });
 
@@ -66,4 +73,5 @@ export const {
   usePatchSchoolActivityDataMutation,
   usePostDocumentSchoolActivityMutation,
   useGetSchoolActivityDocumentDataQuery,
+  useDeleteSchoolActivityDocumentDataMutation
 } = OutOfSchoolActivity;

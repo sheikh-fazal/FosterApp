@@ -6,6 +6,7 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import EditOutSchoolActivityInfo from "@root/sections/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info/EditOutSchoolActivityInfo";
 import {
+  useDeleteSchoolActivityDocumentDataMutation,
   useGetSchoolActivityDocumentDataQuery,
   useGetSingleSchoolActivityDataQuery,
   usePatchSchoolActivityDataMutation,
@@ -14,6 +15,7 @@ import {
 import { useRouter } from "next/router";
 import IsFetching from "@root/components/loaders/IsFetching";
 import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
 
 const PAGE_TITLE = "Out of Shool Activity";
 
@@ -47,8 +49,8 @@ export default function EditChildExclusionInfoPage() {
   const { data, isError, isFetching, isLoading, isSuccess } =
     useGetSingleSchoolActivityDataQuery(recordID);
 
-    console.log(data);
-    
+  const { params, pageChangeHandler } = useTableParams();
+
   const [postActivityDocument] = usePostDocumentSchoolActivityMutation();
   const {
     data: documentData,
@@ -56,6 +58,8 @@ export default function EditChildExclusionInfoPage() {
     isLoading: documentLoading,
     isSuccess: documentSuccess,
   } = useGetSchoolActivityDocumentDataQuery(fosterChildId);
+
+  const [deletRecord] = useDeleteSchoolActivityDocumentDataMutation();
 
   const postDocumentData = async (data: any) => {
     const formData = new FormData();
@@ -68,8 +72,10 @@ export default function EditChildExclusionInfoPage() {
 
     try {
       const res = await postActivityDocument({ formData, fosterChildId });
-      console.log(res);
-    } catch (error) {}
+      enqueueSnackbar(`${res?.data?.message}`, { variant: "success" });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
   };
 
   return (
@@ -100,7 +106,11 @@ export default function EditChildExclusionInfoPage() {
             <UploadDocuments
               readOnly={false}
               tableData={documentData?.data?.documents}
+              onPageChange={pageChangeHandler}
               searchParam={() => {}}
+              onDelete={(data: any) => {
+                deletRecord(data?.id);
+              }}
               isLoading={documentLoading}
               isFetching={documentFetching}
               column={[
@@ -110,8 +120,11 @@ export default function EditChildExclusionInfoPage() {
                 "personUploaded",
                 "documentPassword",
               ]}
+              isPagination={true}
               isSuccess={documentSuccess}
               modalData={(data: any) => postDocumentData(data)}
+              totalPages={documentData?.data?.meta?.pages}
+              currentPage={documentData?.data?.meta?.page}
             />
           </>
         )}
