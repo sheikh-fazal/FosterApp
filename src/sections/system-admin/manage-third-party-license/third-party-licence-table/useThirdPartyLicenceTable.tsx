@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { TableData } from ".";
-import { Box, Checkbox } from "@mui/material";
+import { Box, Checkbox, Switch } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import { useTheme } from "@mui/material";
@@ -84,6 +84,15 @@ export const useThirdPartyLicenceTable = () => {
       isSortable: true,
     },
     {
+      accessorFn: (row: any) => row.averageResponseTime,
+      id: "enable-disable",
+      cell: (info: any) => (
+        <Switch inputProps={{ "aria-label": "Switch demo" }} defaultChecked />
+      ),
+      header: () => <span>Enable/Disable</span>,
+      isSortable: true,
+    },
+    {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
@@ -92,7 +101,8 @@ export const useThirdPartyLicenceTable = () => {
             type="edit"
             onClicked={() =>
               router.push({
-                pathname: "/system-admin/manage-third-party-license/edit-third-party-license-form",
+                pathname:
+                  "/system-admin/manage-third-party-license/edit-third-party-license-form",
                 query: { action: "edit", id: "" },
               })
             }
