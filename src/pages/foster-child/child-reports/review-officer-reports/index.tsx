@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { ReviewOfficerReportsTable } from "@root/sections/foster-child/child-reports/review-officer-reports/ReviewOfficerReportsTable";
 
-
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = (query: any) => [
@@ -19,7 +18,7 @@ const BREADCRUMBS = (query: any) => [
   },
   {
     name: "Child Reports",
-    href: "",
+    href: "/foster-child",
   },
 ];
 
@@ -41,7 +40,9 @@ export default function ReviewOfficerReportsList() {
         title={PAGE_TITLE}
       />
       <Paper elevation={3}>
-        <ReviewOfficerReportsTable fosterChildId={router?.query?.fosterChildId} />
+        <ReviewOfficerReportsTable
+          fosterChildId={router?.query?.fosterChildId}
+        />
       </Paper>
     </Page>
   );

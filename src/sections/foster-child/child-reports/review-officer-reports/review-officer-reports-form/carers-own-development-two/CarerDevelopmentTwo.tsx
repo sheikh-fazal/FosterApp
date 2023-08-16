@@ -1,13 +1,12 @@
-import React from 'react'
-import { OtherDocumentsFormData } from '.';
 import { Grid } from '@mui/material';
+import React from 'react'
+import { carerDevelopmentTwoFormData } from '.';
 
-export const OtherDocuments = () => {
+export const CarerDevelopmentTwo = () => {
   return (
     <>
-      {/* <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}> */}
-      <Grid container spacing={3}>
-        {OtherDocumentsFormData?.map((form: any) => {
+    <Grid container spacing={3}>
+        {carerDevelopmentTwoFormData?.map((form: any) => {
           return (
             <Grid item xs={12} md={form?.gridLength} key={form?.id}>
               <>
@@ -32,7 +31,6 @@ export const OtherDocuments = () => {
           );
         })}
       </Grid>
-      {/* </FormProvider> */}
     </>
   )
 }

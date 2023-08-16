@@ -1,13 +1,10 @@
-import HomeIcon from "@mui/icons-material/Home";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import Page from "@root/components/Page";
-import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
-import FamilyOrgInvolvedForm from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-form-list/FamilyOrgInvolvedForm";
-import { FamilyPersonDocument } from "@root/sections/foster-child/child-background-info/family-person-org-involved/family-person-list/family-person-document/FamilyPersonDocument";
-import { ReviewOfficerReportsForm } from "@root/sections/foster-child/child-reports/review-officer-reports/review-officer-reports-form/ReviewOfficerReportsForm";
-import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
 import { useRouter } from "next/router";
+import Page from "@root/components/Page";
+import HomeIcon from "@mui/icons-material/Home";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import { useGetFamilyPersonListByIdQuery } from "@root/services/foster-child/child-background-info/family-person-list/FamilyPersonListAPI";
+import { ReviewOfficerReportsForm } from "@root/sections/foster-child/child-reports/review-officer-reports/review-officer-reports-form/ReviewOfficerReportsForm";
 
 // Constants
 const BREADCRUMBS = (query: any) => [
@@ -18,7 +15,7 @@ const BREADCRUMBS = (query: any) => [
   },
   {
     name: "Child Reports list",
-    href: "",
+    href: "/foster-child/child-reports/review-officer-reports",
   },
 ];
 
@@ -34,9 +31,9 @@ export default function ViewFamilyPersonForm() {
   const router = useRouter();
   console.log(query);
 
-  const familyPersonId = query["family_person_id"];
+  const reviewReportsId = query["review_officer_reports_id"];
   const { data, isLoading, isSuccess, isError } =
-    useGetFamilyPersonListByIdQuery(familyPersonId);
+    useGetFamilyPersonListByIdQuery(reviewReportsId);
 
   console.log("Is loading: ", data);
 
