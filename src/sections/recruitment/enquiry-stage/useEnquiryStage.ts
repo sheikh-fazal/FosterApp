@@ -4,6 +4,7 @@ import { useGetEnquiryStageStatusQuery } from "@root/services/recruitment/enquir
 
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import { enqueueSnackbar } from "notistack";
 
 export const useEnquiryStage: any = () => {
   const router = useRouter();
@@ -18,7 +19,15 @@ export const useEnquiryStage: any = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetEnquiryStageStatusQuery(id);
   const enquiryStageApiData = data?.data;
+  isError &&
+    enqueueSnackbar(data?.message ?? "Something Went Wrong!", {
+      variant: "error",
+    });
 
+  isSuccess &&
+    enqueueSnackbar(data?.message ?? "Data Retrieve Successfully", {
+      variant: "success",
+    });
   useEffect(() => {
     setEnquiryStageData(
       ENQUIRYSTAGEDATAFunction.map((item) => ({

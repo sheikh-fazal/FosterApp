@@ -9,6 +9,7 @@ import { AssignedFormDialogbox } from "../assigned-form-dialogbox/AssignedFormDi
 import { useAssessmentStageOne } from "./useAssessmentStageOne";
 import ArrowLeftSharpIcon from "@mui/icons-material/ArrowLeftSharp";
 import Link from "next/link";
+import { enqueueSnackbar } from "notistack";
 
 export default function AssessmentStageOne() {
   const {
@@ -132,7 +133,7 @@ export default function AssessmentStageOne() {
               {isLoading && isFetching && (
                 <Skeleton variant="rounded" width={200} height={50} />
               )}
-              {isSuccess && (
+              {!isLoading && !isFetching && (
                 <RecruitmentStatusDropdown
                   id={"4f7512fb-2916-451b-8240-97f529ded73d"}
                   status={ele?.status}
@@ -141,23 +142,6 @@ export default function AssessmentStageOne() {
                   setMockData={setAssessmentStageOneData}
                   mockData={assessmentStageOneData}
                 />
-              )}
-              {isError && (
-                <Skeleton
-                  sx={{
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    color: "red",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                  variant="rounded"
-                  width={200}
-                  height={50}
-                >
-                  Server not Responding
-                </Skeleton>
               )}
             </Grid>
             <Grid

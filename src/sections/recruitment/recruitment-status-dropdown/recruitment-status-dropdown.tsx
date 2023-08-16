@@ -69,7 +69,7 @@ export const RecruitmentStatusDropdown = (props: any) => {
                 }}
                 onClick={() => setOpen((prevOpen) => !prevOpen)}
               >
-                {status}
+                {status ?? "Select Status"}
                 <ArrowDropDownIcon />
               </Button>
             </ButtonGroup>

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { READYFORPLACEMENT } from ".";
 import { useGetReadyForPlacementStatusQuery } from "@root/services/recruitment/ready-for-placement/readyForPlacementApi";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 export const useReadyForPlacement = () => {
   const theme: any = useTheme();
@@ -18,6 +19,15 @@ export const useReadyForPlacement = () => {
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetReadyForPlacementStatusQuery(id);
   const readyForPlacementApiData = data?.data;
+  isError &&
+    enqueueSnackbar(data?.message ?? "Something Went Wrong!", {
+      variant: "error",
+    });
+
+  isSuccess &&
+    enqueueSnackbar(data?.message ?? "Data Retrieve Successfully", {
+      variant: "success",
+    });
   useEffect(() => {
     setReadyForPlacementData(
       READYFORPLACEMENTFUNCTION.map((item) => ({

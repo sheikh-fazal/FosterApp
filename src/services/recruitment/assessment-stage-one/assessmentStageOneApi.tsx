@@ -67,12 +67,14 @@ export const assessmentStageOneApi: any = baseAPI.injectEndpoints({
 
     getStageOneStatus: builder.query({
       query: (id: string) => `/assessment-stage-one/${id}/status`,
+      providesTags: [TAG],
     }),
     patchStageOneStatus: builder.mutation({
       query: ({ userId, body }: any) => ({
         url: `assessment-stage-one/${userId}/status?stageOne=${body?.point}&status=${body?.status}`,
         method: "PATCH",
       }),
+      invalidatesTags: [TAG],
     }),
   }),
 });
@@ -86,5 +88,5 @@ export const {
   useGetRegularAssessmentAttendeesQuery,
   usePostStageOneApprovalDetailMutation,
   useGetStageOneStatusQuery,
-  usePatchStageOneStatusMutation
+  usePatchStageOneStatusMutation,
 } = assessmentStageOneApi;

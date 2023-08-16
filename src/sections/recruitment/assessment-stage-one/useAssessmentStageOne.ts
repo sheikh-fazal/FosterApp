@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { ASSESSMENTSTAGEONEDATA } from ".";
 import { useGetStageOneStatusQuery } from "@root/services/recruitment/assessment-stage-one/assessmentStageOneApi";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 export const useAssessmentStageOne = () => {
   const router = useRouter();
@@ -16,6 +17,16 @@ export const useAssessmentStageOne = () => {
 
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetStageOneStatusQuery(id);
+
+  isError &&
+    enqueueSnackbar(data?.message ?? "Something Went Wrong!", {
+      variant: "error",
+    });
+
+  isSuccess &&
+    enqueueSnackbar(data?.message ?? "Data Retrieve Successfully", {
+      variant: "success",
+    });
   const assessmentStageOneApiData = data?.data;
 
   useEffect(() => {

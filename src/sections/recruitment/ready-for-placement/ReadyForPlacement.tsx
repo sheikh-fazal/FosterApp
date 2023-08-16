@@ -134,7 +134,7 @@ export default function ReadyForPlacement() {
               {isLoading && isFetching && (
                 <Skeleton variant="rounded" width={200} height={50} />
               )}
-              {isSuccess && (
+              {!isLoading && !isFetching && (
                 <RecruitmentStatusDropdown
                   id={"4f7512fb-2916-451b-8240-97f529ded73d"}
                   status={ele?.status}
@@ -143,23 +143,6 @@ export default function ReadyForPlacement() {
                   setMockData={setReadyForPlacementData}
                   mockData={readyForPlacementData}
                 />
-              )}
-              {isError && (
-                <Skeleton
-                  sx={{
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    color: "red",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                  variant="rounded"
-                  width={200}
-                  height={50}
-                >
-                  Server not Responding
-                </Skeleton>
               )}
             </Grid>
             <Grid
