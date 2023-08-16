@@ -73,21 +73,15 @@ export const ReviewOfficerReportsForm = () => {
             <Grid container>
               {ReviewOfficerReportFromData.map((item: any) => (
                 <Grid item xs={12} key={item.title}>
-                  {item.title === "SUMMARY AND DISCUSSION" ? (
+                  {item.isHeading && (
                     <Typography
                       variant="h6"
                       sx={{ textAlign: "center", mt: 2 }}
                     >
-                      SUMMARY AND DISCUSSION
+                      {item?.title}
                     </Typography>
-                  ) : item.title === "SUMMARY AND RECOMMENDATION" ? (
-                    <Typography
-                      variant="h6"
-                      sx={{ textAlign: "center", mt: 2 }}
-                    >
-                      SUMMARY AND RECOMMENDATION
-                    </Typography>
-                  ) : (
+                  )}
+                  {!item.isHeading && (
                     <AccordianList
                       title={item.title}
                       component={item.component}

@@ -14,7 +14,6 @@ import { Summery } from "./summary/Summery";
 import { Recommendation } from "./recommendation/Recommendation";
 import { NextReviewMeeting } from "./next-review-meeting/NextReviewMeeting";
 
-
 export const ReviewOfficerReportFromData = [
   // {
   //   title: "Expand All",
@@ -46,7 +45,7 @@ export const ReviewOfficerReportFromData = [
   },
   {
     title: "SUMMARY AND DISCUSSION",
-    // component: <Complaints />,
+    isHeading: true,
   },
   {
     title: "Impact of fostering",
@@ -70,7 +69,7 @@ export const ReviewOfficerReportFromData = [
   },
   {
     title: "SUMMARY AND RECOMMENDATION",
-    // component: <Complaints />,
+    isHeading: true,
   },
   {
     title: "Summary",
