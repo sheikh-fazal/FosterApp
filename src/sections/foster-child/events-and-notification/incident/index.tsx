@@ -3,13 +3,13 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import RHFRadioGroupBoolean from "@root/components/hook-form/RHFRadioGroupBoolean";
 import * as Yup from "yup";
 
-export const Dummy = [
-  {
-    nameOfIncident: "ash",
-    dateOfIncident: "4/24/2002",
-    status: "pandiiiiiiiiiiiiiiiiiiiiing",
-  },
-];
+// export const Dummy = [
+//   {
+//     nameOfIncident: "ash",
+//     dateOfIncident: "4/24/2002",
+//     status: "pandiiiiiiiiiiiiiiiiiiiiing",
+//   },
+// ];
 
 export const IncidentFormFields = [
   {

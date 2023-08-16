@@ -4,14 +4,19 @@ import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-// import {
-//   useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery,
-//   usePostChildChronologyOfEventsIncidentsInfoMutation,
-//   usePatchChildChronologyOfEventsIncidentsInfoByIdMutation,
-// } from "@root/services/foster-child/child-background-info/child-chronology-of-events/IncidentsInfoAPI";
+import {
+  useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery,
+  usePostChildChronologyOfEventsIncidentsInfoMutation,
+  usePatchChildChronologyOfEventsIncidentsInfoByIdMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/IncidentsInfoAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { defaultValues, formSchema, formatters } from ".";
-import { useGetChildIncidentByIdQuery, useLazyGetChildIncidentByIdQuery, usePatchChildIncidentMutation, usePostChildIncidentMutation } from "@root/services/foster-child/event-and-notification/incident/IncidentApi";
+// import {
+//   useGetChildIncidentByIdQuery,
+//   useLazyGetChildIncidentByIdQuery,
+//   usePatchChildIncidentMutation,
+//   usePostChildIncidentMutation,
+// } from "@root/services/foster-child/event-and-notification/incident/IncidentApi";
 
 export const useIncidentForm = () => {
   const router = useRouter();
@@ -21,14 +26,14 @@ export const useIncidentForm = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   const [getIncidentsInfoList] =
-  useLazyGetChildIncidentByIdQuery();
-    // useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
+    // useLazyGetChildIncidentByIdQuery();
+    useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
   const [postIncidentsInfoData] =
-  usePostChildIncidentMutation({});
-    // usePostChildChronologyOfEventsIncidentsInfoMutation({});
+    // usePostChildIncidentMutation({});
+    usePostChildChronologyOfEventsIncidentsInfoMutation({});
   const [editIncidentsInfoList] =
-  usePatchChildIncidentMutation();
-    // usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
+    // usePatchChildIncidentMutation();
+    usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
@@ -79,8 +84,7 @@ export const useIncidentForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/events-and-notification/incident/actions",
+            pathname: "/foster-child/events-and-notification/incident/actions",
             query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
@@ -93,9 +97,9 @@ export const useIncidentForm = () => {
       setIsFetching(true);
       const formData = {
         id,
-        addIncidentsInfoRequestDto: { 
-          ...data
-         },
+        addIncidentsInfoRequestDto: {
+          ...data,
+        },
       };
       editIncidentsInfoList(formData)
         .unwrap()
@@ -105,8 +109,7 @@ export const useIncidentForm = () => {
           });
           setIsFetching(false);
           router.push({
-            pathname:
-              "/foster-child/events-and-notification/incident",
+            pathname: "/foster-child/events-and-notification/incident",
             query: {
               fosterChildId: fosterChildId,
             },

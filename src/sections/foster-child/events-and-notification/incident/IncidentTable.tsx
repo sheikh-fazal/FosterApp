@@ -5,7 +5,7 @@ import { Box, Grid, Paper } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import router from "next/router";
-import { Dummy } from ".";
+// import { Dummy } from ".";
 import { useIncidentTable } from "./useIncidentTable";
 
 const IncidentTable = (props: any) => {
@@ -24,13 +24,13 @@ const IncidentTable = (props: any) => {
     isError,
     isLoading,
   } = useIncidentTable();
-    console.log("🚀 ~ file: incidentTable.tsx:27 ~ IncidentTable ~ data:", data)
+  console.log("🚀 ~ file: incidentTable.tsx:27 ~ IncidentTable ~ data:", data);
   const columns = [
     {
-      accessorFn: (row: any) => row?.nameOfIncident,
-      id: "nameOfIncident",
+      accessorFn: (row: any) => row?.natureOfIncident,
+      id: "natureOfIncident",
       cell: (info: any) => info.getValue(),
-      header: "Name Of Incident",
+      header: "Nature Of Incident",
       isSortable: true,
     },
     {
@@ -116,19 +116,8 @@ const IncidentTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-              data={data?.absence_details}
-                // data={Dummy ?? []}
-                // columns={columns}
-                // isLoading={false}
-                // isFetching={false}
-                // isError={false}
-                // isSuccess={true}
-                // isPagination={true}
-                // showSerialNo={true}
-                //   totalPages={data?.meta?.pages ?? 0}
-                //   currentPage={data?.meta?.page ?? 1}
-                //   onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                // data={data?.absence_details}
+                data={data?.data?.cc_incident_info}
                 columns={columns}
                 isLoading={isLoading}
                 isFetching={isFetching}
@@ -136,10 +125,10 @@ const IncidentTable = (props: any) => {
                 isSuccess={isSuccess}
                 currentPage={data?.data?.metameta?.page}
                 totalPages={data?.data?.metameta?.pages}
-                showSerialNo
-                isPagination
                 onPageChange={pageChangeHandler}
                 onSortByChange={sortChangeHandler}
+                isPagination={true}
+                showSerialNo={true}
               />
             </Box>
           </Paper>
