@@ -14,6 +14,7 @@ export const useStudySupportInfoForm = () => {
   const router = useRouter();
 
   const { data } = useGetStudySupportInfoByIdQuery(router?.query?.id, {
+    skip: router?.query?.action === "add",
     refetchOnMountOrArgChange: true,
   });
   const [postData, { isError, isSuccess, isLoading }] =
