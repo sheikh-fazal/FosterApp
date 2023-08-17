@@ -15,6 +15,7 @@ const AllegationInfo = () => {
     postAllegationInfoDataStatus,
     patchAllegationInfoDataStatus,
     theme,
+    saveAsDraft,
   }: any = useAllegationInfo();
 
   if (isLoading) return <SkeletonFormdata />;
@@ -66,6 +67,7 @@ const AllegationInfo = () => {
                 patchAllegationInfoDataStatus?.isLoading ||
                 postAllegationInfoDataStatus?.isLoading
               }
+              onClick={() => saveAsDraft?.("Pending")}
               size="large"
               type="button"
               variant="contained"

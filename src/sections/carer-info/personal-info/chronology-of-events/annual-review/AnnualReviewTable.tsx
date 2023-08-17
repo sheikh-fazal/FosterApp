@@ -26,7 +26,7 @@ const AnnualReviewTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.allegationDate ?? "-",
+      accessorFn: (row: any) => row?.reviewDate ?? "-",
       id: "reviewDate",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
@@ -66,9 +66,9 @@ const AnnualReviewTable = () => {
           />
 
           {/* Calling Delete Modal */}
-          {/* <DeletePromptn
+          <DeletePrompt
             onDeleteClick={() => listDeleteHandler(info?.row?.origial?.id)}
-          /> */}
+          />
           <TableAction
             size="small"
             type="view"
@@ -95,7 +95,7 @@ const AnnualReviewTable = () => {
       <Box sx={{ mb: 1 }}>
         <TableHeader
           ref={tableHeaderRefTwo}
-          title="Allegation"
+          title="Annual Review"
           searchKey="search"
           showAddBtn
           onChanged={(event: any) => {

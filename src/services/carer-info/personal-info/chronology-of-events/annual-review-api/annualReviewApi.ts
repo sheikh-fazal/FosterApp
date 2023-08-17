@@ -3,31 +3,31 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const annualReviewApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    allegationList: builder.query<null, object>({
+    annualReviewList: builder.query<null, object>({
       query: (payload: any) => ({
-        url: `chronology-events/allegation/List/${payload.params.fosterCarerId}`,
+        url: `carer-Info/list-annual-review/${payload.params.fosterCarerId}`,
         method: "GET",
         params: payload.params,
       }),
       providesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
-    postAllegationList: builder.mutation({
+    postAnnualReviewList: builder.mutation({
       query: (payload: any) => ({
-        url: `chronology-events/allegation/${payload.params.fosterCarerId}`,
+        url: `carer-Info/add-annual-review`,
         method: "POST",
-        body: payload.body,
+        body: payload,
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
-    singleAllegetionList: builder.query({
-      query: (id: any) => `chronology-events/allegation/${id}`,
+    singleAnnualReviewList: builder.query({
+      query: (id: any) => `carer-Info/get-annual-review/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
       },
       providesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
-    patchAllegationList: builder.mutation({
+    patchAnnualReviewList: builder.mutation({
       query: ({ id, ...formData }: any) => ({
         url: `chronology-events/allegation/${id}`,
         method: "PATCH",
@@ -35,7 +35,7 @@ export const annualReviewApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
-    deleteAllegationList: builder.mutation({
+    deleteAnnualReviewList: builder.mutation({
       query: (id: any) => ({
         url: `chronology-events/allegation/${id}`,
         method: "DELETE",
@@ -45,9 +45,9 @@ export const annualReviewApi = baseAPI.injectEndpoints({
   }),
 });
 export const {
-  useAllegationListQuery,
-  useLazySingleAllegetionListQuery,
-  usePostAllegationListMutation,
-  usePatchAllegationListMutation,
-  useDeleteAllegationListMutation,
+  useAnnualReviewListQuery,
+  useLazySingleAnnualReviewListQuery,
+  usePostAnnualReviewListMutation,
+  usePatchAnnualReviewListMutation,
+  useDeleteAnnualReviewListMutation,
 } = annualReviewApi;

@@ -56,7 +56,7 @@ export default function SingleLevel({ levelName, children, isBadge }: any) {
             );
           }}
           sx={{
-            padding: "9px 40px",
+            padding: "9px 30px",
             background: "#FFFFFF",
             border: "1px solid #000000",
             borderRadius: "10px",

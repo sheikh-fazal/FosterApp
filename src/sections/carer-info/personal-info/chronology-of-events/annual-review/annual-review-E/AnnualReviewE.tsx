@@ -1,6 +1,6 @@
 import React from "react";
 import TrainingDetails from "./TrainingDetailsTable";
-import Placements from "./PlacementsTable";
+import PlacementsTable from "./PlacementsTable";
 import RespitePlacements from "./RespitePlacementsTable";
 import TransferPlacements from "./TransferPlacementsTable";
 
@@ -10,7 +10,7 @@ const AnnualReviewE = () => {
       {/* Training Details Table */}
       <TrainingDetails />
       {/* PlacementsTable */}
-      <Placements />
+      <PlacementsTable />
       {/* Respite Placements Table */}
       <RespitePlacements />
       {/* Transfer Placements Table */}

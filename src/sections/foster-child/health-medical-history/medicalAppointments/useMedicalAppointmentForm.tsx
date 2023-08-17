@@ -50,7 +50,7 @@ const useMedicalAppointmentForm = (props: any) => {
             query: {
               action: "edit",
               fosterChildId: fosterChildId,
-              hospitalinfoId: data?.id,
+              medicalAppointmentID: data?.data?.id,
             },
           });
         })

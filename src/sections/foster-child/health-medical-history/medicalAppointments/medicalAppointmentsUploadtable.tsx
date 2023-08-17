@@ -113,10 +113,6 @@ const MedicalAppointmentsUploadtable = () => {
         isSuccess={true}
         isPagination={true}
         showSerialNo={false}
-        // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-        // currentPage={incidentlist?.data?.meta?.page ?? 1}
-        // onPageChange={pageChangeHandler}
-        // onSortByChange={sortChangeHandler}
       />
     </>
   );

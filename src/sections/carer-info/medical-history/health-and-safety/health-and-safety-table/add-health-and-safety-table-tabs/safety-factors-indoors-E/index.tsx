@@ -9,52 +9,52 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  bathroomAreLightsOrElectricFiresControlledByPullCordSwitch: false,
-  dateToBeCarriedOutOne: new Date(todayDate),
+  isLightControlledByPullCord: false,
+  dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsRequireOne: "Text",
+  improvementsReq1: "",
 
-  areMedicineShampooCosmeticsLockedAwayOutOfReach: false,
-  dateToBeCarriedOutTwo: new Date(todayDate),
+  isMedicinesEtcLockedAwayOutOfReach: false,
+  dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsRequireTwo: "Text",
+  improvementsReq2: "",
 
-  isThereThermostateOnTheHotWaterControlToPreventScalding: false,
-  dateToBeCarriedOutThree: new Date(todayDate),
+  isThermostatOnHotWater: false,
+  dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsRequireThree: "text",
+  improvementsReq3: "",
 
-  isThereLockOnDoorAndOutOfReach: false,
-  dateToBeCarriedOutFour: new Date(todayDate),
+  isDoorOutOfReach: false,
+  dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsRequireFour: "text",
+  improvementsReq4: "",
 
-  bedroomIsThereALockOnDoorAndOutOfReach: false,
-  dateToBeCarriedOutFive: new Date(todayDate),
+  isBedroomLocked: false,
+  dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsRequireFive: "text",
+  improvementsReq5: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOutOne: Yup.date().required("Required"),
+  dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsRequireOne: Yup.string().required("Required"),
+  improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsRequireTwo: Yup.string().required("Required"),
+  improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOutThree: Yup.date().required("Required"),
+  dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsRequireThree: Yup.string().required("Required"),
+  improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFour: Yup.date().required("Required"),
+  dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsRequireFour: Yup.string().required("Required"),
+  improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFive: Yup.date().required("Required"),
+  dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsRequireFive: Yup.string().required("Required"),
+  improvementsReq5: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsE_Data = [
@@ -69,7 +69,7 @@ export const safetyFactorsIndoorsE_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "bathroomAreLightsOrElectricFiresControlledByPullCordSwitch",
+      name: "isLightControlledByPullCord",
       label:
         "Bathroom Are lights or electric fires controlled by a pull cord switch?",
     },
@@ -79,7 +79,7 @@ export const safetyFactorsIndoorsE_Data = [
     id: 2,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutOne",
+      name: "dateToBeCarriedOut1",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -88,7 +88,7 @@ export const safetyFactorsIndoorsE_Data = [
   {
     id: 3,
     componentProps: {
-      name: "improvementsRequireOne",
+      name: "improvementsReq1",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -102,7 +102,7 @@ export const safetyFactorsIndoorsE_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areMedicineShampooCosmeticsLockedAwayOutOfReach",
+      name: "isMedicinesEtcLockedAwayOutOfReach",
       label:
         "Are medicines, shampoos, cosmetics and razors locked away out of reach?",
     },
@@ -112,7 +112,7 @@ export const safetyFactorsIndoorsE_Data = [
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTwo",
+      name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -121,7 +121,7 @@ export const safetyFactorsIndoorsE_Data = [
   {
     id: 6,
     componentProps: {
-      name: "improvementsRequireTwo",
+      name: "improvementsReq2",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -135,7 +135,7 @@ export const safetyFactorsIndoorsE_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isThereThermostateOnTheHotWaterControlToPreventScalding",
+      name: "isThermostatOnHotWater",
       label:
         "Is there a thermostat on the hot water control to prevent scalding?",
     },
@@ -145,7 +145,7 @@ export const safetyFactorsIndoorsE_Data = [
     id: 8,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutThree",
+      name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -154,7 +154,7 @@ export const safetyFactorsIndoorsE_Data = [
   {
     id: 9,
     componentProps: {
-      name: "improvementsRequireThree",
+      name: "improvementsReq3",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -168,7 +168,7 @@ export const safetyFactorsIndoorsE_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isThereLockOnDoorAndOutOfReach",
+      name: "isDoorOutOfReach",
       label:
         "Is there a lock on the door (is it out of reach of small children)?",
     },
@@ -178,7 +178,7 @@ export const safetyFactorsIndoorsE_Data = [
     id: 11,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFour",
+      name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -187,7 +187,7 @@ export const safetyFactorsIndoorsE_Data = [
   {
     id: 12,
     componentProps: {
-      name: "improvementsRequireFour",
+      name: "improvementsReq4",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -201,7 +201,7 @@ export const safetyFactorsIndoorsE_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "bedroomIsThereALockOnDoorAndOutOfReach",
+      name: "isBedroomLocked",
       label:
         "Bedroom Is there a lock on the door (is it out of reach of small children)?",
     },
@@ -211,7 +211,7 @@ export const safetyFactorsIndoorsE_Data = [
     id: 14,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFive",
+      name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -220,7 +220,7 @@ export const safetyFactorsIndoorsE_Data = [
   {
     id: 15,
     componentProps: {
-      name: "improvementsRequireFive",
+      name: "improvementsReq5",
       label: "Improvements required",
       multiline: true,
       minRows: 3,

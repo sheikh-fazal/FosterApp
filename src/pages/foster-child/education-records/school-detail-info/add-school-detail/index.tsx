@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 // layout
 import Layout from "@root/layouts";
@@ -10,10 +10,6 @@ import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { Box } from "@mui/material";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { useRouter } from "next/router";
-import {
-  useGetUploadDocumentsSchoolDetailInfoQuery,
-  usePostUploadDocumentsSchoolDetailInfoApiMutation,
-} from "@root/services/foster-child/education-records/school-detail-info/schoolDetailInfoApi";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -24,15 +20,6 @@ AddSchoolDetail.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 export default function AddSchoolDetail() {
-  const [searchHandle, setSearchHandle] = useState("");
-  const [pageHandle, setPageHandle] = useState(0);
-
-  const params = {
-    search: searchHandle,
-    limit: "10",
-    offset: pageHandle,
-  };
-
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
@@ -51,20 +38,7 @@ export default function AddSchoolDetail() {
   ];
 
   const PAGE_TITLE = "School Detail Info";
-  const {
-    data: documentData,
-    isLoading: isDocumentLoading,
-    isFetching: isDocumentFetching,
-    isError: hasDocumentError,
-    isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsSchoolDetailInfoQuery(params);
 
-  const tableData: any = documentData?.data?.documents;
-  const metaData: any = documentData?.data?.meta;
-
-  const pageChangeHandler = (page: any) => {
-    setPageHandle(page * 10);
-  };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -78,12 +52,6 @@ export default function AddSchoolDetail() {
         <SchoolDetailInfoForm />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
-          tableData={tableData}
-          isLoading={isDocumentLoading}
-          isFetching={isDocumentFetching}
-          isError={hasDocumentError}
-          isSuccess={isDocumentSuccess}
           column={[
             "documentOriginalName",
             "documentType",
@@ -91,9 +59,6 @@ export default function AddSchoolDetail() {
             "personUploaded",
             "documentPassword",
           ]}
-          onPageChange={(page: any) => pageChangeHandler(page)}
-          currentPage={metaData?.page}
-          totalPages={metaData?.pages}
         />{" "}
       </HorizaontalTabs>
     </Box>

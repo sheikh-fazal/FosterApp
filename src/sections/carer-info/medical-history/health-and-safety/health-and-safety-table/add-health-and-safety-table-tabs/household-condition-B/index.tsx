@@ -9,71 +9,71 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild: false,
-  dateToBeCarriedOutOne: new Date(todayDate),
+  isChildsShareRooms: false,
+  dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsRequireOne: "Text",
+  improvementsReq1: "",
 
-  canChildEatInComfortableAndRelaxedAtmosphere: false,
-  dateToBeCarriedOutTwo: new Date(todayDate),
+  isChildsEatComfortable: false,
+  dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsRequireTwo: "Text",
+  improvementsReq2: "",
 
-  isAccommodationHygienicallyCleanAndFree: false,
-  dateToBeCarriedOutThree: new Date(todayDate),
+  isAccommodationClean: false,
+  dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsRequireThree: "text",
+  improvementsReq3: "",
 
-  areThereAnyObviousHazards: false,
-  dateToBeCarriedOutFour: new Date(todayDate),
+  isAnyAbviousHazards: false,
+  dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsRequireFour: "text",
+  improvementsReq4: "",
 
-  doPetsPosePhysicalThreatToChildren: false,
-  dateToBeCarriedOutFive: new Date(todayDate),
+  isPetsPoseAPhysicalThread: false,
+  dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsRequireFive: "text",
+  improvementsReq5: "",
 
-  areSleepingAndFeedingArrangementsForPetsHygienic: false,
+  isFeedingArrangementsForBets: false,
 
-  dateToBeCarriedOutSix: new Date(todayDate),
+  dateToBeCarriedOut6: new Date(todayDate),
 
-  improvementsRequireSix: "text",
+  improvementsReq6: "",
 
-  doAdultsUnderstandHowInfectionsAreTransmitted: false,
-  dateToBeCarriedOutSeven: new Date(todayDate),
+  isAdutsUnderstandTransmitted: false,
+  dateToBeCarriedOut7: new Date(todayDate),
 
-  improvementsRequireSeven: "text",
+  improvementsReq7: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOutOne: Yup.date().required("Required"),
+  dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsRequireOne: Yup.string().required("Required"),
+  improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsRequireTwo: Yup.string().required("Required"),
+  improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOutThree: Yup.date().required("Required"),
+  dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsRequireThree: Yup.string().required("Required"),
+  improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFour: Yup.date().required("Required"),
+  dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsRequireFour: Yup.string().required("Required"),
+  improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFive: Yup.date().required("Required"),
+  dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsRequireFive: Yup.string().required("Required"),
+  improvementsReq5: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSix: Yup.date().required("Required"),
+  dateToBeCarriedOut6: Yup.date().required("Required"),
 
-  improvementsRequireSix: Yup.string().required("Required"),
+  improvementsReq6: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSeven: Yup.date().required("Required"),
+  dateToBeCarriedOut7: Yup.date().required("Required"),
 
-  improvementsRequireSeven: Yup.string().required("Required"),
+  improvementsReq7: Yup.string().required("Required"),
 });
 
 export const householdConditionB_Data = [
@@ -88,7 +88,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "ifChildrenOverEightYearOldWillBeSharingRoomAndWithASameSexOfChild",
+      name: "isChildsShareRooms",
       label:
         "If children over eight years old will be sharing a room, will it be with a child of the same sex ?",
     },
@@ -98,7 +98,7 @@ export const householdConditionB_Data = [
     id: 2,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutOne",
+      name: "dateToBeCarriedOut1",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -107,7 +107,7 @@ export const householdConditionB_Data = [
   {
     id: 3,
     componentProps: {
-      name: "improvementsRequireOne",
+      name: "improvementsReq1",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -121,7 +121,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "canChildEatInComfortableAndRelaxedAtmosphere",
+      name: "isChildsEatComfortable",
       label: "Can child eat in a comfortable and relaxed atmosphere ?",
     },
     component: RHFCheckbox,
@@ -130,7 +130,7 @@ export const householdConditionB_Data = [
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTwo",
+      name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -139,7 +139,7 @@ export const householdConditionB_Data = [
   {
     id: 6,
     componentProps: {
-      name: "improvementsRequireTwo",
+      name: "improvementsReq2",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -153,7 +153,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isAccommodationHygienicallyCleanAndFree",
+      name: "isAccommodationClean",
       label:
         "Is the accommodation hygienically clean and free from the odour of pets, cigarette smoke, urine and rubbish ?",
     },
@@ -163,7 +163,7 @@ export const householdConditionB_Data = [
     id: 8,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutThree",
+      name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -172,7 +172,7 @@ export const householdConditionB_Data = [
   {
     id: 9,
     componentProps: {
-      name: "improvementsRequireThree",
+      name: "improvementsReq3",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -186,7 +186,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areThereAnyObviousHazards",
+      name: "isAnyAbviousHazards",
       label: "Are there any obvious hazards ?",
     },
     component: RHFCheckbox,
@@ -195,7 +195,7 @@ export const householdConditionB_Data = [
     id: 11,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFour",
+      name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -204,7 +204,7 @@ export const householdConditionB_Data = [
   {
     id: 12,
     componentProps: {
-      name: "improvementsRequireFour",
+      name: "improvementsReq4",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -218,7 +218,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doPetsPosePhysicalThreatToChildren",
+      name: "isPetsPoseAPhysicalThread",
       label: "Do pets pose a physical threat to children ?",
     },
     component: RHFCheckbox,
@@ -227,7 +227,7 @@ export const householdConditionB_Data = [
     id: 14,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFive",
+      name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -236,7 +236,7 @@ export const householdConditionB_Data = [
   {
     id: 15,
     componentProps: {
-      name: "improvementsRequireFive",
+      name: "improvementsReq5",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -250,7 +250,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areSleepingAndFeedingArrangementsForPetsHygienic",
+      name: "isFeedingArrangementsForBets",
       label: "Are sleeping and feeding arrangements for pets hygienic?",
     },
     component: RHFCheckbox,
@@ -260,7 +260,7 @@ export const householdConditionB_Data = [
     id: 17,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSix",
+      name: "dateToBeCarriedOut6",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -270,7 +270,7 @@ export const householdConditionB_Data = [
   {
     id: 18,
     componentProps: {
-      name: "improvementsRequireSix",
+      name: "improvementsReq6",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -284,7 +284,7 @@ export const householdConditionB_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doAdultsUnderstandHowInfectionsAreTransmitted",
+      name: "isAdutsUnderstandTransmitted",
       label: "Do adults understand how infections are transmitted ?",
     },
     component: RHFCheckbox,
@@ -293,7 +293,7 @@ export const householdConditionB_Data = [
     id: 20,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSeven",
+      name: "dateToBeCarriedOut7",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -302,7 +302,7 @@ export const householdConditionB_Data = [
   {
     id: 21,
     componentProps: {
-      name: "improvementsRequireSeven",
+      name: "improvementsReq7",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
