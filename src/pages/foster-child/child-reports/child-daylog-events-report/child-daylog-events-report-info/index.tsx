@@ -3,19 +3,21 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import ChildDaylogEventsReportList from "@root/sections/foster-child/child-reports/child-daylog-events-report/ChildDaylogEventsReportList";
+import AllegationInfoTabs from "@root/sections/foster-child/events-and-notification/allegation/allegation-info/allegation-info-tabs/AllegationInfoTabs";
+import ChildDaylogEventsReportInfo from "@root/sections/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info/child-daylog-events-report-info/ChildDaylogEventsReportInfo";
+import ChildDaylogEventsReportInfoTabs from "@root/sections/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info/child-daylog-events-report-info-card/ChildDaylogEventsReportInfoCard";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "Child Info",
+    name: "Allegation List",
     href: !!query?.fosterChildId
-      ? `/foster-child?fosterChildId=${query?.fosterChildId}`
+      ? `/foster-child/events-and-notification/allegation?fosterChildId=${query?.fosterChildId}`
       : "/foster-child",
   },
   {
-    name: "Child Reports",
+    name: "Child Report List",
     href: "",
   },
 ];
@@ -24,13 +26,13 @@ const PAGE_TITLE = "DAY LOG EVENTS REPORTS";
 
 // ----------------------------------------------------------------------
 
-AllegationPage.getLayout = function getLayout(page: any) {
-  return <Layout title={PAGE_TITLE}>{page}</Layout>;
+AllegationInfoPage.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
 
-export default function AllegationPage() {
+export default function AllegationInfoPage() {
   const router = useRouter();
   if (!!!router?.query?.fosterChildId) {
     router.push({
@@ -45,7 +47,8 @@ export default function AllegationPage() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <ChildDaylogEventsReportList />
+      <ChildDaylogEventsReportInfoTabs />
+      {/* <ChildDaylogEventsReportInfo/> */}
     </Page>
   );
 }
