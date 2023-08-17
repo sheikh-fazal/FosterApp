@@ -34,11 +34,12 @@ const IncidentTable = (props: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.dateOfIncident,
-      id: "dateOfIncident",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("DD MMM YYYY")}</Box>;
-      },
+      accessorFn: (row: any) => row.incidentDate,
+      id: "incidentDate",
+      // cell: (info: any) => {
+      //   return <Box>{dayjs(info.getValue()).format("DD MMM YYYY")}</Box>;
+      // },
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: "Date of Incident",
       isSortable: true,
     },
