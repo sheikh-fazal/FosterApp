@@ -14,7 +14,7 @@ const SanctionDetailsLists = () => {
     isFetching,
     router,
     sanctionDetailsTableColumns,
-    // onDeleteConfirm,
+    onDeleteConfirm,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     headerChangeHandler,
@@ -59,7 +59,7 @@ const SanctionDetailsLists = () => {
         <DeleteModel
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}
-        //   onDeleteClick={() => onDeleteConfirm?.()}
+          onDeleteClick={() => onDeleteConfirm?.()}
         />
       )}
     </Card>

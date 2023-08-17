@@ -1,5 +1,5 @@
 import { baseAPI } from "@root/services/baseApi";
-export const gpDetailsInfoDocumentApi: any = baseAPI.injectEndpoints({
+export const childEducationInfoDocumentApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getChildEducationInfoDocumentData: builder.query({
       query: (apiDataParameter: any) => ({
@@ -34,4 +34,4 @@ export const {
   useDeleteEducationInfoDocumentDataByIdMutation,
   useGetChildEducationInfoDocumentDataQuery,
   usePostEducationInfoDocumentDataMutation,
-} = gpDetailsInfoDocumentApi;
+} = childEducationInfoDocumentApi;

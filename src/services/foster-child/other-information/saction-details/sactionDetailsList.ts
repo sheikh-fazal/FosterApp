@@ -18,29 +18,29 @@ export const SanctionDetailsList = baseAPI.injectEndpoints({
     }),
     postSanctionDetailsData: builder.mutation({
       //check the str of body here
-      query: ({ body, fosterChildId }: any) => ({
-        url: `/foster-child/add-sanction-details/${fosterChildId}`,
+      query: (apiDataParameter: any) => ({
+        url: `/foster-child/add-sanction-details`,
         method: "POST",
-        params: fosterChildId,
-        body: body,
+        params: apiDataParameter.queryParams,
+        body: apiDataParameter.body,
       }),
       invalidatesTags: ["SANCTION_DETAILS_LIST"],
     }),
     patchSanctionDetailsData: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `/foster-child/update-sanction-details/{sanctionDetailsId}${apiDataParameter?.pathParams?.sanctionDetailsId}`,
+        url: `/foster-child/update-sanction-details/${apiDataParameter?.pathParams?.sanctionDetailsId}`,
         method: "PATCH",
         body: apiDataParameter?.body,
       }),
       invalidatesTags: ["SANCTION_DETAILS_LIST"],
     }),
-    // deleteEducationInfoData: builder.mutation({
-    //   query: ({ id }: any) => ({
-    //     url: `education-records/education-info/${id}`,
-    //     method: "DELETE",
-    //   }),
-    //   invalidatesTags: ["CHILD_EDUCATION_INFO_LIST"],
-    // }),
+    deleteSanctionDetailsData: builder.mutation({
+      query: ({ id }: any) => ({
+        url: `/foster-child/delete-sanction-details/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["SANCTION_DETAILS_LIST"],
+    }),
   }),
 });
 export const {
@@ -50,5 +50,5 @@ export const {
   //   useLazyGetSingleEducationInfoDataQuery,
   usePostSanctionDetailsDataMutation,
   usePatchSanctionDetailsDataMutation,
-  //   useDeleteEducationInfoDataMutation,
+    useDeleteSanctionDetailsDataMutation,
 } = SanctionDetailsList;
