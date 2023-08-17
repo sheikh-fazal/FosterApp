@@ -24,15 +24,16 @@ export default function EditStudySupportInfo() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
   const formData = new FormData();
+  const Router: any = useRouter();
+  const { fosterChildId, id } = Router.query;
 
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId :id,
   };
 
-  const Router: any = useRouter();
-  const { fosterChildId, id } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,

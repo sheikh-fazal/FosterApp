@@ -16,6 +16,7 @@ export const useSchoolDetailInfoForm = () => {
 
   const { data } = useGetSchoolDetailInfoByIdQuery(schoolInfoId, {
     refetchOnMountOrArgChange: true,
+    skip: action === "add",
   });
   const [postData, { isError, isSuccess, isLoading }] =
     usePostSchoolDetailInfoApiMutation();
