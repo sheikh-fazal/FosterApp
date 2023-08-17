@@ -1,6 +1,6 @@
 import usePath from "@root/hooks/usePath";
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
@@ -34,15 +34,21 @@ export default function EditClaReview() {
   const [updateData, { isSuccess, isError: isErrorPatch }] =
     usePatchClaReviewByIdMutation();
 
+  const [docParams, setDocParams] = useState({
+    search: undefined,
+    limit: "10",
+    offset: "0",
+  });
+
   const {
     data: docData,
     isLoading: docLoading,
     isFetching: docFetching,
     isError: docError,
     isSuccess: docSuccess,
-  }: any = useClaReviewDocListQuery(claReviewId);
+  }: any = useClaReviewDocListQuery({ claReviewId, params: docParams });
 
-  const tableData: any = docData?.data;
+  const tableData: any = docData?.data?.cla_review_info_document;
   const metaData: any = docData?.data?.meta;
 
   const [postDocs] = usePostClaReviewDocMutation();
@@ -90,9 +96,12 @@ export default function EditClaReview() {
             isSuccess={isSuccess}
           />
         )}
+
         <UploadDocuments
           searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
+            setDocParams((prev: any) => {
+              return { ...prev, search: searchedText.search };
+            })
           }
           tableData={tableData}
           isLoading={docLoading}
@@ -108,8 +117,6 @@ export default function EditClaReview() {
           ]}
           modalData={async (data: any) => {
             const formData = new FormData();
-            formData.append("personName", data?.personName || "Name");
-            formData.append("documentName", data?.documentName || "Name");
             formData.append("documentType", data?.documentType);
             formData.append("documentDate", data?.documentDate);
             formData.append("password", data?.password);
@@ -139,9 +146,13 @@ export default function EditClaReview() {
               variant: "success",
             });
           }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          // currentPage={metaData?.page}
-          // totalPages={metaData?.pages}
+          onPageChange={(page: any) =>
+            setDocParams((prev: any) => {
+              return { ...prev, offset: (page - 1) * 10 };
+            })
+          }
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
         />
       </HorizaontalTabs>
     </Page>
