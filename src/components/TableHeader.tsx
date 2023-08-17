@@ -166,9 +166,11 @@ const TableHeader = forwardRef(function TableHeader(
       {/* generate login button */}
       {showGenerateLoginBtn && (
         <Button
-          color="orange"
           variant="contained"
-          sx={{ height: "40px" }}
+          sx={(theme: any) => ({
+            height: "40px",
+            backgroundColor: theme.palette.orange.main,
+          })}
           onClick={onGenerateLogin}
         >
           Generate Login
