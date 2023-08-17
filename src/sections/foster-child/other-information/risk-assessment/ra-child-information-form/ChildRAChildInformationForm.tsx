@@ -1,15 +1,15 @@
 import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
+// import { RAChildInformationFormFields } from "./RiskAssessmentData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
+// import { useRAChildInformationForm } from "./useRAChildInformationForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-import { IncidentFormFields } from ".";
-import { useIncidentForm } from "./useIncidentForm";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import { useChildRAChildInformationForm } from "./useChildRAChildInformationForm";
+import { RAChildInformationFormFields } from ".";
 
-const backPath = "/foster-child/events-and-notification/incident";
-
-const IncidentForm = (props: any) => {
-  // const { action, fosterChildId, ChildMedicationInfoId } = props;
+const ChildRAChildInformationForm = () => {
   const {
     router,
     methods,
@@ -19,7 +19,7 @@ const IncidentForm = (props: any) => {
     isLoading,
     action,
     fosterChildId,
-  } = useIncidentForm();
+  } = useChildRAChildInformationForm();
 
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
@@ -27,15 +27,9 @@ const IncidentForm = (props: any) => {
     <Grid>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-          {IncidentFormFields.map((form: any) => {
+          {RAChildInformationFormFields.map((form: any) => {
             return (
-              <Grid
-                item
-                xs={12}
-                md={form?.gridLength}
-                key={form.id}
-                sx={{ mt: 1 }}
-              >
+              <Grid item xs={12} md={form?.gridLength} key={form.id} sx={{ mt: 1 }}>
                 {form.component !== "RadioGroup" && (
                   <form.component
                     size="small"
@@ -54,12 +48,43 @@ const IncidentForm = (props: any) => {
               </Grid>
             );
           })}
+          <Grid xs={12} item>
+            <Paper
+              elevation={0}
+              sx={{
+                boxShadow: `0px 0px 3px 1px ${theme.palette.primary.main}`,
+              }}
+            >
+              <Box sx={{ px: 2, py: 2 }}>
+                <Typography
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontWeight: theme.typography.fontWeightMedium,
+                    mb: theme.spacing(2),
+                  }}
+                  variant="subtitle2"
+                >
+                  Significant events during the Child&apos;s Local Authority care episode (include
+                  date and risk - keep this updated)
+                </Typography>
+                <Grid container spacing={4}>
+                  <Grid item md={6}>
+                    <RHFDatePicker name={`date`} label="Date" size="small" fullWidth={true} />
+                  </Grid>
 
-          <Grid
-            xs={12}
-            sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
-            item
-          >
+                  <Grid item md={6}>
+                    <RHFTextField
+                      name={"risk"}
+                      disabled={action === "view" ? true : false}
+                      label="Risk"
+                      size="small"
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }} item>
             {action !== "view" && (
               <LoadingButton
                 type="submit"
@@ -80,12 +105,9 @@ const IncidentForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push({
-                  pathname: `${backPath}`,
-                  query: {
-                    fosterChildId: fosterChildId,
-                  },
-                })
+                router.push(
+                  `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`
+                )
               }
             >
               Back
@@ -97,4 +119,4 @@ const IncidentForm = (props: any) => {
   );
 };
 
-export default IncidentForm;
+export default ChildRAChildInformationForm;

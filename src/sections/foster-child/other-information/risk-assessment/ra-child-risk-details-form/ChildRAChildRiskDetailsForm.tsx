@@ -1,15 +1,16 @@
 import { Box, Button, Grid, Paper, Typography, useTheme } from "@mui/material";
+// import { RAChildRiskDetailsFormFields } from "./RiskAssessmentData";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
+// import { useRAChildInformationForm } from "./useRAChildInformationForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-import { IncidentFormFields } from ".";
-import { useIncidentForm } from "./useIncidentForm";
+import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+// import { useRAChildRiskDetailsForm } from "./useRAChildRiskDetailsForm";
+import { useChildRAChildRiskDetailsForm } from "./useChildRAChildRiskDetailsForm";
+import { RAChildRiskDetailsFormFields } from ".";
 
-const backPath = "/foster-child/events-and-notification/incident";
-
-const IncidentForm = (props: any) => {
-  // const { action, fosterChildId, ChildMedicationInfoId } = props;
+const ChildRAChildRiskDetailsForm = () => {
   const {
     router,
     methods,
@@ -19,23 +20,19 @@ const IncidentForm = (props: any) => {
     isLoading,
     action,
     fosterChildId,
-  } = useIncidentForm();
+  } = useChildRAChildRiskDetailsForm();
 
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
+
   return (
     <Grid>
+        <h1>hhhhhhhhhhhhhhhhhhhhhhh</h1>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
-          {IncidentFormFields.map((form: any) => {
+          {RAChildRiskDetailsFormFields.map((form: any) => {
             return (
-              <Grid
-                item
-                xs={12}
-                md={form?.gridLength}
-                key={form.id}
-                sx={{ mt: 1 }}
-              >
+              <Grid item xs={12} md={form?.gridLength} key={form.id} sx={{ mt: 1 }}>
                 {form.component !== "RadioGroup" && (
                   <form.component
                     size="small"
@@ -55,11 +52,7 @@ const IncidentForm = (props: any) => {
             );
           })}
 
-          <Grid
-            xs={12}
-            sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}
-            item
-          >
+          <Grid xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }} item>
             {action !== "view" && (
               <LoadingButton
                 type="submit"
@@ -80,12 +73,9 @@ const IncidentForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push({
-                  pathname: `${backPath}`,
-                  query: {
-                    fosterChildId: fosterChildId,
-                  },
-                })
+                router.push(
+                  `/foster-child/child-background-info/child-chronology-of-events?fosterChildId=${fosterChildId}`
+                )
               }
             >
               Back
@@ -97,4 +87,4 @@ const IncidentForm = (props: any) => {
   );
 };
 
-export default IncidentForm;
+export default ChildRAChildRiskDetailsForm;

@@ -2,48 +2,41 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
+// import {
+//   childDetailsdefaultValues,
+//   childDetailsformSchema,
+//   formatters,
+// } from "./RiskAssessmentData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery,
-  usePostChildChronologyOfEventsIncidentsInfoMutation,
-  usePatchChildChronologyOfEventsIncidentsInfoByIdMutation,
-} from "@root/services/foster-child/child-background-info/child-chronology-of-events/IncidentsInfoAPI";
+  useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery,
+  usePatchChildChronologyOfEventsRiskAssessmentByIdMutation,
+  usePostChildChronologyOfEventsRiskAssessmentMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/RiskAssessmentAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
-import { defaultValues, formSchema, formatters } from ".";
-// import {
-//   useGetChildIncidentByIdQuery,
-//   useLazyGetChildIncidentByIdQuery,
-//   usePatchChildIncidentMutation,
-//   usePostChildIncidentMutation,
-// } from "@root/services/foster-child/event-and-notification/incident/IncidentApi";
+import { childDetailsdefaultValues, childDetailsformSchema, formatters } from ".";
 
-export const useIncidentForm = () => {
+export const useChildRAChildDetailsForm = () => {
   const router = useRouter();
   const { action, id, fosterChildId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [isFetching, setIsFetching] = useState(false);
 
-  const [getIncidentsInfoList] =
-    // useLazyGetChildIncidentByIdQuery();
-    useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
-  const [postIncidentsInfoData] =
-    // usePostChildIncidentMutation({});
-    usePostChildChronologyOfEventsIncidentsInfoMutation({});
-  const [editIncidentsInfoList] =
-    // usePatchChildIncidentMutation();
-    usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
+  const [getRiskAssessmentList] = useLazyGetChildChronologyOfEventsRiskAssessmentByIdQuery();
+  const [postRiskAssessmentData] = usePostChildChronologyOfEventsRiskAssessmentMutation({});
+  const [editRiskAssessmentList] = usePatchChildChronologyOfEventsRiskAssessmentByIdMutation();
 
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getIncidentsInfoList({ id });
+      const { data, isError } = await getRiskAssessmentList({ id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
-        return defaultValues;
+        return childDetailsdefaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data.raChildDetails };
 
       for (const key in responseData) {
         const value = responseData[key];
@@ -53,11 +46,11 @@ export const useIncidentForm = () => {
       return responseData;
     } else {
       setIsLoading(false);
-      return defaultValues;
+      return childDetailsdefaultValues;
     }
   };
   const methods: any = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(childDetailsformSchema),
     defaultValues: getDefaultValue,
   });
 
@@ -70,12 +63,12 @@ export const useIncidentForm = () => {
   const onSubmit = async (data: any) => {
     if (action === "add") {
       setIsFetching(true);
-      postIncidentsInfoData({
-        addIncidentsInfoRequestDto: {
-          ...data,
-          fosterChildId,
-          status: "Pending",
-        },
+      postRiskAssessmentData({
+        raChildDetails: { ...data },
+        fosterChildId,
+        childName: "child",
+        gender: "male",
+        notes: "notes",
       })
         .unwrap()
         .then((res: any) => {
@@ -84,7 +77,8 @@ export const useIncidentForm = () => {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/events-and-notification/incident/actions",
+            pathname:
+              "/foster-child/child-background-info/child-chronology-of-events/risk-assessment",
             query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
@@ -95,25 +89,23 @@ export const useIncidentForm = () => {
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      const formData = {
-        id,
-        addIncidentsInfoRequestDto: {
-          ...data,
+
+      editRiskAssessmentList({
+        addRiskAssessmentRequestDto: {
+          raChildDetails: { ...data },
+          fosterChildId,
+          childName: "child",
+          gender: "male",
+          notes: "notes",
         },
-      };
-      editIncidentsInfoList(formData)
+        id: id,
+      })
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
           setIsFetching(false);
-          router.push({
-            pathname: "/foster-child/events-and-notification/incident",
-            query: {
-              fosterChildId: fosterChildId,
-            },
-          });
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
