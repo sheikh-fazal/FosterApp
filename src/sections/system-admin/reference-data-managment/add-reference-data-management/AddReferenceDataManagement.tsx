@@ -1,17 +1,17 @@
 import FormTable from "@root/components/Table/FormTable";
-import { useAddReferenceDataManagement } from './useAddReferenceDataManagement';
+import { useAddReferenceDataManagement } from "./useAddReferenceDataManagement";
 import { FormProvider } from "@root/components/hook-form";
 import TableHeader from "@root/components/TableHeader";
 import { Card } from "@mui/material";
 
-
 const AddReferenceDataManagement = () => {
-  const { methods, handleSubmit, onSubmit, route} = useAddReferenceDataManagement();
+  const { methods, handleSubmit, onSubmit, route } =
+    useAddReferenceDataManagement();
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Card sx={{ p: 2 }}>
-        <TableHeader title={route?.query?.name}   />
-        <FormTable 
+        <TableHeader title={route?.query?.name} />
+        <FormTable
           tableKey="exampleTable"
           columns={[
             {
@@ -21,7 +21,7 @@ const AddReferenceDataManagement = () => {
               defaultValue: "RD01",
               label: "Code",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -31,7 +31,7 @@ const AddReferenceDataManagement = () => {
               defaultValue: "RD02",
               label: "Name",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
               },
             },
             {
@@ -41,15 +41,24 @@ const AddReferenceDataManagement = () => {
               defaultValue: "Reporting and Recording Fostering",
               label: "Description",
               validation: (Yup: any) => {
-                return Yup.string().required("Field is required")
+                return Yup.string().required("Field is required");
+              },
+            },
+            {
+              inputType: "textField",
+              type: "text",
+              key: "extraInformation",
+              defaultValue: "Extra Information",
+              label: "Extra Information",
+              validation: (Yup: any) => {
+                return Yup.string().required("Field is required");
               },
             },
           ]}
         />
       </Card>
-
     </FormProvider>
   );
-}
+};
 
-export default AddReferenceDataManagement
+export default AddReferenceDataManagement;

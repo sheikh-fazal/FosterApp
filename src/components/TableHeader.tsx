@@ -42,7 +42,7 @@ const TableHeader = forwardRef(function TableHeader(
     searchSize = "small",
     showAddBtn = false,
     showRecordingBtn = false,
-    onRecording = () => { },
+    onRecording = () => {},
     showDeleteBtn = false,
     // share btn
     showShareBtn = false,
@@ -51,14 +51,14 @@ const TableHeader = forwardRef(function TableHeader(
     showDiagramBtn = false,
     debounceTimeout = 500,
     disabled = false,
-    onDelete = () => { },
-    onAdd = () => { },
-    onShare = () => { },
-    onPrint = () => { },
-    onChanged = () => { },
-    onDiagramBtn = () => { },
+    onDelete = () => {},
+    onAdd = () => {},
+    onShare = () => {},
+    onPrint = () => {},
+    onChanged = () => {},
+    onDiagramBtn = () => {},
     showGenerateLoginBtn = false,
-    onGenerateLogin = () => { },
+    onGenerateLogin = () => {},
   }: any,
   ref
 ) {
@@ -165,7 +165,16 @@ const TableHeader = forwardRef(function TableHeader(
       )}
       {/* generate login button */}
       {showGenerateLoginBtn && (
-        <Button variant="contained" sx={{ height: '40px' }} onClick={onGenerateLogin}>Generate Login</Button>
+        <Button
+          variant="contained"
+          sx={(theme: any) => ({
+            height: "40px",
+            backgroundColor: theme.palette.orange.main,
+          })}
+          onClick={onGenerateLogin}
+        >
+          Generate Login
+        </Button>
       )}
       {/* recording Icon */}
       {showRecordingBtn && (
@@ -202,7 +211,6 @@ const TableHeader = forwardRef(function TableHeader(
       {showDiagramBtn && (
         <TableAction disabled={disabled} onClicked={onAdd} type="diagram" />
       )}
-
     </Stack>
   );
 });

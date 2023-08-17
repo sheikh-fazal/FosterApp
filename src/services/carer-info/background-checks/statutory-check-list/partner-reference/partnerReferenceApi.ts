@@ -4,18 +4,18 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const partnerReferenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     partnerReferenceList: builder.query<null, object>({
-      query: (search: any) => ({
-        url: "assessment-stage-one/former-partner-references-list",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/former-partner-references-list/${payload.params.fosterCarerId}`,
         method: "GET",
-        params: search,
+        params: payload.params,
       }),
       providesTags: ["PARTNER_REFERENCE"],
     }),
     postPartnerReferenceList: builder.mutation({
-      query: (formData: any) => ({
-        url: "assessment-stage-one/add-former-pertner-referances",
+      query: (payload: any) => ({
+        url: `assessment-stage-one/add-former-pertner-referances/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: formData,
+        body: payload.body,
       }),
       invalidatesTags: ["PARTNER_REFERENCE"],
     }),

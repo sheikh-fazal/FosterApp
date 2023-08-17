@@ -19,6 +19,7 @@ export default function LevelButtons() {
           }}
           sx={{
             mr: 2,
+            mt: 1,
             color: "#A46628",
             fontWeight: "700",
             fontSize: "16px",
@@ -46,6 +47,7 @@ export default function LevelButtons() {
           }}
           sx={{
             mr: 2,
+            mt: 1,
             color: "#A4B0C1",
             fontWeight: "700",
             fontSize: "16px",
@@ -74,6 +76,7 @@ export default function LevelButtons() {
           sx={{
             color: "#FFBA01",
             fontWeight: "700",
+            mt: 1,
             fontSize: "16px",
             background: "#FFFFFF",
             border: "1px solid #FFBA01",

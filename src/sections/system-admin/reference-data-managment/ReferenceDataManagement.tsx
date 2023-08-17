@@ -50,11 +50,12 @@ const ReferenceDataManagement = () => {
             //   },
             // },
             {
-              inputType: "file",
-              type: "file",
+              // inputType: "file",
+              // type: "file",
               key: "refDataValue",
               label: "Ref, Data Value",
-              size: { xs: 12, md: 6 },
+              // size: { xs: 12, md: 6 },
+              hideInForm: true,
               format: (imgUrl: any) => {
                 if (!!imgUrl) return "";
 

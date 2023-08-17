@@ -9,68 +9,68 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  isThereAdequateArtificalOrNaturalLight: false,
-  dateToBeCarriedOutOne: new Date(todayDate),
+  isAdequateArticialLightToIlluminate: false,
+  dateToBeCarriedOut1: new Date(todayDate),
 
-  improvementsRequireOne: "Text",
+  improvementsReq1: "",
 
-  areAllBanistersFilledInOrHaveAMaximumGapBetweenRallOf4Inches: false,
-  dateToBeCarriedOutTwo: new Date(todayDate),
+  isAllBanistersFilled: false,
+  dateToBeCarriedOut2: new Date(todayDate),
 
-  improvementsRequireTwo: "Text",
+  improvementsReq2: "",
 
   isStairGateFitted: false,
-  dateToBeCarriedOutThree: new Date(todayDate),
+  dateToBeCarriedOut3: new Date(todayDate),
 
-  improvementsRequireThree: "text",
+  improvementsReq3: "",
 
-  doHighChairsBuggiesAndChildEquipmentConfirmToBritishStandards: false,
-  dateToBeCarriedOutFour: new Date(todayDate),
+  isHighChairsBuggies: false,
+  dateToBeCarriedOut4: new Date(todayDate),
 
-  improvementsRequireFour: "text",
+  improvementsReq4: "",
 
-  isThereAnAccessibleFirstAidBox: false,
-  dateToBeCarriedOutFive: new Date(todayDate),
+  isAnAccessibleFirstAidBox: false,
+  dateToBeCarriedOut5: new Date(todayDate),
 
-  improvementsRequireFive: "text",
+  improvementsReq5: "",
 
   areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach: false,
 
-  dateToBeCarriedOutSix: new Date(todayDate),
+  dateToBeCarriedOut6: new Date(todayDate),
 
-  improvementsRequireSix: "text",
+  improvementsReq6: "",
 
-  areAlcoholCigarettesAndLightersKeptOutOfReach: false,
+  isAlcohalCigarettesAndLighter: false,
   dateToBeCarriedOutSeven: new Date(todayDate),
 
-  improvementsRequireSeven: "text",
+  improvementsRequireSeven: "",
 
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOutOne: Yup.date().required("Required"),
+  dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsRequireOne: Yup.string().required("Required"),
+  improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOutTwo: Yup.date().required("Required"),
+  dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsRequireTwo: Yup.string().required("Required"),
+  improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOutThree: Yup.date().required("Required"),
+  dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsRequireThree: Yup.string().required("Required"),
+  improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFour: Yup.date().required("Required"),
+  dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsRequireFour: Yup.string().required("Required"),
+  improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOutFive: Yup.date().required("Required"),
+  dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsRequireFive: Yup.string().required("Required"),
+  improvementsReq5: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSix: Yup.date().required("Required"),
+  dateToBeCarriedOut6: Yup.date().required("Required"),
 
-  improvementsRequireSix: Yup.string().required("Required"),
+  improvementsReq6: Yup.string().required("Required"),
 
   dateToBeCarriedOutSeven: Yup.date().required("Required"),
 
@@ -90,7 +90,7 @@ export const safetyFactorsIndoorsC_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isThereAdequateArtificalOrNaturalLight",
+      name: "isAdequateArticialLightToIlluminate",
       label:
         "Is there adequate artificial/natural light to illuminate any steps?",
     },
@@ -100,7 +100,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 2,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutOne",
+      name: "dateToBeCarriedOut1",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -109,7 +109,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 3,
     componentProps: {
-      name: "improvementsRequireOne",
+      name: "improvementsReq1",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -123,7 +123,7 @@ export const safetyFactorsIndoorsC_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areAllBanistersFilledInOrHaveAMaximumGapBetweenRallOf4Inches",
+      name: "isAllBanistersFilled",
       label:
         "Are all banisters filled in or have a maximum gap between ralls of 4 inches?",
     },
@@ -133,7 +133,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutTwo",
+      name: "dateToBeCarriedOut2",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -142,7 +142,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 6,
     componentProps: {
-      name: "improvementsRequireTwo",
+      name: "improvementsReq2",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -165,7 +165,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 8,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutThree",
+      name: "dateToBeCarriedOut3",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -174,7 +174,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 9,
     componentProps: {
-      name: "improvementsRequireThree",
+      name: "improvementsReq3",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -188,7 +188,7 @@ export const safetyFactorsIndoorsC_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "doHighChairsBuggiesAndChildEquipmentConfirmToBritishStandards",
+      name: "isHighChairsBuggies",
       label: "Do high chairs, buggies and child equipment confirm to British Standards?",
     },
     component: RHFCheckbox,
@@ -197,7 +197,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 11,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFour",
+      name: "dateToBeCarriedOut4",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -206,7 +206,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 12,
     componentProps: {
-      name: "improvementsRequireFour",
+      name: "improvementsReq4",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -220,7 +220,7 @@ export const safetyFactorsIndoorsC_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "isThereAnAccessibleFirstAidBox",
+      name: "isAnAccessibleFirstAidBox",
       label:
         "Is there an accessible First Aid box?",
     },
@@ -230,7 +230,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 14,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutFive",
+      name: "dateToBeCarriedOut5",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -239,7 +239,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 15,
     componentProps: {
-      name: "improvementsRequireFive",
+      name: "improvementsReq5",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -263,7 +263,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 17,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSix",
+      name: "dateToBeCarriedOut6",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -273,7 +273,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 18,
     componentProps: {
-      name: "improvementsRequireSix",
+      name: "improvementsReq6",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -287,7 +287,7 @@ export const safetyFactorsIndoorsC_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "areAlcoholCigarettesAndLightersKeptOutOfReach",
+      name: "isAlcohalCigarettesAndLighter",
       label: "Are alcohol, cigarettes and lighters kept out of reach?",
     },
     component: RHFCheckbox,

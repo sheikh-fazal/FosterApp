@@ -12,41 +12,43 @@ import {
 } from "@root/services/carer-info/background-checks/statutory-check-list/common-upload-documents/uploadDocumentsApi";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
+import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 
-// Constants
-const BREADCRUMBS = [
-  {
-    icon: <HomeIcon />,
-    name: "Statutory Check List",
-    href: "/carer-info/background-checks/statutory-checks-list",
-  },
-  {
-    name: "Car Insurance",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "Statutory Check List";
 CarInsurance.getLayout = function getLayout(page: any) {
-  return (
-    <Layout
-      showTitleWithBreadcrumbs
-      breadcrumbs={BREADCRUMBS}
-      title={PAGE_TITLE}
-    >
-      {page}
-    </Layout>
-  );
+  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function CarInsurance() {
   const [params, setParams] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
-  const { action, id } = router.query;
+  const { action, id, fosterCarerId } = router.query;
 
   if (!action && !id) {
-    router.push("/carer-info/background-checks/statutory-checks-list");
+    router.push({
+      pathname: "/carer-info/background-checks/statutory-checks-list",
+      query: { fosterCarerId: fosterCarerId },
+    });
   }
+
+  // Constants
+  const BREADCRUMBS = [
+    {
+      icon: <HomeIcon />,
+      name: "Statutory Check List",
+      href: {
+        pathname: "/carer-info/background-checks/statutory-checks-list",
+        query: { fosterCarerId: fosterCarerId },
+      },
+    },
+    {
+      name: "Car Insurance",
+      href: "",
+    },
+  ];
+
+  const PAGE_TITLE = "Statutory Check List";
+
   const {
     data: documentData,
     isLoading: isDocumentLoading,
@@ -56,17 +58,18 @@ export default function CarInsurance() {
   }: any = useStatutoryUploadDocumentListQuery({
     params: {
       recordId: id,
-      params: params,
+      search: params,
+      limit: 10,
+      offset: page,
     },
   });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostStatutoryUploadDocumentsMutation();
-
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 
-  const tableData: any = documentData?.data?.as_statutory_checks_list_document;
+  const tableData: any = documentData?.data?.statutoryCheckList;
   const metaData: any = documentData?.data?.meta;
 
   //Handling POST API
@@ -104,34 +107,41 @@ export default function CarInsurance() {
   };
 
   return (
-    <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
-      <CarInsuranceForm action={action} id={id} />
-      <UploadDocuments
-        readOnly={action === "view" ? true : false}
-        tableData={tableData}
-        isLoading={isDocumentLoading}
-        isFetching={isFetching}
-        isError={hasDocumentError}
-        isSuccess={isSuccess}
-        column={[
-          "documentOriginalName",
-          "documentType",
-          "documentDate",
-          "personUploaded",
-          "documentPassword",
-        ]}
-        searchParam={(searchedText: string) => setParams(searchedText)}
-        modalData={(data: any) => documentUploadHandler(data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={metaData?.page}
-        totalPages={metaData?.pages}
-        onDelete={(data: any) => {
-          deleteDocument(data.id);
-        }}
-        disabled={
-          !!id && (action === "add" || action === "edit") ? false : true
-        }
+    <>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
       />
-    </HorizaontalTabs>
+      <HorizaontalTabs tabsDataArray={["Car Insurance", "Upload Documents"]}>
+        <CarInsuranceForm action={action} id={id} />
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "documentOriginalName",
+            "documentType",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
+          ]}
+          searchParam={(searchedText: any) => setParams(searchedText)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
+      </HorizaontalTabs>
+    </>
   );
 }

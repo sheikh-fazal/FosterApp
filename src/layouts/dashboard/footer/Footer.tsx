@@ -21,7 +21,7 @@ const Footer = () => {
         width: "100%",
         zIndex: 700,
         bottom: "0px",
-        justifyContent: "space-between",
+        justifyContent: { sm: "center", lg: "space-between" },
         flexWrap: "wrap",
         gap: "10px",
         p: 1,
@@ -118,7 +118,7 @@ const Footer = () => {
           flexWrap: "wrap",
         }}
       >
-        <Link href={"#"}>
+        <Link href="/cookie-policy">
           <Typography
             variant="body1"
             sx={{
@@ -131,7 +131,7 @@ const Footer = () => {
             Cookie Policy
           </Typography>
         </Link>
-        <Link href={"#"}>
+        <Link href="/privacy-policy">
           <Typography
             variant="body1"
             sx={{
@@ -144,7 +144,7 @@ const Footer = () => {
             Privacy Policy
           </Typography>
         </Link>
-        <Link href={"#"}>
+        <Link href="/terms-conditions">
           <Typography
             variant="body1"
             color="initial"
@@ -158,7 +158,7 @@ const Footer = () => {
             Terms & Conditions
           </Typography>
         </Link>
-        <Link href={"#"}>
+        <Link href="/data-security">
           <Typography
             variant="body1"
             color="initial"

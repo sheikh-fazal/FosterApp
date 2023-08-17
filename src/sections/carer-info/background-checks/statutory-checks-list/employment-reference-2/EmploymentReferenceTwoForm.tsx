@@ -15,6 +15,7 @@ const EmploymentReferenceTwoForm = (props: any) => {
     handleSubmit,
     isSubmitting,
     theme,
+    fosterCarerId,
     isLoading,
   } = useEmploymentReferenceTwoForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
@@ -81,9 +82,11 @@ const EmploymentReferenceTwoForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

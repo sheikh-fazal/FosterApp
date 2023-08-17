@@ -3,10 +3,10 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const statutoryUploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     statutoryUploadDocumentList: builder.query({
-      query: (search: any) => ({
+      query: (payload: any) => ({
         url: "assessment-stage-one/statutory-checks-list/uploaded-documents/List",
         method: "GET",
-        params: search.params,
+        params: payload.params,
       }),
       providesTags: ["STATUTORY_LIST_UPLOAD_DOCUMENTS"],
     }),
