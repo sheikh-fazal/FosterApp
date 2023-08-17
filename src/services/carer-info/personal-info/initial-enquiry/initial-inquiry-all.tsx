@@ -12,9 +12,15 @@ export const initialInquiryApi = baseAPI.injectEndpoints({
           otherDetails: response?.[0]?.otherDetails?.dto,
         };
       },
+      providesTags: ["INITIAL-ENQUIRY-FORM"],
     }),
     getInitialInquiryDocumentsData: builder.query({
-      query: (params: any) => "/initial-inquiry/upload-document/all",
+      query: (params: any) => ({
+        url: "/initial-inquiry/upload-document/all",
+        method: "GET",
+        params,
+      }),
+      providesTags: ["INITIAL-ENQUIRY-DOCS"],
     }),
   }),
 });

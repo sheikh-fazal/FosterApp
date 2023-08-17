@@ -186,7 +186,11 @@ export default function VocationalCourseInfoForm() {
             ]}
             modalData={documentSubmitHandler}
             onDelete={documentDeleteHandler}
-            onPageChange={(page: any) => console.log("parent log", page)}
+            onPageChange={(page: any) =>
+              setDocParams((prev: any) => {
+                return { ...prev, offset: (page - 1) * 10 };
+              })
+            }
             currentPage={docData?.meta?.page || "1"}
             totalPages={docData?.meta?.pages || "1"}
           />

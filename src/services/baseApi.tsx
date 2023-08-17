@@ -93,6 +93,8 @@ export const TAGS = [
   "ALLEGATION_INFO",
   "ALLEGATION_INFO_DOCUMENTS",
   "SANCTION_DETAILS_LIST",
+  "INITIAL-ENQUIRY-FORM",
+  "INITIAL-ENQUIRY-DOCS",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
