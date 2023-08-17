@@ -82,7 +82,7 @@ export const columnsOutSchoolActivityTable = (
 
         <TableAction
           type="view"
-          onClicked={() => router.push(`?${info.getValue()}`)}
+          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/view-out-of-school-activity-info?recordId=${info.getValue()}&fosterChildId=${fosterChildId}`)}
         />
       </Box>
     ),

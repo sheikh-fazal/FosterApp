@@ -49,8 +49,8 @@ export const OutOfSchoolActivity: any = baseAPI.injectEndpoints({
       invalidatesTags: ["OUT-SCHOOL-ACTIVITY"],
     }),
     getSchoolActivityDocumentData: builder.query({
-      query: (fosterChildId: any) => ({
-        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}&formName=${"OUT_OF_SCHOOL_ACTIVITY"}`,
+      query: ({fosterChildId, recordID}:any) => ({
+        url: `/education-records/uploaded-documents/List?fosterChildId=${fosterChildId}&formName=${"OUT_OF_SCHOOL_ACTIVITY"}&recordId=${recordID}`,
         method: "GET",
       }),
       providesTags: ["OUT-SCHOOL-ACTIVITY"],

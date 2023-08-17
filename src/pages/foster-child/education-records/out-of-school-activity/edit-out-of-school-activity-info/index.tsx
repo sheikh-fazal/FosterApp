@@ -57,7 +57,8 @@ export default function EditChildExclusionInfoPage() {
     idFetching: documentFetching,
     isLoading: documentLoading,
     isSuccess: documentSuccess,
-  } = useGetSchoolActivityDocumentDataQuery(fosterChildId);
+  } = useGetSchoolActivityDocumentDataQuery({ fosterChildId, recordID });
+
 
   const [deletRecord] = useDeleteSchoolActivityDocumentDataMutation();
 

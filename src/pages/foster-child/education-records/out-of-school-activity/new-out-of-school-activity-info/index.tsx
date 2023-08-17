@@ -6,6 +6,8 @@ import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import NewOutSchoolActivityInfo from "@root/sections/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info/NewOutSchoolActivityInfo";
 import {
+  useDeleteSchoolActivityDocumentDataMutation,
+  useGetSchoolActivityDocumentDataQuery,
   usePostDocumentSchoolActivityMutation,
   usePostSingleSchoolActivityDataMutation,
 } from "@root/services/foster-child/education-records/out-of-school-activity/OutOfSchoolActivity";
@@ -45,6 +47,15 @@ export default function NewChildExclusionInfoPage() {
 
   const [postActivityData] = usePostSingleSchoolActivityDataMutation();
   const [postActivityDocument] = usePostDocumentSchoolActivityMutation();
+
+  const {
+    data: documentData,
+    idFetching: documentFetching,
+    isLoading: documentLoading,
+    isSuccess: documentSuccess,
+  } = useGetSchoolActivityDocumentDataQuery({ fosterChildId, recordID });
+
+  const [deletRecord] = useDeleteSchoolActivityDocumentDataMutation();
 
   const postSchoolActivityData = async (data: any) => {
     try {
@@ -92,19 +103,22 @@ export default function NewChildExclusionInfoPage() {
         />
         <UploadDocuments
           readOnly={false}
-          tableData={[]}
+          tableData={documentData?.data?.documents}
           searchParam={() => {}}
           isLoading={false}
           isFetching={false}
           column={[
+            "documentOriginalName",
             "documentType",
-            "documentType",
-            "date",
-            "uploadBy",
-            "password",
+            "documentDate",
+            "personUploaded",
+            "documentPassword",
           ]}
-          isSuccess={false}
+          isSuccess={documentSuccess}
           modalData={(data: any) => postDocumentData(data)}
+          onDelete={(data: any) => {
+            deletRecord(data?.id);
+          }}
         />
       </HorizaontalTabs>
     </Page>
