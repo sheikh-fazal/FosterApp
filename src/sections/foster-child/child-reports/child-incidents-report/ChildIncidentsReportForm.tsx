@@ -1,4 +1,4 @@
-import { Button, Grid, useTheme } from "@mui/material";
+import { Button, Grid, Paper, useTheme } from "@mui/material";
 import FormProvider from "@root/components/hook-form/FormProvider";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
@@ -20,7 +20,7 @@ const UpsertChildIncidentsReport = () => {
   const theme: any = useTheme();
   if (isLoading) return <SkeletonFormdata />;
   return (
-    <Grid>
+    <Paper sx={{ padding: 3 }} elevation={3}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {ChildIncidentsReportFormFields.map((form: any) => {
@@ -76,7 +76,7 @@ const UpsertChildIncidentsReport = () => {
           </Grid>
         </Grid>
       </FormProvider>
-    </Grid>
+    </Paper>
   );
 };
 

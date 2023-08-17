@@ -24,10 +24,7 @@ export const useChildIncidentsReportList = () => {
       offset: 0,
       limit: 10,
     });
-  console.log(
-    "🚀 ~ file: useChildIncidentsReportList.tsx:22 ~ useChildIncidentsReportList ~ data:",
-    data
-  );
+ 
   const { pageChangeHandler, sortChangeHandler } = useTableParams();
 
   const [deleteList] = useDeleteChildIncidentsReportMutation();

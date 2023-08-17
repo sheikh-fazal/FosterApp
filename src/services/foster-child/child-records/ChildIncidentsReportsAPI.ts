@@ -43,7 +43,7 @@ export const childIncidentsReportsApi: any = baseAPI.injectEndpoints({
 
     postChildIncidentsReport: builder.mutation({
       query: (queryArg) => ({
-        url: `/child-reports/child-incident?fosterChildId=${queryArg.fosterChildId}`,
+        url: `/child-reports/child-incident/${queryArg.fosterChildId}`,
         method: "POST",
         body: queryArg.formData,
       }),
@@ -57,5 +57,5 @@ export const {
   useLazyGetChildIncidentsReportQuery,
   useDeleteChildIncidentsReportMutation,
   usePostChildIncidentsReportMutation,
-  usePatchChildIncidentsReportMutation
+  usePatchChildIncidentsReportMutation,
 } = childIncidentsReportsApi;

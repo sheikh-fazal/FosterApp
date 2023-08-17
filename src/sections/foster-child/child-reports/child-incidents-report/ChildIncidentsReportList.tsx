@@ -114,6 +114,9 @@ const ChildIncidentsReportList = () => {
             query: { action: "add", fosterChildId: fosterChildId },
           });
         }}
+        onChanged={(event: any) => {
+          setSearch(event.search);
+        }}
       />
       <CustomTable
         data={data?.data?.child_incident_report}
