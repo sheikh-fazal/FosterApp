@@ -5,30 +5,39 @@ import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
-import {
-  allegationInfoFormDataFunction,
-  allegationInfoFormSchema,
-  allegationInfoFormValues,
-  defaultValueAllegationInfoForm,
-} from ".";
+
 import {
   useGetSingleAllegationInfoDataQuery,
   usePatchAllegationInfoDataMutation,
   usePostAllegationInfoDataMutation,
 } from "@root/services/foster-child/events-and-notification/allegation/allegationInfo";
+import {
+  childDaylogEventsReportInfoFormDataFunction,
+  childDaylogEventsReportInfoFormSchema,
+  childDaylogEventsReportInfoFormValues,
+  defaultValueChildDaylogEventsReportInfoForm,
+} from ".";
+import {
+  usePatchChildDaylogEventsReportInfoDataMutation,
+  usePostChildDaylogEventsReportInfoDataMutation,
+} from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
 
 export const useChildDaylogEventsReportInfo = () => {
   const router = useRouter();
   const theme: any = useTheme();
-  const allegationInfoFormData = allegationInfoFormDataFunction(
+  const allegationInfoFormData = childDaylogEventsReportInfoFormDataFunction(
     router?.query?.action === "view"
   );
 
-  const [postAllegationInfoDataTrigger, postAllegationInfoDataStatus] =
-    usePostAllegationInfoDataMutation();
+  const [
+    postChildDaylogEventsReportInfoDataTrigger,
+    postChildDaylogEventsReportInfoDataStatus,
+  ] = usePostChildDaylogEventsReportInfoDataMutation();
 
-  const [patchAllegationInfoDataTrigger, patchAllegationInfoDataStatus] =
-    usePatchAllegationInfoDataMutation();
+  const [
+    patchChildDaylogEventsReportInfoDataTrigger,
+    patchChildDaylogEventsReportInfoDataStatus,
+  ] = usePatchChildDaylogEventsReportInfoDataMutation();
 
   // get api params
   const pathParams = {
@@ -45,18 +54,20 @@ export const useChildDaylogEventsReportInfo = () => {
   );
 
   const methods: any = useForm({
-    resolver: yupResolver(allegationInfoFormSchema),
-    defaultValues: defaultValueAllegationInfoForm(allegationInfoFormValues),
+    resolver: yupResolver(childDaylogEventsReportInfoFormSchema),
+    defaultValues: defaultValueChildDaylogEventsReportInfoForm(
+      childDaylogEventsReportInfoFormValues
+    ),
   });
   const { handleSubmit, reset } = methods;
 
   useEffect(() => {
-    reset(() => defaultValueAllegationInfoForm(data?.data));
+    reset(() => defaultValueChildDaylogEventsReportInfoForm(data?.data));
   }, [data, reset]);
 
   const saveAsDraft = (isDraft: any) => {
     console.log({ isDraft });
-      if (!!router.query?.id) {
+    if (!!router.query?.id) {
       return;
     }
     handleSubmit(submitAllegationInfoForm)(isDraft);
@@ -79,7 +90,7 @@ export const useChildDaylogEventsReportInfo = () => {
       return;
     }
     try {
-      const res: any = await postAllegationInfoDataTrigger(
+      const res: any = await postChildDaylogEventsReportInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       router.push({
@@ -105,7 +116,7 @@ export const useChildDaylogEventsReportInfo = () => {
     const pathParams = {
       id: router.query?.id,
     };
-   const body = {
+    const body = {
       fosterChildId: router.query.fosterChildId,
       urnNumber: "CH001",
       ...data,
@@ -113,7 +124,7 @@ export const useChildDaylogEventsReportInfo = () => {
     };
     const apiDataParameter = { body, pathParams };
     try {
-      const res: any = await patchAllegationInfoDataTrigger(
+      const res: any = await patchChildDaylogEventsReportInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       router.push({
@@ -140,8 +151,8 @@ export const useChildDaylogEventsReportInfo = () => {
     handleSubmit,
     submitAllegationInfoForm,
     router,
-    postAllegationInfoDataStatus,
-    patchAllegationInfoDataStatus,
+    postChildDaylogEventsReportInfoDataStatus,
+    patchChildDaylogEventsReportInfoDataStatus,
     theme,
     isLoading,
     saveAsDraft,

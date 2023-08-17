@@ -12,8 +12,8 @@ const ChildDaylogEventsReportInfo = () => {
     submitAllegationInfoForm,
     isLoading,
     router,
-    postAllegationInfoDataStatus,
-    patchAllegationInfoDataStatus,
+    postChildDaylogEventsReportInfoDataStatus,
+    patchChildDaylogEventsReportInfoDataStatus,
     theme,
     saveAsDraft,
   }: any = useChildDaylogEventsReportInfo();
@@ -37,11 +37,13 @@ const ChildDaylogEventsReportInfo = () => {
               <Grid item xs={12} md={form?.gridLength} key={form.id + index}>
                 <form.component {...form.componentProps} size="small">
                   {form.componentProps.select
-                    ? form.componentProps?.options?.map((option: any) => (
+                    ? form.componentProps.options.map((option: any) => (
                         <option key={option.id} value={option.value}>
                           {option.label}
                         </option>
                       ))
+                    : form?.heading
+                    ? form?.heading
                     : null}
                 </form.component>
               </Grid>
@@ -55,8 +57,8 @@ const ChildDaylogEventsReportInfo = () => {
               type="submit"
               variant="contained"
               disabled={
-                patchAllegationInfoDataStatus?.isLoading ||
-                postAllegationInfoDataStatus?.isLoading
+                patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
+                postChildDaylogEventsReportInfoDataStatus?.isLoading
               }
             >
               Submit
@@ -64,8 +66,8 @@ const ChildDaylogEventsReportInfo = () => {
             <LoadingButton
               sx={{ marginRight: "1rem" }}
               disabled={
-                patchAllegationInfoDataStatus?.isLoading ||
-                postAllegationInfoDataStatus?.isLoading
+                patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
+                postChildDaylogEventsReportInfoDataStatus?.isLoading
               }
               onClick={() => saveAsDraft?.("Pending")}
               size="large"
@@ -94,8 +96,8 @@ const ChildDaylogEventsReportInfo = () => {
               }
               variant="contained"
               disabled={
-                patchAllegationInfoDataStatus?.isLoading ||
-                postAllegationInfoDataStatus?.isLoading
+                patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
+                postChildDaylogEventsReportInfoDataStatus?.isLoading
               }
             >
               back

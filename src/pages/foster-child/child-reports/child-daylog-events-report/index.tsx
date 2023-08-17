@@ -3,7 +3,7 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import AllegationList from "@root/sections/foster-child/events-and-notification/allegation/AllegationList";
+import ChildDaylogEventsReportList from "@root/sections/foster-child/child-reports/child-daylog-events-report/ChildDaylogEventsReportList";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
@@ -15,12 +15,12 @@ const BREADCRUMBS = (query: any) => [
       : "/foster-child",
   },
   {
-    name: "Allegation List",
+    name: "Child Reports",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Allegation";
+const PAGE_TITLE = "DAY LOG EVENTS REPORTS";
 
 // ----------------------------------------------------------------------
 
@@ -45,7 +45,7 @@ export default function AllegationPage() {
         title={PAGE_TITLE}
         breadcrumbs={BREADCRUMBS(router?.query)}
       />
-      <AllegationList />
+      <ChildDaylogEventsReportList />
     </Page>
   );
 }

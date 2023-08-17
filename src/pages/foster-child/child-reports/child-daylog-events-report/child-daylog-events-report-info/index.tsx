@@ -17,12 +17,12 @@ const BREADCRUMBS = (query: any) => [
       : "/foster-child",
   },
   {
-    name: "Allegation",
+    name: "Child Report List",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "Allegation";
+const PAGE_TITLE = "DAY LOG EVENTS REPORTS";
 
 // ----------------------------------------------------------------------
 

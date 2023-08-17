@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
-import { allegationInfoTableColumnsFunction, ALLEGATIONLISTPAGELIMIT } from ".";
+import {
+  CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT,
+  childDaylogEventsReportInfoTableColumnsFunction,
+} from ".";
 import { enqueueSnackbar } from "notistack";
 import {
-  useDeleteAllegationInfoDataMutation,
-  useGetAllAllegationListDataQuery,
-} from "@root/services/foster-child/events-and-notification/allegation/allegationInfo";
+  useDeleteChildDaylogEventsReportInfoDataMutation,
+  useGetAllChildDaylogEventsReportListDataQuery,
+} from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
 
 export const useChildDaylogEventsReportList = () => {
   const router = useRouter();
@@ -16,20 +19,22 @@ export const useChildDaylogEventsReportList = () => {
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
 
-  const [deleteAllegationInfoDataTrigger, deleteAllegationInfoDataStatus] =
-    useDeleteAllegationInfoDataMutation();
+  const [
+    deleteChildDaylogEventsReportInfoDataTrigger,
+    deleteChildDaylogEventsReportInfoDataStatus,
+  ] = useDeleteChildDaylogEventsReportInfoDataMutation();
 
   const queryParams = {
     search: searchValue,
     offset: page,
-    limit: ALLEGATIONLISTPAGELIMIT,
+    limit: CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT,
     ...(router?.query?.fosterChildId && {
       fosterChildId: router?.query?.fosterChildId,
     }),
   };
   const apiDataParameter = { queryParams };
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetAllAllegationListDataQuery(apiDataParameter, {
+    useGetAllChildDaylogEventsReportListDataQuery(apiDataParameter, {
       refetchOnMountOrArgChange: true,
     });
 
@@ -39,7 +44,7 @@ export const useChildDaylogEventsReportList = () => {
     };
     const apiDataParameter = { pathParams };
     try {
-      const res: any = await deleteAllegationInfoDataTrigger(
+      const res: any = await deleteChildDaylogEventsReportInfoDataTrigger(
         apiDataParameter
       ).unwrap();
       setIsRecordSetForDelete(false);
@@ -57,14 +62,15 @@ export const useChildDaylogEventsReportList = () => {
     setIsRecordSetForDelete(true);
     setDeleteData(data);
   };
-  const allegationInfoTableColumns = allegationInfoTableColumnsFunction(
-    router,
-    prepareRecordForDelete,
-    theme
-  );
+  const childDaylogEventsReportInfoTableColumns =
+    childDaylogEventsReportInfoTableColumnsFunction(
+      router,
+      prepareRecordForDelete,
+      theme
+    );
 
   return {
-    allegationInfoTableColumns,
+    childDaylogEventsReportInfoTableColumns,
     data,
     isLoading,
     isSuccess,
@@ -73,7 +79,7 @@ export const useChildDaylogEventsReportList = () => {
     setSearchValue,
     router,
     setPage,
-    ALLEGATIONLISTPAGELIMIT,
+    CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,

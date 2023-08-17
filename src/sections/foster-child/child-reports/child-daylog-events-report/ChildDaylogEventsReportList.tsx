@@ -5,7 +5,7 @@ import { useChildDaylogEventsReportList } from "./useChildDaylogEventsReportList
 import DeleteModel from "@root/components/modal/DeleteModel";
 const ChildDaylogEventsReportList = () => {
   const {
-    allegationInfoTableColumns,
+    childDaylogEventsReportInfoTableColumns,
     data,
     isLoading,
     isSuccess,
@@ -23,12 +23,12 @@ const ChildDaylogEventsReportList = () => {
     <>
       <Box>
         <TableHeader
-          title="Allegation"
+          title="DAY LOG EVENTS REPORTS"
           searchKey="search"
           showAddBtn={true}
           onAdd={() =>
             router.push({
-              pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
+              pathname: `/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info`,
               query: {
                 ...(!!router?.query?.fosterChildId && {
                   fosterChildId: router?.query?.fosterChildId,
@@ -43,7 +43,7 @@ const ChildDaylogEventsReportList = () => {
 
         <CustomTable
           data={data?.data?.alegation}
-          columns={allegationInfoTableColumns}
+          columns={childDaylogEventsReportInfoTableColumns}
           isLoading={isLoading}
           showSerialNo
           isFetching={isFetching}
