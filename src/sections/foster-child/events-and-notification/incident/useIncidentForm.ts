@@ -2,7 +2,6 @@ import { useTheme } from "@mui/material";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import { useState } from "react";
-// import { defaultValues, formSchema, formatters } from "./IncidentInfoData";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -12,6 +11,12 @@ import {
 } from "@root/services/foster-child/child-background-info/child-chronology-of-events/IncidentsInfoAPI";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 import { defaultValues, formSchema, formatters } from ".";
+// import {
+//   useGetChildIncidentByIdQuery,
+//   useLazyGetChildIncidentByIdQuery,
+//   usePatchChildIncidentMutation,
+//   usePostChildIncidentMutation,
+// } from "@root/services/foster-child/event-and-notification/incident/IncidentApi";
 
 export const useIncidentForm = () => {
   const router = useRouter();
@@ -21,10 +26,13 @@ export const useIncidentForm = () => {
   const [isFetching, setIsFetching] = useState(false);
 
   const [getIncidentsInfoList] =
+    // useLazyGetChildIncidentByIdQuery();
     useLazyGetChildChronologyOfEventsIncidentsInfoByIdQuery();
   const [postIncidentsInfoData] =
+    // usePostChildIncidentMutation({});
     usePostChildChronologyOfEventsIncidentsInfoMutation({});
   const [editIncidentsInfoList] =
+    // usePatchChildIncidentMutation();
     usePatchChildChronologyOfEventsIncidentsInfoByIdMutation();
 
   const getDefaultValue = async () => {
@@ -76,8 +84,7 @@ export const useIncidentForm = () => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/foster-child/child-background-info/child-chronology-of-events/incidents-info",
+            pathname: "/foster-child/events-and-notification/incident/actions",
             query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
           });
         })
@@ -90,7 +97,9 @@ export const useIncidentForm = () => {
       setIsFetching(true);
       const formData = {
         id,
-        addIncidentsInfoRequestDto: { ...data },
+        addIncidentsInfoRequestDto: {
+          ...data,
+        },
       };
       editIncidentsInfoList(formData)
         .unwrap()
@@ -99,6 +108,12 @@ export const useIncidentForm = () => {
             variant: "success",
           });
           setIsFetching(false);
+          router.push({
+            pathname: "/foster-child/events-and-notification/incident",
+            query: {
+              fosterChildId: fosterChildId,
+            },
+          });
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;

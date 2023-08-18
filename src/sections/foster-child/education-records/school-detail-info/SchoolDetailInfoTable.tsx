@@ -22,6 +22,7 @@ export default function SchoolDetailInfoTable(props: any) {
     meta,
     pageChangeHandler,
     postData,
+    sortChangeHandler
   } = useSchoolDetailInfoTable();
 
   const columns = [
@@ -140,6 +141,7 @@ export default function SchoolDetailInfoTable(props: any) {
         totalPages={meta?.pages ?? "1"}
         showSerialNo
         onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </Card>
   );

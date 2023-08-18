@@ -3,7 +3,7 @@ import { useAbsenceInfoDocument } from "./useAbsenceInfoDocument";
 import { useState } from "react";
 
 export const AbsenceInfoDocument = (prop: any) => {
-  const [params, setParams] = useState("");
+  // const [params, setParams] = useState("");
   const {
     data,
     router,
@@ -21,9 +21,6 @@ export const AbsenceInfoDocument = (prop: any) => {
     <>
       <UploadDocuments
         readOnly={router?.asPath.split("/").pop() === "view"}
-        // searchParam={(data: any) => {
-        //   return setSearchValue(data);
-        // }}
         searchParam={(data: any) => {
           setSearchValue(data.search);
           console.log(data, "search");
@@ -40,7 +37,6 @@ export const AbsenceInfoDocument = (prop: any) => {
           "uploadBy",
           "password",
         ]}
-        // searchParam={(searchedText: string) => setSearchValue(searchedText)}
         modalData={(data: any) => {
           submitAbsenceInfoDocumentData(data);
         }}

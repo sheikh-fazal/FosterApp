@@ -20,6 +20,7 @@ export default function ActiveSocialWorkerTable(props: any) {
     isSuccess,
     meta,
     pageChangeHandler,
+    sortChangeHandler,
   } = useActiveSocialWorkerTable();
   const columns = [
     {
@@ -119,6 +120,7 @@ export default function ActiveSocialWorkerTable(props: any) {
         totalPages={meta?.pages}
         showSerialNo
         onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </Card>
   );

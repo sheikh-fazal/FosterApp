@@ -6,8 +6,6 @@ import Layout from "@root/layouts";
 import { AbsenceInfoDocument } from "@root/sections/foster-child/education-records/absence-info/absence-info-document/AbsenceInfoDocument";
 import AbsenceInfoForm from "@root/sections/foster-child/education-records/absence-info/absence-info-form/AbsenceInfoForm";
 import { useGetAbsenceInfoByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoAPI";
-import { useGetAbsenceInfoDocumentByIdQuery } from "@root/services/foster-child/education-records/absence-info/AbsenceInfoDocumentationAPI";
-import { log } from "console";
 import { useRouter } from "next/router";
 
 // ----------------------------------------------------------------------
@@ -48,11 +46,11 @@ export default function ViewAbsenceInfoForm() {
         {isSuccess && (
           <AbsenceInfoForm
             disabled
-            // defaultValues={{
-            //   ...data?.[0],
-            //   dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-            //   label: new Date(data?.[0]?.label),
-            // }}
+            defaultValues={{
+              ...data?.[0],
+              dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+              label: new Date(data?.[0]?.label),
+            }}
           />
         )}
         <AbsenceInfoDocument />

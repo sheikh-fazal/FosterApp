@@ -27,9 +27,30 @@ AbsenceInfoFormLayout.getLayout = function getLayout(page: any) {
 export default function AbsenceInfoFormLayout() {
   const { query } = useRouter();
   const router = useRouter();
-  const childInfoId = query["absence_info_id"];
-  const { data, isLoading, isSuccess, isError } =
-    useGetAbsenceInfoByIdQuery(childInfoId);
+  const absenceInfoId = query["absence_info_id"];
+  const { data, isLoading, isSuccess, isError } = useGetAbsenceInfoByIdQuery(
+    absenceInfoId,
+    {
+      skip: !!!query?.absence_info_id,
+    }
+  );
+  // (
+  //   absenceInfoId ?? "",
+  //   {
+  //     skip: true,
+  //   }
+  // );
+
+  // const { query } = useRouter();
+  // const familyPersonId = query["family_person_id"];
+  // const { data, isLoading, isSuccess, isError } =
+  //   useGetFamilyPersonListByIdQuery(familyPersonId, {
+  //     skip: !!!query?.family_person_id,
+  //   });
+  // function submitForm(data:any){
+  //  ///
+  // }
+
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -39,11 +60,13 @@ export default function AbsenceInfoFormLayout() {
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm
-          // defaultValues={{
-          //   ...data?.[0],
-          //   dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-          //   label: new Date(data?.[0]?.label),
-          // }}
+          // onSubmitted={submitForm}
+          // defaultValues={data?.[0]}
+          defaultValues={{
+            ...data?.[0],
+            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+            label: new Date(data?.[0]?.label),
+          }}
         />
         <AbsenceInfoDocument />
       </HorizaontalTabs>
