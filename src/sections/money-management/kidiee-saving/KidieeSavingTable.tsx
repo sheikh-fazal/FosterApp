@@ -25,9 +25,9 @@ export const KidieeSavingTable = (props: any) => {
 const TableData = [
     {
       date: "12.11.2021",
-      amount: "$10",
+      amountPounds: "$10",
       category: "AA",
-      comment: "Abc",
+      purposeComment: "Abc",
       total: "$10",
       subTotal: "$10, $10",
     },
@@ -43,8 +43,8 @@ const TableData = [
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.amount,
-      id: "amount",
+      accessorFn: (row: any) => row?.amountPounds,
+      id: "amountPounds",
       cell: (info: any) => info.getValue(),
       header: () => <span>Amount</span>,
       isSortable: true,
@@ -57,8 +57,8 @@ const TableData = [
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.comment,
-      id: "comment",
+      accessorFn: (row: any) => row?.purposeComment,
+      id: "purposeComment",
       cell: (info: any) => info.getValue(),
       header: () => <span>Comment</span>,
       isSortable: true,
@@ -87,7 +87,7 @@ const TableData = [
             onClicked={() =>
               router.push({
                 pathname: `/money-management/kidiee-saving/${info.getValue()}/edit`,
-                // query: { fosterChildId: fosterChildId },
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
@@ -95,8 +95,8 @@ const TableData = [
             type="view"
             onClicked={() =>
               router.push({
-                pathname: `/money-management/kidiee-saving/add-kidiee-saving-form/${info.getValue()}/view`,
-                // query: { fosterChildId: fosterChildId },
+                pathname: `/money-management/kidiee-saving/${info.getValue()}/view`,
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
@@ -123,7 +123,7 @@ const TableData = [
           onAdd={() =>
             router.push({
               pathname:"/money-management/kidiee-saving/add-kidiee-saving-form",
-              // query: { fosterChildId: fosterChildId },
+              query: { fosterChildId: fosterChildId },
             })
           }
         />
