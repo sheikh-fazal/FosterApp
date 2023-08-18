@@ -20,7 +20,8 @@ export default function ViewSupervisingSocialWorker() {
       icon: <HomeIcon />,
       name: "Child Info",
       href: {
-        pathname: "/foster-child/social-worker-details/supervising-social-worker",
+        pathname:
+          "/foster-child/social-worker-details/supervising-social-worker",
         query: { fosterChildId: fosterChildId },
       },
     },
@@ -33,25 +34,13 @@ export default function ViewSupervisingSocialWorker() {
 
   const PAGE_TITLE = "Supervising Social Worker";
   return (
-    // <Box>
-    //   <TitleWithBreadcrumbLinks
-    //     sx={{ mb: 2 }}
-    //     breadcrumbs={BREADCRUMBS}
-    //     title={PAGE_TITLE}
-    //   />
-    //   <HorizaontalTabs
-    //     tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
-    //   >
-    //     <SupervisingSocialWorkerForm disabled/>
-    //   </HorizaontalTabs>
-    // </Box>
-     <Box>
-     <TitleWithBreadcrumbLinks
-       sx={{ mb: 2 }}
-       breadcrumbs={BREADCRUMBS}
-       title={PAGE_TITLE}
-     />
-     <SupervisingSocialWorkerForm disabled/>
-   </Box>
+    <Box>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS}
+        title={PAGE_TITLE}
+      />
+      <SupervisingSocialWorkerForm disabled />
+    </Box>
   );
 }
