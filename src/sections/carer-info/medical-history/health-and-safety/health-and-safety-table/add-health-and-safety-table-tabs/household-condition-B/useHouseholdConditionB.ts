@@ -31,12 +31,17 @@ export const useHouseholdConditionB = ({
   } = methods;
   const onSubmit = async (data: any) => {
     // formData(data);
+    const houseHoldConditionBData = { houseHoldConditionB: data };
+    console.log(houseHoldConditionBData);
+
     try {
       const updatedData = {
-        ...data,
+        ...houseHoldConditionBData,
         healthAndSafetyId,
         // registeredAVet: registeredAVet === "Yes" ? true : false,
       };
+      console.log(updatedData);
+      
       const res: any = await onSubmitHandler(updatedData).unwrap();
       enqueueSnackbar(
         res?.message,
@@ -48,12 +53,10 @@ export const useHouseholdConditionB = ({
       );
     } catch (error: any) {
       console.log(error);
-      
+
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });
     }
-    // await submitFunction();
-    // console.log(data);
   };
   useEffect(() => {
     breadCrumbData("Household Condition - B");
