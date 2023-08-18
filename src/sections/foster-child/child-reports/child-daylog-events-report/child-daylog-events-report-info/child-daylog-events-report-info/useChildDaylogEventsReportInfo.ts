@@ -7,17 +7,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect } from "react";
 
 import {
-  useGetSingleAllegationInfoDataQuery,
-  usePatchAllegationInfoDataMutation,
-  usePostAllegationInfoDataMutation,
-} from "@root/services/foster-child/events-and-notification/allegation/allegationInfo";
-import {
   childDaylogEventsReportInfoFormDataFunction,
   childDaylogEventsReportInfoFormSchema,
   childDaylogEventsReportInfoFormValues,
   defaultValueChildDaylogEventsReportInfoForm,
 } from ".";
 import {
+  useGetSingleChildDaylogEventsReportInfoDataQuery,
   usePatchChildDaylogEventsReportInfoDataMutation,
   usePostChildDaylogEventsReportInfoDataMutation,
 } from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
@@ -25,9 +21,10 @@ import {
 export const useChildDaylogEventsReportInfo = () => {
   const router = useRouter();
   const theme: any = useTheme();
-  const allegationInfoFormData = childDaylogEventsReportInfoFormDataFunction(
-    router?.query?.action === "view"
-  );
+  const childDaylogEventsReportInfoFormData =
+    childDaylogEventsReportInfoFormDataFunction(
+      router?.query?.action === "view"
+    );
 
   const [
     postChildDaylogEventsReportInfoDataTrigger,
@@ -45,7 +42,7 @@ export const useChildDaylogEventsReportInfo = () => {
   };
 
   const apiDataParameter = { pathParams };
-  const { data, isLoading } = useGetSingleAllegationInfoDataQuery(
+  const { data, isLoading } = useGetSingleChildDaylogEventsReportInfoDataQuery(
     apiDataParameter,
     {
       skip: !!!router.query?.id,
@@ -60,7 +57,11 @@ export const useChildDaylogEventsReportInfo = () => {
     ),
   });
   const { handleSubmit, reset } = methods;
-
+  const childDaylogEventsReportsData = {
+    "Carer Name": "Not Placed",
+    "Supervising Social Worker": "Not Assigned",
+    "User Name": "Sana",
+  };
   useEffect(() => {
     reset(() => defaultValueChildDaylogEventsReportInfoForm(data?.data));
   }, [data, reset]);
@@ -70,14 +71,17 @@ export const useChildDaylogEventsReportInfo = () => {
     if (!!router.query?.id) {
       return;
     }
-    handleSubmit(submitAllegationInfoForm)(isDraft);
+    handleSubmit(submitChildDaylogEventsReportInfoForm)(isDraft);
   };
 
-  const submitAllegationInfoForm = async (data: any, isDraft: any) => {
+  const submitChildDaylogEventsReportInfoForm = async (
+    data: any,
+    isDraft: any
+  ) => {
     const body = {
       fosterChildId: router.query.fosterChildId,
-      urnNumber: "CH001",
       ...data,
+      emailAddressess: data?.emailAddressess?.split(","),
       status: typeof isDraft === "string" ? "Pending" : "Submit",
     };
     console.log({ body });
@@ -86,7 +90,7 @@ export const useChildDaylogEventsReportInfo = () => {
     };
     const apiDataParameter = { body, queryParams };
     if (!!router.query?.id) {
-      patchAllegationInfoForm(data);
+      patchChildDaylogEventsReportInfoForm(data);
       return;
     }
     try {
@@ -94,9 +98,10 @@ export const useChildDaylogEventsReportInfo = () => {
         apiDataParameter
       ).unwrap();
       router.push({
-        pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
+        // pathname: `/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info`,
+        pathname: `/foster-child/child-reports/child-daylog-events-report`,
         query: {
-          id: res?.data?.id,
+          // id: res?.data?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -112,13 +117,12 @@ export const useChildDaylogEventsReportInfo = () => {
     }
   };
 
-  const patchAllegationInfoForm = async (data: any) => {
+  const patchChildDaylogEventsReportInfoForm = async (data: any) => {
     const pathParams = {
       id: router.query?.id,
     };
     const body = {
-      fosterChildId: router.query.fosterChildId,
-      urnNumber: "CH001",
+      fosterChildId: router?.query?.fosterChildId,
       ...data,
       status: "Submit",
     };
@@ -128,9 +132,10 @@ export const useChildDaylogEventsReportInfo = () => {
         apiDataParameter
       ).unwrap();
       router.push({
-        pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
+        // pathname: `/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info`,
+        pathname: `/foster-child/child-reports/child-daylog-events-report`,
         query: {
-          id: router.query?.id,
+          // id: router.query?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -146,15 +151,16 @@ export const useChildDaylogEventsReportInfo = () => {
   };
 
   return {
-    allegationInfoFormData,
+    childDaylogEventsReportInfoFormData,
     methods,
     handleSubmit,
-    submitAllegationInfoForm,
+    submitChildDaylogEventsReportInfoForm,
     router,
     postChildDaylogEventsReportInfoDataStatus,
     patchChildDaylogEventsReportInfoDataStatus,
     theme,
     isLoading,
     saveAsDraft,
+    childDaylogEventsReportsData,
   };
 };

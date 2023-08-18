@@ -24,7 +24,7 @@ export const childDaylogEventsReportInfoFormValues = {
   addToCarerRecord: "",
   updateSiblingRecord: false,
   selectUserToBeNotified: "",
-  EmailAddressess: "",
+  emailAddressess: "",
   status: "",
 };
 
@@ -44,7 +44,7 @@ export const defaultValueChildDaylogEventsReportInfoForm = (
     addToCarerRecord: data?.addToCarerRecord,
     updateSiblingRecord: data?.updateSiblingRecord,
     selectUserToBeNotified: data?.selectUserToBeNotified,
-    EmailAddressess: data?.EmailAddressess,
+    emailAddressess: data?.emailAddressess,
     status: data?.status,
   };
 };
@@ -63,7 +63,7 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
     .required("Correspondence from whom is required")
     .min(1, "Mininum 1 characters")
     .max(300, "Maximum 50 characters"),
-  childSeen: Yup.string().required("Child seen is required"),
+  childSeen: Yup.boolean().required("Child seen is required"),
   entryType: Yup.string().required("Entry type is required"),
   subject: Yup.string()
     .trim()
@@ -90,6 +90,11 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
   selectUserToBeNotified: Yup.string().required(
     "select user to be notified informed is required"
   ),
+  emailAddressess: Yup.string()
+    .trim()
+    .required("Action needed is required")
+    .min(1, "Mininum 1 characters")
+    .max(50, "Maximum 50 characters"),
 });
 
 export const childDaylogEventsReportInfoFormDataFunction = (
@@ -281,5 +286,19 @@ export const childDaylogEventsReportInfoFormDataFunction = (
     },
     gridLength: 6,
     component: RHFSelect,
+  },
+  {
+    id: 14,
+    componentProps: {
+      fullWidth: true,
+      name: "emailAddressess",
+      label:
+        "Enter Additional Email addresses to be notified which should be separated by commas.e.g., john@domain.com, Pete@domain.com",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    gridLength: 12,
+    component: RHFTextField,
   },
 ];
