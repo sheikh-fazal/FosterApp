@@ -55,7 +55,7 @@ export const useSupervisingSocialWorkerForm = () => {
           variant: "success",
         });
         router.push(
-          `/foster-child/social-worker-details/la-social-worker?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/social-worker-details/supervising-social-worker?fosterChildId=${router?.query?.fosterChildId}`
         );
       } else if (router?.query?.action === "edit") {
         const res: any = await putData({
@@ -66,7 +66,7 @@ export const useSupervisingSocialWorkerForm = () => {
           variant: "success",
         });
         router.push(
-          `/foster-child/social-worker-details/la-social-worker?fosterChildId=${router?.query?.fosterChildId}`
+          `/foster-child/social-worker-details/supervising-social-worker?fosterChildId=${router?.query?.fosterChildId}`
         );
       }
     } catch (error: any) {

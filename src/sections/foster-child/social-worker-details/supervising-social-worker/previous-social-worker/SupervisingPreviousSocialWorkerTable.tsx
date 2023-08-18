@@ -77,7 +77,7 @@ export default function SupervisingPreviousSocialWorkerTable(props: any) {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/social-worker-details/la-social-worker/view-social-worker",
+                "/foster-child/social-worker-details/supervising-social-worker/view-supervising-social-worker",
                 query: {
                   action: "view",
                   id: info.row.original.id,

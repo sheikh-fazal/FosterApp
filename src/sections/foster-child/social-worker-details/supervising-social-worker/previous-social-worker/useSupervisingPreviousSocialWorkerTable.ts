@@ -23,7 +23,7 @@ export const useSupervisingPreviousSocialWorkerTable = () => {
       fosterChildId: router?.query?.fosterChildId,
     });
 
-  const family = data?.data?.social_workers;
+  const family = data?.data?.socialWorker;
   const meta = data?.meta;
 
   const headerChangeHandler = (text: any) => {

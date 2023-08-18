@@ -13,12 +13,9 @@ export const SupervisingcontactApi = baseAPI.injectEndpoints({
         // params,
       }),
       // providesTags: (result) => generalTags(result?.faimly_details, TAG),
-
-      // providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),
     postSupervisingSocialWorkerApi: builder.mutation({
       query: ({ body, fosterChildId }: any) => ({
-        // url: `social-worker-details/la-social-worker`,
         url: `foster-child/add-supervising-social-worker/fosterChildId=${fosterChildId}`,
         method: "POST",
         body: { ...body, fosterChildId: fosterChildId },
@@ -38,7 +35,6 @@ export const SupervisingcontactApi = baseAPI.injectEndpoints({
     getSupervisingSocialWorkerById: builder.query({
       query: (supervisingSocialWorkerId) =>
         `foster-child/get-supervising-social-worker/${supervisingSocialWorkerId}`,
-      // query: (id) => `social-worker-details/la-social-worker/${id}`,
     }),
     // deleteSupervisingSocialWorkerById: builder.mutation({
     //   query: (data: any) => {
