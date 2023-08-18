@@ -1,24 +1,22 @@
 import * as Yup from "yup";
 
 export const defaultValues = {
-  documentType: "PDF",
-  documentDate: new Date(),
-  documentPassword: "",
+  docType: "PDF",
+  date: new Date(),
+  password: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  documentType: Yup.string().required("docsType is required"),
-  documentDate: Yup.date()
-    .typeError("date is required")
-    .required("date is required"),
-  documentPassword: Yup.string().required("docsPass is required"),
+  docType: Yup.string().required("docsType is required"),
+  date: Yup.date().typeError("date is required").required("date is required"),
+  password: Yup.string().required("password is required"),
 });
 
 export const fieldsInfo = [
   [
     {
       type: "SELECT",
-      name: "documentType",
+      name: "docType",
       label: "Document Type",
       fieldHeader: null,
       options: ["PDF", "DOC", "DOCX"],
@@ -28,13 +26,13 @@ export const fieldsInfo = [
   [
     {
       type: "DATE_PICKER",
-      name: "documentDate",
+      name: "date",
       label: "Document Date ",
       fieldHeader: null,
     },
     {
       type: "TEXT",
-      name: "documentPassword",
+      name: "password",
       label: "Password to Open Document",
       fieldHeader: null,
     },

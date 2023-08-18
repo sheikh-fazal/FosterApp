@@ -5,7 +5,11 @@ import { TextField } from "@mui/material";
 
 // ----------------------------------------------------------------------
 
-export default function RHFTextField({ name, ...other }: any) {
+export default function RHFTextField({
+  name,
+  fullWidth = true,
+  ...other
+}: any) {
   const { control } = useFormContext();
 
   return (
@@ -17,6 +21,7 @@ export default function RHFTextField({ name, ...other }: any) {
           {...field}
           error={!!error}
           helperText={error?.message}
+          fullWidth={fullWidth}
           {...other}
         />
       )}

@@ -1,3 +1,4 @@
+import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useGetSchoolDetailInfoTableApiQuery,
   useDeleteSchoolDetailInfoByIdMutation,
@@ -9,7 +10,7 @@ export const useSchoolDetailInfoTable = () => {
   const router = useRouter();
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
-
+  const { sortChangeHandler } = useTableParams();
   // ----------------------------------------------------------------------
   const params = {
     search: searchHandle,
@@ -32,6 +33,7 @@ export const useSchoolDetailInfoTable = () => {
     setPageHandle(page * 10);
   };
   return {
+    sortChangeHandler,
     router,
     isLoading,
     headerChangeHandler,

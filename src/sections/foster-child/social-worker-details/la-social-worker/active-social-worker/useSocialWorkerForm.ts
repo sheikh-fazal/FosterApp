@@ -15,6 +15,7 @@ export const useSocialWorkerForm = () => {
 
   const { data } = useGetSocialWorkerByIdQuery(router?.query?.id, {
     refetchOnMountOrArgChange: true,
+    skip: router?.query?.action === "add",
   });
   const [postData, { isError, isSuccess, isLoading }] =
     usePostSocialWorkerApiMutation();
