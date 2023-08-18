@@ -10,7 +10,7 @@ import { fDate } from "@root/utils/formatTime";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
-import { RHFInputWithLabel } from "../../extensions/RHFInputWithLabel";
+import { RHFInputWithLabel } from "../../../../components/hook-form/RHFInputWithLabel";
 import { HEAREDABOUTAGENCY } from "@root/dropdown-data/hearAboutAgency";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
 import RHFBooleanRadioGroup from "@root/components/hook-form/RHFBooleanRadioGroup";
