@@ -18,6 +18,11 @@ export const UploadDocument = (props: any) => {
     theme,
     router,
     tableHeaderRef,
+    uploadDocumentApiData,
+    isLoading,
+    isSuccess,
+    isError,
+    isFetching,
   } = useUploadDocument(breadCrumbData);
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -77,22 +82,16 @@ export const UploadDocument = (props: any) => {
           searchParam={(searchedText: string) =>
             console.log("searched Value", searchedText)
           }
-          tableData={UPLOAD_DOCUMENT_DATA}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "documentName",
-            "documentType",
-            "documentDate",
-            "personUploaded",
-            "password",
-          ]}
-          modalData={()=>{}}
+          tableData={uploadDocumentApiData}
+          isLoading={isLoading}
+          isFetching={isFetching}
+          isError={isError}
+          isSuccess={isSuccess}
+          column={["docName", "docType", "date", "uploadedBy", "password"]}
+          modalData={() => {}}
           onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={'1'}
-          totalPages={'1'}
+          currentPage={"1"}
+          totalPages={"1"}
         />
       </Card>
     </Page>

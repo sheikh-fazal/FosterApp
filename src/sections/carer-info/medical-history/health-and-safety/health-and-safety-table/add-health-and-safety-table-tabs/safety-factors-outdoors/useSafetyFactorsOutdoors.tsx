@@ -9,7 +9,6 @@ import { enqueueSnackbar } from "notistack";
 
 export const useSafetyFactorsOutdoors = ({
   breadCrumbData,
-  formData,
   onSubmitHandler,
   initialValueProps,
   message,
@@ -22,38 +21,29 @@ export const useSafetyFactorsOutdoors = ({
   const { makePath } = usePath();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
   const {
     handleSubmit,
-    watch,
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    // formData(data);
+    const safetyFactorsOutdoors = data;
     try {
-      const updatedData = {
-        ...data,
+      const res: any = await onSubmitHandler({
         healthAndSafetyId,
-        // registeredAVet: registeredAVet === "Yes" ? true : false,
-      };
-      const res: any = await onSubmitHandler(updatedData).unwrap();
+        formData: { safetyFactorsOutdoors },
+      }).unwrap();
       enqueueSnackbar(
-        res?.message,
+        res?.message ?? `Health And Safety ${message} Successfully!`,
         { variant: "success" }
-        // res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        // {
-        //   variant: "success",
-        // }
       );
     } catch (error: any) {
       console.log(error);
-
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });
     }
-    // await submitFunction();
-    // console.log(data);
+
   };
   useEffect(() => {
     breadCrumbData("Safety Factors - Outdoors");

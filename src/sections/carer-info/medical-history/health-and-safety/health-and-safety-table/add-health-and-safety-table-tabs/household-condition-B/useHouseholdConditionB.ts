@@ -9,7 +9,6 @@ import { enqueueSnackbar } from "notistack";
 
 export const useHouseholdConditionB = ({
   breadCrumbData,
-  formData,
   onSubmitHandler,
   initialValueProps,
   message,
@@ -22,38 +21,25 @@ export const useHouseholdConditionB = ({
   const { makePath } = usePath();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
   const {
     handleSubmit,
-    watch,
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    // formData(data);
-    const houseHoldConditionBData = { houseHoldConditionB: data };
-    console.log(houseHoldConditionBData);
+    const houseHoldConditionB = data;
 
     try {
-      const updatedData = {
-        ...houseHoldConditionBData,
+      const res: any = await onSubmitHandler({
         healthAndSafetyId,
-        // registeredAVet: registeredAVet === "Yes" ? true : false,
-      };
-      console.log(updatedData);
-      
-      const res: any = await onSubmitHandler(updatedData).unwrap();
+        formData: { houseHoldConditionB },
+      }).unwrap();
       enqueueSnackbar(
-        res?.message,
+        res?.message ?? `Health And Safety ${message} Successfully!`,
         { variant: "success" }
-        // res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        // {
-        //   variant: "success",
-        // }
       );
     } catch (error: any) {
-      console.log(error);
-
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });
     }

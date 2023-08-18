@@ -22,38 +22,24 @@ export default function useSafetyFactorsIndoorsA({
   const { makePath } = usePath();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
   const {
     handleSubmit,
-    watch,
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    // formData(data);
+    const safetyFactorsIndoorsA = data;
     try {
-      const updatedData = {
-        ...data,
+      const res: any = await onSubmitHandler({
         healthAndSafetyId,
-        // registeredAVet: registeredAVet === "Yes" ? true : false,
-      };
-      const res: any = await onSubmitHandler(updatedData).unwrap();
-      enqueueSnackbar(
-        res?.message,
-        { variant: "success" }
-        // res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        // {
-        //   variant: "success",
-        // }
-      );
+        formData: { safetyFactorsIndoorsA },
+      }).unwrap();
+      enqueueSnackbar(res?.message, { variant: "success" });
     } catch (error: any) {
-      console.log(error);
-
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });
     }
-    // await submitFunction();
-    // console.log(data);
   };
   useEffect(() => {
     breadCrumbData("Safety Factors - Indoors A");

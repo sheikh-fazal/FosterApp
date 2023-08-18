@@ -9,7 +9,6 @@ import { enqueueSnackbar } from "notistack";
 
 export const useSafetyFactorsInoorsB = ({
   breadCrumbData,
-  formData,
   onSubmitHandler,
   initialValueProps,
   message,
@@ -22,29 +21,22 @@ export const useSafetyFactorsInoorsB = ({
   const { makePath } = usePath();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
   const {
     handleSubmit,
-    watch,
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    // formData(data);
+    const safetyFactorsIndoorsB = data;
     try {
-      const updatedData = {
-        ...data,
+      const res: any = await onSubmitHandler({
         healthAndSafetyId,
-        // registeredAVet: registeredAVet === "Yes" ? true : false,
-      };
-      const res: any = await onSubmitHandler(updatedData).unwrap();
+        formData: { safetyFactorsIndoorsB },
+      }).unwrap();
       enqueueSnackbar(
-        res?.message,
+        res?.message ?? `Health And Safety ${message} Successfully`,
         { variant: "success" }
-        // res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-        // {
-        //   variant: "success",
-        // }
       );
     } catch (error: any) {
       console.log(error);

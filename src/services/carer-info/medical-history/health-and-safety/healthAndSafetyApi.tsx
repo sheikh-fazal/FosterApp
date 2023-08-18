@@ -24,18 +24,32 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
     healthAndSafetyDataPatch: builder.mutation({
-      query: ({ healthAndSafetyId, payload }: any) => ({
+      query: ({ healthAndSafetyId, formData }: any) => ({
         url: `carer-Info/update-health-and-safety/${healthAndSafetyId}`,
         method: "PATCH",
-        body: payload,
+        body: formData,
       }),
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
     getHealthAndSafetyDataById: builder.query({
-      query: (healthAndSafetyId: any) => 
+      query: (healthAndSafetyId: any) =>
         `carer-Info/get-health-and-safety/${healthAndSafetyId}`,
-        providesTags: ["HEALTH_AND_SAFETY"],
-      
+      providesTags: ["HEALTH_AND_SAFETY"],
+    }),
+
+    healthAndSafetyDocumentPost: builder.mutation({
+      query: ({ healthAndSafetyId, formData }: any) => ({
+        url: `carer-Info/add-health-and-safety/doc/${healthAndSafetyId}`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: ["HEALTH_AND_SAFETY"],
+    }),
+
+    getHealthAndSafetyDocumentList: builder.query({
+      query: (healthAndSafetyId: any) =>
+        `carer-Info/list-health-and-safety/document/list/${healthAndSafetyId}`,
+      providesTags: ["HEALTH_AND_SAFETY"],
     }),
   }),
 });
@@ -45,4 +59,6 @@ export const {
   useHouseHoldConditionAPostMutation,
   useHealthAndSafetyDataPatchMutation,
   useGetHealthAndSafetyDataByIdQuery,
+  useHealthAndSafetyDocumentPostMutation,
+  useGetHealthAndSafetyDocumentListQuery,
 } = healthAndSafetyApi;

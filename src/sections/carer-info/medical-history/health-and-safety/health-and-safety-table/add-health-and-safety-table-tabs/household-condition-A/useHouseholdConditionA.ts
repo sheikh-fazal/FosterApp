@@ -19,11 +19,7 @@ export const useHouseholdConditionA = ({
   const theme: any = useTheme();
   const router = useRouter();
   const { makePath } = usePath();
-  // const action = router.query;
-  // console.log(router.query);
 
-  const [resetTrigger, { data, isLoading, isSuccess }] =
-    useHouseHoldConditionAPostMutation();
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: initialValueProps,
@@ -36,14 +32,6 @@ export const useHouseholdConditionA = ({
     // formData(data);
     try {
       const res: any = await onSubmitHandler(data).unwrap();
-      
-      
-      // enqueueSnackbar(
-      //   res?.message ?? `Pet Questionnaire ${message} Successfully!`,
-      //   {
-      //     variant: "success",
-      //   }
-      // );
       enqueueSnackbar(res?.message, { variant: "success" });
       {
         isAdding &&
@@ -55,23 +43,10 @@ export const useHouseholdConditionA = ({
           );
       }
     } catch (error: any) {
-      
-      // const errMsg = error?.data?.message;
-      // enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
-      enqueueSnackbar(error?.message ?? "Something Went Wrong!", { variant: "error" });
+      enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
+        variant: "error",
+      });
     }
-    // submitFunction();
-    // try {
-    //   const res: any = await resetTrigger(data);
-    //   enqueueSnackbar(res?.data?.message, { variant: "success" });
-    // } catch (error: any) {
-    //   console.log(error?.message);
-
-    //   const errMsg = error?.data?.message;
-    //   console.log(errMsg);
-
-    //   enqueueSnackbar(error?.message, { variant: "error" });
-    // }
   };
   useEffect(() => {
     breadCrumbData("Household Condition - A");
@@ -82,11 +57,9 @@ export const useHouseholdConditionA = ({
     theme,
     handleSubmit,
     onSubmit,
-    breadCrumbData,
     methods,
     router,
-    isLoading,
     makePath,
-    isSubmitting
+    isSubmitting,
   };
 };
