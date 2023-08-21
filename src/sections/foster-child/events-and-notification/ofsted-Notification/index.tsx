@@ -4,16 +4,7 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import * as Yup from "yup";
-// export const dummy = [
-//   {
-//     dateOfIncident: "12-12-21, 11:59",
-//     Status: "In progress",
-//     dateofDeath: "12-12-21",
-//     Location: "London, Uk",
-//   },
-// ];
 
 export const OFsedFromData = [
   {
