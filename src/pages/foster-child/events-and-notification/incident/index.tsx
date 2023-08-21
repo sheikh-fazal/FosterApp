@@ -1,26 +1,17 @@
-// import React from "react";
-
-// export default function Incident() {
-//   return <div>Incident</div>;
-// }
 import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import ChildMedicationInfotable from "@root/sections/foster-child/health-medical-history/child-medication-info/childMedicationInfotable";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import IncidentTable from "@root/sections/foster-child/events-and-notification/incident/IncidentTable";
-// import IncidentTable from "@root/sections/foster-child/events-and-notification/incident/incidentTable";
-// import IncidentTable from "@root/sections/foster-child/events-and-notification/incident/incidentTable";
-// import IncidentTable from "@root/sections/foster-child/events-and-notification/incident/incidentTable";
 
 // Constants
 
 // ----------------------------------------------------------------------
 
 ChildIncidentInfo.getLayout = function getLayout(page: any) {
-  return <Layout >{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------
@@ -50,9 +41,7 @@ export default function ChildIncidentInfo() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      {/* <IncidentTable fosterChildId={fosterChildId} /> */}
-      {/* <ChildMedicationInfotable fosterChildId={fosterChildId} /> */}
-      <IncidentTable fosterChildId={fosterChildId}/>
+      <IncidentTable fosterChildId={fosterChildId} />
     </Box>
   );
 }

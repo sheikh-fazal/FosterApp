@@ -30,6 +30,7 @@ import {
   useAddSatsExamGradeDocsListDataMutation,
   useUpdateSatsExamGradeDocsListDataMutation,
 } from "@root/services/foster-child/education-records/sats-exam-grade/satsExamGradeListApi";
+import dayjs from "dayjs";
 
 const UploadDocsUpdateViewForm: FC<any> = ({
   closeModel,
@@ -45,15 +46,15 @@ const UploadDocsUpdateViewForm: FC<any> = ({
   const [updateSatsExamGradeDocsListData] =
     useUpdateSatsExamGradeDocsListDataMutation();
   console.log({ defaultValue });
-  const { documentType, updatedAt, documentPassword } = defaultValue;
-
+  const { docType, updatedAt, password } = defaultValue;
+  console.log({ defaultValue });
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
     defaultValues: {
-      documentType,
-      documentDate: updatedAt && new Date(updatedAt),
-      documentPassword,
+      docType,
+      date: updatedAt && new Date(updatedAt),
+      password,
     },
   });
 
@@ -65,7 +66,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
     handleSubmit,
     formState: { errors, isSubmitting, isDirty },
   } = methods;
-  const docsType = useWatch({ control, name: "documentType" });
+  const docsType = useWatch({ control, name: "docType" });
 
   const onSubmit = async (data: any) => {
     console.log("API IS NOT AVAILABLE");
@@ -112,7 +113,9 @@ const UploadDocsUpdateViewForm: FC<any> = ({
             {/* Header Area  */}
             <Grid item sx={{ padding: "0.5em" }} container>
               <Grid item sm={11}>
-                <Typography sx={{ fontWeight: 600 }}>Add Document</Typography>
+                <Typography sx={{ fontWeight: 600 }}>
+                  {!disabled && "Update"} Document
+                </Typography>
               </Grid>
               <Grid item sm={1} container justifyContent="flex-end">
                 <IconButton onClick={closeModel}>
@@ -152,7 +155,7 @@ const UploadDocsUpdateViewForm: FC<any> = ({
                     accept={getDocType(docsType)}
                     label="File"
                     setFileHolder={setFileHolder}
-                    availableFile={defaultValue?.documentName}
+                    availableFile={defaultValue?.docName}
                     readOnly={disabled}
                   />
                 </Grid>

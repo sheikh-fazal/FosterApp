@@ -12,30 +12,31 @@ import { useEffect } from "react";
 
 export const useAbsenceInfoForm = (props: any) => {
   const router = useRouter();
-  const childInfoId = router?.query["absence_info_id"];
+  // const childInfoId = router?.query["absence_info_id"];
   const { disabled, defaultValues } = props;
 
-  const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
-    refetchOnMountOrArgChange: true,
-  });
+  // const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
+  //   refetchOnMountOrArgChange: true,
+  // });
 
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: defaultValues ?? absenceInfoDefaultValues,
   });
+
   const {
     handleSubmit,
     reset,
     formState: { isSubmitting },
   } = methods;
-  useEffect(() => {
-    reset((formValues: any) => ({
-      ...formValues,
-      ...data?.[0],
-      dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-      label: new Date(data?.[0]?.label),
-    }));
-  }, [data, reset]);
+  // useEffect(() => {
+  //   reset((formValues: any) => ({
+  //     ...formValues,
+  //     ...data?.[0],
+  //     dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
+  //     label: new Date(data?.[0]?.label),
+  //   }));
+  // }, [data, reset]);
   const [postAbsenceInfoList] = usePostAbsenceInfoMutation();
   const [patchAbsenceInfoList] = usePatchAbsenceInfoMutation();
 
@@ -47,8 +48,9 @@ export const useAbsenceInfoForm = (props: any) => {
     // Post API of Absence Info
     try {
       const res: any = await postAbsenceInfoList(data).unwrap();
+
       router.push(
-        `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${res?.id}`
+        `/foster-child/education-records/absence-info/add-absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${res?.id}`
       );
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -68,20 +70,26 @@ export const useAbsenceInfoForm = (props: any) => {
         router?.asPath.split("/").pop() === "view" ||
         router?.asPath.split("/").pop() === "edit"
       ) {
-        router.push(`/foster-child/education-records/absence-info`);
+        router.push(
+          `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}`
+        );
       } else {
         router.push(
-          `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${router?.query?.absence_info_id}`
+          `/foster-child/education-records/absence-info/add-absence-info?fosterChildId=${router?.query?.fosterChildId}&absence_info_id=${router?.query?.absence_info_id}`
         );
       }
       enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
         variant: "success",
       });
+      router.push(
+        `/foster-child/education-records/absence-info?fosterChildId=${router?.query?.fosterChildId}`
+      );
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
     }
   };
+
   return {
     methods,
     handleSubmit,

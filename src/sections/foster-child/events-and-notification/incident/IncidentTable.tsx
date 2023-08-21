@@ -5,7 +5,7 @@ import { Box, Grid, Paper } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
 import router from "next/router";
-import { Dummy } from ".";
+// import { Dummy } from ".";
 import { useIncidentTable } from "./useIncidentTable";
 
 const IncidentTable = (props: any) => {
@@ -24,12 +24,13 @@ const IncidentTable = (props: any) => {
     isError,
     isLoading,
   } = useIncidentTable();
+  console.log("🚀 ~ file: incidentTable.tsx:27 ~ IncidentTable ~ data:", data);
   const columns = [
     {
-      accessorFn: (row: any) => row?.nameOfIncident,
-      id: "nameOfIncident",
+      accessorFn: (row: any) => row?.natureOfIncident,
+      id: "natureOfIncident",
       cell: (info: any) => info.getValue(),
-      header: "Name Of Incident",
+      header: "Nature Of Incident",
       isSortable: true,
     },
     {
@@ -115,33 +116,20 @@ const IncidentTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={Dummy ?? []}
+                // data={data?.absence_details}
+                data={data?.data?.cc_incident_info}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isError={isError}
+                isSuccess={isSuccess}
+                currentPage={data?.data?.metameta?.page}
+                totalPages={data?.data?.metameta?.pages}
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
                 isPagination={true}
                 showSerialNo={true}
-                //   totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
-                //   currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
-                //   onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
               />
-              {/* <CustomTable
-        // data={data?.data?.cc_incident_info}
-        columns={columns}
-        // isLoading={isLoading}
-        // isFetching={isFetching}
-        // isError={isError}
-        // isSuccess={isSuccess}
-        // currentPage={data?.data?.metameta?.page}
-        // totalPages={data?.data?.metameta?.pages}
-        showSerialNo
-        isPagination
-        // onPageChange={pageChangeHandler}
-        // onSortByChange={sortChangeHandler}
-      /> */}
             </Box>
           </Paper>
         </Grid>

@@ -14,6 +14,7 @@ export const useStudySupportInfoForm = () => {
   const router = useRouter();
 
   const { data } = useGetStudySupportInfoByIdQuery(router?.query?.id, {
+    skip: router?.query?.action === "add",
     refetchOnMountOrArgChange: true,
   });
   const [postData, { isError, isSuccess, isLoading }] =
@@ -35,8 +36,8 @@ export const useStudySupportInfoForm = () => {
     reset((formValues: any) => ({
       ...formValues,
       ...data?.data,
-      fromDate: new Date(data?.data?.fromDate),
-      toDate: new Date(data?.data?.toDate),
+      fromDate: data ? new Date(data?.data?.fromDate) : new Date(),
+      toDate: data ? new Date(data?.data?.toDate) : new Date(),
     }));
   }, [data, reset]);
 
