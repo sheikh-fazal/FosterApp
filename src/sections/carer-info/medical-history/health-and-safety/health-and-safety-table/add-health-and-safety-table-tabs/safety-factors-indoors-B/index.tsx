@@ -4,9 +4,6 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
   isGasFiresAndGassWaterHeatersServiced: false,
@@ -47,9 +44,9 @@ export const defaultValues = {
 
   isAllWindowAndDoorKeysEasilyAvailble: false,
 
-  dateToBeCarriedOutEight: new Date(todayDate),
+  dateToBeCarriedOut8: new Date(todayDate),
 
-  improvementsRequireEight: "",
+  improvementsRequire8: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -81,9 +78,9 @@ export const FormSchema = Yup.object().shape({
 
   improvementsReq7: Yup.string().required("Required"),
 
-  dateToBeCarriedOutEight: Yup.date().required("Required"),
+  dateToBeCarriedOut8: Yup.date().required("Required"),
 
-  improvementsRequireEight: Yup.string().required("Required"),
+  improvementsRequire8: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsB_Data = [
@@ -336,7 +333,7 @@ export const safetyFactorsIndoorsB_Data = [
     id: 23,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutEight",
+      name: "dateToBeCarriedOut8",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -345,7 +342,7 @@ export const safetyFactorsIndoorsB_Data = [
   {
     id: 24,
     componentProps: {
-      name: "improvementsRequireEight",
+      name: "improvementsRequire8",
       label: "Improvements required",
       multiline: true,
       minRows: 3,

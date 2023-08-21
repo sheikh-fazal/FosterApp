@@ -41,10 +41,9 @@ export const defaultValues = {
   improvementsReq6: "",
 
   isAlcohalCigarettesAndLighter: false,
-  dateToBeCarriedOutSeven: new Date(todayDate),
+  dateToBeCarriedOut7: new Date(todayDate),
 
-  improvementsRequireSeven: "",
-
+  improvementsRequire7: "",
 };
 
 export const FormSchema = Yup.object().shape({
@@ -72,10 +71,9 @@ export const FormSchema = Yup.object().shape({
 
   improvementsReq6: Yup.string().required("Required"),
 
-  dateToBeCarriedOutSeven: Yup.date().required("Required"),
+  dateToBeCarriedOut7: Yup.date().required("Required"),
 
-  improvementsRequireSeven: Yup.string().required("Required"),
-
+  improvementsRequire7: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsC_Data = [
@@ -189,7 +187,8 @@ export const safetyFactorsIndoorsC_Data = [
     componentProps: {
       fullWidth: true,
       name: "isHighChairsBuggies",
-      label: "Do high chairs, buggies and child equipment confirm to British Standards?",
+      label:
+        "Do high chairs, buggies and child equipment confirm to British Standards?",
     },
     component: RHFCheckbox,
   },
@@ -221,8 +220,7 @@ export const safetyFactorsIndoorsC_Data = [
     componentProps: {
       fullWidth: true,
       name: "isAnAccessibleFirstAidBox",
-      label:
-        "Is there an accessible First Aid box?",
+      label: "Is there an accessible First Aid box?",
     },
     component: RHFCheckbox,
   },
@@ -254,7 +252,8 @@ export const safetyFactorsIndoorsC_Data = [
     componentProps: {
       fullWidth: true,
       name: "areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach",
-      label: "Are glassware, china and other fragile objects kept out of reach?",
+      label:
+        "Are glassware, china and other fragile objects kept out of reach?",
     },
     component: RHFCheckbox,
   },
@@ -296,7 +295,7 @@ export const safetyFactorsIndoorsC_Data = [
     id: 20,
     componentProps: {
       fullWidth: true,
-      name: "dateToBeCarriedOutSeven",
+      name: "dateToBeCarriedOut7",
       label: "Date to be carried out",
     },
     gridLength: 6,
@@ -305,7 +304,7 @@ export const safetyFactorsIndoorsC_Data = [
   {
     id: 21,
     componentProps: {
-      name: "improvementsRequireSeven",
+      name: "improvementsRequire7",
       label: "Improvements required",
       multiline: true,
       minRows: 3,
@@ -313,5 +312,5 @@ export const safetyFactorsIndoorsC_Data = [
     },
     gridLength: 12,
     component: RHFTextField,
-  }
+  },
 ];

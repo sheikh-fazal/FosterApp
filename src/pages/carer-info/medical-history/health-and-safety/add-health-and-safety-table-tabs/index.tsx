@@ -85,7 +85,7 @@ export default function AddHealthAndSafetyTableTabs() {
       {/* return ( */}
       <HorizaontalTabs tabsDataArray={tabsData}>
         <HouseholdConditionA
-          formData={(data: any) => setFormData(data)}
+          // formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={householdA}
           message="Added"
@@ -94,7 +94,7 @@ export default function AddHealthAndSafetyTableTabs() {
           // isLoading={loadinghouseholdAPostData}
         />
         <HouseholdConditionB
-          formData={(data: any) => setFormData(data)}
+          // formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
@@ -102,37 +102,37 @@ export default function AddHealthAndSafetyTableTabs() {
           // isLoading={loadingAllConditions}
         />
         <SafetyFactorsIndoorsA
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsB
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsC
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsD
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsE
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsOutdoors
-          formData={(data: any) => console.log(data)}
+          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"

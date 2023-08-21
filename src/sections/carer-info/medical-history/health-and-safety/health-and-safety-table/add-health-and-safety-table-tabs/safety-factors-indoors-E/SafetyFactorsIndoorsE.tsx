@@ -24,7 +24,7 @@ export const SafetyFactorsIndoorsE = (props: any) => {
     isSuccess,
     breadCrumbData,
     onSubmitHandler,
-    initialValueProps,
+    initialValueProps = defaultValues,
     message,
   } = props;
 
@@ -95,8 +95,9 @@ export const SafetyFactorsIndoorsE = (props: any) => {
                   "&:hover": { bgcolor: theme.palette.primary.main },
                 }}
                 disabled={isSubmitting}
+                variant="contained"
               >
-                {isSubmitting ? (
+              {isSubmitting ? (
                   <span style={{ display: "flex", alignItems: "center" }}>
                     Loading &nbsp; <CircularProgress size={20} />
                   </span>

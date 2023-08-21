@@ -1,5 +1,9 @@
 import { useTheme } from "@mui/material";
-import { useGetHealthAndSafetyDocumentListQuery } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
+import {
+  useDeleteHealthAndSafetyDocumentMutation,
+  useGetHealthAndSafetyDocumentListQuery,
+  useHealthAndSafetyDocumentPostMutation,
+} from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useEffect, useRef } from "react";
@@ -23,6 +27,39 @@ export const useUploadDocument = (breadCrumbData: any) => {
     enqueueSnackbar(data?.message ?? "Something Went Wrong!", {
       variant: "error",
     });
+  const [postDocuments]: any = useHealthAndSafetyDocumentPostMutation();
+  const [deleteDocumentList]: any = useDeleteHealthAndSafetyDocumentMutation();
+  const documentUploadHandler = async (data: any) => {
+    console.log(data);
+
+    const formData = new FormData();
+    formData.append("docType ", data.documentType);
+    formData.append("date", data.documentDate);
+    formData.append("password", data.password);
+    formData.append("docFile ", data.chosenFile);
+    try {
+      await postDocuments({ healthAndSafetyId, formData }).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+  const deleteDocument = async (id: any) => {
+    deleteDocumentList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted  Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   useEffect(() => {
     breadCrumbData("Upload Documents");
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,5 +77,7 @@ export const useUploadDocument = (breadCrumbData: any) => {
     isSuccess,
     isError,
     isFetching,
+    documentUploadHandler,
+    deleteDocument
   };
 };

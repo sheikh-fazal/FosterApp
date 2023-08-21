@@ -23,6 +23,8 @@ export const UploadDocument = (props: any) => {
     isSuccess,
     isError,
     isFetching,
+    deleteDocument,
+    documentUploadHandler
   } = useUploadDocument(breadCrumbData);
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -88,10 +90,13 @@ export const UploadDocument = (props: any) => {
           isError={isError}
           isSuccess={isSuccess}
           column={["docName", "docType", "date", "uploadedBy", "password"]}
-          modalData={() => {}}
+          modalData={(data: any) => documentUploadHandler(data)}
           onPageChange={(page: any) => console.log("parent log", page)}
           currentPage={"1"}
           totalPages={"1"}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
         />
       </Card>
     </Page>

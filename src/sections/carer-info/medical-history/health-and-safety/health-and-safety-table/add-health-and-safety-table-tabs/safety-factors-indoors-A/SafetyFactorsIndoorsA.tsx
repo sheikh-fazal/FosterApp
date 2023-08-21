@@ -17,7 +17,7 @@ export const SafetyFactorsIndoorsA = (props: any) => {
     isSuccess,
     breadCrumbData,
     onSubmitHandler,
-    initialValueProps,
+    initialValueProps = defaultValues,
     message,
   } = props;
 

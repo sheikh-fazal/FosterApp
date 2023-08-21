@@ -24,7 +24,7 @@ export const SafetyFactorsOutdoors = (props: any) => {
     isSuccess,
     breadCrumbData,
     onSubmitHandler,
-    initialValueProps,
+    initialValueProps = defaultValues,
     message,
   } = props;
 
@@ -84,7 +84,7 @@ export const SafetyFactorsOutdoors = (props: any) => {
             })}
 
             <Grid item xs={12}>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} variant="contained">
                 {isSubmitting ? (
                   <span style={{ display: "flex", alignItems: "center" }}>
                     Loading &nbsp; <CircularProgress size={20} />

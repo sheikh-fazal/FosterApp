@@ -35,7 +35,10 @@ export default function useSafetyFactorsIndoorsA({
         healthAndSafetyId,
         formData: { safetyFactorsIndoorsA },
       }).unwrap();
-      enqueueSnackbar(res?.message, { variant: "success" });
+      enqueueSnackbar(
+        res?.message ?? `Health And Safety ${message} Successfully!`,
+        { variant: "success" }
+      );
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });

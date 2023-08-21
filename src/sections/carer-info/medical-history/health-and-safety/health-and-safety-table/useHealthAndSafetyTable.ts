@@ -8,14 +8,22 @@ import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 import { columns } from ".";
 import usePath from "@root/hooks/usePath";
+import { useTableParams } from "@root/hooks/useTableParams";
 
 export const useHealthAndSafetyTable = () => {
-  const { makePath } = usePath()
-
+  const [search, setSearch] = React.useState("");
+  const { makePath } = usePath();
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
   const [healthAndSafetyId, setHealthAndSafetyId] = React.useState<any>(null);
   const { data, isLoading, isError, isSuccess } =
-    useGetHealthAndSafetyListDataQuery({});
+    useGetHealthAndSafetyListDataQuery({
+      search: search,
+      ...params,
+    });
   const healthAndSafetyApiData = data?.data;
+
+  const meta = data?.meta;
 
   const [deleteListItem] = useDeleteHealthAndSafetyListDataMutation({});
 
@@ -42,7 +50,7 @@ export const useHealthAndSafetyTable = () => {
   const columnsFunction = columns({
     openDeleteModel,
     makePath,
-    router
+    router,
   });
   return {
     deleteList,
@@ -55,6 +63,11 @@ export const useHealthAndSafetyTable = () => {
     isSuccess,
     healthAndSafetyId,
     setHealthAndSafetyId,
-    makePath
+    makePath,
+    meta,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch
   };
 };

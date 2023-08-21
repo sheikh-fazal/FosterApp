@@ -3,8 +3,9 @@ import { baseAPI } from "@root/services/baseApi";
 export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getHealthAndSafetyListData: builder.query({
-      query: () => ({
+      query: (payload: any) => ({
         url: `carer-Info/list-health-and-safety`,
+        params: payload.params,
       }),
       providesTags: ["HEALTH_AND_SAFETY"],
     }),
@@ -51,6 +52,13 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
         `carer-Info/list-health-and-safety/document/list/${healthAndSafetyId}`,
       providesTags: ["HEALTH_AND_SAFETY"],
     }),
+    deleteHealthAndSafetyDocument: builder.mutation({
+      query: (healthAndSafetyId: any) => ({
+        url: `carer-Info/health-and-safety/document/${healthAndSafetyId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["HEALTH_AND_SAFETY"],
+    }),
   }),
 });
 export const {
@@ -61,4 +69,5 @@ export const {
   useGetHealthAndSafetyDataByIdQuery,
   useHealthAndSafetyDocumentPostMutation,
   useGetHealthAndSafetyDocumentListQuery,
+  useDeleteHealthAndSafetyDocumentMutation,
 } = healthAndSafetyApi;

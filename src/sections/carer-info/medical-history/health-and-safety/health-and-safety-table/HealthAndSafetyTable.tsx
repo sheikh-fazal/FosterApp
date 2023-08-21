@@ -17,12 +17,14 @@ export const HealthAndSafetyTable = () => {
     columnsFunction,
     isSuccess,
     healthAndSafetyId,
+    meta,
     setHealthAndSafetyId,
     makePath,
+    // headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    setSearch
   } = useHealthAndSafetyTable();
-
-  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
 
   return (
     <>
@@ -46,7 +48,10 @@ export const HealthAndSafetyTable = () => {
               })
             );
           }}
-          onChanged={headerChangeHandler}
+          // onChanged={headerChangeHandler}
+          onChanged={(event: any) => {
+            setSearch(event.search);
+          }}
           // selectFilters={SELECT_FILTERS}
         />
         <CustomTable
@@ -55,6 +60,8 @@ export const HealthAndSafetyTable = () => {
           showSerialNo
           isError={isError}
           isLoading={isLoading}
+          totalPages={meta?.pages ?? 0}
+          currentPage={meta?.page ?? 1}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}
