@@ -10,7 +10,7 @@ const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
     name: "/ Safe Care Policies List",
-    href: `/foster-child/other-information/safe-care-policy-list//?fosterChildId=${query.fosterChildId}`,
+    href: `/foster-child/other-information/safe-care-policy-list/?fosterChildId=${query.fosterChildId}`,
   },
   {
     name: "Safe Care Policy",

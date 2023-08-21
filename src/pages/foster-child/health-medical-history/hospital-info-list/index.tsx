@@ -19,7 +19,6 @@ HospitalInfoList.getLayout = function getLayout(page: any) {
 export default function HospitalInfoList() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
-  console.log(fosterChildId);
 
   const BREADCRUMBS = [
     {

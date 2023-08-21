@@ -12,16 +12,16 @@ export const ReviewOfficerReportsTable = (props: any) => {
   const { fosterChildId } = props;
   const {
     //   data,
-      // isError,
-      // isLoading,
-      // isSuccess,
-      // isFetching,
+    // isError,
+    // isLoading,
+    // isSuccess,
+    // isFetching,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
   } = useReviewOfficerReportsTable();
 
-const TableData = [
+  const TableData = [
     {
       fosterCareer: "Allie Grater",
       DateofReviewMeeting: "04/11/2021",
@@ -30,7 +30,6 @@ const TableData = [
       fosterCareers: "Teri Dactyl",
     },
   ];
-  
 
   const columns = [
     {
@@ -65,7 +64,7 @@ const TableData = [
       accessorFn: (row: any) => row?.fosterCareers,
       id: "fosterCareers",
       cell: (info: any) => info.getValue(),
-      header: () => <span>Foster Career's</span>,
+      header: () => <span>{`Foster Career's`}</span>,
       isSortable: true,
     },
     {
@@ -73,7 +72,7 @@ const TableData = [
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-           <TableAction
+          <TableAction
             type="view"
             onClicked={() =>
               router.push({
@@ -91,24 +90,21 @@ const TableData = [
               })
             }
           />
-            <TableAction
-              type="share"
-              onClicked={() =>
-                router.push({
-                  pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/share`,
-                  // query: { fosterChildId: fosterChildId },
-                })
-              }
-            />
+          <TableAction
+            type="share"
+            onClicked={() =>
+              router.push({
+                pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/share`,
+                // query: { fosterChildId: fosterChildId },
+              })
+            }
+          />
         </Box>
       ),
       header: () => <span>Actions</span>,
       isSortable: false,
     },
   ];
-
-
-
 
   return (
     <>
@@ -126,20 +122,19 @@ const TableData = [
           // }
         />
         <CustomTable
-        showSerialNo
-           data={TableData}
-           columns={columns}
-           isLoading={false}
-           isFetching={false}
-           isError={false}
-           isPagination={false}
-           isSuccess={true}
-           currentPage={1}
-           onPageChange={pageChangeHandler}
-           onSortByChange={sortChangeHandler}
+          showSerialNo
+          data={TableData}
+          columns={columns}
+          isLoading={false}
+          isFetching={false}
+          isError={false}
+          isPagination={false}
+          isSuccess={true}
+          currentPage={1}
+          onPageChange={pageChangeHandler}
+          onSortByChange={sortChangeHandler}
         />
       </Card>
     </>
   );
 };
-

@@ -25,13 +25,14 @@ export default function ViewSchoolDetail() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
 
+  const Router: any = useRouter();
+  const { fosterChildId, schoolInfoId } = Router.query;
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId: schoolInfoId,
   };
-  const Router: any = useRouter();
-  const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -52,7 +53,11 @@ export default function ViewSchoolDetail() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsSchoolDetailInfoQuery({ fosterChildId, params });
+  } = useGetUploadDocumentsSchoolDetailInfoQuery({
+    fosterChildId,
+    recordId: schoolInfoId,
+    params,
+  });
 
   const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;

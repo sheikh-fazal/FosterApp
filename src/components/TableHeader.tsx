@@ -1,20 +1,25 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 // @mui
 import {
   Box,
   Button,
   InputAdornment,
+  InputLabelProps,
   MenuItem,
   Stack,
   TextField,
   Typography,
   alpha,
+  inputLabelClasses,
+  textFieldClasses,
+  useTheme,
 } from "@mui/material";
 
 // @mui icons
 import SearchIcon from "@mui/icons-material/Search";
 import TableAction from "./TableAction";
 import Image from "next/image";
+import { createGradient } from "@root/theme/palette";
 
 // ----------------------------------------------------------------------
 // Variables
@@ -65,6 +70,9 @@ const TableHeader = forwardRef(function TableHeader(
   const [params, setParams] = useState<any>(
     getDefaultParams({ searchKey, selectFilters })
   );
+  //THEME
+  const theme = useTheme();
+  const [shrink, setshrink] = useState("");
 
   // Add the functions to the ref
   useImperativeHandle(ref, () => {
@@ -75,9 +83,11 @@ const TableHeader = forwardRef(function TableHeader(
     };
   });
 
-  function changeHandler({ target: { name, value } }: any) {
+  function changeHandler({ target: { name, value, key } }: any) {
     if (disabled) return;
+    console.log(name);
 
+  
     setParams((oldParams: any) => {
       const updatedParams = { ...oldParams, [name]: value };
 
@@ -143,30 +153,41 @@ const TableHeader = forwardRef(function TableHeader(
       {showSelectFilters && (
         <Stack sx={styles.selectStackStyles}>
           {selectFilters.map(({ key, label, options = [] }: any) => (
-            <TextField
-              disabled={disabled}
-              select
-              size={selectSize}
-              key={key}
-              name={key}
-              label={label}
-              value={params[key]}
-              onChange={changeHandler}
-              sx={styles.selectFieldStyles}
-            >
-              {options.map(({ label, value }: any) => (
-                <MenuItem key={value} value={value}>
-                  {label}
-                </MenuItem>
-              ))}
-            </TextField>
+            <Box key={key} sx={styles.selectWapper}>
+              <TextField
+                disabled={disabled}
+                select
+                size={selectSize}
+                name={key}
+                label={label}
+                value={params[key]}
+                onChange={changeHandler}
+                sx={styles.selectFieldStyles}
+                InputLabelProps={{
+        
+                  sx: {
+                    [`&.${inputLabelClasses.focused}`]: {
+                      display: "none",
+                    },
+                    [`&.${inputLabelClasses.shrink}`]: {
+                      display: "none",
+                    },
+                  },
+                }}
+              >
+                {options.map(({ label, value }: any) => (
+                  <MenuItem key={value} value={value}>
+                    {label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Box>
           ))}
         </Stack>
       )}
       {/* generate login button */}
       {showGenerateLoginBtn && (
         <Button
-          color="orange"
           variant="contained"
           sx={{ height: "40px" }}
           onClick={onGenerateLogin}
@@ -261,13 +282,21 @@ const styles = {
     gap: theme.spacing(2),
     width: { xs: "100%", sm: "auto" },
   }),
-  selectFieldStyles: (theme: any) => ({
-    width: { xs: "100%", sm: "min(100vw, 200px)" },
+  selectWapper: (theme: any) => ({
+    p: 0.1,
+    borderRadius: 1,
     backgroundColor:
       theme.palette.mode === "light"
         ? theme.palette.common.white
         : theme.palette.grey[800],
+  }),
+  selectFieldStyles: (theme: any) => ({
+    width: { xs: "100%", sm: "min(100vw, 200px)" },
+    backgroundColor: "transparent",
     borderRadius: "4px",
+    "& fieldset": {
+      border: "unset ",
+    },
   }),
   addBtnStyles: (theme: any) => ({
     width: "1.6rem",

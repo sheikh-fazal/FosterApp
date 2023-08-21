@@ -261,7 +261,7 @@ const Styles = {
     height: "38px",
     boxShadow: "0px 0px 4px 1px rgba(0, 0, 0, 0.25) inset",
     marginBottom: 2.5,
-    color: `${color}`,
+     color: `${color}`,
     "& svg": {
       fontSize: 21,
     },
