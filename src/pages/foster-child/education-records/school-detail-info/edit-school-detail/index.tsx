@@ -37,6 +37,7 @@ export default function EditSchoolDetail() {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId:schoolInfoId
   };
   const BREADCRUMBS = [
     {

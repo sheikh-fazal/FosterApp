@@ -18,14 +18,15 @@ ViewStudySupportInfo.getLayout = function getLayout(page: any) {
 export default function ViewStudySupportInfo() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
+  const Router: any = useRouter();
+  const { fosterChildId, id } = Router.query;
 
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId: id,
   };
-  const Router: any = useRouter();
-  const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,

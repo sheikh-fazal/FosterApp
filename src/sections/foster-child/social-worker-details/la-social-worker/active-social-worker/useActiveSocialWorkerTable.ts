@@ -1,3 +1,4 @@
+import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
@@ -13,7 +14,8 @@ export const useActiveSocialWorkerTable = () => {
     offset: pageHandle,
     status: "Active",
   };
-
+  const { sortChangeHandler } =
+  useTableParams();
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =
@@ -31,6 +33,7 @@ export const useActiveSocialWorkerTable = () => {
     setPageHandle(page * 10);
   };
   return {
+    sortChangeHandler,
     router,
     tableHeaderRef,
     isLoading,

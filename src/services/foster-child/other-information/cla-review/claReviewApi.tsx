@@ -46,9 +46,11 @@ export const claReviewApi = baseAPI.injectEndpoints({
       },
       invalidatesTags: [TAG],
     }),
-    claReviewDocList: builder.query<null, void>({
-      query: (claReviewId: any) => ({
+    claReviewDocList: builder.query({
+      query: ({ claReviewId, params }: any) => ({
         url: `foster-child/child-CLAReview-info/document/list/${claReviewId}`,
+        method: "GET",
+        params,
       }),
       providesTags: [DOCTAG],
     }),
@@ -66,7 +68,7 @@ export const claReviewApi = baseAPI.injectEndpoints({
     deleteClaReviewDoc: builder.mutation<null, void>({
       query: (id) => {
         return {
-          url: `DELETE/foster-child/child-CLAReview-info/document/${id}`,
+          url: `foster-child/child-CLAReview-info/document/${id}`,
           method: "DELETE",
         };
       },

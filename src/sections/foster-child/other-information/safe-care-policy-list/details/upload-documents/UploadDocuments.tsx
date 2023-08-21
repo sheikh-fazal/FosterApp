@@ -1,5 +1,5 @@
 import React from "react";
-import { useSatsDetailsUploadDocuemntInfoList } from "./useSatsDetailsUploadDocuemntInfoList";
+import { useSafeCarePolicyDocuemntInfoList } from "./useSafeCarePolicyDocuemntInfoList";
 import { Grid } from "@mui/material";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -23,7 +23,7 @@ const UploadDocuments = () => {
     openAddModel,
     closeAddModel,
     closeUpdateViewModel,
-  }: any = useSatsDetailsUploadDocuemntInfoList();
+  }: any = useSafeCarePolicyDocuemntInfoList();
   const {
     someAsyncAction,
     docsAddModel,
@@ -53,7 +53,7 @@ const UploadDocuments = () => {
         }}
       />
       <CustomTable
-        data={data?.data?.documents}
+        data={data?.data?.[`safe_care-policy_doc`]}
         columns={columns}
         isLoading={isLoading}
         showSerialNo
