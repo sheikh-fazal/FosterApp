@@ -4,6 +4,7 @@ import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
 import { KidieeSavingForm } from "@root/sections/money-management/kidiee-saving/kidiee-saving-form/KidieeSavingForm";
+import { useGetKidieeSavingByIdQuery } from "@root/services/money-management/kidiee-saving/KidieeSavingAPI";
 import { useRouter } from "next/router";
 
 // Constants
@@ -30,9 +31,9 @@ export default function ViewKidieeSavingList() {
   const { query } = useRouter();
   const router = useRouter();
   const kidieeSavingId = query["kidiee_saving_id"];
-//   const { data, isLoading, isSuccess, isError } =
-//     useGetClaDocumentationByIdQuery(kidieeSavingId);
-//   console.log(data, "When View");
+  const { data, isLoading, isSuccess, isError } =
+  useGetKidieeSavingByIdQuery(kidieeSavingId);
+  console.log(data, "When View");
 
 
   return (
@@ -43,11 +44,11 @@ export default function ViewKidieeSavingList() {
         title={PAGE_TITLE}
       />
       <Paper elevation={3}>
-        {/* {isLoading &&  */}
+        {isLoading && 
         <p>Loading...</p>
-        {/* } */}
+        }
         {/* {isSuccess && ( */}
-        <KidieeSavingForm />
+        <KidieeSavingForm defaultValues={data[0]} disabled/>
         {/* )} */}
       </Paper>
     </Page>
