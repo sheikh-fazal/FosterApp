@@ -71,7 +71,6 @@ export default function PersonalInfoForm({
                 disabled={disabled}
                 {...item.componentProps}
                 size={"small"}
-                fullWidth
               >
                 {item?.componentProps?.select
                   ? item?.options?.map((option: any) => (
