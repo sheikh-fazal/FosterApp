@@ -9,7 +9,10 @@ import { enqueueSnackbar } from "notistack";
 const useEditOutSchoolActivityInfo = (initialValueProps: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
-  const fosterChildId = Object.keys(router?.query)[0];
+  const fosterChildId = router.query.recordId;
+
+  console.log(fosterChildId);
+  
 
   const [patchData] = usePatchSchoolActivityDataMutation();
 
