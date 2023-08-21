@@ -1,10 +1,5 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import {
-  useGetSocialWorkerByIdQuery,
-  usePostSocialWorkerApiMutation,
-  usePutSocialWorkerByIdMutation,
-} from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { ActiveSupervisingSocialWorkerFormSchema, defaultValues } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,6 +15,7 @@ export const useSupervisingSocialWorkerForm = () => {
 
   const { data } = useGetSupervisingSocialWorkerByIdQuery(router?.query?.id, {
     refetchOnMountOrArgChange: true,
+    skip: router?.query?.action === "add",
   });
   const [postData, { isError, isSuccess, isLoading }] =
     usePostSupervisingSocialWorkerApiMutation();
@@ -39,8 +35,12 @@ export const useSupervisingSocialWorkerForm = () => {
   useEffect(() => {
     reset((formValues: any) => ({
       ...formValues,
-      ...data?.data,
-      startDateOfAssignment: new Date(data?.data?.startDateOfAssignment),
+      ...data?.data?.getSupervisingSocialWorker,
+      startDateOfAssignment: data
+        ? new Date(
+            data?.data?.getSupervisingSocialWorker?.startDateOfAssignment
+          )
+        : new Date(),
     }));
   }, [data, reset]);
 

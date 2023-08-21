@@ -24,15 +24,15 @@ export default function ActiveSupervisingSocialWorkerTable(props: any) {
   } = useActiveSupervisingSocialWorkerTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.socialWorkerName,
-      id: "socialWorkerName",
+      accessorFn: (row: any) => row?.name,
+      id: "name",
       cell: (info: any) => info.getValue(),
       header: "Social Worker Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.socialWorkerTitle,
-      id: "socialWorkerTitle",
+      accessorFn: (row: any) => row?.title,
+      id: "title",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Social Worker Title",
       isSortable: true,

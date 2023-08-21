@@ -4,7 +4,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import SupervisingSocialWorkerForm from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/SupervisingSocialWorkerForm";
 
 ViewSupervisingSocialWorker.getLayout = function getLayout(page: any) {
