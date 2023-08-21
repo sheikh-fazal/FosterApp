@@ -8,6 +8,7 @@ import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import MissingFormKnown from "@root/sections/foster-child/event-and-notification/child-exploitation/child-missing-placement/MissingFormKnown/MissingFormKnown";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import MissingFormUnKnown from "@root/sections/foster-child/event-and-notification/child-exploitation/child-missing-placement/MissingFormUnknown/MissingFormUnKnown";
 
 const PAGE_TITLE: string = "Child Missing Placement";
 const CHILD_MISSING_TABS_DATA: string[] = ["Allegation", "Upload Documents"];
@@ -37,6 +38,7 @@ export default function ChildMissingPlacement() {
   let formEl = (
     <HorizaontalTabs tabsDataArray={CHILD_MISSING_TABS_DATA}>
       <MissingFormKnown />
+      {/* <MissingFormUnKnown /> */}
       <UploadDocuments
         readOnly={true}
         searchParam={(searchedText: string) =>
