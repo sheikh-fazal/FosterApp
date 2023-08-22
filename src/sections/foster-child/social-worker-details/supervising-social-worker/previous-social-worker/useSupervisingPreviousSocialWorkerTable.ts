@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 export const useSupervisingPreviousSocialWorkerTable = () => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+  const { fosterChildId } = router.query;
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
 
@@ -19,8 +20,13 @@ export const useSupervisingPreviousSocialWorkerTable = () => {
 
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetSupervisingSocialWorkerTableApiQuery({
-      params,
-      fosterChildId: router?.query?.fosterChildId,
+      params: {
+        search: searchHandle,
+        limit: "10",
+        offset: pageHandle,
+        status: "Inactive",
+        fosterChildId: fosterChildId,
+      },
     });
 
   const family = data?.data?.socialWorker;

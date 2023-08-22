@@ -6,11 +6,11 @@ const TAG = "SUPERVISING_CARER_FAMILY_NETWORK";
 export const SupervisingcontactApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getSupervisingSocialWorkerTableApi: builder.query({
-      query: ({ params, fosterChildId }: any) => ({
+      query: (payload: any) => ({
         // url: `social-worker-details/la-social-worker/list/?fosterChildId=${fosterChildId}`,
-        url: `foster-child/list-supervising-social-worker/${fosterChildId}/${params?.status}`,
+        url: `foster-child/list-supervising-social-worker/${payload?.params?.status}`,
         method: "GET",
-        // params,
+        params: payload?.params,
       }),
       // providesTags: (result) => generalTags(result?.faimly_details, TAG),
     }),

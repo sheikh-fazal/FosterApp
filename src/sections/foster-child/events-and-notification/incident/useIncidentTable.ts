@@ -11,18 +11,21 @@ import { useRef, useState } from "react";
 export const useIncidentTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterChildId } = router.query;
   const [search, setSearch] = useState("");
   const { data, isError, isLoading, isFetching, isSuccess }: any =
-  // useGetChildIncidentQuery({
-      useGetChildChronologyOfEventsIncidentsInfoListQuery({
+    // useGetChildIncidentQuery({
+    useGetChildChronologyOfEventsIncidentsInfoListQuery({
       search: search,
+      fosterChildId: fosterChildId,
     });
-    console.log("🚀 ~ file: useIncidentTable.ts:16 ~ data:", data)
+  console.log("🚀 ~ file: useIncidentTable.ts:16 ~ data:", fosterChildId);
 
-  const { pageChangeHandler, sortChangeHandler, headerChangeHandler} = useTableParams();
+  const { pageChangeHandler, sortChangeHandler, headerChangeHandler } =
+    useTableParams();
 
   const [deleteList] =
-  // useDeleteChildIncidentMutation();
+    // useDeleteChildIncidentMutation();
     useDeleteChildChronologyOfEventsIncidentsInfoByIdMutation();
 
   //DELETE API For Allegation List

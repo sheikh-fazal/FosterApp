@@ -5,7 +5,6 @@ import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import React, { useState } from "react";
 import { useActiveSupervisingSocialWorkerTable } from "./useActiveSupervisingSocialWorkerTable";
-// import { useActiveSocialWorkerTable } from "./useActiveSocialWorkerTable";
 
 export default function ActiveSupervisingSocialWorkerTable(props: any) {
   const { fosterChildId } = props;

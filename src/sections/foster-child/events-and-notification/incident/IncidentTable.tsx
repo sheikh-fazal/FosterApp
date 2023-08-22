@@ -107,18 +107,20 @@ const IncidentTable = (props: any) => {
                   title="Incident"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
                       query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
+                  onChanged={(event: any) => {
+                    setSearch(event.search);
+                  }}
                 />
               </Box>
               <CustomTable
                 // data={data?.absence_details}
-                data={data?.data?.cc_incident_info}
+                data={data?.data?.incidents}
                 columns={columns}
                 isLoading={isLoading}
                 isFetching={isFetching}
