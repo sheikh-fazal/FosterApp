@@ -23,6 +23,7 @@ import {
   childImmunisationReportsData,
   childImmunisationReportsValue,
 } from ".";
+import Comments from "@root/components/comment/Comment";
 
 const backPath =
   "/foster-child/child-reports/child-immunisation-details-report";
@@ -138,6 +139,7 @@ const ChildImmunisationReportsFrom = (props: IChildImmunisationReportsFrom) => {
               </Grid>
             </Grid>
           </FormProvider>
+          <Comments />
         </Grid>
       </Grid>
     </Box>

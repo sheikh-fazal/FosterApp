@@ -4,7 +4,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import ChildImmunisationReportsFrom from "@root/sections/foster-child/child-reports/child-immunisation-Reports/childImmunisationReportsFrom";
+import ChildImmunisationReportsFrom from "@root/sections/foster-child/child-reports/child-immunisation-Reports/ChildImmunisationReportsFrom";
+
 ChildImmunisationReportsActions.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
