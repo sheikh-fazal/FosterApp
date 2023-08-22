@@ -45,17 +45,17 @@ export default function ChildIncidentInfoActions() {
   ];
 
   const [params, setParams] = useState("");
-  const {
-    data,
-    isLoading: isDocumentLoading,
-    isFetching,
-    isError: hasDocumentError,
-    isSuccess,
-    setPage,
-  }: any = useGetChildMedicationInfoDocumentQuery({
-    ChildMedicationInfoId,
-    params,
-  });
+  // const {
+  //   data,
+  //   isLoading: isDocumentLoading,
+  //   isFetching,
+  //   isError: hasDocumentError,
+  //   isSuccess,
+  //   setPage,
+  // }: any = useGetChildMedicationInfoDocumentQuery({
+  //   ChildMedicationInfoId,
+  //   params,
+  // });
   //child medication Upload Modal API
   const [postDocuments] = useCreateChildMedicationInfoDocumentMutation();
 
@@ -73,7 +73,7 @@ export default function ChildIncidentInfoActions() {
     try {
       const res: any = await postDocuments({
         params: {
-          childMedicationInfoId: ChildMedicationInfoId,
+          // childMedicationInfoId: ChildMedicationInfoId,
         },
         body: formData,
       });
@@ -89,7 +89,7 @@ export default function ChildIncidentInfoActions() {
   const deleteDocument = (id: any) => {
     deleteDocumentList({
       params: {
-        childMedicationInfoDocId: id,
+        // childMedicationInfoDocId: id,
       },
     })
       .unwrap()
@@ -116,7 +116,7 @@ export default function ChildIncidentInfoActions() {
           fosterChildId={fosterChildId}
           //   ChildMedicationInfoId={ChildMedicationInfoId}
         />
-        <UploadDocuments
+        {/* <UploadDocuments
           readOnly={action === "view" ? true : false}
           tableData={data?.data?.child_medication_document}
           isLoading={isDocumentLoading}
@@ -138,7 +138,7 @@ export default function ChildIncidentInfoActions() {
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onDelete={(data: any) => deleteDocument(data?.id)}
-        />
+        /> */}
       </HorizaontalTabs>
     </Box>
   );

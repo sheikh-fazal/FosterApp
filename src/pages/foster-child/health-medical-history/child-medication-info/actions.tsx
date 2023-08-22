@@ -70,19 +70,23 @@ export default function ChildMedicationInfoActions() {
     formData.append("uploadedBy", data.uploadedBy);
     formData.append("password", data.password);
     formData.append("docFile", data.chosenFile);
-    try {
-      const res: any = await postDocuments({
-        params: {
-          childMedicationInfoId: ChildMedicationInfoId,
-        },
-        body: formData,
-      });
-      enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
-        variant: "success",
-      });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    if (ChildMedicationInfoId) {
+      try {
+        const res: any = await postDocuments({
+          params: {
+            childMedicationInfoId: ChildMedicationInfoId,
+          },
+          body: formData,
+        });
+        enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
+          variant: "success",
+        });
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
+    } else {
+      enqueueSnackbar("fill Child Medication form first", { variant: "error" });
     }
   };
 
@@ -103,6 +107,7 @@ export default function ChildMedicationInfoActions() {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
+
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -137,7 +142,6 @@ export default function ChildMedicationInfoActions() {
           onPageChange={(page: any) => {
             setPage((page - 1) * 10);
           }}
-          
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onDelete={(data: any) => deleteDocument(data?.id)}
