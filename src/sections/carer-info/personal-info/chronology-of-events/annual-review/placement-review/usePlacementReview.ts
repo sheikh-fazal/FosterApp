@@ -23,13 +23,13 @@ export const usePlacementReview = (action: any, id: any) => {
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getReviewList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data?.getAnnualReview?.placementReview };
       return responseData;
     } else {
       setIsLoading(false);

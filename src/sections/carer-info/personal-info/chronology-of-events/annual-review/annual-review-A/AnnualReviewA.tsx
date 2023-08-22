@@ -13,6 +13,8 @@ import { personalDetails, annualReviewAData } from ".";
 import FamilyMembersTable from "./FamilyMembersTable";
 import { useAnnualReviewAForm } from "./useAnnualReviewAForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewA(props: any) {
   const { action, id } = props;
@@ -31,7 +33,7 @@ export default function AnnualReviewA(props: any) {
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewAForm(action, id);
-
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <Grid container sx={{ mb: 3 }}>
@@ -55,6 +57,7 @@ export default function AnnualReviewA(props: any) {
         ))}
       </Grid>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={3} columnSpacing={5} alignItems="center">
           {annualReviewAData.map((form: any) => {
             return (

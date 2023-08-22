@@ -51,7 +51,7 @@ export default function HomePage() {
   const [isLoading, setIsLoading] = useState(true);
   const { t } = useTranslation(["common", "footer"]);
 
-  router.push(PATH_AUTH.login);
+ router.push(PATH_AUTH.login);
 
   if (isLoading) return <LoadingScreen />;
 

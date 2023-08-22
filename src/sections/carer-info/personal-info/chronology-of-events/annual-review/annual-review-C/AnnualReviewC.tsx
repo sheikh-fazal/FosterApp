@@ -4,6 +4,8 @@ import React from "react";
 import { annualReviewCData } from ".";
 import { useAnnualReviewCForm } from "./useAnnualReviewCForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewC(props: any) {
   const { action, id } = props;
@@ -13,18 +15,17 @@ export default function AnnualReviewC(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewCForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={3} columnSpacing={5} alignItems="center">
           {annualReviewCData.map((form: any) => {
             return (

@@ -1,9 +1,5 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useAllegationListQuery,
-  useDeleteAllegationListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
-import {
   useDeleteSupervisingVisitListMutation,
   useSupervisingVisitListQuery,
 } from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitApi";
@@ -18,7 +14,7 @@ export const useSupervisoryVisit = () => {
   const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-  //GET API For Supervisory  List
+  //GET API For Supervisory List
   const {
     data: supervisoryVisit,
     isError: supervisoryVisitError,
@@ -27,15 +23,16 @@ export const useSupervisoryVisit = () => {
     isSuccess: supervisoryVisitIsSuccess,
   }: any = useSupervisingVisitListQuery({
     params: {
-      fosterCarerId: fosterCarerId,
       search: search,
       ...params,
+      fosterCarerId: fosterCarerId,
     },
   });
-  const supervisoryVisits = `supervisoryVisit?.data?.supervisory-home-visit`;
+  const supervisoryVisits = supervisoryVisit?.data?.supervisory_home_visit;
   const meta = supervisoryVisit?.data?.meta;
+
   const [deleteList] = useDeleteSupervisingVisitListMutation();
-  //DELETE API For Allegation List
+  //DELETE API For Supervisory List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()

@@ -5,6 +5,7 @@ import { partnerReferenceData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { usePartnerReferenceForm } from "./usePartnerReferenceForm";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 const PartnerReferenceForm = (props: any) => {
   const { action, id } = props;
   //Local Partner Reference Custom Hook
@@ -17,12 +18,14 @@ const PartnerReferenceForm = (props: any) => {
     theme,
     isLoading,
     fosterCarerId,
+    isFetching,
   } = usePartnerReferenceForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
 
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {partnerReferenceData.map((form: any) => {
             return (

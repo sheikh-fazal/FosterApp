@@ -4,28 +4,27 @@ import React from "react";
 import { carerSectionBetaData } from ".";
 import { useCarerSectionB } from "./useCarerSectionB";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function CarerSectionB(props: any) {
   const { action, id } = props;
-
   const {
     router,
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useCarerSectionB(action, id);
-
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Box sx={{ mt: 1 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5}>
           {carerSectionBetaData.map((form: any) => {
             return (

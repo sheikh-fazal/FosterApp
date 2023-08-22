@@ -161,17 +161,3 @@ const AllegationTable = () => {
 };
 
 export default AllegationTable;
-
-//Styling
-const styles: any = {
-  badge: (theme: any) => ({
-    "& .MuiBadge-badge": {
-      fontSize: 9,
-      top: 11,
-      right: -22,
-      height: 15,
-      background: theme.palette.primary.main,
-      cursor: "pointer",
-    },
-  }),
-};

@@ -24,13 +24,13 @@ export const useAnnualReviewAForm = (action: any, id: any) => {
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getReviewList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data?.getAnnualReview?.annualReviewA };
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);

@@ -22,13 +22,15 @@ export const useCarerSectionB = (action: any, id: any) => {
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getVisitList(id, true);
+      const { data, isError } = await getVisitList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = {
+        ...data.data?.getSupervisoryHomeVisitRes?.carerSectionB,
+      };
       return responseData;
     } else {
       setIsLoading(false);
@@ -51,9 +53,9 @@ export const useCarerSectionB = (action: any, id: any) => {
       setIsFetching(true);
       editVisitList({
         formData: {
-          annualReviewId: id,
-          annualReviewA: { ...data },
+          carerSectionB: { ...data },
         },
+        id: id,
       })
         .unwrap()
         .then((res: any) => {

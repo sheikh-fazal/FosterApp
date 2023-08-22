@@ -28,16 +28,16 @@ export const superVisoryVisitApi = baseAPI.injectEndpoints({
       providesTags: ["CARER_SUPERVISING-HOME_VISIT"],
     }),
     patchSupervisingVisitList: builder.mutation({
-      query: ({ id, ...formData }: any) => ({
-        url: `chronology-events/allegation/${id}`,
+      query: (payload: any) => ({
+        url: `chronology-events/update-supervising-home-visit/${payload?.id}`,
         method: "PATCH",
-        body: formData,
+        body: payload.formData,
       }),
       invalidatesTags: ["CARER_SUPERVISING-HOME_VISIT"],
     }),
     deleteSupervisingVisitList: builder.mutation({
       query: (id: any) => ({
-        url: `chronology-events/allegation/${id}`,
+        url: `chronology-events/delete-supervising-home-visit/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["CARER_SUPERVISING-HOME_VISIT"],

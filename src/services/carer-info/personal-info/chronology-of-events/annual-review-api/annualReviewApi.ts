@@ -15,7 +15,7 @@ export const annualReviewApi = baseAPI.injectEndpoints({
       query: (payload: any) => ({
         url: `carer-Info/add-annual-review/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: payload.body.annualReviewA,
+        body: payload.body,
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),

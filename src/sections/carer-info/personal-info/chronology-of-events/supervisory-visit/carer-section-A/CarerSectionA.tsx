@@ -4,6 +4,8 @@ import React from "react";
 import { carerSectionAlphaData } from ".";
 import { useCarerSectionA } from "./useCarerSectionA";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function CarerSectionA(props: any) {
   const { action, id } = props;
@@ -12,15 +14,13 @@ export default function CarerSectionA(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useCarerSectionA(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <Typography
@@ -30,6 +30,7 @@ export default function CarerSectionA(props: any) {
         Supervising Social Worker: Not Assigned
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {carerSectionAlphaData.map((form: any) => {
             return (

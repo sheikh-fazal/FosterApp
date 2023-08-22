@@ -19,7 +19,7 @@ CarInsurance.getLayout = function getLayout(page: any) {
 };
 
 export default function CarInsurance() {
-  const [params, setParams] = useState("");
+  const [search, setSearch] = useState("");
   const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterCarerId } = router.query;
@@ -58,7 +58,7 @@ export default function CarInsurance() {
   }: any = useStatutoryUploadDocumentListQuery({
     params: {
       recordId: id,
-      search: params,
+      search: search,
       limit: 10,
       offset: page,
     },
@@ -129,7 +129,7 @@ export default function CarInsurance() {
             "personUploaded",
             "documentPassword",
           ]}
-          searchParam={(searchedText: any) => setParams(searchedText)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
           modalData={(data: any) => documentUploadHandler(data)}
           onPageChange={(page: any) => setPage((page - 1) * 10)}
           currentPage={metaData?.page}

@@ -13,17 +13,20 @@ import {
 } from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitDocuments";
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import useAuth from "@root/hooks/useAuth";
 
 SupervisoryVisit.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function SupervisoryVisit() {
-  const [params, setParams] = useState("");
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
-
   const { action, id, fosterCarerId } = router.query;
-
   if (!action && !id) {
     router.push({
       pathname: "/carer-info/personal-info/carer-chronology-of-events",
@@ -36,7 +39,10 @@ export default function SupervisoryVisit() {
     {
       icon: <HomeIcon />,
       name: "Supervisory Home Visit List",
-      href: "/carer-info/personal-info/carer-chronology-of-events",
+      href: {
+        pathname: "/carer-info/personal-info/carer-chronology-of-events",
+        query: { fosterCarerId: fosterCarerId },
+      },
     },
     {
       name: "Supervisory Home Visit",
@@ -55,25 +61,28 @@ export default function SupervisoryVisit() {
   }: any = useSupervisoryVisitUploadDocumentQuery({
     params: {
       supervisoryHomeVisitId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
 
   //Car Insurance Upload Modal API
   const [postDocuments] = usePostSupervisoryVisitDocumentsMutation();
-
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteSupervisoryDocumentMutation();
 
-  const tableData: any = documentData?.data?.allegation_documents;
+  const tableData: any = documentData?.data?.supervisory_home_visit;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
+    formData.append("docName", "test");
+    formData.append("uploadedBy", firstName + " " + lastName);
     formData.append("docType", data.documentType);
     formData.append("date", data.documentDate);
     formData.append("password", data.password);
-    formData.append("file", data.chosenFile);
+    formData.append("docFile", data.chosenFile);
     try {
       await postDocuments({
         params: {
@@ -112,6 +121,7 @@ export default function SupervisoryVisit() {
         title={PAGE_TITLE}
       />
       <HorizaontalTabs
+        disabled={!id && ["Carer Section B"]}
         tabsDataArray={[
           "Carer Section A",
           "Carer Section B",
@@ -137,9 +147,9 @@ export default function SupervisoryVisit() {
             "uploadBy",
             "password",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
           onDelete={(data: any) => {

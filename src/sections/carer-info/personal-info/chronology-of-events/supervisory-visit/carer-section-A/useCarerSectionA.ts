@@ -10,6 +10,7 @@ import {
   usePatchSupervisingVisitListMutation,
   usePostSupervisingVisitListMutation,
 } from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitApi";
+import useAuth from "@root/hooks/useAuth";
 export const useCarerSectionA = (action: any, id: any) => {
   const router = useRouter();
   const { fosterCarerId } = router.query;
@@ -21,16 +22,22 @@ export const useCarerSectionA = (action: any, id: any) => {
   const [postReviewDetails] = usePostSupervisingVisitListMutation();
   const [editReviewList] = usePatchSupervisingVisitListMutation();
 
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
+
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getReviewList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = {
+        ...data?.data?.getSupervisoryHomeVisitRes?.carerSectionA,
+      };
       return responseData;
     } else {
       setIsLoading(false);
@@ -53,9 +60,13 @@ export const useCarerSectionA = (action: any, id: any) => {
       setIsFetching(true);
       postReviewDetails({
         params: {
-          fosterCarerId,
+          fosterCarerId: fosterCarerId,
         },
-        body: { annualReviewA: { ...data } },
+        body: {
+          nameOfSupervising: firstName + " " + lastName,
+          visitDate: new Date(),
+          carerSectionA: { ...data },
+        },
       })
         .unwrap()
         .then((res: any) => {
@@ -65,7 +76,7 @@ export const useCarerSectionA = (action: any, id: any) => {
           });
           router.push({
             pathname:
-              "/carer-info/personal-info/carer-chronology-of-events/annual-review",
+              "/carer-info/personal-info/carer-chronology-of-events/supervisory-visit",
             query: {
               action: "edit",
               id: `${res?.data.id}`,
@@ -86,9 +97,9 @@ export const useCarerSectionA = (action: any, id: any) => {
       setIsFetching(true);
       editReviewList({
         formData: {
-          annualReviewId: id,
-          annualReviewA: { ...data },
+          carerSectionA: { ...data },
         },
+        id: id,
       })
         .unwrap()
         .then((res: any) => {

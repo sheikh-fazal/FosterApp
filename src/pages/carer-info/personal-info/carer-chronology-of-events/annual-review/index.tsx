@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import AnnualReviewA from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/annual-review-A/AnnualReviewA";
@@ -8,15 +8,28 @@ import AnnualReviewC from "@root/sections/carer-info/personal-info/chronology-of
 import { AnnualReviewD } from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/annual-review-D";
 import AnnualReviewE from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/annual-review-E/AnnualReviewE";
 import PlacementReview from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/placement-review/PlacementReview";
-import Documents from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/documents/Documents";
 import { useRouter } from "next/router";
+import {
+  useDeleteSupervisoryDocumentMutation,
+  usePostSupervisoryVisitDocumentsMutation,
+  useSupervisoryVisitUploadDocumentQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitDocuments";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
+import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import { enqueueSnackbar } from "notistack";
+import {
+  useDeleteDocumentListMutation,
+  useUploadDocumentListQuery,
+} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
+import { usePostReportDocumentsMutation } from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportDocumentsApi";
 
 AnnualReview.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 
 export default function AnnualReview() {
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
@@ -44,6 +57,62 @@ export default function AnnualReview() {
 
   const PAGE_TITLE = "Annual Review";
 
+  const {
+    data: documentData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isError: hasDocumentError,
+    isSuccess,
+  }: any = useUploadDocumentListQuery({
+    params: {
+      recordId: id,
+      search: search,
+      limit: 10,
+      offset: page,
+    },
+  });
+
+  //OOH ReportUpload Modal API
+  const [postDocuments] = usePostReportDocumentsMutation();
+
+  //API For Delete Document List
+  const [deleteDocumentList] = useDeleteDocumentListMutation();
+
+  const tableData: any = documentData?.data?.carer_chronology_document;
+  const metaData: any = documentData?.data?.meta;
+
+  const documentUploadHandler = async (data: any) => {
+    const formData = new FormData();
+    formData.append("formName", "ANNUAL_REVIEW");
+    formData.append("documentType", data.documentType);
+    formData.append("documentDate", data.documentDate);
+    formData.append("documentPassword", data.password);
+    formData.append("file", data.chosenFile);
+    formData.append("recordId", id);
+    try {
+      await postDocuments(formData).unwrap();
+      enqueueSnackbar("Document Uploaded Successfully", {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
+  };
+
+  const deleteDocument = async (id: any) => {
+    deleteDocumentList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted  Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
+  };
   return (
     <>
       <TitleWithBreadcrumbLinks
@@ -83,7 +152,32 @@ export default function AnnualReview() {
         {/* Placement Review Component */}
         <PlacementReview action={action} id={id} />
         {/* Documents Component */}
-        <Documents />
+        <UploadDocuments
+          readOnly={action === "view" ? true : false}
+          tableData={tableData}
+          isLoading={isDocumentLoading}
+          isFetching={isFetching}
+          isError={hasDocumentError}
+          isSuccess={isSuccess}
+          column={[
+            "docName",
+            "docType",
+            "documentDate",
+            "uploadBy",
+            "password",
+          ]}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
+          modalData={(data: any) => documentUploadHandler(data)}
+          currentPage={metaData?.page}
+          totalPages={metaData?.pages}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
+        />
       </HorizaontalTabs>
     </>
   );
