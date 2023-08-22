@@ -135,7 +135,7 @@ export const carInsuranceData = [
     Options: [true, false],
     otherOptions: {
       name: "subscribeToUpdateService",
-      label: "Subscribe To Update Servic",
+      label: "Subscribe To Update Service",
     },
     component: "RadioGroup",
   },
