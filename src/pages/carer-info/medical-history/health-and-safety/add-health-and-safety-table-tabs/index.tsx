@@ -14,45 +14,18 @@ import {
   useHealthAndSafetyDataPatchMutation,
   useHouseHoldConditionAPostMutation,
 } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
-import { enqueueSnackbar } from "notistack";
-
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
-// AddHealthAndSafetyTableTabs.getLayout = function getLayout(page: any) {
 export default function AddHealthAndSafetyTableTabs() {
+  const route = useRouter();
+  const { healthAndSafetyId } = route.query;
   const [breadCrumbData, setBreadCrumbData] = useState(
     "Household Condition - A"
   );
-  const [formData, setFormData] = useState();
-  const [idd, setIdd] = useState();
-  // const [tabArray, setTabArray] = useState(["Household Condition-A"]);
   const [householdA] = useHouseHoldConditionAPostMutation();
-
   const [postAllApi] = useHealthAndSafetyDataPatchMutation();
-  // const submitt = async () => {
-  //   try {
-  //     const res: any = await resetTrigger(formData);
-  //     setIdd(res?.data?.data?.id);
-  //     enqueueSnackbar(res?.data?.message, { variant: "success" });
-  //     setTabArray(["Household Condition-A", "B"]);
-  //   } catch (error: any) {
-  //     enqueueSnackbar(error?.message, { variant: "error" });
-  //   }
-  // };
 
-  // const submit2 = async () => {
-  //   try {
-  //     const res: any = await trigger({
-  //       healthAndSafetyId: idd,
-  //       payload: formData,
-  //     });
-  //     enqueueSnackbar(res?.data?.message, { variant: "success" });
-  //     setTabArray(["Household Condition-A", "B", "Safety Factors - Indoors A"]);
-  //   } catch (error: any) {
-  //     const errMsg = error?.data?.message;
-  //     enqueueSnackbar(error?.message, { variant: "error" });
-  //   }
-  // };
   const tabsData = [
     "Household Condition-A",
     "B",
@@ -80,64 +53,53 @@ export default function AddHealthAndSafetyTableTabs() {
       breadcrumbs={BREADCRUMBS}
       title={breadCrumbData}
     >
-      {/* {page} */}
-
-      {/* return ( */}
       <HorizaontalTabs tabsDataArray={tabsData}>
         <HouseholdConditionA
-          // formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={householdA}
           message="Added"
           isAdding
-          // submitFunction={submitt}
-          // isLoading={loadinghouseholdAPostData}
         />
         <HouseholdConditionB
-          // formData={(data: any) => setFormData(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
-          // submitFunction={submit2}
-          // isLoading={loadingAllConditions}
         />
         <SafetyFactorsIndoorsA
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsB
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsC
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsD
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsIndoorsE
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
         <SafetyFactorsOutdoors
-          // formData={(data: any) => console.log(data)}
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
           message="Added"
         />
-        <UploadDocument breadCrumbData={setBreadCrumbData} />
+        {healthAndSafetyId ? (
+          <UploadDocument breadCrumbData={setBreadCrumbData} />
+        ) : (
+          `Fill Household Condition A First!`
+        )}
       </HorizaontalTabs>
     </Layout>
   );

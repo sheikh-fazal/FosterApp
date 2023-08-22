@@ -5,7 +5,7 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
     getHealthAndSafetyListData: builder.query({
       query: (payload: any) => ({
         url: `carer-Info/list-health-and-safety`,
-        params: payload.params,
+        params: payload,
       }),
       providesTags: ["HEALTH_AND_SAFETY"],
     }),

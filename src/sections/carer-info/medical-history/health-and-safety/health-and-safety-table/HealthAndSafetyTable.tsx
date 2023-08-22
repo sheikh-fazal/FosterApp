@@ -14,16 +14,16 @@ export const HealthAndSafetyTable = () => {
     healthAndSafetyApiData,
     isLoading,
     isError,
+    isFetching,
     columnsFunction,
     isSuccess,
     healthAndSafetyId,
     meta,
     setHealthAndSafetyId,
     makePath,
-    // headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
-    setSearch
+    setSearch,
   } = useHealthAndSafetyTable();
 
   return (
@@ -51,21 +51,23 @@ export const HealthAndSafetyTable = () => {
           // onChanged={headerChangeHandler}
           onChanged={(event: any) => {
             setSearch(event.search);
+            // console.log(event);
           }}
           // selectFilters={SELECT_FILTERS}
         />
         <CustomTable
           data={healthAndSafetyApiData}
           columns={columnsFunction}
-          showSerialNo
           isError={isError}
           isLoading={isLoading}
+          isFetching={isFetching}
+          isSuccess={isSuccess}
+          showSerialNo
           totalPages={meta?.pages ?? 0}
           currentPage={meta?.page ?? 1}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={isSuccess}
-          isPagination={false}
+          isPagination={true}
         />
       </Card>
     </>
