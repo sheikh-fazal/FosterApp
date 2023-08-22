@@ -7,8 +7,7 @@ import React from "react";
 import { useKidieeSavingTable } from "./useKidieeSavingTable";
 import dayjs from "dayjs";
 
-export const KidieeSavingTable = (props: any) => {
-  // const { fosterChildId } = props;
+export const KidieeSavingTable = () => {
   const {
     router,
     data,

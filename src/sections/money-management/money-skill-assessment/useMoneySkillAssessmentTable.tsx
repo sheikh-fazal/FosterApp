@@ -1,42 +1,55 @@
-import { useTableParams } from '@root/hooks/useTableParams';
-import { enqueueSnackbar } from 'notistack';
-
+import useAuth from "@root/hooks/useAuth";
+import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useDeleteMoneyAssessmentSkillMutation,
+  useGetMoneyAssessmentSkillListQuery,
+} from "@root/services/money-management/money-skill-assessment/MoneySkillAssessmentAPI";
 
 export const useMoneySkillAssessmentTable = () => {
- 
-    const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const router = useRouter();
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-//   const { data, isError, isLoading, isSuccess, isFetching } =
-    // useGetFamilyPersonListQuery<any>({ params });
-    console.log("pagination", params)
+  const { user }: any = useAuth();
 
-//   const [deleteList] = useDeleteFamilyPersonListMutation();
+  const fosterChildId = user?.userId;
+  console.log(fosterChildId);
+  const { data, isLoading, isError, isFetching, isSuccess }: any =
+    useGetMoneyAssessmentSkillListQuery({
+      params,
+      fosterChildId,
+    });
+  console.log("pagination", params);
 
-  // DELETE API For Family Person List
+  // DELETE API For Money ssessment Skill List
+  const [deleteList] = useDeleteMoneyAssessmentSkillMutation();
+
   const listDeleteHandler = (id: any) => {
-    // deleteList(id)
-    //   .unwrap()
-    //   .then((res: any) => {
-    //     enqueueSnackbar("Information Deleted Successfully", {
-    //       variant: "success",
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     const errMsg = error?.data?.message;
-    //     enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //   });
+    deleteList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
-
+  console.log(data); 
   return {
-    // data,
-    // isError,
-    // isLoading,
-    // isSuccess,
-    // isFetching,
+    router,
+    data,
+    isError,
+    isLoading,
+    isSuccess,
+    isFetching,
     headerChangeHandler,
     listDeleteHandler,
     pageChangeHandler,
-    sortChangeHandler, 
-  }
-}
+    sortChangeHandler,
+  };
+};

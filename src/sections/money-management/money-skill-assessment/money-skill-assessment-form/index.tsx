@@ -18,8 +18,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 0,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can name all coins:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can name all coins</strong>
       </li>
     ),
     componentProps: {
@@ -31,7 +31,7 @@ export const MoneySkillAssessmentData = [
     id: 2,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyNameCoins",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -45,8 +45,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 3,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Recognises coins and notes:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Recognises coins and notes</strong>
       </li>
     ),
     componentProps: {
@@ -58,7 +58,7 @@ export const MoneySkillAssessmentData = [
     id: 4,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyRecognizeCoinsNotes",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -71,8 +71,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 5,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can use small amounts of money:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can use small amounts of money</strong>
       </li>
     ),
     componentProps: {
@@ -84,7 +84,7 @@ export const MoneySkillAssessmentData = [
     id: 6,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUseSmallMoney",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -97,8 +97,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 7,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can count change:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can count change</strong>
       </li>
     ),
     componentProps: {
@@ -110,7 +110,7 @@ export const MoneySkillAssessmentData = [
     id: 8,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyCountChange",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -123,8 +123,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 9,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>When spending money, is aware when change is needed:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>When spending money, is aware when change is needed</strong>
       </li>
     ),
     componentProps: {
@@ -136,7 +136,7 @@ export const MoneySkillAssessmentData = [
     id: 10,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyAwareChangeNeeded",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -149,8 +149,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 11,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can use cash machine:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can use cash machine</strong>
       </li>
     ),
     componentProps: {
@@ -162,7 +162,7 @@ export const MoneySkillAssessmentData = [
     id: 12,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUseCashMachine",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -175,8 +175,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 13,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can pay cash for purchases :</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can pay cash for purchases </strong>
       </li>
     ),
     componentProps: {
@@ -188,7 +188,7 @@ export const MoneySkillAssessmentData = [
     id: 14,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyPayCashPurchases",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -201,8 +201,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 17,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Is aware how to make online purchases:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Is aware how to make online purchases</strong>
       </li>
     ),
     componentProps: {
@@ -214,7 +214,7 @@ export const MoneySkillAssessmentData = [
     id: 18,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyAwareOnlinePurchases",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -227,7 +227,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 19,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Takes care of cash and valuable items in their possession:
         </strong>
@@ -255,7 +255,7 @@ export const MoneySkillAssessmentData = [
     id: 20,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyManageValuables",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -268,7 +268,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 21,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Understands that money can be exchanged for goods and services:
         </strong>
@@ -283,7 +283,7 @@ export const MoneySkillAssessmentData = [
     id: 22,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyMakeGoodChoices",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -296,7 +296,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 23,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Aware once spent money is no longer available to them or other
           purchases
@@ -312,7 +312,7 @@ export const MoneySkillAssessmentData = [
     id: 24,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyAwareSpentMoneyUnavailable",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -325,8 +325,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 25,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Understands what they can buy for the money they have:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Understands what they can buy for the money they have</strong>
       </li>
     ),
     componentProps: {
@@ -338,7 +338,7 @@ export const MoneySkillAssessmentData = [
     id: 26,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUnderstandWhatCanBuy",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -351,8 +351,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 27,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong> can make good choices about their money:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong> can make good choices about their money</strong>
       </li>
     ),
     componentProps: {
@@ -364,7 +364,7 @@ export const MoneySkillAssessmentData = [
     id: 28,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyMakeGoodChoices",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -377,8 +377,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 29,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can consider and understands alternative options:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can consider and understands alternative options</strong>
       </li>
     ),
     componentProps: {
@@ -390,7 +390,7 @@ export const MoneySkillAssessmentData = [
     id: 30,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyConsiderAlternativeOptions",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -403,8 +403,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 31,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Has a realistic of the cost of basic items (e.g. food):</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Has a realistic of the cost of basic items (e.g. food)</strong>
       </li>
     ),
     componentProps: {
@@ -416,7 +416,7 @@ export const MoneySkillAssessmentData = [
     id: 32,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyRealisticCostBasicItems",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -429,8 +429,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 33,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Understands the concept of saving and its purpose:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Understands the concept of saving and its purpose</strong>
       </li>
     ),
     componentProps: {
@@ -442,7 +442,7 @@ export const MoneySkillAssessmentData = [
     id: 34,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUnderstandSaving",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -455,8 +455,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 37,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Understands the concept of earning money:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Understands the concept of earning money</strong>
       </li>
     ),
     componentProps: {
@@ -468,7 +468,7 @@ export const MoneySkillAssessmentData = [
     id: 38,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUnderstandEarningMoney",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -481,8 +481,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 39,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Knows difference between disposable cash and savings:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Knows difference between disposable cash and savings</strong>
       </li>
     ),
     componentProps: {
@@ -494,7 +494,7 @@ export const MoneySkillAssessmentData = [
     id: 40,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyDifferenceDisposableCashSavings",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -507,7 +507,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 41,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Understands buying on credit, loans, interest and charges.:
         </strong>
@@ -522,7 +522,7 @@ export const MoneySkillAssessmentData = [
     id: 42,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUnderstandCreditLoansInterest",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -549,7 +549,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 43,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Can set up a monthly budget covering regular expenses with assistance:
         </strong>
@@ -564,7 +564,7 @@ export const MoneySkillAssessmentData = [
     id: 44,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencySetupMonthlyBudget",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -577,8 +577,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 45,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Can make budget allowance last for a week:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Can make budget allowance last for a week</strong>
       </li>
     ),
     componentProps: {
@@ -590,7 +590,7 @@ export const MoneySkillAssessmentData = [
     id: 46,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyMakeBudgetLastWeek",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -603,9 +603,9 @@ export const MoneySkillAssessmentData = [
   {
     id: 47,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
-          can read monthly oank statements and make adjustments it necessary:
+          can read monthly bank statements and make adjustments it necessary:
         </strong>
       </li>
     ),
@@ -618,7 +618,7 @@ export const MoneySkillAssessmentData = [
     id: 48,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyReadBankStatementsAdjustments",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -631,7 +631,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 49,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Understands the need to budget for unexpected emergencies and seasonal
           spending:
@@ -647,7 +647,7 @@ export const MoneySkillAssessmentData = [
     id: 50,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUnderstandBudgetEmergenciesSeasonal",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -674,9 +674,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 51,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
-          {" "}
           Has a savings account or a savings program, or a money box):
         </strong>
       </li>
@@ -690,7 +689,7 @@ export const MoneySkillAssessmentData = [
     id: 52,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyHasSavingsAccount",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -703,8 +702,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 53,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Has a savings plan:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Has a savings plan</strong>
       </li>
     ),
     componentProps: {
@@ -716,7 +715,7 @@ export const MoneySkillAssessmentData = [
     id: 54,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyHasSavingsPlan",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -729,8 +728,8 @@ export const MoneySkillAssessmentData = [
   {
     id: 55,
     heading: (
-      <li style={{marginLeft: 15}}>
-        <strong>Motivated to save tor a partiacular item:</strong>
+      <li style={{ marginLeft: 15 }}>
+        <strong>Motivated to save tor a partiacular item</strong>
       </li>
     ),
     componentProps: {
@@ -742,7 +741,7 @@ export const MoneySkillAssessmentData = [
     id: 56,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyMotivatedSaveItem",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -755,7 +754,7 @@ export const MoneySkillAssessmentData = [
   {
     id: 57,
     heading: (
-      <li style={{marginLeft: 15}}>
+      <li style={{ marginLeft: 15 }}>
         <strong>
           Has had an opportunity to use their savings to purchase a particular
           item:
@@ -771,7 +770,7 @@ export const MoneySkillAssessmentData = [
     id: 58,
     gridLength: 6,
     componentProps: {
-      name: "name",
+      name: "competencyUsedSavingsPurchaseItem",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -783,20 +782,32 @@ export const MoneySkillAssessmentData = [
   },
 ];
 
-// export const MoneySkillAssessmentValidation = Yup.object().shape({
-//   date: Yup.date().required("Required"),
-//   amount: Yup.string().required("Required"),
-//   category: Yup.string().required("Required"),
-//   comments: Yup.string().required("Required"),
-//   total: Yup.string().required("Required"),
-//   subTotal: Yup.string().required("Required"),
-// });
-
-// export const defaultValuesMoneySkillAssessment = {
-//   date: new Date(),
-//   amount: "",
-//   category: "",
-//   comments: "",
-//   total: "",
-//   subTotal: "",
-// };
+export const defaultValuesMoneySkillAssessment = {
+  competencyNameCoins: true,
+  competencyRecognizeCoinsNotes: true,
+  competencyUseSmallMoney: false,
+  competencyCountChange: false,
+  competencyAwareChangeNeeded: false,
+  competencyUseCashMachine: false,
+  competencyPayCashPurchases: false,
+  competencyAwareOnlinePurchases: false,
+  competencyManageValuables: false,
+  competencyMakeGoodChoices: false,
+  competencyConsiderAlternativeOptions: false,
+  competencyRealisticCostBasicItems: false,
+  competencyUnderstandSaving: false,
+  competencyUnderstandEarningMoney: false,
+  competencyDifferenceDisposableCashSavings: false,
+  competencyUnderstandCreditLoansInterest: false,
+  competencyMoneyForGoodsServices: false,
+  competencyAwareSpentMoneyUnavailable: false,
+  competencyUnderstandWhatCanBuy: false,
+  competencySetupMonthlyBudget: false,
+  competencyMakeBudgetLastWeek: false,
+  competencyReadBankStatementsAdjustments: false,
+  competencyUnderstandBudgetEmergenciesSeasonal: false,
+  competencyHasSavingsAccount: false,
+  competencyHasSavingsPlan: false,
+  competencyMotivatedSaveItem: false,
+  competencyUsedSavingsPurchaseItem: false,
+};

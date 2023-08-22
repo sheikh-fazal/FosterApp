@@ -14,7 +14,7 @@ export const KidieeSavingForm = (props: any) => {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {kidieeSavingData?.map((item: any, index: any) => (
-            <Grid item xs={12} md={item?.md} key={index}>
+            <Grid item xs={12} md={item?.md} key={index}> 
               <item.component
                 size={"small"}
                 {...item.componentProps}

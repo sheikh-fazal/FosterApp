@@ -22,10 +22,10 @@ export const useKidieeSavingTable = () => {
       fosterChildId,
     });
   console.log("pagination", params);
-
+  
+  // DELETE API For Kidiee Saving List
   const [deleteList] = useDeleteKidieeSavingMutation();
 
-  // DELETE API For Kidiee Saving List
   const listDeleteHandler = (id: any) => {
     deleteList(id)
       .unwrap()

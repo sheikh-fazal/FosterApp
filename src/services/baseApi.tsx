@@ -107,6 +107,7 @@ export const TAGS = [
   "MEDICAL_APPOINTMENTS_DOCS",
   "CHILD_DAY_LOG_EVENTS_REPORTS_INFO",
   "KIDIEE_SAVING",
+  "MONEY_ASSESSMENT_SKILL",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

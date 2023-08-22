@@ -39,7 +39,7 @@ export default function KidieeSavingList() {
         title={PAGE_TITLE}
       />
       <Paper elevation={3}>
-        <KidieeSavingTable fosterChildId={router?.query?.fosterChildId} />
+        <KidieeSavingTable  />
       </Paper>
     </Page>
   );
