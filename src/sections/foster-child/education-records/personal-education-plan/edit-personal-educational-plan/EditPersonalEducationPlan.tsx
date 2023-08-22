@@ -6,10 +6,19 @@ import { EditPersonalEducationPlanData } from ".";
 import useEditPersonalEducationalPlan from "./useEditPersonalEducationalPlan";
 
 const EditPersonalEducationPlan = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const {
+    disabled,
+    onSubmitHandler,
+    handleCloseForm,
+    router,
+    formState,
+    defaultValues,
+    initialValueProps = defaultValues,
+    fosterChildId
+  } = props;
 
-  const { methods, handleSubmit, onSubmit } = useEditPersonalEducationalPlan();
+  const { methods, handleSubmit, onSubmit } =
+    useEditPersonalEducationalPlan(initialValueProps,fosterChildId);
 
   return (
     <>

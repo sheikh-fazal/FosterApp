@@ -11,6 +11,7 @@ export const useReferenceThreeTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
 
@@ -21,7 +22,13 @@ export const useReferenceThreeTable = () => {
     isLoading: referenceThreeIsloading,
     isFetching: referenceThreeIsfetching,
     isSuccess: referenceThreeIsSuccess,
-  }: any = useReferenceThreeListQuery({ search: search, ...params });
+  }: any = useReferenceThreeListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      search: search,
+      ...params,
+    },
+  });
 
   //Getting API data and Meta
   const referenceThreeData = referenceThreeList?.data?.reference_three;
@@ -58,5 +65,6 @@ export const useReferenceThreeTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

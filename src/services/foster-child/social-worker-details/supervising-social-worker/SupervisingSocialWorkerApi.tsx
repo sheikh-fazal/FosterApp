@@ -25,16 +25,16 @@ export const SupervisingcontactApi = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
-    // putSupervisingSocialWorkerById: builder.mutation({
-    //   query: ({ body, id }: any) => {
-    //     return {
-    //       url: `social-worker-details/la-social-worker/${id}`,
-    //       method: "PATCH",
-    //       body,
-    //     };
-    //   },
-    //   invalidatesTags: [TAG],
-    // }),
+    putSupervisingSocialWorkerById: builder.mutation({
+      query: ({ body, id }: any) => {
+        return {
+          url: `social-worker-details/la-social-worker/${id}`,
+          method: "PATCH",
+          body,
+        };
+      },
+      invalidatesTags: [TAG],
+    }),
     getSupervisingSocialWorkerById: builder.query({
       query: (supervisingSocialWorkerId) =>
         `foster-child/get-supervising-social-worker/${supervisingSocialWorkerId}`,
@@ -57,6 +57,6 @@ export const {
   useGetSupervisingSocialWorkerTableApiQuery,
   usePostSupervisingSocialWorkerApiMutation,
   useGetSupervisingSocialWorkerByIdQuery,
-  // usePutSupervisingSocialWorkerByIdMutation,
+  usePutSupervisingSocialWorkerByIdMutation,
   // useDeleteSupervisingSocialWorkerByIdMutation,
 } = SupervisingcontactApi;

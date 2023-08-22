@@ -8,12 +8,11 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const maxAgeCheck = dayjs().subtract(18, "year");
 // const ageOf18Years = maxAgeCheck.format("MM/DD/YYYY");
 export const defaultValues = {
-  name: "family name here",
+  name: "",
   dateCheckCompleted: new Date(todayDate),
-  nameOfAdultHouseholdMember: "recommended",
+  nameOfAdultHouseholdMember: "",
   dateCheckCompleted2: new Date(todayDate),
-  giveDetailsOfEnhancedDbsCheck:
-    "giveDetailsOfEnhancedDbsCheck, a lot of giveDetailsOfEnhancedDbsCheck",
+  giveDetailsOfEnhancedDbsCheck: "",
 };
 
 export const FormSchema = Yup.object().shape({

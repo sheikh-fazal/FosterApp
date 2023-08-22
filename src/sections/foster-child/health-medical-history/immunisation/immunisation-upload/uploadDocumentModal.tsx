@@ -9,19 +9,21 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import { useUploadDocumentsModal } from "./useUploadDocumentModal";
 import useAuth from "@root/hooks/useAuth";
+import { LoadingButton } from "@mui/lab";
 
 function UploadDocumentsModel(props: any) {
   const { open, setOpen, view, changeView, docData, immunisationId } = props;
   const {
     user: { firstName, lastName },
   }: any = useAuth();
-  
-  const { onSubmit, theme, methods, handleSubmit } = useUploadDocumentsModal({
-    view,
-    docData,
-    immunisationId,
-    setOpen,
-  });
+
+  const { onSubmit, theme, methods, handleSubmit, isSubmitting } =
+    useUploadDocumentsModal({
+      view,
+      docData,
+      immunisationId,
+      setOpen,
+    });
 
   return (
     <>
@@ -81,16 +83,14 @@ function UploadDocumentsModel(props: any) {
               {view == "view" ? (
                 ""
               ) : (
-                <Button
+                <LoadingButton
+                  sx={{ marginRight: "1rem" }}
                   type="submit"
-                  sx={{
-                    bgcolor: theme.palette.primary.main,
-                    "&:hover": { bgcolor: theme.palette.orange.main },
-                  }}
                   variant="contained"
+                  loading={isSubmitting}
                 >
                   Upload
-                </Button>
+                </LoadingButton>
               )}
 
               <Button

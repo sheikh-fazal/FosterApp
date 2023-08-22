@@ -25,15 +25,15 @@ const BREADCRUMBS = (query: any) => [
 const PAGE_TITLE = "Edit Absence Info";
 
 EditAbsenceInfoForm.getLayout = function getLayout(page: any) {
-  return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default function EditAbsenceInfoForm() {
   const { query } = useRouter();
   const router = useRouter();
-  const childInfoId = query["absence_info_id"];
+  const absenceInfoId = query["absence_info_id"];
   const { data, isLoading, isSuccess, isError } = useGetAbsenceInfoByIdQuery(
-    childInfoId,
+    absenceInfoId,
     {
       refetchOnMountOrArgChange: true,
     }

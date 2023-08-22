@@ -20,6 +20,7 @@ const EmployementReferenceOneTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useEmployementReferenceOneTable();
   const columns = [
     {
@@ -67,7 +68,11 @@ const EmployementReferenceOneTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/employment-reference-1",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -82,7 +87,11 @@ const EmployementReferenceOneTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/employment-reference-1",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -103,7 +112,7 @@ const EmployementReferenceOneTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/employment-reference-1",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

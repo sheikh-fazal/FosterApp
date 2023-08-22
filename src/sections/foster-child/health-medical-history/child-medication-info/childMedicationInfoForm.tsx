@@ -33,8 +33,6 @@ const ChildMedicationInfoForm = (props: any) => {
     setValue,
     handleSubmit,
     getValues,
-    watch,
-    reset,
     formState: { errors },
   } = methods;
 

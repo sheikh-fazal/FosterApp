@@ -8,7 +8,16 @@ import { SearchPeopleData, checkedIcon, icon, tableData } from ".";
 import { useManageContactDirectory } from "./useManageContactDirectory";
 import AddTabModal from "@root/components/modal/add-tab-modal/AddTabModal";
 import SendEmailModal from "@root/components/modal/SendEmailModal/SendEmailModal";
-import { Autocomplete, Checkbox, TextField, Grid, Typography, Card, Box } from "@mui/material";
+import {
+  Autocomplete,
+  Checkbox,
+  TextField,
+  Grid,
+  Typography,
+  Card,
+  Box,
+  Chip,
+} from "@mui/material";
 import PhoneModal from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/phone-modal/PhoneModal";
 import CommonContactDirectory from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/CommonContactDirectory";
 import ContactInfoModal from "@root/sections/safeguarding/child-protection/agency-safeguarding-officer-contact/contact-info-modal/ContactInfoModal";
@@ -41,44 +50,85 @@ const ManageConatctDirectory = () => {
 
   return (
     <>
-      <Box sx={style.search}>
-        <Autocomplete
-          multiple
-          id="checkboxes-tags-demo"
-          options={SearchPeopleData}
-          disableCloseOnSelect
-          getOptionLabel={(option) => option.title}
-          renderOption={(props, option, { selected }) => (
-            <li {...props}>
-              <Checkbox icon={icon} checkedIcon={checkedIcon} style={{ marginRight: 8 }} checked={selected} />
-              {option.title}
-            </li>
-          )}
-          style={{ width: 500, backgroundColor: "#ffff" }}
-          renderInput={(params) => <TextField {...params} label="Search People" />}
-        />
-      </Box>
-      <Grid container spacing={1} my={2}>
+      <Grid container spacing={1.5} my={2}>
         {widgetsArray.map((obj) => (
           <Grid item xl={2} md={4} sm={6} xs={12} key={obj.id}>
             <Card sx={style.card}>
-              <Box display={"flex"} justifyContent={"space-around"} gap={4} alignItems={"center"} height={"100px"}>
+              <Box
+                display={"flex"}
+                justifyContent={"space-around"}
+                gap={4}
+                alignItems={"center"}
+                height={"100px"}
+              >
                 {obj.subArray?.map((sub: any) => (
                   <Fragment key={sub.title}>
                     <Box
                       onClick={() => handleOpenChange(obj.id, sub)}
-                      sx={{ cursor: "pointer", textAlign: "center", pointerEvents: sub.disable ? "none" : "", opacity: sub.disable ? 0.5 : 1 }}
+                      sx={{
+                        cursor: "pointer",
+                        textAlign: "center",
+                        pointerEvents: sub.disable ? "none" : "",
+                        opacity: sub.disable ? 0.5 : 1,
+                      }}
                     >
-                      <Image src={sub.icon} alt="icon" style={{ margin: "0 auto" }} />
+                      <Image
+                        src={sub.icon}
+                        alt="icon"
+                        style={{ margin: "0 auto" }}
+                      />
                       <Typography style={style.title}>{sub.title}</Typography>
                     </Box>
                   </Fragment>
                 ))}
               </Box>
-              <Typography sx={style.actions(obj.action)}>{obj.action}</Typography>
+              <Typography sx={style.actions(obj.action)}>
+                {obj.action}
+              </Typography>
             </Card>
           </Grid>
         ))}
+        <Grid container item xl={3} md={4} sm={6} xs={12}>
+          <Grid item xs={12}>
+            <Box sx={style.search}>
+              <Autocomplete
+                multiple
+                id="checkboxes-tags-demo"
+                options={SearchPeopleData}
+                disableCloseOnSelect
+                getOptionLabel={(option) => option.title}
+                renderOption={(props, option, { selected }) => (
+                  <li {...props}>
+                    <Checkbox
+                      icon={icon}
+                      checkedIcon={checkedIcon}
+                      style={{ marginRight: 8 }}
+                      checked={selected}
+                    />
+                    {option.title}
+                  </li>
+                )}
+                style={{ width: 700 }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Select Category" />
+                )}
+                renderTags={(selected: any) => {
+                  return (
+                    <>
+                      {selected.slice(0, 2).map(({ title }: any) => (
+                        <Chip key={title} label={title} />
+                      ))}
+                      {selected.length > 2 && "....."}
+                    </>
+                  );
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField fullWidth label="Search People" />
+          </Grid>
+        </Grid>
       </Grid>
       <CommonContactDirectory
         disableBoxShadow={true}
@@ -124,12 +174,36 @@ const ManageConatctDirectory = () => {
           isSuccess: true,
         }}
       />
-      {openModal && <AddTabModal open={openModal} onClose={handleOpenModal} onSubmit={(value: string) => {}} />}
-      {newContact && <ContactInfoModal open={newContact} onClose={handleContactModal} disabled={disableModal} />}
-      {shareModal && <ShareModal open={shareModal} data={[{ email: "Adadsa@gmail.com" }]} handleClose={handleShareModal} />}
-      {emailModal && <SendEmailModal open={emailModal} handleClose={handleEmailModal} />}
-      {deleteModal && <DeleteModel open={deleteModal} handleClose={handleDeleteModal} />}
-      {phoneModal && <PhoneModal open={phoneModal} handleClose={handlePhoneModal} />}
+      {openModal && (
+        <AddTabModal
+          open={openModal}
+          onClose={handleOpenModal}
+          onSubmit={(value: string) => {}}
+        />
+      )}
+      {newContact && (
+        <ContactInfoModal
+          open={newContact}
+          onClose={handleContactModal}
+          disabled={disableModal}
+        />
+      )}
+      {shareModal && (
+        <ShareModal
+          open={shareModal}
+          data={[{ email: "Adadsa@gmail.com" }]}
+          handleClose={handleShareModal}
+        />
+      )}
+      {emailModal && (
+        <SendEmailModal open={emailModal} handleClose={handleEmailModal} />
+      )}
+      {deleteModal && (
+        <DeleteModel open={deleteModal} handleClose={handleDeleteModal} />
+      )}
+      {phoneModal && (
+        <PhoneModal open={phoneModal} handleClose={handlePhoneModal} />
+      )}
       {newGroup && <NewGroupForm open={newGroup} onClose={handleGroupModal} />}
       {moveTo && <MoveModal open={moveTo} onClose={handleMoveModal} />}
     </>

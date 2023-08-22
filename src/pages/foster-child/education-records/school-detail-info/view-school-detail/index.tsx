@@ -25,13 +25,14 @@ export default function ViewSchoolDetail() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
 
+  const Router: any = useRouter();
+  const { fosterChildId, schoolInfoId } = Router.query;
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId: schoolInfoId,
   };
-  const Router: any = useRouter();
-  const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -52,9 +53,13 @@ export default function ViewSchoolDetail() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsSchoolDetailInfoQuery(params);
+  } = useGetUploadDocumentsSchoolDetailInfoQuery({
+    fosterChildId,
+    recordId: schoolInfoId,
+    params,
+  });
 
-  const tableData: any = documentData?.data?.["education-records-document"];
+  const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   const pageChangeHandler = (page: any) => {
@@ -71,7 +76,9 @@ export default function ViewSchoolDetail() {
         <SchoolDetailInfoForm disabled />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}

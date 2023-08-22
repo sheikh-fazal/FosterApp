@@ -266,23 +266,11 @@ export const allegationInfoFormDataFunction = (isFieldDisable = false) => [
     },
   },
   {
-    id: 9,
-    component: RHFTextField,
-    gridLength: 6,
-    componentProps: {
-      fullWidth: true,
-      name: "personCompletedReport",
-      label: "Person Completing Report",
-    },
-  },
-  {
     id: 10,
     componentProps: {
       fullWidth: true,
       name: "agencySocialWorkerInvolved",
       label: "Agency Social Worker Involved",
-      multiline: true,
-      minRows: 3,
       disabled: isFieldDisable,
     },
     gridLength: 6,
@@ -406,7 +394,7 @@ export const allegationInfoFormDataFunction = (isFieldDisable = false) => [
     componentProps: {
       fullWidth: true,
       name: "isThisSubstained",
-      label: "Is This Substained",
+      label: "Is This Substantiated",
       select: true,
       options: [
         {
@@ -454,7 +442,7 @@ export const allegationInfoFormDataFunction = (isFieldDisable = false) => [
     id: 21,
     componentProps: {
       name: "registeredManagerInformedDate",
-      label: "Registered Manager Informed Date",
+      label: "Registered Manager Informed Date:",
       fullWidth: true,
       disabled: isFieldDisable,
     },
@@ -465,7 +453,7 @@ export const allegationInfoFormDataFunction = (isFieldDisable = false) => [
     id: 22,
     gridLength: 6,
     componentProps: {
-      label: "Has Ofsted Been Informed",
+      label: "Has Ofsted Been Informed:",
       name: "hasOfstedBeenInformed",
       options: [true, false],
       getOptionLabel: ["Yes", "No"],
@@ -488,7 +476,7 @@ export const allegationInfoFormDataFunction = (isFieldDisable = false) => [
     id: 24,
     gridLength: 6,
     componentProps: {
-      label: "Is Schedule",
+      label: "Is Scheduled:",
       name: "isSchedule",
       options: [true, false],
       getOptionLabel: ["Yes", "No"],

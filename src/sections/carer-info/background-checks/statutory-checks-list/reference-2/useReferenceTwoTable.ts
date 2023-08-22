@@ -11,9 +11,9 @@ export const useReferenceTwoTable = () => {
   const [search, setSearch] = React.useState("");
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
+  const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-
   //GET API For Reference Two List
   const {
     data: referenceTwoList,
@@ -21,7 +21,13 @@ export const useReferenceTwoTable = () => {
     isLoading: referenceTwoIsloading,
     isFetching: referenceTwoIsfetching,
     isSuccess: referenceTwoIsSuccess,
-  }: any = useReferenceTwoListQuery({ search: search, ...params });
+  }: any = useReferenceTwoListQuery({
+    params: {
+      fosterCarerId: fosterCarerId,
+      earch: search,
+      ...params,
+    },
+  });
 
   //Getting API data and Meta
   const referenceTwoData = referenceTwoList?.data?.reference_two;
@@ -58,5 +64,6 @@ export const useReferenceTwoTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   };
 };

@@ -4,7 +4,8 @@ import dayjs from "dayjs";
 
 export const allegationInfoTableColumnsFunction = (
   router?: any,
-  prepareRecordForDelete?: any
+  prepareRecordForDelete?: any,
+  theme?: any
 ) => [
   {
     accessorFn: (row: any) => row?.allegationDate,
@@ -15,7 +16,39 @@ export const allegationInfoTableColumnsFunction = (
   {
     accessorFn: (row: any) => row.status,
     id: "status",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => (
+      <>
+        {info.getValue()}{" "}
+        {info?.row?.original?.status === "Pending" && (
+          <span
+            onClick={() =>
+              router.push({
+                pathname: `/foster-child/events-and-notification/allegation/allegation-info`,
+                query: {
+                  id: info?.row?.original?.id,
+                  action: "edit",
+                  ...(!!router?.query?.fosterChildId && {
+                    fosterChildId: router?.query?.fosterChildId,
+                  }),
+                },
+              })
+            }
+            style={{
+              color: "white",
+              fontSize: ".4rem",
+              marginTop: "1.5rem",
+              marginRight: "1rem",
+              padding: ".15rem .15rem",
+              borderRadius: "50%",
+              backgroundColor: "black",
+              cursor: "pointer",
+            }}
+          >
+            draft
+          </span>
+        )}
+      </>
+    ),
     header: () => <span>Status</span>,
   },
   {

@@ -14,7 +14,6 @@ const DownloadFile = ({ url }: any) => {
     const downloadFile = async () => {
       const response = await fetch(url);
       const blob = await response.blob();
-      console.log(blob);
 
       // Create a temporary anchor element
       const tempLink = document.createElement("a");
@@ -79,7 +78,9 @@ export const UploadDocumentTable = (props: any) => {
       accessorFn: (row: any) => row[column[0]],
       id: "document",
       cell: (info: any) =>
-        info.getValue()?.length > 20 ? ". . ." + info.getValue()?.slice(-15) : info.getValue(),
+        info.getValue()?.length > 20
+          ? ". . ." + info.getValue()?.slice(-15)
+          : info.getValue(),
       header: () => <span>Document Name</span>,
     },
     {
@@ -91,7 +92,9 @@ export const UploadDocumentTable = (props: any) => {
     {
       accessorFn: (row: any) => row[column[2]],
       id: "date",
-      cell: (info: any) => <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>,
+      cell: (info: any) => (
+        <Box>{dayjs(info.getValue()).format("DD/MM/YYYY")}</Box>
+      ),
       header: () => <span>Document Date</span>,
     },
     {
@@ -117,7 +120,11 @@ export const UploadDocumentTable = (props: any) => {
       cell: (info: any) => (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           {/* Can move it outside of the table if need arises */}
-          <TableAction type="view" onClicked={() => setModalHasData(info)} size="small" />
+          <TableAction
+            type="view"
+            onClicked={() => setModalHasData(info)}
+            size="small"
+          />
           {!readOnly && (
             <TableAction
               type="delete"

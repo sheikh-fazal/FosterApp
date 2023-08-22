@@ -21,6 +21,7 @@ const ComplaintsTable = () => {
     listDeleteHandler,
     pageChangeHandler,
     sortChangeHandler,
+    fosterCarerId,
   } = useComplaintsTable();
 
   const columns = [
@@ -60,7 +61,11 @@ const ComplaintsTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/complaints",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -75,7 +80,11 @@ const ComplaintsTable = () => {
               router.push({
                 pathname:
                   "/carer-info/personal-info/carer-chronology-of-events/complaints",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -100,7 +109,7 @@ const ComplaintsTable = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/complaints",
-              query: { action: "add", id: "" },
+              query: { action: "add", fosterCarerId: fosterCarerId },
             });
           }}
         />

@@ -1,22 +1,57 @@
 import React from "react";
 import RHFUploadFile from "@root/sections/carer-info/personal-info/form-f/components/RHFUploadFile";
-import { FormSchema, defaultValues, placementReferenceData } from ".";
+import { formSchema, defaultValues, placementReferenceData } from ".";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider } from "@root/components/hook-form";
 import { Box, Card, Grid, Typography, useTheme } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import { usePostPlacementPreferenceListMutation } from "@root/services/recruitment/ready-for-placement/placement-preference-api/placementPreferenceApi";
+import { enqueueSnackbar } from "notistack";
+import { useRouter } from "next/router";
 
-const PlacementReference = () => {
+const PlacementReference = (fosterCarerId: any) => {
+  const router = useRouter();
   const theme: any = useTheme();
   const methods: any = useForm({
-    // mode: "onTouched",
-    resolver: yupResolver(FormSchema),
+    resolver: yupResolver(formSchema),
     defaultValues,
   });
-  const { reset, handleSubmit } = methods;
+
+  //Placement Preference API
+  const [postPlacementDetails] = usePostPlacementPreferenceListMutation();
+  const { handleSubmit } = methods;
+
+  //OnSubmit Function to Submit Form Data
   const onSubmitHandler = (data: any) => {
-    reset();
+    postPlacementDetails({
+      // params: {
+      //   fosterCarerId: fosterCarerId,
+      // },
+      // body: data,
+    })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Placement Reference Added Successfully", {
+          variant: "success",
+        });
+        router.push({
+          pathname: "/recruitment",
+          query: {
+            action: "edit",
+            id: `${res?.data.id}`,
+            fosterCarerId: fosterCarerId,
+          },
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+        router.push({
+          pathname: "/recruitment",
+          query: { fosterCarerId: fosterCarerId },
+        });
+      });
   };
   return (
     <Card sx={{ p: 1.5 }}>

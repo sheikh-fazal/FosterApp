@@ -21,6 +21,7 @@ const DbsCheckTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useDbsCheckTable();
 
   const columns = [
@@ -69,7 +70,11 @@ const DbsCheckTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/dbs-check",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -84,7 +89,11 @@ const DbsCheckTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/dbs-check",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -105,7 +114,7 @@ const DbsCheckTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/dbs-check",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {
