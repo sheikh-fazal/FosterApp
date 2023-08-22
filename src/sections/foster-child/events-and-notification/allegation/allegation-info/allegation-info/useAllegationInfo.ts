@@ -56,6 +56,9 @@ export const useAllegationInfo = () => {
 
   const saveAsDraft = (isDraft: any) => {
     console.log({ isDraft });
+      if (!!router.query?.id) {
+      return;
+    }
     handleSubmit(submitAllegationInfoForm)(isDraft);
   };
 
@@ -102,11 +105,11 @@ export const useAllegationInfo = () => {
     const pathParams = {
       id: router.query?.id,
     };
-    const body = {
+   const body = {
       fosterChildId: router.query.fosterChildId,
       urnNumber: "CH001",
       ...data,
-      status: "Pending",
+      status: "Submit",
     };
     const apiDataParameter = { body, pathParams };
     try {

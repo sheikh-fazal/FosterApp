@@ -20,6 +20,7 @@ export default function PreviousSocialWorkerTable(props: any) {
     isSuccess,
     meta,
     pageChangeHandler,
+    sortChangeHandler,
   } = usePreviousSocialWorkerTable();
   const columns = [
     {
@@ -119,6 +120,7 @@ export default function PreviousSocialWorkerTable(props: any) {
         totalPages={meta?.pages}
         showSerialNo
         onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </Card>
   );
