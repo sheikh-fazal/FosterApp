@@ -11,11 +11,11 @@ export const sanctionDetailsDocumentApi: any = baseAPI.injectEndpoints({
     }),
     deleteSanctionDocumentDataById: builder.mutation({
       query: (apiDataParameter: any) => ({
-        url: `/foster-child/sanction-details/document/${apiDataParameter.pathParams.id}`,
+        url: `/foster-child/sanction-details/delete-document/${apiDataParameter.pathParams.id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["SANCTION_DETAILS_DOCUMENTS"],
-    }),
+    }), 
     postSanctionDetailsDocumentData: builder.mutation({
       query: ({body, pathParams}: any) => {
         return {

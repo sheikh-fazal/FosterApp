@@ -18,7 +18,7 @@ const SanctionDocument = () => {
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data}
+      tableData={data?.data?.sanctionDetailDocs}
       isLoading={isLoading}
       column={[
         "docName",

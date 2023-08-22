@@ -15,6 +15,7 @@ export const useSanctionDetailsList = () => {
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
+console.log(params);
 
   const apiDataParameter = {
     params,

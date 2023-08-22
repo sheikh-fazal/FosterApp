@@ -2,10 +2,10 @@ import { baseAPI } from "@root/services/baseApi";
 export const SanctionDetailsList = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllSanctionDetailsListData: builder.query({
-      query: ({ fosterChildId }: any) => ({
+      query: ({ fosterChildId, params }: any) => ({
         url: `/foster-child/list-sanction-details/${fosterChildId}`,
         method: "GET",
-        // params,
+        params,
       }),
       providesTags: ["SANCTION_DETAILS_LIST"],
     }),

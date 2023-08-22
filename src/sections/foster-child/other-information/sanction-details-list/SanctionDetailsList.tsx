@@ -42,7 +42,7 @@ const SanctionDetailsLists = () => {
         onChanged={headerChangeHandler}
       />
       <CustomTable
-        data={data?.data}
+        data={data?.data?.sanctionDetails}
         columns={sanctionDetailsTableColumns}
         isLoading={isLoading}
         showSerialNo
