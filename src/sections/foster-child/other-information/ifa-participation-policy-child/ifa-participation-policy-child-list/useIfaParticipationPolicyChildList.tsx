@@ -7,6 +7,9 @@ const useIfaParticipationPolicyChildList = () => {
   const [fosterChildId, setFosterChildId] = useState<any>(null);
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+  const fosterId = router.query.fosterChildId;
+
+  
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
@@ -36,6 +39,7 @@ const useIfaParticipationPolicyChildList = () => {
     fosterChildId,
     deleteFosterChild,
     closeDeleteModal,
+    fosterId
   };
 };
 

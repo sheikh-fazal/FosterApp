@@ -15,10 +15,10 @@ const NewIfaParticipationPolicyChild = (props: any) => {
     formState,
     postExclusionInfo,
     value,
-    setValue,
+    
   } = props;
 
-  const { methods, handleSubmit, onSubmit } =
+  const { methods, handleSubmit, onSubmit,setValue } =
     useNewIfaParticipationPolicyChild();
 
   return (
@@ -55,7 +55,7 @@ const NewIfaParticipationPolicyChild = (props: any) => {
                 label="Would you like to go again next time?"
                 size="small"
                 fullWidth
-                name=""
+                name="likeNextTime"
                 {...methods}
                 disabled={props.disabled}
               />
@@ -65,12 +65,23 @@ const NewIfaParticipationPolicyChild = (props: any) => {
                 Whats your rating on this event?
               </Typography>
               <Rating
-                name="simple-controlled"
+                name="rating"
                 value={value}
-                onChange={(event, newValue) => {
+                onChange={(newValue:any) => {
                   setValue(newValue);
                 }}
                 {...methods}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}  ml={3}>
+              <Typography >Choose Files</Typography>
+              <RHFUploadFile
+                name="file"
+                disabled={disabled}
+                label={"Upload Photo"}
+                {...methods}
+                required
               />
             </Grid>
           </Grid>
