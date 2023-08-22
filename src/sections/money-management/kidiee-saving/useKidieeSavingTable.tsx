@@ -1,41 +1,55 @@
-import { useTableParams } from '@root/hooks/useTableParams';
-import { enqueueSnackbar } from 'notistack';
+import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
+import {
+  useDeleteKidieeSavingMutation,
+  useGetKidieeSavingListQuery,
+} from "@root/services/money-management/kidiee-saving/KidieeSavingAPI";
+import { useRouter } from "next/router";
+import useAuth from "@root/hooks/useAuth";
 
 export const useKidieeSavingTable = () => {
-
-    const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  const router = useRouter();
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-//   const { data, isError, isLoading, isSuccess, isFetching } =
-    // useGetFamilyPersonListQuery<any>({ params });
-    console.log("pagination", params)
+  const { user }: any = useAuth();
 
-//   const [deleteList] = useDeleteFamilyPersonListMutation();
+  const fosterChildId = user?.userId;
+  console.log(fosterChildId);
+  const { data, isLoading, isError, isFetching, isSuccess }: any =
+    useGetKidieeSavingListQuery({
+      params,
+      fosterChildId,
+    });
+  console.log("pagination", params);
 
-  // DELETE API For Family Person List
+  const [deleteList] = useDeleteKidieeSavingMutation();
+
+  // DELETE API For Kidiee Saving List
   const listDeleteHandler = (id: any) => {
-    // deleteList(id)
-    //   .unwrap()
-    //   .then((res: any) => {
-    //     enqueueSnackbar("Information Deleted Successfully", {
-    //       variant: "success",
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     const errMsg = error?.data?.message;
-    //     enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    //   });
+    deleteList(id)
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
-
+  console.log(data);
   return {
-    // data,
-    // isError,
-    // isLoading,
-    // isSuccess,
-    // isFetching,
+    router,
+    data,
+    isError,
+    isLoading,
+    isSuccess,
+    isFetching,
     headerChangeHandler,
     listDeleteHandler,
     pageChangeHandler,
-    sortChangeHandler, 
-  }
-}
+    sortChangeHandler,
+  };
+};

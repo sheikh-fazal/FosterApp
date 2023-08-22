@@ -3,10 +3,10 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const KidieeSavingAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
-    //Get API of Kidiee Saving
-    getKidieeSaving: builder.query<null, object>({
+    //Get API of Kidiee Saving List
+    getKidieeSavingList: builder.query<null, object>({
       query: ({ params, fosterChildId }: any) => ({
-        url: `/money-management/kidiee-saving/list${fosterChildId}`,
+        url: `/money-management/kidiee-saving/list/${fosterChildId}`,
         method: "GET",
         params,
       }),
@@ -15,8 +15,7 @@ export const KidieeSavingAPI = baseAPI.injectEndpoints({
 
     // Get API By Id of Kidiee Saving
     getKidieeSavingById: builder.query({
-      query: (id: any) =>
-        `/money-management/get-kidiee-saving/${id}`,
+      query: (id: any) => `/money-management/get-kidiee-saving/${id}`,
       transformResponse: (response: any) => {
         parseDatesToTimeStampByKey(response.data);
         return response;
@@ -26,11 +25,11 @@ export const KidieeSavingAPI = baseAPI.injectEndpoints({
 
     // Post API of Kidiee Saving
     postKidieeSaving: builder.mutation({
-      query: (putDataParameter: any) => ({
-        url: "/money-management/add-kidiee-saving",
+      query: ({ data, fosterChildId }: any) => ({
+        url: `/money-management/add-kidiee-saving/${fosterChildId}`,
         method: "POST",
         param: "63e5eefe677b0d581e40682a",
-        body: putDataParameter,
+        body: data,
       }),
       invalidatesTags: ["KIDIEE_SAVING"],
     }),
@@ -57,7 +56,7 @@ export const KidieeSavingAPI = baseAPI.injectEndpoints({
 });
 
 export const {
-  useGetKidieeSavingQuery,
+  useGetKidieeSavingListQuery,
   useGetKidieeSavingByIdQuery,
   usePostKidieeSavingMutation,
   usePatchKidieeSavingMutation,

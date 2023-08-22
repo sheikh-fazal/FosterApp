@@ -5,11 +5,9 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import { kidieeSavingData } from ".";
 import { useKidieeSavingForm } from "./useKidieeSavingForm";
 
-
 export const KidieeSavingForm = (props: any) => {
   const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
     useKidieeSavingForm(props);
-  const { fosterChildId } = router.query;
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -53,7 +51,6 @@ export const KidieeSavingForm = (props: any) => {
             onClick={() =>
               router.push({
                 pathname: "/money-management/kidiee-saving",
-                query: { fosterChildId: fosterChildId },
               })
             }
           >

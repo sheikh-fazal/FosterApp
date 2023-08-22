@@ -33,7 +33,7 @@ export default function EditFamilyPersonForm() {
   const router = useRouter();
   const familyPersonId = query["family_person_id"];
   const { data, isLoading, isSuccess, isError } =
-    useGetFamilyPersonListByIdQuery(familyPersonId);
+    useGetFamilyPersonListByIdQuery(familyPersonId); 
 
   console.log("Is loading: ", data);
 
