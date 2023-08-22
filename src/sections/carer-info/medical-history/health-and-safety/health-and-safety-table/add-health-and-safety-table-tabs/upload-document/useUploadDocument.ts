@@ -1,4 +1,5 @@
 import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
 import {
   useDeleteHealthAndSafetyDocumentMutation,
   useGetHealthAndSafetyDocumentListQuery,
@@ -10,28 +11,33 @@ import React, { useEffect, useRef } from "react";
 
 export const useUploadDocument = (breadCrumbData: any) => {
   const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const theme: any = useTheme();
   const router = useRouter();
+  const { params, pageChangeHandler, sortChangeHandler } = useTableParams();
   const { healthAndSafetyId } = router.query;
   const tableHeaderRef = useRef<any>();
   const { data, isLoading, isSuccess, isError, isFetching } =
-    useGetHealthAndSafetyDocumentListQuery(healthAndSafetyId);
-  const uploadDocumentApiData = data?.data;
-  isSuccess &&
-    enqueueSnackbar(data?.message ?? "Data Retrieved Successfully!", {
-      variant: "success",
+    useGetHealthAndSafetyDocumentListQuery({
+      healthAndSafetyId,
+      search: search,
+      ...params,
     });
+  const uploadDocumentApiData = data?.data?.healthAndSafetyDocs;
+  const meta = data?.data?.meta;
+
   isError &&
     enqueueSnackbar(data?.message ?? "Something Went Wrong!", {
       variant: "error",
     });
+
   const [postDocuments]: any = useHealthAndSafetyDocumentPostMutation();
   const [deleteDocumentList]: any = useDeleteHealthAndSafetyDocumentMutation();
   const documentUploadHandler = async (data: any) => {
     console.log(data);
-
+    
     const formData = new FormData();
     formData.append("docType ", data.documentType);
     formData.append("date", data.documentDate);
@@ -51,7 +57,7 @@ export const useUploadDocument = (breadCrumbData: any) => {
     deleteDocumentList(id)
       .unwrap()
       .then((res: any) => {
-        enqueueSnackbar("Information Deleted  Successfully", {
+        enqueueSnackbar(res?.message ?? "Information Deleted  Successfully", {
           variant: "success",
         });
       })
@@ -78,6 +84,8 @@ export const useUploadDocument = (breadCrumbData: any) => {
     isError,
     isFetching,
     documentUploadHandler,
-    deleteDocument
+    deleteDocument,
+    meta,
+    setSearch,
   };
 };

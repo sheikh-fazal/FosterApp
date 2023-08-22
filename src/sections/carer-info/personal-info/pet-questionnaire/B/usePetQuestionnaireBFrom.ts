@@ -37,7 +37,7 @@ export const usePetQuestionnaireBFrom = ({
       };
       const res: any = await onSubmitHandler(updatedData).unwrap();
       enqueueSnackbar(
-        res?.message ?? `Pet Questionnaire ${message} Successfully!`,
+        res?.message ?? `Pet Questionnaire ${ message} Successfully!`,
         {
           variant: "success",
         }

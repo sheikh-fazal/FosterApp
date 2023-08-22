@@ -26,13 +26,9 @@ export const useHealthAndSafetyTable = () => {
     });
   const [deleteListItem] = useDeleteHealthAndSafetyListDataMutation({});
 
-  const healthAndSafetyApiData = data?.data;
-  const meta = data?.meta;
+  const healthAndSafetyApiData = data?.data?.healthAndSafeties;
+  const meta = data?.data?.meta;
 
-  isSuccess &&
-    enqueueSnackbar("Health And Safety list retrieved successfully!", {
-      variant: "success",
-    });
   isError && enqueueSnackbar("Error occured", { variant: "error" });
 
   const deleteList = async () => {

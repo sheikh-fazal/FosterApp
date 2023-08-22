@@ -18,9 +18,6 @@ import { useHouseholdConditionA } from "./useHouseholdConditionA";
 export const HouseholdConditionA = (props: any) => {
   const {
     disabled,
-    formData,
-    isError,
-    isSuccess,
     isLoading,
     breadCrumbData,
     initialValueProps = defaultValues,
@@ -39,7 +36,6 @@ export const HouseholdConditionA = (props: any) => {
     isSubmitting,
   }: any = useHouseholdConditionA({
     breadCrumbData,
-    formData,
     onSubmitHandler,
     initialValueProps,
     message,

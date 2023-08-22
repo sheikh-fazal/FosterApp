@@ -48,8 +48,10 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
     }),
 
     getHealthAndSafetyDocumentList: builder.query({
-      query: (healthAndSafetyId: any) =>
-        `carer-Info/list-health-and-safety/document/list/${healthAndSafetyId}`,
+      query: ({ healthAndSafetyId, params }: any) => ({
+        url: `carer-Info/list-health-and-safety/document/list/${healthAndSafetyId}`,
+        params: params,
+      }),
       providesTags: ["HEALTH_AND_SAFETY"],
     }),
     deleteHealthAndSafetyDocument: builder.mutation({

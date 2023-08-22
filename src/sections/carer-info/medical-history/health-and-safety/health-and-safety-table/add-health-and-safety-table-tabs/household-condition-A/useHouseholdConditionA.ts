@@ -10,7 +10,6 @@ import usePath from "@root/hooks/usePath";
 
 export const useHouseholdConditionA = ({
   breadCrumbData,
-  formData,
   onSubmitHandler,
   initialValueProps,
   message,
@@ -19,7 +18,7 @@ export const useHouseholdConditionA = ({
   const theme: any = useTheme();
   const router = useRouter();
   const { makePath } = usePath();
-
+  const { healthAndSafetyId } = router.query;
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: initialValueProps,
@@ -29,18 +28,31 @@ export const useHouseholdConditionA = ({
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    // formData(data);
+    const houseHoldConditionA = data;
+
     try {
-      const res: any = await onSubmitHandler(data).unwrap();
-      enqueueSnackbar(res?.message, { variant: "success" });
-      {
-        isAdding &&
-          router.push(
-            makePath({
-              path: "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs",
-              queryParams: { healthAndSafetyId: res?.data?.id },
-            })
-          );
+      if (message === "Added") {
+        const res: any = await onSubmitHandler(data).unwrap();
+        enqueueSnackbar(res?.message, {
+          variant: "success",
+        });
+        {
+          isAdding &&
+            router.push(
+              makePath({
+                path: "/carer-info/medical-history/health-and-safety/add-health-and-safety-table-tabs",
+                queryParams: { healthAndSafetyId: res?.data?.id },
+              })
+            );
+        }
+      } else if (message === "Updated" ) {
+        const res = await onSubmitHandler({
+          healthAndSafetyId,
+          formData: { houseHoldConditionA },
+        }).unwrap();
+        enqueueSnackbar(res?.message, {
+          variant: "success",
+        });
       }
     } catch (error: any) {
       enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
