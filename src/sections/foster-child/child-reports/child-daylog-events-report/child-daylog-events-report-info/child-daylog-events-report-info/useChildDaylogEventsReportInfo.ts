@@ -66,13 +66,13 @@ export const useChildDaylogEventsReportInfo = () => {
     reset(() => defaultValueChildDaylogEventsReportInfoForm(data?.data));
   }, [data, reset]);
 
-  const saveAsDraft = (isDraft: any) => {
-    console.log({ isDraft });
-    if (!!router.query?.id) {
-      return;
-    }
-    handleSubmit(submitChildDaylogEventsReportInfoForm)(isDraft);
-  };
+  // const saveAsDraft = (isDraft: any) => {
+  //   console.log({ isDraft });
+  //   if (!!router.query?.id) {
+  //     return;
+  //   }
+  //   handleSubmit(submitChildDaylogEventsReportInfoForm)(isDraft);
+  // };
 
   const submitChildDaylogEventsReportInfoForm = async (
     data: any,
@@ -160,7 +160,6 @@ export const useChildDaylogEventsReportInfo = () => {
     patchChildDaylogEventsReportInfoDataStatus,
     theme,
     isLoading,
-    saveAsDraft,
     childDaylogEventsReportsData,
   };
 };

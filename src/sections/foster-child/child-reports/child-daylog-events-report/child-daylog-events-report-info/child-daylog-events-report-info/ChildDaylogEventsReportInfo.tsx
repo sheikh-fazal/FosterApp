@@ -15,7 +15,6 @@ const ChildDaylogEventsReportInfo = () => {
     postChildDaylogEventsReportInfoDataStatus,
     patchChildDaylogEventsReportInfoDataStatus,
     theme,
-    saveAsDraft,
     childDaylogEventsReportsData,
   }: any = useChildDaylogEventsReportInfo();
 
@@ -32,7 +31,7 @@ const ChildDaylogEventsReportInfo = () => {
                   component={"p"}
                   sx={{ fontWeight: "500", fontSize: "14px", mb: "20px" }}
                 >
-                  {key} :{value}
+                  {key} : {value}
                 </Typography>
               </Grid>
             );
@@ -77,7 +76,7 @@ const ChildDaylogEventsReportInfo = () => {
             >
               Submit
             </LoadingButton>
-            <LoadingButton
+            {/* <LoadingButton
               sx={{ marginRight: "1rem" }}
               disabled={
                 patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
@@ -90,7 +89,7 @@ const ChildDaylogEventsReportInfo = () => {
               color="secondary"
             >
               Save as Draft
-            </LoadingButton>
+            </LoadingButton> */}
             <LoadingButton
               type="button"
               sx={{
