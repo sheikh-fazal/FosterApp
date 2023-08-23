@@ -29,9 +29,15 @@ export const useChildEducationForm = () => {
     // resolver: yupResolver(SchoolDetailInfoFormSchema),
     defaultValues: educationInfoDefaultValues,
   });
-  const { data, isLoading } = useGetSingleEducationInfoDataQuery({
-    educationInfoId: router?.query?.educationInfoId,
-  });
+  const { data, isLoading } = useGetSingleEducationInfoDataQuery(
+    {
+      educationInfoId: router?.query?.educationInfoId,
+    },
+    {
+      skip: !!!router?.query?.educationInfoId,
+      refetchOnMountOrArgChange: true,
+    }
+  );
   const {
     handleSubmit,
     reset,

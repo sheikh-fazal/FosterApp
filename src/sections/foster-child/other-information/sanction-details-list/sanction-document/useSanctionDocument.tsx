@@ -1,26 +1,22 @@
-import { useTheme } from "@mui/material";
-import {  useState } from "react";
+import { useState } from "react";
 import useAuth from "@root/hooks/useAuth";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import {
-  useGetChildEducationInfoDocumentDataQuery,
-  usePostEducationInfoDocumentDataMutation,
-  useDeleteEducationInfoDocumentDataByIdMutation
-} from "@root/services/foster-child/education-records/child-education-info/documents";
+  useDeleteSanctionDocumentDataByIdMutation,
+  useGetSanctionDetailsDocumentDataQuery,
+  usePostSanctionDetailsDocumentDataMutation,
+} from "@root/services/foster-child/other-information/saction-details/documents";
 
-export const useEducationDocument = () => {
-  const theme: any = useTheme();
+export const useSanctionDocument = () => {
   const { user }: any = useAuth();
   const { query }: any = useRouter();
-  // ----------------------------------------------------------------------
-  const [
-    postEducationInfoDocumentDataTrigger,
-  ] = usePostEducationInfoDocumentDataMutation();
 
-  const [
-    deleteEducationInfoDocumentDataByIdTrigger,
-  ] = useDeleteEducationInfoDocumentDataByIdMutation();
+  const [postSanctionDetailsDocumentDataTrigger] =
+    usePostSanctionDetailsDocumentDataMutation();
+
+  const [deleteSanctionDocumentDataByIdTrigger] =
+    useDeleteSanctionDocumentDataByIdMutation();
 
   const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState(undefined);
@@ -30,35 +26,37 @@ export const useEducationDocument = () => {
     search: searchValue,
   };
   const pathParams = {
-    educationInfoId: query?.educationInfoId,
+    sanctionDetailsId: query?.sanctionDetailsId,
   };
   const dataParameter = { params, pathParams };
   const { data, isLoading, isError, isSuccess, isFetching } =
-    useGetChildEducationInfoDocumentDataQuery(dataParameter, {
-      skip: !!!query?.educationInfoId,
+    useGetSanctionDetailsDocumentDataQuery(dataParameter, {
+      skip: !!!query?.sanctionDetailsId,
       refetchOnMountOrArgChange: true,
     });
-  console.log("data", data);
 
-  const submitEducationInfoDocument = async (data: any) => {
-    if (!!!query?.educationInfoId) {
-      enqueueSnackbar("Please submit the Education Info form first", { variant: "error" });
+  const submitSanctionDocument = async (data: any) => {
+    if (!!!query?.sanctionDetailsId) {
+      enqueueSnackbar("Please submit the Sanction Details form first", {
+        variant: "error",
+      });
       return;
     }
 
     const documentFormData = new FormData();
 
-    documentFormData.append("type", data.documentType);
-    documentFormData.append("documentDate", data.documentDate);
+    documentFormData.append("docType", data.documentType);
+    documentFormData.append("date", data.documentDate);
     documentFormData.append("password", data.password);
-    documentFormData.append("file", data.chosenFile);
-    documentFormData.append("educationId", query?.educationInfoId);
+    documentFormData.append("docFile", data.chosenFile);
+    documentFormData.append("sanctionDetailsId", query?.sanctionDetailsId);
 
     const putDataParameter = {
       body: documentFormData,
+      pathParams,
     };
     try {
-      const res: any = await postEducationInfoDocumentDataTrigger(
+      const res: any = await postSanctionDetailsDocumentDataTrigger(
         putDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
@@ -71,12 +69,14 @@ export const useEducationDocument = () => {
   };
 
   const onDeleteConfirm = async (data: any) => {
+    console.log(data);
+    
     const pathParams = {
       id: data?.id,
     };
     const apiDataParameter = { pathParams };
     try {
-      const res: any = await deleteEducationInfoDocumentDataByIdTrigger(
+      const res: any = await deleteSanctionDocumentDataByIdTrigger(
         apiDataParameter
       ).unwrap();
       enqueueSnackbar(res?.message ?? `Deleted Successfully`, {
@@ -98,8 +98,8 @@ export const useEducationDocument = () => {
     isSuccess,
     user,
     isFetching,
-    submitEducationInfoDocument,
+    submitSanctionDocument,
     query,
-    onDeleteConfirm
+    onDeleteConfirm,
   };
 };

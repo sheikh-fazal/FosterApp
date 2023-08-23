@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import {
-  usePatchEducationInfoDataMutation,
-  usePostEducationInfoDataMutation,
-  useGetSingleEducationInfoDataQuery,
-} from "@root/services/foster-child/education-records/child-education-info/ChildEducationInfoList";
-import { sanctionDetailsDefaultValues, sanctionDetailsFormDataFunction } from ".";
-import { useGetSingleSanctionDetailsDataQuery, usePatchSanctionDetailsDataMutation, usePostSanctionDetailsDataMutation } from "@root/services/foster-child/other-information/saction-details/sactionDetailsList";
+  defaultValueEducationInfoForm,
+  sanctionDetailsDefaultValues,
+  sanctionDetailsFormDataFunction,
+} from ".";
+import {
+  useGetSingleSanctionDetailsDataQuery,
+  usePatchSanctionDetailsDataMutation,
+  usePostSanctionDetailsDataMutation,
+} from "@root/services/foster-child/other-information/saction-details/sactionDetailsList";
 
 export const useSanctionDetailsForm = () => {
   const router = useRouter();
@@ -28,13 +30,16 @@ export const useSanctionDetailsForm = () => {
 
   const methods: any = useForm({
     // resolver: yupResolver(SchoolDetailInfoFormSchema),
-    defaultValues: sanctionDetailsDefaultValues,
+    defaultValues: defaultValueEducationInfoForm(sanctionDetailsDefaultValues),
   });
-  const { data, isLoading } = useGetSingleSanctionDetailsDataQuery({
-    sanctionDetailsId: router?.query?.sanctionDetailsId,
-  });
-  console.log(data);
-  
+  const { data, isLoading } = useGetSingleSanctionDetailsDataQuery(
+    {
+      sanctionDetailsId: router?.query?.sanctionDetailsId,
+    },
+    {
+      skip: !!!router?.query?.sanctionDetailsId,
+    }
+  );
   const {
     handleSubmit,
     reset,
@@ -42,19 +47,20 @@ export const useSanctionDetailsForm = () => {
   } = methods;
 
   useEffect(() => {
-    reset((formValues: any) => ({ ...formValues, ...data?.data }));
+    reset((formValues: any) =>
+      defaultValueEducationInfoForm(data?.data?.getSanctionDetails)
+    );
   }, [data]);
 
   const onSubmitHandler = async (data: any) => {
-    const formData = {
-      ...data,
-    };
-    console.log(formData);
-    const apiDataParameter = {
-      body: data,
+    const queryParams = {
       fosterChildId: router?.query?.fosterChildId,
     };
-    if (!!router.query?.educationInfoId) {
+    const apiDataParameter = {
+      body: data,
+      queryParams,
+    };
+    if (!!router.query?.sanctionDetailsId) {
       patchEducationInfoForm(data);
       return;
     }
@@ -86,7 +92,7 @@ export const useSanctionDetailsForm = () => {
     const pathParams = {
       sanctionDetailsId: router?.query?.sanctionDetailsId,
     };
- 
+
     const apiDataParameter = { body: data, pathParams };
     try {
       const res: any = await patchSanctionDetailsDataTrigger(
