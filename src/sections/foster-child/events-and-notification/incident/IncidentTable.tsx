@@ -4,8 +4,6 @@ import TableHeader from "@root/components/TableHeader";
 import { Box, Grid, Paper } from "@mui/material";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import router from "next/router";
-// import { Dummy } from ".";
 import { useIncidentTable } from "./useIncidentTable";
 
 const IncidentTable = (props: any) => {
