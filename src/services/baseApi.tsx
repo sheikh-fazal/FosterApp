@@ -106,6 +106,7 @@ export const TAGS = [
   "MEDICAL_APPOINTMENTS_DOCS",
   "CARER_SUPERVISING-HOME_VISIT",
   "CARER_SUPERVISING-HOME_VISIT_DOCUMENTS",
+  "ANNUAL_REVIEW_DOCUMENTS",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

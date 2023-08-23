@@ -9,19 +9,14 @@ import { AnnualReviewD } from "@root/sections/carer-info/personal-info/chronolog
 import AnnualReviewE from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/annual-review-E/AnnualReviewE";
 import PlacementReview from "@root/sections/carer-info/personal-info/chronology-of-events/annual-review/placement-review/PlacementReview";
 import { useRouter } from "next/router";
-import {
-  useDeleteSupervisoryDocumentMutation,
-  usePostSupervisoryVisitDocumentsMutation,
-  useSupervisoryVisitUploadDocumentQuery,
-} from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitDocuments";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { enqueueSnackbar } from "notistack";
 import {
-  useDeleteDocumentListMutation,
   useUploadDocumentListQuery,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/uploadDocumentsApi";
-import { usePostReportDocumentsMutation } from "@root/services/carer-info/personal-info/chronology-of-events/ooh-report-api/reportDocumentsApi";
+  usePostReportDocumentsMutation,
+  useDeleteDocumentListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewDocumentsApi";
 
 AnnualReview.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -160,11 +155,11 @@ export default function AnnualReview() {
           isError={hasDocumentError}
           isSuccess={isSuccess}
           column={[
-            "docName",
-            "docType",
+            "documentOriginalName",
+            "documentType",
             "documentDate",
-            "uploadBy",
-            "password",
+            "personUploaded",
+            "documentPassword",
           ]}
           searchParam={(searchedText: any) => setSearch(searchedText.search)}
           onPageChange={(page: any) => setPage((page - 1) * 10)}

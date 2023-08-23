@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  TRAINING_CERTIFICATE,
-  UPLOADID_DATA,
-  SPECIALITIES,
-} from "./TrainingWorkData";
+import { TRAINING_CERTIFICATE, UPLOADID_DATA, SPECIALITIES } from ".";
 import { Box, Grid, Typography, useTheme } from "@mui/material";
 import Image from "next/image";
 import TrainingWorkTable from "./TrainingWorkTable";

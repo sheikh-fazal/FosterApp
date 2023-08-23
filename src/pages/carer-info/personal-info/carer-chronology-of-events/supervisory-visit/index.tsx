@@ -14,6 +14,7 @@ import {
 import { useRouter } from "next/router";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import useAuth from "@root/hooks/useAuth";
+import dayjs from "dayjs";
 
 SupervisoryVisit.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -77,10 +78,8 @@ export default function SupervisoryVisit() {
 
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
-    formData.append("docName", "test");
-    formData.append("uploadedBy", firstName + " " + lastName);
     formData.append("docType", data.documentType);
-    formData.append("date", data.documentDate);
+    formData.append("date", dayjs(data.documentDate).format("DD/MM/YYYY"));
     formData.append("password", data.password);
     formData.append("docFile", data.chosenFile);
     try {
@@ -144,7 +143,7 @@ export default function SupervisoryVisit() {
             "docName",
             "docType",
             "documentDate",
-            "uploadBy",
+            "uploadedBy",
             "password",
           ]}
           searchParam={(searchedText: any) => setSearch(searchedText.search)}

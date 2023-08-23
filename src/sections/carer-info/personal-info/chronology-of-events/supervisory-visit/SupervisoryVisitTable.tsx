@@ -26,16 +26,14 @@ const AllegationTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.supervisingSocialWorker ?? "-",
+      accessorFn: (row: any) => row?.nameOfSupervising ?? "-",
       id: "supervisingSocialWorker",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
-      },
+      cell: (info: any) => info.getValue(),
       header: () => <span>Supervising Social Worker</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.dateOfVisit ?? "-",
+      accessorFn: (row: any) => row?.visitDate ?? "-",
       id: "dateOfVisit",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;

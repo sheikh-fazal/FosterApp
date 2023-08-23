@@ -41,5 +41,6 @@ export const useAbout = () => {
     formattedDataAbout,
     addressIsLoading,
     formattedDataAddress,
+    addressDetails,
   };
 };

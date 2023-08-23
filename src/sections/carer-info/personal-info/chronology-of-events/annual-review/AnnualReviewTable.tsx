@@ -26,10 +26,10 @@ const AnnualReviewTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.reviewDate ?? "-",
+      accessorFn: (row: any) => row?.dateOfVisit ?? "-",
       id: "reviewDate",
       cell: (info: any) => {
-        return <Box>{info.getValue() ?? "-"}</Box>;
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
       },
       header: () => <span>Review Date</span>,
       isSortable: true,

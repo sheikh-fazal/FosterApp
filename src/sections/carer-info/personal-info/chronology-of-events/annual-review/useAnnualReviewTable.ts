@@ -31,6 +31,9 @@ export const useAnnualReviewTable = () => {
   const annualReviewList = annualReviewlist?.data?.annual_review;
   const meta = annualReviewlist?.data?.meta;
 
+  console.log("annualReviewList", annualReviewList);
+  
+
   const [deleteAnnualReviewList] = useDeleteAnnualReviewListMutation();
 
   const listDeleteHandler = (id: any) => {

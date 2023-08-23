@@ -5,6 +5,7 @@ import { ADDRESS_DATA, ID_DATA } from ".";
 import Image from "next/image";
 import { useAbout } from "./useAbout";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import NoContentFound from "@root/components/Table/NoContentFound";
 
 const About = () => {
   const theme: any = useTheme();
@@ -13,9 +14,22 @@ const About = () => {
     isLoading,
     addressIsLoading,
     formattedDataAddress,
+    addressDetails,
   } = useAbout();
 
   console.log("formattedDataAddress", formattedDataAddress);
+
+  // if (!addressDetails || addressDetails.length === 0) {
+  //   return (
+  //     <>
+  //       <Grid container>
+  //         <Grid item width={200}>
+  //           <NoContentFound />
+  //         </Grid>
+  //       </Grid>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
