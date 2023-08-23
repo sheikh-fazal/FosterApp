@@ -9,7 +9,6 @@ import SupervisingSocialWorkerForm from "@root/sections/foster-child/social-work
 ViewSupervisingSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-// export default function LaSocialWorker() {
 export default function ViewSupervisingSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
@@ -25,7 +24,6 @@ export default function ViewSupervisingSocialWorker() {
       },
     },
     {
-      // name: "LA Social Worker List",
       name: "Supervising Social Worker List",
       href: "",
     },
