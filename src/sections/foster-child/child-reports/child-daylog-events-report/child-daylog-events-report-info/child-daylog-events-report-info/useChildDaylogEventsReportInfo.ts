@@ -81,8 +81,8 @@ export const useChildDaylogEventsReportInfo = () => {
     const body = {
       fosterChildId: router?.query?.fosterChildId,
       ...data,
-      // emailAddressess: data?.emailAddressess?.split(","),
-      status: typeof isDraft === "string" ? "Pending" : "Submit",
+      emailAddressess: data?.emailAddressess?.split(","),
+      // status: typeof isDraft === "string" ? "Pending" : "Submit",
     };
     console.log({ body });
     const queryParams = {
@@ -124,7 +124,8 @@ export const useChildDaylogEventsReportInfo = () => {
     const body = {
       fosterChildId: router?.query?.fosterChildId,
       ...data,
-      status: "Submit",
+      emailAddressess: data?.emailAddressess?.split(","),
+      // status: "Submit",
     };
     const apiDataParameter = { body, pathParams };
     try {

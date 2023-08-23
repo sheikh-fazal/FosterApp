@@ -24,8 +24,7 @@ export const childDaylogEventsReportInfoFormValues = {
   addToCarerRecord: "",
   updateSiblingRecord: false,
   userNotified: "",
-  additionalEmailAddress: [],
-  status: "",
+  additionalEmailAddress: "",
 };
 
 export const defaultValueChildDaylogEventsReportInfoForm = (
@@ -44,8 +43,7 @@ export const defaultValueChildDaylogEventsReportInfoForm = (
     addToCarerRecord: data?.addToCarerRecord,
     updateSiblingRecord: data?.updateSiblingRecord,
     userNotified: data?.userNotified,
-    additionalEmailAddress: data?.additionalEmailAddress,
-    status: data?.status,
+    additionalEmailAddress: data?.additionalEmailAddress + "",
   };
 };
 
@@ -57,24 +55,24 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
     .trim()
     .required("Correspondence to whom is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   correspondenceFrom: Yup.string()
     .trim()
     .required("Correspondence from whom is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   childSeen: Yup.boolean().required("Child seen is required"),
   entryType: Yup.string().required("Entry type is required"),
   subject: Yup.string()
     .trim()
     .required("subject is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   dayLogEntry: Yup.string()
     .trim()
     .required("Day log entry  is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   actionNeeded: Yup.string()
     .trim()
     .required("Action needed is required")
