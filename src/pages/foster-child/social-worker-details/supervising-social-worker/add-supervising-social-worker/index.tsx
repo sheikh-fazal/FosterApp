@@ -20,7 +20,7 @@ export default function AddSupervisingSocialWorker() {
       icon: <HomeIcon />,
       name: "Child Info",
       href: {
-        pathname: "/foster-child",
+        pathname: "/foster-child/social-worker-details/supervising-social-worker",
         query: { fosterChildId: fosterChildId },
       },
     },

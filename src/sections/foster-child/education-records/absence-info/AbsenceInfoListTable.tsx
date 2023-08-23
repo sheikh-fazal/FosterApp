@@ -65,7 +65,7 @@ export default function AbsenceInfoListTable(prop: any) {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/edit`,
-                query: { action:"edit",fosterChildId: fosterChildId },
+                query: { action: "edit", fosterChildId: fosterChildId },
               })
             }
           />
@@ -74,7 +74,7 @@ export default function AbsenceInfoListTable(prop: any) {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/education-records/absence-info/${info.getValue()}/view`,
-                query: {action:"view", fosterChildId: fosterChildId },
+                query: { action: "view", fosterChildId: fosterChildId },
               })
             }
           />
@@ -91,12 +91,6 @@ export default function AbsenceInfoListTable(prop: any) {
           showAddBtn
           title="Absence Info"
           onChanged={headerChangeHandler}
-          // onAdd={() => {
-          //   router.push({
-          //     pathname: `/foster-child/education-records/absence-info/add-absence-info`,
-          //     query: { fosterChildId: fosterChildId },
-          //   });
-          // }}
           onAdd={() =>
             router.push({
               pathname: `/foster-child/education-records/absence-info/add-absence-info`,

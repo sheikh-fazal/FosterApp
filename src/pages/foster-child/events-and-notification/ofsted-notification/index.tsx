@@ -18,7 +18,7 @@ export default function OfstedNotification() {
       icon: <HomeIcon />,
       name: "child Info",
       href: {
-        pathname: "/foster-child",
+        pathname: "/foster-child/events-and-notification/ofsted-notification",
         query: { fosterChildId: fosterChildId },
       },
     },

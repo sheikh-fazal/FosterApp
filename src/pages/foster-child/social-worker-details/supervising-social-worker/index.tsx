@@ -43,8 +43,8 @@ SupervisingSocialWorker.getLayout = function getLayout(page: any) {
       <HorizaontalTabs
         tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
       >
-        <ActiveSupervisingSocialWorkerTable />
-        <SupervisingPreviousSocialWorkerTable />
+        <ActiveSupervisingSocialWorkerTable fosterChildId={fosterChildId}/>
+        <SupervisingPreviousSocialWorkerTable fosterChildId={fosterChildId}/>
       </HorizaontalTabs>
     </Box>
   );

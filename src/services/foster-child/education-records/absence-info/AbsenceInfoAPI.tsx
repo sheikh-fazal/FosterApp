@@ -1,5 +1,4 @@
 import { baseAPI } from "@root/services/baseApi";
-import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 
 export const AbsenceInfoAPI = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
@@ -16,10 +15,6 @@ export const AbsenceInfoAPI = baseAPI.injectEndpoints({
     // Get API By Id of Absence Info
     getAbsenceInfoById: builder.query({
       query: (id: any) => `/foster-child/absenceInfo/get-absence-info/${id}`,
-      // transformResponse: (response: any) => {
-      //   parseDatesToTimeStampByKey(response.data);
-      //   return response;
-      // },
       providesTags: ["ABSENCE_INFO"],
     }),
 

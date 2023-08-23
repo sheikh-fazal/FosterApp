@@ -1,5 +1,6 @@
 import { Box, Checkbox, Rating } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import dayjs from "dayjs";
 
 export const columnsIfaParticipationPolicyTable = (
   router: any,
@@ -38,7 +39,7 @@ export const columnsIfaParticipationPolicyTable = (
   {
     accessorFn: (row: any) => row.date,
     id: "date",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: () => <span>Date</span>,
     isSortable: true,
   },
@@ -50,8 +51,8 @@ export const columnsIfaParticipationPolicyTable = (
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.filesRecording,
-    id: "filesRecording",
+    accessorFn: (row: any) => row.fileName,
+    id: "fileName",
     cell: (info: any) => info.getValue(),
     header: () => <span>Files / Recording</span>,
     isSortable: true,
@@ -83,7 +84,7 @@ export const columnsIfaParticipationPolicyTable = (
           type="edit"
           onClicked={() =>
             router.push(
-              `/foster-child/other-information/ifa-participation-policy-for-child/edit-ifa-participation-policy-for-child?${info.getValue()}`
+              `/foster-child/other-information/ifa-participation-policy-for-child/edit-ifa-participation-policy-for-child?ifaChildId=${info.getValue()}`
             )
           }
         />

@@ -4,7 +4,6 @@ import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import HorizaontalTabs from "@root/components/HorizaontalTabs";
 import SupervisingSocialWorkerForm from "@root/sections/foster-child/social-worker-details/supervising-social-worker/active-social-worker/SupervisingSocialWorkerForm";
 
 ViewSupervisingSocialWorker.getLayout = function getLayout(page: any) {
@@ -20,7 +19,8 @@ export default function ViewSupervisingSocialWorker() {
       icon: <HomeIcon />,
       name: "Child Info",
       href: {
-        pathname: "/foster-child",
+        pathname:
+          "/foster-child/social-worker-details/supervising-social-worker",
         query: { fosterChildId: fosterChildId },
       },
     },
@@ -39,11 +39,7 @@ export default function ViewSupervisingSocialWorker() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <HorizaontalTabs
-        tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
-      >
-        <SupervisingSocialWorkerForm disabled/>
-      </HorizaontalTabs>
+      <SupervisingSocialWorkerForm disabled />
     </Box>
   );
 }

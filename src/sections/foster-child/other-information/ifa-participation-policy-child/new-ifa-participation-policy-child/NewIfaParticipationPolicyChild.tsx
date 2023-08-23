@@ -52,12 +52,11 @@ const NewIfaParticipationPolicyChild = (props: any) => {
           <Grid container columnSpacing={4} mt={3}>
             <Grid item xs={12} md={6} ml={3}>
               <RHFTextField
+                name="likeNextTime"
                 label="Would you like to go again next time?"
                 size="small"
-                fullWidth
-                name="likeNextTime"
                 {...methods}
-                disabled={props.disabled}
+                
               />
             </Grid>
             <Grid item xs={12} md={5}>
@@ -78,8 +77,7 @@ const NewIfaParticipationPolicyChild = (props: any) => {
               <Typography >Choose Files</Typography>
               <RHFUploadFile
                 name="file"
-                disabled={disabled}
-                label={"Upload Photo"}
+                label="Upload Photo"
                 {...methods}
                 required
               />
