@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetAboutDetailsQuery } from "@root/services/userApi";
+import { useGetAboutDetailsQuery } from "@root/services/personal-details/about/userApi";
 
 export const useAbout = () => {
   const { data, isLoading }: any = useGetAboutDetailsQuery({});

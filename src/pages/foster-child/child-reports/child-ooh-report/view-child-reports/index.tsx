@@ -1,13 +1,7 @@
 import Layout from "@root/layouts";
-import React, { useState } from "react";
+import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
-import { enqueueSnackbar } from "notistack";
-import {
-  useDeleteDiaryUploadDocumentsMutation,
-  useDiaryUploadDocumentListQuery,
-  usePostDiaryUploadDocumentsMutation,
-} from "@root/services/foster-child/child-day-log/diary-recordings/UploadDocumentsApi";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import ChildOohReportForm from "@root/sections/foster-child/child-reports/child-ooh-report/ChildOohReportForm";
 
@@ -16,8 +10,6 @@ ViewChildReports.getLayout = function getLayout(page: any) {
 };
 
 export default function ViewChildReports() {
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterChildId } = router.query;
   //If ID is not there

@@ -1,11 +1,22 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
 import { Box, Grid, useTheme } from "@mui/material";
-import { ABOUT_DATA, ADDRESS_DATA, ID_DATA } from "./AboutData";
+import { ADDRESS_DATA, ID_DATA } from ".";
 import Image from "next/image";
+import { useAbout } from "./useAbout";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const About = () => {
   const theme: any = useTheme();
+  const {
+    formattedDataAbout,
+    isLoading,
+    addressIsLoading,
+    formattedDataAddress,
+  } = useAbout();
+
+  console.log("formattedDataAddress", formattedDataAddress);
+
   return (
     <>
       <Typography
@@ -16,38 +27,46 @@ const About = () => {
         About
       </Typography>
       <Grid container>
-        {ABOUT_DATA.map((item: any) => (
-          <Grid item xs={12} md={6} key={item.id}>
-            <Box
-              sx={{
-                p: "10px 0 0 0",
-              }}
-            >
-              <Typography
-                variant="subtitle2"
-                component={"p"}
-                sx={{
-                  color: theme.palette.grey[600],
-                  textTransform: "capitalize",
-                }}
-              >
-                {item.label}
-              </Typography>
-              <Typography
-                variant="body2"
-                component={"p"}
-                sx={{
-                  color: theme.palette.grey[600],
-                  fontWeight: 400,
-                  textTransform: "unset",
-                  mb: 1,
-                }}
-              >
-                {item.title}
-              </Typography>
-            </Box>
-          </Grid>
-        ))}
+        {isLoading ? (
+          <SkeletonFormdata />
+        ) : (
+          <>
+            {Object?.entries(formattedDataAbout).map(
+              ([key, val]: any, index: any) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <Box
+                    sx={{
+                      p: "10px 0 0 0",
+                    }}
+                  >
+                    <Typography
+                      variant="subtitle2"
+                      component={"p"}
+                      sx={{
+                        color: theme.palette.grey[600],
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {key}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      component={"p"}
+                      sx={{
+                        color: theme.palette.grey[600],
+                        fontWeight: 400,
+                        textTransform: "unset",
+                        mb: 1,
+                      }}
+                    >
+                      {val}
+                    </Typography>
+                  </Box>
+                </Grid>
+              )
+            )}
+          </>
+        )}
       </Grid>
       {/* Address Details */}
       <Typography
@@ -57,6 +76,7 @@ const About = () => {
       >
         Address Detail
       </Typography>
+
       <Grid container>
         {ADDRESS_DATA.map((item: any) => (
           <Grid item xs={12} md={6} key={item.id}>
@@ -110,6 +130,7 @@ const About = () => {
           </Grid>
         ))}
       </Grid>
+
       {/* ID Upload */}
       <Typography
         variant="h5"

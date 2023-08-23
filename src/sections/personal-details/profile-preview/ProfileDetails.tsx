@@ -5,7 +5,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import React from "react";
 import MyAvatar from "@root/components/MyAvatar";
-import { useGetUserProfileQuery } from "@root/services/userApi";
+import { useGetUserProfileQuery } from "@root/services/personal-details/about/userApi";
 
 const ProfileDetails = () => {
   const theme: any = useTheme();

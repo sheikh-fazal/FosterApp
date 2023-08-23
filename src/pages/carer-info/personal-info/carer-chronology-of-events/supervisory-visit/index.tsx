@@ -72,7 +72,7 @@ export default function SupervisoryVisit() {
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteSupervisoryDocumentMutation();
 
-  const tableData: any = documentData?.data?.supervisory_home_visit;
+  const tableData: any = documentData?.data?.supervisory_home_visit_doc;
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = async (data: any) => {

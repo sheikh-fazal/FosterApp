@@ -8,6 +8,7 @@ import { BASE_URL } from "@root/config";
 // Tags
 export const TAGS = [
   "USER",
+  "PROFILE_PREVIEW_ABOUT",
   "INITIAL_ENQUIRY",
   "CARER_FAMILY_NETWORK",
   "STICKY_NOTES",
