@@ -19,12 +19,14 @@ import React from "react";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
 import NoCommits from "@root/assets/svg/NoCommits";
+import { Timeline, TimelineItem, TimelineSeparator } from "@mui/lab";
 //INTERFACES
 interface IcommitProps {
   MainCommit: string;
   userName: string;
   like: boolean;
   showReply: boolean;
+  children?: React.ReactNode;
   DeleteButtonprops?: ButtonProps;
   LikeButtonProps?: ButtonProps;
   replyButtonProps?: ButtonProps;
@@ -56,6 +58,7 @@ const Comment = ({
   userName,
   showReply,
   like,
+  children,
   DeleteButtonprops,
   LikeButtonProps,
   replyButtonProps,
@@ -116,37 +119,51 @@ const Comment = ({
           <Box
             display={"flex"}
             justifyContent={"start"}
-            alignItems={"center"}
+            flexDirection={"column"}
+            alignItems={"flex-start"}
             flexWrap={"wrap"}
             gap={0.5}
+            width={"100%"}
           >
-            <Button size="small" variant="outlined" {...replyButtonProps}>
-              Reply
-            </Button>
-            <Button size="small" variant="outlined" {...DeleteButtonprops}>
-              Delete
-            </Button>
-            <Badge
-              color="primary"
-              badgeContent={
-                like ? (
-                  <Box p={0.5}>
-                    <ThumbUpAltRoundedIcon
-                      sx={{
-                        fontSize: 15,
-                      }}
-                    />
-                  </Box>
-                ) : null
-              }
+            <Box
+              display={"flex"}
+              gap={1.5}
+              width={"100%"}
+              flexDirection={"column"}
             >
-              <Button size="small" variant="outlined" {...LikeButtonProps}>
-                Like
-              </Button>
-            </Badge>
+              <Box display={"flex"} gap={0.5} width={"100%"}>
+                <Button size="small" variant="outlined" {...replyButtonProps}>
+                  Reply
+                </Button>
+                <Button size="small" variant="outlined" {...DeleteButtonprops}>
+                  Delete
+                </Button>
+                <Badge
+                  color="primary"
+                  badgeContent={
+                    like ? (
+                      <Box p={0.5}>
+                        <ThumbUpAltRoundedIcon
+                          sx={{
+                            fontSize: 15,
+                          }}
+                        />
+                      </Box>
+                    ) : null
+                  }
+                >
+                  <Button size="small" variant="outlined" {...LikeButtonProps}>
+                    Like
+                  </Button>
+                </Badge>
+              </Box>
+
+              {showReply && <ReplyAComment />}
+            </Box>
+
+            {children}
           </Box>
           {/* actions */}
-          {showReply && <ReplyAComment />}
         </Box>
       </Box>
     </>
@@ -246,7 +263,14 @@ const ListOfComments = () => {
           userName="John Cater"
           like={false}
           showReply={true}
-        />
+        >
+          <Comment
+            MainCommit="This child needs attention"
+            userName="John Cater"
+            like={true}
+            showReply={false}
+          />
+        </Comment>
       </Box>
     </Box>
   );
@@ -308,7 +332,7 @@ const OnError = () => {
       <NoCommits
         sx={(theme: Theme) => ({
           fontSize: 200,
-          color:theme.palette.grey[600]
+          color: theme.palette.grey[600],
         })}
       />
     </Box>
