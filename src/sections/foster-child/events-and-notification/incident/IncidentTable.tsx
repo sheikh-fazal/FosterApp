@@ -34,11 +34,12 @@ const IncidentTable = (props: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.dateOfIncident,
-      id: "dateOfIncident",
-      cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("DD MMM YYYY")}</Box>;
-      },
+      accessorFn: (row: any) => row.incidentDate,
+      id: "incidentDate",
+      // cell: (info: any) => {
+      //   return <Box>{dayjs(info.getValue()).format("DD MMM YYYY")}</Box>;
+      // },
+      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-",
       header: "Date of Incident",
       isSortable: true,
     },
@@ -106,18 +107,20 @@ const IncidentTable = (props: any) => {
                   title="Incident"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
                       query: { action: "add", fosterChildId: fosterChildId },
                     });
                   }}
+                  onChanged={(event: any) => {
+                    setSearch(event.search);
+                  }}
                 />
               </Box>
               <CustomTable
                 // data={data?.absence_details}
-                data={data?.data?.cc_incident_info}
+                data={data?.data?.incidents}
                 columns={columns}
                 isLoading={isLoading}
                 isFetching={isFetching}
