@@ -9,15 +9,18 @@ import {
   useLazySingleSupervisingVisitListQuery,
   usePatchSupervisingVisitListMutation,
 } from "@root/services/carer-info/personal-info/chronology-of-events/supervisory-visit-api/superVisoryVisitApi";
+import useAuth from "@root/hooks/useAuth";
 export const useCarerSectionB = (action: any, id: any) => {
   const router = useRouter();
   const { fosterCarerId } = router.query;
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
-
   const [getVisitList] = useLazySingleSupervisingVisitListQuery();
   const [editVisitList] = usePatchSupervisingVisitListMutation();
+  const {
+    user: { firstName, lastName },
+  }: any = useAuth();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
@@ -53,6 +56,8 @@ export const useCarerSectionB = (action: any, id: any) => {
       setIsFetching(true);
       editVisitList({
         formData: {
+          nameOfSupervising: firstName + " " + lastName,
+          visitDate: new Date(),
           carerSectionB: { ...data },
         },
         id: id,

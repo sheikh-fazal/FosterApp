@@ -17,11 +17,9 @@ export const useCarerSectionA = (action: any, id: any) => {
   const theme: any = useTheme();
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
-
   const [getReviewList] = useLazySingleSupervisingVisitListQuery();
   const [postReviewDetails] = usePostSupervisingVisitListMutation();
   const [editReviewList] = usePatchSupervisingVisitListMutation();
-
   const {
     user: { firstName, lastName },
   }: any = useAuth();
@@ -97,6 +95,8 @@ export const useCarerSectionA = (action: any, id: any) => {
       setIsFetching(true);
       editReviewList({
         formData: {
+          nameOfSupervising: firstName + " " + lastName,
+          visitDate: new Date(),
           carerSectionA: { ...data },
         },
         id: id,

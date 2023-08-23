@@ -79,7 +79,7 @@ export const carerSectionBetaData = [
     gridLength: 12,
     otherOptions: {
       name: "commendations",
-      label: "Concerns / commendations / Commendations:",
+      label: "Concerns / Allegations / Commendations:",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -101,7 +101,7 @@ export const carerSectionBetaData = [
   {
     id: 9,
     otherOptions: {
-      name: "medicationChecked",
+      name: "medicationSheetChecked",
       label: "Medication Sheet Checked",
     },
     gridLength: 12,
@@ -143,7 +143,7 @@ export const defaultValues = {
   safeCarerIssue: "",
   commendations: "",
   dayCare: "",
-  medicationChecked: true,
+  medicationSheetChecked: true,
   fosterCarerCommments: "",
   lineManagerComments: "",
 };
@@ -157,7 +157,7 @@ export const formSchema = Yup.object().shape({
   safeCarerIssue: Yup.string().required("required"),
   commendations: Yup.string().required("required"),
   dayCare: Yup.string().required("required"),
-  medicationChecked: Yup.boolean().required("required"),
+  medicationSheetChecked: Yup.boolean().required("required"),
   fosterCarerCommments: Yup.string().required("required"),
   lineManagerComments: Yup.string().required("required"),
 });

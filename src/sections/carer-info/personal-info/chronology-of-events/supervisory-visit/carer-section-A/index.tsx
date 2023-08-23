@@ -83,7 +83,7 @@ export const carerSectionAlphaData = [
   {
     id: 5,
     otherOptions: {
-      name: "fileSeen",
+      name: "homeFileSeen",
       label: "Home File Seen",
     },
     gridLength: 6,
@@ -92,7 +92,7 @@ export const carerSectionAlphaData = [
   {
     id: 6,
     otherOptions: {
-      name: "medicationSheet",
+      name: "medicationSheetChecked",
       label: "Medication Sheet Checked",
     },
     gridLength: 6,
@@ -101,7 +101,7 @@ export const carerSectionAlphaData = [
   {
     id: 7,
     otherOptions: {
-      name: "localAuthority",
+      name: "localAuthorityFeedbackRequired",
       label: "Local Authority Feedback Required",
     },
     gridLength: 6,
@@ -122,7 +122,7 @@ export const carerSectionAlphaData = [
   {
     id: 9,
     otherOptions: {
-      name: "presentInMeeting",
+      name: "detailsOfPlacements",
       label:
         "Name of all those present at the meeting, Details of any new placements since the last visit. Note if children wrer seen alone. If not seen at all, reason why?",
       multiline: true,
@@ -141,10 +141,10 @@ export const defaultValues = {
   homeVisitType: "",
   dateOfVisit: new Date(),
   homeVisitStatus: "",
-  fileSeen: null,
-  medicationSheet: null,
-  localAuthority: null,
-  presentInMeeting: "",
+  homeFileSeen: null,
+  medicationSheetChecked: null,
+  localAuthorityFeedbackRequired: null,
+  detailsOfPlacements: "",
 };
 
 export const formSchema = Yup.object().shape({
@@ -153,8 +153,8 @@ export const formSchema = Yup.object().shape({
   homeVisitType: Yup.string().required("required"),
   dateOfVisit: Yup.date().required("required"),
   homeVisitStatus: Yup.string().required("required"),
-  fileSeen: Yup.boolean().required("required"),
-  medicationSheet: Yup.boolean().required("required"),
-  localAuthority: Yup.boolean().required("required"),
-  presentInMeeting: Yup.string().required("required"),
+  homeFileSeen: Yup.boolean().required("required"),
+  medicationSheetChecked: Yup.boolean().required("required"),
+  localAuthorityFeedbackRequired: Yup.boolean().required("required"),
+  detailsOfPlacements: Yup.string().required("required"),
 });
