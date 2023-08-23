@@ -23,8 +23,8 @@ export const childDaylogEventsReportInfoFormValues = {
   notificationDate: todayDate,
   addToCarerRecord: "",
   updateSiblingRecord: false,
-  selectUserToBeNotified: "",
-  emailAddressess: "",
+  userNotified: "",
+  additionalEmailAddress: [],
   status: "",
 };
 
@@ -43,8 +43,8 @@ export const defaultValueChildDaylogEventsReportInfoForm = (
     notificationDate: new Date(data?.notificationDate),
     addToCarerRecord: data?.addToCarerRecord,
     updateSiblingRecord: data?.updateSiblingRecord,
-    selectUserToBeNotified: data?.selectUserToBeNotified,
-    emailAddressess: data?.emailAddressess,
+    userNotified: data?.userNotified,
+    additionalEmailAddress: data?.additionalEmailAddress,
     status: data?.status,
   };
 };
@@ -87,10 +87,10 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
   updateSiblingRecord: Yup.boolean().required(
     "update Sibling record is required"
   ),
-  selectUserToBeNotified: Yup.string().required(
+  userNotified: Yup.string().required(
     "select user to be notified informed is required"
   ),
-  emailAddressess: Yup.string()
+  additionalEmailAddress: Yup.string()
     .trim()
     .required("Action needed is required")
     .min(1, "Mininum 1 characters")
@@ -267,7 +267,7 @@ export const childDaylogEventsReportInfoFormDataFunction = (
     id: 13,
     componentProps: {
       fullWidth: true,
-      name: "selectUserToBeNotified",
+      name: "userNotified",
       label: "Select User To Be Notified",
       select: true,
       options: [
@@ -291,7 +291,7 @@ export const childDaylogEventsReportInfoFormDataFunction = (
     id: 14,
     componentProps: {
       fullWidth: true,
-      name: "emailAddressess",
+      name: "additionalEmailAddress",
       label:
         "Enter Additional Email addresses to be notified which should be separated by commas.e.g., john@domain.com, Pete@domain.com",
       multiline: true,

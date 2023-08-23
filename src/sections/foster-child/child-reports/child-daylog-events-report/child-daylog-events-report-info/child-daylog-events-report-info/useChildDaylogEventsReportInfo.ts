@@ -45,7 +45,7 @@ export const useChildDaylogEventsReportInfo = () => {
   const { data, isLoading } = useGetSingleChildDaylogEventsReportInfoDataQuery(
     apiDataParameter,
     {
-      skip: !!!router.query?.id,
+      skip: !!!router?.query?.id,
       refetchOnMountOrArgChange: true,
     }
   );
@@ -79,17 +79,17 @@ export const useChildDaylogEventsReportInfo = () => {
     isDraft: any
   ) => {
     const body = {
-      fosterChildId: router.query.fosterChildId,
+      fosterChildId: router?.query?.fosterChildId,
       ...data,
-      emailAddressess: data?.emailAddressess?.split(","),
+      // emailAddressess: data?.emailAddressess?.split(","),
       status: typeof isDraft === "string" ? "Pending" : "Submit",
     };
     console.log({ body });
     const queryParams = {
-      fosterChildId: router.query.fosterChildId,
+      fosterChildId: router?.query?.fosterChildId,
     };
     const apiDataParameter = { body, queryParams };
-    if (!!router.query?.id) {
+    if (!!router?.query?.id) {
       patchChildDaylogEventsReportInfoForm(data);
       return;
     }
@@ -119,7 +119,7 @@ export const useChildDaylogEventsReportInfo = () => {
 
   const patchChildDaylogEventsReportInfoForm = async (data: any) => {
     const pathParams = {
-      id: router.query?.id,
+      id: router?.query?.id,
     };
     const body = {
       fosterChildId: router?.query?.fosterChildId,
