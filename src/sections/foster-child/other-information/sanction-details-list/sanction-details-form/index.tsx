@@ -1,19 +1,11 @@
-import { Typography } from "@mui/material";
 import {
-  RHFCheckbox,
-  RHFSelect,
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import { COUNTRIESDROPDOWN } from "@root/dropdown-data/countries";
-import { designatedAuthority } from "@root/dropdown-data/designatedAuthority";
-import { educationStage } from "@root/dropdown-data/educationStage";
-import { personalEducationPlan } from "@root/dropdown-data/personalEducationPlan";
-import { SCHOOLTYPE } from "@root/dropdown-data/schoolType";
-import { schoolYear } from "@root/dropdown-data/schoolYear";
+import dayjs from "dayjs";
 
 export const sanctionDetailsDefaultValues = {
-  reviewDate: "",
+  reviewDate: dayjs().format('MM/DD/YYYY'),
   outLineBehaviour: "",
   sanctionAgrees: "",
 };
@@ -29,9 +21,6 @@ export const sanctionDetailsFormDataFunction = (isFieldDisable = false) => [
     },
     gridLength: 6,
     component: RHFDatePicker,
-    // format: (date: any) => {
-    //   return new Date(date);
-    // },
   },
   {
     id: 3,
@@ -63,7 +52,7 @@ export const defaultValueEducationInfoForm = (
   data: any = sanctionDetailsDefaultValues
 ) => {
   return {
-    reviewDate: data?.reviewDate,
+    reviewDate: new Date(data?.reviewDate),
     outLineBehaviour: data?.outLineBehaviour,
     sanctionAgrees: data?.sanctionAgrees,
   };
