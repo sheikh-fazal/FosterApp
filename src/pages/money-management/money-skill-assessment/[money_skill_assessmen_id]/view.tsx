@@ -7,6 +7,7 @@ import Page from "@root/components/Page";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { MoneySkillAssessmentForm } from "@root/sections/money-management/money-skill-assessment/money-skill-assessment-form/MoneySkillAssessmentForm";
+import { useGetMoneyAssessmentSkillByIdQuery } from "@root/services/money-management/money-skill-assessment/MoneySkillAssessmentAPI";
 
 
 // ----------------------------------------------------------------------
@@ -30,7 +31,12 @@ const BREADCRUMBS = (query: any) => [
   };
 
   export default function ViewMoneySkillAssessment() {
+    const { query } = useRouter();
     const router = useRouter();
+    const MoneySkillAssessmenId = query["money_skill_assessmen_id"];
+    const { data, isLoading, isSuccess, isError } =
+      useGetMoneyAssessmentSkillByIdQuery(MoneySkillAssessmenId);
+    console.log(data, "When View");
   
     return (
       <Page title={PAGE_TITLE}>
@@ -40,7 +46,13 @@ const BREADCRUMBS = (query: any) => [
           title={PAGE_TITLE}
         />
         <Paper elevation={3}>
-            <MoneySkillAssessmentForm />
+        {isLoading && <p>Loading...</p>}
+        {isSuccess && (
+          <MoneySkillAssessmentForm
+            defaultValues={{ ...data[0], date: new Date(data[0]?.date) }}
+            disabled
+          />
+        )}
         </Paper>
       </Page>
     );

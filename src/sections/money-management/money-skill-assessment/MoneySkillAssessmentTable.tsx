@@ -6,6 +6,7 @@ import CustomTable from "@root/components/Table/CustomTable";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { useMoneySkillAssessmentTable } from "./useMoneySkillAssessmentTable";
 import dayjs from "dayjs";
+import { forEach } from "lodash";
 
 export const MoneySkillAssessmentTable = () => {
   const {
@@ -21,7 +22,33 @@ export const MoneySkillAssessmentTable = () => {
     sortChangeHandler,
   } = useMoneySkillAssessmentTable();
 
-console.log(data)
+  console.log("klsahd jkogsafsduyafnh", data?.money_skill_assessment);
+  const obj: any = {
+    obj1: "43",
+    obj2: "43",
+    obj3: "",
+    obj4: "",
+    obj5: "43",
+    obj6: "",
+    obj7: "4sda3",
+    obj8: "4czx3",
+  };
+  let score = 0;
+  data?.money_skill_assessment?.forEach((item: any) => {
+    console.log(item);
+    for (const key in item) {
+      if (item[key]) score++;
+    }
+  });
+  // for (const assessment of data) {
+  //   console.log(assessment);
+
+  //   // for (const key in assessment) {
+  //   //   if (obj[key]) score++;
+  //   // }
+  // }
+
+  console.log("Score: ", score);
 
   const columns = [
     {
@@ -32,7 +59,7 @@ console.log(data)
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.score,
+      accessorFn: (row: any) => score,
       id: "score",
       cell: (info: any) => info.getValue(),
       header: () => <span>Score</span>,

@@ -39,7 +39,7 @@ export const useMoneySkillAssessmentTable = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  console.log(data); 
+  console.log("my data",data); 
   return {
     router,
     data,

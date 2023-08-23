@@ -1,4 +1,5 @@
 import { Typography } from "@mui/material";
+import { RHFRadioGroup } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 
 export const MoneySkillAssessmentData = [
@@ -16,7 +17,6 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 0,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can name all coins</strong>
@@ -37,7 +37,6 @@ export const MoneySkillAssessmentData = [
         "Moderate assistance",
         "Minimal / no assistance",
       ],
-      sx: { mt: 2 },
     },
     component: RHFRadioGroupWithLabel,
     md: 12,
@@ -283,7 +282,7 @@ export const MoneySkillAssessmentData = [
     id: 22,
     gridLength: 6,
     componentProps: {
-      name: "competencyMakeGoodChoices",
+      name: "competencyMoneyForGoodsServices",
       options: [
         "Requires full assistance",
         "Moderate assistance",
@@ -783,31 +782,31 @@ export const MoneySkillAssessmentData = [
 ];
 
 export const defaultValuesMoneySkillAssessment = {
-  competencyNameCoins: true,
-  competencyRecognizeCoinsNotes: true,
-  competencyUseSmallMoney: false,
-  competencyCountChange: false,
-  competencyAwareChangeNeeded: false,
-  competencyUseCashMachine: false,
-  competencyPayCashPurchases: false,
-  competencyAwareOnlinePurchases: false,
-  competencyManageValuables: false,
-  competencyMakeGoodChoices: false,
-  competencyConsiderAlternativeOptions: false,
-  competencyRealisticCostBasicItems: false,
-  competencyUnderstandSaving: false,
-  competencyUnderstandEarningMoney: false,
-  competencyDifferenceDisposableCashSavings: false,
-  competencyUnderstandCreditLoansInterest: false,
-  competencyMoneyForGoodsServices: false,
-  competencyAwareSpentMoneyUnavailable: false,
-  competencyUnderstandWhatCanBuy: false,
-  competencySetupMonthlyBudget: false,
-  competencyMakeBudgetLastWeek: false,
-  competencyReadBankStatementsAdjustments: false,
-  competencyUnderstandBudgetEmergenciesSeasonal: false,
-  competencyHasSavingsAccount: false,
-  competencyHasSavingsPlan: false,
-  competencyMotivatedSaveItem: false,
-  competencyUsedSavingsPurchaseItem: false,
+  competencyNameCoins: "",
+  competencyRecognizeCoinsNotes: "",
+  competencyUseSmallMoney: "",
+  competencyCountChange: "",
+  competencyAwareChangeNeeded: "",
+  competencyUseCashMachine: "",
+  competencyPayCashPurchases: "",
+  competencyAwareOnlinePurchases: "",
+  competencyManageValuables: "",
+  competencyMakeGoodChoices: "",
+  competencyConsiderAlternativeOptions: "",
+  competencyRealisticCostBasicItems: "",
+  competencyUnderstandSaving: "",
+  competencyUnderstandEarningMoney: "",
+  competencyDifferenceDisposableCashSavings: "",
+  competencyUnderstandCreditLoansInterest: "",
+  competencyMoneyForGoodsServices: "",
+  competencyAwareSpentMoneyUnavailable: "",
+  competencyUnderstandWhatCanBuy: "",
+  competencySetupMonthlyBudget: "",
+  competencyMakeBudgetLastWeek: "",
+  competencyReadBankStatementsAdjustments: "",
+  competencyUnderstandBudgetEmergenciesSeasonal: "",
+  competencyHasSavingsAccount: "",
+  competencyHasSavingsPlan: "",
+  competencyMotivatedSaveItem: "",
+  competencyUsedSavingsPurchaseItem: "",
 };
