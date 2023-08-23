@@ -34,22 +34,6 @@ export default function AbsenceInfoFormLayout() {
       skip: !!!query?.absence_info_id,
     }
   );
-  // (
-  //   absenceInfoId ?? "",
-  //   {
-  //     skip: true,
-  //   }
-  // );
-
-  // const { query } = useRouter();
-  // const familyPersonId = query["family_person_id"];
-  // const { data, isLoading, isSuccess, isError } =
-  //   useGetFamilyPersonListByIdQuery(familyPersonId, {
-  //     skip: !!!query?.family_person_id,
-  //   });
-  // function submitForm(data:any){
-  //  ///
-  // }
 
   return (
     <>
@@ -60,12 +44,12 @@ export default function AbsenceInfoFormLayout() {
       />
       <HorizaontalTabs tabsDataArray={["Absence Info", "Documents"]}>
         <AbsenceInfoForm
-          // onSubmitted={submitForm}
-          // defaultValues={data?.[0]}
           defaultValues={{
             ...data?.[0],
-            dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-            label: new Date(data?.[0]?.label),
+            dateOfAbsence: data
+              ? new Date(data?.[0]?.dateOfAbsence)
+              : new Date(),
+            label: data ? new Date(data?.[0]?.label) : new Date(),
           }}
         />
         <AbsenceInfoDocument />

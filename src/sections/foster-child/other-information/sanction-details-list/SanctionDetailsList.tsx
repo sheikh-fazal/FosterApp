@@ -14,7 +14,7 @@ const SanctionDetailsLists = () => {
     isFetching,
     router,
     sanctionDetailsTableColumns,
-    // onDeleteConfirm,
+    onDeleteConfirm,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     headerChangeHandler,
@@ -42,7 +42,7 @@ const SanctionDetailsLists = () => {
         onChanged={headerChangeHandler}
       />
       <CustomTable
-        data={data?.data}
+        data={data?.data?.sanctionDetails}
         columns={sanctionDetailsTableColumns}
         isLoading={isLoading}
         showSerialNo
@@ -59,7 +59,7 @@ const SanctionDetailsLists = () => {
         <DeleteModel
           open={isRecordSetForDelete}
           handleClose={() => setIsRecordSetForDelete(false)}
-        //   onDeleteClick={() => onDeleteConfirm?.()}
+          onDeleteClick={() => onDeleteConfirm?.()}
         />
       )}
     </Card>

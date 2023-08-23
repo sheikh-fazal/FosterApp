@@ -1,7 +1,7 @@
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { useEducationDocument } from "./useEducationDocument";
+import { useSanctionDocument } from "./useSanctionDocument";
 
-const EducationDocument = () => {
+const SanctionDocument = () => {
   const {
     setPage,
     setSearchValue,
@@ -10,21 +10,21 @@ const EducationDocument = () => {
     isError,
     isSuccess,
     isFetching,
-    submitEducationInfoDocument,
+    submitSanctionDocument,
     query,
     onDeleteConfirm
-  } = useEducationDocument();
+  } = useSanctionDocument();
 
   return (
     <UploadDocuments
       readOnly={query?.action === "view"}
-      tableData={data?.data?.education_documents}
+      tableData={data?.data?.sanctionDetailDocs}
       isLoading={isLoading}
       column={[
-        "documentName",
-        "type",
+        "docName",
+        "docType",
         "documentDate",
-        "uploadBy",
+        "uploadedBy",
         "password",
       ]}
       isFetching={isFetching}
@@ -32,7 +32,7 @@ const EducationDocument = () => {
       isSuccess={isSuccess}
       modalData={(data: any) => {
         console.log("data all the way here", data);
-        submitEducationInfoDocument(data);
+        submitSanctionDocument(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);
@@ -48,4 +48,4 @@ const EducationDocument = () => {
   );
 };
 
-export default EducationDocument;
+export default SanctionDocument;
