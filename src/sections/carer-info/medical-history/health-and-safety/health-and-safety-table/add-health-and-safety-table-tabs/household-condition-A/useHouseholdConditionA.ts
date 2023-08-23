@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTheme } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { householdConditionA_Data, FormSchema, defaultValues } from ".";
+import { FormSchema } from ".";
 import { useRouter } from "next/router";
-import { useHouseHoldConditionAPostMutation } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
 import { enqueueSnackbar } from "notistack";
 import usePath from "@root/hooks/usePath";
 
@@ -29,9 +28,10 @@ export const useHouseholdConditionA = ({
   } = methods;
   const onSubmit = async (data: any) => {
     const houseHoldConditionA = data;
+    // if message === added then this try catch functionality runs
 
-    try {
-      if (message === "Added") {
+    if (message === "Added") {
+      try {
         const res: any = await onSubmitHandler(data).unwrap();
         enqueueSnackbar(res?.message, {
           variant: "success",
@@ -45,19 +45,32 @@ export const useHouseholdConditionA = ({
               })
             );
         }
-      } else if (message === "Updated" ) {
+      } catch (error: any) {
+        enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
+          variant: "error",
+        });
+      }
+    } else if (message === "Updated") {
+      try {
         const res = await onSubmitHandler({
           healthAndSafetyId,
           formData: { houseHoldConditionA },
         }).unwrap();
-        enqueueSnackbar(res?.message, {
-          variant: "success",
+        console.log(res);
+
+        enqueueSnackbar(
+          res?.message ?? `Health And Safety ${message} Successfully!`,
+          {
+            variant: "success",
+          }
+        );
+      } catch (error: any) {
+        console.log(error);
+
+        enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
+          variant: "error",
         });
       }
-    } catch (error: any) {
-      enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
-        variant: "error",
-      });
     }
   };
   useEffect(() => {

@@ -30,6 +30,7 @@ export const healthAndSafetyApi: any = baseAPI.injectEndpoints({
         method: "PATCH",
         body: formData,
       }),
+
       invalidatesTags: ["HEALTH_AND_SAFETY"],
     }),
     getHealthAndSafetyDataById: builder.query({

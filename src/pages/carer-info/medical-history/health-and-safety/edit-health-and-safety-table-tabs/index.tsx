@@ -28,7 +28,6 @@ const EditHealthAndSafetyTabs = () => {
   const { data, isLoading, isError } =
     useGetHealthAndSafetyDataByIdQuery(healthAndSafetyId);
   const [postAllApi, { isSuccess }] = useHealthAndSafetyDataPatchMutation();
-  if (isError) return <Error />;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -36,10 +35,10 @@ const EditHealthAndSafetyTabs = () => {
       href: makePath({
         path: "/carer-info/medical-history/health-and-safety",
         skipQueries: ["healthAndSafetyId"],
-      }),
+      }), 
     },
     {
-      name: "Health & Safety",
+      name: "Edit Health & Safety",
     },
   ];
   const tabsData = [
@@ -53,6 +52,8 @@ const EditHealthAndSafetyTabs = () => {
     "Safety Factors - Outdoor",
     "Upload Documents",
   ];
+  if (isError) return <Error />;
+
   return (
     <Layout
       showTitleWithBreadcrumbs
@@ -65,8 +66,7 @@ const EditHealthAndSafetyTabs = () => {
         <HorizaontalTabs tabsDataArray={tabsData}>
           <HouseholdConditionA
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -100,8 +100,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <HouseholdConditionB
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -132,8 +131,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsIndoorsA
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -170,8 +168,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsIndoorsB
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -205,8 +202,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsIndoorsC
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -237,8 +233,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsIndoorsD
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -269,8 +264,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsIndoorsE
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -295,8 +289,7 @@ const EditHealthAndSafetyTabs = () => {
           />
           <SafetyFactorsOutdoors
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
+            onSubmitHandler={postAllApi}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}
@@ -336,8 +329,6 @@ const EditHealthAndSafetyTabs = () => {
           />
           <UploadDocument
             breadCrumbData={setBreadCrumbData}
-            // disabled
-            onSubmitHandler={() => postAllApi({ ...data, healthAndSafetyId })}
             message={"Updated"}
             isError={isError}
             isSuccess={isSuccess}

@@ -32,7 +32,7 @@ const viewHealthAndSafetyTableTabs = () => {
       }),
     },
     {
-      name: "Health & Safety",
+      name: "View Health & Safety",
     },
   ];
   const { data, isLoading, isError, isSuccess } =

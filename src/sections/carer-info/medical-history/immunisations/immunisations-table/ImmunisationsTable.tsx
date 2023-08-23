@@ -7,19 +7,30 @@ import { useImmunisations } from "./useImmunisations";
 import { IMMUNISATIONS_DATA, columns } from ".";
 
 export const ImmunisationsTable = () => {
-    const {
-        open,
-        setOpen,
-        handleOpen,
-        handleClose,
-        theme,
-        router,
-        tableHeaderRef,
-      } = useImmunisations();
-    const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
-    useTableParams();
+  const {
+    open,
+    setOpen,
+    handleOpen,
+    handleClose,
+    theme,
+    router,
+    tableHeaderRef,
+    setSearch,
+    immunizationListData,
+    meta,
+    isLoading,
+    isError,
+    isFetching,
+    isSuccess,
+    params,
+    makePath,
+    pageChangeHandler,
+    sortChangeHandler,
+  } :any= useImmunisations();
+  // const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+  //   useTableParams();
   return (
-    <Page title='Immunisations List'>
+    <Page title="Immunisations List">
       <Card sx={{ p: 1 }}>
         <TableHeader
           ref={tableHeaderRef}
@@ -28,18 +39,33 @@ export const ImmunisationsTable = () => {
           title="Carer Immunisation Info"
           searchKey="search"
           showAddBtn
-          onAdd={()=>router.push('immunisations/add-immunisation-table-tabs')}
-          onChanged={headerChangeHandler}
+          onAdd={() => {
+            router.push(
+              makePath({
+                path: "immunisations/add-immunisation-table-tabs",
+              })
+            );
+          }}
+          // onAdd={() => router.push("immunisations/add-immunisation-table-tabs")}
+          onChanged={(event: any) => {
+            setSearch(event.search);
+            // console.log(event);
+          }}
           // selectFilters={SELECT_FILTERS}
         />
         <CustomTable
-          data={IMMUNISATIONS_DATA}
+          data={immunizationListData}
           columns={columns}
           // showSerialNo
+          totalPages={meta?.pages ?? 0}
+          currentPage={meta?.page ?? 1}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
-          isSuccess={true}
-          isPagination={false}
+          isPagination={true}
+          isSuccess={isSuccess}
+          isError={isError}
+          isLoading={isLoading}
+          isFetching={isFetching}
         />
       </Card>
     </Page>

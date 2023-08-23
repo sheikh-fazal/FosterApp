@@ -57,43 +57,43 @@ export default function AddHealthAndSafetyTableTabs() {
         <HouseholdConditionA
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={householdA}
-          message="Added"
+          message={"Added"}
           isAdding
         />
         <HouseholdConditionB
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsIndoorsA
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsIndoorsB
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsIndoorsC
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsIndoorsD
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsIndoorsE
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         <SafetyFactorsOutdoors
           breadCrumbData={setBreadCrumbData}
           onSubmitHandler={postAllApi}
-          message="Added"
+          message={"Added"}
         />
         {healthAndSafetyId ? (
           <UploadDocument breadCrumbData={setBreadCrumbData} />

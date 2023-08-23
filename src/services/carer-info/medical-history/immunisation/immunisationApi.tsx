@@ -1,13 +1,14 @@
 import { baseAPI } from "@root/services/baseApi";
 
-export const immunisationApi = baseAPI.injectEndpoints({
+export const immunisationApi: any = baseAPI.injectEndpoints({
   endpoints: (builder: any) => ({
-    getImmunisationByIdQuery: builder.query({
-      query: (id: string) => ({
-        url: `carer-Info/immunisation/${id}`,
+    getImmunisationListData: builder.query({
+      query: ({ payload }: any) => ({
+        url: `carer-Info/immunization${payload?.params?.fosterCarerId}`,
+        params: payload?.params,
       }),
     }),
   }),
 });
 
-const { useLazyGetImmunisationByIdQueryQuery } = immunisationApi;
+export const { useGetImmunisationListDataQuery } = immunisationApi;
