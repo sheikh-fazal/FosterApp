@@ -2,14 +2,7 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 
-export const columnsOutSchoolActivityTable = (
-  handleDelete: any,
-  router: any,
-  cancelDelete: any,
-  setCancelDelete: any,
-  openDeleteModel: any,
-  fosterChildId: any
-) => [
+export const columnsEducationKeyStageTable = (router: any) => [
   {
     id: "select",
     header: ({ table, row }: any) => {
@@ -41,24 +34,38 @@ export const columnsOutSchoolActivityTable = (
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.fromDate,
-    id: "fromDate",
+    accessorFn: (row: any) => row.childName,
+    id: "childName",
     cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-    header: () => <span>Form Date</span>,
+    header: () => <span>Child Name</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.outOfDate,
-    id: "outOfDate",
+    accessorFn: (row: any) => row.occurence,
+    id: "occurence",
     cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-    header: () => <span>To Date</span>,
+    header: () => <span>Date/Time of Occurence</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.activityType,
-    id: "activityType",
+    accessorFn: (row: any) => row.childStatus,
+    id: "childStatus",
     cell: (info: any) => info.getValue(),
-    header: () => <span>Activity Type</span>,
+    header: () => <span>Child Status</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.createdDate,
+    id: "createdDate",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Created Date</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.createdBy,
+    id: "createdBy",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Created By</span>,
     isSortable: true,
   },
   {
@@ -66,27 +73,28 @@ export const columnsOutSchoolActivityTable = (
     id: "actions",
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+        <TableAction type="view" onClicked={() => router.push(`/foster-child/child-reports/education-key-stage-report/view-education-key-stage-report`)} />
         <TableAction
-          type="edit"
-          onClicked={() =>
-            router.push(
-              `/foster-child/education-records/out-of-school-activity/edit-out-of-school-activity-info?recordId=${info.getValue()}&fosterChildId=${fosterChildId}`
-            )
-          }
-        />
-        <TableAction
-          type="delete"
-          onClicked={() => openDeleteModel(info.getValue())}
+          type="print"
+          //   onClicked={() => openDeleteModel(info.getValue())}
           size="small"
         />
 
-        <TableAction
-          type="view"
-          onClicked={() => router.push(`/foster-child/education-records/out-of-school-activity/view-out-of-school-activity-info?recordId=${info.getValue()}&fosterChildId=${fosterChildId}`)}
-        />
+        <TableAction type="share" onClicked={() => router.push(``)} />
       </Box>
     ),
     header: () => <span>Actions</span>,
     isSortable: false,
   },
 ];
+
+export const dummyData = [
+    {
+        srNo:1,
+        childName: "John",
+        occurence: ":03/11/2021 :: 11:00",
+        childStatus: "abc",
+        createdDate: "04/3/2021",
+        createdBy: "RoseMarry"
+    }
+]

@@ -9,7 +9,7 @@ export const SOCIALWORKERFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "SW Name",
-      name: "socialWorkerName",
+      name: "swName",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -19,7 +19,7 @@ export const SOCIALWORKERFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "Role",
-      name: "socialWorkerRole",
+      name: "role",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -29,7 +29,7 @@ export const SOCIALWORKERFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "Assessment Date",
-      name: "assessmentDate",
+      name: "date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -39,7 +39,7 @@ export const SOCIALWORKERFORMDATA = [
     gridLength: 6,
     otherOptions: {
       label: "Foster Carer Name",
-      name: "fosterCarerName",
+      name: "fosterCarer",
       fullWidth: true,
     },
     component: RHFTextField,
@@ -50,7 +50,7 @@ export const SOCIALWORKERFORMDATA = [
     otherOptions: {
       defaultValue: "No",
       label: "Assessment Outcome:",
-      name: "assessmentOutcome",
+      name: "outcome",
       options: ["Passed", "Failed", "Pending"],
     },
     component: RHFRadioGroupWithLabel,

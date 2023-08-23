@@ -2,21 +2,9 @@ import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
-import EducationKeyStageReportList from "@root/sections/foster-child/child-reports/education-key-stage-reports/education-key-stage-reports-list/EducationKeyStageReportList";
+import ViewEducationKeyStage from "@root/sections/foster-child/child-reports/education-key-stage-reports/view-education-key-stage-reports/ViewEducationKeyStage";
 
-const BREADCRUMBS = (query: any) => [
-  {
-    icon: <HomeIcon />,
-    name: "Child Info",
-    href: "",
-  },
-  {
-    name: "Education Info List",
-    href: "",
-  },
-];
-
-const PAGE_TITLE = "EDUCATION KEY STAGE REPORTS";
+const PAGE_TITLE = "VIEW EDUCATION KEY STAGE REPORTS";
 
 ////-----------------------------------------
 EducationKeyStageReport.getLayout = function getLayout(page: any) {
@@ -43,7 +31,7 @@ EducationKeyStageReport.getLayout = function getLayout(page: any) {
 export default function EducationKeyStageReport() {
   return (
     <Page title={PAGE_TITLE}>
-     <EducationKeyStageReportList />
+        <ViewEducationKeyStage/>
     </Page>
   );
 }

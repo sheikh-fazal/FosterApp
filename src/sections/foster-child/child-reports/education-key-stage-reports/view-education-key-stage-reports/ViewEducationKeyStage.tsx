@@ -1,25 +1,16 @@
-import { Grid } from "@mui/material";
-import React from "react";
-import { FormProvider } from "@root/components/hook-form";
-import { ViewOutSchoolActivityInfoData } from ".";
-import useViewChildExclusionInfo from "./useViewOutSchoolActivityInfo";
+import { Grid } from '@mui/material';
+import { FormProvider } from '@root/components/hook-form';
+import React from 'react'
+import { viewEducationKeyStage } from '.';
+import useViewEducationKeyStage from './useViewEducationKeyStage';
 
-const ViewOutSchoolActivityInfo = (props: any) => {
-  const {
-    disabled,
-    formState,
-    defaultValues,
-    initialValueProps = defaultValues,
-  } = props;
-
-  const { methods, handleSubmit, onSubmit } =
-    useViewChildExclusionInfo(initialValueProps);
-
+const ViewEducationKeyStage = () => {
+    const { methods, handleSubmit, onSubmit, router, defaultValues } = useViewEducationKeyStage()
   return (
     <>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
-          {ViewOutSchoolActivityInfoData.map((form: any) => {
+          {viewEducationKeyStage.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
@@ -45,7 +36,8 @@ const ViewOutSchoolActivityInfo = (props: any) => {
         </Grid>
       </FormProvider>
     </>
-  );
-};
+    
+  )
+}
 
-export default ViewOutSchoolActivityInfo;
+export default ViewEducationKeyStage
