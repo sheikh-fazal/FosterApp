@@ -16,33 +16,30 @@ import {
 } from "@root/components/hook-form";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
+import {
+  FormSchema,
+  childImmunisationReportsData,
+  childImmunisationReportsValue,
+} from ".";
+import Comments from "@root/components/comment/Comment";
 
-import { FormSchema, OFsedFromData, OFsedValue } from ".";
-import useOfstedNotificationFrom from "./useOfstedNotificationFrom";
-
-const backPath = "/foster-child/events-and-notification/ofsted-notification";
-interface OfstedNotificationform {
+const backPath =
+  "/foster-child/child-reports/child-immunisation-details-report";
+interface IChildImmunisationReportsFrom {
   fosterChildId: string;
-  OfstedNotificationID?: string;
+  ChildImmunisationReportID?: string;
   action: "add" | "edit" | "view";
 }
 
-const OfstedNotificationform = (props: OfstedNotificationform) => {
-  const { action, fosterChildId, OfstedNotificationID } = props;
-  const { SubmitData, getDefaultValue, deleteHander, isloading, isFatching } =
-    useOfstedNotificationFrom({
-      action: action,
-      fosterChildId: fosterChildId,
-      OfstedNotificationID: OfstedNotificationID,
-    });
+const ChildImmunisationReportsFrom = (props: IChildImmunisationReportsFrom) => {
+  const { action, fosterChildId, ChildImmunisationReportID } = props;
   const theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: getDefaultValue,
+    defaultValues: childImmunisationReportsValue,
   });
   const {
     trigger,
@@ -53,15 +50,15 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
     reset,
     formState: { errors },
   } = methods;
-  if (isloading) return <SkeletonFormdata />;
+  //   if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 0, py: 0.1 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
+          <FormProvider methods={methods} onSubmit={handleSubmit()}>
             <Grid container>
-              <IsFetching isFetching={isFatching} />
-              {OFsedFromData.map((form: any, index) => {
+              {/* <IsFetching isFetching={isFatching} /> */}
+              {childImmunisationReportsData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
                     <Box sx={{ pr: 1, py: 1 }}>
@@ -97,52 +94,7 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
                   </Grid>
                 );
               })}
-              <Grid xs={12} item>
-                <Paper
-                  elevation={0}
-                  sx={{
-                    boxShadow: `0px 0px 3px 1px ${theme.palette.primary.main}`,
-                  }}
-                >
-                  <Box sx={{ px: 2, py: 2 }}>
-                    <Typography
-                      sx={{
-                        color: theme.palette.primary.main,
-                        fontWeight: theme.typography.fontWeightMedium,
-                        mb: theme.spacing(2),
-                      }}
-                      variant="subtitle2"
-                    >
-                      Notification
-                    </Typography>
-                    <Grid item xs={6}>
-                      <RHFSelect
-                        label={"Select User to be Notified"}
-                        name={"SelectUsertobeNotified"}
-                      />
-                    </Grid>
 
-                    <Grid item xs={12} sx={{ mt: 2 }}>
-                      <Typography
-                        sx={{
-                          color: theme.palette.grey[500],
-                          fontWeight: theme.typography.fontWeightMedium,
-                          mb: theme.spacing(2),
-                        }}
-                        variant="subtitle2"
-                      >
-                        Enter Additional Email Addresses to be notified: (Email
-                        Addresses should be seprated by commas.For example
-                        john@domain.com, Pete@domain.com)
-                      </Typography>
-                      <RHFTextField
-                        fullWidth={true}
-                        name={"EnterAdditionalEmailAddressesff"}
-                      />
-                    </Grid>
-                  </Box>
-                </Paper>
-              </Grid>
               <Grid
                 item
                 sx={{
@@ -187,10 +139,11 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
               </Grid>
             </Grid>
           </FormProvider>
+          <Comments />
         </Grid>
       </Grid>
     </Box>
   );
 };
 
-export default OfstedNotificationform;
+export default ChildImmunisationReportsFrom;
