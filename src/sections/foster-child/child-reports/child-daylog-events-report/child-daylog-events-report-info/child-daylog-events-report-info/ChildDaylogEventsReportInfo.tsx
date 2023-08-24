@@ -24,7 +24,6 @@ const ChildDaylogEventsReportInfo = () => {
       <Grid container>
         {Object.entries(childDaylogEventsReportsData).map(
           ([key, value]: any, index, arr) => {
-            console.log(arr.length);
             return (
               <Grid item xs={12} md={4} key={key + index}>
                 <Typography
@@ -76,20 +75,6 @@ const ChildDaylogEventsReportInfo = () => {
             >
               Submit
             </LoadingButton>
-            {/* <LoadingButton
-              sx={{ marginRight: "1rem" }}
-              disabled={
-                patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
-                postChildDaylogEventsReportInfoDataStatus?.isLoading
-              }
-              onClick={() => saveAsDraft?.("Pending")}
-              size="large"
-              type="button"
-              variant="contained"
-              color="secondary"
-            >
-              Save as Draft
-            </LoadingButton> */}
             <LoadingButton
               type="button"
               sx={{

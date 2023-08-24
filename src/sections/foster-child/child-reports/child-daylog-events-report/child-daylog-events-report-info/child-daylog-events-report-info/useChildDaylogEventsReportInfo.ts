@@ -16,7 +16,7 @@ import {
   useGetSingleChildDaylogEventsReportInfoDataQuery,
   usePatchChildDaylogEventsReportInfoDataMutation,
   usePostChildDaylogEventsReportInfoDataMutation,
-} from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
+} from "@root/services/foster-child/child-reports/child-day-log-events-reports/childDayLogEventsReportsInfo";
 
 export const useChildDaylogEventsReportInfo = () => {
   const router = useRouter();
@@ -66,25 +66,12 @@ export const useChildDaylogEventsReportInfo = () => {
     reset(() => defaultValueChildDaylogEventsReportInfoForm(data?.data));
   }, [data, reset]);
 
-  // const saveAsDraft = (isDraft: any) => {
-  //   console.log({ isDraft });
-  //   if (!!router.query?.id) {
-  //     return;
-  //   }
-  //   handleSubmit(submitChildDaylogEventsReportInfoForm)(isDraft);
-  // };
-
-  const submitChildDaylogEventsReportInfoForm = async (
-    data: any,
-    isDraft: any
-  ) => {
+  const submitChildDaylogEventsReportInfoForm = async (data: any) => {
     const body = {
       fosterChildId: router?.query?.fosterChildId,
       ...data,
-      emailAddressess: data?.emailAddressess?.split(","),
-      // status: typeof isDraft === "string" ? "Pending" : "Submit",
     };
-    console.log({ body });
+
     const queryParams = {
       fosterChildId: router?.query?.fosterChildId,
     };
@@ -98,10 +85,8 @@ export const useChildDaylogEventsReportInfo = () => {
         apiDataParameter
       ).unwrap();
       router.push({
-        // pathname: `/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info`,
         pathname: `/foster-child/child-reports/child-daylog-events-report`,
         query: {
-          // id: res?.data?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),
@@ -124,8 +109,6 @@ export const useChildDaylogEventsReportInfo = () => {
     const body = {
       fosterChildId: router?.query?.fosterChildId,
       ...data,
-      emailAddressess: data?.emailAddressess?.split(","),
-      // status: "Submit",
     };
     const apiDataParameter = { body, pathParams };
     try {
@@ -133,10 +116,8 @@ export const useChildDaylogEventsReportInfo = () => {
         apiDataParameter
       ).unwrap();
       router.push({
-        // pathname: `/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info`,
         pathname: `/foster-child/child-reports/child-daylog-events-report`,
         query: {
-          // id: router.query?.id,
           ...(!!router?.query?.fosterChildId && {
             fosterChildId: router?.query?.fosterChildId,
           }),

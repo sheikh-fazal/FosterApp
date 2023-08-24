@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import {
   useDeleteChildDaylogEventsReportInfoDataMutation,
   useGetAllChildDaylogEventsReportListDataQuery,
-} from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
+} from "@root/services/foster-child/child-reports/child-day-log-events-reports/childDayLogEventsReportsInfo";
 
 export const useChildDaylogEventsReportList = () => {
   const router = useRouter();
