@@ -87,14 +87,3 @@ export const columnsEducationKeyStageTable = (router: any) => [
     isSortable: false,
   },
 ];
-
-export const dummyData = [
-    {
-        srNo:1,
-        childName: "John",
-        occurence: ":03/11/2021 :: 11:00",
-        childStatus: "abc",
-        createdDate: "04/3/2021",
-        createdBy: "RoseMarry"
-    }
-]
