@@ -3,11 +3,17 @@ import Typography from "@mui/material/Typography";
 import { Box, Grid } from "@mui/material";
 import { useAbout } from "./useAbout";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
-import Passport from "../training-work/passport/Passport";
 import AddressDetails from "./address-details/AddressDetails";
+import Passport from "../passport/Passport";
+import NoContentFound from "@root/components/Table/NoContentFound";
+import dayjs from "dayjs";
 
 const About = () => {
-  const { formattedDataAbout, isLoading, theme } = useAbout();
+  const { formattedDataAbout, isLoading, theme, personalData } = useAbout();
+
+  const formatDate = (value: any) => {
+    return dayjs(value).isValid() ? dayjs(value).format("DD/MM/YYYY") : value;
+  };
 
   // if (!addressDetails || addressDetails.length === 0) {
   //   return (
@@ -63,7 +69,7 @@ const About = () => {
                         mb: 1,
                       }}
                     >
-                      {val}
+                      {formatDate(val)}
                     </Typography>
                   </Box>
                 </Grid>
@@ -76,44 +82,6 @@ const About = () => {
       <AddressDetails />
       {/* ID Upload */}
       <Passport />
-      {/* <Typography
-        variant="h5"
-        color={theme.palette.primary.main}
-        sx={{ mb: 1, mt: 5 }}
-      >
-        ID Upload (Passport/DL)
-      </Typography>
-      {ID_DATA.map((item: any) => (
-        <Box
-          key={item.id}
-          sx={{
-            p: "10px 0 0 0",
-          }}
-        >
-          <Typography
-            component={"p"}
-            variant="subtitle2"
-            sx={{ color: theme.palette.grey[600], mb: 1 }}
-          >
-            {item.label}
-          </Typography>
-          <Box sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}>
-            <Image src={item.icon} alt="icon" width={24} height={22} />
-            <Typography
-              component={"p"}
-              variant="body2"
-              sx={{
-                color: theme.palette.grey[600],
-                fontWeight: 400,
-                textTransform: "unset",
-                mb: 1,
-              }}
-            >
-              {item.title}
-            </Typography>
-          </Box>
-        </Box>
-      ))} */}
     </>
   );
 };

@@ -1,9 +1,12 @@
-import { Grid, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import { SPECIALITIES } from "../index";
+import { useSpecialities } from "./useSpecialities";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const Specialities = () => {
-  const theme: any = useTheme();
+  const { isLoading, specialitiesData, specialLitiesDetails, theme } =
+    useSpecialities();
+
   return (
     <div>
       <Typography
@@ -14,18 +17,37 @@ const Specialities = () => {
       >
         Specialities
       </Typography>
-      <Grid container rowSpacing={1}>
-        {SPECIALITIES?.map((item: any) => (
-          <Grid item xs={12} md={6} key={item.id}>
-            <Typography
-              component={"p"}
-              variant="body2"
-              sx={{ color: theme.palette.grey[600] }}
-            >
-              {item.title}
-            </Typography>
-          </Grid>
-        ))}
+      <Grid container>
+        {isLoading ? (
+          <SkeletonFormdata />
+        ) : (
+          <>
+            {Object?.entries(specialitiesData).map(
+              ([key, val]: any, index: any) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <Box
+                    sx={{
+                      p: "10px 0 0 0",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      component={"p"}
+                      sx={{
+                        color: theme.palette.grey[600],
+                        fontWeight: 400,
+                        textTransform: "unset",
+                        mb: 1,
+                      }}
+                    >
+                      {typeof val === "boolean" ? val.toString() : val}
+                    </Typography>
+                  </Box>
+                </Grid>
+              )
+            )}
+          </>
+        )}
       </Grid>
     </div>
   );

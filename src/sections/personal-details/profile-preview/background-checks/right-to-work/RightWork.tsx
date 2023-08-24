@@ -26,7 +26,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -59,7 +59,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -92,7 +92,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -125,7 +125,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -160,7 +160,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -193,7 +193,7 @@ const RightWork = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography

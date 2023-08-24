@@ -24,5 +24,6 @@ export const useAbout = () => {
     isLoading,
     formattedDataAbout,
     theme,
+    personalData,
   };
 };

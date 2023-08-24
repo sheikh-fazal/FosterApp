@@ -10,8 +10,6 @@ const About = () => {
   const { formattedData, isLoading, arrayItems, toggleList, handleDropDown } =
     useAbout();
 
-  console.log("formattedData", formattedData);
-
   return (
     <CustomCard
       title="About"

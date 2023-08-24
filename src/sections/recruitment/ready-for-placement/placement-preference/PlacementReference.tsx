@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 
 const PlacementReference = () => {
   const router = useRouter();
-  const { fosterCarerId } = router.query;
+  const { fosterCarerId }: any = router.query;
   const theme: any = useTheme();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
@@ -39,8 +39,6 @@ const PlacementReference = () => {
         router.push({
           pathname: "/recruitment",
           query: {
-            action: "edit",
-            id: `${res?.data.id}`,
             fosterCarerId: fosterCarerId,
           },
         });
@@ -79,7 +77,18 @@ const PlacementReference = () => {
                   >
                     Upload Video / Audio Recording of your Placement Preference
                   </Typography>
-                  <RHFUploadFile name="videoFile" {...methods} />
+                  <RHFUploadFile
+                    accept="audio/*, video/*"
+                    name="videoFile"
+                    {...methods}
+                  />
+                  <Typography
+                    fontSize={13}
+                    fontWeight={400}
+                    sx={{ color: theme.palette.grey[600] }}
+                  >
+                    Only Allow Video & Audio Files
+                  </Typography>
                 </Grid>
               )}
               <Typography

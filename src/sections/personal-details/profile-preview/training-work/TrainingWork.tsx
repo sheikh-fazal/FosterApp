@@ -8,7 +8,7 @@ import { useTrainingWork } from "./useTrainingWork";
 import Link from "next/link";
 import dayjs from "dayjs";
 import Specialities from "./specialities/Specialities";
-import Passport from "./passport/Passport";
+import Passport from "../passport/Passport";
 
 const TrainingWork = () => {
   const {
@@ -39,7 +39,7 @@ const TrainingWork = () => {
             }}
           >
             {trainingListIsloading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -72,7 +72,7 @@ const TrainingWork = () => {
             }}
           >
             {trainingListIsloading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -105,7 +105,7 @@ const TrainingWork = () => {
             }}
           >
             {trainingListIsloading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -138,7 +138,7 @@ const TrainingWork = () => {
             }}
           >
             {trainingListIsloading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography

@@ -4,7 +4,7 @@ import { Typography, useTheme } from "@mui/material";
 
 export default function RHFUploadFile(props: any) {
   const theme = useTheme();
-  const { disabled, name, ...other } = props;
+  const { disabled, name, accept, ...other } = props;
   const [borderColor, setBorderColor] = useState(
     disabled
       ? theme.palette.action.disabledBackground
@@ -48,6 +48,7 @@ export default function RHFUploadFile(props: any) {
         />
       </label>
       <input
+        accept={accept}
         {...other?.register(`${name}`)}
         type="file"
         disabled={disabled}

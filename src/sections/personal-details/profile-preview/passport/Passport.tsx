@@ -4,6 +4,7 @@ import { usePassport } from "./usePassport";
 import pdfIcon from "@root/assets/svg/pdf-icon.svg";
 import wordIcon from "@root/assets/svg/word-icon.svg";
 import excelIcon from "@root/assets/svg/excel-icon.svg";
+import imageIcon from "@root/assets/svg/image-format.svg";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -41,7 +42,7 @@ const Passport = () => {
             ID Proof Upload
           </Typography>
           {passportListIsloading ? (
-            <Skeleton variant="rectangular" width={300} height={40} />
+            <Skeleton variant="rectangular" width={"auto"} height={40} />
           ) : (
             <>
               <Link
@@ -54,14 +55,14 @@ const Passport = () => {
                 href={`${process.env.NEXT_PUBLIC_IMG_URL}${passports?.url}`}
                 target="__blank"
               >
-                {passports.url.includes("PNG") ? (
+                {passports.url.includes("pdf") ? (
                   <Image src={pdfIcon} alt="icon" width={24} height={20} />
-                ) : passports.url.includes("doc") ? (
+                ) : passports.url.includes("doc" || "docx") ? (
                   <Image src={wordIcon} alt="icon" width={24} height={20} />
-                ) : passports.url.includes("xls") ? (
+                ) : passports.url.includes("xls" || "xlsx") ? (
                   <Image src={excelIcon} alt="icon" width={24} height={20} />
                 ) : (
-                  "-"
+                  <Image src={imageIcon} alt="icon" width={24} height={20} />
                 )}
                 <Typography
                   component={"p"}

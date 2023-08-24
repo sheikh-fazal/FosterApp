@@ -1,7 +1,7 @@
 import { Box, Grid, Skeleton, Typography, useTheme } from "@mui/material";
 import React from "react";
 import Image from "next/image";
-import Passport from "../training-work/passport/Passport";
+import Passport from "../passport/Passport";
 import RightWork from "./right-to-work/RightWork";
 import { useBackgroundChecks } from "./useBackgroundChecks";
 import Link from "next/link";
@@ -27,7 +27,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -60,7 +60,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -93,7 +93,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -128,7 +128,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -161,7 +161,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -194,7 +194,7 @@ const BackgroundChecks = () => {
             }}
           >
             {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography

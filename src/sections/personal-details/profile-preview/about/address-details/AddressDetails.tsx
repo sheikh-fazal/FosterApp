@@ -3,6 +3,10 @@ import { useAddressDetails } from "./useAddressDetails";
 import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import Link from "next/link";
 import Image from "next/image";
+import pdfIcon from "@root/assets/svg/pdf-icon.svg";
+import wordIcon from "@root/assets/svg/word-icon.svg";
+import excelIcon from "@root/assets/svg/excel-icon.svg";
+import imageIcon from "@root/assets/svg/image-format.svg";
 
 const AddressDetails = () => {
   const { addressIsLoading, formattedDataAddress, addressDetails, theme } =
@@ -26,7 +30,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -59,7 +63,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -92,7 +96,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -125,7 +129,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -158,7 +162,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -191,7 +195,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -224,7 +228,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -257,7 +261,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -290,7 +294,7 @@ const AddressDetails = () => {
             }}
           >
             {addressIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
             ) : (
               <>
                 <Typography
@@ -307,13 +311,43 @@ const AddressDetails = () => {
                     key={item.id}
                     target="__blank"
                   >
-                    <Box sx={{ display: "flex", gap: 1, cursor: "pointer" }}>
-                      <Image
-                        src={item.icon}
-                        alt="icon"
-                        width={24}
-                        height={20}
-                      />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        gap: 0.5,
+                        padding: "10px 0 0 0 ",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {item.name.includes("pdf") ? (
+                        <Image
+                          src={pdfIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : item.name.includes("doc" || "docx") ? (
+                        <Image
+                          src={wordIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : item.name.includes("xls" || "xlsx") ? (
+                        <Image
+                          src={excelIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : (
+                        <Image
+                          src={imageIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      )}
                       <Typography
                         component={"p"}
                         variant="body2"

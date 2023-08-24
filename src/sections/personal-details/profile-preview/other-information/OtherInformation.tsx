@@ -1,10 +1,14 @@
 import React from "react";
 import { EMPLOYEMENT_STATUS } from ".";
-import { Box, Grid, Skeleton, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import Image from "next/image";
 import BankDetailsTable from "./BankDetailsTable";
-import Passport from "../training-work/passport/Passport";
+import Passport from "../passport/Passport";
 import { useOtherInformation } from "./useOtherInformation";
+import pdfIcon from "@root/assets/svg/pdf-icon.svg";
+import wordIcon from "@root/assets/svg/word-icon.svg";
+import excelIcon from "@root/assets/svg/excel-icon.svg";
+import imageIcon from "@root/assets/svg/image-format.svg";
 import Link from "next/link";
 
 const OtherInformation = () => {
@@ -149,17 +153,41 @@ const OtherInformation = () => {
                             <Box
                               sx={{
                                 display: "flex",
-                                gap: 1,
+                                gap: 0.5,
                                 cursor: "pointer",
                                 p: "10px 0 0 0",
                               }}
                             >
-                              <Image
-                                src={item.icon}
-                                alt="icon"
-                                width={24}
-                                height={20}
-                              />
+                              {item.name.includes("pdf") ? (
+                                <Image
+                                  src={pdfIcon}
+                                  alt="icon"
+                                  width={24}
+                                  height={20}
+                                />
+                              ) : item.name.includes("doc" || "docx") ? (
+                                <Image
+                                  src={wordIcon}
+                                  alt="icon"
+                                  width={24}
+                                  height={20}
+                                />
+                              ) : item.name.includes("xls" || "xlsx") ? (
+                                <Image
+                                  src={excelIcon}
+                                  alt="icon"
+                                  width={24}
+                                  height={20}
+                                />
+                              ) : (
+                                <Image
+                                  src={imageIcon}
+                                  alt="icon"
+                                  width={24}
+                                  height={20}
+                                />
+                              )}
+
                               <Typography
                                 component={"p"}
                                 variant="body2"

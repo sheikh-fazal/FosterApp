@@ -6,7 +6,7 @@ export const placementReferenceData = [
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "placementReference",
+      name: "specificForPlacementPreference",
       label: "Mention any specific placement preference",
       multiline: true,
       minRows: 3,
@@ -20,7 +20,7 @@ export const placementReferenceData = [
     title: "Select Criteria For Child Placement",
     gridLength: 3,
     otherOptions: {
-      name: "ethinicity",
+      name: "ethnicity",
       label: "Ethinicity",
     },
     component: RHFSwitch,
@@ -38,7 +38,7 @@ export const placementReferenceData = [
     id: 4,
     gridLength: 3,
     otherOptions: {
-      name: "fosterCarerAvailabilty",
+      name: "fosterCarerAvailability",
       label: "Foster Careres Availability",
     },
     component: RHFSwitch,
@@ -181,10 +181,10 @@ export const placementReferenceData = [
 ];
 
 export const defaultValues = {
-  placementReference: "",
-  ethinicity: null,
+  specificForPlacementPreference: "",
+  ethnicity: null,
   placementWithSiblings: null,
-  fosterCarerAvailabilty: null,
+  fosterCarerAvailability: null,
   specialRequirements: null,
   language: null,
   connectedPerson: null,
@@ -203,10 +203,12 @@ export const defaultValues = {
 };
 
 export const formSchema = Yup.object().shape({
-  placementReference: Yup.string().required("Placement Preference is Required"),
-  ethinicity: Yup.boolean().required(),
+  specificForPlacementPreference: Yup.string().required(
+    "Placement Preference is Required"
+  ),
+  ethnicity: Yup.boolean().required(),
   placementWithSiblings: Yup.boolean().required(),
-  fosterCarerAvailabilty: Yup.boolean().required(),
+  fosterCarerAvailability: Yup.boolean().required(),
   specialRequirements: Yup.boolean().required(),
   language: Yup.boolean().required(),
   connectedPerson: Yup.boolean().required(),
