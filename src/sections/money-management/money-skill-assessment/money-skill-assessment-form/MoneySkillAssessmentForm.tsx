@@ -30,7 +30,6 @@ export const MoneySkillAssessmentForm = (props: any) => {
                 {item?.heading}
               </item.component>
             </Grid>
-            
           ))}
         </Grid>
 
@@ -51,7 +50,7 @@ export const MoneySkillAssessmentForm = (props: any) => {
             variant="contained"
             onClick={() =>
               router.push({
-                pathname: "/money-management/kidiee-saving",
+                pathname: "/money-management/money-skill-assessment",
               })
             }
           >

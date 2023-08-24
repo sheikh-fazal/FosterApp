@@ -9,7 +9,6 @@ import { enqueueSnackbar } from "notistack";
 import useAuth from "@root/hooks/useAuth";
 
 export const useMoneySkillAssessmentForm = (props: any) => {
-
   const router = useRouter();
   console.log(router, "router?.query");
 
@@ -18,7 +17,7 @@ export const useMoneySkillAssessmentForm = (props: any) => {
   const fosterChildId = user?.userId;
 
   const { disabled, defaultValues } = props;
-  console.log("defaultValues", defaultValuesMoneySkillAssessment);
+  console.log("defaultValues are here", defaultValuesMoneySkillAssessment);
 
   const methods: any = useForm({
     defaultValues: defaultValues ?? defaultValuesMoneySkillAssessment,
@@ -34,9 +33,9 @@ export const useMoneySkillAssessmentForm = (props: any) => {
     usePatchMoneyAssessmentSkillMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
+    console.log("form data", data);
 
-    if (!!router?.query?.kidiee_saving_id) {
+    if (!!router?.query?.money_skill_assessmen_id) {
       return patchKidieeSavingHandler(data);
     }
 
@@ -60,7 +59,7 @@ export const useMoneySkillAssessmentForm = (props: any) => {
 
   // Patch API of Money Assessment Skill
   const patchKidieeSavingHandler = async (data: any) => {
-    const patchData = { body: data, id: router?.query?.kidiee_saving_id };
+    const patchData = { body: data, id: router?.query?.money_skill_assessmen_id };
     console.log(patchData);
 
     try {

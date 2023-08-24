@@ -1,10 +1,29 @@
 import { Typography } from "@mui/material";
 import { RHFRadioGroup } from "@root/components/hook-form";
 import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import { RHFInputWithLabel } from "@root/sections/enquiry-stage/extensions/RHFInputWithLabel";
 
 export const MoneySkillAssessmentData = [
+  // {
+  //   id: 18,
+
+  //   componentProps: {
+  //     name: "involvementInGangs",
+  //     text: "Involvement in Gangs",
+  //     Component: RHFRadioGroup,
+  //     options: ["Yes", "No", "Not Known", "Possibly"],
+  //     getOptionLabel: ["Yes", "No", "Not Known", "Possibly"],
+  //   },
+  //   gridProps: {
+  //     display: "flex",
+  //     alignItems: "center",
+  //     justifyContent: "space-between",
+  //     mx: "5em",
+  //   },
+  //   gridLength: 12,
+  //   component: RHFInputWithLabel,
+  // },
   {
-    id: 1,
     heading: <h4>Area &gt; Cash Handling</h4>,
     componentProps: {
       color: (theme: any) => theme.palette.primary.main,
@@ -12,7 +31,6 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 2,
     heading: <h3>Competencies:</h3>,
     component: Typography,
   },
@@ -28,7 +46,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 2,
+    id: 1,
     gridLength: 6,
     componentProps: {
       name: "competencyNameCoins",
@@ -42,7 +60,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 3,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Recognises coins and notes</strong>
@@ -54,7 +71,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 4,
+    id: 2,
     gridLength: 6,
     componentProps: {
       name: "competencyRecognizeCoinsNotes",
@@ -68,7 +85,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 5,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can use small amounts of money</strong>
@@ -80,7 +96,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 6,
+    id: 3,
     gridLength: 6,
     componentProps: {
       name: "competencyUseSmallMoney",
@@ -94,7 +110,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 7,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can count change</strong>
@@ -106,7 +121,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 8,
+    id: 4,
     gridLength: 6,
     componentProps: {
       name: "competencyCountChange",
@@ -120,7 +135,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 9,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>When spending money, is aware when change is needed</strong>
@@ -132,7 +146,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 10,
+    id: 5,
     gridLength: 6,
     componentProps: {
       name: "competencyAwareChangeNeeded",
@@ -146,7 +160,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 11,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can use cash machine</strong>
@@ -158,7 +171,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 12,
+    id: 6,
     gridLength: 6,
     componentProps: {
       name: "competencyUseCashMachine",
@@ -172,7 +185,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 13,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can pay cash for purchases </strong>
@@ -184,7 +196,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 14,
+    id: 7,
     gridLength: 6,
     componentProps: {
       name: "competencyPayCashPurchases",
@@ -198,7 +210,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 17,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Is aware how to make online purchases</strong>
@@ -210,7 +221,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 18,
+    id: 8,
     gridLength: 6,
     componentProps: {
       name: "competencyAwareOnlinePurchases",
@@ -224,11 +235,10 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 19,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
-          Takes care of cash and valuable items in their possession:
+          Takes care of cash and valuable items in their possession
         </strong>
       </li>
     ),
@@ -238,20 +248,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 1,
-    heading: <h4 style={{ color: "#0E918C" }}>Area &gt; Money Awareness</h4>,
-    componentProps: {
-      sx: { mt: 2 },
-    },
-    component: Typography,
-  },
-  {
-    id: 2,
-    heading: <h3>Competencies:</h3>,
-    component: Typography,
-  },
-  {
-    id: 20,
+    id: 9,
     gridLength: 6,
     componentProps: {
       name: "competencyManageValuables",
@@ -263,6 +260,17 @@ export const MoneySkillAssessmentData = [
     },
     component: RHFRadioGroupWithLabel,
     md: 12,
+  },
+  {
+    heading: <h4 style={{ color: "#0E918C" }}>Area &gt; Money Awareness</h4>,
+    componentProps: {
+      sx: { mt: 2 },
+    },
+    component: Typography,
+  },
+  {
+    heading: <h3>Competencies:</h3>,
+    component: Typography,
   },
   {
     id: 21,
@@ -279,7 +287,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 22,
+    id: 10,
     gridLength: 6,
     componentProps: {
       name: "competencyMoneyForGoodsServices",
@@ -293,7 +301,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 23,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -308,7 +315,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 24,
+    id: 11,
     gridLength: 6,
     componentProps: {
       name: "competencyAwareSpentMoneyUnavailable",
@@ -322,7 +329,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 25,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Understands what they can buy for the money they have</strong>
@@ -334,7 +340,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 26,
+    id: 12,
     gridLength: 6,
     componentProps: {
       name: "competencyUnderstandWhatCanBuy",
@@ -348,7 +354,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 27,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong> can make good choices about their money</strong>
@@ -360,7 +365,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 28,
+    id: 13,
     gridLength: 6,
     componentProps: {
       name: "competencyMakeGoodChoices",
@@ -374,7 +379,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 29,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can consider and understands alternative options</strong>
@@ -386,7 +390,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 30,
+    id: 14,
     gridLength: 6,
     componentProps: {
       name: "competencyConsiderAlternativeOptions",
@@ -400,7 +404,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 31,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Has a realistic of the cost of basic items (e.g. food)</strong>
@@ -412,7 +415,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 32,
+    id: 15,
     gridLength: 6,
     componentProps: {
       name: "competencyRealisticCostBasicItems",
@@ -426,7 +429,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 33,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Understands the concept of saving and its purpose</strong>
@@ -438,7 +440,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 34,
+    id: 16,
     gridLength: 6,
     componentProps: {
       name: "competencyUnderstandSaving",
@@ -452,7 +454,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 37,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Understands the concept of earning money</strong>
@@ -464,7 +465,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 38,
+    id: 17,
     gridLength: 6,
     componentProps: {
       name: "competencyUnderstandEarningMoney",
@@ -478,7 +479,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 39,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Knows difference between disposable cash and savings</strong>
@@ -490,7 +490,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 40,
+    id: 18,
     gridLength: 6,
     componentProps: {
       name: "competencyDifferenceDisposableCashSavings",
@@ -504,7 +504,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 41,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -518,7 +517,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 42,
+    id: 19,
     gridLength: 6,
     componentProps: {
       name: "competencyUnderstandCreditLoansInterest",
@@ -532,7 +531,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 1,
     heading: <h4 style={{ color: "#0E918C" }}>Area &gt; Budgeting</h4>,
     componentProps: {
       color: (theme: any) => theme.palette.primary.main,
@@ -541,12 +539,10 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 2,
     heading: <h3>Competencies:</h3>,
     component: Typography,
   },
   {
-    id: 43,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -560,7 +556,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 44,
+    id: 20,
     gridLength: 6,
     componentProps: {
       name: "competencySetupMonthlyBudget",
@@ -574,7 +570,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 45,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Can make budget allowance last for a week</strong>
@@ -586,7 +581,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 46,
+    id: 21,
     gridLength: 6,
     componentProps: {
       name: "competencyMakeBudgetLastWeek",
@@ -600,7 +595,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 47,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -614,7 +608,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 48,
+    id: 22,
     gridLength: 6,
     componentProps: {
       name: "competencyReadBankStatementsAdjustments",
@@ -628,7 +622,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 49,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -643,7 +636,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 50,
+    id: 23,
     gridLength: 6,
     componentProps: {
       name: "competencyUnderstandBudgetEmergenciesSeasonal",
@@ -657,7 +650,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 1,
     heading: <h4 style={{ color: "#0E918C" }}>Area &gt; Saving</h4>,
     componentProps: {
       color: (theme: any) => theme.palette.primary.main,
@@ -666,12 +658,10 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 2,
     heading: <h3>Competencies:</h3>,
     component: Typography,
   },
   {
-    id: 51,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -685,7 +675,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 52,
+    id: 24,
     gridLength: 6,
     componentProps: {
       name: "competencyHasSavingsAccount",
@@ -699,7 +689,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 53,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Has a savings plan</strong>
@@ -711,7 +700,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 54,
+    id: 25,
     gridLength: 6,
     componentProps: {
       name: "competencyHasSavingsPlan",
@@ -725,7 +714,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 55,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>Motivated to save tor a partiacular item</strong>
@@ -737,7 +725,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 56,
+    id: 26,
     gridLength: 6,
     componentProps: {
       name: "competencyMotivatedSaveItem",
@@ -751,7 +739,6 @@ export const MoneySkillAssessmentData = [
     md: 12,
   },
   {
-    id: 57,
     heading: (
       <li style={{ marginLeft: 15 }}>
         <strong>
@@ -766,7 +753,7 @@ export const MoneySkillAssessmentData = [
     component: Typography,
   },
   {
-    id: 58,
+    id: 27,
     gridLength: 6,
     componentProps: {
       name: "competencyUsedSavingsPurchaseItem",

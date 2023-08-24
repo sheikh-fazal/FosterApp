@@ -22,24 +22,24 @@ export const MoneySkillAssessmentTable = () => {
     sortChangeHandler,
   } = useMoneySkillAssessmentTable();
 
-  console.log("klsahd jkogsafsduyafnh", data?.money_skill_assessment);
-  const obj: any = {
-    obj1: "43",
-    obj2: "43",
-    obj3: "",
-    obj4: "",
-    obj5: "43",
-    obj6: "",
-    obj7: "4sda3",
-    obj8: "4czx3",
-  };
-  let score = 0;
-  data?.money_skill_assessment?.forEach((item: any) => {
-    console.log(item);
-    for (const key in item) {
-      if (item[key]) score++;
-    }
-  });
+  // console.log("klsahd jkogsafsduyafnh", data?.money_skill_assessment);
+  // const obj: any = {
+  //   obj1: "43",
+  //   obj2: "43",
+  //   obj3: "",
+  //   obj4: "",
+  //   obj5: "43",
+  //   obj6: "",
+  //   obj7: "4sda3",
+  //   obj8: "4czx3",
+  // };
+  // let score = 0;
+  // data?.money_skill_assessment?.forEach((item: any) => {
+  //   console.log(item);
+  //   for (const key in item) {
+  //     if (item[key]) score++;
+  //   }
+  // });
   // for (const assessment of data) {
   //   console.log(assessment);
 
@@ -48,20 +48,37 @@ export const MoneySkillAssessmentTable = () => {
   //   // }
   // }
 
-  console.log("Score: ", score);
+  // console.log("Score: ", score);
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.date,
+      accessorFn: (row: any) => row,
       id: "date",
-      cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+      cell: (info: any) => {
+        return dayjs(info.getValue().createdAt).format("MM/DD/YYYY");
+      },
       header: () => <span>Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => score,
+      accessorFn: (row: any) => row,
       id: "score",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        const obj = { ...info.getValue() };
+        delete obj.ifaId;
+        delete obj.updatedAt;
+        delete obj.id;
+        delete obj.fosterChildId;
+        delete obj.createdAt;
+
+        let score = 0;
+
+        for (const prop in obj) {
+          if (obj[prop]) score++;
+        }
+
+        return score;
+      },
       header: () => <span>Score</span>,
       isSortable: true,
     },

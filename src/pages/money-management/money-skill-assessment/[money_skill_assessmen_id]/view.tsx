@@ -24,7 +24,7 @@ const BREADCRUMBS = (query: any) => [
     },
   ];
 
-  const PAGE_TITLE = "Edit Money Skill Assessment List";
+  const PAGE_TITLE = "View Money Skill Assessment List";
 
  ViewMoneySkillAssessment.getLayout = function getLayout(page: any) {
     return <Layout>{page}</Layout>;
