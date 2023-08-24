@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useNewOutSchoolActivityInfo = (postSchoolActivityData: any) => {
+const useViewEducationKeyStage = () => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
@@ -15,25 +15,25 @@ const useNewOutSchoolActivityInfo = (postSchoolActivityData: any) => {
     comments: "",
   };
 
-  const outSchoolActivitySchema = Yup.object().shape({
-    // activityType: Yup.string().required("Required"),
-    // fromDate: Yup.date().required("Required"),
-    // outOfDate: Yup.date().required("Required"),
-    // comments: Yup.string().required("Required"),
+  const childExclusionSchema = Yup.object().shape({
+    activityType: Yup.string().required("Required"),
+    comments: Yup.string().required("Required"),
+    fromDate: Yup.date().required("Required"),
+    outOfDate: Yup.date().required("Required"),
   });
 
   const methods: any = useForm({
-    resolver: yupResolver(outSchoolActivitySchema),
+    resolver: yupResolver(childExclusionSchema),
     defaultValues,
   });
 
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    postSchoolActivityData(data);
+    console.log(data);
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router, defaultValues };
 };
 
-export default useNewOutSchoolActivityInfo;
+export default useViewEducationKeyStage;

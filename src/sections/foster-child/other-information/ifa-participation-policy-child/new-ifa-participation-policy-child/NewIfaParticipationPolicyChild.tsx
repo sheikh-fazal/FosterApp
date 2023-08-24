@@ -1,9 +1,10 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Rating, Typography } from "@mui/material";
 import React from "react";
-import { FormProvider } from "@root/components/hook-form";
+import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import Link from "next/link";
 import { IfaParticipationPolicyData } from ".";
 import useNewIfaParticipationPolicyChild from "./useNewIfaParticipationPolicyChild";
+import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const NewIfaParticipationPolicyChild = (props: any) => {
   const {
@@ -13,9 +14,11 @@ const NewIfaParticipationPolicyChild = (props: any) => {
     router,
     formState,
     postExclusionInfo,
+    value,
+    
   } = props;
 
-  const { methods, handleSubmit, onSubmit } =
+  const { methods, handleSubmit, onSubmit,setValue } =
     useNewIfaParticipationPolicyChild();
 
   return (
@@ -45,6 +48,41 @@ const NewIfaParticipationPolicyChild = (props: any) => {
               </Grid>
             );
           })}
+
+          <Grid container columnSpacing={4} mt={3}>
+            <Grid item xs={12} md={6} ml={3}>
+              <RHFTextField
+                name="likeNextTime"
+                label="Would you like to go again next time?"
+                size="small"
+                {...methods}
+                
+              />
+            </Grid>
+            <Grid item xs={12} md={5}>
+              <Typography component="legend">
+                Whats your rating on this event?
+              </Typography>
+              <Rating
+                name="rating"
+                value={value}
+                onChange={(newValue:any) => {
+                  setValue(newValue);
+                }}
+                {...methods}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}  ml={3}>
+              <Typography >Choose Files</Typography>
+              <RHFUploadFile
+                name="file"
+                label="Upload Photo"
+                {...methods}
+                required
+              />
+            </Grid>
+          </Grid>
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
