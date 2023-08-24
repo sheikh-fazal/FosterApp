@@ -1,5 +1,5 @@
 import { Box, Card, Grid, Typography, alpha } from "@mui/material";
-import { PROFILETABS_DATA } from "./ProfilePreviewData";
+import { PROFILETABS_DATA } from ".";
 import { useTheme } from "@emotion/react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";

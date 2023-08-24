@@ -67,10 +67,6 @@ export const useCarerSectionB = (action: any, id: any) => {
           enqueueSnackbar("Review Edited Successfully", {
             variant: "success",
           });
-          router.push({
-            pathname: "/carer-info/personal-info/carer-chronology-of-events",
-            query: { fosterCarerId: fosterCarerId },
-          });
           setIsFetching(false);
         })
         .catch((error: any) => {

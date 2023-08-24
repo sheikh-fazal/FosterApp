@@ -1,23 +1,22 @@
-import { Box, Grid, Skeleton, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import React from "react";
-import Image from "next/image";
-import Passport from "../training-work/passport/Passport";
-import RightWork from "./right-to-work/RightWork";
-import { useBackgroundChecks } from "./useBackgroundChecks";
+import { useRightWork } from "./useRightWork";
 import Link from "next/link";
+import Image from "next/image";
 import dayjs from "dayjs";
 
-const BackgroundChecks = () => {
-  const { workIsLoading, workDetailsData, theme } = useBackgroundChecks();
+const RightWork = () => {
+  const { workIsLoading, workDetailsData, workDetails, theme } = useRightWork();
+
   return (
     <>
+      {/* Right to work section started*/}
       <Typography
         variant="h5"
         color={theme.palette.primary.main}
-        sx={{ mb: 1 }}
-        component={"p"}
+        sx={{ mb: 1, mt: 5.5 }}
       >
-        DBS
+        Right To Work
       </Typography>
       <Grid container>
         <Grid item xs={12} md={6}>
@@ -35,7 +34,7 @@ const BackgroundChecks = () => {
                   variant="subtitle2"
                   sx={{ color: theme.palette.grey[600], mb: 0.5 }}
                 >
-                  Does the candidate have a valid Enhanced DBS?
+                  Does the candidate have the right to work in UK
                 </Typography>
                 <Typography
                   component={"p"}
@@ -47,7 +46,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.validDBS ?? "-"}
+                  {workDetailsData?.rightToWork ?? "-"}
                 </Typography>
               </>
             )}
@@ -68,7 +67,7 @@ const BackgroundChecks = () => {
                   variant="subtitle2"
                   sx={{ color: theme.palette.grey[600], mb: 0.5 }}
                 >
-                  DBS (PVG) Certificate
+                  Visa Type
                 </Typography>
                 <Typography
                   component={"p"}
@@ -80,7 +79,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.certificateName ?? "-"}
+                  {workDetailsData?.visaType ?? "-"}
                 </Typography>
               </>
             )}
@@ -101,7 +100,7 @@ const BackgroundChecks = () => {
                   variant="subtitle2"
                   sx={{ color: theme.palette.grey[600], mb: 0.5 }}
                 >
-                  DBS (PVG) Issue Date
+                  Visa / BRP Number
                 </Typography>
                 <Typography
                   component={"p"}
@@ -113,7 +112,40 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {dayjs(workDetailsData?.issueDate ?? "-").format(
+                  {workDetailsData?.BRP ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={300} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  Visa / BRP Expiry Date
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={{
+                    color: theme.palette.grey[600],
+                    fontWeight: 400,
+                    textTransform: "unset",
+                    mb: 1,
+                  }}
+                >
+                  {dayjs(workDetailsData?.expiryDate ?? "-").format(
                     "MM/DD/YYYY"
                   )}
                 </Typography>
@@ -136,7 +168,7 @@ const BackgroundChecks = () => {
                   variant="subtitle2"
                   sx={{ color: theme.palette.grey[600], mb: 0.5 }}
                 >
-                  Is DBS (PVG) online?
+                  Share Code
                 </Typography>
                 <Typography
                   component={"p"}
@@ -148,40 +180,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.online ?? "-"}
-                </Typography>
-              </>
-            )}
-          </Box>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Box
-            sx={{
-              p: "10px 0 0 0",
-            }}
-          >
-            {workIsLoading ? (
-              <Skeleton variant="rectangular" width={300} height={40} />
-            ) : (
-              <>
-                <Typography
-                  component={"p"}
-                  variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
-                >
-                  DBS (PVG) UPdate Service No
-                </Typography>
-                <Typography
-                  component={"p"}
-                  variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
-                >
-                  {workDetailsData?.updateService ?? "-"}
+                  {workDetailsData?.code ?? "-"}
                 </Typography>
               </>
             )}
@@ -237,12 +236,8 @@ const BackgroundChecks = () => {
           </Box>
         </Grid>
       </Grid>
-      {/* Right To Work Section */}
-      <RightWork />
-      {/* ID Upload */}
-      <Passport />
     </>
   );
 };
 
-export default BackgroundChecks;
+export default RightWork;

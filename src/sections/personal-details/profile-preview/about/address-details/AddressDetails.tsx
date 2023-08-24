@@ -1,24 +1,23 @@
-import { Box, Grid, Skeleton, Typography, useTheme } from "@mui/material";
 import React from "react";
-import Image from "next/image";
-import Passport from "../training-work/passport/Passport";
-import RightWork from "./right-to-work/RightWork";
-import { useBackgroundChecks } from "./useBackgroundChecks";
+import { useAddressDetails } from "./useAddressDetails";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import Link from "next/link";
-import dayjs from "dayjs";
+import Image from "next/image";
 
-const BackgroundChecks = () => {
-  const { workIsLoading, workDetailsData, theme } = useBackgroundChecks();
+const AddressDetails = () => {
+  const { addressIsLoading, formattedDataAddress, addressDetails, theme } =
+    useAddressDetails();
+
   return (
     <>
       <Typography
         variant="h5"
         color={theme.palette.primary.main}
-        sx={{ mb: 1 }}
-        component={"p"}
+        sx={{ mb: 1, mt: 3 }}
       >
-        DBS
+        Address Detail
       </Typography>
+
       <Grid container>
         <Grid item xs={12} md={6}>
           <Box
@@ -26,16 +25,16 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
-                  Does the candidate have a valid Enhanced DBS?
+                  Address First Line
                 </Typography>
                 <Typography
                   component={"p"}
@@ -47,7 +46,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.validDBS ?? "-"}
+                  {formattedDataAddress?.adressFirstLine ?? "-"}
                 </Typography>
               </>
             )}
@@ -59,16 +58,16 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
-                  DBS (PVG) Certificate
+                  Address Second Line
                 </Typography>
                 <Typography
                   component={"p"}
@@ -80,7 +79,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.certificateName ?? "-"}
+                  {formattedDataAddress?.adressSecondLine ?? "-"}
                 </Typography>
               </>
             )}
@@ -92,16 +91,16 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
-                  DBS (PVG) Issue Date
+                  Country
                 </Typography>
                 <Typography
                   component={"p"}
@@ -113,9 +112,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {dayjs(workDetailsData?.issueDate ?? "-").format(
-                    "MM/DD/YYYY"
-                  )}
+                  {formattedDataAddress?.country ?? "-"}
                 </Typography>
               </>
             )}
@@ -127,16 +124,16 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
-                  Is DBS (PVG) online?
+                  County
                 </Typography>
                 <Typography
                   component={"p"}
@@ -148,7 +145,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.online ?? "-"}
+                  {formattedDataAddress?.county ?? "-"}
                 </Typography>
               </>
             )}
@@ -160,16 +157,16 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
-                  DBS (PVG) UPdate Service No
+                  Town/City
                 </Typography>
                 <Typography
                   component={"p"}
@@ -181,7 +178,7 @@ const BackgroundChecks = () => {
                     mb: 1,
                   }}
                 >
-                  {workDetailsData?.updateService ?? "-"}
+                  {formattedDataAddress?.town ?? "-"}
                 </Typography>
               </>
             )}
@@ -193,18 +190,117 @@ const BackgroundChecks = () => {
               p: "10px 0 0 0",
             }}
           >
-            {workIsLoading ? (
+            {addressIsLoading ? (
               <Skeleton variant="rectangular" width={300} height={40} />
             ) : (
               <>
                 <Typography
-                  component={"p"}
                   variant="subtitle2"
-                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
+                >
+                  Post Code
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={{
+                    color: theme.palette.grey[600],
+                    fontWeight: 400,
+                    textTransform: "unset",
+                    mb: 1,
+                  }}
+                >
+                  {formattedDataAddress?.postCode ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {addressIsLoading ? (
+              <Skeleton variant="rectangular" width={300} height={40} />
+            ) : (
+              <>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
+                >
+                  How Long the Candidate lived in this address
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={{
+                    color: theme.palette.grey[600],
+                    fontWeight: 400,
+                    textTransform: "unset",
+                    mb: 1,
+                  }}
+                >
+                  {formattedDataAddress?.long ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {addressIsLoading ? (
+              <Skeleton variant="rectangular" width={300} height={40} />
+            ) : (
+              <>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
+                >
+                  Date
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={{
+                    color: theme.palette.grey[600],
+                    fontWeight: 400,
+                    textTransform: "unset",
+                    mb: 1,
+                  }}
+                >
+                  {formattedDataAddress?.date ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {addressIsLoading ? (
+              <Skeleton variant="rectangular" width={300} height={40} />
+            ) : (
+              <>
+                <Typography
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600] }}
+                  component={"p"}
                 >
                   Documents
                 </Typography>
-                {workDetailsData?.certificate?.map((item: any) => (
+                {formattedDataAddress?.documents?.map((item: any) => (
                   <Link
                     style={{ textDecoration: "none" }}
                     href={`${process.env.NEXT_PUBLIC_IMG_URL}${item?.url}`}
@@ -227,7 +323,7 @@ const BackgroundChecks = () => {
                           textTransform: "unset",
                         }}
                       >
-                        {item.name ?? "-"}
+                        {item.name}
                       </Typography>
                     </Box>
                   </Link>
@@ -237,12 +333,8 @@ const BackgroundChecks = () => {
           </Box>
         </Grid>
       </Grid>
-      {/* Right To Work Section */}
-      <RightWork />
-      {/* ID Upload */}
-      <Passport />
     </>
   );
 };
 
-export default BackgroundChecks;
+export default AddressDetails;

@@ -58,12 +58,8 @@ export const usePlacementReview = (action: any, id: any) => {
       })
         .unwrap()
         .then((res: any) => {
-          enqueueSnackbar("Review Edited Successfully", {
+          enqueueSnackbar("Review Added Successfully", {
             variant: "success",
-          });
-          router.push({
-            pathname: "/carer-info/personal-info/carer-chronology-of-events",
-            query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
         })

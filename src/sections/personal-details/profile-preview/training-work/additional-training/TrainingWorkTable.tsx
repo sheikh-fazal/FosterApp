@@ -6,6 +6,7 @@ import Image from "next/image";
 import pdfIcon from "@root/assets/svg/pdf-icon.svg";
 import wordIcon from "@root/assets/svg/word-icon.svg";
 import excelIcon from "@root/assets/svg/excel-icon.svg";
+import Link from "next/link";
 
 const TrainingWorkTable = () => {
   const {
@@ -49,7 +50,11 @@ const TrainingWorkTable = () => {
         return (
           <Box sx={{ display: "flex", justifyContent: "center" }}>
             {info.getValue().map((data: any) => (
-              <Box key={data.id}>
+              <Link
+                href={`${process.env.NEXT_PUBLIC_IMG_URL}${data?.url}`}
+                key={data.id}
+                target="__blank"
+              >
                 {data.url.includes("pdf") ? (
                   <Image src={pdfIcon} alt="icon" width={24} height={20} />
                 ) : data.url.includes("doc") ? (
@@ -57,9 +62,9 @@ const TrainingWorkTable = () => {
                 ) : data.url.includes("xls") ? (
                   <Image src={excelIcon} alt="icon" width={24} height={20} />
                 ) : (
-                  ""
+                  "-"
                 )}
-              </Box>
+              </Link>
             ))}
           </Box>
         );

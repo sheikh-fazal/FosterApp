@@ -1,7 +1,8 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import { useWorkExperienceTable } from "./useWorkExperienceTable";
+import dayjs from "dayjs";
 
 const WorkExperienceTable = () => {
   const {
@@ -48,7 +49,9 @@ const WorkExperienceTable = () => {
     {
       accessorFn: (row: any) => row.startDate ?? "-",
       id: "startDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Start Date</span>,
       isSortable: true,
     },
