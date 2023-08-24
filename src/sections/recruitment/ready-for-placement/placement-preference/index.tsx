@@ -203,7 +203,7 @@ export const defaultValues = {
 };
 
 export const formSchema = Yup.object().shape({
-  placementReference: Yup.string().required(),
+  placementReference: Yup.string().required("Placement Preference is Required"),
   ethinicity: Yup.boolean().required(),
   placementWithSiblings: Yup.boolean().required(),
   fosterCarerAvailabilty: Yup.boolean().required(),
