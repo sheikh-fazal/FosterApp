@@ -23,7 +23,7 @@ export const ChildIncidentAPI: any = baseAPI.injectEndpoints({
         url: "/foster-child/childInfo/add-incident-info",
         method: "POST",
         body: queryArg.addIncidentsInfoRequestDto,
-      }),
+      }), 
       invalidatesTags: [TAG],
     }),
 

@@ -10,6 +10,8 @@ const SocialWorkerFormDialogbox = (props: any) => {
     setOpenFormDialog,
     component,
     disabled,
+    initialValues,
+    defaultValues=initialValues,
     setOpenSocialWorkerAssessmentDialogbox
   } = props;
 

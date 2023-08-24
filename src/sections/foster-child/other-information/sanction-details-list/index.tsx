@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+
 export const sanctionDetailsTableColumnsFunction = (
   router?: any,
   prepareRecordForDelete?: any
@@ -15,8 +16,6 @@ export const sanctionDetailsTableColumnsFunction = (
     accessorFn: (row: any) => row?.id,
     id: "actions",
     cell: (info: any) => {
-      console.log(info);
-
       return (
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction

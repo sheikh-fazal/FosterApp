@@ -11,7 +11,7 @@ import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 // ----------------------------------------------------------------------
 
 ChildMedicationInfo.getLayout = function getLayout(page: any) {
-  return <Layout >{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 // ----------------------------------------------------------------------

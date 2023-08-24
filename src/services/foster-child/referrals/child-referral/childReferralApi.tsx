@@ -12,7 +12,18 @@ export const childReferralApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
+    postChildProfileInfo: builder.mutation({
+      query: ({ updatedData, fosterChildId }: any) => ({
+        url: `/foster-child/personal-info/${fosterChildId}`,
+        method: "POST",
+        body: updatedData,
+      }),
+      invalidatesTags: [TAG],
+    }),
   }),
 });
 
-export const { useGetChildReferralTableApiQuery } = childReferralApi;
+export const {
+  useGetChildReferralTableApiQuery,
+  usePostChildProfileInfoMutation,
+} = childReferralApi;
