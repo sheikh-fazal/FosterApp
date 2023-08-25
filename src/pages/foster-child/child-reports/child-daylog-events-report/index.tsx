@@ -15,7 +15,7 @@ const BREADCRUMBS = (query: any) => [
       : "/foster-child",
   },
   {
-    name: "Child Reports",
+    name: "Child Reports List",
     href: "",
   },
 ];

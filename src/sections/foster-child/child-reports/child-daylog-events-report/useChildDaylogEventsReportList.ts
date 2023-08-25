@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 import {
   useDeleteChildDaylogEventsReportInfoDataMutation,
   useGetAllChildDaylogEventsReportListDataQuery,
-} from "@root/services/foster-child/child-records/child-day-log-events-reports/childDayLogEventsReportsInfo";
+} from "@root/services/foster-child/child-reports/child-day-log-events-reports/childDayLogEventsReportsInfo";
 
 export const useChildDaylogEventsReportList = () => {
   const router = useRouter();
@@ -28,11 +28,14 @@ export const useChildDaylogEventsReportList = () => {
     search: searchValue,
     offset: page,
     limit: CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT,
+  };
+
+  const pathParams = {
     ...(router?.query?.fosterChildId && {
       fosterChildId: router?.query?.fosterChildId,
     }),
   };
-  const apiDataParameter = { queryParams };
+  const apiDataParameter = { queryParams, pathParams };
   const { data, isLoading, isSuccess, isError, isFetching } =
     useGetAllChildDaylogEventsReportListDataQuery(apiDataParameter, {
       refetchOnMountOrArgChange: true,

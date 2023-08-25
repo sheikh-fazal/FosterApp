@@ -2,7 +2,7 @@ import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetOfstedNotificationListQuery } from "@root/services/foster-child/events-and-notification/ofsted-notification/OfstedNotificationApi";
 import React, { useState } from "react";
 
-const useOfstednotificationTable = () => {
+const useOfstednotificationTable = ({ fosterChildId }: any) => {
   const [search, setSearch] = useState("");
 
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
@@ -13,7 +13,9 @@ const useOfstednotificationTable = () => {
     isLoading: OfstedNotificationisLoading,
     isFetching: OfstedNotificationisFetching,
     isSuccess: OfstedNotificationisSuccess,
-  } = useGetOfstedNotificationListQuery({ params: { params, search } });
+  } = useGetOfstedNotificationListQuery({
+    params: { ...params, search, fosterChildId: fosterChildId },
+  });
   return {
     OfstedNotificationdata,
     OfstedNotificationIserror,
