@@ -112,6 +112,7 @@ export const TAGS = [
   "OFSTED_NOTIFICATION_DOCUMENTS",
   "CHILD_DAY_LOG_EVENTS_REPORTS_INFO",
   "EDUCATION-KEY-STAGE-REPORT",
+  "SYSTEM-CONFIGURATION",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

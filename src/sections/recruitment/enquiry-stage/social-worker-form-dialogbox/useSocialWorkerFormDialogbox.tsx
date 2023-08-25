@@ -29,7 +29,7 @@ const useSocialWorkerFormDialogbox = () => {
   };
 
   const defaultValues = {
-    swName: data?.data?.socialWorker.swName || "",
+    swName: data?.data?.socialWorker?.swName || "",
     role: data?.data?.socialWorker?.role || "",
     date: data?.data?.socialWorker?.date || "",
     fosterCarer: data?.data?.socialWorker?.fosterCarer || "",
