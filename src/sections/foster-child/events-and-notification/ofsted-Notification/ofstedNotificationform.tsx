@@ -21,6 +21,7 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
 
 import { FormSchema, OFsedFromData, OFsedValue } from ".";
+import useOfstedNotificationFrom from "./useOfstedNotificationFrom";
 
 const backPath = "/foster-child/events-and-notification/ofsted-notification";
 interface OfstedNotificationform {
@@ -31,11 +32,17 @@ interface OfstedNotificationform {
 
 const OfstedNotificationform = (props: OfstedNotificationform) => {
   const { action, fosterChildId, OfstedNotificationID } = props;
+  const { SubmitData, getDefaultValue, deleteHander, isloading, isFatching } =
+    useOfstedNotificationFrom({
+      action: action,
+      fosterChildId: fosterChildId,
+      OfstedNotificationID: OfstedNotificationID,
+    });
   const theme: any = useTheme();
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: OFsedValue,
+    defaultValues: getDefaultValue,
   });
   const {
     trigger,
@@ -46,13 +53,14 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
     reset,
     formState: { errors },
   } = methods;
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 0, py: 0.1 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit()}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
-              {/* <IsFetching isFetching={isFatching} /> */}
+              <IsFetching isFetching={isFatching} />
               {OFsedFromData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
@@ -71,25 +79,19 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
                         <form.component
                           size="small"
                           {...form.otherOptions}
-                          disabled={
-                            action === "view" ||
-                            (action === "edit" && form.id === 1)
-                              ? true
-                              : false
-                          }
+                          disabled={action === "view" ? true : false}
                           InputLabelProps={{
-                            shrink:
-                              action === "view" ||
-                              (action === "edit" && form.id === 1)
-                                ? true
-                                : undefined,
-                            disabled:
-                              action === "view" ||
-                              (action === "edit" && form.id === 1)
-                                ? true
-                                : undefined,
+                            shrink: action === "view" ? true : undefined,
+                            disabled: action === "view" ? true : undefined,
                           }}
-                        />
+                        >
+                          {form.otherOptions.select &&
+                            form.otherOptions.options.map((option: any) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                        </form.component>
                       )}
                     </Box>
                   </Grid>
@@ -135,7 +137,7 @@ const OfstedNotificationform = (props: OfstedNotificationform) => {
                       </Typography>
                       <RHFTextField
                         fullWidth={true}
-                        name={"EnterAdditionalEmailAddresses"}
+                        name={"EnterAdditionalEmailAddressesff"}
                       />
                     </Grid>
                   </Box>

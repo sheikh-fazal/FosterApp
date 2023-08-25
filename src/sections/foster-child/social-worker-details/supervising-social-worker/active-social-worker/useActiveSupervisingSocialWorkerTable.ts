@@ -1,4 +1,3 @@
-import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useGetSupervisingSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/supervising-social-worker/SupervisingSocialWorkerApi";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
@@ -6,27 +5,23 @@ import { useRef, useState } from "react";
 export const useActiveSupervisingSocialWorkerTable = () => {
   const tableHeaderRef = useRef<any>();
   const router = useRouter();
+  const { fosterChildId } = router.query;
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
-  const params = {
-    search: searchHandle,
-    limit: "10",
-    offset: pageHandle,
-    status: "Active",
-  };
 
   // ----------------------------------------------------------------------
 
   const { data, isLoading, isError, isFetching, isSuccess } =
-    // useGetSocialWorkerTableApiQuery({
     useGetSupervisingSocialWorkerTableApiQuery({
-      params,
-      fosterChildId: router?.query?.fosterChildId,
+      params: {
+        search: searchHandle,
+        limit: "10",
+        offset: pageHandle,
+        status: "Active",
+        fosterChildId: fosterChildId,
+      },
     });
-    // console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", data)
-  // const family = data?.data?.social_workers;
-  const family = data?.data;
-  console.log("🚀 ~ file: useActiveSupervisingSocialWorkerTable.ts:21 ~ data:", family)
+  const family = data?.data?.socialWorker;
   const meta = data?.meta;
   const headerChangeHandler = (text: any) => {
     setSearchHandle(text.search);

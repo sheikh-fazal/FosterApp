@@ -1,5 +1,8 @@
 import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
+import dayjs from "dayjs";
+import * as Yup from "yup";
 
 export const OriginalChildReferralData = [
   {
@@ -12,7 +15,7 @@ export const OriginalChildReferralData = [
     },
     component: RHFTextField,
   },
-   {
+  {
     id: 2,
     gridLength: 6,
     otherOptions: {
@@ -37,7 +40,7 @@ export const OriginalChildReferralData = [
     gridLength: 6,
     otherOptions: {
       label: "Date of Birth",
-      name: "dateOfBirth",
+      name: "dob",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -64,7 +67,10 @@ export const OriginalChildReferralData = [
       name: "ethnicity",
       fullWidth: true,
     },
-    options: [],
+    options: [
+      { value: "hispanicorlatino", label: "Hispanic or Latino" },
+      { value: "nothispanicorlatino", label: "Not Hispanic or Latino" },
+    ],
     component: RHFSelect,
   },
   {
@@ -72,10 +78,13 @@ export const OriginalChildReferralData = [
     gridLength: 6,
     otherOptions: {
       label: "Ofstead Ethnicity",
-      name: "ofSteadEthnicity",
+      name: "ofsteadEthnicity",
       fullWidth: true,
     },
-    options: [],
+    options: [
+      { value: "hispanicorlatino", label: "Hispanic or Latino" },
+      { value: "nothispanicorlatino", label: "Not Hispanic or Latino" },
+    ],
     component: RHFSelect,
   },
   {
@@ -86,7 +95,7 @@ export const OriginalChildReferralData = [
       name: "religion",
       fullWidth: true,
     },
-    options: [],
+    options: [{ value: "Islam", label: "Islam" }],
     component: RHFSelect,
   },
   {
@@ -97,7 +106,7 @@ export const OriginalChildReferralData = [
       name: "nationality",
       fullWidth: true,
     },
-    options: [],
+    options: [{ value: "pakistani", label: "Pakistani" }],
     component: RHFSelect,
   },
   {
@@ -108,7 +117,7 @@ export const OriginalChildReferralData = [
       name: "immigrationStatus",
       fullWidth: true,
     },
-    options: [],
+    options: [{ value: "refugee", label: "Refugee" }],
     component: RHFSelect,
   },
   {
@@ -119,37 +128,10 @@ export const OriginalChildReferralData = [
       name: "language",
       fullWidth: true,
     },
-    options: [],
+    options: [{ value: "english", label: "English" }],
     component: RHFSelect,
   },
-  {
-    id: 12,
-    gridLength: 6,
-    otherOptions: {
-      label: "Child Physical Disability",
-      name: "childPhysicalDisability",
-      fullWidth: true,
-    },
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    component: RHFSelect,
-  },
-  {
-    id: 13,
-    gridLength: 6,
-    otherOptions: {
-      label: "Child Mental Health Status",
-      name: "childMentalHealthStatus",
-      fullWidth: true,
-    },
-    options: [
-      { value: "yes", label: "Yes" },
-      { value: "no", label: "No" },
-    ],
-    component: RHFSelect,
-  },
+
   {
     id: 14,
     gridLength: 6,
@@ -178,4 +160,96 @@ export const OriginalChildReferralData = [
     ],
     component: RHFSelect,
   },
+  {
+    id: 13,
+    otherOptions: {
+      label: "Child Mental Health Status",
+      name: "mentalHealthStatus",
+      options: ["Yes", "No"],
+      sx: { mb: 1 },
+    },
+    component: RHFRadioGroupWithLabel,
+    md: 12,
+  },
+  {
+    id: 17,
+    otherOptions: {
+      name: "mentalHealthDescription",
+      label: "Details Here",
+      multiline: true,
+      rows: 3,
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
+    toShowKey: "mentalHealthStatus",
+    toShow: "Yes",
+    component: RHFTextField,
+    md: 12,
+  },
+  {
+    id: 12,
+    otherOptions: {
+      label: "Child Physical Disability",
+      name: "childPhysicalDisability",
+      options: ["Yes", "No"],
+      sx: { mb: 1 },
+    },
+    component: RHFRadioGroupWithLabel,
+    md: 12,
+  },
+  {
+    id: 18,
+    otherOptions: {
+      name: "physicalDisabilityDescription",
+      label: "Details Here",
+      multiline: true,
+      rows: 3,
+      fullWidth: true,
+      sx: { mb: 4 },
+    },
+    toShowKey: "childPhysicalDisability",
+    toShow: "Yes",
+    component: RHFTextField,
+    md: 12,
+  },
 ];
+
+const todayDate = dayjs().format("MM/DD/YYYY");
+
+export const defaultValues = {
+  firstName: "",
+  middleName: "",
+  lastName: "",
+  dob: new Date(todayDate),
+  gender: "",
+  ethnicity: "",
+  ofsteadEthnicity: "",
+  religion: "",
+  nationality: "",
+  immigrationStatus: "",
+  language: "",
+  childPhysicalDisability: "No",
+  physicalDisabilityDescription:"",
+  mentalHealthStatus: "No",
+  mentalHealthDescription: "",
+  sibling: "",
+  adoptionConsideration: "",
+};
+
+export const viewOriginalChild = Yup.object().shape({
+  firstName: Yup.string().required("Required"),
+  middleName: Yup.string(),
+  lastName: Yup.string().required("Required"),
+  dob: Yup.date().required("Required"),
+  gender: Yup.string().required("Required"),
+  ethnicity: Yup.string().required("Required"),
+  ofsteadEthnicity: Yup.string().required("Required"),
+  religion: Yup.string().required("Required"),
+  nationality: Yup.string().required("Required"),
+  immigrationStatus: Yup.string().required("Required"),
+  language: Yup.string().required("Required"),
+  childPhysicalDisability: Yup.string().required("Required"),
+  mentalHealthStatus: Yup.string().required("Required"),
+  sibling: Yup.string().required("Required"),
+  adoptionConsideration: Yup.string().required("Required"),
+});
