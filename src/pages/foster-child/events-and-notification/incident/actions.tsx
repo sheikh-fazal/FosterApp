@@ -8,12 +8,10 @@ import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { enqueueSnackbar } from "notistack";
 import {
-  useCreateChildMedicationInfoDocumentMutation,
-  useDeleteChildMedicationInfoDocumentMutation,
-  useGetChildMedicationInfoDocumentQuery,
-} from "@root/services/foster-child/health-medical-history/child-medication-info/ChildMedicationInfoDocument";
-import useAuth from "@root/hooks/useAuth";
-import dayjs from "dayjs";
+  useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation,
+  useGetChildChronologyOfEventsUploadedDocumentsListQuery,
+  usePostChildChronologyOfEventsUploadedDocumentsMutation,
+} from "@root/services/foster-child/child-background-info/child-chronology-of-events/DocumentsAPI";
 import IncidentForm from "@root/sections/foster-child/events-and-notification/incident/IncidentForm";
 
 ChildIncidentInfoActions.getLayout = function getLayout(page: any) {
@@ -24,7 +22,7 @@ ChildIncidentInfoActions.getLayout = function getLayout(page: any) {
 
 export default function ChildIncidentInfoActions() {
   const Router: any = useRouter();
-  const { action, fosterChildId, ChildMedicationInfoId } = Router?.query;
+  const { action, fosterChildId, id, ChildMedicationInfoId } = Router?.query;
   const PAGE_TITLE = "Incident";
   const BREADCRUMBS = [
     {
@@ -44,65 +42,53 @@ export default function ChildIncidentInfoActions() {
     },
   ];
 
+  // upload documentation choronolgy
+  const [page, setPage] = useState(0);
   const [params, setParams] = useState("");
-  const {
-    data,
-    isLoading: isDocumentLoading,
-    isFetching,
-    isError: hasDocumentError,
-    isSuccess,
-    setPage,
-  }: any = useGetChildMedicationInfoDocumentQuery({
-    ChildMedicationInfoId,
-    params,
-  });
-  //child medication Upload Modal API
-  const [postDocuments] = useCreateChildMedicationInfoDocumentMutation();
-
-  //API For Delete Document List
-  const [deleteDocumentList] = useDeleteChildMedicationInfoDocumentMutation();
-
-  const documentUploadHandler = async (data: any) => {
-    const formData = new FormData();
-    formData.append("docName", data.docName);
-    formData.append("docType", data.documentType);
-    formData.append("date", dayjs(data.documentDate).format("DD/MM/YYYY"));
-    formData.append("uploadedBy", data.uploadedBy);
-    formData.append("password", data.password);
-    formData.append("docFile", data.chosenFile);
+  const { data, isError, isLoading, isFetching, isSuccess, setSearch }: any =
+    useGetChildChronologyOfEventsUploadedDocumentsListQuery({
+      limit: 10,
+      offset: page,
+      id: id,
+      params,
+    });
+  const [deleteUploadedDocument] =
+    useDeleteChildChronologyOfEventsUploadedDocumentByIdMutation();
+  const [postUploadedDocument] =
+    usePostChildChronologyOfEventsUploadedDocumentsMutation();
+  const deleteDocument = async (queryArg: any) => {
     try {
-      const res: any = await postDocuments({
-        params: {
-          childMedicationInfoId: ChildMedicationInfoId,
-        },
-        body: formData,
-      });
-      enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
+      await deleteUploadedDocument(queryArg);
+
+      enqueueSnackbar(`Document Delete Successfully!`, {
         variant: "success",
       });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    } catch (error) {
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
+    }
+  };
+  const uploadDocumentsHandler = async (postData: any) => {
+    const formData = new FormData();
+    formData.append("documentType", postData.documentType);
+    formData.append("documentDate", postData.documentDate);
+    formData.append("documentPassword", postData.password);
+    formData.append("file", postData.chosenFile);
+    formData.append("formName", "incidents_info");
+    formData.append("recordId", id);
+    try {
+      const res: any = await postUploadedDocument({
+        addDocumentCcRequestDto: formData,
+      }).unwrap();
+      enqueueSnackbar(res?.message ?? `Successfully!`, {
+        variant: "success",
+      });
+    } catch (error) {
+      console.log(error);
+
+      enqueueSnackbar(`Something went wrong`, { variant: "error" });
     }
   };
 
-  const deleteDocument = (id: any) => {
-    deleteDocumentList({
-      params: {
-        childMedicationInfoDocId: id,
-      },
-    })
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Deleted  Successfully", {
-          variant: "success",
-        });
-      })
-      .catch((error: any) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
-  };
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -111,33 +97,37 @@ export default function ChildIncidentInfoActions() {
         title={PAGE_TITLE}
       />
       <HorizaontalTabs tabsDataArray={["Incident", "Uploaded Documents"]}>
-        <IncidentForm
-          action={action}
-          fosterChildId={fosterChildId}
-          //   ChildMedicationInfoId={ChildMedicationInfoId}
-        />
+        <IncidentForm action={action} fosterChildId={fosterChildId} />
         <UploadDocuments
-          readOnly={action === "view" ? true : false}
-          tableData={data?.data?.child_medication_document}
-          isLoading={isDocumentLoading}
+          searchParam={(searchedText: string) => setParams(searchedText)}
+          tableData={data?.data?.foster_child_document}
+          isLoading={isLoading}
           isFetching={isFetching}
-          isError={hasDocumentError}
+          isError={isError}
           isSuccess={isSuccess}
           column={[
-            "docName",
-            "docType",
+            "documentOriginalName",
+            "documentType",
             "documentDate",
-            "uploadedBy",
-            "password",
+            "personUploaded",
+            "documentPassword",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
-          modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => {
-            setPage((page - 1) * 10);
+          // onDelete={}
+          onDelete={(data: any) => {
+            deleteDocument(data.id);
+          }}
+          modalData={(data: any) => uploadDocumentsHandler(data)}
+          onPageChange={(pageNo: any) => {
+            setPage((pageNo - 1) * 10);
+          }}
+          onChanged={(event: any) => {
+            setSearch(event.search);
           }}
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
-          onDelete={(data: any) => deleteDocument(data?.id)}
+          disabled={
+            !!id && (action === "add" || action === "edit") ? false : true
+          }
         />
       </HorizaontalTabs>
     </Box>

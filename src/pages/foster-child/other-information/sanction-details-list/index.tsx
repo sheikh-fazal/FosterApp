@@ -22,7 +22,6 @@ const BREADCRUMBS = (query: any) => [
 
 const PAGE_TITLE = "Sanction Details";
 
-////-----------------------------------------
 SanctionDetailsList.getLayout = function getLayout(page: any) {
   return <Layout title={PAGE_TITLE}>{page}</Layout>;
 };

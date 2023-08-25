@@ -12,7 +12,7 @@ SupervisingSocialWorker.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
 // export default function LaSocialWorker() {
-  export default function SupervisingSocialWorker() {
+export default function SupervisingSocialWorker() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
 
@@ -26,7 +26,6 @@ SupervisingSocialWorker.getLayout = function getLayout(page: any) {
       },
     },
     {
-      // name: "LA Social Worker List",
       name: "Supervising Social Worker List",
       href: "",
     },
@@ -43,8 +42,8 @@ SupervisingSocialWorker.getLayout = function getLayout(page: any) {
       <HorizaontalTabs
         tabsDataArray={["Active Social Worker", "Previous Social Worker"]}
       >
-        <ActiveSupervisingSocialWorkerTable />
-        <SupervisingPreviousSocialWorkerTable />
+        <ActiveSupervisingSocialWorkerTable fosterChildId={fosterChildId} />
+        <SupervisingPreviousSocialWorkerTable fosterChildId={fosterChildId} />
       </HorizaontalTabs>
     </Box>
   );

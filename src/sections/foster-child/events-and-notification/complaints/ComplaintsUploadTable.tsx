@@ -7,29 +7,41 @@ import dayjs from "dayjs";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import { enqueueSnackbar } from "notistack";
 import Link from "next/link";
-import { uploadDummyData } from ".";
 import ModelUploadDoc from "@root/components/modal/uploadDoc/modelUploadDoc";
-
-const ChildMedicationInfoUploadTable = () => {
-  const [modelOpen, setModelOpen] = React.useState(false);
-
+import { useTableParams } from "@root/hooks/useTableParams";
+import { useGetComplaintsDocumentslistQuery } from "@root/services/foster-child/events-and-notification/complaints/complaintsdocumentsApi";
+import useComplaintsFrom from "./useComplaintsFrom";
+const EmptyAarry: any = [];
+const ComplaintsUploadTable = (props: any) => {
+  const { action, fosterChildId, complaintsId } = props;
+  const [Search, setSearch] = React.useState("");
+  const { params, pageChangeHandler } = useTableParams();
+  const { onUploadSubmit, onDeleteHander, modelOpen, setModelOpen } =
+    useComplaintsFrom({
+      action: action,
+      fosterChildId: fosterChildId,
+      complaintsId: complaintsId,
+    });
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetComplaintsDocumentslistQuery({
+      params: {
+        recordId: complaintsId,
+        limit: 10,
+        offset: params?.offset,
+        search: Search,
+        fosterChildId: fosterChildId,
+      },
+    });
   const columns = [
     {
-      accessorFn: (row: any) => row.id,
-      id: "srNo",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Sr. No</span>,
-      isSortable: true,
-    },
-    {
-      accessorFn: (row: any) => row.documentName,
+      accessorFn: (row: any) => row.documentOriginalName,
       id: "documentName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.type,
+      accessorFn: (row: any) => row.documentType,
       id: "documentType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Document Type</span>,
@@ -45,14 +57,14 @@ const ChildMedicationInfoUploadTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.incidentId,
+      accessorFn: (row: any) => row.personUploaded,
       id: "personUploaded",
       cell: (info: any) => info.getValue(),
       header: () => <span>Person Uploaded</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.password,
+      accessorFn: (row: any) => row.documentPassword,
       id: "password",
       cell: (info: any) => info.getValue(),
       header: () => <span>Password</span>,
@@ -62,16 +74,16 @@ const ChildMedicationInfoUploadTable = () => {
       id: "actions",
       cell: (info: any) => (
         <Box sx={{ display: "flex", justifyContent: "center", gap: 0.5 }}>
-          <DeletePrompt />
-          <ModelUploadDoc
-            showActions={true}
-            isFetching={false}
-            action="edit"
-            onSubmit={(data: any) => {
-              console.log(data);
-            }}
+          <DeletePrompt
+            onDeleteClick={() => onDeleteHander(info.row.original.id)}
           />
-          <ModelUploadDoc showActions={true} action="view" isFetching={false} />
+
+          <ModelUploadDoc
+            defaultValues={info.row.original}
+            showActions={true}
+            action="view"
+            isFetching={false}
+          />
           <Link
             href={`${process.env.NEXT_PUBLIC_IMG_URL}${info.row.original.file}`}
             target="_blank"
@@ -91,11 +103,17 @@ const ChildMedicationInfoUploadTable = () => {
           title="Uploaded Documents"
           searchKey="search"
           onChanged={(e: any) => {
-            console.log(e.search);
+            setSearch(e.search);
           }}
           showAddBtn
           onAdd={() => {
-            setModelOpen(true);
+            if (complaintsId) {
+              setModelOpen(true);
+            } else {
+              enqueueSnackbar("Fill Complaint Form first ", {
+                variant: "error",
+              });
+            }
           }}
         />
       </Box>
@@ -104,23 +122,24 @@ const ChildMedicationInfoUploadTable = () => {
         modelOpen={modelOpen}
         setModelOpen={setModelOpen}
         isFetching={false}
+        onSubmit={(data: any) => onUploadSubmit(data)}
       />
       <CustomTable
-        data={uploadDummyData ?? []}
+        data={data?.data?.Documents ?? EmptyAarry}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
         isPagination={true}
-        showSerialNo={false}
-        // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-        // currentPage={incidentlist?.data?.meta?.page ?? 1}
-        // onPageChange={pageChangeHandler}
-        // onSortByChange={sortChangeHandler}
+        showSerialNo={true}
+        totalPages={data?.data?.meta?.pages ?? 0}
+        currentPage={data?.data.meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        //  onSortByChange={sortChangeHandler}
       />
     </>
   );
 };
 
-export default ChildMedicationInfoUploadTable;
+export default ComplaintsUploadTable;

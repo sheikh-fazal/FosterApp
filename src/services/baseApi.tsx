@@ -1,4 +1,4 @@
-// RTK Query
+  // RTK Query
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 // Store
 import { RootState } from "@root/redux/store";
@@ -81,6 +81,7 @@ export const TAGS = [
   "DIARY_RECORDING_DOCUMENTS",
   "OOHREPORT_LIST_TABLE",
   "REPORTS_DOCUMENTS",
+  "CHILD_REPORTS",
   "Child-holiday-prefrence",
   "Child-holiday-prefrence-document",
   "CHILD_EXCLUSION_INFO_LIST",
@@ -98,6 +99,9 @@ export const TAGS = [
   "ALLEGATION_INFO",
   "ALLEGATION_INFO_DOCUMENTS",
   "SANCTION_DETAILS_LIST",
+  "CHILD_REFERRAL",
+  "SANCTION_DETAILS_DOCUMENTS",
+  "CHILD_INCIDENT",
   "HEALTH_AND_SAFETY",
   "UNANNOUNCED_VISIT_LIST",
   "UNANNOUNCED_UPLOAD_DOCUMENTS",
@@ -107,7 +111,13 @@ export const TAGS = [
   "CARER_SUPERVISING-HOME_VISIT",
   "CARER_SUPERVISING-HOME_VISIT_DOCUMENTS",
   "ANNUAL_REVIEW_DOCUMENTS",
-  "VIEW_CHILD_OOH_REPORT"
+  "VIEW_CHILD_OOH_REPORT",
+  "IFA-PARTICIPATION-POLICY",
+  "OFSTED_NOTIFICATION",
+  "OFSTED_NOTIFICATION_DOCUMENTS",
+  "CHILD_DAY_LOG_EVENTS_REPORTS_INFO",
+  "COMPLAINT_DOCUMENTS_EVENTS",
+  "CHILD_IMMUNISATION_REPORTS"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

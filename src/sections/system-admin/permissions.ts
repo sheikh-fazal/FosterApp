@@ -21,7 +21,7 @@ export const data = {
         id: "fca.personal_info.initial_enquiry",
         name: "Initial Enquiry",
         permission: {
-          add: "fca.personal_info.initial_enquiry.add",
+          add: " .add",
           view: "fca.personal_info.initial_enquiry.view",
           edit: "fca.personal_info.initial_enquiry.edit",
           edit_own: "fca.personal_info.initial_enquiry.edit_own",

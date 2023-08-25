@@ -8,9 +8,14 @@ export const incidentsInfoApi: any = baseAPI.injectEndpoints({
       GetChildChronologyOfEventsIncidentsInfoListApiResponse,
       GetChildChronologyOfEventsIncidentsInfoListApiArg
     >({
-      query: (queryArg) => ({
+      query: (queryArg: any) => ({
         url: `/child-chronology-of-events/incidents-info/List`,
-        params: { limit: queryArg.limit, offset: queryArg.offset },
+        params: {
+          limit: queryArg.limit,
+          offset: queryArg.offset,
+          fosterChildId: queryArg.fosterChildId,
+          search: queryArg.search,
+        },
       }),
       providesTags: [TAG],
     }),

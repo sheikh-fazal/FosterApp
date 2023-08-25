@@ -1,56 +1,62 @@
-import dayjs from "dayjs";
-import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { defaultValues, viewOriginalChild } from ".";
+import { usePostChildProfileInfoMutation } from "@root/services/foster-child/referrals/child-referral/childReferralApi";
+import { useRouter } from "next/router";
 
 const useOrignalChildReferral = () => {
-  const todayDate = dayjs().format("MM/DD/YYYY");
+  const [postChildProfileData] = usePostChildProfileInfoMutation();
 
-  const defaultValues = {
-    firstName: "",
-    middleName:"",
-    lastName: "",
-    dateOfBirth: new Date(todayDate),
-    gender: "",
-    ethnicity: "",
-    ofSteadEthnicity: "",
-    religion: "",
-    nationality: "",
-    immigrationStatus: "",
-    language: "",
-    childPhysicalDisability:"",
-    childMentalHealthStatus:"",
-    sibling:"",
-    adoptionConsideration:""
-  };
+  const router = useRouter();
+  const fosterChildId = router?.query?.fosterChildId;
 
-  const viewOriginalChild = Yup.object().shape({
-    firstName: Yup.string().required("Required"), 
-    middleName: Yup.string().required("Required"), 
-    lastName: Yup.string().required("Required"),
-    dateOfBirth: Yup.date().required("Required"),
-    gender: Yup.string().required("Required"),
-    ethnicity: Yup.string().required("Required"),
-    ofSteadEthnicity: Yup.string().required("Required"),
-    religion: Yup.string().required("Required"),
-    nationality: Yup.string().required("Required"),
-    immigrationStatus: Yup.string().required("Required"),
-    language: Yup.string().required("Required"),
-    childPhysicalDisability: Yup.string().required("Required"),
-    childMentalHealthStatus: Yup.string().required("Required"),
-    sibling: Yup.string().required("Required"),
-    adoptionConsideration: Yup.string().required("Required"),
-  });
   const methods: any = useForm({
-    resolver: yupResolver(viewOriginalChild),
+    // resolver: yupResolver(viewOriginalChild),
     defaultValues,
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, watch } = methods;
 
-  const onSubmit = () => {};
+  const { mentalHealthStatus } = watch({
+    name: "mentalHealthStatus",
+  });
+  const { childPhysicalDisability } = watch({
+    name: "childPhysicalDisability",
+  });
+  const { adoptionConsideration } = watch({
+    name: "adoptionConsideration",
+  });
+  const { sibling } = watch({
+    name: "sibling",
+  });
 
-  return { methods, onSubmit, handleSubmit };
+  const onSubmit = async (data: any) => {
+    const updatedData = {
+      ...data,
+      mentalHealthStatus: mentalHealthStatus === "Yes" ? true : false,
+      childPhysicalDisability: childPhysicalDisability === "Yes" ? true : false,
+      adoptionConsideration: adoptionConsideration === "yes" ? true : false,
+      sibling: sibling === "yes" ? true : false,
+    };
+
+    console.log(updatedData);
+
+    try {
+      const res = await postChildProfileData({ updatedData, fosterChildId });
+
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return {
+    methods,
+    onSubmit,
+    handleSubmit,
+    mentalHealthStatus,
+    childPhysicalDisability,
+  };
 };
 
 export default useOrignalChildReferral;

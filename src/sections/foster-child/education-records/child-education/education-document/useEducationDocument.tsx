@@ -40,7 +40,7 @@ export const useEducationDocument = () => {
     });
   console.log("data", data);
 
-  const submitInitialHomeVisitDocument = async (data: any) => {
+  const submitEducationInfoDocument = async (data: any) => {
     if (!!!query?.educationInfoId) {
       enqueueSnackbar("Please submit the Education Info form first", { variant: "error" });
       return;
@@ -98,7 +98,7 @@ export const useEducationDocument = () => {
     isSuccess,
     user,
     isFetching,
-    submitInitialHomeVisitDocument,
+    submitEducationInfoDocument,
     query,
     onDeleteConfirm
   };

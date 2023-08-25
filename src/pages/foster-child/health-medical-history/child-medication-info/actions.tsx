@@ -13,7 +13,6 @@ import {
   useDeleteChildMedicationInfoDocumentMutation,
   useGetChildMedicationInfoDocumentQuery,
 } from "@root/services/foster-child/health-medical-history/child-medication-info/ChildMedicationInfoDocument";
-import useAuth from "@root/hooks/useAuth";
 import dayjs from "dayjs";
 
 ChildMedicationInfoActions.getLayout = function getLayout(page: any) {
@@ -64,25 +63,27 @@ export default function ChildMedicationInfoActions() {
 
   const documentUploadHandler = async (data: any) => {
     const formData = new FormData();
-    formData.append("docName", data.docName);
     formData.append("docType", data.documentType);
     formData.append("date", dayjs(data.documentDate).format("DD/MM/YYYY"));
-    formData.append("uploadedBy", data.uploadedBy);
     formData.append("password", data.password);
     formData.append("docFile", data.chosenFile);
-    try {
-      const res: any = await postDocuments({
-        params: {
-          childMedicationInfoId: ChildMedicationInfoId,
-        },
-        body: formData,
-      });
-      enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
-        variant: "success",
-      });
-    } catch (error: any) {
-      const errMsg = error?.data?.message;
-      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    if (ChildMedicationInfoId) {
+      try {
+        const res: any = await postDocuments({
+          params: {
+            childMedicationInfoId: ChildMedicationInfoId,
+          },
+          body: formData,
+        });
+        enqueueSnackbar(res?.message ?? "Details Submitted Successfully", {
+          variant: "success",
+        });
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
+    } else {
+      enqueueSnackbar("fill Child Medication form first", { variant: "error" });
     }
   };
 
@@ -103,6 +104,8 @@ export default function ChildMedicationInfoActions() {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
+  console.log(data?.data?.child_medication_document);
+
   return (
     <Box>
       <TitleWithBreadcrumbLinks
@@ -137,7 +140,6 @@ export default function ChildMedicationInfoActions() {
           onPageChange={(page: any) => {
             setPage((page - 1) * 10);
           }}
-          
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onDelete={(data: any) => deleteDocument(data?.id)}

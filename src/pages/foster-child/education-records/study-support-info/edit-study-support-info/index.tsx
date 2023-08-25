@@ -24,15 +24,16 @@ export default function EditStudySupportInfo() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
   const formData = new FormData();
+  const Router: any = useRouter();
+  const { fosterChildId, id } = Router.query;
 
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId :id,
   };
 
-  const Router: any = useRouter();
-  const { fosterChildId, id } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -64,8 +65,6 @@ export default function EditStudySupportInfo() {
   const metaData: any = documentData?.data?.meta;
 
   const documentUploadHandler = (data: any) => {
-    // formData.append("date", '12/12/2000');
-    // formData.append("uploadedBy", "Mughal");
     formData.append("fosterChildId", fosterChildId);
     formData.append("formName", "STUDY_SUPPORT_INFO");
     formData.append("recordId", id);
@@ -92,10 +91,8 @@ export default function EditStudySupportInfo() {
         <StudySupportInfoForm />
         <UploadDocuments
           onDelete={(row: any) => {
-            console.log(row.id);
             deleteData(row.id);
           }}
-          // readOnly={true}
           searchParam={(searchedText: any) =>
             setSearchHandle(searchedText.search)
           }

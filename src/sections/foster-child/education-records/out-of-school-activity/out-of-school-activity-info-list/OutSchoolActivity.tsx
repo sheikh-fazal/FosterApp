@@ -3,7 +3,6 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import DeleteModel from "@root/components/modal/DeleteModel";
-import { DummyChildExclusionData } from ".";
 import useOutSchoolActivityList from "./useOutSchoolActivityList";
 
 export const OutSchoolActivityList = () => {
@@ -15,19 +14,20 @@ export const OutSchoolActivityList = () => {
     tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
-    trainingProfileId,
+    outOfSchoolActivityId,
     closeDeleteProfile,
-    deleteTrainingProfile,
+    deleteOutOfSchoolActivityId,
     isSuccess,
     isLoading,
     isFetching,
     isError,
+    fosterChildId,
   } = useOutSchoolActivityList();
   return (
     <>
       <DeleteModel
-        open={trainingProfileId}
-        onDeleteClick={deleteTrainingProfile}
+        open={outOfSchoolActivityId}
+        onDeleteClick={deleteOutOfSchoolActivityId}
         handleClose={closeDeleteProfile}
       />
 
@@ -39,21 +39,23 @@ export const OutSchoolActivityList = () => {
           searchKey="search"
           onAdd={() => {
             router.push(
-              "/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info"
+              `/foster-child/education-records/out-of-school-activity/new-out-of-school-activity-info?${fosterChildId}`
             );
           }}
           onChanged={headerChangeHandler}
         />
         <CustomTable
           columns={columnsChildExclusionInfoTableFuntion}
-          data={data?.data}
+          data={data?.data?.outOfSchoolActivity}
           onPageChange={pageChangeHandler}
           onSortByChange={sortChangeHandler}
           isSuccess={isSuccess}
           isError={isError}
           isFetching={isFetching}
           isLoading={isLoading}
-          isPagination={false}
+          isPagination={true}
+          totalPages={data?.data?.meta?.pages}
+          currentPage={data?.data?.meta?.page}
         />
       </Card>
     </>

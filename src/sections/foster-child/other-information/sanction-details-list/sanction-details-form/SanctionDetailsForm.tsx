@@ -1,7 +1,5 @@
-// @mui
 import { Grid, Typography,} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-// components
 import { FormProvider } from "@root/components/hook-form";
 import { useSanctionDetailsForm } from "./useSanctionDetailsForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
