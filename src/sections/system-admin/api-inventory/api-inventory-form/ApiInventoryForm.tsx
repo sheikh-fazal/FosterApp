@@ -1,16 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import { Button, Card, Grid, Typography } from "@mui/material";
+import { Button, Card, Grid, Typography, useTheme } from "@mui/material";
+import { useInventoryTableForm } from "./useApiInventoryForm";
 import { FormProvider } from "@root/components/hook-form";
-import { useInventoryTableForm } from "./useInventoryTableForm";
+import Link from "next/link";
+import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
-const InventoryTableForm = ({ disabled }: any) => {
-  const { methods, FormData, handleSubmit, onSubmit } = useInventoryTableForm();
+const ApiInventoryForm = () => {
+  const { methods, FormData, handleSubmit, onSubmit, isSubmitting, action, isLoading } =
+    useInventoryTableForm();
+  const theme: any = useTheme();
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Card sx={{ p: 2 }}>
-      <Typography sx={(theme) => style.title(theme)}>
-        API Inventory
-      </Typography>
+      <Typography sx={(theme) => style.title(theme)}>API Inventory</Typography>
 
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
@@ -19,7 +21,7 @@ const InventoryTableForm = ({ disabled }: any) => {
               <item.component
                 fullWidth
                 {...item.componentProps}
-                disabled={disabled}
+                disabled={action === "view"}
                 size={"small"}
               >
                 {item?.heading}
@@ -27,22 +29,22 @@ const InventoryTableForm = ({ disabled }: any) => {
             </Grid>
           ))}
 
-          <Grid item xs={12}>
-            {!disabled && (
-              <Button
-                disabled={disabled}
+          <Grid item xs={12} sx={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+            {action !== "view" && (
+              <LoadingButton
                 type="submit"
+                loading={isSubmitting}
+                sx={{
+                  bgcolor: theme.palette.primary.main,
+                  "&:hover": { bgcolor: theme.palette.primary.main },
+                }}
                 variant="contained"
-                sx={{ mr: 2 }}
               >
                 Submit
-              </Button>
+              </LoadingButton>
             )}
 
-            <Link
-              href={"/system-admin/api-inventory"}
-              style={{ textDecoration: "none" }}
-            >
+            <Link href={"/system-admin/api-inventory"} style={{ textDecoration: "none" }}>
               <Button
                 type="button"
                 variant="contained"
@@ -61,12 +63,12 @@ const InventoryTableForm = ({ disabled }: any) => {
   );
 };
 
-export default InventoryTableForm;
+export default ApiInventoryForm;
 const style = {
   title: (theme: any) => ({
     color: theme.palette.primary.main,
     fontSize: "16px",
     fontWeight: 600,
-    margin:"10px 0"
+    margin: "10px 0",
   }),
 };

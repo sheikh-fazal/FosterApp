@@ -370,7 +370,7 @@ export const ChildIncidentsReportFormFields = [
   },
   {
     id: 34,
-    gridLength: 6,
+    gridLength: 12,
     otherOptions: {
       label: "Has Discussion with LADO taken place?",
       name: "discucssionWithLADOTaken",

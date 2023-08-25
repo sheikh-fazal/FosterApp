@@ -1,8 +1,8 @@
 import React from "react";
-import { useApliInventoryDisableTable } from "./useApliInventoryDisableTable";
 import CustomTable from "@root/components/Table/CustomTable";
+import { useApiInventoryTable } from "./useApiInventoryTable";
 
-const ApliInventoryDisableTable = () => {
+const ApiInventoryTable = () => {
   const {
     columns,
     data,
@@ -12,11 +12,12 @@ const ApliInventoryDisableTable = () => {
     isFetching,
     pageChangeHandler,
     sortChangeHandler,
-  } = useApliInventoryDisableTable();
+  } = useApiInventoryTable();
+
   return (
     <>
       <CustomTable
-        data={data?.data?.disabled}
+        data={data?.data?.active}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}
@@ -32,4 +33,4 @@ const ApliInventoryDisableTable = () => {
   );
 };
 
-export default ApliInventoryDisableTable;
+export default ApiInventoryTable;
