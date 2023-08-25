@@ -1,4 +1,4 @@
-// RTK Query
+  // RTK Query
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 // Store
 import { RootState } from "@root/redux/store";
@@ -113,6 +113,8 @@ export const TAGS = [
   "CHILD_DAY_LOG_EVENTS_REPORTS_INFO",
   "KIDIEE_SAVING",
   "MONEY_ASSESSMENT_SKILL",
+  "COMPLAINT_DOCUMENTS_EVENTS",
+  "CHILD_IMMUNISATION_REPORTS"
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

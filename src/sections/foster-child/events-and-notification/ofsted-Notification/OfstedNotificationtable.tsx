@@ -123,7 +123,9 @@ const OfstedNotificationtable = (props: any) => {
     pageChangeHandler,
     setSearch,
     sortChangeHandler,
-  } = useOfstednotificationTable();
+  } = useOfstednotificationTable({
+    fosterChildId: fosterChildId,
+  });
 
   return (
     <Box>
@@ -149,7 +151,7 @@ const OfstedNotificationtable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={OfstedNotificationdata?.data.en_ofsted_notification ?? []}
+                data={OfstedNotificationdata?.data?.notification ?? []}
                 columns={columns}
                 isLoading={OfstedNotificationisLoading}
                 isFetching={OfstedNotificationisFetching}

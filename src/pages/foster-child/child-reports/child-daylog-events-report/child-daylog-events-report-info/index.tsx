@@ -3,26 +3,24 @@ import Layout from "@root/layouts";
 import HomeIcon from "@mui/icons-material/Home";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
-import AllegationInfoTabs from "@root/sections/foster-child/events-and-notification/allegation/allegation-info/allegation-info-tabs/AllegationInfoTabs";
-import ChildDaylogEventsReportInfo from "@root/sections/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info/child-daylog-events-report-info/ChildDaylogEventsReportInfo";
 import ChildDaylogEventsReportInfoTabs from "@root/sections/foster-child/child-reports/child-daylog-events-report/child-daylog-events-report-info/child-daylog-events-report-info-card/ChildDaylogEventsReportInfoCard";
 
 // ----------------------------------------------------------------------
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "Allegation List",
+    name: "Child Reports List",
     href: !!query?.fosterChildId
-      ? `/foster-child/events-and-notification/allegation?fosterChildId=${query?.fosterChildId}`
+      ? `/foster-child/child-reports/child-daylog-events-report?fosterChildId=${query?.fosterChildId}`
       : "/foster-child",
   },
   {
-    name: "Child Report List",
+    name: "Child Report",
     href: "",
   },
 ];
 
-const PAGE_TITLE = "DAY LOG EVENTS REPORTS";
+const PAGE_TITLE = " VIEW DAY LOG EVENTS REPORTS";
 
 // ----------------------------------------------------------------------
 
