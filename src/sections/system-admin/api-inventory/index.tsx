@@ -1,5 +1,6 @@
+import ApiInventoryTable from "./api-inventory-active-table/ApiInventoryTable";
 import ApliInventoryDisableTable from "./api-inventory-disable-table/ApliInventoryDisableTable";
-import ApiInventoryTable from "./api-inventory-table/ApiInventoryTable";
+
 
 export const accordianData = [
   {

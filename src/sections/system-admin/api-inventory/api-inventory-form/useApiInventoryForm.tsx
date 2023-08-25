@@ -1,31 +1,26 @@
-import { useTheme } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { FormData, defaultValues, formSchema, formatters } from ".";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
-import { defaultValues, formSchema, formatters } from "./ChildIncidentsReportData";
 import {
-  useLazyGetChildIncidentsReportQuery,
-  usePatchChildIncidentsReportMutation,
-  usePostChildIncidentsReportMutation,
-} from "@root/services/foster-child/child-records/ChildIncidentsReportsAPI";
+  useLazyGetApiInventoryByIdQuery,
+  usePutApiInventoryMutation,
+  usePostApiInventoryMutation,
+} from "@root/services/system-admin/ApiInventoryAPI";
+import { useState } from "react";
 
-export const useChildIncidentsReportForm = () => {
+export const useInventoryTableForm = () => {
   const router = useRouter();
-  const { action, id, fosterChildId } = router.query;
-  const theme: any = useTheme();
+  const { action, id } = router.query;
+  const [getApiInventoryById] = useLazyGetApiInventoryByIdQuery();
+  const [postApiInventory] = usePostApiInventoryMutation();
+  const [putApiInventory] = usePutApiInventoryMutation();
   const [isLoading, setIsLoading] = useState(true);
-  const [isFetching, setIsFetching] = useState(false);
-
-  const [getChildIncidentReport] = useLazyGetChildIncidentsReportQuery();
-  const [postChildIncidentReport] = usePostChildIncidentsReportMutation({});
-  const [editChildIncidentReport] = usePatchChildIncidentsReportMutation();
-
   const getDefaultValue = async () => {
-    if (action === "view" || action === "edit") {
-      const { data, isError } = await getChildIncidentReport({ incidentId: id });
+    if (action === "edit" || action === "view") {
+      const { data, isError } = await getApiInventoryById({ apiInventoryId: id });
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
@@ -45,69 +40,60 @@ export const useChildIncidentsReportForm = () => {
       return defaultValues;
     }
   };
-  const methods: any = useForm({
+  const methods = useForm({
     resolver: yupResolver(formSchema),
     defaultValues: getDefaultValue,
   });
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
-
-  //OnSubmit Function
   const onSubmit = async (data: any) => {
     if (action === "add") {
-      setIsFetching(true);
-      postChildIncidentReport({ formData: { ...data }, fosterChildId })
+      
+      postApiInventory({ formData: { ...data } })
         .unwrap()
         .then((res: any) => {
-          setIsFetching(false);
+          
           enqueueSnackbar("Information Added Successfully", {
             variant: "success",
           });
           router.push({
-            pathname: "/foster-child/child-reports/child-incidents-report/form",
-            query: { action: "edit", id: `${res?.data.id}`, fosterChildId },
+            pathname: "/system-admin/api-inventory",
           });
         })
         .catch((error: any) => {
-          setIsFetching(false);
+          
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
         });
     } else if (action === "edit") {
-      setIsFetching(true);
-
-      editChildIncidentReport({ formData: { ...data }, incidentId: id })
+     
+      putApiInventory({ formData: { ...data, id } })
         .unwrap()
         .then((res: any) => {
           enqueueSnackbar("Information Edited Successfully", {
             variant: "success",
           });
-          setIsFetching(false);
+          router.push({
+            pathname: "/system-admin/api-inventory",
+          });
         })
         .catch((error: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          setIsFetching(false);
         });
     } else {
       return null;
     }
   };
-  return {
-    router,
-    onSubmit,
-    isLoading,
-    getDefaultValue,
-    theme,
+  const {
     handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+  return {
     methods,
-    isFetching,
+    FormData,
+    handleSubmit,
     isSubmitting,
-    action,
-    id,
-    fosterChildId,
+    onSubmit,
+    action,isLoading
   };
 };

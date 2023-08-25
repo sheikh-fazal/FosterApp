@@ -1,26 +1,26 @@
+import React, { useRef } from "react";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
-
 import { Box, Switch } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import { useTheme } from "@mui/material";
-import { useTableParams } from "@root/hooks/useTableParams";
-import { enqueueSnackbar } from "notistack";
-import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import {
   useDeleteApiInventoryMutation,
   useGetApiInventoryQuery,
   usePutApiInventoryChangeStatusMutation,
 } from "@root/services/system-admin/ApiInventoryAPI";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import { enqueueSnackbar } from "notistack";
+import { useTableParams } from "@root/hooks/useTableParams";
 
-export const useApliInventoryDisableTable = () => {
+export const useApiInventoryTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const theme = useTheme();
+  const { pageChangeHandler, sortChangeHandler } = useTableParams();
   const { data, isFetching, isLoading, isError, isSuccess } = useGetApiInventoryQuery();
   const [deleteList] = useDeleteApiInventoryMutation();
-  const { pageChangeHandler, sortChangeHandler } = useTableParams();
   const [changeStatusOfApiInventory] = usePutApiInventoryChangeStatusMutation();
+
   const listDeleteHandler = (id: any) => {
     deleteList({ apiInventoryId: id })
       .unwrap()
@@ -80,12 +80,13 @@ export const useApliInventoryDisableTable = () => {
           inputProps={{ "aria-label": "Switch demo" }}
           onChange={() => {
             changeStatusOfApiInventory({
-              formData: { id: info?.row?.original?.id, status: "active" },
+              formData: { id: info?.row?.original?.id, status: "disabled" },
             });
             enqueueSnackbar("Status Changed Successfully", {
               variant: "success",
             });
           }}
+          defaultChecked
         />
       ),
       header: () => <span>Enable/Disable</span>,
@@ -96,11 +97,11 @@ export const useApliInventoryDisableTable = () => {
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
             size="small"
-            type="view"
+            type="edit"
             onClicked={() =>
               router.push({
                 pathname: "/system-admin/api-inventory/form",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: { action: "edit", id: info?.row?.original?.id },
               })
             }
           />
@@ -112,6 +113,7 @@ export const useApliInventoryDisableTable = () => {
       isSortable: false,
     },
   ];
+
   return {
     tableHeaderRefTwo,
     router,
