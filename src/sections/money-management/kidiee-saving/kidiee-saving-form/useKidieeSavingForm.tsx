@@ -1,71 +1,97 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { defaultValueskidieeSaving, kidieeSavingtValidation } from ".";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
-import { kidieeSavingtValidation } from ".";
+import {
+  usePatchKidieeSavingMutation,
+  usePostKidieeSavingMutation,
+} from "@root/services/money-management/kidiee-saving/KidieeSavingAPI";
+import useAuth from "@root/hooks/useAuth";
 
 export const useKidieeSavingForm = (props: any) => {
   const router = useRouter();
-  console.log(router, "my router dfssgdfgdsgsdfg")
+  console.log(router, "router?.query");
+
+  const { user }: any = useAuth();
+
+  const fosterChildId = user?.userId;
+
   const { disabled, defaultValues } = props;
+  console.log("defaultValues", defaultValues);
 
   const methods: any = useForm({
-    resolver: yupResolver(kidieeSavingtValidation), 
-    defaultValues: defaultValues,
+    resolver: yupResolver(kidieeSavingtValidation),
+    defaultValues: defaultValues ?? defaultValueskidieeSaving,
   });
 
   const {
     handleSubmit,
-    formState: { errors, isSubmitting, isDirty },
+    formState: { errors, isSubmitting, ioisDirty },
   } = methods;
 
-  // const [postEhcpClaDocumentationList] =
-  //   usePostEhcpClaDocumentationListMutation();
-  // const [patchEhcpClaDocumentationList] =
-  //   usePatchEHCPClaDocumentationListMutation();
+  const [postKidieeSaving] = usePostKidieeSavingMutation();
+  const [patchKidieeSaving] = usePatchKidieeSavingMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data)
-    if (!!router?.query?.cla_document_id) {
-      return patchEHCPHanlder(data);
+    console.log(data);
+
+    if (!!router?.query?.kidiee_saving_id) {
+      return patchKidieeSavingHandler(data);
     }
-    const updatedData = { ...data, document: "Education, Health, Care Plan Document" };
-    
-    // Post EHCP API of CLA Documentation
-    // try {
-    //   // const res: any = await postEhcpClaDocumentationList(updatedData).unwrap();
-    //   console.log(res);
-    //   router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
-    //   enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
-    //     variant: "success",
-    //   });
-    // } catch (error: any) {
-    //   const errMsg = error?.data?.message;
-    //   enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    // }
+
+    // Post API of Kidiee Saving
+    try {
+      const res: any = await postKidieeSaving({
+        data,
+        fosterChildId,
+      }).unwrap();
+      console.log(res);
+
+      router.push(
+        `/money-management/kidiee-saving`
+      );
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
-  // Patch EHCP API CLA of Documentation
-  const patchEHCPHanlder = async (data: any) => {
-    const patchData = { body: data, id: router?.query?.cla_document_id };
+
+  // Patch API of Kidiee Saving
+  const patchKidieeSavingHandler = async (data: any) => {
+    const patchData = { body: data, id: router?.query?.kidiee_saving_id };
     console.log(patchData);
 
-    // try {
-    //   // const res: any = await patchEhcpClaDocumentationList(patchData).unwrap();
-    //   console.log(res);
-    //   router.push(`/foster-child/child-background-info/cla-documentation?fosterChildId=${router?.query?.fosterChildId}`);
-    //   enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
-    //     variant: "success",
-    //   });
-    // } catch (error: any) {
-    //   const errMsg = error?.data?.message;
-    //   enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-    // }
+    try {
+      const res: any = await patchKidieeSaving(patchData).unwrap();
+      console.log(res);
+      if (
+        router?.asPath.split("/").pop() === "view" ||
+        router?.asPath.split("/").pop() === "edit"
+      ) {
+        router.push(`/money-management/kidiee-saving`);
+      } else {
+        router.push(
+          `/money-management/kidiee-saving/add-kidiee-saving`
+        );
+      }
+      enqueueSnackbar(res?.message ?? `Details Updated Successfully`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+    }
   };
+
   return {
     methods,
+    disabled,
     handleSubmit,
     onSubmit,
-    disabled,
     router,
     isSubmitting,
   };

@@ -8,40 +8,39 @@ import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { KidieeSavingTable } from "@root/sections/money-management/kidiee-saving/KidieeSavingTable";
 
-
 // ----------------------------------------------------------------------
 // Constants
 const BREADCRUMBS = (query: any) => [
-    {
-      icon: <HomeIcon />,
-      name: "Money Management",
-      href: `/money-management`,
-    },
-    {
-      name: "All",
-      href: "",
-    },
-  ];
+  {
+    icon: <HomeIcon />,
+    name: "Money Management",
+    href: `/money-management`,
+  },
+  {
+    name: "All",
+    href: "",
+  },
+];
 
-  const PAGE_TITLE = "Kidiee Saving";
+const PAGE_TITLE = "Kidiee Saving";
 
- KidieeSavingList.getLayout = function getLayout(page: any) {
-    return <Layout>{page}</Layout>;
-  };
+KidieeSavingList.getLayout = function getLayout(page: any) {
+  return <Layout>{page}</Layout>;
+};
 
-  export default function KidieeSavingList() {
-    const router = useRouter();
-  
-    return (
-      <Page title={PAGE_TITLE}>
-        <TitleWithBreadcrumbLinks
-          sx={{ mb: 2 }}
-          breadcrumbs={BREADCRUMBS(router?.query)}
-          title={PAGE_TITLE}
-        />
-        <Paper elevation={3}>
-            <KidieeSavingTable />
-        </Paper>
-      </Page>
-    );
-  }
+export default function KidieeSavingList() {
+  const router = useRouter();
+
+  return (
+    <Page title={PAGE_TITLE}>
+      <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
+      <Paper elevation={3}>
+        <KidieeSavingTable  />
+      </Paper>
+    </Page>
+  );
+}
