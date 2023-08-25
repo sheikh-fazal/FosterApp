@@ -1,52 +1,57 @@
 import React from "react";
-import { Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
+import { useWorkExperienceTable } from "./useWorkExperienceTable";
+import dayjs from "dayjs";
 
 const WorkExperienceTable = () => {
-  const theme: any = useTheme();
-  const [data, setData] = React.useState([
-    {
-      employeeName: "John Christ",
-      position: "Foster",
-      experience: "Coodinate Patient",
-      leavingReason: "Willing to Learn",
-      startDate: "09/04/2007",
-    },
-  ]);
+  const {
+    experiences,
+    experienceListIsloading,
+    experiencelistIsfetching,
+    experienceListError,
+    experienceListIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    theme,
+  } = useWorkExperienceTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.employeeName,
+      accessorFn: (row: any) => row.employerName ?? "-",
       id: "employeeName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Name of Employer</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.position,
+      accessorFn: (row: any) => row.position ?? "-",
       id: "position",
       cell: (info: any) => info.getValue(),
       header: () => <span>Position</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.experience,
+      accessorFn: (row: any) => row.experience ?? "-",
       id: "experience",
       cell: (info: any) => info.getValue(),
       header: () => <span>Experience</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.leavingReason,
+      accessorFn: (row: any) => row.leavingReason ?? "-",
       id: "leavingReason",
       cell: (info: any) => info.getValue(),
       header: () => <span>Reason for Leaving</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.startDate,
+      accessorFn: (row: any) => row.startDate ?? "-",
       id: "startDate",
-      cell: (info: any) => info.getValue(),
+      cell: (info: any) => {
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
+      },
       header: () => <span>Start Date</span>,
       isSortable: true,
     },
@@ -62,17 +67,17 @@ const WorkExperienceTable = () => {
         Work Experience
       </Typography>
       <CustomTable
-        data={data}
+        data={experiences}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={experienceListIsloading}
+        isFetching={experiencelistIsfetching}
+        isError={experienceListError}
+        isSuccess={experienceListIsSuccess}
+        showSerialNo={true}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );
