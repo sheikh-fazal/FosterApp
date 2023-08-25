@@ -5,7 +5,6 @@ import React from "react";
 import { ActiveSupervisingSocialWorkerFormData } from ".";
 import { LoadingButton } from "@mui/lab";
 import Link from "next/link";
-// import { useSocialWorkerForm } from "./useSocialWorkerForm";
 import { useSupervisingSocialWorkerForm } from "./useSupervisingSocialWorkerForm";
 
 export default function SupervisingSocialWorkerForm(props: any) {
@@ -30,7 +29,7 @@ export default function SupervisingSocialWorkerForm(props: any) {
           color={theme.palette.primary.main}
           sx={{ my: 2 }}
         >
-          {router?.query?.worker} LA Social Worker Contact Details
+          {router?.query?.worker} Supervising Social Worker Contact Details
         </Typography>
         <Grid container spacing={4}>
           {ActiveSupervisingSocialWorkerFormData?.map((item) => (
@@ -64,7 +63,7 @@ export default function SupervisingSocialWorkerForm(props: any) {
               </LoadingButton>
             )}
             <Link
-              href={`/foster-child/social-worker-details/la-social-worker?fosterChildId=${router?.query?.fosterChildId}`}
+              href={`/foster-child/social-worker-details/supervising-social-worker?fosterChildId=${router?.query?.fosterChildId}`}
               style={{ textDecoration: "none" }}
             >
               <Button

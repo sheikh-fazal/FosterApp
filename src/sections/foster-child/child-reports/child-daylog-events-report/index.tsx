@@ -77,6 +77,8 @@ export const childDaylogEventsReportInfoTableColumnsFunction = (
               })
             }
           />
+          <TableAction type="print" onClicked={() => window.print()} />
+          <TableAction type="share" onClicked={() => console.log("shared")} />
         </Box>
       );
     },

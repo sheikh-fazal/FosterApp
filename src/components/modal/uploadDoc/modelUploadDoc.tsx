@@ -87,7 +87,7 @@ const Form = (props: any) => {
         }
       }
       setIsloading(false);
-      console.log(resdata);
+     
       return resdata;
     } else {
       setIsloading(false);

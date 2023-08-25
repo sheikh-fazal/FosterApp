@@ -5,21 +5,28 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
-import { dummy } from ".";
+import useOfstednotificationTable from "./useOfstednotificationTable";
+import dayjs from "dayjs";
+import useOfstedNotificationFrom from "./useOfstedNotificationFrom";
 const activepath =
   "/foster-child/events-and-notification/ofsted-notification/actions";
 const OfstedNotificationtable = (props: any) => {
   const { fosterChildId } = props;
+  const { deleteHander } = useOfstedNotificationFrom({
+    fosterChildId: fosterChildId,
+  });
+
   const columns = [
     {
-      accessorFn: (row: any) => row.DateofIncident,
+      accessorFn: (row: any) => row.dateOfIncident,
       id: "DateofIncident",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) =>
+        dayjs(info.getValue()).format("YYYY-MM-DD, hh:mm") ?? "-",
       header: () => <span>Date of incident/Time</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.Status,
+      accessorFn: (row: any) => row.status,
       id: "Status",
       cell: (info: any) => (
         <Box
@@ -30,7 +37,7 @@ const OfstedNotificationtable = (props: any) => {
           gap={1}
         >
           {info.getValue() ?? "-"}
-          <Box
+          {/* <Box
             display={"flex"}
             justifyContent={"center"}
             alignItems={"center"}
@@ -41,21 +48,21 @@ const OfstedNotificationtable = (props: any) => {
             height={30}
           >
             Draft
-          </Box>
+          </Box> */}
         </Box>
       ),
       header: () => <span>Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dateofDeath,
+      accessorFn: (row: any) => row.dateOfDeath,
       id: "dateofDeath",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("YYYY-MM-DD") ?? "-",
       header: () => <span>Date of Death</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.Location,
+      accessorFn: (row: any) => row.location,
       id: "Location",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Location</span>,
@@ -67,7 +74,9 @@ const OfstedNotificationtable = (props: any) => {
       cell: (info: any) => {
         return (
           <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -77,7 +86,7 @@ const OfstedNotificationtable = (props: any) => {
                   pathname: activepath,
                   query: {
                     action: "edit",
-                    OfstedNotificationID: "",
+                    OfstedNotificationID: info.row.original.id,
                     fosterChildId: fosterChildId,
                   },
                 });
@@ -91,7 +100,7 @@ const OfstedNotificationtable = (props: any) => {
                   pathname: activepath,
                   query: {
                     action: "view",
-                    OfstedNotificationID: "",
+                    OfstedNotificationID: info.row.original.id,
                     fosterChildId: fosterChildId,
                   },
                 });
@@ -104,6 +113,20 @@ const OfstedNotificationtable = (props: any) => {
       isSortable: false,
     },
   ];
+  const {
+    OfstedNotificationdata,
+    OfstedNotificationIserror,
+    OfstedNotificationisLoading,
+    OfstedNotificationisFetching,
+    OfstedNotificationisSuccess,
+    headerChangeHandler,
+    pageChangeHandler,
+    setSearch,
+    sortChangeHandler,
+  } = useOfstednotificationTable({
+    fosterChildId: fosterChildId,
+  });
+
   return (
     <Box>
       <Grid container>
@@ -116,7 +139,9 @@ const OfstedNotificationtable = (props: any) => {
                   title="Ofsted Notification"
                   searchKey="search"
                   showAddBtn
-                  onChanged={(e: any) => {}}
+                  onChanged={(e: any) => {
+                    setSearch(e.search);
+                  }}
                   onAdd={() => {
                     router.push({
                       pathname: activepath,
@@ -126,17 +151,17 @@ const OfstedNotificationtable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={OfstedNotificationdata?.data?.notification ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={OfstedNotificationisLoading}
+                isFetching={OfstedNotificationisFetching}
+                isError={OfstedNotificationIserror}
+                isSuccess={OfstedNotificationisSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                //   totalPages={hospitalizationdata?.data?.meta?.pages ?? 0}
-                //   currentPage={hospitalizationdata?.data?.meta?.page ?? 1}
-                //   onPageChange={pageChangeHandler}
+                totalPages={OfstedNotificationdata?.data.meta?.pages ?? 0}
+                currentPage={OfstedNotificationdata?.data.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
                 // onSortByChange={sortChangeHandler}
               />
             </Box>

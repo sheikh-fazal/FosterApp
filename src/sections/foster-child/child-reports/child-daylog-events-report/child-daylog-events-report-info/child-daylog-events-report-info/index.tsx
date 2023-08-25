@@ -5,7 +5,6 @@ import {
   RHFTextField,
 } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
-import RHFRadioGroupWithLabel from "@root/components/hook-form/RHFRadioGroupWithLabel";
 import dayjs from "dayjs";
 import * as Yup from "yup";
 
@@ -23,9 +22,8 @@ export const childDaylogEventsReportInfoFormValues = {
   notificationDate: todayDate,
   addToCarerRecord: "",
   updateSiblingRecord: false,
-  selectUserToBeNotified: "",
-  EmailAddressess: "",
-  status: "",
+  userNotified: "",
+  additionalEmailAddress: "",
 };
 
 export const defaultValueChildDaylogEventsReportInfoForm = (
@@ -43,9 +41,8 @@ export const defaultValueChildDaylogEventsReportInfoForm = (
     notificationDate: new Date(data?.notificationDate),
     addToCarerRecord: data?.addToCarerRecord,
     updateSiblingRecord: data?.updateSiblingRecord,
-    selectUserToBeNotified: data?.selectUserToBeNotified,
-    EmailAddressess: data?.EmailAddressess,
-    status: data?.status,
+    userNotified: data?.userNotified,
+    additionalEmailAddress: data?.additionalEmailAddress + "",
   };
 };
 
@@ -57,24 +54,24 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
     .trim()
     .required("Correspondence to whom is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   correspondenceFrom: Yup.string()
     .trim()
     .required("Correspondence from whom is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
-  childSeen: Yup.string().required("Child seen is required"),
+    .max(50, "Maximum 50 characters"),
+  childSeen: Yup.boolean().required("Child seen is required"),
   entryType: Yup.string().required("Entry type is required"),
   subject: Yup.string()
     .trim()
     .required("subject is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   dayLogEntry: Yup.string()
     .trim()
     .required("Day log entry  is required")
     .min(1, "Mininum 1 characters")
-    .max(300, "Maximum 50 characters"),
+    .max(50, "Maximum 50 characters"),
   actionNeeded: Yup.string()
     .trim()
     .required("Action needed is required")
@@ -87,9 +84,14 @@ export const childDaylogEventsReportInfoFormSchema: any = Yup.object().shape({
   updateSiblingRecord: Yup.boolean().required(
     "update Sibling record is required"
   ),
-  selectUserToBeNotified: Yup.string().required(
+  userNotified: Yup.string().required(
     "select user to be notified informed is required"
   ),
+  additionalEmailAddress: Yup.string()
+    .trim()
+    .required("Action needed is required")
+    .min(1, "Mininum 1 characters")
+    .max(50, "Maximum 50 characters"),
 });
 
 export const childDaylogEventsReportInfoFormDataFunction = (
@@ -262,7 +264,7 @@ export const childDaylogEventsReportInfoFormDataFunction = (
     id: 13,
     componentProps: {
       fullWidth: true,
-      name: "selectUserToBeNotified",
+      name: "userNotified",
       label: "Select User To Be Notified",
       select: true,
       options: [
@@ -281,5 +283,19 @@ export const childDaylogEventsReportInfoFormDataFunction = (
     },
     gridLength: 6,
     component: RHFSelect,
+  },
+  {
+    id: 14,
+    componentProps: {
+      fullWidth: true,
+      name: "additionalEmailAddress",
+      label:
+        "Enter Additional Email addresses to be notified which should be separated by commas.e.g., john@domain.com, Pete@domain.com",
+      multiline: true,
+      minRows: 3,
+      disabled: isFieldDisable,
+    },
+    gridLength: 12,
+    component: RHFTextField,
   },
 ];

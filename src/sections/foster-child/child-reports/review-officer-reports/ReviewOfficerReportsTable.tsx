@@ -77,25 +77,26 @@ export const ReviewOfficerReportsTable = (props: any) => {
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/view`,
-                // query: { fosterChildId: fosterChildId },
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
           <TableAction
             type="print"
-            onClicked={() =>
-              router.push({
-                pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/print`,
-                // query: { fosterChildId: fosterChildId },
-              })
-            }
+            onClicked={() => window.print()}
+            // onClicked={() =>
+            //   router.push({
+            //     pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/print`,
+            //     query: { fosterChildId: fosterChildId },
+            //   })
+            // }
           />
           <TableAction
             type="share"
             onClicked={() =>
               router.push({
                 pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/share`,
-                // query: { fosterChildId: fosterChildId },
+                query: { fosterChildId: fosterChildId },
               })
             }
           />
@@ -110,16 +111,16 @@ export const ReviewOfficerReportsTable = (props: any) => {
     <>
       <Card>
         <TableHeader
-          // showAddBtn
+          showAddBtn
           title="REVIEWING OFFICER REPORTS"
           searchKey="search"
           onChanged={headerChangeHandler}
-          // onAdd={() =>
-          //   router.push({
-          //     pathname:"/money-management/kidiee-saving/add-kidiee-saving-form",
-          //     // query: { fosterChildId: fosterChildId },
-          //   })
-          // }
+          onAdd={() =>
+            router.push({
+              pathname: "/foster-child/child-reports/review-officer-reports",
+              query: { fosterChildId: fosterChildId },
+            })
+          }
         />
         <CustomTable
           showSerialNo

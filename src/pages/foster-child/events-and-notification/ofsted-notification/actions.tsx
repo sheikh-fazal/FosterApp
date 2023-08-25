@@ -9,6 +9,7 @@ import HospitalInfoUpload from "@root/sections/foster-child/health-medical-histo
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import OfstedNotificationform from "@root/sections/foster-child/events-and-notification/ofsted-Notification/ofstedNotificationform";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
+import OfstedNotificationuploadtable from "@root/sections/foster-child/events-and-notification/ofsted-Notification/OfstedNotificationuploadtable";
 
 OfstedNotificationActions.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -49,34 +50,10 @@ export default function OfstedNotificationActions() {
           OfstedNotificationID={OfstedNotificationID}
         />
 
-        <UploadDocuments
-          // readOnly={true}
-
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={{}}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "document",
-
-            "documentType",
-
-            "date",
-
-            "personName",
-
-            "password",
-          ]}
-          modalData={(data: any) => {
-            console.log("searched Value", data);
-          }}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
+        <OfstedNotificationuploadtable
+          action={action}
+          fosterChildId={fosterChildId}
+          OfstedNotificationID={OfstedNotificationID}
         />
       </HorizaontalTabs>
     </Box>

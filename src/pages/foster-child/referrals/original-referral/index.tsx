@@ -19,7 +19,7 @@ EditChildExclusionInfoPage.getLayout = function getLayout(page: any) {
           href: "",
         },
         {
-          name: "Original Child Referral",
+          name: "",
         },
       ]}
       title={PAGE_TITLE}

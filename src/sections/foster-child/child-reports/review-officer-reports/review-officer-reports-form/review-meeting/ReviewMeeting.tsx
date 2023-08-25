@@ -15,7 +15,7 @@ export const ReviewMeeting = () => {
                   <form.component
                     size="small"
                     {...form.componentProps}
-                    //   disabled={disabled}
+                    disabled
                   >
                     {form.componentProps
                       ? form.options?.map((option: any) => (

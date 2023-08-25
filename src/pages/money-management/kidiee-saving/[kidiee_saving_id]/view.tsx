@@ -4,14 +4,15 @@ import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import Layout from "@root/layouts";
 import { KidieeSavingForm } from "@root/sections/money-management/kidiee-saving/kidiee-saving-form/KidieeSavingForm";
+import { useGetKidieeSavingByIdQuery } from "@root/services/money-management/kidiee-saving/KidieeSavingAPI";
 import { useRouter } from "next/router";
 
 // Constants
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
-    name: "Child Info",
-    href: `/money-management/kidiee-saving/add-kidiee-saving-form`,
+    name: "Money Management",
+    href: `/money-management`,
   },
   {
     name: "Kidiee Saving List",
@@ -30,25 +31,25 @@ export default function ViewKidieeSavingList() {
   const { query } = useRouter();
   const router = useRouter();
   const kidieeSavingId = query["kidiee_saving_id"];
-//   const { data, isLoading, isSuccess, isError } =
-//     useGetClaDocumentationByIdQuery(kidieeSavingId);
-//   console.log(data, "When View");
-
+  const { data, isLoading, isSuccess, isError } =
+    useGetKidieeSavingByIdQuery(kidieeSavingId);
+  console.log(data, "When View");
 
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
         sx={{ mb: 2 }}
-        breadcrumbs={BREADCRUMBS(router?.query)}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
         title={PAGE_TITLE}
       />
       <Paper elevation={3}>
-        {/* {isLoading &&  */}
-        <p>Loading...</p>
-        {/* } */}
-        {/* {isSuccess && ( */}
-        <KidieeSavingForm />
-        {/* )} */}
+        {isLoading && <p>Loading...</p>}
+        {isSuccess && (
+          <KidieeSavingForm
+            defaultValues={{ ...data[0], date: new Date(data[0]?.date) }}
+            disabled
+          />
+        )}
       </Paper>
     </Page>
   );
