@@ -28,8 +28,6 @@ export const useHouseholdConditionA = ({
   } = methods;
   const onSubmit = async (data: any) => {
     const houseHoldConditionA = data;
-    // if message === added then this try catch functionality runs
-
     if (message === "Added") {
       try {
         const res: any = await onSubmitHandler(data).unwrap();
@@ -56,7 +54,6 @@ export const useHouseholdConditionA = ({
           healthAndSafetyId,
           formData: { houseHoldConditionA },
         }).unwrap();
-        console.log(res);
 
         enqueueSnackbar(
           res?.message ?? `Health And Safety ${message} Successfully!`,
@@ -65,8 +62,6 @@ export const useHouseholdConditionA = ({
           }
         );
       } catch (error: any) {
-        console.log(error);
-
         enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
           variant: "error",
         });

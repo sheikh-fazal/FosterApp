@@ -98,7 +98,9 @@ export default function AddHealthAndSafetyTableTabs() {
         {healthAndSafetyId ? (
           <UploadDocument breadCrumbData={setBreadCrumbData} />
         ) : (
-          `Fill Household Condition A First!`
+          <h4 style={{ textAlign: "center" }}>
+            Fill Household Condition A First!
+          </h4>
         )}
       </HorizaontalTabs>
     </Layout>

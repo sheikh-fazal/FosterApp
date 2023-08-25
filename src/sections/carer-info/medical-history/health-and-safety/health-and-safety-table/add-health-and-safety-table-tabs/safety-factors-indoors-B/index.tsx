@@ -50,37 +50,37 @@ export const defaultValues = {
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOut1: Yup.date().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsReq1: Yup.string().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOut2: Yup.date().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsReq2: Yup.string().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOut3: Yup.date().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsReq3: Yup.string().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOut4: Yup.date().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsReq4: Yup.string().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOut5: Yup.date().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsReq5: Yup.string().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
 
-  dateToBeCarriedOut6: Yup.date().required("Required"),
+  // dateToBeCarriedOut6: Yup.date().required("Required"),
 
-  improvementsReq6: Yup.string().required("Required"),
+  // improvementsReq6: Yup.string().required("Required"),
 
-  dateToBeCarriedOut7: Yup.date().required("Required"),
+  // dateToBeCarriedOut7: Yup.date().required("Required"),
 
-  improvementsReq7: Yup.string().required("Required"),
+  // improvementsReq7: Yup.string().required("Required"),
 
-  dateToBeCarriedOut8: Yup.date().required("Required"),
+  // dateToBeCarriedOut8: Yup.date().required("Required"),
 
-  improvementsRequire8: Yup.string().required("Required"),
+  // improvementsRequire8: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsB_Data = [

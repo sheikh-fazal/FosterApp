@@ -1,6 +1,13 @@
 import React, { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, Card, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Button,
+  Card,
+  CircularProgress,
+  Grid,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import Page from "@root/components/Page";
 import { FormProvider } from "@root/components/hook-form";
 import { useForm } from "react-hook-form";
@@ -41,10 +48,6 @@ export const SafetyFactorsIndoorsA = (props: any) => {
       <Card sx={{ p: 2 }}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
-            {/* <Grid item md={12}>
-          <Typography variant="h6">Summary And Recommendation</Typography>
-        </Grid> */}
-
             {safetyFactorsIndoorsA_Data?.map((form: any) => {
               return (
                 <Grid item xs={12} md={form?.gridLength} key={form?.id}>

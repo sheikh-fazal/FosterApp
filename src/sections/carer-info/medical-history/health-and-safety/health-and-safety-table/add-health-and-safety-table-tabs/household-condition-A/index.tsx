@@ -3,78 +3,115 @@ import dayjs from "dayjs";
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
-const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+// const todayDate = dayjs().format("MM/DD/YYYY");
+// // const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
+// // const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
+// // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
+// interface DefaultValues {
+//   inspectionDate: any;
+//   nestInspectionDate: any;
+
+//   onFile: boolean;
+//   isQuestionCompleted: boolean;
+
+//   isAccomodationSuitable: boolean;
+//   dateToBeCarriedOut: any;
+
+//   improvementsReq: string;
+
+//   isSufficentSpaceForChilds: boolean;
+//   dateToBeCarriedOut1: any;
+
+//   improvementsReq1: string;
+
+//   isRoomsSufficientLight: boolean;
+//   dateToBeCarriedOut2: any;
+
+//   improvementsReq2: string;
+
+//   isRoomsOpenWindows: boolean;
+//   dateToBeCarriedOut3: any;
+
+//   improvementsReq3: string;
+
+//   isRoomsMaintainedTemp: boolean;
+//   dateToBeCarriedOut4: any;
+
+//   improvementsReq4: string;
+
+//   isChildOwnBed: boolean;
+
+//   dateToBeCarriedOut5: any;
+
+//   improvementsReq5: string;
+// }
 export const defaultValues = {
-  inspectionDate: new Date(todayDate),
-  nestInspectionDate: new Date(todayDate),
+  inspectionDate: new Date(),
+  nestInspectionDate: new Date(),
 
   onFile: false,
-  isQuestionCompleted: true,
+  isQuestionCompleted: false,
 
-  isAccomodationSuitable:
-    true,
-  dateToBeCarriedOut: new Date(todayDate),
+  isAccomodationSuitable: false,
+  dateToBeCarriedOut: new Date(),
 
   improvementsReq: "",
 
   isSufficentSpaceForChilds: false,
-  dateToBeCarriedOut1: new Date(todayDate),
+  dateToBeCarriedOut1: new Date(),
 
   improvementsReq1: "",
 
   isRoomsSufficientLight: false,
-  dateToBeCarriedOut2: new Date(todayDate),
+  dateToBeCarriedOut2: new Date(),
 
   improvementsReq2: "",
 
   isRoomsOpenWindows: false,
-  dateToBeCarriedOut3: new Date(todayDate),
+  dateToBeCarriedOut3: new Date(),
 
   improvementsReq3: "",
 
   isRoomsMaintainedTemp: false,
-  dateToBeCarriedOut4: new Date(todayDate),
+  dateToBeCarriedOut4: new Date(),
 
   improvementsReq4: "",
 
   isChildOwnBed: false,
 
-  dateToBeCarriedOut5: new Date(todayDate),
+  dateToBeCarriedOut5: new Date(),
 
   improvementsReq5: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  inspectionDate: Yup.date().required("Required"),
+  inspectionDate: Yup.date().required("Date is required"),
   nestInspectionDate: Yup.date().required("Date is required"),
 
-  dateToBeCarriedOut: Yup.date().required("Required"),
+  // dateToBeCarriedOut: Yup.date().required("Required"),
 
-  improvementsReq: Yup.string().required("Required"),
+  // improvementsReq: Yup.string().required("Required"),
 
-  dateToBeCarriedOut1: Yup.date().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsReq1: Yup.string().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOut2: Yup.date().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsReq2: Yup.string().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOut3: Yup.date().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsReq3: Yup.string().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOut4: Yup.date().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsReq4: Yup.string().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOut5: Yup.date().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsReq5: Yup.string().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
 });
 
 export const householdConditionA_Data = [

@@ -9,7 +9,6 @@ import { enqueueSnackbar } from "notistack";
 
 export default function useSafetyFactorsIndoorsA({
   breadCrumbData,
-  formData,
   onSubmitHandler,
   initialValueProps,
   message,
@@ -26,19 +25,27 @@ export default function useSafetyFactorsIndoorsA({
   });
   const {
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting }, 
+    
   } = methods;
   const onSubmit = async (data: any) => {
     const safetyFactorsIndoorsA = data;
+    const hasAnyFieldValue = Object.values(safetyFactorsIndoorsA).some(
+      (value) => !!value
+    );
     try {
-      const res: any = await onSubmitHandler({
-        healthAndSafetyId,
-        formData: { safetyFactorsIndoorsA },
-      }).unwrap();
-      enqueueSnackbar(
-        res?.message ?? `Health And Safety ${message} Successfully!`,
-        { variant: "success" }
-      );
+      if (hasAnyFieldValue) {
+        const res: any = await onSubmitHandler({
+          healthAndSafetyId,
+          formData: { safetyFactorsIndoorsA },
+        }).unwrap();
+        enqueueSnackbar(
+          res?.message ?? `Health And Safety ${message} Successfully!`,
+          { variant: "success" }
+        );
+      } else {
+        enqueueSnackbar("Empty Form could not send!", { variant: "error" });
+      }
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });

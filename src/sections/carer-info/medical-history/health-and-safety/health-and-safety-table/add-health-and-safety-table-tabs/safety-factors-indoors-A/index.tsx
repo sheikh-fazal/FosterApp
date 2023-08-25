@@ -5,90 +5,121 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 
-export const defaultValues = {
+interface DefaultValues {
+  isElecticalEquitmentGood: boolean;
+  dateToBeCarriedOut1: any;
+
+  improvementsReq1: string;
+
+  isAccessiblePowerfitted: boolean;
+  dateToBeCarriedOut2: any;
+
+  improvementsReq2: string;
+
+  isAllHeatingApplancesFixed: boolean;
+  dateToBeCarriedOut3: any;
+
+  improvementsReq3: string;
+
+  isFireguardsUsed: boolean;
+  dateToBeCarriedOut4: any;
+
+  improvementsReq4: string;
+
+  isEasilyAccessibleAndWorkingFire: boolean;
+  dateToBeCarriedOut5: any;
+
+  improvementsReq5: string;
+
+  isSmokeDetectorsFittedAndUsed: boolean;
+
+  dateToBeCarriedOut6: any;
+
+  improvementsReq6: string;
+  isCarbonMonoxideDetectors: boolean;
+  dateToBeCarriedOut7: any;
+
+  improvementsReq7: string;
+
+  isSocketsOverloaded: boolean;
+  dateToBeCarriedOut8: any;
+
+  improvementsReq8: string;
+
+  hasAnElectricianCheckWiringAndSafetyReportIssued: boolean;
+
+  dateToBeCarriedOut9: any;
+
+  improvementsReq9: string;
+}
+
+export const defaultValues: DefaultValues = {
   isElecticalEquitmentGood: false,
-  dateToBeCarriedOut1: new Date(todayDate),
+  dateToBeCarriedOut1: null,
 
   improvementsReq1: "",
 
   isAccessiblePowerfitted: false,
-  dateToBeCarriedOut2: new Date(todayDate),
+  dateToBeCarriedOut2: null,
 
   improvementsReq2: "",
 
   isAllHeatingApplancesFixed: false,
-  dateToBeCarriedOut3: new Date(todayDate),
+  dateToBeCarriedOut3: null,
 
   improvementsReq3: "",
 
   isFireguardsUsed: false,
-  dateToBeCarriedOut4: new Date(todayDate),
+  dateToBeCarriedOut4: null,
 
   improvementsReq4: "",
 
   isEasilyAccessibleAndWorkingFire: false,
-  dateToBeCarriedOut5: new Date(todayDate),
+  dateToBeCarriedOut5: null,
 
   improvementsReq5: "",
 
   isSmokeDetectorsFittedAndUsed: false,
 
-  dateToBeCarriedOut6: new Date(todayDate),
+  dateToBeCarriedOut6: null,
 
   improvementsReq6: "",
   isCarbonMonoxideDetectors: false,
-  dateToBeCarriedOut7: new Date(todayDate),
+  dateToBeCarriedOut7: null,
 
   improvementsReq7: "",
 
   isSocketsOverloaded: false,
-  dateToBeCarriedOut8: new Date(todayDate),
+  dateToBeCarriedOut8: null,
 
   improvementsReq8: "",
 
   hasAnElectricianCheckWiringAndSafetyReportIssued: false,
 
-  dateToBeCarriedOut9: new Date(todayDate),
+  dateToBeCarriedOut9: null,
 
-  improvementsReq9: "",
+  improvementsReq9: "",   
 };
-
+ 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOut1: Yup.date().required("Required"),
-
-  improvementsReq1: Yup.string().required("Required"),
-
-  dateToBeCarriedOut2: Yup.date().required("Required"),
-
-  improvementsReq2: Yup.string().required("Required"),
-
-  dateToBeCarriedOut3: Yup.date().required("Required"),
-
-  improvementsReq3: Yup.string().required("Required"),
-
-  dateToBeCarriedOut4: Yup.date().required("Required"),
-
-  improvementsReq4: Yup.string().required("Required"),
-
-  dateToBeCarriedOut5: Yup.date().required("Required"),
-
-  improvementsReq5: Yup.string().required("Required"),
-
-  dateToBeCarriedOut6: Yup.date().required("Required"),
-
-  improvementsReq6: Yup.string().required("Required"),
-
-  dateToBeCarriedOut7: Yup.date().required("Required"),
-
-  improvementsReq7: Yup.string().required("Required"),
-
-  dateToBeCarriedOut8: Yup.date().required("Required"),
-
-  improvementsReq8: Yup.string().required("Required"),
-
-  dateToBeCarriedOut9: Yup.date().required("Required"),
-
-  improvementsReq9: Yup.string().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
+  // dateToBeCarriedOut6: Yup.date().required("Required"),
+  // improvementsReq6: Yup.string().required("Required"),
+  // dateToBeCarriedOut7: Yup.date().required("Required"),
+  // improvementsReq7: Yup.string().required("Required"),
+  // dateToBeCarriedOut8: Yup.date().required("Required"),
+  // improvementsReq8: Yup.string().required("Required"),
+  // dateToBeCarriedOut9: Yup.date().required("Required"),
+  // improvementsReq9: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsA_Data = [
@@ -236,9 +267,9 @@ export const safetyFactorsIndoorsA_Data = [
       name: "isEasilyAccessibleAndWorkingFire",
       label:
         "Is there an easily accessible and working Fire Extinguisher and Fire Blanket?",
-    },
+    },  
     component: RHFCheckbox,
-  },
+  }, 
   {
     id: 14,
     componentProps: {
