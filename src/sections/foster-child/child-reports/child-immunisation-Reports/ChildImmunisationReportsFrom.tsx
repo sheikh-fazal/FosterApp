@@ -1,29 +1,14 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import {
-  FormProvider,
-  RHFSelect,
-  RHFTextField,
-} from "@root/components/hook-form";
+import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
-import {
-  FormSchema,
-  childImmunisationReportsData,
-  childImmunisationReportsValue,
-} from ".";
+import { FormSchema, childImmunisationReportsData } from ".";
 import Comments from "@root/components/comment/Comment";
+import useChildImmunisationReports from "./useChildImmunisationReports";
 
 const backPath =
   "/foster-child/child-reports/child-immunisation-details-report";
@@ -34,30 +19,31 @@ interface IChildImmunisationReportsFrom {
 }
 
 const ChildImmunisationReportsFrom = (props: IChildImmunisationReportsFrom) => {
+  //PROPS AND STATS
   const { action, fosterChildId, ChildImmunisationReportID } = props;
   const theme: any = useTheme();
+  //API HANDLERS HOOK
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useChildImmunisationReports({
+      action: action,
+      fosterChildId: fosterChildId,
+      ChildImmunisationReportID: ChildImmunisationReportID,
+    });
+  //FORM HOOKS
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: childImmunisationReportsValue,
+    defaultValues: getDefaultValue,
   });
-  const {
-    trigger,
-    setValue,
-    handleSubmit,
-    getValues,
-    watch,
-    reset,
-    formState: { errors },
-  } = methods;
-  //   if (isloading) return <SkeletonFormdata />;
+  const { handleSubmit } = methods;
+  if (isloading) return <SkeletonFormdata />;
   return (
     <Box sx={{ px: 0, py: 0.1 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit()}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
-              {/* <IsFetching isFetching={isFatching} /> */}
+              <IsFetching isFetching={isFatching} />
               {childImmunisationReportsData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
