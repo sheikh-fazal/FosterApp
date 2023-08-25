@@ -2,15 +2,23 @@ import { Box, Grid, Paper } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableAction from "@root/components/TableAction";
 import TableHeader from "@root/components/TableHeader";
-import React from "react";
+import React, { useState } from "react";
 import router from "next/router";
 import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 import dayjs from "dayjs";
-import { dummy } from ".";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { useGetChildImmunisationReportsListQuery } from "@root/services/foster-child/child-records/child-immunisation-reports/ChildImmunisationReportsApi";
+import useChildImmunisationReports from "./useChildImmunisationReports";
 const activepath =
   "/foster-child/child-reports/child-immunisation-details-report/actions";
 const ChildImmunisationReportsTable = (props: any) => {
   const { fosterChildId } = props;
+  //STATES
+  const [search, setsearch] = useState("");
+  const { deleteHander } = useChildImmunisationReports({
+    fosterChildId: fosterChildId,
+  });
+  //TABLES COLUMNS
   const columns = [
     {
       accessorFn: (row: any) => row.childName,
@@ -23,26 +31,27 @@ const ChildImmunisationReportsTable = (props: any) => {
     {
       accessorFn: (row: any) => row.dateTimeOfOccurence,
       id: "dateTimeOfOccurence",
-      cell: (info: any) => dayjs(info.getValue()).format("YYYY-MM-DD") ?? "-",
+      cell: (info: any) =>
+        dayjs(info.getValue()).format("hh:mm :: YYYY-MM-DD") ?? "-",
       header: () => <span>Date / Time of Occurence</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.immunisationType,
+      accessorFn: (row: any) => row.type,
       id: "immunisationType",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Immunisation Type</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.createdDate,
+      accessorFn: (row: any) => row.createdAt,
       id: "createdDate",
-      cell: (info: any) => info.getValue() ?? "-",
+      cell: (info: any) => dayjs(info.getValue()).format("YYYY-MM-DD") ?? "-",
       header: () => <span>Created Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.createdBY,
+      accessorFn: (row: any) => row.createdBy,
       id: "createdBY",
       cell: (info: any) => info.getValue() ?? "-",
       header: () => <span> Created By</span>,
@@ -59,7 +68,9 @@ const ChildImmunisationReportsTable = (props: any) => {
             alignItems={"center"}
             gap={0.5}
           >
-            <DeletePrompt />
+            <DeletePrompt
+              onDeleteClick={() => deleteHander(info.row.original.id)}
+            />
 
             <TableAction
               size="small"
@@ -98,6 +109,19 @@ const ChildImmunisationReportsTable = (props: any) => {
       isSortable: false,
     },
   ];
+  //TABLE PAGE HANDELRS
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+  //API HANDLERS
+  const { data, isLoading, isError, isFetching, isSuccess } =
+    useGetChildImmunisationReportsListQuery({
+      params: {
+        fosterChildId: fosterChildId,
+        search,
+        ...params,
+      },
+    });
+
   return (
     <Box>
       <Grid container>
@@ -111,7 +135,7 @@ const ChildImmunisationReportsTable = (props: any) => {
                   searchKey="search"
                   showAddBtn
                   onChanged={(e: any) => {
-                    // setSearch(e.search);
+                    setsearch(e.search);
                   }}
                   onAdd={() => {
                     router.push({
@@ -122,18 +146,18 @@ const ChildImmunisationReportsTable = (props: any) => {
                 />
               </Box>
               <CustomTable
-                data={dummy ?? []}
+                data={data?.data?.child_immunisation_reports ?? []}
                 columns={columns}
-                isLoading={false}
-                isFetching={false}
-                isError={false}
-                isSuccess={true}
+                isLoading={isLoading}
+                isFetching={isFetching}
+                isError={isError}
+                isSuccess={isSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={OfstedNotificationdata?.data.meta?.pages ?? 0}
-                // currentPage={OfstedNotificationdata?.data.meta?.page ?? 1}
-                // onPageChange={pageChangeHandler}
-                // onSortByChange={sortChangeHandler}
+                totalPages={data?.data.meta?.pages ?? 0}
+                currentPage={data?.data.meta?.page ?? 1}
+                onPageChange={pageChangeHandler}
+                onSortByChange={sortChangeHandler}
               />
             </Box>
           </Paper>

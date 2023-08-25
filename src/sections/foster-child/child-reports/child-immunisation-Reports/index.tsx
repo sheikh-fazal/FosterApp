@@ -10,7 +10,7 @@ export const dummy = [
   {
     childName: "John",
     dateTimeOfOccurence: "03/11/2021  ::  11:00",
-    immunisationType: "Abc",
+    type: "Abc",
     createdDate: "04/11/2021",
     createdBY: "RoseMarry",
   },
@@ -22,7 +22,7 @@ export const childImmunisationReportsData = [
     gridLength: 6,
     otherOptions: {
       label: "Date Of Immunisation",
-      name: "dateOfImmunisation",
+      name: "date",
       fullWidth: true,
     },
     component: RHFDatePicker,
@@ -42,7 +42,7 @@ export const childImmunisationReportsData = [
     gridLength: 6,
     otherOptions: {
       label: "Immunisation Type",
-      name: "immunisationType",
+      name: "type",
       fullWidth: true,
       select: true,
       options: [
@@ -56,7 +56,7 @@ export const childImmunisationReportsData = [
     gridLength: 12,
     otherOptions: {
       label: "Immunisation Details",
-      name: "immunisationDetails",
+      name: "details",
       multiline: true,
       minRows: 3,
       fullWidth: true,
@@ -65,14 +65,14 @@ export const childImmunisationReportsData = [
   },
 ];
 export const childImmunisationReportsValue = {
-  dateOfImmunisation: new Date(),
+  date: new Date(),
   dueDate: new Date(),
-  immunisationType: "",
-  immunisationDetails: "",
+  type: "",
+  details: "",
 };
 export const FormSchema = Yup.object().shape({
-  dateOfImmunisation: Yup.date().required("required"),
+  date: Yup.date().required("required"),
   dueDate: Yup.date().required("required"),
-  immunisationType: Yup.string().required("required"),
-  immunisationDetails: Yup.string().required("required"),
+  type: Yup.string().required("required"),
+  details: Yup.string().required("required"),
 });

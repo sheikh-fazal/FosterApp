@@ -1,46 +1,44 @@
+import {
+  useCreateChildImmunisationReportsListMutation,
+  useDeleteChildImmunisationReportsListMutation,
+  useLazyGetChildImmunisationReportsListQueryByIdQuery,
+  useUpdateChildImmunisationReportsListMutation,
+} from "@root/services/foster-child/child-records/child-immunisation-reports/ChildImmunisationReportsApi";
 import router from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useState } from "react";
-import { ComplaintsDataValue } from ".";
-import {
-  useCreateComplaintsDocumentsMutation,
-  useDeleteComplaintsDocumentsMutation,
-} from "@root/services/foster-child/events-and-notification/complaints/complaintsdocumentsApi";
-import {
-  useCreateComplaintsListMutation,
-  useDeleteComplaintsListMutation,
-  useLazyGetComplaintsListQueryByIdQuery,
-  useUpdateComplaintsListMutation,
-} from "@root/services/foster-child/events-and-notification/complaints/Complaints";
-
-const useComplaintsFrom = (props: any) => {
-  const { action, fosterChildId, complaintsId } = props;
+import { childImmunisationReportsValue } from ".";
+const useChildImmunisationReports = (props: any) => {
+  const { action, fosterChildId, ChildImmunisationReportID } = props;
   //STATES
   const [isloading, setisloading] = useState(false);
   const [isFatching, setisFatching] = useState(false);
   const [modelOpen, setModelOpen] = React.useState(false);
   //API HANDLERS
-  const [createComplaintsList] = useCreateComplaintsListMutation();
-  const [updateComplaintsList] = useUpdateComplaintsListMutation();
-  const [deleteComplaintsList] = useDeleteComplaintsListMutation();
-  const [GetComplaintsListQueryById] = useLazyGetComplaintsListQueryByIdQuery();
-  //UPLOAD API
-
-  const [createComplaintsDocuments] = useCreateComplaintsDocumentsMutation();
-  const [deleteComplaintsDocuments] = useDeleteComplaintsDocumentsMutation();
+  const [createChildImmunisationReportsList] =
+    useCreateChildImmunisationReportsListMutation();
+  const [deleteChildImmunisationReportsList] =
+    useDeleteChildImmunisationReportsListMutation();
+  const [updateChildImmunisationReportsList] =
+    useUpdateChildImmunisationReportsListMutation();
+  const [GetChildImmunisationReportsListQueryById] =
+    useLazyGetChildImmunisationReportsListQueryByIdQuery();
   //Functions
   const SubmitData = (data: any) => {
     setisFatching(true);
     const sendata: any = {};
-    const keys = Object.keys(ComplaintsDataValue);
+    const keys = Object.keys(childImmunisationReportsValue);
     for (const key of keys) {
       if (data[key] !== undefined) {
         sendata[key] = data[key];
       }
     }
     if (action === "add") {
-      createComplaintsList({
-        body: { fosterChildId: fosterChildId, status: "in progress", ...data },
+      createChildImmunisationReportsList({
+        params: {
+          fosterChildId: fosterChildId,
+        },
+        body: { ...data },
       })
         .unwrap()
         .then((data) => {
@@ -51,11 +49,11 @@ const useComplaintsFrom = (props: any) => {
 
           router.push({
             pathname:
-              "/foster-child/events-and-notification/complaints/actions",
+              "/foster-child/child-reports/child-immunisation-details-report/actions",
             query: {
               action: "edit",
               fosterChildId: fosterChildId,
-              complaintsId: data?.data?.id,
+              ChildImmunisationReportID: data?.data?.id,
             },
           });
         })
@@ -65,13 +63,13 @@ const useComplaintsFrom = (props: any) => {
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
         });
     } else if (action === "edit") {
-      updateComplaintsList({
+      updateChildImmunisationReportsList({
         params: {
-          id: complaintsId,
+          id: ChildImmunisationReportID,
         },
         body: {
           fosterChildId: fosterChildId,
-          status: "in progress",
+
           ...sendata,
         },
       })
@@ -101,16 +99,16 @@ const useComplaintsFrom = (props: any) => {
     setisloading(true);
 
     if (action === "view" || action === "edit") {
-      const { data, isError } = await GetComplaintsListQueryById({
+      const { data, isError } = await GetChildImmunisationReportsListQueryById({
         params: {
-          id: complaintsId,
+          id: ChildImmunisationReportID,
         },
       });
 
       setisloading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
-        return ComplaintsDataValue;
+        return childImmunisationReportsValue;
       }
       const responseData = { ...data?.data };
       for (const key in responseData) {
@@ -122,11 +120,11 @@ const useComplaintsFrom = (props: any) => {
       return responseData;
     } else {
       setisloading(false);
-      return ComplaintsDataValue;
+      return childImmunisationReportsValue;
     }
   };
   const deleteHander = (id: any) => {
-    deleteComplaintsList(id)
+    deleteChildImmunisationReportsList(id)
       .unwrap()
       .then(() => {
         enqueueSnackbar("Information Delete Successfully", {
@@ -138,54 +136,7 @@ const useComplaintsFrom = (props: any) => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  //UPLOAD DOCUMENTS
-  const onUploadSubmit = (data: any) => {
-    setisFatching(true);
-    const formData = new FormData();
-    formData.append("formName", "COMPLAINTS");
-    formData.append("recordId", complaintsId);
-    formData.append("documentType", data.documentType);
-    formData.append("documentDate", data.documentDate);
-    formData.append("documentPassword", data.password);
-    formData.append("file", data.documentFile);
-    createComplaintsDocuments({
-      params: {
-        fosterChildId: fosterChildId,
-      },
-      body: formData,
-    })
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Add Successfully", {
-          variant: "success",
-        });
-        setisFatching(false);
-        setModelOpen(false);
-      })
-      .catch((error: any) => {
-        setisFatching(false);
-        setModelOpen(false);
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
-  };
-  const onDeleteHander = (id: any) => {
-    deleteComplaintsDocuments({ id: id })
-      .unwrap()
-      .then(() => {
-        enqueueSnackbar("Information Delete Successfully", {
-          variant: "success",
-        });
-      })
-      .catch((error: any) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
-  };
-
   return {
-    onUploadSubmit,
-    onDeleteHander,
     SubmitData,
     getDefaultValue,
     deleteHander,
@@ -196,4 +147,4 @@ const useComplaintsFrom = (props: any) => {
   };
 };
 
-export default useComplaintsFrom;
+export default useChildImmunisationReports;

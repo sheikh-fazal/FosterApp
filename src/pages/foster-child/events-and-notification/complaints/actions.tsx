@@ -2,14 +2,11 @@ import Layout from "@root/layouts";
 import React from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
-import HospitalizationTable from "@root/sections/foster-child/health-medical-history/hospitalization/hospitalizationTable";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import { useRouter } from "next/router";
-import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import HorizaontalTabs from "@root/components/HorizaontalTabs";
-import ComplaintsFrom from "@root/sections/foster-child/events-and-notification/complaints/ComplaintsForm";
 import ComplaintsForm from "@root/sections/foster-child/events-and-notification/complaints/ComplaintsForm";
-import ComplaintsUploadTable from "@root/sections/foster-child/events-and-notification/complaints/complaintsUploadTable";
+import ComplaintsUploadTable from "@root/sections/foster-child/events-and-notification/complaints/ComplaintsUploadTable";
 
 ComplaintsActions.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
