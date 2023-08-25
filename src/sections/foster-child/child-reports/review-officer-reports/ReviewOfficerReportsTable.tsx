@@ -83,12 +83,13 @@ export const ReviewOfficerReportsTable = (props: any) => {
           />
           <TableAction
             type="print"
-            onClicked={() =>
-              router.push({
-                pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/print`,
-                query: { fosterChildId: fosterChildId },
-              })
-            }
+            onClicked={() => window.print()}
+            // onClicked={() =>
+            //   router.push({
+            //     pathname: `/foster-child/child-reports/review-officer-reports/${info.getValue()}/print`,
+            //     query: { fosterChildId: fosterChildId },
+            //   })
+            // }
           />
           <TableAction
             type="share"
@@ -116,7 +117,7 @@ export const ReviewOfficerReportsTable = (props: any) => {
           onChanged={headerChangeHandler}
           onAdd={() =>
             router.push({
-              pathname:"/foster-child/child-reports/review-officer-reports",
+              pathname: "/foster-child/child-reports/review-officer-reports",
               query: { fosterChildId: fosterChildId },
             })
           }
