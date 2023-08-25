@@ -23,7 +23,7 @@ export const useMoneySkillAssessmentTable = () => {
     });
   console.log("pagination", params);
 
-  // DELETE API For Money ssessment Skill List
+  // DELETE API For Money assessment Skill List
   const [deleteList] = useDeleteMoneyAssessmentSkillMutation();
 
   const listDeleteHandler = (id: any) => {
