@@ -3,10 +3,10 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const diaryRecordingUploadDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     diaryUploadDocumentList: builder.query({
-      query: (search: any) => ({
-        url: `child-day-log/list-diaryRecordingDocuments/${search?.params.diaryRecordingId}`,
+      query: (payload: any) => ({
+        url: `child-day-log/list-diaryRecordingDocuments/${payload?.params.diaryRecordingId}`,
         method: "GET",
-        params: search.params,
+        params: payload.params,
       }),
       providesTags: ["DIARY_RECORDING_DOCUMENTS"],
     }),

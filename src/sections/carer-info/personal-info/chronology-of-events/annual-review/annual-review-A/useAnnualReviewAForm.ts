@@ -24,13 +24,13 @@ export const useAnnualReviewAForm = (action: any, id: any) => {
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getReviewList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data?.getAnnualReview?.annualReviewA };
       for (const key in responseData) {
         const value = responseData[key];
         if (formatters[key]) responseData[key] = formatters[key](value);
@@ -56,18 +56,20 @@ export const useAnnualReviewAForm = (action: any, id: any) => {
     if (action === "add") {
       setIsFetching(true);
       postReviewDetails({
-        annualReviewA: { ...data },
-        fosterCarerId,
+        params: {
+          fosterCarerId,
+        },
+        body: { annualReviewA: { ...data } },
       })
         .unwrap()
         .then((res: any) => {
           setIsFetching(false);
-          enqueueSnackbar("Allegation Added Successfully", {
+          enqueueSnackbar("Review Added Successfully", {
             variant: "success",
           });
           router.push({
             pathname:
-              "/carer-info/personal-info/carer-chronology-of-events/allegation",
+              "/carer-info/personal-info/carer-chronology-of-events/annual-review",
             query: {
               action: "edit",
               id: `${res?.data.id}`,
@@ -75,7 +77,7 @@ export const useAnnualReviewAForm = (action: any, id: any) => {
             },
           });
         })
-        .catch((error) => {
+        .catch((error: any) => {
           setIsFetching(false);
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
@@ -86,19 +88,16 @@ export const useAnnualReviewAForm = (action: any, id: any) => {
         });
     } else if (action === "edit") {
       setIsFetching(true);
-      const formData = {
-        id,
-        ...data,
-      };
-      editReviewList(formData)
+      editReviewList({
+        formData: {
+          annualReviewId: id,
+          annualReviewA: { ...data },
+        },
+      })
         .unwrap()
         .then((res: any) => {
-          enqueueSnackbar("Allegation Edited Successfully", {
+          enqueueSnackbar("Review Edited Successfully", {
             variant: "success",
-          });
-          router.push({
-            pathname: "/carer-info/personal-info/carer-chronology-of-events",
-            query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
         })

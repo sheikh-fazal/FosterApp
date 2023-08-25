@@ -17,21 +17,19 @@ export const usePlacementReview = (action: any, id: any) => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
 
-  
   const [getReviewList] = useLazySingleAnnualReviewListQuery();
-  const [postReviewDetails] = usePostAnnualReviewListMutation();
   const [editReviewList] = usePatchAnnualReviewListMutation();
 
   //GET DEFAULT VALUE HANDLER
   const getDefaultValue = async () => {
     if (action === "view" || action === "edit") {
-      const { data, isError } = await getReviewList(id, true);
+      const { data, isError } = await getReviewList(id);
       setIsLoading(false);
       if (isError) {
         enqueueSnackbar("Error occured", { variant: "error" });
         return defaultValues;
       }
-      const responseData = { ...data.data };
+      const responseData = { ...data.data?.getAnnualReview?.placementReview };
       return responseData;
     } else {
       setIsLoading(false);
@@ -50,54 +48,18 @@ export const usePlacementReview = (action: any, id: any) => {
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    if (action === "add") {
+    if (action === "edit") {
       setIsFetching(true);
-      postReviewDetails({
-        params: {
-          fosterCarerId: fosterCarerId,
+      editReviewList({
+        formData: {
+          annualReviewId: id,
+          annualReviewD: { ...data },
         },
-        body: data,
       })
         .unwrap()
         .then((res: any) => {
-          setIsFetching(false);
-          enqueueSnackbar("Allegation Added Successfully", {
+          enqueueSnackbar("Review Added Successfully", {
             variant: "success",
-          });
-          router.push({
-            pathname:
-              "/carer-info/personal-info/carer-chronology-of-events/allegation",
-            query: {
-              action: "edit",
-              id: `${res?.data.id}`,
-              fosterCarerId: fosterCarerId,
-            },
-          });
-        })
-        .catch((error) => {
-          setIsFetching(false);
-          const errMsg = error?.data?.message;
-          enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-          router.push({
-            pathname: "/carer-info/personal-info/carer-chronology-of-events",
-            query: { fosterCarerId: fosterCarerId },
-          });
-        });
-    } else if (action === "edit") {
-      setIsFetching(true);
-      const formData = {
-        id,
-        ...data,
-      };
-      editReviewList(formData)
-        .unwrap()
-        .then((res: any) => {
-          enqueueSnackbar("Allegation Edited Successfully", {
-            variant: "success",
-          });
-          router.push({
-            pathname: "/carer-info/personal-info/carer-chronology-of-events",
-            query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
         })

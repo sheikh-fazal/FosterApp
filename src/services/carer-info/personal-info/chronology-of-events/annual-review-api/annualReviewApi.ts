@@ -13,9 +13,9 @@ export const annualReviewApi = baseAPI.injectEndpoints({
     }),
     postAnnualReviewList: builder.mutation({
       query: (payload: any) => ({
-        url: `carer-Info/add-annual-review`,
+        url: `carer-Info/add-annual-review/${payload.params.fosterCarerId}`,
         method: "POST",
-        body: payload,
+        body: payload.body,
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
@@ -28,16 +28,16 @@ export const annualReviewApi = baseAPI.injectEndpoints({
       providesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
     patchAnnualReviewList: builder.mutation({
-      query: ({ id, ...formData }: any) => ({
-        url: `chronology-events/allegation/${id}`,
+      query: (payload: any) => ({
+        url: `carer-Info/update-annual-review/${payload.formData.annualReviewId}`,
         method: "PATCH",
-        body: formData,
+        body: payload.formData,
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],
     }),
     deleteAnnualReviewList: builder.mutation({
-      query: (id: any) => ({
-        url: `chronology-events/allegation/${id}`,
+      query: (payload: any) => ({
+        url: `carer-Info/delete-annual-review/${payload.annualReviewId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["FOSTER_CARER_ANNUAL_LIST"],

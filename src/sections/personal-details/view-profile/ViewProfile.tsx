@@ -6,7 +6,7 @@ import { useViewProfile } from "./useViewProfile";
 
 const ViewProfile = () => {
   const { theme, data, isLoading } = useViewProfile();
-  console.log("data", data);
+
   return (
     <Card sx={styles.rootCard}>
       <Box sx={styles.profileDetailsWrapper}>

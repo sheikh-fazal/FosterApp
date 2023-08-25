@@ -18,7 +18,8 @@ Allegation.getLayout = function getLayout(page: any) {
 };
 
 export default function Allegation() {
-  const [params, setParams] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
@@ -55,11 +56,13 @@ export default function Allegation() {
   }: any = useUploadDocumentListQuery({
     params: {
       allegationId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
 
-  //Car Insurance Upload Modal API
+  //Allegation  Upload Modal API
   const [postDocuments] = usePostAllegationDocumentsMutation();
 
   //API For Delete Document List
@@ -122,9 +125,9 @@ export default function Allegation() {
             "uploadBy",
             "password",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
           onDelete={(data: any) => {

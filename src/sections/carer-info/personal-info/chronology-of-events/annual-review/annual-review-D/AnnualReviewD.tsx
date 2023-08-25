@@ -4,27 +4,28 @@ import React from "react";
 import { annualReviewD } from ".";
 import { useAnnualReviewDForm } from "./useAnnualReviewDForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewD(props: any) {
   const { action, id } = props;
-  //Annual Review C Custom Hook
+  //Annual Review D Custom Hook
   const {
     router,
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewDForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Box sx={{ mt: 1 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={2} columnSpacing={5} alignItems="center">
           {annualReviewD.map((form: any) => {
             return (

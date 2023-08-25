@@ -25,6 +25,8 @@ const Incident = () => {
     fosterCarerId,
   } = useIncidentTable();
 
+  console.log("incidentlist", incidentlist);
+
   const columns = [
     {
       accessorFn: (row: any) => row.incidentName,

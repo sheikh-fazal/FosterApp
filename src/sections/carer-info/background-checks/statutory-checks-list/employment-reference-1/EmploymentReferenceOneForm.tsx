@@ -5,6 +5,7 @@ import { employmentReferenceOne } from "./index";
 import { useEmploymentReferenceOneForm } from "./useEmploymentReferenceOneForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 const EmploymentReferenceOneForm = (props: any) => {
   const { action, id } = props;
   //Employment Reference Custom Hook
@@ -17,11 +18,13 @@ const EmploymentReferenceOneForm = (props: any) => {
     theme,
     isLoading,
     fosterCarerId,
+    isFetching,
   } = useEmploymentReferenceOneForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {employmentReferenceOne.map((form: any) => {
             return (
