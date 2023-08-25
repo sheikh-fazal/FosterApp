@@ -13,7 +13,7 @@ import {
 export const useChildOohReportForm = (action: any, id: any) => {
   const router = useRouter();
   const theme: any = useTheme();
-  const { fosterCarerId } = router.query;
+  const { fosterCarerId, fosterChildId } = router.query;
   const [isLoading, setIsLoading] = React.useState(true);
   const [isFetching, setIsFetching] = useState(false);
   //API For Getting Single Details
@@ -104,8 +104,7 @@ export const useChildOohReportForm = (action: any, id: any) => {
             variant: "success",
           });
           router.push({
-            pathname:
-              "/carer-info/background-checks/statutory-checks-list",
+            pathname: "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
@@ -114,8 +113,7 @@ export const useChildOohReportForm = (action: any, id: any) => {
           const errMsg = error?.data?.message;
           enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
           router.push({
-            pathname:
-              "/carer-info/background-checks/statutory-checks-list",
+            pathname: "/carer-info/background-checks/statutory-checks-list",
             query: { fosterCarerId: fosterCarerId },
           });
           setIsFetching(false);
@@ -138,5 +136,6 @@ export const useChildOohReportForm = (action: any, id: any) => {
     isFetching,
     isSubmitting,
     fosterCarerId,
+    fosterChildId,
   };
 };

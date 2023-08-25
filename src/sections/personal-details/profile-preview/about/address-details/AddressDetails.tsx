@@ -43,12 +43,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.adressFirstLine ?? "-"}
                 </Typography>
@@ -76,12 +71,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.adressSecondLine ?? "-"}
                 </Typography>
@@ -109,12 +99,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.country ?? "-"}
                 </Typography>
@@ -142,12 +127,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.county ?? "-"}
                 </Typography>
@@ -175,12 +155,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.town ?? "-"}
                 </Typography>
@@ -208,12 +183,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.postCode ?? "-"}
                 </Typography>
@@ -241,12 +211,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.long ?? "-"}
                 </Typography>
@@ -274,12 +239,7 @@ const AddressDetails = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {formattedDataAddress?.date ?? "-"}
                 </Typography>
@@ -372,3 +332,12 @@ const AddressDetails = () => {
 };
 
 export default AddressDetails;
+//Styling
+const styles: any = {
+  typographyStyle: (theme: any) => ({
+    color: theme.palette.grey[600],
+    fontWeight: 400,
+    textTransform: "unset",
+    mb: 1,
+  }),
+};

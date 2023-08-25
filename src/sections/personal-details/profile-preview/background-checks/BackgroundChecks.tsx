@@ -40,12 +40,7 @@ const BackgroundChecks = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {workDetailsData?.validDBS ?? "-"}
                 </Typography>
@@ -73,12 +68,7 @@ const BackgroundChecks = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {workDetailsData?.certificateName ?? "-"}
                 </Typography>
@@ -106,12 +96,7 @@ const BackgroundChecks = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {dayjs(workDetailsData?.issueDate ?? "-").format(
                     "MM/DD/YYYY"
@@ -141,12 +126,7 @@ const BackgroundChecks = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {workDetailsData?.online ?? "-"}
                 </Typography>
@@ -174,12 +154,7 @@ const BackgroundChecks = () => {
                 <Typography
                   component={"p"}
                   variant="body2"
-                  sx={{
-                    color: theme.palette.grey[600],
-                    fontWeight: 400,
-                    textTransform: "unset",
-                    mb: 1,
-                  }}
+                  sx={styles.typographyStyle}
                 >
                   {workDetailsData?.updateService ?? "-"}
                 </Typography>
@@ -246,3 +221,13 @@ const BackgroundChecks = () => {
 };
 
 export default BackgroundChecks;
+
+//Styling
+const styles: any = {
+  typographyStyle: (theme: any) => ({
+    color: theme.palette.grey[600],
+    fontWeight: 400,
+    textTransform: "unset",
+    mb: 1,
+  }),
+};

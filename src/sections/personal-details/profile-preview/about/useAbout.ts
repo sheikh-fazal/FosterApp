@@ -3,7 +3,11 @@ import { useGetAllProfileDetailsQuery } from "@root/services/personal-details/pr
 
 export const useAbout = () => {
   const theme: any = useTheme();
-  const { data: personalData, isLoading }: any = useGetAllProfileDetailsQuery({
+  const {
+    data: personalData,
+    isLoading,
+    isError,
+  }: any = useGetAllProfileDetailsQuery({
     infoToget: "personalInfo",
   });
 
@@ -25,5 +29,6 @@ export const useAbout = () => {
     formattedDataAbout,
     theme,
     personalData,
+    isError,
   };
 };

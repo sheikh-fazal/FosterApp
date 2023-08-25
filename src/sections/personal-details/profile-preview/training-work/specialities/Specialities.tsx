@@ -2,9 +2,10 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import { useSpecialities } from "./useSpecialities";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import NoContentFound from "@root/components/Table/NoContentFound";
 
 const Specialities = () => {
-  const { isLoading, specialitiesData, specialLitiesDetails, theme } =
+  const { isLoading, theme, filteredObject, specialLitiesDetails, isError } =
     useSpecialities();
 
   return (
@@ -13,7 +14,7 @@ const Specialities = () => {
         component={"p"}
         variant="h5"
         color={theme.palette.primary.main}
-        sx={{ mb: 2, mt: 5 }}
+        sx={{ mb: 1, mt: 3 }}
       >
         Specialities
       </Typography>
@@ -22,7 +23,7 @@ const Specialities = () => {
           <SkeletonFormdata />
         ) : (
           <>
-            {Object?.entries(specialitiesData).map(
+            {Object?.entries(filteredObject).map(
               ([key, val]: any, index: any) => (
                 <Grid item xs={12} md={6} key={index}>
                   <Box
@@ -36,11 +37,10 @@ const Specialities = () => {
                       sx={{
                         color: theme.palette.grey[600],
                         fontWeight: 400,
-                        textTransform: "unset",
                         mb: 1,
                       }}
                     >
-                      {typeof val === "boolean" ? val.toString() : val}
+                      {val ?? "-"}
                     </Typography>
                   </Box>
                 </Grid>
@@ -48,6 +48,13 @@ const Specialities = () => {
             )}
           </>
         )}
+        {isError === true || specialLitiesDetails?.length === 0 ? (
+          <Grid container justifyContent={"center"}>
+            <Grid item width={200}>
+              <NoContentFound />
+            </Grid>
+          </Grid>
+        ) : null}
       </Grid>
     </div>
   );

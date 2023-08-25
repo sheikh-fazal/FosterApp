@@ -1,5 +1,4 @@
 import React from "react";
-import { UPLOADID_DATA } from ".";
 import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import Image from "next/image";
 import TrainingWorkTable from "./additional-training/TrainingWorkTable";
@@ -9,6 +8,10 @@ import Link from "next/link";
 import dayjs from "dayjs";
 import Specialities from "./specialities/Specialities";
 import Passport from "../passport/Passport";
+import pdfIcon from "@root/assets/svg/pdf-icon.svg";
+import wordIcon from "@root/assets/svg/word-icon.svg";
+import excelIcon from "@root/assets/svg/excel-icon.svg";
+import imageIcon from "@root/assets/svg/image-format.svg";
 
 const TrainingWork = () => {
   const {
@@ -151,12 +154,45 @@ const TrainingWork = () => {
                 <Box sx={{ display: "flex", gap: 1, cursor: "pointer" }}>
                   {trainings?.certificate.map((item: any) => (
                     <Link
-                      style={{ textDecoration: "none" }}
+                      style={{
+                        display: "flex",
+                        gap: 3,
+                        cursor: "pointer",
+                        textDecoration: "none",
+                      }}
                       href={`${process.env.NEXT_PUBLIC_IMG_URL}${item?.url}`}
                       key={item.id}
                       target="__blank"
                     >
-                      {/* <Image src={title.icon} alt="icon" width={24} height={20} /> */}
+                      {item.name.includes("pdf") ? (
+                        <Image
+                          src={pdfIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : item.name.includes("doc" || "docx") ? (
+                        <Image
+                          src={wordIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : item.name.includes("xls" || "xlsx") ? (
+                        <Image
+                          src={excelIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      ) : (
+                        <Image
+                          src={imageIcon}
+                          alt="icon"
+                          width={24}
+                          height={20}
+                        />
+                      )}
                       <Typography
                         component={"p"}
                         variant="body2"

@@ -1,6 +1,6 @@
 import CustomCard from "@root/components/CustomCard";
 import React from "react";
-import { JOBPROFILE_DATA } from "./JobProfileData";
+import { JOBPROFILE_DATA } from ".";
 import { Box, Divider, Typography } from "@mui/material";
 
 const JobProfile = () => {

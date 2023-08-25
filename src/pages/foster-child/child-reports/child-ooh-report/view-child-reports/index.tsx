@@ -15,7 +15,7 @@ export default function ViewChildReports() {
   //If ID is not there
   if (!action && !id) {
     router.push({
-      pathname: "/foster-child/child-reports/child-ooh-report",
+      pathname: "/foster-child",
       query: {
         fosterChildId: fosterChildId,
       },

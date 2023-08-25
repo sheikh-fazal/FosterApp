@@ -9,23 +9,12 @@ import NoContentFound from "@root/components/Table/NoContentFound";
 import dayjs from "dayjs";
 
 const About = () => {
-  const { formattedDataAbout, isLoading, theme, personalData } = useAbout();
+  const { formattedDataAbout, isLoading, theme, personalData, isError } =
+    useAbout();
 
   const formatDate = (value: any) => {
     return dayjs(value).isValid() ? dayjs(value).format("DD/MM/YYYY") : value;
   };
-
-  // if (!addressDetails || addressDetails.length === 0) {
-  //   return (
-  //     <>
-  //       <Grid container>
-  //         <Grid item width={200}>
-  //           <NoContentFound />
-  //         </Grid>
-  //       </Grid>
-  //     </>
-  //   );
-  // }
 
   return (
     <>
@@ -77,6 +66,13 @@ const About = () => {
             )}
           </>
         )}
+        {isError === true || personalData?.length === 0 ? (
+          <Grid container justifyContent={"center"}>
+            <Grid item width={200}>
+              <NoContentFound />
+            </Grid>
+          </Grid>
+        ) : null}
       </Grid>
       {/* Address Details */}
       <AddressDetails />

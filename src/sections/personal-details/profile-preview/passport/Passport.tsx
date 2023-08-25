@@ -48,18 +48,18 @@ const Passport = () => {
               <Link
                 style={{
                   display: "flex",
-                  gap: 1,
+                  gap: 3,
                   cursor: "pointer",
                   textDecoration: "none",
                 }}
                 href={`${process.env.NEXT_PUBLIC_IMG_URL}${passports?.url}`}
                 target="__blank"
               >
-                {passports.url.includes("pdf") ? (
+                {passports?.url.includes("pdf") ? (
                   <Image src={pdfIcon} alt="icon" width={24} height={20} />
-                ) : passports.url.includes("doc" || "docx") ? (
+                ) : passports?.url.includes("doc" || "docx") ? (
                   <Image src={wordIcon} alt="icon" width={24} height={20} />
-                ) : passports.url.includes("xls" || "xlsx") ? (
+                ) : passports?.url.includes("xls" || "xlsx") ? (
                   <Image src={excelIcon} alt="icon" width={24} height={20} />
                 ) : (
                   <Image src={imageIcon} alt="icon" width={24} height={20} />

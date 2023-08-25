@@ -5,22 +5,23 @@ import TableHeader from "@root/components/TableHeader";
 import React from "react";
 import { useChildOohReportTable } from "./useChildOohReportTable";
 import dayjs from "dayjs";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
 
 const ChildOohReportTable = () => {
   const {
     router,
     tableHeaderRefTwo,
-    carInsuranceListIsloading,
-    carInsuranceData,
-    carInsuranceListIsfetching,
-    carInsuranceListError,
-    carInsuranceListIsSuccess,
+    childReportListIsloading,
+    childReportData,
+    childReportListIsfetching,
+    childReportListError,
+    childReportListIsSuccess,
     meta,
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
-    fosterCarerId,
+    fosterChildId,
   } = useChildOohReportTable();
 
   const columns = [
@@ -32,7 +33,7 @@ const ChildOohReportTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.occurance ?? "-",
+      accessorFn: (row: any) => row.dateTime ?? "-",
       id: "occurance",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
@@ -41,14 +42,14 @@ const ChildOohReportTable = () => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.childStatus ?? "-",
+      accessorFn: (row: any) => row.status ?? "-",
       id: "childStatus",
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.createdDate ?? "-",
+      accessorFn: (row: any) => row?.createdAt ?? "-",
       id: "createdDate",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
@@ -77,7 +78,26 @@ const ChildOohReportTable = () => {
                 query: {
                   action: "edit",
                   id: info?.row?.original?.id,
-                  fosterCarerId: fosterCarerId,
+                  fosterChildId: fosterChildId,
+                },
+              })
+            }
+          />
+          {/* Delete Modal */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+          <TableAction
+            size="small"
+            type="edit"
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/foster-child/child-reports/child-ooh-report/view-child-reports",
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
                 },
               })
             }
@@ -85,32 +105,32 @@ const ChildOohReportTable = () => {
           <TableAction
             size="small"
             type="print"
-            // onClicked={() =>
-            //   router.push({
-            //     pathname:
-            //         "/foster-child/child-reports/child-ooh-report/view-child-reports",
-            //     query: {
-            //       action: "view",
-            //       id: info?.row?.original?.id,
-            //       fosterCarerId: fosterCarerId,
-            //     },
-            //   })
-            // }
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/foster-child/child-reports/child-ooh-report/view-child-reports",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
+            }
           />
           <TableAction
             size="small"
             type="share"
-            // onClicked={() =>
-            //   router.push({
-            //     pathname:
-            //       "/foster-child/child-reports/child-ooh-report/view-child-reports",
-            //     query: {
-            //       action: "view",
-            //       id: info?.row?.original?.id,
-            //       fosterCarerId: fosterCarerId,
-            //     },
-            //   })
-            // }
+            onClicked={() =>
+              router.push({
+                pathname:
+                  "/foster-child/child-reports/child-ooh-report/view-child-reports",
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterChildId: fosterChildId,
+                },
+              })
+            }
           />
         </Box>
       ),
@@ -127,14 +147,22 @@ const ChildOohReportTable = () => {
         onChanged={(event: any) => {
           setSearch(event.search);
         }}
+        showAddBtn
+        onAdd={() => {
+          router.push({
+            pathname:
+              "/foster-child/child-reports/child-ooh-report/view-child-reports",
+            query: { action: "add", fosterChildId: fosterChildId },
+          });
+        }}
       />
       <CustomTable
-        data={carInsuranceData}
+        data={childReportData}
         columns={columns}
-        isLoading={carInsuranceListIsloading}
-        isFetching={carInsuranceListIsfetching}
-        isError={carInsuranceListError}
-        isSuccess={carInsuranceListIsSuccess}
+        isLoading={childReportListIsloading}
+        isFetching={childReportListIsfetching}
+        isError={childReportListError}
+        isSuccess={childReportListIsSuccess}
         showSerialNo={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
