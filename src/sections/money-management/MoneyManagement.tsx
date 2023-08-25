@@ -204,7 +204,7 @@ const styles = {
   marketingCardContent: (theme: any) => ({
     display: "flex",
     justifyContent: "space-between",
-    Height: "100%",
+    height: "100%",
   }),
   cardText: (theme: any) => ({
     [theme.breakpoints.up("xs")]: {

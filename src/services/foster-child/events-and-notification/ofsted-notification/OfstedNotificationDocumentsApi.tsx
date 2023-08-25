@@ -12,13 +12,7 @@ export const OfstedNotificationDocuments = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
-    // GetOfstedNotificationDocumentsListQueryById: builder.query({
-    //   query: (payload: any) => ({
-    //     url: `/events-and-notification/ofsted-notification/${payload.params.id}`,
-    //     method: "GET",
-    //     params: payload.params,
-    //   }),
-    // }),
+    
     deleteOfstedNotificationDocumentsList: builder.mutation({
       query: (payload: any) => ({
         url: `/events-and-notification/uploaded-document/${payload.id}`,
@@ -34,14 +28,7 @@ export const OfstedNotificationDocuments = baseAPI.injectEndpoints({
       }),
       invalidatesTags: [TAG],
     }),
-    // updateOfstedNotificationDocumentsList: builder.mutation({
-    //   query: (payload: any) => ({
-    //     url: `/events-and-notification/ofsted-notification/${payload?.params.id}`,
-    //     method: "PATCH",
-    //     body: payload.body,
-    //   }),
-    //   invalidatesTags: [TAG],
-    // }),
+   
   }),
 });
 export const {

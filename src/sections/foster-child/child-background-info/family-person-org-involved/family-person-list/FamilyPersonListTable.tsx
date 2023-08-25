@@ -12,7 +12,6 @@ export default function FamilyPersonListTable(prop: any) {
   const { fosterChildId } = prop;
   const {
     data,
-    headerChangeHandler,
     isError,
     isLoading,
     isSuccess,
@@ -20,6 +19,7 @@ export default function FamilyPersonListTable(prop: any) {
     listDeleteHandler,
     pageChangeHandler,
     sortChangeHandler,
+    headerChangeHandler,
   } = useFamilyPersonListTable();
 
   const columns = [
@@ -83,16 +83,16 @@ export default function FamilyPersonListTable(prop: any) {
               pathname: `/foster-child/child-background-info/family-person-org-involved/add-family-form-list`,
               query: { fosterChildId: fosterChildId },
             })
-          }
+          } 
         />
         <CustomTable
+          showSerialNo
           data={data?.family_details}
           columns={columns}
           isLoading={isLoading}
           isFetching={isFetching}
           isError={isError}
           isSuccess={isSuccess}
-          showSerialNo
           currentPage={data?.meta?.page}
           totalPages={data?.meta?.pages}
           onPageChange={pageChangeHandler}

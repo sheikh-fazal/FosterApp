@@ -4,7 +4,7 @@ export const allegationInfoApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     getAllChildDaylogEventsReportListData: builder.query({
       query: (apiDataParameter: any) => ({
-        url: "child-chronology-of-events/day-log/List",
+        url: `child-chronology-of-events/day-log/${apiDataParameter?.pathParams?.fosterChildId}/List`,
         method: "GET",
         params: apiDataParameter.queryParams,
       }),
