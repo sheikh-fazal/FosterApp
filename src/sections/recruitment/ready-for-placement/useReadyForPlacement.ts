@@ -35,6 +35,7 @@ export const useReadyForPlacement = () => {
         status: readyForPlacementApiData?.[item.textForApi],
       }))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [readyForPlacementApiData]);
   return {
     theme,

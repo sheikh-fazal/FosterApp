@@ -35,6 +35,7 @@ export const useEnquiryStage: any = () => {
         status: enquiryStageApiData?.[item.textForApi],
       }))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [enquiryStageApiData]);
 
   const theme: any = useTheme();

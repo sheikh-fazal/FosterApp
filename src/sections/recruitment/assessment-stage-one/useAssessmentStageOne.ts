@@ -36,6 +36,7 @@ export const useAssessmentStageOne = () => {
         status: assessmentStageOneApiData?.[item?.textForApi],
       }))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assessmentStageOneApiData]);
 
   const [openIdForInfo, setOpenIdForInfo] = React.useState<any>();

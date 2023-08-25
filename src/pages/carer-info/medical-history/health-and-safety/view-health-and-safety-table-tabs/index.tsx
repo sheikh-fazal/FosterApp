@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import Error from "@root/components/Error";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useGetHealthAndSafetyDataByIdQuery } from "@root/services/carer-info/medical-history/health-and-safety/healthAndSafetyApi";
-const viewHealthAndSafetyTableTabs = () => {
+const ViewHealthAndSafetyTableTabs = () => {
   const [breadCrumbData, setBreadCrumbData] = useState("Household Condition-A");
   const router = useRouter();
   const { healthAndSafetyId } = router.query;
@@ -311,4 +311,4 @@ const viewHealthAndSafetyTableTabs = () => {
     </Layout>
   );
 };
-export default viewHealthAndSafetyTableTabs;
+export default ViewHealthAndSafetyTableTabs;

@@ -35,6 +35,7 @@ export const useAssessmentStageTwo = () => {
         status: assessmentStageTwoApiData?.[item?.textForApi],
       }))
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assessmentStageTwoApiData]);
   return {
     theme,
