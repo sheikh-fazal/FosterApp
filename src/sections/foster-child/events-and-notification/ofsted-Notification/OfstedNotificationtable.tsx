@@ -126,7 +126,6 @@ const OfstedNotificationtable = (props: any) => {
   } = useOfstednotificationTable({
     fosterChildId: fosterChildId,
   });
-  console.log();
 
   return (
     <Box>
