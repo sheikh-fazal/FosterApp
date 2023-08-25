@@ -6,10 +6,10 @@ import HomeIcon from "@mui/icons-material/Home";
 import { Box } from "@mui/material";
 import ChildImmunisationReportsTable from "@root/sections/foster-child/child-reports/child-immunisation-Reports/ChildImmunisationReportsTable";
 import ClaDocumentationReportTable from "@root/sections/foster-child/child-reports/cla-documentation-report/ClaDocumentationReportTable";
-claDocumentationReport.getLayout = function getLayout(page: any) {
+ClaDocumentationReport.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
 };
-export default function claDocumentationReport() {
+export default function ClaDocumentationReport() {
   const Router: any = useRouter();
   const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
@@ -43,12 +43,8 @@ export default function claDocumentationReport() {
   );
 }
 
-
-
-
 // import React from "react";
 
 // export default function ClaDocumentationReport() {
 //   return <div>ClaDocumentationReport</div>;
 // }
-
