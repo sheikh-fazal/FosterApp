@@ -81,6 +81,7 @@ const PlacementReference = () => {
                     accept="audio/*, video/*"
                     name="videoFile"
                     {...methods}
+                    placeholder="Upload Video or Audio"
                   />
                   <Typography
                     fontSize={13}

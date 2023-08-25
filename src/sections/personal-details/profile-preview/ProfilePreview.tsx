@@ -38,7 +38,7 @@ const ProfilePreview = () => {
         item
         xs={12}
         md={3}
-        sx={{ mb: { mb: { xs: 2, md: 0 }, position: "sticky", top: 20 } }}
+        sx={{ mb: { mb: { xs: 2, md: 0 }, position: "sticky", top: 0 } }}
       >
         <Card
           sx={{
