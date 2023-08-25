@@ -6,9 +6,8 @@ import { useMoneySkillAssessmentForm } from "./useMoneySkillAssessmentForm";
 import { MoneySkillAssessmentData } from ".";
 
 export const MoneySkillAssessmentForm = (props: any) => {
-    const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
+  const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
     useMoneySkillAssessmentForm(props);
-  // const { fosterChildId } = router.query;
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
@@ -51,8 +50,7 @@ export const MoneySkillAssessmentForm = (props: any) => {
             variant="contained"
             onClick={() =>
               router.push({
-                pathname:"/money-management/kidiee-saving",
-                // query: { fosterChildId: fosterChildId },
+                pathname: "/money-management/money-skill-assessment",
               })
             }
           >

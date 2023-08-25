@@ -1,4 +1,4 @@
-import { Grid, Typography,} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { FormProvider } from "@root/components/hook-form";
 import { useSanctionDetailsForm } from "./useSanctionDetailsForm";
@@ -19,7 +19,7 @@ const SanctionDetailsForm = () => {
   } = useSanctionDetailsForm();
 
   if (isLoading) return <SkeletonFormdata />;
-  
+
   return (
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmitHandler)}>
       <Grid container columnSpacing={2}>
@@ -29,13 +29,28 @@ const SanctionDetailsForm = () => {
               <Typography
                 sx={{
                   mt: 2,
+                  fontWeight: form?.component == Typography ? "bold" : 300,
                   color:
                     theme.palette.mode === "light"
                       ? "#343A40"
                       : theme.palette.mode,
                 }}
               >
-                {form.title}
+                {form.title}:
+                {form.titleValue && (
+                  <Typography
+                    sx={{
+                      ml: 1,
+                      display: "inline-block",
+                      color:
+                        theme.palette.mode === "light"
+                          ? "#343A40"
+                          : theme.palette.mode,
+                    }}
+                  >
+                    {form.titleValue}
+                  </Typography>
+                )}
               </Typography>
               <form.component size="small" {...form.otherOptions} fullWidth>
                 {form?.otherOptions?.select

@@ -1,36 +1,24 @@
 import SignaturePad from "@root/components/SignaturePad";
-import { RHFSelect, RHFTextField, } from "@root/components/hook-form";
+import { RHFSelect, RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
 import { Typography } from "@mui/material";
 
-export const initialValues = {
-  areaOfficeName: "",
-  address: "",
-  townCity: "",
-  telephone: "",
-  officePhone: "",
-  mobilePhone: "",
-  email: "",
-  county: "",
-  country: "",
-  postalCode: "",
-};
-
-export const formSchema = Yup.object().shape({
-  areaOfficeName: Yup.string().required("Field is required."),
+export const areaOfficeFormSchema = Yup.object().shape({
+  office_name: Yup.string().required("Field is required."),
+  agency_name: Yup.string().required("Field is required."),
   address: Yup.string().required("Field is required."),
-  townCity: Yup.string().required("Field is required."),
+  city: Yup.string().required("Field is required."),
   telephone: Yup.string().required("Field is required."),
-  officePhone: Yup.string().required("Field is required."),
-  mobilePhone: Yup.string().required("Field is required."),
+  office_no: Yup.string().required("Field is required."),
+  mobile_no: Yup.string().required("Field is required."),
   email: Yup.string().required("Field is required."),
   county: Yup.string().required("Field is required."),
   country: Yup.string().required("Field is required."),
-  postalCode: Yup.string().required("Field is required."),
+  postal_code: Yup.string().required("Field is required."),
 });
 
-export const FRF1FormData = [
+export const AreaOfficeFormDataFucntion = (isFieldDisable = false) => [
   {
     gridLength: 12,
     head: "Area Office Setup",
@@ -39,8 +27,19 @@ export const FRF1FormData = [
     gridLength: 6,
     otherOptions: {
       label: "Area Office Name",
-      name: "areaOfficeName",
+      name: "office_name",
       fullWidth: true,
+      disabled: isFieldDisable,
+    },
+    component: RHFTextField,
+  },
+  {
+    gridLength: 6,
+    otherOptions: {
+      label: "Agency Name",
+      name: "agency_name",
+      fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
@@ -56,6 +55,7 @@ export const FRF1FormData = [
       fullWidth: true,
       minRows: 3,
       multiline: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
@@ -63,17 +63,19 @@ export const FRF1FormData = [
     gridLength: 6,
     otherOptions: {
       label: "Town City",
-      name: "townCity",
+      name: "city",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
   {
     gridLength: 6,
     otherOptions: {
-      label: "Telephone",
+      label: "telephone",
       name: "telephone",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
@@ -81,8 +83,9 @@ export const FRF1FormData = [
     gridLength: 6,
     otherOptions: {
       label: "Office phone",
-      name: "officePhone",
+      name: "office_no",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
@@ -90,17 +93,19 @@ export const FRF1FormData = [
     gridLength: 6,
     otherOptions: {
       label: "Mobile phone",
-      name: "mobilePhone",
+      name: "mobile_no",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
-  },  
+  },
   {
     gridLength: 6,
     otherOptions: {
       label: "Email",
       name: "email",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
@@ -116,6 +121,7 @@ export const FRF1FormData = [
         { value: "select 2", label: "select 2" },
         { value: "select 3", label: "select 3" },
       ],
+      disabled: isFieldDisable,
     },
     component: RHFSelect,
   },
@@ -131,16 +137,47 @@ export const FRF1FormData = [
         { value: "select 2", label: "select 2" },
         { value: "select 3", label: "select 3" },
       ],
+      disabled: isFieldDisable,
     },
     component: RHFSelect,
-  },  
+  },
   {
     gridLength: 6,
     otherOptions: {
       label: "Postal Code",
-      name: "postalCode",
+      name: "postal_code",
       fullWidth: true,
+      disabled: isFieldDisable,
     },
     component: RHFTextField,
   },
 ];
+export const initialValues = {
+  office_name: "",
+  agency_name: "",
+  address: "",
+  city: "",
+  telephone: "",
+  office_no: "",
+  mobile_no: "",
+  email: "",
+  county: "",
+  country: "",
+  postal_code: "",
+};
+
+export const defaultValueAreaOfficeForm = (data: any = initialValues) => {
+  return {
+    office_name: data?.office_name,
+    agency_name: data?.agency_name,
+    address: data?.address,
+    city: data?.city,
+    telephone: data?.telephone,
+    office_no: data?.office_no,
+    mobile_no: data?.mobile_no,
+    email: data?.email,
+    county: data?.county,
+    country: data?.country,
+    postal_code: data?.postal_code,
+  };
+};
