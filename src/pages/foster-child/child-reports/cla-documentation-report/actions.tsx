@@ -5,6 +5,7 @@ import { Box, Paper } from "@mui/material";
 import { useRouter } from "next/router";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import ChildImmunisationReportsFrom from "@root/sections/foster-child/child-reports/child-immunisation-Reports/ChildImmunisationReportsFrom";
+import ClaDocumentationReportForm from "@root/sections/foster-child/child-reports/cla-documentation-report/ClaDocumentationReportForm";
 
 claDocumentationReportActions.getLayout = function getLayout(page: any) {
   return <Layout showTitleWithBreadcrumbs={false}>{page}</Layout>;
@@ -44,10 +45,15 @@ export default function claDocumentationReportActions() {
         }}
       >
         <Box px={1} py={1}>
-          <ChildImmunisationReportsFrom
+          {/* <ChildImmunisationReportsFrom
             action={action}
             fosterChildId={fosterChildId}
             ChildImmunisationReportID={ChildImmunisationReportID}
+          /> */}
+          <ClaDocumentationReportForm
+            action={action}
+            fosterChildId={fosterChildId}
+            // ChildImmunisationReportID={ChildImmunisationReportID}
           />
         </Box>
       </Paper>
