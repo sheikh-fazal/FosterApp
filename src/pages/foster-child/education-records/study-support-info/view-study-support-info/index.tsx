@@ -18,14 +18,15 @@ ViewStudySupportInfo.getLayout = function getLayout(page: any) {
 export default function ViewStudySupportInfo() {
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
+  const Router: any = useRouter();
+  const { fosterChildId, id } = Router.query;
 
   const params = {
     search: searchHandle,
     limit: "10",
     offset: pageHandle,
+    recordId: id,
   };
-  const Router: any = useRouter();
-  const { fosterChildId } = Router.query;
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -48,9 +49,9 @@ export default function ViewStudySupportInfo() {
     isFetching: isDocumentFetching,
     isError: hasDocumentError,
     isSuccess: isDocumentSuccess,
-  } = useGetUploadDocumentsStudySupportInfoQuery(params);
+  } = useGetUploadDocumentsStudySupportInfoQuery({ fosterChildId, params });
 
-  const tableData: any = documentData?.data?.["education-records-document"];
+  const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   const pageChangeHandler = (page: any) => {
@@ -67,7 +68,9 @@ export default function ViewStudySupportInfo() {
         <StudySupportInfoForm disabled />
         <UploadDocuments
           readOnly={true}
-          searchParam={(searchedText: string) => setSearchHandle(searchedText)}
+          searchParam={(searchedText: any) =>
+            setSearchHandle(searchedText.search)
+          }
           tableData={tableData}
           isLoading={isDocumentLoading}
           isFetching={isDocumentFetching}

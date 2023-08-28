@@ -5,6 +5,7 @@ import { referenceTwoData } from "./index";
 import { useReferenceTwoForm } from "./useReferenceTwoForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 const ReferenceTwoForm = (props: any) => {
   const { action, id } = props;
   //Reference Two Custom Hook
@@ -16,11 +17,14 @@ const ReferenceTwoForm = (props: any) => {
     isSubmitting,
     theme,
     isLoading,
+    fosterCarerId,
+    isFetching,
   } = useReferenceTwoForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {referenceTwoData.map((form: any) => {
             return (
@@ -77,9 +81,11 @@ const ReferenceTwoForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

@@ -5,6 +5,7 @@ import { referenceOneData } from "./index";
 import { useReferenceOneForm } from "./useReferenceOneForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 const PartnerReferenceForm = (props: any) => {
   const { action, id } = props;
@@ -17,11 +18,14 @@ const PartnerReferenceForm = (props: any) => {
     isSubmitting,
     theme,
     isLoading,
+    fosterCarerId,
+    isFetching,
   } = useReferenceOneForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {referenceOneData.map((form: any) => {
             return (
@@ -77,9 +81,11 @@ const PartnerReferenceForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

@@ -1,3 +1,4 @@
+import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetSocialWorkerTableApiQuery } from "@root/services/foster-child/social-worker-details/la-social-worker/laSocialWorkerApi";
 import { useRouter } from "next/router";
 import { useRef, useState } from "react";
@@ -7,7 +8,8 @@ export const usePreviousSocialWorkerTable = () => {
   const router = useRouter();
   const [searchHandle, setSearchHandle] = useState("");
   const [pageHandle, setPageHandle] = useState(0);
-
+  const { sortChangeHandler } =
+  useTableParams();
   const params = {
     search: searchHandle,
     limit: "10",
@@ -43,5 +45,6 @@ export const usePreviousSocialWorkerTable = () => {
     isSuccess,
     meta,
     pageChangeHandler,
+    sortChangeHandler
   };
 };

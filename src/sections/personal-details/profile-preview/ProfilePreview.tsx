@@ -1,5 +1,5 @@
 import { Box, Card, Grid, Typography, alpha } from "@mui/material";
-import { PROFILETABS_DATA } from "./ProfilePreviewData";
+import { PROFILETABS_DATA } from ".";
 import { useTheme } from "@emotion/react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -34,7 +34,12 @@ const ProfilePreview = () => {
   };
   return (
     <Grid container columnSpacing={4} sx={{ mt: 2 }}>
-      <Grid item xs={12} md={3}>
+      <Grid
+        item
+        xs={12}
+        md={3}
+        sx={{ mb: { mb: { xs: 2, md: 0 }, position: "sticky", top: 0 } }}
+      >
         <Card
           sx={{
             boxShadow: theme.shadows[5],
@@ -78,7 +83,12 @@ const ProfilePreview = () => {
           </Tabs>
         </Card>
       </Grid>
-      <Grid item xs={12} md={9}>
+      <Grid
+        item
+        xs={12}
+        md={9}
+        sx={{ overflowY: "scroll", maxHeight: "calc(100vh - 100px)" }}
+      >
         <Card
           sx={{
             boxShadow: theme.shadows[5],

@@ -12,7 +12,7 @@ export const useDiaryRecordingsTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const { fosterChildId } = router.query;
-  const { headerChangeHandler, pageChangeHandler, sortChangeHandler,params } =
+  const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
   //GET API For Diary List
   const {

@@ -5,7 +5,7 @@ import Incident from "./incident/IncidentTable";
 import Report from "./ooh-report/ReportTable";
 import PetQuestionnaireTable from "./pet-questionnaire/PetQuestionnaireTable";
 import SupervisoryVisitTable from "./supervisory-visit/SupervisoryVisitTable";
-import UnannouncedVisit from "./unannounced-visit/UnannouncedVisit";
+import UnannouncedVisit from "./unannounced-visit/UnannouncedVisitTable";
 
 export const accordionData = [
   {

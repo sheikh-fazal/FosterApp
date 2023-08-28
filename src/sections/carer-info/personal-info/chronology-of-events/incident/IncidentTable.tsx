@@ -22,16 +22,12 @@ const Incident = () => {
     pageChangeHandler,
     sortChangeHandler,
     setsearch,
+    fosterCarerId,
   } = useIncidentTable();
 
+  console.log("incidentlist", incidentlist);
+
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
     {
       accessorFn: (row: any) => row.incidentName,
       id: "incidentName",
@@ -67,7 +63,11 @@ const Incident = () => {
                 router.push({
                   pathname:
                     "/carer-info/personal-info/carer-chronology-of-events/incident",
-                  query: { action: "edit", id: `${info.row.original.id}` },
+                  query: {
+                    action: "edit",
+                    id: `${info.row.original.id}`,
+                    fosterCarerId: fosterCarerId,
+                  },
                 })
               }
             />
@@ -82,7 +82,11 @@ const Incident = () => {
                 router.push({
                   pathname:
                     "/carer-info/personal-info/carer-chronology-of-events/incident",
-                  query: { action: "view", id: `${info.row.original.id}` },
+                  query: {
+                    action: "view",
+                    id: `${info.row.original.id}`,
+                    fosterCarerId: fosterCarerId,
+                  },
                 })
               }
             />
@@ -105,7 +109,7 @@ const Incident = () => {
             router.push({
               pathname:
                 "/carer-info/personal-info/carer-chronology-of-events/incident",
-              query: { action: "add", id: "" },
+              query: { action: "add", fosterCarerId: fosterCarerId },
             });
           }}
           onChanged={(e: any) => {

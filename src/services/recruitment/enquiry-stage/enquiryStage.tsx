@@ -11,10 +11,25 @@ export const enquiryStageAllApi: any = baseAPI.injectEndpoints({
         method: "PATCH",
       }),
     }),
+    patchSocialWorkerInfo: builder.mutation({
+      query: ({ data, userId }: any) => ({
+        url: `/enquiry-stage/social-Worker-info/${userId}`,
+        method: "PATCH",
+        body: data,
+      }),
+    }),
+    getSocialWorkerInfo: builder.query({
+      query: (userId: any) => ({
+        url: `/enquiry-stage/social-Worker-info/${userId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
 export const {
   useGetEnquiryStageStatusQuery,
   usePatchEnquiryStageStatusMutation,
+  usePatchSocialWorkerInfoMutation,
+  useGetSocialWorkerInfoQuery
 } = enquiryStageAllApi;

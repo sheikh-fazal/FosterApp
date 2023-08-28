@@ -5,16 +5,26 @@ import { carInsuranceData } from "./index";
 import { useCarInsuranceForm } from "./useCarInsuranceForm";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 const CarInsuranceForm = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
   //Car Insurance  Custom Hook
-  const { router, methods, onSubmit, handleSubmit, isSubmitting, isLoading } =
-    useCarInsuranceForm(action, id);
+  const {
+    router,
+    methods,
+    onSubmit,
+    handleSubmit,
+    isSubmitting,
+    isLoading,
+    fosterCarerId,
+    isFetching,
+  } = useCarInsuranceForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {carInsuranceData.map((form: any) => {
             return (
@@ -72,9 +82,11 @@ const CarInsuranceForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

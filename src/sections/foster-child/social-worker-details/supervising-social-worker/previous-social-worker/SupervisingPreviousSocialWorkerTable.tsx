@@ -23,15 +23,15 @@ export default function SupervisingPreviousSocialWorkerTable(props: any) {
   } = useSupervisingPreviousSocialWorkerTable();
   const columns = [
     {
-      accessorFn: (row: any) => row?.socialWorkerName,
-      id: "socialWorkerName",
+      accessorFn: (row: any) => row?.name,
+      id: "name",
       cell: (info: any) => info.getValue(),
       header: "Social Worker Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.socialWorkerTitle,
-      id: "socialWorkerTitle",
+      accessorFn: (row: any) => row?.title,
+      id: "title",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Social Worker Title",
       isSortable: true,
@@ -77,7 +77,7 @@ export default function SupervisingPreviousSocialWorkerTable(props: any) {
             onClicked={() =>
               router.push({
                 pathname:
-                  "/foster-child/social-worker-details/la-social-worker/view-social-worker",
+                  "/foster-child/social-worker-details/supervising-social-worker/view-supervising-social-worker",
                 query: {
                   action: "view",
                   id: info.row.original.id,

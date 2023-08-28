@@ -13,6 +13,7 @@ import { carInsuranceData } from "./index";
 import { useDbsCheckForm } from "./useDbsCheckForm";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 const DbsCheckForm = (props: any) => {
   const { action, id } = props;
   //Dbs Check  Custom Hook
@@ -27,11 +28,14 @@ const DbsCheckForm = (props: any) => {
     trigger,
     getValues,
     isLoading,
+    fosterCarerId,
+    isFetching,
   } = useDbsCheckForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container alignItems="center">
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {carInsuranceData.map((form: any) => {
             return (
@@ -123,9 +127,11 @@ const DbsCheckForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

@@ -21,6 +21,7 @@ const MedicalAdvisorTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useMedicalAdvisorTable();
 
   const columns = [
@@ -71,7 +72,11 @@ const MedicalAdvisorTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -86,7 +91,11 @@ const MedicalAdvisorTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -107,7 +116,7 @@ const MedicalAdvisorTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/medical-advisor",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

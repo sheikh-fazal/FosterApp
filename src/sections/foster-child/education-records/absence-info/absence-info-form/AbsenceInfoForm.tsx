@@ -63,14 +63,15 @@ export default function AbsenceInfoForm(props: any) {
               </LoadingButton>
             )}
             <LoadingButton
-              sx={{ color: "#fff", ml: 1, backgroundColor: "#F6830F" }}
-              variant="contained"
               onClick={() =>
                 router.push({
                   pathname: "/foster-child/education-records/absence-info",
                   query: { fosterChildId: fosterChildId },
                 })
               }
+              sx={{ color: "#fff", ml: 1, backgroundColor: "#F6830F" }}
+              variant="contained"
+              type="button"
             >
               Back
             </LoadingButton>

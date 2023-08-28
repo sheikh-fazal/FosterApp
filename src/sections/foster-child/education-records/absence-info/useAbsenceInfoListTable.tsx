@@ -11,6 +11,7 @@ export const useAbsenceInfoListTable = () => {
 
   const { data, isError, isLoading, isSuccess, isFetching } =
     useGetAbsenceInfoQuery<any>({ params });
+
   const [deleteList] = useDeleteAbsenceInfoMutation();
 
   // DELETE API Absence Info

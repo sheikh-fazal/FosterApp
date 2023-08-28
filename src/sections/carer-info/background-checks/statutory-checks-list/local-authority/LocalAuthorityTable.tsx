@@ -20,6 +20,7 @@ const LocalAuthorityTable = () => {
     sortChangeHandler,
     setSearch,
     listDeleteHandler,
+    fosterCarerId,
   } = useLocalAuthorityTable();
   const columns = [
     {
@@ -67,7 +68,11 @@ const LocalAuthorityTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/local-authority",
-                query: { action: "edit", id: info?.row?.original?.id },
+                query: {
+                  action: "edit",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -82,7 +87,11 @@ const LocalAuthorityTable = () => {
               router.push({
                 pathname:
                   "/carer-info/background-checks/statutory-checks-list/local-authority",
-                query: { action: "view", id: info?.row?.original?.id },
+                query: {
+                  action: "view",
+                  id: info?.row?.original?.id,
+                  fosterCarerId: fosterCarerId,
+                },
               })
             }
           />
@@ -103,7 +112,7 @@ const LocalAuthorityTable = () => {
           router.push({
             pathname:
               "/carer-info/background-checks/statutory-checks-list/local-authority",
-            query: { action: "add", id: "" },
+            query: { action: "add", fosterCarerId: fosterCarerId },
           });
         }}
         onChanged={(event: any) => {

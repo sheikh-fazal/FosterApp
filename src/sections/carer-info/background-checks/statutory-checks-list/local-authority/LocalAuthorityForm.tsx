@@ -5,6 +5,7 @@ import { localAuthorityData } from "./index";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { useLocalAuthorityForm } from "./useLocalAuthorityForm";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 const LocalAuthorityForm = (props: any) => {
   const { action, id } = props;
   //Local Authority Custom Hook
@@ -16,11 +17,14 @@ const LocalAuthorityForm = (props: any) => {
     isSubmitting,
     theme,
     isLoading,
+    fosterCarerId,
+    isFetching,
   } = useLocalAuthorityForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {localAuthorityData.map((form: any) => {
             return (
@@ -78,9 +82,11 @@ const LocalAuthorityForm = (props: any) => {
               }}
               variant="contained"
               onClick={() =>
-                router.push(
-                  "/carer-info/background-checks/statutory-checks-list"
-                )
+                router.push({
+                  pathname:
+                    "/carer-info/background-checks/statutory-checks-list",
+                  query: { fosterCarerId: fosterCarerId },
+                })
               }
             >
               Back

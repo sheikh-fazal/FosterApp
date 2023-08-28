@@ -131,8 +131,12 @@ const ChildMedicationInfotable = (prop: any) => {
                 isSuccess={childMedicationInfotableSuccess}
                 isPagination={true}
                 showSerialNo={true}
-                // totalPages={incidentlist?.data?.meta?.pages ?? 0}
-                // currentPage={incidentlist?.data?.meta?.page ?? 1}
+                totalPages={
+                  childMedicationInfotabledata?.data?.meta?.pages ?? 0
+                }
+                currentPage={
+                  childMedicationInfotabledata?.data?.meta?.page ?? 1
+                }
                 onPageChange={pageChangeHandler}
                 onSortByChange={sortChangeHandler}
               />

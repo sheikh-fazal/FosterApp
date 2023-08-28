@@ -1,8 +1,8 @@
 import React from "react";
-import { useGetAboutDetailsQuery } from "@root/services/userApi";
+import { useGetAboutDetailsQuery } from "@root/services/personal-details/about/userApi";
 
 export const useAbout = () => {
-  const { data, isLoading }: any = useGetAboutDetailsQuery({});
+  const { data, isLoading, isError }: any = useGetAboutDetailsQuery({});
   const [arrayItems, setArrayItems] = React.useState(4);
   const [toggleList, setToggleList] = React.useState(false);
   const handleDropDown = () => {
@@ -30,6 +30,7 @@ export const useAbout = () => {
     formattedData,
     data,
     isLoading,
+    isError,
     arrayItems,
     setArrayItems,
     toggleList,

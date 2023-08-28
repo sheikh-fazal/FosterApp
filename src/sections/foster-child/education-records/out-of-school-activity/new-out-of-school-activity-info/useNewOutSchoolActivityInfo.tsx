@@ -4,22 +4,22 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useNewOutSchoolActivityInfo = () => {
+const useNewOutSchoolActivityInfo = (postSchoolActivityData: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   const defaultValues = {
     activityType: "",
     fromDate: new Date(todayDate),
-    toDate: new Date(todayDate),
+    outOfDate: new Date(todayDate),
     comments: "",
   };
 
   const outSchoolActivitySchema = Yup.object().shape({
-    activityType: Yup.string().required("Required"),
-    fromDate: Yup.date().required("Required"),
-    toDate: Yup.date().required("Required"),
-    comments: Yup.string().required("Required"),
+    // activityType: Yup.string().required("Required"),
+    // fromDate: Yup.date().required("Required"),
+    // outOfDate: Yup.date().required("Required"),
+    // comments: Yup.string().required("Required"),
   });
 
   const methods: any = useForm({
@@ -30,7 +30,7 @@ const useNewOutSchoolActivityInfo = () => {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    postSchoolActivityData(data);
   };
 
   return { methods, handleSubmit, onSubmit, router };

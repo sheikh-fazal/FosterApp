@@ -18,7 +18,7 @@ export const absenceInfoFormData = [
     gridLength: 6,
     otherOptions: {
       name: "label",
-      label: "Date",
+      label: "Date of Return from Absence",
       fullWidth: true,
     },
     component: RHFDatePicker,

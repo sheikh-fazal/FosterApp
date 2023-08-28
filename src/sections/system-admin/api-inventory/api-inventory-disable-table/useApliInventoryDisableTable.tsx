@@ -1,70 +1,65 @@
 import { useRouter } from "next/router";
 import React, { useRef, useState } from "react";
-import { TableData } from ".";
-import { Box, Checkbox } from "@mui/material";
+
+import { Box, Switch } from "@mui/material";
 import TableAction from "@root/components/TableAction";
-import DeleteModel from "@root/components/modal/DeleteModel";
 import { useTheme } from "@mui/material";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { enqueueSnackbar } from "notistack";
+import DeletePrompt from "@root/components/Table/prompt/DeletePrompt";
+import {
+  useDeleteApiInventoryMutation,
+  useGetApiInventoryQuery,
+  usePutApiInventoryChangeStatusMutation,
+} from "@root/services/system-admin/ApiInventoryAPI";
 
 export const useApliInventoryDisableTable = () => {
   const tableHeaderRefTwo = useRef<any>();
   const router = useRouter();
   const theme = useTheme();
-  const [cancelDelete, setCancelDelete] = useState(false);
-
-  const handleDelete = () => {
-    alert("deleted successfully");
-    setCancelDelete(!cancelDelete);
+  const { data, isFetching, isLoading, isError, isSuccess } = useGetApiInventoryQuery();
+  const [deleteList] = useDeleteApiInventoryMutation();
+  const { pageChangeHandler, sortChangeHandler } = useTableParams();
+  const [changeStatusOfApiInventory] = usePutApiInventoryChangeStatusMutation();
+  const listDeleteHandler = (id: any) => {
+    deleteList({ apiInventoryId: id })
+      .unwrap()
+      .then((res: any) => {
+        enqueueSnackbar("Information Deleted Successfully", {
+          variant: "success",
+        });
+      })
+      .catch((error: any) => {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      });
   };
 
   const columns = [
     {
-      id: "select",
-      header: ({ table, row }: any) => {
-        console.log(table.getSelectedRowModel().flatRows);
-        return (
-          <Box>
-            <Checkbox
-              checked={table.getIsAllRowsSelected()}
-              onChange={table.getToggleAllRowsSelectedHandler()}
-            />
-          </Box>
-        );
-      },
-      cell: ({ row, table }: any) => (
-        <Box>
-          <Checkbox
-            disabled={row?.original?.Assigned}
-            checked={row?.original?.Assigned ? false : row.getIsSelected()}
-            onChange={row.getToggleSelectedHandler()}
-          />
-        </Box>
-      ),
-    },
-    {
-      accessorFn: (row: any) => row.apiName,
-      id: "apiName",
+      accessorFn: (row: any) => row.api_link_name,
+      id: "api_link_name",
       cell: (info: any) => info.getValue(),
       header: () => <span>API Name</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.apiKey,
-      id: "apiKey",
+      accessorFn: (row: any) => row.api_key,
+      id: "api_key",
       cell: (info: any) => info.getValue(),
       header: () => <span>API Key</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.expiryDate,
-      id: "expiryDate",
+      accessorFn: (row: any) => row.expiry_date,
+      id: "expiry_date",
       cell: (info: any) => info.getValue(),
       header: () => <span>Expiry Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.apiLink,
-      id: "apiLink",
+      accessorFn: (row: any) => row.api_link,
+      id: "api_link",
       cell: (info: any) => info.getValue(),
       header: () => <span>API Link</span>,
       isSortable: true,
@@ -76,19 +71,24 @@ export const useApliInventoryDisableTable = () => {
       header: () => <span>Status</span>,
       isSortable: true,
     },
-    {
-      accessorFn: (row: any) => row.hitsPerMinute,
-      id: "hitsPerMinute",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Hits per minute</span>,
-      isSortable: true,
-    },
+
     {
       accessorFn: (row: any) => row.averageResponseTime,
-      id: "averageResponseTime",
-      cell: (info: any) => info.getValue(),
-      header: () => <span>Average Response Time</span>,
-      isSortable: true,
+      id: "enable-disable",
+      cell: (info: any) => (
+        <Switch
+          inputProps={{ "aria-label": "Switch demo" }}
+          onChange={() => {
+            changeStatusOfApiInventory({
+              formData: { id: info?.row?.original?.id, status: "active" },
+            });
+            enqueueSnackbar("Status Changed Successfully", {
+              variant: "success",
+            });
+          }}
+        />
+      ),
+      header: () => <span>Enable/Disable</span>,
     },
     {
       id: "actions",
@@ -96,35 +96,16 @@ export const useApliInventoryDisableTable = () => {
         <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
           <TableAction
             size="small"
-            type="edit"
-            onClicked={() =>
-              router.push({
-                pathname: "/system-admin/api-inventory/edit-api-inventory-form",
-                query: { action: "edit", id: "" },
-              })
-            }
-          />
-          {/* <TableAction
-            size="small"
             type="view"
             onClicked={() =>
               router.push({
-                pathname: "/system-admin/api-inventory/view-api-inventory-form",
-                query: { action: "view", id: "" },
+                pathname: "/system-admin/api-inventory/form",
+                query: { action: "view", id: info?.row?.original?.id },
               })
             }
-          /> */}
-          <TableAction
-            size="small"
-            type="delete"
-            onClicked={() => setCancelDelete(!cancelDelete)}
           />
 
-          <DeleteModel
-            open={cancelDelete}
-            onDeleteClick={handleDelete}
-            handleClose={() => setCancelDelete(!cancelDelete)}
-          />
+          <DeletePrompt onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)} />
         </Box>
       ),
       header: () => <span>actions</span>,
@@ -134,8 +115,14 @@ export const useApliInventoryDisableTable = () => {
   return {
     tableHeaderRefTwo,
     router,
-    TableData,
     columns,
     theme,
+    data,
+    isFetching,
+    isLoading,
+    isError,
+    isSuccess,
+    pageChangeHandler,
+    sortChangeHandler,
   };
 };

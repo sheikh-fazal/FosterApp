@@ -1,10 +1,6 @@
 import React from "react";
 import { Button, Grid, Menu, MenuItem, Stack } from "@mui/material";
-import {
-  carerTypeData,
-  statutoryAccordionData,
-  carerNameData,
-} from "./StatutoryChecksListData";
+import { carerTypeData, statutoryAccordionData, carerNameData } from "./index";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import AccordianList from "@root/components/AccordianList";
@@ -49,7 +45,7 @@ const StatutoryChecksList = () => {
         >
           Carer Type
         </Button>
-        <Menu
+        {/* <Menu
           id="basic-menu"
           anchorEl={carerType}
           open={open}
@@ -78,7 +74,7 @@ const StatutoryChecksList = () => {
               {item.value}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
         {/* Carer Name Dropdown */}
         <Button
           id="basic-button"
@@ -93,7 +89,7 @@ const StatutoryChecksList = () => {
         >
           Carer Name
         </Button>
-        <Menu
+        {/* <Menu
           id="basic-menu"
           anchorEl={carerType}
           open={open}
@@ -122,7 +118,7 @@ const StatutoryChecksList = () => {
               {item.value}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
       </Stack>
       {/* Global Accordian Component */}
       <Grid container>
