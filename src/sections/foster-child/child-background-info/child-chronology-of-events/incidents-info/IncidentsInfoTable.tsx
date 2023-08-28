@@ -33,7 +33,7 @@ const IncidentsInfoTable = (props: any) => {
       accessorFn: (row: any) => row?.complaintDate,
       id: "complaintDate",
       cell: (info: any) => {
-        return <Box>{dayjs(info.getValue()).format("DD MMM YYYY")}</Box>;
+        return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY") ?? "-"}</Box>;
       },
       header: "Date of Incident",
       isSortable: true,
@@ -106,7 +106,7 @@ const IncidentsInfoTable = (props: any) => {
         }}
       />
       <CustomTable
-        data={data?.data?.cc_incident_info}
+        data={data?.data?.incidents}
         columns={columns}
         isLoading={isLoading}
         isFetching={isFetching}

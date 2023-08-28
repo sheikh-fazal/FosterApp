@@ -1,31 +1,35 @@
-import React from 'react'
-import { useApliInventoryDisableTable } from './useApliInventoryDisableTable';
+import React from "react";
+import { useApliInventoryDisableTable } from "./useApliInventoryDisableTable";
 import CustomTable from "@root/components/Table/CustomTable";
 
 const ApliInventoryDisableTable = () => {
-  const { tableHeaderRefTwo, router, columns, TableData, theme } =
-  useApliInventoryDisableTable();
+  const {
+    columns,
+    data,
+    isSuccess,
+    isError,
+    isLoading,
+    isFetching,
+    pageChangeHandler,
+    sortChangeHandler,
+  } = useApliInventoryDisableTable();
   return (
     <>
-    <CustomTable
-      data={TableData}
-      columns={columns}
-      isLoading={false}
-      isFetching={false}
-      isError={false}
-      isPagination={false}
-      isSuccess={true}
-      currentPage={1}
-      onPageChange={(data: any) => {
-        console.log("Current page data: ", data);
-      }}
-      onSortByChange={(data: any) => {
-        console.log("Sort by: ", data);
-      }}
-      rootSX={{ my: theme.spacing(2) }}
-    />
-  </>
-  )
-}
+      <CustomTable
+        data={data?.data?.disabled}
+        columns={columns}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        isError={isError}
+        isSuccess={isSuccess}
+        currentPage={data?.data?.meta?.page}
+        totalPages={data?.data?.meta?.pages}
+        isPagination
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
+      />
+    </>
+  );
+};
 
-export default ApliInventoryDisableTable
+export default ApliInventoryDisableTable;

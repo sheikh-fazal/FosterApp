@@ -45,7 +45,7 @@ const StatutoryChecksList = () => {
         >
           Carer Type
         </Button>
-        <Menu
+        {/* <Menu
           id="basic-menu"
           anchorEl={carerType}
           open={open}
@@ -74,7 +74,7 @@ const StatutoryChecksList = () => {
               {item.value}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
         {/* Carer Name Dropdown */}
         <Button
           id="basic-button"
@@ -89,7 +89,7 @@ const StatutoryChecksList = () => {
         >
           Carer Name
         </Button>
-        <Menu
+        {/* <Menu
           id="basic-menu"
           anchorEl={carerType}
           open={open}
@@ -118,7 +118,7 @@ const StatutoryChecksList = () => {
               {item.value}
             </MenuItem>
           ))}
-        </Menu>
+        </Menu> */}
       </Stack>
       {/* Global Accordian Component */}
       <Grid container>

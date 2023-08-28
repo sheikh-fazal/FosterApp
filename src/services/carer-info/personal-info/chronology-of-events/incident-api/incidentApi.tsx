@@ -5,7 +5,7 @@ export const incidentApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     incidentList: builder.query({
       query: (payload: any) => ({
-        url: `chronology-events/incident/List/${payload.params.fosterCarerId}`,
+        url: `chronology-events/list-incident/${payload.params.fosterCarerId}`,
         method: "GET",
         params: payload.params,
       }),

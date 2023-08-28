@@ -6,7 +6,6 @@ import { usePlacementsTable } from "./usePlacementsTable";
 
 const PlacementsTable = () => {
   const {
-    router,
     tableHeaderRefTwo,
     annualReviewListIsloading,
     annualReviewData,
@@ -17,55 +16,59 @@ const PlacementsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
-    listDeleteHandler,
-    fosterCarerId,
   } = usePlacementsTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.childCode ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.childCode ?? "-",
       id: "childCode",
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Code</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.age ?? "-",
+      accessorFn: (row: any) => row?.annualReviewE?.placements?.age ?? "-",
       id: "age",
       cell: (info: any) => info.getValue(),
       header: () => <span>Age</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.athnicity ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.athnicity ?? "-",
       id: "ethnicity",
       cell: (info: any) => info.getValue(),
       header: () => <span>Ethnicity</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.legalStatus ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.legalStatus ?? "-",
       id: "legalStatus",
       cell: (info: any) => info.getValue(),
       header: () => <span>Legal Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.placementType ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.placementType ?? "-",
       id: "placementType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Placement Type</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.PlacementDate ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.PlacementDate ?? "-",
       id: "placementDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Placement Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dischargeDate ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.placements?.dischargeDate ?? "-",
       id: "dischangeDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Dischange Date</span>,
@@ -74,7 +77,13 @@ const PlacementsTable = () => {
   ];
   return (
     <Box sx={{ mt: 3 }}>
-      <TableHeader ref={tableHeaderRefTwo} title="Placements" />
+      <TableHeader
+        ref={tableHeaderRefTwo}
+        title="Placements"
+        onChanged={(e: any) => {
+          setSearch(e.search);
+        }}
+      />
       <CustomTable
         data={annualReviewData}
         columns={columns}
@@ -83,6 +92,7 @@ const PlacementsTable = () => {
         isError={annualReviewListError}
         isSuccess={annualReviewListIsSuccess}
         showSerialNo={true}
+        isPagination={true}
         totalPages={meta?.pages ?? 0}
         currentPage={meta?.page ?? 1}
         onPageChange={pageChangeHandler}

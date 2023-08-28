@@ -1,10 +1,6 @@
 import { useTableParams } from "@root/hooks/useTableParams";
-import {
-  useAnnualReviewListQuery,
-  useDeleteAnnualReviewListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewApi";
+import { useAnnualReviewListQuery } from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewApi";
 import { useRouter } from "next/router";
-import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
 
 export const useTrainingDetailsTable = () => {
@@ -14,7 +10,7 @@ export const useTrainingDetailsTable = () => {
   const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-  //GET API For Car Insurance List
+  //GET API For Training Details List
   const {
     data: annualReviewList,
     isError: annualReviewListError,
@@ -30,30 +26,10 @@ export const useTrainingDetailsTable = () => {
   });
 
   //Getting API data and Meta
-  const annualReviewData =
-    annualReviewList?.data?.annual_review?.annualReviewE?.trainingDetails;
+  const annualReviewData = annualReviewList?.data?.annual_review;
   const meta = annualReviewList?.data?.meta;
 
-  console.log("annualReviewData", annualReviewData);
-
-  const [deleteList] = useDeleteAnnualReviewListMutation();
-  //DELETE API For Allegation List
-  const listDeleteHandler = (id: any) => {
-    deleteList(id)
-      .unwrap()
-      .then((res: any) => {
-        enqueueSnackbar("Information Deleted Successfully", {
-          variant: "success",
-        });
-      })
-      .catch((error) => {
-        const errMsg = error?.data?.message;
-        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
-      });
-  };
-
   return {
-    router,
     tableHeaderRefTwo,
     annualReviewListIsloading,
     annualReviewData,
@@ -65,7 +41,5 @@ export const useTrainingDetailsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
-    listDeleteHandler,
-    fosterCarerId,
   };
 };

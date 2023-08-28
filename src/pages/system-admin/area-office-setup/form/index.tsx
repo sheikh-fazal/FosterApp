@@ -13,12 +13,12 @@ ChildLivingHouseholdLayout.getLayout = function getLayout(page: any) {
       breadcrumbs={[
         {
           icon: <HomeIcon />,
-          name: "System Admin",
-          href: "//system-admin",
+          name: "Area office Setup",
+          href: "/system-admin/area-office-setup",
         },
         {
-          name: "Locat Office Setup",
-          href: "/reports",
+          name: "Local Office Setup",
+          href: "",
         },
       ]}
       title={PAGE_TITLE}

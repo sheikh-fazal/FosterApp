@@ -8,23 +8,22 @@ import { useKidieeSavingForm } from "./useKidieeSavingForm";
 export const KidieeSavingForm = (props: any) => {
   const { methods, handleSubmit, onSubmit, disabled, router, isSubmitting } =
     useKidieeSavingForm(props);
-  // const { fosterChildId } = router.query;
 
   return (
     <Paper elevation={4} sx={{ padding: 3 }}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container columnSpacing={4}>
           {kidieeSavingData?.map((item: any, index: any) => (
-            <Grid item xs={12} md={item?.md} key={index}>
+            <Grid item xs={12} md={item?.md} key={index}> 
               <item.component
+                size={"small"}
                 {...item.componentProps}
                 disabled={disabled}
-                size={"small"}
               >
-                {item?.componentProps?.select
-                  ? item?.options?.map((option: any) => (
-                      <option key={option?.value} value={option?.value}>
-                        {option?.label}
+                {item.componentProps
+                  ? item.options?.map((option: any) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
                       </option>
                     ))
                   : null}
@@ -52,7 +51,6 @@ export const KidieeSavingForm = (props: any) => {
             onClick={() =>
               router.push({
                 pathname: "/money-management/kidiee-saving",
-                // query: { fosterChildId: fosterChildId },
               })
             }
           >

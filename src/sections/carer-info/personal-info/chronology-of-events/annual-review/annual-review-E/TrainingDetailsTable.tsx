@@ -6,7 +6,6 @@ import { useTrainingDetailsTable } from "./useTrainingDetailsTable";
 
 const TrainingDetailsTable = () => {
   const {
-    router,
     tableHeaderRefTwo,
     annualReviewListIsloading,
     annualReviewData,
@@ -17,34 +16,36 @@ const TrainingDetailsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
-    listDeleteHandler,
-    fosterCarerId,
   } = useTrainingDetailsTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.courseAttendedCarer ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.trainingDetails?.courseAttendedCarer ?? "-",
       id: "courseAttendedCarer",
       cell: (info: any) => info.getValue(),
       header: () => <span>Course Attended Carer</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.coursesAttended ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.trainingDetails?.coursesAttended ?? "-",
       id: "coursesAttended",
       cell: (info: any) => info.getValue(),
       header: () => <span>Courses Attended</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dateOfAttendance ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.trainingDetails?.dateOfAttendance ?? "-",
       id: "attendenceDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Date of Attendance</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.coursesStatus ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.trainingDetails?.coursesStatus ?? "-",
       id: "courseStatus",
       cell: (info: any) => info.getValue(),
       header: () => <span>Course Status</span>,
@@ -53,7 +54,13 @@ const TrainingDetailsTable = () => {
   ];
   return (
     <Box sx={{ mt: 1 }}>
-      <TableHeader ref={tableHeaderRefTwo} title="Training Details" />
+      <TableHeader
+        ref={tableHeaderRefTwo}
+        title="Training Details"
+        onChanged={(e: any) => {
+          setSearch(e.search);
+        }}
+      />
       <CustomTable
         data={annualReviewData}
         columns={columns}

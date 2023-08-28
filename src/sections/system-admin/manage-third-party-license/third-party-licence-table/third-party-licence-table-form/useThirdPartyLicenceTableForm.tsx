@@ -5,8 +5,12 @@ import {
   FormDataValues,
   FormValidationSchema,
 } from ".";
+import { usePostThirdPartyLicenceDataMutation } from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
 
 export const useThirdPartyLicenceTableForm = () => {
+  const [postThirdPartyLicenceDataTrigger, postThirdPartyLicenceDataStatus] =
+  usePostThirdPartyLicenceDataMutation();
+
   const methods: any = useForm({
     resolver: yupResolver(FormValidationSchema),
     defaultValues: FormDataValues,

@@ -1,44 +1,36 @@
-import {
-  Box,
-  Grid,
-  MenuItem,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
-import { FormProvider } from "@root/components/hook-form";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { ReviewOfficerReportFromData } from ".";
+import { FormProvider } from "@root/components/hook-form";
+import AccordianList from "@root/components/AccordianList";
+import { Box, Grid, MenuItem, TextField, Typography } from "@mui/material";
 import { yupResolver } from "@hookform/resolvers/yup";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { HospitalizationFromvalue } from ".";
-import AccordianList from "@root/components/AccordianList";
 
-export const ReviewOfficerReportsForm = (props: any) => {
-  const { action, fosterChildId, hospitalizationId } = props;
+export const ReviewOfficerReportsForm = () => {
+  const methods: any = useForm({});
+  // const { action, fosterChildId, hospitalizationId } = props;
   // const { SubmitData, getDefaultValue, isloading, isFatching } =
-  //   useHospitalizationForm({
+  //   useReviewOfficerReportsForm({
   //     action: action,
   //     fosterChildId: fosterChildId,
   //     hospitalizationId: hospitalizationId,
   //   });
-  const methods: any = useForm({
-    // mode: "onTouched",
-    //   resolver: yupResolver(FormSchema),
-    //   defaultValues: getDefaultValue,
-  });
-  const {
-    trigger,
-    setValue,
-    handleSubmit,
-    getValues,
-    watch,
-    reset,
-    formState: { errors },
-  } = methods;
+  // mode: "onTouched",
+  //   resolver: yupResolver(FormSchema),
+  //   defaultValues: getDefaultValue,
+  // const {
+  //   trigger,
+  //   setValue,
+  //   handleSubmit,
+  //   getValues,
+  //   watch,
+  //   reset,
+  //   formState: { errors },
+  // } = methods;
 
-  const theme: any = useTheme();
+  // const theme: any = useTheme();
 
   // if (isloading) return <SkeletonFormdata />;
 
@@ -52,7 +44,7 @@ export const ReviewOfficerReportsForm = (props: any) => {
     <Box sx={{ px: 1, py: 2 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit()}>
+          <FormProvider methods={methods}>
             <Grid container spacing={3}>
               <Grid item xs={6}>
                 <TextField
@@ -60,7 +52,7 @@ export const ReviewOfficerReportsForm = (props: any) => {
                   id="name"
                   select
                   label="Name of foster carer"
-                  defaultValue="a"
+                  disabled
                 >
                   {currencies.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
@@ -72,24 +64,32 @@ export const ReviewOfficerReportsForm = (props: any) => {
               <Grid item xs={6}>
                 <TextField
                   fullWidth
-                  // id="outlined-textarea"
-                  label="Date of review meeting"
-                  // placeholder="Placeholder"
                   multiline
+                  disabled
+                  label="Date of review meeting"
                 />
               </Grid>
             </Grid>
-            {/* <IsFetching isFetching={isFatching} /> */}
             <Grid container>
-                    {HospitalizationFromvalue.map((item: any) => (
-                      <Grid item xs={12} key={item.title}>
-                        <AccordianList
-                          title={item.title}
-                          component={item.component}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
+              {ReviewOfficerReportFromData.map((item: any) => (
+                <Grid item xs={12} key={item.title}>
+                  {item.isHeading && (
+                    <Typography
+                      variant="h6"
+                      sx={{ textAlign: "center", mt: 2 }}
+                    >
+                      {item?.title}
+                    </Typography>
+                  )}
+                  {!item.isHeading && (
+                    <AccordianList
+                      title={item.title}
+                      component={item.component}
+                    />
+                  )}
+                </Grid>
+              ))}
+            </Grid>
           </FormProvider>
         </Grid>
       </Grid>

@@ -1,10 +1,14 @@
-import { Box, Grid, Typography, useTheme } from "@mui/material";
+import { Box, Grid, Skeleton, Typography, useTheme } from "@mui/material";
 import React from "react";
-import { BACKGROUND_CHECKS, RIGHT_WORD, ID_DATA } from "./BackgroundCheckData";
 import Image from "next/image";
+import Passport from "../passport/Passport";
+import RightWork from "./right-to-work/RightWork";
+import { useBackgroundChecks } from "./useBackgroundChecks";
+import Link from "next/link";
+import dayjs from "dayjs";
 
 const BackgroundChecks = () => {
-  const theme: any = useTheme();
+  const { workIsLoading, workDetailsData, theme } = useBackgroundChecks();
   return (
     <>
       <Typography
@@ -16,158 +20,214 @@ const BackgroundChecks = () => {
         DBS
       </Typography>
       <Grid container>
-        {BACKGROUND_CHECKS?.map((item: any) => (
-          <Grid item xs={12} md={6} key={item.id}>
-            <Box
-              key={item.id}
-              sx={{
-                p: "10px 0 0 0",
-              }}
-            >
-              <Typography
-                component={"p"}
-                variant="subtitle2"
-                sx={{ color: theme.palette.grey[600], mb: 0.5 }}
-              >
-                {item.label}
-              </Typography>
-              <Typography
-                component={"p"}
-                variant="body2"
-                sx={{
-                  color: theme.palette.grey[600],
-                  fontWeight: 400,
-                  textTransform: "unset",
-                  mb: 1,
-                }}
-              >
-                {item.title}
-              </Typography>
-
-              {item.sublist?.map((title: any) => (
-                <Box
-                  key={title.title}
-                  sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}
-                >
-                  <Image src={title.icon} alt="icon" width={24} height={20} />
-                  <Typography
-                    component={"p"}
-                    variant="body2"
-                    sx={{
-                      color: theme.palette.grey[600],
-                      fontWeight: 400,
-                      textTransform: "unset",
-                    }}
-                  >
-                    {title.title}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-      {/* Right to work section started*/}
-      <Typography
-        variant="h5"
-        color={theme.palette.primary.main}
-        sx={{ mb: 1, mt: 5.5 }}
-      >
-        Right To Work
-      </Typography>
-      <Grid container>
-        {RIGHT_WORD?.map((item: any) => (
-          <Grid item xs={12} md={6} key={item.id}>
-            <Box
-              key={item.id}
-              sx={{
-                p: "10px 0 0 0",
-              }}
-            >
-              <Typography
-                component={"p"}
-                variant="subtitle2"
-                sx={{ color: theme.palette.grey[600], mb: 0.5 }}
-              >
-                {item.label}
-              </Typography>
-              <Typography
-                component={"p"}
-                variant="body2"
-                sx={{
-                  color: theme.palette.grey[600],
-                  fontWeight: 400,
-                  textTransform: "unset",
-                  mb: 1,
-                }}
-              >
-                {item.title}
-              </Typography>
-
-              {item.sublist?.map((title: any) => (
-                <Box
-                  key={title.id}
-                  sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}
-                >
-                  <Image src={title.icon} alt="icon" width={24} height={20} />
-                  <Typography
-                    component={"p"}
-                    variant="body2"
-                    sx={{
-                      color: theme.palette.grey[600],
-                      fontWeight: 400,
-                      textTransform: "unset",
-                    }}
-                  >
-                    {title.title}
-                  </Typography>
-                </Box>
-              ))}
-            </Box>
-          </Grid>
-        ))}
-      </Grid>
-      {/* ID Upload Section Started */}
-      <Typography
-        variant="h5"
-        color={theme.palette.primary.main}
-        sx={{ mb: 1, mt: 5 }}
-      >
-        ID Upload (Passport/DL)
-      </Typography>
-      {ID_DATA.map((item: any) => (
-        <Box
-          key={item.id}
-          sx={{
-            p: "10px 0 0 0",
-          }}
-        >
-          <Typography
-            component={"p"}
-            variant="subtitle2"
-            sx={{ color: theme.palette.grey[600], mb: 1 }}
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
           >
-            {item.label}
-          </Typography>
-          <Box sx={{ display: "flex", gap: 0.5, cursor: "pointer" }}>
-            <Image src={item.icon} alt="icon" width={24} height={22} />
-            <Typography
-              component={"p"}
-              variant="body2"
-              sx={{
-                color: theme.palette.grey[600],
-                fontWeight: 400,
-                textTransform: "unset",
-                mb: 1,
-              }}
-            >
-              {item.title}
-            </Typography>
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  Does the candidate have a valid Enhanced DBS?
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={styles.typographyStyle}
+                >
+                  {workDetailsData?.validDBS ?? "-"}
+                </Typography>
+              </>
+            )}
           </Box>
-        </Box>
-      ))}
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  DBS (PVG) Certificate
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={styles.typographyStyle}
+                >
+                  {workDetailsData?.certificateName ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  DBS (PVG) Issue Date
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={styles.typographyStyle}
+                >
+                  {dayjs(workDetailsData?.issueDate ?? "-").format(
+                    "MM/DD/YYYY"
+                  )}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  Is DBS (PVG) online?
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={styles.typographyStyle}
+                >
+                  {workDetailsData?.online ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  DBS (PVG) UPdate Service No
+                </Typography>
+                <Typography
+                  component={"p"}
+                  variant="body2"
+                  sx={styles.typographyStyle}
+                >
+                  {workDetailsData?.updateService ?? "-"}
+                </Typography>
+              </>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Box
+            sx={{
+              p: "10px 0 0 0",
+            }}
+          >
+            {workIsLoading ? (
+              <Skeleton variant="rectangular" width={"auto"} height={40} />
+            ) : (
+              <>
+                <Typography
+                  component={"p"}
+                  variant="subtitle2"
+                  sx={{ color: theme.palette.grey[600], mb: 0.5 }}
+                >
+                  Documents
+                </Typography>
+                {workDetailsData?.certificate?.map((item: any) => (
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    href={`${process.env.NEXT_PUBLIC_IMG_URL}${item?.url}`}
+                    key={item.id}
+                    target="__blank"
+                  >
+                    <Box sx={{ display: "flex", gap: 1, cursor: "pointer" }}>
+                      <Image
+                        src={item.icon}
+                        alt="icon"
+                        width={24}
+                        height={20}
+                      />
+                      <Typography
+                        component={"p"}
+                        variant="body2"
+                        sx={{
+                          color: theme.palette.grey[600],
+                          fontWeight: 400,
+                          textTransform: "unset",
+                        }}
+                      >
+                        {item.name ?? "-"}
+                      </Typography>
+                    </Box>
+                  </Link>
+                ))}
+              </>
+            )}
+          </Box>
+        </Grid>
+      </Grid>
+      {/* Right To Work Section */}
+      <RightWork />
+      {/* ID Upload */}
+      <Passport />
     </>
   );
 };
 
 export default BackgroundChecks;
+
+//Styling
+const styles: any = {
+  typographyStyle: (theme: any) => ({
+    color: theme.palette.grey[600],
+    fontWeight: 400,
+    textTransform: "unset",
+    mb: 1,
+  }),
+};

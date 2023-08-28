@@ -1,18 +1,20 @@
 import React from "react";
 import { Typography, useTheme } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
+import { useBankDetailsTable } from "./useBankDetailsTable";
 
 const BankDetailsTable = () => {
-  const theme: any = useTheme();
-  const [data, setData] = React.useState([
-    {
-      userName: "John Christ",
-      bankName: "Foster",
-      sortCode: "35416",
-      accountNumber: "2524521452",
-      accountType: "2545878525",
-    },
-  ]);
+  const {
+    trainings,
+    trainingListIsloading,
+    traininglistIsfetching,
+    trainingListError,
+    trainingListIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    theme,
+  } = useBankDetailsTable();
 
   const columns = [
     {
@@ -62,17 +64,17 @@ const BankDetailsTable = () => {
         Bank Details
       </Typography>
       <CustomTable
-        data={data}
+        data={trainings}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={trainingListIsloading}
+        isFetching={traininglistIsfetching}
+        isError={trainingListError}
+        isSuccess={trainingListIsSuccess}
+        showSerialNo={true}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

@@ -1,66 +1,66 @@
 import React from "react";
-import { Typography, useTheme } from "@mui/material";
+import { Typography } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
+import { useReferences } from "./useReferences";
 
 const Rerefences = () => {
-  const theme: any = useTheme();
-  const [data, setData] = React.useState([
-    {
-      referenceType: "Character",
-      referenceFullName: "John Snow",
-      contactNo: "+449744165",
-      emailId: "john@gmail.com",
-      approvalStatus: "Pending",
-      viewedOn: "09/04/2007",
-      completedOn: "09/04/2007",
-    },
-  ]);
+  const {
+    references,
+    referenceListIsloading,
+    referencelistIsfetching,
+    referenceListError,
+    referenceListIsSuccess,
+    meta,
+    pageChangeHandler,
+    sortChangeHandler,
+    theme,
+  } = useReferences();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.referenceType,
+      accessorFn: (row: any) => row.referenceType ?? "-",
       id: "referenceType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Reference Type</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.referenceFullName,
+      accessorFn: (row: any) => row.refereeName ?? "-",
       id: "referenceFullName",
       cell: (info: any) => info.getValue(),
       header: () => <span>Full name of the reference</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.contactNo,
+      accessorFn: (row: any) => row.contactNo ?? "-",
       id: "contactNo",
       cell: (info: any) => info.getValue(),
       header: () => <span>Contact No</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.emailId,
+      accessorFn: (row: any) => row.email ?? "-",
       id: "emailId",
       cell: (info: any) => info.getValue(),
       header: () => <span>Email ID</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.approvalStatus,
+      accessorFn: (row: any) => row.status ?? "-",
       id: "approvalStatus",
       cell: (info: any) => info.getValue(),
       header: () => <span>Approval Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.viewedOn,
+      accessorFn: (row: any) => row.viewedOn ?? "-",
       id: "viewedOn",
       cell: (info: any) => info.getValue(),
       header: () => <span>Ref. viewed on</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.completedOn,
+      accessorFn: (row: any) => row.completedOn ?? "-",
       id: "completedOn",
       cell: (info: any) => info.getValue(),
       header: () => <span>Ref. completed on</span>,
@@ -75,20 +75,20 @@ const Rerefences = () => {
         sx={{ mb: 2 }}
         component="div"
       >
-        About
+        References
       </Typography>
       <CustomTable
-        data={data}
+        data={references}
         columns={columns}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isPagination={false}
-        isSuccess={true}
-        // count={Math.ceil(data?.data?.meta?.total / limit)}
-        currentPage={1}
-        onPageChange={(data: any) => {}}
-        onSortByChange={(data: any) => {}}
+        isLoading={referenceListIsloading}
+        isFetching={referencelistIsfetching}
+        isError={referenceListError}
+        isSuccess={referenceListIsSuccess}
+        showSerialNo={true}
+        totalPages={meta?.pages ?? 0}
+        currentPage={meta?.page ?? 1}
+        onPageChange={pageChangeHandler}
+        onSortByChange={sortChangeHandler}
       />
     </>
   );

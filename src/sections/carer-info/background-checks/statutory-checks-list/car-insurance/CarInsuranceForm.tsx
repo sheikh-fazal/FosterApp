@@ -5,6 +5,7 @@ import { carInsuranceData } from "./index";
 import { useCarInsuranceForm } from "./useCarInsuranceForm";
 import { LoadingButton } from "@mui/lab";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 const CarInsuranceForm = (props: any) => {
   const { action, id } = props;
   const theme: any = useTheme();
@@ -17,11 +18,13 @@ const CarInsuranceForm = (props: any) => {
     isSubmitting,
     isLoading,
     fosterCarerId,
+    isFetching,
   } = useCarInsuranceForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {carInsuranceData.map((form: any) => {
             return (

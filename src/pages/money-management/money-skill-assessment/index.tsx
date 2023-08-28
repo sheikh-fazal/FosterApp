@@ -34,11 +34,11 @@ MoneySkillAssessmentList.getLayout = function getLayout(page: any) {
   
     return (
       <Page title={PAGE_TITLE}>
-        <TitleWithBreadcrumbLinks
-          sx={{ mb: 2 }}
-          breadcrumbs={BREADCRUMBS(router?.query)}
-          title={PAGE_TITLE}
-        />
+       <TitleWithBreadcrumbLinks
+        sx={{ mb: 2 }}
+        breadcrumbs={BREADCRUMBS(router?.query?.fosterChildId)}
+        title={PAGE_TITLE}
+      />
         <Paper elevation={3}>
             <MoneySkillAssessmentTable />
         </Paper>
