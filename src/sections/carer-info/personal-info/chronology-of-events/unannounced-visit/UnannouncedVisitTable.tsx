@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Badge } from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useUnannouncedVisitTable } from "./useUnannouncedVisitTable";
@@ -37,33 +37,21 @@ const UnannouncedVisitTable = () => {
     {
       accessorFn: (row: any) => row.homeVisitStatus ?? "-",
       id: "homeVisitStatus",
-      cell: (info: any) => (
-        <Badge invisible={info.badge} color="secondary" sx={styles.badge}>
-          {info.getValue()}
-        </Badge>
-      ),
+      cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Home Visit Status</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.status ?? "-",
       id: "status",
-      cell: (info: any) => (
-        <Badge invisible={info.badge} color="secondary" sx={styles.badge}>
-          {info.getValue()}
-        </Badge>
-      ),
+      cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>Status</span>,
       isSortable: true,
     },
     {
       accessorFn: (row: any) => row.fcSignature ?? "-",
       id: "fcSignature",
-      cell: (info: any) => (
-        <Badge invisible={info.badge} color="secondary" sx={styles.badge}>
-          {info.getValue()}
-        </Badge>
-      ),
+      cell: (info: any) => info.getValue() ?? "-",
       header: () => <span>FC Signature</span>,
       isSortable: true,
     },
@@ -150,17 +138,3 @@ const UnannouncedVisitTable = () => {
 };
 
 export default UnannouncedVisitTable;
-
-//Styling
-const styles: any = {
-  badge: (theme: any) => ({
-    "& .MuiBadge-badge": {
-      fontSize: 9,
-      top: 11,
-      right: -22,
-      height: 15,
-      background: theme.palette.primary.main,
-      cursor: "pointer",
-    },
-  }),
-};

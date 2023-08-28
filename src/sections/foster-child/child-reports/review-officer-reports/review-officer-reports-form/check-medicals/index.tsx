@@ -134,12 +134,19 @@ export const CheckMedicalFormData = [
   {
     id: 11,
     gridLength: 12,
+    heading:
+    "If any required checks are not available or issues have arisen from the checks, please comment:",
+    component: Typography,
+  },
+  {
+    id: 12,
+    gridLength: 12,
     otherOptions: {
       name: "required",
-      label: "If any required checks are not available or issues have arisen from the checks, please comment:",
       fullWidth: true,
       multiline: true,
       minRows: 3,
+      sx: {mt: -2}
     },
     component: RHFTextField,
   },

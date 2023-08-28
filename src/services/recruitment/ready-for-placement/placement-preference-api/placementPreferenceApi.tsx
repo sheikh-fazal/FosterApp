@@ -5,9 +5,9 @@ export const placementPreferenceApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     postPlacementPreferenceList: builder.mutation({
       query: (payload: any) => ({
-        url: `chronology-events/allegation/${payload.params.fosterCarerId}`,
+        url: `ready-for-placement/placement-preference`,
         method: "POST",
-        body: payload.body,
+        body: payload,
       }),
       invalidatesTags: ["POST_PLACEMENT_REFERENCES"],
     }),

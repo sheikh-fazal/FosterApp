@@ -4,6 +4,8 @@ import React from "react";
 import { annualReviewBData } from ".";
 import { useAnnualReviewBForm } from "./useAnnualReviewBForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewA(props: any) {
   const { action, id } = props;
@@ -13,15 +15,13 @@ export default function AnnualReviewA(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewBForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Box>
       <Typography
@@ -31,6 +31,7 @@ export default function AnnualReviewA(props: any) {
         Primary Carer Last Medical Date
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {annualReviewBData.map((form: any) => {
             return (

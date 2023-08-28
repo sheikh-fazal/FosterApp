@@ -12,12 +12,7 @@ import { useEffect } from "react";
 
 export const useAbsenceInfoForm = (props: any) => {
   const router = useRouter();
-  // const childInfoId = router?.query["absence_info_id"];
   const { disabled, defaultValues } = props;
-
-  // const { data } = useGetAbsenceInfoByIdQuery(childInfoId, {
-  //   refetchOnMountOrArgChange: true,
-  // });
 
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
@@ -29,14 +24,7 @@ export const useAbsenceInfoForm = (props: any) => {
     reset,
     formState: { isSubmitting },
   } = methods;
-  // useEffect(() => {
-  //   reset((formValues: any) => ({
-  //     ...formValues,
-  //     ...data?.[0],
-  //     dateOfAbsence: new Date(data?.[0]?.dateOfAbsence),
-  //     label: new Date(data?.[0]?.label),
-  //   }));
-  // }, [data, reset]);
+
   const [postAbsenceInfoList] = usePostAbsenceInfoMutation();
   const [patchAbsenceInfoList] = usePatchAbsenceInfoMutation();
 

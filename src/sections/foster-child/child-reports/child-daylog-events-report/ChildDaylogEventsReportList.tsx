@@ -14,7 +14,7 @@ const ChildDaylogEventsReportList = () => {
     setSearchValue,
     router,
     setPage,
-    ALLEGATIONLISTPAGELIMIT,
+    CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT,
     isRecordSetForDelete,
     setIsRecordSetForDelete,
     onDeleteConfirm,
@@ -42,7 +42,7 @@ const ChildDaylogEventsReportList = () => {
         />
 
         <CustomTable
-          data={data?.data?.alegation}
+          data={data?.data?.cc_day_log}
           columns={childDaylogEventsReportInfoTableColumns}
           isLoading={isLoading}
           showSerialNo
@@ -53,7 +53,7 @@ const ChildDaylogEventsReportList = () => {
           currentPage={data?.data?.meta?.page}
           totalPages={data?.data?.meta?.pages}
           onPageChange={(pageNo: any) => {
-            setPage((pageNo - 1) * ALLEGATIONLISTPAGELIMIT);
+            setPage((pageNo - 1) * CHILDDAYLOGEVENTSREPORTLISTPAGELIMIT);
           }}
         />
       </Box>

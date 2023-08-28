@@ -18,8 +18,8 @@ Complaints.getLayout = function getLayout(page: any) {
 };
 
 export default function Complaints() {
-  const [params, setParams] = useState("");
-  // -------
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const Router: any = useRouter();
   const { action, id, fosterCarerId } = Router.query;
   if (!action && !id) {
@@ -55,7 +55,9 @@ export default function Complaints() {
   }: any = useUploadDocumentListQuery({
     params: {
       complaintId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
 
@@ -124,9 +126,9 @@ export default function Complaints() {
             "uploadBy",
             "password",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
           onDelete={(data: any) => {

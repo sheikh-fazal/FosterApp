@@ -30,12 +30,14 @@ export const useAnnualReviewTable = () => {
   });
   const annualReviewList = annualReviewlist?.data?.annual_review;
   const meta = annualReviewlist?.data?.meta;
-  const [deleteList] = useDeleteAnnualReviewListMutation();
-  //DELETE API For Allegation List
+
   console.log("annualReviewList", annualReviewList);
+  
+
+  const [deleteAnnualReviewList] = useDeleteAnnualReviewListMutation();
 
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteAnnualReviewList({ annualReviewId: id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

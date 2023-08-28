@@ -1,57 +1,52 @@
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FormProvider } from "@root/components/hook-form";
 import router from "next/router";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import IsFetching from "@root/components/loaders/IsFetching";
-import { ComplaintsData, ComplaintsDataValue } from ".";
-import { FormSchema } from "../../health-medical-history/immunisation";
+import { ComplaintsData, FormSchema } from ".";
+import useComplaintsFrom from "./useComplaintsFrom";
 
 const backPath = "/foster-child/events-and-notification/complaints";
 interface IComplaintsForm {
   fosterChildId: string;
-  ComplaintsFormID?: string;
-  action: "add" | "edit" |"view";
+  complaintsId?: string;
+  action: "add" | "edit" | "view";
 }
 const ComplaintsForm = (props: IComplaintsForm) => {
-  const { action, fosterChildId, ComplaintsFormID } = props;
+  //PROPS AND STATS
+  const { action, fosterChildId, complaintsId } = props;
+  //THEME HOOK
   const theme: any = useTheme();
+  //API HANDLERS HOOK
+  const { SubmitData, getDefaultValue, isloading, isFatching } =
+    useComplaintsFrom({
+      action: action,
+      fosterChildId: fosterChildId,
+      complaintsId: complaintsId,
+    });
+  //FORM HOOKS
   const methods: any = useForm({
     // mode: "onTouched",
     resolver: yupResolver(FormSchema),
-    defaultValues: ComplaintsDataValue,
+    defaultValues: getDefaultValue,
   });
-  const {
-    trigger,
-    setValue,
-    handleSubmit,
-    getValues,
-    watch,
-    reset,
-    formState: { errors },
-  } = methods;
+  const { handleSubmit } = methods;
+
+  if (isloading) return <SkeletonFormdata />;
   return (
-    <Box sx={{ px: 1, py: 2 }}>
+    <Box sx={{ px: 0, py: 0.1 }}>
       <Grid container>
         <Grid item xs={12}>
-          <FormProvider methods={methods} onSubmit={handleSubmit()}>
+          <FormProvider methods={methods} onSubmit={handleSubmit(SubmitData)}>
             <Grid container>
-              {/* <IsFetching isFetching={isFatching} /> */}
+              <IsFetching isFetching={isFatching} />
               {ComplaintsData.map((form: any, index) => {
                 return (
                   <Grid item xs={12} md={form?.gridLength} key={index}>
-                    <Box sx={{ px: 0.5, py: 1 }}>
+                    <Box sx={{ pr: 1, py: 1 }}>
                       {form.component === "label" ? (
                         <Typography
                           variant="h6"
@@ -66,30 +61,25 @@ const ComplaintsForm = (props: IComplaintsForm) => {
                         <form.component
                           size="small"
                           {...form.otherOptions}
-                          disabled={
-                            action === "view" ||
-                            (action === "edit" && form.id === 1)
-                              ? true
-                              : false
-                          }
+                          disabled={action === "view" ? true : false}
                           InputLabelProps={{
-                            shrink:
-                              action === "view" ||
-                              (action === "edit" && form.id === 1)
-                                ? true
-                                : undefined,
-                            disabled:
-                              action === "view" ||
-                              (action === "edit" && form.id === 1)
-                                ? true
-                                : undefined,
+                            shrink: action === "view" ? true : undefined,
+                            disabled: action === "view" ? true : undefined,
                           }}
-                        />
+                        >
+                          {form.otherOptions.select &&
+                            form.otherOptions.options.map((option: any) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                        </form.component>
                       )}
                     </Box>
                   </Grid>
                 );
               })}
+
               <Grid
                 item
                 sx={{

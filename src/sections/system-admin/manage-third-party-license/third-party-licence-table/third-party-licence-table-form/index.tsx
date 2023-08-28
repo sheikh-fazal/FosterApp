@@ -18,7 +18,7 @@ export const FormData = [
   {
     id: 2,
     componentProps: {
-      name: "typeOfLicense",
+      name: "type",
       label: "Type of License",
       sx: { mb: 4 },
     },
@@ -38,8 +38,18 @@ export const FormData = [
   {
     id: 4,
     componentProps: {
-      name: "guide",
+      name: "guide_link_name",
       label: "Guide",
+      sx: { mb: 4 },
+    },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 4,
+    componentProps: {
+      name: "guide_link",
+      label: "Guide Link",
       sx: { mb: 4 },
     },
     component: RHFTextField,
@@ -68,19 +78,22 @@ export const FormData = [
 ];
 
 export const FormDataValues = {
-  name: "",
-  typeOfLicense: "",
-  description: new Date(),
-  guide: "",
-  email: "",
-  phone: "",
+  name: "Foster Talk",
+  type: "Public Domain",
+  description:
+    "Ut magna pariatur culpa commodo veniam veniam amet id commodo dolor in sunt. Aliquip eu do tempor aliqua. Anim incididunt incididunt nisi proident quis culpa id irure. Ut voluptate laboris non ad nostrud ullamco labore veniam magna deserunt nostrud magna consequat. Non qui dolore cupidatat cillum dolor labore amet.",
+  guide_link_name: "QuickBook",
+  guide_link: "https://sandbox-quickbooks.api.intuit.com",
+  email: "test@yopmail.com",
+  phone: "test@yopmail.com",
 };
 
 export const FormValidationSchema = Yup.object().shape({
   name: Yup.string().trim().required("Field is Required"),
-  typeOfLicense: Yup.string().trim().required("Field is Required"),
+  type: Yup.string().trim().required("Field is Required"),
   description: Yup.string().trim().required("Field is Required"),
-  guide: Yup.string().trim().required("Field is Required"),
+  guide_link_name: Yup.string().trim().required("Field is Required"),
+  guide_link: Yup.string().trim().required("Field is Required"),
   email: Yup.string().trim().required("Field is Required"),
   phone: Yup.string().trim().required("Field is Required"),
 });

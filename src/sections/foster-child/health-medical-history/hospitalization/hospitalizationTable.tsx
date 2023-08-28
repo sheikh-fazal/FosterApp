@@ -16,13 +16,7 @@ const HospitalizationTable = (props: any) => {
   const { fosterChildId, hospitalizationId } = props;
   const { deleteHander } = useHospitalizationForm({});
   const columns = [
-    // {
-    //   accessorFn: (row: any) => row?.id,
-    //   id: "id",
-    //   cell: (info: any) => info.getValue() ?? "-",
-    //   header: () => <span>Sr.No</span>,
-    //   isSortable: false,
-    // },
+    
     {
       accessorFn: (row: any) => row.hospitalName,
       id: "hospitalName",

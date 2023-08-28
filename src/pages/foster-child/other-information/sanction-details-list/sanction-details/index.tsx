@@ -1,12 +1,9 @@
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
-//  @mui icons
 import HomeIcon from "@mui/icons-material/Home";
 import { NextRouter, useRouter } from "next/router";
 import SanctionDetailsTabs from "@root/sections/foster-child/other-information/sanction-details-list/sanction-details-tabs/SanctionDetailsTabs";
 
-// ----------------------------------------------------------------------
-// Constants
 const BREADCRUMBS = (query: any) => [
   {
     icon: <HomeIcon />,
@@ -27,8 +24,6 @@ const PAGE_TITLE = (action: any = "") =>
     1
   )} Sanction Details`;
 
-// ----------------------------------------------------------------------
-
 SanctionDetails.getLayout = function getLayout(page: any, { query }: NextRouter) {
   return (
     <Layout
@@ -41,8 +36,6 @@ SanctionDetails.getLayout = function getLayout(page: any, { query }: NextRouter)
     </Layout>
   );
 };
-
-// ----------------------------------------------------------------------
 
 export default function SanctionDetails() {
   const { query } = useRouter();

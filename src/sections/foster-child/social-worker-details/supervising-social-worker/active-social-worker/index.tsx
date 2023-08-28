@@ -19,7 +19,7 @@ export const ActiveSupervisingSocialWorkerFormData = [
   {
     id: 3,
     componentProps: {
-      name: "basicQualification",
+      name: "qualification",
       label: "Basic Qualification:",
     },
     component: RHFTextField,
@@ -73,7 +73,7 @@ export const defaultValues = {
   startDateOfAssignment: new Date(),
   status: "",
   reportingManager: "",
-  basicQualification: "",
+  qualification: "",
 };
 export const ActiveSupervisingSocialWorkerFormSchema = Yup.object().shape({
   phoneNumber: Yup.string()

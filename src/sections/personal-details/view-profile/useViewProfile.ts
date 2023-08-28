@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetUserProfileQuery } from "@root/services/userApi";
+import { useGetUserProfileQuery } from "@root/services/personal-details/about/userApi";
 import { useTheme } from "@mui/material";
 
 export const useViewProfile = () => {

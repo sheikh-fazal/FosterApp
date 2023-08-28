@@ -6,49 +6,61 @@ import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const ChildDaylogEventsReportInfo = () => {
   const {
-    allegationInfoFormData,
+    childDaylogEventsReportInfoFormData,
     methods,
     handleSubmit,
-    submitAllegationInfoForm,
+    submitChildDaylogEventsReportInfoForm,
     isLoading,
     router,
     postChildDaylogEventsReportInfoDataStatus,
     patchChildDaylogEventsReportInfoDataStatus,
     theme,
-    saveAsDraft,
+    childDaylogEventsReportsData,
   }: any = useChildDaylogEventsReportInfo();
 
   if (isLoading) return <SkeletonFormdata />;
   return (
     <>
-      <Typography
-        component={"p"}
-        sx={{ fontWeight: "500", fontSize: "14px", mb: "20px" }}
-      >
-        URN Number: CH001
-      </Typography>
-      <FormProvider
-        methods={methods}
-        onSubmit={handleSubmit(submitAllegationInfoForm)}
-      >
-        <Grid container spacing={5}>
-          {allegationInfoFormData.map((form: any, index: number) => {
+      <Grid container>
+        {Object.entries(childDaylogEventsReportsData).map(
+          ([key, value]: any, index, arr) => {
             return (
-              <Grid item xs={12} md={form?.gridLength} key={form.id + index}>
-                <form.component {...form.componentProps} size="small">
-                  {form.componentProps.select
-                    ? form.componentProps.options.map((option: any) => (
-                        <option key={option.id} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))
-                    : form?.heading
-                    ? form?.heading
-                    : null}
-                </form.component>
+              <Grid item xs={12} md={4} key={key + index}>
+                <Typography
+                  component={"p"}
+                  sx={{ fontWeight: "500", fontSize: "14px", mb: "20px" }}
+                >
+                  {key} : {value}
+                </Typography>
               </Grid>
             );
-          })}
+          }
+        )}
+      </Grid>
+      <FormProvider
+        methods={methods}
+        onSubmit={handleSubmit(submitChildDaylogEventsReportInfoForm)}
+      >
+        <Grid container spacing={5}>
+          {childDaylogEventsReportInfoFormData.map(
+            (form: any, index: number) => {
+              return (
+                <Grid item xs={12} md={form?.gridLength} key={form.id + index}>
+                  <form.component {...form.componentProps} size="small">
+                    {form.componentProps.select
+                      ? form.componentProps.options.map((option: any) => (
+                          <option key={option.id} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))
+                      : form?.heading
+                      ? form?.heading
+                      : null}
+                  </form.component>
+                </Grid>
+              );
+            }
+          )}
         </Grid>
         {router.query?.action !== "view" && (
           <Box sx={{ display: "flex", mb: "1.5rem", mt: "1.5rem" }}>
@@ -64,20 +76,6 @@ const ChildDaylogEventsReportInfo = () => {
               Submit
             </LoadingButton>
             <LoadingButton
-              sx={{ marginRight: "1rem" }}
-              disabled={
-                patchChildDaylogEventsReportInfoDataStatus?.isLoading ||
-                postChildDaylogEventsReportInfoDataStatus?.isLoading
-              }
-              onClick={() => saveAsDraft?.("Pending")}
-              size="large"
-              type="button"
-              variant="contained"
-              color="secondary"
-            >
-              Save as Draft
-            </LoadingButton>
-            <LoadingButton
               type="button"
               sx={{
                 marginRight: "1rem",
@@ -86,7 +84,7 @@ const ChildDaylogEventsReportInfo = () => {
               }}
               onClick={() =>
                 router.push({
-                  pathname: `/foster-child/events-and-notification/allegation`,
+                  pathname: `/foster-child/child-reports/child-daylog-events-report`,
                   query: {
                     ...(!!router?.query?.fosterChildId && {
                       fosterChildId: router?.query?.fosterChildId,

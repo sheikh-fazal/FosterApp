@@ -207,14 +207,19 @@ export const OtherDocumentsFormData = [
   {
     id: 17,
     gridLength: 12,
+    heading:
+    "If any of these required documents are not available or issues have arisen from them, please comment:",
+    component: Typography,
+  },
+  {
+    id: 18,
+    gridLength: 12,
     otherOptions: {
       name: "required",
-      label:
-        "If any of these required documents are not available or issues have arisen from them, please comment:",
       fullWidth: true,
       multiline: true,
       minRows: 3,
-      sx: { mb: 2 },
+      sx: { mt: -2 },
     },
     component: RHFTextField,
   },

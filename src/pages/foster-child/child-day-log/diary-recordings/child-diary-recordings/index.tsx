@@ -18,7 +18,8 @@ ChildDiaryRecordings.getLayout = function getLayout(page: any) {
 };
 
 export default function ChildDiaryRecordings() {
-  const [params, setParams] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterChildId } = router.query;
   //If ID is not there
@@ -55,7 +56,9 @@ export default function ChildDiaryRecordings() {
   }: any = useDiaryUploadDocumentListQuery({
     params: {
       diaryRecordingId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
   //Diary Recording Upload Modal API
@@ -127,9 +130,11 @@ export default function ChildDiaryRecordings() {
             "uploadBy",
             "password",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
+          onPageChange={(pageNo: any) => {
+            setPage((pageNo - 1) * 10);
+          }}
           currentPage={metaData?.page ?? 0}
           totalPages={metaData?.pages ?? 1}
           onDelete={(data: any) => {

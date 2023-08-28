@@ -8,7 +8,7 @@ export const FamilyPersonListAPI = baseAPI.injectEndpoints({
       query: ({params}: any) => ({
         url: "/foster-child/child-info/family-org-involved/list-fc-family-org-involved",
         method: "GET",
-        params,
+        params, 
       }),
       providesTags: ["FAMILY_PERSON_LIST"],
     }),

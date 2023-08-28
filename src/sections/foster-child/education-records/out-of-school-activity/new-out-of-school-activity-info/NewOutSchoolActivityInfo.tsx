@@ -3,13 +3,14 @@ import React from "react";
 import { FormProvider } from "@root/components/hook-form";
 import Link from "next/link";
 import { NewOutSchoolActivityInfoData } from ".";
-import useNewChildExclusionInfo from "./useNewOutSchoolActivityInfo";
+import useNewOutSchoolActivityInfo from "./useNewOutSchoolActivityInfo";
 
 const NewOutSchoolActivityInfo = (props: any) => {
-  const { disabled, onSubmitHandler, handleCloseForm, router, formState } =
-    props;
+  const { disabled, formState, postSchoolActivityData } = props;
 
-  const { methods, handleSubmit, onSubmit } = useNewChildExclusionInfo();
+  const { methods, handleSubmit, onSubmit } = useNewOutSchoolActivityInfo(
+    postSchoolActivityData
+  );
 
   return (
     <>
@@ -41,7 +42,7 @@ const NewOutSchoolActivityInfo = (props: any) => {
 
           <Grid item xs={12}>
             <Button size="large" type="submit" variant="contained">
-              {formState === "add" ? "Submit" : "Update"}
+              Submit
             </Button>
             <Link href={"/recruitment"}>
               <Button
@@ -65,4 +66,3 @@ const NewOutSchoolActivityInfo = (props: any) => {
 };
 
 export default NewOutSchoolActivityInfo;
-
