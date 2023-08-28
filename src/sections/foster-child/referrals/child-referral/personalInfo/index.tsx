@@ -18,6 +18,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "childCode",
       label: "Child Code",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -27,6 +28,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "childIdentifier",
       label: "Child Identifier",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -34,8 +36,9 @@ export const PersonalInfoFormData = [
   {
     id: 3,
     componentProps: {
-      name: "childOrParentChild",
+      name: "childOrParent",
       label: "Child Or Parent & Child",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -45,6 +48,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "areaOffice",
       label: "Area Office",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -67,6 +71,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "firstName",
       label: "First Name",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -76,6 +81,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "middleName",
       label: "Middle Name",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -85,6 +91,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "lastName",
       label: "Last Name",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -105,6 +112,7 @@ export const PersonalInfoFormData = [
       name: "age",
       label: "Age",
       disabled: true,
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -115,6 +123,7 @@ export const PersonalInfoFormData = [
       name: "gender",
       label: "Gender",
       select: true,
+      fullWidth: true,
     },
     component: RHFSelect,
     md: 6,
@@ -125,6 +134,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "ethnicity",
       label: "Ethnicity",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -136,6 +146,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "ofstedEthnicity",
       label: "Ofsted Ethnicity",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -147,6 +158,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "language",
       label: "Language",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -158,6 +170,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "legalStatus",
       label: "Legal Status",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -167,6 +180,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "nationality",
       label: "Nationality",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -178,6 +192,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "religion",
       label: "Religion",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -189,6 +204,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "immigrationStatus",
       label: "Immigration Status",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -198,6 +214,7 @@ export const PersonalInfoFormData = [
     componentProps: {
       name: "disability",
       label: "Disability",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -216,8 +233,9 @@ export const PersonalInfoFormData = [
   {
     id: 21,
     componentProps: {
-      name: "behavior",
+      name: "behaviour",
       label: "Behavior",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -228,6 +246,7 @@ export const PersonalInfoFormData = [
       name: "synopsis",
       label: "Synopsis",
       multiline: true,
+      fullWidth: true,
       rows: 3,
     },
     component: RHFTextField,
@@ -236,8 +255,9 @@ export const PersonalInfoFormData = [
   {
     id: 23,
     componentProps: {
-      name: "childEducation",
+      name: "currentlyStudent",
       label: "Is the Child Currently in Education?",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -256,7 +276,7 @@ export const PersonalInfoFormData = [
   {
     id: 24,
     componentProps: {
-      name: "siblings",
+      name: "otherSiblings",
       label: "Are there any other Siblings?",
     },
     component: RHFCheckbox,
@@ -267,7 +287,7 @@ export const PersonalInfoFormData = [
 export const defaultValues = {
   childCode: "", //1
   childIdentifier: "", //2
-  childOrParentChild: "", //3
+  childOrParent: "", //3
   areaOffice: "", //4
   image: null, //5
   firstName: "", //6
@@ -284,16 +304,16 @@ export const defaultValues = {
   religion: "", //17
   immigrationStatus: "", //18
   disability: "", //19
-  behavior: "", //20
+  behaviour: "", //20
   synopsis: "", //21
-  childEducation: "", //22
-  siblings: false, //23
+  currentlyStudent: "", //22
+  otherSiblings: false, //23
 };
 
 export const validationSchema = Yup.object().shape({
   childCode: Yup.string().trim().required("Field is Required"),
   childIdentifier: Yup.string().trim().required("Field is Required"),
-  childOrParentChild: Yup.string().trim().required("Field is Required"),
+  childOrParent: Yup.string().trim().required("Field is Required"),
   areaOffice: Yup.string().trim().required("Field is Required"),
   image: Yup.mixed().required("Photo is is required"),
   firstName: Yup.string().trim().required("Field is Required"),
@@ -309,10 +329,10 @@ export const validationSchema = Yup.object().shape({
   religion: Yup.string().trim().required("Field is Required"),
   immigrationStatus: Yup.string().trim().required("Field is Required"),
   disability: Yup.string().trim().required("Field is Required"),
-  behavior: Yup.string().trim().required("Field is Required"),
+  behaviour: Yup.string().trim().required("Field is Required"),
   synopsis: Yup.string().trim().required("Field is Required"),
-  childEducation: Yup.string().trim().required("Field is Required"),
-  siblings: Yup.boolean(),
+  currentlyStudent: Yup.string().trim().required("Field is Required"),
+  otherSiblings: Yup.boolean(),
 });
 
 export { default as PersonalInfoForm } from "./PersonalInfoForm";

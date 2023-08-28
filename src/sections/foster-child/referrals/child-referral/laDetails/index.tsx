@@ -12,6 +12,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "childCode",
       label: "Child Code",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -21,6 +22,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "referrerName",
       label: "Referrer Name",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -28,7 +30,7 @@ export const LaDetailsFormData = [
   {
     id: 3,
     componentProps: {
-      name: "referralDate",
+      name: "referalDate",
       label: "Referral Date",
       fullWidth: true,
     },
@@ -40,6 +42,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "socialWorkerName",
       label: "LA Social Worker Name",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -60,6 +63,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "childGeography",
       label: "Child Geography",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -78,8 +82,9 @@ export const LaDetailsFormData = [
   {
     id: 6,
     componentProps: {
-      name: "childPlacingAuthority",
+      name: "childPlacingAuth",
       label: "Child Placing Authority",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -110,6 +115,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "localAuthority",
       label: "Local Authority",
+      fullWidth: true,
       select: true,
     },
     component: RHFSelect,
@@ -130,6 +136,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "laAddress",
       label: "LA Address",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -141,6 +148,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "laManagerName",
       label: "LA Manager Name",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -148,8 +156,9 @@ export const LaDetailsFormData = [
   {
     id: 11,
     componentProps: {
-      name: "laManagerTelephone",
+      name: "laManagerPhone",
       label: "LA Manager Telephone",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -159,6 +168,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "laManagerEmail",
       label: "LA Manager Email",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -168,6 +178,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "areaTeam",
       label: "Area Team",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -175,8 +186,9 @@ export const LaDetailsFormData = [
   {
     id: 14,
     componentProps: {
-      name: "edtNumber",
+      name: "EDTNumber",
       label: "EDT Number",
+      fullWidth: true,
     },
     component: RHFTextField,
     md: 6,
@@ -186,6 +198,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "action",
       label: "Action",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -195,8 +208,9 @@ export const LaDetailsFormData = [
   {
     id: 16,
     componentProps: {
-      name: "behavioral",
+      name: "behavioural",
       label: "Behavioral",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -208,6 +222,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "otherDetails",
       label: "Other Details",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -219,6 +234,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "priorPlacementAddress",
       label: "Prior Placement Address",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -230,6 +246,7 @@ export const LaDetailsFormData = [
     componentProps: {
       name: "recommendedCarer",
       label: "Recommended Carer",
+      fullWidth: true,
       multiline: true,
       rows: 3,
     },
@@ -275,7 +292,7 @@ export const LaDetailsFormData = [
   {
     id: 24,
     componentProps: {
-      name: "furtherAction",
+      name: "noFurtherAction",
       label: "No Further Action (Move to Closed Referral)",
     },
     component: RHFCheckbox,
@@ -286,20 +303,20 @@ export const LaDetailsFormData = [
 export const defaultValues = {
   childCode: "", //1
   referrerName: "", //2
-  referralDate: new Date(), //3
+  referalDate: null, //3
   socialWorkerName: "", //4
   childGeography: "", //5
-  childPlacingAuthority: "", //6
+  childPlacingAuth: "", //6
   dateLaNotified: null, //7
   localAuthority: "", //8
   laAddress: "", //9
   laManagerName: "", //10
-  laManagerTelephone: "", //11
+  laManagerPhone: "", //11
   laManagerEmail: "", //12
   areaTeam: "", //13
-  edtNumber: "", //14
+  EDTNumber: "", //14
   action: "", //15
-  behavioral: "", //16
+  behavioural: "", //16
   otherDetails: "", //17
   priorPlacementAddress: "", //18
   recommendedCarer: "", //19
@@ -307,26 +324,26 @@ export const defaultValues = {
   laRiskAssessment: false, //21
   carePlanPt1: false, //22
   carePlanPt2: false, //23
-  furtherAction: false, //24
+  noFurtherAction: false, //24
 };
 
 export const validationSchema = Yup.object().shape({
   childCode: Yup.string().trim().required("Field is Required"),
   referrerName: Yup.string().trim().required("Field is Required"),
-  referralDate: Yup.date().required("Field is Required"),
+  referalDate: Yup.date().required("Field is Required"),
   socialWorkerName: Yup.string().trim().required("Field is Required"),
   childGeography: Yup.string().trim().required("Field is Required"),
-  childPlacingAuthority: Yup.string().trim().required("Field is Required"),
+  childPlacingAuth: Yup.string().trim().required("Field is Required"),
   dateLaNotified: Yup.date().required("Field is Required"),
   localAuthority: Yup.string().trim().required("Field is Required"),
   laAddress: Yup.string().trim().required("Field is Required"),
   laManagerName: Yup.string().trim().required("Field is Required"),
-  laManagerTelephone: Yup.string().trim().required("Field is Required"),
+  laManagerPhone: Yup.string().trim().required("Field is Required"),
   laManagerEmail: Yup.string().email().required("Field is Required"),
   areaTeam: Yup.string().trim().required("Field is Required"),
-  edtNumber: Yup.string().trim().required("Field is Required"),
+  EDTNumber: Yup.string().trim().required("Field is Required"),
   action: Yup.string().trim().required("Field is Required"),
-  behavioral: Yup.string().trim().required("Field is Required"),
+  behavioural: Yup.string().trim().required("Field is Required"),
   otherDetails: Yup.string().trim().required("Field is Required"),
   priorPlacementAddress: Yup.string().trim().required("Field is Required"),
   recommendedCarer: Yup.string().trim().required("Field is Required"),
@@ -334,7 +351,7 @@ export const validationSchema = Yup.object().shape({
   laRiskAssessment: Yup.boolean(),
   carePlanPt1: Yup.boolean(),
   carePlanPt2: Yup.boolean(),
-  furtherAction: Yup.boolean(),
+  noFurtherAction: Yup.boolean(),
 });
 
 export { default as LaDetails } from "./LaDetails";
