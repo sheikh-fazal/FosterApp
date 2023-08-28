@@ -82,12 +82,24 @@ export const FormData = [
 export const FormDataValues = {
   name: "",
   type: "",
-  description:
-    "",
+  description: "",
   guide_link_name: "",
   guide_link: "",
   email: "",
-  phone: "test@yopmail.com",
+  phone: "",
+};
+export const defaultValueThirdPartyLicenseForm = (
+  data: any = FormDataValues
+) => {
+  return {
+    name: data?.name,
+    type: data?.type,
+    description: data?.description,
+    guide_link_name: data?.guide_link_name,
+    guide_link: data?.guide_link,
+    email: data?.email,
+    phone: data?.phone,
+  };
 };
 
 export const FormValidationSchema = Yup.object().shape({

@@ -1,10 +1,20 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { FormData, FormDataValues, FormValidationSchema } from ".";
-import { usePatchThirdPartyLicenceDataMutation, usePostThirdPartyLicenceDataMutation } from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
+import {
+  FormData,
+  FormDataValues,
+  FormValidationSchema,
+  defaultValueThirdPartyLicenseForm,
+} from ".";
+import {
+  useGetSingleThirdPartyLicenseDataQuery,
+  usePatchThirdPartyLicenceDataMutation,
+  usePostThirdPartyLicenceDataMutation,
+} from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
+import { useEffect } from "react";
 
 export const useThirdPartyLicenceTableForm = () => {
   const router = useRouter();
@@ -12,15 +22,30 @@ export const useThirdPartyLicenceTableForm = () => {
 
   const [postThirdPartyLicenceDataTrigger, postThirdPartyLicenceDataStatus] =
     usePostThirdPartyLicenceDataMutation();
-    const [patchThirdPartyLicenceDataTrigger, patchThirdPartyLicenceDataStatus] =
+  const [patchThirdPartyLicenceDataTrigger, patchThirdPartyLicenceDataStatus] =
     usePatchThirdPartyLicenceDataMutation();
 
   const methods: any = useForm({
     resolver: yupResolver(FormValidationSchema),
-    defaultValues: FormDataValues,
+    defaultValues: defaultValueThirdPartyLicenseForm(FormDataValues),
   });
+  const { data, isLoading, isSuccess } = useGetSingleThirdPartyLicenseDataQuery(
+    {
+      licenseId: router?.query?.id,
+    },
+    {
+      skip: !!!router?.query?.id,
+    }
+  );
 
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = methods;
+  useEffect(() => {
+    reset((formValues: any) => defaultValueThirdPartyLicenseForm(data?.data));
+  }, [data?.data, isSuccess]);
   // ----------- POST and PATCH Hanlder --------------- //
   const combinedPost_PatchFunction = async (data: any, apiTOHit: any) => {
     const apiDataParameter = {
@@ -35,12 +60,14 @@ export const useThirdPartyLicenceTableForm = () => {
       const res: any = await apiTOHit(apiDataParameter).unwrap();
       router.push({
         pathname: router?.query?.id
-          ? `/system-admin/manage-third-party-license/third-party-license-form`
+          ? `/system-admin/manage-third-party-license/edit-third-party-license-form`
           : "/system-admin/manage-third-party-license",
-        query: router?.query?.id && {
-          action: "edit",
-          id: router?.query?.id,
-        },
+        ...(router?.query?.id && {
+          query: {
+            action: "edit",
+            id: router?.query?.id,
+          },
+        }),
       });
 
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
@@ -52,14 +79,15 @@ export const useThirdPartyLicenceTableForm = () => {
     }
   };
 
-// ----------- Submit Hanlder --------------- //
-const onSubmit = async (data: any) => {
-  if (!!router?.query?.id) {
-    combinedPost_PatchFunction(data, patchThirdPartyLicenceDataTrigger);
-    return;
-  }
-  combinedPost_PatchFunction(data, postThirdPartyLicenceDataTrigger);
-};
+  // ----------- Submit Hanlder --------------- //
+  const onSubmit = async (data: any) => {
+    if (!!router?.query?.id) {
+      combinedPost_PatchFunction(data, patchThirdPartyLicenceDataTrigger);
+      return;
+    }
+    combinedPost_PatchFunction(data, postThirdPartyLicenceDataTrigger);
+  };
+
   return {
     methods,
     FormData,

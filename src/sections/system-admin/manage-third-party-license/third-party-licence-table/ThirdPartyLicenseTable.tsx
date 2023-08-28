@@ -1,15 +1,24 @@
-import React from 'react'
-import { useThirdPartyLicenceTable } from './useThirdPartyLicenseTable';
-import CustomTable from '@root/components/Table/CustomTable';
+import React from "react";
+import { useThirdPartyLicenceTable } from "./useThirdPartyLicenseTable";
+import CustomTable from "@root/components/Table/CustomTable";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
-const ThirdPartyLicenceTable = () => {
-  const { tableHeaderRefTwo, router, columns, TableData, theme } =
-  useThirdPartyLicenceTable();
+const ThirdPartyLicenceTable = ({ data }: any) => {
+  console.log("active", data);
+  const {
+    tableHeaderRefTwo,
+    router,
+    theme,
+    onDeleteConfirm,
+    thirdPartyColumnTableColumns,
+    isRecordSetForDelete,
+    setIsRecordSetForDelete
+  } = useThirdPartyLicenceTable();
   return (
     <>
       <CustomTable
-        data={TableData}
-        columns={columns}
+        data={data}
+        columns={thirdPartyColumnTableColumns}
         isLoading={false}
         isFetching={false}
         isError={false}
@@ -24,8 +33,15 @@ const ThirdPartyLicenceTable = () => {
         }}
         rootSX={{ my: theme.spacing(2) }}
       />
+      {isRecordSetForDelete && (
+        <DeleteModel
+          open={isRecordSetForDelete}
+          handleClose={() => setIsRecordSetForDelete(false)}
+          onDeleteClick={() => onDeleteConfirm?.()}
+        />
+      )}
     </>
-  )
-}
+  );
+};
 
-export default ThirdPartyLicenceTable
+export default ThirdPartyLicenceTable;

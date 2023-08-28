@@ -2,13 +2,15 @@ import React from "react";
 import { useLicenceDisableTable } from "./useLicenseDisableTable";
 import CustomTable from "@root/components/Table/CustomTable";
 
-const LicenceDisableTable = () => {
+const LicenceDisableTable = ({data}:any) => {
+  console.log('Disabled',data);
+  
   const { tableHeaderRefTwo, router, columns, TableData, theme } =
     useLicenceDisableTable();
   return (
     <>
       <CustomTable
-        data={TableData}
+        data={data}
         columns={columns}
         isLoading={false}
         isFetching={false}

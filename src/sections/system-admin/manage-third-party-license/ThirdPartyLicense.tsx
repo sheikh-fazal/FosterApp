@@ -1,18 +1,20 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import CustomAccordian from "@root/components/CustomAccordian";
-import { accordianData } from ".";
+import {  accordianDataFunction } from ".";
 import { useRouter } from "next/router";
+import { useThirdPartyLicence } from "./useThirdPartyLicense";
 
 const ThirdPartyLicense = () => {
-  const route = useRouter();
+  const { router, data } = useThirdPartyLicence();
+  accordianDataFunction(data)
   return (
     <Grid>
       <CustomAccordian
         addShowBtn
-        data={accordianData}
+        data={accordianDataFunction(data)}
         handleRowAdd={(item: any) =>
-          route.push({
+          router.push({
             pathname: `/system-admin/manage-third-party-license/third-party-license-form`,
           })
         }
