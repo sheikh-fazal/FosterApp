@@ -1,14 +1,18 @@
 import usePath from "@root/hooks/usePath";
 import Layout from "@root/layouts";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
 import MissingFormUnKnown from "@root/sections/foster-child/event-and-notification/child-exploitation/child-missing-placement/MissingFormUnknown/MissingFormUnKnown";
-import { usePostChildMissingPlacementUnKnownMutation } from "@root/services/foster-child/events-and-notification/childMissingReportApi";
+import {
+  useDeleteChildMissingPlacementDocsMutation,
+  useGetChildMissingPlacementDocsQuery,
+  usePostChildMissingPlacementUnKnownMutation,
+} from "@root/services/foster-child/events-and-notification/childMissingReportApi";
 import { enqueueSnackbar } from "notistack";
 
 const PAGE_TITLE: string = "Child Missing Placement";
@@ -21,7 +25,23 @@ export default function ChildMissingPlacement() {
   const docsData = new FormData();
   const { makePath } = usePath();
   const router = useRouter();
-  const id = router?.query?.fosterChildId;
+  const id: any = router?.query?.fosterChildId;
+
+  const [params, setParams] = useState({
+    limit: "10",
+    offset: "0",
+    search: undefined,
+    fosterChildId: id,
+    formName: "unknown_missing-placement",
+  });
+
+  const {
+    data: tableData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isSuccess,
+    isError: hasDocumentError,
+  } = useGetChildMissingPlacementDocsQuery(params);
 
   const BREADCRUMBS = [
     {
@@ -40,15 +60,18 @@ export default function ChildMissingPlacement() {
   const [postUnKnownMissingPlacement] =
     usePostChildMissingPlacementUnKnownMutation();
 
+  const [deleteDocs] = useDeleteChildMissingPlacementDocsMutation();
+
   const documentUploadHandler = (data: any) => {
     docsData.append("formName", "UNKNOWN_MISSING_PLACEMENT");
     docsData.append("documentType", data.documentType);
     docsData.append("documentDate", data.documentDate);
     docsData.append("documentPassword", data.password);
     docsData.append("file", data.chosenFile);
+    docsData.append("fosterChildId", id);
     // postDocuments(docsData);
   };
-  const contactSubmitHandler = async (data: any) => {
+  const missingFormSubmitHandler = async (data: any) => {
     try {
       const res: any = await postUnKnownMissingPlacement({
         data,
@@ -68,7 +91,7 @@ export default function ChildMissingPlacement() {
   let formEl = (
     <HorizontalTabs tabsDataArray={CHILD_MISSING_TABS_DATA}>
       <MissingFormUnKnown
-        onSubmit={contactSubmitHandler}
+        onSubmit={missingFormSubmitHandler}
         prevPath={`/foster-child?fosterChildId=${id}`}
       />
       <UploadDocuments
@@ -76,25 +99,31 @@ export default function ChildMissingPlacement() {
         searchParam={(searchedText: string) =>
           console.log("searched Value", searchedText)
         }
-        // tableData={tableData}
-        tableData={[
-          {
-            document: "bad.png",
-            documentType: "png",
-            date: "09/09/2009",
-            personName: "My name",
-            password: "password123",
-          },
+        tableData={tableData?.data?.missing_placement_documents}
+        // tableData={[
+        //   {
+        //     document: "bad.png",
+        //     documentType: "png",
+        //     date: "09/09/2009",
+        //     personName: "My name",
+        //     password: "password123",
+        //   },
+        // ]}
+        isLoading={isDocumentLoading}
+        isFetching={isFetching}
+        isError={hasDocumentError}
+        isSuccess={isSuccess}
+        // isLoading={false}
+        // isFetching={false}
+        // isError={false}
+        // isSuccess={true}
+        column={[
+          "file",
+          "documentType",
+          "documentDate",
+          "personUploaded",
+          "documentPassword",
         ]}
-        // isLoading={isDocumentLoading}
-        // isFetching={isFetching}
-        // isError={hasDocumentError}
-        // isSuccess={isSuccess}
-        isLoading={false}
-        isFetching={false}
-        isError={false}
-        isSuccess={true}
-        column={["document", "documentType", "date", "personName", "password"]}
         modalData={documentUploadHandler}
         // modalData={(data: any) => console.log(data)}
         onDelete={(data: any) => console.log("Deleting", data)}
