@@ -1,6 +1,7 @@
 import { baseAPI } from "@root/services/baseApi";
 
 const TAG = "CHILD_REFERRAL";
+const DOCTAG = "CHILD_REFERRAL_DOCUMNET";
 
 export const childReferralApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,18 +13,24 @@ export const childReferralApi = baseAPI.injectEndpoints({
       }),
       providesTags: [TAG],
     }),
-    postChildProfileInfo: builder.mutation({
-      query: ({ updatedData, fosterChildId }: any) => ({
-        url: `/foster-child/personal-info/${fosterChildId}`,
-        method: "POST",
-        body: updatedData,
+    getChildReferralId: builder.query({
+      query: (childReferralId: any) =>
+        `foster-child/child-referral/${childReferralId}`,
+      providesTags: [TAG],
+    }),
+    childReferralDocList: builder.query({
+      query: ({ childReferralId, params }: any) => ({
+        url: `foster-child/child-referral/documents/${childReferralId}`,
+        method: "GET",
+        params,
       }),
-      invalidatesTags: [TAG],
+      providesTags: [DOCTAG],
     }),
   }),
 });
 
 export const {
   useGetChildReferralTableApiQuery,
-  usePostChildProfileInfoMutation,
+  useGetChildReferralIdQuery,
+  useChildReferralDocListQuery,
 } = childReferralApi;

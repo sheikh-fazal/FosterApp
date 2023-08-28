@@ -52,7 +52,6 @@ export default function LaDetails({
               disabled={disabled}
               {...item.componentProps}
               size={"small"}
-              fullWidth
             >
               {item?.componentProps?.select
                 ? item?.options?.map((option: any) => (
