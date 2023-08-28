@@ -1,5 +1,5 @@
-import LicenceDisableTable from "./third-party-licence-disable-table/LicenceDisableTable";
-import ThirdPartyLicenceTable from "./third-party-licence-table/ThirdPartyLicenceTable";
+import LicenceDisableTable from "./third-party-license-disable-table/LicenseDisableTable";
+import ThirdPartyLicenceTable from "./third-party-licence-table/ThirdPartyLicenseTable";
 
 export const accordianData = [
   {

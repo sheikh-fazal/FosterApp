@@ -1,5 +1,5 @@
 import React from "react";
-import { useLicenceDisableTable } from "./useLicenceDisableTable";
+import { useLicenceDisableTable } from "./useLicenseDisableTable";
 import CustomTable from "@root/components/Table/CustomTable";
 
 const LicenceDisableTable = () => {

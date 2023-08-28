@@ -1,5 +1,5 @@
 import React from 'react'
-import { useThirdPartyLicenceTable } from './useThirdPartyLicenceTable';
+import { useThirdPartyLicenceTable } from './useThirdPartyLicenseTable';
 import CustomTable from '@root/components/Table/CustomTable';
 
 const ThirdPartyLicenceTable = () => {

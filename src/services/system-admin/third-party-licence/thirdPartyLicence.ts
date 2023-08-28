@@ -23,14 +23,14 @@ export const ThirdPartyLicence = baseAPI.injectEndpoints({
       }),
       invalidatesTags: ["AREA_OFFICE_SETUP"],
     }),
-    // patchAreaOfficeData: builder.mutation({
-    //   query: (apiDataParameter: any) => ({
-    //     url: `/admin/area-office-setup`,
-    //     method: "PUt",
-    //     body: apiDataParameter?.body,
-    //   }),
-    //   invalidatesTags: ["AREA_OFFICE_SETUP"],
-    // }),
+    patchThirdPartyLicenceData: builder.mutation({
+      query: (apiDataParameter: any) => ({
+        url: `/admin/third-party-licenses`,
+        method: "PUt",
+        body: apiDataParameter?.body,
+      }),
+      invalidatesTags: ["AREA_OFFICE_SETUP"],
+    }),
     // deleteAreaOfficeData: builder.mutation({
     //   query: ({ id }: any) => ({
     //     url: `/admin/area-office-setup`,
@@ -47,6 +47,6 @@ export const {
 //   useGetAllAreaOfficeSetUpListDataQuery,
 //   useGetSingleAreaOfficeDataQuery,
   usePostThirdPartyLicenceDataMutation,
-//   usePatchAreaOfficeDataMutation,
+  usePatchThirdPartyLicenceDataMutation,
 //   useDeleteAreaOfficeDataMutation,
 } = ThirdPartyLicence;

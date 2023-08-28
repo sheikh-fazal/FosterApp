@@ -31,9 +31,11 @@ export const FormData = [
       name: "description",
       label: "Description",
       sx: { mb: 4 },
+      multiline: true,
+      minRows: 3,
     },
-    component: RHFDatePicker,
-    md: 6,
+    component: RHFTextField,
+    md: 12,
   },
   {
     id: 4,
@@ -46,7 +48,7 @@ export const FormData = [
     md: 6,
   },
   {
-    id: 4,
+    id: 5,
     componentProps: {
       name: "guide_link",
       label: "Guide Link",
@@ -56,7 +58,7 @@ export const FormData = [
     md: 6,
   },
   {
-    id: 5,
+    id: 6,
     componentProps: {
       name: "email",
       label: "Email",
@@ -66,7 +68,7 @@ export const FormData = [
     md: 6,
   },
   {
-    id: 6,
+    id: 7,
     componentProps: {
       name: "phone",
       label: "Phone",
@@ -78,13 +80,13 @@ export const FormData = [
 ];
 
 export const FormDataValues = {
-  name: "Foster Talk",
-  type: "Public Domain",
+  name: "",
+  type: "",
   description:
-    "Ut magna pariatur culpa commodo veniam veniam amet id commodo dolor in sunt. Aliquip eu do tempor aliqua. Anim incididunt incididunt nisi proident quis culpa id irure. Ut voluptate laboris non ad nostrud ullamco labore veniam magna deserunt nostrud magna consequat. Non qui dolore cupidatat cillum dolor labore amet.",
-  guide_link_name: "QuickBook",
-  guide_link: "https://sandbox-quickbooks.api.intuit.com",
-  email: "test@yopmail.com",
+    "",
+  guide_link_name: "",
+  guide_link: "",
+  email: "",
   phone: "test@yopmail.com",
 };
 
