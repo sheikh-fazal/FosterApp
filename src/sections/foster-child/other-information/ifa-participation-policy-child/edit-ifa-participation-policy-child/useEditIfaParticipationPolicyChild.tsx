@@ -66,15 +66,15 @@ console.log(typeof ratingValue);
     formData.append("rating", ratingValue);
     formData.append("participationActivity", data.participationActivity);
     formData.append("file", data.file);
-
-    console.log(data, ratingValue);
     
     try {
       const resp = await putChildData({ formData, ifaChildId });
       enqueueSnackbar("Successfully", {variant:"success"})
       console.log(resp);
       
-    } catch (error) {}
+    } catch (error) {
+      enqueueSnackbar("Something went wrong", {variant:"error"})
+    }
   };
 
   return {
