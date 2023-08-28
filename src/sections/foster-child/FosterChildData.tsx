@@ -286,8 +286,13 @@ export const FOSTERCHILDTABSDATAARRAY = [
       },
       {
         id: 3,
-        title: "Child Missing Placement",
-        link: "/foster-child/events-and-notification/child-missing-placement",
+        title: "Missing form whereabouts known",
+        link: "/foster-child/events-and-notification/child-missing-placement-known",
+      },
+      {
+        id: 3.5,
+        title: "Missing form whereabouts unknown",
+        link: "/foster-child/events-and-notification/child-missing-placement-unknown",
       },
       {
         id: 4,

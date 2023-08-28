@@ -9,7 +9,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import dayjs from "dayjs";
 import { ETHNICITYDROPDOWN } from "@root/dropdown-data/ethnicity";
 import { RELIGIONDROPDOWN } from "@root/dropdown-data/religion";
-import { RHFInputWithLabel } from "@root/sections/enquiry-stage/extensions/RHFInputWithLabel";
+import { RHFInputWithLabel } from "@root/components/hook-form/RHFInputWithLabel";
 import { GENDERDROPDOWNDATA } from "@root/dropdown-data/gender";
 import { Typography } from "@mui/material";
 

@@ -11,6 +11,7 @@ export const firstApplicantAPI = baseAPI.injectEndpoints({
         method: "PUT",
         body: formData,
       }),
+      invalidatesTags: ["INITIAL-ENQUIRY-FORM"],
     }),
   }),
 });
