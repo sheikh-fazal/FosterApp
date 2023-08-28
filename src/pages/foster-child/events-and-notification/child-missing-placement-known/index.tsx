@@ -1,7 +1,7 @@
 import usePath from "@root/hooks/usePath";
 import Layout from "@root/layouts";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import Page from "@root/components/Page";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
@@ -20,7 +20,11 @@ ChildMissingPlacement.getLayout = function getLayout(page: any) {
 
 export default function ChildMissingPlacement() {
   const docsData = new FormData();
-
+  const [params, setParams] = useState({
+    limit: "10",
+    offset: "0",
+    search: undefined,
+  });
   const { makePath } = usePath();
   const router = useRouter();
   const id = router?.query?.fosterChildId;

@@ -1,7 +1,7 @@
 import { baseAPI, TAGS } from "@root/services/baseApi";
 
 export const childMissingPlacementApi = baseAPI.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: (builder: any) => ({
     postChildMissingPlacementKnown: builder.mutation({
       query: ({ body, fosterChildId }: any) => ({
         url: `/events-and-notification/missing-known-placement/${fosterChildId}`,
