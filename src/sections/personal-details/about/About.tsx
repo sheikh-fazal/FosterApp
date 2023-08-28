@@ -1,14 +1,23 @@
 import CustomCard from "@root/components/CustomCard";
 import React from "react";
-import { Avatar, Box, Divider, Typography } from "@mui/material";
+import { Avatar, Box, Divider, Grid, Typography } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { SkeletonMap } from "@root/components/skeleton";
 import { useAbout } from "./useAbout";
+import NoContentFound from "@root/components/Table/NoContentFound";
 
 const About = () => {
-  const { formattedData, isLoading, arrayItems, toggleList, handleDropDown } =
-    useAbout();
+  const {
+    formattedData,
+    isLoading,
+    arrayItems,
+    toggleList,
+    handleDropDown,
+    data,
+    isError,
+  } = useAbout();
+
   return (
     <CustomCard
       title="About"
@@ -83,6 +92,13 @@ const About = () => {
           )}
         </Avatar>
       </Box>
+      {isError === true || data?.length === 0 ? (
+        <Grid container justifyContent={"center"}>
+          <Grid item width={200}>
+            <NoContentFound />
+          </Grid>
+        </Grid>
+      ) : null}
     </CustomCard>
   );
 };

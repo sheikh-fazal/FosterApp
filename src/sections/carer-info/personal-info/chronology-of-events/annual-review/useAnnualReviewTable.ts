@@ -1,8 +1,8 @@
 import { useTableParams } from "@root/hooks/useTableParams";
 import {
-  useAllegationListQuery,
-  useDeleteAllegationListMutation,
-} from "@root/services/carer-info/personal-info/chronology-of-events/allegation-api/allegationApi";
+  useAnnualReviewListQuery,
+  useDeleteAnnualReviewListMutation,
+} from "@root/services/carer-info/personal-info/chronology-of-events/annual-review-api/annualReviewApi";
 import { useRouter } from "next/router";
 import { enqueueSnackbar } from "notistack";
 import React, { useRef } from "react";
@@ -14,26 +14,30 @@ export const useAnnualReviewTable = () => {
   const { fosterCarerId } = router.query;
   const { headerChangeHandler, pageChangeHandler, sortChangeHandler, params } =
     useTableParams();
-  //GET API For Allegation List
+  //GET API For Annual Review List
   const {
     data: annualReviewlist,
     isError: annualReviewListError,
     isLoading: annualReviewListIsloading,
     isFetching: annualReviewlistIsfetching,
     isSuccess: annualReviewListIsSuccess,
-  }: any = useAllegationListQuery({
+  }: any = useAnnualReviewListQuery({
     params: {
       fosterCarerId: fosterCarerId,
       search: search,
       ...params,
     },
   });
-  const annualReviewList = annualReviewlist?.data?.allegation;
+  const annualReviewList = annualReviewlist?.data?.annual_review;
   const meta = annualReviewlist?.data?.meta;
-  const [deleteList] = useDeleteAllegationListMutation();
-  //DELETE API For Allegation List
+
+  console.log("annualReviewList", annualReviewList);
+  
+
+  const [deleteAnnualReviewList] = useDeleteAnnualReviewListMutation();
+
   const listDeleteHandler = (id: any) => {
-    deleteList(id)
+    deleteAnnualReviewList({ annualReviewId: id })
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Information Deleted Successfully", {

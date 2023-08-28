@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Badge } from "@mui/material";
+import { Box } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useAnnualReviewTable } from "./useAnnualReviewTable";
@@ -26,7 +26,7 @@ const AnnualReviewTable = () => {
 
   const columns = [
     {
-      accessorFn: (row: any) => row?.allegationDate ?? "-",
+      accessorFn: (row: any) => row?.annualReviewA?.reviewDate ?? "-",
       id: "reviewDate",
       cell: (info: any) => {
         return <Box>{dayjs(info.getValue()).format("MM/DD/YYYY")}</Box>;
@@ -37,11 +37,9 @@ const AnnualReviewTable = () => {
     {
       accessorFn: (row: any) => row?.status ?? "-",
       id: "status",
-      cell: (info: any) => (
-        <Badge invisible={info.badge} color="secondary">
-          {info.getValue() ?? "-"}
-        </Badge>
-      ),
+      cell: (info: any) => {
+        return <Box> {info.getValue() ?? "-"}</Box>;
+      },
       header: () => <span>Status</span>,
       isSortable: true,
     },
@@ -66,9 +64,10 @@ const AnnualReviewTable = () => {
           />
 
           {/* Calling Delete Modal */}
-          {/* <DeletePromptn
-            onDeleteClick={() => listDeleteHandler(info?.row?.origial?.id)}
-          /> */}
+          <DeletePrompt
+            onDeleteClick={() => listDeleteHandler(info?.row?.original?.id)}
+          />
+
           <TableAction
             size="small"
             type="view"
@@ -95,7 +94,7 @@ const AnnualReviewTable = () => {
       <Box sx={{ mb: 1 }}>
         <TableHeader
           ref={tableHeaderRefTwo}
-          title="Allegation"
+          title="Annual Review"
           searchKey="search"
           showAddBtn
           onChanged={(event: any) => {

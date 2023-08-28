@@ -10,7 +10,7 @@ const EducationDocument = () => {
     isError,
     isSuccess,
     isFetching,
-    submitInitialHomeVisitDocument,
+    submitEducationInfoDocument,
     query,
     onDeleteConfirm
   } = useEducationDocument();
@@ -32,7 +32,7 @@ const EducationDocument = () => {
       isSuccess={isSuccess}
       modalData={(data: any) => {
         console.log("data all the way here", data);
-        submitInitialHomeVisitDocument(data);
+        submitEducationInfoDocument(data);
       }}
       searchParam={(data: any) => {
         setSearchValue(data.search);

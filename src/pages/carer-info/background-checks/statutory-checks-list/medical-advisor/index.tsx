@@ -18,7 +18,8 @@ MedicalAdvisor.getLayout = function getLayout(page: any) {
 };
 
 export default function MedicalAdvisor() {
-  const [params, setParams] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterCarerId } = router.query;
   if (!action && !id) {
@@ -54,7 +55,9 @@ export default function MedicalAdvisor() {
   }: any = useStatutoryUploadDocumentListQuery({
     params: {
       recordId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
 
@@ -64,7 +67,7 @@ export default function MedicalAdvisor() {
   //API For Delete Document List
   const [deleteDocumentList] = useDeleteStatutoryUploadDocumentsMutation();
 
-  const tableData: any = documentData?.data?.as_statutory_checks_list_document;
+  const tableData: any = documentData?.data?.statutoryCheckList;
   const metaData: any = documentData?.data?.meta;
 
   //Handling POST API
@@ -124,9 +127,9 @@ export default function MedicalAdvisor() {
             "personUploaded",
             "documentPassword",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
           onDelete={(data: any) => {

@@ -103,7 +103,7 @@ const DayLogJournalTable = (props: any) => {
     <>
       <TableHeader
         ref={tableHeaderRefTwo}
-        title=""
+        title="Day Log/Journal Entries"
         searchKey="search"
         showAddBtn
         onAdd={() => {

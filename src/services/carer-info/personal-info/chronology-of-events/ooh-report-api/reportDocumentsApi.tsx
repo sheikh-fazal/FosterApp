@@ -4,10 +4,10 @@ import { parseDatesToTimeStampByKey } from "@root/utils/formatTime";
 export const reportDocumentsApi = baseAPI.injectEndpoints({
   endpoints: (builder) => ({
     uploadDocumentList: builder.query({
-      query: (search: any) => ({
+      query: (payload: any) => ({
         url: `/chronology-events/uploaded-documents/list`,
         method: "GET",
-        params: search.params,
+        params: payload.params,
       }),
       providesTags: ["REPORTS_DOCUMENTS"],
     }),

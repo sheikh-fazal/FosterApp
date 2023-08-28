@@ -7,7 +7,12 @@ import useOrignalChildReferral from "./useOrignalChildReferral";
 import RHFUploadFile from "@root/components/hook-form/RHFUploadFile";
 
 const ViewOriginalChild = (props: any) => {
-  const { methods, onSubmit, handleSubmit } = useOrignalChildReferral();
+  const {
+    methods,
+    onSubmit,
+    handleSubmit,
+    ...objVals
+  } = useOrignalChildReferral();
 
   return (
     <>
@@ -18,19 +23,22 @@ const ViewOriginalChild = (props: any) => {
               <Grid item xs={12} md={form?.gridLength} key={form?.id}>
                 <>
                   <Grid>
-                    <form.component
-                      disabled={props.disabled}
-                      size="small"
-                      {...form.otherOptions}
-                    >
-                      {form.otherOptions
-                        ? form.options?.map((option: any) => (
-                            <option key={option.value} value={option.value}>
-                              {option.label}
-                            </option>
-                          ))
-                        : null}
-                    </form.component>
+                    {((objVals as any)?.[form.toShowKey] == form.toShow) && 
+                      form?.component && (
+                        <form.component
+                          disabled={props.disabled}
+                          size="small"
+                          {...form.otherOptions}
+                        >
+                          {form.otherOptions
+                            ? form.options?.map((option: any) => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))
+                            : null}
+                        </form.component>
+                      )}
                   </Grid>
                 </>
               </Grid>
@@ -38,20 +46,9 @@ const ViewOriginalChild = (props: any) => {
           })}
 
           <Grid item xs={12}>
-            <Link href={"/recruitment"}> 
-              <Button
-                type="button"
-                sx={{
-                  color: "#fff",
-                  ml: 1,
-                  backgroundColor: "#F6830F",
-                }}
-                size="large"
-                variant="contained"
-              >
-                Submit
-              </Button>
-            </Link>
+            <Button type="submit" size="medium" variant="contained">
+              Submit
+            </Button>
           </Grid>
         </Grid>
       </FormProvider>

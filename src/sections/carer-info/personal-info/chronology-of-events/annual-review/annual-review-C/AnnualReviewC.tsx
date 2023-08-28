@@ -4,6 +4,8 @@ import React from "react";
 import { annualReviewCData } from ".";
 import { useAnnualReviewCForm } from "./useAnnualReviewCForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewC(props: any) {
   const { action, id } = props;
@@ -13,18 +15,17 @@ export default function AnnualReviewC(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewCForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={3} columnSpacing={5} alignItems="center">
           {annualReviewCData.map((form: any) => {
             return (
@@ -36,7 +37,15 @@ export default function AnnualReviewC(props: any) {
                   {form?.title}
                 </Typography>
                 {form.id !== 7.5 && (
-                  <form.component size="small" {...form.otherOptions} disabled>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

@@ -4,7 +4,7 @@ import { Typography, useTheme } from "@mui/material";
 
 export default function RHFUploadFile(props: any) {
   const theme = useTheme();
-  const { disabled, name, ...other } = props;
+  const { disabled, name, accept, placeholder, ...other } = props;
   const [borderColor, setBorderColor] = useState(
     disabled
       ? theme.palette.action.disabledBackground
@@ -38,7 +38,7 @@ export default function RHFUploadFile(props: any) {
         <div
           style={{ paddingLeft: "10px", color: theme.palette.action.disabled }}
         >
-          {other?.getValues(`${name}`)?.name || "Upload Photo"}
+          {other?.getValues(`${name}`)?.name || placeholder || "Upload Photo"}
         </div>
         <FileUploadIcon
           sx={{
@@ -48,6 +48,7 @@ export default function RHFUploadFile(props: any) {
         />
       </label>
       <input
+        accept={accept}
         {...other?.register(`${name}`)}
         type="file"
         disabled={disabled}

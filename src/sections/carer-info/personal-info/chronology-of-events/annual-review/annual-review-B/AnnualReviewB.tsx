@@ -4,6 +4,8 @@ import React from "react";
 import { annualReviewBData } from ".";
 import { useAnnualReviewBForm } from "./useAnnualReviewBForm";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function AnnualReviewA(props: any) {
   const { action, id } = props;
@@ -13,15 +15,13 @@ export default function AnnualReviewA(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = useAnnualReviewBForm(action, id);
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <Box>
       <Typography
@@ -31,12 +31,21 @@ export default function AnnualReviewA(props: any) {
         Primary Carer Last Medical Date
       </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {annualReviewBData.map((form: any) => {
             return (
               <Grid item xs={12} md={form?.gridLength} key={form.id}>
                 {form.id !== 7.5 && (
-                  <form.component size="small" {...form.otherOptions} disabled>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

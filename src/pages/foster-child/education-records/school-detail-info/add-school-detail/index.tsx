@@ -52,12 +52,6 @@ export default function AddSchoolDetail() {
         <SchoolDetailInfoForm />
         <UploadDocuments
           readOnly={true}
-          // searchParam={(searchedText: string) => setSearchHandle(searchedText)}
-          // tableData={{}}
-          // isLoading={isDocumentLoading}
-          // isFetching={isDocumentFetching}
-          // isError={hasDocumentError}
-          // isSuccess={isDocumentSuccess}
           column={[
             "documentOriginalName",
             "documentType",
@@ -65,9 +59,6 @@ export default function AddSchoolDetail() {
             "personUploaded",
             "documentPassword",
           ]}
-          // onPageChange={(page: any) => pageChangeHandler(page)}
-          // currentPage={metaData?.page}
-          // totalPages={metaData?.pages}
         />{" "}
       </HorizaontalTabs>
     </Box>

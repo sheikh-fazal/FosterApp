@@ -4,27 +4,27 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 
-const useViewOutSchoolActivityInfo = () => {
+const useViewOutSchoolActivityInfo = (initialValueProps: any) => {
   const todayDate = dayjs().format("MM/DD/YYYY");
   const router = useRouter();
 
   const defaultValues = {
     activityType: "",
     fromDate: new Date(todayDate),
-    toDate: new Date(todayDate),
+    outOfDate: new Date(todayDate),
     comments: "",
   };
 
   const childExclusionSchema = Yup.object().shape({
     activityType: Yup.string().required("Required"),
-    fromDate: Yup.date().required("Required"),
-    toDate: Yup.date().required("Required"),
     comments: Yup.string().required("Required"),
+    fromDate: Yup.date().required("Required"),
+    outOfDate: Yup.date().required("Required"),
   });
 
   const methods: any = useForm({
     resolver: yupResolver(childExclusionSchema),
-    defaultValues,
+    defaultValues: initialValueProps,
   });
 
   const { handleSubmit } = methods;
@@ -33,7 +33,7 @@ const useViewOutSchoolActivityInfo = () => {
     console.log(data);
   };
 
-  return { methods, handleSubmit, onSubmit, router };
+  return { methods, handleSubmit, onSubmit, router,defaultValues };
 };
 
 export default useViewOutSchoolActivityInfo;

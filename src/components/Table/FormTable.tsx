@@ -110,7 +110,7 @@ function TableFormModal(props: any) {
     >
       <Box sx={styles.root}>
         <FormProvider methods={methods}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={styles.addModalMainGrid}>
             {columns.map(
               ({
                 inputType,
@@ -118,9 +118,13 @@ function TableFormModal(props: any) {
                 label,
                 size = { xs: 12, md: 6 },
                 options,
+                hideInForm,
                 ...other
               }: any) => {
+                if (hideInForm) return null;
+
                 const Component = FIELDS_OBJ[inputType];
+
                 return (
                   <Grid key={key} item {...size}>
                     <Component
@@ -261,9 +265,7 @@ export default function FormTable(props: any) {
               />
             )}
 
-            <TableAction
-              type="download"
-            />
+            <TableAction type="download" />
 
             {showView === "view" ? (
               ""
@@ -506,4 +508,5 @@ const styles = {
       backgroundColor: theme.palette.grey[400],
     },
   }),
+  addModalMainGrid: { placeItems: "center" },
 };

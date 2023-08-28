@@ -4,6 +4,8 @@ import React from "react";
 import { placementReviewData } from ".";
 import { usePlacementReview } from "./usePlacementReview";
 import { LoadingButton } from "@mui/lab";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
+import IsFetching from "@root/components/loaders/IsFetching";
 
 export default function PlacementReview(props: any) {
   const { action, id } = props;
@@ -13,19 +15,17 @@ export default function PlacementReview(props: any) {
     onSubmit,
     isLoading,
     theme,
-    setValue,
-    trigger,
     handleSubmit,
-    getValues,
     methods,
     isFetching,
     isSubmitting,
     fosterCarerId,
   } = usePlacementReview(action, id);
-
+  if (isLoading) return <SkeletonFormdata />;
   return (
     <>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Typography
           sx={{ mb: 1, color: theme.palette.primary.main }}
           variant="subtitle1"
@@ -44,7 +44,15 @@ export default function PlacementReview(props: any) {
                   {form?.title}
                 </Typography>
                 {form.id !== 7.5 && (
-                  <form.component size="small" {...form.otherOptions} disabled>
+                  <form.component
+                    size="small"
+                    {...form.otherOptions}
+                    disabled={action === "view" ? true : false}
+                    InputLabelProps={{
+                      shrink: action === "view" ? true : undefined,
+                      disabled: action === "view" ? true : undefined,
+                    }}
+                  >
                     {form.otherOptions.select
                       ? form.options.map((option: any) => (
                           <option key={option.value} value={option.value}>

@@ -1,56 +1,12 @@
 import { RHFSwitch, RHFTextField } from "@root/components/hook-form";
 import * as Yup from "yup";
 
-export const defaultValues = {
-  placementReference: "Text",
-  ethinicity: true,
-  placementSiblings: true,
-  fosterAvailability: true,
-  specialRequirements: true,
-  language: true,
-  connectedPerson: true,
-  familyHistory: true,
-  physicsHealth: true,
-  religion: true,
-  adoptionConsideration: true,
-  lifeStory: true,
-  mentalHealth: true,
-  locality: true,
-  childAge: true,
-  childDevelopment: true,
-  arragements: false,
-  childPreference: true,
-  carerPreference: true,
-};
-
-export const FormSchema = Yup.object().shape({
-  placementReference: Yup.string().required(),
-  ethinicity: Yup.boolean().required(),
-  placementSiblings: Yup.boolean().required(),
-  fosterAvailability: Yup.boolean().required(),
-  specialRequirements: Yup.boolean().required(),
-  language: Yup.boolean().required(),
-  connectedPerson: Yup.boolean().required(),
-  familyHistory: Yup.boolean().required(),
-  physicsHealth: Yup.boolean().required(),
-  religion: Yup.boolean().required(),
-  adoptionConsideration: Yup.boolean().required(),
-  lifeStory: Yup.boolean().required(),
-  mentalHealth: Yup.boolean().required(),
-  locality: Yup.boolean().required(),
-  childAge: Yup.boolean().required(),
-  childDevelopment: Yup.boolean().required(),
-  arragements: Yup.boolean().required(),
-  childPreference: Yup.boolean().required(),
-  carerPreference: Yup.boolean().required(),
-});
-
 export const placementReferenceData = [
   {
     id: 1,
     gridLength: 12,
     otherOptions: {
-      name: "placementReference",
+      name: "specificForPlacementPreference",
       label: "Mention any specific placement preference",
       multiline: true,
       minRows: 3,
@@ -58,12 +14,13 @@ export const placementReferenceData = [
     },
     component: RHFTextField,
   },
+
   {
     id: 2,
     title: "Select Criteria For Child Placement",
     gridLength: 3,
     otherOptions: {
-      name: "ethinicity",
+      name: "ethnicity",
       label: "Ethinicity",
     },
     component: RHFSwitch,
@@ -72,7 +29,7 @@ export const placementReferenceData = [
     id: 3,
     gridLength: 3,
     otherOptions: {
-      name: "placementSiblings",
+      name: "placementWithSiblings",
       label: "Placement with Siblings",
     },
     component: RHFSwitch,
@@ -81,7 +38,7 @@ export const placementReferenceData = [
     id: 4,
     gridLength: 3,
     otherOptions: {
-      name: "fosterAvailability",
+      name: "fosterCarerAvailability",
       label: "Foster Careres Availability",
     },
     component: RHFSwitch,
@@ -117,7 +74,7 @@ export const placementReferenceData = [
     id: 8,
     gridLength: 3,
     otherOptions: {
-      name: "familyHistory",
+      name: "childFamilyHistory",
       label: "Child Family History",
     },
     component: RHFSwitch,
@@ -126,7 +83,7 @@ export const placementReferenceData = [
     id: 9,
     gridLength: 3,
     otherOptions: {
-      name: "physicsHealth",
+      name: "childPhysicalHealth",
       label: "Child Physical Health",
     },
     component: RHFSwitch,
@@ -153,7 +110,7 @@ export const placementReferenceData = [
     id: 12,
     gridLength: 3,
     otherOptions: {
-      name: "lifeStory",
+      name: "childFamilyLifeStory",
       label: "Child Family Left Story",
     },
     component: RHFSwitch,
@@ -162,7 +119,7 @@ export const placementReferenceData = [
     id: 13,
     gridLength: 3,
     otherOptions: {
-      name: "mentalHealth",
+      name: "childMentalHealth",
       label: "Child Mental Health",
     },
     component: RHFSwitch,
@@ -180,7 +137,7 @@ export const placementReferenceData = [
     id: 15,
     gridLength: 3,
     otherOptions: {
-      name: "childAge",
+      name: "ageOfChild",
       label: "Age of the Child",
     },
     component: RHFSwitch,
@@ -189,7 +146,7 @@ export const placementReferenceData = [
     id: 16,
     gridLength: 3,
     otherOptions: {
-      name: "childDevelopment",
+      name: "childDevelopmentalNeeds",
       label: "Child Development Needs",
     },
     component: RHFSwitch,
@@ -198,8 +155,8 @@ export const placementReferenceData = [
     id: 17,
     gridLength: 3,
     otherOptions: {
-      name: "arragements",
-      label: "Temporary Arragements / Respite",
+      name: "respite",
+      label: "Temporary Arrangements / Respite",
     },
     component: RHFSwitch,
   },
@@ -207,7 +164,7 @@ export const placementReferenceData = [
     id: 18,
     gridLength: 3,
     otherOptions: {
-      name: "childPreference",
+      name: "preferenceOfChild",
       label: "Preference of the Child",
     },
     component: RHFSwitch,
@@ -216,9 +173,55 @@ export const placementReferenceData = [
     id: 19,
     gridLength: 3,
     otherOptions: {
-      name: "carerPreference",
+      name: "preferenceOfCarer",
       label: "Preference of the Carer",
     },
     component: RHFSwitch,
   },
 ];
+
+export const defaultValues = {
+  specificForPlacementPreference: "",
+  ethnicity: null,
+  placementWithSiblings: null,
+  fosterCarerAvailability: null,
+  specialRequirements: null,
+  language: null,
+  connectedPerson: null,
+  childFamilyHistory: null,
+  childPhysicalHealth: null,
+  religion: null,
+  adoptionConsideration: null,
+  childFamilyLifeStory: null,
+  childMentalHealth: null,
+  locality: null,
+  ageOfChild: null,
+  childDevelopmentalNeeds: null,
+  respite: null,
+  preferenceOfChild: null,
+  preferenceOfCarer: null,
+};
+
+export const formSchema = Yup.object().shape({
+  specificForPlacementPreference: Yup.string().required(
+    "Placement Preference is Required"
+  ),
+  ethnicity: Yup.boolean().required(),
+  placementWithSiblings: Yup.boolean().required(),
+  fosterCarerAvailability: Yup.boolean().required(),
+  specialRequirements: Yup.boolean().required(),
+  language: Yup.boolean().required(),
+  connectedPerson: Yup.boolean().required(),
+  childFamilyHistory: Yup.boolean().required(),
+  childPhysicalHealth: Yup.boolean().required(),
+  religion: Yup.boolean().required(),
+  adoptionConsideration: Yup.boolean().required(),
+  childFamilyLifeStory: Yup.boolean().required(),
+  childMentalHealth: Yup.boolean().required(),
+  locality: Yup.boolean().required(),
+  ageOfChild: Yup.boolean().required(),
+  childDevelopmentalNeeds: Yup.boolean().required(),
+  respite: Yup.boolean(),
+  preferenceOfChild: Yup.boolean().required(),
+  preferenceOfCarer: Yup.boolean().required(),
+});

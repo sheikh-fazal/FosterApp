@@ -38,6 +38,8 @@ export const useUnannouncedVisitTable = () => {
   const unAnnouncedVisitList = data?.data?.cce_unannounced_home_visit;
   const meta = data?.meta;
 
+  console.log("unAnnouncedVisitList", unAnnouncedVisitList);
+
   return {
     router,
     tableHeaderRefTwo,

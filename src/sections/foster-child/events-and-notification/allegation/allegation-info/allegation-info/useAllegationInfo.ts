@@ -54,13 +54,22 @@ export const useAllegationInfo = () => {
     reset(() => defaultValueAllegationInfoForm(data?.data));
   }, [data, reset]);
 
-  const submitAllegationInfoForm = async (data: any) => {
+  const saveAsDraft = (isDraft: any) => {
+    console.log({ isDraft });
+      if (!!router.query?.id) {
+      return;
+    }
+    handleSubmit(submitAllegationInfoForm)(isDraft);
+  };
+
+  const submitAllegationInfoForm = async (data: any, isDraft: any) => {
     const body = {
       fosterChildId: router.query.fosterChildId,
       urnNumber: "CH001",
       ...data,
-      status: "Pending",
+      status: typeof isDraft === "string" ? "Pending" : "Submit",
     };
+    console.log({ body });
     const queryParams = {
       fosterChildId: router.query.fosterChildId,
     };
@@ -96,11 +105,11 @@ export const useAllegationInfo = () => {
     const pathParams = {
       id: router.query?.id,
     };
-    const body = {
+   const body = {
       fosterChildId: router.query.fosterChildId,
       urnNumber: "CH001",
       ...data,
-      status: "Pending",
+      status: "Submit",
     };
     const apiDataParameter = { body, pathParams };
     try {
@@ -135,5 +144,6 @@ export const useAllegationInfo = () => {
     patchAllegationInfoDataStatus,
     theme,
     isLoading,
+    saveAsDraft,
   };
 };

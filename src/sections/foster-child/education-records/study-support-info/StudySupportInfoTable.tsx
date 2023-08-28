@@ -5,12 +5,12 @@ import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
-import { enqueueSnackbar } from "notistack";
 import dayjs from "dayjs";
-import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
 
 export const StudySupportInfoTable = ({ fosterChildId }: any) => {
   const [open, setOpen] = useState(false);
+  const [id, setId] = useState<any>("");
 
   const {
     router,
@@ -24,7 +24,21 @@ export const StudySupportInfoTable = ({ fosterChildId }: any) => {
     meta,
     pageChangeHandler,
     sortChangeHandler,
+    postData,
   } = useStudySupportInfoTable();
+  const onDelete = async (data: any) => {
+    try {
+      const res: any = await postData(data).unwrap();
+      setOpen(false);
+      enqueueSnackbar(res?.message ?? `Delete Successfully!`, {
+        variant: "success",
+      });
+    } catch (error: any) {
+      setOpen(false);
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
   const columns = [
     {
       accessorFn: (row: any) => row?.fromDate,
@@ -52,8 +66,8 @@ export const StudySupportInfoTable = ({ fosterChildId }: any) => {
           <TableAction
             type="delete"
             onClicked={() => {
-              console.log("delete this", info.row.original);
               setOpen(true);
+              setId(info.row.original);
             }}
             size="small"
           />
@@ -100,7 +114,9 @@ export const StudySupportInfoTable = ({ fosterChildId }: any) => {
       <DeleteModel
         open={open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => {}}
+        onDeleteClick={() => {
+          onDelete(id);
+        }}
       />
       <TableHeader
         ref={tableHeaderRef}
