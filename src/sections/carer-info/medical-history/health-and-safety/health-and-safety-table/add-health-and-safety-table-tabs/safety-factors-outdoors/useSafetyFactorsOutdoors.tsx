@@ -29,22 +29,29 @@ export const useSafetyFactorsOutdoors = ({
   } = methods;
   const onSubmit = async (data: any) => {
     const safetyFactorsOutdoors = data;
+    const hasAnyFieldValue = Object.values(safetyFactorsOutdoors).some(
+      (value) => !!value
+    );
     try {
-      const res: any = await onSubmitHandler({
-        healthAndSafetyId,
-        formData: { safetyFactorsOutdoors },
-      }).unwrap();
-      enqueueSnackbar(
-        res?.message ?? `Health And Safety ${message} Successfully!`,
-        { variant: "success" }
-      );
+      if (hasAnyFieldValue) {
+        const res: any = await onSubmitHandler({
+          healthAndSafetyId,
+          formData: { safetyFactorsOutdoors },
+        }).unwrap();
+        enqueueSnackbar(
+          res?.message ?? `Health And Safety ${message} Successfully!`,
+          { variant: "success" }
+        );
+      } else {
+        enqueueSnackbar("Empty Form could not send!", { variant: "error" });
+      }
     } catch (error: any) {
       console.log(error);
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });
     }
-
   };
+  
   useEffect(() => {
     breadCrumbData("Safety Factors - Outdoors");
     // eslint-disable-next-line react-hooks/exhaustive-deps

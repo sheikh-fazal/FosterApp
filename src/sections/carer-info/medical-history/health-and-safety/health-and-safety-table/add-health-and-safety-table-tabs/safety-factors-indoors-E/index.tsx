@@ -4,11 +4,35 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-export const defaultValues = {
+interface DefaultValues {
+  isLightControlledByPullCord: boolean;
+  dateToBeCarriedOut1: any;
+
+  improvementsReq1: string;
+
+  isMedicinesEtcLockedAwayOutOfReach: boolean;
+  dateToBeCarriedOut2: any;
+
+  improvementsReq2: string;
+
+  isThermostatOnHotWater: boolean;
+  dateToBeCarriedOut3: any;
+
+  improvementsReq3: string;
+
+  isDoorOutOfReach: boolean;
+  dateToBeCarriedOut4: any;
+
+  improvementsReq4: string;
+
+  isBedroomLocked: boolean;
+  dateToBeCarriedOut5: any;
+
+  improvementsReq5: string;
+}
+
+export const defaultValues: any = {
   isLightControlledByPullCord: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
@@ -36,25 +60,25 @@ export const defaultValues = {
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOut1: Yup.date().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsReq1: Yup.string().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOut2: Yup.date().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsReq2: Yup.string().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOut3: Yup.date().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsReq3: Yup.string().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOut4: Yup.date().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsReq4: Yup.string().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOut5: Yup.date().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsReq5: Yup.string().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsE_Data = [

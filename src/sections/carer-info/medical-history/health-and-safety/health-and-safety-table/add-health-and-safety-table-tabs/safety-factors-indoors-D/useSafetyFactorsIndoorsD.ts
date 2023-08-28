@@ -29,15 +29,22 @@ export const useSafetyFactorsIndoorsD = ({
   } = methods;
   const onSubmit = async (data: any) => {
     const safetyFactorsIndoorsD = data;
+    const hasAnyFieldValue = Object.values(safetyFactorsIndoorsD).some(
+      (value) => !!value
+    );
     try {
-      const res: any = await onSubmitHandler({
-        healthAndSafetyId,
-        formData: { safetyFactorsIndoorsD },
-      }).unwrap();
-      enqueueSnackbar(
-        res?.message ?? `Health And Safety ${message} Successfully!`,
-        { variant: "success" }
-      );
+      if (hasAnyFieldValue) {
+        const res: any = await onSubmitHandler({
+          healthAndSafetyId,
+          formData: { safetyFactorsIndoorsD },
+        }).unwrap();
+        enqueueSnackbar(
+          res?.message ?? `Health And Safety ${message} Successfully!`,
+          { variant: "success" }
+        );
+      } else {
+        enqueueSnackbar("Empty Form could not send!", { variant: "error" });
+      }
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });

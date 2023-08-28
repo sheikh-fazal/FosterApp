@@ -35,14 +35,15 @@ export const useUploadDocument = (breadCrumbData: any) => {
 
   const [postDocuments]: any = useHealthAndSafetyDocumentPostMutation();
   const [deleteDocumentList]: any = useDeleteHealthAndSafetyDocumentMutation();
+
   const documentUploadHandler = async (data: any) => {
     console.log(data);
-    
+
     const formData = new FormData();
-    formData.append("docType ", data.documentType);
+    formData.append("docType", data.documentType);
     formData.append("date", data.documentDate);
     formData.append("password", data.password);
-    formData.append("docFile ", data.chosenFile);
+    formData.append("docFile", data.chosenFile);
     try {
       await postDocuments({ healthAndSafetyId, formData }).unwrap();
       enqueueSnackbar("Document Uploaded Successfully", {

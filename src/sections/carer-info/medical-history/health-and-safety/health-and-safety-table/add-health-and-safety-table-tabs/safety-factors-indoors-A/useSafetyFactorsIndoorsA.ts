@@ -30,11 +30,11 @@ export default function useSafetyFactorsIndoorsA({
   } = methods;
   const onSubmit = async (data: any) => {
     const safetyFactorsIndoorsA = data;
-    const hasAnyFieldValue = Object.values(safetyFactorsIndoorsA).some(
-      (value) => !!value
-    );
+    // const hasAnyFieldValue = Object.values(safetyFactorsIndoorsA).some(
+    //   (value) => !!value
+    // );
     try {
-      if (hasAnyFieldValue) {
+      // if (hasAnyFieldValue) {
         const res: any = await onSubmitHandler({
           healthAndSafetyId,
           formData: { safetyFactorsIndoorsA },
@@ -43,9 +43,9 @@ export default function useSafetyFactorsIndoorsA({
           res?.message ?? `Health And Safety ${message} Successfully!`,
           { variant: "success" }
         );
-      } else {
-        enqueueSnackbar("Empty Form could not send!", { variant: "error" });
-      }
+      // } else {
+      //   enqueueSnackbar("Empty Form could not send!", { variant: "error" });
+      // }
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });

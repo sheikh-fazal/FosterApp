@@ -5,81 +5,110 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 
-export const defaultValues = {
+interface DefaultValues {
+  isGasFiresAndGassWaterHeatersServiced: boolean;
+  dateToBeCarriedOut1: any;
+
+  improvementsReq1: string;
+
+  isAllLargeAreaOfGlasFittedWithSafety: boolean;
+  dateToBeCarriedOut2: any;
+
+  improvementsReq2: string;
+
+  isAnyLooseOrUnevenFloorCoverings: boolean;
+  dateToBeCarriedOut3: any;
+
+  improvementsReq3: string;
+
+  isSoftFurnishingsConfirmToBritish: boolean;
+  dateToBeCarriedOut4: any;
+
+  improvementsReq4: string;
+
+  areYouCommittedToEnsuringsThatNewFurnitureConfirmsToBritishStandards: boolean;
+  dateToBeCarriedOut5: any;
+
+  improvementsReq5: string;
+
+  isFurnitureSave: boolean;
+
+  dateToBeCarriedOut6: any;
+
+  improvementsReq6: string;
+
+  isWindowLocks: boolean;
+  dateToBeCarriedOut7: any;
+
+  improvementsReq7: string;
+
+  isAllWindowAndDoorKeysEasilyAvailble: boolean;
+
+  dateToBeCarriedOut8: any;
+
+  improvementsRequire8: string;
+}
+
+export const defaultValues: any = {
   isGasFiresAndGassWaterHeatersServiced: false,
-  dateToBeCarriedOut1: new Date(todayDate),
+  dateToBeCarriedOut1: new Date(),
 
   improvementsReq1: "",
 
   isAllLargeAreaOfGlasFittedWithSafety: false,
-  dateToBeCarriedOut2: new Date(todayDate),
+  dateToBeCarriedOut2: new Date(),
 
   improvementsReq2: "",
 
   isAnyLooseOrUnevenFloorCoverings: false,
-  dateToBeCarriedOut3: new Date(todayDate),
+  dateToBeCarriedOut3: new Date(),
 
   improvementsReq3: "",
 
   isSoftFurnishingsConfirmToBritish: false,
-  dateToBeCarriedOut4: new Date(todayDate),
+  dateToBeCarriedOut4: new Date(),
 
   improvementsReq4: "",
 
   areYouCommittedToEnsuringsThatNewFurnitureConfirmsToBritishStandards: false,
-  dateToBeCarriedOut5: new Date(todayDate),
+  dateToBeCarriedOut5: new Date(),
 
   improvementsReq5: "",
 
   isFurnitureSave: false,
 
-  dateToBeCarriedOut6: new Date(todayDate),
+  dateToBeCarriedOut6: new Date(),
 
   improvementsReq6: "",
 
   isWindowLocks: false,
-  dateToBeCarriedOut7: new Date(todayDate),
+  dateToBeCarriedOut7: new Date(),
 
   improvementsReq7: "",
 
   isAllWindowAndDoorKeysEasilyAvailble: false,
 
-  dateToBeCarriedOut8: new Date(todayDate),
+  dateToBeCarriedOut8: new Date(),
 
   improvementsRequire8: "",
 };
 
 export const FormSchema = Yup.object().shape({
   // dateToBeCarriedOut1: Yup.date().required("Required"),
-
   // improvementsReq1: Yup.string().required("Required"),
-
   // dateToBeCarriedOut2: Yup.date().required("Required"),
-
   // improvementsReq2: Yup.string().required("Required"),
-
   // dateToBeCarriedOut3: Yup.date().required("Required"),
-
   // improvementsReq3: Yup.string().required("Required"),
-
   // dateToBeCarriedOut4: Yup.date().required("Required"),
-
   // improvementsReq4: Yup.string().required("Required"),
-
   // dateToBeCarriedOut5: Yup.date().required("Required"),
-
   // improvementsReq5: Yup.string().required("Required"),
-
   // dateToBeCarriedOut6: Yup.date().required("Required"),
-
   // improvementsReq6: Yup.string().required("Required"),
-
   // dateToBeCarriedOut7: Yup.date().required("Required"),
-
   // improvementsReq7: Yup.string().required("Required"),
-
   // dateToBeCarriedOut8: Yup.date().required("Required"),
-
   // improvementsRequire8: Yup.string().required("Required"),
 });
 
@@ -96,8 +125,7 @@ export const safetyFactorsIndoorsB_Data = [
     componentProps: {
       fullWidth: true,
       name: "isGasFiresAndGassWaterHeatersServiced",
-      label:
-        "Are gas fires and gas water heaters serviced annually?",
+      label: "Are gas fires and gas water heaters serviced annually?",
     },
     component: RHFCheckbox,
   },
@@ -129,8 +157,7 @@ export const safetyFactorsIndoorsB_Data = [
     componentProps: {
       fullWidth: true,
       name: "isAllLargeAreaOfGlasFittedWithSafety",
-      label:
-        "Are all large areas of glass fitted with safety glass?",
+      label: "Are all large areas of glass fitted with safety glass?",
     },
     component: RHFCheckbox,
   },
@@ -325,7 +352,8 @@ export const safetyFactorsIndoorsB_Data = [
     componentProps: {
       fullWidth: true,
       name: "isAllWindowAndDoorKeysEasilyAvailble",
-      label: "Are all windows and door keys easily available in the event of a fire?",
+      label:
+        "Are all windows and door keys easily available in the event of a fire?",
     },
     component: RHFCheckbox,
   },

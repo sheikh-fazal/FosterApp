@@ -7,108 +7,95 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
 // const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
-interface defaultValue{
-  isChildsShareRooms: boolean,
-  dateToBeCarriedOut1: any,
+// interface defaultValue{
+//   isChildsShareRooms: boolean,
+//   dateToBeCarriedOut1: any,
 
-  improvementsReq1: string,
+//   improvementsReq1: string,
 
-  isChildsEatComfortable: boolean,
-  dateToBeCarriedOut2: any,
+//   isChildsEatComfortable: boolean,
+//   dateToBeCarriedOut2: any,
 
-  improvementsReq2: string,
+//   improvementsReq2: string,
 
-  isAccommodationClean: boolean,
-  dateToBeCarriedOut3: any,
+//   isAccommodationClean: boolean,
+//   dateToBeCarriedOut3: any,
 
-  improvementsReq3: string,
+//   improvementsReq3: string,
 
-  isAnyAbviousHazards: boolean,
-  dateToBeCarriedOut4: any,
+//   isAnyAbviousHazards: boolean,
+//   dateToBeCarriedOut4: any,
 
-  improvementsReq4: string,
+//   improvementsReq4: string,
 
-  isPetsPoseAPhysicalThread: boolean,
-  dateToBeCarriedOut5: any,
+//   isPetsPoseAPhysicalThread: boolean,
+//   dateToBeCarriedOut5: any,
 
-  improvementsReq5: string,
+//   improvementsReq5: string,
 
-  isFeedingArrangementsForBets: boolean,
+//   isFeedingArrangementsForBets: boolean,
 
-  dateToBeCarriedOut6: any,
+//   dateToBeCarriedOut6: any,
 
-  improvementsReq6: string,
+//   improvementsReq6: string,
 
-  isAdutsUnderstandTransmitted: boolean,
-  dateToBeCarriedOut7: any,
+//   isAdutsUnderstandTransmitted: boolean,
+//   dateToBeCarriedOut7: any,
 
-  improvementsReq7: string,
-}
-export const defaultValues: defaultValue = {
+//   improvementsReq7: string,
+// }
+export const defaultValues: any = {
   isChildsShareRooms: false,
-  dateToBeCarriedOut1: null,
+  dateToBeCarriedOut1: new Date(),
 
   improvementsReq1: "",
 
   isChildsEatComfortable: false,
-  dateToBeCarriedOut2: null,
+  dateToBeCarriedOut2: new Date(),
 
   improvementsReq2: "",
 
   isAccommodationClean: false,
-  dateToBeCarriedOut3: null,
+  dateToBeCarriedOut3: new Date(),
 
   improvementsReq3: "",
 
   isAnyAbviousHazards: false,
-  dateToBeCarriedOut4: null,
+  dateToBeCarriedOut4: new Date(),
 
   improvementsReq4: "",
 
   isPetsPoseAPhysicalThread: false,
-  dateToBeCarriedOut5: null,
+  dateToBeCarriedOut5: new Date(),
 
   improvementsReq5: "",
 
   isFeedingArrangementsForBets: false,
 
-  dateToBeCarriedOut6: null,
+  dateToBeCarriedOut6: new Date(),
 
   improvementsReq6: "",
 
   isAdutsUnderstandTransmitted: false,
-  dateToBeCarriedOut7: null,
+  dateToBeCarriedOut7: new Date(),
 
   improvementsReq7: "",
 };
 
 export const FormSchema = Yup.object().shape({
   // dateToBeCarriedOut1: Yup.date().required("Required"),
-
   // improvementsReq1: Yup.string().required("Required"),
-
   // dateToBeCarriedOut2: Yup.date().required("Required"),
-
   // improvementsReq2: Yup.string().required("Required"),
-
   // dateToBeCarriedOut3: Yup.date().required("Required"),
-
   // improvementsReq3: Yup.string().required("Required"),
-
   // dateToBeCarriedOut4: Yup.date().required("Required"),
-
   // improvementsReq4: Yup.string().required("Required"),
-
   // dateToBeCarriedOut5: Yup.date().required("Required"),
-
   // improvementsReq5: Yup.string().required("Required"),
-
   // dateToBeCarriedOut6: Yup.date().required("Required"),
-
   // improvementsReq6: Yup.string().required("Required"),
-
   // dateToBeCarriedOut7: Yup.date().required("Required"),
-
   // improvementsReq7: Yup.string().required("Required"),
 });
 

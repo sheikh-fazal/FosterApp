@@ -53,50 +53,50 @@ interface DefaultValues {
   improvementsReq9: string;
 }
 
-export const defaultValues: DefaultValues = {
+export const defaultValues: any = {
   isElecticalEquitmentGood: false,
-  dateToBeCarriedOut1: null,
+  dateToBeCarriedOut1: new Date(),
 
   improvementsReq1: "",
 
   isAccessiblePowerfitted: false,
-  dateToBeCarriedOut2: null,
+  dateToBeCarriedOut2: new Date(),
 
   improvementsReq2: "",
 
   isAllHeatingApplancesFixed: false,
-  dateToBeCarriedOut3: null,
+  dateToBeCarriedOut3: new Date(),
 
   improvementsReq3: "",
 
   isFireguardsUsed: false,
-  dateToBeCarriedOut4: null,
+  dateToBeCarriedOut4: new Date(),
 
   improvementsReq4: "",
 
   isEasilyAccessibleAndWorkingFire: false,
-  dateToBeCarriedOut5: null,
+  dateToBeCarriedOut5: new Date(),
 
   improvementsReq5: "",
 
   isSmokeDetectorsFittedAndUsed: false,
 
-  dateToBeCarriedOut6: null,
+  dateToBeCarriedOut6: new Date(),
 
   improvementsReq6: "",
   isCarbonMonoxideDetectors: false,
-  dateToBeCarriedOut7: null,
+  dateToBeCarriedOut7: new Date(),
 
   improvementsReq7: "",
 
   isSocketsOverloaded: false,
-  dateToBeCarriedOut8: null,
+  dateToBeCarriedOut8: new Date(),
 
   improvementsReq8: "",
 
   hasAnElectricianCheckWiringAndSafetyReportIssued: false,
 
-  dateToBeCarriedOut9: null,
+  dateToBeCarriedOut9: new Date(),
 
   improvementsReq9: "",   
 };

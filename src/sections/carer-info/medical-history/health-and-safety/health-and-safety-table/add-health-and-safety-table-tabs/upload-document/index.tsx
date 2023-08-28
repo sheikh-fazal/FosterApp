@@ -49,9 +49,9 @@ export const columns = [
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.documentDate,
-    id: "documentDate",
-    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+    accessorFn: (row: any) => row.date,
+    id: "date",
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
     header: "Document Date",
     isSortable: true,
   },

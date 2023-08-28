@@ -4,76 +4,111 @@ import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
-// const ageOf18Years = dayjs().subtract(18, "year").format("MM/DD/YYYY");
-// const MAX_FILE_SIZE = 2 * 1000 * 1000; // 2 Mb
-// const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
-export const defaultValues = {
+interface DefaultValues {
+  isAdequateArticialLightToIlluminate: boolean;
+  dateToBeCarriedOut1: any;
+
+  improvementsReq1: string;
+
+  isAllBanistersFilled: boolean;
+  dateToBeCarriedOut2: any;
+
+  improvementsReq2: string;
+
+  isStairGateFitted: boolean;
+  dateToBeCarriedOut3: any;
+
+  improvementsReq3: string;
+
+  isHighChairsBuggies: boolean;
+  dateToBeCarriedOut4: any;
+
+  improvementsReq4: string;
+
+  isAnAccessibleFirstAidBox: boolean;
+  dateToBeCarriedOut5: any;
+
+  improvementsReq5: string;
+
+  areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach: boolean;
+
+  dateToBeCarriedOut6: any;
+
+  improvementsReq6: string;
+
+  isAlcohalCigarettesAndLighter: boolean;
+  dateToBeCarriedOut7: any;
+
+  improvementsRequire7: string;
+}
+
+export const defaultValues: any = {
   isAdequateArticialLightToIlluminate: false,
-  dateToBeCarriedOut1: new Date(todayDate),
+  dateToBeCarriedOut1: new Date(),
 
   improvementsReq1: "",
 
   isAllBanistersFilled: false,
-  dateToBeCarriedOut2: new Date(todayDate),
+  dateToBeCarriedOut2: new Date(),
 
   improvementsReq2: "",
 
   isStairGateFitted: false,
-  dateToBeCarriedOut3: new Date(todayDate),
+  dateToBeCarriedOut3: new Date(),
 
   improvementsReq3: "",
 
   isHighChairsBuggies: false,
-  dateToBeCarriedOut4: new Date(todayDate),
+  dateToBeCarriedOut4: new Date(),
 
   improvementsReq4: "",
 
   isAnAccessibleFirstAidBox: false,
-  dateToBeCarriedOut5: new Date(todayDate),
+  dateToBeCarriedOut5: new Date(),
 
   improvementsReq5: "",
 
   areGlasswareChinaAndOtherFragileObjectsKeptOutOfReach: false,
 
-  dateToBeCarriedOut6: new Date(todayDate),
+  dateToBeCarriedOut6: new Date(),
 
   improvementsReq6: "",
 
   isAlcohalCigarettesAndLighter: false,
-  dateToBeCarriedOut7: new Date(todayDate),
+  dateToBeCarriedOut7: new Date(),
 
   improvementsRequire7: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOut1: Yup.date().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
 
-  improvementsReq1: Yup.string().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
 
-  dateToBeCarriedOut2: Yup.date().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
 
-  improvementsReq2: Yup.string().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
 
-  dateToBeCarriedOut3: Yup.date().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
 
-  improvementsReq3: Yup.string().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
 
-  dateToBeCarriedOut4: Yup.date().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
 
-  improvementsReq4: Yup.string().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
 
-  dateToBeCarriedOut5: Yup.date().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
 
-  improvementsReq5: Yup.string().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
 
-  dateToBeCarriedOut6: Yup.date().required("Required"),
+  // dateToBeCarriedOut6: Yup.date().required("Required"),
 
-  improvementsReq6: Yup.string().required("Required"),
+  // improvementsReq6: Yup.string().required("Required"),
 
-  dateToBeCarriedOut7: Yup.date().required("Required"),
+  // dateToBeCarriedOut7: Yup.date().required("Required"),
 
-  improvementsRequire7: Yup.string().required("Required"),
+  // improvementsRequire7: Yup.string().required("Required"),
 });
 
 export const safetyFactorsIndoorsC_Data = [

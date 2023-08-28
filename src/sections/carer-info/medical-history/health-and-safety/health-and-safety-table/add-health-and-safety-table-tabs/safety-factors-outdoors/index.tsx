@@ -5,7 +5,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 const todayDate = dayjs().format("MM/DD/YYYY");
 
-export const defaultValues = {
+export const defaultValues: any = {
   isDeviceBeenFitted: false,
   dateToBeCarriedOut1: new Date(todayDate),
 
@@ -65,47 +65,27 @@ export const defaultValues = {
 };
 
 export const FormSchema = Yup.object().shape({
-  dateToBeCarriedOut1: Yup.date().required("Required"),
-
-  improvementsReq1: Yup.string().required("Required"),
-
-  dateToBeCarriedOut2: Yup.date().required("Required"),
-
-  improvementsReq2: Yup.string().required("Required"),
-
-  dateToBeCarriedOut3: Yup.date().required("Required"),
-
-  improvementsReq3: Yup.string().required("Required"),
-
-  dateToBeCarriedOut4: Yup.date().required("Required"),
-
-  improvementsReq4: Yup.string().required("Required"),
-
-  dateToBeCarriedOut5: Yup.date().required("Required"),
-
-  improvementsReq5: Yup.string().required("Required"),
-
-  dateToBeCarriedOut6: Yup.date().required("Required"),
-
-  improvementsReq6: Yup.string().required("Required"),
-
-  dateToBeCarriedOut7: Yup.date().required("Required"),
-
-  improvementsReq7: Yup.string().required("Required"),
-
-  dateToBeCarriedOut8: Yup.date().required("Required"),
-
-  improvementsReq8: Yup.string().required("Required"),
-
-  dateToBeCarriedOut9: Yup.date().required("Required"),
-
-  improvementsReq9: Yup.string().required("Required"),
-
-  dateToBeCarriedOut10: Yup.date().required("Required"),
-
-  improvementsReq10: Yup.string().required("Required"),
-
-  licenseAndGunDetails: Yup.string().required("Required"),
+  // dateToBeCarriedOut1: Yup.date().required("Required"),
+  // improvementsReq1: Yup.string().required("Required"),
+  // dateToBeCarriedOut2: Yup.date().required("Required"),
+  // improvementsReq2: Yup.string().required("Required"),
+  // dateToBeCarriedOut3: Yup.date().required("Required"),
+  // improvementsReq3: Yup.string().required("Required"),
+  // dateToBeCarriedOut4: Yup.date().required("Required"),
+  // improvementsReq4: Yup.string().required("Required"),
+  // dateToBeCarriedOut5: Yup.date().required("Required"),
+  // improvementsReq5: Yup.string().required("Required"),
+  // dateToBeCarriedOut6: Yup.date().required("Required"),
+  // improvementsReq6: Yup.string().required("Required"),
+  // dateToBeCarriedOut7: Yup.date().required("Required"),
+  // improvementsReq7: Yup.string().required("Required"),
+  // dateToBeCarriedOut8: Yup.date().required("Required"),
+  // improvementsReq8: Yup.string().required("Required"),
+  // dateToBeCarriedOut9: Yup.date().required("Required"),
+  // improvementsReq9: Yup.string().required("Required"),
+  // dateToBeCarriedOut10: Yup.date().required("Required"),
+  // improvementsReq10: Yup.string().required("Required"),
+  // licenseAndGunDetails: Yup.string().required("Required"),
 });
 
 export const safetyFactorsOutdoors_Data = [

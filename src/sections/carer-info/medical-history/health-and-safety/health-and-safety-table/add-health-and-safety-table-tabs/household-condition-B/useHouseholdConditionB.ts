@@ -29,12 +29,7 @@ export const useHouseholdConditionB = ({
   } = methods;
   const onSubmit = async (data: any) => {
     const houseHoldConditionB = data;
-
-    const hasAnyFieldValue = Object.values(houseHoldConditionB).some(
-      (value) => !!value
-    );
     try {
-      if (hasAnyFieldValue) {
         const res: any = await onSubmitHandler({
           healthAndSafetyId,
           formData: { houseHoldConditionB },
@@ -43,9 +38,6 @@ export const useHouseholdConditionB = ({
           res?.message ?? `Health And Safety ${message} Successfully!`,
           { variant: "success" }
         );
-      } else {
-        enqueueSnackbar("Empty Form could not send!", { variant: "error" });
-      }
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong", { variant: "error" });

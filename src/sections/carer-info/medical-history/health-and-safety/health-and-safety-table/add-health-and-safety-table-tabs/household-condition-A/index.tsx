@@ -46,7 +46,7 @@ import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 
 //   improvementsReq5: string;
 // }
-export const defaultValues = {
+export const defaultValues :any = {
   inspectionDate: new Date(),
   nestInspectionDate: new Date(),
 
