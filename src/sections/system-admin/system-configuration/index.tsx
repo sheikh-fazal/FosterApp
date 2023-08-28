@@ -1,84 +1,94 @@
-// export const systemConfigurationData = [
-//     {
-//         id:'1',
-//         configurationName:'Number of Child per Carer',
-//         configurationValue:'4',
-//         description:'Maximum number of child allowed per Carer ( includes Sibliings )',
-//         approver:'Jason Roy',
-//         approverRole:'Decision Maker',
-//         approvedData:'20/05/2021',
-//     },
-//     {
-//         id:'2',
-//         configurationName:'Max Number of Daily logs per day',
-//         configurationValue:'15',
-//         description:'Maximum number of daily log entry to be entered by the Carer per child',
-//         approver:'Richard Smith',
-//         approverRole:'Director',
-//         approvedData:'20/05/2021',
-//     },
-//     {
-//         id:'3',
-//         configurationName:'Min Number of Daily logs per day',
-//         configurationValue:'3',
-//         description:'Minimum number of daily log entry to be entered by the Carer per child',
-//         approver:'Richard Smith',
-//         approverRole:'Director',
-//         approvedData:'20/05/2021',
-//     },
-//     {
-//         id:'4',
-//         configurationName:'Video upload size',
-//         configurationValue:'15',
-//         description:'Minimum number of daily log entry to be entered by the Carer per child',
-//         approver:'Richard Smith',
-//         approverRole:'Director',
-//         approvedData:'20/05/2021',
-//     },
-// ]
+import { Box, Checkbox } from "@mui/material";
+import TableAction from "@root/components/TableAction";
+import DeleteModel from "@root/components/modal/DeleteModel";
+import dayjs from "dayjs";
 
-export const defaultValues = {
-  exampleTable: [
-    {
-      dob: new Date(),
-      configurationName: "Number of Child per Carer",
-      configurationValue: "4",
-      description:
-        "Maximum number of child allowed per Carer ( includes Sibliings )",
-      approver: "Jason Roy",
-      approverRole: "Decision Maker",
-      approvedData: "20/05/2021",
+export const systemConfigurationTableFunction = ({
+  router,
+  setOpenEditModel,
+}: any) => [
+  {
+    id: "select",
+    header: ({ table, row }: any) => {
+      // console.log(table.getSelectedRowModel().flatRows);
+      return (
+        <Box>
+          <Checkbox
+            checked={table.getIsAllRowsSelected()}
+            onChange={table.getToggleAllRowsSelectedHandler()}
+          />
+        </Box>
+      );
     },
-    {
-      dob: new Date(),
-      configurationName: "Max Number of Daily logs per day",
-      configurationValue: "15",
-      description:
-        "Maximum number of daily log entry to be entered by the Carer per child",
-      approver: "Richard Smith",
-      approverRole: "Director",
-      approvedData: "20/05/2021",
-    },
-    {
-        dob: new Date(),
-        configurationName:'Min Number of Daily logs per day',
-        configurationValue:'3',
-        description:'Minimum number of daily log entry to be entered by the Carer per child',
-        approver: "Richard Smith",
-        approverRole: "Director",
-        approvedData: "20/05/2021",
-      },
-      {
-        dob: new Date(),
-        configurationName:'Video upload size',
-        configurationValue: "15",
-        description:
-          "Maximum number of daily log entry to be entered by the Carer per child",
-        approver: "Richard Smith",
-        approverRole: "Director",
-        approvedData: "20/05/2021",
-      },
-     
-     
-  ],
-};
+    cell: ({ row, table }: any) => (
+      <Box>
+        <Checkbox
+          disabled={row?.original?.Assigned}
+          checked={row?.original?.Assigned ? false : row.getIsSelected()}
+          onChange={row.getToggleSelectedHandler()}
+        />
+      </Box>
+    ),
+  },
+  {
+    accessorFn: (row: any) => row,
+    id: "srNo",
+    cell: (info: any) => Number(info?.row?.id) + 1,
+    header: "Sr. No",
+    isSortable: false,
+  },
+  {
+    accessorFn: (row: any) => row.name,
+    id: "name",
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+    header: () => <span>Configuration Name</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.value,
+    id: "value",
+    cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
+    header: () => <span>Configuration Value</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.description,
+    id: "description",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Description</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.approver_name,
+    id: "approver_name",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Approver</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.approver_role,
+    id: "approver_role",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Approver Role</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row.approved_at,
+    id: "approved_at",
+    cell: (info: any) => info.getValue(),
+    header: () => <span>Approver Date</span>,
+    isSortable: true,
+  },
+  {
+    accessorFn: (row: any) => row?.id,
+    id: "actions",
+    cell: (info: any) => (
+      <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
+        <TableAction type="edit" onClicked={() => setOpenEditModel(true)} />
+        <TableAction type="delete" onClicked={() => {}} size="small" />
+      </Box>
+    ),
+    header: () => <span>Actions</span>,
+    isSortable: false,
+  },
+];
