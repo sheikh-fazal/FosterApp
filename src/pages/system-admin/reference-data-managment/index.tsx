@@ -2,6 +2,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import Page from "@root/components/Page";
 import ReferenceDataManagement from "@root/sections/system-admin/reference-data-managment/ReferenceDataManagement";
+import ReferenceDataManagementTable from "@root/sections/system-admin/reference-data-managment/ReferenceDataManagementTable";
 
 // Constants
 
@@ -32,7 +33,7 @@ DataManagment.getLayout = function getLayout(page: any) {
 export default function DataManagment() {
   return (
     <Page title={PAGE_TITLE}>
-      <ReferenceDataManagement />
+      <ReferenceDataManagementTable />
     </Page>
   );
 }
