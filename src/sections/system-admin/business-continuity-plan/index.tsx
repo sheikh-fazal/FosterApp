@@ -1,13 +1,13 @@
 import BcpHistory from "./bcp-history-accordin/BcpHistory";
-import BusinessContinuityPlan from "./business-continuity-plan-accordin/BusinessContinuityPlan";
+import BusinessContinuityPlanTable from "./business-continuity-plain-main/BusinessContinuityPlanTable";
 
 export const data = [
-    {
-      title: "Business Continuity Plan",
-      component: <BusinessContinuityPlan/>
-    },
-    {
-      title: "BCP History",
-      component: <BcpHistory/>
-    },
-  ]
+  {
+    title: "Business Continuity Plan",
+    component: <BusinessContinuityPlanTable />,
+  },
+  {
+    title: "BCP History",
+    component: <BcpHistory />,
+  },
+];
