@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button, Card, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
 import { LoadingButton } from "@mui/lab";
-import { useareaOfficeSetupForm } from "./useareaOfficeSetupForm";
+import { useAreaOfficeSetupForm } from "./useAreaOfficeSetupForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const AreaOfficeSetupForm = () => {
@@ -17,7 +17,7 @@ const AreaOfficeSetupForm = () => {
     handleSubmit,
     postAreaOfficeDataStatus,
     patchAreaOfficeDataStatus,
-  } = useareaOfficeSetupForm();
+  } = useAreaOfficeSetupForm();
 
   if (isLoading) return <SkeletonFormdata />;
   return (

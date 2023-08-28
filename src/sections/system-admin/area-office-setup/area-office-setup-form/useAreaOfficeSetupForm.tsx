@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import { useTheme } from "@mui/material";
 import { enqueueSnackbar } from "notistack";
 
-export const useareaOfficeSetupForm = () => {
+export const useAreaOfficeSetupForm = () => {
   const router = useRouter();
   const theme: any = useTheme();
   const sanctionDetailsFormData = AreaOfficeFormDataFucntion(
