@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 export const systemConfigurationTableFunction = ({
   router,
   setOpenEditModel,
+  deleteSystemConfiguration,
 }: any) => [
   {
     id: "select",
@@ -85,7 +86,11 @@ export const systemConfigurationTableFunction = ({
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
         <TableAction type="edit" onClicked={() => setOpenEditModel(true)} />
-        <TableAction type="delete" onClicked={() => {}} size="small" />
+        <TableAction
+          type="delete"
+          onClicked={() => deleteSystemConfiguration(info.getValue())}
+          size="small"
+        />
       </Box>
     ),
     header: () => <span>Actions</span>,

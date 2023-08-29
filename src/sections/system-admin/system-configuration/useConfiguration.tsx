@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import * as Yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { systemConfigurationTableFunction } from ".";
-import { useGetSystemConfigurationListQuery } from "@root/services/system-admin/system-configuration/SystemConfiguratinAPI";
+import {
+  useDeleteSystemConfigurationListMutation,
+  useGetSystemConfigurationListQuery,
+} from "@root/services/system-admin/system-configuration/SystemConfigurationAPI";
 import { useState } from "react";
 
 const useConfiguration = () => {
@@ -17,36 +17,33 @@ const useConfiguration = () => {
 
   const { data, isError, isLoading, isSuccess, isFetching } =
     useGetSystemConfigurationListQuery(params);
+  const [deleteSystemConfigurationRecord] =
+    useDeleteSystemConfigurationListMutation();
 
-  const defaultValues = {};
+  const deleteSystemConfiguration = (id: string) => {
+    const deleteRecord = {
+      configId: id,
+    };
 
-  const systemConfigurationSchema = Yup.object().shape({}); 
-
-  const methods: any = useForm({
-    resolver: yupResolver(systemConfigurationSchema),
-    defaultValues,
-  });
-
-  const { handleSubmit } = methods;
-
-  const onSubmit = async (data: any) => {};
+    deleteSystemConfigurationRecord(deleteRecord);
+  };
 
   const systemConfigurationColoums = systemConfigurationTableFunction({
-    router,setOpenEditModel
+    router,
+    setOpenEditModel,
+    deleteSystemConfiguration,
   });
 
   return {
     data,
-    methods,
-    handleSubmit,
-    onSubmit,
+
     params,
     headerChangeHandler,
     pageChangeHandler,
     sortChangeHandler,
     systemConfigurationColoums,
     openEditModel,
-    setOpenEditModel
+    setOpenEditModel,
   };
 };
 

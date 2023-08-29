@@ -11,10 +11,10 @@ export const systemConfigurationAPIs: any = baseAPI.injectEndpoints({
       providesTags: ["SYSTEM-CONFIGURATION"],
     }),
     deleteSystemConfigurationList: builder.mutation({
-      query: (params: any) => ({
+      query: (deleteRecord: any) => ({
         url: `/admin/system-config`,
         method: "DELETE",
-        params,
+        body: deleteRecord,
       }),
       invalidatesTags: ["SYSTEM-CONFIGURATION"],
     }),
