@@ -12,9 +12,12 @@ import MissingFormUnKnown from "@root/sections/foster-child/event-and-notificati
 import {
   useDeleteChildMissingPlacementDocsMutation,
   useGetChildMissingPlacementDocsQuery,
+  useGetChildMissingPlacementKnownFormQuery,
+  usePostChildMissingPlacementDocsMutation,
   usePostChildMissingPlacementKnownMutation,
 } from "@root/services/foster-child/events-and-notification/childMissingReportApi";
 import { enqueueSnackbar } from "notistack";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const PAGE_TITLE: string = "Child Missing Placement";
 const CHILD_MISSING_TABS_DATA: string[] = ["Allegation", "Upload Documents"];
@@ -27,23 +30,6 @@ export default function ChildMissingPlacement() {
   const router = useRouter();
   const id: any = router?.query?.fosterChildId;
   const docsData = new FormData();
-
-  const [params, setParams] = useState({
-    limit: "10",
-    offset: "0",
-    search: undefined,
-    fosterChildId: id,
-    formName: "known_missing-placement",
-  });
-
-  const {
-    data: tableData,
-    isLoading: isDocumentLoading,
-    isFetching,
-    isSuccess,
-    isError: hasDocumentError,
-  } = useGetChildMissingPlacementDocsQuery(params);
-
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -57,32 +43,70 @@ export default function ChildMissingPlacement() {
       href: "/foster-child/child-missing-placement",
     },
   ];
+  const [params, setParams] = useState({
+    limit: "10",
+    offset: "0",
+    search: undefined,
+    fosterChildId: id,
+    formName: "known_missing_placement",
+  });
+  //--------------------------APIS-----------------------//
 
+  // getting documents list
+  const {
+    data: tableData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isSuccess,
+    isError: hasDocumentError,
+  }: any = useGetChildMissingPlacementDocsQuery(params);
+
+  //getting form values by ID
+  const { data: formData, isLoading } =
+    useGetChildMissingPlacementKnownFormQuery(id);
+
+  // posting Form
   const [postKnownMissingPlacement] =
     usePostChildMissingPlacementKnownMutation();
 
+  //posting Documents
+  const [postDocuments] = usePostChildMissingPlacementDocsMutation();
+
+  //deleting documents
   const [deleteDocs] = useDeleteChildMissingPlacementDocsMutation();
 
-  const documentUploadHandler = (data: any) => {
+  //-----------------submit handlers------------------------//
+  //document posting
+  const documentUploadHandler = async (data: any) => {
     docsData.append("formName", "KNOWN_MISSING_PLACEMENT");
     docsData.append("documentType", data.documentType);
     docsData.append("documentDate", data.documentDate);
     docsData.append("documentPassword", data.password);
     docsData.append("fosterChildId", id);
     docsData.append("file", data.chosenFile);
-    // postDocuments(docsData);
+    try {
+      const res: any = await postDocuments(docsData).unwrap();
+      enqueueSnackbar(res?.message ?? `Document Submitted Successfully`, {
+        variant: "success",
+      });
+      // router.push(`/foster-child?fosterChildId=${id}`);
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
   };
+
+  //posting form handler
   const formSubmitHandler = async (data: any) => {
     try {
       const res: any = await postKnownMissingPlacement({
-        data,
+        body: data,
+        fosterChildId: id,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      router.push(
-        `/carer-info/personal-info/initial-enquiry?fosterCarerId=${id}`
-      );
+      router.push(`/foster-child?fosterChildId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -94,30 +118,20 @@ export default function ChildMissingPlacement() {
       <MissingFormKnown
         onSubmit={formSubmitHandler}
         prevPath={`/foster-child?fosterChildId=${id}`}
+        data={formData?.data?.child_missing_known_placement?.[0]}
       />
       <UploadDocuments
         // readOnly={true}
         searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
+          setParams((prev: any) => {
+            return { ...prev, search: searchedText.search };
+          })
         }
         tableData={tableData?.data?.missing_placement_documents}
-        // tableData={[
-        //   {
-        //     document: "bad.png",
-        //     documentType: "png",
-        //     date: "09/09/2009",
-        //     personName: "My name",
-        //     password: "password123",
-        //   },
-        // ]}
         isLoading={isDocumentLoading}
         isFetching={isFetching}
         isError={hasDocumentError}
         isSuccess={isSuccess}
-        // isLoading={false}
-        // isFetching={false}
-        // isError={false}
-        // isSuccess={true}
         column={[
           "file",
           "documentType",
@@ -126,13 +140,14 @@ export default function ChildMissingPlacement() {
           "documentPassword",
         ]}
         modalData={documentUploadHandler}
-        // modalData={(data: any) => console.log(data)}
-        onDelete={(data: any) => console.log("Deleting", data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={"1"}
-        totalPages={"1"}
-        // currentPage={metaData?.page}
-        // totalPages={metaData?.pages}
+        onDelete={(data: any) => deleteDocs(data?.id)}
+        onPageChange={(page: any) =>
+          setParams((prev: any) => {
+            return { ...prev, offset: (page - 1) * 10 };
+          })
+        }
+        currentPage={tableData?.data?.metaData?.page}
+        totalPages={tableData?.data?.metaData?.pages}
       />
     </HorizontalTabs>
   );
@@ -144,7 +159,7 @@ export default function ChildMissingPlacement() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      {formEl}
+      {isLoading ? <SkeletonFormdata /> : formEl}
     </Page>
   );
 }

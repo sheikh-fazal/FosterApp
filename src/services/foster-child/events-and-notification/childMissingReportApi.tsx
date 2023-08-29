@@ -1,7 +1,7 @@
 import { baseAPI, TAGS } from "@root/services/baseApi";
 
 export const childMissingPlacementApi = baseAPI.injectEndpoints({
-  endpoints: (builder: any) => ({
+  endpoints: (builder) => ({
     postChildMissingPlacementKnown: builder.mutation({
       query: ({ body, fosterChildId }: any) => ({
         url: `/events-and-notification/missing-known-placement/${fosterChildId}`,
@@ -16,6 +16,16 @@ export const childMissingPlacementApi = baseAPI.injectEndpoints({
         body,
       }),
     }),
+    //getting single forms
+    getChildMissingPlacementUnKnownForm: builder.query({
+      query: (fosterChildId: any) =>
+        `/events-and-notification/missing-unknown-placement-List/${fosterChildId}?limit=10&offset=0`,
+    }),
+    getChildMissingPlacementKnownForm: builder.query({
+      query: (fosterChildId: any) =>
+        `/events-and-notification/missing-known-placement/List/${fosterChildId}?limit=10&offset=0`,
+    }),
+
     //Documents
     getChildMissingPlacementDocs: builder.query({
       query: (params: any) => ({
@@ -51,4 +61,7 @@ export const {
   //FORMS
   usePostChildMissingPlacementKnownMutation,
   usePostChildMissingPlacementUnKnownMutation,
+  //get
+  useGetChildMissingPlacementUnKnownFormQuery,
+  useGetChildMissingPlacementKnownFormQuery,
 } = childMissingPlacementApi;

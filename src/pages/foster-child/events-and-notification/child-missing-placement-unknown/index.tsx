@@ -11,9 +11,12 @@ import MissingFormUnKnown from "@root/sections/foster-child/event-and-notificati
 import {
   useDeleteChildMissingPlacementDocsMutation,
   useGetChildMissingPlacementDocsQuery,
+  useGetChildMissingPlacementUnKnownFormQuery,
+  usePostChildMissingPlacementDocsMutation,
   usePostChildMissingPlacementUnKnownMutation,
 } from "@root/services/foster-child/events-and-notification/childMissingReportApi";
 import { enqueueSnackbar } from "notistack";
+import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 
 const PAGE_TITLE: string = "Child Missing Placement";
 const CHILD_MISSING_TABS_DATA: string[] = ["Allegation", "Upload Documents"];
@@ -32,17 +35,8 @@ export default function ChildMissingPlacement() {
     offset: "0",
     search: undefined,
     fosterChildId: id,
-    formName: "unknown_missing-placement",
+    formName: "unknown_missing_placement",
   });
-
-  const {
-    data: tableData,
-    isLoading: isDocumentLoading,
-    isFetching,
-    isSuccess,
-    isError: hasDocumentError,
-  } = useGetChildMissingPlacementDocsQuery(params);
-
   const BREADCRUMBS = [
     {
       icon: <HomeIcon />,
@@ -57,31 +51,61 @@ export default function ChildMissingPlacement() {
     },
   ];
 
+  //--------------------------APIS-----------------------//
+  //getting documents List
+  const {
+    data: tableData,
+    isLoading: isDocumentLoading,
+    isFetching,
+    isSuccess,
+    isError: hasDocumentError,
+  }: any = useGetChildMissingPlacementDocsQuery(params);
+
+  //getting formData by Id
+  const { data: formData, isLoading } =
+    useGetChildMissingPlacementUnKnownFormQuery(id);
+
+  //posting form
   const [postUnKnownMissingPlacement] =
     usePostChildMissingPlacementUnKnownMutation();
 
-  const [deleteDocs] = useDeleteChildMissingPlacementDocsMutation();
+  // posting documents
+  const [postDocuments] = usePostChildMissingPlacementDocsMutation();
 
-  const documentUploadHandler = (data: any) => {
+  //deleting document
+  const [deleteDocs] = useDeleteChildMissingPlacementDocsMutation();
+  //-----------------submit handlers------------------------//
+  //posting document
+  const documentUploadHandler = async (data: any) => {
     docsData.append("formName", "UNKNOWN_MISSING_PLACEMENT");
     docsData.append("documentType", data.documentType);
     docsData.append("documentDate", data.documentDate);
     docsData.append("documentPassword", data.password);
     docsData.append("file", data.chosenFile);
     docsData.append("fosterChildId", id);
-    // postDocuments(docsData);
+    try {
+      const res: any = await postDocuments(docsData).unwrap();
+      enqueueSnackbar(res?.message ?? `Document Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(`/foster-child?fosterChildId=${id}`);
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
   };
+
+  //posting form
   const missingFormSubmitHandler = async (data: any) => {
     try {
       const res: any = await postUnKnownMissingPlacement({
-        data,
+        body: data,
+        fosterChildId: id,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
       });
-      router.push(
-        `/carer-info/personal-info/initial-enquiry?fosterCarerId=${id}`
-      );
+      router.push(`/foster-child?fosterChildId=${id}`);
     } catch (error: any) {
       const errMsg = error?.data?.message;
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
@@ -93,30 +117,20 @@ export default function ChildMissingPlacement() {
       <MissingFormUnKnown
         onSubmit={missingFormSubmitHandler}
         prevPath={`/foster-child?fosterChildId=${id}`}
+        data={formData?.data?.child_missing_unknown_placement?.[0]}
       />
       <UploadDocuments
         // readOnly={true}
         searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
+          setParams((prev: any) => {
+            return { ...prev, search: searchedText.search };
+          })
         }
         tableData={tableData?.data?.missing_placement_documents}
-        // tableData={[
-        //   {
-        //     document: "bad.png",
-        //     documentType: "png",
-        //     date: "09/09/2009",
-        //     personName: "My name",
-        //     password: "password123",
-        //   },
-        // ]}
         isLoading={isDocumentLoading}
         isFetching={isFetching}
         isError={hasDocumentError}
         isSuccess={isSuccess}
-        // isLoading={false}
-        // isFetching={false}
-        // isError={false}
-        // isSuccess={true}
         column={[
           "file",
           "documentType",
@@ -125,13 +139,14 @@ export default function ChildMissingPlacement() {
           "documentPassword",
         ]}
         modalData={documentUploadHandler}
-        // modalData={(data: any) => console.log(data)}
-        onDelete={(data: any) => console.log("Deleting", data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
-        currentPage={"1"}
-        totalPages={"1"}
-        // currentPage={metaData?.page}
-        // totalPages={metaData?.pages}
+        onDelete={(data: any) => deleteDocs(data?.id)}
+        onPageChange={(page: any) =>
+          setParams((prev: any) => {
+            return { ...prev, offset: (page - 1) * 10 };
+          })
+        }
+        currentPage={tableData?.data?.metaData?.page}
+        totalPages={tableData?.data?.metaData?.pages}
       />
     </HorizontalTabs>
   );
@@ -143,7 +158,7 @@ export default function ChildMissingPlacement() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      {formEl}
+      {isLoading ? <SkeletonFormdata /> : formEl}
     </Page>
   );
 }
