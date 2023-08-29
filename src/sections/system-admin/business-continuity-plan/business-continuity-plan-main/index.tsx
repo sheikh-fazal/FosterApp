@@ -1,16 +1,6 @@
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import * as Yup from "yup";
-export const dummy = [
-  {
-    type: "Crisis Management Plan",
-    Marketing: "Crisis Management Plan_12112021.pdf",
-    ApprovedBy: "Jack Sparrow ( Director)",
-    ApprovedDate: "ApprovedDate",
-    Manager: "Manager",
-  },
-];
-
 export const BCPFormValue = [
   {
     id: 1,

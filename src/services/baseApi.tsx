@@ -128,6 +128,7 @@ export const TAGS = [
   "COMPLAINT_DOCUMENTS_EVENTS",
   "CHILD_IMMUNISATION_REPORTS",
   "BUSINESS_CONTINUTY_PLAN",
+  "BUSINESS_CONTINUTY_PLAN_HISTORY",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
