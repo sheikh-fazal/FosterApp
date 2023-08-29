@@ -6,8 +6,9 @@ export const viewEducationKeyStage = [
     id: 1,
     gridLength: 12,
     otherOptions: {
+      defaultValue: "Yes",
       label: "Does this child have a School Placement?",
-      name: "schoolPlacement",
+      name: "isChildHaveSchoolPlacement",
       options: ["Yes", "No"],
     },
     component: RHFRadioGroupWithLabel,
@@ -16,7 +17,7 @@ export const viewEducationKeyStage = [
     id: 2,
     gridLength: 12,
     otherOptions: {
-      name: "details",
+      name: "noToAboveQuestion",
       label: "If no to above question, please give details",
       fullWidth: true,
     },
@@ -26,7 +27,7 @@ export const viewEducationKeyStage = [
     id: 3,
     gridLength: 6,
     otherOptions: {
-      name: "school",
+      name: "schoolType",
       label: "School",
       fullWidth: true,
     },
@@ -62,12 +63,13 @@ export const viewEducationKeyStage = [
       label: "Personal Education Plan",
       fullWidth: true,
     },
-    options: [{ value: "abc", label: "Abc" }],
+    options: [{ value: "text", label: "Text" }],
     component: RHFSelect,
   },
   {
     id: 7,
     gridLength: 6,
+    
     otherOptions: {
       label: "Is this School due to Foster Placement Change?",
       name: "fosterPlacementChange",

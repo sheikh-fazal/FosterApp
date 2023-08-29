@@ -1,7 +1,5 @@
-import FormTable from "@root/components/Table/FormTable";
-import { FormProvider } from "@root/components/hook-form";
-import dayjs from "dayjs";
-import { Button, Card } from "@mui/material";
+
+import { Card } from "@mui/material";
 import useConfiguration from "./useConfiguration";
 import TableHeader from "@root/components/TableHeader";
 import CustomTable from "@root/components/Table/CustomTable";
@@ -10,9 +8,7 @@ import EditSystemConfiguration from "./edit-system-configuration/EditSystemConfi
 export default function Configuration() {
   const {
     data,
-    methods,
-    handleSubmit,
-    onSubmit,
+   
     params,
     headerChangeHandler,
     pageChangeHandler,

@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Button, Card, Grid, Typography } from "@mui/material";
 import { FormProvider } from "@root/components/hook-form";
-import { useThirdPartyLicenceTableForm } from "./useThirdPartyLicenceTableForm";
+import { useThirdPartyLicenceTableForm } from "./useThirdPartyLicenseTableForm";
 
 const ThirdPartyLicenceTableForm = ({ disabled }: any) => {
   const { methods, FormData, handleSubmit, onSubmit } =
@@ -10,7 +10,7 @@ const ThirdPartyLicenceTableForm = ({ disabled }: any) => {
   return (
     <Card sx={{ p: 2 }}>
     <Typography sx={(theme) => style.title(theme)}>
-    Manage Third Party License
+       Manage Third Party License
     </Typography>
     <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Grid container columnSpacing={4}>

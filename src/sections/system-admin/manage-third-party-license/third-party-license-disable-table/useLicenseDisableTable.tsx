@@ -13,7 +13,7 @@ export const useLicenceDisableTable = () => {
   const [cancelDelete, setCancelDelete] = useState(false);
 
   const handleDelete = () => {
-    alert("deleted successfully");
+    // alert("deleted successfully");
     setCancelDelete(!cancelDelete);
   };
 

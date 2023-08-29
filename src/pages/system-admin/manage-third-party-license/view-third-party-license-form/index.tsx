@@ -3,7 +3,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import Layout from "@root/layouts";
 import { Card } from "@mui/material";
 import Page from "@root/components/Page";
-import ThirdPartyLicenceTableForm from "@root/sections/system-admin/manage-third-party-license/third-party-licence-table/third-party-licence-table-form/ThirdPartyLicenceTableForm";
+import ThirdPartyLicenceTableForm from "@root/sections/system-admin/manage-third-party-license/third-party-licence-table/third-party-license-table-form/ThirdPartyLicenseTableForm";
 
 // Constants
 

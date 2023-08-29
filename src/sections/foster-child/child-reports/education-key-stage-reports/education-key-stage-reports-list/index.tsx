@@ -2,7 +2,10 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 
-export const columnsEducationKeyStageTable = (router: any) => [
+export const columnsEducationKeyStageTable = (
+  router: any,
+  fosterChildId: any
+) => [
   {
     id: "select",
     header: ({ table, row }: any) => {
@@ -34,17 +37,17 @@ export const columnsEducationKeyStageTable = (router: any) => [
     isSortable: false,
   },
   {
-    accessorFn: (row: any) => row.childName,
-    id: "childName",
-    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
+    accessorFn: (row: any) => row.fosterChildName,
+    id: "fosterChildName",
+    cell: (info: any) => info.getValue(),
     header: () => <span>Child Name</span>,
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.occurence,
-    id: "occurence",
-    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY"),
-    header: () => <span>Date/Time of Occurence</span>,
+    accessorFn: (row: any) => row.createdAt,
+    id: "createdAt",
+    cell: (info: any) => dayjs(info.getValue()).format("DD/MM/YYYY :: h:mm"),
+    header: () => <span>Date/Time of Occurrence</span>,
     isSortable: true,
   },
   {
@@ -73,7 +76,14 @@ export const columnsEducationKeyStageTable = (router: any) => [
     id: "actions",
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction type="view" onClicked={() => router.push(`/foster-child/child-reports/education-key-stage-report/view-education-key-stage-report`)} />
+        <TableAction
+          type="view"
+          onClicked={() =>
+            router.push(
+              `/foster-child/child-reports/education-key-stage-report/view-education-key-stage-report?fosterChildId=${info.getValue()}`
+            )
+          }
+        />
         <TableAction
           type="print"
           //   onClicked={() => openDeleteModel(info.getValue())}

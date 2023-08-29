@@ -130,6 +130,7 @@ export const TAGS = [
   "COMPLAINT_DOCUMENTS_EVENTS",
   "CHILD_IMMUNISATION_REPORTS",
   "CHILD_MISSING_PLACEMENT_DOCS",
+  "THIRD_PARTY_LICENSE",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

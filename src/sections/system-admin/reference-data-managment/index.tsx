@@ -1,17 +1,33 @@
-import RefDataValueImg from "../../../assets/img/system-admin/data-value.png"
+import { RHFTextField } from "@root/components/hook-form";
+import * as Yup from "yup";
 
-export const defaultValues = {
-    exampleTable: [
-      {
-        refDataCode: "RD01",
-        refDataName: "Ethnicity",
-        refDataValue: "",
-        description: "categorize groups of people according to their cultural expression and identification",
-        lastUpdatedDate: new Date(),
-      },
-  
-    ],
-  };
-  
-  
-  
+export const ReferenceDataManagementCategoriesdefaultValues = {
+  code: "",
+  name: "",
+  description: "",
+};
+export const ReferenceDataManagementCategoriesFormSchema = Yup.object().shape({
+  code: Yup.string().trim().required("Ref. Data Code is Required"),
+  name: Yup.date().required("Ref. Data Name is Required"),
+  description: Yup.date().required("Description is Required"),
+});
+export const ReferenceDataManagementCategoriesFormData = [
+  {
+    id: 1,
+    componentProps: { name: "code", label: "Ref. Data Code:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 2,
+    componentProps: { name: "name", label: "Ref. Data name:" },
+    component: RHFTextField,
+    md: 6,
+  },
+  {
+    id: 3,
+    componentProps: { name: "description", label: "Description:" },
+    component: RHFTextField,
+    md: 6,
+  },
+];
