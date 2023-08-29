@@ -2,21 +2,18 @@ import { Card } from "@mui/material";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import React, { useRef } from "react";
-import DeleteModel from "@root/components/modal/DeleteModel";
-import { useState } from "react";
 import { getAuditTrailsAndLogsColumns } from "./";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useGetAuditLogsListQuery } from "@root/services/system-admin/audit-trails-and-audit-logs/AuditLogsApi";
-import { enqueueSnackbar } from "notistack";
 
 const AuditLogs = () => {
   const tableHeaderRef = useRef<any>();
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
     useTableParams();
 
-  const [open, setOpen] = useState<any>(false);
+  // const [open, setOpen] = useState<any>(false);
 
-  const columns = getAuditTrailsAndLogsColumns(setOpen);
+  const columns = getAuditTrailsAndLogsColumns();
 
   const { data, isLoading, isError, isFetching, isSuccess } =
     useGetAuditLogsListQuery({ params });
@@ -26,7 +23,7 @@ const AuditLogs = () => {
 
   return (
     <Card sx={{ p: 2 }}>
-      <TableHeader 
+      <TableHeader
         ref={tableHeaderRef}
         disabled={false}
         title="Foster Carer(s)"
@@ -47,7 +44,7 @@ const AuditLogs = () => {
         onPageChange={pageChangeHandler}
         onSortByChange={sortChangeHandler}
       />
-      <DeleteModel
+      {/* <DeleteModel
         open={!!open}
         handleClose={() => setOpen(false)}
         onDeleteClick={() => {
@@ -57,7 +54,7 @@ const AuditLogs = () => {
           });
           setOpen(false);
         }}
-      />
+      /> */}
     </Card>
   );
 };
