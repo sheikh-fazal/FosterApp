@@ -18,7 +18,8 @@ DbsCheck.getLayout = function getLayout(page: any) {
 };
 
 export default function DbsCheck() {
-  const [params, setParams] = useState("");
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(0);
   const router: any = useRouter();
   const { action, id, fosterCarerId } = router.query;
 
@@ -55,7 +56,9 @@ export default function DbsCheck() {
   }: any = useStatutoryUploadDocumentListQuery({
     params: {
       recordId: id,
-      params: params,
+      search: search,
+      limit: 10,
+      offset: page,
     },
   });
 
@@ -125,9 +128,9 @@ export default function DbsCheck() {
             "personUploaded",
             "documentPassword",
           ]}
-          searchParam={(searchedText: string) => setParams(searchedText)}
+          onPageChange={(page: any) => setPage((page - 1) * 10)}
+          searchParam={(searchedText: any) => setSearch(searchedText.search)}
           modalData={(data: any) => documentUploadHandler(data)}
-          onPageChange={(page: any) => console.log("parent log", page)}
           currentPage={metaData?.page}
           totalPages={metaData?.pages}
           onDelete={(data: any) => {

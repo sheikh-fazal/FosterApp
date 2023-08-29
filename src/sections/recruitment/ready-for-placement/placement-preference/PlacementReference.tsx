@@ -10,8 +10,9 @@ import { usePostPlacementPreferenceListMutation } from "@root/services/recruitme
 import { enqueueSnackbar } from "notistack";
 import { useRouter } from "next/router";
 
-const PlacementReference = (fosterCarerId: any) => {
+const PlacementReference = () => {
   const router = useRouter();
+  const { fosterCarerId }: any = router.query;
   const theme: any = useTheme();
   const methods: any = useForm({
     resolver: yupResolver(formSchema),
@@ -24,12 +25,12 @@ const PlacementReference = (fosterCarerId: any) => {
 
   //OnSubmit Function to Submit Form Data
   const onSubmitHandler = (data: any) => {
-    postPlacementDetails({
-      // params: {
-      //   fosterCarerId: fosterCarerId,
-      // },
-      // body: data,
-    })
+    const formData = new FormData();
+    formData.append("fosterCarerId", fosterCarerId);
+    for (let key in data) {
+      formData.append(key, data[key]);
+    }
+    postPlacementDetails(formData)
       .unwrap()
       .then((res: any) => {
         enqueueSnackbar("Placement Reference Added Successfully", {
@@ -38,8 +39,6 @@ const PlacementReference = (fosterCarerId: any) => {
         router.push({
           pathname: "/recruitment",
           query: {
-            action: "edit",
-            id: `${res?.data.id}`,
             fosterCarerId: fosterCarerId,
           },
         });
@@ -78,7 +77,19 @@ const PlacementReference = (fosterCarerId: any) => {
                   >
                     Upload Video / Audio Recording of your Placement Preference
                   </Typography>
-                  <RHFUploadFile name="uploadPhoto" {...methods} />
+                  <RHFUploadFile
+                    accept="audio/*, video/*"
+                    name="videoFile"
+                    {...methods}
+                    placeholder="Upload Video or Audio"
+                  />
+                  <Typography
+                    fontSize={13}
+                    fontWeight={400}
+                    sx={{ color: theme.palette.grey[600] }}
+                  >
+                    Only Allow Video & Audio Files
+                  </Typography>
                 </Grid>
               )}
               <Typography

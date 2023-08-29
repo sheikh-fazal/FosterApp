@@ -6,7 +6,6 @@ import { useRespitePlacementsTable } from "./useRespitePlacementsTable";
 
 const RespitePlacementsTable = () => {
   const {
-    router,
     tableHeaderRefTwo,
     annualReviewListIsloading,
     annualReviewData,
@@ -17,55 +16,60 @@ const RespitePlacementsTable = () => {
     pageChangeHandler,
     sortChangeHandler,
     setSearch,
-    listDeleteHandler,
-    fosterCarerId,
   } = useRespitePlacementsTable();
 
   const columns = [
     {
-      accessorFn: (row: any) => row.childCode ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.childCode ?? "-",
       id: "childCode",
       cell: (info: any) => info.getValue(),
       header: () => <span>Child Code</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.age ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.age ?? "-",
       id: "age",
       cell: (info: any) => info.getValue(),
       header: () => <span>Age</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.athnicity ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.athnicity ?? "-",
       id: "ethnicity",
       cell: (info: any) => info.getValue(),
       header: () => <span>Ethnicity</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.legalStatus ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.legalStatus ?? "-",
       id: "legalStatus",
       cell: (info: any) => info.getValue(),
       header: () => <span>Legal Status</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.placementType ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.placementType ?? "-",
       id: "placementType",
       cell: (info: any) => info.getValue(),
       header: () => <span>Placement Type</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.PlacementDate ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.PlacementDate ?? "-",
       id: "placementDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Placement Date</span>,
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row.dischargeDate ?? "-",
+      accessorFn: (row: any) =>
+        row?.annualReviewE?.respitePlacements?.dischargeDate ?? "-",
       id: "dischangeDate",
       cell: (info: any) => info.getValue(),
       header: () => <span>Dischange Date</span>,
@@ -74,7 +78,13 @@ const RespitePlacementsTable = () => {
   ];
   return (
     <Box sx={{ mt: 3 }}>
-      <TableHeader ref={tableHeaderRefTwo} title="Respite Placements" />
+      <TableHeader
+        ref={tableHeaderRefTwo}
+        title="Respite Placements"
+        onChanged={(e: any) => {
+          setSearch(e.search);
+        }}
+      />
       <CustomTable
         data={annualReviewData}
         columns={columns}

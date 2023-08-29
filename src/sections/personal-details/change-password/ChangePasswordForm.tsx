@@ -5,7 +5,7 @@ import { LoadingButton } from "@mui/lab";
 import { FormProvider, RHFTextField } from "@root/components/hook-form";
 import { ChangePasswordSchema, defaultValues } from ".";
 import CustomCard from "@root/components/CustomCard";
-import { useChangePasswordMutation } from "@root/services/userApi";
+import { useChangePasswordMutation } from "@root/services/personal-details/about/userApi";
 import { enqueueSnackbar } from "notistack";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";

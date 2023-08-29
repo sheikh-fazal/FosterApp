@@ -5,6 +5,7 @@ import { medicalAdvisorData } from "./index";
 import { useMedicalAdvisorForm } from "./useMedicalAdvisorForm";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import { LoadingButton } from "@mui/lab";
+import IsFetching from "@root/components/loaders/IsFetching";
 const MedicalAdvisorForm = (props: any) => {
   const { action, id } = props;
   //Local Medical Advisor Custom Hook
@@ -17,11 +18,13 @@ const MedicalAdvisorForm = (props: any) => {
     theme,
     isLoading,
     fosterCarerId,
+    isFetching,
   } = useMedicalAdvisorForm(action, id);
   if (isLoading) return <SkeletonFormdata />;
   return (
     <Grid container>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <IsFetching isFetching={isFetching} />
         <Grid container rowSpacing={4} columnSpacing={5} alignItems="center">
           {medicalAdvisorData.map((form: any) => {
             return (

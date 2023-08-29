@@ -1,47 +1,50 @@
-import React,{ useRef,useState}  from 'react'
-import { Box, Checkbox, useTheme } from '@mui/material';
-import TableAction from '@root/components/TableAction';
-import useUploadImage from '@root/hooks/useUploadImage';
-import { useForm } from 'react-hook-form';
-import { defaultValues } from '.';
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
+import { useTableParams } from "@root/hooks/useTableParams";
+import { systemConfigurationTableFunction } from ".";
+import {
+  useDeleteSystemConfigurationListMutation,
+  useGetSystemConfigurationListQuery,
+} from "@root/services/system-admin/system-configuration/SystemConfigurationAPI";
+import { useState } from "react";
 
 const useConfiguration = () => {
-    const [tableData, setTableDate] = useState<any>(null);
-    const methods: any = useForm({ defaultValues, });
-  
-    const { uploadImage } = useUploadImage();
-  
-    const {
-      handleSubmit,
-      formState: { isSubmitting, isValid },
-      getValues,
-      setValue,
-    } = methods;
-  
-    const onClear = () => {
-      setTableDate(null);
+  const [openEditModel, setOpenEditModel] = useState(false);
+  const todayDate = dayjs().format("MM/DD/YYYY");
+  const router = useRouter();
+  const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
+    useTableParams();
+
+  const { data, isError, isLoading, isSuccess, isFetching } =
+    useGetSystemConfigurationListQuery(params);
+  const [deleteSystemConfigurationRecord] =
+    useDeleteSystemConfigurationListMutation();
+
+  const deleteSystemConfiguration = (id: string) => {
+    const deleteRecord = {
+      configId: id,
     };
-  
-    const onSubmit = async (data: any) => {
-      setTableDate(JSON.stringify(data));
-    };
-  
-    return {
-      methods,
-      handleSubmit,
-      getValues,
-      setValue,
-      isValid,
-      onSubmit,
-      isSubmitting,
-      tableData,
-      onClear,
-      uploadImage,
-    };
-}
 
-export default useConfiguration
+    deleteSystemConfigurationRecord(deleteRecord);
+  };
 
+  const systemConfigurationColoums = systemConfigurationTableFunction({
+    router,
+    setOpenEditModel,
+    deleteSystemConfiguration,
+  });
 
+  return {
+    data,
 
+    params,
+    headerChangeHandler,
+    pageChangeHandler,
+    sortChangeHandler,
+    systemConfigurationColoums,
+    openEditModel,
+    setOpenEditModel,
+  };
+};
 
+export default useConfiguration;

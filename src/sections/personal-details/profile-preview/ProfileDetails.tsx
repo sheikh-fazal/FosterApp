@@ -1,18 +1,24 @@
 import { Avatar, Box, Rating, Skeleton, Typography } from "@mui/material";
-import { PROFILE_DATA } from "./ProfilePreviewData";
+import { PROFILE_DATA } from ".";
 import { useTheme } from "@emotion/react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import React from "react";
 import MyAvatar from "@root/components/MyAvatar";
-import { useGetUserProfileQuery } from "@root/services/userApi";
+import { useGetUserProfileQuery } from "@root/services/personal-details/about/userApi";
 
 const ProfileDetails = () => {
   const theme: any = useTheme();
   const { data, isLoading }: any = useGetUserProfileQuery();
   return (
     <>
-      <Box sx={{ display: "grid", placeItems: "center", mb: 10 }}>
+      <Box
+        sx={{
+          display: "grid",
+          placeItems: "center",
+          mb: 10,
+        }}
+      >
         {isLoading ? (
           <Skeleton
             variant="circular"
