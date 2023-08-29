@@ -27,7 +27,7 @@ import {
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const SelfEmployed: FC<any> = ({ setEmploymentStatus }) => {
+const SelfEmployed: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [file, setFile] = useState<File | any>(null);
@@ -75,7 +75,8 @@ const SelfEmployed: FC<any> = ({ setEmploymentStatus }) => {
     try {
       const data = await updateOtherSelfEmployedInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      setEmploymentStatus("umbrella");
+      // setEmploymentStatus("umbrella");
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }

@@ -26,7 +26,7 @@ export const AreaOfficeSetup = baseAPI.injectEndpoints({
     patchAreaOfficeData: builder.mutation({
       query: (apiDataParameter: any) => ({
         url: `/admin/area-office-setup`,
-        method: "PUt",
+        method: "PUT",
         body: apiDataParameter?.body,
       }),
       invalidatesTags: ["AREA_OFFICE_SETUP"],

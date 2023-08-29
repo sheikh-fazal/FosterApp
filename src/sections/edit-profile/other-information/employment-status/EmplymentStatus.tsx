@@ -67,13 +67,13 @@ const EmplymentStatus: FC<any> = ({ activateNextForm }) => {
       </Grid>
       <Grid item sm={12} container sx={{ padding: "0.5em" }}>
         {employmentStatus === "paye" && (
-          <PayForm setEmploymentStatus={setEmploymentStatus} />
+          <PayForm activateNextForm={activateNextForm} />
         )}
         {employmentStatus === "limitedCom" && (
-          <LimitedCompany setEmploymentStatus={setEmploymentStatus} />
+          <LimitedCompany activateNextForm={activateNextForm} />
         )}
         {employmentStatus === "self" && (
-          <SelfEmployed setEmploymentStatus={setEmploymentStatus} />
+          <SelfEmployed activateNextForm={activateNextForm} />
         )}
         {employmentStatus === "umbrella" && (
           <UmberllaCompany activateNextForm={activateNextForm} />
