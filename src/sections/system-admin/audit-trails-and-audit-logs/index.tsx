@@ -1,7 +1,6 @@
-import TableAction from "@root/components/TableAction";
 import dayjs from "dayjs";
 
-export const getAuditTrailsAndLogsColumns = (setOpen: any) => {
+export const getAuditTrailsAndLogsColumns = () => {
   return [
     {
       accessorFn: (row: any) => row.name ?? "-",
@@ -45,15 +44,15 @@ export const getAuditTrailsAndLogsColumns = (setOpen: any) => {
       header: "Status",
       isSortable: true,
     },
-    {
-      accessorFn: (row: any) => row.id ?? "-",
-      id: "actions",
-      cell: (info: any) => (
-        <TableAction type="delete" onClicked={() => setOpen(info.getValue())} />
-      ),
-      header: "Actions",
-      isSortable: false,
-    },
+    // {
+    //   accessorFn: (row: any) => row.id ?? "-",
+    //   id: "actions",
+    //   cell: (info: any) => (
+    //     <TableAction type="delete" onClicked={() => setOpen(info.getValue())} />
+    //   ),
+    //   header: "Actions",
+    //   isSortable: false,
+    // },
   ];
 };
 
