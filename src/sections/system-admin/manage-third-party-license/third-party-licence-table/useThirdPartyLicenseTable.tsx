@@ -6,7 +6,10 @@ import DeleteModel from "@root/components/modal/DeleteModel";
 import { useTheme } from "@mui/material";
 import { thirdPartyLicenseColumnFunction } from ".";
 import { enqueueSnackbar } from "notistack";
-import { useDeleteThirdOfficeLicenseDataMutation } from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
+import {
+  useDeleteThirdOfficeLicenseDataMutation,
+  useUpdateLicenseStatusMutation,
+} from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
 
 export const useThirdPartyLicenceTable = () => {
   const tableHeaderRefTwo = useRef<any>();
@@ -16,8 +19,27 @@ export const useThirdPartyLicenceTable = () => {
   const theme = useTheme();
   const [deleteThirdPartyLicenseData] =
     useDeleteThirdOfficeLicenseDataMutation();
+  const [updateLicenseStatus] = useUpdateLicenseStatusMutation();
 
-  // const [cancelDelete, setCancelDelete] = useState(false);
+  const changeHandler = async (id: any, isDisbled: any) => {
+    console.log(isDisbled);
+
+    if (isDisbled == false) {
+      try {
+        const res: any = await updateLicenseStatus({
+          licenseId: id,
+        }).unwrap();
+
+        enqueueSnackbar(res?.message ?? `License Updated Successfully`, {
+          variant: "success",
+        });
+      } catch (error: any) {
+        const errMsg = error?.data?.message;
+        enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
+      }
+    }
+  };
+
   //-------- Delete Handler -----------//
   const onDeleteConfirm = async () => {
     try {
@@ -42,7 +64,8 @@ export const useThirdPartyLicenceTable = () => {
 
   const thirdPartyColumnTableColumns = thirdPartyLicenseColumnFunction(
     router,
-    prepareRecordForDelete
+    prepareRecordForDelete,
+    changeHandler
   );
 
   // const columns = [
@@ -147,6 +170,6 @@ export const useThirdPartyLicenceTable = () => {
     onDeleteConfirm,
     theme,
     isRecordSetForDelete,
-    setIsRecordSetForDelete
+    setIsRecordSetForDelete,
   };
 };

@@ -35,7 +35,17 @@ export const ThirdPartyLicence = baseAPI.injectEndpoints({
       query: ({ licenseId }: any) => ({
         url: `/admin/third-party-licenses`,
         method: "DELETE",
-        body: {licenseId},
+        body: { licenseId },
+      }),
+      invalidatesTags: ["THIRD_PARTY_LICENSE"],
+    }),
+    updateLicenseStatus: builder.mutation({
+      query: ({ licenseId }) => ({
+        url: "/admin/third-party-licenses/change-status",
+        method: "PUT",
+        body: {
+          licenseId,
+        },
       }),
       invalidatesTags: ["THIRD_PARTY_LICENSE"],
     }),
@@ -47,4 +57,5 @@ export const {
   usePostThirdPartyLicenceDataMutation,
   usePatchThirdPartyLicenceDataMutation,
   useDeleteThirdOfficeLicenseDataMutation,
+  useUpdateLicenseStatusMutation,
 } = ThirdPartyLicence;

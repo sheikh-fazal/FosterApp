@@ -1,9 +1,13 @@
 import { Box, Switch } from "@mui/material";
 import TableAction from "@root/components/TableAction";
+import { useUpdateLicenseStatusMutation } from "@root/services/system-admin/third-party-licence/thirdPartyLicence";
+import { shortName } from "@root/utils/mixedUtil";
+import { enqueueSnackbar } from "notistack";
 
 export const thirdPartyLicenseColumnFunction = (
   router?: any,
-  prepareRecordForDelete?: any
+  prepareRecordForDelete?: any,
+  changeHandler?: any
 ) => [
   {
     accessorFn: (row: any) => row.name,
@@ -22,7 +26,7 @@ export const thirdPartyLicenseColumnFunction = (
   {
     accessorFn: (row: any) => row.description,
     id: "description",
-    cell: (info: any) => info.getValue(),
+    cell: (info: any) => shortName(info.getValue(), 20),
     header: () => <span>Description</span>,
     isSortable: true,
   },
@@ -48,12 +52,13 @@ export const thirdPartyLicenseColumnFunction = (
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.averageResponseTime,
+    accessorFn: (row: any) => row.is_disabled,
     id: "enable-disable",
     cell: (info: any) => (
       <Switch
         inputProps={{ "aria-label": "Switch demo" }}
         defaultChecked={!info?.row?.original?.is_disabled}
+        onChange={() => changeHandler(info?.row?.original?.id, info?.row?.original?.is_disabled)}
       />
     ),
     header: () => <span>Enable/Disable</span>,
