@@ -8,53 +8,31 @@ export const SELECTFILTERS = [
     key: "status",
     label: "Status",
     options: [
-      { label: "Placed", value: "Placed" },
-      { label: "Current Referral", value: "Current Referral" },
+      { label: "All", value: "" },
+      { label: "Placed", value: "placed" },
+      { label: "Current Referral", value: "current_referral" },
     ],
-  },
-];
-
-export const data = [
-  {
-    refereeName: "John",
-    gender: "Male",
-    dob: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    status: "Placed",
-    referralDate: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    refereeType: "Foster Child",
-    specialNeeds: false,
-    id: "7835q47834659034",
-  },
-  {
-    refereeName: "Doe",
-    gender: "Male",
-    dob: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    status: "Placed",
-    referralDate: "Wed May 10 2023 00:00:00 GMT+0500 (Pakistan Standard Time)",
-    refereeType: "Foster Child",
-    specialNeeds: true,
-    id: "578834659063490563490856",
   },
 ];
 
 export const getColumnsChildReferral = (makePath: any) => {
   return [
     {
-      accessorFn: (row: any) => row?.refereeName ?? "-",
-      id: "refereeName",
+      accessorFn: (row: any) => row?.laDetails?.referrerName ?? "-",
+      id: "referrerName",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Referee Name",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.gender ?? "-",
+      accessorFn: (row: any) => row?.personalDetails?.gender ?? "-",
       id: "gender",
       cell: (info: any) => info.getValue() ?? "-",
       header: "Gender",
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.dob ?? "-",
+      accessorFn: (row: any) => row?.personalDetails?.dob ?? "-",
       id: "dob",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "Date of Birth",
@@ -68,8 +46,8 @@ export const getColumnsChildReferral = (makePath: any) => {
       isSortable: true,
     },
     {
-      accessorFn: (row: any) => row?.referralDate ?? "-",
-      id: "referralDate",
+      accessorFn: (row: any) => row?.laDetails?.referalDate ?? "-",
+      id: "referalDate",
       cell: (info: any) => dayjs(info.getValue()).format("MM/DD/YYYY"),
       header: "Referral Date",
       isSortable: true,
