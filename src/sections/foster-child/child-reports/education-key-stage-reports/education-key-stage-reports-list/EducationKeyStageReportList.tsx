@@ -10,7 +10,7 @@ const EducationKeyStageReportList = () => {
     tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
-    columnsEducationKeyStageTableFuntion,
+    columnsEducationKeyStageTableFunction,
     data,
     isLoading
   } = useEducationKeyStageReportList();
@@ -27,8 +27,8 @@ const EducationKeyStageReportList = () => {
       ) : (
         <>
           <CustomTable
-            columns={columnsEducationKeyStageTableFuntion}
-            data={data?.data?.education_key_stage_report}
+            columns={columnsEducationKeyStageTableFunction}
+            data={data?.data}
             onPageChange={pageChangeHandler}
             onSortByChange={sortChangeHandler}
             isSuccess={true}
