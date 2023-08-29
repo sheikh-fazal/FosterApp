@@ -27,7 +27,7 @@ import { enqueueSnackbar } from "notistack";
 import FormSkeleton from "@root/sections/edit-profile/render-form/FormSkeleton";
 import IsFetching from "@root/components/loaders/IsFetching";
 
-const LimitedCompany: FC<any> = ({ setEmploymentStatus }) => {
+const LimitedCompany: FC<any> = ({ activateNextForm }) => {
   const theme: any = useTheme();
   const [disabled, setDisabled] = useState(false);
   const [file, setFile] = useState<File | any>(null);
@@ -76,7 +76,8 @@ const LimitedCompany: FC<any> = ({ setEmploymentStatus }) => {
     try {
       const data = await updateOtherLimitedCompanyInfo(formData);
       displaySuccessMessage(data, enqueueSnackbar);
-      setEmploymentStatus("self");
+      // setEmploymentStatus("self");
+      activateNextForm();
     } catch (error: any) {
       displayErrorMessage(error, enqueueSnackbar);
     }
