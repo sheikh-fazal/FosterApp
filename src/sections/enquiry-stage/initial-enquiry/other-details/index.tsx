@@ -7,7 +7,7 @@ import {
 import * as Yup from "yup";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
 import { fData } from "@root/utils/formatNumber";
-import { RHFInputWithLabel } from "../../extensions/RHFInputWithLabel";
+import { RHFInputWithLabel } from "../../../../components/hook-form/RHFInputWithLabel";
 
 export const defaultValues = {
   comments: "comments",

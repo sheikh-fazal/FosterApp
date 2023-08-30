@@ -1,6 +1,9 @@
 import { RHFTextField } from "@root/components/hook-form";
 import RHFDatePicker from "@root/components/hook-form/RHFDatePicker";
+import dayjs from "dayjs";
 import * as Yup from "yup";
+
+const todayDate = dayjs().format("MM/DD/YYYY");
 
 export const VOCATIONALCOURSEINFODATA = [
   {
@@ -67,8 +70,8 @@ export const VOCATIONALCOURSEINFODATA = [
 export const defaultValues = {
   courseType: "",
   duration: "",
-  startDate: new Date(),
-  endDate: new Date(),
+  startDate: new Date(todayDate),
+  endDate: new Date(todayDate),
   expectedQualification: "",
   qualification: "",
 };

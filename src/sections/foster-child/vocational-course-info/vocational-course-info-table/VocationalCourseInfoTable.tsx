@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
+import { useVocationalInfoByIdQuery } from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
 
 export default function VocationalCourseInfoTable(props: any) {
   const {
@@ -15,9 +16,16 @@ export default function VocationalCourseInfoTable(props: any) {
     apiStatus,
     onPageChange,
     route,
+    onDelete,
   } = props;
+
   const router = useRouter();
+
   const [open, setOpen] = useState<any>(false);
+  const id = router?.query?.fosterChildId;
+
+  // '1b95216c-6856-4380-a2e4-cc6688ae4f9a'
+
   const columns = [
     {
       accessorFn: (row: any) => row["courseType"],
@@ -46,14 +54,25 @@ export default function VocationalCourseInfoTable(props: any) {
             onClicked={() => {
               setOpen(info.row.original);
               console.log("delete this", info.row.original);
-              alert("delete");
             }}
             size="small"
           />
-          <TableAction type="edit" onClicked={() => {}} size="small" />
+          <TableAction
+            type="edit"
+            onClicked={() => {
+              router.push(
+                `/foster-child/education-records/vocational-course-info/details?fosterChildId=${id}&recordId=${info?.row?.original?.id}`
+              );
+            }}
+            size="small"
+          />
           <TableAction
             type="view"
-            onClicked={() => console.log(info)}
+            onClicked={() =>
+              router.push(
+                `/foster-child/education-records/vocational-course-info/details?fosterChildId=${id}&recordId=${info?.row?.original?.id}&view=true`
+              )
+            }
             size="small"
           />
         </Box>
@@ -62,12 +81,16 @@ export default function VocationalCourseInfoTable(props: any) {
       isSortable: false,
     },
   ];
+
   return (
     <>
       <DeleteModel
         open={!!open}
         handleClose={() => setOpen(false)}
-        onDeleteClick={() => console.log("deleting", open)}
+        onDeleteClick={() => {
+          onDelete(open);
+          setOpen(false);
+        }}
       />
       <TableHeader
         title={"Vocational Course Info"}
