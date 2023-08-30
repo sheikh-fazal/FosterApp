@@ -1,5 +1,5 @@
 import Layout from "@root/layouts";
-import React from "react";
+import React, { useState } from "react";
 import HomeIcon from "@mui/icons-material/Home";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import { SubstituteCarerForm } from "@root/sections/carer-info/substitute-cares/common-form";
@@ -14,10 +14,13 @@ import {
   useAddVocationalInfoDocumentMutation,
   useAddVocationalInfoMutation,
   useDeleteVocationalInfoDocumentMutation,
+  useEditVocationalInfoMutation,
+  useVocationalInfoByIdQuery,
   useVocationalInfoDocumentsQuery,
 } from "@root/services/foster-child/vocational-info-list/VocationalInfoListApi";
 import { enqueueSnackbar } from "notistack";
 import { formData } from "@root/sections/carer-info/personal-info/carer-address-history";
+import dayjs from "dayjs";
 
 // ----------------------------------------------------------------------
 
@@ -36,15 +39,35 @@ export default function VocationalCourseInfoForm() {
   const router = useRouter();
   const formData = new FormData();
   const id = router?.query?.fosterChildId;
+  const recordId = router?.query?.recordId;
+  const viewMode = router?.query?.view;
+  const todayDate = dayjs().format("MM/DD/YYYY");
+
+  const [docParams, setDocParams] = useState({
+    search: undefined,
+    limit: "10",
+    offset: "0",
+    fosterChildId: id,
+  });
 
   const [postVocationalInfo, status] = useAddVocationalInfoMutation();
   const [postVocationalDoc] = useAddVocationalInfoDocumentMutation();
   const [deleteVocationalDoc] = useDeleteVocationalInfoDocumentMutation();
-  const { data } = useVocationalInfoDocumentsQuery({
-    search: undefined,
-    limit: "10",
-    offset: "0",
-    fosterCarerId: id,
+  const [editVocationalDoc] = useEditVocationalInfoMutation();
+
+  const {
+    data: docData,
+    isLoading: isDocLoading,
+    isFetching: isDocFetching,
+    isError: hasDocError,
+    isSuccess: isDocSuccess,
+  } = useVocationalInfoDocumentsQuery(docParams);
+  const {
+    data: formValues,
+    isLoading,
+    isSuccess,
+  } = useVocationalInfoByIdQuery(recordId, {
+    skip: !!!recordId,
   });
   const BREADCRUMBS = [
     {
@@ -89,8 +112,9 @@ export default function VocationalCourseInfoForm() {
     formData.append("documentFile", data.chosenFile);
     try {
       const res: any = await postVocationalDoc({
+        fosterChildId: id,
+        recordId,
         body: formData,
-        id,
       }).unwrap();
       enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
         variant: "success",
@@ -112,6 +136,9 @@ export default function VocationalCourseInfoForm() {
       enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
     }
   };
+
+  console.log("searching", docParams);
+
   return (
     <Page title={PAGE_TITLE}>
       <TitleWithBreadcrumbLinks
@@ -119,36 +146,55 @@ export default function VocationalCourseInfoForm() {
         breadcrumbs={BREADCRUMBS}
         title={PAGE_TITLE}
       />
-      <HorizontalTabs tabsDataArray={TABSDATA}>
+      <HorizontalTabs tabsDataArray={!!recordId ? TABSDATA : ["Course Info"]}>
         <VocationalCourseForm
           onSubmit={(data: any) => {
             formSubmitHandler(data);
           }}
           status={status}
+          gettingStatus={{ isLoading }}
           onEdit={(data: any) => console.log(data)}
+          data={{
+            ...formValues,
+            startDate: new Date(formValues?.startDate || todayDate),
+            endDate: new Date(formValues?.endDate || todayDate),
+          }}
+          disabled={viewMode}
+          prevPath={`/foster-child/education-records/vocational-course-info?fosterChildId=${id}`}
         />
-        <UploadDocuments
-          searchParam={(searchedText: string) =>
-            console.log("searched Value", searchedText)
-          }
-          tableData={data?.data ?? []}
-          isLoading={false}
-          isFetching={false}
-          isError={false}
-          isSuccess={true}
-          column={[
-            "documentFile",
-            "documentType",
-            "documentDate",
-            "personName",
-            "password",
-          ]}
-          modalData={documentSubmitHandler}
-          onDelete={documentDeleteHandler}
-          onPageChange={(page: any) => console.log("parent log", page)}
-          currentPage={"1"}
-          totalPages={"1"}
-        />
+
+        {/* --------------------------------------//------------------------------------------ */}
+        {!!recordId && (
+          <UploadDocuments
+            disabled={viewMode}
+            searchParam={(searchedText: string) =>
+              setDocParams((prev: any) => {
+                return { ...prev, search: searchedText.search };
+              })
+            }
+            tableData={docData?.vocationalInfoDocuments ?? []}
+            isLoading={isDocLoading}
+            isFetching={isDocFetching}
+            isError={hasDocError}
+            isSuccess={isDocSuccess}
+            column={[
+              "documentFile",
+              "documentType",
+              "documentDate",
+              "personName",
+              "password",
+            ]}
+            modalData={documentSubmitHandler}
+            onDelete={documentDeleteHandler}
+            onPageChange={(page: any) =>
+              setDocParams((prev: any) => {
+                return { ...prev, offset: (page - 1) * 10 };
+              })
+            }
+            currentPage={docData?.meta?.page || "1"}
+            totalPages={docData?.meta?.pages || "1"}
+          />
+        )}
       </HorizontalTabs>
     </Page>
   );

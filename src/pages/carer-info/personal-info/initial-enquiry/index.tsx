@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HorizontalTabs from "@root/components/HorizaontalTabs";
 import Page from "@root/components/Page";
 import Layout from "@root/layouts";
@@ -17,10 +17,17 @@ import { Box } from "@mui/material";
 import dayjs from "dayjs";
 import SkeletonFormdata from "@root/components/skeleton/SkeletonFormdata";
 import UploadDocuments from "@root/sections/documents/UploadDocuments";
-import { useUploadDocumentsMutation } from "@root/services/carer-info/personal-info/initial-enquiry/documentsApi";
+import {
+  useDeleteDocumentsMutation,
+  useUploadDocumentsMutation,
+} from "@root/services/carer-info/personal-info/initial-enquiry/documentsApi";
 import { TitleWithBreadcrumbLinks } from "@root/components/PageBreadcrumbs";
 import usePath from "@root/hooks/usePath";
 import { useRouter } from "next/router";
+import { enqueueSnackbar } from "notistack";
+import { usePost1stApplicantFormDataMutation } from "@root/services/carer-info/personal-info/initial-enquiry/firstApplicantApi";
+import { usePostContactFormDataMutation } from "@root/services/carer-info/personal-info/initial-enquiry/contactApi";
+import { usePostOtherDetailsFormDataMutation } from "@root/services/carer-info/personal-info/initial-enquiry/otherDetailsApi";
 
 // ----------------------------------------------------------------------
 // Constants
@@ -43,6 +50,11 @@ InitialEnquiry.getLayout = function getLayout(page: any) {
 // ----------------------------------------------------------------------
 
 export default function InitialEnquiry() {
+  const [docParams, setDocParams] = useState({
+    search: undefined,
+    limit: "10",
+    offset: "0",
+  });
   const { makePath } = usePath();
   const router = useRouter();
   const id = router?.query?.fosterCarerId;
@@ -60,6 +72,7 @@ export default function InitialEnquiry() {
       href: "/carer-info/personal-info/initial-enquiry",
     },
   ];
+  const docsData = new FormData();
   const formData = new FormData();
 
   const { data, isLoading, isError }: any = useGetInitialInquiryDataQuery({});
@@ -70,25 +83,101 @@ export default function InitialEnquiry() {
     isFetching,
     isError: hasDocumentError,
     isSuccess,
-  }: any = useGetInitialInquiryDocumentsDataQuery({});
+  }: any = useGetInitialInquiryDocumentsDataQuery(docParams);
 
+  const [addFirstApplicant, firstApplicantStatus] =
+    usePost1stApplicantFormDataMutation();
   const [postDocuments] = useUploadDocumentsMutation();
+  const [postContacts] = usePostContactFormDataMutation();
+  const [postOtherDetails] = usePostOtherDetailsFormDataMutation();
+  const [deleteDocument] = useDeleteDocumentsMutation();
 
   const documentUploadHandler = (data: any) => {
-    formData.append("documentType", data.documentType);
-    formData.append("date", data.documentDate);
-    formData.append("password", data.password);
-    formData.append("document", data.chosenFile);
-    postDocuments(formData);
+    docsData.append("documentType", data.documentType);
+    docsData.append("date", data.documentDate);
+    docsData.append("password", data.password);
+    docsData.append("document", data.chosenFile);
+    postDocuments(docsData);
   };
 
   const tableData: any = documentData?.data?.documents;
   const metaData: any = documentData?.data?.meta;
 
   //---------------------// uncovering Data //-------------------------------//
+  // --------------------------// Submit Handlers //----------------------------//
+  const firstApplicantSubmitHandler = async (data: any) => {
+    formData.append("image", data?.image);
+    formData.append("isJointApplicant", data?.isJointApplicant);
+    formData.append("dateOfEnquiry", data?.dateOfEnquiry);
+    formData.append("areaOffice", data?.areaOffice);
+    formData.append("whereHearAboutOutAgency", data?.whereHearAboutOutAgency);
+    formData.append(
+      "additionalSourceInformation",
+      data?.additionalSourceInformation
+    );
+    formData.append("title", data?.title);
+    formData.append("firstName", data?.firstName);
+    formData.append("middleName", data?.middleName);
+    formData.append("lastName", data?.lastName);
+    formData.append("dateOfBirth", data?.dateOfBirth);
+    formData.append("age", data?.age);
+    formData.append("gender", data?.gender);
+    formData.append("ethnicity", data?.ethnicity);
+    formData.append("religion", data?.religion);
+    formData.append("practicingStatus", data?.practicingStatus);
+    formData.append("mobileNo", data?.mobileNo);
+    formData.append("email", data?.email);
+    formData.append("spareBedrooms", data?.spareBedrooms);
+    formData.append("permanentResidencyInUk", data?.permanentResidencyInUk);
+    formData.append("outStandingCourtOrders", data?.outStandingCourtOrders);
+    try {
+      const res: any = await addFirstApplicant({
+        formData,
+      }).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/personal-info/initial-enquiry?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
 
-  const firstApplicantSubmitHandler = (data: any) => {
-    console.log(data, "from parent");
+  const contactSubmitHandler = async (data: any) => {
+    try {
+      const res: any = await postContacts({
+        data,
+      }).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/personal-info/initial-enquiry?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
+  };
+
+  const otherDetailsSubmitHandler = async (data: any) => {
+    try {
+      const res: any = await postOtherDetails({
+        data,
+      }).unwrap();
+      enqueueSnackbar(res?.message ?? `Details Submitted Successfully`, {
+        variant: "success",
+      });
+      router.push(
+        `/carer-info/personal-info/initial-enquiry?fosterCarerId=${id}`
+      );
+    } catch (error: any) {
+      const errMsg = error?.data?.message;
+      enqueueSnackbar(errMsg ?? "Something Went Wrong!", { variant: "error" });
+    }
   };
 
   const formEl = (
@@ -96,7 +185,7 @@ export default function InitialEnquiry() {
       {/*---------------------- First Tab---------------------- */}
       <FirstApplicant
         disabled={true}
-        isLoading={isLoading}
+        isLoading={isLoading || firstApplicantStatus?.isLoading}
         isError={isError}
         onSubmit={firstApplicantSubmitHandler}
         data={{
@@ -110,20 +199,28 @@ export default function InitialEnquiry() {
       />
 
       {/*---------------------- Second Tab---------------------- */}
-      <Contact disabled={true} data={data?.contact} isError={isError} />
+      <Contact
+        disabled={true}
+        data={data?.contact}
+        isError={isError}
+        onSubmit={contactSubmitHandler}
+      />
 
       {/*---------------------- Third Tab---------------------- */}
       <OtherDetails
         disabled={true}
         data={data?.otherDetails}
         isError={isError}
+        onSubmit={otherDetailsSubmitHandler}
       />
 
       {/*---------------------- Fourth Tab---------------------- */}
       <UploadDocuments
         readOnly={true}
         searchParam={(searchedText: string) =>
-          console.log("searched Value", searchedText)
+          setDocParams((prev: any) => {
+            return { ...prev, search: searchedText.search };
+          })
         }
         tableData={tableData}
         // tableData={[
@@ -141,8 +238,12 @@ export default function InitialEnquiry() {
         isSuccess={isSuccess}
         column={["document", "documentType", "date", "personName", "password"]}
         modalData={documentUploadHandler}
-        onDelete={(data: any) => console.log("Deleting", data)}
-        onPageChange={(page: any) => console.log("parent log", page)}
+        onDelete={(data: any) => deleteDocument(data?.id)}
+        onPageChange={(page: any) =>
+          setDocParams((prev: any) => {
+            return { ...prev, offset: (page - 1) * 10 };
+          })
+        }
         currentPage={metaData?.page}
         totalPages={metaData?.pages}
       />

@@ -1,14 +1,16 @@
-import React from 'react'
-import { useThirdPartyLicenceTable } from './useThirdPartyLicenceTable';
-import CustomTable from '@root/components/Table/CustomTable';
+import React from "react";
+import { useLicenceDisableTable } from "./useLicenseDisableTable";
+import CustomTable from "@root/components/Table/CustomTable";
 
-const ThirdPartyLicenceTable = () => {
+const LicenceDisableTable = ({data}:any) => {
+  console.log('Disabled',data);
+  
   const { tableHeaderRefTwo, router, columns, TableData, theme } =
-  useThirdPartyLicenceTable();
+    useLicenceDisableTable();
   return (
     <>
       <CustomTable
-        data={TableData}
+        data={data}
         columns={columns}
         isLoading={false}
         isFetching={false}
@@ -25,7 +27,7 @@ const ThirdPartyLicenceTable = () => {
         rootSX={{ my: theme.spacing(2) }}
       />
     </>
-  )
-}
+  );
+};
 
-export default ThirdPartyLicenceTable
+export default LicenceDisableTable;

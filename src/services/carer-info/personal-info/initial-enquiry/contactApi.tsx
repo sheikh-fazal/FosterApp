@@ -12,6 +12,7 @@ export const contactApi = baseAPI.injectEndpoints({
         method: "POST",
         body: formData,
       }),
+      invalidatesTags: ["INITIAL-ENQUIRY-FORM"],
     }),
   }),
 });

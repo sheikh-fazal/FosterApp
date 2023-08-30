@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { columnsEducationKeyStageTable } from ".";
 import { useRouter } from "next/router";
 import { useGetEducationKeyStageReportListQuery } from "@root/services/foster-child/child-reports/education-key-stage-report/EducationKeyStageReportAPI";
+import dayjs from "dayjs";
 
 const useEducationKeyStageReportList = () => {
   const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
@@ -13,15 +14,16 @@ const useEducationKeyStageReportList = () => {
   const fosterChildId = router.query.fosterChildId
 
   const {data,isLoading} = useGetEducationKeyStageReportListQuery({params,fosterChildId});  
+  
 
-  const columnsEducationKeyStageTableFuntion =
-    columnsEducationKeyStageTable(router);
+  const columnsEducationKeyStageTableFunction =
+    columnsEducationKeyStageTable(router,fosterChildId);
   return {
     headerChangeHandler,
     tableHeaderRef,
     pageChangeHandler,
     sortChangeHandler,
-    columnsEducationKeyStageTableFuntion,
+    columnsEducationKeyStageTableFunction,
     data,
     isLoading
   };

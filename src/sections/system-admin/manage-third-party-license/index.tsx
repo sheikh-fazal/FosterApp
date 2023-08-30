@@ -1,13 +1,13 @@
-import LicenceDisableTable from "./third-party-licence-disable-table/LicenceDisableTable";
-import ThirdPartyLicenceTable from "./third-party-licence-table/ThirdPartyLicenceTable";
+import LicenceDisableTable from "./third-party-license-disable-table/LicenseDisableTable";
+import ThirdPartyLicenceTable from "./third-party-licence-table/ThirdPartyLicenseTable";
 
-export const accordianData = [
+export const accordianDataFunction = (data: any) => [
   {
     title: "Manage Third Party License",
-    component: <ThirdPartyLicenceTable />,
+    component: <ThirdPartyLicenceTable data={data?.data?.active} />,
   },
   {
     title: "Manage Third Party License ( disable )",
-    component: <LicenceDisableTable />,
+    component: <LicenceDisableTable data={data?.data?.disabled} />,
   },
 ];

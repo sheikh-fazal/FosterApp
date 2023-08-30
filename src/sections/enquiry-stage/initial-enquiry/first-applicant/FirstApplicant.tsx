@@ -11,7 +11,13 @@ import FormNotificationExtension from "../../extensions/FormNotificationExtensio
 import Error from "@root/components/Error";
 
 export default function FirstApplicant(props: any) {
-  const { disabled: globallyDisabled, data, isLoading, isError } = props;
+  const {
+    disabled: globallyDisabled,
+    data,
+    isLoading,
+    isError,
+    onSubmit,
+  } = props;
   const theme = useTheme();
 
   // Update the default values API
@@ -44,8 +50,8 @@ export default function FirstApplicant(props: any) {
 
   const onSubmitHandler = (data: any) => {
     if (globallyDisabled) return;
-    console.log(data);
-    // onSubmit(data);
+    onSubmit(data);
+    // console.log(data);
     // reset();
   };
 

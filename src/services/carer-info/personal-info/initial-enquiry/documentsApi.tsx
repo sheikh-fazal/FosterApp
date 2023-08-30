@@ -11,9 +11,20 @@ export const documentsApi = baseAPI.injectEndpoints({
         method: "PUT",
         body: formData,
       }),
+      invalidatesTags: ["INITIAL-ENQUIRY-DOCS"],
+    }),
+    deleteDocuments: builder.mutation({
+      query: (id: any) => ({
+        url: `/initial-inquiry/upload-document/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["INITIAL-ENQUIRY-DOCS"],
     }),
   }),
 });
 
-export const { useGetDocumentsTableDataQuery, useUploadDocumentsMutation } =
-  documentsApi;
+export const {
+  useGetDocumentsTableDataQuery,
+  useUploadDocumentsMutation,
+  useDeleteDocumentsMutation,
+} = documentsApi;
