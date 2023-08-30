@@ -5,7 +5,7 @@ import { useGetImmunisationListDataQuery } from "@root/services/carer-info/medic
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
 
-export const useImmunisations = () => {
+export const useImmunisationsTable = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -20,15 +20,16 @@ export const useImmunisations = () => {
   const { data, isSuccess, isError, isFetching, isLoading } =
     useGetImmunisationListDataQuery({
       params: {
-        fosterCarerId: fosterCarerId,
+        fosterCarerId,
         search: search,
         ...params,
       },
     });
-  console.log({ data });
+  console.log( data?.data );
+  console.log(params);
 
-  const immunizationListData = data?.immunizationList;
-  const meta = data?.meta;
+  const immunizationListData = data?.data?.immunizationList;
+  const meta = data?.data?.meta;
   return {
     open,
     setOpen,

@@ -3,7 +3,7 @@ import Page from "@root/components/Page";
 import CustomTable from "@root/components/Table/CustomTable";
 import TableHeader from "@root/components/TableHeader";
 import { useTableParams } from "@root/hooks/useTableParams";
-import { useImmunisations } from "./useImmunisations";
+import { useImmunisationsTable } from "./useImmunisationsTable";
 import { IMMUNISATIONS_DATA, columns } from ".";
 
 export const ImmunisationsTable = () => {
@@ -26,7 +26,7 @@ export const ImmunisationsTable = () => {
     makePath,
     pageChangeHandler,
     sortChangeHandler,
-  } :any= useImmunisations();
+  } :any= useImmunisationsTable();
   // const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
   //   useTableParams();
   return (
