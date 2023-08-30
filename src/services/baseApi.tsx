@@ -131,6 +131,7 @@ export const TAGS = [
   "CHILD_IMMUNISATION_REPORTS",
   "CHILD_MISSING_PLACEMENT_DOCS",
   "THIRD_PARTY_LICENSE",
+  "HEALTH_AND_SAFETY_IMMUNIZATION",
 ];
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({

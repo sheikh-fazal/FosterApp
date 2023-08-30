@@ -5,6 +5,7 @@ import TableHeader from "@root/components/TableHeader";
 import { useTableParams } from "@root/hooks/useTableParams";
 import { useImmunisationsTable } from "./useImmunisationsTable";
 import { IMMUNISATIONS_DATA, columns } from ".";
+import DeleteModel from "@root/components/modal/DeleteModel";
 
 export const ImmunisationsTable = () => {
   const {
@@ -26,12 +27,21 @@ export const ImmunisationsTable = () => {
     makePath,
     pageChangeHandler,
     sortChangeHandler,
-  } :any= useImmunisationsTable();
+    columnsFunction,
+    immunisationId,
+    setImmunisationId,
+    deleteList,
+  }: any = useImmunisationsTable();
   // const { params, headerChangeHandler, pageChangeHandler, sortChangeHandler } =
   //   useTableParams();
   return (
     <Page title="Immunisations List">
       <Card sx={{ p: 1 }}>
+        <DeleteModel
+          open={immunisationId && immunisationId}
+          handleClose={() => setImmunisationId(null)}
+          onDeleteClick={deleteList}
+        />
         <TableHeader
           ref={tableHeaderRef}
           // showSelectFilters
@@ -55,8 +65,8 @@ export const ImmunisationsTable = () => {
         />
         <CustomTable
           data={immunizationListData}
-          columns={columns}
-          // showSerialNo
+          columns={columnsFunction}
+          showSerialNo
           totalPages={meta?.pages ?? 0}
           currentPage={meta?.page ?? 1}
           onPageChange={pageChangeHandler}

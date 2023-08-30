@@ -9,29 +9,29 @@ const todayDate = dayjs().format("MM/DD/YYYY");
 // const FILE_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
 
 export const defaultValues = {
-  selectCarer: "",
-  dateOfImmunisations: new Date(todayDate),
-  immunisationType: "Text",
+  carerType: "",
+  dateOfImmunization: new Date(todayDate),
+  immunizationType: "",
   dueDate: new Date(todayDate),
-  dateImmunisationLastViewed: new Date(todayDate),
-  IsimmunisationUpToDate: false,
-  comments: "text",
+  dateLastViewed: new Date(todayDate),
+  immunizationUpToDate: false,
+  comments: "",
 };
 
 export const FormSchema = Yup.object().shape({
-  selectCarer: Yup.string().required("Required"),
-  dateOfImmunisations: Yup.date().required("Date is required"),
-  immunisationType: Yup.string().required("Required"),
+  carerType: Yup.string().required("Required"),
+  dateOfImmunization: Yup.date().required("Date is required"),
+  immunizationType: Yup.string().required("Required"),
   dueDate: Yup.date().required("Required"),
-  dateImmunisationLastViewed: Yup.date().required("Required"),
+  dateLastViewed: Yup.date().required("Required"),
   comments: Yup.string().required("Required"),
 });
 
-export const householdConditionA_Data = [
+export const healthAndSafetyImmunisationData = [
   {
     id: 1,
     componentProps: {
-      name: "selectCarer",
+      name: "carerType",
       label: "Select the Carer",
       multiline: true,
       minRows: 3,
@@ -43,7 +43,7 @@ export const householdConditionA_Data = [
   {
     id: 2,
     componentProps: {
-      name: "dateOfImmunisations",
+      name: "dateOfImmunization",
       label: "Date of Immunisations",
       multiline: true,
       fullWidth: true,
@@ -55,7 +55,7 @@ export const householdConditionA_Data = [
   {
     id: 3,
     componentProps: {
-      name: "immunisationType",
+      name: "immunizationType",
       label: "Immunisation Type",
       multiline: true,
       minRows: 3,
@@ -78,7 +78,7 @@ export const householdConditionA_Data = [
     id: 5,
     componentProps: {
       fullWidth: true,
-      name: "dateImmunisationLastViewed",
+      name: "dateLastViewed",
       label: "Date Immunisations last viewed",
     },
     gridLength: 6,
@@ -89,7 +89,7 @@ export const householdConditionA_Data = [
     gridLength: 6,
     componentProps: {
       fullWidth: true,
-      name: "IsimmunisationUpToDate",
+      name: "immunizationUpToDate",
       label: "Immunisations up to date?",
     },
     component: RHFCheckbox,

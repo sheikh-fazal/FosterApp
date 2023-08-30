@@ -2,8 +2,8 @@ import { Box, Checkbox } from "@mui/material";
 import TableAction from "@root/components/TableAction";
 import DeleteModel from "@root/components/modal/DeleteModel";
 import dayjs from "dayjs";
-
-export const columns = [
+import Router from "next/router";
+export const columns = ({ makePath,  openDeleteModel }: any) => [
   // {
   //   id: "select",
   //   header: ({ table, row }: any) => {
@@ -27,13 +27,13 @@ export const columns = [
   //     </Box>
   //   ),
   // },
-  {
-    accessorFn: (row: any) => row.srNo,
-    id: "srNo",
-    cell: (info: any) => info.getValue(),
-    header: () => <span>Sr.No</span>,
-    isSortable: true,
-  },
+  // {
+  //   accessorFn: (row: any) => row.srNo,
+  //   id: "srNo",
+  //   cell: (info: any) => info.getValue(),
+  //   header: () => <span>Sr.No</span>,
+  //   isSortable: true,
+  // },
   {
     accessorFn: (row: any) => row.carerName,
     id: "carerName",
@@ -56,8 +56,8 @@ export const columns = [
     isSortable: true,
   },
   {
-    accessorFn: (row: any) => row.immunisationType,
-    id: "immunisationType",
+    accessorFn: (row: any) => row.immunizationType,
+    id: "immunizationType",
     cell: (info: any) => info.getValue(),
     header: "Immunisation Type",
     isSortable: true,
@@ -66,8 +66,21 @@ export const columns = [
     id: "actions",
     cell: (info: any) => (
       <Box sx={{ display: "flex", gap: "5px", justifyContent: "center" }}>
-        <TableAction type="edit" onClicked={() => alert("Edit")} />
-        <TableAction type="delete" onClicked={() => alert("Delete")} />
+        <TableAction
+          type="edit"
+          onClicked={() =>
+            Router.push(
+              makePath({
+                path: "/carer-info/medical-history/immunisations/edit-immunisation-table-tabs",
+                queryParams: { immunisationId: info?.row?.original?.id },
+              })
+            )
+          }
+        />
+        <TableAction
+          type="delete"
+          onClicked={() => openDeleteModel(info?.row?.original?.id)}
+        />
         {/* <DeleteModel onDeleteClick={() => {}} /> */}
         <TableAction type="view" onClicked={() => alert("View")} />
         {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
@@ -82,17 +95,17 @@ export const IMMUNISATIONS_DATA = [
   {
     id: 1,
     srNo: "1",
-    carerName:"John Doe",
-    carerType:"Backup Carer",
-    dateOfImmunisation: new Date() ,
-    immunisationType:"Typhoid",
+    carerName: "John Doe",
+    carerType: "Backup Carer",
+    dateOfImmunisation: new Date(),
+    immunisationType: "Typhoid",
   },
   {
     id: 2,
     srNo: "2",
-    carerName:"Edward",
-    carerType:"Backup Carer",
-    dateOfImmunisation: new Date() ,
-    immunisationType:"Measles",
+    carerName: "Edward",
+    carerType: "Backup Carer",
+    dateOfImmunisation: new Date(),
+    immunisationType: "Measles",
   },
 ];

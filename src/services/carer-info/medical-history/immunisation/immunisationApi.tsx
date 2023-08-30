@@ -1,14 +1,49 @@
 import { baseAPI } from "@root/services/baseApi";
-
+const TAGS = "HEALTH_AND_SAFETY_IMMUNIZATION";
 export const immunisationApi: any = baseAPI.injectEndpoints({
   endpoints: (builder: any) => ({
     getImmunisationListData: builder.query({
-      query: ({ params }: any) => ({
-        url: `carer-Info/immunization?fosterCarerId=49c2d4ec-29f1-4180-8ab9-5e2314df12c8&limit=10&offset=0`,
-        params: params?.params,
+      query: ({ params, fosterCarerId }: any) => ({
+        url: `carer-Info/immunization?fosterCarerId=${fosterCarerId}`,
+        method: "GET",
+        params,
       }),
+      provideTags: [TAGS],
+    }),
+    deleteImmunisationList: builder.mutation({
+      query: (immunisationId: any) => ({
+        url: `carer-Info/immunization/${immunisationId}`,
+        method: "DELETE",
+      }),
+      invalidTags: [TAGS],
+    }),
+    postImmunisationData: builder.mutation({
+      query: ({ formData, fosterCarerId }: any) => ({
+        url: `carer-Info/immunization?fosterCarerId=${fosterCarerId}`,
+        method: "POST",
+        body: formData,
+      }),
+      invalidTags: [TAGS],
+    }),
+    getImmunisationById: builder.query({
+      query: (immunisationId: any) =>
+        `carer-Info/immunization/${immunisationId}`,
+      provideTags: [TAGS],
+    }),
+    putImmunisationData: builder.mutation({
+      query: ({ fosterCarerId, immunisationId }: any) => ({
+        url: `carer-Info/immunization/${immunisationId}?fosterCarerId=${fosterCarerId}`,
+        method: "PUT",
+      }),
+      invalidTags: [TAGS],
     }),
   }),
 });
 
-export const { useGetImmunisationListDataQuery } = immunisationApi;
+export const {
+  useGetImmunisationListDataQuery,
+  useDeleteImmunisationListMutation,
+  usePostImmunisationDataMutation,
+  useGetImmunisationByIdQuery,
+  usePutImmunisationDataMutation,
+} = immunisationApi;
