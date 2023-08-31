@@ -26,10 +26,7 @@ export const useImmunisationsTable = () => {
   const { data, isSuccess, isError, isFetching, isLoading }: any =
     useGetImmunisationListDataQuery({
       fosterCarerId: fosterCarerId,
-      // params: {
-      // search: search,
       params,
-      // },
     });
   const [deleteListItem] = useDeleteImmunisationListMutation({});
   const deleteList = async () => {
@@ -49,8 +46,6 @@ export const useImmunisationsTable = () => {
         enqueueSnackbar(errMsg ?? "Error occured", { variant: "error" });
       });
   };
-  console.log(data?.data);
-  console.log(params);
 
   const openDeleteModel = (id: any) => {
     setImmunisationId(id);

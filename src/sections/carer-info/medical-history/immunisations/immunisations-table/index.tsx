@@ -73,7 +73,7 @@ export const columns = ({ makePath,  openDeleteModel }: any) => [
               makePath({
                 path: "/carer-info/medical-history/immunisations/edit-immunisation-table-tabs",
                 queryParams: { immunisationId: info?.row?.original?.id },
-              })
+              }) 
             )
           }
         />
@@ -82,7 +82,14 @@ export const columns = ({ makePath,  openDeleteModel }: any) => [
           onClicked={() => openDeleteModel(info?.row?.original?.id)}
         />
         {/* <DeleteModel onDeleteClick={() => {}} /> */}
-        <TableAction type="view" onClicked={() => alert("View")} />
+        <TableAction type="view" onClicked={() =>
+            Router.push(
+              makePath({
+                path: "/carer-info/medical-history/immunisations/view-immunisation-table-tabs",
+                queryParams: { immunisationId: info?.row?.original?.id },
+              })
+            )
+          } />
         {/* <TableAction type="download" onClicked={() => alert("Download")} /> */}
       </Box>
     ),

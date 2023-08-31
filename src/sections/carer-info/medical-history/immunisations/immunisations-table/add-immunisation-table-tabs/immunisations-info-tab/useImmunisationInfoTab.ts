@@ -19,7 +19,7 @@ export const useImmunisationInfoTab = ({
   const theme: any = useTheme();
   const router = useRouter();
   const { makePath } = usePath();
-  const { fosterCarerId } = router.query;
+  const { fosterCarerId, immunisationId } = router.query;
   const methods: any = useForm({
     resolver: yupResolver(FormSchema),
     defaultValues: initialValueProps,
@@ -29,28 +29,51 @@ export const useImmunisationInfoTab = ({
     formState: { isSubmitting },
   } = methods;
   const onSubmit = async (data: any) => {
-    try {
-      const res: any = await onSubmitHandler({
-        formData: data,
-        fosterCarerId: fosterCarerId,
-      }).unwrap();
-      enqueueSnackbar(res?.message, {
-        variant: "success",
-      });
-      {
-        isAdding &&
-          router.push(
-            makePath({
-              path: "/carer-info/medical-history/immunisations/add-immunisation-table-tabs",
-              queryParams: { immunisationId: res?.data?.id },
-            })
-          );
+    if (message === "Added")
+      try {
+        const res: any = await onSubmitHandler({
+          formData: data,
+          fosterCarerId: fosterCarerId,
+        }).unwrap();
+        enqueueSnackbar(
+          res?.message ?? `Immunisation ${message} successfully!`,
+          {
+            variant: "success",
+          }
+        );
+        {
+          isAdding &&
+            router.push(
+              makePath({
+                path: "/carer-info/medical-history/immunisations/add-immunisation-table-tabs",
+                queryParams: { immunisationId: res?.data?.id },
+              })
+            );
+        }
+      } catch (error: any) {
+        enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
+          variant: "error",
+        });
       }
-    } catch (error: any) {
-      enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
-        variant: "error",
-      });
-      // formData(data);
+    else if (message === "Updated") {
+      try {
+        const res = await onSubmitHandler({
+          fosterCarerId,
+          immunisationId,
+          formData: data,
+        }).unwrap();
+
+        enqueueSnackbar(
+          res?.message ?? `Health And Safety ${message} Successfully!`,
+          {
+            variant: "success",
+          }
+        );
+      } catch (error: any) {
+        enqueueSnackbar(error?.message ?? "Something Went Wrong!", {
+          variant: "error",
+        });
+      }
     }
   };
   useEffect(() => {
@@ -66,6 +89,5 @@ export const useImmunisationInfoTab = ({
     router,
     isSubmitting,
     makePath,
-    
   };
 };

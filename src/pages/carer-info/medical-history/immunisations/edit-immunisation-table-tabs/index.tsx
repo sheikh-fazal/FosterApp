@@ -17,12 +17,10 @@ export default function EditImmunisationTableTabs() {
   const [breadCrumbData, setBreadCrumbData] = useState("Immunisation Info");
   const router = useRouter();
   const { immunisationId } = router.query;
-  console.log(immunisationId);
 
   const { makePath } = usePath();
   const { data, isLoading, isError } =
     useGetImmunisationByIdQuery(immunisationId);
-  console.log(data?.data);
 
   const [putImmunisationData, { isSuccess }] = usePutImmunisationDataMutation();
   const tabsData = ["Immunisations Info", "Upload Documents"];
@@ -39,7 +37,7 @@ export default function EditImmunisationTableTabs() {
     {
       name: "Edit Immunization",
     },
-  ];
+  ]; 
   if (isError) return <Error />;
   return (
     <Layout

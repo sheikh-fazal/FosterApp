@@ -31,9 +31,10 @@ export const immunisationApi: any = baseAPI.injectEndpoints({
       provideTags: [TAGS],
     }),
     putImmunisationData: builder.mutation({
-      query: ({ fosterCarerId, immunisationId }: any) => ({
+      query: ({ fosterCarerId, immunisationId, formData }: any) => ({
         url: `carer-Info/immunization/${immunisationId}?fosterCarerId=${fosterCarerId}`,
         method: "PUT",
+        body: formData,
       }),
       invalidTags: [TAGS],
     }),
